@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { DynamicForm } from './dynamic-form.model';
-import { DynamicFormItem, DynamicFormField } from '../dynamic-form-item';
+import { DynamicFormItem } from '../dynamic-form-item';
 import { DynamicFormGroup } from '../dynamic-form-group';
 import { DynamicFormArray } from '../dynamic-form-array';
 import { DynamicFormControl } from '../dynamic-form-control';
@@ -16,13 +16,16 @@ export class DynamicFormBuilder {
     const controls = items.reduce((result, item) => {
       switch (item.type) {
         case 'group':
-          result[item.key] = this.createFormGroup((<DynamicFormGroup>item).items);
+          const groupModel = model ? model[item.key] : null;
+          result[item.key] = this.createFormGroup((<DynamicFormGroup>item).items, groupModel);
           return result;
         case 'array':
-          result[item.key] = this.createFormArray(<DynamicFormArray>item);
+          const arrayModel = model ? model[item.key] : null;
+          result[item.key] = this.createFormArray(<DynamicFormArray>item, arrayModel);
           return result;
         case 'control':
-          result[item.key] = this.createFormControl(<DynamicFormControl>item);
+          const value = model ? model[item.key] : null;
+          result[item.key] = this.createFormControl(<DynamicFormControl>item, value);
           return result;
         default:
           return result;
@@ -31,11 +34,11 @@ export class DynamicFormBuilder {
     return new FormGroup(controls);
   }
 
-  private createFormArray(_template: DynamicFormArray): FormArray {
+  private createFormArray(_template: DynamicFormArray, model?: any): FormArray {
     return new FormArray(null);
   }
 
-  private createFormControl(_template: DynamicFormControl): FormControl {
-    return new FormControl();
+  private createFormControl(template: DynamicFormControl, value?: any): FormControl {
+    return new FormControl(value);
   }
 }

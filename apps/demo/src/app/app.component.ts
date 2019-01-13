@@ -83,6 +83,22 @@ export class AppComponent {
           email: true
         }
       }, {
+        key: 'address',
+        type: 'group',
+        label: 'Address',
+        items: [{
+          key: 'street',
+          type: 'control',
+          label: 'Street',
+          input: {
+            type: 'text',
+            placeholder: 'Enter your street'
+          },
+          validators: {
+            required: true
+          }
+        }]
+      }, {
         key: 'password',
         type: 'control',
         label: 'Password',
@@ -124,5 +140,15 @@ export class AppComponent {
       }]
     }]
   };
-  model = {};
+  model = {
+    loginEnabled: true,
+    login: {
+      email: 'user@mail.com'
+    },
+    register: {
+      name: 'user',
+      email: 'user@mail.com',
+      address: {}
+    }
+  };
 }
