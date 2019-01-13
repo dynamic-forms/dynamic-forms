@@ -1,7 +1,6 @@
-<form class="form" [formGroup]="form" (ngSubmit)="submit()">
-  <dynamic-form-group [template]="template" [control]="form" 
-    [model]="model" (modelChange)="modelChanged($event)">
+<form class="form" [formGroup]="formField.control" (ngSubmit)="submit()">
+  <dynamic-form-group [formField]="formField" (modelChange)="modelChanged($event)">
   </dynamic-form-group>
 </form>
-<div>{{ form.valid | json }}</div>
-<div>{{ form.value | json }}</div>
+<div>{{ formField.control.valid | json }}</div>
+<div>{{ formField.control.value | json }}</div>

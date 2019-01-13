@@ -7,4 +7,5 @@ export interface DynamicFormField {
   template: DynamicFormItem;
   control: FormControlType;
   model: any;
+  fields?: DynamicFormField[];
 }

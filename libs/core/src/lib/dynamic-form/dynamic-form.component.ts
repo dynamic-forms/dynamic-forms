@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { DynamicForm } from './dynamic-form.model';
 import { DynamicFormBuilder } from './dynamic-form.builder';
+import { DynamicFormField } from '../dynamic-form-item';
 
 @Component({
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnInit {
-  form: FormGroup;
+  formField: DynamicFormField;
 
   @Input()
   template: DynamicForm;
@@ -18,7 +18,7 @@ export class DynamicFormComponent implements OnInit {
   constructor(private formBuilder: DynamicFormBuilder) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.createForm(this.template, this.model);
+    this.formField = this.formBuilder.createFormField(this.template, this.model);
   }
 
   modelChanged(model: any) {
@@ -26,6 +26,6 @@ export class DynamicFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('form.value', this.form.value);
+    console.log('form.value', this.formField.control.value);
   }
 }

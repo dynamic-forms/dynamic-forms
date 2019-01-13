@@ -1,7 +1,6 @@
 import { Component, ViewChild, ViewContainerRef, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { DynamicFormItem } from './dynamic-form-item.model';
 import { DynamicFormItemFactory } from './dynamic-form-item.factory';
+import { DynamicFormField } from './dynamic-form-field.model';
 
 @Component({
   selector: 'dynamic-form-item',
@@ -10,9 +9,7 @@ import { DynamicFormItemFactory } from './dynamic-form-item.factory';
 export class DynamicFormItemComponent implements OnInit {
   @ViewChild('container', { read: ViewContainerRef })
   viewContainerRef: ViewContainerRef;
-  @Input() template: DynamicFormItem;
-  @Input() control: FormGroup;
-  @Input() model: any;
+  @Input() formField: DynamicFormField;
 
   constructor(private componentFactory: DynamicFormItemFactory) {}
 
@@ -21,10 +18,6 @@ export class DynamicFormItemComponent implements OnInit {
   }
 
   private initComponent(): any {
-    this.componentFactory.createComponent(this.viewContainerRef, {
-      template: this.template,
-      control: this.control,
-      model: this.model
-    });
+    this.componentFactory.createComponent(this.viewContainerRef, this.formField);
   }
 }

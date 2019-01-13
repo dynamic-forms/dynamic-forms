@@ -1,44 +1,64 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { DynamicForm } from './dynamic-form.model';
-import { DynamicFormItem } from '../dynamic-form-item';
+import { DynamicFormItem, DynamicFormField } from '../dynamic-form-item';
 import { DynamicFormGroup } from '../dynamic-form-group';
 import { DynamicFormArray } from '../dynamic-form-array';
 import { DynamicFormControl } from '../dynamic-form-control';
 
 @Injectable()
 export class DynamicFormBuilder {
-  createForm(template: DynamicForm, model: any): FormGroup {
-    return this.createFormGroup(template.items, model);
+  createFormField(template: DynamicForm, model: any): DynamicFormField {
+    const fields = this.createFormFields(template.items, model);
+    const controls = this.getFieldControls(fields);
+    const control = new FormGroup(controls);
+    return { template, control,  model, fields };
   }
 
-  private createFormGroup(items: DynamicFormItem[], model?: any): FormGroup {
-    const controls = items.reduce((result, item) => {
+  private createFormFields(items: DynamicFormItem[], model?: any): DynamicFormField[] {
+    return items.map(item => {
       switch (item.type) {
         case 'group':
           const groupModel = model ? model[item.key] : null;
-          result[item.key] = this.createFormGroup((<DynamicFormGroup>item).items, groupModel);
-          return result;
+          return this.createFormGroupField(<DynamicFormGroup>item, groupModel);
         case 'array':
           const arrayModel = model ? model[item.key] : null;
-          result[item.key] = this.createFormArray(<DynamicFormArray>item, arrayModel);
-          return result;
+          return this.createFormArrayField(<DynamicFormArray>item, arrayModel);
         case 'control':
           const value = model ? model[item.key] : null;
-          result[item.key] = this.createFormControl(<DynamicFormControl>item, value);
-          return result;
+          return this.createFormControlField(<DynamicFormControl>item, value);
         default:
-          return result;
+          return null;
       }
+    });
+  }
+
+  private createFormGroupField(item: DynamicFormGroup, model?: any): DynamicFormField {
+    return this.createFormField(item, model);
+  }
+
+  private createFormArrayField(template: DynamicFormArray, model?: any): DynamicFormField {
+    const control = this.createFormArray(template, model);
+    return { template, control, model };
+  }
+
+  private createFormControlField(template: DynamicFormControl, model?: any): DynamicFormField {
+    const control = this.createFormControl(template, model);
+    return { template, control, model };
+  }
+
+  private getFieldControls(fields: DynamicFormField[]) {
+    return fields.reduce((result, item) => {
+      result[item.template.key] = item.control;
+      return result;
     }, {});
-    return new FormGroup(controls);
   }
 
   private createFormArray(_template: DynamicFormArray, model?: any): FormArray {
-    return new FormArray(null);
+    return new FormArray(model);
   }
 
-  private createFormControl(template: DynamicFormControl, value?: any): FormControl {
-    return new FormControl(value);
+  private createFormControl(_template: DynamicFormControl, model?: any): FormControl {
+    return new FormControl(model);
   }
 }

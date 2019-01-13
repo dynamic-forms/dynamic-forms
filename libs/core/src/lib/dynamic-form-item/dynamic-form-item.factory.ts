@@ -11,9 +11,7 @@ export class DynamicFormItemFactory {
   public createComponent(containerRef: ViewContainerRef, field: DynamicFormField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
-    (<any>componentRef.instance).template = field.template;
-    (<any>componentRef.instance).control = field.control;
-    (<any>componentRef.instance).model = field.model;
+    (<any>componentRef.instance).formField = field;
   }
 
   private getComponentFactory(field: DynamicFormField): ComponentFactory<any> {
