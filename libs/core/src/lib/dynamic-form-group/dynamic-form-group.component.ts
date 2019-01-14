@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DynamicFormField } from '../dynamic-form-item';
+import { FormField } from '../dynamic-form-field';
 
 @Component({
   selector: 'dynamic-form-group',
   templateUrl: './dynamic-form-group.component.html'
 })
-export class DynamicFormGroupComponent {
-  @Input() formField: DynamicFormField;
+export class FormGroupComponent {
+  @Input() formField: FormField;
   @Output() modelChange = new EventEmitter<any>();
 }

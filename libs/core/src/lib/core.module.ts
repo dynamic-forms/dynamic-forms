@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormBuilder, DynamicFormComponent } from './dynamic-form';
-import { DynamicFormItemFactory, DynamicFormItemComponent } from './dynamic-form-item';
-import { DynamicFormGroupComponent } from './dynamic-form-group';
-import { DynamicFormArrayComponent } from './dynamic-form-array';
-import { DynamicFormControlComponent } from './dynamic-form-control';
+import { FormComponent, FormBuilder } from './dynamic-form';
+import { FormFieldComponent, FormFieldFactory } from './dynamic-form-field';
+import { FormGroupComponent } from './dynamic-form-group';
+import { FormArrayComponent } from './dynamic-form-array';
+import { FormControlComponent } from './dynamic-form-control';
 
 @NgModule({
   declarations: [
-    DynamicFormComponent,
-    DynamicFormItemComponent,
-    DynamicFormGroupComponent,
-    DynamicFormArrayComponent,
-    DynamicFormControlComponent
+    FormComponent,
+    FormFieldComponent,
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent
   ],
   imports: [
     CommonModule,
@@ -22,12 +22,12 @@ import { DynamicFormControlComponent } from './dynamic-form-control';
   exports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormComponent
+    FormComponent
   ],
   entryComponents: [
-    DynamicFormGroupComponent,
-    DynamicFormArrayComponent,
-    DynamicFormControlComponent
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent
   ]
 })
 export class DynamicFormsModule {
@@ -35,8 +35,8 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        DynamicFormBuilder,
-        DynamicFormItemFactory
+        FormBuilder,
+        FormFieldFactory
       ]
     };
   }
@@ -45,7 +45,7 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        DynamicFormBuilder
+        FormBuilder
       ]
     };
   }

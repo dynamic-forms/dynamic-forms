@@ -1,5 +1,5 @@
-import { DynamicFormItem } from '../dynamic-form-item';
+import { FormFieldTemplate } from '../dynamic-form-field';
 
-export interface DynamicFormGroup extends DynamicFormItem {
-  items: DynamicFormItem[];
+export interface FormGroupTemplate extends FormFieldTemplate {
+  items: FormFieldTemplate[];
 }
