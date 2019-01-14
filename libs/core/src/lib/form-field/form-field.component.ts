@@ -1,10 +1,10 @@
 import { Component, ViewChild, ViewContainerRef, OnInit, Input } from '@angular/core';
-import { FormFieldFactory } from './dynamic-form-field.factory';
-import { FormField } from './dynamic-form-field.model';
+import { FormFieldFactory } from './form-field.factory';
+import { FormField } from './form-field.model';
 
 @Component({
   selector: 'dynamic-form-field',
-  templateUrl: './dynamic-form-field.component.html'
+  templateUrl: './form-field.component.html'
 })
 export class FormFieldComponent implements OnInit {
   @Input() formField: FormField;

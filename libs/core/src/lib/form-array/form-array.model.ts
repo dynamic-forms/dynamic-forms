@@ -1,4 +1,4 @@
-import { FormFieldTemplate } from '../dynamic-form-field';
+import { FormFieldTemplate } from '../form-field';
 
 export interface FormArrayTemplate extends FormFieldTemplate {
   items: FormFieldTemplate[];

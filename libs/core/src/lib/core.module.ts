@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormComponent, FormBuilder } from './dynamic-form';
-import { FormFieldComponent, FormFieldFactory } from './dynamic-form-field';
-import { FormGroupComponent } from './dynamic-form-group';
-import { FormArrayComponent } from './dynamic-form-array';
-import { FormControlComponent } from './dynamic-form-control';
+import { FormComponent, FormBuilder } from './form';
+import { FormFieldComponent, FormFieldFactory } from './form-field';
+import { FormGroupComponent } from './form-group';
+import { FormArrayComponent } from './form-array';
+import { FormControlComponent } from './form-control';
 
 @NgModule({
   declarations: [

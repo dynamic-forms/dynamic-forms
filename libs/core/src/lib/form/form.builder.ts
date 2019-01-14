@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { FormTemplate } from './dynamic-form.model';
-import { FormField, FormFieldTemplate } from '../dynamic-form-field';
-import { FormGroupTemplate } from '../dynamic-form-group';
-import { FormArrayTemplate } from '../dynamic-form-array';
-import { FormControlTemplate } from '../dynamic-form-control';
+import { FormTemplate } from './form.model';
+import { FormField, FormFieldTemplate } from '../form-field';
+import { FormGroupTemplate } from '../form-group';
+import { FormArrayTemplate } from '../form-array';
+import { FormControlTemplate } from '../form-control';
 
 @Injectable()
 export class FormBuilder {

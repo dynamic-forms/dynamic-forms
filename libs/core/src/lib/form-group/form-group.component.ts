@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormField } from '../dynamic-form-field';
+import { FormField } from '../form-field';
 
 @Component({
   selector: 'dynamic-form-group',
-  templateUrl: './dynamic-form-group.component.html'
+  templateUrl: './form-group.component.html'
 })
 export class FormGroupComponent {
   @Input() formField: FormField;

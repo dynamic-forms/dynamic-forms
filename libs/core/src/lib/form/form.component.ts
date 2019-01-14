@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormTemplate } from './dynamic-form.model';
-import { FormBuilder } from './dynamic-form.builder';
-import { FormField } from '../dynamic-form-field';
+import { FormTemplate } from './form.model';
+import { FormBuilder } from './form.builder';
+import { FormField } from '../form-field';
 
 @Component({
   selector: 'dynamic-form',
-  templateUrl: './dynamic-form.component.html'
+  templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
   formField: FormField;
