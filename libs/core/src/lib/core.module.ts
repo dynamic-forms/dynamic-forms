@@ -3,9 +3,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormComponent, FormBuilder } from './form';
 import { FormFieldComponent, FormFieldFactory } from './form-field';
-import { FormGroupComponent } from './form-group';
-import { FormArrayComponent } from './form-array';
-import { FormControlComponent } from './form-control';
+import { FormGroupComponent, FormGroupBuilder } from './form-group';
+import { FormArrayComponent, FormArrayBuilder } from './form-array';
+import { FormControlComponent, FormControlBuilder } from './form-control';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,9 @@ export class DynamicFormsModule {
       ngModule: DynamicFormsModule,
       providers: [
         FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder,
         FormFieldFactory
       ]
     };
@@ -45,7 +48,10 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        FormBuilder
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder
       ]
     };
   }
