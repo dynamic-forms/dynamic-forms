@@ -9,47 +9,48 @@ import { FormControlTemplate } from '../form-control';
 @Injectable()
 export class FormBuilder {
   createFormField(template: FormTemplate, model: any): FormField {
-    const fields = this.createFormFields(template.items, model);
+    const fields = this.createFormFields(template.fields, model);
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
     return { template, control,  model, fields };
   }
 
-  private createFormFields(templates: FormFieldTemplate[], model?: any): FormField[] {
+  private createFormFields(templates: FormFieldTemplate[], model: any): FormField[] {
     return templates.map(template => {
       switch (template.type) {
         case 'group':
-          const groupModel = model ? model[template.key] : null;
-          return this.createFormGroupField(<FormGroupTemplate>template, groupModel);
+          return this.createFormGroupField(<FormGroupTemplate>template, model);
         case 'array':
-          const arrayModel = model ? model[template.key] : null;
-          return this.createFormArrayField(<FormArrayTemplate>template, arrayModel);
+
+          return this.createFormArrayField(<FormArrayTemplate>template, model);
         case 'control':
-          const controlModel = model ? model[template.key] : null;
-          return this.createFormControlField(<FormControlTemplate>template, controlModel);
+          return this.createFormControlField(<FormControlTemplate>template, model);
         default:
           return null;
       }
     });
   }
 
-  private createFormGroupField(template: FormGroupTemplate, model?: any): FormField {
+  private createFormGroupField(template: FormGroupTemplate, parentModel: any): FormField {
+    const model = parentModel ? parentModel[template.key] : null;
     return this.createFormField(template, model);
   }
 
-  private createFormArrayField(template: FormArrayTemplate, model?: any): FormField {
+  private createFormArrayField(template: FormArrayTemplate, parentModel: any): FormField {
+    const model = parentModel ? parentModel[template.key] : null;
     const control = new FormArray(model);
     return { template, control, model };
   }
 
-  private createFormControlField(template: FormControlTemplate, model?: any): FormField {
+  private createFormControlField(template: FormControlTemplate, parentModel: any): FormField {
+    const model = parentModel ? parentModel[template.key] : null;
     const control = new FormControl(model);
     return { template, control, model };
   }
 
   private getFieldControls(fields: FormField[]) {
-    return fields.reduce((result, item) => {
-      result[item.template.key] = item.control;
+    return fields.reduce((result, field) => {
+      result[field.template.key] = field.control;
       return result;
     }, {});
   }

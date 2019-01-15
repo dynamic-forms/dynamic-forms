@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   template = <any>{
-    items: [{
+    fields: [{
       key: 'loginEnabled',
       type: 'control',
       label: 'Login enabled',
@@ -19,7 +19,7 @@ export class AppComponent {
       key: 'login',
       type: 'group',
       label: 'Login',
-      items: [{
+      fields: [{
         key: 'email',
         type: 'control',
         label: 'Email',
@@ -59,7 +59,7 @@ export class AppComponent {
       key: 'register',
       type: 'group',
       label: 'Register',
-      items: [{
+      fields: [{
         key: 'name',
         label: 'Name',
         type: 'control',
@@ -86,7 +86,7 @@ export class AppComponent {
         key: 'address',
         type: 'group',
         label: 'Address',
-        items: [{
+        fields: [{
           key: 'street',
           type: 'control',
           label: 'Street',
@@ -115,7 +115,7 @@ export class AppComponent {
       key: 'underlying',
       type: 'group',
       label: 'Underlying',
-      items: [{
+      fields: [{
         key: 'currencyPair',
         type: 'control',
         label: 'Currency pair',
