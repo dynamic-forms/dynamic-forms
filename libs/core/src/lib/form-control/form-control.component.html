@@ -1,4 +1,5 @@
 <div class="form-control">
-  <label>{{ formField.template.label }}</label>
-  <input [type]="formField.template.input.type" [formControl]="formField.control" />
+  <label>{{ template.label }}</label>
+  <input [type]="template.input.type" [placeholder]="template.input.type" 
+    [formControl]="control" />
 </div>

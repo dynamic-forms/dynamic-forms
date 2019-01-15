@@ -7,9 +7,8 @@ import { FormField } from './form-field.model';
   templateUrl: './form-field.component.html'
 })
 export class FormFieldComponent implements OnInit {
+  @ViewChild('container', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() formField: FormField;
-  @ViewChild('container', { read: ViewContainerRef })
-  viewContainerRef: ViewContainerRef;
 
   constructor(private componentFactory: FormFieldFactory) {}
 
@@ -18,6 +17,6 @@ export class FormFieldComponent implements OnInit {
   }
 
   private initComponent(): any {
-    this.componentFactory.createComponent(this.viewContainerRef, this.formField);
+    this.componentFactory.createComponent(this.containerRef, this.formField);
   }
 }

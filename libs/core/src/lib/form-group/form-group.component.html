@@ -1,6 +1,6 @@
 <div class="form-group">
-  <div class="form-group-label">{{ formField.template.label }}</div>
-  <ng-container *ngFor="let field of formField.fields">
+  <div class="form-group-label">{{ template.label }}</div>
+  <ng-container *ngFor="let field of fields">
     <dynamic-form-field [formField]="field"></dynamic-form-field>
   </ng-container>
 </div>

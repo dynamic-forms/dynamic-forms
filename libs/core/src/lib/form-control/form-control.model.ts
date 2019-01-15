@@ -1,5 +1,8 @@
 import { FormFieldTemplate } from '../form-field';
 
 export interface FormControlTemplate extends FormFieldTemplate {
-  input: { type: string };
+  input: {
+    type: string,
+    placeholder: string
+  };
 }

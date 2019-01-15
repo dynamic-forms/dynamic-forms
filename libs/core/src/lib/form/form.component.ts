@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormTemplate } from './form.model';
 import { FormBuilder } from './form.builder';
 import { FormField } from '../form-field';
@@ -10,12 +11,14 @@ import { FormField } from '../form-field';
 export class FormComponent implements OnInit {
   formField: FormField;
 
-  @Input()
-  template: FormTemplate;
-  @Input()
-  model: any;
+  @Input() template: FormTemplate;
+  @Input() model: any;
 
   constructor(private formBuilder: FormBuilder) {}
+
+  get formGroup(): FormGroup {
+    return <FormGroup>this.formField.control;
+  }
 
   ngOnInit(): void {
     this.formField = this.formBuilder.createFormField(this.template, this.model);
