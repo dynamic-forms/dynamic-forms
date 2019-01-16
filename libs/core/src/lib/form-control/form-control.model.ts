@@ -23,6 +23,7 @@ export interface FormControlTemplate extends FormFieldTemplate {
 
 export class FormControlField implements FormField {
   constructor(
+    public path: string,
     public template: FormControlTemplate,
     public control: FormControl,
     public parentModel: any,

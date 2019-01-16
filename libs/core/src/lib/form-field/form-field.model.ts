@@ -10,6 +10,7 @@ export interface FormFieldTemplate {
 }
 
 export interface FormField {
+  path: string;
   template: FormFieldTemplate;
   control: FormControlType;
   fields?: FormField[];

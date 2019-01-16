@@ -7,6 +7,7 @@ export interface FormArrayTemplate extends FormFieldTemplate {
 
 export class FormArrayField implements FormField {
   constructor(
+    public path: string,
     public template: FormArrayTemplate,
     public control: FormArray,
     public parentModel: any,

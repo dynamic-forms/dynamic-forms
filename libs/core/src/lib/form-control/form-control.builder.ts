@@ -4,17 +4,19 @@ import { FormControlTemplate, FormControlValidators, FormControlField } from './
 
 @Injectable()
 export class FormControlBuilder {
-  createFormField(template: FormControlTemplate, parentModel: any): FormControlField {
+  createFormField(template: FormControlTemplate, parentPath: string, parentModel: any): FormControlField {
+    const path = parentPath ? `${parentPath}.${template.key}` : template.key;
     const model = parentModel ? parentModel[template.key] : null;
     const validators = this.getValidators(template);
     const control = new FormControl(model, validators);
-    return new FormControlField(template, control, parentModel, model);
+    return new FormControlField(path, template, control, parentModel, model);
   }
 
   private getValidators(template: FormControlTemplate): ValidatorFn[] {
     if (template.validators) {
       return Object.keys(template.validators)
-        .map(key => this.getValidator(template.validators, key));
+        .map(key => this.getValidator(template.validators, key))
+        .filter(validator => !!validator);
     }
     return [];
   }
@@ -22,19 +24,19 @@ export class FormControlBuilder {
   private getValidator(validators: FormControlValidators, key: string): ValidatorFn {
     switch (key) {
       case 'required':
-        return Validators.required;
+        return validators.required ? Validators.required : null;
       case 'email':
-        return Validators.email;
+        return validators.email ? Validators.email : null;
       case 'pattern':
-        return Validators.pattern(validators.pattern);
+        return validators.pattern ? Validators.pattern(validators.pattern) : null;
       case 'min':
-        return Validators.min(validators.min);
+        return Number.isFinite(validators.min) ? Validators.min(validators.min) : null;
       case 'max':
-        return Validators.max(validators.max);
-      case 'min':
-        return Validators.minLength(validators.minLength);
-      case 'max':
-        return Validators.maxLength(validators.maxLength);
+        return Number.isFinite(validators.max) ? Validators.max(validators.max) : null;
+      case 'minLength':
+        return Number.isFinite(validators.minLength) ? Validators.minLength(validators.minLength) : null;
+      case 'maxLength':
+        return Number.isFinite(validators.minLength) ? Validators.maxLength(validators.maxLength) : null;
       default:
         return null;
     }

@@ -11,31 +11,32 @@ export class FormGroupBuilder {
     private formArrayBuilder: FormArrayBuilder,
     private formControlBuilder: FormControlBuilder) {}
 
-  createFormField(template: FormGroupTemplate, model: any): FormGroupField {
-    const fields = this.createFormFields(template.fields, model);
+  createFormField(template: FormGroupTemplate, path: string, model: any): FormGroupField {
+    const fields = this.createFormFields(template.fields, path, model);
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
-    return new FormGroupField(template, control, model, fields);
+    return new FormGroupField(path, template, control, model, fields);
   }
 
-  private createFormFields(templates: FormFieldTemplate[], parentModel: any): FormField[] {
+  private createFormFields(templates: FormFieldTemplate[], parentPath: string, parentModel: any): FormField[] {
     return templates.map(template => {
       switch (template.type) {
         case 'group':
-          return this.createFormGroupField(template, parentModel);
+          return this.createFormGroupField(template, parentPath, parentModel);
         case 'array':
-          return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentModel);
+          return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentPath, parentModel);
         case 'control':
-          return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentModel);
+          return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentPath, parentModel);
         default:
           return null;
       }
     });
   }
 
-  private createFormGroupField(template: FormFieldTemplate, parentModel: any): FormGroupField {
+  private createFormGroupField(template: FormFieldTemplate, parentPath: string, parentModel: any): FormGroupField {
+    const path = parentPath ? `${parentPath}.${template.key}` : template.key;
     const model = parentModel ? parentModel[template.key] : null;
-    return this.createFormField(<FormGroupTemplate>template, model);
+    return this.createFormField(<FormGroupTemplate>template, path, model);
   }
 
   private getFieldControls(fields: FormField[]) {

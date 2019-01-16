@@ -7,6 +7,7 @@ export interface FormGroupTemplate extends FormFieldTemplate {
 
 export class FormGroupField implements FormField {
   constructor(
+    public path: string,
     public template: FormGroupTemplate,
     public control: FormGroup,
     public model: any,
