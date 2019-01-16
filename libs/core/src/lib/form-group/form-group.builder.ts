@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormField, FormFieldTemplate } from '../form-field';
+import { FormFieldBuilder, FormFieldTemplate, FormField } from '../form-field';
 import { FormArrayBuilder, FormArrayTemplate } from '../form-array';
 import { FormControlBuilder, FormControlTemplate } from '../form-control';
 
 @Injectable()
-export class FormGroupBuilder {
+export class FormGroupBuilder extends FormFieldBuilder {
   constructor(
     private formArrayBuilder: FormArrayBuilder,
-    private formControlBuilder: FormControlBuilder) {}
+    private formControlBuilder: FormControlBuilder) {
+      super();
+    }
 
   createFormField(template: FormGroupTemplate, path: string, model: any): FormGroupField {
     const fields = this.createFormFields(template.fields, path, model);
@@ -34,8 +36,8 @@ export class FormGroupBuilder {
   }
 
   private createFormGroupField(template: FormFieldTemplate, parentPath: string, parentModel: any): FormGroupField {
-    const path = parentPath ? `${parentPath}.${template.key}` : template.key;
-    const model = parentModel ? parentModel[template.key] : null;
+    const path = this.getPath(template, parentPath);
+    const model = this.getModel(template, parentModel);
     return this.createFormField(<FormGroupTemplate>template, path, model);
   }
 

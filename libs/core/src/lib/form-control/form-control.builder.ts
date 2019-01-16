@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, FormControl, Validators } from '@angular/forms';
 import { FormControlTemplate, FormControlValidators, FormControlField } from './form-control.model';
+import { FormFieldBuilder } from '../form-field';
 
 @Injectable()
-export class FormControlBuilder {
+export class FormControlBuilder extends FormFieldBuilder {
   createFormField(template: FormControlTemplate, parentPath: string, parentModel: any): FormControlField {
-    const path = parentPath ? `${parentPath}.${template.key}` : template.key;
-    const model = parentModel ? parentModel[template.key] : null;
+    const path = this.getPath(template, parentPath);
+    const model = this.getModel(template, parentModel);
     const validators = this.getValidators(template);
     const control = new FormControl(model, validators);
     return new FormControlField(path, template, control, parentModel, model);
