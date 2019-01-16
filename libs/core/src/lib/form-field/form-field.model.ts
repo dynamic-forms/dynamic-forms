@@ -12,6 +12,7 @@ export interface FormFieldTemplate {
 export interface FormField {
   template: FormFieldTemplate;
   control: FormControlType;
-  model: any;
   fields?: FormField[];
+  parentModel?: any;
+  model: any;
 }

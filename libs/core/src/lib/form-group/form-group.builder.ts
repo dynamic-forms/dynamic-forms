@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormGroupTemplate } from './form-group.model';
+import { FormGroupTemplate, FormGroupField } from './form-group.model';
 import { FormField, FormFieldTemplate } from '../form-field';
 import { FormArrayBuilder, FormArrayTemplate } from '../form-array';
 import { FormControlBuilder, FormControlTemplate } from '../form-control';
@@ -11,22 +11,22 @@ export class FormGroupBuilder {
     private formArrayBuilder: FormArrayBuilder,
     private formControlBuilder: FormControlBuilder) {}
 
-  createFormField(template: FormGroupTemplate, model: any): FormField {
+  createFormField(template: FormGroupTemplate, model: any): FormGroupField {
     const fields = this.createFormFields(template.fields, model);
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
-    return { template, control, model, fields };
+    return new FormGroupField(template, control, model, fields);
   }
 
-  private createFormFields(templates: FormFieldTemplate[], model: any): FormField[] {
+  private createFormFields(templates: FormFieldTemplate[], parentModel: any): FormField[] {
     return templates.map(template => {
       switch (template.type) {
         case 'group':
-          return this.createFormGroupField(template, model);
+          return this.createFormGroupField(template, parentModel);
         case 'array':
-          return this.createFormArrayField(template, model);
+          return this.createFormArrayField(template, parentModel);
         case 'control':
-          return this.createFormControlField(template, model);
+          return this.createFormControlField(template, parentModel);
         default:
           return null;
       }

@@ -2,14 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormTemplate } from './form.model';
 import { FormBuilder } from './form.builder';
-import { FormField } from '../form-field';
+import { FormGroupField } from '../form-group';
 
 @Component({
   selector: 'dynamic-form',
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
-  formField: FormField;
+  formField: FormGroupField;
 
   @Input() template: FormTemplate;
   @Input() model: any;
@@ -17,7 +17,7 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   get formGroup(): FormGroup {
-    return <FormGroup>this.formField.control;
+    return this.formField.control;
   }
 
   ngOnInit(): void {

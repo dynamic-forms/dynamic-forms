@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormArray } from '@angular/forms';
-import { FormArrayTemplate } from './form-array.model';
-import { FormField } from '../form-field';
+import { FormArrayTemplate, FormArrayField } from './form-array.model';
 
 @Injectable()
 export class FormArrayBuilder {
-  createFormField(template: FormArrayTemplate, parentModel: any): FormField {
+  createFormField(template: FormArrayTemplate, parentModel: any): FormArrayField {
     const model = parentModel ? parentModel[template.key] : null;
     const control = new FormArray(model);
-    return { template, control, model };
+    return new FormArrayField(template, control, parentModel, model, []);
   }
 }

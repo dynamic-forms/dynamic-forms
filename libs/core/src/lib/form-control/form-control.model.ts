@@ -1,4 +1,5 @@
-import { FormFieldTemplate } from '../form-field';
+import { FormFieldTemplate, FormField } from '../form-field';
+import { FormControl } from '@angular/forms';
 
 export interface FormControlInput {
   type: string;
@@ -18,4 +19,12 @@ export interface FormControlValidators {
 export interface FormControlTemplate extends FormFieldTemplate {
   input: FormControlInput;
   validators: FormControlValidators;
+}
+
+export class FormControlField implements FormField {
+  constructor(
+    public template: FormControlTemplate,
+    public control: FormControl,
+    public parentModel: any,
+    public model: any) {}
 }
