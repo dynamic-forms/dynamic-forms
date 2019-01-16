@@ -1,8 +1,8 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
 import { FormFieldConfig, FormField } from './form-field.model';
-import { FormGroupComponent } from '../form-group';
-import { FormArrayComponent } from '../form-array';
-import { FormControlComponent } from '../form-control';
+import { FormGroupComponent } from '../form-group/form-group.component';
+import { FormArrayComponent } from '../form-array/form-array.component';
+import { FormControlComponent } from '../form-control/form-control.component';
 
 @Injectable()
 export class FormFieldFactory {

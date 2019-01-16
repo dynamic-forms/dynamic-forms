@@ -2,30 +2,27 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormTemplate } from './form.model';
 import { FormBuilder } from './form.builder';
-import { FormGroupField } from '../form-group';
+import { FormGroupField } from '../form-group/form-group.model';
 
 @Component({
   selector: 'dynamic-form',
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
-  private _formField: FormGroupField;
-
   @Input() template: FormTemplate;
   @Input() model: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  formField: FormGroupField;
 
-  get formField(): FormGroupField {
-    return this._formField;
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   get formGroup(): FormGroup {
     return this.formField.control;
   }
 
   ngOnInit(): void {
-    this._formField = this.formBuilder.createFormField(this.template, this.model);
+    this.model = this.model || {};
+    this.formField = this.formBuilder.createFormField(this.template, this.model);
   }
 
   modelChanged(model: any) {

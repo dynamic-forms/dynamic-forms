@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormField } from '../form-field';
+import { FormField } from '../form-field/form-field.model';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
 
 @Component({

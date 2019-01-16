@@ -95,7 +95,9 @@ export class AppComponent {
             placeholder: 'Enter your street'
           },
           validators: {
-            required: true
+            required: true,
+            minLength: 5,
+            maxLength: 10
           }
         }]
       }, {
@@ -135,7 +137,9 @@ export class AppComponent {
           placeholder: 'Enter the notional'
         },
         validators: {
-          required: true
+          required: true,
+          min: 0,
+          max: 20
         }
       }]
     }]
