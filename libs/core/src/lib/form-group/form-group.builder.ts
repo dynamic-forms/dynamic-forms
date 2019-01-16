@@ -24,26 +24,18 @@ export class FormGroupBuilder {
         case 'group':
           return this.createFormGroupField(template, parentModel);
         case 'array':
-          return this.createFormArrayField(template, parentModel);
+          return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentModel);
         case 'control':
-          return this.createFormControlField(template, parentModel);
+          return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentModel);
         default:
           return null;
       }
     });
   }
 
-  private createFormGroupField(template: FormFieldTemplate, parentModel: any): FormField {
+  private createFormGroupField(template: FormFieldTemplate, parentModel: any): FormGroupField {
     const model = parentModel ? parentModel[template.key] : null;
     return this.createFormField(<FormGroupTemplate>template, model);
-  }
-
-  private createFormArrayField(template: FormFieldTemplate, parentModel: any): FormField {
-    return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentModel);
-  }
-
-  private createFormControlField(template: FormFieldTemplate, parentModel: any): FormField {
-    return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentModel);
   }
 
   private getFieldControls(fields: FormField[]) {
