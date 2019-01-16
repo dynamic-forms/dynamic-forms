@@ -16,7 +16,7 @@ export class FormFieldComponent implements OnInit {
     this.initComponent();
   }
 
-  private initComponent(): any {
+  private initComponent() {
     this.componentFactory.createComponent(this.containerRef, this.formField);
   }
 }

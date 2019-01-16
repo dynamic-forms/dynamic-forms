@@ -9,19 +9,23 @@ import { FormGroupField } from '../form-group';
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
-  formField: FormGroupField;
+  private _formField: FormGroupField;
 
   @Input() template: FormTemplate;
   @Input() model: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
+  get formField(): FormGroupField {
+    return this._formField;
+  }
+
   get formGroup(): FormGroup {
     return this.formField.control;
   }
 
   ngOnInit(): void {
-    this.formField = this.formBuilder.createFormField(this.template, this.model);
+    this._formField = this.formBuilder.createFormField(this.template, this.model);
   }
 
   modelChanged(model: any) {

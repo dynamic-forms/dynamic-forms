@@ -1,11 +1,17 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
-import { FormField } from './form-field.model';
+import { FormFieldConfig, FormField } from './form-field.model';
 import { FormGroupComponent } from '../form-group';
 import { FormArrayComponent } from '../form-array';
 import { FormControlComponent } from '../form-control';
 
 @Injectable()
 export class FormFieldFactory {
+  private readonly fieldConfigs: FormFieldConfig[] = [
+    { type: 'group', component: FormGroupComponent },
+    { type: 'array', component: FormArrayComponent },
+    { type: 'control', component: FormControlComponent }
+  ];
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   public createComponent(containerRef: ViewContainerRef, field: FormField) {
@@ -16,13 +22,7 @@ export class FormFieldFactory {
 
   private getComponentFactory(field: FormField): ComponentFactory<any> {
     const resolver = this.componentFactoryResolver;
-    switch (field.template.type) {
-      case 'group':
-        return resolver.resolveComponentFactory(FormGroupComponent);
-      case 'array':
-        return resolver.resolveComponentFactory(FormArrayComponent);
-      case 'control':
-        return resolver.resolveComponentFactory(FormControlComponent);
-    }
+    const fieldConfig = this.fieldConfigs.find(f => f.type === field.template.type);
+    return resolver.resolveComponentFactory(fieldConfig.component);
   }
 }
