@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormBuilder, DynamicFormComponent } from './dynamic-form';
-import { DynamicFormItemFactory, DynamicFormItemComponent } from './dynamic-form-item';
-import { DynamicFormGroupComponent } from './dynamic-form-group';
-import { DynamicFormArrayComponent } from './dynamic-form-array';
-import { DynamicFormControlComponent } from './dynamic-form-control';
+import { FormComponent, FormBuilder } from './form';
+import { FormFieldComponent, FormFieldFactory } from './form-field';
+import { FormGroupComponent, FormGroupBuilder } from './form-group';
+import { FormArrayComponent, FormArrayBuilder } from './form-array';
+import { FormControlComponent, FormControlBuilder } from './form-control';
 
 @NgModule({
   declarations: [
-    DynamicFormComponent,
-    DynamicFormItemComponent,
-    DynamicFormGroupComponent,
-    DynamicFormArrayComponent,
-    DynamicFormControlComponent
+    FormComponent,
+    FormFieldComponent,
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent
   ],
   imports: [
     CommonModule,
@@ -22,12 +22,12 @@ import { DynamicFormControlComponent } from './dynamic-form-control';
   exports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormComponent
+    FormComponent
   ],
   entryComponents: [
-    DynamicFormGroupComponent,
-    DynamicFormArrayComponent,
-    DynamicFormControlComponent
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent
   ]
 })
 export class DynamicFormsModule {
@@ -35,8 +35,11 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        DynamicFormBuilder,
-        DynamicFormItemFactory
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder,
+        FormFieldFactory
       ]
     };
   }
@@ -45,7 +48,10 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        DynamicFormBuilder
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder
       ]
     };
   }
