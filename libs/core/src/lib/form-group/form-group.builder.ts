@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormFieldBuilder, FormFieldTemplate, FormField } from '../form-field';
-import { FormArrayBuilder, FormArrayTemplate } from '../form-array';
-import { FormControlBuilder, FormControlTemplate } from '../form-control';
+import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
+import { FormFieldBuilder } from '../form-field/form-field.builder';
+import { FormArrayTemplate } from '../form-array/form-array.model';
+import { FormArrayBuilder } from '../form-array/form-array.builder';
+import { FormControlTemplate } from '../form-control/form-control.model';
+import { FormControlBuilder } from '../form-control/form-control.builder';
 
 @Injectable()
 export class FormGroupBuilder extends FormFieldBuilder {
@@ -13,7 +16,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
       super();
     }
 
-  createFormField(template: FormGroupTemplate, path: string, model: any): FormGroupField {
+  createFormField(path: string, model: any, template: FormGroupTemplate): FormGroupField {
     const fields = this.createFormFields(template.fields, path, model);
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
@@ -24,21 +27,21 @@ export class FormGroupBuilder extends FormFieldBuilder {
     return templates.map(template => {
       switch (template.type) {
         case 'group':
-          return this.createFormGroupField(template, parentPath, parentModel);
+          return this.createFormGroupField(parentPath, parentModel, template);
         case 'array':
-          return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentPath, parentModel);
+          return this.formArrayBuilder.createFormField(parentPath, parentModel, <FormArrayTemplate>template);
         case 'control':
-          return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentPath, parentModel);
+          return this.formControlBuilder.createFormField(parentPath, parentModel, <FormControlTemplate>template);
         default:
           return null;
       }
     });
   }
 
-  private createFormGroupField(template: FormFieldTemplate, parentPath: string, parentModel: any): FormGroupField {
-    const path = this.getPath(template, parentPath);
-    const model = this.getModel(template, parentModel);
-    return this.createFormField(<FormGroupTemplate>template, path, model);
+  private createFormGroupField(parentPath: string, parentModel: any, template: FormFieldTemplate): FormGroupField {
+    const path = this.getPath(parentPath, template);
+    const model = this.getModel(parentModel, template) || this.createModel(parentModel, template);
+    return this.createFormField(path, model, <FormGroupTemplate>template);
   }
 
   private getFieldControls(fields: FormField[]) {

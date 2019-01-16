@@ -1,11 +1,16 @@
-import { FormFieldTemplate } from '.';
+import { FormFieldTemplate } from './form-field.model';
 
 export class FormFieldBuilder {
-  getPath(template: FormFieldTemplate, parentPath: string): string {
+  getPath(parentPath: string, template: FormFieldTemplate): string {
     return parentPath ? `${parentPath}.${template.key}` : template.key;
   }
 
-  getModel(template: FormFieldTemplate, parentModel: any): any {
+  getModel(parentModel: any, template: FormFieldTemplate): any {
     return parentModel ? parentModel[template.key] : null;
+  }
+
+  createModel(parentModel: any, template: FormFieldTemplate): any {
+    parentModel[template.key] = parentModel[template.key] || {};
+    return parentModel[template.key];
   }
 }

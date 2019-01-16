@@ -1,5 +1,5 @@
-import { FormFieldTemplate, FormField } from '../form-field';
 import { FormControl } from '@angular/forms';
+import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
 
 export interface FormControlInput {
   type: string;

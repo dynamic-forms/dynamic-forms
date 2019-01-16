@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FormTemplate } from './form.model';
-import { FormGroupBuilder, FormGroupField } from '../form-group';
+import { FormGroupField } from '../form-group/form-group.model';
+import { FormGroupBuilder } from '../form-group/form-group.builder';
 
 @Injectable()
 export class FormBuilder {
   constructor(private formGroupBuilder: FormGroupBuilder) {}
 
   createFormField(template: FormTemplate, model: any): FormGroupField {
-    return this.formGroupBuilder.createFormField(template, null, model);
+    return this.formGroupBuilder.createFormField(null, model, template);
   }
 }
