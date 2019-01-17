@@ -1,6 +1,6 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { FormControlConfig, FormControlField, FormControlTemplate } from './form-control.model';
-import { FormInputComponent } from '../form-input/form-input.component';
+import { FormInputComponent } from './form-input/form-input.component';
 
 @Injectable()
 export class FormControlFactory {

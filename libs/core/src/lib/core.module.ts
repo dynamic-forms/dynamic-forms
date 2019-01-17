@@ -6,8 +6,8 @@ import { FormFieldComponent, FormFieldFactory } from './form-field';
 import { FormGroupComponent, FormGroupBuilder } from './form-group';
 import { FormArrayComponent, FormArrayBuilder } from './form-array';
 import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
-import { FormInputComponent } from './form-input';
-import { FormValidationComponent, FormValidationBuilder } from './form-validation';
+import { FormInputComponent } from './form-control/form-input';
+import { FormValidationComponent, FormValidationBuilder } from './form-control/form-validation';
 
 @NgModule({
   declarations: [
