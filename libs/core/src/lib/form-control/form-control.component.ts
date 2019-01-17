@@ -1,14 +1,25 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormControlTemplate, FormControlField, FormControlInput } from './form-control.model';
+import { FormControlFactory } from './form-control.factory';
 
 @Component({
   selector: 'dynamic-form-control',
   templateUrl: './form-control.component.html'
 })
-export class FormControlComponent {
+export class FormControlComponent implements OnInit {
+  @ViewChild('container', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() formField: FormControlField;
-  @Output() modelChange = new EventEmitter<any>();
+
+  constructor(private componentFactory: FormControlFactory) {}
+
+  ngOnInit() {
+    this.initComponent();
+  }
+
+  private initComponent() {
+    this.componentFactory.createComponent(this.containerRef, this.formField);
+  }
 
   get id(): string {
     return this.formField.path;
