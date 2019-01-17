@@ -1,9 +1,11 @@
+import { Type } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
+import { FormControlInput } from '../form-input/form-input.model';
 
-export interface FormControlInput {
+export interface FormControlConfig {
   type: string;
-  placeholder: string;
+  component: Type<any>;
 }
 
 export interface FormControlValidators {

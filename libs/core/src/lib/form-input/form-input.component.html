@@ -1,0 +1,19 @@
+<ng-container [ngSwitch]="input.type">
+  <ng-container *ngSwitchCase="'checkbox'">
+    <input [id]="id" type="checkbox" [placeholder]="input.placeholder" [formControl]="control" />  
+  </ng-container>
+  <ng-container *ngSwitchCase="'number'">
+    <input [id]="id" type="number" [placeholder]="input.placeholder" [formControl]="control" />  
+  </ng-container>
+  <ng-container *ngSwitchCase="'select'">
+    <select [formControl]="control">
+      <option [value]="null" disabled hidden>{{ input.placeholder }}</option>
+      <option *ngFor="let option of input.options" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <input [id]="id" [type]="input.type" [placeholder]="input.placeholder" [formControl]="control" />  
+  </ng-container>
+</ng-container>

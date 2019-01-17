@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormArrayField } from './form-array.model';
 
 @Component({
@@ -7,5 +7,4 @@ import { FormArrayField } from './form-array.model';
 })
 export class FormArrayComponent {
   @Input() formField: FormArrayField;
-  @Output() modelChange = new EventEmitter<any>();
 }

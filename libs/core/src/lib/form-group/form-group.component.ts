@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormField } from '../form-field/form-field.model';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
 
@@ -8,7 +8,6 @@ import { FormGroupTemplate, FormGroupField } from './form-group.model';
 })
 export class FormGroupComponent {
   @Input() formField: FormGroupField;
-  @Output() modelChange = new EventEmitter<any>();
 
   get template(): FormGroupTemplate {
     return this.formField.template;

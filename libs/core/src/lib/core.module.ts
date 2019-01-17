@@ -6,6 +6,8 @@ import { FormFieldComponent, FormFieldFactory } from './form-field';
 import { FormGroupComponent, FormGroupBuilder } from './form-group';
 import { FormArrayComponent, FormArrayBuilder } from './form-array';
 import { FormControlComponent, FormControlBuilder } from './form-control';
+import { FormControlFactory } from './form-control/form-control.factory';
+import { FormInputComponent } from './form-input/form-input.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { FormControlComponent, FormControlBuilder } from './form-control';
     FormFieldComponent,
     FormGroupComponent,
     FormArrayComponent,
-    FormControlComponent
+    FormControlComponent,
+    FormInputComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { FormControlComponent, FormControlBuilder } from './form-control';
   entryComponents: [
     FormGroupComponent,
     FormArrayComponent,
-    FormControlComponent
+    FormControlComponent,
+    FormInputComponent
   ]
 })
 export class DynamicFormsModule {
@@ -39,7 +43,8 @@ export class DynamicFormsModule {
         FormGroupBuilder,
         FormArrayBuilder,
         FormControlBuilder,
-        FormFieldFactory
+        FormFieldFactory,
+        FormControlFactory
       ]
     };
   }
@@ -51,7 +56,9 @@ export class DynamicFormsModule {
         FormBuilder,
         FormGroupBuilder,
         FormArrayBuilder,
-        FormControlBuilder
+        FormControlBuilder,
+        FormFieldFactory,
+        FormControlFactory
       ]
     };
   }
