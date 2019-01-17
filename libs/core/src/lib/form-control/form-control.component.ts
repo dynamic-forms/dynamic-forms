@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FormControlTemplate, FormControlField, FormControlInput } from './form-control.model';
+import { FormControlTemplate, FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
+import { FormControlInput } from '../form-input/form-input.model';
 
 @Component({
   selector: 'dynamic-form-control',
