@@ -9,7 +9,7 @@ import { FormControlInput } from '../form-input/form-input.model';
   templateUrl: './form-control.component.html'
 })
 export class FormControlComponent implements OnInit {
-  @ViewChild('container', { read: ViewContainerRef }) containerRef: ViewContainerRef;
+  @ViewChild('inputComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() formField: FormControlField;
 
   constructor(private componentFactory: FormControlFactory) {}

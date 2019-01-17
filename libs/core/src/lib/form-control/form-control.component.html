@@ -1,6 +1,6 @@
 <div class="form-control">
   <label [for]="id">{{ template.label }}</label>
-  <ng-template #container></ng-template>
+  <ng-template #inputComponent></ng-template>
   <div *ngIf="control.errors">
     {{ control.errors | json }}
   </div>

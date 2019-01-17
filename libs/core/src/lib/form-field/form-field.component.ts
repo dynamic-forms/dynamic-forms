@@ -7,7 +7,7 @@ import { FormField } from './form-field.model';
   templateUrl: './form-field.component.html'
 })
 export class FormFieldComponent implements OnInit {
-  @ViewChild('container', { read: ViewContainerRef }) containerRef: ViewContainerRef;
+  @ViewChild('fieldComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() formField: FormField;
 
   constructor(private componentFactory: FormFieldFactory) {}

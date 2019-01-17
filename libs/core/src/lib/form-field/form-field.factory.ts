@@ -1,4 +1,4 @@
-import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { FormFieldConfig, FormField } from './form-field.model';
 import { FormGroupComponent } from '../form-group/form-group.component';
 import { FormArrayComponent } from '../form-array/form-array.component';
@@ -14,10 +14,11 @@ export class FormFieldFactory {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  public createComponent(containerRef: ViewContainerRef, field: FormField) {
+  public createComponent(containerRef: ViewContainerRef, field: FormField): ComponentRef<any> {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
     (<any>componentRef.instance).formField = field;
+    return componentRef;
   }
 
   private getComponentFactory(field: FormField): ComponentFactory<any> {
