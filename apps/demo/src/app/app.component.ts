@@ -123,7 +123,11 @@ export class AppComponent {
         label: 'Currency pair',
         input: {
           type: 'select',
-          placeholder: 'Select the currency pair'
+          placeholder: 'Select the currency pair',
+          options: [
+            { value: 'EURUSD', label: 'EUR/USD' },
+            { value: 'EURGBP', label: 'EUR/GBP' }
+          ]
         },
         validators: {
           required: true
