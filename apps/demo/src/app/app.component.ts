@@ -67,7 +67,7 @@ export class AppComponent {
           type: 'text',
           placeholder: 'Enter your name'
         },
-        validators: {
+        validation: {
           required: true
         }
       }, {
@@ -78,7 +78,7 @@ export class AppComponent {
           type: 'email',
           placeholder: 'Enter your email'
         },
-        validators: {
+        validation: {
           required: true,
           email: true
         }
@@ -94,7 +94,7 @@ export class AppComponent {
             type: 'text',
             placeholder: 'Enter your street'
           },
-          validators: {
+          validation: {
             required: true,
             minLength: 5,
             maxLength: 10
@@ -108,7 +108,7 @@ export class AppComponent {
           type: 'password',
           placeholder: 'Enter your password'
         },
-        validators: {
+        validation: {
           required: true
         }
       }]
@@ -129,7 +129,7 @@ export class AppComponent {
             { value: 'EURGBP', label: 'EUR/GBP' }
           ]
         },
-        validators: {
+        validation: {
           required: true
         }
       }, {
@@ -140,7 +140,7 @@ export class AppComponent {
           type: 'number',
           placeholder: 'Enter the notional'
         },
-        validators: {
+        validation: {
           required: true,
           min: 0,
           max: 20
