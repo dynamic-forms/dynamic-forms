@@ -1,34 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { FormControlValidation } from './form-validation.model';
+import { FormValidation } from './form-validation.model';
 
 @Injectable()
 export class FormValidationBuilder {
-  getValidators(validation: FormControlValidation): ValidatorFn[] {
-    if (validation) {
-      return Object.keys(validation)
-        .map(key => this.getValidator(validation, key))
-        .filter(validator => !!validator);
-    }
-    return [];
-  }
-
-  private getValidator(validation: FormControlValidation, key: string): ValidatorFn {
+  getValidator(validation: FormValidation, key: string, value?: any): ValidatorFn {
     switch (key) {
       case 'required':
         return validation.required ? Validators.required : null;
       case 'email':
-        return validation.email ? Validators.email : null;
+        return validation.required ? Validators.email : null;
       case 'pattern':
-        return validation.pattern ? Validators.pattern(validation.pattern) : null;
+        return validation.pattern ? Validators.pattern(value) : null;
       case 'min':
-        return Number.isFinite(validation.min) ? Validators.min(validation.min) : null;
+        return validation.min ? Validators.min(value) : null;
       case 'max':
-        return Number.isFinite(validation.max) ? Validators.max(validation.max) : null;
+        return validation.max ? Validators.max(value) : null;
       case 'minLength':
-        return Number.isFinite(validation.minLength) ? Validators.minLength(validation.minLength) : null;
+        return validation.minLength ? Validators.minLength(value) : null;
       case 'maxLength':
-        return Number.isFinite(validation.minLength) ? Validators.maxLength(validation.maxLength) : null;
+        return validation.maxLength ? Validators.maxLength(value) : null;
       default:
         return null;
     }

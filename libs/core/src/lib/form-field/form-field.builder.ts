@@ -5,12 +5,8 @@ export class FormFieldBuilder {
     return parentPath ? `${parentPath}.${template.key}` : template.key;
   }
 
-  getModel(parentModel: any, template: FormFieldTemplate): any {
-    return parentModel ? parentModel[template.key] : null;
-  }
-
-  createModel(parentModel: any, template: FormFieldTemplate): any {
-    parentModel[template.key] = parentModel[template.key] || {};
+  getModel(parentModel: any, template: FormFieldTemplate, model?: any): any {
+    parentModel[template.key] = parentModel[template.key] || model || null;
     return parentModel[template.key];
   }
 }

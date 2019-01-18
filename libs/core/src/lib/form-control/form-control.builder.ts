@@ -19,6 +19,17 @@ export class FormControlBuilder extends FormFieldBuilder {
   }
 
   private getValidators(template: FormControlTemplate) {
-    return this.validationBuilder.getValidators(template.validation);
+    if (template.validation) {
+      return Object.keys(template.validation)
+        .map(key => this.getValidator(template, key))
+        .filter(validator => !!validator);
+    }
+    return [];
+
+  }
+
+  private getValidator(template: FormControlTemplate, key: string) {
+    const value = template.input[key];
+    return this.validationBuilder.getValidator(template.validation, key, value);
   }
 }

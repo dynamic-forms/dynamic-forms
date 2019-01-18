@@ -24,7 +24,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
   }
 
   private createFormFields(templates: FormFieldTemplate[], parentPath: string, parentModel: any): FormField[] {
-    return templates.map(template => {
+    return (templates || []).map(template => {
       switch (template.type) {
         case 'group':
           return this.createFormGroupField(parentPath, parentModel, template);
@@ -33,19 +33,19 @@ export class FormGroupBuilder extends FormFieldBuilder {
         case 'control':
           return this.formControlBuilder.createFormField(parentPath, parentModel, <FormControlTemplate>template);
         default:
-          return null;
+          throw Error(`Type ${ template.type } is not defined`);
       }
     });
   }
 
   private createFormGroupField(parentPath: string, parentModel: any, template: FormFieldTemplate): FormGroupField {
     const path = this.getPath(parentPath, template);
-    const model = this.getModel(parentModel, template) || this.createModel(parentModel, template);
+    const model = this.getModel(parentModel, template, {});
     return this.createFormField(path, model, <FormGroupTemplate>template);
   }
 
   private getFieldControls(fields: FormField[]) {
-    return fields.reduce((result, field) => {
+    return (fields || []).reduce((result, field) => {
       result[field.template.key] = field.control;
       return result;
     }, {});

@@ -3,7 +3,8 @@
     <input [id]="id" type="checkbox" [placeholder]="input.placeholder" [formControl]="control" />  
   </ng-container>
   <ng-container *ngSwitchCase="'number'">
-    <input [id]="id" type="number" [placeholder]="input.placeholder" [formControl]="control" />  
+    <input [id]="id" type="number" [placeholder]="input.placeholder" 
+      [min]="input.min" [max]="input.max" [formControl]="control" />  
   </ng-container>
   <ng-container *ngSwitchCase="'select'">
     <select [formControl]="control">

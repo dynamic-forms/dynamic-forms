@@ -138,14 +138,22 @@ export class AppComponent {
         label: 'Notional',
         input: {
           type: 'number',
-          placeholder: 'Enter the notional'
+          placeholder: 'Enter the notional',
+          min: 0,
+          max: 20
         },
         validation: {
           required: true,
-          min: 0,
-          max: 20
+          min: true,
+          max: true
         }
       }]
+    },
+    {
+      key: 'tenants',
+      type: 'array',
+      label: 'Tenants',
+      fields: null
     },
     {
       key: 'users',
@@ -168,14 +176,22 @@ export class AppComponent {
         label: 'Email',
         input: {
           type: 'number',
-          placeholder: 'Enter email'
+          placeholder: 'Enter email',
+          min: 0,
+          max: 20
         },
         validation: {
           required: true,
-          min: 0,
-          max: 20
+          min: true,
+          max: true
         }
       }]
+    },
+    {
+      key: 'roles',
+      type: 'group',
+      label: 'Roles',
+      fields: null
     }]
   };
   model = {
