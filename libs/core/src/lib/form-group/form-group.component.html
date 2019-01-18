@@ -3,5 +3,6 @@
   <ng-container *ngFor="let field of fields">
     <dynamic-form-field [formField]="field"></dynamic-form-field>
   </ng-container>
+  <dynamic-form-validation [errors]="control.errors"></dynamic-form-validation>
 </div>
 <ng-content></ng-content>

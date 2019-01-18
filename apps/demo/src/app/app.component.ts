@@ -146,6 +146,36 @@ export class AppComponent {
           max: 20
         }
       }]
+    },
+    {
+      key: 'users',
+      type: 'array',
+      label: 'Users',
+      fields: [{
+        key: 'name',
+        type: 'control',
+        label: 'Name',
+        input: {
+          type: 'text',
+          placeholder: 'Enter name'
+        },
+        validation: {
+          required: true
+        }
+      }, {
+        key: 'email',
+        type: 'control',
+        label: 'Email',
+        input: {
+          type: 'number',
+          placeholder: 'Enter email'
+        },
+        validation: {
+          required: true,
+          min: 0,
+          max: 20
+        }
+      }]
     }]
   };
   model = {
@@ -157,6 +187,9 @@ export class AppComponent {
       name: 'user',
       email: 'user@mail.com',
       address: {}
-    }
+    },
+    users: [
+      { name: 'user1', email: 'user1@mail.com' }
+    ]
   };
 }

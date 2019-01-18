@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
-import { FormControlValidation } from './form-validation/form-validation.model';
+import { FormControlValidation } from '../form-validation/form-validation.model';
 
 export interface FormControlConfig {
   type: string;
