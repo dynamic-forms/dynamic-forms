@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ValidationErrors } from '@angular/forms';
+import { FormValidationErrors } from './form-validation.model';
 import { FormValidationConfig, defaultFormValidationConfig } from './form-validation.config';
 
 @Component({
@@ -9,12 +9,13 @@ import { FormValidationConfig, defaultFormValidationConfig } from './form-valida
 export class FormValidationComponent {
   private readonly config: FormValidationConfig = defaultFormValidationConfig;
 
-  @Input() errors: ValidationErrors;
+  @Input() errors: FormValidationErrors;
 
   get message(): string {
-    const error = Object.keys(this.errors)[0];
-    if (error && this.config.messages[error]) {
-      return this.config.messages[error];
+    const key = Object.keys(this.errors)[0];
+    if (key) {
+      const error = this.errors[key];
+      return error.message || this.config.messages[key] || this.config.defaultMessage;
     }
 
     return this.config.defaultMessage;

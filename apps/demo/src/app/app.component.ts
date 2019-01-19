@@ -19,6 +19,9 @@ export class AppComponent {
       key: 'login',
       type: 'group',
       label: 'Login',
+      expressions: {
+        hidden: '!model.loginEnabled'
+      },
       fields: [{
         key: 'email',
         type: 'control',
@@ -27,7 +30,7 @@ export class AppComponent {
           type: 'email',
           placeholder: 'Enter your email'
         },
-        validators: {
+        validation: {
           required: true,
           email: true
         }
@@ -39,13 +42,10 @@ export class AppComponent {
           type: 'password',
           placeholder: 'Enter your password'
         },
-        validators: {
+        validation: {
           required: true
         }
-      }],
-      expressions: {
-        hidden: '!model.loginEnabled'
-      }
+      }]
     },
     {
       key: 'registerEnabled',
@@ -59,7 +59,6 @@ export class AppComponent {
       key: 'register',
       type: 'group',
       label: 'Register',
-      hidden: true,
       fields: [{
         key: 'name',
         label: 'Name',
@@ -88,17 +87,35 @@ export class AppComponent {
         type: 'group',
         label: 'Address',
         fields: [{
-          key: 'street',
+          key: 'town',
           type: 'control',
-          label: 'Street',
+          label: 'Town',
           input: {
             type: 'text',
-            placeholder: 'Enter your street'
+            placeholder: 'Enter your town',
+            minLength: 5,
+            maxLength: 10
           },
           validation: {
             required: true,
+            minLength: true,
+            maxLength: true
+          }
+        }, {
+          key: 'street',
+          type: 'control',
+          label: 'Street',
+          hidden: true,
+          input: {
+            type: 'text',
+            placeholder: 'Enter your street',
             minLength: 5,
             maxLength: 10
+          },
+          validation: {
+            required: true,
+            minLength: true,
+            maxLength: true
           }
         }]
       }, {

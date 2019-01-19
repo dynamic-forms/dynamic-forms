@@ -11,7 +11,7 @@ export const defaultFormValidationConfig: FormValidationConfig = {
     pattern: 'The field does not fit the pattern.',
     min: 'The field does not fit the min value',
     max: 'The field does not fit the max value',
-    minLength: 'The field does not fit the min length',
-    maxLength: 'The field does not fit the max length',
+    minlength: 'The field does not fit the min length',
+    maxlength: 'The field does not fit the max length'
   }
 };
