@@ -19,6 +19,9 @@ export class AppComponent {
       key: 'login',
       type: 'group',
       label: 'Login',
+      expressions: {
+        hidden: '!model.loginEnabled'
+      },
       fields: [{
         key: 'email',
         type: 'control',
@@ -27,7 +30,7 @@ export class AppComponent {
           type: 'email',
           placeholder: 'Enter your email'
         },
-        validators: {
+        validation: {
           required: true,
           email: true
         }
@@ -39,13 +42,10 @@ export class AppComponent {
           type: 'password',
           placeholder: 'Enter your password'
         },
-        validators: {
+        validation: {
           required: true
         }
-      }],
-      expressions: {
-        hidden: '!model.loginEnabled'
-      }
+      }]
     },
     {
       key: 'registerEnabled',
@@ -67,7 +67,7 @@ export class AppComponent {
           type: 'text',
           placeholder: 'Enter your name'
         },
-        validators: {
+        validation: {
           required: true
         }
       }, {
@@ -78,7 +78,7 @@ export class AppComponent {
           type: 'email',
           placeholder: 'Enter your email'
         },
-        validators: {
+        validation: {
           required: true,
           email: true
         }
@@ -87,17 +87,35 @@ export class AppComponent {
         type: 'group',
         label: 'Address',
         fields: [{
+          key: 'town',
+          type: 'control',
+          label: 'Town',
+          input: {
+            type: 'text',
+            placeholder: 'Enter your town',
+            minLength: 5,
+            maxLength: 10
+          },
+          validation: {
+            required: true,
+            minLength: true,
+            maxLength: true
+          }
+        }, {
           key: 'street',
           type: 'control',
           label: 'Street',
+          hidden: true,
           input: {
             type: 'text',
-            placeholder: 'Enter your street'
-          },
-          validators: {
-            required: true,
+            placeholder: 'Enter your street',
             minLength: 5,
             maxLength: 10
+          },
+          validation: {
+            required: true,
+            minLength: true,
+            maxLength: true
           }
         }]
       }, {
@@ -108,7 +126,7 @@ export class AppComponent {
           type: 'password',
           placeholder: 'Enter your password'
         },
-        validators: {
+        validation: {
           required: true
         }
       }]
@@ -129,7 +147,7 @@ export class AppComponent {
             { value: 'EURGBP', label: 'EUR/GBP' }
           ]
         },
-        validators: {
+        validation: {
           required: true
         }
       }, {
@@ -138,14 +156,62 @@ export class AppComponent {
         label: 'Notional',
         input: {
           type: 'number',
-          placeholder: 'Enter the notional'
-        },
-        validators: {
-          required: true,
+          placeholder: 'Enter the notional',
           min: 0,
           max: 20
+        },
+        validation: {
+          required: true,
+          min: true,
+          max: true
         }
       }]
+    },
+    {
+      key: 'tenants',
+      type: 'array',
+      label: 'Tenants',
+      hidden: true,
+      fields: null
+    },
+    {
+      key: 'users',
+      type: 'array',
+      label: 'Users',
+      fields: [{
+        key: 'name',
+        type: 'control',
+        label: 'Name',
+        input: {
+          type: 'text',
+          placeholder: 'Enter name'
+        },
+        validation: {
+          required: true
+        }
+      }, {
+        key: 'email',
+        type: 'control',
+        label: 'Email',
+        input: {
+          type: 'number',
+          placeholder: 'Enter email',
+          min: 0,
+          max: 20
+        },
+        validation: {
+          required: true,
+          min: true,
+          max: true
+        }
+      }]
+    },
+    {
+      key: 'roles',
+      type: 'group',
+      label: 'Roles',
+      hidden: true,
+      fields: null
     }]
   };
   model = {
@@ -157,6 +223,9 @@ export class AppComponent {
       name: 'user',
       email: 'user@mail.com',
       address: {}
-    }
+    },
+    users: [
+      { name: 'user1', email: 'user1@mail.com' }
+    ]
   };
 }

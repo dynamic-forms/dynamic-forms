@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormArrayField } from './form-array.model';
+import { FormArrayField, FormArrayTemplate } from './form-array.model';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'dynamic-form-array',
@@ -7,4 +8,12 @@ import { FormArrayField } from './form-array.model';
 })
 export class FormArrayComponent {
   @Input() formField: FormArrayField;
+
+  get template(): FormArrayTemplate {
+    return this.formField.template;
+  }
+
+  get control(): FormArray {
+    return this.formField.control;
+  }
 }
