@@ -59,6 +59,7 @@ export class AppComponent {
       key: 'register',
       type: 'group',
       label: 'Register',
+      hidden: true,
       fields: [{
         key: 'name',
         label: 'Name',
@@ -153,6 +154,7 @@ export class AppComponent {
       key: 'tenants',
       type: 'array',
       label: 'Tenants',
+      hidden: true,
       fields: null
     },
     {
@@ -191,6 +193,7 @@ export class AppComponent {
       key: 'roles',
       type: 'group',
       label: 'Roles',
+      hidden: true,
       fields: null
     }]
   };
