@@ -14,8 +14,8 @@ export class FormGroupBuilder extends FormFieldBuilder {
   constructor(
     private formArrayBuilder: FormArrayBuilder,
     private formControlBuilder: FormControlBuilder,
-    private expressionsBuilder: FormExpressionsBuilder) {
-      super();
+    protected expressionsBuilder: FormExpressionsBuilder) {
+      super(expressionsBuilder);
     }
 
   createFormField(template: FormGroupTemplate, data: FormFieldData, path: string): FormGroupField {
@@ -23,7 +23,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
     const expressions = this.getExpressions(template);
-    return new FormGroupField(path, template, expressions, control, data, fields);
+    return new FormGroupField(path, data, template, expressions, control, fields);
   }
 
   private createFormFields(templates: FormFieldTemplate[], parentPath: string, parentData: FormFieldData): FormField[] {

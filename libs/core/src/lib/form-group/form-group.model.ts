@@ -14,9 +14,9 @@ export interface FormGroupExpressions extends FormFieldExpressions {
 export class FormGroupField implements FormField {
   constructor(
     public path: string,
+    public data: FormFieldData,
     public template: FormGroupTemplate,
     public expressions: FormGroupExpressions,
     public control: FormGroup,
-    public data: FormFieldData,
     public fields: FormField[]) {}
 }

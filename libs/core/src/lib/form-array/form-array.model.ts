@@ -8,8 +8,8 @@ export interface FormArrayTemplate extends FormFieldTemplate {
 export class FormArrayField implements FormField {
   constructor(
     public path: string,
+    public data: FormFieldData,
     public template: FormArrayTemplate,
     public control: FormArray,
-    public data: FormFieldData,
     public fields: FormField[]) {}
 }

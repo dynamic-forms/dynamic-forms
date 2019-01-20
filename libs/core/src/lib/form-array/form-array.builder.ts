@@ -7,15 +7,15 @@ import { FormFieldData } from '../form-field';
 
 @Injectable()
 export class FormArrayBuilder extends FormFieldBuilder {
-  constructor(private expressionsBuilder: FormExpressionsBuilder) {
-    super();
+  constructor(protected expressionsBuilder: FormExpressionsBuilder) {
+    super(expressionsBuilder);
   }
 
   createFormField(template: FormArrayTemplate, parentData: FormFieldData, parentPath: string): FormArrayField {
     const path = this.getPath(template, parentPath);
     const data = this.getData(template, parentData);
     const control = new FormArray([]);
-    return new FormArrayField(path, template, control, data, []);
+    return new FormArrayField(path, data, template, control, []);
   }
 
   private getData(template: FormArrayTemplate, parentData: FormFieldData) {

@@ -9,9 +9,9 @@ import { FormFieldData } from '../form-field';
 @Injectable()
 export class FormControlBuilder extends FormFieldBuilder {
   constructor(
-    private expressionsBuilder: FormExpressionsBuilder,
-    private validationBuilder: FormValidationBuilder) {
-    super();
+    private validationBuilder: FormValidationBuilder,
+    protected expressionsBuilder: FormExpressionsBuilder) {
+    super(expressionsBuilder);
   }
 
   createFormField(template: FormControlTemplate, parentData: FormFieldData, parentPath: string) {
@@ -19,8 +19,8 @@ export class FormControlBuilder extends FormFieldBuilder {
     const data = this.getData(template, parentData);
     const validators = this.getValidators(template);
     const control = new FormControl(data.model, validators);
-    const expressions = this.getExpressions(template);
-    return new FormControlField(path, template, expressions, control, data);
+    const expressions = this.getExpressions(template, data);
+    return new FormControlField(path, data, template, expressions, control);
   }
 
   private getData(template: FormControlTemplate, parentData: FormFieldData) {
@@ -45,7 +45,7 @@ export class FormControlBuilder extends FormFieldBuilder {
     return this.validationBuilder.getValidator(template.validation, key, value);
   }
 
-  private getExpressions(template: FormControlTemplate) {
+  private getExpressions(template: FormControlTemplate, data: FormFieldData) {
     return this.expressionsBuilder.createExpressions(template.expressions);
   }
 }

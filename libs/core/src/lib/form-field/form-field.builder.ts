@@ -1,6 +1,9 @@
 import { FormFieldTemplate, FormFieldData } from './form-field.model';
+import { FormExpressionsBuilder } from '../form-expressions';
 
 export class FormFieldBuilder {
+  constructor(protected expressionsBuilder: FormExpressionsBuilder) {}
+
   getPath(template: FormFieldTemplate, parentPath: string): string {
     return parentPath ? `${parentPath}.${template.key}` : template.key;
   }
