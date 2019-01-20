@@ -22,7 +22,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
     const fields = this.createFormFields(template.fields, path, data);
     const controls = this.getFieldControls(fields);
     const control = new FormGroup(controls);
-    const expressions = this.getExpressions(template);
+    const expressions = this.getExpressions(template, data);
     return new FormGroupField(path, data, template, expressions, control, fields);
   }
 
@@ -60,9 +60,5 @@ export class FormGroupBuilder extends FormFieldBuilder {
       result[field.template.key] = field.control;
       return result;
     }, {});
-  }
-
-  private getExpressions(template: FormGroupTemplate) {
-    return this.expressionsBuilder.createExpressions(template.expressions);
   }
 }

@@ -10,11 +10,16 @@ export interface FormFieldTemplate {
   label: string;
   hidden?: boolean;
   disabled?: boolean;
+  expressions?: any;
+}
+
+export interface FormFieldExpression extends Expression {
+  data: FormFieldData;
 }
 
 export interface FormFieldExpressions extends FormExpressions {
-  hidden?: Expression;
-  disabled?: Expression;
+  hidden?: FormFieldExpression;
+  disabled?: FormFieldExpression;
 }
 
 export interface FormFieldData {

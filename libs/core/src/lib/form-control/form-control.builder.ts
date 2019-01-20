@@ -20,6 +20,10 @@ export class FormControlBuilder extends FormFieldBuilder {
     const validators = this.getValidators(template);
     const control = new FormControl(data.model, validators);
     const expressions = this.getExpressions(template, data);
+    control.valueChanges.subscribe(value => {
+      data.parentModel[template.key] = value;
+      data.model = value;
+    });
     return new FormControlField(path, data, template, expressions, control);
   }
 
@@ -43,9 +47,5 @@ export class FormControlBuilder extends FormFieldBuilder {
   private getValidator(template: FormControlTemplate, key: string) {
     const value = template.input[key];
     return this.validationBuilder.getValidator(template.validation, key, value);
-  }
-
-  private getExpressions(template: FormControlTemplate, data: FormFieldData) {
-    return this.expressionsBuilder.createExpressions(template.expressions);
   }
 }

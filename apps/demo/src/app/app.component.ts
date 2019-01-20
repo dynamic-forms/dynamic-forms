@@ -20,7 +20,7 @@ export class AppComponent {
       type: 'group',
       label: 'Login',
       expressions: {
-        hidden: '!model.loginEnabled'
+        hidden: '!data.rootModel.loginEnabled'
       },
       fields: [{
         key: 'email',
@@ -60,7 +60,7 @@ export class AppComponent {
       type: 'group',
       label: 'Register',
       expressions: {
-        hidden: '!model.registerEnabled'
+        hidden: '!data.rootModel.registerEnabled'
       },
       fields: [{
         key: 'name',
@@ -86,9 +86,30 @@ export class AppComponent {
           email: true
         }
       }, {
+        key: 'password',
+        type: 'control',
+        label: 'Password',
+        input: {
+          type: 'password',
+          placeholder: 'Enter your password'
+        },
+        validation: {
+          required: true
+        }
+      }, {
+        key: 'addressEnabled',
+        type: 'control',
+        label: 'Address enabled',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
         key: 'address',
         type: 'group',
         label: 'Address',
+        expressions: {
+          hidden: '!data.parentModel.addressEnabled'
+        },
         fields: [{
           key: 'town',
           type: 'control',
@@ -121,17 +142,6 @@ export class AppComponent {
             maxLength: true
           }
         }]
-      }, {
-        key: 'password',
-        type: 'control',
-        label: 'Password',
-        input: {
-          type: 'password',
-          placeholder: 'Enter your password'
-        },
-        validation: {
-          required: true
-        }
       }]
     },
     {
