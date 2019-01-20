@@ -23,6 +23,6 @@ export class FormFieldBuilder {
   private createExpression(expression: string, data: FormFieldData): FormFieldExpression {
     const deps = this.expressionsBuilder.createExpressionDependencies(expression);
     const func = this.expressionsBuilder.createExpressionFunction(expression);
-    return { data, deps, func, get value() { /*console.log(data);*/ return func(data); } };
+    return { data, deps, func, get value() { return func(data.model, data.parentModel, data.rootModel); } };
   }
 }

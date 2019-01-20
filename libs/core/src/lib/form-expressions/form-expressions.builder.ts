@@ -8,6 +8,6 @@ export class FormExpressionsBuilder {
   }
 
   createExpressionFunction(expression: string): ExpressionFunction {
-    return new Function('data', `return ${ expression };`);
+    return new Function('model', 'parentModel', 'rootModel', `return ${ expression };`);
   }
 }

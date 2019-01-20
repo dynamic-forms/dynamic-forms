@@ -3,7 +3,6 @@ import { FormField, FormFieldTemplate, FormFieldExpressions, FormFieldData } fro
 import { Expression } from '../form-expressions/form-expressions.model';
 
 export interface FormGroupTemplate extends FormFieldTemplate {
-  expressions?: { [key: string]: string };
   fields: FormFieldTemplate[];
 }
 

@@ -17,7 +17,6 @@ export interface FormControlValidation extends FormValidation {
 export interface FormControlTemplate extends FormFieldTemplate {
   input: FormControlInput;
   validation: FormControlValidation;
-  expressions?: { [key: string]: string };
 }
 
 export interface FormControlExpressions extends FormFieldExpressions {

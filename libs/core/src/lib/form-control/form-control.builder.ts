@@ -21,6 +21,7 @@ export class FormControlBuilder extends FormFieldBuilder {
     const control = new FormControl(data.model, validators);
     const expressions = this.getExpressions(template, data);
     control.valueChanges.subscribe(value => {
+      console.log(data.model, value);
       data.parentModel[template.key] = value;
       data.model = value;
     });

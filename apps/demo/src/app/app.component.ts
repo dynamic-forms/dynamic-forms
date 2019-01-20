@@ -14,13 +14,23 @@ export class AppComponent {
       input: {
         type: 'checkbox'
       }
+    }, {
+      key: 'loginDisabled',
+      type: 'control',
+      label: 'Login disabled',
+      expressions: {
+        hidden: '(function() { console.log(rootModel); return !rootModel.loginEnabled; })()'
+      },
+      input: {
+        type: 'checkbox'
+      }
     },
     {
       key: 'login',
       type: 'group',
       label: 'Login',
       expressions: {
-        hidden: '!data.rootModel.loginEnabled'
+        hidden: '!rootModel.loginEnabled'
       },
       fields: [{
         key: 'email',
@@ -56,11 +66,22 @@ export class AppComponent {
       }
     },
     {
+      key: 'registerDisabled',
+      type: 'control',
+      label: 'Register disabled',
+      expressions: {
+        hidden: '!rootModel.registerEnabled'
+      },
+      input: {
+        type: 'checkbox'
+      }
+    },
+    {
       key: 'register',
       type: 'group',
       label: 'Register',
       expressions: {
-        hidden: '!data.rootModel.registerEnabled'
+        hidden: '!rootModel.registerEnabled'
       },
       fields: [{
         key: 'name',
@@ -108,7 +129,7 @@ export class AppComponent {
         type: 'group',
         label: 'Address',
         expressions: {
-          hidden: '!data.parentModel.addressEnabled'
+          hidden: '!parentModel.addressEnabled'
         },
         fields: [{
           key: 'town',

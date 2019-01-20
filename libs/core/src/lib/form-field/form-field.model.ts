@@ -10,7 +10,7 @@ export interface FormFieldTemplate {
   label: string;
   hidden?: boolean;
   disabled?: boolean;
-  expressions?: any;
+  expressions?: { [key: string]: string };
 }
 
 export interface FormFieldExpression extends Expression {

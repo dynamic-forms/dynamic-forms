@@ -15,7 +15,7 @@ export class FormArrayBuilder extends FormFieldBuilder {
     const path = this.getPath(template, parentPath);
     const data = this.getData(template, parentData);
     const control = new FormArray([]);
-    return new FormArrayField(path, data, template, control, []);
+    return new FormArrayField(path, data, template, null, control, []);
   }
 
   private getData(template: FormArrayTemplate, parentData: FormFieldData) {
