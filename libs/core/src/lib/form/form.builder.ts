@@ -8,6 +8,7 @@ export class FormBuilder {
   constructor(private formGroupBuilder: FormGroupBuilder) {}
 
   createFormField(template: FormTemplate, model: any): FormGroupField {
-    return this.formGroupBuilder.createFormField(null, model, template);
+    const data = { model: model, parentModel: model, rootModel: model };
+    return this.formGroupBuilder.createFormField(template, null, data);
   }
 }

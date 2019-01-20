@@ -59,6 +59,9 @@ export class AppComponent {
       key: 'register',
       type: 'group',
       label: 'Register',
+      expressions: {
+        hidden: '!model.registerEnabled'
+      },
       fields: [{
         key: 'name',
         label: 'Name',

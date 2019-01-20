@@ -1,12 +1,12 @@
-import { FormFieldTemplate } from './form-field.model';
+import { FormFieldTemplate, FormFieldData } from './form-field.model';
 
 export class FormFieldBuilder {
-  getPath(parentPath: string, template: FormFieldTemplate): string {
+  getPath(template: FormFieldTemplate, parentPath: string): string {
     return parentPath ? `${parentPath}.${template.key}` : template.key;
   }
 
-  getModel(parentModel: any, template: FormFieldTemplate, model?: any): any {
-    parentModel[template.key] = parentModel[template.key] || model || null;
-    return parentModel[template.key];
+  getModel(template: FormFieldTemplate, parentData: FormFieldData, model?: any): any {
+    parentData.model[template.key] = parentData.model[template.key] || model || null;
+    return parentData.model[template.key];
   }
 }
