@@ -14,7 +14,7 @@ export class FormControlBuilder extends FormFieldBuilder {
     super();
   }
 
-  createFormField(template: FormControlTemplate, parentPath: string, parentData: FormFieldData) {
+  createFormField(template: FormControlTemplate, parentData: FormFieldData, parentPath: string) {
     const path = this.getPath(template, parentPath);
     const data = this.getData(template, parentData);
     const validators = this.getValidators(template);
