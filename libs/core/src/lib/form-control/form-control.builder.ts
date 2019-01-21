@@ -3,7 +3,7 @@ import { FormControl, ValidatorFn } from '@angular/forms';
 import { FormControlTemplate, FormControlField } from './form-control.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormValidationBuilder } from '../form-validation/form-validation.builder';
-import { FormFieldData, FormFieldExpressions } from '../form-field';
+import { FormFieldData, FormFieldExpressions, FormField } from '../form-field';
 
 @Injectable()
 export class FormControlBuilder extends FormFieldBuilder {
@@ -11,21 +11,21 @@ export class FormControlBuilder extends FormFieldBuilder {
     super();
   }
 
-  createFormField(_template: FormControlTemplate, parentData: FormFieldData, parentPath: string) {
-    const path = this.getPath(_template, parentPath);
-    const data = this.createData(_template, parentData);
+  createField(_template: FormControlTemplate, parent: FormField) {
+    const path = this.getPath(_template, parent);
+    const data = this.createData(_template, parent);
     const expressions = this.createExpressions(_template, data);
     const template = this.createTemplate(_template, expressions);
     const validators = this.createValidators(template);
     const control = this.createControl(template, data, validators);
-    return new FormControlField(path, data, template, expressions, control);
+    return new FormControlField(parent, path, data, template, expressions, control);
   }
 
-  private createData(template: FormControlTemplate, parentData: FormFieldData) {
+  private createData(template: FormControlTemplate, parent: FormField) {
     return {
-      model: this.createModel(template, parentData, null),
-      parentModel: parentData.model,
-      rootModel: parentData.rootModel
+      model: this.createModel(template, parent, null),
+      parentModel: parent.data.model,
+      rootModel: parent.data.rootModel
     };
   }
 

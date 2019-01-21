@@ -1,6 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldExpressions, FormFieldData } from '../form-field/form-field.model';
-import { Expression } from '../form-expressions/form-expressions.model';
+import { FormField, FormFieldTemplate, FormFieldExpressions, FormFieldData, Expression } from '../form-field/form-field.model';
 
 export interface FormGroupTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
@@ -11,11 +10,13 @@ export interface FormGroupExpressions extends FormFieldExpressions {
 }
 
 export class FormGroupField implements FormField {
+  control: FormGroup;
+  fields: FormField[];
+
   constructor(
+    public parent: FormField,
     public path: string,
     public data: FormFieldData,
     public template: FormGroupTemplate,
-    public expressions: FormGroupExpressions,
-    public control: FormGroup,
-    public fields: FormField[]) {}
+    public expressions: FormGroupExpressions) {}
 }

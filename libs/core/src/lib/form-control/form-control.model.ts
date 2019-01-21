@@ -28,6 +28,7 @@ export interface FormControlExpressions extends FormFieldExpressions {
 
 export class FormControlField implements FormField {
   constructor(
+    public parent: FormField,
     public path: string,
     public data: FormFieldData,
     public template: FormControlTemplate,

@@ -16,45 +16,55 @@ export class FormGroupBuilder extends FormFieldBuilder {
       super();
     }
 
-  createFormField(_template: FormGroupTemplate, data: FormFieldData, path: string): FormGroupField {
+  createForm(_template: FormGroupTemplate, model: any): FormGroupField {
+    const data = { model: model, parentModel: model, rootModel: model };
     const expressions = this.createExpressions(_template, data);
     const template = this.createTemplate(_template, expressions);
-    const fields = this.createFormFields(template.fields, path, data);
-    const controls = this.getFieldControls(fields);
-    const control = this.createControl(template, data, controls);
-    return new FormGroupField(path, data, template, expressions, control, fields);
+    const field = new FormGroupField(null, null, data, template, expressions);
+
+    field.fields = this.createFields(template.fields, field);
+    field.control = this.createControl(template, data, this.getControls(field.fields));
+
+    return field;
   }
 
-  private createFormFields(templates: FormFieldTemplate[], parentPath: string, parentData: FormFieldData): FormField[] {
+  createField(_template: FormGroupTemplate, parent: FormField): FormGroupField {
+    const path = this.getPath(_template, parent);
+    const data = this.createData(_template, parent);
+    const expressions = this.createExpressions(_template, parent.data);
+    const template = this.createTemplate(_template, expressions);
+    const field = new FormGroupField(parent, path, data, template, expressions, );
+
+    field.fields = this.createFields(template.fields, field);
+    field.control = this.createControl(template, parent.data, this.getControls(field.fields));
+
+    return field;
+  }
+
+  private createFields(templates: FormFieldTemplate[], parent: FormField): FormField[] {
     return (templates || []).map(template => {
       switch (template.type) {
         case 'group':
-          return this.createFormGroupField(template, parentPath, parentData);
+          return this.createField(<FormGroupTemplate>template, parent);
         case 'array':
-          return this.formArrayBuilder.createFormField(<FormArrayTemplate>template, parentData, parentPath);
+          return this.formArrayBuilder.createField(<FormArrayTemplate>template, parent);
         case 'control':
-          return this.formControlBuilder.createFormField(<FormControlTemplate>template, parentData, parentPath);
+          return this.formControlBuilder.createField(<FormControlTemplate>template, parent);
         default:
           throw Error(`Type ${ template.type } is not defined`);
       }
     });
   }
 
-  private createFormGroupField(template: FormFieldTemplate, parentPath: string, parentData: FormFieldData): FormGroupField {
-    const path = this.getPath(template, parentPath);
-    const data = this.createData(template, parentData);
-    return this.createFormField(<FormGroupTemplate>template, data, path);
-  }
-
-  private createData(template: FormFieldTemplate, parentData: FormFieldData) {
+  private createData(template: FormFieldTemplate, parent: FormField) {
     return {
-      model: this.createModel(template, parentData, {}),
-      parentModel: parentData.model,
-      rootModel: parentData.rootModel
+      model: this.createModel(template, parent, {}),
+      parentModel: parent.data.model,
+      rootModel: parent.data.rootModel
     };
   }
 
-  private getFieldControls(fields: FormField[]) {
+  private getControls(fields: FormField[]) {
     return (fields || []).reduce((result, field) => {
       result[field.template.key] = field.control;
       return result;

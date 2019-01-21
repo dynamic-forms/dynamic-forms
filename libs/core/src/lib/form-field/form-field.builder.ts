@@ -1,6 +1,6 @@
 import {
   FormFieldTemplate, FormFieldData, FormFieldExpressions,
-  FormFieldExpression, ExpressionDependency, ExpressionFunction } from './form-field.model';
+  FormFieldExpression, ExpressionDependency, ExpressionFunction, FormField } from './form-field.model';
 
 export class FormFieldBuilder {
   private readonly expressionArguments = [
@@ -10,13 +10,13 @@ export class FormFieldBuilder {
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
 
-  getPath(template: FormFieldTemplate, parentPath: string): string {
-    return parentPath ? `${parentPath}.${template.key}` : template.key;
+  getPath(template: FormFieldTemplate, parent: FormField): string {
+    return parent.path ? `${parent.path}.${template.key}` : template.key;
   }
 
-  createModel(template: FormFieldTemplate, parentData: FormFieldData, model?: any): any {
-    parentData.model[template.key] = parentData.model[template.key] || model || null;
-    return parentData.model[template.key];
+  createModel(template: FormFieldTemplate, parent: FormField, model?: any): any {
+    parent.data.model[template.key] = parent.data.model[template.key] || model || null;
+    return parent.data.model[template.key];
   }
 
   createExpressions(template: FormFieldTemplate, data: FormFieldData): FormFieldExpressions {
