@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="input.type">
   <ng-container *ngSwitchCase="'checkbox'">
-    <input [id]="id" type="checkbox" [formControl]="control" />  
+    <input [id]="id" type="checkbox" [formControl]="control"/>  
   </ng-container>
   <ng-container *ngSwitchCase="'number'">
     <input [id]="id" type="number" [placeholder]="input.placeholder" 

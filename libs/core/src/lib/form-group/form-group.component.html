@@ -1,4 +1,4 @@
-<div class="form-group" [class.hidden]="template.hidden || expressions?.hidden?.value">
+<div class="form-group" [class.hidden]="template.hidden">
   <div class="form-group-label">{{ template.label }}</div>
   <ng-container *ngFor="let field of fields">
     <dynamic-form-field [formField]="field"></dynamic-form-field>

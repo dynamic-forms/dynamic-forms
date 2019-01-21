@@ -14,16 +14,6 @@ export class AppComponent {
       input: {
         type: 'checkbox'
       }
-    }, {
-      key: 'loginDisabled',
-      type: 'control',
-      label: 'Login disabled',
-      expressions: {
-        hidden: '(function() { console.log(rootModel); return !rootModel.loginEnabled; })()'
-      },
-      input: {
-        type: 'checkbox'
-      }
     },
     {
       key: 'login',
@@ -33,6 +23,13 @@ export class AppComponent {
         hidden: '!rootModel.loginEnabled'
       },
       fields: [{
+        key: 'disabled',
+        type: 'control',
+        label: 'Login disabled',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
         key: 'email',
         type: 'control',
         label: 'Email',
@@ -43,6 +40,9 @@ export class AppComponent {
         validation: {
           required: true,
           email: true
+        },
+        expressions: {
+          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
         }
       }, {
         key: 'password',
@@ -54,6 +54,9 @@ export class AppComponent {
         },
         validation: {
           required: true
+        },
+        expressions: {
+          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
         }
       }]
     },
@@ -91,6 +94,9 @@ export class AppComponent {
           type: 'text',
           placeholder: 'Enter your name'
         },
+        expressions: {
+          'input.disabled': '!rootModel.registerDisabled'
+        },
         validation: {
           required: true
         }
@@ -101,6 +107,9 @@ export class AppComponent {
         input: {
           type: 'email',
           placeholder: 'Enter your email'
+        },
+        expressions: {
+          'input.disabled': '!rootModel.registerDisabled'
         },
         validation: {
           required: true,
@@ -168,7 +177,9 @@ export class AppComponent {
     {
       key: 'underlying',
       type: 'group',
-      label: 'Underlying',
+      expressions: {
+        label: 'model.currencyPair ? `Underlying for ${ model.currencyPair }` : "Underlying"'
+      },
       fields: [{
         key: 'currencyPair',
         type: 'control',

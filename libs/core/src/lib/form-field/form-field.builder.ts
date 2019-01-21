@@ -1,19 +1,25 @@
-import { FormFieldTemplate, FormFieldData, FormFieldExpressions, FormFieldExpression } from './form-field.model';
-import { FormExpressionsBuilder } from '../form-expressions';
+import {
+  FormFieldTemplate, FormFieldData, FormFieldExpressions,
+  FormFieldExpression, ExpressionDependency, ExpressionFunction } from './form-field.model';
 
 export class FormFieldBuilder {
-  constructor(protected expressionsBuilder: FormExpressionsBuilder) {}
+  private readonly expressionArguments = [
+    { name: 'model', pattern: /model+[.\w]+/g },
+    { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
+    { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
+  ];
+  private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
 
   getPath(template: FormFieldTemplate, parentPath: string): string {
     return parentPath ? `${parentPath}.${template.key}` : template.key;
   }
 
-  getModel(template: FormFieldTemplate, parentData: FormFieldData, model?: any): any {
+  createModel(template: FormFieldTemplate, parentData: FormFieldData, model?: any): any {
     parentData.model[template.key] = parentData.model[template.key] || model || null;
     return parentData.model[template.key];
   }
 
-  getExpressions(template: FormFieldTemplate, data: FormFieldData): FormFieldExpressions {
+  createExpressions(template: FormFieldTemplate, data: FormFieldData): FormFieldExpressions {
     return template.expressions ? Object.keys(template.expressions).reduce((result, key) => {
       result[key] = this.createExpression(template.expressions[key], data);
       return result;
@@ -21,8 +27,20 @@ export class FormFieldBuilder {
   }
 
   private createExpression(expression: string, data: FormFieldData): FormFieldExpression {
-    const deps = this.expressionsBuilder.createExpressionDependencies(expression);
-    const func = this.expressionsBuilder.createExpressionFunction(expression);
+    const deps = this.createExpressionDependencies(expression);
+    const func = this.createExpressionFunction(expression);
     return { data, deps, func, get value() { return func(data.model, data.parentModel, data.rootModel); } };
+  }
+
+  private createExpressionDependencies(expression: string): ExpressionDependency[] {
+    return this.expressionArguments.reduce((result, expressionArgument) => {
+      const dependencies = expression.match(expressionArgument.pattern);
+      result.push(...dependencies);
+      return result;
+    }, []);
+  }
+
+  private createExpressionFunction(expression: string): ExpressionFunction {
+    return new Function(...this.expressionArgumentNames, `return ${ expression };`);
   }
 }

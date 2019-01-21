@@ -1,4 +1,4 @@
-<div class="form-control" [class.hidden]="template.hidden || expressions?.hidden?.value">
+<div class="form-control" [class.hidden]="template.hidden">
   <label class="form-control-label" [for]="id">{{ template.label }}</label>
   <ng-template #inputComponent></ng-template>
   <dynamic-form-validation [errors]="control.errors"></dynamic-form-validation>

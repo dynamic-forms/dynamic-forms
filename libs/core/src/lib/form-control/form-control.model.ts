@@ -1,8 +1,7 @@
 import { FormControl } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldExpressions, FormFieldData } from '../form-field/form-field.model';
+import { FormField, FormFieldTemplate, FormFieldExpressions, FormFieldData, Expression } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
 import { FormValidation } from '../form-validation/form-validation.model';
-import { Expression } from '../form-expressions/form-expressions.model';
 
 export interface FormControlValidation extends FormValidation {
   required?: boolean;
@@ -19,8 +18,12 @@ export interface FormControlTemplate extends FormFieldTemplate {
   validation: FormControlValidation;
 }
 
+export type ExpressionFunction = Function;
+export type ExpressionDependency = string;
+
+
 export interface FormControlExpressions extends FormFieldExpressions {
-  required?: Expression;
+  required?: Expression<boolean>;
 }
 
 export class FormControlField implements FormField {

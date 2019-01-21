@@ -8,7 +8,6 @@ import { FormArrayComponent, FormArrayBuilder } from './form-array';
 import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
 import { FormInputComponent } from './form-control/form-input';
 import { FormValidationComponent, FormValidationBuilder } from './form-validation';
-import { FormExpressionsBuilder } from './form-expressions';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ export class DynamicFormsModule {
         FormGroupBuilder,
         FormArrayBuilder,
         FormControlBuilder,
-        FormExpressionsBuilder,
         FormValidationBuilder,
         FormFieldFactory,
         FormControlFactory

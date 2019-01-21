@@ -1,5 +1,4 @@
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { FormExpressions, Expression } from '../form-expressions/form-expressions.model';
 
 export type FormTemplateType = 'group' | 'array' | 'control';
 export type FormControlType = FormGroup | FormArray | FormControl;
@@ -13,13 +12,27 @@ export interface FormFieldTemplate {
   expressions?: { [key: string]: string };
 }
 
-export interface FormFieldExpression extends Expression {
+export type ExpressionFunction = Function;
+export type ExpressionDependency = string;
+
+export interface Expression<T = any> {
+  deps: ExpressionDependency[];
+  func: ExpressionFunction;
+  value: T;
+}
+
+export interface FormExpressions {
+  [key: string]: Expression<any>;
+}
+
+export interface FormFieldExpression<T = any> extends Expression<T> {
   data: FormFieldData;
 }
 
 export interface FormFieldExpressions extends FormExpressions {
-  hidden?: FormFieldExpression;
-  disabled?: FormFieldExpression;
+  label?: Expression<string>;
+  hidden?: FormFieldExpression<boolean>;
+  disabled?: FormFieldExpression<boolean>;
 }
 
 export interface FormFieldData {
