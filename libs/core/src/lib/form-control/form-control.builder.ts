@@ -11,14 +11,13 @@ export class FormControlBuilder extends FormFieldBuilder {
     super();
   }
 
-  createField(_template: FormControlTemplate, parent: FormField) {
-    const path = this.getPath(_template, parent);
-    const data = this.createData(_template, parent);
-    const expressions = this.createExpressions(_template, data);
-    const template = this.createTemplate(_template, expressions);
-    const validators = this.createValidators(template);
-    const control = this.createControl(template, data, validators);
-    return new FormControlField(parent, path, data, template, expressions, control);
+  createField(root: FormField, parent: FormField, template: FormControlTemplate) {
+    const field = new FormControlField(root, parent, template);
+    field.data = this.createData(field.template, parent);
+    field.expressions = this.createExpressions(field.template, field.data);
+    field.template = this.createTemplate(field.template, field.expressions);
+    field.control = this.createControl(field.template, field.data, this.createValidators(field.template));
+    return field;
   }
 
   private createData(template: FormControlTemplate, parent: FormField) {

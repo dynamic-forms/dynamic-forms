@@ -10,13 +10,17 @@ export interface FormGroupExpressions extends FormFieldExpressions {
 }
 
 export class FormGroupField implements FormField {
+  readonly path: string;
+
+  data: FormFieldData;
+  expressions?: FormGroupExpressions;
   control: FormGroup;
   fields: FormField[];
 
   constructor(
+    public root: FormField,
     public parent: FormField,
-    public path: string,
-    public data: FormFieldData,
-    public template: FormGroupTemplate,
-    public expressions: FormGroupExpressions) {}
+    public template: FormGroupTemplate) {
+      this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+  }
 }

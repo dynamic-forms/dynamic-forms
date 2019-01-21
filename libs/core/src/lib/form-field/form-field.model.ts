@@ -42,11 +42,11 @@ export interface FormFieldData {
 }
 
 export interface FormField {
+  path: string;
   root?: FormField;
   parent?: FormField;
-  path: string;
-  data: FormFieldData;
   template: FormFieldTemplate;
+  data: FormFieldData;
   expressions?: FormFieldExpressions;
   control: FormControlType;
   fields?: FormField[];

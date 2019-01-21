@@ -10,10 +10,6 @@ export class FormFieldBuilder {
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
 
-  getPath(template: FormFieldTemplate, parent: FormField): string {
-    return parent.path ? `${parent.path}.${template.key}` : template.key;
-  }
-
   createModel(template: FormFieldTemplate, parent: FormField, model?: any): any {
     parent.data.model[template.key] = parent.data.model[template.key] || model || null;
     return parent.data.model[template.key];
@@ -29,7 +25,9 @@ export class FormFieldBuilder {
   private createExpression(expression: string, data: FormFieldData): FormFieldExpression {
     const deps = this.createExpressionDependencies(expression);
     const func = this.createExpressionFunction(expression);
-    return { data, deps, func, get value() { return func(data.model, data.parentModel, data.rootModel); } };
+    return { data, deps, func, get value() {
+      return func(data.model, data.parentModel, data.rootModel); }
+    };
   }
 
   private createExpressionDependencies(expression: string): ExpressionDependency[] {

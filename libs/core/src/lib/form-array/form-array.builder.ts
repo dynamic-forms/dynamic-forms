@@ -6,11 +6,11 @@ import { FormFieldBuilder } from '../form-field/form-field.builder';
 
 @Injectable()
 export class FormArrayBuilder extends FormFieldBuilder {
-  createField(template: FormArrayTemplate, parent: FormField): FormArrayField {
-    const path = this.getPath(template, parent);
-    const data = this.createData(template, parent);
-    const control = new FormArray([]);
-    return new FormArrayField(parent, path, data, template, null, control, []);
+  createField(root: FormField, parent: FormField, template: FormArrayTemplate): FormArrayField {
+    const field = new FormArrayField(root, parent, template);
+    field.data = this.createData(template, parent);
+    field.control = new FormArray([]);
+    return field;
   }
 
   private createData(template: FormArrayTemplate, parent: FormField) {

@@ -10,12 +10,17 @@ export interface FormArrayExpressions extends FormFieldExpressions {
 }
 
 export class FormArrayField implements FormField {
+  readonly path: string;
+
+  data: FormFieldData;
+  expressions?: FormArrayExpressions;
+  control: FormArray;
+  fields: FormField[];
+
   constructor(
+    public root: FormField,
     public parent: FormField,
-    public path: string,
-    public data: FormFieldData,
-    public template: FormArrayTemplate,
-    public expressions: FormArrayExpressions,
-    public control: FormArray,
-    public fields: FormField[]) {}
+    public template: FormArrayTemplate) {
+      this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+  }
 }
