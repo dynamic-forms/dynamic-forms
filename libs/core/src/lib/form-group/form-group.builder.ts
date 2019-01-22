@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormFieldTemplate, FormField, FormFieldData, FormFieldExpressions, FormControlType } from '../form-field/form-field.model';
+import { FormFieldTemplate, FormField, FormControlType } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormArrayTemplate } from '../form-array/form-array.model';
 import { FormArrayBuilder } from '../form-array/form-array.builder';
@@ -19,20 +19,20 @@ export class FormGroupBuilder extends FormFieldBuilder {
   createForm(template: FormGroupTemplate, model: any): FormGroupField {
     const field = new FormGroupField(null, null, template);
     field.data = { model: model, parentModel: model, rootModel: model };
-    field.expressions = this.createExpressions(template, field.data);
-    field.template = this.createTemplate(field.template, field.expressions);
+    field.expressions = this.createExpressions(field);
+    this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(field, field, field.template.fields);
-    field.control = this.createControl(field.template, field.data, this.getControls(field.fields));
+    field.control = this.createControl(field, this.getControls(field.fields));
     return field;
   }
 
   createField(root: FormField, parent: FormField, template: FormGroupTemplate, ): FormGroupField {
     const field = new FormGroupField(root, parent, template);
     field.data = this.createData(field.template, parent);
-    field.expressions = this.createExpressions(field.template, field.data);
-    field.template = this.createTemplate(field.template, field.expressions);
+    field.expressions = this.createExpressions(field);
+    this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(root, field, template.fields);
-    field.control = this.createControl(template, parent.data, this.getControls(field.fields));
+    field.control = this.createControl(field, this.getControls(field.fields));
     return field;
   }
 
@@ -66,21 +66,12 @@ export class FormGroupBuilder extends FormFieldBuilder {
     }, <{ [key: string]: FormControlType }>{});
   }
 
-  private createTemplate(template: FormGroupTemplate, expressions: FormFieldExpressions) {
-    if (expressions) {
-      Object.keys(expressions).forEach(key => {
-        Object.defineProperty(template, key, { get: function() { return expressions[key].value; } });
-      });
-    }
-    return template;
-  }
-
-  private createControl(template: FormGroupTemplate, data: FormFieldData, controls: { [key: string]: FormControlType }) {
+  private createControl(field: FormField, controls: { [key: string]: FormControlType }) {
     const control = new FormGroup(controls);
     control.valueChanges.subscribe(value => {
       // console.log(data.model, value);
-      data.parentModel[template.key] = value;
-      data.model = value;
+      field.data.parentModel[field.template.key] = value;
+      field.data.model = value;
     });
     return control;
   }

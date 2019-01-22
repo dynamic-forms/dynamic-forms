@@ -26,7 +26,7 @@ export interface FormExpressions {
 }
 
 export interface FormFieldExpression<T = any> extends Expression<T> {
-  data: FormFieldData;
+  field: FormField;
 }
 
 export interface FormFieldExpressions extends FormExpressions {
