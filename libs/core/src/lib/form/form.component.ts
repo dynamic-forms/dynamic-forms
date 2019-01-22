@@ -26,10 +26,6 @@ export class FormComponent implements OnInit {
     console.log(this.formField);
   }
 
-  modelChanged(model: any) {
-    console.log('form changed:', model);
-  }
-
   submit() {
     console.log('form.value', this.formField.control.value);
   }

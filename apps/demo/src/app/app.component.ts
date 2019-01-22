@@ -159,7 +159,6 @@ export class AppComponent {
           key: 'street',
           type: 'control',
           label: 'Street',
-          hidden: true,
           input: {
             type: 'text',
             placeholder: 'Enter your street',
@@ -264,9 +263,11 @@ export class AppComponent {
     login: {
       email: 'user@mail.com'
     },
+    registerEnabled: true,
     register: {
       name: 'user',
       email: 'user@mail.com',
+      addressEnabled: true,
       address: {}
     },
     users: [

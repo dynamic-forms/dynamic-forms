@@ -1,2 +1,7 @@
-<dynamic-form [template]="template" [model]="model">
-</dynamic-form>
+<div class="sidebar">
+  <pre>{{ model | json }}</pre>
+</div>
+<div class="content">
+  <dynamic-form [template]="template" [model]="model">
+  </dynamic-form>  
+</div>

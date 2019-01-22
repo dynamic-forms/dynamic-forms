@@ -58,11 +58,11 @@ export class FormGroupBuilder extends FormFieldBuilder {
 
   private createControl(field: FormField, controls: { [key: string]: FormControlType }) {
     const control = new FormGroup(controls);
-    control.valueChanges.subscribe(value => {
+    /*control.valueChanges.subscribe(value => {
       // console.log(data.model, value);
       field.parent.model[field.template.key] = value;
       field.model = value;
-    });
+    });*/
     return control;
   }
 }

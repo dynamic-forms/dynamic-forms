@@ -36,7 +36,7 @@ export class FormControlBuilder extends FormFieldBuilder {
   private createControl(field: FormField, validators: ValidatorFn[]) {
     const control = new FormControl(field.model, validators);
     control.valueChanges.subscribe(value => {
-      // console.log(data.model, value);
+      console.log(field.path, value);
       field.parent.model[field.template.key] = value;
       field.model = value;
     });
