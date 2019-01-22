@@ -13,19 +13,11 @@ export class FormControlBuilder extends FormFieldBuilder {
 
   createField(root: FormField, parent: FormField, template: FormControlTemplate) {
     const field = new FormControlField(root, parent, template);
-    field.data = this.createData(field.template, parent);
+    field.model = this.createModel(field.template, parent, null);
     field.expressions = this.createExpressions(field);
     this.assignExpressions(field.template, field.expressions);
     field.control = this.createControl(field, this.createValidators(field.template));
     return field;
-  }
-
-  private createData(template: FormControlTemplate, parent: FormField) {
-    return {
-      model: this.createModel(template, parent, null),
-      parentModel: parent.data.model,
-      rootModel: parent.data.rootModel
-    };
   }
 
   private createValidators(template: FormControlTemplate) {
@@ -43,11 +35,11 @@ export class FormControlBuilder extends FormFieldBuilder {
   }
 
   private createControl(field: FormField, validators: ValidatorFn[]) {
-    const control = new FormControl(field.data.model, validators);
+    const control = new FormControl(field.model, validators);
     control.valueChanges.subscribe(value => {
       // console.log(data.model, value);
-      field.data.parentModel[field.template.key] = value;
-      field.data.model = value;
+      field.parent.model[field.template.key] = value;
+      field.model = value;
     });
     return control;
   }

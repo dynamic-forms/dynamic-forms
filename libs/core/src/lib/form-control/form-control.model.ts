@@ -28,8 +28,8 @@ export interface FormControlExpressions extends FormFieldExpressions {
 
 export class FormControlField implements FormField {
   readonly path: string;
+  model: any;
 
-  data: FormFieldData;
   expressions?: FormControlExpressions;
   control: FormControl;
   fields: FormField[];
@@ -40,13 +40,4 @@ export class FormControlField implements FormField {
     public template: FormControlTemplate) {
       this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
   }
-
-  /*constructor(
-    public root: FormField,
-    public parent: FormField,
-    public path: string,
-    public data: FormFieldData,
-    public template: FormControlTemplate,
-    public expressions: FormControlExpressions,
-    public control: FormControl) {}*/
 }

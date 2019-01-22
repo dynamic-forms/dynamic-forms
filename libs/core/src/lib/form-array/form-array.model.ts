@@ -11,8 +11,8 @@ export interface FormArrayExpressions extends FormFieldExpressions {
 
 export class FormArrayField implements FormField {
   readonly path: string;
+  model: any;
 
-  data: FormFieldData;
   expressions?: FormArrayExpressions;
   control: FormArray;
   fields: FormField[];

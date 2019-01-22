@@ -11,8 +11,8 @@ export interface FormGroupExpressions extends FormFieldExpressions {
 
 export class FormGroupField implements FormField {
   readonly path: string;
+  model: any;
 
-  data: FormFieldData;
   expressions?: FormGroupExpressions;
   control: FormGroup;
   fields: FormField[];

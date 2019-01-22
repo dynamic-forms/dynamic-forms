@@ -18,7 +18,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
 
   createForm(template: FormGroupTemplate, model: any): FormGroupField {
     const field = new FormGroupField(null, null, template);
-    field.data = { model: model, parentModel: model, rootModel: model };
+    field.model = model;
     field.expressions = this.createExpressions(field);
     this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(field, field, field.template.fields);
@@ -28,7 +28,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
 
   createField(root: FormField, parent: FormField, template: FormGroupTemplate, ): FormGroupField {
     const field = new FormGroupField(root, parent, template);
-    field.data = this.createData(field.template, parent);
+    field.model = this.createModel(field.template, parent, {});
     field.expressions = this.createExpressions(field);
     this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(root, field, template.fields);
@@ -51,14 +51,6 @@ export class FormGroupBuilder extends FormFieldBuilder {
     });
   }
 
-  private createData(template: FormFieldTemplate, parent: FormField) {
-    return {
-      model: this.createModel(template, parent, {}),
-      parentModel: parent.data.model,
-      rootModel: parent.data.rootModel
-    };
-  }
-
   private getControls(fields: FormField[]) {
     return (fields || []).reduce((result, field) => {
       result[field.template.key] = field.control;
@@ -70,8 +62,8 @@ export class FormGroupBuilder extends FormFieldBuilder {
     const control = new FormGroup(controls);
     control.valueChanges.subscribe(value => {
       // console.log(data.model, value);
-      field.data.parentModel[field.template.key] = value;
-      field.data.model = value;
+      field.parent.model[field.template.key] = value;
+      field.model = value;
     });
     return control;
   }
