@@ -9,11 +9,6 @@ export class FormFieldBuilder {
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
 
-  createModel(template: FormFieldTemplate, parent: FormField, model?: any): any {
-    parent.model[template.key] = parent.model[template.key] || model || null;
-    return parent.model[template.key];
-  }
-
   createExpressions(field: FormField): FormFieldExpressions {
     const expressions = field.template.expressions;
     return expressions ? Object.keys(expressions).reduce((result, key) => {

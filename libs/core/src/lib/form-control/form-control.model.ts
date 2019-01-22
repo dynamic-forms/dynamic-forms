@@ -35,9 +35,15 @@ export class FormControlField implements FormField {
   fields: FormField[];
 
   constructor(
-    public root: FormField,
-    public parent: FormField,
-    public template: FormControlTemplate) {
-      this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+    public readonly root: FormField,
+    public readonly parent: FormField,
+    public readonly template: FormControlTemplate) {
+      this.path = parent.path ? `${parent.path}.${template.key}` : template.key || null;
+      this.model = this.getModel(parent, template);
+  }
+
+  private getModel(parent: FormField, template: FormFieldTemplate): any {
+    parent.model[template.key] = parent.model[template.key] || null;
+    return parent.model[template.key];
   }
 }

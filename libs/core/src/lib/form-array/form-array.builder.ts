@@ -8,7 +8,6 @@ import { FormFieldBuilder } from '../form-field/form-field.builder';
 export class FormArrayBuilder extends FormFieldBuilder {
   createField(root: FormField, parent: FormField, template: FormArrayTemplate): FormArrayField {
     const field = new FormArrayField(root, parent, template);
-    field.model = this.createModel(field.template, parent, []);
     field.control = new FormArray([]);
     return field;
   }

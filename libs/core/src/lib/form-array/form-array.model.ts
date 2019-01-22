@@ -18,9 +18,15 @@ export class FormArrayField implements FormField {
   fields: FormField[];
 
   constructor(
-    public root: FormField,
-    public parent: FormField,
-    public template: FormArrayTemplate) {
+    public readonly root: FormField,
+    public readonly parent: FormField,
+    public readonly template: FormArrayTemplate) {
       this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
-  }
+      this.model = this.getModel(parent, template);
+    }
+
+    private getModel(parent: FormField, template: FormFieldTemplate): any {
+      parent.model[template.key] = parent.model[template.key] || [];
+      return parent.model[template.key];
+    }
 }

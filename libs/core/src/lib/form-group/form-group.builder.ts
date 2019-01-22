@@ -17,8 +17,7 @@ export class FormGroupBuilder extends FormFieldBuilder {
     }
 
   createForm(template: FormGroupTemplate, model: any): FormGroupField {
-    const field = new FormGroupField(null, null, template);
-    field.model = model;
+    const field = new FormGroupField(null, null, template, model);
     field.expressions = this.createExpressions(field);
     this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(field, field, field.template.fields);
@@ -28,7 +27,6 @@ export class FormGroupBuilder extends FormFieldBuilder {
 
   createField(root: FormField, parent: FormField, template: FormGroupTemplate, ): FormGroupField {
     const field = new FormGroupField(root, parent, template);
-    field.model = this.createModel(field.template, parent, {});
     field.expressions = this.createExpressions(field);
     this.assignExpressions(field.template, field.expressions);
     field.fields = this.createFields(root, field, template.fields);
