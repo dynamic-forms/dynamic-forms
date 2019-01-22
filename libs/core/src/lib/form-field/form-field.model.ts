@@ -35,19 +35,13 @@ export interface FormFieldExpressions extends FormExpressions {
   disabled?: FormFieldExpression<boolean>;
 }
 
-export interface FormFieldData {
-  model?: any;
-  parentModel?: any;
-  rootModel?: any;
-}
-
 export interface FormField {
   readonly path: string;
   readonly root: FormField;
   readonly parent: FormField;
   readonly template: FormFieldTemplate;
-  model: any;
   expressions?: FormFieldExpressions;
   control: FormControlType;
   fields?: FormField[];
+  model: any;
 }
