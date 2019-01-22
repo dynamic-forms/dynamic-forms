@@ -7,8 +7,7 @@ import { FormGroupBuilder } from '../form-group/form-group.builder';
 export class FormBuilder {
   constructor(private formGroupBuilder: FormGroupBuilder) {}
 
-  createFormField(template: FormTemplate, model: any): FormGroupField {
-    const data = { model: model, parentModel: model, rootModel: model };
-    return this.formGroupBuilder.createFormField(template, data, null);
+  createForm(template: FormTemplate, model: any): FormGroupField {
+    return this.formGroupBuilder.createForm(template, model);
   }
 }

@@ -26,7 +26,7 @@ export interface FormExpressions {
 }
 
 export interface FormFieldExpression<T = any> extends Expression<T> {
-  data: FormFieldData;
+  field: FormField;
 }
 
 export interface FormFieldExpressions extends FormExpressions {
@@ -43,10 +43,11 @@ export interface FormFieldData {
 
 export interface FormField {
   path: string;
+  root: FormField;
+  parent: FormField;
   template: FormFieldTemplate;
-  control: FormControlType;
+  model: any;
   expressions?: FormFieldExpressions;
+  control: FormControlType;
   fields?: FormField[];
-  parentModel?: any;
-  model?: any;
 }
