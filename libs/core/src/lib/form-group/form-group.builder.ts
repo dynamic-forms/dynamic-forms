@@ -12,9 +12,10 @@ import { FormControlBuilder } from '../form-control/form-control.builder';
 export class FormGroupBuilder extends FormFieldBuilder {
   constructor(
     private formArrayBuilder: FormArrayBuilder,
-    private formControlBuilder: FormControlBuilder) {
+    private formControlBuilder: FormControlBuilder
+  ) {
       super();
-    }
+  }
 
   createForm(template: FormGroupTemplate, model: any): FormGroupField {
     const field = new FormGroupField(null, null, template, model);

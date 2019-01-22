@@ -21,25 +21,20 @@ export interface FormControlTemplate extends FormFieldTemplate {
 export type ExpressionFunction = Function;
 export type ExpressionDependency = string;
 
-
-export interface FormControlExpressions extends FormFieldExpressions {
-  required?: Expression<boolean>;
-}
-
 export class FormControlField implements FormField {
   readonly path: string;
-  model: any;
-
-  expressions?: FormControlExpressions;
+  expressions?: FormFieldExpressions;
   control: FormControl;
   fields: FormField[];
+  model: any;
 
   constructor(
     public readonly root: FormField,
     public readonly parent: FormField,
-    public readonly template: FormControlTemplate) {
-      this.path = parent.path ? `${parent.path}.${template.key}` : template.key || null;
-      this.model = this.getModel(parent, template);
+    public readonly template: FormControlTemplate
+  ) {
+    this.path = parent.path ? `${parent.path}.${template.key}` : template.key || null;
+    this.model = this.getModel(parent, template);
   }
 
   private getModel(parent: FormField, template: FormFieldTemplate): any {

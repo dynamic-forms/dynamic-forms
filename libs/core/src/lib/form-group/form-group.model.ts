@@ -5,24 +5,21 @@ export interface FormGroupTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
 }
 
-export interface FormGroupExpressions extends FormFieldExpressions {
-  required?: Expression;
-}
-
 export class FormGroupField implements FormField {
   readonly path: string;
-
-  expressions?: FormGroupExpressions;
+  expressions?: FormFieldExpressions;
   control: FormGroup;
   fields: FormField[];
+  model: any;
 
   constructor(
     public readonly root: FormField,
     public readonly parent: FormField,
     public readonly template: FormGroupTemplate,
-    public model: any = null) {
-      this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
-      this.model = this.model || this.createModel(parent, template);
+    model: any = null
+  ) {
+    this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+    this.model = model || this.createModel(parent, template);
   }
 
   private createModel(parent: FormField, template: FormFieldTemplate): any {
