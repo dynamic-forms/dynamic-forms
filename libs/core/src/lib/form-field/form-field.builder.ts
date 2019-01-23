@@ -19,10 +19,24 @@ export class FormFieldBuilder {
 
   assignExpressions(template: FormFieldTemplate, expressions: FormFieldExpressions) {
     if (expressions) {
-      Object.keys(expressions).forEach(key => {
-        Object.defineProperty(template, key, { get: function() { return expressions[key].value; } });
+      Object.keys(expressions).forEach(path => {
+        const paths = path.split('.');
+        if (paths.length > 1) {
+          const key = paths.splice(paths.length - 1, 1)[0];
+          const obj = this.createObjectPath(template, paths);
+          Object.defineProperty(obj, key, { get: function() { return expressions[path].value; } });
+        } else {
+          Object.defineProperty(template, path, { get: function() { return expressions[path].value; } });
+        }
       });
     }
+  }
+
+  private createObjectPath(obj: any, paths: string[]) {
+    return paths.reduce((result, path) => {
+      result[path] = result[path] || {};
+      return result[path];
+    }, obj);
   }
 
   private createExpression(expression: string, field: FormField): FormFieldExpression {
