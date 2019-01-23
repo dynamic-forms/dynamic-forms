@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldExpressions, Expression } from '../form-field/form-field.model';
+import { FormField, FormFieldTemplate, FormFieldExpressions } from '../form-field/form-field.model';
 
 export interface FormGroupTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];

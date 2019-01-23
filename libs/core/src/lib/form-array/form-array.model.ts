@@ -1,17 +1,13 @@
 import { FormArray } from '@angular/forms';
-import { FormFieldTemplate, FormField, FormFieldExpressions, Expression } from '../form-field/form-field.model';
+import { FormFieldTemplate, FormField, FormFieldExpressions } from '../form-field/form-field.model';
 
 export interface FormArrayTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
 }
 
-export interface FormArrayExpressions extends FormFieldExpressions {
-  required?: Expression;
-}
-
 export class FormArrayField implements FormField {
   readonly path: string;
-  expressions?: FormArrayExpressions;
+  expressions?: FormFieldExpressions;
   control: FormArray;
   fields: FormField[];
   model: any;

@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldExpressions, Expression } from '../form-field/form-field.model';
+import { FormField, FormFieldTemplate, FormFieldExpressions } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
 import { FormValidation } from '../form-validation/form-validation.model';
 
