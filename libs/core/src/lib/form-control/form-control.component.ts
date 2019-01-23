@@ -19,10 +19,6 @@ export class FormControlComponent implements OnInit {
     this.initComponent();
   }
 
-  private initComponent() {
-    this.componentFactory.createComponent(this.containerRef, this.formField);
-  }
-
   get id(): string {
     return this.formField.path;
   }
@@ -41,5 +37,9 @@ export class FormControlComponent implements OnInit {
 
   get input(): FormControlInput {
     return this.formField.template.input;
+  }
+
+  private initComponent() {
+    this.componentFactory.createComponent(this.containerRef, this.formField);
   }
 }
