@@ -32,7 +32,7 @@ export class FormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.formField.destroy();
   }
 
   submit() {

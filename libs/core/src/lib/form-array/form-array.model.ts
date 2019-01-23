@@ -21,6 +21,10 @@ export class FormArrayField implements FormField {
     this.model = this.getModel(parent, template);
   }
 
+  destroy(): void {
+    this.fields.forEach(field => field.destroy());
+  }
+
   private getModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || [];
     return parent.model[template.key];

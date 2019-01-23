@@ -37,6 +37,8 @@ export class FormControlField implements FormField {
     this.model = this.getModel(parent, template);
   }
 
+  destroy(): void {}
+
   private getModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || null;
     return parent.model[template.key];

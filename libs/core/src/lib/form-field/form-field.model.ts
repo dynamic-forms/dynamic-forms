@@ -44,4 +44,6 @@ export interface FormField {
   control: FormControlType;
   fields?: FormField[];
   model: any;
+
+  destroy(): void;
 }

@@ -22,6 +22,10 @@ export class FormGroupField implements FormField {
     this.model = model || this.createModel(parent, template);
   }
 
+  destroy(): void {
+    this.fields.forEach(field => field.destroy());
+  }
+
   private createModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || {};
     return parent.model[template.key];
