@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormField } from '../form-field/form-field.model';
+import { FormField, FormFieldExpressions } from '../form-field/form-field.model';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
 
 @Component({
@@ -12,6 +12,10 @@ export class FormGroupComponent {
 
   get template(): FormGroupTemplate {
     return this.formField.template;
+  }
+
+  get expressions(): FormFieldExpressions {
+    return this.formField.expressions;
   }
 
   get control(): FormGroup {

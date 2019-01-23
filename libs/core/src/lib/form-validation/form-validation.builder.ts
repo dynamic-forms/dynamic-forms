@@ -4,7 +4,7 @@ import { FormValidation } from './form-validation.model';
 
 @Injectable()
 export class FormValidationBuilder {
-  getValidator(validation: FormValidation, key: string, value?: any): ValidatorFn {
+  createValidator(validation: FormValidation, key: string, value?: any): ValidatorFn {
     switch (key) {
       case 'required':
         return validation.required ? Validators.required : null;

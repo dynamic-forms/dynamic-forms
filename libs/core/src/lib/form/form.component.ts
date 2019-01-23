@@ -22,12 +22,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.model = this.model || {};
-    this.formField = this.formBuilder.createFormField(this.template, this.model);
+    this.formField = this.formBuilder.createForm(this.template, this.model);
     console.log(this.formField);
-  }
-
-  modelChanged(model: any) {
-    console.log('form changed:', model);
   }
 
   submit() {

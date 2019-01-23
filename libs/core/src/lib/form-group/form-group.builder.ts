@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
+import { FormFieldTemplate, FormField, FormControlType } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormArrayTemplate } from '../form-array/form-array.model';
 import { FormArrayBuilder } from '../form-array/form-array.builder';
@@ -12,42 +12,58 @@ import { FormControlBuilder } from '../form-control/form-control.builder';
 export class FormGroupBuilder extends FormFieldBuilder {
   constructor(
     private formArrayBuilder: FormArrayBuilder,
-    private formControlBuilder: FormControlBuilder) {
+    private formControlBuilder: FormControlBuilder
+  ) {
       super();
-    }
-
-  createFormField(path: string, model: any, template: FormGroupTemplate): FormGroupField {
-    const fields = this.createFormFields(template.fields, path, model);
-    const controls = this.getFieldControls(fields);
-    const control = new FormGroup(controls);
-    return new FormGroupField(path, template, control, model, fields);
   }
 
-  private createFormFields(templates: FormFieldTemplate[], parentPath: string, parentModel: any): FormField[] {
+  createForm(template: FormGroupTemplate, model: any): FormGroupField {
+    const field = new FormGroupField(null, null, template, model);
+    field.expressions = this.createExpressions(field);
+    this.assignExpressions(field.template, field.expressions);
+    field.fields = this.createFields(field, field, field.template.fields);
+    field.control = this.createControl(field, this.getControls(field.fields));
+    return field;
+  }
+
+  createField(root: FormField, parent: FormField, template: FormGroupTemplate, ): FormGroupField {
+    const field = new FormGroupField(root, parent, template);
+    field.expressions = this.createExpressions(field);
+    this.assignExpressions(field.template, field.expressions);
+    field.fields = this.createFields(root, field, template.fields);
+    field.control = this.createControl(field, this.getControls(field.fields));
+    return field;
+  }
+
+  private createFields(root: FormField, parent: FormField, templates: FormFieldTemplate[]): FormField[] {
     return (templates || []).map(template => {
       switch (template.type) {
         case 'group':
-          return this.createFormGroupField(parentPath, parentModel, template);
+          return this.createField(root, parent, <FormGroupTemplate>template);
         case 'array':
-          return this.formArrayBuilder.createFormField(parentPath, parentModel, <FormArrayTemplate>template);
+          return this.formArrayBuilder.createField(root, parent, <FormArrayTemplate>template);
         case 'control':
-          return this.formControlBuilder.createFormField(parentPath, parentModel, <FormControlTemplate>template);
+          return this.formControlBuilder.createField(root, parent, <FormControlTemplate>template);
         default:
           throw Error(`Type ${ template.type } is not defined`);
       }
     });
   }
 
-  private createFormGroupField(parentPath: string, parentModel: any, template: FormFieldTemplate): FormGroupField {
-    const path = this.getPath(parentPath, template);
-    const model = this.getModel(parentModel, template, {});
-    return this.createFormField(path, model, <FormGroupTemplate>template);
-  }
-
-  private getFieldControls(fields: FormField[]) {
+  private getControls(fields: FormField[]) {
     return (fields || []).reduce((result, field) => {
       result[field.template.key] = field.control;
       return result;
-    }, {});
+    }, <{ [key: string]: FormControlType }>{});
+  }
+
+  private createControl(field: FormField, controls: { [key: string]: FormControlType }) {
+    const control = new FormGroup(controls);
+    /*control.valueChanges.subscribe(value => {
+      // console.log(data.model, value);
+      field.parent.model[field.template.key] = value;
+      field.model = value;
+    });*/
+    return control;
   }
 }

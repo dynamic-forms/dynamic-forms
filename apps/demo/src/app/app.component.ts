@@ -20,15 +20,96 @@ export class AppComponent {
       type: 'group',
       label: 'Login',
       expressions: {
-        hidden: '!model.loginEnabled'
+        hidden: '!rootModel.loginEnabled'
       },
       fields: [{
+        key: 'disabled',
+        type: 'control',
+        label: 'Login disabled',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
         key: 'email',
         type: 'control',
         label: 'Email',
         input: {
           type: 'email',
           placeholder: 'Enter your email'
+        },
+        validation: {
+          required: true,
+          email: true
+        },
+        expressions: {
+          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
+        }
+      }, {
+        key: 'password',
+        type: 'control',
+        label: 'Password',
+        input: {
+          type: 'password',
+          placeholder: 'Enter your password'
+        },
+        validation: {
+          required: true
+        },
+        expressions: {
+          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
+        }
+      }]
+    },
+    {
+      key: 'registerEnabled',
+      type: 'control',
+      label: 'Register enabled',
+      input: {
+        type: 'checkbox'
+      }
+    },
+    {
+      key: 'registerDisabled',
+      type: 'control',
+      label: 'Register disabled',
+      expressions: {
+        hidden: '!rootModel.registerEnabled'
+      },
+      input: {
+        type: 'checkbox'
+      }
+    },
+    {
+      key: 'register',
+      type: 'group',
+      label: 'Register',
+      expressions: {
+        hidden: '!rootModel.registerEnabled'
+      },
+      fields: [{
+        key: 'name',
+        label: 'Name',
+        type: 'control',
+        input: {
+          type: 'text',
+          placeholder: 'Enter your name'
+        },
+        expressions: {
+          'input.disabled': '!rootModel.registerDisabled'
+        },
+        validation: {
+          required: true
+        }
+      }, {
+        key: 'email',
+        type: 'control',
+        label: 'Email',
+        input: {
+          type: 'email',
+          placeholder: 'Enter your email'
+        },
+        expressions: {
+          'input.disabled': '!rootModel.registerDisabled'
         },
         validation: {
           required: true,
@@ -45,47 +126,20 @@ export class AppComponent {
         validation: {
           required: true
         }
-      }]
-    },
-    {
-      key: 'registerEnabled',
-      type: 'control',
-      label: 'Register enabled',
-      input: {
-        type: 'checkbox'
-      }
-    },
-    {
-      key: 'register',
-      type: 'group',
-      label: 'Register',
-      fields: [{
-        key: 'name',
-        label: 'Name',
-        type: 'control',
-        input: {
-          type: 'text',
-          placeholder: 'Enter your name'
-        },
-        validation: {
-          required: true
-        }
       }, {
-        key: 'email',
+        key: 'addressEnabled',
         type: 'control',
-        label: 'Email',
+        label: 'Address enabled',
         input: {
-          type: 'email',
-          placeholder: 'Enter your email'
-        },
-        validation: {
-          required: true,
-          email: true
+          type: 'checkbox'
         }
       }, {
         key: 'address',
         type: 'group',
         label: 'Address',
+        expressions: {
+          hidden: '!parentModel.addressEnabled'
+        },
         fields: [{
           key: 'town',
           type: 'control',
@@ -105,7 +159,6 @@ export class AppComponent {
           key: 'street',
           type: 'control',
           label: 'Street',
-          hidden: true,
           input: {
             type: 'text',
             placeholder: 'Enter your street',
@@ -118,23 +171,14 @@ export class AppComponent {
             maxLength: true
           }
         }]
-      }, {
-        key: 'password',
-        type: 'control',
-        label: 'Password',
-        input: {
-          type: 'password',
-          placeholder: 'Enter your password'
-        },
-        validation: {
-          required: true
-        }
       }]
     },
     {
       key: 'underlying',
       type: 'group',
-      label: 'Underlying',
+      expressions: {
+        label: 'model.currencyPair ? `Underlying for ${ model.currencyPair }` : "Underlying"'
+      },
       fields: [{
         key: 'currencyPair',
         type: 'control',
@@ -219,9 +263,11 @@ export class AppComponent {
     login: {
       email: 'user@mail.com'
     },
+    registerEnabled: true,
     register: {
       name: 'user',
       email: 'user@mail.com',
+      addressEnabled: true,
       address: {}
     },
     users: [

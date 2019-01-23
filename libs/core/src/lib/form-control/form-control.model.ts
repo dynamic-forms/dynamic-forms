@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
+import { FormField, FormFieldTemplate, FormFieldExpressions, Expression } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
 import { FormValidation } from '../form-validation/form-validation.model';
 
@@ -18,11 +18,27 @@ export interface FormControlTemplate extends FormFieldTemplate {
   validation: FormControlValidation;
 }
 
+export type ExpressionFunction = Function;
+export type ExpressionDependency = string;
+
 export class FormControlField implements FormField {
+  readonly path: string;
+  expressions?: FormFieldExpressions;
+  control: FormControl;
+  fields: FormField[];
+  model: any;
+
   constructor(
-    public path: string,
-    public template: FormControlTemplate,
-    public control: FormControl,
-    public parentModel: any,
-    public model: any) {}
+    public readonly root: FormField,
+    public readonly parent: FormField,
+    public readonly template: FormControlTemplate
+  ) {
+    this.path = parent.path ? `${parent.path}.${template.key}` : template.key || null;
+    this.model = this.getModel(parent, template);
+  }
+
+  private getModel(parent: FormField, template: FormFieldTemplate): any {
+    parent.model[template.key] = parent.model[template.key] || null;
+    return parent.model[template.key];
+  }
 }
