@@ -19,12 +19,9 @@ export class FormComponent implements OnInit, OnChanges, OnDestroy {
     return this.formField.control;
   }
 
-  ngOnInit(): void {
-    console.log(this.formField);
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (changes.template || changes.model) {
       this.model = this.model || {};
       this.formField = this.formBuilder.createForm(this.template, this.model);

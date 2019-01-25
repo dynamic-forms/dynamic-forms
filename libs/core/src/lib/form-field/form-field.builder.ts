@@ -23,7 +23,7 @@ export class FormFieldBuilder {
         const paths = path.split('.');
         if (paths.length > 1) {
           const key = paths.splice(paths.length - 1, 1)[0];
-          const obj = this.createObjectPath(template, paths);
+          const obj = this.createObject(template, paths);
           Object.defineProperty(obj, key, { get: function() { return expressions[path].value; } });
         } else {
           Object.defineProperty(template, path, { get: function() { return expressions[path].value; } });
@@ -32,7 +32,7 @@ export class FormFieldBuilder {
     }
   }
 
-  private createObjectPath(obj: any, paths: string[]) {
+  private createObject(obj: any, paths: string[]) {
     return paths.reduce((result, path) => {
       result[path] = result[path] || {};
       return result[path];
