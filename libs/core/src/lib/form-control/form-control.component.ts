@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef, DoCheck } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormControlTemplate, FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
@@ -9,7 +9,7 @@ import { FormFieldExpressions } from '../form-field';
   selector: 'dynamic-form-control',
   templateUrl: './form-control.component.html'
 })
-export class FormControlComponent implements OnInit {
+export class FormControlComponent implements OnInit, DoCheck {
   @ViewChild('inputComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() formField: FormControlField;
 
@@ -19,16 +19,23 @@ export class FormControlComponent implements OnInit {
     this.initComponent();
   }
 
+  ngDoCheck() {
+    const disabled = this.input.disabled || false;
+    if (this.control.disabled !== disabled) {
+      if (disabled) {
+        this.control.disable();
+      } else {
+        this.control.enable();
+      }
+    }
+  }
+
   get id(): string {
     return this.formField.path;
   }
 
   get template(): FormControlTemplate {
     return this.formField.template;
-  }
-
-  get expressions(): FormFieldExpressions {
-    return this.formField.expressions;
   }
 
   get control(): FormControl {

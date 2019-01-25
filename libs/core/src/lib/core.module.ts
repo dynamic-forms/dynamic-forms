@@ -10,6 +10,10 @@ import { FormInputComponent } from './form-control/form-input';
 import { FormValidationComponent, FormValidationBuilder } from './form-validation';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     FormComponent,
     FormFieldComponent,
@@ -18,10 +22,6 @@ import { FormValidationComponent, FormValidationBuilder } from './form-validatio
     FormControlComponent,
     FormInputComponent,
     FormValidationComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
   ],
   exports: [
     CommonModule,

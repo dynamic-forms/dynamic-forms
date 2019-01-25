@@ -7,12 +7,13 @@ export interface FormControlInput {
   type: string;
   placeholder: string;
   options?: FormControlOption[];
+  readonly?: boolean;
   disabled?: boolean;
   required?: boolean;
   email?: boolean;
   pattern?: string | RegExp;
-  min?: number;
-  max?: number;
+  min?: number | Date;
+  max?: number | Date;
   minLength?: number;
   maxLength?: number;
 }

@@ -23,6 +23,13 @@ export class AppComponent {
         hidden: '!rootModel.loginEnabled'
       },
       fields: [{
+        key: 'readonly',
+        type: 'control',
+        label: 'Login readonly',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
         key: 'disabled',
         type: 'control',
         label: 'Login disabled',
@@ -42,7 +49,8 @@ export class AppComponent {
           email: true
         },
         expressions: {
-          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
+          'input.readonly': 'parentModel.readonly',
+          'input.disabled': 'parentModel.disabled'
         }
       }, {
         key: 'password',
@@ -56,7 +64,8 @@ export class AppComponent {
           required: true
         },
         expressions: {
-          disabled: '(function() { console.log(parentModel); return parentModel.disabled; })()'
+          'input.readonly': 'parentModel.readonly',
+          'input.disabled': 'parentModel.disabled'
         }
       }]
     },
@@ -72,11 +81,11 @@ export class AppComponent {
       key: 'registerDisabled',
       type: 'control',
       label: 'Register disabled',
-      expressions: {
-        hidden: '!rootModel.registerEnabled'
-      },
       input: {
         type: 'checkbox'
+      },
+      expressions: {
+        hidden: '!rootModel.registerEnabled'
       }
     },
     {
@@ -94,11 +103,11 @@ export class AppComponent {
           type: 'text',
           placeholder: 'Enter your name'
         },
-        expressions: {
-          'input.disabled': '!rootModel.registerDisabled'
-        },
         validation: {
           required: true
+        },
+        expressions: {
+          'input.disabled': 'rootModel.registerDisabled'
         }
       }, {
         key: 'email',
@@ -108,12 +117,12 @@ export class AppComponent {
           type: 'email',
           placeholder: 'Enter your email'
         },
-        expressions: {
-          'input.disabled': '!rootModel.registerDisabled'
-        },
         validation: {
           required: true,
           email: true
+        },
+        expressions: {
+          'input.disabled': 'rootModel.registerDisabled'
         }
       }, {
         key: 'password',
@@ -195,7 +204,22 @@ export class AppComponent {
           required: true
         }
       }, {
-        key: 'number',
+        key: 'notionalCurrency',
+        type: 'control',
+        label: 'Notional Currency',
+        expressions: {
+          // tslint:disable-next-line:max-line-length
+          'input.options': '(function(currencyPair) { if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(3,6); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting }]; } return []; })(parentModel.currencyPair)'
+        },
+        input: {
+          type: 'select',
+          placeholder: 'Select the notional currency'
+        },
+        validation: {
+          required: true
+        }
+      }, {
+        key: 'notional',
         type: 'control',
         label: 'Notional',
         input: {
