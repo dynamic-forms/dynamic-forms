@@ -1,6 +1,7 @@
-import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
 import { FormField } from './form-field.model';
 import { defaultFieldConfig, FormFieldConfig } from './form-field.config';
+import { FormFieldComponent } from './form-field.component';
 
 @Injectable()
 export class FormFieldFactory {
@@ -8,14 +9,14 @@ export class FormFieldFactory {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  public createComponent(containerRef: ViewContainerRef, field: FormField): ComponentRef<any> {
+  public createComponent(containerRef: ViewContainerRef, field: FormField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
-    (<any>componentRef.instance).formField = field;
+    componentRef.instance.formField = field;
     return componentRef;
   }
 
-  private getComponentFactory(field: FormField): ComponentFactory<any> {
+  private getComponentFactory(field: FormField): ComponentFactory<FormFieldComponent> {
     const resolver = this.componentFactoryResolver;
     const config = this.config.types.find(f => f.type === field.template.type);
     return resolver.resolveComponentFactory(config.component);

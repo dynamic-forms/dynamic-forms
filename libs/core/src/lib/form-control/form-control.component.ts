@@ -9,29 +9,21 @@ import { FormFieldComponent } from '../form-field/form-field.component';
   templateUrl: './form-control.component.html'
 })
 export class FormControlComponent extends FormFieldComponent<FormControlField> implements OnInit, DoCheck {
-  @ViewChild('inputComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
+  @ViewChild('inputComponent', { read: ViewContainerRef })
+  containerRef: ViewContainerRef;
 
   constructor(private componentFactory: FormControlFactory) {
     super();
   }
+
+  get input() { return this.formField.template.input; }
 
   ngOnInit() {
     this.initComponent();
   }
 
   ngDoCheck() {
-    const disabled = this.input.disabled || false;
-    if (this.control.disabled !== disabled) {
-      if (disabled) {
-        this.control.disable();
-      } else {
-        this.control.enable();
-      }
-    }
-  }
-
-  get input(): FormControlInput {
-    return this.formField.template.input;
+    this.formField.update();
   }
 
   private initComponent() {

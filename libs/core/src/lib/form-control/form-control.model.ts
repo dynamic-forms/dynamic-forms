@@ -25,22 +25,38 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
   constructor(root: FormField, parent: FormField, template: FormControlTemplate) {
     super(root, parent, template);
     this._model = this.getModel(parent, template);
-  }
-
-  setControl(validators: ValidatorFn[]) {
-    this._control = new FormControl(this.model, validators);
+    this._control = new FormControl(this._model);
     this._controlValueSubscription = this._control.valueChanges.subscribe(value => {
       this.parent.model[this.template.key] = value;
       this._model = value;
     });
   }
 
-  destroy(): void {
+  setValidators(validators: ValidatorFn[]) {
+    this._control.setValidators(validators);
+  }
+
+  update() {
+    this.updateControl();
+  }
+
+  destroy() {
     this._controlValueSubscription.unsubscribe();
   }
 
   private getModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || null;
     return parent.model[template.key];
+  }
+
+  private updateControl(): void {
+    const disabled = this.template.input.disabled || false;
+    if (this.control.disabled !== disabled) {
+      if (disabled) {
+        this.control.disable();
+      } else {
+        this.control.enable();
+      }
+    }
   }
 }

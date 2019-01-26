@@ -9,9 +9,10 @@ import { FormValidationConfig, defaultFormValidationConfig } from './form-valida
 export class FormValidationComponent {
   private readonly config: FormValidationConfig = defaultFormValidationConfig;
 
-  @Input() errors: FormValidationErrors;
+  @Input()
+  errors: FormValidationErrors;
 
-  get message(): string {
+  get message() {
     const key = Object.keys(this.errors)[0];
     if (key) {
       const error = this.errors[key];

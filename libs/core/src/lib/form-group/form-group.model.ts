@@ -1,29 +1,31 @@
 import { FormGroup } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldControl } from '../form-field/form-field.model';
+import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
 
 export interface FormGroupTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
 }
 
 export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {
-  protected _fields: FormField[];
+  protected _fields: FormField[] = [];
 
   constructor(root: FormField, parent: FormField, template: FormGroupTemplate, model: any = null) {
     super(root, parent, template);
     this._model = model || this.createModel(parent, template);
+    this._control = new FormGroup({});
   }
 
-  get fields(): FormField[] { return this._fields; }
+  get fields() { return this._fields; }
 
   setFields(fields: FormField[]) {
-    this._fields = fields;
+    this._fields = fields || [];
+    this._fields.forEach(field => {
+      this._control.registerControl(field.template.key, field.control);
+    });
   }
 
-  setControl(controls: { [key: string]: FormFieldControl }) {
-    this._control = new FormGroup(controls);
-  }
+  update() {}
 
-  destroy(): void {
+  destroy() {
     this.fields.forEach(field => field.destroy());
   }
 

@@ -13,7 +13,7 @@ export class FormControlBuilder extends FormFieldBuilder {
   createField(root: FormField, parent: FormField, template: FormControlTemplate) {
     const field = new FormControlField(root, parent, template);
     field.setExpressions(this.createExpressions(field));
-    field.setControl(this.createValidators(field.template));
+    field.setValidators(this.createValidators(field.template));
     return field;
   }
 

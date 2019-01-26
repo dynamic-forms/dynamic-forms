@@ -64,6 +64,7 @@ export abstract class FormField<Template extends FormFieldTemplate = FormFieldTe
     }
   }
 
+  abstract update(): void;
   abstract destroy(): void;
 
   protected createObject(obj: any, paths: string[]) {

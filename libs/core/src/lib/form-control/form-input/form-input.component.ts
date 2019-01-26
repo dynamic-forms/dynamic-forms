@@ -7,7 +7,12 @@ import { FormControlInput } from './form-input.model';
   templateUrl: './form-input.component.html'
 })
 export class FormInputComponent {
-  @Input() id: string;
-  @Input() input: FormControlInput;
-  @Input() control: FormControl;
+  @Input()
+  id: string;
+
+  @Input()
+  input: FormControlInput;
+
+  @Input()
+  control: FormControl;
 }
