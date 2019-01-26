@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormFieldTemplate, FormField, FormControlType } from '../form-field/form-field.model';
+import { FormFieldTemplate, FormField, FormFieldControl } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormArrayTemplate } from '../form-array/form-array.model';
 import { FormArrayBuilder } from '../form-array/form-array.builder';
@@ -54,10 +54,10 @@ export class FormGroupBuilder extends FormFieldBuilder {
     return (fields || []).reduce((result, field) => {
       result[field.template.key] = field.control;
       return result;
-    }, <{ [key: string]: FormControlType }>{});
+    }, <{ [key: string]: FormFieldControl }>{});
   }
 
-  private createControl(field: FormField, controls: { [key: string]: FormControlType }) {
+  private createControl(field: FormField, controls: { [key: string]: FormFieldControl }) {
     const control = new FormGroup(controls);
     /*control.valueChanges.subscribe(value => {
       // console.log(data.model, value);

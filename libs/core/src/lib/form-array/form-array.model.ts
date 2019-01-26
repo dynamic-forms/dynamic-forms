@@ -5,19 +5,12 @@ export interface FormArrayTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
 }
 
-export class FormArrayField implements FormField {
-  readonly path: string;
+export class FormArrayField extends FormField<FormArrayTemplate, FormArray> {
   expressions?: FormFieldExpressions;
-  control: FormArray;
   fields: FormField[];
-  model: any;
 
-  constructor(
-    public readonly root: FormField,
-    public readonly parent: FormField,
-    public readonly template: FormArrayTemplate
-  ) {
-    this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+  constructor(root: FormField, parent: FormField, template: FormArrayTemplate) {
+    super(root, parent, template);
     this.model = this.getModel(parent, template);
   }
 

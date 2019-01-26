@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { FormControlTemplate, FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
 import { FormControlInput } from './form-input/form-input.model';
-import { FormFieldExpressions } from '../form-field';
 
 @Component({
   selector: 'dynamic-form-control',

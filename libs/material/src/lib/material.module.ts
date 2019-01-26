@@ -11,4 +11,4 @@ import { NgModule } from '@angular/core';
 
   ]
 })
-export class MatDynamicFormsModule { }
+export class DynamicFormsMaterialModule { }

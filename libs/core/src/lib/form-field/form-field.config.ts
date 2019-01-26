@@ -1,11 +1,11 @@
 import { Type } from '@angular/core';
-import { FormTemplateType } from './form-field.model';
+import { FormFieldType } from './form-field.model';
 import { FormGroupComponent } from '../form-group/form-group.component';
 import { FormArrayComponent } from '../form-array/form-array.component';
 import { FormControlComponent } from '../form-control/form-control.component';
 
 export interface FormFieldTypeConfig {
-  type: FormTemplateType;
+  type: FormFieldType;
   component: Type<any>;
 }
 

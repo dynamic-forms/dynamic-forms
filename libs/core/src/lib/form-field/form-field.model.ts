@@ -1,49 +1,47 @@
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
-export type FormTemplateType = 'group' | 'array' | 'control';
-export type FormControlType = FormGroup | FormArray | FormControl;
+export type FormFieldType = 'group' | 'array' | 'control';
+export type FormFieldControl = AbstractControl | FormGroup | FormArray | FormControl;
 
 export interface FormFieldTemplate {
   key: string;
-  type: FormTemplateType;
+  type: FormFieldType;
   label: string;
   hidden?: boolean;
-  disabled?: boolean;
   expressions?: { [key: string]: string };
 }
 
 export type ExpressionFunction = Function;
 export type ExpressionDependency = string;
 
-export interface Expression<T = any> {
+export interface Expression {
   deps: ExpressionDependency[];
   func: ExpressionFunction;
-  value: T;
+  value: any;
 }
 
-export interface FormExpressions {
-  [key: string]: Expression<any>;
-}
-
-export interface FormFieldExpression<T = any> extends Expression<T> {
+export interface FormFieldExpression extends Expression {
   field: FormField;
 }
 
-export interface FormFieldExpressions extends FormExpressions {
-  label?: Expression<string>;
-  hidden?: FormFieldExpression<boolean>;
-  disabled?: FormFieldExpression<boolean>;
+export interface FormFieldExpressions {
+  [key: string]: FormFieldExpression;
 }
 
-export interface FormField {
+export abstract class FormField<Template extends FormFieldTemplate = FormFieldTemplate,
+  Control extends FormFieldControl = FormFieldControl> {
+
   readonly path: string;
-  readonly root: FormField;
-  readonly parent: FormField;
-  readonly template: FormFieldTemplate;
-  expressions?: FormFieldExpressions;
-  control: FormControlType;
-  fields?: FormField[];
+  control: Control;
   model: any;
 
-  destroy(): void;
+  constructor(
+    public readonly root: FormField,
+    public readonly parent: FormField,
+    public readonly template: Template
+  ) {
+    this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+  }
+
+  abstract destroy(): void;
 }

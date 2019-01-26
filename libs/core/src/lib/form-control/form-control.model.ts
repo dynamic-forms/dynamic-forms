@@ -21,19 +21,11 @@ export interface FormControlTemplate extends FormFieldTemplate {
 export type ExpressionFunction = Function;
 export type ExpressionDependency = string;
 
-export class FormControlField implements FormField {
-  readonly path: string;
+export class FormControlField extends FormField<FormControlTemplate, FormControl> {
   expressions?: FormFieldExpressions;
-  control: FormControl;
-  fields: FormField[];
-  model: any;
 
-  constructor(
-    public readonly root: FormField,
-    public readonly parent: FormField,
-    public readonly template: FormControlTemplate
-  ) {
-    this.path = parent.path ? `${parent.path}.${template.key}` : template.key || null;
+  constructor(root: FormField, parent: FormField, template: FormControlTemplate) {
+    super(root, parent, template);
     this.model = this.getModel(parent, template);
   }
 
