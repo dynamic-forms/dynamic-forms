@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormComponent, FormBuilder } from './form';
-import { FormFieldComponent, FormFieldFactory } from './form-field';
+import { FormFieldWrapperComponent } from './form-field-wrapper';
+import { FormFieldFactory } from './form-field';
 import { FormGroupComponent, FormGroupBuilder } from './form-group';
 import { FormArrayComponent, FormArrayBuilder } from './form-array';
 import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
@@ -16,7 +17,7 @@ import { FormValidationComponent, FormValidationBuilder } from './form-validatio
   ],
   declarations: [
     FormComponent,
-    FormFieldComponent,
+    FormFieldWrapperComponent,
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent,

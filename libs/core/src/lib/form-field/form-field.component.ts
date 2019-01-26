@@ -1,22 +1,18 @@
-import { Component, ViewChild, ViewContainerRef, OnInit, Input } from '@angular/core';
-import { FormFieldFactory } from './form-field.factory';
+import { Input } from '@angular/core';
 import { FormField } from './form-field.model';
 
-@Component({
-  selector: 'dynamic-form-field',
-  templateUrl: './form-field.component.html'
-})
-export class FormFieldComponent implements OnInit {
-  @ViewChild('fieldComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
-  @Input() formField: FormField;
+export abstract class FormFieldComponent<Field extends FormField> {
+  @Input() formField: Field;
 
-  constructor(private componentFactory: FormFieldFactory) {}
-
-  ngOnInit() {
-    this.initComponent();
+  get id(): string {
+    return this.formField.path;
   }
 
-  private initComponent() {
-    this.componentFactory.createComponent(this.containerRef, this.formField);
+  get template() {
+    return this.formField.template;
+  }
+
+  get control() {
+    return this.formField.control;
   }
 }

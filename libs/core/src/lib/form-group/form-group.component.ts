@@ -1,21 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { FormField } from '../form-field/form-field.model';
-import { FormGroupTemplate, FormGroupField } from './form-group.model';
+import { FormFieldComponent } from '../form-field/form-field.component';
+import { FormGroupField } from './form-group.model';
 
 @Component({
   selector: 'dynamic-form-group',
   templateUrl: './form-group.component.html'
 })
-export class FormGroupComponent {
-  @Input() formField: FormGroupField;
-
-  get template(): FormGroupTemplate {
-    return this.formField.template;
-  }
-
-  get control(): FormGroup {
-    return this.formField.control;
+export class FormGroupComponent extends FormFieldComponent<FormGroupField> {
+  constructor() {
+    super();
   }
 
   get fields(): FormField[] {
