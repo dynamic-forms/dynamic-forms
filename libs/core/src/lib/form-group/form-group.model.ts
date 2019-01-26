@@ -6,24 +6,21 @@ export interface FormGroupTemplate extends FormFieldTemplate {
 }
 
 export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {
-  fields: FormField[];
+  protected _fields: FormField[];
 
   constructor(root: FormField, parent: FormField, template: FormGroupTemplate, model: any = null) {
     super(root, parent, template);
-    this.model = model || this.createModel(parent, template);
+    this._model = model || this.createModel(parent, template);
   }
 
+  get fields(): FormField[] { return this._fields; }
+
   setFields(fields: FormField[]) {
-    this.fields = fields;
+    this._fields = fields;
   }
 
   setControl(controls: { [key: string]: FormFieldControl }) {
-    this.control = new FormGroup(controls);
-    this.control.valueChanges.subscribe(value => {
-      // console.log(data.model, value);
-      this.parent.model[this.template.key] = value;
-      this.model = value;
-    });
+    this._control = new FormGroup(controls);
   }
 
   destroy(): void {

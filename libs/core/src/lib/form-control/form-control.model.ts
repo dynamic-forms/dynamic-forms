@@ -2,6 +2,7 @@ import { FormControl, ValidatorFn } from '@angular/forms';
 import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
 import { FormValidation } from '../form-validation/form-validation.model';
+import { Subscription } from 'rxjs';
 
 export interface FormControlValidation extends FormValidation {
   required?: boolean;
@@ -18,24 +19,25 @@ export interface FormControlTemplate extends FormFieldTemplate {
   validation: FormControlValidation;
 }
 
-export type ExpressionFunction = Function;
-export type ExpressionDependency = string;
-
 export class FormControlField extends FormField<FormControlTemplate, FormControl> {
+  protected _controlValueSubscription: Subscription;
+
   constructor(root: FormField, parent: FormField, template: FormControlTemplate) {
     super(root, parent, template);
-    this.model = this.getModel(parent, template);
+    this._model = this.getModel(parent, template);
   }
 
   setControl(validators: ValidatorFn[]) {
-    this.control = new FormControl(this.model, validators);
-    this.control.valueChanges.subscribe(value => {
+    this._control = new FormControl(this.model, validators);
+    this._controlValueSubscription = this._control.valueChanges.subscribe(value => {
       this.parent.model[this.template.key] = value;
-      this.model = value;
+      this._model = value;
     });
   }
 
-  destroy(): void {}
+  destroy(): void {
+    this._controlValueSubscription.unsubscribe();
+  }
 
   private getModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || null;

@@ -31,23 +31,25 @@ export interface FormFieldExpressions {
 export abstract class FormField<Template extends FormFieldTemplate = FormFieldTemplate,
   Control extends FormFieldControl = FormFieldControl> {
 
-  readonly path: string;
-  control: Control;
-  model: any;
-  expressions?: FormFieldExpressions;
+  protected _path: string;
+  protected _expressions?: FormFieldExpressions;
+  protected _control: Control;
+  protected _model: any;
 
   constructor(
     public readonly root: FormField,
     public readonly parent: FormField,
     public readonly template: Template
   ) {
-    this.path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
+    this._path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
   }
 
-  abstract destroy(): void;
+  get path(): string { return this._path; }
+  get control(): Control { return this._control; }
+  get model(): any { return this._model; }
 
   setExpressions(expressions: FormFieldExpressions) {
-    this.expressions = expressions;
+    this._expressions = expressions;
     if (expressions) {
       Object.keys(expressions).forEach(path => {
         const paths = path.split('.');
@@ -61,6 +63,8 @@ export abstract class FormField<Template extends FormFieldTemplate = FormFieldTe
       });
     }
   }
+
+  abstract destroy(): void;
 
   protected createObject(obj: any, paths: string[]) {
     return paths.reduce((result, path) => {
