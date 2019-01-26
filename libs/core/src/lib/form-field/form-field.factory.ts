@@ -1,13 +1,16 @@
-import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
 import { FormField } from './form-field.model';
-import { defaultFieldConfig, FormFieldConfig } from './form-field.config';
+import { FormFieldConfig } from './form-field.config';
 import { FormFieldComponent } from './form-field.component';
+import { FormConfig, FORM_CONFIG } from '../form/form.config';
 
 @Injectable()
 export class FormFieldFactory {
-  private readonly config: FormFieldConfig = defaultFieldConfig ;
+  private readonly config: FormFieldConfig;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(@Inject(FORM_CONFIG) formConfig: FormConfig, private componentFactoryResolver: ComponentFactoryResolver) {
+    this.config = formConfig.fieldConfig;
+  }
 
   public createComponent(containerRef: ViewContainerRef, field: FormField) {
     const componentFactory = this.getComponentFactory(field);

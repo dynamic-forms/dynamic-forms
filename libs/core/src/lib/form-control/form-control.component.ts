@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, DoCheck } from '@angular/core';
 import { FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
-import { FormControlInput } from './form-input/form-input.model';
 import { FormFieldComponent } from '../form-field/form-field.component';
 
 @Component({

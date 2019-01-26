@@ -1,12 +1,15 @@
-import { FormField, FormFieldExpression, FormFieldExpressions, ExpressionDependency, ExpressionFunction } from './form-field.model';
+import { FormField, FormFieldExpression, FormFieldExpressions,
+  ExpressionDependency, ExpressionFunction, FormFieldTemplate } from './form-field.model';
 
-export class FormFieldBuilder {
+export abstract class FormFieldBuilder {
   private readonly expressionArguments = [
     { name: 'model', pattern: /model+[.\w]+/g },
     { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
     { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
+
+  abstract createField(root: FormField, parent: FormField, template: FormFieldTemplate);
 
   createExpressions(field: FormField): FormFieldExpressions {
     const expressions = field.template.expressions;

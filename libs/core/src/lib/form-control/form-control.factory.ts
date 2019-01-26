@@ -1,13 +1,16 @@
-import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
 import { FormControlField, FormControlTemplate } from './form-control.model';
-import { FormControlConfig, defaultControlConfig } from './form-control.config';
+import { FormControlConfig } from './form-control.config';
 import { FormInputComponent } from './form-input/form-input.component';
+import { FORM_CONFIG, FormConfig } from '../form/form.config';
 
 @Injectable()
 export class FormControlFactory {
-  private readonly config: FormControlConfig = defaultControlConfig;
+  private readonly config: FormControlConfig;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(@Inject(FORM_CONFIG) formConfig: FormConfig, private componentFactoryResolver: ComponentFactoryResolver) {
+    this.config = formConfig.controlConfig;
+  }
 
   public createComponent(containerRef: ViewContainerRef, field: FormControlField) {
     const componentFactory = this.getComponentFactory(field);
