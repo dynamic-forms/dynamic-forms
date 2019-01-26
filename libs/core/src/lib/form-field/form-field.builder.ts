@@ -1,5 +1,4 @@
-import { FormFieldTemplate, FormField, FormFieldExpression, FormFieldExpressions,
-  ExpressionDependency, ExpressionFunction } from './form-field.model';
+import { FormField, FormFieldExpression, FormFieldExpressions, ExpressionDependency, ExpressionFunction } from './form-field.model';
 
 export class FormFieldBuilder {
   private readonly expressionArguments = [
@@ -15,28 +14,6 @@ export class FormFieldBuilder {
       result[key] = this.createExpression(expressions[key], field);
       return result;
     }, {}) : null;
-  }
-
-  assignExpressions(template: FormFieldTemplate, expressions: FormFieldExpressions) {
-    if (expressions) {
-      Object.keys(expressions).forEach(path => {
-        const paths = path.split('.');
-        if (paths.length > 1) {
-          const key = paths.splice(paths.length - 1, 1)[0];
-          const obj = this.createObject(template, paths);
-          Object.defineProperty(obj, key, { get: function() { return expressions[path].value; } });
-        } else {
-          Object.defineProperty(template, path, { get: function() { return expressions[path].value; } });
-        }
-      });
-    }
-  }
-
-  private createObject(obj: any, paths: string[]) {
-    return paths.reduce((result, path) => {
-      result[path] = result[path] || {};
-      return result[path];
-    }, obj);
   }
 
   private createExpression(expression: string, field: FormField): FormFieldExpression {

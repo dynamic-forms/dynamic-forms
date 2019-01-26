@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { FormGroupTemplate, FormGroupField } from './form-group.model';
 import { FormFieldTemplate, FormField, FormFieldControl } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
@@ -19,19 +18,17 @@ export class FormGroupBuilder extends FormFieldBuilder {
 
   createForm(template: FormGroupTemplate, model: any): FormGroupField {
     const field = new FormGroupField(null, null, template, model);
-    field.expressions = this.createExpressions(field);
-    this.assignExpressions(field.template, field.expressions);
-    field.fields = this.createFields(field, field, field.template.fields);
-    field.control = this.createControl(field, this.getControls(field.fields));
+    field.setExpressions(this.createExpressions(field));
+    field.setFields(this.createFields(field, field, field.template.fields));
+    field.setControl(this.getControls(field.fields));
     return field;
   }
 
   createField(root: FormField, parent: FormField, template: FormGroupTemplate, ): FormGroupField {
     const field = new FormGroupField(root, parent, template);
-    field.expressions = this.createExpressions(field);
-    this.assignExpressions(field.template, field.expressions);
-    field.fields = this.createFields(root, field, template.fields);
-    field.control = this.createControl(field, this.getControls(field.fields));
+    field.setExpressions(this.createExpressions(field));
+    field.setFields(this.createFields(root, field, template.fields));
+    field.setControl(this.getControls(field.fields));
     return field;
   }
 
@@ -55,15 +52,5 @@ export class FormGroupBuilder extends FormFieldBuilder {
       result[field.template.key] = field.control;
       return result;
     }, <{ [key: string]: FormFieldControl }>{});
-  }
-
-  private createControl(field: FormField, controls: { [key: string]: FormFieldControl }) {
-    const control = new FormGroup(controls);
-    /*control.valueChanges.subscribe(value => {
-      // console.log(data.model, value);
-      field.parent.model[field.template.key] = value;
-      field.model = value;
-    });*/
-    return control;
   }
 }

@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { FormField, FormFieldTemplate, FormFieldExpressions } from '../form-field/form-field.model';
+import { FormControl, ValidatorFn } from '@angular/forms';
+import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
 import { FormControlInput } from './form-input/form-input.model';
 import { FormValidation } from '../form-validation/form-validation.model';
 
@@ -22,11 +22,17 @@ export type ExpressionFunction = Function;
 export type ExpressionDependency = string;
 
 export class FormControlField extends FormField<FormControlTemplate, FormControl> {
-  expressions?: FormFieldExpressions;
-
   constructor(root: FormField, parent: FormField, template: FormControlTemplate) {
     super(root, parent, template);
     this.model = this.getModel(parent, template);
+  }
+
+  setControl(validators: ValidatorFn[]) {
+    this.control = new FormControl(this.model, validators);
+    this.control.valueChanges.subscribe(value => {
+      this.parent.model[this.template.key] = value;
+      this.model = value;
+    });
   }
 
   destroy(): void {}
