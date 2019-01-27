@@ -3,22 +3,22 @@ import { ValidatorFn, Validators } from '@angular/forms';
 
 @Injectable()
 export class FormValidationBuilder {
-  getValidatorFactory(key: string): (enabled: boolean, value: any) => ValidatorFn {
+  getValidatorFactory(key: string): (value: any) => ValidatorFn {
     switch (key) {
       case 'required':
-        return (enabled: boolean, _: boolean) => enabled ? Validators.required : null;
+        return _ => Validators.required;
       case 'email':
-        return (enabled: boolean, _: boolean) => enabled ? Validators.email : null;
+        return _ => Validators.email;
       case 'pattern':
-        return (enabled: boolean, pattern?: string | RegExp) => enabled ? Validators.pattern(pattern) : null;
+        return (pattern?: string | RegExp) => pattern ? Validators.pattern(pattern) : null;
       case 'min':
-        return (enabled: boolean, min?: number) => enabled ? Validators.min(min) : null;
+        return (min?: number) => Number.isFinite(min) ? Validators.min(min) : null;
       case 'max':
-        return (enabled: boolean, max?: number) => enabled ? Validators.min(max) : null;
+        return (max?: number) => Number.isFinite(max) ? Validators.min(max) : null;
       case 'minLength':
-        return (enabled: boolean, minLength?: number) => enabled ? Validators.minLength(minLength) : null;
+        return (minLength?: number) => Number.isFinite(minLength) ? Validators.minLength(minLength) : null;
       case 'maxLength':
-        return (enabled: boolean, maxLength?: number) => enabled ? Validators.maxLength(maxLength) : null;
+        return (maxLength?: number) => Number.isFinite(maxLength) ? Validators.maxLength(maxLength) : null;
       default:
         return null;
     }

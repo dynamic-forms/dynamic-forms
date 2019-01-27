@@ -18,7 +18,8 @@ export interface FormControlValidator {
   key: string;
   enabled: boolean;
   value: any;
-  factory: (enabled: boolean, value: any) => ValidatorFn;
+  factory: (value: any) => ValidatorFn;
+  validator: ValidatorFn;
 }
 
 export type FormControlValidators = FormControlValidator[];
@@ -44,7 +45,8 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
 
   setValidators(validators: FormControlValidators) {
     this._validators = validators;
-    this._control.setValidators(this.getControlValidators());
+    const controlValidators = this.getControlValidators();
+    this._control.setValidators(controlValidators);
   }
 
   check() {
@@ -62,9 +64,8 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
   }
 
   private getControlValidators() {
-    return this._validators
-      .map(val => val.factory(val.enabled, val.value))
-      .filter(validator => !!validator);
+    return this._validators.filter(validator => validator.enabled)
+      .map(validator => validator.validator);
   }
 
   private checkControl(): void {
@@ -93,6 +94,7 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
       if (validator.enabled !== enabled || validator.value !== value) {
         validator.enabled = enabled;
         validator.value = value;
+        validator.validator = enabled ? validator.factory(value) : null;
         return true;
       }
       return false;

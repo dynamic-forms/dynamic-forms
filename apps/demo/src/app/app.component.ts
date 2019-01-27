@@ -13,6 +13,10 @@ export class AppComponent {
       label: 'Login enabled',
       input: {
         type: 'checkbox'
+      },
+      validation: {
+        required: false,
+        email: false
       }
     },
     {

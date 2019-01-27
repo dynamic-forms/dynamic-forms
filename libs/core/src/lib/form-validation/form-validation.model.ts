@@ -1,5 +1,3 @@
-import { ValidatorFn } from '@angular/forms';
-
 export interface FormValidationError {
   message?: string;
 }
@@ -11,4 +9,3 @@ export interface FormValidationErrors {
 export interface FormValidation {
   [key: string ]: boolean;
 }
-

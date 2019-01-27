@@ -24,9 +24,13 @@ export class FormControlBuilder extends FormFieldBuilder<FormControlTemplate, Fo
   }
 
   private createValidator(template: FormControlTemplate, key: string): FormControlValidator {
-    const enabled = template.validation[key];
-    const value = template.input[key];
-    const factory = this.validationBuilder.getValidatorFactory(key);
-    return { key, factory, enabled, value };
+    if (typeof template.validation[key] !== 'boolean' || template.validation[key]) {
+      const enabled = template.validation[key];
+      const value = template.input[key];
+      const factory = this.validationBuilder.getValidatorFactory(key);
+      const validator = enabled ? factory(value) : null;
+      return { key, enabled, value, factory, validator };
+    }
+    return null;
   }
 }
