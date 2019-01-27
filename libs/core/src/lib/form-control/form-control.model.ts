@@ -79,7 +79,15 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
   }
 
   private checkValidators() {
-    const validatorsChanged = this._validators.filter(validator => {
+    const validatorsChanged = this.validatorsChanged();
+    if (validatorsChanged) {
+      this.control.setValidators(this.getControlValidators());
+      this.control.updateValueAndValidity();
+    }
+  }
+
+  private validatorsChanged(): boolean {
+    return this._validators.some(validator => {
       const enabled = this.template.validation[validator.key];
       const value = this.template.input[validator.key];
       if (validator.enabled !== enabled || validator.value !== value) {
@@ -89,9 +97,5 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
       }
       return false;
     });
-    if (validatorsChanged) {
-      this.control.setValidators(this.getControlValidators());
-      this.control.updateValueAndValidity();
-    }
   }
 }
