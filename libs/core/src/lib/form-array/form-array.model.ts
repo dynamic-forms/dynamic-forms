@@ -20,10 +20,12 @@ export class FormArrayField extends FormField<FormArrayTemplate, FormArray> {
     this._fields = fields || [];
   }
 
-  update() {}
+  check() {
+    this.fields.forEach(field => field.check());
+  }
 
   destroy() {
-    this._fields.forEach(field => field.destroy());
+    this.fields.forEach(field => field.destroy());
   }
 
   private getModel(parent: FormField, template: FormFieldTemplate) {

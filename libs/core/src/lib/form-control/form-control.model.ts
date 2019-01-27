@@ -36,8 +36,8 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
     this._control.setValidators(validators);
   }
 
-  update() {
-    this.updateControl();
+  check() {
+    this.checkControl();
   }
 
   destroy() {
@@ -49,8 +49,8 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
     return parent.model[template.key];
   }
 
-  private updateControl(): void {
-    const disabled = this.template.input.disabled || false;
+  private checkControl(): void {
+    const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
       if (disabled) {
         this.control.disable();

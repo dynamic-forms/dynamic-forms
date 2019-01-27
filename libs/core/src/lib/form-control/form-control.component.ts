@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, DoCheck } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
 import { FormFieldBase} from '../form-field/form-field.model';
@@ -7,7 +7,7 @@ import { FormFieldBase} from '../form-field/form-field.model';
   selector: 'dynamic-form-control',
   templateUrl: './form-control.component.html'
 })
-export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit, DoCheck {
+export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {
   @ViewChild('inputComponent', { read: ViewContainerRef })
   containerRef: ViewContainerRef;
 
@@ -19,10 +19,6 @@ export class FormControlComponent extends FormFieldBase<FormControlField> implem
 
   ngOnInit() {
     this.initComponent();
-  }
-
-  ngDoCheck() {
-    this.formField.update();
   }
 
   private initComponent() {

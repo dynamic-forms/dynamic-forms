@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges, DoCheck } from '@angular/core';
 import { FormTemplate } from './form.model';
 import { FormBuilder } from './form.builder';
 import { FormGroupField } from '../form-group/form-group.model';
@@ -7,7 +7,7 @@ import { FormGroupField } from '../form-group/form-group.model';
   selector: 'dynamic-form',
   templateUrl: './form.component.html'
 })
-export class FormComponent implements OnChanges, OnDestroy {
+export class FormComponent implements OnChanges, OnDestroy, DoCheck {
   private _formField: FormGroupField;
 
   @Input()
@@ -20,6 +20,10 @@ export class FormComponent implements OnChanges, OnDestroy {
 
   get formField() { return this._formField; }
   get formGroup() { return this._formField.control; }
+
+  ngDoCheck() {
+    this._formField.check();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.template || changes.model) {

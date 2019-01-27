@@ -49,8 +49,8 @@ export class AppComponent {
           email: true
         },
         expressions: {
-          'input.readonly': 'parentModel.readonly',
-          'input.disabled': 'parentModel.disabled'
+          disabled: 'parentModel.disabled',
+          'input.readonly': 'parentModel.readonly'
         }
       }, {
         key: 'password',
@@ -64,8 +64,8 @@ export class AppComponent {
           required: true
         },
         expressions: {
-          'input.readonly': 'parentModel.readonly',
-          'input.disabled': 'parentModel.disabled'
+          disabled: 'parentModel.disabled',
+          'input.readonly': 'parentModel.readonly'
         }
       }]
     },
@@ -93,7 +93,8 @@ export class AppComponent {
       type: 'group',
       label: 'Register',
       expressions: {
-        hidden: '!rootModel.registerEnabled'
+        hidden: '!rootModel.registerEnabled',
+        disabled: 'rootModel.registerDisabled'
       },
       fields: [{
         key: 'name',
@@ -107,7 +108,7 @@ export class AppComponent {
           required: true
         },
         expressions: {
-          'input.disabled': 'rootModel.registerDisabled'
+          disabled: 'rootModel.registerDisabled'
         }
       }, {
         key: 'email',
@@ -122,7 +123,7 @@ export class AppComponent {
           email: true
         },
         expressions: {
-          'input.disabled': 'rootModel.registerDisabled'
+          disabled: 'rootModel.registerDisabled'
         }
       }, {
         key: 'password',

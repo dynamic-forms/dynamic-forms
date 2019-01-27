@@ -8,7 +8,6 @@ export interface FormControlInput {
   placeholder: string;
   options?: FormControlOption[];
   readonly?: boolean;
-  disabled?: boolean;
   required?: boolean;
   email?: boolean;
   pattern?: string | RegExp;

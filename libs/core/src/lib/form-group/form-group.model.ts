@@ -2,6 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
 
 export interface FormGroupTemplate extends FormFieldTemplate {
+  disabled?: boolean;
   fields: FormFieldTemplate[];
 }
 
@@ -23,7 +24,10 @@ export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {
     });
   }
 
-  update() {}
+  check() {
+    this.checkControl();
+    this.fields.forEach(field => field.check());
+  }
 
   destroy() {
     this.fields.forEach(field => field.destroy());
@@ -32,5 +36,16 @@ export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {
   private createModel(parent: FormField, template: FormFieldTemplate): any {
     parent.model[template.key] = parent.model[template.key] || {};
     return parent.model[template.key];
+  }
+
+  private checkControl(): void {
+    const disabled = (this.parent && this.parent.control.disabled) || this.template.disabled || false;
+    if (this.control.disabled !== disabled) {
+      if (disabled) {
+        this.control.disable();
+      } else {
+        this.control.enable();
+      }
+    }
   }
 }
