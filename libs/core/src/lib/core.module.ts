@@ -2,12 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FORM_CONFIG, FormConfig, FormComponent, FormBuilder } from './form';
-import { FormFieldWrapperComponent } from './form-field-wrapper';
-import { FormFieldFactory } from './form-field';
+import { FormFieldComponent, FormFieldFactory } from './form-field';
 import { FormGroupComponent, FormGroupBuilder } from './form-group';
 import { FormArrayComponent, FormArrayBuilder } from './form-array';
-import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
-import { FormInputComponent } from './form-control/form-input';
+import { FormControlComponent, FormControlBuilder, FormControlFactory, FormInputComponent } from './form-control';
 import { FormValidationComponent, FormValidationBuilder } from './form-validation';
 
 export const defaultFormConfig: FormConfig = {
@@ -45,7 +43,7 @@ export const defaultFormConfig: FormConfig = {
   ],
   declarations: [
     FormComponent,
-    FormFieldWrapperComponent,
+    FormFieldComponent,
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent,

@@ -1,7 +1,6 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
-import { FormField } from './form-field.model';
+import { FormField, FormFieldBase } from './form-field.model';
 import { FormFieldConfig } from './form-field.config';
-import { FormFieldComponent } from './form-field.component';
 import { FormConfig, FORM_CONFIG } from '../form/form.config';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class FormFieldFactory {
     return componentRef;
   }
 
-  private getComponentFactory(field: FormField): ComponentFactory<FormFieldComponent> {
+  private getComponentFactory(field: FormField): ComponentFactory<FormFieldBase> {
     const resolver = this.componentFactoryResolver;
     const config = this.config.types.find(f => f.type === field.template.type);
     return resolver.resolveComponentFactory(config.component);

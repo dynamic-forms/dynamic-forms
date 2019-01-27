@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, DoCheck } from '@angular/core';
 import { FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
-import { FormFieldComponent } from '../form-field/form-field.component';
+import { FormFieldBase} from '../form-field/form-field.model';
 
 @Component({
   selector: 'dynamic-form-control',
   templateUrl: './form-control.component.html'
 })
-export class FormControlComponent extends FormFieldComponent<FormControlField> implements OnInit, DoCheck {
+export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit, DoCheck {
   @ViewChild('inputComponent', { read: ViewContainerRef })
   containerRef: ViewContainerRef;
 
