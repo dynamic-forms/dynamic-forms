@@ -6,10 +6,9 @@ import { FORM_CONFIG, FormConfig } from '../form/form.config';
 
 @Injectable()
 export class FormControlFactory {
-  private readonly config: FormControlConfig;
-
-  constructor(@Inject(FORM_CONFIG) formConfig: FormConfig, private componentFactoryResolver: ComponentFactoryResolver) {
-    this.config = formConfig.controlConfig;
+  constructor(
+    @Inject(FORM_CONFIG) private formConfig: FormConfig,
+    private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   public createComponent(containerRef: ViewContainerRef, field: FormControlField) {
@@ -23,11 +22,12 @@ export class FormControlFactory {
 
   private getComponentFactory(field: FormControlField): ComponentFactory<FormInputComponent> {
     const resolver = this.componentFactoryResolver;
-    const controlConfig = this.getControlConfig(field.template);
+    const controlConfig = this.getControlConfig(field.template.type);
     return resolver.resolveComponentFactory(controlConfig.component);
   }
 
-  private getControlConfig(template: FormControlTemplate) {
-    return this.config.types.find(f => f.type === template.type) || this.config.defaultType;
+  private getControlConfig(type: string) {
+    const config = this.formConfig.controlConfig;
+    return config.types.find(f => f.type === type) || config.defaultType;
   }
 }

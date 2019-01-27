@@ -8,7 +8,7 @@ import { FormControlTemplate } from '../form-control/form-control.model';
 import { FormControlBuilder } from '../form-control/form-control.builder';
 
 @Injectable()
-export class FormGroupBuilder extends FormFieldBuilder {
+export class FormGroupBuilder extends FormFieldBuilder<FormGroupTemplate, FormGroupField> {
   constructor(
     private formArrayBuilder: FormArrayBuilder,
     private formControlBuilder: FormControlBuilder

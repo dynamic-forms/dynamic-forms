@@ -1,6 +1,5 @@
 import { Component, Input, Inject } from '@angular/core';
 import { FormValidationErrors } from './form-validation.model';
-import { FormValidationConfig } from './form-validation.config';
 import { FormConfig, FORM_CONFIG } from '../form/form.config';
 
 @Component({
@@ -8,22 +7,19 @@ import { FormConfig, FORM_CONFIG } from '../form/form.config';
   templateUrl: './form-validation.component.html'
 })
 export class FormValidationComponent {
-  private readonly config: FormValidationConfig;
-
   @Input()
   errors: FormValidationErrors;
 
-  constructor(@Inject(FORM_CONFIG) formConfig: FormConfig) {
-    this.config = formConfig.validationConfig;
-  }
+  constructor(@Inject(FORM_CONFIG) private formConfig: FormConfig) {}
 
   get message() {
     const key = Object.keys(this.errors)[0];
-    if (key) {
-      const error = this.errors[key];
-      return error.message || this.config.messages[key] || this.config.defaultMessage;
-    }
+    const error = this.errors[key];
+    return error && error.message ? error.message : this.getMessage(key);
+  }
 
-    return this.config.defaultMessage;
+  private getMessage(key: string) {
+    const config = this.formConfig.validationConfig;
+    return config.messages[key] || config.defaultMessage;
   }
 }

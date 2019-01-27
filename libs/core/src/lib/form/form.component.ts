@@ -8,25 +8,28 @@ import { FormGroupField } from '../form-group/form-group.model';
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnChanges, OnDestroy {
-  @Input() template: FormTemplate;
-  @Input() model: any;
-  formField: FormGroupField;
+  private _formField: FormGroupField;
+
+  @Input()
+  template: FormTemplate;
+
+  @Input()
+  model: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
-  get formGroup() {
-    return this.formField.control;
-  }
+  get formField() { return this._formField; }
+  get formGroup() { return this._formField.control; }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.template || changes.model) {
       this.model = this.model || {};
-      this.formField = this.formBuilder.createForm(this.template, this.model);
+      this._formField = this.formBuilder.createForm(this.template, this.model);
     }
   }
 
   ngOnDestroy() {
-    this.formField.destroy();
+    this._formField.destroy();
   }
 
   submit() {

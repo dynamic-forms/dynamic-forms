@@ -1,7 +1,7 @@
 import { FormField, FormFieldExpression, FormFieldExpressions,
   ExpressionDependency, ExpressionFunction, FormFieldTemplate } from './form-field.model';
 
-export abstract class FormFieldBuilder {
+export abstract class FormFieldBuilder<Template extends FormFieldTemplate, Field extends FormField> {
   private readonly expressionArguments = [
     { name: 'model', pattern: /model+[.\w]+/g },
     { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
@@ -9,7 +9,7 @@ export abstract class FormFieldBuilder {
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
 
-  abstract createField(root: FormField, parent: FormField, template: FormFieldTemplate);
+  abstract createField(root: FormField, parent: FormField, template: Template): Field;
 
   createExpressions(field: FormField): FormFieldExpressions {
     const expressions = field.template.expressions;
