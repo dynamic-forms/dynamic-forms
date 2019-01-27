@@ -23,16 +23,23 @@ export class AppComponent {
         hidden: '!rootModel.loginEnabled'
       },
       fields: [{
-        key: 'readonly',
+        key: 'disabled',
         type: 'control',
-        label: 'Login readonly',
+        label: 'Login disabled',
         input: {
           type: 'checkbox'
         }
       }, {
-        key: 'disabled',
+        key: 'required',
         type: 'control',
-        label: 'Login disabled',
+        label: 'Login required',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
+        key: 'readonly',
+        type: 'control',
+        label: 'Login readonly',
         input: {
           type: 'checkbox'
         }
@@ -49,8 +56,9 @@ export class AppComponent {
           email: true
         },
         expressions: {
+          disabled: 'parentModel.disabled',
           'input.readonly': 'parentModel.readonly',
-          'input.disabled': 'parentModel.disabled'
+          'validation.required': 'parentModel.required'
         }
       }, {
         key: 'password',
@@ -64,8 +72,9 @@ export class AppComponent {
           required: true
         },
         expressions: {
+          disabled: 'parentModel.disabled',
           'input.readonly': 'parentModel.readonly',
-          'input.disabled': 'parentModel.disabled'
+          'validation.required': 'parentModel.required'
         }
       }]
     },
@@ -93,7 +102,8 @@ export class AppComponent {
       type: 'group',
       label: 'Register',
       expressions: {
-        hidden: '!rootModel.registerEnabled'
+        hidden: '!rootModel.registerEnabled',
+        disabled: 'rootModel.registerDisabled'
       },
       fields: [{
         key: 'name',
@@ -107,7 +117,7 @@ export class AppComponent {
           required: true
         },
         expressions: {
-          'input.disabled': 'rootModel.registerDisabled'
+          disabled: 'rootModel.registerDisabled'
         }
       }, {
         key: 'email',
@@ -122,7 +132,7 @@ export class AppComponent {
           email: true
         },
         expressions: {
-          'input.disabled': 'rootModel.registerDisabled'
+          disabled: 'rootModel.registerDisabled'
         }
       }, {
         key: 'password',

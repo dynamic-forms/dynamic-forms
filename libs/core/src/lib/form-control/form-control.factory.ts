@@ -1,15 +1,17 @@
-import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
 import { FormControlField, FormControlTemplate } from './form-control.model';
-import { FormControlConfig, defaultControlConfig } from './form-control.config';
+import { FormControlConfig } from './form-control.config';
 import { FormInputComponent } from './form-input/form-input.component';
+import { FORM_CONFIG, FormConfig } from '../form/form.config';
 
 @Injectable()
 export class FormControlFactory {
-  private readonly config: FormControlConfig = defaultControlConfig;
+  constructor(
+    @Inject(FORM_CONFIG) private formConfig: FormConfig,
+    private componentFactoryResolver: ComponentFactoryResolver) {
+  }
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
-
-  public createComponent(containerRef: ViewContainerRef, field: FormControlField): ComponentRef<FormInputComponent>  {
+  public createComponent(containerRef: ViewContainerRef, field: FormControlField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
     componentRef.instance.id = field.path;
@@ -20,11 +22,12 @@ export class FormControlFactory {
 
   private getComponentFactory(field: FormControlField): ComponentFactory<FormInputComponent> {
     const resolver = this.componentFactoryResolver;
-    const controlConfig = this.getControlConfig(field.template);
+    const controlConfig = this.getControlConfig(field.template.type);
     return resolver.resolveComponentFactory(controlConfig.component);
   }
 
-  private getControlConfig(template: FormControlTemplate) {
-    return this.config.types.find(f => f.type === template.type) || this.config.defaultType;
+  private getControlConfig(type: string) {
+    const config = this.formConfig.controlConfig;
+    return config.types.find(f => f.type === type) || config.defaultType;
   }
 }

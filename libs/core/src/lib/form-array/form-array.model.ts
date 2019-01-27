@@ -1,24 +1,34 @@
 import { FormArray } from '@angular/forms';
-import { FormFieldTemplate, FormField, FormFieldExpressions } from '../form-field/form-field.model';
+import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
 
 export interface FormArrayTemplate extends FormFieldTemplate {
   fields: FormFieldTemplate[];
 }
 
 export class FormArrayField extends FormField<FormArrayTemplate, FormArray> {
-  expressions?: FormFieldExpressions;
-  fields: FormField[];
+  protected _fields: FormField[] = [];
 
   constructor(root: FormField, parent: FormField, template: FormArrayTemplate) {
     super(root, parent, template);
-    this.model = this.getModel(parent, template);
+    this._model = this.getModel(parent, template);
+    this._control = new FormArray([]);
   }
 
-  destroy(): void {
+  get fields() { return this._fields; }
+
+  setFields(fields: FormField[]) {
+    this._fields = fields || [];
+  }
+
+  check() {
+    this.fields.forEach(field => field.check());
+  }
+
+  destroy() {
     this.fields.forEach(field => field.destroy());
   }
 
-  private getModel(parent: FormField, template: FormFieldTemplate): any {
+  private getModel(parent: FormField, template: FormFieldTemplate) {
     parent.model[template.key] = parent.model[template.key] || [];
     return parent.model[template.key];
   }

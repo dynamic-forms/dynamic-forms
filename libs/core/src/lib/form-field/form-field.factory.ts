@@ -1,23 +1,28 @@
-import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { FormField } from './form-field.model';
-import { defaultFieldConfig, FormFieldConfig } from './form-field.config';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
+import { FormField, FormFieldBase, FormFieldType } from './form-field.model';
+import { FormConfig, FORM_CONFIG } from '../form/form.config';
 
 @Injectable()
 export class FormFieldFactory {
-  private readonly config: FormFieldConfig = defaultFieldConfig ;
+  constructor(
+    @Inject(FORM_CONFIG) private formConfig: FormConfig,
+    private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
-
-  public createComponent(containerRef: ViewContainerRef, field: FormField): ComponentRef<any> {
+  public createComponent(containerRef: ViewContainerRef, field: FormField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
-    (<any>componentRef.instance).formField = field;
+    componentRef.instance.formField = field;
     return componentRef;
   }
 
-  private getComponentFactory(field: FormField): ComponentFactory<any> {
+  private getComponentFactory(field: FormField): ComponentFactory<FormFieldBase> {
     const resolver = this.componentFactoryResolver;
-    const config = this.config.types.find(f => f.type === field.template.type);
-    return resolver.resolveComponentFactory(config.component);
+    const fieldConfig = this.getFieldConfig(field.template.type);
+    return resolver.resolveComponentFactory(fieldConfig.component);
+  }
+
+  private getFieldConfig(type: FormFieldType) {
+    const config = this.formConfig.fieldConfig;
+    return config.types.find(f => f.type === type);
   }
 }

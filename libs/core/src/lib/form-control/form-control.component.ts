@@ -1,48 +1,24 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef, DoCheck } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormControlTemplate, FormControlField } from './form-control.model';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormControlField } from './form-control.model';
 import { FormControlFactory } from './form-control.factory';
-import { FormControlInput } from './form-input/form-input.model';
+import { FormFieldBase} from '../form-field/form-field.model';
 
 @Component({
   selector: 'dynamic-form-control',
   templateUrl: './form-control.component.html'
 })
-export class FormControlComponent implements OnInit, DoCheck {
-  @ViewChild('inputComponent', { read: ViewContainerRef }) containerRef: ViewContainerRef;
-  @Input() formField: FormControlField;
+export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {
+  @ViewChild('inputComponent', { read: ViewContainerRef })
+  containerRef: ViewContainerRef;
 
-  constructor(private componentFactory: FormControlFactory) {}
+  constructor(private componentFactory: FormControlFactory) {
+    super();
+  }
+
+  get input() { return this.formField.template.input; }
 
   ngOnInit() {
     this.initComponent();
-  }
-
-  ngDoCheck() {
-    const disabled = this.input.disabled || false;
-    if (this.control.disabled !== disabled) {
-      if (disabled) {
-        this.control.disable();
-      } else {
-        this.control.enable();
-      }
-    }
-  }
-
-  get id(): string {
-    return this.formField.path;
-  }
-
-  get template(): FormControlTemplate {
-    return this.formField.template;
-  }
-
-  get control(): FormControl {
-    return this.formField.control;
-  }
-
-  get input(): FormControlInput {
-    return this.formField.template.input;
   }
 
   private initComponent() {

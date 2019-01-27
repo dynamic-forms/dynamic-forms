@@ -1,23 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { FormValidationErrors } from './form-validation.model';
-import { FormValidationConfig, defaultFormValidationConfig } from './form-validation.config';
+import { FormConfig, FORM_CONFIG } from '../form/form.config';
 
 @Component({
   selector: 'dynamic-form-validation',
   templateUrl: './form-validation.component.html'
 })
 export class FormValidationComponent {
-  private readonly config: FormValidationConfig = defaultFormValidationConfig;
+  @Input()
+  errors: FormValidationErrors;
 
-  @Input() errors: FormValidationErrors;
+  constructor(@Inject(FORM_CONFIG) private formConfig: FormConfig) {}
 
-  get message(): string {
+  get message() {
     const key = Object.keys(this.errors)[0];
-    if (key) {
-      const error = this.errors[key];
-      return error.message || this.config.messages[key] || this.config.defaultMessage;
-    }
+    const error = this.errors[key];
+    return error && error.message ? error.message : this.getMessage(key);
+  }
 
-    return this.config.defaultMessage;
+  private getMessage(key: string) {
+    const config = this.formConfig.validationConfig;
+    return config.messages[key] || config.defaultMessage;
   }
 }

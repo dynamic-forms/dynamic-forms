@@ -1,44 +1,32 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidatorFn } from '@angular/forms';
-import { FormControlTemplate, FormControlField } from './form-control.model';
+import { FormControlTemplate, FormControlField, FormControlValidators, FormControlValidator } from './form-control.model';
+import { FormField } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormValidationBuilder } from '../form-validation/form-validation.builder';
-import { FormField } from '../form-field';
 
 @Injectable()
-export class FormControlBuilder extends FormFieldBuilder {
+export class FormControlBuilder extends FormFieldBuilder<FormControlTemplate, FormControlField> {
   constructor(private validationBuilder: FormValidationBuilder) {
     super();
   }
 
   createField(root: FormField, parent: FormField, template: FormControlTemplate) {
     const field = new FormControlField(root, parent, template);
-    field.expressions = this.createExpressions(field);
-    this.assignExpressions(field.template, field.expressions);
-    field.control = this.createControl(field, this.createValidators(field.template));
+    field.setExpressions(this.createExpressions(field));
+    field.setValidators(this.createValidators(field.template));
     return field;
   }
 
-  private createValidators(template: FormControlTemplate) {
-    if (template.validation) {
-      return Object.keys(template.validation)
-        .map(key => this.createValidator(template, key))
-        .filter(validator => !!validator);
-    }
-    return [];
+  private createValidators(template: FormControlTemplate): FormControlValidators {
+    return template.validation ? Object.keys(template.validation).map(key => {
+      return this.createValidator(template, key);
+    }).filter(validator => !!validator) : [];
   }
 
-  private createValidator(template: FormControlTemplate, key: string) {
+  private createValidator(template: FormControlTemplate, key: string): FormControlValidator {
+    const enabled = template.validation[key];
     const value = template.input[key];
-    return this.validationBuilder.createValidator(template.validation, key, value);
-  }
-
-  private createControl(field: FormField, validators: ValidatorFn[]) {
-    const control = new FormControl(field.model, validators);
-    control.valueChanges.subscribe(value => {
-      field.parent.model[field.template.key] = value;
-      field.model = value;
-    });
-    return control;
+    const factory = this.validationBuilder.getValidatorFactory(key);
+    return { key, factory, enabled, value };
   }
 }

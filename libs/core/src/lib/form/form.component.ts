@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges, DoCheck } from '@angular/core';
 import { FormTemplate } from './form.model';
 import { FormBuilder } from './form.builder';
 import { FormGroupField } from '../form-group/form-group.model';
@@ -8,28 +7,33 @@ import { FormGroupField } from '../form-group/form-group.model';
   selector: 'dynamic-form',
   templateUrl: './form.component.html'
 })
-export class FormComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() template: FormTemplate;
-  @Input() model: any;
-  formField: FormGroupField;
+export class FormComponent implements OnChanges, OnDestroy, DoCheck {
+  private _formField: FormGroupField;
+
+  @Input()
+  template: FormTemplate;
+
+  @Input()
+  model: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
-  get formGroup(): FormGroup {
-    return this.formField.control;
+  get formField() { return this._formField; }
+  get formGroup() { return this._formField.control; }
+
+  ngDoCheck() {
+    this._formField.check();
   }
 
-  ngOnInit(): void {}
-
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges) {
     if (changes.template || changes.model) {
       this.model = this.model || {};
-      this.formField = this.formBuilder.createForm(this.template, this.model);
+      this._formField = this.formBuilder.createForm(this.template, this.model);
     }
   }
 
-  ngOnDestroy(): void {
-    this.formField.destroy();
+  ngOnDestroy() {
+    this._formField.destroy();
   }
 
   submit() {
