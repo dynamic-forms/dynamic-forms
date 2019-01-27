@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControlTemplate, FormControlField } from './form-control.model';
+import { FormControlTemplate, FormControlField, FormControlValidators, FormControlValidator } from './form-control.model';
 import { FormField } from '../form-field/form-field.model';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
 import { FormValidationBuilder } from '../form-validation/form-validation.builder';
@@ -17,17 +17,16 @@ export class FormControlBuilder extends FormFieldBuilder<FormControlTemplate, Fo
     return field;
   }
 
-  private createValidators(template: FormControlTemplate) {
-    if (template.validation) {
-      return Object.keys(template.validation)
-        .map(key => this.createValidator(template, key))
-        .filter(validator => !!validator);
-    }
-    return [];
+  private createValidators(template: FormControlTemplate): FormControlValidators {
+    return template.validation ? Object.keys(template.validation).map(key => {
+      return this.createValidator(template, key);
+    }).filter(validator => !!validator) : [];
   }
 
-  private createValidator(template: FormControlTemplate, key: string) {
+  private createValidator(template: FormControlTemplate, key: string): FormControlValidator {
+    const enabled = template.validation[key];
     const value = template.input[key];
-    return this.validationBuilder.createValidator(template.validation, key, value);
+    const factory = this.validationBuilder.getValidatorFactory(key);
+    return { key, factory, enabled, value };
   }
 }

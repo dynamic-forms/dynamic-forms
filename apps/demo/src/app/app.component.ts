@@ -23,16 +23,23 @@ export class AppComponent {
         hidden: '!rootModel.loginEnabled'
       },
       fields: [{
-        key: 'readonly',
+        key: 'disabled',
         type: 'control',
-        label: 'Login readonly',
+        label: 'Login disabled',
         input: {
           type: 'checkbox'
         }
       }, {
-        key: 'disabled',
+        key: 'required',
         type: 'control',
-        label: 'Login disabled',
+        label: 'Login required',
+        input: {
+          type: 'checkbox'
+        }
+      }, {
+        key: 'readonly',
+        type: 'control',
+        label: 'Login readonly',
         input: {
           type: 'checkbox'
         }
@@ -50,7 +57,8 @@ export class AppComponent {
         },
         expressions: {
           disabled: 'parentModel.disabled',
-          'input.readonly': 'parentModel.readonly'
+          'input.readonly': 'parentModel.readonly',
+          'validation.required': 'parentModel.required'
         }
       }, {
         key: 'password',
@@ -65,7 +73,8 @@ export class AppComponent {
         },
         expressions: {
           disabled: 'parentModel.disabled',
-          'input.readonly': 'parentModel.readonly'
+          'input.readonly': 'parentModel.readonly',
+          'validation.required': 'parentModel.required'
         }
       }]
     },

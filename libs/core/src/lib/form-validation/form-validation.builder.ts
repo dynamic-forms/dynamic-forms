@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { FormValidation } from './form-validation.model';
 
 @Injectable()
 export class FormValidationBuilder {
-  createValidator(validation: FormValidation, key: string, value?: any): ValidatorFn {
+  getValidatorFactory(key: string): (enabled: boolean, value?: any) => ValidatorFn {
     switch (key) {
       case 'required':
-        return validation.required ? Validators.required : null;
+        return (enabled: boolean, value?: boolean) => enabled ? Validators.required : null;
       case 'email':
-        return validation.required ? Validators.email : null;
+        return (enabled: boolean, value?: boolean) => enabled ? Validators.email : null;
       case 'pattern':
-        return validation.pattern ? Validators.pattern(value) : null;
+        return (enabled: boolean, pattern?: string | RegExp) => enabled ? Validators.pattern(pattern) : null;
       case 'min':
-        return validation.min ? Validators.min(value) : null;
+        return (enabled: boolean, min?: number) => enabled ? Validators.min(min) : null;
       case 'max':
-        return validation.max ? Validators.max(value) : null;
+        return (enabled: boolean, max?: number) => enabled ? Validators.min(max) : null;
       case 'minLength':
-        return validation.minLength ? Validators.minLength(value) : null;
+        return (enabled: boolean, minLength?: number) => enabled ? Validators.minLength(minLength) : null;
       case 'maxLength':
-        return validation.maxLength ? Validators.maxLength(value) : null;
+        return (enabled: boolean, maxLength?: number) => enabled ? Validators.maxLength(maxLength) : null;
       default:
         return null;
     }
