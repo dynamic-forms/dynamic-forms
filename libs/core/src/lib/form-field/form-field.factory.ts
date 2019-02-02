@@ -1,7 +1,9 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
-import { FormField, FormFieldBase, FormFieldType } from './form-field.model';
 import { FORM_CONFIG } from '../form/form.config';
 import { FormConfig } from '../form/models/form.config';
+import { FormField } from './models/form.field';
+import { FormFieldBase } from './form-field.base';
+import { FormFieldType } from './models/form-field.template';
 
 @Injectable()
 export class FormFieldFactory {

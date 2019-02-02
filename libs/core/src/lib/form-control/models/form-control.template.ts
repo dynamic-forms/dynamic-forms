@@ -1,5 +1,5 @@
-import { FormFieldTemplate } from '../../form-field/form-field.model';
-import { FormControlInput } from './../../form-control-input/form-input.model';
+import { FormFieldTemplate } from '../../form-field';
+import { FormControlInput } from './../../form-control-input';
 import { FormControlValidation } from './form-control.validation';
 
 export interface FormControlTemplate extends FormFieldTemplate {

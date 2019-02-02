@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormFieldBase } from '../form-field/form-field.model';
+import { FormFieldBase } from '../form-field';
 import { FormGroupField } from './models/form-group.field';
 
 @Component({

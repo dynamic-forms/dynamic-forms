@@ -1,36 +1,9 @@
 import { Input } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormFieldTemplate, FormFieldControl } from './form-field.template';
+import { FormFieldExpressions } from './form-field.expressions';
 
-export type FormFieldType = 'group' | 'array' | 'control';
-export type FormFieldControl = AbstractControl | FormGroup | FormArray | FormControl;
-
-export interface FormFieldTemplate {
-  key: string;
-  type: FormFieldType;
-  label: string;
-  hidden?: boolean;
-  disabled?: boolean;
-  expressions?: { [key: string]: string };
-}
-
-export type ExpressionFunction = Function;
-export type ExpressionDependency = string;
-
-export interface Expression {
-  deps: ExpressionDependency[];
-  func: ExpressionFunction;
-  value: any;
-}
-
-export interface FormFieldExpression extends Expression {
-  field: FormField;
-}
-
-export interface FormFieldExpressions {
-  [key: string]: FormFieldExpression;
-}
-
-export abstract class FormField<Template extends FormFieldTemplate = FormFieldTemplate,
+export abstract class FormField<
+  Template extends FormFieldTemplate = FormFieldTemplate,
   Control extends FormFieldControl = FormFieldControl> {
 
   protected _path: string;
@@ -77,12 +50,4 @@ export abstract class FormField<Template extends FormFieldTemplate = FormFieldTe
   }
 }
 
-export abstract class FormFieldBase<Field extends FormField = FormField> {
-  @Input()
-  formField: Field;
-
-  get id(): string { return this.formField.path; }
-  get template() { return this.formField.template; }
-  get control() { return this.formField.control; }
-}
 

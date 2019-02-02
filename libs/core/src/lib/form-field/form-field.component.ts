@@ -1,6 +1,7 @@
 import { Component, ViewChild, ViewContainerRef, OnInit } from '@angular/core';
 import { FormFieldFactory } from './../form-field/form-field.factory';
-import { FormField, FormFieldBase } from './../form-field/form-field.model';
+import { FormFieldBase } from './form-field.base';
+import { FormField } from './models/form.field';
 
 @Component({
   selector: 'dynamic-form-field',

@@ -1,5 +1,5 @@
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { FormField, FormFieldTemplate } from '../../form-field/form-field.model';
+import { FormField, FormFieldTemplate } from '../../form-field';
 import { FormControlTemplate } from './form-control.template';
 import { Subscription } from 'rxjs';
 

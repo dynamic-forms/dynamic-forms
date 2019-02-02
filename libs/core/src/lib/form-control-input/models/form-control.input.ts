@@ -1,12 +1,9 @@
-export interface FormControlOption {
-  value: string | number;
-  label: string;
-}
+import { FormControlOptions } from './form-control.options';
 
 export interface FormControlInput {
   type: string;
   placeholder: string;
-  options?: FormControlOption[];
+  options?: FormControlOptions;
   readonly?: boolean;
   pattern?: string | RegExp;
   min?: number | Date;
