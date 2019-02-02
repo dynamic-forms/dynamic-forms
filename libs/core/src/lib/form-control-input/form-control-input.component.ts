@@ -3,10 +3,10 @@ import { FormControl } from '@angular/forms';
 import { FormControlInput } from './form-input.model';
 
 @Component({
-  selector: 'dynamic-form-input',
-  templateUrl: './form-input.component.html'
+  selector: 'dynamic-form-control-input',
+  templateUrl: './form-control-input.component.html'
 })
-export class FormInputComponent {
+export class FormControlInputComponent {
   @Input()
   id: string;
 

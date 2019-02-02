@@ -1,9 +1,9 @@
 import { Type } from '@angular/core';
-import { FormInputComponent } from './form-input/form-input.component';
+import { FormControlInputComponent } from './../../form-control-input/form-control-input.component';
 
 export interface FormControlTypeConfig {
   type: string;
-  component: Type<FormInputComponent>;
+  component: Type<FormControlInputComponent>;
 }
 
 export interface FormControlConfig {

@@ -1,18 +1,7 @@
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
-import { FormControlInput } from './form-input/form-input.model';
-import { FormValidation } from '../form-validation/form-validation.model';
+import { FormField, FormFieldTemplate } from '../../form-field/form-field.model';
+import { FormControlTemplate } from './form-control.template';
 import { Subscription } from 'rxjs';
-
-export interface FormControlValidation extends FormValidation {
-  required?: boolean;
-  email?: boolean;
-  pattern?: boolean;
-  min?: boolean;
-  max?: boolean;
-  minLength?: boolean;
-  maxLength?: boolean;
-}
 
 export interface FormControlValidator {
   key: string;
@@ -23,11 +12,6 @@ export interface FormControlValidator {
 }
 
 export type FormControlValidators = FormControlValidator[];
-
-export interface FormControlTemplate extends FormFieldTemplate {
-  input: FormControlInput;
-  validation: FormControlValidation;
-}
 
 export class FormControlField extends FormField<FormControlTemplate, FormControl> {
   protected _controlValue: Subscription;

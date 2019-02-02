@@ -1,7 +1,8 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
-import { FormControlField } from './form-control.model';
-import { FormInputComponent } from './form-input/form-input.component';
-import { FORM_CONFIG, FormConfig } from '../form/form.config';
+import { FormControlField } from './models/form-control.field';
+import { FormControlInputComponent } from './../form-control-input/form-control-input.component';
+import { FORM_CONFIG } from '../form/form.config';
+import { FormConfig } from '../form/models/form.config';
 
 @Injectable()
 export class FormControlFactory {
@@ -19,7 +20,7 @@ export class FormControlFactory {
     return componentRef;
   }
 
-  private getComponentFactory(field: FormControlField): ComponentFactory<FormInputComponent> {
+  private getComponentFactory(field: FormControlField): ComponentFactory<FormControlInputComponent> {
     const resolver = this.componentFactoryResolver;
     const controlConfig = this.getControlConfig(field.template.type);
     return resolver.resolveComponentFactory(controlConfig.component);

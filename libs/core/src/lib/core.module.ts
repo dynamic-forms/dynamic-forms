@@ -5,7 +5,8 @@ import { FORM_CONFIG, FormConfig, FormComponent, FormBuilder } from './form';
 import { FormFieldComponent, FormFieldFactory } from './form-field';
 import { FormGroupComponent, FormGroupBuilder } from './form-group';
 import { FormArrayComponent, FormArrayBuilder } from './form-array';
-import { FormControlComponent, FormControlBuilder, FormControlFactory, FormInputComponent } from './form-control';
+import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
+import { FormControlInputComponent } from './form-control-input';
 import { FormValidationComponent, FormValidationBuilder } from './form-validation';
 
 export const defaultFormConfig: FormConfig = {
@@ -17,9 +18,9 @@ export const defaultFormConfig: FormConfig = {
     ]
   },
   controlConfig: {
-    defaultType: { type: 'input', component: FormInputComponent },
+    defaultType: { type: 'input', component: FormControlInputComponent },
     types: [
-      { type: 'input', component: FormInputComponent }
+      { type: 'input', component: FormControlInputComponent }
     ]
   },
   validationConfig: {
@@ -47,7 +48,7 @@ export const defaultFormConfig: FormConfig = {
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent,
-    FormInputComponent,
+    FormControlInputComponent,
     FormValidationComponent
   ],
   exports: [
@@ -59,7 +60,7 @@ export const defaultFormConfig: FormConfig = {
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent,
-    FormInputComponent
+    FormControlInputComponent
   ]
 })
 export class DynamicFormsModule {

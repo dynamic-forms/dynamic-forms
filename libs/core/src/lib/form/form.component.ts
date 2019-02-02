@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges, DoCheck } from '@angular/core';
-import { FormTemplate } from './form.model';
+import { FormTemplate } from './models/form.template';
 import { FormBuilder } from './form.builder';
-import { FormGroupField } from '../form-group/form-group.model';
+import { FormGroupField } from '../form-group/models/form-group.field';
 
 @Component({
   selector: 'dynamic-form',

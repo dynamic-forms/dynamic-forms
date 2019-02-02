@@ -1,10 +1,6 @@
 import { FormGroup } from '@angular/forms';
-import { FormField, FormFieldTemplate } from '../form-field/form-field.model';
-
-export interface FormGroupTemplate extends FormFieldTemplate {
-  disabled?: boolean;
-  fields: FormFieldTemplate[];
-}
+import { FormField, FormFieldTemplate } from '../../form-field/form-field.model';
+import { FormGroupTemplate } from './form-group.template';
 
 export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {
   protected _fields: FormField[] = [];
