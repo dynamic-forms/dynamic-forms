@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormArrayField } from './models/form-array.field';
 import { FormFieldBase } from '../form-field';
+import { FormArrayField } from './models/form-array-field';
 
 @Component({
   selector: 'dynamic-form-array',

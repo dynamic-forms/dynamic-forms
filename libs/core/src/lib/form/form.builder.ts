@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroupBuilder } from '../form-group';
-import { FormTemplate } from './models';
+import { FormTemplate } from './models/form-template';
 
 @Injectable()
 export class FormBuilder {

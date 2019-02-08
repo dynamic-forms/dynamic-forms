@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormField, FormFieldBuilder } from '../form-field';
 import { FormValidationBuilder } from '../form-validation/form-validation.builder';
-import { FormControlField, FormControlTemplate } from './models';
-import { FormControlValidators, FormControlValidator } from './models';
+import { FormControlField } from './models/form-control-field';
+import { FormControlTemplate } from './models/form-control-template';
+import { FormControlValidator, FormControlValidators } from './models/form-control-validators';
 
 @Injectable()
 export class FormControlBuilder extends FormFieldBuilder<FormControlTemplate, FormControlField> {

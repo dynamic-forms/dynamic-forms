@@ -1,6 +1,7 @@
-import { FormFieldTemplate } from './models/form-field.template';
-import { FormField } from './models/form.field';
-import { FormFieldExpressions, FormFieldExpression, ExpressionDependency, ExpressionFunction } from './models/form-field.expressions';
+import { ExpressionDependency, ExpressionFunction } from './models/expression';
+import { FormField } from './models/form-field';
+import { FormFieldExpression, FormFieldExpressions} from './models/form-field-expressions';
+import { FormFieldTemplate } from './models/form-field-template';
 
 export abstract class FormFieldBuilder<Template extends FormFieldTemplate, Field extends FormField> {
   private readonly expressionArguments = [

@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, DoCheck } from '@angular/core';
-import { FormTemplate } from './models/form.template';
+import { Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { FormGroupField } from '../form-group/models/form-group-field';
 import { FormBuilder } from './form.builder';
-import { FormGroupField } from '../form-group/models/form-group.field';
+import { FormTemplate } from './models/form-template';
 
 @Component({
   selector: 'dynamic-form',
@@ -10,11 +10,8 @@ import { FormGroupField } from '../form-group/models/form-group.field';
 export class FormComponent implements OnChanges, OnDestroy, DoCheck {
   private _formField: FormGroupField;
 
-  @Input()
-  template: FormTemplate;
-
-  @Input()
-  model: any;
+  @Input() template: FormTemplate;
+  @Input() model: any;
 
   constructor(private formBuilder: FormBuilder) {}
 

@@ -1,5 +1,6 @@
-import { FormFieldTemplate, FormFieldControl } from './form-field-template';
+import { FormFieldControl } from './form-field-control';
 import { FormFieldExpressions } from './form-field-expressions';
+import { FormFieldTemplate } from './form-field-template';
 
 export abstract class FormField<
   Template extends FormFieldTemplate = FormFieldTemplate,

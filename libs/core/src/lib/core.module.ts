@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FORM_CONFIG, FormConfig, FormComponent, FormBuilder } from './form';
-import { FormFieldComponent, FormFieldFactory } from './form-field';
-import { FormGroupComponent, FormGroupBuilder } from './form-group';
-import { FormArrayComponent, FormArrayBuilder } from './form-array';
-import { FormControlComponent, FormControlBuilder, FormControlFactory } from './form-control';
+import { FormBuilder, FormComponent, FormConfig, FORM_CONFIG } from './form';
+import { FormArrayBuilder, FormArrayComponent } from './form-array';
+import { FormControlBuilder, FormControlComponent, FormControlFactory } from './form-control';
 import { FormControlInputComponent } from './form-control-input';
-import { FormValidationComponent, FormValidationBuilder } from './form-validation';
+import { FormFieldComponent, FormFieldFactory } from './form-field';
+import { FormGroupBuilder, FormGroupComponent } from './form-group';
+import { FormValidationBuilder, FormValidationComponent } from './form-validation';
 
 export const defaultFormConfig: FormConfig = {
   fieldConfig: {

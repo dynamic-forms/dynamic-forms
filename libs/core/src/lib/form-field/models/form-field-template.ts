@@ -1,7 +1,4 @@
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
-
-export type FormFieldType = 'group' | 'array' | 'control';
-export type FormFieldControl = AbstractControl | FormGroup | FormArray | FormControl;
+import { FormFieldType } from './form-field-type';
 
 export interface FormFieldTemplate {
   key: string;

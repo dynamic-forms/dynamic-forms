@@ -1,14 +1,13 @@
-import { Component, Input, Inject } from '@angular/core';
-import { FormValidationErrors } from './models/form-validation-model';
+import { Component, Inject, Input } from '@angular/core';
 import { FormConfig, FORM_CONFIG } from '../form';
+import { FormValidationErrors } from './models/form-validation-model';
 
 @Component({
   selector: 'dynamic-form-validation',
   templateUrl: './form-validation.component.html'
 })
 export class FormValidationComponent {
-  @Input()
-  errors: FormValidationErrors;
+  @Input() errors: FormValidationErrors;
 
   constructor(@Inject(FORM_CONFIG) private formConfig: FormConfig) {}
 
