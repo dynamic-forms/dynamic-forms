@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormArrayBuilder } from './form-array/form-array.builder';
 import { FormArrayComponent } from './form-array/form-array.component';
-import { FormControlInputComponent } from './form-control-input/form-control-input.component';
+import { FormControlInputComponent } from './form-control/form-control-input.component';
 import { FormControlBuilder } from './form-control/form-control.builder';
 import { FormControlComponent } from './form-control/form-control.component';
 import { FormControlFactory } from './form-control/form-control.factory';
