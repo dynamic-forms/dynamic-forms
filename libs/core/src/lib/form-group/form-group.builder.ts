@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormGroupField } from './models/form-group.field';
-import { FormGroupTemplate } from './models/form-group.template';
+import { FormGroupField } from './models/form-group-field';
+import { FormGroupTemplate } from './models/form-group-template';
 import { FormField, FormFieldTemplate, FormFieldBuilder } from '../form-field';
 import { FormArrayTemplate, FormArrayBuilder } from '../form-array';
 import { FormControlTemplate, FormControlBuilder } from '../form-control';

@@ -1,17 +1,8 @@
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { FormField, FormFieldTemplate } from '../../form-field';
-import { FormControlTemplate } from './form-control.template';
+import { FormControlTemplate } from './form-control-template';
 import { Subscription } from 'rxjs';
-
-export interface FormControlValidator {
-  key: string;
-  enabled: boolean;
-  value: any;
-  factory: (value: any) => ValidatorFn;
-  validator: ValidatorFn;
-}
-
-export type FormControlValidators = FormControlValidator[];
+import { FormControlValidators } from './form-control-validators';
 
 export class FormControlField extends FormField<FormControlTemplate, FormControl> {
   protected _controlValue: Subscription;

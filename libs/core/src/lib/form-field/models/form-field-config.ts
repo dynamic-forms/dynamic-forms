@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { FormFieldType } from './form-field.template';
+import { FormFieldType } from './form-field-template';
 import { FormFieldBase } from './../form-field.base';
 
 export interface FormFieldTypeConfig {

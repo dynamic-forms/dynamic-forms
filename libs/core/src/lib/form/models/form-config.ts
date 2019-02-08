@@ -1,6 +1,6 @@
 import { FormFieldConfig } from '../../form-field';
 import { FormControlConfig } from '../../form-control';
-import { FormValidationConfig } from '../../form-validation/form-validation.config';
+import { FormValidationConfig } from '../../form-validation';
 
 export interface FormConfig {
   fieldConfig: FormFieldConfig;

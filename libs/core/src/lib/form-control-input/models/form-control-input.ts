@@ -1,4 +1,4 @@
-import { FormControlOptions } from './form-control.options';
+import { FormControlOptions } from './form-control-options';
 
 export interface FormControlInput {
   type: string;

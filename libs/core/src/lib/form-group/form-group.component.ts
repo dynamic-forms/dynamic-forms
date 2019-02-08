@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormFieldBase } from '../form-field';
-import { FormGroupField } from './models/form-group.field';
+import { FormGroupField } from './models/form-group-field';
 
 @Component({
   selector: 'dynamic-form-group',

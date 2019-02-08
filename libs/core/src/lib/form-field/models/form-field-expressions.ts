@@ -1,4 +1,4 @@
-import { FormField } from './form.field';
+import { FormField } from './form-field';
 
 export type ExpressionFunction = Function;
 export type ExpressionDependency = string;

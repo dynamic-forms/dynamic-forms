@@ -1,2 +1,2 @@
-export * from './form.config';
-export * from './form.template';
+export * from './form-config';
+export * from './form-template';
