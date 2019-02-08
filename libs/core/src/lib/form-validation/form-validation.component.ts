@@ -1,7 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FORM_CONFIG } from '../form/form.config';
 import { FormConfig } from '../form/models/form-config';
-import { FormValidationErrors } from './models/form-validation-model';
+import { FormValidationErrors } from './models/form-validation-errors';
 
 @Component({
   selector: 'dynamic-form-validation',
