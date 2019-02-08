@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormFieldBase} from '../form-field';
+import { FormFieldBase} from '../form-field/form-field.base';
 import { FormControlFactory } from './form-control.factory';
 import { FormControlField } from './models/form-control-field';
 

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormArrayBuilder, FormArrayTemplate } from '../form-array';
-import { FormControlBuilder, FormControlTemplate } from '../form-control';
-import { FormField, FormFieldBuilder, FormFieldTemplate } from '../form-field';
+import { FormArrayBuilder } from '../form-array/form-array.builder';
+import { FormArrayTemplate } from '../form-array/models/form-array-template';
+import { FormControlBuilder } from '../form-control/form-control.builder';
+import { FormControlTemplate } from '../form-control/models/form-control-template';
+import { FormFieldBuilder } from '../form-field/form-field.builder';
+import { FormField } from '../form-field/models/form-field';
+import { FormFieldTemplate } from '../form-field/models/form-field-template';
 import { FormGroupField } from './models/form-group-field';
 import { FormGroupTemplate } from './models/form-group-template';
 

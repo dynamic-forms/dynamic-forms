@@ -1,5 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormConfig, FORM_CONFIG } from '../form';
+import { FORM_CONFIG } from '../form/form.config';
+import { FormConfig } from '../form/models/form-config';
 import { FormValidationErrors } from './models/form-validation-model';
 
 @Component({
