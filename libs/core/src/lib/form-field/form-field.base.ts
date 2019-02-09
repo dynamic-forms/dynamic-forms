@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { FormField } from './models/form-field';
+import { FormField } from './form-field';
 
 export abstract class FormFieldBase<Field extends FormField = FormField> {
   @Input() formField: Field;

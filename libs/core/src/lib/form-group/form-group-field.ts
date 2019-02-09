@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
-import { FormField } from '../form-field/models/form-field';
-import { FormFieldTemplate } from '../form-field/models/form-field-template';
+import { FormField } from './../form-field/form-field';
+import { FormFieldTemplate } from './../form-field/form-field-template';
 import { FormGroupTemplate } from './form-group-template';
 
 export class FormGroupField extends FormField<FormGroupTemplate, FormGroup> {

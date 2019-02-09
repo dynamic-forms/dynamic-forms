@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { FormControlConfig } from '../form-control/models/form-control-config';
-import { FormFieldConfig } from '../form-field/models/form-field-config';
-import { FormValidationConfig } from '../form-validation/form-validation-config';
+import { FormControlConfig } from './../form-control/form-control-config';
+import { FormFieldConfig } from './../form-field/form-field-config';
+import { FormValidationConfig } from './../form-validation/form-validation-config';
 
 export interface FormConfig {
   fieldConfig: FormFieldConfig;

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FormControlInput } from './models/form-control-input';
+import { FormControlInput } from './form-control-input';
 
 @Component({
   selector: 'dynamic-form-control-input',
