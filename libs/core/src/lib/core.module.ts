@@ -13,10 +13,9 @@ import { FormGroupBuilder } from './form-group/form-group.builder';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { FormConfig, FORM_CONFIG } from './form/form-config';
 import { FormBuilder } from './form/form.builder';
 import { FormComponent } from './form/form.component';
-import { FORM_CONFIG } from './form/form.config';
-import { FormConfig } from './form/models/form-config';
 
 export const defaultFormConfig: FormConfig = {
   fieldConfig: {

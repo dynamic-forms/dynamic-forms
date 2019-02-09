@@ -1,4 +1,4 @@
-import { FormValidation } from '../../form-validation/models/form-validation';
+import { FormValidation } from '../../form-validation/form-validation';
 
 export interface FormControlValidation extends FormValidation {
   required?: boolean;

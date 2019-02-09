@@ -1,6 +1,6 @@
 import { FormArray } from '@angular/forms';
-import { FormField } from '../../form-field/models/form-field';
-import { FormFieldTemplate } from '../../form-field/models/form-field-template';
+import { FormField } from '../form-field/models/form-field';
+import { FormFieldTemplate } from '../form-field/models/form-field-template';
 import { FormArrayTemplate } from './form-array-template';
 
 export class FormArrayField extends FormField<FormArrayTemplate, FormArray> {
