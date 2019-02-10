@@ -1,28 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { TextboxComponent } from './textbox.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule,
-    DynamicFormsCoreModule.forChild({
-      controlConfig: {
-        types: [
-          { type: 'text', component: TextboxComponent },
-          { type: 'email', component: TextboxComponent },
-          { type: 'password', component: TextboxComponent }
-        ]
-      }
-    })
+    ReactiveFormsModule,
+    MatInputModule
   ],
   declarations: [
     TextboxComponent
-  ],
-  exports: [
-    DynamicFormsCoreModule
   ]
 })
 export class TextboxModule {}

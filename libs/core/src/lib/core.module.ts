@@ -14,11 +14,10 @@ import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { FormConfig, FORM_CONFIG } from './form/form-config';
-import { FormConfigService } from './form/form-config.service';
 import { FormBuilder } from './form/form.builder';
 import { FormComponent } from './form/form.component';
 
-export const defaultFormConfig: FormConfig = {
+const defaultFormConfig: FormConfig = {
   fieldConfig: {
     types: [
       { type: 'group', component: FormGroupComponent },
@@ -61,8 +60,6 @@ export const defaultFormConfig: FormConfig = {
     FormValidationComponent
   ],
   exports: [
-    CommonModule,
-    ReactiveFormsModule,
     FormComponent
   ],
   entryComponents: [
@@ -81,7 +78,6 @@ export class DynamicFormsCoreModule {
           provide: FORM_CONFIG,
           useValue: formConfig
         },
-        FormConfigService,
         FormBuilder,
         FormGroupBuilder,
         FormArrayBuilder,
@@ -106,8 +102,4 @@ export class DynamicFormsCoreModule {
       ]
     };
   }
-
-  constructor(private configService: FormConfigService) {
-    console.log('DynamicFormsCoreModule', configService);
-  }
- }
+}

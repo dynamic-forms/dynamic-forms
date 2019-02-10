@@ -13,7 +13,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
         component: MaterialExamplesComponent
       }
     ]),
-    DynamicFormsMaterialModule
+    DynamicFormsMaterialModule.forRoot()
   ],
   declarations: [
     MaterialExamplesComponent
