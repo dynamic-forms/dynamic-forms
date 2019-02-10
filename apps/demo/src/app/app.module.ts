@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormsModule } from '@dynamic-forms/core';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DocsModule } from './docs/docs.module';
+import { ExamplesModule } from './examples/examples.module';
+import { HomeModule } from './home/home.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +15,13 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    DynamicFormsModule.forRoot()
+    AppRoutingModule,
+    LayoutModule,
+    HomeModule,
+    DocsModule,
+    ExamplesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

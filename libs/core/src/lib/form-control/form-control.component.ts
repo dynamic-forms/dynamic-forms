@@ -4,7 +4,7 @@ import { FormControlField } from './form-control-field';
 import { FormControlFactory } from './form-control.factory';
 
 @Component({
-  selector: 'dynamic-form-control',
+  selector: 'core-form-control',
   templateUrl: './form-control.component.html'
 })
 export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {

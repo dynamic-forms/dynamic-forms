@@ -3,7 +3,7 @@ import { FormConfig, FORM_CONFIG } from '../form/form-config';
 import { FormValidationErrors } from './form-validation-errors';
 
 @Component({
-  selector: 'dynamic-form-validation',
+  selector: 'core-form-validation',
   templateUrl: './form-validation.component.html'
 })
 export class FormValidationComponent {

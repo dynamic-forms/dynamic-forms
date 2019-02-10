@@ -1,5 +1,5 @@
 <form class="form" [formGroup]="formGroup" (ngSubmit)="submit()">
-  <dynamic-form-group [formField]="formField">
+  <core-form-group [formField]="formField">
     <button type="submit" [disabled]="!formGroup.valid">Submit</button>
-  </dynamic-form-group>
+  </core-form-group>
 </form>

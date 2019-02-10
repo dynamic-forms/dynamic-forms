@@ -3,7 +3,7 @@ import { FormFieldBase } from '../form-field/form-field.base';
 import { FormArrayField } from './form-array-field';
 
 @Component({
-  selector: 'dynamic-form-array',
+  selector: 'core-form-array',
   templateUrl: './form-array.component.html'
 })
 export class FormArrayComponent extends FormFieldBase<FormArrayField> {

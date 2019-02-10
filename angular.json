@@ -42,7 +42,7 @@
       "root": "libs/material",
       "sourceRoot": "libs/material/src",
       "projectType": "library",
-      "prefix": "mat",
+      "prefix": "material",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

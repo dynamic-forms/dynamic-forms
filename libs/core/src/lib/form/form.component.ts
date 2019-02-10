@@ -4,7 +4,7 @@ import { FormTemplate } from './form-template';
 import { FormBuilder } from './form.builder';
 
 @Component({
-  selector: 'dynamic-form',
+  selector: 'core-form',
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnChanges, OnDestroy, DoCheck {

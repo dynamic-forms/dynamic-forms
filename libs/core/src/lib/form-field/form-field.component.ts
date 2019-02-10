@@ -4,7 +4,7 @@ import { FormField } from './form-field';
 import { FormFieldBase } from './form-field.base';
 
 @Component({
-  selector: 'dynamic-form-field',
+  selector: 'core-form-field',
   templateUrl: './form-field.component.html'
 })
 export class FormFieldComponent extends FormFieldBase<FormField> implements OnInit {
