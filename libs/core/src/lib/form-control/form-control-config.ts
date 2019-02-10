@@ -7,6 +7,6 @@ export interface FormControlTypeConfig {
 }
 
 export interface FormControlConfig {
-  defaultType: FormControlTypeConfig;
-  types: FormControlTypeConfig[];
+  defaultType?: FormControlTypeConfig;
+  types?: FormControlTypeConfig[];
 }

@@ -3,3 +3,6 @@
  */
 
 export * from './lib/core.module';
+
+export * from './lib/form-control/form-control-input';
+export * from './lib/form-control/form-control-input.component';

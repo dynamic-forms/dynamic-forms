@@ -14,6 +14,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { FormConfig, FORM_CONFIG } from './form/form-config';
+import { FormConfigService } from './form/form-config.service';
 import { FormBuilder } from './form/form.builder';
 import { FormComponent } from './form/form.component';
 
@@ -71,12 +72,16 @@ export const defaultFormConfig: FormConfig = {
     FormControlInputComponent
   ]
 })
-export class DynamicFormsModule {
-  static forRoot(): ModuleWithProviders {
+export class DynamicFormsCoreModule {
+  static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
     return {
-      ngModule: DynamicFormsModule,
+      ngModule: DynamicFormsCoreModule,
       providers: [
-        { provide: FORM_CONFIG, useValue: defaultFormConfig },
+        {
+          provide: FORM_CONFIG,
+          useValue: formConfig
+        },
+        FormConfigService,
         FormBuilder,
         FormGroupBuilder,
         FormArrayBuilder,
@@ -88,9 +93,9 @@ export class DynamicFormsModule {
     };
   }
 
-  static forChild(): ModuleWithProviders {
+  static forChild(formConfig: FormConfig = {}): ModuleWithProviders {
     return {
-      ngModule: DynamicFormsModule,
+      ngModule: DynamicFormsCoreModule,
       providers: [
         FormBuilder,
         FormGroupBuilder,
@@ -100,5 +105,9 @@ export class DynamicFormsModule {
         FormControlFactory
       ]
     };
+  }
+
+  constructor(private configService: FormConfigService) {
+    console.log('DynamicFormsCoreModule', configService);
   }
  }
