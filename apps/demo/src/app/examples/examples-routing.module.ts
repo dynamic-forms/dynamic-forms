@@ -7,7 +7,7 @@ import { ExamplesComponent } from './examples.component';
     RouterModule.forChild([
       {
         path: 'examples',
-        component: ExamplesComponent
+        component: ExamplesComponent,
       }
     ])
   ],

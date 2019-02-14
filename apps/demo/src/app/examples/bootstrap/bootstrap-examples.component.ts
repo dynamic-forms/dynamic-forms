@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormTemplate } from '@dynamic-forms/core/form/form-template';
 
 @Component({
-  selector: 'app-material-examples',
-  templateUrl: './material-examples.component.html'
+  selector: 'app-bootstrap-examples',
+  templateUrl: './bootstrap-examples.component.html'
 })
-export class MaterialExamplesComponent implements OnInit {
+export class BootstrapExamplesComponent implements OnInit {
   template: FormTemplate;
   model: any;
 

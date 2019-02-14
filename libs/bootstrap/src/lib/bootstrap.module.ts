@@ -3,11 +3,11 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
+import { FormControlComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
-import { MatFormControlComponent } from './form-control/form-control.component';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
 import { NumberboxModule } from './form-control/numberbox/numberbox.module';
 import { SelectComponent } from './form-control/select/select.component';
@@ -20,7 +20,7 @@ const defaultFormConfig: FormConfig = {
     types: [
       { type: 'group', component: FormGroupComponent },
       { type: 'array', component: FormArrayComponent },
-      { type: 'control', component: MatFormControlComponent }
+      { type: 'control', component: FormControlComponent }
     ]
   },
   controlConfig: {
@@ -58,24 +58,20 @@ const defaultFormConfig: FormConfig = {
     NumberboxModule,
     SelectModule
   ],
-  declarations: [
-    MatFormControlComponent
-  ],
   exports: [
     DynamicFormsModule
   ],
   entryComponents: [
-    MatFormControlComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,
     SelectComponent
   ]
 })
-export class MaterialDynamicFormsModule {
+export class BootstrapDynamicFormsModule {
   static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
     return {
-      ngModule: MaterialDynamicFormsModule,
+      ngModule: BootstrapDynamicFormsModule,
       providers: [
         {
           provide: FORM_CONFIG,

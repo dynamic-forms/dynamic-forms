@@ -15,7 +15,7 @@ export class FormControlField extends FormField<FormControlTemplate, FormControl
     this._control = new FormControl(this._model);
     this._controlValue = this._control.valueChanges.subscribe(value => {
       this.parent.model[this.template.key] = value;
-      this._model = value;
+      this._model = this.parent.model[this.template.key];
     });
   }
 

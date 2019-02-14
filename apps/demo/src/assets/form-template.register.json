@@ -1,0 +1,104 @@
+{
+  "fields": [{
+    "key": "registerDisabled",
+    "type": "control",
+    "label": "Register disabled",
+    "input": {
+      "type": "checkbox"
+    }
+  },
+  {
+    "key": "register",
+    "type": "group",
+    "label": "Register",
+    "expressions": {
+      "disabled": "rootModel.registerDisabled"
+    },
+    "fields": [{
+      "key": "name",
+      "label": "Name",
+      "type": "control",
+      "input": {
+        "type": "text",
+        "placeholder": "Enter your name"
+      },
+      "validation": {
+        "required": true
+      },
+      "expressions": {
+        "disabled": "rootModel.registerDisabled"
+      }
+    }, {
+      "key": "email",
+      "type": "control",
+      "label": "Email",
+      "input": {
+        "type": "email",
+        "placeholder": "Enter your email"
+      },
+      "validation": {
+        "required": true,
+        "email": true
+      },
+      "expressions": {
+        "disabled": "rootModel.registerDisabled"
+      }
+    }, {
+      "key": "password",
+      "type": "control",
+      "label": "Password",
+      "input": {
+        "type": "password",
+        "placeholder": "Enter your password"
+      },
+      "validation": {
+        "required": true
+      }
+    }, {
+      "key": "addressEnabled",
+      "type": "control",
+      "label": "Address enabled",
+      "input": {
+        "type": "checkbox"
+      }
+    }, {
+      "key": "address",
+      "type": "group",
+      "label": "Address",
+      "expressions": {
+        "hidden": "!parentModel.addressEnabled"
+      },
+      "fields": [{
+        "key": "town",
+        "type": "control",
+        "label": "Town",
+        "input": {
+          "type": "text",
+          "placeholder": "Enter your town",
+          "minLength": 5,
+          "maxLength": 10
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      }, {
+        "key": "street",
+        "type": "control",
+        "label": "Street",
+        "input": {
+          "type": "text",
+          "placeholder": "Enter your street",
+          "minLength": 5,
+          "maxLength": 10
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      }]
+    }]
+  }]
+}

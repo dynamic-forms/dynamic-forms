@@ -1,17 +1,23 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CoreExamplesModule } from './core/core-examples.module';
+import { BootstrapExamplesModule } from './bootstrap/bootstrap-examples.module';
+import { ExampleResolver } from './example.resolver';
 import { ExamplesRoutingModule } from './examples-routing.module';
 import { ExamplesComponent } from './examples.component';
 import { MaterialExamplesModule } from './material/material-examples.module';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     ExamplesRoutingModule,
-    CoreExamplesModule,
-    MaterialExamplesModule
+    BootstrapExamplesModule,
+    // MaterialExamplesModule
   ],
   declarations: [
     ExamplesComponent
+  ],
+  providers: [
+    ExampleResolver
   ]
 })
 export class ExamplesModule {}

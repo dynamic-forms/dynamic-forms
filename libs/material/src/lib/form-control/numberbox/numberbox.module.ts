@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TextboxComponent } from './textbox.component';
+import { NumberboxComponent } from './numberbox.component';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { TextboxComponent } from './textbox.component';
     MatInputModule
   ],
   declarations: [
-    TextboxComponent
+    NumberboxComponent
   ]
 })
-export class TextboxModule {}
+export class NumberboxModule {}

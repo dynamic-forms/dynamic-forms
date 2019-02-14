@@ -13,15 +13,13 @@ export class FormControlFactory {
   public createComponent(containerRef: ViewContainerRef, field: FormControlField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
-    componentRef.instance.id = field.path;
-    componentRef.instance.input = field.template.input;
-    componentRef.instance.control = field.control;
+    componentRef.instance.field = field;
     return componentRef;
   }
 
   private getComponentFactory(field: FormControlField): ComponentFactory<FormControlInputComponent> {
     const resolver = this.componentFactoryResolver;
-    const controlConfig = this.getControlConfig(field.template.type);
+    const controlConfig = this.getControlConfig(field.template.input.type);
     return resolver.resolveComponentFactory(controlConfig.component);
   }
 
