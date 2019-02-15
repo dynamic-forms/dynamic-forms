@@ -19,11 +19,17 @@
       "dom"
     ],
     "paths": {
-      "@dynamic-forms/core": [
+      /*"@dynamic-forms/core": [
         "dist/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
         "dist/@dynamic-forms/core/*"
+      ],*/
+      "@dynamic-forms/core": [
+        "libs/core/src/public_api"
+      ],
+      "@dynamic-forms/core/*": [
+        "libs/core/src/lib*"
       ],
       "@dynamic-forms/bootstrap": [
         "libs/bootstrap/src/public_api"

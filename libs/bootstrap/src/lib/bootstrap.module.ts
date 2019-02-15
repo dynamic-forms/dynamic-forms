@@ -6,6 +6,9 @@ import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormControlComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
+import { FormConfigService } from '@dynamic-forms/core';
+import { FormControlFactory } from '@dynamic-forms/core';
+import { FormFieldFactory } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
@@ -16,6 +19,7 @@ import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
 
 const defaultFormConfig: FormConfig = {
+  module: 'bootstrap',
   fieldConfig: {
     types: [
       { type: 'group', component: FormGroupComponent },
@@ -48,6 +52,10 @@ const defaultFormConfig: FormConfig = {
   }
 };
 
+const configureFormConfigService = (): FormConfigService => {
+  return new FormConfigService(defaultFormConfig);
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -75,8 +83,15 @@ export class BootstrapDynamicFormsModule {
       providers: [
         {
           provide: FORM_CONFIG,
-          useValue: formConfig
-        }
+          useValue: formConfig,
+          multi: true
+        },
+        {
+          provide: FormConfigService,
+          useFactory: configureFormConfigService
+        },
+        FormFieldFactory,
+        FormControlFactory
       ]
     };
   }

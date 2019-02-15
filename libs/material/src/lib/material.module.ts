@@ -5,6 +5,9 @@ import { DynamicFormsModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
+import { FormConfigService } from '@dynamic-forms/core';
+import { FormFieldFactory } from '@dynamic-forms/core';
+import { FormControlFactory } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
 import { MatFormControlComponent } from './form-control/form-control.component';
@@ -16,6 +19,7 @@ import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
 
 const defaultFormConfig: FormConfig = {
+  module: 'material',
   fieldConfig: {
     types: [
       { type: 'group', component: FormGroupComponent },
@@ -48,6 +52,10 @@ const defaultFormConfig: FormConfig = {
   }
 };
 
+export function configureFormConfigService(formConfig: FormConfig) {
+  return new FormConfigService(formConfig);
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -79,8 +87,16 @@ export class MaterialDynamicFormsModule {
       providers: [
         {
           provide: FORM_CONFIG,
-          useValue: formConfig
-        }
+          useValue: formConfig,
+          multi: true
+        },
+        {
+          provide: FormConfigService,
+          useFactory: configureFormConfigService,
+          deps: [ formConfig ]
+        },
+        FormFieldFactory,
+        FormControlFactory
       ]
     };
   }

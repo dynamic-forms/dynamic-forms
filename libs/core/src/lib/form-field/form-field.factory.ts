@@ -1,13 +1,12 @@
 import { ComponentFactory, ComponentFactoryResolver, Inject, Injectable, ViewContainerRef } from '@angular/core';
-import { FormConfig, FORM_CONFIG } from '../form/form-config';
+import { FormConfigService } from '../form/form-config.service';
 import { FormField } from './form-field';
-import { FormFieldType } from './form-field-type';
 import { FormFieldBase } from './form-field.base';
 
 @Injectable()
 export class FormFieldFactory {
   constructor(
-    @Inject(FORM_CONFIG) private formConfig: FormConfig,
+    private formConfigService: FormConfigService,
     private componentFactoryResolver: ComponentFactoryResolver) {}
 
   public createComponent(containerRef: ViewContainerRef, field: FormField) {
@@ -19,12 +18,7 @@ export class FormFieldFactory {
 
   private getComponentFactory(field: FormField): ComponentFactory<FormFieldBase> {
     const resolver = this.componentFactoryResolver;
-    const fieldConfig = this.getFieldConfig(field.template.type);
+    const fieldConfig = this.formConfigService.getFieldConfig(field.template.type);
     return resolver.resolveComponentFactory(fieldConfig.component);
-  }
-
-  private getFieldConfig(type: FormFieldType) {
-    const config = this.formConfig.fieldConfig;
-    return config.types.find(f => f.type === type);
   }
 }

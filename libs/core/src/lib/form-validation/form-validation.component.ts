@@ -1,5 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
-import { FormConfig, FORM_CONFIG } from '../form/form-config';
+import { Component, Input } from '@angular/core';
+import { FormConfigService } from '../form/form-config.service';
 import { FormValidationErrors } from './form-validation-errors';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormValidationErrors } from './form-validation-errors';
 export class FormValidationComponent {
   @Input() errors: FormValidationErrors;
 
-  constructor(@Inject(FORM_CONFIG) private formConfig: FormConfig) {}
+  constructor(private formConfigService: FormConfigService) {}
 
   get message() {
     const key = Object.keys(this.errors)[0];
@@ -18,7 +18,7 @@ export class FormValidationComponent {
   }
 
   private getMessage(key: string) {
-    const config = this.formConfig.validationConfig;
+    const config = this.formConfigService.getValidationConfig();
     return config.messages[key] || config.defaultMessage;
   }
 }

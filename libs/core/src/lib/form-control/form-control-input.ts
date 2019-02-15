@@ -1,7 +1,8 @@
 import { FormControlOptions } from './form-control-options';
+import { FormControlType } from './form-control-type';
 
 export interface FormControlInput {
-  type: string;
+  type: FormControlType;
   placeholder: string;
   options?: FormControlOptions;
   readonly?: boolean;

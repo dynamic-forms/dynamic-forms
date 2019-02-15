@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:libs": "ng build dynamic-forms-core && ng build dynamic-forms-bootstrap && ng build dynamic-forms-material",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

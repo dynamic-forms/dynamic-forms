@@ -11,7 +11,7 @@ import { MaterialExamplesModule } from './material/material-examples.module';
     HttpClientModule,
     ExamplesRoutingModule,
     BootstrapExamplesModule,
-    // MaterialExamplesModule
+    MaterialExamplesModule
   ],
   declarations: [
     ExamplesComponent

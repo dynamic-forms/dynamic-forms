@@ -4,6 +4,8 @@
 
 export * from './lib/core.module';
 export * from './lib/form/form-config';
+export * from './lib/form/form-config.service';
+export * from './lib/form/form-template';
 export * from './lib/form/form.builder';
 export * from './lib/form/form.component';
 export * from './lib/form-array/form-array.builder';
