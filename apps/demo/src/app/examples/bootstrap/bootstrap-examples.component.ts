@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormTemplate } from '@dynamic-forms/core/lib/form/form-template';
+import { FormTemplate } from '@dynamic-forms/core';
 
 @Component({
   selector: 'app-bootstrap-examples',

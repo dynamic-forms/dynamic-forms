@@ -8,6 +8,16 @@ import { ExamplesComponent } from './examples.component';
       {
         path: 'examples',
         component: ExamplesComponent,
+        /*children: [
+          {
+            path: 'bootstrap',
+            loadChildren: './bootstrap/bootstrap-examples.module#BootstrapExamplesModule'
+          },
+          {
+            path: 'material',
+            loadChildren: './material/material-examples.module#MaterialExamplesModule'
+          }
+        ]*/
       }
     ])
   ],

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { FormTemplate } from '@dynamic-forms/core/lib/form/form-template';
+import { FormTemplate } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Injectable()

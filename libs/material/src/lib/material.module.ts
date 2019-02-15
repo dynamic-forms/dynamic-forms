@@ -8,6 +8,11 @@ import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
 import { FormFieldFactory } from '@dynamic-forms/core';
 import { FormControlFactory } from '@dynamic-forms/core';
+import { FormControlBuilder } from '@dynamic-forms/core';
+import { FormArrayBuilder } from '@dynamic-forms/core';
+import { FormValidationBuilder } from '@dynamic-forms/core';
+import { FormGroupBuilder } from '@dynamic-forms/core';
+import { FormBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
 import { MatFormControlComponent } from './form-control/form-control.component';
@@ -52,7 +57,8 @@ const defaultFormConfig: FormConfig = {
   }
 };
 
-export function configureFormConfigService(formConfig: FormConfig) {
+export function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
+  const formConfig = formConfigs.find(config => config.module === defaultFormConfig.module);
   return new FormConfigService(formConfig);
 }
 
@@ -93,13 +99,16 @@ export class MaterialDynamicFormsModule {
         {
           provide: FormConfigService,
           useFactory: configureFormConfigService,
-          deps: [ formConfig ]
+          deps: [ FORM_CONFIG ]
         },
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder,
+        FormValidationBuilder,
         FormFieldFactory,
         FormControlFactory
       ]
     };
   }
 }
-
-

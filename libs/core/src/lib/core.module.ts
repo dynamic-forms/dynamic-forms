@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormArrayBuilder } from './form-array/form-array.builder';
 import { FormArrayComponent } from './form-array/form-array.component';
@@ -12,12 +12,11 @@ import { FormGroupBuilder } from './form-group/form-group.builder';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
-import { FormConfig, FORM_CONFIG } from './form/form-config';
-import { FormConfigService } from './form/form-config.service';
+import { FormConfig } from './form/form-config';
 import { FormBuilder } from './form/form.builder';
 import { FormComponent } from './form/form.component';
 
-const defaultFormConfig: FormConfig = {
+export const defaultFormConfig: FormConfig = {
   module: 'core',
   fieldConfig: {
     types: [
@@ -65,33 +64,19 @@ const defaultFormConfig: FormConfig = {
     FormControlComponent,
     FormValidationComponent
   ],
+  entryComponents: [
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent
+  ],
   providers: [
     FormBuilder,
     FormGroupBuilder,
     FormArrayBuilder,
     FormControlBuilder,
-    FormValidationBuilder
-  ],
-  entryComponents: [
-    FormGroupComponent,
-    FormArrayComponent,
-    FormControlComponent
+    FormValidationBuilder,
+    FormFieldFactory,
+    FormControlFactory
   ]
 })
-export class DynamicFormsModule {
-  static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
-    return {
-      ngModule: DynamicFormsModule,
-      providers: [
-        {
-          provide: FORM_CONFIG,
-          useValue: formConfig,
-          multi: true
-        },
-        FormConfigService,
-        FormFieldFactory,
-        FormControlFactory
-      ],
-    };
-  }
-}
+export class DynamicFormsModule {}

@@ -10,7 +10,7 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: 'examples/bootstrap/:templateId',
+        path: ':templateId',
         component: BootstrapExamplesComponent,
         resolve: {
           template: ExampleResolver

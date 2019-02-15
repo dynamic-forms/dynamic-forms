@@ -10,7 +10,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: 'examples/material/:templateId',
+        path: ':templateId',
         component: MaterialExamplesComponent,
         resolve: {
           template: ExampleResolver

@@ -8,7 +8,13 @@ import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
 import { FormControlFactory } from '@dynamic-forms/core';
+import { FormComponent } from '@dynamic-forms/core';
 import { FormFieldFactory } from '@dynamic-forms/core';
+import { FormValidationBuilder } from '@dynamic-forms/core';
+import { FormControlBuilder } from '@dynamic-forms/core';
+import { FormArrayBuilder } from '@dynamic-forms/core';
+import { FormGroupBuilder } from '@dynamic-forms/core';
+import { FormBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
@@ -18,7 +24,7 @@ import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
 
-const defaultFormConfig: FormConfig = {
+export const defaultFormConfig: FormConfig = {
   module: 'bootstrap',
   fieldConfig: {
     types: [
@@ -52,9 +58,10 @@ const defaultFormConfig: FormConfig = {
   }
 };
 
-const configureFormConfigService = (): FormConfigService => {
-  return new FormConfigService(defaultFormConfig);
-};
+export function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
+  const formConfig = formConfigs.find(config => config.module === defaultFormConfig.module);
+  return new FormConfigService(formConfig);
+}
 
 @NgModule({
   imports: [
@@ -67,7 +74,7 @@ const configureFormConfigService = (): FormConfigService => {
     SelectModule
   ],
   exports: [
-    DynamicFormsModule
+    FormComponent
   ],
   entryComponents: [
     CheckboxComponent,
@@ -88,8 +95,14 @@ export class BootstrapDynamicFormsModule {
         },
         {
           provide: FormConfigService,
-          useFactory: configureFormConfigService
+          useFactory: configureFormConfigService,
+          deps: [FORM_CONFIG]
         },
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder,
+        FormValidationBuilder,
         FormFieldFactory,
         FormControlFactory
       ]
