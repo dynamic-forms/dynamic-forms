@@ -1,4 +1,4 @@
-<select [formControl]="control">
+<select class="form-control" [formControl]="control">
   <option [value]="null" disabled hidden>{{ input.placeholder }}</option>
   <option *ngFor="let option of input.options" [value]="option.value">
     {{ option.label }}

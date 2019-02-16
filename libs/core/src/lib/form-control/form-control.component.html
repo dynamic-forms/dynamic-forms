@@ -1,5 +1,5 @@
-<div class="form-control" [class.hidden]="template.hidden">
-  <label class="form-control-label" [for]="id">{{ template.label }}</label>
+<div class="form-group" [class.hidden]="template.hidden">
+  <label [for]="id">{{ template.label }}</label>
   <ng-template #inputComponent></ng-template>
   <core-form-validation [errors]="control.errors"></core-form-validation>
 </div>

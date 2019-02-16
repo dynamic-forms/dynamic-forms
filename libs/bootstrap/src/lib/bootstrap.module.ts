@@ -24,7 +24,7 @@ import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
 
-export const defaultFormConfig: FormConfig = {
+const defaultFormConfig: FormConfig = {
   module: 'bootstrap',
   fieldConfig: {
     types: [
@@ -58,7 +58,7 @@ export const defaultFormConfig: FormConfig = {
   }
 };
 
-export function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
+function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
   const formConfig = formConfigs.find(config => config.module === defaultFormConfig.module);
   return new FormConfigService(formConfig);
 }
