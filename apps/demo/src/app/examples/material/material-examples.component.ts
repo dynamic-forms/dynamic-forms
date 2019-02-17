@@ -4,7 +4,8 @@ import { FormTemplate } from '@dynamic-forms/core';
 
 @Component({
   selector: 'app-material-examples',
-  templateUrl: './material-examples.component.html'
+  templateUrl: './material-examples.component.html',
+  styleUrls: ['./material-examples.component.scss']
 })
 export class MaterialExamplesComponent implements OnInit {
   template: FormTemplate;

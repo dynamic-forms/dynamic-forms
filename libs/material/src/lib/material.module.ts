@@ -15,7 +15,7 @@ import { FormGroupBuilder } from '@dynamic-forms/core';
 import { FormBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
-import { MatFormControlComponent } from './form-control/form-control.component';
+import { MaterialFormControlComponent } from './form-control/form-control.component';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
 import { NumberboxModule } from './form-control/numberbox/numberbox.module';
 import { SelectComponent } from './form-control/select/select.component';
@@ -29,7 +29,7 @@ const defaultFormConfig: FormConfig = {
     types: [
       { type: 'group', component: FormGroupComponent },
       { type: 'array', component: FormArrayComponent },
-      { type: 'control', component: MatFormControlComponent }
+      { type: 'control', component: MaterialFormControlComponent }
     ]
   },
   controlConfig: {
@@ -73,13 +73,13 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     SelectModule
   ],
   declarations: [
-    MatFormControlComponent
+    MaterialFormControlComponent
   ],
   exports: [
     DynamicFormsModule
   ],
   entryComponents: [
-    MatFormControlComponent,
+    MaterialFormControlComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,

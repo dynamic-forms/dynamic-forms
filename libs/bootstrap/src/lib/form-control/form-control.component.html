@@ -1,0 +1,5 @@
+<div class="form-group" [class.hidden]="template.hidden">
+  <label *ngIf="template.input.type !== 'checkbox'" [for]="id">{{ template.label }}</label>
+  <ng-template #inputComponent></ng-template>
+  <bootstrap-form-validation [errors]="control.errors"></bootstrap-form-validation>
+</div>

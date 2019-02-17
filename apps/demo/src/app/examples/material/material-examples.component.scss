@@ -1,29 +1,31 @@
-.form {
-  .form-group {
-    margin: 10px 0 20px 0;
-
-    &.hidden {
-      display: none;
+:host ::ng-deep {
+  .form {
+    .form-group {
+      margin: 10px 0 20px 0;
+  
+      &.hidden {
+        display: none;
+      }
     }
-  }
-
-  .form-array {
-    margin: 10px 0 20px 0;
-
-    &.hidden {
-      display: none;
+  
+    .form-array {
+      margin: 10px 0 20px 0;
+  
+      &.hidden {
+        display: none;
+      }
     }
-  }
-
-  .form-control {
-    margin: 10px 0;
-
-    &.hidden {
-      display: none;
+  
+    .form-control {
+      margin: 10px 0;
+  
+      &.hidden {
+        display: none;
+      }
     }
-  }
-
-  .form-validation {
-    color: red;
+  
+    .form-validation {
+      color: red;
+    }
   }
 }

@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
-import { FormControlComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
@@ -17,12 +16,14 @@ import { FormGroupBuilder } from '@dynamic-forms/core';
 import { FormBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
+import { BootstrapFormControlComponent } from './form-control/form-control.component';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
 import { NumberboxModule } from './form-control/numberbox/numberbox.module';
 import { SelectComponent } from './form-control/select/select.component';
 import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
+import { BootstrapFormValidationComponent } from './form-validation/form-validation.component';
 
 const defaultFormConfig: FormConfig = {
   module: 'bootstrap',
@@ -30,7 +31,7 @@ const defaultFormConfig: FormConfig = {
     types: [
       { type: 'group', component: FormGroupComponent },
       { type: 'array', component: FormArrayComponent },
-      { type: 'control', component: FormControlComponent }
+      { type: 'control', component: BootstrapFormControlComponent }
     ]
   },
   controlConfig: {
@@ -73,10 +74,15 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     NumberboxModule,
     SelectModule
   ],
+  declarations: [
+    BootstrapFormControlComponent,
+    BootstrapFormValidationComponent
+  ],
   exports: [
     FormComponent
   ],
   entryComponents: [
+    BootstrapFormControlComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,

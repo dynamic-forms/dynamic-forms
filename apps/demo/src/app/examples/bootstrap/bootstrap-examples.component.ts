@@ -4,7 +4,8 @@ import { FormTemplate } from '@dynamic-forms/core';
 
 @Component({
   selector: 'app-bootstrap-examples',
-  templateUrl: './bootstrap-examples.component.html'
+  templateUrl: './bootstrap-examples.component.html',
+  styleUrls: ['./bootstrap-examples.component.scss']
 })
 export class BootstrapExamplesComponent implements OnInit {
   template: FormTemplate;
