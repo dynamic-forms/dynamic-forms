@@ -58,7 +58,7 @@ const defaultFormConfig: FormConfig = {
   }
 };
 
-function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
+export function configureFormConfigService(formConfigs: FormConfig[]): FormConfigService {
   const formConfig = formConfigs.find(config => config.module === defaultFormConfig.module);
   return new FormConfigService(formConfig);
 }

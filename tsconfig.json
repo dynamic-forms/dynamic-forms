@@ -19,13 +19,25 @@
       "dom"
     ],
     "paths": {
-      /*"@dynamic-forms/core": [
+      "@dynamic-forms/core": [
         "dist/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
         "dist/@dynamic-forms/core/*"
-      ],*/
-      "@dynamic-forms/core": [
+      ],
+      "@dynamic-forms/bootstrap": [
+        "dist/@dynamic-forms/bootstrap"
+      ],
+      "@dynamic-forms/bootstrap/*": [
+        "dist/@dynamic-forms/bootstrap/*"
+      ],
+      "@dynamic-forms/material": [
+        "dist/@dynamic-forms/material"
+      ],
+      "@dynamic-forms/material/*": [
+        "dist/@dynamic-forms/material/*"
+      ],
+      /*"@dynamic-forms/core": [
         "libs/core/src/public_api"
       ],
       "@dynamic-forms/core/*": [
@@ -42,7 +54,7 @@
       ],
       "@dynamic-forms/material/*": [
         "libs/material/src/lib/*"
-      ]
+      ]*/
     }
   },
   "exclude": [
