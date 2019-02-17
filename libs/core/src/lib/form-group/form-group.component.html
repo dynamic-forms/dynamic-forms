@@ -1,5 +1,5 @@
-<div class="form-group" [class.hidden]="template.hidden">
-  <div class="form-group-label">{{ template.label }}</div>
+<div class="dynamic-form-group" [class.hidden]="template.hidden">
+  <div class="dynamic-form-group-label">{{ template.label }}</div>
   <core-form-field *ngFor="let field of fields" [formField]="field">
   </core-form-field>
   <core-form-validation [errors]="control.errors">

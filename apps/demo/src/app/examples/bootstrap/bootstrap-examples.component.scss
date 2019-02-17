@@ -1,3 +1,33 @@
 :host ::ng-deep {
   @import "node_modules/bootstrap/scss/bootstrap.scss";
+
+  .dynamic-form {
+    .dynamic-form-group {
+      margin: 10px 0 20px 0;
+  
+      &.hidden {
+        display: none;
+      }
+    }
+  
+    .dynamic-form-array {
+      margin: 10px 0 20px 0;
+  
+      &.hidden {
+        display: none;
+      }
+    }
+  
+    .dynamic-form-control {
+      margin: 10px 0;
+  
+      &.hidden {
+        display: none;
+      }
+    }
+  
+    .dynamic-form-validation {
+      color: red;
+    }
+  }
 }

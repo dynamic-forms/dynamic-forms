@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="formGroup" (ngSubmit)="submit()">
+<form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="submit()">
   <core-form-group [formField]="formField">
     <button type="submit" [disabled]="!formGroup.valid">Submit</button>
   </core-form-group>

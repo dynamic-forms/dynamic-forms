@@ -1,6 +1,6 @@
 :host ::ng-deep {
-  .form {
-    .form-group {
+  .dynamic-form {
+    .dynamic-form-group {
       margin: 10px 0 20px 0;
   
       &.hidden {
@@ -8,7 +8,7 @@
       }
     }
   
-    .form-array {
+    .dynamic-form-array {
       margin: 10px 0 20px 0;
   
       &.hidden {
@@ -16,7 +16,7 @@
       }
     }
   
-    .form-control {
+    .dynamic-form-control {
       margin: 10px 0;
   
       &.hidden {
@@ -24,7 +24,7 @@
       }
     }
   
-    .form-validation {
+    .dynamic-form-validation {
       color: red;
     }
   }
