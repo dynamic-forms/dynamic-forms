@@ -1,0 +1,14 @@
+.container {
+  min-height: calc(100% - 64px);
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .content {
+    .card {
+      margin: 10px auto 10px auto;
+      max-width: calc(100% - 40px);
+    }  
+  }
+}

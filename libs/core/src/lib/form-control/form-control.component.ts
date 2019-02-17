@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControlField } from './form-control.model';
+import { FormFieldBase} from '../form-field/form-field.base';
+import { FormControlField } from './form-control-field';
 import { FormControlFactory } from './form-control.factory';
-import { FormFieldBase} from '../form-field/form-field.model';
 
 @Component({
-  selector: 'dynamic-form-control',
+  selector: 'core-form-control',
   templateUrl: './form-control.component.html'
 })
 export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {

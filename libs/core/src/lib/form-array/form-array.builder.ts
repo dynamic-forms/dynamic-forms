@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { FormArrayField, FormArrayTemplate } from './form-array.model';
-import { FormField } from '../form-field/form-field.model';
+import { FormField } from '../form-field/form-field';
 import { FormFieldBuilder } from '../form-field/form-field.builder';
+import { FormArrayField } from './form-array-field';
+import { FormArrayTemplate } from './form-array-template';
 
 @Injectable()
 export class FormArrayBuilder extends FormFieldBuilder<FormArrayTemplate, FormArrayField> {

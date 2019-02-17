@@ -1,20 +1,17 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, DoCheck } from '@angular/core';
-import { FormTemplate } from './form.model';
+import { Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { FormGroupField } from '../form-group/form-group-field';
+import { FormTemplate } from './form-template';
 import { FormBuilder } from './form.builder';
-import { FormGroupField } from '../form-group/form-group.model';
 
 @Component({
-  selector: 'dynamic-form',
+  selector: 'core-form',
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnChanges, OnDestroy, DoCheck {
   private _formField: FormGroupField;
 
-  @Input()
-  template: FormTemplate;
-
-  @Input()
-  model: any;
+  @Input() template: FormTemplate;
+  @Input() model: any;
 
   constructor(private formBuilder: FormBuilder) {}
 

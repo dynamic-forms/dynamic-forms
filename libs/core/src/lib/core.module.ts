@@ -1,14 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FORM_CONFIG, FormConfig, FormComponent, FormBuilder } from './form';
-import { FormFieldComponent, FormFieldFactory } from './form-field';
-import { FormGroupComponent, FormGroupBuilder } from './form-group';
-import { FormArrayComponent, FormArrayBuilder } from './form-array';
-import { FormControlComponent, FormControlBuilder, FormControlFactory, FormInputComponent } from './form-control';
-import { FormValidationComponent, FormValidationBuilder } from './form-validation';
+import { FormArrayBuilder } from './form-array/form-array.builder';
+import { FormArrayComponent } from './form-array/form-array.component';
+import { FormControlBuilder } from './form-control/form-control.builder';
+import { FormControlComponent } from './form-control/form-control.component';
+import { FormControlFactory } from './form-control/form-control.factory';
+import { FormFieldComponent } from './form-field/form-field.component';
+import { FormFieldFactory } from './form-field/form-field.factory';
+import { FormGroupBuilder } from './form-group/form-group.builder';
+import { FormGroupComponent } from './form-group/form-group.component';
+import { FormValidationBuilder } from './form-validation/form-validation.builder';
+import { FormValidationComponent } from './form-validation/form-validation.component';
+import { FormConfig } from './form/form-config';
+import { FormBuilder } from './form/form.builder';
+import { FormComponent } from './form/form.component';
 
 export const defaultFormConfig: FormConfig = {
+  module: 'core',
   fieldConfig: {
     types: [
       { type: 'group', component: FormGroupComponent },
@@ -17,10 +26,8 @@ export const defaultFormConfig: FormConfig = {
     ]
   },
   controlConfig: {
-    defaultType: { type: 'input', component: FormInputComponent },
-    types: [
-      { type: 'input', component: FormInputComponent }
-    ]
+    defaultType: null,
+    types: []
   },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
@@ -47,49 +54,29 @@ export const defaultFormConfig: FormConfig = {
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent,
-    FormInputComponent,
     FormValidationComponent
   ],
   exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormComponent
+    FormComponent,
+    FormFieldComponent,
+    FormGroupComponent,
+    FormArrayComponent,
+    FormControlComponent,
+    FormValidationComponent
   ],
   entryComponents: [
     FormGroupComponent,
     FormArrayComponent,
-    FormControlComponent,
-    FormInputComponent
+    FormControlComponent
+  ],
+  providers: [
+    FormBuilder,
+    FormGroupBuilder,
+    FormArrayBuilder,
+    FormControlBuilder,
+    FormValidationBuilder,
+    FormFieldFactory,
+    FormControlFactory
   ]
 })
-export class DynamicFormsModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: DynamicFormsModule,
-      providers: [
-        { provide: FORM_CONFIG, useValue: defaultFormConfig },
-        FormBuilder,
-        FormGroupBuilder,
-        FormArrayBuilder,
-        FormControlBuilder,
-        FormFieldFactory,
-        FormControlFactory,
-        FormValidationBuilder
-      ]
-    };
-  }
-
-  static forChild(): ModuleWithProviders {
-    return {
-      ngModule: DynamicFormsModule,
-      providers: [
-        FormBuilder,
-        FormGroupBuilder,
-        FormArrayBuilder,
-        FormControlBuilder,
-        FormFieldFactory,
-        FormControlFactory
-      ]
-    };
-  }
- }
+export class DynamicFormsModule {}

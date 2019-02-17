@@ -1,32 +1,25 @@
-import { ComponentFactory, ComponentFactoryResolver, Injectable, ViewContainerRef, Inject } from '@angular/core';
-import { FormControlField } from './form-control.model';
-import { FormInputComponent } from './form-input/form-input.component';
-import { FORM_CONFIG, FormConfig } from '../form/form.config';
+import { ComponentFactory, ComponentFactoryResolver, Inject, Injectable, ViewContainerRef } from '@angular/core';
+import { FormConfigService } from '../form/form-config.service';
+import { FormControlInputComponent } from './../form-control/form-control-input.component';
+import { FormControlField } from './form-control-field';
 
 @Injectable()
 export class FormControlFactory {
   constructor(
-    @Inject(FORM_CONFIG) private formConfig: FormConfig,
+    private formConfigService: FormConfigService,
     private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   public createComponent(containerRef: ViewContainerRef, field: FormControlField) {
     const componentFactory = this.getComponentFactory(field);
     const componentRef = containerRef.createComponent(componentFactory);
-    componentRef.instance.id = field.path;
-    componentRef.instance.input = field.template.input;
-    componentRef.instance.control = field.control;
+    componentRef.instance.field = field;
     return componentRef;
   }
 
-  private getComponentFactory(field: FormControlField): ComponentFactory<FormInputComponent> {
+  private getComponentFactory(field: FormControlField): ComponentFactory<FormControlInputComponent> {
     const resolver = this.componentFactoryResolver;
-    const controlConfig = this.getControlConfig(field.template.type);
+    const controlConfig = this.formConfigService.getControlConfig(field.template.input.type);
     return resolver.resolveComponentFactory(controlConfig.component);
-  }
-
-  private getControlConfig(type: string) {
-    const config = this.formConfig.controlConfig;
-    return config.types.find(f => f.type === type) || config.defaultType;
   }
 }

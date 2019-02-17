@@ -1,16 +1,15 @@
-import { Component, Input, Inject } from '@angular/core';
-import { FormValidationErrors } from './form-validation.model';
-import { FormConfig, FORM_CONFIG } from '../form/form.config';
+import { Component, Input } from '@angular/core';
+import { FormConfigService } from '../form/form-config.service';
+import { FormValidationErrors } from './form-validation-errors';
 
 @Component({
-  selector: 'dynamic-form-validation',
+  selector: 'core-form-validation',
   templateUrl: './form-validation.component.html'
 })
 export class FormValidationComponent {
-  @Input()
-  errors: FormValidationErrors;
+  @Input() errors: FormValidationErrors;
 
-  constructor(@Inject(FORM_CONFIG) private formConfig: FormConfig) {}
+  constructor(private formConfigService: FormConfigService) {}
 
   get message() {
     const key = Object.keys(this.errors)[0];
@@ -19,7 +18,7 @@ export class FormValidationComponent {
   }
 
   private getMessage(key: string) {
-    const config = this.formConfig.validationConfig;
+    const config = this.formConfigService.getValidationConfig();
     return config.messages[key] || config.defaultMessage;
   }
 }

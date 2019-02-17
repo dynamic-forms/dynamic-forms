@@ -1,9 +1,10 @@
-import { Component, ViewChild, ViewContainerRef, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormFieldFactory } from './../form-field/form-field.factory';
-import { FormField, FormFieldBase } from './../form-field/form-field.model';
+import { FormField } from './form-field';
+import { FormFieldBase } from './form-field.base';
 
 @Component({
-  selector: 'dynamic-form-field',
+  selector: 'core-form-field',
   templateUrl: './form-field.component.html'
 })
 export class FormFieldComponent extends FormFieldBase<FormField> implements OnInit {

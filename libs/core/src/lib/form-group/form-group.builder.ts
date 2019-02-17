@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { FormGroupTemplate, FormGroupField } from './form-group.model';
-import { FormFieldTemplate, FormField } from '../form-field/form-field.model';
-import { FormFieldBuilder } from '../form-field/form-field.builder';
-import { FormArrayTemplate } from '../form-array/form-array.model';
-import { FormArrayBuilder } from '../form-array/form-array.builder';
-import { FormControlTemplate } from '../form-control/form-control.model';
-import { FormControlBuilder } from '../form-control/form-control.builder';
+import { FormArrayTemplate } from './../form-array/form-array-template';
+import { FormArrayBuilder } from './../form-array/form-array.builder';
+import { FormControlTemplate } from './../form-control/form-control-template';
+import { FormControlBuilder } from './../form-control/form-control.builder';
+import { FormField } from './../form-field/form-field';
+import { FormFieldTemplate } from './../form-field/form-field-template';
+import { FormFieldBuilder } from './../form-field/form-field.builder';
+import { FormGroupField } from './form-group-field';
+import { FormGroupTemplate } from './form-group-template';
 
 @Injectable()
 export class FormGroupBuilder extends FormFieldBuilder<FormGroupTemplate, FormGroupField> {

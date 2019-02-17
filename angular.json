@@ -38,11 +38,46 @@
         }
       }
     },
+    "dynamic-forms-bootstrap": {
+      "root": "libs/bootstrap",
+      "sourceRoot": "libs/bootstrap/src",
+      "projectType": "library",
+      "prefix": "bootstrap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/bootstrap/tsconfig.lib.json",
+            "project": "libs/bootstrap/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/bootstrap/src/test.ts",
+            "tsConfig": "libs/bootstrap/tsconfig.spec.json",
+            "karmaConfig": "libs/bootstrap/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/bootstrap/tsconfig.lib.json",
+              "libs/bootstrap/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "dynamic-forms-material": {
       "root": "libs/material",
       "sourceRoot": "libs/material/src",
       "projectType": "library",
-      "prefix": "mat",
+      "prefix": "material",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -97,6 +132,7 @@
               "apps/demo/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
             ],
             "scripts": []
@@ -153,6 +189,7 @@
             "tsConfig": "apps/demo/src/tsconfig.spec.json",
             "karmaConfig": "apps/demo/src/karma.conf.js",
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
             ],
             "scripts": [],
