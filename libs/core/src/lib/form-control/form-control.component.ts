@@ -5,7 +5,8 @@ import { FormControlFactory } from './form-control.factory';
 
 @Component({
   selector: 'core-form-control',
-  templateUrl: './form-control.component.html'
+  templateUrl: './form-control.component.html',
+  styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {
   @ViewChild('inputComponent', { read: ViewContainerRef })

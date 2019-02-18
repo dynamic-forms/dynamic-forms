@@ -4,7 +4,8 @@ import { FormGroupField } from './form-group-field';
 
 @Component({
   selector: 'core-form-group',
-  templateUrl: './form-group.component.html'
+  templateUrl: './form-group.component.html',
+  styleUrls: ['./form-group.component.scss']
 })
 export class FormGroupComponent extends FormFieldBase<FormGroupField> {
   constructor() {

@@ -4,7 +4,8 @@ import { FormArrayField } from './form-array-field';
 
 @Component({
   selector: 'core-form-array',
-  templateUrl: './form-array.component.html'
+  templateUrl: './form-array.component.html',
+  styleUrls: ['./form-array.component.scss']
 })
 export class FormArrayComponent extends FormFieldBase<FormArrayField> {
   constructor() {

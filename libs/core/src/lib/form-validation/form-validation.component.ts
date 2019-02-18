@@ -4,7 +4,8 @@ import { FormValidationErrors } from './form-validation-errors';
 
 @Component({
   selector: 'core-form-validation',
-  templateUrl: './form-validation.component.html'
+  templateUrl: './form-validation.component.html',
+  styleUrls: ['./form-validation.component.scss']
 })
 export class FormValidationComponent {
   @Input() errors: FormValidationErrors;
