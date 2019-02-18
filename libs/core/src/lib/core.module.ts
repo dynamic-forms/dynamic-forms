@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormArrayBuilder } from './form-array/form-array.builder';
 import { FormArrayComponent } from './form-array/form-array.component';
+import { FormComponentFactory } from './form-component/form-component.factory';
 import { FormControlBuilder } from './form-control/form-control.builder';
 import { FormControlComponent } from './form-control/form-control.component';
-import { FormControlFactory } from './form-control/form-control.factory';
 import { FormFieldComponent } from './form-field/form-field.component';
-import { FormFieldFactory } from './form-field/form-field.factory';
 import { FormGroupBuilder } from './form-group/form-group.builder';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
@@ -75,8 +74,7 @@ export const defaultFormConfig: FormConfig = {
     FormArrayBuilder,
     FormControlBuilder,
     FormValidationBuilder,
-    FormFieldFactory,
-    FormControlFactory
+    FormComponentFactory
   ]
 })
 export class DynamicFormsModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormFieldFactory } from './../form-field/form-field.factory';
+import { FormComponentFactory } from './../form-component/form-component.factory';
 import { FormField } from './form-field';
 import { FormFieldBase } from './form-field.base';
 
@@ -9,17 +9,17 @@ import { FormFieldBase } from './form-field.base';
 })
 export class FormFieldComponent extends FormFieldBase<FormField> implements OnInit {
   @ViewChild('fieldComponent', { read: ViewContainerRef })
-  containerRef: ViewContainerRef;
+  fieldComponent: ViewContainerRef;
 
-  constructor(private componentFactory: FormFieldFactory) {
+  constructor(private componentFactory: FormComponentFactory) {
     super();
   }
 
   ngOnInit() {
-    this.initComponent();
+    this.initFieldComponent();
   }
 
-  private initComponent() {
-    this.componentFactory.createComponent(this.containerRef, this.formField);
+  private initFieldComponent() {
+    this.componentFactory.createFieldComponent(this.fieldComponent, this.formField);
   }
 }

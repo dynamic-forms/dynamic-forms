@@ -4,10 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
+import { FormComponentFactory } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
-import { FormFieldFactory } from '@dynamic-forms/core';
-import { FormControlFactory } from '@dynamic-forms/core';
 import { FormControlBuilder } from '@dynamic-forms/core';
 import { FormArrayBuilder } from '@dynamic-forms/core';
 import { FormValidationBuilder } from '@dynamic-forms/core';
@@ -106,8 +105,7 @@ export class MaterialDynamicFormsModule {
         FormArrayBuilder,
         FormControlBuilder,
         FormValidationBuilder,
-        FormFieldFactory,
-        FormControlFactory
+        FormComponentFactory
       ]
     };
   }
