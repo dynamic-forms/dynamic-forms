@@ -27,9 +27,14 @@ export class FormComponentFactory {
     return component;
   }
 
-  private createWrapperComponents(container: ViewContainerRef, field: FormField, config: FormFieldTypeConfig): ViewContainerRef {
-    const configs = this.getWrapperConfigs(field, config);
-    return null;
+  private createWrapperComponents(container: ViewContainerRef, field: FormField, config: FormFieldTypeConfig) {
+    let wrapper = container;
+    this.getWrapperConfigs(field, config).forEach(c => {
+      const factory = this.getComponentFactory(c.component);
+      const component = wrapper.createComponent(factory);
+      wrapper = component.instance.fieldComponent;
+    });
+    return wrapper;
   }
 
   private getFieldConfig(field: FormField) {

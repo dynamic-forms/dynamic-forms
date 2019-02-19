@@ -6,7 +6,7 @@ import { FormFieldBase } from './form-field.base';
 export interface FormFieldTypeConfig {
   type: FormFieldType;
   component: Type<FormFieldBase>;
-  wrappers: FormFieldWrapperType[];
+  wrappers?: FormFieldWrapperType[];
 }
 
 export interface FormFieldConfig {
