@@ -25,8 +25,8 @@ export const defaultFormConfig: FormConfig = {
     ]
   },
   controlConfig: {
-    defaultType: null,
-    types: []
+    types: [],
+    defaultType: null
   },
   validationConfig: {
     defaultMessage: 'The field is invalid.',

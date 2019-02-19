@@ -9,20 +9,20 @@ import { FormControlField } from './form-control-field';
   styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent extends FormFieldBase<FormControlField> implements OnInit {
-  @ViewChild('inputComponent', { read: ViewContainerRef })
-  inputComponent: ViewContainerRef;
+  @ViewChild('fieldComponent', { read: ViewContainerRef })
+  fieldComponent: ViewContainerRef;
 
   constructor(private componentFactory: FormComponentFactory) {
     super();
   }
 
-  get input() { return this.formField.template.input; }
+  get input() { return this.field.template.input; }
 
   ngOnInit() {
     this.initInputComponent();
   }
 
   private initInputComponent() {
-    this.componentFactory.createInputComponent(this.inputComponent, this.formField);
+    this.componentFactory.createInputComponent(this.fieldComponent, this.field);
   }
 }

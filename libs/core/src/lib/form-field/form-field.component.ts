@@ -20,6 +20,6 @@ export class FormFieldComponent extends FormFieldBase<FormField> implements OnIn
   }
 
   private initFieldComponent() {
-    this.componentFactory.createFieldComponent(this.fieldComponent, this.formField);
+    this.componentFactory.createFieldComponent(this.fieldComponent, this.field);
   }
 }

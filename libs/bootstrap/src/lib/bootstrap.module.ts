@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
-import { FormComponent } from '@dynamic-forms/core';
 import { FormComponentFactory } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
@@ -22,6 +21,7 @@ import { SelectComponent } from './form-control/select/select.component';
 import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
+import { BootstrapFormInputWrapperComponent } from './form-field-wrapper/form-input-wrapper.component';
 import { BootstrapFormValidationComponent } from './form-validation/form-validation.component';
 
 const defaultFormConfig: FormConfig = {
@@ -33,15 +33,20 @@ const defaultFormConfig: FormConfig = {
       { type: 'control', component: BootstrapFormControlComponent }
     ]
   },
+  wrapperConfig: {
+    types: [
+      { type: 'label', component: BootstrapFormInputWrapperComponent }
+    ]
+  },
   controlConfig: {
     defaultType: null,
     types: [
       { type: 'checkbox', component: CheckboxComponent },
-      { type: 'text', component: TextboxComponent },
-      { type: 'email', component: TextboxComponent },
-      { type: 'password', component: TextboxComponent },
-      { type: 'number', component: NumberboxComponent },
-      { type: 'select', component: SelectComponent }
+      { type: 'text', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'email', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'password', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'number', component: NumberboxComponent, wrappers: [ 'label' ] },
+      { type: 'select', component: SelectComponent, wrappers: [ 'label' ] }
     ]
   },
   validationConfig: {
@@ -75,6 +80,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   ],
   declarations: [
     BootstrapFormControlComponent,
+    BootstrapFormInputWrapperComponent,
     BootstrapFormValidationComponent
   ],
   exports: [
@@ -82,6 +88,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   ],
   entryComponents: [
     BootstrapFormControlComponent,
+    BootstrapFormInputWrapperComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,
