@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule } from '@dynamic-forms/core';
+import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormComponentFactory } from '@dynamic-forms/core';
@@ -72,7 +72,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule,
+    DynamicFormsCoreModule,
     CheckboxModule,
     TextboxModule,
     NumberboxModule,
@@ -84,7 +84,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     BootstrapFormValidationComponent
   ],
   exports: [
-    DynamicFormsModule
+    DynamicFormsCoreModule
   ],
   entryComponents: [
     BootstrapFormControlComponent,
@@ -95,10 +95,10 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     SelectComponent
   ]
 })
-export class BootstrapDynamicFormsModule {
+export class DynamicFormsBootstrapModule {
   static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
     return {
-      ngModule: BootstrapDynamicFormsModule,
+      ngModule: DynamicFormsBootstrapModule,
       providers: [
         {
           provide: FORM_CONFIG,

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BootstrapDynamicFormsModule } from '@dynamic-forms/bootstrap';
+import { DynamicFormsBootstrapModule } from '@dynamic-forms/bootstrap';
 import { ExampleResolver } from './../example.resolver';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
@@ -17,7 +17,7 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
         }
       }
     ]),
-    BootstrapDynamicFormsModule.forRoot()
+    DynamicFormsBootstrapModule.forRoot()
   ],
   declarations: [
     BootstrapExamplesComponent

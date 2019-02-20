@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule } from '@dynamic-forms/core';
+import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
 import { FormComponentFactory } from '@dynamic-forms/core';
@@ -65,7 +65,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule,
+    DynamicFormsCoreModule,
     CheckboxModule,
     TextboxModule,
     NumberboxModule,
@@ -75,7 +75,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     MaterialFormControlComponent
   ],
   exports: [
-    DynamicFormsModule
+    DynamicFormsCoreModule
   ],
   entryComponents: [
     MaterialFormControlComponent,
@@ -85,10 +85,10 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     SelectComponent
   ]
 })
-export class MaterialDynamicFormsModule {
+export class DynamicFormsMaterialModule {
   static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
     return {
-      ngModule: MaterialDynamicFormsModule,
+      ngModule: DynamicFormsMaterialModule,
       providers: [
         {
           provide: FORM_CONFIG,
