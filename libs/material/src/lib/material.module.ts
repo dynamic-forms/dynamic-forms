@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
@@ -14,7 +15,7 @@ import { FormGroupBuilder } from '@dynamic-forms/core';
 import { FormBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
-import { MaterialFormControlComponent } from './form-control/form-control.component';
+import { MatFormControlComponent } from './form-control/form-control.component';
 import { NumberboxComponent } from './form-control/numberbox/numberbox.component';
 import { NumberboxModule } from './form-control/numberbox/numberbox.module';
 import { SelectComponent } from './form-control/select/select.component';
@@ -28,19 +29,19 @@ const defaultFormConfig: FormConfig = {
     types: [
       { type: 'group', component: FormGroupComponent },
       { type: 'array', component: FormArrayComponent },
-      { type: 'control', component: MaterialFormControlComponent }
+      { type: 'control', component: MatFormControlComponent }
     ]
   },
   controlConfig: {
-    defaultType: null,
     types: [
       { type: 'checkbox', component: CheckboxComponent },
-      { type: 'text', component: TextboxComponent },
+      { type: 'text', component: TextboxComponent},
       { type: 'email', component: TextboxComponent },
-      { type: 'password', component: TextboxComponent },
+      { type: 'password', component: TextboxComponent},
       { type: 'number', component: NumberboxComponent },
       { type: 'select', component: SelectComponent }
-    ]
+    ],
+    defaultType: null
   },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
@@ -66,19 +67,20 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
+    MatFormFieldModule,
     CheckboxModule,
     TextboxModule,
     NumberboxModule,
     SelectModule
   ],
   declarations: [
-    MaterialFormControlComponent
+    MatFormControlComponent
   ],
   exports: [
     DynamicFormsCoreModule
   ],
   entryComponents: [
-    MaterialFormControlComponent,
+    MatFormControlComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,

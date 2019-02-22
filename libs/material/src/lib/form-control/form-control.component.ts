@@ -6,7 +6,7 @@ import { FormComponentFactory } from '@dynamic-forms/core';
   selector: 'material-form-control',
   templateUrl: './form-control.component.html'
 })
-export class MaterialFormControlComponent extends FormControlComponent {
+export class MatFormControlComponent extends FormControlComponent {
   constructor(componentFactory: FormComponentFactory) {
     super(componentFactory);
   }

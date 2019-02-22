@@ -21,7 +21,7 @@ import { SelectComponent } from './form-control/select/select.component';
 import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
-import { BootstrapFormInputWrapperComponent } from './form-field-wrapper/form-input-wrapper.component';
+import { BootstrapFormLabelWrapperComponent } from './form-field-wrapper/form-label-wrapper.component';
 import { BootstrapFormValidationComponent } from './form-validation/form-validation.component';
 
 const defaultFormConfig: FormConfig = {
@@ -35,7 +35,7 @@ const defaultFormConfig: FormConfig = {
   },
   wrapperConfig: {
     types: [
-      { type: 'label', component: BootstrapFormInputWrapperComponent }
+      { type: 'label', component: BootstrapFormLabelWrapperComponent }
     ]
   },
   controlConfig: {
@@ -80,7 +80,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   ],
   declarations: [
     BootstrapFormControlComponent,
-    BootstrapFormInputWrapperComponent,
+    BootstrapFormLabelWrapperComponent,
     BootstrapFormValidationComponent
   ],
   exports: [
@@ -88,7 +88,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   ],
   entryComponents: [
     BootstrapFormControlComponent,
-    BootstrapFormInputWrapperComponent,
+    BootstrapFormLabelWrapperComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,
