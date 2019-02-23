@@ -8,10 +8,8 @@ import { FormComponentFactory } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
 import { FormValidationBuilder } from '@dynamic-forms/core';
-import { FormControlBuilder } from '@dynamic-forms/core';
-import { FormArrayBuilder } from '@dynamic-forms/core';
-import { FormGroupBuilder } from '@dynamic-forms/core';
 import { FormBuilder } from '@dynamic-forms/core';
+import { FormFieldExpressionsBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './form-control/checkbox/checkbox.module';
 import { BootstrapFormControlComponent } from './form-control/form-control.component';
@@ -111,9 +109,7 @@ export class DynamicFormsBootstrapModule {
           deps: [FORM_CONFIG]
         },
         FormBuilder,
-        FormGroupBuilder,
-        FormArrayBuilder,
-        FormControlBuilder,
+        FormFieldExpressionsBuilder,
         FormValidationBuilder,
         FormComponentFactory
       ]

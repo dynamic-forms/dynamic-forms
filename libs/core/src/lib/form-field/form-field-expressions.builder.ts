@@ -1,17 +1,16 @@
+import { Injectable } from '@angular/core';
 import { ExpressionDependency, ExpressionFunction } from './expression';
 import { FormField } from './form-field';
 import { FormFieldExpression, FormFieldExpressions} from './form-field-expressions';
-import { FormFieldTemplate } from './form-field-template';
 
-export abstract class FormFieldBuilder<Template extends FormFieldTemplate, Field extends FormField> {
+@Injectable()
+export class FormFieldExpressionsBuilder {
   private readonly expressionArguments = [
     { name: 'model', pattern: /model+[.\w]+/g },
     { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
     { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
   ];
   private readonly expressionArgumentNames = this.expressionArguments.map(arg => arg.name);
-
-  abstract createField(root: FormField, parent: FormField, template: Template): Field;
 
   createExpressions(field: FormField): FormFieldExpressions {
     const expressions = field.template.expressions;

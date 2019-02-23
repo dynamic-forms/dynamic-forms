@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormArrayBuilder } from './form-array/form-array.builder';
 import { FormArrayComponent } from './form-array/form-array.component';
-import { FormComponentFactory } from './form-component/form-component.factory';
-import { FormControlBuilder } from './form-control/form-control.builder';
 import { FormControlComponent } from './form-control/form-control.component';
+import { FormFieldExpressionsBuilder } from './form-field/form-field-expressions.builder';
 import { FormFieldComponent } from './form-field/form-field.component';
-import { FormGroupBuilder } from './form-group/form-group.builder';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { FormComponentFactory } from './form/form-component.factory';
 import { FormConfig, FORM_CONFIG } from './form/form-config';
 import { FormConfigService } from './form/form-config.service';
 import { FormBuilder } from './form/form.builder';
@@ -82,9 +80,7 @@ export class DynamicFormsCoreModule {
         },
         FormConfigService,
         FormBuilder,
-        FormGroupBuilder,
-        FormArrayBuilder,
-        FormControlBuilder,
+        FormFieldExpressionsBuilder,
         FormValidationBuilder,
         FormComponentFactory
       ]
