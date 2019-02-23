@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDynamicFormValidationModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
 import { NumberboxComponent } from './numberbox.component';
 
 @NgModule({
@@ -10,9 +11,13 @@ import { NumberboxComponent } from './numberbox.component';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDynamicFormValidationModule
   ],
   declarations: [
+    NumberboxComponent
+  ],
+  entryComponents: [
     NumberboxComponent
   ]
 })
