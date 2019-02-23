@@ -6,9 +6,7 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
 
 @Injectable()
 export class DynamicFormConfigService {
-  constructor(@Inject(DYNAMIC_FORM_CONFIG) private formConfig: DynamicFormConfig) {
-    console.log('formConfig:', this.formConfig);
-  }
+  constructor(@Inject(DYNAMIC_FORM_CONFIG) private formConfig: DynamicFormConfig) {}
 
   getFieldConfig(type: FormFieldType) {
     const config = this.formConfig.fieldConfig;
