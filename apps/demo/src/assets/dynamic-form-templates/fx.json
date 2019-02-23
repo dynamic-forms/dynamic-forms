@@ -49,6 +49,28 @@
         "min": true,
         "max": true
       }
+    }, {
+      "key": "startDate",
+      "type": "control",
+      "label": "Start Date",
+      "input": {
+        "type": "datepicker",
+        "placeholder": "Enter the start date"
+      },
+      "validation": {
+        "required": true
+      }
+    }, {
+      "key": "endDate",
+      "type": "control",
+      "label": "End Date",
+      "input": {
+        "type": "datepicker",
+        "placeholder": "Enter the end date"
+      },
+      "validation": {
+        "required": true
+      }
     }]
   }]
 }

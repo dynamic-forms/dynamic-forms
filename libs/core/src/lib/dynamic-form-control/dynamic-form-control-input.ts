@@ -4,6 +4,7 @@ import { DynamicFormControlType } from './dynamic-form-control-type';
 export interface DynamicFormControlInput {
   type: DynamicFormControlType;
   placeholder: string;
+  inputType?: string;
   options?: DynamicFormControlOptions;
   readonly?: boolean;
   pattern?: string | RegExp;

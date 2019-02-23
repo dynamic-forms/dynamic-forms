@@ -5,13 +5,15 @@ import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { DynamicFormArrayComponent } from '@dynamic-forms/core';
 import { DynamicFormGroupComponent } from '@dynamic-forms/core';
 import { DynamicFormComponentFactory } from '@dynamic-forms/core';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormValidationBuilder } from '@dynamic-forms/core';
 import { DynamicFormBuilder } from '@dynamic-forms/core';
 import { DynamicFormFieldExpressionsBuilder } from '@dynamic-forms/core';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { CheckboxComponent } from './dynamic-form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './dynamic-form-control/checkbox/checkbox.module';
+import { DatepickerComponent } from './dynamic-form-control/datepicker/datepicker.component';
+import { DatepickerModule } from './dynamic-form-control/datepicker/datepicker.module';
 import { DropdownComponent } from './dynamic-form-control/dropdown/dropdown.component';
 import { DropdownModule } from './dynamic-form-control/dropdown/dropdown.module';
 import { BootstrapDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
@@ -39,6 +41,7 @@ const defaultConfig: DynamicFormConfig = {
   controlConfig: {
     types: [
       { type: 'checkbox', component: CheckboxComponent },
+      { type: 'datepicker', component: DatepickerComponent, wrappers: [ 'label' ] },
       { type: 'dropdown', component: DropdownComponent, wrappers: [ 'label' ] },
       { type: 'numberbox', component: NumberboxComponent, wrappers: [ 'label' ] },
       { type: 'textbox', component: TextboxComponent, wrappers: [ 'label' ] }
@@ -70,6 +73,7 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     DynamicFormsCoreModule,
     CheckboxModule,
     DropdownModule,
+    DatepickerModule,
     NumberboxModule,
     TextboxModule
   ],
@@ -86,6 +90,7 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     BootstrapDynamicLabelWrapperComponent,
     CheckboxComponent,
     DropdownComponent,
+    DatepickerComponent,
     NumberboxComponent,
     TextboxComponent
   ]
