@@ -1,0 +1,6 @@
+<div class="dynamic-form-group" [class.hidden]="template.hidden">
+  <div class="dynamic-form-group-label">{{ template.label }}</div>
+  <dynamic-form-field *ngFor="let field of fields" [field]="field"></dynamic-form-field>
+  <dynamic-form-validation [errors]="control.errors"></dynamic-form-validation>
+</div>
+<ng-content></ng-content>
