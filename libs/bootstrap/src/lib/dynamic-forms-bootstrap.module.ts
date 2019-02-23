@@ -1,28 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsCoreModule } from '@dynamic-forms/core';
-import { DynamicFormArrayComponent } from '@dynamic-forms/core';
+import { DynamicFormValidationBuilder } from '@dynamic-forms/core';
 import { DynamicFormGroupComponent } from '@dynamic-forms/core';
 import { DynamicFormComponentFactory } from '@dynamic-forms/core';
-import { DynamicFormConfigService } from '@dynamic-forms/core';
-import { DynamicFormValidationBuilder } from '@dynamic-forms/core';
+import { DynamicFormsCoreModule } from '@dynamic-forms/core';
+import { DynamicFormArrayComponent } from '@dynamic-forms/core';
 import { DynamicFormBuilder } from '@dynamic-forms/core';
 import { DynamicFormFieldExpressionsBuilder } from '@dynamic-forms/core';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
+import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { CheckboxComponent } from './dynamic-form-control/checkbox/checkbox.component';
-import { CheckboxModule } from './dynamic-form-control/checkbox/checkbox.module';
 import { DatepickerComponent } from './dynamic-form-control/datepicker/datepicker.component';
-import { DatepickerModule } from './dynamic-form-control/datepicker/datepicker.module';
 import { DropdownComponent } from './dynamic-form-control/dropdown/dropdown.component';
-import { DropdownModule } from './dynamic-form-control/dropdown/dropdown.module';
 import { BootstrapDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { BootstrapDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
 import { NumberboxComponent } from './dynamic-form-control/numberbox/numberbox.component';
-import { NumberboxModule } from './dynamic-form-control/numberbox/numberbox.module';
 import { TextboxComponent } from './dynamic-form-control/textbox/textbox.component';
-import { TextboxModule } from './dynamic-form-control/textbox/textbox.module';
+import { BootstrapDynamicFormFieldWrapperModule } from './dynamic-form-field-wrapper/dynamic-form-field-wrapper.module';
 import { BootstrapDynamicLabelWrapperComponent } from './dynamic-form-field-wrapper/dynamic-label-wrapper.component';
-import { BootstrapDynamicFormValidationComponent } from './dynamic-form-validation/dynamic-form-validation.component';
+import { BootstrapDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 
 const defaultConfig: DynamicFormConfig = {
   module: 'bootstrap',
@@ -71,28 +68,12 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    CheckboxModule,
-    DropdownModule,
-    DatepickerModule,
-    NumberboxModule,
-    TextboxModule
-  ],
-  declarations: [
-    BootstrapDynamicFormControlComponent,
-    BootstrapDynamicLabelWrapperComponent,
-    BootstrapDynamicFormValidationComponent
+    BootstrapDynamicFormControlModule,
+    BootstrapDynamicFormValidationModule,
+    BootstrapDynamicFormFieldWrapperModule
   ],
   exports: [
     DynamicFormsCoreModule
-  ],
-  entryComponents: [
-    BootstrapDynamicFormControlComponent,
-    BootstrapDynamicLabelWrapperComponent,
-    CheckboxComponent,
-    DropdownComponent,
-    DatepickerComponent,
-    NumberboxComponent,
-    TextboxComponent
   ]
 })
 export class DynamicFormsBootstrapModule {

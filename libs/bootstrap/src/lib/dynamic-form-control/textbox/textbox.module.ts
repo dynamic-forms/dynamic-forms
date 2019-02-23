@@ -10,6 +10,9 @@ import { TextboxComponent } from './textbox.component';
   ],
   declarations: [
     TextboxComponent
+  ],
+  entryComponents: [
+    TextboxComponent
   ]
 })
 export class TextboxModule {}

@@ -10,6 +10,9 @@ import { DatepickerComponent } from './datepicker.component';
   ],
   declarations: [
     DatepickerComponent
+  ],
+  entryComponents: [
+    DatepickerComponent
   ]
 })
 export class DatepickerModule {}

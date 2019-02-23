@@ -10,6 +10,9 @@ import { CheckboxComponent } from './checkbox.component';
   ],
   declarations: [
     CheckboxComponent
+  ],
+  entryComponents: [
+    CheckboxComponent
   ]
 })
 export class CheckboxModule {}

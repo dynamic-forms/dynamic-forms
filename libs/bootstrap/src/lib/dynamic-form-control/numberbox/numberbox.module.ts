@@ -10,6 +10,9 @@ import { NumberboxComponent } from './numberbox.component';
   ],
   declarations: [
     NumberboxComponent
+  ],
+  entryComponents: [
+    NumberboxComponent
   ]
 })
 export class NumberboxModule {}
