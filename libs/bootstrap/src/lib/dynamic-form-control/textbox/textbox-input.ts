@@ -1,5 +1,5 @@
-import { FormControlInput } from '@dynamic-forms/core';
+import { DynamicFormControlInput } from '@dynamic-forms/core';
 
-export interface TextboxInput extends FormControlInput {
+export interface TextboxInput extends DynamicFormControlInput {
   type: 'text' | 'email' | 'password';
 }

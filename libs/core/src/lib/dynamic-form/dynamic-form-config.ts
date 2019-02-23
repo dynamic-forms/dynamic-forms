@@ -1,15 +1,15 @@
 import { InjectionToken } from '@angular/core';
-import { FormFieldWrapperConfig } from '../dynamic-form-field-wrapper/form-field-wrapper-config';
-import { FormControlConfig } from './../dynamic-form-control/form-control-config';
-import { FormFieldConfig } from './../dynamic-form-field/form-field-config';
-import { FormValidationConfig } from './../dynamic-form-validation/form-validation-config';
+import { DynamicFormControlConfig } from '../dynamic-form-control/dynamic-form-control-config';
+import { DynamicFormFieldWrapperConfig } from '../dynamic-form-field-wrapper/dynamic-form-field-wrapper-config';
+import { DynamicFormFieldConfig } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 
 export interface DynamicFormConfig {
   module: string;
-  fieldConfig?: FormFieldConfig;
-  wrapperConfig?: FormFieldWrapperConfig;
-  controlConfig?: FormControlConfig;
-  validationConfig?: FormValidationConfig;
+  fieldConfig?: DynamicFormFieldConfig;
+  wrapperConfig?: DynamicFormFieldWrapperConfig;
+  controlConfig?: DynamicFormControlConfig;
+  validationConfig?: DynamicFormValidationConfig;
 }
 
 export const DYNAMIC_FORM_CONFIG = new InjectionToken<DynamicFormConfig>('DynamicFormConfig');

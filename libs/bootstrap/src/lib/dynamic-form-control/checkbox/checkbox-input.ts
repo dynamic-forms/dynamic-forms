@@ -1,5 +1,5 @@
-import { FormControlInput } from '@dynamic-forms/core';
+import { DynamicFormControlInput } from '@dynamic-forms/core';
 
-export interface CheckboxInput extends FormControlInput {
+export interface CheckboxInput extends DynamicFormControlInput {
   type: 'checkbox';
 }

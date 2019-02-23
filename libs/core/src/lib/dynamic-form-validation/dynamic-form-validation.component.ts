@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { FormValidationErrors } from './form-validation-errors';
+import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 
 @Component({
   selector: 'dynamic-form-validation',
@@ -8,7 +8,7 @@ import { FormValidationErrors } from './form-validation-errors';
   styleUrls: ['./dynamic-form-validation.component.scss']
 })
 export class DynamicFormValidationComponent {
-  @Input() errors: FormValidationErrors;
+  @Input() errors: DynamicFormValidationErrors;
 
   constructor(private configService: DynamicFormConfigService) {}
 

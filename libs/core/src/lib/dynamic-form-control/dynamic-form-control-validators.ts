@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 
-export interface FormControlValidator {
+export interface DynamicFormControlValidator {
   key: string;
   enabled: boolean;
   value: any;
@@ -8,4 +8,4 @@ export interface FormControlValidator {
   validator: ValidatorFn;
 }
 
-export type FormControlValidators = FormControlValidator[];
+export type DynamicFormControlValidators = DynamicFormControlValidator[];

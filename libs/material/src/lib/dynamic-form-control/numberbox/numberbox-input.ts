@@ -1,5 +1,5 @@
-import { FormControlInput } from '@dynamic-forms/core';
+import { DynamicFormControlInput } from '@dynamic-forms/core';
 
-export interface NumberboxInput extends FormControlInput {
+export interface NumberboxInput extends DynamicFormControlInput {
   type: 'number';
 }

@@ -1,8 +1,10 @@
 import { Input } from '@angular/core';
 import { DynamicFormControl } from './dynamic-form-control';
-import { FormControlInput } from './form-control-input';
+import { DynamicFormControlInput } from './dynamic-form-control-input';
 
-export abstract class DynamicFormControlInputComponent<FormInput extends FormControlInput = FormControlInput> {
+export abstract class DynamicFormControlInputComponent<
+  FormInput extends DynamicFormControlInput = DynamicFormControlInput
+> {
   @Input() field: DynamicFormControl<FormInput>;
 
   get id() { return this.field.path; }

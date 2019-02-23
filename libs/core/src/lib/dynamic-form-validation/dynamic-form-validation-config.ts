@@ -1,4 +1,4 @@
-export interface FormValidationConfig {
+export interface DynamicFormValidationConfig {
   defaultMessage: string;
   messages: { [key: string]: string };
 }

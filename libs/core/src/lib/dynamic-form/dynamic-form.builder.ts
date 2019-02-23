@@ -3,7 +3,7 @@ import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayTemplate } from '../dynamic-form-array/dynamic-form-array-template';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
-import { FormControlValidator, FormControlValidators } from '../dynamic-form-control/form-control-validators';
+import { DynamicFormControlValidator, DynamicFormControlValidators } from '../dynamic-form-control/dynamic-form-control-validators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormFieldExpressionsBuilder } from '../dynamic-form-field/dynamic-form-field-expressions.builder';
@@ -62,17 +62,17 @@ export class DynamicFormBuilder {
     });
   }
 
-  private createExpressions(field: DynamicFormField): DynamicFormFieldExpressions  {
+  private createExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
     return this.expressionsBuilder.createExpressions(field);
   }
 
-  private createValidators(template: DynamicFormControlTemplate): FormControlValidators {
+  private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidators {
     return template.validation ? Object.keys(template.validation).map(key => {
       return this.createValidator(template, key);
     }).filter(validator => !!validator) : [];
   }
 
-  private createValidator(template: DynamicFormControlTemplate, key: string): FormControlValidator {
+  private createValidator(template: DynamicFormControlTemplate, key: string): DynamicFormControlValidator {
     if (typeof template.validation[key] !== 'boolean' || template.validation[key]) {
       const enabled = template.validation[key];
       const value = template.input[key];

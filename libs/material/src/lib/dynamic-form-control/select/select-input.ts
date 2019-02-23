@@ -1,5 +1,5 @@
-import { FormControlInput } from '@dynamic-forms/core';
+import { DynamicFormControlInput } from '@dynamic-forms/core';
 
-export interface SelectInput extends FormControlInput {
+export interface SelectInput extends DynamicFormControlInput {
   type: 'select';
 }
