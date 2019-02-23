@@ -44,7 +44,8 @@
       "type": "control",
       "label": "Email",
       "input": {
-        "type": "email",
+        "type": "textbox",
+        "inputType": "email",
         "placeholder": "Enter your email"
       },
       "validation": {
@@ -61,7 +62,8 @@
       "type": "control",
       "label": "Password",
       "input": {
-        "type": "password",
+        "type": "textbox",
+        "inputType": "password",
         "placeholder": "Enter your password"
       },
       "validation": {

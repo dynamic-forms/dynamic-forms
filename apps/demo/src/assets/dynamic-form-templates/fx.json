@@ -10,7 +10,7 @@
       "type": "control",
       "label": "Currency pair",
       "input": {
-        "type": "select",
+        "type": "dropdown",
         "placeholder": "Select the currency pair",
         "options": [
           { "value": "EURUSD", "label": "EUR/USD" },
@@ -28,7 +28,7 @@
         "input.options": "(function(currencyPair) { if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(3,6); return [ { 'value': underlying, 'label': underlying }, { 'value': accounting, 'label': accounting }]; } return []; })(parentModel.currencyPair)"
       },
       "input": {
-        "type": "select",
+        "type": "dropdown",
         "placeholder": "Select the notional currency"
       },
       "validation": {
@@ -39,7 +39,7 @@
       "type": "control",
       "label": "Notional",
       "input": {
-        "type": "number",
+        "type": "numberbox",
         "placeholder": "Enter the notional",
         "min": 0,
         "max": 20

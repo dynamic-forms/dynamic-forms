@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { SelectComponent } from './select.component';
+import { DatepickerComponent } from './datepicker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatDatepickerModule
   ],
   declarations: [
-    SelectComponent
+    DatepickerComponent
   ]
 })
-export class SelectModule {}
+export class DatepickerModule {}

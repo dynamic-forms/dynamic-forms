@@ -1,0 +1,7 @@
+<mat-form-field appearance="standard">
+  <mat-label>{{ template.label }}</mat-label>
+  <input matInput [matDatepicker]="myDatepicker" [formControl]="control">
+  <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+  <mat-datepicker #myDatepicker></mat-datepicker>
+</mat-form-field>
+  

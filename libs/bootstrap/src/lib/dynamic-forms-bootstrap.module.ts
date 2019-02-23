@@ -12,11 +12,11 @@ import { DynamicFormBuilder } from '@dynamic-forms/core';
 import { DynamicFormFieldExpressionsBuilder } from '@dynamic-forms/core';
 import { CheckboxComponent } from './dynamic-form-control/checkbox/checkbox.component';
 import { CheckboxModule } from './dynamic-form-control/checkbox/checkbox.module';
+import { DropdownComponent } from './dynamic-form-control/dropdown/dropdown.component';
+import { DropdownModule } from './dynamic-form-control/dropdown/dropdown.module';
 import { BootstrapDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { NumberboxComponent } from './dynamic-form-control/numberbox/numberbox.component';
 import { NumberboxModule } from './dynamic-form-control/numberbox/numberbox.module';
-import { SelectComponent } from './dynamic-form-control/select/select.component';
-import { SelectModule } from './dynamic-form-control/select/select.module';
 import { TextboxComponent } from './dynamic-form-control/textbox/textbox.component';
 import { TextboxModule } from './dynamic-form-control/textbox/textbox.module';
 import { BootstrapDynamicLabelWrapperComponent } from './dynamic-form-field-wrapper/dynamic-label-wrapper.component';
@@ -37,14 +37,11 @@ const defaultConfig: DynamicFormConfig = {
     ]
   },
   controlConfig: {
-    defaultType: null,
     types: [
       { type: 'checkbox', component: CheckboxComponent },
-      { type: 'text', component: TextboxComponent, wrappers: [ 'label' ] },
-      { type: 'email', component: TextboxComponent, wrappers: [ 'label' ] },
-      { type: 'password', component: TextboxComponent, wrappers: [ 'label' ] },
-      { type: 'number', component: NumberboxComponent, wrappers: [ 'label' ] },
-      { type: 'select', component: SelectComponent, wrappers: [ 'label' ] }
+      { type: 'dropdown', component: DropdownComponent, wrappers: [ 'label' ] },
+      { type: 'numberbox', component: NumberboxComponent, wrappers: [ 'label' ] },
+      { type: 'textbox', component: TextboxComponent, wrappers: [ 'label' ] }
     ]
   },
   validationConfig: {
@@ -72,9 +69,9 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     ReactiveFormsModule,
     DynamicFormsCoreModule,
     CheckboxModule,
-    TextboxModule,
+    DropdownModule,
     NumberboxModule,
-    SelectModule
+    TextboxModule
   ],
   declarations: [
     BootstrapDynamicFormControlComponent,
@@ -88,9 +85,9 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     BootstrapDynamicFormControlComponent,
     BootstrapDynamicLabelWrapperComponent,
     CheckboxComponent,
-    TextboxComponent,
+    DropdownComponent,
     NumberboxComponent,
-    SelectComponent
+    TextboxComponent
   ]
 })
 export class DynamicFormsBootstrapModule {

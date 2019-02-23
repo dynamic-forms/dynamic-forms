@@ -19,7 +19,7 @@
       "label": "Name",
       "type": "control",
       "input": {
-        "type": "text",
+        "type": "textbox",
         "placeholder": "Enter your name"
       },
       "validation": {
@@ -33,7 +33,8 @@
       "type": "control",
       "label": "Email",
       "input": {
-        "type": "email",
+        "type": "textbox",
+        "inputType": "email",
         "placeholder": "Enter your email"
       },
       "validation": {
@@ -48,7 +49,8 @@
       "type": "control",
       "label": "Password",
       "input": {
-        "type": "password",
+        "type": "textbox",
+        "inputType": "password",
         "placeholder": "Enter your password"
       },
       "validation": {
@@ -73,7 +75,7 @@
         "type": "control",
         "label": "Town",
         "input": {
-          "type": "text",
+          "type": "textbox",
           "placeholder": "Enter your town",
           "minLength": 5,
           "maxLength": 10
@@ -88,7 +90,7 @@
         "type": "control",
         "label": "Street",
         "input": {
-          "type": "text",
+          "type": "textbox",
           "placeholder": "Enter your street",
           "minLength": 5,
           "maxLength": 10

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SelectComponent } from './select.component';
+import { DropdownComponent } from './dropdown.component';
 
 @NgModule({
   imports: [
@@ -9,7 +9,7 @@ import { SelectComponent } from './select.component';
     ReactiveFormsModule
   ],
   declarations: [
-    SelectComponent
+    DropdownComponent
   ]
 })
-export class SelectModule {}
+export class DropdownModule {}

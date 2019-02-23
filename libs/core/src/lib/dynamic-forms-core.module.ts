@@ -24,8 +24,7 @@ export const defaultConfig: DynamicFormConfig = {
     ]
   },
   controlConfig: {
-    types: [],
-    defaultType: null
+    types: []
   },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
