@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialDynamicFormsModule } from '@dynamic-forms/material';
+import { DynamicFormsMaterialModule } from '@dynamic-forms/material';
 import { ExampleResolver } from '../example.resolver';
 import { MaterialExamplesComponent } from './material-examples.component';
 
@@ -17,7 +17,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
         }
       }
     ]),
-    MaterialDynamicFormsModule.forRoot()
+    DynamicFormsMaterialModule.forRoot()
   ],
   declarations: [
     MaterialExamplesComponent

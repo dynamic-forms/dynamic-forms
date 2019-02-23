@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormArrayBuilder } from './form-array/form-array.builder';
 import { FormArrayComponent } from './form-array/form-array.component';
+import { FormComponentFactory } from './form-component/form-component.factory';
 import { FormControlBuilder } from './form-control/form-control.builder';
 import { FormControlComponent } from './form-control/form-control.component';
-import { FormControlFactory } from './form-control/form-control.factory';
 import { FormFieldComponent } from './form-field/form-field.component';
-import { FormFieldFactory } from './form-field/form-field.factory';
 import { FormGroupBuilder } from './form-group/form-group.builder';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormValidationBuilder } from './form-validation/form-validation.builder';
 import { FormValidationComponent } from './form-validation/form-validation.component';
-import { FormConfig } from './form/form-config';
+import { FormConfig, FORM_CONFIG } from './form/form-config';
+import { FormConfigService } from './form/form-config.service';
 import { FormBuilder } from './form/form.builder';
 import { FormComponent } from './form/form.component';
 
@@ -26,8 +26,8 @@ export const defaultFormConfig: FormConfig = {
     ]
   },
   controlConfig: {
-    defaultType: null,
-    types: []
+    types: [],
+    defaultType: null
   },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
@@ -68,15 +68,26 @@ export const defaultFormConfig: FormConfig = {
     FormGroupComponent,
     FormArrayComponent,
     FormControlComponent
-  ],
-  providers: [
-    FormBuilder,
-    FormGroupBuilder,
-    FormArrayBuilder,
-    FormControlBuilder,
-    FormValidationBuilder,
-    FormFieldFactory,
-    FormControlFactory
   ]
 })
-export class DynamicFormsModule {}
+export class DynamicFormsCoreModule {
+  static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
+    return {
+      ngModule: DynamicFormsCoreModule,
+      providers: [
+        {
+          provide: FORM_CONFIG,
+          useValue: formConfig,
+          multi: true
+        },
+        FormConfigService,
+        FormBuilder,
+        FormGroupBuilder,
+        FormArrayBuilder,
+        FormControlBuilder,
+        FormValidationBuilder,
+        FormComponentFactory
+      ]
+    };
+  }
+}

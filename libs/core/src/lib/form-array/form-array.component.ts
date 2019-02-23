@@ -12,5 +12,5 @@ export class FormArrayComponent extends FormFieldBase<FormArrayField> {
     super();
   }
 
-  get fields() { return this.formField.fields; }
+  get fields() { return this.field.fields; }
 }

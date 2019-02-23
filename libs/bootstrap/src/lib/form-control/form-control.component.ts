@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControlComponent } from '@dynamic-forms/core';
-import { FormControlFactory } from '@dynamic-forms/core';
+import { FormComponentFactory } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bootstrap-form-control',
@@ -8,7 +8,7 @@ import { FormControlFactory } from '@dynamic-forms/core';
   styleUrls: ['./form-control.component.scss']
 })
 export class BootstrapFormControlComponent extends FormControlComponent {
-  constructor(componentFactory: FormControlFactory) {
+  constructor(componentFactory: FormComponentFactory) {
     super(componentFactory);
   }
 }

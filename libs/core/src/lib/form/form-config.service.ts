@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { FormControlType } from './../form-control/form-control-type';
+import { FormFieldWrapperType } from './../form-field-wrapper/form-field-wrapper-type';
 import { FormFieldType } from './../form-field/form-field-type';
 import { FormConfig, FORM_CONFIG } from './form-config';
 
@@ -10,8 +11,13 @@ export class FormConfigService {
   }
 
   getFieldConfig(type: FormFieldType) {
-    const fieldConfig = this.formConfig.fieldConfig;
-    return fieldConfig.types.find(f => f.type === type);
+    const config = this.formConfig.fieldConfig;
+    return config.types.find(f => f.type === type);
+  }
+
+  getWrapperConfig(type: FormFieldWrapperType) {
+    const config = this.formConfig.wrapperConfig;
+    return config.types.find(f => f.type === type);
   }
 
   getControlConfig(type: FormControlType) {

@@ -12,5 +12,5 @@ export class FormGroupComponent extends FormFieldBase<FormGroupField> {
     super();
   }
 
-  get fields() { return this.formField.fields; }
+  get fields() { return this.field.fields; }
 }

@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule } from '@dynamic-forms/core';
+import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { FormArrayComponent } from '@dynamic-forms/core';
 import { FormGroupComponent } from '@dynamic-forms/core';
+import { FormComponentFactory } from '@dynamic-forms/core';
 import { FormConfig, FORM_CONFIG } from '@dynamic-forms/core';
 import { FormConfigService } from '@dynamic-forms/core';
-import { FormControlFactory } from '@dynamic-forms/core';
-import { FormComponent } from '@dynamic-forms/core';
-import { FormFieldFactory } from '@dynamic-forms/core';
 import { FormValidationBuilder } from '@dynamic-forms/core';
 import { FormControlBuilder } from '@dynamic-forms/core';
 import { FormArrayBuilder } from '@dynamic-forms/core';
@@ -23,6 +21,7 @@ import { SelectComponent } from './form-control/select/select.component';
 import { SelectModule } from './form-control/select/select.module';
 import { TextboxComponent } from './form-control/textbox/textbox.component';
 import { TextboxModule } from './form-control/textbox/textbox.module';
+import { BootstrapFormLabelWrapperComponent } from './form-field-wrapper/form-label-wrapper.component';
 import { BootstrapFormValidationComponent } from './form-validation/form-validation.component';
 
 const defaultFormConfig: FormConfig = {
@@ -34,15 +33,20 @@ const defaultFormConfig: FormConfig = {
       { type: 'control', component: BootstrapFormControlComponent }
     ]
   },
+  wrapperConfig: {
+    types: [
+      { type: 'label', component: BootstrapFormLabelWrapperComponent }
+    ]
+  },
   controlConfig: {
     defaultType: null,
     types: [
       { type: 'checkbox', component: CheckboxComponent },
-      { type: 'text', component: TextboxComponent },
-      { type: 'email', component: TextboxComponent },
-      { type: 'password', component: TextboxComponent },
-      { type: 'number', component: NumberboxComponent },
-      { type: 'select', component: SelectComponent }
+      { type: 'text', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'email', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'password', component: TextboxComponent, wrappers: [ 'label' ] },
+      { type: 'number', component: NumberboxComponent, wrappers: [ 'label' ] },
+      { type: 'select', component: SelectComponent, wrappers: [ 'label' ] }
     ]
   },
   validationConfig: {
@@ -68,7 +72,7 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule,
+    DynamicFormsCoreModule,
     CheckboxModule,
     TextboxModule,
     NumberboxModule,
@@ -76,23 +80,25 @@ export function configureFormConfigService(formConfigs: FormConfig[]): FormConfi
   ],
   declarations: [
     BootstrapFormControlComponent,
+    BootstrapFormLabelWrapperComponent,
     BootstrapFormValidationComponent
   ],
   exports: [
-    FormComponent
+    DynamicFormsCoreModule
   ],
   entryComponents: [
     BootstrapFormControlComponent,
+    BootstrapFormLabelWrapperComponent,
     CheckboxComponent,
     TextboxComponent,
     NumberboxComponent,
     SelectComponent
   ]
 })
-export class BootstrapDynamicFormsModule {
+export class DynamicFormsBootstrapModule {
   static forRoot(formConfig: FormConfig = defaultFormConfig): ModuleWithProviders {
     return {
-      ngModule: BootstrapDynamicFormsModule,
+      ngModule: DynamicFormsBootstrapModule,
       providers: [
         {
           provide: FORM_CONFIG,
@@ -109,8 +115,7 @@ export class BootstrapDynamicFormsModule {
         FormArrayBuilder,
         FormControlBuilder,
         FormValidationBuilder,
-        FormFieldFactory,
-        FormControlFactory
+        FormComponentFactory
       ]
     };
   }
