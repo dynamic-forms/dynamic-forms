@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "bootstrap",
+      "bsDynamic",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "bootstrap",
+      "bs-dynamic",
       "kebab-case"
     ]
   }

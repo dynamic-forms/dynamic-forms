@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormTemplate } from '@dynamic-forms/core';
+import { DynamicFormTemplate } from '@dynamic-forms/core';
 
 @Component({
   selector: 'app-bootstrap-examples',
@@ -8,7 +8,7 @@ import { FormTemplate } from '@dynamic-forms/core';
   styleUrls: ['./bootstrap-examples.component.scss']
 })
 export class BootstrapExamplesComponent implements OnInit {
-  template: FormTemplate;
+  template: DynamicFormTemplate;
   model: any;
 
   constructor(private route: ActivatedRoute) {}

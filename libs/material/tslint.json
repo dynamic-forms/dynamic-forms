@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "material",
+      "mat-dynamic",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "material",
+      "mat-dynamic",
       "kebab-case"
     ]
   }
