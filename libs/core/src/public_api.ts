@@ -2,6 +2,7 @@
  * Public API Surface of core
  */
 
+export * from './lib/dynamic-forms-core.config';
 export * from './lib/dynamic-forms-core.module';
 export * from './lib/dynamic-form/dynamic-form-component.factory';
 export * from './lib/dynamic-form/dynamic-form-config';
