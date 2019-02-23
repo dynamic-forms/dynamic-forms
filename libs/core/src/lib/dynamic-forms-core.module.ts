@@ -23,7 +23,7 @@ export const defaultConfig: DynamicFormConfig = {
       { type: 'control', component: DynamicFormControlComponent }
     ]
   },
-  controlConfig: {
+  inputConfig: {
     types: []
   },
   validationConfig: {

@@ -10,19 +10,25 @@ import { DynamicFormBuilder } from '@dynamic-forms/core';
 import { DynamicFormFieldExpressionsBuilder } from '@dynamic-forms/core';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
-import { CheckboxComponent } from './dynamic-form-control/checkbox/checkbox.component';
-import { DatepickerComponent } from './dynamic-form-control/datepicker/datepicker.component';
-import { DropdownComponent } from './dynamic-form-control/dropdown/dropdown.component';
 import { BootstrapDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { BootstrapDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
-import { NumberboxComponent } from './dynamic-form-control/numberbox/numberbox.component';
-import { TextboxComponent } from './dynamic-form-control/textbox/textbox.component';
-import { BootstrapDynamicFormFieldWrapperModule } from './dynamic-form-field-wrapper/dynamic-form-field-wrapper.module';
-import { BootstrapDynamicLabelWrapperComponent } from './dynamic-form-field-wrapper/dynamic-label-wrapper.component';
+import { CheckboxComponent } from './dynamic-form-input/checkbox/checkbox.component';
+import { DatepickerComponent } from './dynamic-form-input/datepicker/datepicker.component';
+import { DropdownComponent } from './dynamic-form-input/dropdown/dropdown.component';
+import { BootstrapDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
+import { NumberboxComponent } from './dynamic-form-input/numberbox/numberbox.component';
+import { TextboxComponent } from './dynamic-form-input/textbox/textbox.component';
 import { BootstrapDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
+import { BootstrapDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
+import { BootstrapDynamicLabelWrapperComponent } from './dynamic-form-wrapper/dynamic-label-wrapper.component';
 
 const defaultConfig: DynamicFormConfig = {
   module: 'bootstrap',
+  wrapperConfig: {
+    types: [
+      { type: 'label', component: BootstrapDynamicLabelWrapperComponent }
+    ]
+  },
   fieldConfig: {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },
@@ -30,12 +36,7 @@ const defaultConfig: DynamicFormConfig = {
       { type: 'control', component: BootstrapDynamicFormControlComponent }
     ]
   },
-  wrapperConfig: {
-    types: [
-      { type: 'label', component: BootstrapDynamicLabelWrapperComponent }
-    ]
-  },
-  controlConfig: {
+  inputConfig: {
     types: [
       { type: 'checkbox', component: CheckboxComponent },
       { type: 'datepicker', component: DatepickerComponent, wrappers: [ 'label' ] },
@@ -69,8 +70,9 @@ export function configureFormConfigService(configs: DynamicFormConfig[]): Dynami
     ReactiveFormsModule,
     DynamicFormsCoreModule,
     BootstrapDynamicFormControlModule,
+    BootstrapDynamicFormInputModule,
     BootstrapDynamicFormValidationModule,
-    BootstrapDynamicFormFieldWrapperModule
+    BootstrapDynamicFormWrapperModule
   ],
   exports: [
     DynamicFormsCoreModule

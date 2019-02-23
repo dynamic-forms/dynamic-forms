@@ -2,13 +2,12 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
-import { DynamicFormControlInput } from './dynamic-form-control-input';
+import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidators } from './dynamic-form-control-validators';
 
-export class DynamicFormControl<
-  FormInput extends DynamicFormControlInput = DynamicFormControlInput
-> extends DynamicFormField<DynamicFormControlTemplate<FormInput>, FormControl> {
+export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput>
+  extends DynamicFormField<DynamicFormControlTemplate<FormInput>, FormControl> {
 
   protected _controlValue: Subscription;
   protected _validators: DynamicFormControlValidators;

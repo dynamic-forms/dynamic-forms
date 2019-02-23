@@ -1,10 +1,10 @@
-import { DynamicFormFieldWrapperType } from './../dynamic-form-field-wrapper/dynamic-form-field-wrapper-type';
+import { DynamicFormWrapperType } from '../dynamic-form-wrapper/dynamic-form-wrapper-type';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 
 export interface DynamicFormFieldTemplate {
   key: string;
   type: DynamicFormFieldType;
-  wrappers: DynamicFormFieldWrapperType[];
+  wrappers: DynamicFormWrapperType[];
   label: string;
   hidden?: boolean;
   disabled?: boolean;
