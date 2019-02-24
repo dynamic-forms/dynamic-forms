@@ -50,7 +50,6 @@ export const dynamicFormsCoreEntryComponents = [
 ];
 
 export const dynamicFormsCoreServices = [
-  DynamicFormConfigService,
   DynamicFormBuilder,
   DynamicFormFieldExpressionsBuilder,
   DynamicFormValidationBuilder,

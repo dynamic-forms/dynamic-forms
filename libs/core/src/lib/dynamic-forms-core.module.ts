@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form/dynamic-form-config';
+import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
 import { dynamicFormsCoreComponents, dynamicFormsCoreConfig,
   dynamicFormsCoreEntryComponents, dynamicFormsCoreServices } from './dynamic-forms-core.config';
 
@@ -32,6 +33,7 @@ export class DynamicFormsCoreModule {
           useValue: config,
           multi: true
         },
+        DynamicFormConfigService,
         ...dynamicFormsCoreServices
       ]
     };
