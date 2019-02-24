@@ -1,9 +1,0 @@
-<mat-form-field appearance="standard">
-  <mat-label>{{ template.label }}</mat-label>
-  <mat-select [id]="id" [placeholder]="input.placeholder" [formControl]="control">
-    <ng-container *ngFor="let option of input.options">
-      <mat-option [value]="option">{{ option.label }}</mat-option>
-    </ng-container>
-  </mat-select>
-</mat-form-field>
-  

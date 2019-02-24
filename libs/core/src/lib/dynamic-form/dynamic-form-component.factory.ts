@@ -1,11 +1,11 @@
 import { ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
-import { DynamicFormControlTypeConfig } from '../dynamic-form-control/dynamic-form-control-config';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 
-export type DynamicFormComponentTypeConfig = DynamicFormFieldTypeConfig | DynamicFormControlTypeConfig;
+export type DynamicFormComponentTypeConfig = DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig;
 
 @Injectable()
 export class DynamicFormComponentFactory {
@@ -28,7 +28,7 @@ export class DynamicFormComponentFactory {
   }
 
   private getInputConfig(field: DynamicFormControl) {
-    return this.configService.getControlConfig(field.template.input.type);
+    return this.configService.getInputConfig(field.template.input.type);
   }
 
   private createComponent(container: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
