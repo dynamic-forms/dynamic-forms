@@ -9,6 +9,7 @@ import { BootstrapDynamicFormControlModule } from './dynamic-form-control/dynami
 import { BootstrapDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 import { BootstrapDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { BootstrapDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
+import { BootstrapDynamicFormModule } from './dynamic-form/dynamic-form.module';
 import { dynamicFormsBootstrapConfig, dynamicFormsBootstrapConfigService } from './dynamic-forms-bootstrap.config';
 
 @NgModule({
@@ -16,13 +17,14 @@ import { dynamicFormsBootstrapConfig, dynamicFormsBootstrapConfigService } from 
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
+    BootstrapDynamicFormModule,
     BootstrapDynamicFormControlModule,
     BootstrapDynamicFormInputModule,
     BootstrapDynamicFormValidationModule,
     BootstrapDynamicFormWrapperModule
   ],
   exports: [
-    DynamicFormsCoreModule
+    BootstrapDynamicFormModule
   ]
 })
 export class DynamicFormsBootstrapModule {

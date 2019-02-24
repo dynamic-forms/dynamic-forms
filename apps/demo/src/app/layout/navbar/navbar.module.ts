@@ -6,14 +6,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { DocsMenuComponent } from './docs-menu/docs-menu.component';
+import { ExamplesMenuComponent } from './examples-menu/examples-menu.component';
 import { NavbarComponent } from './navbar.component';
 import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.component';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    SidebarToggleComponent
-  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -22,6 +20,12 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
     MatMenuModule,
     MatToolbarModule,
     MatTooltipModule
+  ],
+  declarations: [
+    NavbarComponent,
+    SidebarToggleComponent,
+    DocsMenuComponent,
+    ExamplesMenuComponent
   ],
   exports: [
     NavbarComponent

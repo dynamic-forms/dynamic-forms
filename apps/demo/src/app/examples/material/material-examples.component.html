@@ -1,6 +1,12 @@
-<div class="sidebar">
-  <pre>{{ model | json }}</pre>
-</div>
-<div class="content">
-  <dynamic-form [template]="template" [model]="model"></dynamic-form>  
-</div>
+<mat-tab-group>
+  <mat-tab label="Form">
+    <mat-dynamic-form [template]="template" [model]="model">  
+    </mat-dynamic-form>  
+  </mat-tab>
+  <mat-tab label="Template"> 
+    <pre>{{ template | json }}</pre>
+  </mat-tab>
+  <mat-tab label="Model">
+    <pre>{{ model | json }}</pre>
+  </mat-tab>
+</mat-tab-group>

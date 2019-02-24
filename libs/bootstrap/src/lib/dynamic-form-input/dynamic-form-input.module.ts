@@ -4,6 +4,7 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { NumberboxModule } from './numberbox/numberbox.module';
+import { TextareaModule } from './textarea/textarea.module';
 import { TextboxModule } from './textbox/textbox.module';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { TextboxModule } from './textbox/textbox.module';
     DatepickerModule,
     DropdownModule,
     NumberboxModule,
+    TextareaModule,
     TextboxModule
   ]
 })
