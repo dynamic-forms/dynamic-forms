@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { DynamicFormsBootstrapModule } from '@dynamic-forms/bootstrap';
-import { ExampleResolver } from './../example.resolver';
-import { BootstrapExamplesComponent } from './bootstrap-examples.component';
+import { ExamplesResolver } from './../examples.resolver';
+import { ExamplesBootstrapComponent } from './examples-bootstrap.component';
 
 @NgModule({
   imports: [
@@ -13,19 +13,19 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
     RouterModule.forChild([
       {
         path: ':templateId',
-        component: BootstrapExamplesComponent,
+        component: ExamplesBootstrapComponent,
         resolve: {
-          template: ExampleResolver
+          template: ExamplesResolver
         }
       }
     ]),
     DynamicFormsBootstrapModule.forRoot()
   ],
   declarations: [
-    BootstrapExamplesComponent
+    ExamplesBootstrapComponent
   ],
   exports: [
     RouterModule
   ]
 })
-export class BootstrapExamplesModule {}
+export class ExamplesBootstrapModule {}

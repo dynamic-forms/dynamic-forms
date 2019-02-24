@@ -9,11 +9,11 @@ export const appRoutes: Routes = [
   },
   {
     path: 'examples/bootstrap',
-    loadChildren: './examples/bootstrap/bootstrap-examples.module#BootstrapExamplesModule'
+    loadChildren: './examples/bootstrap/examples-bootstrap.module#ExamplesBootstrapModule'
   },
   {
     path: 'examples/material',
-    loadChildren: './examples/material/material-examples.module#MaterialExamplesModule'
+    loadChildren: './examples/material/examples-material.module#ExamplesMaterialModule'
   }
 ];
 

@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { DynamicFormTemplate } from '@dynamic-forms/core';
 
 @Component({
-  selector: 'app-material-examples',
-  templateUrl: './material-examples.component.html',
-  styleUrls: ['./material-examples.component.scss']
+  selector: 'app-examples-material',
+  templateUrl: './examples-material.component.html',
+  styleUrls: ['./examples-material.component.scss']
 })
-export class MaterialExamplesComponent implements OnInit {
+export class ExamplesMaterialComponent implements OnInit {
   template: DynamicFormTemplate;
   model: any;
 

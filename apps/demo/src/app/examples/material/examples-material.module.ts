@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { DynamicFormsMaterialModule } from '@dynamic-forms/material';
-import { ExampleResolver } from '../example.resolver';
-import { MaterialExamplesComponent } from './material-examples.component';
+import { ExamplesResolver } from '../examples.resolver';
+import { ExamplesMaterialComponent } from './examples-material.component';
 
 @NgModule({
   imports: [
@@ -13,16 +13,16 @@ import { MaterialExamplesComponent } from './material-examples.component';
     RouterModule.forChild([
       {
         path: ':templateId',
-        component: MaterialExamplesComponent,
+        component: ExamplesMaterialComponent,
         resolve: {
-          template: ExampleResolver
+          template: ExamplesResolver
         }
       }
     ]),
     DynamicFormsMaterialModule.forRoot()
   ],
   declarations: [
-    MaterialExamplesComponent
+    ExamplesMaterialComponent
   ]
 })
-export class MaterialExamplesModule {}
+export class ExamplesMaterialModule {}

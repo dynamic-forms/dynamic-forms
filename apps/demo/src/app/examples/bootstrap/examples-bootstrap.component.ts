@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { DynamicFormTemplate } from '@dynamic-forms/core';
 
 @Component({
-  selector: 'app-bootstrap-examples',
-  templateUrl: './bootstrap-examples.component.html',
-  styleUrls: ['./bootstrap-examples.component.scss']
+  selector: 'app-examples-bootstrap',
+  templateUrl: './examples-bootstrap.component.html',
+  styleUrls: ['./examples-bootstrap.component.scss']
 })
-export class BootstrapExamplesComponent implements OnInit {
+export class ExamplesBootstrapComponent implements OnInit {
   template: DynamicFormTemplate;
   model: any;
 
