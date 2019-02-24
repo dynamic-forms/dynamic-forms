@@ -1,7 +1,11 @@
 :host ::ng-deep {
-  @import "node_modules/bootstrap/scss/bootstrap.scss";
-
   .dynamic-form {
+    @import "node_modules/bootstrap/scss/functions";
+    @import "node_modules/bootstrap/scss/variables";
+    @import "node_modules/bootstrap/scss/mixins";
+    @import "node_modules/bootstrap/scss/reboot";
+    @import "node_modules/bootstrap/scss/forms";
+
     .dynamic-form-group {
       margin: 10px 0 20px 0;
     }
