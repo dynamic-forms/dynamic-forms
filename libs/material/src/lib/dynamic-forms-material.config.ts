@@ -4,6 +4,9 @@ import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-inp
 
 export const matDynamicFormsConfig: DynamicFormConfig = {
   module: 'material',
+  wrapperConfig: {
+    types: []
+  },
   fieldConfig: {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },
