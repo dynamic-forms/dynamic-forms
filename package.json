@@ -9,9 +9,12 @@
     "build:bootstrap": "ng build dynamic-forms-bootstrap",
     "build:material": "ng build dynamic-forms-material",
     "build:demo": "ng build dynamic-forms-demo --base-href /dynamic-forms-demo/",
+    "build:demo:prod": "ng build dynamic-forms-demo --prod --aot --base-href /dynamic-forms-demo/",
     "build:libs": "npm run build:core && npm run build:bootstrap && npm run build:material",
     "build:apps": "npm run build:demo",
+    "build:apps:prod": "npm run build:demo:prod",
     "build:all": "npm run build:libs && npm run build:apps",
+    "build:all:prod": "npm run build:libs && npm run build:apps:prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
