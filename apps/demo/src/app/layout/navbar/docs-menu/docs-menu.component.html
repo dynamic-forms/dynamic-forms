@@ -1,1 +1,12 @@
-<a mat-button routerLink="/docs">Documentation</a>
+<button mat-button [matMenuTriggerFor]="docs">
+  Documentation
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #docs="matMenu">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/docs/core">Core</a>
+    <a mat-list-item routerLink="/docs/bootstrap">Bootstrap</a>
+    <a mat-list-item routerLink="/docs/material">Material</a>
+ </mat-nav-list>
+</mat-menu>
