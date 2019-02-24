@@ -7,17 +7,7 @@ import { ExamplesComponent } from './examples.component';
     RouterModule.forChild([
       {
         path: 'examples',
-        component: ExamplesComponent,
-        /*children: [
-          {
-            path: 'bootstrap',
-            loadChildren: './bootstrap/bootstrap-examples.module#BootstrapExamplesModule'
-          },
-          {
-            path: 'material',
-            loadChildren: './material/material-examples.module#MaterialExamplesModule'
-          }
-        ]*/
+        component: ExamplesComponent
       }
     ])
   ],
