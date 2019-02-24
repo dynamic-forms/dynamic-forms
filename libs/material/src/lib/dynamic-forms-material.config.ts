@@ -1,12 +1,8 @@
 import { DynamicFormArrayComponent, DynamicFormConfig, DynamicFormConfigService, DynamicFormGroupComponent } from '@dynamic-forms/core';
 import { MatDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
-import { CheckboxComponent } from './dynamic-form-input/checkbox/checkbox.component';
-import { DatepickerComponent } from './dynamic-form-input/datepicker/datepicker.component';
-import { DropdownComponent } from './dynamic-form-input/dropdown/dropdown.component';
-import { NumberboxComponent } from './dynamic-form-input/numberbox/numberbox.component';
-import { TextboxComponent } from './dynamic-form-input/textbox/textbox.component';
+import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 
-export const dynamicFormsMaterialConfig: DynamicFormConfig = {
+export const matDynamicFormsConfig: DynamicFormConfig = {
   module: 'material',
   fieldConfig: {
     types: [
@@ -15,15 +11,7 @@ export const dynamicFormsMaterialConfig: DynamicFormConfig = {
       { type: 'control', component: MatDynamicFormControlComponent }
     ]
   },
-  inputConfig: {
-    types: [
-      { type: 'checkbox', component: CheckboxComponent },
-      { type: 'datepicker', component: DatepickerComponent },
-      { type: 'dropdown', component: DropdownComponent },
-      { type: 'numberbox', component: NumberboxComponent },
-      { type: 'textbox', component: TextboxComponent }
-    ]
-  },
+  inputConfig: matDynamicFormInputConfig,
   validationConfig: {
     defaultMessage: 'The field is invalid.',
     messages: {
@@ -38,7 +26,7 @@ export const dynamicFormsMaterialConfig: DynamicFormConfig = {
   }
 };
 
-export function dynamicFormsMaterialConfigService(configs: DynamicFormConfig[]): DynamicFormConfigService {
-  const config = configs.find(c => c.module === dynamicFormsMaterialConfig.module);
+export function matDynamicFormsConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
+  const config = configs.find(c => c.module === matDynamicFormsConfig.module);
   return new DynamicFormConfigService(config);
 }

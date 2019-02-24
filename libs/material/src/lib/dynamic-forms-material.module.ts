@@ -9,7 +9,7 @@ import { MatDynamicFormControlModule } from './dynamic-form-control/dynamic-form
 import { MatDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 import { MatDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { MatDynamicFormModule } from './dynamic-form/dynamic-form.module';
-import { dynamicFormsMaterialConfig, dynamicFormsMaterialConfigService } from './dynamic-forms-material.config';
+import { matDynamicFormsConfig, matDynamicFormsConfigFactory } from './dynamic-forms-material.config';
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import { dynamicFormsMaterialConfig, dynamicFormsMaterialConfigService } from '.
   ]
 })
 export class DynamicFormsMaterialModule {
-  static forRoot(config: DynamicFormConfig = dynamicFormsMaterialConfig): ModuleWithProviders {
+  static forRoot(config: DynamicFormConfig = matDynamicFormsConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsMaterialModule,
       providers: [
@@ -37,7 +37,7 @@ export class DynamicFormsMaterialModule {
         },
         {
           provide: DynamicFormConfigService,
-          useFactory: dynamicFormsMaterialConfigService,
+          useFactory: matDynamicFormsConfigFactory,
           deps: [ DYNAMIC_FORM_CONFIG ]
         },
         ...dynamicFormsCoreServices

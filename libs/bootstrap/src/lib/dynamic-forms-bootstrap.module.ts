@@ -10,7 +10,7 @@ import { BootstrapDynamicFormInputModule } from './dynamic-form-input/dynamic-fo
 import { BootstrapDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { BootstrapDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
 import { BootstrapDynamicFormModule } from './dynamic-form/dynamic-form.module';
-import { dynamicFormsBootstrapConfig, dynamicFormsBootstrapConfigService } from './dynamic-forms-bootstrap.config';
+import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms-bootstrap.config';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { dynamicFormsBootstrapConfig, dynamicFormsBootstrapConfigService } from 
   ]
 })
 export class DynamicFormsBootstrapModule {
-  static forRoot(config: DynamicFormConfig = dynamicFormsBootstrapConfig): ModuleWithProviders {
+  static forRoot(config: DynamicFormConfig = bsDynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsBootstrapModule,
       providers: [
@@ -39,8 +39,8 @@ export class DynamicFormsBootstrapModule {
         },
         {
           provide: DynamicFormConfigService,
-          useFactory: dynamicFormsBootstrapConfigService,
-          deps: [DYNAMIC_FORM_CONFIG]
+          useFactory: bsDynamicFormConfigFactory,
+          deps: [ DYNAMIC_FORM_CONFIG ]
         },
         ...dynamicFormsCoreServices
       ]
