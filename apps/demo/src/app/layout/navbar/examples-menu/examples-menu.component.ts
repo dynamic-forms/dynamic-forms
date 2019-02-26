@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class ExamplesMenuComponent {
   templates = [
     { id: 'inputs', label: 'Inputs' },
+    { id: 'inputs-placeholder', label: 'Inputs with Placeholder' },
     { id: 'login', label: 'Login' },
     { id: 'register', label: 'Register' },
-    { id: 'finance', label: 'Finance' },
-    { id: 'all', label: 'All' }
+    { id: 'finance', label: 'Finance' }
   ];
 }

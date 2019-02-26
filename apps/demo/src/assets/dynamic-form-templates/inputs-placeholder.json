@@ -13,7 +13,8 @@
       "type": "control",
       "label": "Datepicker",
       "input": {
-        "type": "datepicker"
+        "type": "datepicker",
+        "placeholder": "Enter a date"
       }
     },
     {
@@ -22,6 +23,7 @@
       "label": "Dropdown",
       "input": {
         "type": "dropdown",
+        "placeholder": "Select an option",
         "options": [
           { "value": 1, "label": "Value1" },
           { "value": 2, "label": "Value2" }
@@ -33,7 +35,8 @@
       "type": "control",
       "label": "Numberbox",
       "input": {
-        "type": "numberbox"
+        "type": "numberbox",
+        "placeholder": "Enter a number"
       }
     },
     {
@@ -41,7 +44,8 @@
       "type": "control",
       "label": "Textarea",
       "input": {
-        "type": "textarea"
+        "type": "textarea",
+        "placeholder": "Enter a text"
       }
     },
     {
@@ -49,7 +53,8 @@
       "type": "control",
       "label": "Textbox",
       "input": {
-        "type": "textbox"
+        "type": "textbox",
+        "placeholder": "Enter a text"
       }
     },
     {
@@ -58,7 +63,8 @@
       "label": "Email",
       "input": {
         "type": "textbox",
-        "inputType": "email"
+        "inputType": "email",
+        "placeholder": "Enter an email"
       }
     },
     {
@@ -67,7 +73,8 @@
       "label": "Password",
       "input": {
         "type": "textbox",
-        "inputType": "password"
+        "inputType": "password",
+        "placeholder": "Enter a password"
       }
     },
     {
@@ -76,7 +83,8 @@
       "label": "Search",
       "input": {
         "type": "textbox",
-        "inputType": "search"
+        "inputType": "search",
+        "placeholder": "Enter a search text"
       }
     }
   ]

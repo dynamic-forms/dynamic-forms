@@ -23,7 +23,7 @@ import { TextboxModule } from './textbox/textbox.module';
   providers: [
     {
       provide: MAT_LABEL_GLOBAL_OPTIONS,
-      useValue: { float: 'never' }
+      useValue: { float: 'always' }
     }
   ]
 })
