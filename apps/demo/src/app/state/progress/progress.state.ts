@@ -25,12 +25,9 @@ export class ProgressState {
   @Action(ProgressItemPop)
   pop(context: StateContext<Progress>, action: ProgressItemPop) {
     const state = context.getState();
-    const index = state.items.findIndex(item => item.id === action.item.id);
-    if (index >= 0) {
-      state.items.splice(index, 1);
-    }
+    const items = state.items.filter(item => item.id !== action.item.id);
     context.patchState({
-      items: [ ...state.items ]
+      items: items
     });
   }
 }

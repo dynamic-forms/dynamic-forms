@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ProgressItem } from './progress.model';
-import { ProgressState } from './progress.state';
+import { ProgressItem } from './../../state/progress/progress.model';
+import { ProgressState } from './../../state/progress/progress.state';
 
 @Component({
   selector: 'app-progress',
