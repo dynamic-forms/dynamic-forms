@@ -6,10 +6,10 @@
   height: 100%;
   z-index: 99999;
 
-  .progress-spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }

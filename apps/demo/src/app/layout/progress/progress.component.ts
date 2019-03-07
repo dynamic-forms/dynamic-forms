@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ProgressItem } from './../../state/progress/progress.model';
 import { ProgressState } from './../../state/progress/progress.state';
 
 @Component({
@@ -10,9 +9,9 @@ import { ProgressState } from './../../state/progress/progress.state';
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
-  items$: Observable<ProgressItem[]>;
+  state$: Observable<ProgressState>;
 
   constructor(private store: Store) {
-    this.items$ = this.store.select(ProgressState.items);
+    this.state$ = this.store.select(ProgressState);
   }
 }

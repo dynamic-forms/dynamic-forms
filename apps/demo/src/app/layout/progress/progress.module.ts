@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgressComponent } from './progress.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressBarModule
   ],
   declarations: [
     ProgressComponent

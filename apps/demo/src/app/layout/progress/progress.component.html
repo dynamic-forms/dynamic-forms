@@ -1,6 +1,6 @@
-<div *ngIf="items$ | async as items">
-  <div *ngIf="items.length > 0" class="progress">
-    <mat-progress-spinner class="progress-spinner" color="primary" mode="indeterminate">
-    </mat-progress-spinner>      
+<div *ngIf="state$ | async as state">
+  <div *ngIf="state.items.length > 0" class="progress">
+    <mat-progress-bar class="progress-bar" color="primary" mode="indeterminate">
+    </mat-progress-bar>      
   </div>  
 </div>
