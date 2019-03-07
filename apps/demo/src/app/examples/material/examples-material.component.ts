@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DynamicFormTemplate } from '@dynamic-forms/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ExampleData } from '../example.model';
 
 @Component({
   selector: 'app-examples-material',
   templateUrl: './examples-material.component.html',
   styleUrls: ['./examples-material.component.scss']
 })
-export class ExamplesMaterialComponent implements OnInit {
-  template: DynamicFormTemplate;
-  model: any;
+export class ExamplesMaterialComponent {
+  data$: Observable<ExampleData>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.data$ = this.route.data.pipe(
+      map(data => this.mapData(data))
+    );
+  }
 
-  ngOnInit() {
-    this.template = this.route.snapshot.data.template;
-    this.model = {};
+  private mapData(data: Data): ExampleData {
+    return {
+      template: data.template,
+      model: {}
+    };
   }
 }

@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DynamicFormTemplate } from '@dynamic-forms/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ExampleData } from '../example.model';
 
 @Component({
   selector: 'app-examples-bootstrap',
   templateUrl: './examples-bootstrap.component.html',
   styleUrls: ['./examples-bootstrap.component.scss']
 })
-export class ExamplesBootstrapComponent implements OnInit {
-  template: DynamicFormTemplate;
-  model: any;
+export class ExamplesBootstrapComponent {
+  data$: Observable<ExampleData>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.data$ = this.route.data.pipe(
+      map(data => this.mapData(data))
+    );
+  }
 
-  ngOnInit() {
-    this.template = this.route.snapshot.data.template;
-    this.model = {};
+  private mapData(data: Data): ExampleData {
+    return {
+      template: data.template,
+      model: {}
+    };
   }
 }
