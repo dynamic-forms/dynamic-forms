@@ -9,11 +9,6 @@ import { Progress } from './progress.model';
   }
 })
 export class ProgressState {
-  @Selector()
-  static items(state: Progress) {
-    return state.items;
-  }
-
   @Action(ProgressItemPush)
   push(context: StateContext<Progress>, action: ProgressItemPush) {
     const state = context.getState();
@@ -25,9 +20,8 @@ export class ProgressState {
   @Action(ProgressItemPop)
   pop(context: StateContext<Progress>, action: ProgressItemPop) {
     const state = context.getState();
-    const items = state.items.filter(item => item.id !== action.item.id);
     context.patchState({
-      items: items
+      items: state.items.filter(item => item.id !== action.item.id)
     });
   }
 }

@@ -1,0 +1,12 @@
+<ng-container *ngIf="state$ | async as state">
+  <ng-container *ngIf="state.enabled">
+    <div *ngIf="state.items.length > 0" class="notification">
+      <mat-chip-list class="notification-items">
+        <mat-chip class="notification-item" *ngFor="let item of state.items" 
+          [removable]="true" (removed)="remove(item)" selected>
+          {{ item.title }}<mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>  
+  </ng-container>      
+</ng-container>
