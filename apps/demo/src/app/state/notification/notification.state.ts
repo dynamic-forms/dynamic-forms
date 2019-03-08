@@ -13,7 +13,7 @@ import { Notification } from './notification.model';
 })
 export class NotificationState {
   @Action(NotificationToggle)
-  toggle(context: StateContext<Notification>, _: NotificationToggle) {
+  toggle(context: StateContext<Notification>, _action: NotificationToggle) {
     const state = context.getState();
     context.patchState({
       enabled: !state.enabled
@@ -40,12 +40,8 @@ export class NotificationState {
   @Action(NotificationItemPop)
   pop(context: StateContext<Notification>, action: NotificationItemPush) {
     const state = context.getState();
-    const index = state.items.findIndex(item => item.id === action.item.id);
-    if (index >= 0) {
-      state.items.splice(index, 1);
-    }
     context.patchState({
-      items: [ ...state.items ]
+      items: state.items.filter(item => item.id !== action.item.id)
     });
   }
 }
