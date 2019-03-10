@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
-import { dynamicFormsCoreComponents, dynamicFormsCoreConfig,
+import { dynamicFormsCoreComponents, dynamicFormsCoreConfig, dynamicFormsCoreConfigFactory,
   dynamicFormsCoreEntryComponents, dynamicFormsCoreServices } from './dynamic-forms-core.config';
 
 @NgModule({
@@ -24,16 +24,20 @@ import { dynamicFormsCoreComponents, dynamicFormsCoreConfig,
   ]
 })
 export class DynamicFormsCoreModule {
-  static forRoot(config: DynamicFormConfig = dynamicFormsCoreConfig): ModuleWithProviders {
+  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsCoreModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config,
+          useValue: config || dynamicFormsCoreConfig,
           multi: true
         },
-        DynamicFormConfigService,
+        {
+          provide: DynamicFormConfigService,
+          useFactory: dynamicFormsCoreConfigFactory,
+          deps: [ DYNAMIC_FORM_CONFIG ]
+        },
         ...dynamicFormsCoreServices
       ]
     };

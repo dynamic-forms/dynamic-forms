@@ -55,3 +55,8 @@ export const dynamicFormsCoreServices = [
   DynamicFormValidationBuilder,
   DynamicFormComponentFactory
 ];
+
+export function dynamicFormsCoreConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
+  const config = configs.find(c => c.module === dynamicFormsCoreConfig.module);
+  return new DynamicFormConfigService(config);
+}

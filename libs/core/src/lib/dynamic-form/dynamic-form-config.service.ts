@@ -6,24 +6,24 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
 
 @Injectable()
 export class DynamicFormConfigService {
-  constructor(@Inject(DYNAMIC_FORM_CONFIG) private formConfig: DynamicFormConfig) {}
+  constructor(@Inject(DYNAMIC_FORM_CONFIG) public config: DynamicFormConfig) {}
 
   getWrapperConfig(type: DynamicFormWrapperType) {
-    const config = this.formConfig.wrapperConfig;
+    const config = this.config.wrapperConfig;
     return config.types.find(f => f.type === type);
   }
 
   getFieldConfig(type: DynamicFormFieldType) {
-    const config = this.formConfig.fieldConfig;
+    const config = this.config.fieldConfig;
     return config.types.find(f => f.type === type);
   }
 
   getInputConfig(type: DynamicFormInputType) {
-    const config = this.formConfig.inputConfig;
+    const config = this.config.inputConfig;
     return config.types.find(f => f.type === type) || config.defaultType;
   }
 
   getValidationConfig() {
-    return this.formConfig.validationConfig;
+    return this.config.validationConfig;
   }
 }
