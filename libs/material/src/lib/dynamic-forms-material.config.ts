@@ -2,7 +2,7 @@ import { DynamicFormArrayComponent, DynamicFormConfig, DynamicFormConfigService,
 import { MatDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 
-export const matDynamicFormsConfig: DynamicFormConfig = {
+export const matDynamicFormConfig: DynamicFormConfig = {
   module: 'material',
   wrapperConfig: {
     types: []
@@ -29,7 +29,7 @@ export const matDynamicFormsConfig: DynamicFormConfig = {
   }
 };
 
-export function matDynamicFormsConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
-  const config = configs.find(c => c.module === matDynamicFormsConfig.module);
+export function matDynamicFormConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
+  const config = configs.find(c => c.module === matDynamicFormConfig.module);
   return new DynamicFormConfigService(config);
 }

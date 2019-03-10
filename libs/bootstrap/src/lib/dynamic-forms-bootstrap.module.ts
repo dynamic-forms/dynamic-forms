@@ -28,13 +28,13 @@ import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms
   ]
 })
 export class DynamicFormsBootstrapModule {
-  static forRoot(config: DynamicFormConfig = bsDynamicFormConfig): ModuleWithProviders {
+  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsBootstrapModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config,
+          useValue: config || bsDynamicFormConfig,
           multi: true
         },
         {
