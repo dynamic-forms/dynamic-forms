@@ -1,10 +1,13 @@
-<mat-sidenav-container class="container">
-  <mat-sidenav class="sidebar" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="sidebarOpened">
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <mat-card class="card">
-      <router-outlet></router-outlet>
-    </mat-card>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<ng-container *ngIf="layoutState$ | async as layoutState">
+  <mat-sidenav-container class="container">
+    <mat-sidenav class="sidebar" [mode]="mobileQuery.matches ? 'over' : 'side'" 
+        [opened]="layoutState.sidebar.opened">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>  
+    <mat-sidenav-content class="content">
+      <mat-card class="card">
+        <router-outlet></router-outlet>
+      </mat-card>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

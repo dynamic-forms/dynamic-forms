@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { SidebarToggle } from '../../../state/layout/layout.actions';
 
 @Component({
   selector: 'app-sidebar-toggle',
@@ -6,9 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar-toggle.component.scss']
 })
 export class SidebarToggleComponent {
-  private sidebarOpened = true;
+  constructor(private store: Store) {}
 
   toggle() {
-    this.sidebarOpened = !this.sidebarOpened;
+    this.store.dispatch([
+      new SidebarToggle()
+    ]);
   }
 }
