@@ -1,6 +1,6 @@
 export interface SidebarMenuItem {
   name: string;
-  route: string[];
+  route?: string[];
   children?: SidebarMenuItem[];
 }
 
@@ -11,12 +11,43 @@ export const sidebarMenuItems: SidebarMenuItem[] = [
   },
   {
     name: 'Docs',
-    route: ['/docs']
+    route: ['/docs'],
+    children: [
+      {
+        name: 'Core',
+        route: ['/docs/core']
+      },
+      {
+        name: 'Bootstrap',
+        route: ['/docs/bootstrap']
+      },
+      {
+        name: 'Material',
+        route: ['/docs/material']
+      }
+    ]
   },
   {
     name: 'Examples',
-    route: ['/examples'],
     children: [
+      {
+        name: 'Bootstrap',
+        children: [
+          {
+            name: 'Inputs',
+            route: ['/examples/bootstrap/inputs']
+          }
+        ]
+      },
+      {
+        name: 'Material',
+        children: [
+          {
+            name: 'Inputs',
+            route: ['/examples/material/inputs']
+          }
+        ]
+      }
     ]
   },
 ];

@@ -2,7 +2,12 @@
   <mat-tree-node *matTreeNodeDef="let menuItem" matTreeNodeToggle matTreeNodePadding>
     <li class="mat-tree-node">
       <button mat-icon-button disabled></button>
-      <a [routerLink]="menuItem.route">{{menuItem.name}}</a>
+      <ng-container *ngIf="menuItem.route">
+        <a [routerLink]="menuItem.route">{{menuItem.name}}</a>
+      </ng-container>
+      <ng-container *ngIf="!menuItem.route">
+        {{menuItem.name}}
+      </ng-container>
     </li>
   </mat-tree-node>
   <mat-nested-tree-node *matTreeNodeDef="let menuItem; when: hasChildren" matTreeNodePadding>
@@ -12,7 +17,12 @@
           {{treeControl.isExpanded(menuItem) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
-      <a [routerLink]="menuItem.route">{{menuItem.name}}</a>
+      <ng-container *ngIf="menuItem.route">
+          <a [routerLink]="menuItem.route">{{menuItem.name}}</a>
+        </ng-container>
+        <ng-container *ngIf="!menuItem.route">
+          {{menuItem.name}}
+      </ng-container>
       <ul [class.invisible]="!treeControl.isExpanded(menuItem)">
         <ng-container matTreeNodeOutlet></ng-container>
       </ul>
