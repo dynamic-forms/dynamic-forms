@@ -19,11 +19,11 @@ describe('DynamicFormsCoreModule', () => {
     }));
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
-      expect(() => { TestBed.get(DYNAMIC_FORM_CONFIG); }).toThrowError();
+      expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
-      expect(() => { TestBed.get(DynamicFormConfigService); }).toThrowError();
+      expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
     });
   });
 
