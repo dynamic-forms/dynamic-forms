@@ -14,6 +14,10 @@ export const sidebarMenuItems: SidebarMenuItem[] = [
     route: ['/docs'],
     children: [
       {
+        name: 'Core',
+        route: ['/docs/core']
+      },
+      {
         name: 'Bootstrap',
         route: ['/docs/bootstrap']
       },
