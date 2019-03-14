@@ -25,6 +25,22 @@ describe('DynamicFormsCoreModule', () => {
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
     });
+
+    it('does not provide DynamicFormBuilder', () => {
+      expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DynamicFormFieldExpressionsBuilder', () => {
+      expect(() => TestBed.get(DynamicFormFieldExpressionsBuilder)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DynamicFormValidationBuilder', () => {
+      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DynamicFormComponentFactory', () => {
+      expect(() => TestBed.get(DynamicFormComponentFactory)).toThrowError(/StaticInjectorError/);
+    });
   });
 
   describe('forRoot with defaultconfig', () => {
