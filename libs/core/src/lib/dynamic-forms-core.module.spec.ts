@@ -9,48 +9,95 @@ import { dynamicFormsCoreConfig } from './dynamic-forms-core.config';
 import { DynamicFormsCoreModule } from './dynamic-forms-core.module';
 
 describe('DynamicFormsCoreModule', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        DynamicFormsCoreModule.forRoot()
-      ]
-    }).compileComponents();
-  }));
+  describe('without providers', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormsCoreModule
+        ]
+      }).compileComponents();
+    }));
 
-  it('provides DYNAMIC_FORM_CONFIG',
-    inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(dynamicFormsCoreConfig);
-    })
-  );
+    it('does not provide DYNAMIC_FORM_CONFIG', () => {
+      expect(() => { TestBed.get(DYNAMIC_FORM_CONFIG); }).toThrowError();
+    });
 
-  it('provides DynamicFormConfigService',
-    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-      expect(service.config).toEqual(dynamicFormsCoreConfig);
-    })
-  );
+    it('does not provide DynamicFormConfigService', () => {
+      expect(() => { TestBed.get(DynamicFormConfigService); }).toThrowError();
+    });
+  });
 
-  it('provides DynamicFormBuilder',
-    inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
-      expect(service).toBeDefined();
-    })
-  );
+  describe('forRoot with defaultconfig', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormsCoreModule.forRoot()
+        ]
+      }).compileComponents();
+    }));
 
-  it('provides DynamicFormFieldExpressionsBuilder',
-    inject([DynamicFormFieldExpressionsBuilder], (service: DynamicFormFieldExpressionsBuilder) => {
-      expect(service).toBeDefined();
-    })
-  );
+    it('provides DYNAMIC_FORM_CONFIG',
+      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(dynamicFormsCoreConfig);
+      })
+    );
 
-  it('provides DynamicFormValidationBuilder',
-    inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-      expect(service).toBeDefined();
-    })
-  );
+    it('provides DynamicFormConfigService',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        expect(service.config).toEqual(dynamicFormsCoreConfig);
+      })
+    );
 
-  it('provides DynamicFormComponentFactory',
-    inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-      expect(service).toBeDefined();
-    })
-  );
+    it('provides DynamicFormBuilder',
+      inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
+
+    it('provides DynamicFormFieldExpressionsBuilder',
+      inject([DynamicFormFieldExpressionsBuilder], (service: DynamicFormFieldExpressionsBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
+
+    it('provides DynamicFormValidationBuilder',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
+
+    it('provides DynamicFormComponentFactory',
+      inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
+        expect(service).toBeDefined();
+      })
+    );
+  });
+
+  describe('forRoot with provided config', () => {
+    const config: DynamicFormConfig = {
+      module: 'core'
+    };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormsCoreModule.forRoot(config)
+        ]
+      }).compileComponents();
+    }));
+
+    it('provides DYNAMIC_FORM_CONFIG',
+      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(config);
+      })
+    );
+
+    it('provides DynamicFormConfigService',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        expect(service.config).toEqual(config);
+      })
+    );
+  });
 });
