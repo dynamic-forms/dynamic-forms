@@ -23,8 +23,8 @@
       "input": {
         "type": "dropdown",
         "options": [
-          { "value": 1, "label": "Value1" },
-          { "value": 2, "label": "Value2" }
+          { "value": 1, "label": "Option 1" },
+          { "value": 2, "label": "Option 2" }
         ]
       }
     },
@@ -34,6 +34,18 @@
       "label": "Numberbox",
       "input": {
         "type": "numberbox"
+      }
+    },
+    {
+      "key": "radio",
+      "type": "control",
+      "label": "Radio",
+      "input": {
+        "type": "radio",
+        "options": [
+          { "value": 1, "label": "Option 1" },
+          { "value": 2, "label": "Option 2" }
+        ]
       }
     },
     {

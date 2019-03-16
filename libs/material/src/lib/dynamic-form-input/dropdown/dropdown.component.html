@@ -1,9 +1,9 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
   <mat-select [id]="id" [placeholder]="input.placeholder" [formControl]="control">
-    <ng-container *ngFor="let option of input.options">
-      <mat-option [value]="option">{{ option.label }}</mat-option>
-    </ng-container>
+    <mat-option *ngFor="let option of input.options" [value]="option.value">
+      {{ option.label }}
+    </mat-option>
   </mat-select>
   <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
 </mat-form-field>

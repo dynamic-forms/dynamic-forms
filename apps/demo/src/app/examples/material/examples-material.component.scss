@@ -1,5 +1,14 @@
 :host ::ng-deep {
   .dynamic-form {
     margin: 0 10px;
+
+    .mat-radio-group {
+      display: inline-flex;
+      flex-direction: column;
+
+      .mat-radio-button {
+        margin: 5px 0;
+      }
+    }
   }
 }

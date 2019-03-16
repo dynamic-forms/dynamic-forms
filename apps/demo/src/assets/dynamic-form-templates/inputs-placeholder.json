@@ -1,14 +1,6 @@
 {
   "fields": [
     {
-      "key": "checkbox",
-      "type": "control",
-      "label": "Checkbox",
-      "input": {
-        "type": "checkbox"
-      }
-    },
-    {
       "key": "datepicker",
       "type": "control",
       "label": "Datepicker",
@@ -25,8 +17,8 @@
         "type": "dropdown",
         "placeholder": "Select an option",
         "options": [
-          { "value": 1, "label": "Value1" },
-          { "value": 2, "label": "Value2" }
+          { "value": 1, "label": "Option 1" },
+          { "value": 2, "label": "Option 2" }
         ]
       }
     },
