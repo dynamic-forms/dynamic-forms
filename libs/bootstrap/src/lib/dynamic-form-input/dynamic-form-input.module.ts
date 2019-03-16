@@ -4,7 +4,7 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { NumberboxModule } from './numberbox/numberbox.module';
-import { RadioButtonModule } from './radio-button/radio-button.module';
+import { RadioModule } from './radio/radio.module';
 import { TextareaModule } from './textarea/textarea.module';
 import { TextboxModule } from './textbox/textbox.module';
 
@@ -15,7 +15,7 @@ import { TextboxModule } from './textbox/textbox.module';
     DatepickerModule,
     DropdownModule,
     NumberboxModule,
-    RadioButtonModule,
+    RadioModule,
     TextareaModule,
     TextboxModule
   ]

@@ -6,4 +6,6 @@ import { DropdownInput } from './dropdown-input';
   selector: 'mat-dynamic-dropdown',
   templateUrl: './dropdown.component.html'
 })
-export class DropdownComponent extends DynamicFormInputComponent<DropdownInput> {}
+export class DropdownComponent extends DynamicFormInputComponent<DropdownInput> {
+
+}

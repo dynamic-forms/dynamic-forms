@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RadioButtonComponent } from './radio-button.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { RadioComponent } from './radio.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   declarations: [
-    RadioButtonComponent
+    RadioComponent
   ],
   entryComponents: [
-    RadioButtonComponent
+    RadioComponent
   ]
 })
-export class RadioButtonModule {}
+export class RadioModule {}

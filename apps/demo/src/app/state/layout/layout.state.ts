@@ -6,7 +6,7 @@ import { Layout } from './layout.model';
   name: 'sidebar',
   defaults: {
     sidebar: {
-      opened: true
+      opened: false
     }
   }
 })

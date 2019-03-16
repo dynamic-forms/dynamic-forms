@@ -37,11 +37,11 @@
       }
     },
     {
-      "key": "radioButton",
+      "key": "radio",
       "type": "control",
-      "label": "Radio button",
+      "label": "Radio",
       "input": {
-        "type": "radio-button",
+        "type": "radio",
         "options": [
           { "value": 1, "label": "Value1" },
           { "value": 2, "label": "Value2" }
