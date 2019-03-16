@@ -37,6 +37,18 @@
       }
     },
     {
+      "key": "radioButton",
+      "type": "control",
+      "label": "Radio button",
+      "input": {
+        "type": "radio-button",
+        "options": [
+          { "value": 1, "label": "Value1" },
+          { "value": 2, "label": "Value2" }
+        ]
+      }
+    },
+    {
       "key": "textarea",
       "type": "control",
       "label": "Textarea",
