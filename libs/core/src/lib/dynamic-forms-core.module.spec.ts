@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormFieldExpressionsBuilder } from './dynamic-form-field/dynamic-form-field-expressions.builder';
+import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form/dynamic-form-config';
@@ -30,8 +30,8 @@ describe('DynamicFormsCoreModule', () => {
       expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DynamicFormFieldExpressionsBuilder', () => {
-      expect(() => TestBed.get(DynamicFormFieldExpressionsBuilder)).toThrowError(/StaticInjectorError/);
+    it('does not provide DynamicFormExpressionBuilder', () => {
+      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormValidationBuilder', () => {
@@ -71,8 +71,8 @@ describe('DynamicFormsCoreModule', () => {
       })
     );
 
-    it('provides DynamicFormFieldExpressionsBuilder',
-      inject([DynamicFormFieldExpressionsBuilder], (service: DynamicFormFieldExpressionsBuilder) => {
+    it('provides DynamicFormExpressionBuilder',
+      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
         expect(service).toBeDefined();
       })
     );
