@@ -22,14 +22,14 @@ export class DynamicFormBuilder {
 
   createForm(template: DynamicFormTemplate, model: any) {
     const field = new DynamicFormGroup(null, null, template, model);
-    field.setExpressions(this.createFieldExpressions(field));
+    field.setFieldExpressions(this.createFieldExpressions(field));
     field.setFields(this.createFormFields(field, field, field.template.fields));
     return field;
   }
 
   createFormGroup(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormGroupTemplate) {
     const field = new DynamicFormGroup(root, parent, template);
-    field.setExpressions(this.createFieldExpressions(field));
+    field.setFieldExpressions(this.createFieldExpressions(field));
     field.setFields(this.createFormFields(root, field, template.fields));
     return field;
   }
@@ -42,7 +42,7 @@ export class DynamicFormBuilder {
 
   createFormControl(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormControlTemplate) {
     const field = new DynamicFormControl(root, parent, template);
-    field.setExpressions(this.createFieldExpressions(field));
+    field.setFieldExpressions(this.createFieldExpressions(field));
     field.setValidators(this.createValidators(field.template));
     return field;
   }

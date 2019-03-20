@@ -24,7 +24,7 @@ export abstract class DynamicFormField<
   get control(): Control { return this._control; }
   get model(): any { return this._model; }
 
-  setExpressions(expressions: DynamicFormFieldExpressions) {
+  setFieldExpressions(expressions: DynamicFormFieldExpressions) {
     this._expressions = expressions;
     if (expressions) {
       Object.keys(expressions).forEach(path => {
