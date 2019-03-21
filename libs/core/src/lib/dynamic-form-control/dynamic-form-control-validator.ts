@@ -7,5 +7,3 @@ export interface DynamicFormControlValidator {
   factory: (value: any) => ValidatorFn;
   validator: ValidatorFn;
 }
-
-export type DynamicFormControlValidators = DynamicFormControlValidator[];

@@ -3,7 +3,7 @@ import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayTemplate } from '../dynamic-form-array/dynamic-form-array-template';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
-import { DynamicFormControlValidator, DynamicFormControlValidators } from '../dynamic-form-control/dynamic-form-control-validators';
+import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -67,7 +67,7 @@ export class DynamicFormBuilder {
     return this.expressionBuilder.createFieldExpressions(field);
   }
 
-  private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidators {
+  private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {
     return template.validation ? Object.keys(template.validation).map(key => {
       return this.createValidator(template, key);
     }).filter(validator => !!validator) : [];

@@ -11,7 +11,8 @@ export type DynamicFormComponentTypeConfig = DynamicFormFieldTypeConfig | Dynami
 export class DynamicFormComponentFactory {
   constructor(
     private configService: DynamicFormConfigService,
-    private componentFactoryResolver: ComponentFactoryResolver) {}
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   public createFieldComponent(container: ViewContainerRef, field: DynamicFormField) {
     const config = this.configService.getFieldTypeConfig(field.template.type);
