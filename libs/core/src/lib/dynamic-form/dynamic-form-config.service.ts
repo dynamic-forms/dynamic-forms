@@ -20,7 +20,7 @@ export class DynamicFormConfigService {
 
   getInputTypeConfig(type: DynamicFormInputType) {
     const config = this.config.inputConfig;
-    return config.types.find(f => f.type === type) || config.defaultType;
+    return config.types.find(f => f.type === type);
   }
 
   getValidationConfig() {
