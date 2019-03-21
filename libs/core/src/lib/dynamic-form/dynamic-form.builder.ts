@@ -11,6 +11,7 @@ import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-fie
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupTemplate } from '../dynamic-form-group/dynamic-form-group-template';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
+import { DynamicForm } from './dynamic-form';
 import { DynamicFormTemplate } from './dynamic-form-template';
 
 @Injectable()
@@ -21,7 +22,7 @@ export class DynamicFormBuilder {
   ) {}
 
   createForm(template: DynamicFormTemplate, model: any) {
-    const field = new DynamicFormGroup(null, null, template, model);
+    const field = new DynamicForm(template, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
     field.setFields(this.createFormFields(field, field, field.template.fields));
     return field;

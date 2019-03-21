@@ -14,21 +14,13 @@ export class DynamicFormComponentFactory {
     private componentFactoryResolver: ComponentFactoryResolver) {}
 
   public createFieldComponent(container: ViewContainerRef, field: DynamicFormField) {
-    const config = this.getFieldConfig(field);
+    const config = this.configService.getFieldTypeConfig(field.template.type);
     return this.createComponent(container, field, config);
   }
 
   public createInputComponent(container: ViewContainerRef, field: DynamicFormControl) {
-    const config = this.getInputConfig(field);
+    const config = this.configService.getInputTypeConfig(field.template.input.type);
     return this.createComponent(container, field, config);
-  }
-
-  private getFieldConfig(field: DynamicFormField) {
-    return this.configService.getFieldConfig(field.template.type);
-  }
-
-  private getInputConfig(field: DynamicFormControl) {
-    return this.configService.getInputConfig(field.template.input.type);
   }
 
   private createComponent(container: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
@@ -46,7 +38,7 @@ export class DynamicFormComponentFactory {
 
   private createWrapperComponents(container: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
     let wrapper = container;
-    this.getWrapperConfigs(field, config).forEach(c => {
+    this.getWrapperTypeConfigs(field, config).forEach(c => {
       const factory = this.getComponentFactory(c.component);
       const component = wrapper.createComponent(factory);
       component.instance.field = field;
@@ -55,11 +47,10 @@ export class DynamicFormComponentFactory {
     return wrapper;
   }
 
-
-  private getWrapperConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
+  private getWrapperTypeConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
     const wrappers = (field.template.wrappers || []).concat(config.wrappers || []);
     return wrappers.map(wrapper => {
-      return this.configService.getWrapperConfig(wrapper);
+      return this.configService.getWrapperTypeConfig(wrapper);
     });
   }
 }

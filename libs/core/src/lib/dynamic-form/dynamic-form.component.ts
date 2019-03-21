@@ -1,5 +1,5 @@
 import { Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
+import { DynamicForm } from './dynamic-form';
 import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
@@ -8,7 +8,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
-  private _formField: DynamicFormGroup;
+  private _formField: DynamicForm;
 
   @Input() template: DynamicFormTemplate;
   @Input() model: any;
