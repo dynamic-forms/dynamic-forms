@@ -32,27 +32,59 @@ describe('DynamicFormConfigService', () => {
     }).compileComponents();
   }));
 
-  it('returns DynamicWrapperTypeConfig', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-    const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper');
+  it('returns DynamicWrapperTypeConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper');
 
-    expect(wrapperTypeConfig).toEqual(config.wrapperConfig.types[0]);
-  }));
+      expect(wrapperTypeConfig).toEqual(config.wrapperConfig.types[0]);
+    })
+  );
 
-  it('returns DynamicFieldTypeConfig', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-    const fieldTypeConfig = service.getFieldTypeConfig('group');
+  it('returns DynamicWrapperTypeConfig being undefined if not found',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper2');
 
-    expect(fieldTypeConfig).toEqual(config.fieldConfig.types[0]);
-  }));
+      expect(wrapperTypeConfig).toBeUndefined();
+    })
+  );
 
-  it('returns DynamicFormInputTypeConfig', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-    const inputTypeConfig = service.getInputTypeConfig('input');
+  it('returns DynamicFieldTypeConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const fieldTypeConfig = service.getFieldTypeConfig('group');
 
-    expect(inputTypeConfig).toEqual(config.inputConfig.types[0]);
-  }));
+      expect(fieldTypeConfig).toEqual(config.fieldConfig.types[0]);
+    })
+  );
 
-  it('returns DynamicFormValidationConfig', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-    const validationConfig = service.getValidationConfig();
+  it('returns DynamicFieldTypeConfig being undefined if not found',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const fieldTypeConfig = service.getFieldTypeConfig('array');
 
-    expect(validationConfig).toEqual(config.validationConfig);
-  }));
+      expect(fieldTypeConfig).toBeUndefined();
+    })
+  );
+
+  it('returns DynamicFormInputTypeConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const inputTypeConfig = service.getInputTypeConfig('input');
+
+      expect(inputTypeConfig).toEqual(config.inputConfig.types[0]);
+    })
+  );
+
+  it('returns DynamicFormInputTypeConfig being undefined if not found',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const inputTypeConfig = service.getInputTypeConfig('input2');
+
+      expect(inputTypeConfig).toBeUndefined();
+    })
+  );
+
+  it('returns DynamicFormValidationConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const validationConfig = service.getValidationConfig();
+
+      expect(validationConfig).toEqual(config.validationConfig);
+    })
+  );
 });
