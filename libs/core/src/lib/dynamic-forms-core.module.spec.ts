@@ -43,7 +43,7 @@ describe('DynamicFormsCoreModule', () => {
     });
   });
 
-  describe('forRoot with defaultconfig', () => {
+  describe('forRoot with default config', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
