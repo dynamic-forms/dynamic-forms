@@ -20,9 +20,9 @@ export abstract class DynamicFormField<
     this._path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
   }
 
-  get path(): string { return this._path; }
-  get control(): Control { return this._control; }
-  get model(): any { return this._model; }
+  get path() { return this._path; }
+  get control() { return this._control; }
+  get model() { return this._model; }
 
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {
     this._expressions = expressions;
