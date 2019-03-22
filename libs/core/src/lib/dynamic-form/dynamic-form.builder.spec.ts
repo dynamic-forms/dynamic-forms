@@ -37,6 +37,36 @@ describe('DynamicFormBuilder', () => {
       expect(form.fields).toBeDefined();
   }));
 
+  it('creates DynamicForm including DynamicFormArray', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+    const template = <DynamicFormTemplate>{ fields: [ { key: 'key', type: 'array' } ] };
+    const form = builder.createForm(template, {});
+
+    expect(form.fields).toBeDefined();
+    expect(form.model).toEqual({ key: [] });
+  }));
+
+  it('creates DynamicForm including DynamicFormControl', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+    const template = <DynamicFormTemplate>{ fields: [ { key: 'key', type: 'control' } ] };
+    const form = builder.createForm(template, {});
+
+    expect(form.fields).toBeDefined();
+    expect(form.model).toEqual({ key: null });
+  }));
+
+  it('create DynamicForm throws error', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+    const template = <DynamicFormTemplate>{ fields: [ {} ] };
+
+    expect(() => builder.createForm(template, {})).toThrowError();
+  }));
+
+  it('creates DynamicForm including DynamicFormGroup', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+    const template = <DynamicFormTemplate>{ fields: [ { key: 'key', type: 'group' } ] };
+    const form = builder.createForm(template, {});
+
+    expect(form.fields).toBeDefined();
+    expect(form.model).toEqual({ key: {} });
+  }));
+
   it('creates DynamicFormGroup', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
     const model = {};
     const form = getForm(model);
