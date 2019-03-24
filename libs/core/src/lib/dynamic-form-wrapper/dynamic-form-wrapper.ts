@@ -1,11 +1,17 @@
-import { ViewContainerRef } from '@angular/core';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { AfterViewInit, ViewContainerRef } from '@angular/core';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 
-export abstract class DynamicFormWrapper<Field extends DynamicFormField = DynamicFormField> {
+export abstract class DynamicFormWrapper extends DynamicFormFieldBase implements AfterViewInit {
   fieldComponent: ViewContainerRef;
-  field: Field;
+  fieldComponentInstance: any;
 
-  get id() { return this.field.path; }
-  get template() { return this.field.template; }
-  get control() { return this.field.control; }
+  constructor(protected containerRef: ViewContainerRef) {
+    super();
+  }
+
+  get ref() { return this.containerRef; }
+
+  ngAfterViewInit() {
+    // TODO: attach component to view child
+  }
 }

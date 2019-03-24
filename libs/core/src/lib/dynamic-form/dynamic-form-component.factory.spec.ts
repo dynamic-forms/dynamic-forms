@@ -1,6 +1,6 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field.base';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
@@ -20,7 +20,11 @@ class DynamicFormTestComponent {
   selector: 'dynamic-wrapper-test',
   template: `<ng-template #fieldComponent></ng-template>`
 })
-class DynamicWrapperTestComponent extends DynamicFormWrapper {}
+class DynamicWrapperTestComponent extends DynamicFormWrapper {
+  constructor(protected containerRef: ViewContainerRef) {
+    super(containerRef);
+  }
+}
 
 @Component({
   selector: 'dynamic-field-test',
