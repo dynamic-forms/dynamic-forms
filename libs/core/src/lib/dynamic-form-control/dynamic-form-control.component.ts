@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { DynamicFormFieldBase } from './../dynamic-form-field/dynamic-form-field.base';
-import { DynamicFormComponentFactory } from './../dynamic-form/dynamic-form-component.factory';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormControl } from './dynamic-form-control';
 
 @Component({

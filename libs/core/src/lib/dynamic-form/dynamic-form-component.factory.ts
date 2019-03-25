@@ -1,8 +1,10 @@
-import { ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormWrapperTypeConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 
 export type DynamicFormComponentTypeConfig = DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig;
@@ -14,22 +16,24 @@ export class DynamicFormComponentFactory {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
-  public createFieldComponent(container: ViewContainerRef, field: DynamicFormField) {
+  public createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
     const config = this.configService.getFieldTypeConfig(field.template.type);
-    return this.createComponent(container, field, config);
+    return this.createComponent(ref, field, config);
   }
 
-  public createInputComponent(container: ViewContainerRef, field: DynamicFormControl) {
+  public createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
     const config = this.configService.getInputTypeConfig(field.template.input.type);
-    return this.createComponent(container, field, config);
+    return this.createComponent(ref, field, config);
   }
 
-  private createComponent(container: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
+  private createComponent(ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
     const factory = this.getComponentFactory(config.component);
-    const wrapper = this.createWrapperComponents(container, field, config);
-    const component = (wrapper || container).createComponent(factory);
-    component.instance.field = field;
-    return component;
+    const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
+    if (wrapperConfigs.length > 0) {
+      const wrapperRef = this.createWrapperComponents(ref, field, wrapperConfigs);
+      return this.createComponentFromFactory(wrapperRef, field, factory);
+    }
+    return this.createComponentFromFactory(ref, field, factory);
   }
 
   private getComponentFactory<T>(componentType: Type<T>) {
@@ -37,15 +41,21 @@ export class DynamicFormComponentFactory {
     return resolver.resolveComponentFactory(componentType);
   }
 
-  private createWrapperComponents(container: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
-    let wrapper = container;
-    this.getWrapperTypeConfigs(field, config).forEach(c => {
+  private createComponentFromFactory(ref: ViewContainerRef, field: DynamicFormField, factory: ComponentFactory<DynamicFormFieldBase>) {
+    const componentRef = ref.createComponent(factory);
+    componentRef.instance.field = field;
+    return componentRef;
+  }
+
+  private createWrapperComponents(ref: ViewContainerRef, field: DynamicFormField, configs: DynamicFormWrapperTypeConfig[]) {
+    let wrapperRef = ref;
+    configs.forEach(c => {
       const factory = this.getComponentFactory(c.component);
-      const component = wrapper.createComponent(factory);
-      component.instance.field = field;
-      wrapper = component.instance.fieldComponent;
+      const componentRef = wrapperRef.createComponent(factory);
+      componentRef.instance.field = field;
+      wrapperRef = componentRef.instance.ref;
     });
-    return wrapper;
+    return wrapperRef;
   }
 
   private getWrapperTypeConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
