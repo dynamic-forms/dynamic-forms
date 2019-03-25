@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormWrapper } from '@dynamic-forms/core';
 
 @Component({
@@ -6,4 +6,8 @@ import { DynamicFormWrapper } from '@dynamic-forms/core';
   templateUrl: './dynamic-label-wrapper.component.html',
   styleUrls: ['./dynamic-label-wrapper.component.scss']
 })
-export class BootstrapDynamicLabelWrapperComponent extends DynamicFormWrapper {}
+export class BootstrapDynamicLabelWrapperComponent extends DynamicFormWrapper implements AfterViewInit {
+  constructor(protected containerRef: ViewContainerRef) {
+    super(containerRef);
+  }
+}

@@ -1,6 +1,7 @@
-import { ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormWrapperTypeConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
@@ -30,14 +31,9 @@ export class DynamicFormComponentFactory {
     const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
     if (wrapperConfigs.length > 0) {
       const wrapperRef = this.createWrapperComponents(ref, field, wrapperConfigs);
-      const componentRef = wrapperRef.createComponent(factory);
-      componentRef.instance.field = field;
-      return componentRef;
-    } else {
-      const componentRef = ref.createComponent(factory);
-      componentRef.instance.field = field;
-      return componentRef;
+      return this.createComponentFromFactory(wrapperRef, field, factory);
     }
+    return this.createComponentFromFactory(ref, field, factory);
   }
 
   private getComponentFactory<T>(componentType: Type<T>) {
@@ -45,17 +41,21 @@ export class DynamicFormComponentFactory {
     return resolver.resolveComponentFactory(componentType);
   }
 
+  private createComponentFromFactory(ref: ViewContainerRef, field: DynamicFormField, factory: ComponentFactory<DynamicFormFieldBase>) {
+    const componentRef = ref.createComponent(factory);
+    componentRef.instance.field = field;
+    return componentRef;
+  }
+
   private createWrapperComponents(ref: ViewContainerRef, field: DynamicFormField, configs: DynamicFormWrapperTypeConfig[]) {
-    const wrapper = { ref, instance: null };
+    let wrapperRef = ref;
     configs.forEach(c => {
       const factory = this.getComponentFactory(c.component);
-      const componentRef = wrapper.ref.createComponent(factory);
+      const componentRef = wrapperRef.createComponent(factory);
       componentRef.instance.field = field;
-      // componentRef.instance.fieldComponentInstance ;
-      wrapper.ref = componentRef.instance.ref;
-      wrapper.instance = componentRef.instance;
+      wrapperRef = componentRef.instance.ref;
     });
-    return wrapper.ref;
+    return wrapperRef;
   }
 
   private getWrapperTypeConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
