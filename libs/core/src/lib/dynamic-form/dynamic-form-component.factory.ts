@@ -30,8 +30,9 @@ export class DynamicFormComponentFactory {
     const factory = this.getComponentFactory(config.component);
     const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
     if (wrapperConfigs.length > 0) {
-      const wrapperRef = this.createWrapperComponents(ref, field, wrapperConfigs);
-      return this.createComponentFromFactory(wrapperRef, field, factory);
+      const wrappers = this.createWrapperComponents(ref, field, wrapperConfigs);
+      this.createComponentFromFactory(wrappers.ref, field, factory);
+      return wrappers.componentRef;
     }
     return this.createComponentFromFactory(ref, field, factory);
   }
@@ -48,14 +49,15 @@ export class DynamicFormComponentFactory {
   }
 
   private createWrapperComponents(ref: ViewContainerRef, field: DynamicFormField, configs: DynamicFormWrapperTypeConfig[]) {
-    let wrapperRef = ref;
+    const wrappers = { componentRef: null, ref };
     configs.forEach(c => {
       const factory = this.getComponentFactory(c.component);
-      const componentRef = wrapperRef.createComponent(factory);
+      const componentRef = wrappers.ref.createComponent(factory);
       componentRef.instance.field = field;
-      wrapperRef = componentRef.instance.ref;
+      wrappers.componentRef = wrappers.componentRef || componentRef;
+      wrappers.ref = componentRef.instance.ref;
     });
-    return wrapperRef;
+    return wrappers;
   }
 
   private getWrapperTypeConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
