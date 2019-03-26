@@ -32,8 +32,7 @@ export class DynamicFormExpressionBuilder {
   private createFieldExpressionDependencies(expression: string): DynamicFormExpressionDependency[] {
     return this.fieldExpressionArguments.reduce((result, expressionArgument) => {
       const dependencies = expression.match(expressionArgument.pattern);
-      result.push(...dependencies);
-      return result;
+      return dependencies ? result.concat(dependencies) : result;
     }, []);
   }
 
