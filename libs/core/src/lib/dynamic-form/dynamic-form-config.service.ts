@@ -8,19 +8,19 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
 export class DynamicFormConfigService {
   constructor(@Inject(DYNAMIC_FORM_CONFIG) public config: DynamicFormConfig) {}
 
-  getWrapperConfig(type: DynamicFormWrapperType) {
+  getWrapperTypeConfig(type: DynamicFormWrapperType) {
     const config = this.config.wrapperConfig;
     return config.types.find(f => f.type === type);
   }
 
-  getFieldConfig(type: DynamicFormFieldType) {
+  getFieldTypeConfig(type: DynamicFormFieldType) {
     const config = this.config.fieldConfig;
     return config.types.find(f => f.type === type);
   }
 
-  getInputConfig(type: DynamicFormInputType) {
+  getInputTypeConfig(type: DynamicFormInputType) {
     const config = this.config.inputConfig;
-    return config.types.find(f => f.type === type) || config.defaultType;
+    return config.types.find(f => f.type === type);
   }
 
   getValidationConfig() {

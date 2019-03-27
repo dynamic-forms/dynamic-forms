@@ -11,5 +11,4 @@ export interface DynamicFormInputTypeConfig {
 
 export interface DynamicFormInputConfig {
   types?: DynamicFormInputTypeConfig[];
-  defaultType?: DynamicFormInputTypeConfig;
 }

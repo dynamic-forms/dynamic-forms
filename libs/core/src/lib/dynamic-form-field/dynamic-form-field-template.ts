@@ -4,8 +4,8 @@ import { DynamicFormFieldType } from './dynamic-form-field-type';
 export interface DynamicFormFieldTemplate {
   key: string;
   type: DynamicFormFieldType;
-  wrappers: DynamicFormWrapperType[];
-  label: string;
+  wrappers?: DynamicFormWrapperType[];
+  label?: string;
   hidden?: boolean;
   disabled?: boolean;
   expressions?: { [key: string]: string };

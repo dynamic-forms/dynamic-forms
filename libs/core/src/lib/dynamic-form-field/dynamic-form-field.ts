@@ -1,5 +1,5 @@
+import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
-import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
 export abstract class DynamicFormField<
@@ -20,11 +20,11 @@ export abstract class DynamicFormField<
     this._path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
   }
 
-  get path(): string { return this._path; }
-  get control(): Control { return this._control; }
-  get model(): any { return this._model; }
+  get path() { return this._path; }
+  get control() { return this._control; }
+  get model() { return this._model; }
 
-  setExpressions(expressions: DynamicFormFieldExpressions) {
+  setFieldExpressions(expressions: DynamicFormFieldExpressions) {
     this._expressions = expressions;
     if (expressions) {
       Object.keys(expressions).forEach(path => {
