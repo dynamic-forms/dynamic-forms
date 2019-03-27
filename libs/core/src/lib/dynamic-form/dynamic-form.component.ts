@@ -19,7 +19,9 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   get formGroup() { return this._formField.control; }
 
   ngDoCheck() {
-    this._formField.check();
+    if (this._formField) {
+      this._formField.check();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -30,7 +32,9 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   }
 
   ngOnDestroy() {
-    this._formField.destroy();
+    if (this._formField) {
+      this._formField.destroy();
+    }
   }
 
   submit() {
