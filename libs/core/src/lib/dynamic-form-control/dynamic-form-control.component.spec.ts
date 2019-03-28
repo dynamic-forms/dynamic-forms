@@ -16,7 +16,7 @@ import { DynamicFormControlComponent } from './dynamic-form-control.component';
   selector: 'dynamic-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicInputTestComponent extends DynamicFormInputComponent {}
+class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ class DynamicInputTestComponent extends DynamicFormInputComponent {}
   declarations: [
     DynamicFormControlComponent,
     DynamicFormValidationComponent,
-    DynamicInputTestComponent
+    DynamicFormInputTestComponent
   ],
   providers: [
     {
@@ -35,7 +35,7 @@ class DynamicInputTestComponent extends DynamicFormInputComponent {}
         module: 'core',
         inputConfig: {
           types: [
-            { type: 'input', component: DynamicInputTestComponent }
+            { type: 'input', component: DynamicFormInputTestComponent }
           ]
         }
       })
@@ -43,7 +43,7 @@ class DynamicInputTestComponent extends DynamicFormInputComponent {}
     DynamicFormComponentFactory
   ],
   entryComponents: [
-    DynamicInputTestComponent
+    DynamicFormInputTestComponent
   ]
 })
 class DynamicFormControlComponentTestModule {}

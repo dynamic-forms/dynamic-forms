@@ -1,7 +1,7 @@
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
-class FormField extends DynamicFormField {
+class DynamicFormFieldTest extends DynamicFormField {
   get expressions() { return this._expressions; }
 
   check() {}
@@ -13,7 +13,7 @@ describe('DynamicFormField', () => {
     const root = null;
     const parent = null;
     const template = <DynamicFormFieldTemplate>{};
-    const formField = new FormField(root, parent, template);
+    const formField = new DynamicFormFieldTest(root, parent, template);
 
     expect(formField.path).toBeNull();
     expect(formField.root).toBe(root);
