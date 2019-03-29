@@ -10,17 +10,17 @@ export class DynamicFormValidationBuilder {
       case 'email':
         return _ => Validators.email;
       case 'pattern':
-        return (pattern?: string | RegExp) => pattern ? Validators.pattern(pattern) : null;
+        return (pattern?: string | RegExp) => pattern ? Validators.pattern(pattern) : undefined;
       case 'min':
-        return (min?: number) => Number.isFinite(min) ? Validators.min(min) : null;
+        return (min?: number) => Number.isFinite(min) ? Validators.min(min) : undefined;
       case 'max':
-        return (max?: number) => Number.isFinite(max) ? Validators.min(max) : null;
+        return (max?: number) => Number.isFinite(max) ? Validators.min(max) : undefined;
       case 'minLength':
-        return (minLength?: number) => Number.isFinite(minLength) ? Validators.minLength(minLength) : null;
+        return (minLength?: number) => Number.isFinite(minLength) ? Validators.minLength(minLength) : undefined;
       case 'maxLength':
-        return (maxLength?: number) => Number.isFinite(maxLength) ? Validators.maxLength(maxLength) : null;
+        return (maxLength?: number) => Number.isFinite(maxLength) ? Validators.maxLength(maxLength) : undefined;
       default:
-        return null;
+        return undefined;
     }
   }
 }
