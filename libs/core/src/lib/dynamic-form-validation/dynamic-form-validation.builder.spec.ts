@@ -10,7 +10,7 @@ describe('DynamicFormValidationBuilder', () => {
     }).compileComponents();
   }));
 
-  it('returns undefine',
+  it('returns validator factory being undefined',
   inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
     const validatorFactory = service.getValidatorFactory('key');
 
@@ -55,7 +55,7 @@ describe('DynamicFormValidationBuilder', () => {
       expect(validatorFactory(null)).toBeUndefined();
     })
   );
-  
+
   it('returns max validator factory',
     inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
       const validatorFactory = service.getValidatorFactory('max');
@@ -75,7 +75,7 @@ describe('DynamicFormValidationBuilder', () => {
       expect(validatorFactory(null)).toBeUndefined();
     })
   );
-  
+
   it('returns maxLength validator factory',
     inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
       const validatorFactory = service.getValidatorFactory('maxLength');
