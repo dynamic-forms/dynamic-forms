@@ -32,9 +32,9 @@ export abstract class DynamicFormField<
         if (paths.length > 1) {
           const key = paths.splice(paths.length - 1, 1)[0];
           const obj = this.createObject(this.template, paths);
-          Object.defineProperty(obj, key, { get: function() { return expressions[path].value; } });
+          Object.defineProperty(obj, key, { get: () => expressions[path].value });
         } else {
-          Object.defineProperty(this.template, path, { get: function() { return expressions[path].value; } });
+          Object.defineProperty(this.template, path, { get: () => expressions[path].value });
         }
       });
     }
