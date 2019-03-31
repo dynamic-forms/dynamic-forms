@@ -25,7 +25,7 @@ export abstract class DynamicFormField<
   get model() { return this._model; }
 
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {
-    this._expressions = expressions;
+    this._expressions = expressions || {};
     if (expressions) {
       Object.keys(expressions).forEach(path => {
         const paths = path.split('.');

@@ -10,7 +10,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   extends DynamicFormField<DynamicFormControlTemplate<FormInput>, FormControl> {
 
   protected _controlValue: Subscription;
-  protected _validators: DynamicFormControlValidator[] = [];
+  protected _validators: DynamicFormControlValidator[];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>) {
     super(root, parent, template);
@@ -23,9 +23,8 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   setValidators(validators: DynamicFormControlValidator[]) {
-    this._validators = validators || [];
-    const controlValidators = this.getControlValidators();
-    this._control.setValidators(controlValidators);
+    this._validators = validators;
+    this._control.setValidators(this.getControlValidators());
   }
 
   check() {
@@ -43,7 +42,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private getControlValidators() {
-    return this._validators.filter(validator => validator.enabled)
+    return (this._validators || []).filter(validator => validator.enabled)
       .map(validator => validator.validator);
   }
 
@@ -67,7 +66,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private validatorsChanged(): boolean {
-    return this._validators.some(validator => {
+    return (this._validators || []).some(validator => {
       const enabled = this.template.validation[validator.key];
       const value = this.template.input[validator.key];
       if (validator.enabled !== enabled || validator.value !== value) {
