@@ -4,7 +4,7 @@ import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 describe('DynamicFormGroup', () => {
-  it('new DynamicFormGroup', () => {
+  it('new instance', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
     const template = <DynamicFormGroupTemplate>{
       key: 'key',

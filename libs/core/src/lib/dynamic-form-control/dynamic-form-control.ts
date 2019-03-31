@@ -10,7 +10,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   extends DynamicFormField<DynamicFormControlTemplate<FormInput>, FormControl> {
 
   protected _controlValue: Subscription;
-  protected _validators: DynamicFormControlValidator[];
+  protected _validators: DynamicFormControlValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>) {
     super(root, parent, template);
@@ -23,7 +23,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   setValidators(validators: DynamicFormControlValidator[]) {
-    this._validators = validators;
+    this._validators = validators || [];
     const controlValidators = this.getControlValidators();
     this._control.setValidators(controlValidators);
   }

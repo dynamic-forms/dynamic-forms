@@ -4,7 +4,7 @@ import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 describe('DynamicFormControl', () => {
-  it('new DynamicFormControl', () => {
+  it('new instance', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
     const template = <DynamicFormControlTemplate>{
       key: 'key'
