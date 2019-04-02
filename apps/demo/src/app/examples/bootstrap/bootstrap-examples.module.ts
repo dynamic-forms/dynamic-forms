@@ -3,20 +3,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
-import { DynamicFormsMaterialModule } from '@dynamic-forms/material';
-import { ExamplesResolver } from '../examples.resolver';
-import { ExamplesMaterialComponent } from './examples-material.component';
+import { DynamicFormsBootstrapModule } from '@dynamic-forms/bootstrap';
+import { ExamplesResolver } from './../examples.resolver';
+import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MatTabsModule,
-    DynamicFormsMaterialModule.forRoot(),
+    DynamicFormsBootstrapModule.forRoot(),
     RouterModule.forChild([
       {
         path: ':templateId',
-        component: ExamplesMaterialComponent,
+        component: BootstrapExamplesComponent,
         resolve: {
           template: ExamplesResolver
         }
@@ -24,10 +24,13 @@ import { ExamplesMaterialComponent } from './examples-material.component';
     ])
   ],
   declarations: [
-    ExamplesMaterialComponent
+    BootstrapExamplesComponent
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     ExamplesResolver
   ]
 })
-export class ExamplesMaterialModule {}
+export class BootstrapExamplesModule {}
