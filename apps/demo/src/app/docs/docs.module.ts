@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { DocsBootstrapModule } from './bootstrap/docs-bootstrap.module';
-import { DocsCoreModule } from './core/docs-core.module';
+import { BootstrapDocsModule } from './bootstrap/bootstrap-docs.module';
+import { CoreDocsModule } from './core/core-docs.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
-import { DocsMaterialModule } from './material/docs-material.module';
+import { MaterialDocsModule } from './material/material-docs.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +11,9 @@ import { DocsMaterialModule } from './material/docs-material.module';
   ],
   imports: [
     DocsRoutingModule,
-    DocsCoreModule,
-    DocsBootstrapModule,
-    DocsMaterialModule
+    CoreDocsModule,
+    BootstrapDocsModule,
+    MaterialDocsModule
   ]
 })
 export class DocsModule {}

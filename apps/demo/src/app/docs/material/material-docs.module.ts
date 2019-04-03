@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DocsBootstrapComponent } from './docs-bootstrap.component';
+import { MaterialDocsComponent } from './material-docs.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
-        path: 'docs/bootstrap',
-        component: DocsBootstrapComponent
+        path: 'docs/material',
+        component: MaterialDocsComponent
       }
     ])
   ],
   declarations: [
-    DocsBootstrapComponent
+    MaterialDocsComponent
   ],
   exports: [
     RouterModule
   ]
 })
-export class DocsBootstrapModule {}
+export class MaterialDocsModule {}
