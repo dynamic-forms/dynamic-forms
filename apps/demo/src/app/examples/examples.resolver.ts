@@ -10,6 +10,6 @@ export class ExamplesResolver implements Resolve<Observable<DynamicFormTemplate>
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     const templateId = route.params.templateId;
-    return this.httpClient.get<DynamicFormTemplate>(`./assets/dynamic-form-templates/${ templateId }.json`);
+    return this.httpClient.get<DynamicFormTemplate>(`./assets/templates/${ templateId }.json`);
   }
 }

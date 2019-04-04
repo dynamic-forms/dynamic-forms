@@ -26,9 +26,7 @@ describe('DynamicFormComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({
-            module: 'core'
-          })
+          useValue: new DynamicFormConfigService({ module: 'core' })
         },
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
@@ -37,7 +35,7 @@ describe('DynamicFormComponent', () => {
     }).compileComponents();
   }));
 
-  it('creates DynamicFormComponent', () => {
+  it('creates component', () => {
     const fixture = TestBed.createComponent(DynamicFormComponent);
     const component = fixture.componentInstance;
 

@@ -5,11 +5,11 @@ import { map } from 'rxjs/operators';
 import { ExampleData } from '../example.model';
 
 @Component({
-  selector: 'app-examples-material',
-  templateUrl: './examples-material.component.html',
-  styleUrls: ['./examples-material.component.scss']
+  selector: 'app-bootstrap-examples',
+  templateUrl: './bootstrap-examples.component.html',
+  styleUrls: ['./bootstrap-examples.component.scss']
 })
-export class ExamplesMaterialComponent {
+export class BootstrapExamplesComponent {
   data$: Observable<ExampleData>;
 
   constructor(private route: ActivatedRoute) {

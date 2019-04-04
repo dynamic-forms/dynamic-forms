@@ -27,10 +27,16 @@ describe('DynamicFormConfigService', () => {
           provide: DYNAMIC_FORM_CONFIG,
           useValue: config
         },
-        DynamicFormConfigService,
+        DynamicFormConfigService
       ]
     }).compileComponents();
   }));
+
+  it('returns DynamicFormConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      expect(service.config).toEqual(config);
+    })
+  );
 
   it('returns DynamicWrapperTypeConfig',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {

@@ -4,7 +4,7 @@ import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 describe('DynamicFormArray', () => {
-  it('new DynamicFormArray', () => {
+  it('new instance', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
     const template = <DynamicFormArrayTemplate>{
       key: 'key',

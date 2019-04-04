@@ -1,1 +1,1 @@
-export type DynamicFormFieldType = 'group' | 'array' | 'control';
+export type DynamicFormFieldType = string;

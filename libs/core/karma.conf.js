@@ -19,7 +19,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../../coverage/@dynamic-forms/core'),
+      dir: require('path').join(__dirname, '../../apps/demo/src/assets/coverage/core'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },

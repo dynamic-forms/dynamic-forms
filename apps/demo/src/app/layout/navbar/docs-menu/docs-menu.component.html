@@ -5,8 +5,38 @@
 
 <mat-menu #docs="matMenu">
   <mat-nav-list>
-    <a mat-list-item routerLink="/docs/core">Core</a>
-    <a mat-list-item routerLink="/docs/bootstrap">Bootstrap</a>
-    <a mat-list-item routerLink="/docs/material">Material</a>
+    <button mat-menu-item [matMenuTriggerFor]="coreDocs">
+      <a routerLink="/docs/core">Core</a>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="bootstrapDocs">
+      <a routerLink="/docs/bootstrap">Bootstrap</a>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="materialDocs">
+      <a routerLink="/docs/material">Material</a>
+    </button>
  </mat-nav-list>
+</mat-menu>
+
+<mat-menu #coreDocs="matMenu">
+  <mat-nav-list>
+    <mat-list-item>
+      <a matLine routerLink="/docs/core/coverage">Code Coverage</a>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-menu>
+
+<mat-menu #bootstrapDocs="matMenu">
+  <mat-nav-list>
+    <mat-list-item>
+      <a matLine routerLink="/docs/bootstrap/coverage">Code Coverage</a>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-menu>
+
+<mat-menu #materialDocs="matMenu">
+  <mat-nav-list>
+    <mat-list-item>
+      <a matLine routerLink="/docs/material/coverage">Code Coverage</a>
+    </mat-list-item>
+  </mat-nav-list>
 </mat-menu>

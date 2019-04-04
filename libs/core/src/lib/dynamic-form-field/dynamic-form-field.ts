@@ -25,16 +25,16 @@ export abstract class DynamicFormField<
   get model() { return this._model; }
 
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {
-    this._expressions = expressions;
+    this._expressions = expressions || {};
     if (expressions) {
       Object.keys(expressions).forEach(path => {
         const paths = path.split('.');
         if (paths.length > 1) {
           const key = paths.splice(paths.length - 1, 1)[0];
           const obj = this.createObject(this.template, paths);
-          Object.defineProperty(obj, key, { get: function() { return expressions[path].value; } });
+          Object.defineProperty(obj, key, { get: () => expressions[path].value });
         } else {
-          Object.defineProperty(this.template, path, { get: function() { return expressions[path].value; } });
+          Object.defineProperty(this.template, path, { get: () => expressions[path].value });
         }
       });
     }
