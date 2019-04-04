@@ -9,20 +9,20 @@
 </mat-menu>
 
 <mat-menu #bootstrapExamples="matMenu">
-  <mat-nav-list >
+  <mat-nav-list>
     <mat-list-item *ngFor="let template of templates">
       <a matLine [routerLink]="['/examples/bootstrap', template.id]">
-        {{ template.label}}
+        {{ template.label }}
       </a>
     </mat-list-item>
   </mat-nav-list>
 </mat-menu>
 
 <mat-menu #materialExamples="matMenu">
-  <mat-nav-list >
+  <mat-nav-list>
     <mat-list-item *ngFor="let template of templates">
       <a matLine [routerLink]="['/examples/material', template.id]">
-        {{ template.label}}
+        {{ template.label }}
       </a>
     </mat-list-item>
   </mat-nav-list>
