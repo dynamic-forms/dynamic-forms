@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormValidationComponent } from './dynamic-form-validation.component';
 import { DynamicFormValidationConfig } from './dynamic-form-validation-config';
+import { DynamicFormValidationComponent } from './dynamic-form-validation.component';
 
 describe('DynamicFormValidationComponent', () => {
   const validationConfig: DynamicFormValidationConfig = {
