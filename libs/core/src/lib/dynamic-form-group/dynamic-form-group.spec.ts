@@ -82,4 +82,21 @@ describe('DynamicFormGroup', () => {
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
+
+  it('check sets disabled of control', () => {
+    const form = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
+    const template = <DynamicFormGroupTemplate>{ key: 'key', fields: [] };
+    const formGroup = new DynamicFormGroup(form, form, template);
+
+    expect(formGroup.control.disabled).toBe(false);
+
+    template.disabled = true;
+    formGroup.check();
+
+    expect(formGroup.control.disabled).toBe(true);
+
+    template.disabled = false;
+    formGroup.check();
+    expect(formGroup.control.disabled).toBe(false);
+  });
 });
