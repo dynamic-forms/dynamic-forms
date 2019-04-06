@@ -1,7 +1,10 @@
+import { Validators } from '@angular/forms';
+import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
+import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
   it('new instance', () => {
@@ -48,12 +51,40 @@ describe('DynamicFormControl', () => {
     expect(formControl.control.disabled).toBe(false);
   });
 
-  it('check updates validators', () => {
+  it('check updates control validators', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    const template = <DynamicFormControlTemplate>{ key: 'key' };
+    const template = <DynamicFormControlTemplate>{
+      key: 'key',
+      type: 'control',
+      input: { type: 'input' },
+      validation: { required: true }
+    };
     const formControl = new DynamicFormControl(root, root, template);
+    const formControlValidators = <DynamicFormControlValidator[]>[
+      {
+        key: 'required', enabled: true, value: undefined,
+        validator: Validators.required, factory: _ => Validators.required
+      }
+    ];
 
-    expect(formControl.control.validator).toBeDefined();
+    formControl.setValidators(formControlValidators);
+    formControl.control.updateValueAndValidity();
+
+    expect(formControl.control.valid).toBe(false);
+
+    template.validation.required = false;
+    formControl.check();
+
+    expect(formControl.control.valid).toBe(true);
+
+    formControl.check();
+
+    expect(formControl.control.valid).toBe(true);
+
+    template.validation.required = true;
+    formControl.check();
+
+    expect(formControl.control.valid).toBe(false);
   });
 
   it('destroy unsubscribes valueChanges of control', () => {
