@@ -9,7 +9,7 @@ import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
-  const getForm = (model) => {
+  const getForm = (model: any) => {
     const template = <DynamicFormTemplate>{ fields: [] };
     return new DynamicForm(template, model);
   };
@@ -55,7 +55,7 @@ describe('DynamicFormBuilder', () => {
       const form = builder.createForm(template, {});
 
       expect(form.fields).toBeDefined();
-      expect(form.model).toEqual({ key: null });
+      expect(form.model).toEqual({ key: undefined });
     })
   );
 
