@@ -16,10 +16,20 @@ describe('DynamicFormControl', () => {
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
     expect(formControl.template).toBe(template);
-    expect(formControl.model).toBeNull();
+    expect(formControl.model).toBeUndefined();
     expect(formControl.control).toBeDefined();
 
-    expect(root.model).toEqual({ key: null });
+    expect(root.model).toEqual({ key: undefined });
+  });
+
+  it('new instance with default value for model', () => {
+    const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
+    const template = <DynamicFormControlTemplate>{ key: 'key', input: { defaultValue: 'default' } };
+    const formControl = new DynamicFormControl(root, root, template);
+
+    expect(formControl.model).toBe('default');
+
+    expect(root.model).toEqual({ key: 'default' });
   });
 
   it('new instance subscribes valueChanges of control', () => {

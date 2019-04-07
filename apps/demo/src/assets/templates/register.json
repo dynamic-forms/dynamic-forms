@@ -2,9 +2,10 @@
   "fields": [{
     "key": "registerDisabled",
     "type": "control",
-    "label": "Register disabled",
+    "label": "Disabled",
     "input": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "defaultValue": true
     }
   },
   {
@@ -33,9 +34,6 @@
       },
       "validation": {
         "required": true
-      },
-      "expressions": {
-        "disabled": "rootModel.registerDisabled"
       }
     }, {
       "key": "email",
@@ -49,9 +47,6 @@
       "validation": {
         "required": true,
         "email": true
-      },
-      "expressions": {
-        "disabled": "rootModel.registerDisabled"
       }
     }, {
       "key": "password",

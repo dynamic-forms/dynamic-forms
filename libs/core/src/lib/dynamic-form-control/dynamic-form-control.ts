@@ -36,8 +36,9 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._controlValue.unsubscribe();
   }
 
-  private getModel(parent: DynamicFormField, template: DynamicFormFieldTemplate): any {
-    parent.model[template.key] = parent.model[template.key] || null;
+  private getModel(parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>): any {
+    parent.model[template.key] = parent.model[template.key] ||
+      template.input && template.input.defaultValue;
     return parent.model[template.key];
   }
 

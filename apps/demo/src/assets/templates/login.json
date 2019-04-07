@@ -1,10 +1,11 @@
 {
   "fields": [{
-    "key": "loginEnabled",
+    "key": "loginHidden",
     "type": "control",
-    "label": "Login enabled",
+    "label": "Hidden",
     "input": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "defaultValue": true
     },
     "validation": {
       "required": false,
@@ -16,26 +17,26 @@
     "type": "group",
     "label": "Login",
     "expressions": {
-      "hidden": "!rootModel.loginEnabled"
+      "hidden": "rootModel.loginHidden"
     },
     "fields": [{
       "key": "disabled",
       "type": "control",
-      "label": "Login disabled",
+      "label": "Disabled",
       "input": {
         "type": "checkbox"
       }
     }, {
       "key": "required",
       "type": "control",
-      "label": "Login required",
+      "label": "Required",
       "input": {
         "type": "checkbox"
       }
     }, {
       "key": "readonly",
       "type": "control",
-      "label": "Login readonly",
+      "label": "Readonly",
       "input": {
         "type": "checkbox"
       }
