@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BootstrapDynamicLabelWrapperComponent } from './dynamic-label-wrapper/dynamic-label-wrapper.component';
+import { DynamicLabelWrapperBootstrapComponent } from './dynamic-label-wrapper/dynamic-label-wrapper.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    BootstrapDynamicLabelWrapperComponent
+    DynamicLabelWrapperBootstrapComponent
   ],
   entryComponents: [
-    BootstrapDynamicLabelWrapperComponent
+    DynamicLabelWrapperBootstrapComponent
   ]
 })
 export class DynamicFormWrapperBootstrapModule {}
