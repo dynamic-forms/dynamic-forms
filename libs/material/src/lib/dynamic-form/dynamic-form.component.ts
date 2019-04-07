@@ -5,7 +5,7 @@ import { DynamicFormBuilder, DynamicFormComponent } from '@dynamic-forms/core';
   selector: 'mat-dynamic-form',
   templateUrl: './dynamic-form.component.html'
 })
-export class MatDynamicFormComponent extends DynamicFormComponent {
+export class DynamicFormMaterialComponent extends DynamicFormComponent {
   constructor(formBuilder: DynamicFormBuilder) {
     super(formBuilder);
   }

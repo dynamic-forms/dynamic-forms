@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
-import { MatDynamicFormComponent } from './dynamic-form.component';
+import { DynamicFormMaterialComponent } from './dynamic-form.component';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import { MatDynamicFormComponent } from './dynamic-form.component';
     MatButtonModule
   ],
   declarations: [
-    MatDynamicFormComponent
+    DynamicFormMaterialComponent
   ],
   exports: [
-    MatDynamicFormComponent
+    DynamicFormMaterialComponent
   ]
 })
-export class MatDynamicFormModule {}
+export class DynamicFormMaterialModule {}

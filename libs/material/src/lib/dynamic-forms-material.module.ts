@@ -5,10 +5,10 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { dynamicFormsCoreServices } from '@dynamic-forms/core';
-import { MatDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
-import { MatDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
-import { MatDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
-import { MatDynamicFormModule } from './dynamic-form/dynamic-form.module';
+import { DynamicFormControlMaterialModule } from './dynamic-form-control/dynamic-form-control.module';
+import { DynamicFormInputMaterialModule } from './dynamic-form-input/dynamic-form-input.module';
+import { DynamicFormValidationMaterialModule } from './dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormMaterialModule } from './dynamic-form/dynamic-form.module';
 import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-forms-material.config';
 
 @NgModule({
@@ -16,13 +16,13 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    MatDynamicFormModule,
-    MatDynamicFormControlModule,
-    MatDynamicFormInputModule,
-    MatDynamicFormValidationModule,
+    DynamicFormMaterialModule,
+    DynamicFormControlMaterialModule,
+    DynamicFormInputMaterialModule,
+    DynamicFormValidationMaterialModule
   ],
   exports: [
-    MatDynamicFormModule
+    DynamicFormMaterialModule
   ]
 })
 export class DynamicFormsMaterialModule {

@@ -5,7 +5,7 @@ import { DynamicFormBuilder, DynamicFormComponent } from '@dynamic-forms/core';
   selector: 'bs-dynamic-form',
   templateUrl: './dynamic-form.component.html'
 })
-export class BsDynamicFormComponent extends DynamicFormComponent {
+export class DynamicFormBootstrapComponent extends DynamicFormComponent {
   constructor(formBuilder: DynamicFormBuilder) {
     super(formBuilder);
   }

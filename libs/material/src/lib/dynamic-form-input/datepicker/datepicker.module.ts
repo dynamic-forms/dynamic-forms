@@ -5,7 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDynamicFormValidationModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
 import { DatepickerComponent } from './datepicker.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { DatepickerComponent } from './datepicker.component';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDynamicFormValidationModule
+    DynamicFormValidationMaterialModule
   ],
   declarations: [
     DatepickerComponent

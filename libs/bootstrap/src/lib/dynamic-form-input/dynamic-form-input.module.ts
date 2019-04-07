@@ -20,4 +20,4 @@ import { TextboxModule } from './textbox/textbox.module';
     TextboxModule
   ]
 })
-export class BootstrapDynamicFormInputModule {}
+export class DynamicFormInputBootstrapModule {}

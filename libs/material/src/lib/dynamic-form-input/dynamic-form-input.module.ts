@@ -29,4 +29,4 @@ import { TextboxModule } from './textbox/textbox.module';
     }
   ]
 })
-export class MatDynamicFormInputModule {}
+export class DynamicFormInputMaterialModule {}

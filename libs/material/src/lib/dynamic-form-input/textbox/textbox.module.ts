@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDynamicFormValidationModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
 import { TextboxComponent } from './textbox.component';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { TextboxComponent } from './textbox.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDynamicFormValidationModule
+    DynamicFormValidationMaterialModule
   ],
   declarations: [
     TextboxComponent
