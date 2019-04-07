@@ -8,5 +8,6 @@ export interface DynamicFormFieldTemplate {
   label?: string;
   hidden?: boolean;
   disabled?: boolean;
+  readonly?: boolean;
   expressions?: { [key: string]: string };
 }

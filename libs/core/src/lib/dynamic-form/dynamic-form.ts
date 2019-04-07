@@ -5,4 +5,6 @@ export class DynamicForm extends DynamicFormGroup {
   constructor(template: DynamicFormTemplate, model: any) {
     super(null, null, template, model);
   }
+
+  get readonly() { return this.template.readonly || false; }
 }

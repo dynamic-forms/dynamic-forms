@@ -7,7 +7,6 @@ export interface DynamicFormInput {
   placeholder?: string;
   inputType?: string;
   options?: DynamicFormInputOptions;
-  readonly?: boolean;
   pattern?: string | RegExp;
   min?: number | Date;
   max?: number | Date;

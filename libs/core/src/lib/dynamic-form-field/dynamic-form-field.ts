@@ -24,6 +24,8 @@ export abstract class DynamicFormField<
   get control() { return this._control; }
   get model() { return this._model; }
 
+  get readonly() { return this.parent.readonly || this.template.readonly || false; }
+
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {
     this._expressions = expressions || {};
     if (expressions) {

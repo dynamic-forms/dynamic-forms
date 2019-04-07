@@ -41,6 +41,38 @@ describe('DynamicFormField', () => {
     expect(formField.path).toBe('path.key');
   });
 
+  it('new instance with path from parent path and key of template', () => {
+    const parent = <DynamicFormField>{ path: 'path' };
+    const template = <DynamicFormFieldTemplate>{ key: 'key' };
+    const formField = new DynamicFormFieldTest(null, parent, template);
+
+    expect(formField.path).toBe('path.key');
+  });
+
+  it('readonly returns false', () => {
+    const parent = <DynamicFormField>{ path: 'path' };
+    const template = <DynamicFormFieldTemplate>{ key: 'key' };
+    const formField = new DynamicFormFieldTest(null, parent, template);
+
+    expect(formField.readonly).toBe(false);
+  });
+
+  it('readonly returns true if parent is readonly', () => {
+    const parent = <DynamicFormField>{ path: 'path', readonly: true };
+    const template = <DynamicFormFieldTemplate>{ key: 'key'};
+    const formField = new DynamicFormFieldTest(null, parent, template);
+
+    expect(formField.readonly).toBe(true);
+  });
+
+  it('readonly returns true if template is readonly', () => {
+    const parent = <DynamicFormField>{ path: 'path' };
+    const template = <DynamicFormFieldTemplate>{ key: 'key', readonly: true };
+    const formField = new DynamicFormFieldTest(null, parent, template);
+
+    expect(formField.readonly).toBe(true);
+  });
+
   it('set expressions', () => {
     const template = <DynamicFormFieldTemplate>{ key: 'key' };
     const formField = new DynamicFormFieldTest(null, null, template);

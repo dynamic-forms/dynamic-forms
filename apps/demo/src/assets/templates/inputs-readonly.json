@@ -1,4 +1,5 @@
 {
+  "readonly": true,
   "fields": [
     {
       "key": "checkbox",

@@ -55,7 +55,7 @@
       },
       "expressions": {
         "disabled": "parentModel.disabled",
-        "input.readonly": "parentModel.readonly",
+        "readonly": "parentModel.readonly",
         "validation.required": "parentModel.required"
       }
     }, {
@@ -72,7 +72,7 @@
       },
       "expressions": {
         "disabled": "parentModel.disabled",
-        "input.readonly": "parentModel.readonly",
+        "readonly": "parentModel.readonly",
         "validation.required": "parentModel.required"
       }
     }]

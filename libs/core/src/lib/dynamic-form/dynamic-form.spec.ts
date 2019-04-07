@@ -27,4 +27,18 @@ describe('DynamicForm', () => {
 
     expect(() => new DynamicForm(template, null)).toThrowError();
   });
+
+  it('readonly returns false', () => {
+    const template = <DynamicFormTemplate>{ fields: [] };
+    const form = new DynamicForm(template, {});
+
+    expect(form.readonly).toBe(false);
+  });
+
+  it('readonly returns true if template is readonly', () => {
+    const template = <DynamicFormTemplate>{ readonly: true, fields: [] };
+    const form = new DynamicForm(template, {});
+
+    expect(form.readonly).toBe(true);
+  });
 });
