@@ -1,7 +1,7 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
   <input matInput [type]="input.inputType" [placeholder]="input.placeholder" 
-    [readonly]="input.readonly" [formControl]="control" />
+    [readonly]="field.readonly" [formControl]="control" />
   <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
 </mat-form-field>
   

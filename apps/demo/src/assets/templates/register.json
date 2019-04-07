@@ -8,11 +8,20 @@
     }
   },
   {
+    "key": "registerReadonly",
+    "type": "control",
+    "label": "Register readonly",
+    "input": {
+      "type": "checkbox"
+    }
+  },
+  {
     "key": "register",
     "type": "group",
     "label": "Register",
     "expressions": {
-      "disabled": "rootModel.registerDisabled"
+      "disabled": "rootModel.registerDisabled",
+      "readonly": "rootModel.registerReadonly"
     },
     "fields": [{
       "key": "name",
