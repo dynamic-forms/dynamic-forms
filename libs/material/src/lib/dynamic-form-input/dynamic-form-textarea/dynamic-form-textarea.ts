@@ -1,5 +1,5 @@
 import { DynamicFormInput } from '@dynamic-forms/core';
 
-export interface TextareaInput extends DynamicFormInput {
+export interface DynamicFormTextarea extends DynamicFormInput {
   type: 'textarea';
 }

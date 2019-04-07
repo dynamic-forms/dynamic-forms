@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
-import { TextareaComponent } from './textarea.component';
+import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 @NgModule({
   imports: [
@@ -15,10 +15,10 @@ import { TextareaComponent } from './textarea.component';
     DynamicFormValidationMaterialModule
   ],
   declarations: [
-    TextareaComponent
+    DynamicFormNumberboxComponent
   ],
   entryComponents: [
-    TextareaComponent
+    DynamicFormNumberboxComponent
   ]
 })
-export class TextareaModule {}
+export class DynamicFormNumberboxModule {}

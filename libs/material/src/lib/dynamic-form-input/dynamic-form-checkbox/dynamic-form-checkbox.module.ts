@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CheckboxComponent } from './checkbox.component';
+import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import { CheckboxComponent } from './checkbox.component';
     MatCheckboxModule
   ],
   declarations: [
-    CheckboxComponent
+    DynamicFormCheckboxComponent
   ],
   entryComponents: [
-    CheckboxComponent
+    DynamicFormCheckboxComponent
   ]
 })
-export class CheckboxModule {}
+export class DynamicFormCheckboxModule {}

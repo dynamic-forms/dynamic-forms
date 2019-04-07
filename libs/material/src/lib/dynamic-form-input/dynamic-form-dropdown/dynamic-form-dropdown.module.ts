@@ -2,23 +2,23 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
-import { TextboxComponent } from './textbox.component';
+import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatSelectModule,
     DynamicFormValidationMaterialModule
   ],
   declarations: [
-    TextboxComponent
+    DynamicFormDropdownComponent
   ],
   entryComponents: [
-    TextboxComponent
+    DynamicFormDropdownComponent
   ]
 })
-export class TextboxModule {}
+export class DynamicFormDropdownModule {}

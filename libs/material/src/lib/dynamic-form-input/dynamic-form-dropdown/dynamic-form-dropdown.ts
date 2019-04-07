@@ -1,5 +1,5 @@
 import { DynamicFormInput } from '@dynamic-forms/core';
 
-export interface DropdownInput extends DynamicFormInput {
+export interface DynamicFormDropdown extends DynamicFormInput {
   type: 'dropdown';
 }

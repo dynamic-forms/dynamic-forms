@@ -1,28 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
-import { DatepickerComponent } from './datepicker.component';
+import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    MatInputModule,
     DynamicFormValidationMaterialModule
   ],
   declarations: [
-    DatepickerComponent
+    DynamicFormTextboxComponent
   ],
   entryComponents: [
-    DatepickerComponent
+    DynamicFormTextboxComponent
   ]
 })
-export class DatepickerModule {}
+export class DynamicFormTextboxModule {}
