@@ -1,7 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';

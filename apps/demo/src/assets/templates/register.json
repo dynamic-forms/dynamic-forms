@@ -11,7 +11,7 @@
   {
     "key": "registerReadonly",
     "type": "control",
-    "label": "Register readonly",
+    "label": "Readonly",
     "input": {
       "type": "checkbox"
     }

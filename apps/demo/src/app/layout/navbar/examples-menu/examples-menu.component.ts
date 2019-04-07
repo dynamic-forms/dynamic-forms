@@ -8,8 +8,10 @@ import { Component } from '@angular/core';
 export class ExamplesMenuComponent {
   templates = [
     { id: 'inputs', label: 'Inputs' },
-    { id: 'inputs-placeholder', label: 'Inputs with Placeholder' },
-    { id: 'inputs-default-value', label: 'Inputs with Default Value' },
+    { id: 'inputs-placeholder', label: 'Inputs with placeholder' },
+    { id: 'inputs-default-value', label: 'Inputs with default value' },
+    { id: 'inputs-disabled', label: 'Inputs disabled' },
+    { id: 'inputs-readonly', label: 'Inputs readonly' },
     { id: 'login', label: 'Login' },
     { id: 'register', label: 'Register' },
     { id: 'finance', label: 'Finance' }

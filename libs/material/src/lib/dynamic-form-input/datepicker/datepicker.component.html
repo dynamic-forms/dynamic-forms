@@ -1,9 +1,9 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
   <input matInput [matDatepicker]="datepicker" [placeholder]="input.placeholder" 
-    [formControl]="control" />
+    [readonly]="field.readonly" [formControl]="control" />
   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-  <mat-datepicker #datepicker></mat-datepicker>
+  <mat-datepicker #datepicker [disabled]="control.disabled || field.readonly"></mat-datepicker>
   <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
 </mat-form-field>
   
