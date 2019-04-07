@@ -1,5 +1,5 @@
 import { DynamicFormInput } from '@dynamic-forms/core';
 
-export interface DatepickerInput extends DynamicFormInput {
+export interface DynamicFormDatepicker extends DynamicFormInput {
   type: 'datepicker';
 }

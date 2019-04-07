@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NumberboxComponent } from './numberbox.component';
+import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { NumberboxComponent } from './numberbox.component';
     ReactiveFormsModule
   ],
   declarations: [
-    NumberboxComponent
+    DynamicFormCheckboxComponent
   ],
   entryComponents: [
-    NumberboxComponent
+    DynamicFormCheckboxComponent
   ]
 })
-export class NumberboxModule {}
+export class DynamicFormCheckboxModule {}

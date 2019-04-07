@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TextboxComponent } from './textbox.component';
+import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { TextboxComponent } from './textbox.component';
     ReactiveFormsModule
   ],
   declarations: [
-    TextboxComponent
+    DynamicFormNumberboxComponent
   ],
   entryComponents: [
-    TextboxComponent
+    DynamicFormNumberboxComponent
   ]
 })
-export class TextboxModule {}
+export class DynamicFormNumberboxModule {}

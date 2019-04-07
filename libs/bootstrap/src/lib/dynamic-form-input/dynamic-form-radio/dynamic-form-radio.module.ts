@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DatepickerComponent } from './datepicker.component';
+import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { DatepickerComponent } from './datepicker.component';
     ReactiveFormsModule
   ],
   declarations: [
-    DatepickerComponent
+    DynamicFormRadioComponent
   ],
   entryComponents: [
-    DatepickerComponent
+    DynamicFormRadioComponent
   ]
 })
-export class DatepickerModule {}
+export class DynamicFormRadioModule {}

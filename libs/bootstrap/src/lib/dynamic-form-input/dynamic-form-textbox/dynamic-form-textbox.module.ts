@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RadioComponent } from './radio.component';
+import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { RadioComponent } from './radio.component';
     ReactiveFormsModule
   ],
   declarations: [
-    RadioComponent
+    DynamicFormTextboxComponent
   ],
   entryComponents: [
-    RadioComponent
+    DynamicFormTextboxComponent
   ]
 })
-export class RadioModule {}
+export class DynamicFormTextboxModule {}

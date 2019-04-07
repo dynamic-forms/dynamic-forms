@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CheckboxComponent } from './checkbox.component';
+import { DynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { CheckboxComponent } from './checkbox.component';
     ReactiveFormsModule
   ],
   declarations: [
-    CheckboxComponent
+    DynamicFormDatepickerComponent
   ],
   entryComponents: [
-    CheckboxComponent
+    DynamicFormDatepickerComponent
   ]
 })
-export class CheckboxModule {}
+export class DynamicFormDatepickerModule {}

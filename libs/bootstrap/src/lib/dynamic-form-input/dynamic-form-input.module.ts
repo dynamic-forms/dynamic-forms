@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CheckboxModule } from './dynamic-form-checkbox/checkbox.module';
-import { DatepickerModule } from './dynamic-form-datepicker/datepicker.module';
-import { DropdownModule } from './dynamic-form-dropdown/dropdown.module';
-import { NumberboxModule } from './dynamic-form-numberbox/numberbox.module';
-import { RadioModule } from './dynamic-form-radio/radio.module';
-import { TextareaModule } from './dynamic-form-textarea/textarea.module';
-import { TextboxModule } from './dynamic-form-textbox/textbox.module';
+import { DynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
+import { DynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
+import { DynamicFormDropdownModule } from './dynamic-form-dropdown/dynamic-form-dropdown.module';
+import { DynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
+import { DynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
+import { DynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
+import { DynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CheckboxModule,
-    DatepickerModule,
-    DropdownModule,
-    NumberboxModule,
-    RadioModule,
-    TextareaModule,
-    TextboxModule
+    DynamicFormCheckboxModule,
+    DynamicFormDatepickerModule,
+    DynamicFormDropdownModule,
+    DynamicFormNumberboxModule,
+    DynamicFormRadioModule,
+    DynamicFormTextareaModule,
+    DynamicFormTextboxModule
   ]
 })
 export class DynamicFormInputBootstrapModule {}

@@ -1,20 +1,20 @@
 import { DynamicFormInputConfig } from '@dynamic-forms/core';
-import { CheckboxComponent } from './dynamic-form-checkbox/checkbox.component';
-import { DatepickerComponent } from './dynamic-form-datepicker/datepicker.component';
-import { DropdownComponent } from './dynamic-form-dropdown/dropdown.component';
-import { NumberboxComponent } from './dynamic-form-numberbox/numberbox.component';
-import { RadioComponent } from './dynamic-form-radio/radio.component';
-import { TextareaComponent } from './dynamic-form-textarea/textarea.component';
-import { TextboxComponent } from './dynamic-form-textbox/textbox.component';
+import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox/dynamic-form-checkbox.component';
+import { DynamicFormDatepickerComponent } from './dynamic-form-datepicker/dynamic-form-datepicker.component';
+import { DynamicFormDropdownComponent } from './dynamic-form-dropdown/dynamic-form-dropdown.component';
+import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox/dynamic-form-numberbox.component';
+import { DynamicFormRadioComponent } from './dynamic-form-radio/dynamic-form-radio.component';
+import { DynamicFormTextareaComponent } from './dynamic-form-textarea/dynamic-form-textarea.component';
+import { DynamicFormTextboxComponent } from './dynamic-form-textbox/dynamic-form-textbox.component';
 
 export const bsDynamicFormInputConfig: DynamicFormInputConfig = {
   types: [
-    { type: 'checkbox', component: CheckboxComponent },
-    { type: 'datepicker', component: DatepickerComponent, wrappers: [ 'label' ] },
-    { type: 'dropdown', component: DropdownComponent, wrappers: [ 'label' ] },
-    { type: 'numberbox', component: NumberboxComponent, wrappers: [ 'label' ] },
-    { type: 'radio', component: RadioComponent, wrappers: [ 'label' ] },
-    { type: 'textarea', component: TextareaComponent, wrappers: [ 'label' ] },
-    { type: 'textbox', component: TextboxComponent, wrappers: [ 'label' ] }
+    { type: 'checkbox', component: DynamicFormCheckboxComponent },
+    { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label' ] },
+    { type: 'dropdown', component: DynamicFormDropdownComponent, wrappers: [ 'label' ] },
+    { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label' ] },
+    { type: 'radio', component: DynamicFormRadioComponent, wrappers: [ 'label' ] },
+    { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label' ] },
+    { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label' ] }
   ]
 };

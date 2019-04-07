@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TextareaComponent } from './textarea.component';
+import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { TextareaComponent } from './textarea.component';
     ReactiveFormsModule
   ],
   declarations: [
-    TextareaComponent
+    DynamicFormTextareaComponent
   ],
   entryComponents: [
-    TextareaComponent
+    DynamicFormTextareaComponent
   ]
 })
-export class TextareaModule {}
+export class DynamicFormTextareaModule {}
