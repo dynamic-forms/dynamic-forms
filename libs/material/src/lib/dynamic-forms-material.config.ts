@@ -1,5 +1,5 @@
 import { DynamicFormArrayComponent, DynamicFormConfig, DynamicFormConfigService, DynamicFormGroupComponent } from '@dynamic-forms/core';
-import { MatDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { DynamicFormControlMaterialComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 
 export const matDynamicFormConfig: DynamicFormConfig = {
@@ -11,7 +11,7 @@ export const matDynamicFormConfig: DynamicFormConfig = {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },
       { type: 'array', component: DynamicFormArrayComponent },
-      { type: 'control', component: MatDynamicFormControlComponent }
+      { type: 'control', component: DynamicFormControlMaterialComponent }
     ]
   },
   inputConfig: matDynamicFormInputConfig,

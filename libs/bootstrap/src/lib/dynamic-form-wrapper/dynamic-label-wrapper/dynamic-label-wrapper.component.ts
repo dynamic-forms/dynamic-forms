@@ -6,7 +6,7 @@ import { DynamicFormWrapper } from '@dynamic-forms/core';
   templateUrl: './dynamic-label-wrapper.component.html',
   styleUrls: ['./dynamic-label-wrapper.component.scss']
 })
-export class BootstrapDynamicLabelWrapperComponent extends DynamicFormWrapper implements AfterViewInit {
+export class DynamicLabelWrapperBootstrapComponent extends DynamicFormWrapper implements AfterViewInit {
   constructor(protected containerRef: ViewContainerRef) {
     super(containerRef);
   }

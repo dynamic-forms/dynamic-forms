@@ -5,11 +5,11 @@ import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { dynamicFormsCoreServices } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { BootstrapDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
-import { BootstrapDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
-import { BootstrapDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
-import { BootstrapDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
-import { BootstrapDynamicFormModule } from './dynamic-form/dynamic-form.module';
+import { DynamicFormControlBootstrapModule } from './dynamic-form-control/dynamic-form-control.module';
+import { DynamicFormInputBootstrapModule } from './dynamic-form-input/dynamic-form-input.module';
+import { DynamicFormValidationBootstrapModule } from './dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormWrapperBootstrapModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
+import { DynamicFormBootstrapModule } from './dynamic-form/dynamic-form.module';
 import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms-bootstrap.config';
 
 @NgModule({
@@ -17,14 +17,14 @@ import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    BootstrapDynamicFormModule,
-    BootstrapDynamicFormControlModule,
-    BootstrapDynamicFormInputModule,
-    BootstrapDynamicFormValidationModule,
-    BootstrapDynamicFormWrapperModule
+    DynamicFormBootstrapModule,
+    DynamicFormControlBootstrapModule,
+    DynamicFormInputBootstrapModule,
+    DynamicFormValidationBootstrapModule,
+    DynamicFormWrapperBootstrapModule
   ],
   exports: [
-    BootstrapDynamicFormModule
+    DynamicFormBootstrapModule
   ]
 })
 export class DynamicFormsBootstrapModule {

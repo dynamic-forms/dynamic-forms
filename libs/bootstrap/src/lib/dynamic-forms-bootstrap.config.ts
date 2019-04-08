@@ -1,5 +1,5 @@
 import { DynamicFormArrayComponent, DynamicFormConfig, DynamicFormConfigService, DynamicFormGroupComponent } from '@dynamic-forms/core';
-import { BootstrapDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { DynamicFormControlBootstrapComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { bsDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 import { bsDynamicFormWrapperConfig } from './dynamic-form-wrapper/dynamic-form-wrapper.config';
 
@@ -10,7 +10,7 @@ export const bsDynamicFormConfig: DynamicFormConfig = {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },
       { type: 'array', component: DynamicFormArrayComponent },
-      { type: 'control', component: BootstrapDynamicFormControlComponent }
+      { type: 'control', component: DynamicFormControlBootstrapComponent }
     ]
   },
   inputConfig: bsDynamicFormInputConfig,
