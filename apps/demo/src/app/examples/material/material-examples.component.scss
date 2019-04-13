@@ -2,9 +2,21 @@
   .dynamic-form {
     margin: 0 10px;
 
+    .mat-form-field.readonly  {
+      pointer-events: none;
+    }
+    
+    .mat-checkbox.readonly {
+      pointer-events: none;
+    }
+
     .mat-radio-group {
       display: inline-flex;
       flex-direction: column;
+
+      &.readonly {
+        pointer-events: none;
+      }
 
       .mat-radio-button {
         margin: 5px 0;

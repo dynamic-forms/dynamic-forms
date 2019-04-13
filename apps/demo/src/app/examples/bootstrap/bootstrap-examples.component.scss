@@ -8,6 +8,12 @@
 
     margin: 0 10px;
 
+    .form-control.readonly {
+      pointer-events: none;
+      background-color: #e9ecef;
+      opacity: 1; 
+    } 
+
     .form-check.readonly {
       pointer-events: none;
 
@@ -16,12 +22,6 @@
         opacity: 1;  
       }
     }
-
-    select.form-control.readonly {
-      pointer-events: none;
-      background-color: #e9ecef;
-      opacity: 1; 
-    } 
 
     .dynamic-form-group {
       margin: 10px 0 20px 0;

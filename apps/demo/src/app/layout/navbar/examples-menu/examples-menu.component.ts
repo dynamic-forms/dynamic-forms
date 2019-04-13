@@ -10,8 +10,8 @@ export class ExamplesMenuComponent {
     { id: 'inputs', label: 'Inputs' },
     { id: 'inputs-placeholder', label: 'Inputs with placeholder' },
     { id: 'inputs-default-value', label: 'Inputs with default value' },
-    { id: 'inputs-disabled', label: 'Inputs disabled' },
     { id: 'inputs-readonly', label: 'Inputs readonly' },
+    { id: 'inputs-disabled', label: 'Inputs disabled' },
     { id: 'login', label: 'Login' },
     { id: 'register', label: 'Register' },
     { id: 'finance', label: 'Finance' }

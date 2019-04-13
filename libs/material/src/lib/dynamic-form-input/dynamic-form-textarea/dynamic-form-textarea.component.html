@@ -1,4 +1,4 @@
-<mat-form-field appearance="standard" color="primary">
+<mat-form-field appearance="standard" color="primary" [ngClass]="{'readonly': field.readonly }">
   <mat-label>{{ template.label }}</mat-label>
   <textarea matInput [placeholder]="input.placeholder" [readonly]="field.readonly" 
     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" 

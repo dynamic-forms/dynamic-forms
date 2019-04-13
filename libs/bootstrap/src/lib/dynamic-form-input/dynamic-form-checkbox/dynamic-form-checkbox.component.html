@@ -1,6 +1,6 @@
 <div class="form-check" [ngClass]="{'readonly': field.readonly }">
-  <input class="form-check-input" [id]="id" type="checkbox" [readonly]="field.readonly" [formControl]="control" />
-  <label class="form-check-label" [for]="id">{{ template.label }}</label>  
+  <input [id]="id" type="checkbox" class="form-check-input" [readonly]="field.readonly" [formControl]="control" />
+  <label [for]="id" class="form-check-label">{{ template.label }}</label>  
 </div>
 
 
