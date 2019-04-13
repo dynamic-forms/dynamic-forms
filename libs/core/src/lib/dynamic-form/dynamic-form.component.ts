@@ -36,8 +36,4 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
       this._formField.destroy();
     }
   }
-
-  submit() {
-    console.log('form.value', this.formField.control.value);
-  }
 }

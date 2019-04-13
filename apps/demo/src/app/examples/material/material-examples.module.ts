@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { DynamicFormsMaterialModule } from '@dynamic-forms/material';
@@ -12,6 +13,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
     CommonModule,
     HttpClientModule,
     MatTabsModule,
+    MatButtonModule,
     DynamicFormsMaterialModule.forRoot(),
     RouterModule.forChild([
       {

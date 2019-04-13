@@ -1,5 +1,5 @@
-<form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="submit()">
+<form class="dynamic-form" [formGroup]="formGroup">
   <dynamic-form-group [field]="formField">
-    <button mat-flat-button color="primary" type="submit" [disabled]="!formGroup.valid">Submit</button>
+    <ng-content></ng-content>
   </dynamic-form-group>
 </form>
