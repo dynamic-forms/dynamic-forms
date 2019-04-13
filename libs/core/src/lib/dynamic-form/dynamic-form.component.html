@@ -1,4 +1,4 @@
-<form class="dynamic-form" [formGroup]="formGroup">
+<form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <dynamic-form-group [field]="formField">
     <ng-content></ng-content>
   </dynamic-form-group>
