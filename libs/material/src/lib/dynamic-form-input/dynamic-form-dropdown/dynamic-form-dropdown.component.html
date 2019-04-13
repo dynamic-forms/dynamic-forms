@@ -1,7 +1,6 @@
 <mat-form-field appearance="standard" color="primary" [ngClass]="{'readonly': field.readonly }">
   <mat-label>{{ template.label }}</mat-label>
-  <mat-select #matSelect [id]="id" [placeholder]="input.placeholder" 
-    [formControl]="control" (openedChange)="field.readonly && matSelect.close()">
+  <mat-select [id]="id" [placeholder]="input.placeholder" [formControl]="control">
     <mat-option *ngFor="let option of input.options" [value]="option.value">
       {{ option.label }}
     </mat-option>
