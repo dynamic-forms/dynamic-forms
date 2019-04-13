@@ -1,4 +1,5 @@
-<textarea class="form-control" [id]="id" [placeholder]="input.placeholder || ''" 
-  [pattern]="input.pattern" [readonly]="field.readonly" [formControl]="control">
+<textarea [id]="id" class="form-control" [ngClass]="{'readonly': field.readonly }" 
+  [placeholder]="input.placeholder || ''" [pattern]="input.pattern" [readonly]="field.readonly" 
+  [formControl]="control">
 </textarea> 
   

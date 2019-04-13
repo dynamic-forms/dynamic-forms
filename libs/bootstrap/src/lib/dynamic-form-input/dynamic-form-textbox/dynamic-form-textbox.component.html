@@ -1,3 +1,4 @@
-<input class="form-control" [id]="id" [type]="input.inputType" [placeholder]="input.placeholder || ''" 
-  [pattern]="input.pattern" [readonly]="field.readonly" [formControl]="control" /> 
+<input [id]="id" [type]="input.inputType" class="form-control" [ngClass]="{'readonly': field.readonly }" 
+  [placeholder]="input.placeholder || ''" [pattern]="input.pattern" [readonly]="field.readonly" 
+  [formControl]="control" /> 
   

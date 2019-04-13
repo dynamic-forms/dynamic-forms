@@ -1,4 +1,4 @@
-<mat-checkbox color="primary" [formControl]="control">
+<mat-checkbox color="primary" [ngClass]="{'readonly': field.readonly }" [formControl]="control">
   {{ template.label }}
 </mat-checkbox>
 
