@@ -1,5 +1,6 @@
-import { Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { DynamicForm } from './dynamic-form';
+import { DynamicFormSubmitEvent } from './dynamic-form-submit-event';
 import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
@@ -12,6 +13,7 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
 
   @Input() template: DynamicFormTemplate;
   @Input() model: any;
+  @Output() formSubmit = new EventEmitter<DynamicFormSubmitEvent>();
 
   constructor(private formBuilder: DynamicFormBuilder) {}
 
@@ -37,7 +39,7 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
     }
   }
 
-  submit() {
-    console.log('form.value', this.formField.control.value);
+  ngOnSubmit() {
+    this.formSubmit.emit({ value: this.formGroup.value, model: this.model });
   }
 }

@@ -8,6 +8,7 @@ export * from './lib/dynamic-form/dynamic-form';
 export * from './lib/dynamic-form/dynamic-form-component.factory';
 export * from './lib/dynamic-form/dynamic-form-config';
 export * from './lib/dynamic-form/dynamic-form-config.service';
+export * from './lib/dynamic-form/dynamic-form-submit-event';
 export * from './lib/dynamic-form/dynamic-form-template';
 export * from './lib/dynamic-form/dynamic-form.builder';
 export * from './lib/dynamic-form/dynamic-form.component';

@@ -1,6 +1,6 @@
 import { DynamicFormTemplate } from '@dynamic-forms/core';
 
-export interface ExampleData {
+export interface DynamicFormData {
   template: DynamicFormTemplate;
   model: any;
 }

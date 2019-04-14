@@ -5,7 +5,7 @@ import { DynamicFormTemplate } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ExamplesResolver implements Resolve<Observable<DynamicFormTemplate>> {
+export class DynamicFormTemplateResolver implements Resolve<Observable<DynamicFormTemplate>> {
   constructor(private httpClient: HttpClient) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {

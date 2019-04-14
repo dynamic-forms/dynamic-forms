@@ -8,7 +8,6 @@ import { dynamicFormsCoreServices } from '@dynamic-forms/core';
 import { DynamicFormControlMaterialModule } from './dynamic-form-control/dynamic-form-control.module';
 import { DynamicFormInputMaterialModule } from './dynamic-form-input/dynamic-form-input.module';
 import { DynamicFormValidationMaterialModule } from './dynamic-form-validation/dynamic-form-validation.module';
-import { DynamicFormMaterialModule } from './dynamic-form/dynamic-form.module';
 import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-forms-material.config';
 
 @NgModule({
@@ -16,13 +15,12 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    DynamicFormMaterialModule,
     DynamicFormControlMaterialModule,
     DynamicFormInputMaterialModule,
     DynamicFormValidationMaterialModule
   ],
   exports: [
-    DynamicFormMaterialModule
+    DynamicFormsCoreModule
   ]
 })
 export class DynamicFormsMaterialModule {

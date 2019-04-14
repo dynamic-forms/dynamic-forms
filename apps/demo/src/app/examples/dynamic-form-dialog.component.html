@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Dynamic Form</h1>
+<div mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Value"> 
+      <pre>{{ data.value | json }}</pre>
+    </mat-tab>
+    <mat-tab label="Model">
+      <pre>{{ data.model | json }}</pre>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="dialogRef.close()">Ok</button>
+</div>
