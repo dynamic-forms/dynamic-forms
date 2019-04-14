@@ -1,4 +1,4 @@
 export interface DynamicFormSubmitEvent {
-  model: any;
   value: any;
+  model: any;
 }
