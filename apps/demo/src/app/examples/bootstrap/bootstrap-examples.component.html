@@ -1,7 +1,7 @@
 <ng-container *ngIf="data$ | async as data">
   <mat-tab-group>
     <mat-tab label="Form">
-      <dynamic-form #dynamicForm [template]="data.template" [model]="data.model">
+      <dynamic-form #dynamicForm [template]="data.template" [model]="data.model" (formSubmit)="onFormSubmit($event)">
         <button type="submit" class="btn btn-primary" [disabled]="!dynamicForm.formGroup.valid">
           Submit          
         </button>  

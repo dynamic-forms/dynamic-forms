@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
+import { DynamicFormSubmitEvent } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ExampleData } from '../example.model';
@@ -16,6 +17,10 @@ export class MaterialExamplesComponent {
     this.data$ = this.route.data.pipe(
       map(data => this.mapData(data))
     );
+  }
+
+  onFormSubmit(event: DynamicFormSubmitEvent) {
+    window.alert(`Form submit:\n${ JSON.stringify(event.value) }\n`);
   }
 
   private mapData(data: Data): ExampleData {
