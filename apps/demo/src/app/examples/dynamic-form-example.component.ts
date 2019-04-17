@@ -1,6 +1,6 @@
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
-import { DynamicFormSubmitEvent } from '@dynamic-forms/core';
+import { DynamicFormSubmit } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DynamicFormData } from './dynamic-form-data';
@@ -15,8 +15,8 @@ export abstract class DynamicFormExampleComponent {
     );
   }
 
-  onFormSubmit(event: DynamicFormSubmitEvent) {
-    this.dialog.open(DynamicFormDialogComponent, { data: event });
+  onFormSubmit(data: DynamicFormSubmit) {
+    this.dialog.open(DynamicFormDialogComponent, { data });
   }
 
   private mapData(data: Data): DynamicFormData {

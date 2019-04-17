@@ -55,7 +55,7 @@ describe('DynamicFormBuilder', () => {
       const form = builder.createForm(template, {});
 
       expect(form.fields).toBeDefined();
-      expect(form.model).toEqual({ key: undefined });
+      expect(form.model).toEqual({ key: null });
     })
   );
 
