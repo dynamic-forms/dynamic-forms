@@ -1,5 +1,4 @@
 import { Validators } from '@angular/forms';
-import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
 import { DynamicFormControl } from './dynamic-form-control';
@@ -16,21 +15,24 @@ describe('DynamicFormControl', () => {
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
     expect(formControl.template).toBe(template);
-    expect(formControl.model).toBeUndefined();
+    expect(formControl.model).toBeNull();
     expect(formControl.control).toBeDefined();
 
-    expect(root.model).toEqual({ key: undefined });
+    expect(root.model).toEqual({ key: null });
   });
 
-  it('new instance with default value for model', () => {
-    const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    const template = <DynamicFormControlTemplate>{ key: 'key', input: { defaultValue: 'default' } };
-    const formControl = new DynamicFormControl(root, root, template);
+  const defaultValues = [ 'default', 0, false, ''];
+  defaultValues.forEach(defaultValue =>
+    it(`new instance with default value '${defaultValue}' for model`, () => {
+      const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
+      const template = <DynamicFormControlTemplate>{ key: 'key', input: { defaultValue } };
+      const formControl = new DynamicFormControl(root, root, template);
 
-    expect(formControl.model).toBe('default');
+      expect(formControl.model).toBe(defaultValue);
 
-    expect(root.model).toEqual({ key: 'default' });
-  });
+      expect(root.model).toEqual({ key: defaultValue });
+    })
+  );
 
   it('new instance subscribes valueChanges of control', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});

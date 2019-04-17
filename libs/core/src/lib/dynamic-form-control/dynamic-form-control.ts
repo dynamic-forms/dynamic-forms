@@ -36,9 +36,14 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private getModel(parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>): any {
-    parent.model[template.key] = parent.model[template.key] ||
-      template.input && template.input.defaultValue;
+    if (parent.model[template.key] === undefined) {
+      parent.model[template.key] = this.getDefaultValue(template.input);
+    }
     return parent.model[template.key];
+  }
+
+  private getDefaultValue(input: FormInput) {
+    return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 
   private getControlValidators() {

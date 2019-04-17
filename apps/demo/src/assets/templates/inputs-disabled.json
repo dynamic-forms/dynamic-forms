@@ -126,7 +126,6 @@
           "label": "Textbox (not disabled)",
           "input": {
             "type": "textbox",
-            "defaultValue": "Test",
             "placeholder": "Enter a text"
           }
         }
