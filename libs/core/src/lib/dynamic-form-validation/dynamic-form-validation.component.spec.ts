@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormValidationConfig } from './dynamic-form-validation-config';
@@ -40,6 +41,24 @@ describe('DynamicFormValidationComponent', () => {
     fixture.detectChanges();
 
     expect(component).toBeDefined();
+  });
+
+  it('creates component template', () => {
+    const getDebugElement = () => fixture.debugElement.query(By.css('.dynamic-form-validation'));
+
+    fixture.detectChanges();
+
+    expect(getDebugElement()).toBeNull();
+
+    component.errors = {};
+
+    fixture.detectChanges();
+
+    const debugElement = getDebugElement();
+    const element = <HTMLElement>debugElement.nativeElement;
+
+    expect(debugElement).not.toBeNull();
+    expect(element.innerHTML).toBe('The field is invalid');
   });
 
   it('returns message from error', () => {
