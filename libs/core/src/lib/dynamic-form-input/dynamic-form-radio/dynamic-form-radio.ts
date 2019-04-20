@@ -1,4 +1,4 @@
-import { DynamicFormInput } from '@dynamic-forms/core';
+import { DynamicFormInput } from '../dynamic-form-input';
 
 export interface DynamicFormRadio extends DynamicFormInput {
   type: 'radio';

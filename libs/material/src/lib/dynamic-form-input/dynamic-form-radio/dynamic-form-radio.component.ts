@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { DynamicFormRadio } from './dynamic-form-radio';
+import { DynamicFormInputComponent, DynamicFormRadio } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-radio',

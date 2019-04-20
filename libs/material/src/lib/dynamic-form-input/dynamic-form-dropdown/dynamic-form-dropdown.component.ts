@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { DynamicFormDropdown } from './dynamic-form-dropdown';
+import { DynamicFormDropdown, DynamicFormInputComponent } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-dropdown',

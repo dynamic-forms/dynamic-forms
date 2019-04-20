@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { DynamicFormCheckbox } from './dynamic-form-checkbox';
+import { DynamicFormCheckbox, DynamicFormInputComponent } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-checkbox',
