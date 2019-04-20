@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { DynamicFormNumberbox } from './dynamic-form-numberbox';
+import { DynamicFormInputComponent, DynamicFormNumberbox } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-numberbox',

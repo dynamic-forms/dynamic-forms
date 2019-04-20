@@ -1,6 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormTextarea } from './dynamic-form-textarea';
+import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate,
+  DynamicFormTextarea } from '@dynamic-forms/core';
 import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { DynamicFormTextareaModule } from './dynamic-form-textarea.module';
 

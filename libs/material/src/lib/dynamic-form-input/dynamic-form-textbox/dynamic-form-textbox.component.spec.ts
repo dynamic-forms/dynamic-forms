@@ -1,7 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormTextbox } from './dynamic-form-textbox';
+  DynamicFormControlTemplate, DynamicFormTemplate, DynamicFormTextbox } from '@dynamic-forms/core';
 import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { DynamicFormTextboxModule } from './dynamic-form-textbox.module';
 

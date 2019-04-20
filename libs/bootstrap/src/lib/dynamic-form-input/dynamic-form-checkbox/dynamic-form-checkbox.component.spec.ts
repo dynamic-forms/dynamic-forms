@@ -1,6 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormCheckbox } from './dynamic-form-checkbox';
+import { DynamicForm, DynamicFormCheckbox, DynamicFormControl, DynamicFormControlTemplate,
+  DynamicFormTemplate } from '@dynamic-forms/core';
 import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 import { DynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
 

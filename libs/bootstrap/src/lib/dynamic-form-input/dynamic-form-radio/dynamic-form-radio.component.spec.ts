@@ -1,6 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormRadio } from './dynamic-form-radio';
+import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormRadio,
+  DynamicFormTemplate } from '@dynamic-forms/core';
 import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
 import { DynamicFormRadioModule } from './dynamic-form-radio.module';
 

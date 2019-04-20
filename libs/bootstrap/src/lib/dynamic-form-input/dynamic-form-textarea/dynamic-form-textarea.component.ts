@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { DynamicFormTextarea } from './dynamic-form-textarea';
+import { DynamicFormInputComponent, DynamicFormTextarea } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-textarea',
