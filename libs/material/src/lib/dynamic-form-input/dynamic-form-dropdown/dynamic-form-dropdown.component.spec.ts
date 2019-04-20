@@ -1,7 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormDropdown } from './dynamic-form-dropdown';
+  DynamicFormControlTemplate, DynamicFormDropdown, DynamicFormTemplate } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
 

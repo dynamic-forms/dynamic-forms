@@ -1,7 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormTemplate } from '@dynamic-forms/core';
-import { DynamicFormNumberbox } from './dynamic-form-numberbox';
+  DynamicFormControlTemplate, DynamicFormNumberbox, DynamicFormTemplate } from '@dynamic-forms/core';
 import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 import { DynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
