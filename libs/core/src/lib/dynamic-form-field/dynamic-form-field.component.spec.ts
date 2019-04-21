@@ -57,10 +57,7 @@ describe('DynamicFormFormFieldComponent', () => {
   }));
 
   it('creates component', () => {
-    const template = <DynamicFormFieldTemplate>{
-      key: 'key',
-      type: 'field'
-    };
+    const template = <DynamicFormFieldTemplate>{ key: 'key', type: 'field' };
     const field = new DynamicFormFieldTest(null, null, template);
     const fixture = TestBed.createComponent(DynamicFormFieldComponent);
     const component = fixture.componentInstance;
