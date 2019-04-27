@@ -1,27 +1,61 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate,
   DynamicFormTextbox } from '@dynamic-forms/core';
 import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { DynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
 describe('DynamicFormTextboxComponent', () => {
+  let fixture: ComponentFixture<DynamicFormTextboxComponent>;
+  let component: DynamicFormTextboxComponent;
+  let form: DynamicForm;
+  let template: DynamicFormControlTemplate<DynamicFormTextbox>;
+  let formControl: DynamicFormControl<DynamicFormTextbox>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormTextboxModule
       ]
     });
-  }));
 
-  it('creates component', () => {
-    const form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    const template = <DynamicFormControlTemplate<DynamicFormTextbox>>{ key: 'textbox' };
-    const formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, template);
-    const fixture = TestBed.createComponent(DynamicFormTextboxComponent);
-    const component = fixture.componentInstance;
+    fixture = TestBed.createComponent(DynamicFormTextboxComponent);
+    component = fixture.componentInstance;
+
+    form = new DynamicForm(<DynamicFormTemplate>{}, {});
+    template = <DynamicFormControlTemplate<DynamicFormTextbox>>{ key: 'key', input: {} };
+    formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, template);
 
     component.field = formControl;
 
+    fixture.detectChanges();
+  }));
+
+  it('creates component', () => {
     expect(component).toBeDefined();
+    expect(component.id).toBe('key');
+  });
+
+  it('creates component template', () => {
+    const formInputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
+    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+
+    expect(formInputElement).toBeDefined();
+    expect(formInputElement.id).toBe(component.id);
+    expect(formInputElement.type).toBe('text');
+  });
+
+  it('sets dynamic form control to readonly', () => {
+    const formInputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
+    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+
+    expect(formInputElement.className).not.toContain('readonly');
+    expect(formInputElement.readOnly).not.toBe(true);
+
+    component.template.readonly = true;
+    fixture.detectChanges();
+
+    expect(formInputElement.className).toContain('readonly');
+    expect(formInputElement.readOnly).toBe(true);
   });
 });

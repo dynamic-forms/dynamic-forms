@@ -40,7 +40,7 @@ describe('DynamicFormCheckboxComponent', () => {
     const formCheckDebugElement = fixture.debugElement.query(By.css('div.form-check'));
     const formCheckInputDebugElement = formCheckDebugElement.query(By.css('input.form-check-input'));
     const formCheckLabelDebugElement = formCheckDebugElement.query(By.css('label.form-check-label'));
-    const formCheckElement = <HTMLElement>formCheckDebugElement.nativeElement;
+    const formCheckElement = <HTMLDivElement>formCheckDebugElement.nativeElement;
     const formCheckInputElement = <HTMLInputElement>formCheckInputDebugElement.nativeElement;
     const formCheckLabelElement = <HTMLLabelElement>formCheckLabelDebugElement.nativeElement;
 
