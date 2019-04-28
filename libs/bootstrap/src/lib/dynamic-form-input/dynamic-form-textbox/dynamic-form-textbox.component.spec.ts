@@ -17,7 +17,7 @@ describe('DynamicFormTextboxComponent', () => {
       imports: [
         DynamicFormTextboxModule
       ]
-    }).compileComponents(); ;
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicFormTextboxComponent);
     component = fixture.componentInstance;
