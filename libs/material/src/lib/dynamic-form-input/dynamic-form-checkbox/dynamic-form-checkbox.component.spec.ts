@@ -17,13 +17,13 @@ describe('DynamicFormCheckboxComponent', () => {
       imports: [
         DynamicFormCheckboxModule
       ]
-    });
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormCheckbox>>{ key: 'key' };
+    template = <DynamicFormControlTemplate<DynamicFormCheckbox>>{ key: 'key', label: 'label' };
     formControl = new DynamicFormControl<DynamicFormCheckbox>(form, form, template);
 
     component.field = formControl;
@@ -38,9 +38,15 @@ describe('DynamicFormCheckboxComponent', () => {
 
   it('creates component template', () => {
     const formCheckDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
-    const formCheckElement = formCheckDebugElement.nativeElement;
+    const formCheckInputDebugElement = formCheckDebugElement.query(By.css('input.mat-checkbox-input'));
+    const formCheckLabelDebugElement = formCheckDebugElement.query(By.css('span.mat-checkbox-label'));
+    const formCheckInputElement = <HTMLInputElement>formCheckInputDebugElement.nativeElement;
+    const formCheckLabelElement = <HTMLSpanElement>formCheckLabelDebugElement.nativeElement;
 
-    expect(formCheckElement).toBeDefined();
+    expect(formCheckInputElement).toBeDefined();
+    expect(formCheckInputElement.id).toBe('key-input');
+    expect(formCheckInputElement.type).toBe('checkbox');
+    expect(formCheckLabelElement.innerHTML).toContain('label');
   });
 
   it('sets dynamic form control to readonly', () => {
@@ -48,12 +54,10 @@ describe('DynamicFormCheckboxComponent', () => {
     const formCheckElement = formCheckDebugElement.nativeElement;
 
     expect(formCheckElement.className).not.toContain('readonly');
-    // expect(formCheckInputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
     expect(formCheckElement.className).toContain('readonly');
-    // expect(formCheckInputElement.readOnly).toBe(true);
   });
 });
