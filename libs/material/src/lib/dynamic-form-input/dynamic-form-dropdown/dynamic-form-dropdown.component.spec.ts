@@ -1,4 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
   DynamicFormControlTemplate, DynamicFormDropdown, DynamicFormTemplate } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
@@ -8,7 +9,8 @@ describe('DynamicFormDropdownComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDropdownModule
+        DynamicFormDropdownModule,
+        NoopAnimationsModule
       ],
       providers: [
         {
@@ -16,7 +18,7 @@ describe('DynamicFormDropdownComponent', () => {
           useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
         }
       ]
-    });
+    }).compileComponents();
   }));
 
   it('creates component', () => {

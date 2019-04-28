@@ -17,7 +17,7 @@ describe('DynamicFormRadioComponent', () => {
       imports: [
         DynamicFormRadioModule
       ]
-    });
+    }).compileComponents(); ;
 
     fixture = TestBed.createComponent(DynamicFormRadioComponent);
     component = fixture.componentInstance;
@@ -57,11 +57,11 @@ describe('DynamicFormRadioComponent', () => {
     expect(formCheckInputElements[0].id).toBe(`key-0`);
     expect(formCheckInputElements[0].type).toBe('radio');
     expect(formCheckLabelElements[0].htmlFor).toBe(`key-0`);
-    expect(formCheckLabelElements[0].innerHTML).toBe('label1');
+    expect(formCheckLabelElements[0].innerText).toBe('label1');
     expect(formCheckInputElements[1].id).toBe('key-1');
     expect(formCheckInputElements[1].type).toBe('radio');
     expect(formCheckLabelElements[1].htmlFor).toBe(`key-1`);
-    expect(formCheckLabelElements[1].innerHTML).toBe('label2');
+    expect(formCheckLabelElements[1].innerText).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {

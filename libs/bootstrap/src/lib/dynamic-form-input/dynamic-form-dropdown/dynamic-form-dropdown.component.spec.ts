@@ -17,7 +17,7 @@ describe('DynamicFormDropdownComponent', () => {
       imports: [
         DynamicFormDropdownModule
       ]
-    });
+    }).compileComponents(); ;
 
     fixture = TestBed.createComponent(DynamicFormDropdownComponent);
     component = fixture.componentInstance;
@@ -56,11 +56,11 @@ describe('DynamicFormDropdownComponent', () => {
     expect(formOptionElements.length).toBe(3);
     expect(formOptionElements[0].disabled).toBe(true);
     expect(formOptionElements[0].hidden).toBe(true);
-    expect(formOptionElements[0].innerHTML).toBe('placeholder');
+    expect(formOptionElements[0].innerText).toBe('placeholder');
     expect(formOptionElements[1].value).toBe('value1');
-    expect(formOptionElements[1].innerHTML).toBe('label1');
+    expect(formOptionElements[1].innerText).toBe('label1');
     expect(formOptionElements[2].value).toBe('value2');
-    expect(formOptionElements[2].innerHTML).toBe('label2');
+    expect(formOptionElements[2].innerText).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {

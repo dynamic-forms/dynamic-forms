@@ -50,7 +50,7 @@ describe('DynamicFormCheckboxComponent', () => {
     expect(formCheckInputElement.type).toBe('checkbox');
     expect(formCheckLabelElement).toBeDefined();
     expect(formCheckLabelElement.htmlFor).toBe(component.id);
-    expect(formCheckLabelElement.innerHTML).toBe('label');
+    expect(formCheckLabelElement.innerText).toBe('label');
   });
 
   it('sets dynamic form control to readonly', () => {
