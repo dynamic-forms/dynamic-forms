@@ -7,5 +7,5 @@ import { RoutingHandler } from './state/routing/routing.handler';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private routingHandler: RoutingHandler) {}
+  constructor(protected routingHandler: RoutingHandler) {}
 }

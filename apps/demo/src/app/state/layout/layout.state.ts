@@ -1,4 +1,4 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext } from '@ngxs/store';
 import { SidebarToggle } from './layout.actions';
 import { Layout } from './layout.model';
 

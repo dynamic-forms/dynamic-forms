@@ -53,8 +53,8 @@ describe('DynamicFormArrayComponent', () => {
   });
 
   it('creates component template', () => {
-    const formArrayDebugElement = fixture.debugElement.query(By.css('.dynamic-form-array'));
-    const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('.dynamic-form-array-label'));
+    const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
+    const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-array-label'));
     const formArrayValidationDebugElement = formArrayDebugElement.query(By.css('dynamic-form-validation'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
     const formArrayLabelElement = <HTMLElement>formArrayLabelDebugElement.nativeElement;
@@ -66,7 +66,7 @@ describe('DynamicFormArrayComponent', () => {
   });
 
   it('sets dynamic form array to hidden', () => {
-    const formArrayDebugElement = fixture.debugElement.query(By.css('.dynamic-form-array'));
+    const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
 
     expect(formArrayElement.className).not.toContain('hidden');

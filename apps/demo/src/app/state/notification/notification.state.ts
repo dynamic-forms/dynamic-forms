@@ -1,5 +1,5 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { of } from 'rxjs';
+import { Action, State, StateContext } from '@ngxs/store';
+import { EMPTY } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { NotificationItemPop, NotificationItemPush, NotificationToggle } from './notification.actions';
 import { Notification } from './notification.model';
@@ -29,7 +29,7 @@ export class NotificationState {
     });
     if (item.duration) {
       const popAction = new NotificationItemPop(item);
-      return of({}).pipe(
+      return EMPTY.pipe(
         delay(item.duration),
         tap(_ => context.dispatch(popAction))
       );

@@ -1,4 +1,4 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext } from '@ngxs/store';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
 import { Progress } from './progress.model';
 

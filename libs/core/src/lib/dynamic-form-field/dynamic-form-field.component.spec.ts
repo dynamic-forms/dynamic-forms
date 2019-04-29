@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
@@ -57,10 +57,7 @@ describe('DynamicFormFormFieldComponent', () => {
   }));
 
   it('creates component', () => {
-    const template = <DynamicFormFieldTemplate>{
-      key: 'key',
-      type: 'field'
-    };
+    const template = <DynamicFormFieldTemplate>{ key: 'key', type: 'field' };
     const field = new DynamicFormFieldTest(null, null, template);
     const fixture = TestBed.createComponent(DynamicFormFieldComponent);
     const component = fixture.componentInstance;

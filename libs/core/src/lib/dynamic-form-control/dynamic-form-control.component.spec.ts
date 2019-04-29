@@ -85,7 +85,7 @@ describe('DynamicFormControlComponent', () => {
   });
 
   it('creates component template', () => {
-    const formControlDebugElement = fixture.debugElement.query(By.css('.dynamic-form-control'));
+    const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlLabelDebugElement = formControlDebugElement.query(By.css('label'));
     const formControlValidationDebugElement = formControlDebugElement.query(By.css('dynamic-form-validation'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
@@ -98,7 +98,7 @@ describe('DynamicFormControlComponent', () => {
   });
 
   it('sets dynamic form control to hidden', () => {
-    const formControlDebugElement = fixture.debugElement.query(By.css('.dynamic-form-control'));
+    const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
     expect(formControlElement.className).not.toContain('hidden');
