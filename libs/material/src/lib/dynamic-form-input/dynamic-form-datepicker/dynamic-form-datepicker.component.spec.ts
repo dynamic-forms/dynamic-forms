@@ -46,16 +46,16 @@ describe('DynamicFormDatepickerComponent', () => {
 
   it('creates component template', () => {
     const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
     const formLabelDebugElement = formFieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
     const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
     const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
+    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
 
     expect(formFieldElement).toBeDefined();
+    expect(formLabelElement.innerText).toBe('label');
     expect(formInputElement.id).toBe(component.id);
     expect(formInputElement.type).toBe('text');
-    expect(formLabelElement.innerText).toBe('label');
   });
 
   it('sets dynamic form control to readonly', () => {

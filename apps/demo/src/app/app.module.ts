@@ -23,7 +23,8 @@ import { LayoutModule } from './layout/layout.module';
     HomeModule,
     DocsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {}
