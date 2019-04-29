@@ -50,16 +50,14 @@ describe('DynamicFormRadioComponent', () => {
     const formLabelDebugElements = formGroupDebugElement.queryAll(By.css('div.mat-radio-label-content'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
     const formInputElements = <HTMLInputElement[]>formInputDebugElements.map(elem => elem.nativeElement);
-    const formLabelElements = <HTMLLabelElement[]>formLabelDebugElements.map(elem => elem.nativeElement);
+    const formLabelElements = <HTMLDivElement[]>formLabelDebugElements.map(elem => elem.nativeElement);
 
     expect(formGroupElement).toBeDefined();
     expect(formInputElements[0].id).toBe(`key-0-input`);
     expect(formInputElements[0].type).toBe('radio');
-    // expect(formLabelElements[0].htmlFor).toBe(`key-0`);
     expect(formLabelElements[0].innerText).toBe('label1');
     expect(formInputElements[1].id).toBe('key-1-input');
     expect(formInputElements[1].type).toBe('radio');
-    // expect(formLabelElements[1].htmlFor).toBe(`key-1`);
     expect(formLabelElements[1].innerText).toBe('label2');
   });
 
