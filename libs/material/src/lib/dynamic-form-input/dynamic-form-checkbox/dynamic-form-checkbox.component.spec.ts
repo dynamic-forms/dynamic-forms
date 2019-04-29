@@ -38,15 +38,15 @@ describe('DynamicFormCheckboxComponent', () => {
 
   it('creates component template', () => {
     const formCheckDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
-    const formCheckInputDebugElement = formCheckDebugElement.query(By.css('input.mat-checkbox-input'));
-    const formCheckLabelDebugElement = formCheckDebugElement.query(By.css('span.mat-checkbox-label'));
-    const formCheckInputElement = <HTMLInputElement>formCheckInputDebugElement.nativeElement;
-    const formCheckLabelElement = <HTMLSpanElement>formCheckLabelDebugElement.nativeElement;
+    const formInputDebugElement = formCheckDebugElement.query(By.css('input.mat-checkbox-input'));
+    const formLabelDebugElement = formCheckDebugElement.query(By.css('span.mat-checkbox-label'));
+    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+    const formLabelElement = <HTMLSpanElement>formLabelDebugElement.nativeElement;
 
-    expect(formCheckInputElement).toBeDefined();
-    expect(formCheckInputElement.id).toBe('key-input');
-    expect(formCheckInputElement.type).toBe('checkbox');
-    expect(formCheckLabelElement.innerText).toBe('label');
+    expect(formInputElement).toBeDefined();
+    expect(formInputElement.id).toBe('key-input');
+    expect(formInputElement.type).toBe('checkbox');
+    expect(formLabelElement.innerText).toBe('label');
   });
 
   it('sets dynamic form control to readonly', () => {
