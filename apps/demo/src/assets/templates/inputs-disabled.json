@@ -15,6 +15,21 @@
           }
         },
         {
+          "key": "combobox",
+          "type": "control",
+          "label": "Combobox",
+          "input": {
+            "type": "combobox",
+            "placeholder": "Enter a text",
+            "defaultValue": "Value1",
+            "options": [
+              "Value1",
+              "Value2",
+              "Value3"
+            ]
+          }
+        },
+        {
           "key": "datepicker",
           "type": "control",
           "label": "Datepicker",

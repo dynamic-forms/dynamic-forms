@@ -1,6 +1,20 @@
 {
   "fields": [
     {
+      "key": "combobox",
+      "type": "control",
+      "label": "Combobox",
+      "input": {
+        "type": "combobox",
+        "placeholder": "Enter a text",
+        "options": [
+          "Value1",
+          "Value2",
+          "Value3"
+        ]
+      }
+    },
+    {
       "key": "datepicker",
       "type": "control",
       "label": "Datepicker",

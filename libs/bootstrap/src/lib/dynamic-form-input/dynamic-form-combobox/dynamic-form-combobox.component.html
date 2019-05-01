@@ -1,0 +1,6 @@
+<input [id]="id" class="form-control" type="text" list="list" [ngClass]="{'readonly': field.readonly }" 
+  [placeholder]="input.placeholder || ''" [pattern]="input.pattern" [readonly]="field.readonly" 
+  [formControl]="control" /> 
+<datalist id="list">
+  <option *ngFor="let option of input.options" [value]="option">
+</datalist>

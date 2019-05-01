@@ -1,5 +1,6 @@
 import { DynamicFormInputConfig } from '@dynamic-forms/core';
 import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox/dynamic-form-checkbox.component';
+import { DynamicFormComboboxComponent } from './dynamic-form-combobox/dynamic-form-combobox.component';
 import { DynamicFormDatepickerComponent } from './dynamic-form-datepicker/dynamic-form-datepicker.component';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown/dynamic-form-dropdown.component';
 import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox/dynamic-form-numberbox.component';
@@ -10,6 +11,7 @@ import { DynamicFormTextboxComponent } from './dynamic-form-textbox/dynamic-form
 export const matDynamicFormInputConfig: DynamicFormInputConfig = {
   types: [
     { type: 'checkbox', component: DynamicFormCheckboxComponent },
+    { type: 'combobox', component: DynamicFormComboboxComponent },
     { type: 'datepicker', component: DynamicFormDatepickerComponent },
     { type: 'dropdown', component: DynamicFormDropdownComponent },
     { type: 'numberbox', component: DynamicFormNumberboxComponent },
