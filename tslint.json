@@ -38,15 +38,29 @@
       true,
       140
     ],
-    "member-access": false,
+    "member-access": [
+      true, 
+      "no-public"
+    ],
     "member-ordering": [
       true,
       {
         "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
+          "private-static-field",
+          "protected-static-field",
+          "public-static-field",
+          "private-instance-field",
+          "protected-instance-field",
+          "public-instance-field",
+          "private-constructor",
+          "protected-constructor",
+          "public-constructor",
+          "public-static-method",
+          "public-instance-method",
+          "protected-static-method",
+          "protected-instance-method",
+          "private-static-method",
+          "private-instance-method"
         ]
       }
     ],

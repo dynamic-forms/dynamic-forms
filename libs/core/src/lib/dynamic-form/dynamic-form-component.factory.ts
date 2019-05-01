@@ -17,12 +17,12 @@ export class DynamicFormComponentFactory {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
-  public createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
+  createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
     const config = this.configService.getFieldTypeConfig(field.template.type);
     return this.createComponent(ref, field, config);
   }
 
-  public createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
+  createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
     const config = this.configService.getInputTypeConfig(field.template.input.type);
     return this.createComponent(ref, field, config);
   }
