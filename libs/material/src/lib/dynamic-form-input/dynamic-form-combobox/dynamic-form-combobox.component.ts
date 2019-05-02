@@ -12,7 +12,12 @@ export class DynamicFormComboboxComponent extends DynamicFormInputComponent<Dyna
 
   ngOnInit() {
     this.filteredOptions = this.control.valueChanges.pipe(
-      map(value => this.input.options.filter(option => option.startsWith(value)))
+      map(value => this.getFilteredOptions(value))
     );
+  }
+
+  private getFilteredOptions(value) {
+    const options = this.input.options || [];
+    return value ? options.filter(option => option.startsWith(value)) : options;
   }
 }

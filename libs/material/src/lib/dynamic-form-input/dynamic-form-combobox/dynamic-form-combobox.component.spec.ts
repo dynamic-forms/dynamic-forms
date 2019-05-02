@@ -31,12 +31,25 @@ describe('DynamicFormComboboxComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormCombobox>>{ key: 'key', label: 'label', input: {} };
+    template = <DynamicFormControlTemplate<DynamicFormCombobox>>{
+      key: 'key',
+      label: 'label',
+      input: {
+        options: [
+          'Value1',
+          'Value2',
+          'Value3'
+        ]
+      }
+    };
     formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, template);
 
     component.field = formControl;
 
     fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+    });
   }));
 
   it('creates component', () => {
@@ -70,7 +83,23 @@ describe('DynamicFormComboboxComponent', () => {
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formFieldElement.className).toContain('readonly');
-    expect(formInputElement.readOnly).toBe(true);
+    fixture.whenStable().then(() => {
+      expect(formFieldElement.className).toContain('readonly');
+      expect(formInputElement.readOnly).toBe(true);
+    });
   });
+
+  it('updates value', async(() => {
+    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
+    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+
+    formInputElement.value = 'Value1';
+    formInputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(formInputElement.value).toBe('Value1');
+    });
+  }));
 });
