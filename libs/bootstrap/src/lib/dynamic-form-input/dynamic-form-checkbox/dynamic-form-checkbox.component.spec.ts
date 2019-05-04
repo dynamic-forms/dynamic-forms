@@ -37,35 +37,35 @@ describe('DynamicFormCheckboxComponent', () => {
   });
 
   it('creates component template', () => {
-    const formCheckDebugElement = fixture.debugElement.query(By.css('div.form-check'));
-    const formInputDebugElement = formCheckDebugElement.query(By.css('input.form-check-input'));
-    const formLabelDebugElement = formCheckDebugElement.query(By.css('label.form-check-label'));
-    const formCheckElement = <HTMLDivElement>formCheckDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
-    const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
+    const checkDebugElement = fixture.debugElement.query(By.css('div.form-check'));
+    const inputDebugElement = checkDebugElement.query(By.css('input.form-check-input'));
+    const labelDebugElement = checkDebugElement.query(By.css('label.form-check-label'));
+    const checkElement = <HTMLDivElement>checkDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(formCheckElement).toBeDefined();
-    expect(formInputElement).toBeDefined();
-    expect(formInputElement.id).toBe(component.id);
-    expect(formInputElement.type).toBe('checkbox');
-    expect(formLabelElement).toBeDefined();
-    expect(formLabelElement.htmlFor).toBe(component.id);
-    expect(formLabelElement.innerText).toBe('label');
+    expect(checkElement).toBeDefined();
+    expect(inputElement).toBeDefined();
+    expect(inputElement.id).toBe(component.id);
+    expect(inputElement.type).toBe('checkbox');
+    expect(labelElement).toBeDefined();
+    expect(labelElement.htmlFor).toBe(component.id);
+    expect(labelElement.innerText).toBe('label');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formCheckDebugElement = fixture.debugElement.query(By.css('div.form-check'));
-    const formInputDebugElement = formCheckDebugElement.query(By.css('input.form-check-input'));
-    const formCheckElement = <HTMLElement>formCheckDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+    const checkDebugElement = fixture.debugElement.query(By.css('div.form-check'));
+    const inputDebugElement = checkDebugElement.query(By.css('input.form-check-input'));
+    const checkElement = <HTMLElement>checkDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(formCheckElement.className).not.toContain('readonly');
-    expect(formInputElement.readOnly).not.toBe(true);
+    expect(checkElement.className).not.toContain('readonly');
+    expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formCheckElement.className).toContain('readonly');
-    expect(formInputElement.readOnly).toBe(true);
+    expect(checkElement.className).toContain('readonly');
+    expect(inputElement.readOnly).toBe(true);
   });
 });

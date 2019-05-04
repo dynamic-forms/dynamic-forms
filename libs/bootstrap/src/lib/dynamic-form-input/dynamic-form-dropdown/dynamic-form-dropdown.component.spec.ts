@@ -46,32 +46,32 @@ describe('DynamicFormDropdownComponent', () => {
   });
 
   it('creates component template', () => {
-    const formSelectDebugElement = fixture.debugElement.query(By.css('select.form-control'));
-    const formOptionDebugElements = formSelectDebugElement.queryAll(By.css('option'));
-    const formSelectElement = <HTMLSelectElement>formSelectDebugElement.nativeElement;
-    const formOptionElements = <HTMLOptionElement[]>formOptionDebugElements.map(elem => elem.nativeElement);
+    const selectDebugElement = fixture.debugElement.query(By.css('select.form-control'));
+    const optionDebugElements = selectDebugElement.queryAll(By.css('option'));
+    const selectElement = <HTMLSelectElement>selectDebugElement.nativeElement;
+    const optionElements = <HTMLOptionElement[]>optionDebugElements.map(elem => elem.nativeElement);
 
-    expect(formSelectElement).toBeDefined();
-    expect(formSelectElement.id).toBe(component.id);
-    expect(formOptionElements.length).toBe(3);
-    expect(formOptionElements[0].disabled).toBe(true);
-    expect(formOptionElements[0].hidden).toBe(true);
-    expect(formOptionElements[0].innerText).toBe('placeholder');
-    expect(formOptionElements[1].value).toBe('value1');
-    expect(formOptionElements[1].innerText).toBe('label1');
-    expect(formOptionElements[2].value).toBe('value2');
-    expect(formOptionElements[2].innerText).toBe('label2');
+    expect(selectElement).toBeDefined();
+    expect(selectElement.id).toBe(component.id);
+    expect(optionElements.length).toBe(3);
+    expect(optionElements[0].disabled).toBe(true);
+    expect(optionElements[0].hidden).toBe(true);
+    expect(optionElements[0].innerText).toBe('placeholder');
+    expect(optionElements[1].value).toBe('value1');
+    expect(optionElements[1].innerText).toBe('label1');
+    expect(optionElements[2].value).toBe('value2');
+    expect(optionElements[2].innerText).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formSelectDebugElement = fixture.debugElement.query(By.css('select.form-control'));
-    const formSelectElement = <HTMLSelectElement>formSelectDebugElement.nativeElement;
+    const selectDebugElement = fixture.debugElement.query(By.css('select.form-control'));
+    const selectElement = <HTMLSelectElement>selectDebugElement.nativeElement;
 
-    expect(formSelectElement.className).not.toContain('readonly');
+    expect(selectElement.className).not.toContain('readonly');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formSelectElement.className).toContain('readonly');
+    expect(selectElement.className).toContain('readonly');
   });
 });

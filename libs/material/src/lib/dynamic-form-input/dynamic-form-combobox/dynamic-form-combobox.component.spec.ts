@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatAutocomplete } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormCombobox, DynamicFormConfig, DynamicFormConfigService,
@@ -58,48 +59,82 @@ describe('DynamicFormComboboxComponent', () => {
   });
 
   it('creates component template', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
-    const formLabelDebugElement = formFieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
-    const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(formFieldElement).toBeDefined();
-    expect(formInputElement.id).toBe(component.id);
-    expect(formInputElement.type).toBe('text');
-    expect(formLabelElement.innerText).toBe('label');
+    expect(fieldElement).toBeDefined();
+    expect(inputElement.id).toBe(component.id);
+    expect(inputElement.type).toBe('text');
+    expect(labelElement.innerText).toBe('label');
+    expect(autocompleteDebugElement).toBeDefined();
   });
 
-  it('sets dynamic form control to readonly', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+  it('sets dynamic form control to readonly', async(() => {
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(formFieldElement.className).not.toContain('readonly');
-    expect(formInputElement.readOnly).not.toBe(true);
+    expect(fieldElement.className).not.toContain('readonly');
+    expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      expect(formFieldElement.className).toContain('readonly');
-      expect(formInputElement.readOnly).toBe(true);
+      expect(fieldElement.className).toContain('readonly');
+      expect(inputElement.readOnly).toBe(true);
     });
-  });
+  }));
 
-  it('updates value', async(() => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+  it('sets value and options for autocomplete', async(() => {
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    formInputElement.value = 'Value1';
-    formInputElement.dispatchEvent(new Event('input'));
+    inputElement.value = '';
+    inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      expect(formInputElement.value).toBe('Value1');
+      const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
+      const autocompleteComponent = <MatAutocomplete>autocompleteDebugElement.componentInstance;
+      const optionElements = autocompleteComponent.options.toArray();
+
+      expect(inputElement.value).toBe('');
+      expect(optionElements.length).toBe(3);
+      expect(optionElements[0].value).toBe('Value1');
+      expect(optionElements[0].viewValue).toBe('Value1');
+      expect(optionElements[1].value).toBe('Value2');
+      expect(optionElements[1].viewValue).toBe('Value2');
+      expect(optionElements[2].value).toBe('Value3');
+      expect(optionElements[2].viewValue).toBe('Value3');
+    });
+  }));
+
+  it('sets value and filtered options for autocomplete', async(() => {
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+
+    inputElement.value = 'Value1';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
+      const autocompleteComponent = <MatAutocomplete>autocompleteDebugElement.componentInstance;
+      const optionElements = autocompleteComponent.options.toArray();
+
+      expect(inputElement.value).toBe('Value1');
+      expect(optionElements.length).toBe(1);
+      expect(optionElements[0].value).toBe('Value1');
+      expect(optionElements[0].viewValue).toBe('Value1');
     });
   }));
 });

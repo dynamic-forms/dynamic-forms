@@ -45,32 +45,32 @@ describe('DynamicFormTextareaComponent', () => {
   });
 
   it('creates component template', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formTextareaDebugElement = formFieldDebugElement.query(By.css('textarea.mat-input-element'));
-    const formLabelDebugElement = formFieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formTextareaElement = <HTMLTextAreaElement>formTextareaDebugElement.nativeElement;
-    const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
+    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(formFieldElement).toBeDefined();
-    expect(formTextareaElement.id).toBe(component.id);
-    expect(formTextareaElement.type).toBe('textarea');
-    expect(formLabelElement.innerText).toBe('label');
+    expect(fieldElement).toBeDefined();
+    expect(textareaElement.id).toBe(component.id);
+    expect(textareaElement.type).toBe('textarea');
+    expect(labelElement.innerText).toBe('label');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formTextareaDebugElement = formFieldDebugElement.query(By.css('textarea.mat-input-element'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formTextareaElement = <HTMLTextAreaElement>formTextareaDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(formFieldElement.className).not.toContain('readonly');
-    expect(formTextareaElement.readOnly).not.toBe(true);
+    expect(fieldElement.className).not.toContain('readonly');
+    expect(textareaElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formFieldElement.className).toContain('readonly');
-    expect(formTextareaElement.readOnly).toBe(true);
+    expect(fieldElement.className).toContain('readonly');
+    expect(textareaElement.readOnly).toBe(true);
   });
 });

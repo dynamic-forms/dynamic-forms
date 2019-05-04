@@ -45,41 +45,41 @@ describe('DynamicFormRadioComponent', () => {
   });
 
   it('creates component template', () => {
-    const formCheckDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
-    const formInputDebugElements = formCheckDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
-    const formLabelDebugElements = formCheckDebugElements.map(elem => elem.query(By.css('label.form-check-label')));
-    const formInputElements = <HTMLInputElement[]>formInputDebugElements.map(elem => elem.nativeElement);
-    const formLabelElements = <HTMLLabelElement[]>formLabelDebugElements.map(elem => elem.nativeElement);
+    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
+    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
+    const labelDebugElements = checkDebugElements.map(elem => elem.query(By.css('label.form-check-label')));
+    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
+    const labelElements = <HTMLLabelElement[]>labelDebugElements.map(elem => elem.nativeElement);
 
-    expect(formInputElements.length).toBe(2);
-    expect(formLabelElements.length).toBe(2);
-    expect(formInputElements[0].id).toBe(`key-0`);
-    expect(formInputElements[0].type).toBe('radio');
-    expect(formLabelElements[0].htmlFor).toBe(`key-0`);
-    expect(formLabelElements[0].innerText).toBe('label1');
-    expect(formInputElements[1].id).toBe('key-1');
-    expect(formInputElements[1].type).toBe('radio');
-    expect(formLabelElements[1].htmlFor).toBe(`key-1`);
-    expect(formLabelElements[1].innerText).toBe('label2');
+    expect(inputElements.length).toBe(2);
+    expect(labelElements.length).toBe(2);
+    expect(inputElements[0].id).toBe(`key-0`);
+    expect(inputElements[0].type).toBe('radio');
+    expect(labelElements[0].htmlFor).toBe(`key-0`);
+    expect(labelElements[0].innerText).toBe('label1');
+    expect(inputElements[1].id).toBe('key-1');
+    expect(inputElements[1].type).toBe('radio');
+    expect(labelElements[1].htmlFor).toBe(`key-1`);
+    expect(labelElements[1].innerText).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formCheckDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
-    const formInputDebugElements = formCheckDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
-    const formCheckElements = <HTMLDivElement[]>formCheckDebugElements.map(elem => elem.nativeElement);
-    const formInputElements = <HTMLInputElement[]>formInputDebugElements.map(elem => elem.nativeElement);
+    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
+    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
+    const checkElements = <HTMLDivElement[]>checkDebugElements.map(elem => elem.nativeElement);
+    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
 
-    expect(formCheckElements[0].className).not.toContain('readonly');
-    expect(formCheckElements[1].className).not.toContain('readonly');
-    expect(formInputElements[0].readOnly).not.toBe(true);
-    expect(formInputElements[1].readOnly).not.toBe(true);
+    expect(checkElements[0].className).not.toContain('readonly');
+    expect(checkElements[1].className).not.toContain('readonly');
+    expect(inputElements[0].readOnly).not.toBe(true);
+    expect(inputElements[1].readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formCheckElements[0].className).toContain('readonly');
-    expect(formCheckElements[1].className).toContain('readonly');
-    expect(formInputElements[0].readOnly).toBe(true);
-    expect(formInputElements[1].readOnly).toBe(true);
+    expect(checkElements[0].className).toContain('readonly');
+    expect(checkElements[1].className).toContain('readonly');
+    expect(inputElements[0].readOnly).toBe(true);
+    expect(inputElements[1].readOnly).toBe(true);
   });
 });
