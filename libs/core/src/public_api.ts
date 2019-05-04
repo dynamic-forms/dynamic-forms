@@ -34,6 +34,7 @@ export * from './lib/dynamic-form-input/dynamic-form-input-options';
 export * from './lib/dynamic-form-input/dynamic-form-input-type';
 export * from './lib/dynamic-form-input/dynamic-form-input.component';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox';
+export * from './lib/dynamic-form-input/dynamic-form-combobox/dynamic-form-combobox';
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker';
 export * from './lib/dynamic-form-input/dynamic-form-dropdown/dynamic-form-dropdown';
 export * from './lib/dynamic-form-input/dynamic-form-numberbox/dynamic-form-numberbox';

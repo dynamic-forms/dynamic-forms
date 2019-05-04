@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
+import { DynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
 import { DynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown/dynamic-form-dropdown.module';
 import { DynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
@@ -15,6 +16,7 @@ import { DynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-te
     CommonModule,
     MatFormFieldModule,
     DynamicFormCheckboxModule,
+    DynamicFormComboboxModule,
     DynamicFormDatepickerModule,
     DynamicFormDropdownModule,
     DynamicFormNumberboxModule,

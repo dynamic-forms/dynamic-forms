@@ -12,11 +12,7 @@ export abstract class DynamicFormField<
   protected _control: Control;
   protected _model: any;
 
-  constructor(
-    public readonly root: DynamicFormField,
-    public readonly parent: DynamicFormField,
-    public readonly template: Template
-  ) {
+  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, readonly template: Template) {
     this._path = parent && parent.path ? `${parent.path}.${template.key}` : template.key || null;
   }
 

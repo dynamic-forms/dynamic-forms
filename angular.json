@@ -21,7 +21,10 @@
           "options": {
             "main": "libs/core/src/test.ts",
             "tsConfig": "libs/core/tsconfig.spec.json",
-            "karmaConfig": "libs/core/karma.conf.js"
+            "karmaConfig": "libs/core/karma.conf.js",
+            "codeCoverageExclude": [
+              "libs/core/src/test.ts"
+            ]
           }
         },
         "lint": {
@@ -56,7 +59,10 @@
           "options": {
             "main": "libs/bootstrap/src/test.ts",
             "tsConfig": "libs/bootstrap/tsconfig.spec.json",
-            "karmaConfig": "libs/bootstrap/karma.conf.js"
+            "karmaConfig": "libs/bootstrap/karma.conf.js",
+            "codeCoverageExclude": [
+              "libs/bootstrap/src/test.ts"
+            ]
           }
         },
         "lint": {
@@ -91,7 +97,10 @@
           "options": {
             "main": "libs/material/src/test.ts",
             "tsConfig": "libs/material/tsconfig.spec.json",
-            "karmaConfig": "libs/material/karma.conf.js"
+            "karmaConfig": "libs/material/karma.conf.js",
+            "codeCoverageExclude": [
+              "libs/material/src/test.ts"
+            ]
           }
         },
         "lint": {

@@ -56,34 +56,34 @@ describe('DynamicFormDropdownComponent', () => {
   });
 
   it('creates component template', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formLabelDebugElement = formFieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const formSelectDebugElement = formFieldDebugElement.query(By.css('mat-select'));
-    const formSelectComponent = <MatSelect>formSelectDebugElement.componentInstance;
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formSelectElement = <HTMLElement>formSelectDebugElement.nativeElement;
-    const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
-    const formOptionElements = formSelectComponent.options.toArray();
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const selectDebugElement = fieldDebugElement.query(By.css('mat-select'));
+    const selectComponent = <MatSelect>selectDebugElement.componentInstance;
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const selectElement = <HTMLElement>selectDebugElement.nativeElement;
+    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const optionElements = selectComponent.options.toArray();
 
-    expect(formFieldElement).toBeDefined();
-    expect(formLabelElement.innerText).toBe('label');
-    expect(formSelectElement.id).toBe(component.id);
-    expect(formOptionElements.length).toBe(2);
-    expect(formOptionElements[0].value).toBe('value1');
-    expect(formOptionElements[0].viewValue).toBe('label1');
-    expect(formOptionElements[1].value).toBe('value2');
-    expect(formOptionElements[1].viewValue).toBe('label2');
+    expect(fieldElement).toBeDefined();
+    expect(labelElement.innerText).toBe('label');
+    expect(selectElement.id).toBe(component.id);
+    expect(optionElements.length).toBe(2);
+    expect(optionElements[0].value).toBe('value1');
+    expect(optionElements[0].viewValue).toBe('label1');
+    expect(optionElements[1].value).toBe('value2');
+    expect(optionElements[1].viewValue).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formFieldElement = <HTMLSelectElement>formFieldDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const fieldElement = <HTMLSelectElement>fieldDebugElement.nativeElement;
 
-    expect(formFieldElement.className).not.toContain('readonly');
+    expect(fieldElement.className).not.toContain('readonly');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formFieldElement.className).toContain('readonly');
+    expect(fieldElement.className).toContain('readonly');
   });
 });

@@ -45,32 +45,32 @@ describe('DynamicFormDatepickerComponent', () => {
   });
 
   it('creates component template', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formLabelDebugElement = formFieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formLabelElement = <HTMLLabelElement>formLabelDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(formFieldElement).toBeDefined();
-    expect(formLabelElement.innerText).toBe('label');
-    expect(formInputElement.id).toBe(component.id);
-    expect(formInputElement.type).toBe('text');
+    expect(fieldElement).toBeDefined();
+    expect(labelElement.innerText).toBe('label');
+    expect(inputElement.id).toBe(component.id);
+    expect(inputElement.type).toBe('text');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formFieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const formInputDebugElement = formFieldDebugElement.query(By.css('input.mat-input-element'));
-    const formFieldElement = <HTMLElement>formFieldDebugElement.nativeElement;
-    const formInputElement = <HTMLInputElement>formInputDebugElement.nativeElement;
+    const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
+    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(formFieldElement.className).not.toContain('readonly');
-    expect(formInputElement.readOnly).not.toBe(true);
+    expect(fieldElement.className).not.toContain('readonly');
+    expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formFieldElement.className).toContain('readonly');
-    expect(formInputElement.readOnly).toBe(true);
+    expect(fieldElement.className).toContain('readonly');
+    expect(inputElement.readOnly).toBe(true);
   });
 });

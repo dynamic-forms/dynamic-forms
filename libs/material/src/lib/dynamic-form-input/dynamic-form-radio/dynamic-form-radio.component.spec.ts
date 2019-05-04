@@ -45,31 +45,31 @@ describe('DynamicFormRadioComponent', () => {
   });
 
   it('creates component template', () => {
-    const formGroupDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
-    const formInputDebugElements = formGroupDebugElement.queryAll(By.css('input.mat-radio-input'));
-    const formLabelDebugElements = formGroupDebugElement.queryAll(By.css('div.mat-radio-label-content'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
-    const formInputElements = <HTMLInputElement[]>formInputDebugElements.map(elem => elem.nativeElement);
-    const formLabelElements = <HTMLDivElement[]>formLabelDebugElements.map(elem => elem.nativeElement);
+    const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
+    const inputDebugElements = radioDebugElement.queryAll(By.css('input.mat-radio-input'));
+    const labelDebugElements = radioDebugElement.queryAll(By.css('div.mat-radio-label-content'));
+    const radioElement = <HTMLElement>radioDebugElement.nativeElement;
+    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
+    const labelElements = <HTMLDivElement[]>labelDebugElements.map(elem => elem.nativeElement);
 
-    expect(formGroupElement).toBeDefined();
-    expect(formInputElements[0].id).toBe(`key-0-input`);
-    expect(formInputElements[0].type).toBe('radio');
-    expect(formLabelElements[0].innerText).toBe('label1');
-    expect(formInputElements[1].id).toBe('key-1-input');
-    expect(formInputElements[1].type).toBe('radio');
-    expect(formLabelElements[1].innerText).toBe('label2');
+    expect(radioElement).toBeDefined();
+    expect(inputElements[0].id).toBe(`key-0-input`);
+    expect(inputElements[0].type).toBe('radio');
+    expect(labelElements[0].innerText).toBe('label1');
+    expect(inputElements[1].id).toBe('key-1-input');
+    expect(inputElements[1].type).toBe('radio');
+    expect(labelElements[1].innerText).toBe('label2');
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formGroupDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+    const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
+    const radioElement = <HTMLElement>radioDebugElement.nativeElement;
 
-    expect(formGroupElement.className).not.toContain('readonly');
+    expect(radioElement.className).not.toContain('readonly');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formGroupElement.className).toContain('readonly');
+    expect(radioElement.className).toContain('readonly');
   });
 });

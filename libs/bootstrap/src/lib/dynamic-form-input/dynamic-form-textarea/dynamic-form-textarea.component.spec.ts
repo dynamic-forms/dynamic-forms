@@ -37,24 +37,24 @@ describe('DynamicFormTextareaComponent', () => {
   });
 
   it('creates component template', () => {
-    const formTextareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
-    const formTextareaElement = <HTMLTextAreaElement>formTextareaDebugElement.nativeElement;
+    const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
+    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(formTextareaElement).toBeDefined();
-    expect(formTextareaElement.id).toBe(component.id);
+    expect(textareaElement).toBeDefined();
+    expect(textareaElement.id).toBe(component.id);
   });
 
   it('sets dynamic form control to readonly', () => {
-    const formTextareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
-    const formTextareaElement = <HTMLTextAreaElement>formTextareaDebugElement.nativeElement;
+    const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
+    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(formTextareaElement.className).not.toContain('readonly');
-    expect(formTextareaElement.readOnly).not.toBe(true);
+    expect(textareaElement.className).not.toContain('readonly');
+    expect(textareaElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formTextareaElement.className).toContain('readonly');
-    expect(formTextareaElement.readOnly).toBe(true);
+    expect(textareaElement.className).toContain('readonly');
+    expect(textareaElement.readOnly).toBe(true);
   });
 });
