@@ -5,6 +5,6 @@
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{ option }}</mat-option>
   </mat-autocomplete>
-  <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
+  <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   

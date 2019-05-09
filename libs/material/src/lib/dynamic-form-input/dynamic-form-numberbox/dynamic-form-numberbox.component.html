@@ -2,6 +2,6 @@
   <mat-label>{{ template.label }}</mat-label>
   <input matInput [id]="id" type="number" [placeholder]="input.placeholder" [readonly]="field.readonly"
     [formControl]="control" />
-  <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
+  <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   
