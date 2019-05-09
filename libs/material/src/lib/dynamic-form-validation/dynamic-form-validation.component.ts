@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormConfigService, DynamicFormValidationComponent } from '@dynamic-forms/core';
+import { DynamicFormValidationComponent, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-validation',
@@ -7,7 +7,7 @@ import { DynamicFormConfigService, DynamicFormValidationComponent } from '@dynam
   styleUrls: ['./dynamic-form-validation.component.scss']
 })
 export class DynamicFormValidationMaterialComponent extends DynamicFormValidationComponent {
-  constructor(configService: DynamicFormConfigService) {
-    super(configService);
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
   }
 }

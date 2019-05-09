@@ -10,7 +10,7 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
 export class DynamicFormValidationComponent {
   @Input() errors: DynamicFormValidationErrors;
 
-  constructor(private validationService: DynamicFormValidationService) {}
+  constructor(protected validationService: DynamicFormValidationService) {}
 
   get errorMessage() {
     return this.validationService.getErrorMessage(this.errors);
