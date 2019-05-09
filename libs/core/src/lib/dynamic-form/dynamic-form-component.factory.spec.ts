@@ -2,6 +2,7 @@ import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core'
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
@@ -70,6 +71,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
       }
     },
     DynamicFormConfigService,
+    DynamicFormValidationService,
     DynamicFormComponentFactory
   ],
   entryComponents: [

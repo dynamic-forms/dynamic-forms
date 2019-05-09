@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
+import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
 @Component({
   selector: 'dynamic-form-validation',
@@ -10,16 +10,9 @@ import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 export class DynamicFormValidationComponent {
   @Input() errors: DynamicFormValidationErrors;
 
-  constructor(private configService: DynamicFormConfigService) {}
+  constructor(private validationService: DynamicFormValidationService) {}
 
-  get message() {
-    const key = Object.keys(this.errors)[0];
-    const error = this.errors[key];
-    return error && error.message ? error.message : this.getMessage(key);
-  }
-
-  private getMessage(key: string) {
-    const config = this.configService.getValidationConfig();
-    return config.messages[key] || config.defaultMessage;
+  get errorMessage() {
+    return this.validationService.getErrorMessage(this.errors);
   }
 }

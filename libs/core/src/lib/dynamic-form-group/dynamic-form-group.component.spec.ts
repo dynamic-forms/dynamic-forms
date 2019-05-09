@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
@@ -30,7 +31,8 @@ describe('DynamicFormGroupComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService({ module: 'core' })
-        }
+        },
+        DynamicFormValidationService
       ]
     }).compileComponents();
 

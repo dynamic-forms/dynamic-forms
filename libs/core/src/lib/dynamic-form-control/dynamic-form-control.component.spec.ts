@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -41,6 +42,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
         }
       })
     },
+    DynamicFormValidationService,
     DynamicFormComponentFactory
   ],
   entryComponents: [

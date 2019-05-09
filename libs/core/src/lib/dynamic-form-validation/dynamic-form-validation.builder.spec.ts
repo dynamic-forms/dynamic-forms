@@ -11,12 +11,12 @@ describe('DynamicFormValidationBuilder', () => {
   }));
 
   it('returns validator factory being undefined',
-  inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-    const validatorFactory = service.getValidatorFactory('key');
+    inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+      const validatorFactory = service.getValidatorFactory('key');
 
-    expect(validatorFactory).toBeUndefined();
-  })
-);
+      expect(validatorFactory).toBeUndefined();
+    })
+  );
 
   it('returns required validator factory',
     inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {

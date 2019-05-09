@@ -43,6 +43,7 @@ export * from './lib/dynamic-form-input/dynamic-form-textarea/dynamic-form-texta
 export * from './lib/dynamic-form-input/dynamic-form-textbox/dynamic-form-textbox';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.builder';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.component';
+export * from './lib/dynamic-form-validation/dynamic-form-validation.service';
 export * from './lib/dynamic-form-wrapper/dynamic-form-wrapper';
 export * from './lib/dynamic-form-wrapper/dynamic-form-wrapper-config';
 export * from './lib/dynamic-form-wrapper/dynamic-form-wrapper-type';

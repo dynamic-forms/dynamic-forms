@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -39,6 +40,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {}
       }
     },
     DynamicFormConfigService,
+    DynamicFormValidationService,
     DynamicFormComponentFactory
   ],
   entryComponents: [
