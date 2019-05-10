@@ -4,6 +4,7 @@ import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormValidationConfig } from './dynamic-form-validation-config';
 import { DynamicFormValidationComponent } from './dynamic-form-validation.component';
+import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
 describe('DynamicFormValidationComponent', () => {
   const validationConfig: DynamicFormValidationConfig = {
@@ -29,7 +30,8 @@ describe('DynamicFormValidationComponent', () => {
             validationConfig: validationConfig
           }
         },
-        DynamicFormConfigService
+        DynamicFormConfigService,
+        DynamicFormValidationService
       ]
     }).compileComponents();
 
@@ -64,18 +66,18 @@ describe('DynamicFormValidationComponent', () => {
   it('returns message from error', () => {
     component.errors = { email: { message: 'The field is not a valid email' } };
 
-    expect(component.message).toEqual( 'The field is not a valid email');
+    expect(component.errorMessage).toEqual( 'The field is not a valid email');
   });
 
   it('returns message from config', () => {
     component.errors = { required: {} };
 
-    expect(component.message).toEqual(validationConfig.messages.required);
+    expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
   it('returns default message from config', () => {
     component.errors = {};
 
-    expect(component.message).toEqual(validationConfig.defaultMessage);
+    expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });
 });

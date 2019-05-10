@@ -5,6 +5,7 @@ import { DynamicFormFieldComponent } from './dynamic-form-field/dynamic-form-fie
 import { DynamicFormGroupComponent } from './dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationComponent } from './dynamic-form-validation/dynamic-form-validation.component';
+import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormConfig } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
@@ -53,6 +54,7 @@ export const dynamicFormsCoreServices = [
   DynamicFormBuilder,
   DynamicFormExpressionBuilder,
   DynamicFormValidationBuilder,
+  DynamicFormValidationService,
   DynamicFormComponentFactory
 ];
 

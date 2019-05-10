@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicFormComponentFactory, DynamicFormConfigService} from '@dynamic-forms/core';
+import { DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormValidationService} from '@dynamic-forms/core';
 import { DynamicFormControlBootstrapComponent } from './dynamic-form-control.component';
 import { DynamicFormControlBootstrapModule } from './dynamic-form-control.module';
 
@@ -16,6 +16,7 @@ describe('DynamicFormControlBootstrapComponent', () => {
             module: 'bootstrap'
           })
         },
+        DynamicFormValidationService,
         DynamicFormComponentFactory
       ]
     });

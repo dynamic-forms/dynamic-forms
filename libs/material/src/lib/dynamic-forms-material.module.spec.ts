@@ -1,10 +1,11 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
-  DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
+  DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
+  DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { matDynamicFormConfig } from './dynamic-forms-material.config';
 import { DynamicFormsMaterialModule } from './dynamic-forms-material.module';
 
-describe('DynamicFormsBootstrapModule', () => {
+describe('DynamicFormsMaterialModule', () => {
   describe('without providers', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -32,6 +33,10 @@ describe('DynamicFormsBootstrapModule', () => {
 
     it('does not provide DynamicFormValidationBuilder', () => {
       expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DynamicFormValidationService', () => {
+      expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormComponentFactory', () => {
@@ -75,6 +80,12 @@ describe('DynamicFormsBootstrapModule', () => {
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
+
+    it('provides DynamicFormValidationService',
+      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service).toBeDefined();
       })
     );

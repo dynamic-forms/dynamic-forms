@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormValidationMaterialModule } from '../../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 @NgModule({
@@ -11,8 +10,7 @@ import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.componen
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
-    DynamicFormValidationMaterialModule
+    MatInputModule
   ],
   declarations: [
     DynamicFormNumberboxComponent

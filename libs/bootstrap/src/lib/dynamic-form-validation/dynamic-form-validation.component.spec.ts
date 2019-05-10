@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicFormConfigService} from '@dynamic-forms/core';
+import { DynamicFormConfigService, DynamicFormValidationService} from '@dynamic-forms/core';
 import { DynamicFormValidationBootstrapComponent } from './dynamic-form-validation.component';
 import { DynamicFormValidationBootstrapModule } from './dynamic-form-validation.module';
 
@@ -15,9 +15,10 @@ describe('DynamicFormValidationBootstrapComponent', () => {
           useValue: new DynamicFormConfigService({
             module: 'bootstrap'
           })
-        }
+        },
+        DynamicFormValidationService
       ]
-    });
+    }).compileComponents();
   }));
 
   it('creates component', () => {

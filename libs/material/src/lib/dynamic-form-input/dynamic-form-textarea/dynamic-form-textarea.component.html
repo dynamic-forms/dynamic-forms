@@ -3,6 +3,6 @@
   <textarea matInput [id]="id" [placeholder]="input.placeholder" [readonly]="field.readonly" [formControl]="control"
     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1">
   </textarea>
-  <mat-dynamic-form-validation [errors]="control.errors"></mat-dynamic-form-validation>
+  <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   
