@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
-  DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
+  DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
+  DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { bsDynamicFormConfig } from './dynamic-forms-bootstrap.config';
 import { DynamicFormsBootstrapModule } from './dynamic-forms-bootstrap.module';
 
