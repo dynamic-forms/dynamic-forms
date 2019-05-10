@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormTemplate, DynamicFormTextarea } from '@dynamic-forms/core';
+  DynamicFormControlTemplate, DynamicFormTemplate, DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { DynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
@@ -23,7 +23,8 @@ describe('DynamicFormTextareaComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
-        }
+        },
+        DynamicFormValidationService
       ]
     }).compileComponents();
 

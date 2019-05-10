@@ -3,7 +3,7 @@ import { MatSelect } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormDropdown, DynamicFormTemplate } from '@dynamic-forms/core';
+  DynamicFormControlTemplate, DynamicFormDropdown, DynamicFormTemplate, DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
 
@@ -24,7 +24,8 @@ describe('DynamicFormDropdownComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
-        }
+        },
+        DynamicFormValidationService
       ]
     }).compileComponents();
 
