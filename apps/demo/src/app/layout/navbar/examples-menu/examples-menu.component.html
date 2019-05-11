@@ -1,29 +1,21 @@
-<button mat-button [matMenuTriggerFor]="examples">
-  Examples
-  <mat-icon>arrow_drop_down</mat-icon>
-</button>
+<ng-container *ngIf="menuItems$ | async as menuItems">
+  <button mat-button [matMenuTriggerFor]="examples">
+    Examples
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
 
-<mat-menu #examples="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="bootstrapExamples">Bootstrap</button>
-  <button mat-menu-item [matMenuTriggerFor]="materialExamples">Material</button>
-</mat-menu>
+  <mat-menu #examples="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="bootstrapExamples">Bootstrap</button>
+    <button mat-menu-item [matMenuTriggerFor]="materialExamples">Material</button>
+  </mat-menu>
 
-<mat-menu #bootstrapExamples="matMenu">
-  <mat-nav-list>
-    <mat-list-item *ngFor="let template of templates">
-      <a matLine [routerLink]="['/examples/bootstrap', template.id]">
-        {{ template.label }}
-      </a>
-    </mat-list-item>
-  </mat-nav-list>
-</mat-menu>
-
-<mat-menu #materialExamples="matMenu">
-  <mat-nav-list>
-    <mat-list-item *ngFor="let template of templates">
-      <a matLine [routerLink]="['/examples/material', template.id]">
-        {{ template.label }}
-      </a>
-    </mat-list-item>
-  </mat-nav-list>
-</mat-menu>
+  <mat-menu #bootstrapExamples="matMenu">
+    <app-examples-menu-list [baseUrl]="'/examples/bootstrap'" [menuItems]="menuItems">
+    </app-examples-menu-list>
+  </mat-menu>
+  
+  <mat-menu #materialExamples="matMenu">
+    <app-examples-menu-list [baseUrl]="'/examples/material'" [menuItems]="menuItems">
+    </app-examples-menu-list>
+  </mat-menu>
+</ng-container>

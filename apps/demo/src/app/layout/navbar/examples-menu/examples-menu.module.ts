@@ -7,10 +7,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-import { DocsMenuComponent } from './docs-menu/docs-menu.component';
-import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
-import { NavbarComponent } from './navbar.component';
-import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.component';
+import { ExamplesMenuListComponent } from './examples-menu-list.component';
+import { ExamplesMenuComponent } from './examples-menu.component';
 
 @NgModule({
   imports: [
@@ -19,18 +17,14 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    ExamplesMenuModule
+    MatMenuModule
   ],
   declarations: [
-    NavbarComponent,
-    SidebarToggleComponent,
-    DocsMenuComponent
+    ExamplesMenuComponent,
+    ExamplesMenuListComponent
   ],
   exports: [
-    NavbarComponent
+    ExamplesMenuComponent
   ]
 })
-export class NavbarModule {}
+export class ExamplesMenuModule {}
