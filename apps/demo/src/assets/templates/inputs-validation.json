@@ -1,0 +1,141 @@
+{
+  "fields": [
+    {
+      "key": "checkbox",
+      "type": "control",
+      "label": "Checkbox",
+      "input": {
+        "type": "checkbox"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "combobox",
+      "type": "control",
+      "label": "Combobox",
+      "input": {
+        "type": "combobox",
+        "options": [
+          "Value1",
+          "Value2",
+          "Value3"
+        ]
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "datepicker",
+      "type": "control",
+      "label": "Datepicker",
+      "input": {
+        "type": "datepicker"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "dropdown",
+      "type": "control",
+      "label": "Dropdown",
+      "input": {
+        "type": "dropdown",
+        "options": [
+          { "value": 1, "label": "Option 1" },
+          { "value": 2, "label": "Option 2" }
+        ]
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "numberbox",
+      "type": "control",
+      "label": "Numberbox",
+      "input": {
+        "type": "numberbox"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "radio",
+      "type": "control",
+      "label": "Radio",
+      "input": {
+        "type": "radio",
+        "options": [
+          { "value": 1, "label": "Option 1" },
+          { "value": 2, "label": "Option 2" }
+        ]
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "textarea",
+      "type": "control",
+      "label": "Textarea",
+      "input": {
+        "type": "textarea"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "textbox",
+      "type": "control",
+      "label": "Textbox",
+      "input": {
+        "type": "textbox"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "label": "Email",
+      "input": {
+        "type": "textbox",
+        "inputType": "email"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "label": "Password",
+      "input": {
+        "type": "textbox",
+        "inputType": "password"
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "key": "search",
+      "type": "control",
+      "label": "Search",
+      "input": {
+        "type": "textbox",
+        "inputType": "search"
+      },
+      "validation": {
+        "required": true
+      }
+    }
+  ]
+}
