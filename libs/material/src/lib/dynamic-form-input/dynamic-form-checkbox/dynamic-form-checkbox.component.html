@@ -1,4 +1,9 @@
-<mat-checkbox [id]="id" color="primary" [ngClass]="{'readonly': field.readonly }" [formControl]="control">
+<mat-checkbox [id]="id" color="primary" [ngClass]="{ 'readonly': field.readonly }" 
+  [required]="validation?.required" [formControl]="control">
   {{ template.label }}
 </mat-checkbox>
+<div *ngIf="control.touched && control.errors" class="mat-form-field-error">
+  <div class="mat-error">{{ errorMessage }}</div>
+</div>
+
 

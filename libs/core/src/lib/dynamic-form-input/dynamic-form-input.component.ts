@@ -5,4 +5,5 @@ import { DynamicFormInput } from './dynamic-form-input';
 export abstract class DynamicFormInputComponent<FormInput extends DynamicFormInput = DynamicFormInput>
   extends DynamicFormFieldBase<DynamicFormControl<FormInput>> {
   get input() { return this.field.template.input; }
+  get validation() { return this.field.template.validation; }
 }

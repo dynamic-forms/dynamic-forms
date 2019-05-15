@@ -15,7 +15,7 @@ export const bsDynamicFormInputConfig: DynamicFormInputConfig = {
     { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label' ] },
     { type: 'dropdown', component: DynamicFormDropdownComponent, wrappers: [ 'label' ] },
     { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label' ] },
-    { type: 'radio', component: DynamicFormRadioComponent, wrappers: [ 'label' ] },
+    { type: 'radio', component: DynamicFormRadioComponent },
     { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label' ] },
     { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label' ] }
   ]
