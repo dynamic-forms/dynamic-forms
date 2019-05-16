@@ -14,7 +14,7 @@ export class DynamicFormValidationBuilder {
       case 'min':
         return (min?: number) => Number.isFinite(min) ? Validators.min(min) : undefined;
       case 'max':
-        return (max?: number) => Number.isFinite(max) ? Validators.min(max) : undefined;
+        return (max?: number) => Number.isFinite(max) ? Validators.max(max) : undefined;
       case 'minLength':
         return (minLength?: number) => Number.isFinite(minLength) ? Validators.minLength(minLength) : undefined;
       case 'maxLength':

@@ -21,10 +21,16 @@
           "Value1",
           "Value2",
           "Value3"
-        ]
+        ],
+        "minLength": 5,
+        "maxLength": 6,
+        "pattern": "^Value[0-9]$"
       },
       "validation": {
-        "required": true
+        "required": true,
+        "minLength": true,
+        "maxLength": true,
+        "pattern": true
       }
     },
     {
@@ -58,10 +64,14 @@
       "type": "control",
       "label": "Numberbox",
       "input": {
-        "type": "numberbox"
+        "type": "numberbox",
+        "min": -5,
+        "max": 5
       },
       "validation": {
-        "required": true
+        "required": true,
+        "min": true,
+        "max": true
       }
     },
     {
@@ -95,10 +105,14 @@
       "type": "control",
       "label": "Textbox",
       "input": {
-        "type": "textbox"
+        "type": "textbox",
+        "minLength": 5,
+        "maxLength": 10
       },
       "validation": {
-        "required": true
+        "required": true,
+        "minLength": true,
+        "maxLength": true
       }
     },
     {
@@ -110,7 +124,8 @@
         "inputType": "email"
       },
       "validation": {
-        "required": true
+        "required": true,
+        "email": true
       }
     },
     {
@@ -119,10 +134,12 @@
       "label": "Password",
       "input": {
         "type": "textbox",
-        "inputType": "password"
+        "inputType": "password",
+        "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
       },
       "validation": {
-        "required": true
+        "required": true,
+        "pattern": true
       }
     },
     {
