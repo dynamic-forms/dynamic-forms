@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { DocsMenuComponent } from './docs-menu/docs-menu.component';
-import { ExamplesMenuComponent } from './examples-menu/examples-menu.component';
+import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { NavbarComponent } from './navbar.component';
 import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.component';
 
@@ -21,13 +21,13 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
     MatListModule,
     MatMenuModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ExamplesMenuModule
   ],
   declarations: [
     NavbarComponent,
     SidebarToggleComponent,
-    DocsMenuComponent,
-    ExamplesMenuComponent
+    DocsMenuComponent
   ],
   exports: [
     NavbarComponent

@@ -1,5 +1,6 @@
 <div class="dynamic-form-control form-group" [class.hidden]="template.hidden">
   <ng-template #fieldContainer></ng-template>
-  <bs-dynamic-form-validation [errors]="control.errors"></bs-dynamic-form-validation>
+  <bs-dynamic-form-validation [errors]="control.touched && control.errors">
+  </bs-dynamic-form-validation>
 </div>
 
