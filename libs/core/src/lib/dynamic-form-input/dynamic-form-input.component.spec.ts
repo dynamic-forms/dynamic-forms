@@ -27,7 +27,8 @@ describe('DynamicFormInputComponent', () => {
       key: 'key',
       input: {
         type: 'input'
-      }
+      },
+      validation: {}
     });
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);
@@ -37,8 +38,9 @@ describe('DynamicFormInputComponent', () => {
     fixture.detectChanges();
 
     expect(component.id).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
-    expect(component.input).toBeDefined();
+    expect(component.template).toBe(field.template);
+    expect(component.control).toBe(field.control);
+    expect(component.input).toBe(field.template.input);
+    expect(component.validation).toBe(field.template.validation);
   });
 });
