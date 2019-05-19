@@ -2,15 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-import { DocsMenuComponent } from './docs-menu/docs-menu.component';
+import { DocsMenuModule } from './docs-menu/docs-menu.module';
 import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { NavbarComponent } from './navbar.component';
-import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.component';
+import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
 
 @NgModule({
   imports: [
@@ -18,16 +15,13 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule,
-    MatMenuModule,
     MatToolbarModule,
-    MatTooltipModule,
-    ExamplesMenuModule
+    DocsMenuModule,
+    ExamplesMenuModule,
+    SidebarToggleModule
   ],
   declarations: [
-    NavbarComponent,
-    SidebarToggleComponent,
-    DocsMenuComponent
+    NavbarComponent
   ],
   exports: [
     NavbarComponent

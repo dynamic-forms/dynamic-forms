@@ -18,25 +18,16 @@
 </mat-menu>
 
 <mat-menu #coreDocs="matMenu">
-  <mat-nav-list>
-    <mat-list-item>
-      <a matLine routerLink="/docs/core/coverage">Code Coverage</a>
-    </mat-list-item>
-  </mat-nav-list>
+  <app-docs-menu-list [library]="'core'">
+  </app-docs-menu-list>
 </mat-menu>
 
 <mat-menu #bootstrapDocs="matMenu">
-  <mat-nav-list>
-    <mat-list-item>
-      <a matLine routerLink="/docs/bootstrap/coverage">Code Coverage</a>
-    </mat-list-item>
-  </mat-nav-list>
+  <app-docs-menu-list [library]="'bootstrap'">
+  </app-docs-menu-list>
 </mat-menu>
 
 <mat-menu #materialDocs="matMenu">
-  <mat-nav-list>
-    <mat-list-item>
-      <a matLine routerLink="/docs/material/coverage">Code Coverage</a>
-    </mat-list-item>
-  </mat-nav-list>
+  <app-docs-menu-list [library]="'material'">
+  </app-docs-menu-list>
 </mat-menu>
