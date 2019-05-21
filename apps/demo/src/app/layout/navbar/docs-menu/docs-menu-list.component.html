@@ -1,8 +1,12 @@
 <mat-nav-list>
   <mat-list-item>
-    <a matLine [href]="codeUrl" target="_blank">Code</a>
+    <a [href]="codeUrl" target="_blank">
+      <span matLine>Code</span>
+    </a>
   </mat-list-item>
   <mat-list-item>
-    <a matLine [routerLink]="[ 'docs', library, 'coverage' ]">Code Coverage</a>
+    <a [routerLink]="[ 'docs', library, 'coverage' ]">
+      <span matLine>Code Coverage</span>
+    </a>
   </mat-list-item>
 </mat-nav-list>
