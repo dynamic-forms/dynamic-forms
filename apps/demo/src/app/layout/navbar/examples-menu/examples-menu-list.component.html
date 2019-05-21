@@ -1,5 +1,7 @@
 <mat-nav-list>
   <mat-list-item *ngFor="let menuItem of menuItems">
-    <a matLine [routerLink]="[ baseUrl, menuItem.id ]">{{ menuItem.label }}</a>
+    <a [routerLink]="[ baseUrl, menuItem.id ]">
+      <span matLine>{{ menuItem.label }}</span>
+    </a>
   </mat-list-item>
 </mat-nav-list>
