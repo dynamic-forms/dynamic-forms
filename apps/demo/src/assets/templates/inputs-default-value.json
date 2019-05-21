@@ -16,6 +16,7 @@
       "input": {
         "type": "combobox",
         "placeholder": "Enter a text",
+        "defaultValue": "Value1",
         "options": [
           "Value1",
           "Value2",
