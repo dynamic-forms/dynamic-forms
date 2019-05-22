@@ -1,0 +1,15 @@
+ul {
+  padding-inline-start: 20px;
+
+  li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    ul {
+      li {
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
