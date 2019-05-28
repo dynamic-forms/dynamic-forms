@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormValidationConfig } from './dynamic-form-validation-config';
@@ -37,6 +39,10 @@ describe('DynamicFormValidationComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormValidationComponent);
     component = fixture.componentInstance;
+
+    component.field = <DynamicFormField>{
+      control: new FormControl()
+    };
   }));
 
   it('creates component', () => {
@@ -52,7 +58,7 @@ describe('DynamicFormValidationComponent', () => {
 
     expect(getDebugElement()).toBeNull();
 
-    component.errors = {};
+    component.control.setErrors({});
 
     fixture.detectChanges();
 
@@ -64,19 +70,19 @@ describe('DynamicFormValidationComponent', () => {
   });
 
   it('returns message from error', () => {
-    component.errors = { email: { message: 'The field is not a valid email' } };
+    component.control.setErrors({ email: { message: 'The field is not a valid email' } });
 
     expect(component.errorMessage).toEqual( 'The field is not a valid email');
   });
 
   it('returns message from config', () => {
-    component.errors = { required: {} };
+    component.control.setErrors({ required: {} });
 
     expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
   it('returns default message from config', () => {
-    component.errors = {};
+    component.control.setErrors({});
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });
