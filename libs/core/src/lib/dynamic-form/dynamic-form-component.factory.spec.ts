@@ -13,7 +13,7 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
   template: `<ng-template #fieldContainer></ng-template>`
 })
 class DynamicFormTestComponent {
-  @ViewChild('fieldContainer', { read: ViewContainerRef })
+  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 }
 

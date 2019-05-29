@@ -4,7 +4,7 @@ import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-b
 export abstract class DynamicFormWrapper extends DynamicFormFieldBase implements AfterViewInit {
   fieldComponent: DynamicFormWrapper | DynamicFormFieldBase;
 
-  @ViewChild('fieldContainer', { read: ViewContainerRef })
+  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 
   constructor(protected containerRef: ViewContainerRef) {

@@ -9,7 +9,7 @@ import { DynamicFormControl } from './dynamic-form-control';
   styleUrls: ['./dynamic-form-control.component.scss']
 })
 export class DynamicFormControlComponent extends DynamicFormFieldBase<DynamicFormControl> implements OnInit {
-  @ViewChild('fieldContainer', { read: ViewContainerRef })
+  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 
   constructor(private componentFactory: DynamicFormComponentFactory) {

@@ -8,7 +8,7 @@ import { DynamicFormFieldBase } from './dynamic-form-field-base';
   templateUrl: './dynamic-form-field.component.html'
 })
 export class DynamicFormFieldComponent extends DynamicFormFieldBase<DynamicFormField> implements OnInit {
-  @ViewChild('fieldContainer', { read: ViewContainerRef })
+  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 
   constructor(private componentFactory: DynamicFormComponentFactory) {
