@@ -16,11 +16,15 @@ export class DynamicFormValidationComponent<Field extends DynamicFormField = Dyn
     super();
   }
 
-  get errors() {
-    return this.field.control.errors;
+  get errors(): DynamicFormValidationErrors {
+    return this.control.errors;
   }
 
   get errorMessage() {
     return this.validationService.getErrorMessage(this.errors);
+  }
+
+  get showErrorMessage() {
+    return this.control.touched && this.errors && true;
   }
 }

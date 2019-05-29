@@ -51,39 +51,77 @@ describe('DynamicFormValidationComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
-    const getDebugElement = () => fixture.debugElement.query(By.css('.dynamic-form-validation'));
-
+  it('creates component template without validation element', () => {
     fixture.detectChanges();
 
-    expect(getDebugElement()).toBeNull();
+    expect(component).toBeDefined();
 
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-validation'));
+
+    expect(debugElement).toBeNull();
+  });
+
+  it('creates component template with validation element and error message', () => {
     component.control.setErrors({});
+    component.control.markAsTouched();
 
     fixture.detectChanges();
 
-    const debugElement = getDebugElement();
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-validation'));
     const element = <HTMLElement>debugElement.nativeElement;
 
     expect(debugElement).not.toBeNull();
     expect(element.innerHTML).toBe('The field is invalid');
   });
 
-  it('returns message from error', () => {
+  it('errors returns errors from control', () => {
+    const errors = { email: { message: 'The field is not a valid email' } };
+
+    component.control.setErrors(errors);
+
+    expect(component.errors).toEqual(errors);
+  });
+
+  it('errorMessage returns message from error', () => {
     component.control.setErrors({ email: { message: 'The field is not a valid email' } });
 
     expect(component.errorMessage).toEqual( 'The field is not a valid email');
   });
 
-  it('returns message from config', () => {
+  it('errorMessage returns message from config', () => {
     component.control.setErrors({ required: {} });
 
     expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
-  it('returns default message from config', () => {
+  it('errorMessage returns default message from config', () => {
     component.control.setErrors({});
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
+  });
+
+  it('errorMessage returns default message from config', () => {
+    component.control.setErrors({});
+
+    expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
+  });
+
+  it('showErrorMessage returns false if no errors exist', () => {
+    component.control.setErrors(null);
+
+    expect(component.showErrorMessage).toBe(false);
+  });
+
+  it('showErrorMessage returns false if errors exist but control is untouched', () => {
+    component.control.setErrors({});
+
+    expect(component.showErrorMessage).toBe(false);
+  });
+
+  it('showErrorMessage returns true if errors exist and control is touched', () => {
+    component.control.setErrors({});
+    component.control.markAsTouched();
+
+    expect(component.showErrorMessage).toBe(true);
   });
 });
