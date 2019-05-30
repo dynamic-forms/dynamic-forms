@@ -9,11 +9,11 @@ export const appRoutes: Routes = [
   },
   {
     path: 'examples/bootstrap',
-    loadChildren: './examples/bootstrap/bootstrap-examples.module#BootstrapExamplesModule'
+    loadChildren: () => import('./examples/bootstrap/bootstrap-examples.module').then(m => m.BootstrapExamplesModule)
   },
   {
     path: 'examples/material',
-    loadChildren: './examples/material/material-examples.module#MaterialExamplesModule'
+    loadChildren: () => import('./examples/material/material-examples.module').then(m => m.MaterialExamplesModule)
   }
 ];
 
