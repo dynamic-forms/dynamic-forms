@@ -13,4 +13,4 @@ import { DynamicFormLabelWrapperBootstrapComponent } from './dynamic-form-label-
     DynamicFormLabelWrapperBootstrapComponent
   ]
 })
-export class DynamicFormWrapperBootstrapModule {}
+export class BsDynamicFormWrapperModule {}

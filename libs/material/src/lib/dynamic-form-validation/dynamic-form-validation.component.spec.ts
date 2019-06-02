@@ -1,13 +1,13 @@
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService, DynamicFormValidationService} from '@dynamic-forms/core';
-import { DynamicFormValidationMaterialComponent } from './dynamic-form-validation.component';
-import { DynamicFormValidationMaterialModule } from './dynamic-form-validation.module';
+import { MatDynamicFormValidationComponent } from './dynamic-form-validation.component';
+import { MatDynamicFormValidationModule } from './dynamic-form-validation.module';
 
-describe('DynamicFormValidationMaterialComponent', () => {
+describe('MatDynamicFormValidationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormValidationMaterialModule
+        MatDynamicFormValidationModule
       ],
       providers: [
         {
@@ -22,7 +22,7 @@ describe('DynamicFormValidationMaterialComponent', () => {
   }));
 
   it('creates component', () => {
-    const fixture = TestBed.createComponent(DynamicFormValidationMaterialComponent);
+    const fixture = TestBed.createComponent(MatDynamicFormValidationComponent);
     const component = fixture.componentInstance;
 
     expect(component).toBeDefined();

@@ -5,9 +5,9 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { dynamicFormsCoreServices } from '@dynamic-forms/core';
-import { DynamicFormControlMaterialModule } from './dynamic-form-control/dynamic-form-control.module';
-import { DynamicFormInputMaterialModule } from './dynamic-form-input/dynamic-form-input.module';
-import { DynamicFormValidationMaterialModule } from './dynamic-form-validation/dynamic-form-validation.module';
+import { MatDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
+import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
+import { MatDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-forms-material.config';
 
 @NgModule({
@@ -15,18 +15,18 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    DynamicFormControlMaterialModule,
-    DynamicFormInputMaterialModule,
-    DynamicFormValidationMaterialModule
+    MatDynamicFormControlModule,
+    MatDynamicFormInputModule,
+    MatDynamicFormValidationModule
   ],
   exports: [
     DynamicFormsCoreModule
   ]
 })
-export class DynamicFormsMaterialModule {
+export class MatDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
-      ngModule: DynamicFormsMaterialModule,
+      ngModule: MatDynamicFormsModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,

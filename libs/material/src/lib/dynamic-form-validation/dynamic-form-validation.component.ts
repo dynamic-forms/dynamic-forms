@@ -6,7 +6,7 @@ import { DynamicFormValidationComponent, DynamicFormValidationService } from '@d
   templateUrl: './dynamic-form-validation.component.html',
   styleUrls: ['./dynamic-form-validation.component.scss']
 })
-export class DynamicFormValidationMaterialComponent extends DynamicFormValidationComponent {
+export class MatDynamicFormValidationComponent extends DynamicFormValidationComponent {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

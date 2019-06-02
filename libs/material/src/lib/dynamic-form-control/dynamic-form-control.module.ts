@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormControlMaterialComponent } from './dynamic-form-control.component';
+import { MatDynamicFormControlComponent } from './dynamic-form-control.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    DynamicFormControlMaterialComponent
+    MatDynamicFormControlComponent
   ],
   exports: [
-    DynamicFormControlMaterialComponent
+    MatDynamicFormControlComponent
   ],
   entryComponents: [
-    DynamicFormControlMaterialComponent
+    MatDynamicFormControlComponent
   ]
 })
-export class DynamicFormControlMaterialModule {}
+export class MatDynamicFormControlModule {}

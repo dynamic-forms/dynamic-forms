@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DynamicFormsMaterialModule } from '@dynamic-forms/material';
+import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { DynamicFormTemplateResolver } from '../dynamic-form-template.resolver';
 import { MaterialExamplesComponent } from './material-examples.component';
@@ -8,7 +8,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
 @NgModule({
   imports: [
     DynamicFormExampleModule,
-    DynamicFormsMaterialModule.forRoot(),
+    MatDynamicFormsModule.forRoot(),
     RouterModule.forChild([
       {
         path: ':templateId',

@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormValidationBootstrapModule } from '../dynamic-form-validation/dynamic-form-validation.module';
-import { DynamicFormControlBootstrapComponent } from './dynamic-form-control.component';
+import { BsDynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { BsDynamicFormControlComponent } from './dynamic-form-control.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormValidationBootstrapModule
+    BsDynamicFormValidationModule
   ],
   declarations: [
-    DynamicFormControlBootstrapComponent
+    BsDynamicFormControlComponent
   ],
   entryComponents: [
-    DynamicFormControlBootstrapComponent
+    BsDynamicFormControlComponent
   ]
 })
-export class DynamicFormControlBootstrapModule {}
+export class BsDynamicFormControlModule {}

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DynamicFormValidationMaterialComponent } from './dynamic-form-validation.component';
+import { MatDynamicFormValidationComponent } from './dynamic-form-validation.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { DynamicFormValidationMaterialComponent } from './dynamic-form-validatio
     MatFormFieldModule
   ],
   declarations: [
-    DynamicFormValidationMaterialComponent
+    MatDynamicFormValidationComponent
   ],
   exports: [
-    DynamicFormValidationMaterialComponent
+    MatDynamicFormValidationComponent
   ]
 })
-export class DynamicFormValidationMaterialModule {}
+export class MatDynamicFormValidationModule {}
