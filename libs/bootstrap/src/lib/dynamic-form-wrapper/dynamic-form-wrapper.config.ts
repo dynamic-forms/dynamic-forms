@@ -1,8 +1,8 @@
 import { DynamicFormWrapperConfig } from '@dynamic-forms/core';
-import { DynamicFormLabelWrapperBootstrapComponent } from './dynamic-form-label-wrapper.component';
+import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
 
 export const bsDynamicFormWrapperConfig: DynamicFormWrapperConfig = {
   types: [
-    { type: 'label', component: DynamicFormLabelWrapperBootstrapComponent }
+    { type: 'label', component: BsDynamicFormControlLabelComponent }
   ]
 };

@@ -1,8 +1,8 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicFormLabelWrapperBootstrapComponent } from './dynamic-form-label-wrapper.component';
+import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
 import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
 
-describe('DynamicFormLabelWrapperBootstrapComponent', () => {
+describe('BsDynamicFormControlLabelComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -12,7 +12,7 @@ describe('DynamicFormLabelWrapperBootstrapComponent', () => {
   }));
 
   it('creates component', () => {
-    const fixture = TestBed.createComponent(DynamicFormLabelWrapperBootstrapComponent);
+    const fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
     const component = fixture.componentInstance;
 
     expect(component).toBeDefined();
