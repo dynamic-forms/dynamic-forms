@@ -7,7 +7,7 @@ import { DynamicFormComponentFactory } from '@dynamic-forms/core';
   templateUrl: './dynamic-form-control.component.html',
   styleUrls: ['./dynamic-form-control.component.scss']
 })
-export class DynamicFormControlBootstrapComponent extends DynamicFormControlComponent {
+export class BsDynamicFormControlComponent extends DynamicFormControlComponent {
   constructor(componentFactory: DynamicFormComponentFactory) {
     super(componentFactory);
   }

@@ -5,10 +5,10 @@ import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { dynamicFormsCoreServices } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { DynamicFormControlBootstrapModule } from './dynamic-form-control/dynamic-form-control.module';
-import { DynamicFormInputBootstrapModule } from './dynamic-form-input/dynamic-form-input.module';
-import { DynamicFormValidationBootstrapModule } from './dynamic-form-validation/dynamic-form-validation.module';
-import { DynamicFormWrapperBootstrapModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
+import { BsDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
+import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
+import { BsDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
+import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
 import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms-bootstrap.config';
 
 @NgModule({
@@ -16,19 +16,19 @@ import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    DynamicFormControlBootstrapModule,
-    DynamicFormInputBootstrapModule,
-    DynamicFormValidationBootstrapModule,
-    DynamicFormWrapperBootstrapModule
+    BsDynamicFormControlModule,
+    BsDynamicFormInputModule,
+    BsDynamicFormValidationModule,
+    BsDynamicFormWrapperModule
   ],
   exports: [
     DynamicFormsCoreModule
   ]
 })
-export class DynamicFormsBootstrapModule {
+export class BsDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
-      ngModule: DynamicFormsBootstrapModule,
+      ngModule: BsDynamicFormsModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,

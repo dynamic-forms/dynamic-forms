@@ -22,4 +22,4 @@ import { DynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-te
     DynamicFormTextboxModule
   ]
 })
-export class DynamicFormInputBootstrapModule {}
+export class BsDynamicFormInputModule {}

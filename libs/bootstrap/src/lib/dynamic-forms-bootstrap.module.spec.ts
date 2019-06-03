@@ -3,14 +3,14 @@ import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, Dyn
   DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
   DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { bsDynamicFormConfig } from './dynamic-forms-bootstrap.config';
-import { DynamicFormsBootstrapModule } from './dynamic-forms-bootstrap.module';
+import { BsDynamicFormsModule } from './dynamic-forms-bootstrap.module';
 
-describe('DynamicFormsBootstrapModule', () => {
+describe('BsDynamicFormsModule', () => {
   describe('without providers', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsBootstrapModule
+          BsDynamicFormsModule
         ]
       }).compileComponents();
     }));
@@ -48,7 +48,7 @@ describe('DynamicFormsBootstrapModule', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsBootstrapModule.forRoot()
+          BsDynamicFormsModule.forRoot()
         ]
       }).compileComponents();
     }));
@@ -105,7 +105,7 @@ describe('DynamicFormsBootstrapModule', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsBootstrapModule.forRoot(config)
+          BsDynamicFormsModule.forRoot(config)
         ]
       }).compileComponents();
     }));

@@ -31,4 +31,4 @@ import { DynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-te
     }
   ]
 })
-export class DynamicFormInputMaterialModule {}
+export class MatDynamicFormInputModule {}
