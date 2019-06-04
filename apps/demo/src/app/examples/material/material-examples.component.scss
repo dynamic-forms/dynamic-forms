@@ -1,6 +1,16 @@
 :host ::ng-deep {
   .dynamic-form {
+    // display: flex;
+    // flex-direction: column;
     margin: 0 10px;
+
+    /*.dynamic-form-group, .dynamic-form-array, .dynamic-form-control {
+      width: 100%;
+
+      .mat-form-field {
+        width: 100%;
+      }
+    }*/
 
     .mat-form-field, .mat-checkbox, .mat-radio-group {
       &.readonly {

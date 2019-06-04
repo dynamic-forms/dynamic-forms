@@ -17,6 +17,7 @@ export class DynamicFormControlComponent extends DynamicFormFieldBase<DynamicFor
   }
 
   get input() { return this.field.template.input; }
+  get hints() { return this.field.template.hints; }
 
   ngOnInit() {
     this.initFieldContainer();

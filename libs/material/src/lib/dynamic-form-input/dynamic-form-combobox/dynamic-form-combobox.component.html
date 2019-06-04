@@ -5,6 +5,8 @@
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{ option }}</mat-option>
   </mat-autocomplete>
+  <mat-hint align="start">{{ hints?.messageLeft }}</mat-hint>
+  <mat-hint align="end">{{ hints?.messageRight }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   
