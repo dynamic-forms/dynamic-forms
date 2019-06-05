@@ -1,4 +1,4 @@
 export interface DynamicFormControlHints {
-  messageLeft?: string;
-  messageRight?: string;
+  hintStart?: string;
+  hintEnd?: string;
 }

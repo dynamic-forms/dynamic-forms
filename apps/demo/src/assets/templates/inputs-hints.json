@@ -26,14 +26,14 @@
         "maxLength": 6,
         "pattern": "^Value[0-9]$"
       },
-      "hints": {
-        "messageLeft": "5-6 characters"
-      },
       "validation": {
         "required": true,
         "minLength": true,
         "maxLength": true,
         "pattern": true
+      },
+      "hints": {
+        "hintStart": "Pattern: Value[0-9]"
       }
     },
     {
@@ -45,6 +45,9 @@
       },
       "validation": {
         "required": true
+      },
+      "hints": {
+        "hintEnd": "Click to open calendar"
       }
     },
     {
@@ -60,6 +63,9 @@
       },
       "validation": {
         "required": true
+      },
+      "hints": {
+        "hintEnd": "Click to open selection"
       }
     },
     {
@@ -75,6 +81,10 @@
         "required": true,
         "min": true,
         "max": true
+      },
+      "hints": {
+        "hintStart": "Min: -5",
+        "hintEnd": "Max: 5"
       }
     },
     {
@@ -101,6 +111,9 @@
       },
       "validation": {
         "required": true
+      },
+      "hints": {
+        "hintEnd": "Press 'Enter' for line break"
       }
     },
     {
@@ -112,16 +125,16 @@
         "minLength": 5,
         "maxLength": 10
       },
-      "hints": {
-        "messageLeft": "5-10 characters"
-      },
       "validation": {
         "required": true,
         "minLength": true,
         "maxLength": true
       },
+      "hints": {
+        "hintStart": "Min 5 characters"
+      },
       "expressions": {
-        "hints.messageRight": "(model || \"\").length + \"\/10\""
+        "hints.hintEnd": "(model || \"\").length + \"\/10\""
       }
     },
     {
@@ -135,6 +148,9 @@
       "validation": {
         "required": true,
         "email": true
+      },
+      "hints": {
+        "hintStart": "E.g. user@gmail.com"
       }
     },
     {
@@ -145,6 +161,10 @@
         "type": "textbox",
         "inputType": "password",
         "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+      },
+      "expressions": {
+        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/6\"",
+        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
       },
       "validation": {
         "required": true,
@@ -161,6 +181,9 @@
       },
       "validation": {
         "required": true
+      },
+      "hints": {
+        "hintStart": "E.g. angular dynamic-forms"
       }
     }
   ]

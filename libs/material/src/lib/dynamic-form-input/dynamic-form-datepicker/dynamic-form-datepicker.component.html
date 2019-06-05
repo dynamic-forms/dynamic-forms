@@ -4,7 +4,7 @@
     [formControl]="control" [matDatepicker]="datepicker" />
   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
   <mat-datepicker #datepicker [disabled]="control.disabled"></mat-datepicker>
-  <mat-hint align="start">{{ hints?.messageLeft }}</mat-hint>
-  <mat-hint align="end">{{ hints?.messageRight }}</mat-hint>
+  <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>
+  <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
