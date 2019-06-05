@@ -2,6 +2,8 @@
   <mat-label>{{ template.label }}</mat-label>
   <input matInput [id]="id" [type]="input.inputType" [placeholder]="input.placeholder" 
     [readonly]="field.readonly" [formControl]="control" />
+  <mat-hint align="start">{{ hints?.messageLeft }}</mat-hint>
+  <mat-hint align="end">{{ hints?.messageRight }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   

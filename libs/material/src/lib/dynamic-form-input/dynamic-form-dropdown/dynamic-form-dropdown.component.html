@@ -5,6 +5,8 @@
       {{ option.label }}
     </mat-option>
   </mat-select>
+  <mat-hint align="start">{{ hints?.messageLeft }}</mat-hint>
+  <mat-hint align="end">{{ hints?.messageRight }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   

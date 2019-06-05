@@ -27,8 +27,7 @@
         "pattern": "^Value[0-9]$"
       },
       "hints": {
-        "messageLeft": "Min 5 chars",
-        "messageRight": "Max 6 chars"
+        "messageLeft": "5-6 characters"
       },
       "validation": {
         "required": true,
@@ -113,10 +112,16 @@
         "minLength": 5,
         "maxLength": 10
       },
+      "hints": {
+        "messageLeft": "5-10 characters"
+      },
       "validation": {
         "required": true,
         "minLength": true,
         "maxLength": true
+      },
+      "expressions": {
+        "hints.messageRight": "(model || \"\").length + \"\/10\""
       }
     },
     {
