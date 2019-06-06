@@ -11,12 +11,12 @@ import { DynamicFormTextboxComponent } from './dynamic-form-textbox/dynamic-form
 export const bsDynamicFormInputConfig: DynamicFormInputConfig = {
   types: [
     { type: 'checkbox', component: DynamicFormCheckboxComponent },
-    { type: 'combobox', component: DynamicFormComboboxComponent, wrappers: [ 'label' ] },
-    { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label' ] },
-    { type: 'dropdown', component: DynamicFormDropdownComponent, wrappers: [ 'label' ] },
-    { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label' ] },
+    { type: 'combobox', component: DynamicFormComboboxComponent, wrappers: [ 'label', 'hints' ] },
+    { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label', 'hints' ] },
+    { type: 'dropdown', component: DynamicFormDropdownComponent, wrappers: [ 'label', 'hints' ] },
+    { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label', 'hints' ] },
     { type: 'radio', component: DynamicFormRadioComponent },
-    { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label' ] },
-    { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label' ] }
+    { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label', 'hints' ] },
+    { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label', 'hints' ] }
   ]
 };
