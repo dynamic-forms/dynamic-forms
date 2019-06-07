@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormField } from './dynamic-form-field';
-import { DynamicFormFieldBase } from './dynamic-form-field-base';
+import { DynamicFormFieldWrapper } from './dynamic-form-field-wrapper';
 
 @Component({
   selector: 'dynamic-form-field',
   templateUrl: './dynamic-form-field.component.html'
 })
-export class DynamicFormFieldComponent extends DynamicFormFieldBase<DynamicFormField> implements OnInit {
+export class DynamicFormFieldComponent extends DynamicFormFieldWrapper<DynamicFormField> implements OnInit {
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 

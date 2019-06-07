@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormArray } from './dynamic-form-array';
 
 @Component({
@@ -7,6 +7,6 @@ import { DynamicFormArray } from './dynamic-form-array';
   templateUrl: './dynamic-form-array.component.html',
   styleUrls: ['./dynamic-form-array.component.scss']
 })
-export class DynamicFormArrayComponent extends DynamicFormFieldBase<DynamicFormArray> {
+export class DynamicFormArrayComponent extends DynamicFormFieldWrapper<DynamicFormArray> {
   get fields() { return this.field.fields; }
 }

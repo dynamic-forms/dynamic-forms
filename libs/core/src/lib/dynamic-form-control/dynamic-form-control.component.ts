@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormControl } from './dynamic-form-control';
 
@@ -8,7 +8,7 @@ import { DynamicFormControl } from './dynamic-form-control';
   templateUrl: './dynamic-form-control.component.html',
   styleUrls: ['./dynamic-form-control.component.scss']
 })
-export class DynamicFormControlComponent extends DynamicFormFieldBase<DynamicFormControl> implements OnInit {
+export class DynamicFormControlComponent extends DynamicFormFieldWrapper<DynamicFormControl> implements OnInit {
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
@@ -10,7 +10,7 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
   styleUrls: ['./dynamic-form-validation.component.scss']
 })
 export class DynamicFormValidationComponent<Field extends DynamicFormField = DynamicFormField>
-  extends DynamicFormFieldBase<Field> {
+  extends DynamicFormFieldWrapper<Field> {
 
   constructor(protected validationService: DynamicFormValidationService) {
     super();
