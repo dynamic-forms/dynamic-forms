@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
@@ -20,7 +20,7 @@ class DynamicFormFieldTest extends DynamicFormField {
   selector: 'dynamic-field-test',
   template: `<div>Dynamic Field</div>`
 })
-class DynamicFormFieldTestComponent extends DynamicFormFieldBase {}
+class DynamicFormFieldTestComponent extends DynamicFormFieldWrapper {}
 
 @NgModule({
   declarations: [
