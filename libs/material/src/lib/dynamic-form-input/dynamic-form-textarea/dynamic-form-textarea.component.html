@@ -3,6 +3,8 @@
   <textarea matInput [id]="id" [placeholder]="input.placeholder" [readonly]="field.readonly" [formControl]="control"
     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1">
   </textarea>
+  <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>
+  <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>  
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
   

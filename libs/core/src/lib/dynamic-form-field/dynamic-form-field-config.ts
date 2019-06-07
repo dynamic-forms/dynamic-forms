@@ -1,11 +1,11 @@
 import { Type } from '@angular/core';
 import { DynamicFormWrapperType } from '../dynamic-form-wrapper/dynamic-form-wrapper-type';
-import { DynamicFormFieldBase } from './dynamic-form-field-base';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
+import { DynamicFormFieldWrapper } from './dynamic-form-field-wrapper';
 
 export interface DynamicFormFieldTypeConfig {
   type: DynamicFormFieldType;
-  component: Type<DynamicFormFieldBase>;
+  component: Type<DynamicFormFieldWrapper>;
   wrappers?: DynamicFormWrapperType[];
 }
 

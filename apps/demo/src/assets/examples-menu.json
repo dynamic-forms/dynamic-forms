@@ -25,6 +25,10 @@
       "label": "Inputs with validation" 
     },
     { 
+      "id": "inputs-hints", 
+      "label": "Inputs with hints" 
+    },
+    { 
       "id": "login", 
       "label": "Login" 
     },

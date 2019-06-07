@@ -1,8 +1,12 @@
 import { AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldWrapper} from '../dynamic-form-field/dynamic-form-field-wrapper';
 
-export abstract class DynamicFormWrapper extends DynamicFormFieldBase implements AfterViewInit {
-  fieldComponent: DynamicFormWrapper | DynamicFormFieldBase;
+export abstract class DynamicFormWrapper<
+  Field extends DynamicFormField = DynamicFormField
+> extends DynamicFormFieldWrapper<Field> implements AfterViewInit {
+
+  fieldComponent: DynamicFormWrapper<Field> | DynamicFormFieldWrapper<Field>;
 
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
