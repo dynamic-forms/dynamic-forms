@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-docs-menu-list',
-  templateUrl: './docs-menu-list.component.html',
-  styleUrls: ['./docs-menu-list.component.scss']
+  selector: 'app-docs-menu-items',
+  templateUrl: './docs-menu-items.component.html',
+  styleUrls: ['./docs-menu-items.component.scss']
 })
-export class DocsMenuListComponent {
+export class DocsMenuItemsComponent {
   @Input()
   library: string;
 

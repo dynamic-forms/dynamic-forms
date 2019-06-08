@@ -4,30 +4,19 @@
 </button>
 
 <mat-menu #docs="matMenu">
-  <mat-nav-list>
-    <button mat-menu-item [matMenuTriggerFor]="coreDocs">
-      <a routerLink="/docs/core">Core</a>
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="bootstrapDocs">
-      <a routerLink="/docs/bootstrap">Bootstrap</a>
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="materialDocs">
-      <a routerLink="/docs/material">Material</a>
-    </button>
- </mat-nav-list>
+  <a mat-menu-item routerLink="/docs/core" [matMenuTriggerFor]="coreDocs">Core</a>
+  <a mat-menu-item routerLink="/docs/bootstrap" [matMenuTriggerFor]="bootstrapDocs">Bootstrap</a>
+  <a mat-menu-item routerLink="/docs/material" [matMenuTriggerFor]="materialDocs">Material</a>
 </mat-menu>
 
 <mat-menu #coreDocs="matMenu">
-  <app-docs-menu-list [library]="'core'">
-  </app-docs-menu-list>
+  <app-docs-menu-items [library]="'core'"></app-docs-menu-items>
 </mat-menu>
 
 <mat-menu #bootstrapDocs="matMenu">
-  <app-docs-menu-list [library]="'bootstrap'">
-  </app-docs-menu-list>
+  <app-docs-menu-items [library]="'bootstrap'"></app-docs-menu-items>
 </mat-menu>
 
 <mat-menu #materialDocs="matMenu">
-  <app-docs-menu-list [library]="'material'">
-  </app-docs-menu-list>
+  <app-docs-menu-items [library]="'material'"></app-docs-menu-items>
 </mat-menu>
