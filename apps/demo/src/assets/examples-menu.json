@@ -1,44 +1,50 @@
 {
   "items": [
-    { 
-      "id": "inputs", 
-      "label": "Inputs" 
+    {
+      "label": "Inputs",      
+      "items": [
+        { 
+          "id": "inputs-placeholder", 
+          "label": "Placeholder" 
+        },
+        { 
+          "id": "inputs-default-value", 
+          "label": "Default value" 
+        },
+        { 
+          "id": "inputs-readonly", 
+          "label": "Readonly" 
+        },
+        { 
+          "id": "inputs-disabled", 
+          "label": "Disabled"
+        },
+        { 
+          "id": "inputs-validation", 
+          "label": "Validation" 
+        },
+        { 
+          "id": "inputs-hints", 
+          "label": "Hints" 
+        }    
+      ]
     },
-    { 
-      "id": "inputs-placeholder", 
-      "label": "Inputs with placeholder" 
-    },
-    { 
-      "id": "inputs-default-value", 
-      "label": "Inputs with default value" 
-    },
-    { 
-      "id": "inputs-readonly", 
-      "label": "Inputs readonly" 
-    },
-    { 
-      "id": "inputs-disabled", 
-      "label": "Inputs disabled"
-    },
-    { 
-      "id": "inputs-validation", 
-      "label": "Inputs with validation" 
-    },
-    { 
-      "id": "inputs-hints", 
-      "label": "Inputs with hints" 
-    },
-    { 
-      "id": "login", 
-      "label": "Login" 
-    },
-    { 
-      "id": "register", 
-      "label": "Register"
-    },
-    { 
-      "id": "finance", 
-      "label": "Finance" 
+    {
+      "label": "Expressions",
+      "items": [
+        {
+          "id": "login",
+          "label": "Login"
+        },
+        { 
+          "id": "register", 
+          "label": "Register"
+        },
+        { 
+          "id": "finance", 
+          "label": "Finance" 
+        }
+      ]
     }
   ]
 }
