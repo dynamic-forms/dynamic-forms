@@ -1,8 +1,7 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { DynamicFormInputComponent } from '@dynamic-forms/core';
-import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
+import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
 import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
 
 @Component({
@@ -22,20 +21,20 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
     DynamicFormInputTestComponent
   ]
 })
-class BsDynamicFormControlLabelTestModule {}
+class DynamicFormWrapperTestModule {}
 
-describe('BsDynamicFormControlLabelComponent', () => {
-  let fixture: ComponentFixture<BsDynamicFormControlLabelComponent>;
-  let component: BsDynamicFormControlLabelComponent;
+describe('BsDynamicFormControlHintsComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormControlHintsComponent>;
+  let component: BsDynamicFormControlHintsComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormControlLabelTestModule
+        DynamicFormWrapperTestModule
       ]
     });
 
-    fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
+    fixture = TestBed.createComponent(BsDynamicFormControlHintsComponent);
     component = fixture.componentInstance;
     component.field = <any>{
       path: 'path',
@@ -54,14 +53,5 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-  });
-
-  it('creates component template', () => {
-    const labelDebugElement = fixture.debugElement.query(By.css('label'));
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
-
-    expect(labelElement).toBeDefined();
-    expect(labelElement.htmlFor).toBe('path');
-    expect(labelElement.innerText).toBe('label');
   });
 });
