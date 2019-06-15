@@ -28,6 +28,7 @@ describe('DynamicFormInputComponent', () => {
       input: {
         type: 'input'
       },
+      hints: {},
       validation: {}
     });
 
@@ -41,6 +42,7 @@ describe('DynamicFormInputComponent', () => {
     expect(component.template).toBe(field.template);
     expect(component.control).toBe(field.control);
     expect(component.input).toBe(field.template.input);
+    expect(component.hints).toBe(field.template.hints);
     expect(component.validation).toBe(field.template.validation);
   });
 });
