@@ -37,12 +37,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
     component = fixture.componentInstance;
-    component.field = <any>{
-      path: 'path',
-      template: {
-        label: 'label'
-      }
-    };
+    component.field = <any>{ path: 'path', template: { label: 'label' } };
 
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);

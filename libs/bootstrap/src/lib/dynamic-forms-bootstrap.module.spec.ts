@@ -12,7 +12,7 @@ describe('BsDynamicFormsModule', () => {
         imports: [
           BsDynamicFormsModule
         ]
-      }).compileComponents();
+      });
     }));
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
@@ -50,7 +50,7 @@ describe('BsDynamicFormsModule', () => {
         imports: [
           BsDynamicFormsModule.forRoot()
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',
@@ -107,7 +107,7 @@ describe('BsDynamicFormsModule', () => {
         imports: [
           BsDynamicFormsModule.forRoot(config)
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',

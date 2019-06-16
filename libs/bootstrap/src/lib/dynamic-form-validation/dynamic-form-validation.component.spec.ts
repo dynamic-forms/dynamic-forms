@@ -18,7 +18,7 @@ describe('BsDynamicFormValidationComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
   }));
 
   it('creates component', () => {
