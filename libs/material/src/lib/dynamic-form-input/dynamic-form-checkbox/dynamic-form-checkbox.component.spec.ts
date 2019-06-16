@@ -25,7 +25,7 @@ describe('DynamicFormCheckboxComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormCheckboxComponent);
     component = fixture.componentInstance;

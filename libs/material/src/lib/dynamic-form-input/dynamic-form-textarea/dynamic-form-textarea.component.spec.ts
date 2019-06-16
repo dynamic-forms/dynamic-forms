@@ -26,7 +26,7 @@ describe('DynamicFormTextareaComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormTextareaComponent);
     component = fixture.componentInstance;

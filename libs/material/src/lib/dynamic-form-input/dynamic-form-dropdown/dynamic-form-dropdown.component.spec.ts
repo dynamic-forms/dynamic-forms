@@ -27,7 +27,7 @@ describe('DynamicFormDropdownComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormDropdownComponent);
     component = fixture.componentInstance;
