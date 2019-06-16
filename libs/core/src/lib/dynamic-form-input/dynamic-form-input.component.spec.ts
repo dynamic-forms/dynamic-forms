@@ -18,7 +18,7 @@ describe('DynamicFormInputComponent', () => {
       declarations: [
         DynamicFormInputTestComponent
       ]
-    }).compileComponents();
+    });
   }));
 
   it('creates component', () => {

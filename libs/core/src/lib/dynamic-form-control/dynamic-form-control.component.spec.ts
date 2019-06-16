@@ -62,7 +62,7 @@ describe('DynamicFormControlComponent', () => {
       imports: [
         DynamicFormControlComponentTestModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;

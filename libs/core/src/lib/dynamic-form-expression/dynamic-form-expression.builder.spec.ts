@@ -9,7 +9,7 @@ describe('DynamicFormVExpressionBuilder', () => {
       providers: [
         DynamicFormExpressionBuilder
       ]
-    }).compileComponents();
+    });
   }));
 
   it('returns field expressions being null',

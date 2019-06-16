@@ -35,7 +35,7 @@ describe('DynamicFormValidationComponent', () => {
         DynamicFormConfigService,
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormValidationComponent);
     component = fixture.componentInstance;
