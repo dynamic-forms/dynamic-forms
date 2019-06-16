@@ -36,7 +36,7 @@ describe('DynamicFormWrapper', () => {
       imports: [
         DynamicFormWrapperTestModule
       ]
-    }).compileComponents();
+    });
   }));
 
   it('creates component',

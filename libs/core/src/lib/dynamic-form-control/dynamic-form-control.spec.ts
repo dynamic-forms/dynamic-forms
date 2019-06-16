@@ -45,6 +45,32 @@ describe('DynamicFormControl', () => {
     expect(formControl.model).toBe('value');
   });
 
+  it('sets control validator to null', () => {
+    const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
+    const template = <DynamicFormControlTemplate>{ key: 'key' };
+    const formControl = new DynamicFormControl(root, root, template);
+
+    formControl.setValidators(null);
+
+    expect(formControl.control.validator).toBeNull();
+  });
+
+  it('sets control validator to defined', () => {
+    const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
+    const template = <DynamicFormControlTemplate>{ key: 'key' };
+    const formControl = new DynamicFormControl(root, root, template);
+    const formControlValidators = <DynamicFormControlValidator[]>[
+      {
+        key: 'required', enabled: true, value: undefined,
+        validator: Validators.required, factory: _ => Validators.required
+      }
+    ];
+
+    formControl.setValidators(formControlValidators);
+
+    expect(formControl.control.validator).not.toBeNull();
+  });
+
   it('check updates control', () => {
     const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
     const template = <DynamicFormControlTemplate>{ key: 'key' };

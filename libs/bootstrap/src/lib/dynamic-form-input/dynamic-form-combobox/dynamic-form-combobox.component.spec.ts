@@ -17,7 +17,7 @@ describe('DynamicFormComboboxComponent', () => {
       imports: [
         DynamicFormComboboxModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormComboboxComponent);
     component = fixture.componentInstance;

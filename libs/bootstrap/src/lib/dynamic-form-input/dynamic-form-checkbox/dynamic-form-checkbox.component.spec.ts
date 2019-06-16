@@ -17,7 +17,7 @@ describe('DynamicFormCheckboxComponent', () => {
       imports: [
         DynamicFormCheckboxModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormCheckboxComponent);
     component = fixture.componentInstance;

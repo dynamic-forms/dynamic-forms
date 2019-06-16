@@ -55,7 +55,7 @@ describe('DynamicFormFormFieldComponent', () => {
       imports: [
         DynamicFormComponentFactoryTestModule
       ]
-    }).compileComponents();
+    });
   }));
 
   it('creates component', () => {

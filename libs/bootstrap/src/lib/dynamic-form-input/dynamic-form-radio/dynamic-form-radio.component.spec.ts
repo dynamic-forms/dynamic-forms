@@ -17,7 +17,7 @@ describe('DynamicFormRadioComponent', () => {
       imports: [
         DynamicFormRadioModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormRadioComponent);
     component = fixture.componentInstance;

@@ -17,7 +17,7 @@ describe('DynamicFormNumberboxComponent', () => {
       imports: [
         DynamicFormNumberboxModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormNumberboxComponent);
     component = fixture.componentInstance;

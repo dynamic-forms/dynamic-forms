@@ -26,7 +26,7 @@ describe('DynamicFormTextboxComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormTextboxComponent);
     component = fixture.componentInstance;

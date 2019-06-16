@@ -23,7 +23,7 @@ describe('DynamicFormValidationService', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
   }));
 
   it('returns message being null',

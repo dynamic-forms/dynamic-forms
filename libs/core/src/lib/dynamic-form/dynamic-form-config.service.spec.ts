@@ -29,7 +29,7 @@ describe('DynamicFormConfigService', () => {
         },
         DynamicFormConfigService
       ]
-    }).compileComponents();
+    });
   }));
 
   it('returns DynamicFormConfig',

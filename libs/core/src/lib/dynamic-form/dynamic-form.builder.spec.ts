@@ -21,7 +21,7 @@ describe('DynamicFormBuilder', () => {
         DynamicFormExpressionBuilder,
         DynamicFormValidationBuilder
       ]
-    }).compileComponents();
+    });
   }));
 
   it('creates DynamicForm',
