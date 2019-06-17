@@ -35,7 +35,7 @@ describe('DynamicFormValidationComponent', () => {
         DynamicFormConfigService,
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormValidationComponent);
     component = fixture.componentInstance;
@@ -94,13 +94,13 @@ describe('DynamicFormValidationComponent', () => {
     expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
-  it('errorMessage returns default message from config', () => {
-    component.control.setErrors({});
+  it('errorMessage returns default message from config for unknown error', () => {
+    component.control.setErrors({ pattern: {} });
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });
 
-  it('errorMessage returns default message from config', () => {
+  it('errorMessage returns default message from config for unspecified error', () => {
     component.control.setErrors({});
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);

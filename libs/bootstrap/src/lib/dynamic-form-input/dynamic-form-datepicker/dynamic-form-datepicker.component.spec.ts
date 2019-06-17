@@ -17,7 +17,7 @@ describe('DynamicFormDatepickerComponent', () => {
       imports: [
         DynamicFormDatepickerModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormDatepickerComponent);
     component = fixture.componentInstance;

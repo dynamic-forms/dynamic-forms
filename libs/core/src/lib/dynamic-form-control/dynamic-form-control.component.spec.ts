@@ -62,7 +62,7 @@ describe('DynamicFormControlComponent', () => {
       imports: [
         DynamicFormControlComponentTestModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;
@@ -72,7 +72,8 @@ describe('DynamicFormControlComponent', () => {
       key: 'key',
       input: {
         type: 'input'
-      }
+      },
+      hints: {}
     });
     component.field = formControl;
 
@@ -84,6 +85,7 @@ describe('DynamicFormControlComponent', () => {
     expect(component.template).toBeDefined();
     expect(component.control).toBeDefined();
     expect(component.input).toBeDefined();
+    expect(component.hints).toBeDefined();
   });
 
   it('creates component template', () => {

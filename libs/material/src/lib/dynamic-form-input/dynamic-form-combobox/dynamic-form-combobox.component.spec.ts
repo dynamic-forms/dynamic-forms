@@ -27,7 +27,7 @@ describe('DynamicFormComboboxComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormComboboxComponent);
     component = fixture.componentInstance;

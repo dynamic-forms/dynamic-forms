@@ -17,7 +17,7 @@ describe('DynamicFormDropdownComponent', () => {
       imports: [
         DynamicFormDropdownModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormDropdownComponent);
     component = fixture.componentInstance;

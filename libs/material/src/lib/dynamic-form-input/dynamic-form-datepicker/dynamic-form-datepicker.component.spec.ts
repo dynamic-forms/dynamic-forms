@@ -26,7 +26,7 @@ describe('DynamicFormDatepickerComponent', () => {
         },
         DynamicFormValidationService
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormDatepickerComponent);
     component = fixture.componentInstance;

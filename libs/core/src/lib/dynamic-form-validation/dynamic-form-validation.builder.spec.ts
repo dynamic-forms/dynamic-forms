@@ -7,7 +7,7 @@ describe('DynamicFormValidationBuilder', () => {
       providers: [
         DynamicFormValidationBuilder
       ]
-    }).compileComponents();
+    });
   }));
 
   it('returns validator factory being undefined',

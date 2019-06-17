@@ -16,7 +16,7 @@ describe('DynamicFormsCoreModule', () => {
         imports: [
           DynamicFormsCoreModule
         ]
-      }).compileComponents();
+      });
     }));
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
@@ -54,7 +54,7 @@ describe('DynamicFormsCoreModule', () => {
         imports: [
           DynamicFormsCoreModule.forRoot()
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',
@@ -111,7 +111,7 @@ describe('DynamicFormsCoreModule', () => {
         imports: [
           DynamicFormsCoreModule.forRoot(config)
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',

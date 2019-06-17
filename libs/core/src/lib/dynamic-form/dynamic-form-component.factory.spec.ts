@@ -91,7 +91,7 @@ describe('DynamicFormComponentFactory', () => {
       imports: [
         DynamicFormComponentFactoryTestModule
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(DynamicFormTestComponent);
     component = fixture.componentInstance;

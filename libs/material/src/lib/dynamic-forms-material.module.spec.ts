@@ -12,7 +12,7 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule
         ]
-      }).compileComponents();
+      });
     }));
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
