@@ -2,7 +2,27 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@dynamic-forms/core": [
+        "dist/@dynamic-forms/core"
+      ],
+      "@dynamic-forms/core/*": [
+        "dist/@dynamic-forms/core/*"
+      ],
+      "@dynamic-forms/bootstrap": [
+        "dist/@dynamic-forms/bootstrap"
+      ],
+      "@dynamic-forms/bootstrap/*": [
+        "dist/@dynamic-forms/bootstrap/*"
+      ],
+      "@dynamic-forms/material": [
+        "dist/@dynamic-forms/material"
+      ],
+      "@dynamic-forms/material/*": [
+        "dist/@dynamic-forms/material/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",

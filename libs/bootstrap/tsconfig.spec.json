@@ -5,7 +5,15 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@dynamic-forms/core": [
+        "dist/@dynamic-forms/core"
+      ],
+      "@dynamic-forms/core/*": [
+        "dist/@dynamic-forms/core/*"
+      ]
+    }
   },
   "files": [
     "src/test.ts"
