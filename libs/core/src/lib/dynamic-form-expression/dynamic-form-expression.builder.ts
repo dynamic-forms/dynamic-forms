@@ -14,7 +14,7 @@ export class DynamicFormExpressionBuilder {
   private readonly fieldExpressionArgumentNames = this.fieldExpressionArguments.map(arg => arg.name);
 
   createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
-    const expressions = field.template.expressions;
+    const expressions = field.definition.expressions;
     return expressions ? Object.keys(expressions).reduce((result, key) => {
       result[key] = this.createFieldExpression(expressions[key], field);
       return result;

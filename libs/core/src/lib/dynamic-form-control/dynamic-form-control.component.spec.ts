@@ -9,9 +9,9 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
-import { DynamicFormControlTemplate } from './dynamic-form-control-template';
+import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
 @Component({
@@ -67,13 +67,15 @@ describe('DynamicFormControlComponent', () => {
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    formControl = new DynamicFormControl(form, form, <DynamicFormControlTemplate>{
+    form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    formControl = new DynamicFormControl(form, form, <DynamicFormControlDefinition>{
       key: 'key',
-      input: {
-        type: 'input'
-      },
-      hints: {}
+      template: {
+        input: {
+          type: 'input'
+        },
+        hints: {}
+      }
     });
     component.field = formControl;
 

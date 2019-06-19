@@ -2,7 +2,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
-import { DynamicFormControlDefinition } from './dynamic-form-control-defintion';
+import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
