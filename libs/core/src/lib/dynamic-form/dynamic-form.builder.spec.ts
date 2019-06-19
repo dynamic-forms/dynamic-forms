@@ -26,7 +26,7 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ fields: [] };
+      const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
       const model = {};
       const form = builder.createForm(definition, model);
 

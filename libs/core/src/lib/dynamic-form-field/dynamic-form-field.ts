@@ -10,19 +10,21 @@ export abstract class DynamicFormField<
 > {
 
   protected _path: string;
+  protected _template: Template;
   protected _expressions?: DynamicFormFieldExpressions;
   protected _control: Control;
   protected _model: any;
 
   constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, readonly definition: Definition) {
+    this._template = definition.template || <Template>{};
     this._path = parent && parent.path ? `${parent.path}.${definition.key}` : definition.key || null;
   }
 
   get path() { return this._path; }
+  get template() { return this._template; }
   get control() { return this._control; }
   get model() { return this._model; }
 
-  get template() { return this.definition.template; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {

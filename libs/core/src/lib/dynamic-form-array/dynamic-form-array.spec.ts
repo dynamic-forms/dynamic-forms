@@ -7,7 +7,7 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 describe('DynamicFormArray', () => {
   it('new instance', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', fields: [] };
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.path).toBe('key');

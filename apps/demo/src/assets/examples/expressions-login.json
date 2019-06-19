@@ -1,0 +1,111 @@
+{
+  "fields": [
+    {
+      "key": "hidden",
+      "type": "control",
+      "template": {
+        "label": "Hidden",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        "validation": {
+          "required": false,
+          "email": false
+        }
+      }
+    },
+    {
+      "key": "disabled",
+      "type": "control",
+      "template": {
+        "label": "Disabled",
+        "input": {
+          "type": "checkbox"
+        }
+      },
+      "expressions": {
+        "hidden": "rootModel.hidden"
+      }
+    },
+    {
+      "key": "required",
+      "type": "control",
+      "template": {
+        "label": "Required",
+        "input": {
+          "type": "checkbox"
+        }
+      },
+      "expressions": {
+        "hidden": "rootModel.hidden"
+      }
+    },
+    {
+      "key": "readonly",
+      "type": "control",
+      "template": {
+        "label": "Readonly",
+        "input": {
+          "type": "checkbox"
+        }
+      },
+      "expressions": {
+        "hidden": "rootModel.hidden"
+      }
+    },
+    {
+      "key": "login",
+      "type": "group",
+      "template": {
+        "label": "Login"
+      },
+      "expressions": {
+        "hidden": "rootModel.hidden"
+      },
+      "fields": [
+        {
+          "key": "email",
+          "type": "control",
+          "template": {
+            "label": "Email",
+            "input": {
+              "type": "textbox",
+              "inputType": "email",
+              "placeholder": "Enter your email"
+            },
+            "validation": {
+              "required": true,
+              "email": true
+            }
+          },
+          "expressions": {
+            "disabled": "rootModel.disabled",
+            "readonly": "rootModel.readonly",
+            "validation.required": "rootModel.required"
+          }
+        },
+        {
+          "key": "password",
+          "type": "control",
+          "template": {
+            "label": "Password",
+            "input": {
+              "type": "textbox",
+              "inputType": "password",
+              "placeholder": "Enter your password"
+            },
+            "validation": {
+              "required": true
+            }
+          },
+          "expressions": {
+            "disabled": "rootModel.disabled",
+            "readonly": "rootModel.readonly",
+            "validation.required": "rootModel.required"
+          }
+        }
+      ]
+    }
+  ]
+}

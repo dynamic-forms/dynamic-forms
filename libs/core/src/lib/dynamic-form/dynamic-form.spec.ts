@@ -3,7 +3,7 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 
 describe('DynamicForm', () => {
   it('new instance', () => {
-      const definition = <DynamicFormDefinition>{ fields: [] };
+      const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
       const model = {};
       const form = new DynamicForm(definition, model);
 
@@ -11,9 +11,9 @@ describe('DynamicForm', () => {
       expect(form.root).toBeNull();
       expect(form.parent).toBeNull();
       expect(form.definition).toBe(definition);
-      expect(form.template).toBe(definition.template);
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
+      expect(form.template).toBe(definition.template);
       expect(form.fields).toBeDefined();
   });
 
