@@ -1,14 +1,16 @@
 import { FormGroup } from '@angular/forms';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTemplate } from './../dynamic-form-field/dynamic-form-field-template';
+import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
-export class DynamicFormGroup extends DynamicFormField<DynamicFormGroupTemplate, FormGroup> {
+export class DynamicFormGroup extends DynamicFormField<
+  FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
+
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormGroupTemplate, model: any = null) {
-    super(root, parent, template);
-    this._model = model || this.createModel(parent, template);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition, model: any = null) {
+    super(root, parent, definition);
+    this._model = model || this.createModel(parent, definition);
     this._control = new FormGroup({});
   }
 
@@ -17,7 +19,7 @@ export class DynamicFormGroup extends DynamicFormField<DynamicFormGroupTemplate,
   setFields(fields: DynamicFormField[]) {
     this._fields = fields || [];
     this._fields.forEach(field => {
-      this._control.registerControl(field.template.key, field.control);
+      this._control.registerControl(field.definition.key, field.control);
     });
   }
 
@@ -30,9 +32,9 @@ export class DynamicFormGroup extends DynamicFormField<DynamicFormGroupTemplate,
     this.fields.forEach(field => field.destroy());
   }
 
-  private createModel(parent: DynamicFormField, template: DynamicFormFieldTemplate): any {
-    parent.model[template.key] = parent.model[template.key] || {};
-    return parent.model[template.key];
+  private createModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {
+    parent.model[definition.key] = parent.model[definition.key] || {};
+    return parent.model[definition.key];
   }
 
   private checkControl(): void {

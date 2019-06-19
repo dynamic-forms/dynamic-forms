@@ -3,18 +3,20 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
 import { DynamicFormGroup } from './dynamic-form-group';
+import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 describe('DynamicFormGroup', () => {
   it('new instance', () => {
     const form = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    const template = <DynamicFormGroupTemplate>{ key: 'key', fields: [] };
-    const formGroup = new DynamicFormGroup(form, form, template);
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', fields: [] };
+    const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.path).toBe('key');
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
-    expect(formGroup.template).toBe(template);
+    expect(formGroup.definition).toBe(definition);
+    expect(formGroup.template).toBe(definition.template);
     expect(formGroup.model).toEqual({});
     expect(formGroup.control).toBeDefined();
     expect(formGroup.fields).toBeDefined();
