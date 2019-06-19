@@ -30,7 +30,7 @@ describe('DynamicForm', () => {
   });
 
   it('readonly returns false', () => {
-    const definition = <DynamicFormDefinition>{ fields: [] };
+    const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
     const form = new DynamicForm(definition, {});
 
     expect(form.readonly).toBe(false);

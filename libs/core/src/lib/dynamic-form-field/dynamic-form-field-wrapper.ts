@@ -5,6 +5,7 @@ export abstract class DynamicFormFieldWrapper<Field extends DynamicFormField = D
   @Input() field: Field;
 
   get id() { return this.field.path; }
-  get template() { return this.field.template; }
+  get definition() { return this.field.definition; }
   get control() { return this.field.control; }
+  get template() { return this.field.template; }
 }

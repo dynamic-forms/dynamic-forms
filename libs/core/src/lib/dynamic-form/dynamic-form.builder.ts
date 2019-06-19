@@ -25,7 +25,7 @@ export class DynamicFormBuilder {
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(field, field, field.template.fields));
+    field.setFields(this.createFormFields(field, field, field.definition.fields));
     return field;
   }
 

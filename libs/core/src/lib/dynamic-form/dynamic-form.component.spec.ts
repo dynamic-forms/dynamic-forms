@@ -46,7 +46,7 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = <DynamicFormDefinition>{ fields: [] };
+    definition = <DynamicFormDefinition>{ template: {}, fields: [] };
     model = {};
 
     component.definition = definition;

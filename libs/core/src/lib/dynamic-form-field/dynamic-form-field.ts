@@ -19,10 +19,10 @@ export abstract class DynamicFormField<
   }
 
   get path() { return this._path; }
-  get template() { return this.definition.template; }
   get control() { return this._control; }
   get model() { return this._model; }
 
+  get template() { return this.definition.template; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
   setFieldExpressions(expressions: DynamicFormFieldExpressions) {

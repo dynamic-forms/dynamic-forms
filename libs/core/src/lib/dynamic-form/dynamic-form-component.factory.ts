@@ -23,7 +23,7 @@ export class DynamicFormComponentFactory {
   }
 
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
-    const config = this.configService.getInputTypeConfig(field.template.input.type);
+    const config = this.configService.getInputTypeConfig(field.definition.template.input.type);
     return this.createComponent(ref, field, config);
   }
 

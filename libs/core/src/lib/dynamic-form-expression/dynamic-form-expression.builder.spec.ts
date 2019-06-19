@@ -1,9 +1,9 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
+import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 
-describe('DynamicFormVExpressionBuilder', () => {
+describe('DynamicFormExpressionBuilder', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -14,7 +14,7 @@ describe('DynamicFormVExpressionBuilder', () => {
 
   it('returns field expressions being null',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-      const field = <DynamicFormField>{ template: {} };
+      const field = <DynamicFormField>{ definition: {} };
       const fieldExpressions = service.createFieldExpressions(field);
 
       expect(fieldExpressions).toBeNull();
@@ -29,8 +29,8 @@ describe('DynamicFormVExpressionBuilder', () => {
       const expressions = <{ [key: string]: string }> {
         'readonly': 'rootModel.readonly || parentModel.readonly'
       };
-      const template = <DynamicFormFieldTemplate>{ expressions };
-      const field = <DynamicFormField>{ root, parent, template, model: model.child.child };
+      const definition = <DynamicFormFieldDefinition>{ expressions };
+      const field = <DynamicFormField>{ root, parent, definition, model: model.child.child };
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
