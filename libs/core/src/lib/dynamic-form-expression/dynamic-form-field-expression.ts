@@ -1,5 +1,5 @@
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpression, DynamicFormExpressionState } from './dynamic-form-expression';
+import { DynamicFormExpression, DynamicFormExpressionMemoization } from './dynamic-form-expression';
 import { DynamicFormExpressionDependency } from './dynamic-form-expression';
 import { DynamicFormExpressionFunction } from './dynamic-form-expression';
 
@@ -9,21 +9,25 @@ export class DynamicFormFieldExpression implements DynamicFormExpression {
     { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
     { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
   ];
-  static readonly args = DynamicFormFieldExpression.dependencyArgs.map(arg => arg.name).concat([ 'state' ]);
+  static readonly args = DynamicFormFieldExpression.dependencyArgs.map(arg => arg.name).concat([ 'memo' ]);
 
-  private _state: DynamicFormExpressionState;
+  protected _memo: DynamicFormExpressionMemoization;
 
   constructor(
     readonly deps: DynamicFormExpressionDependency[],
     readonly func: DynamicFormExpressionFunction,
     readonly field: DynamicFormField
   ) {
-    this._state = {};
+    this._memo = { previousValue: null, currentValue: null };
   }
 
   get value() {
-    this._state.previousValue = this._state.currentValue;
-    this._state.currentValue = this.func(this.field.model, this.field.parent.model, this.field.root.model, this._state);
-    return this._state.currentValue;
+    this._memo.previousValue = this._memo.currentValue;
+    this._memo.currentValue = this.func(this.model, this.parentModel, this.rootModel, this._memo);
+    return this._memo.currentValue;
   }
+
+  private get model() { return this.field.model; }
+  private get parentModel() { return this.field.parent.model; }
+  private get rootModel() { return this.field.root.model; }
 }

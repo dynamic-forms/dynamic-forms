@@ -7,7 +7,8 @@ export interface DynamicFormExpression {
   readonly value: any;
 }
 
-export interface DynamicFormExpressionState {
-  previousValue?: any;
-  currentValue?: any;
+export interface DynamicFormExpressionMemoization {
+  previousValue: any;
+  currentValue: any;
+  [ memoizationkey: string ]: any;
 }
