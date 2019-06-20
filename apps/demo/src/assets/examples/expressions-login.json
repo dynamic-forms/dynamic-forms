@@ -16,43 +16,46 @@
       }
     },
     {
-      "key": "disabled",
-      "type": "control",
+      "key": "options",
+      "type": "group",
       "template": {
-        "label": "Disabled",
-        "input": {
-          "type": "checkbox"
-        }
+        "label": "Options"
       },
       "expressions": {
         "hidden": "rootModel.hidden"
-      }
-    },
-    {
-      "key": "required",
-      "type": "control",
-      "template": {
-        "label": "Required",
-        "input": {
-          "type": "checkbox"
-        }
       },
-      "expressions": {
-        "hidden": "rootModel.hidden"
-      }
-    },
-    {
-      "key": "readonly",
-      "type": "control",
-      "template": {
-        "label": "Readonly",
-        "input": {
-          "type": "checkbox"
+      "fields": [
+        {
+          "key": "disabled",
+          "type": "control",
+          "template": {
+            "label": "Disabled",
+            "input": {
+              "type": "checkbox"
+            }
+          }
+        },
+        {
+          "key": "required",
+          "type": "control",
+          "template": {
+            "label": "Required",
+            "input": {
+              "type": "checkbox"
+            }
+          }
+        },
+        {
+          "key": "readonly",
+          "type": "control",
+          "template": {
+            "label": "Readonly",
+            "input": {
+              "type": "checkbox"
+            }
+          }
         }
-      },
-      "expressions": {
-        "hidden": "rootModel.hidden"
-      }
+      ]
     },
     {
       "key": "login",
@@ -61,7 +64,9 @@
         "label": "Login"
       },
       "expressions": {
-        "hidden": "rootModel.hidden"
+        "hidden": "rootModel.hidden",
+        "disabled": "rootModel.options.disabled",
+        "readonly": "rootModel.options.readonly"
       },
       "fields": [
         {
@@ -80,9 +85,7 @@
             }
           },
           "expressions": {
-            "disabled": "rootModel.disabled",
-            "readonly": "rootModel.readonly",
-            "validation.required": "rootModel.required"
+            "validation.required": "rootModel.options.required"
           }
         },
         {
@@ -100,9 +103,7 @@
             }
           },
           "expressions": {
-            "disabled": "rootModel.disabled",
-            "readonly": "rootModel.readonly",
-            "validation.required": "rootModel.required"
+            "validation.required": "rootModel.options.required"
           }
         }
       ]
