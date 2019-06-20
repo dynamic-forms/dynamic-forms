@@ -1,5 +1,5 @@
-import { DynamicFormFieldTemplate } from './../dynamic-form-field/dynamic-form-field-template';
+import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
 
 export interface DynamicFormGroupTemplate extends DynamicFormFieldTemplate {
-  fields: DynamicFormFieldTemplate[];
+  [additionalProperties: string]: any;
 }

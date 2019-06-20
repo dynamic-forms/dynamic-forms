@@ -6,7 +6,7 @@ import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-compon
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormField } from './dynamic-form-field';
-import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
+import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldComponent } from './dynamic-form-field.component';
 
 class DynamicFormFieldTest extends DynamicFormField {
@@ -59,8 +59,8 @@ describe('DynamicFormFormFieldComponent', () => {
   }));
 
   it('creates component', () => {
-    const template = <DynamicFormFieldTemplate>{ key: 'key', type: 'field' };
-    const field = new DynamicFormFieldTest(null, null, template);
+    const definition = <DynamicFormFieldDefinition>{ key: 'key', type: 'field', template: {} };
+    const field = new DynamicFormFieldTest(null, null, definition);
     const fixture = TestBed.createComponent(DynamicFormFieldComponent);
     const component = fixture.componentInstance;
     component.field = field;
@@ -69,6 +69,6 @@ describe('DynamicFormFormFieldComponent', () => {
 
     expect(component.id).toBe('key');
     expect(component.field).toBe(field);
-    expect(component.template).toBe(template);
+    expect(component.template).toBe(definition.template);
   });
 });

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
-import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
+import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 
 @Component({
   selector: 'dynamic-input-test',
@@ -22,14 +22,16 @@ describe('DynamicFormInputComponent', () => {
   }));
 
   it('creates component', () => {
-    const root = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    const field = new DynamicFormControl(root, root, <DynamicFormControlTemplate>{
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const field = new DynamicFormControl(root, root, <DynamicFormControlDefinition>{
       key: 'key',
-      input: {
-        type: 'input'
-      },
-      hints: {},
-      validation: {}
+      template: {
+        input: {
+          type: 'input'
+        },
+        hints: {},
+        validation: {}
+      }
     });
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);

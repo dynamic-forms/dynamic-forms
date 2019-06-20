@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { DynamicFormArrayTemplate } from '../dynamic-form-array/dynamic-form-array-template';
+import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
+import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
-import { DynamicFormGroupTemplate } from '../dynamic-form-group/dynamic-form-group-template';
+import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormTemplate } from './dynamic-form-template';
+import { DynamicFormDefinition } from './dynamic-form-definition';
 
 @Injectable()
 export class DynamicFormBuilder {
@@ -21,44 +22,44 @@ export class DynamicFormBuilder {
     private validationBuilder: DynamicFormValidationBuilder
   ) {}
 
-  createForm(template: DynamicFormTemplate, model: any) {
-    const field = new DynamicForm(template, model);
+  createForm(definition: DynamicFormDefinition, model: any) {
+    const field = new DynamicForm(definition, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(field, field, field.template.fields));
+    field.setFields(this.createFormFields(field, field, field.definition.fields));
     return field;
   }
 
-  createFormGroup(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormGroupTemplate) {
-    const field = new DynamicFormGroup(root, parent, template);
+  createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition) {
+    const field = new DynamicFormGroup(root, parent, definition);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(root, field, template.fields));
+    field.setFields(this.createFormFields(root, field, definition.fields));
     return field;
   }
 
-  createFormArray(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormArrayTemplate) {
-    const field = new DynamicFormArray(root, parent, template);
+  createFormArray(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+    const field = new DynamicFormArray(root, parent, definition);
     field.setFields([]);
     return field;
   }
 
-  createFormControl(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormControlTemplate) {
-    const field = new DynamicFormControl(root, parent, template);
+  createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
+    const field = new DynamicFormControl(root, parent, definition);
     field.setFieldExpressions(this.createFieldExpressions(field));
     field.setValidators(this.createValidators(field.template));
     return field;
   }
 
-  private createFormFields(root: DynamicFormField, parent: DynamicFormField, templates: DynamicFormFieldTemplate[]) {
-    return (templates || []).map(template => {
-      switch (template.type) {
+  private createFormFields(root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormFieldDefinition[]) {
+    return (definitions || []).map(definition => {
+      switch (definition.type) {
         case 'group':
-          return this.createFormGroup(root, parent, <DynamicFormGroupTemplate>template);
+          return this.createFormGroup(root, parent, <DynamicFormGroupDefinition>definition);
         case 'array':
-          return this.createFormArray(root, parent, <DynamicFormArrayTemplate>template);
+          return this.createFormArray(root, parent, <DynamicFormArrayDefinition>definition);
         case 'control':
-          return this.createFormControl(root, parent, <DynamicFormControlTemplate>template);
+          return this.createFormControl(root, parent, <DynamicFormControlDefinition>definition);
         default:
-          throw Error(`Type ${ template.type } is not defined`);
+          throw Error(`Type ${ definition.type } is not defined`);
       }
     });
   }

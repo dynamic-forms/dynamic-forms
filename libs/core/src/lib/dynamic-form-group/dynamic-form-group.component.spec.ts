@@ -6,9 +6,9 @@ import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynam
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormGroup } from './dynamic-form-group';
-import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
+import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
 
 describe('DynamicFormGroupComponent', () => {
@@ -39,9 +39,10 @@ describe('DynamicFormGroupComponent', () => {
     fixture = TestBed.createComponent(DynamicFormGroupComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupTemplate>{
+    form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupDefinition>{
       key: 'key',
+      template: {},
       fields: []
     });
     component.field = formGroup;

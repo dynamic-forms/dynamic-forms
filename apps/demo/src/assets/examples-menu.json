@@ -4,6 +4,10 @@
       "label": "Inputs",      
       "items": [
         { 
+          "id": "inputs-label", 
+          "label": "Label" 
+        },
+        { 
           "id": "inputs-placeholder", 
           "label": "Placeholder" 
         },
@@ -33,15 +37,15 @@
       "label": "Expressions",
       "items": [
         {
-          "id": "login",
+          "id": "expressions-login",
           "label": "Login"
         },
         { 
-          "id": "register", 
+          "id": "expressions-register", 
           "label": "Register"
         },
         { 
-          "id": "finance", 
+          "id": "expressions-finance", 
           "label": "Finance" 
         }
       ]

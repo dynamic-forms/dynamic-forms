@@ -5,9 +5,9 @@ import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynam
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormArray } from './dynamic-form-array';
-import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
+import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 
 describe('DynamicFormArrayComponent', () => {
@@ -37,9 +37,10 @@ describe('DynamicFormArrayComponent', () => {
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{ fields: [] } , {});
-    formArray = new DynamicFormArray(form, form, <DynamicFormArrayTemplate>{
+    form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    formArray = new DynamicFormArray(form, form, <DynamicFormArrayDefinition>{
       key: 'key',
+      template: {},
       fields: []
     });
     component.field = formArray;
@@ -49,9 +50,9 @@ describe('DynamicFormArrayComponent', () => {
 
   it('creates component', () => {
     expect(component.id).toBe('key');
-    expect(component.template).toBeDefined();
     expect(component.control).toBeDefined();
     expect(component.fields).toEqual([]);
+    expect(component.template).toBeDefined();
   });
 
   it('creates component template', () => {
