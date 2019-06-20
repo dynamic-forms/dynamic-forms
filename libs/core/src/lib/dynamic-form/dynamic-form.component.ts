@@ -1,7 +1,7 @@
 import { Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { DynamicForm } from './dynamic-form';
+import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormSubmit } from './dynamic-form-submit';
-import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
@@ -11,7 +11,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   private _formField: DynamicForm;
 
-  @Input() template: DynamicFormTemplate;
+  @Input() definition: DynamicFormDefinition;
   @Input() model: any;
   @Output() formSubmit = new EventEmitter<DynamicFormSubmit>();
 
@@ -29,7 +29,7 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.template || changes.model) {
       this.model = this.model || {};
-      this._formField = this.formBuilder.createForm(this.template, this.model);
+      this._formField = this.formBuilder.createForm(this.definition, this.model);
     }
   }
 

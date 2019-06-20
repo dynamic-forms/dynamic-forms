@@ -1,14 +1,16 @@
 import { FormArray } from '@angular/forms';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
+import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
-export class DynamicFormArray extends DynamicFormField<DynamicFormArrayTemplate, FormArray> {
+export class DynamicFormArray extends DynamicFormField<
+  FormArray, DynamicFormArrayTemplate, DynamicFormArrayDefinition> {
+
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormArrayTemplate) {
-    super(root, parent, template);
-    this._model = this.getModel(parent, template);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+    super(root, parent, definition);
+    this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);
   }
 
@@ -26,8 +28,8 @@ export class DynamicFormArray extends DynamicFormField<DynamicFormArrayTemplate,
     this.fields.forEach(field => field.destroy());
   }
 
-  private getModel(parent: DynamicFormField, template: DynamicFormFieldTemplate) {
-    parent.model[template.key] = parent.model[template.key] || [];
-    return parent.model[template.key];
+  private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+    parent.model[definition.key] = parent.model[definition.key] || [];
+    return parent.model[definition.key];
   }
 }

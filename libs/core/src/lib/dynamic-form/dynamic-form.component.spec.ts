@@ -9,14 +9,14 @@ import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic
 import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
-import { DynamicFormTemplate } from './dynamic-form-template';
+import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form.component';
 
 describe('DynamicFormComponent', () => {
   let fixture: ComponentFixture<DynamicFormComponent>;
   let component: DynamicFormComponent;
-  let template: DynamicFormTemplate;
+  let definition: DynamicFormDefinition;
   let model: any;
 
   beforeEach(async(() => {
@@ -46,13 +46,13 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    template = <DynamicFormTemplate>{ fields: [] };
+    definition = <DynamicFormDefinition>{ template: {}, fields: [] };
     model = {};
 
-    component.template = template;
+    component.definition = definition;
     component.model = model;
     component.ngOnChanges({
-      template: new SimpleChange(undefined, template, true),
+      definition: new SimpleChange(undefined, definition, true),
       model: new SimpleChange(undefined, model, true)
     });
 
@@ -61,7 +61,7 @@ describe('DynamicFormComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.formField.template).toBe(template);
+    expect(component.formField.definition).toBe(definition);
     expect(component.formField.model).toBe(model);
   });
 
@@ -82,7 +82,7 @@ describe('DynamicFormComponent', () => {
     component.ngOnChanges({ model: new SimpleChange(model, undefined, false) });
 
     expect(component.formField.model).toEqual({});
-    expect(component.formField.template).toBe(template);
+    expect(component.formField.definition).toBe(definition);
   });
 
   it('ngOnChanges creates form field with updated model', () => {
@@ -92,17 +92,17 @@ describe('DynamicFormComponent', () => {
     component.ngOnChanges({ model: new SimpleChange(model, modelUpdated, false) });
 
     expect(component.formField.model).toBe(modelUpdated);
-    expect(component.formField.template).toBe(template);
+    expect(component.formField.definition).toBe(definition);
   });
 
-  it('ngOnChanges creates form field with updated template', () => {
-    const templateUpdated = <DynamicFormTemplate>{ fields: [] };
+  it('ngOnChanges creates form field with updated definition', () => {
+    const definitionUpdated = <DynamicFormDefinition>{ fields: [] };
 
-    component.template = templateUpdated;
-    component.ngOnChanges({ model: new SimpleChange(template, templateUpdated, false) });
+    component.definition = definitionUpdated;
+    component.ngOnChanges({ model: new SimpleChange(definition, definitionUpdated, false) });
 
     expect(component.formField.model).toBe(model);
-    expect(component.formField.template).toBe(templateUpdated);
+    expect(component.formField.definition).toBe(definitionUpdated);
   });
 
   it('ngOnSubmit emits form submit', () => {

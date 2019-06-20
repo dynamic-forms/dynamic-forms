@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormDropdown,
-  DynamicFormTemplate } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormDropdown } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
 
@@ -9,7 +9,7 @@ describe('DynamicFormDropdownComponent', () => {
   let fixture: ComponentFixture<DynamicFormDropdownComponent>;
   let component: DynamicFormDropdownComponent;
   let form: DynamicForm;
-  let template: DynamicFormControlTemplate<DynamicFormDropdown>;
+  let definition: DynamicFormControlDefinition<DynamicFormDropdown>;
   let formControl: DynamicFormControl<DynamicFormDropdown>;
 
   beforeEach(async(() => {
@@ -22,18 +22,20 @@ describe('DynamicFormDropdownComponent', () => {
     fixture = TestBed.createComponent(DynamicFormDropdownComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormDropdown>>{
+    form = new DynamicForm(<DynamicFormDefinition>{}, {});
+    definition = <DynamicFormControlDefinition<DynamicFormDropdown>>{
       key: 'key',
-      input: {
-        placeholder: 'placeholder',
-        options: [
-          { value: 'value1', label: 'label1' },
-          { value: 'value2', label: 'label2' }
-        ]
+      template: {
+        input: {
+          placeholder: 'placeholder',
+          options: [
+            { value: 'value1', label: 'label1' },
+            { value: 'value2', label: 'label2' }
+          ]
+        }
       }
     };
-    formControl = new DynamicFormControl<DynamicFormDropdown>(form, form, template);
+    formControl = new DynamicFormControl<DynamicFormDropdown>(form, form, definition);
 
     component.field = formControl;
 

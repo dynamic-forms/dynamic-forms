@@ -1,0 +1,144 @@
+{
+  "fields": [
+    {
+      "key": "disabled",
+      "type": "control",
+      "template": {
+        "label": "Disabled",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": true
+        }
+      }
+    },
+    {
+      "key": "readonly",
+      "type": "control",
+      "template": {
+        "label": "Readonly",
+        "input": {
+          "type": "checkbox"
+        }
+      }
+    },
+    {
+      "key": "register",
+      "type": "group",
+      "template": {
+        "label": "Register"
+      },
+      "expressions": {
+        "disabled": "rootModel.disabled",
+        "readonly": "rootModel.readonly"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "type": "control",
+          "template": {
+            "label": "Name",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your name"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "email",
+          "type": "control",
+          "template": {
+            "label": "Email",
+            "input": {
+              "type": "textbox",
+              "inputType": "email",
+              "placeholder": "Enter your email"
+            },
+            "validation": {
+              "required": true,
+              "email": true
+            }
+          }
+        },
+        {
+          "key": "password",
+          "type": "control",
+          "template": {
+            "label": "Password",
+            "input": {
+              "type": "textbox",
+              "inputType": "password",
+              "placeholder": "Enter your password"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "addressEnabled",
+          "type": "control",
+          "template": {
+            "label": "Address",
+            "input": {
+              "type": "checkbox"
+            }
+          }
+        },
+        {
+          "key": "address",
+          "type": "group",
+          "expressions": {
+            "hidden": "!parentModel.addressEnabled"
+          },
+          "fields": [
+            {
+              "key": "town",
+              "type": "control",
+              "template": {
+                "label": "Town",
+                "input": {
+                  "type": "textbox",
+                  "placeholder": "Enter your town",
+                  "minLength": 5,
+                  "maxLength": 10
+                },
+                "validation": {
+                  "required": true,
+                  "minLength": true,
+                  "maxLength": true
+                }
+              },
+              "expressions": {
+                "validation.required": "rootModel.register.addressEnabled"
+              }
+            },
+            {
+              "key": "street",
+              "type": "control",
+              "template": {
+                "label": "Street",
+                "input": {
+                  "type": "textbox",
+                  "placeholder": "Enter your street",
+                  "minLength": 5,
+                  "maxLength": 10
+                },
+                "validation": {
+                  "required": true,
+                  "minLength": true,
+                  "maxLength": true
+                }
+              },
+              "expressions": {
+                "validation.required": "rootModel.register.addressEnabled"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

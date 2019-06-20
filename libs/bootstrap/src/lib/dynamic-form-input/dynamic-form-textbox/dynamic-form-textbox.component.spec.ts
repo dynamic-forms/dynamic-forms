@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate,
+import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
   DynamicFormTextbox } from '@dynamic-forms/core';
 import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { DynamicFormTextboxModule } from './dynamic-form-textbox.module';
@@ -9,7 +9,7 @@ describe('DynamicFormTextboxComponent', () => {
   let fixture: ComponentFixture<DynamicFormTextboxComponent>;
   let component: DynamicFormTextboxComponent;
   let form: DynamicForm;
-  let template: DynamicFormControlTemplate<DynamicFormTextbox>;
+  let definition: DynamicFormControlDefinition<DynamicFormTextbox>;
   let formControl: DynamicFormControl<DynamicFormTextbox>;
 
   beforeEach(async(() => {
@@ -22,9 +22,9 @@ describe('DynamicFormTextboxComponent', () => {
     fixture = TestBed.createComponent(DynamicFormTextboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormTextbox>>{ key: 'key', input: {} };
-    formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, template);
+    form = new DynamicForm(<DynamicFormDefinition>{}, {});
+    definition = <DynamicFormControlDefinition<DynamicFormTextbox>>{ key: 'key', template: { input: {} } };
+    formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, definition);
 
     component.field = formControl;
 

@@ -13,7 +13,15 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "@dynamic-forms/core": [
+        "dist/@dynamic-forms/core"
+      ],
+      "@dynamic-forms/core/*": [
+        "dist/@dynamic-forms/core/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

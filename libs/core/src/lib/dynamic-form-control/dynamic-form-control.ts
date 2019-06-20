@@ -2,22 +2,23 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
+import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
-export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput>
-  extends DynamicFormField<DynamicFormControlTemplate<FormInput>, FormControl> {
+export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput> extends DynamicFormField<
+  FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
 
   protected _controlValue: Subscription;
   protected _validators: DynamicFormControlValidator[];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>) {
-    super(root, parent, template);
-    this._model = this.getModel(parent, template);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
+    super(root, parent, definition);
+    this._model = this.getModel(parent, definition);
     this._control = new FormControl(this._model);
     this._controlValue = this._control.valueChanges.subscribe(value => {
-      this.parent.model[this.template.key] = value;
-      this._model = this.parent.model[this.template.key];
+      this.parent.model[this.definition.key] = value;
+      this._model = this.parent.model[this.definition.key];
     });
   }
 
@@ -35,11 +36,11 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._controlValue.unsubscribe();
   }
 
-  private getModel(parent: DynamicFormField, template: DynamicFormControlTemplate<FormInput>): any {
-    if (parent.model[template.key] === undefined) {
-      parent.model[template.key] = this.getDefaultValue(template.input);
+  private getModel(parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>): any {
+    if (parent.model[definition.key] === undefined) {
+      parent.model[definition.key] = this.getDefaultValue(definition.template.input);
     }
-    return parent.model[template.key];
+    return parent.model[definition.key];
   }
 
   private getDefaultValue(input: FormInput) {

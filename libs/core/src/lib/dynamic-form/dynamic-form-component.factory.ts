@@ -18,12 +18,12 @@ export class DynamicFormComponentFactory {
   ) {}
 
   createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
-    const config = this.configService.getFieldTypeConfig(field.template.type);
+    const config = this.configService.getFieldTypeConfig(field.definition.type);
     return this.createComponent(ref, field, config);
   }
 
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
-    const config = this.configService.getInputTypeConfig(field.template.input.type);
+    const config = this.configService.getInputTypeConfig(field.definition.template.input.type);
     return this.createComponent(ref, field, config);
   }
 
@@ -63,7 +63,7 @@ export class DynamicFormComponentFactory {
   }
 
   private getWrapperTypeConfigs(field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
-    const wrappers = (field.template.wrappers || []).concat(config.wrappers || []);
+    const wrappers = (field.definition.wrappers || []).concat(config.wrappers || []);
     return wrappers.map(wrapper => {
       return this.configService.getWrapperTypeConfig(wrapper);
     });

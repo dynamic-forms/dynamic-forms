@@ -1,18 +1,19 @@
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormTemplate } from './dynamic-form-template';
+import { DynamicFormDefinition } from './dynamic-form-definition';
 
 describe('DynamicForm', () => {
   it('new instance', () => {
-      const template = <DynamicFormTemplate>{ fields: [] };
+      const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
       const model = {};
-      const form = new DynamicForm(template, model);
+      const form = new DynamicForm(definition, model);
 
       expect(form.path).toBeNull();
       expect(form.root).toBeNull();
       expect(form.parent).toBeNull();
-      expect(form.template).toBe(template);
+      expect(form.definition).toBe(definition);
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
+      expect(form.template).toBe(definition.template);
       expect(form.fields).toBeDefined();
   });
 
@@ -23,21 +24,21 @@ describe('DynamicForm', () => {
   });
 
   it('new instance throws if no model provided', () => {
-    const template = <DynamicFormTemplate>{ fields: [] };
+    const definition = <DynamicFormDefinition>{ fields: [] };
 
-    expect(() => new DynamicForm(template, null)).toThrowError();
+    expect(() => new DynamicForm(definition, null)).toThrowError();
   });
 
   it('readonly returns false', () => {
-    const template = <DynamicFormTemplate>{ fields: [] };
-    const form = new DynamicForm(template, {});
+    const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
+    const form = new DynamicForm(definition, {});
 
     expect(form.readonly).toBe(false);
   });
 
   it('readonly returns true if template is readonly', () => {
-    const template = <DynamicFormTemplate>{ readonly: true, fields: [] };
-    const form = new DynamicForm(template, {});
+    const definition = <DynamicFormDefinition>{ template: { readonly: true }, fields: [] };
+    const form = new DynamicForm(definition, {});
 
     expect(form.readonly).toBe(true);
   });

@@ -21,7 +21,7 @@ export abstract class DynamicFormExampleComponent {
 
   private mapData(data: Data): DynamicFormData {
     return {
-      template: data.template,
+      definition: data.definition,
       model: {}
     };
   }

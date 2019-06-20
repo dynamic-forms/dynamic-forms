@@ -5,7 +5,7 @@ import { MatDialogModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormDialogComponent } from './dynamic-form-dialog.component';
-import { DynamicFormTemplateResolver } from './dynamic-form-template.resolver';
+import { DynamicFormExampleResolver } from './dynamic-form-example.resolver';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { DynamicFormTemplateResolver } from './dynamic-form-template.resolver';
     MatButtonModule
   ],
   providers: [
-    DynamicFormTemplateResolver
+    DynamicFormExampleResolver
   ]
 })
 export class DynamicFormExampleModule {}

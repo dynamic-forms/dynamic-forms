@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlTemplate, DynamicFormRadio,
-  DynamicFormTemplate } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormRadio } from '@dynamic-forms/core';
 import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
 import { DynamicFormRadioModule } from './dynamic-form-radio.module';
 
@@ -9,7 +9,7 @@ describe('DynamicFormRadioComponent', () => {
   let fixture: ComponentFixture<DynamicFormRadioComponent>;
   let component: DynamicFormRadioComponent;
   let form: DynamicForm;
-  let template: DynamicFormControlTemplate<DynamicFormRadio>;
+  let definition: DynamicFormControlDefinition<DynamicFormRadio>;
   let formControl: DynamicFormControl<DynamicFormRadio>;
 
   beforeEach(async(() => {
@@ -22,17 +22,19 @@ describe('DynamicFormRadioComponent', () => {
     fixture = TestBed.createComponent(DynamicFormRadioComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormRadio>>{
+    form = new DynamicForm(<DynamicFormDefinition>{}, {});
+    definition = <DynamicFormControlDefinition<DynamicFormRadio>>{
       key: 'key',
-      input: {
-        options: [
-          { value: 'value1', label: 'label1' },
-          { value: 'value2', label: 'label2' }
-        ]
+      template: {
+        input: {
+          options: [
+            { value: 'value1', label: 'label1' },
+            { value: 'value2', label: 'label2' }
+          ]
+        }
       }
     };
-    formControl = new DynamicFormControl<DynamicFormRadio>(form, form, template);
+    formControl = new DynamicFormControl<DynamicFormRadio>(form, form, definition);
 
     component.field = formControl;
 

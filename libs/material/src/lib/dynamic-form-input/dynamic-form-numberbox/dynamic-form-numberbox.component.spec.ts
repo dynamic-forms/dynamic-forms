@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlTemplate, DynamicFormNumberbox, DynamicFormTemplate, DynamicFormValidationService } from '@dynamic-forms/core';
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormNumberbox,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 import { DynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
@@ -10,7 +11,7 @@ describe('DynamicFormNumberboxComponent', () => {
   let fixture: ComponentFixture<DynamicFormNumberboxComponent>;
   let component: DynamicFormNumberboxComponent;
   let form: DynamicForm;
-  let template: DynamicFormControlTemplate<DynamicFormNumberbox>;
+  let definition: DynamicFormControlDefinition<DynamicFormNumberbox>;
   let formControl: DynamicFormControl<DynamicFormNumberbox>;
 
   beforeEach(async(() => {
@@ -31,9 +32,9 @@ describe('DynamicFormNumberboxComponent', () => {
     fixture = TestBed.createComponent(DynamicFormNumberboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormNumberbox>>{ key: 'key', label: 'label', input: {} };
-    formControl = new DynamicFormControl<DynamicFormNumberbox>(form, form, template);
+    form = new DynamicForm(<DynamicFormDefinition>{}, {});
+    definition = <DynamicFormControlDefinition<DynamicFormNumberbox>>{ key: 'key', template: { label: 'label', input: {} } };
+    formControl = new DynamicFormControl<DynamicFormNumberbox>(form, form, definition);
 
     component.field = formControl;
 

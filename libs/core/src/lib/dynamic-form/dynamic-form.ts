@@ -1,9 +1,9 @@
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
-import { DynamicFormTemplate } from './dynamic-form-template';
+import { DynamicFormDefinition } from './dynamic-form-definition';
 
 export class DynamicForm extends DynamicFormGroup {
-  constructor(template: DynamicFormTemplate, model: any) {
-    super(null, null, template, model);
+  constructor(definition: DynamicFormDefinition, model: any) {
+    super(null, null, definition, model);
   }
 
   get readonly() { return this.template.readonly || false; }

@@ -1,0 +1,162 @@
+{
+  "fields": [
+    {
+      "key": "checkbox",
+      "type": "control",
+      "template": {
+        "label": "Checkbox",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": true
+        }  
+      }
+    },
+    {
+      "key": "combobox",
+      "type": "control",
+      "template": {
+        "label": "Combobox",
+        "input": {
+          "type": "combobox",
+          "placeholder": "Enter a text",
+          "defaultValue": "Value1",
+          "options": [
+            "Value1",
+            "Value2",
+            "Value3"
+          ]
+        }
+      }
+    },
+    {
+      "key": "datepicker",
+      "type": "control",
+      "template": {
+        "label": "Datepicker",
+        "input": {
+          "type": "datepicker",
+          "defaultValue": "2019-01-01",
+          "placeholder": "Enter a date"
+        }
+      }
+    },
+    {
+      "key": "dropdown",
+      "type": "control",
+      "template": {
+        "label": "Dropdown",
+        "input": {
+          "type": "dropdown",
+          "defaultValue": 1,
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "numberbox",
+      "type": "control",
+      "template": {
+        "label": "Numberbox",
+        "input": {
+          "type": "numberbox",
+          "defaultValue": 0.01,
+          "placeholder": "Enter a number"
+        }        
+      }
+    },
+    {
+      "key": "radio",
+      "type": "control",
+      "template": {
+        "label": "Radio",
+        "input": {
+          "type": "radio",
+          "defaultValue": 2,
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "textarea",
+      "type": "control",
+      "template": {
+        "label": "Textarea",
+        "input": {
+          "type": "textarea",
+          "defaultValue": "Text line 1\nText line 2",
+          "placeholder": "Enter a text"
+        }
+      }
+    },
+    {
+      "key": "textbox",
+      "type": "control",
+      "template": {
+        "label": "Textbox",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "Text 1, Text 2",
+          "placeholder": "Enter a text"
+        }
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "user@mail.com",
+          "inputType": "email",
+          "placeholder": "Enter an email"
+        }
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "Test1234!",
+          "inputType": "password",
+          "placeholder": "Enter a password"
+        }
+      }
+    },
+    {
+      "key": "search",
+      "type": "control",
+      "template": {
+        "label": "Search",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "angular forms JSON",
+          "inputType": "search",
+          "placeholder": "Enter a search text"
+        }
+      }
+    }
+  ]
+}

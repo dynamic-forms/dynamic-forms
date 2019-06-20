@@ -3,7 +3,8 @@ import { MatAutocomplete } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormCombobox, DynamicFormConfig, DynamicFormConfigService,
-  DynamicFormControl, DynamicFormControlTemplate, DynamicFormTemplate, DynamicFormValidationService } from '@dynamic-forms/core';
+  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { DynamicFormComboboxModule } from './dynamic-form-combobox.module';
 
@@ -11,7 +12,7 @@ describe('DynamicFormComboboxComponent', () => {
   let fixture: ComponentFixture<DynamicFormComboboxComponent>;
   let component: DynamicFormComboboxComponent;
   let form: DynamicForm;
-  let template: DynamicFormControlTemplate<DynamicFormCombobox>;
+  let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
   let formControl: DynamicFormControl<DynamicFormCombobox>;
 
   beforeEach(async(() => {
@@ -32,19 +33,21 @@ describe('DynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(DynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormTemplate>{}, {});
-    template = <DynamicFormControlTemplate<DynamicFormCombobox>>{
+    form = new DynamicForm(<DynamicFormDefinition>{}, {});
+    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{
       key: 'key',
-      label: 'label',
-      input: {
-        options: [
-          'Value1',
-          'Value2',
-          'Value3'
-        ]
+      template: {
+        label: 'label',
+        input: {
+          options: [
+            'Value1',
+            'Value2',
+            'Value3'
+          ]
+        }
       }
     };
-    formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, template);
+    formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
 
     component.field = formControl;
 
