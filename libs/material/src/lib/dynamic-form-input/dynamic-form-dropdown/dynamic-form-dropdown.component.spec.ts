@@ -3,7 +3,7 @@ import { MatSelect } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDropdown, DynamicFormDefinition, 
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormDropdown,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
@@ -44,7 +44,7 @@ describe('DynamicFormDropdownComponent', () => {
             { value: 'value1', label: 'label1' },
             { value: 'value2', label: 'label2' }
           ]
-        }  
+        }
       }
     };
     formControl = new DynamicFormControl<DynamicFormDropdown>(form, form, definition);

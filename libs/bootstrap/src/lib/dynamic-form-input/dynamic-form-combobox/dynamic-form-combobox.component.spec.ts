@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormCombobox, DynamicFormControl, DynamicFormControlDefinition, 
+import { DynamicForm, DynamicFormCombobox, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition } from '@dynamic-forms/core';
 import { DynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { DynamicFormComboboxModule } from './dynamic-form-combobox.module';
@@ -23,18 +23,18 @@ describe('DynamicFormComboboxComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{ 
-      key: 'key', 
+    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{
+      key: 'key',
       template: {
-        label: 'label',         
+        label: 'label',
         input: {
           options: [
             'Value1',
             'Value2',
             'Value3'
           ]
-        } 
-      } 
+        }
+      }
     };
     formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
 

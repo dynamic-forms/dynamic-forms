@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDropdown, 
-  DynamicFormDefinition } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormDropdown } from '@dynamic-forms/core';
 import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
 import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
 
@@ -25,7 +25,7 @@ describe('DynamicFormDropdownComponent', () => {
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
     definition = <DynamicFormControlDefinition<DynamicFormDropdown>>{
       key: 'key',
-      template: { 
+      template: {
         input: {
           placeholder: 'placeholder',
           options: [

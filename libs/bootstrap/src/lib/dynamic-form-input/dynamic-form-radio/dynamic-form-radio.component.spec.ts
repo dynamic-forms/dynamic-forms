@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormRadio, 
-  DynamicFormDefinition } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormRadio } from '@dynamic-forms/core';
 import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
 import { DynamicFormRadioModule } from './dynamic-form-radio.module';
 
@@ -25,7 +25,7 @@ describe('DynamicFormRadioComponent', () => {
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
     definition = <DynamicFormControlDefinition<DynamicFormRadio>>{
       key: 'key',
-      template: { 
+      template: {
         input: {
           options: [
             { value: 'value1', label: 'label1' },
