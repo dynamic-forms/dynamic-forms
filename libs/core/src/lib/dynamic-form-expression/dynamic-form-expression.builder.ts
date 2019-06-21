@@ -10,15 +10,19 @@ export class DynamicFormExpressionBuilder {
   createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
     const expressions = field.definition.expressions;
     return expressions ? Object.keys(expressions).reduce((result, key) => {
-      result[key] = this.createFieldExpression(expressions[key], field);
+      result[key] = this.createFieldExpression(key, expressions[key], field);
       return result;
     }, {}) : null;
   }
 
-  private createFieldExpression(expression: string, field: DynamicFormField): DynamicFormFieldExpression {
-    const deps = this.createFieldExpressionDependencies(expression);
+  private createFieldExpression(key: string, expression: string, field: DynamicFormField): DynamicFormFieldExpression {
     const func = this.createFieldExpressionFunction(expression);
-    return new DynamicFormFieldExpression(deps, func, field);
+    const deps = this.createFieldExpressionDependencies(expression);
+    return new DynamicFormFieldExpression(key, field, func, deps);
+  }
+
+  private createFieldExpressionFunction(expression: string): DynamicFormExpressionFunction {
+    return new Function(...dynamicFormFieldExpressionArgs, `return ${ expression };`);
   }
 
   private createFieldExpressionDependencies(expression: string): DynamicFormExpressionDependency[] {
@@ -26,9 +30,5 @@ export class DynamicFormExpressionBuilder {
       const dependencies = expression.match(expressionArgument.pattern);
       return dependencies ? result.concat(dependencies) : result;
     }, []);
-  }
-
-  private createFieldExpressionFunction(expression: string): DynamicFormExpressionFunction {
-    return new Function(...dynamicFormFieldExpressionArgs, `return ${ expression };`);
   }
 }

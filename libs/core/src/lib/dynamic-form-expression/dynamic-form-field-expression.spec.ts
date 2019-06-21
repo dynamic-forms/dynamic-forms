@@ -1,7 +1,8 @@
+import { Subject } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
-function getCurrencyOptions(model, parentModel, rootModel, memo) {
+const getCurrencyOptions = (model, parentModel, rootModel, memo) => {
   return (function(currencyPair) {
     if (memo.currencyPair === currencyPair) {
       return memo.previousValue;
@@ -17,7 +18,7 @@ function getCurrencyOptions(model, parentModel, rootModel, memo) {
     }
     return [];
   })(parentModel.currencyPair);
-}
+};
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
   get memo() { return this._memo; }
@@ -25,12 +26,18 @@ class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
 
 describe('DynamicFormFieldExpression', () => {
   it('get value updates memo and returns current value', () => {
+    const expressionChangesSubject = new Subject();
+    const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       model: {},
       parent: { model: { currencyPair: 'EUR/USD' } },
-      root: { model: {} }
+      root: { model: {} },
+      expressionChangesSubject,
+      expressionChanges
     };
-    const expression = new DynamicFormFieldExpressionTesting([], getCurrencyOptions, field);
+    const func = getCurrencyOptions;
+    const deps = [];
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, []);
 
     expect(expression.memo).toEqual({
       previousValue: null,

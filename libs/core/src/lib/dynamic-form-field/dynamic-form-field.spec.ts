@@ -4,8 +4,6 @@ import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 
 class DynamicFormFieldTest extends DynamicFormField {
-  get expressions() { return this._expressions; }
-
   check() {}
   destroy() {}
 }
@@ -17,14 +15,16 @@ describe('DynamicFormField', () => {
     const definition = <DynamicFormFieldDefinition>{ template: {} };
     const formField = new DynamicFormFieldTest(root, parent, definition);
 
-    expect(formField.path).toBeNull();
     expect(formField.root).toBe(root);
     expect(formField.parent).toBe(parent);
     expect(formField.definition).toBe(definition);
+
+    expect(formField.path).toBeNull();
     expect(formField.template).toBe(definition.template);
+    expect(formField.expressions).toEqual({});
+    expect(formField.expressionChanges).toBeTruthy();
     expect(formField.control).toBeUndefined();
     expect(formField.model).toBeUndefined();
-    expect(formField.expressions).toBeUndefined();
   });
 
   it('new instance with path from key of definition', () => {
