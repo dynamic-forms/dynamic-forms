@@ -1,5 +1,8 @@
+import { async } from '@angular/core/testing';
 import { Subject } from 'rxjs';
+import { reduce } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
 const getCurrencyOptions = (model, parentModel, rootModel, memo) => {
@@ -26,7 +29,7 @@ class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
 
 describe('DynamicFormFieldExpression', () => {
   it('get value updates memo and returns current value', () => {
-    const expressionChangesSubject = new Subject();
+    const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       model: {},
@@ -37,7 +40,12 @@ describe('DynamicFormFieldExpression', () => {
     };
     const func = getCurrencyOptions;
     const deps = [];
-    const expression = new DynamicFormFieldExpressionTesting('key', field, func, []);
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, deps);
+
+    const fieldExpressionChanges = [];
+    field.expressionChanges.subscribe(change => {
+      fieldExpressionChanges.push(change);
+    });
 
     expect(expression.memo).toEqual({
       previousValue: null,
@@ -89,5 +97,16 @@ describe('DynamicFormFieldExpression', () => {
       currencyPair: null
     });
     expect(expressionValue4).toEqual([]);
+
+    expect(fieldExpressionChanges.length).toBe(3);
+    expect(fieldExpressionChanges[0].key).toBe('key');
+    expect(fieldExpressionChanges[0].previousValue).toBeNull();
+    expect(fieldExpressionChanges[0].currentValue).toBe(expressionValue1);
+    expect(fieldExpressionChanges[1].key).toBe('key');
+    expect(fieldExpressionChanges[1].previousValue).toBe(expressionValue1);
+    expect(fieldExpressionChanges[1].currentValue).toBe(expressionValue3);
+    expect(fieldExpressionChanges[2].key).toBe('key');
+    expect(fieldExpressionChanges[2].previousValue).toBe(expressionValue3);
+    expect(fieldExpressionChanges[2].currentValue).toBe(expressionValue4);
   });
 });
