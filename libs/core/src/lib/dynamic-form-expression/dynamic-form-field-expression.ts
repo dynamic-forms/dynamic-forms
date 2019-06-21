@@ -1,16 +1,16 @@
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpression, DynamicFormExpressionMemoization } from './dynamic-form-expression';
-import { DynamicFormExpressionDependency } from './dynamic-form-expression';
-import { DynamicFormExpressionFunction } from './dynamic-form-expression';
+import { DynamicFormExpression, DynamicFormExpressionDependency,
+  DynamicFormExpressionFunction, DynamicFormExpressionMemoization } from './dynamic-form-expression';
+
+export const dynamicFormFieldExpressionDependencyArgs = [
+  { name: 'model', pattern: /model+[.\w]+/g },
+  { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
+  { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
+];
+
+export const dynamicFormFieldExpressionArgs = [ 'model', 'parentModel', 'rootModel', 'memo' ];
 
 export class DynamicFormFieldExpression implements DynamicFormExpression {
-  static readonly dependencyArgs = [
-    { name: 'model', pattern: /model+[.\w]+/g },
-    { name: 'parentModel', pattern: /parentModel+[.\w]+/g },
-    { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
-  ];
-  static readonly args = DynamicFormFieldExpression.dependencyArgs.map(arg => arg.name).concat([ 'memo' ]);
-
   protected _memo: DynamicFormExpressionMemoization;
 
   constructor(
