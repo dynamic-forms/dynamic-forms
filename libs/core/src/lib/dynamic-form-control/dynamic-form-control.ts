@@ -28,8 +28,9 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   check() {
-    this.checkControl();
-    this.checkValidators();
+    this.checkControlValue();
+    this.checkControlStatus();
+    this.checkControlValidators();
   }
 
   destroy() {
@@ -52,7 +53,14 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
       .map(validator => validator.validator);
   }
 
-  private checkControl(): void {
+  private checkControlValue() {
+    const options = this.template.input.options;
+    if (options && !options.some(option => option.value === this.model)) {
+      this.control.setValue(null);
+    }
+  }
+
+  private checkControlStatus(): void {
     const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
       if (disabled) {
@@ -63,7 +71,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     }
   }
 
-  private checkValidators() {
+  private checkControlValidators() {
     const validatorsChanged = this.validatorsChanged();
     if (validatorsChanged) {
       this.control.setValidators(this.getControlValidators());

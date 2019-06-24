@@ -10,8 +10,6 @@ import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldComponent } from './dynamic-form-field.component';
 
 class DynamicFormFieldTest extends DynamicFormField {
-  get expressions() { return this._expressions; }
-
   check() {}
   destroy() {}
 }

@@ -1,7 +1,9 @@
+import { Subject } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
-function getCurrencyOptions(model, parentModel, rootModel, memo) {
+const getCurrencyOptions = (_model, parentModel, _rootModel, memo) => {
   return (function(currencyPair) {
     if (memo.currencyPair === currencyPair) {
       return memo.previousValue;
@@ -17,7 +19,7 @@ function getCurrencyOptions(model, parentModel, rootModel, memo) {
     }
     return [];
   })(parentModel.currencyPair);
-}
+};
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
   get memo() { return this._memo; }
@@ -25,12 +27,23 @@ class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
 
 describe('DynamicFormFieldExpression', () => {
   it('get value updates memo and returns current value', () => {
+    const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
+    const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       model: {},
       parent: { model: { currencyPair: 'EUR/USD' } },
-      root: { model: {} }
+      root: { model: {} },
+      expressionChangesSubject,
+      expressionChanges
     };
-    const expression = new DynamicFormFieldExpressionTesting([], getCurrencyOptions, field);
+    const func = getCurrencyOptions;
+    const deps = [];
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, deps);
+
+    const fieldExpressionChanges = [];
+    field.expressionChanges.subscribe(change => {
+      fieldExpressionChanges.push(change);
+    });
 
     expect(expression.memo).toEqual({
       previousValue: null,
@@ -82,5 +95,16 @@ describe('DynamicFormFieldExpression', () => {
       currencyPair: null
     });
     expect(expressionValue4).toEqual([]);
+
+    expect(fieldExpressionChanges.length).toBe(3);
+    expect(fieldExpressionChanges[0].key).toBe('key');
+    expect(fieldExpressionChanges[0].previousValue).toBeNull();
+    expect(fieldExpressionChanges[0].currentValue).toBe(expressionValue1);
+    expect(fieldExpressionChanges[1].key).toBe('key');
+    expect(fieldExpressionChanges[1].previousValue).toBe(expressionValue1);
+    expect(fieldExpressionChanges[1].currentValue).toBe(expressionValue3);
+    expect(fieldExpressionChanges[2].key).toBe('key');
+    expect(fieldExpressionChanges[2].previousValue).toBe(expressionValue3);
+    expect(fieldExpressionChanges[2].currentValue).toBe(expressionValue4);
   });
 });
