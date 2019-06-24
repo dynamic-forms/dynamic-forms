@@ -1,11 +1,9 @@
-import { async } from '@angular/core/testing';
 import { Subject } from 'rxjs';
-import { reduce } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
-const getCurrencyOptions = (model, parentModel, rootModel, memo) => {
+const getCurrencyOptions = (_model, parentModel, _rootModel, memo) => {
   return (function(currencyPair) {
     if (memo.currencyPair === currencyPair) {
       return memo.previousValue;
