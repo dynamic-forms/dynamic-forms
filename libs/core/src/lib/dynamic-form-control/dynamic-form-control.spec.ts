@@ -72,9 +72,37 @@ describe('DynamicFormControl', () => {
     expect(formControl.control.validator).not.toBeNull();
   });
 
-  it('check updates control', () => {
+  it('check updates control value', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {
+      'key': 'option1'
+    });
+    const definition = <DynamicFormControlDefinition>{
+      key: 'key',
+      template: {
+        input: {
+          options: [
+            { value: 'option1', label: 'Option1' },
+            { value: 'option2', label: 'Option2' }
+          ]
+        }
+      }
+    };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    expect(formControl.control.value).toBe('option1');
+
+    formControl.template.input.options = [
+      { value: 'option2', label: 'Option2' },
+      { value: 'option3', label: 'Option3' }
+    ];
+    formControl.check();
+
+    expect(formControl.control.value).toBeNull();
+  });
+
+  it('check updates control disabled', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
     const formControl = new DynamicFormControl(root, root, definition);
 
     expect(formControl.control.disabled).toBe(false);
