@@ -35,7 +35,7 @@ export * from './lib/dynamic-form-group/dynamic-form-group-template';
 export * from './lib/dynamic-form-group/dynamic-form-group.component';
 export * from './lib/dynamic-form-input/dynamic-form-input';
 export * from './lib/dynamic-form-input/dynamic-form-input-config';
-export * from './lib/dynamic-form-input/dynamic-form-input-options';
+export * from './lib/dynamic-form-input/dynamic-form-input-option-item';
 export * from './lib/dynamic-form-input/dynamic-form-input-type';
 export * from './lib/dynamic-form-input/dynamic-form-input.component';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox';
