@@ -59,9 +59,9 @@ describe('DynamicFormDropdownComponent', () => {
     expect(optionElements[0].disabled).toBe(true);
     expect(optionElements[0].hidden).toBe(true);
     expect(optionElements[0].innerText).toBe('placeholder');
-    expect(optionElements[1].value).toBe('value1');
+    expect(optionElements[1].value).toBe('1: value1');
     expect(optionElements[1].innerText).toBe('label1');
-    expect(optionElements[2].value).toBe('value2');
+    expect(optionElements[2].value).toBe('2: value2');
     expect(optionElements[2].innerText).toBe('label2');
   });
 

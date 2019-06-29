@@ -21,10 +21,12 @@ describe('DynamicFormField', () => {
 
     expect(formField.path).toBeNull();
     expect(formField.template).toBe(definition.template);
-    expect(formField.expressions).toEqual({});
-    expect(formField.expressionChanges).toBeTruthy();
     expect(formField.control).toBeUndefined();
     expect(formField.model).toBeUndefined();
+
+    expect(formField.expressions).toEqual({});
+    expect(formField.expressionChanges).toBeTruthy();
+    expect(formField.expressionChangesSubject).toBeTruthy();
   });
 
   it('new instance with path from key of definition', () => {
