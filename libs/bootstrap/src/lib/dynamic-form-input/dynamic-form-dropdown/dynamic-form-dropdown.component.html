@@ -6,9 +6,7 @@
     </ng-container>
     <ng-template #optionGroup>
       <optgroup [label]="option.label">
-        <option *ngFor="let optionItem of option.items" [ngValue]="optionItem.value">
-          {{ optionItem.label }}
-        </option>
+        <option *ngFor="let optionItem of option.items" [ngValue]="optionItem.value">{{ optionItem.label }}</option>
       </optgroup>      
     </ng-template>
   </ng-container>
