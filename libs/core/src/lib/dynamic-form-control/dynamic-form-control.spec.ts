@@ -92,7 +92,7 @@ describe('DynamicFormControl', () => {
       key: 'key',
       template: {
         input: {
-          options: [
+          options: <any[]>[
             { value: 'option1', label: 'Option1' },
             { value: 'option2', label: 'Option2' },
             {
@@ -117,7 +117,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.model).toBe('option3');
     expect(formControl.control.value).toBe('option3');
 
-    formControl.template.input.options = [
+    formControl.template.input.options = <any[]>[
       { value: 'option1', label: 'Option1' },
       { value: 'option2', label: 'Option2' }
     ];

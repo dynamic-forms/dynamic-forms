@@ -1,7 +1,9 @@
 import { DynamicFormInput } from '../dynamic-form-input';
-import { DynamicFormInputOptionItem } from '../dynamic-form-input-option-item';
+import { DynamicFormInputOption, DynamicFormInputOptionGroup } from '../dynamic-form-input-option-item';
+
+export type DynamicFormDropdownOption = DynamicFormInputOption | DynamicFormInputOptionGroup;
 
 export interface DynamicFormDropdown extends DynamicFormInput {
   type: 'dropdown';
-  options: DynamicFormInputOptionItem[];
+  options: DynamicFormDropdownOption[];
 }

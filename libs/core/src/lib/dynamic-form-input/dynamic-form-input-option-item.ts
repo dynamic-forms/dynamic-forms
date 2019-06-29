@@ -1,7 +1,5 @@
 export interface DynamicFormInputOptionItem {
   label: string;
-  value?: string | number;
-  items?: DynamicFormInputOption[];
 }
 
 export interface DynamicFormInputOption extends DynamicFormInputOptionItem {
