@@ -54,7 +54,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private checkControlValue() {
-    if (this.template.input.options) {
+    if (this.template.input.type === 'dropdown' && this.template.input.options) {
       const hasOption = this.template.input.options.some(option => {
         if (option.items) {
           return option.items.some(item => item.value === this.model);
