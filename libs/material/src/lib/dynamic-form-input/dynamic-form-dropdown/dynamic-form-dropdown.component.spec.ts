@@ -42,7 +42,20 @@ describe('DynamicFormDropdownComponent', () => {
           placeholder: 'placeholder',
           options: [
             { value: 'value1', label: 'label1' },
-            { value: 'value2', label: 'label2' }
+            { value: 'value2', label: 'label2' },
+            {
+              label: 'group1',
+              items: [
+                { value: 'value3', label: 'label3' },
+                { value: 'value4', label: 'label4' }
+              ]
+            },
+            {
+              label: 'group2',
+              items: [
+                { value: 'value5', label: 'label5' }
+              ]
+            }
           ]
         }
       }
@@ -68,15 +81,29 @@ describe('DynamicFormDropdownComponent', () => {
     const selectElement = <HTMLElement>selectDebugElement.nativeElement;
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
     const optionElements = selectComponent.options.toArray();
+    const optionGroupElements = selectComponent.optionGroups.toArray();
 
     expect(fieldElement).toBeDefined();
     expect(labelElement.innerText).toBe('label');
     expect(selectElement.id).toBe(component.id);
-    expect(optionElements.length).toBe(2);
+    expect(optionElements.length).toBe(5);
     expect(optionElements[0].value).toBe('value1');
     expect(optionElements[0].viewValue).toBe('label1');
     expect(optionElements[1].value).toBe('value2');
     expect(optionElements[1].viewValue).toBe('label2');
+    expect(optionElements[2].group).toBe(optionGroupElements[0]);
+    expect(optionElements[2].value).toBe('value3');
+    expect(optionElements[2].viewValue).toBe('label3');
+    expect(optionElements[3].group).toBe(optionGroupElements[0]);
+    expect(optionElements[3].value).toBe('value4');
+    expect(optionElements[3].viewValue).toBe('label4');
+    expect(optionElements[4].group).toBe(optionGroupElements[1]);
+    expect(optionElements[4].value).toBe('value5');
+    expect(optionElements[4].viewValue).toBe('label5');
+
+    expect(optionGroupElements.length).toBe(2);
+    expect(optionGroupElements[0].label).toBe('group1');
+    expect(optionGroupElements[1].label).toBe('group2');
   });
 
   it('sets dynamic form control to readonly', () => {

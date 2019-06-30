@@ -54,9 +54,16 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private checkControlValue() {
-    const options = this.template.input.options;
-    if (options && !options.some(option => option.value === this.model)) {
-      this.control.setValue(null);
+    if (this.template.input.options) {
+      const hasOption = this.template.input.options.some(option => {
+        if (option.items) {
+          return option.items.some(item => item.value === this.model);
+        }
+        return option.value === this.model;
+      });
+      if (!hasOption) {
+        this.control.setValue(null);
+      }
     }
   }
 

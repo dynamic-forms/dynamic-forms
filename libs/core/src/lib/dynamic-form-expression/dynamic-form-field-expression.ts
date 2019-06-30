@@ -3,7 +3,6 @@ import { DynamicFormExpression, DynamicFormExpressionDependency, DynamicFormExpr
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 
 export const dynamicFormFieldExpressionArgs = [ 'model', 'parentModel', 'rootModel', 'memo' ];
-
 export const dynamicFormFieldExpressionDependencyArgs = [
   { name: 'model', pattern: /model+[.\w]+/g },
   { name: 'parentModel', pattern: /parentModel+[.\w]+/g },

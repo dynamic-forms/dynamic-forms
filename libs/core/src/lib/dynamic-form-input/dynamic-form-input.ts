@@ -1,4 +1,4 @@
-import { DynamicFormInputOptions } from './dynamic-form-input-options';
+import { DynamicFormInputOptionItem } from './dynamic-form-input-option-item';
 import { DynamicFormInputType } from './dynamic-form-input-type';
 
 export interface DynamicFormInput {
@@ -6,7 +6,7 @@ export interface DynamicFormInput {
   defaultValue?: any;
   placeholder?: string;
   inputType?: string;
-  options?: string[] | DynamicFormInputOptions;
+  options?: string[] | DynamicFormInputOptionItem[];
   pattern?: string | RegExp;
   min?: number | Date;
   max?: number | Date;

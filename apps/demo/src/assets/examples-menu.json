@@ -30,7 +30,16 @@
         { 
           "id": "inputs-hints", 
           "label": "Hints" 
-        }    
+        }   
+      ]
+    },
+    {
+      "label": "Input variations",
+      "items": [
+        {
+          "id": "input-variations-dropdown",
+          "label": "Dropdown"
+        }
       ]
     },
     {

@@ -1,9 +1,20 @@
 <mat-form-field appearance="standard" color="primary" [ngClass]="{ 'readonly': field.readonly }">
   <mat-label>{{ template.label }}</mat-label>
   <mat-select [id]="id" [placeholder]="input.placeholder" [formControl]="control">
-    <mat-option *ngFor="let option of input.options" [value]="option.value">
-      {{ option.label }}
-    </mat-option>
+    <ng-container *ngFor="let option of input.options">
+      <ng-container *ngIf="!option.items; else optionGroup">
+        <mat-option [value]="option.value">
+          {{ option.label }}
+        </mat-option>      
+      </ng-container>
+      <ng-template #optionGroup>
+        <mat-optgroup [label]="option.label">
+          <mat-option *ngFor="let optionItem of option.items" [value]="optionItem.value">
+            {{ optionItem.label }}
+          </mat-option>
+        </mat-optgroup>      
+      </ng-template>
+    </ng-container>
   </mat-select>
   <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>

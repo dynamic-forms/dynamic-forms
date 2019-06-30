@@ -21,8 +21,8 @@ export abstract class DynamicFormField<
   protected _model: any;
 
   constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, readonly definition: Definition) {
-    this._template = definition.template || <Template>{};
     this._path = parent && parent.path ? `${parent.path}.${definition.key}` : definition.key || null;
+    this._template = definition.template || <Template>{};
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
     this._expressions = {};
