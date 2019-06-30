@@ -33,7 +33,7 @@
       "key": "dropdown2",
       "type": "control",
       "template": {
-        "label": "Dropdown (Option Groups)",
+        "label": "Dropdown (Groups)",
         "input": {
           "type": "dropdown",
           "placeholder": "Select an option",
