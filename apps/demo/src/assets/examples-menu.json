@@ -37,7 +37,7 @@
       "label": "Input variations",
       "items": [
         {
-          "id": "input-dropdown",
+          "id": "input-variations-dropdown",
           "label": "Dropdown"
         }
       ]
