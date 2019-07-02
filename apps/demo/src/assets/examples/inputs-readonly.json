@@ -47,12 +47,12 @@
           }
         },
         {
-          "key": "dropdown",
+          "key": "select",
           "type": "control",
           "template": {
-            "label": "Dropdown",
+            "label": "Select",
             "input": {
-              "type": "dropdown",
+              "type": "select",
               "defaultValue": 1,
               "placeholder": "Select an option",
               "options": [

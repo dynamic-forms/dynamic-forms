@@ -84,7 +84,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.control.validator).not.toBeNull();
   });
 
-  it('check updates control value for dropdown options', () => {
+  it('check updates control value for select options', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {
       'key': 'option1'
     });
@@ -92,7 +92,7 @@ describe('DynamicFormControl', () => {
       key: 'key',
       template: {
         input: {
-          type: 'dropdown',
+          type: 'select',
           options: <any[]>[
             { value: 'option1', label: 'Option1' },
             { value: 'option2', label: 'Option2' },

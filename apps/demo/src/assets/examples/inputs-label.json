@@ -36,12 +36,12 @@
       }
     },
     {
-      "key": "dropdown",
+      "key": "select",
       "type": "control",
       "template": {
-        "label": "Dropdown",
+        "label": "Select",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "options": [
             {
               "value": 1,

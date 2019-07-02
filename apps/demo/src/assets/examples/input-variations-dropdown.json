@@ -1,12 +1,12 @@
 {
   "fields": [
     {
-      "key": "dropdown1",
+      "key": "select1",
       "type": "control",
       "template": {
-        "label": "Dropdown (Options)",
+        "label": "Select (Options)",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "placeholder": "Select an option",
           "options": [
             {
@@ -30,12 +30,12 @@
       }
     },
     {
-      "key": "dropdown2",
+      "key": "select2",
       "type": "control",
       "template": {
-        "label": "Dropdown (Option Groups)",
+        "label": "Select (Option Groups)",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "placeholder": "Select an option",
           "options": [
             {
@@ -69,12 +69,12 @@
       }
     },
     {
-      "key": "dropdown3",
+      "key": "select3",
       "type": "control",
       "template": {
-        "label": "Dropdown (Options / Option Groups)",
+        "label": "Select (Options / Option Groups)",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "placeholder": "Select an option",
           "options": [
             {
@@ -103,12 +103,12 @@
       }
     },
     {
-      "key": "dropdown4",
+      "key": "select4",
       "type": "control",
       "template": {
-        "label": "Dropdown Multiple (Options)",
+        "label": "Select Multiple (Options)",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "placeholder": "Select an option",
           "multiple": true,
           "options": [
@@ -137,12 +137,12 @@
       }
     },
     {
-      "key": "dropdown5",
+      "key": "select5",
       "type": "control",
       "template": {
-        "label": "Dropdown Multiple (Options / Option Groups)",
+        "label": "Select Multiple (Options / Option Groups)",
         "input": {
-          "type": "dropdown",
+          "type": "select",
           "placeholder": "Select an option",
           "multiple": true,
           "options": [

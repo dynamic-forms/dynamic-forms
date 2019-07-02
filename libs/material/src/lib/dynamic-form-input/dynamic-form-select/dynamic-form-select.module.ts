@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
+import { DynamicFormSelectComponent } from './dynamic-form-select.component';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component'
     MatSelectModule
   ],
   declarations: [
-    DynamicFormDropdownComponent
+    DynamicFormSelectComponent
   ],
   entryComponents: [
-    DynamicFormDropdownComponent
+    DynamicFormSelectComponent
   ]
 })
-export class DynamicFormDropdownModule {}
+export class DynamicFormSelectModule {}
