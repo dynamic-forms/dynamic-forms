@@ -33,7 +33,7 @@
       "key": "dropdown2",
       "type": "control",
       "template": {
-        "label": "Dropdown (Groups)",
+        "label": "Dropdown (Option Groups)",
         "input": {
           "type": "dropdown",
           "placeholder": "Select an option",
@@ -72,7 +72,7 @@
       "key": "dropdown3",
       "type": "control",
       "template": {
-        "label": "Dropdown (Options / Groups)",
+        "label": "Dropdown (Options / Option Groups)",
         "input": {
           "type": "dropdown",
           "placeholder": "Select an option",
@@ -95,6 +95,84 @@
                 {
                   "value": 4,
                   "label": "Option 4"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "dropdown4",
+      "type": "control",
+      "template": {
+        "label": "Dropdown Multiple (Options)",
+        "input": {
+          "type": "dropdown",
+          "placeholder": "Select an option",
+          "multiple": true,
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3"
+            },
+            {
+              "value": 4,
+              "label": "Option 4"
+            },
+            {
+              "value": 5,
+              "label": "Option 5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "dropdown5",
+      "type": "control",
+      "template": {
+        "label": "Dropdown Multiple (Options / Option Groups)",
+        "input": {
+          "type": "dropdown",
+          "placeholder": "Select an option",
+          "multiple": true,
+          "options": [
+            {
+              "label": "Option group 1",
+              "items": [
+                {
+                  "value": 1,
+                  "label": "Option 1"
+                },
+                {
+                  "value": 2,
+                  "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3"
+                }
+              ]
+            },
+            {
+              "label": "Option group 1",
+              "items": [
+                {
+                  "value": 4,
+                  "label": "Option 4"
+                },
+                {
+                  "value": 5,
+                  "label": "Option 5"
                 }
               ]
             }

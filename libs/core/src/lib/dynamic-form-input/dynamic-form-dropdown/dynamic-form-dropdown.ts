@@ -6,4 +6,5 @@ export type DynamicFormDropdownOption = DynamicFormInputOption | DynamicFormInpu
 export interface DynamicFormDropdown extends DynamicFormInput {
   type: 'dropdown';
   options: DynamicFormDropdownOption[];
+  multiple: boolean;
 }
