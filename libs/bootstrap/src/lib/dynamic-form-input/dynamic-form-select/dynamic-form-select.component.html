@@ -1,7 +1,7 @@
 <ng-container *ngIf="!input.multiple; else optionsMultiple">
   <select [id]="id" class="form-control" [ngClass]="{ 'readonly': field.readonly }" 
     [required]="validation?.required" [formControl]="control">
-    <option [value]="null" hidden>{{ input.placeholder }}</option>
+    <option [value]="null" disabled hidden>{{ input.placeholder }}</option>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
         <option [ngValue]="option.value">{{ option.label }}</option>      
