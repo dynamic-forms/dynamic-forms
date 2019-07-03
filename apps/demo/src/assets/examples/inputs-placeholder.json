@@ -28,12 +28,23 @@
       }
     },
     {
-      "key": "dropdown",
+      "key": "numberbox",
       "type": "control",
       "template": {
-        "label": "Dropdown",
+        "label": "Numberbox",
         "input": {
-          "type": "dropdown",
+          "type": "numberbox",
+          "placeholder": "Enter a number"
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "input": {
+          "type": "select",
           "placeholder": "Select an option",
           "options": [
             {
@@ -45,17 +56,6 @@
               "label": "Option 2"
             }
           ]
-        }
-      }
-    },
-    {
-      "key": "numberbox",
-      "type": "control",
-      "template": {
-        "label": "Numberbox",
-        "input": {
-          "type": "numberbox",
-          "placeholder": "Enter a number"
         }
       }
     },

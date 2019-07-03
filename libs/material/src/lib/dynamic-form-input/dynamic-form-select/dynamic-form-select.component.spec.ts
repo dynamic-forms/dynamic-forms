@@ -3,22 +3,22 @@ import { MatSelect } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormDropdown,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormSelect,
   DynamicFormValidationService } from '@dynamic-forms/core';
-import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
-import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
+import { DynamicFormSelectComponent } from './dynamic-form-select.component';
+import { DynamicFormSelectModule } from './dynamic-form-select.module';
 
-describe('DynamicFormDropdownComponent', () => {
-  let fixture: ComponentFixture<DynamicFormDropdownComponent>;
-  let component: DynamicFormDropdownComponent;
+describe('DynamicFormSelectComponent', () => {
+  let fixture: ComponentFixture<DynamicFormSelectComponent>;
+  let component: DynamicFormSelectComponent;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormDropdown>;
-  let formControl: DynamicFormControl<DynamicFormDropdown>;
+  let definition: DynamicFormControlDefinition<DynamicFormSelect>;
+  let formControl: DynamicFormControl<DynamicFormSelect>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDropdownModule,
+        DynamicFormSelectModule,
         NoopAnimationsModule
       ],
       providers: [
@@ -30,11 +30,11 @@ describe('DynamicFormDropdownComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormDropdownComponent);
+    fixture = TestBed.createComponent(DynamicFormSelectComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormDropdown>>{
+    definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
       key: 'key',
       template: {
         label: 'label',
@@ -60,7 +60,7 @@ describe('DynamicFormDropdownComponent', () => {
         }
       }
     };
-    formControl = new DynamicFormControl<DynamicFormDropdown>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
     component.field = formControl;
 

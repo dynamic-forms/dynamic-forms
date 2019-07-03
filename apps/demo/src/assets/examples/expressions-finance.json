@@ -13,7 +13,7 @@
           "template": {
             "label": "Currency pair",
             "input": {
-              "type": "dropdown",
+              "type": "select",
               "placeholder": "Select the currency pair",
               "options": [
                 {
@@ -41,7 +41,7 @@
           "template": {
             "label": "Notional Currency",
             "input": {
-              "type": "dropdown",
+              "type": "select",
               "placeholder": "Select the notional currency"
             },
             "validation": {

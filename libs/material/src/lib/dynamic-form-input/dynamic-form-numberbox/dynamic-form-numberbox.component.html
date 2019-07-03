@@ -1,7 +1,7 @@
 <mat-form-field appearance="standard" color="primary" [ngClass]="{ 'readonly': field.readonly }"> 
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="id" type="number" [placeholder]="input.placeholder" [readonly]="field.readonly"
-    [formControl]="control" />
+  <input matInput [id]="id" type="number" [placeholder]="input.placeholder" 
+    [readonly]="field.readonly" [required]="validation?.required" [formControl]="control" />
   <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>

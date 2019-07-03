@@ -1,7 +1,7 @@
 <mat-form-field appearance="standard" color="primary" [ngClass]="{ 'readonly': field.readonly }">
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="id" [placeholder]="input.placeholder" [readonly]="field.readonly" 
-    [formControl]="control" [matDatepicker]="datepicker" />
+  <input matInput [id]="id" [placeholder]="input.placeholder" [matDatepicker]="datepicker"
+    [readonly]="field.readonly" [required]="validation?.required" [formControl]="control" />
   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
   <mat-datepicker #datepicker [disabled]="control.disabled"></mat-datepicker>
   <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>

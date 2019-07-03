@@ -1,29 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
-  DynamicFormDropdown } from '@dynamic-forms/core';
-import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
-import { DynamicFormDropdownModule } from './dynamic-form-dropdown.module';
+  DynamicFormSelect } from '@dynamic-forms/core';
+import { DynamicFormSelectComponent } from './dynamic-form-select.component';
+import { DynamicFormSelectModule } from './dynamic-form-select.module';
 
-describe('DynamicFormDropdownComponent', () => {
-  let fixture: ComponentFixture<DynamicFormDropdownComponent>;
-  let component: DynamicFormDropdownComponent;
+describe('DynamicFormSelectComponent', () => {
+  let fixture: ComponentFixture<DynamicFormSelectComponent>;
+  let component: DynamicFormSelectComponent;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormDropdown>;
-  let formControl: DynamicFormControl<DynamicFormDropdown>;
+  let definition: DynamicFormControlDefinition<DynamicFormSelect>;
+  let formControl: DynamicFormControl<DynamicFormSelect>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDropdownModule
+        DynamicFormSelectModule
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormDropdownComponent);
+    fixture = TestBed.createComponent(DynamicFormSelectComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormDropdown>>{
+    definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
       key: 'key',
       template: {
         input: {
@@ -48,7 +48,7 @@ describe('DynamicFormDropdownComponent', () => {
         }
       }
     };
-    formControl = new DynamicFormControl<DynamicFormDropdown>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
     component.field = formControl;
 

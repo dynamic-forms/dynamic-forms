@@ -20,6 +20,7 @@
         "label": "Combobox",
         "input": {
           "type": "combobox",
+          "placeholder": "Enter a text",
           "options": [
             "Value1",
             "Value2",
@@ -43,30 +44,8 @@
       "template": {
         "label": "Datepicker",
         "input": {
-          "type": "datepicker"
-        },
-        "validation": {
-          "required": true
-        }
-      }
-    },
-    {
-      "key": "dropdown",
-      "type": "control",
-      "template": {
-        "label": "Dropdown",
-        "input": {
-          "type": "dropdown",
-          "options": [
-            {
-              "value": 1,
-              "label": "Option 1"
-            },
-            {
-              "value": 2,
-              "label": "Option 2"
-            }
-          ]
+          "type": "datepicker",
+          "placeholder": "Enter a date"
         },
         "validation": {
           "required": true
@@ -80,6 +59,7 @@
         "label": "Numberbox",
         "input": {
           "type": "numberbox",
+          "placeholder": "Enter a number",
           "min": -5,
           "max": 5
         },
@@ -114,12 +94,37 @@
       }
     },
     {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
       "key": "textarea",
       "type": "control",
       "template": {
         "label": "Textarea",
         "input": {
-          "type": "textarea"
+          "type": "textarea",
+          "placeholder": "Enter a text"
         },
         "validation": {
           "required": true
@@ -133,6 +138,7 @@
         "label": "Textbox",
         "input": {
           "type": "textbox",
+          "placeholder": "Enter a text",
           "minLength": 5,
           "maxLength": 10
         },
@@ -150,7 +156,8 @@
         "label": "Email",
         "input": {
           "type": "textbox",
-          "inputType": "email"
+          "inputType": "email",
+          "placeholder": "Enter an email"
         },
         "validation": {
           "required": true,
@@ -166,6 +173,7 @@
         "input": {
           "type": "textbox",
           "inputType": "password",
+          "placeholder": "Enter a password",
           "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
         },
         "validation": {
@@ -181,7 +189,8 @@
         "label": "Search",
         "input": {
           "type": "textbox",
-          "inputType": "search"
+          "inputType": "search",
+          "placeholder": "Enter a search text"
         },
         "validation": {
           "required": true

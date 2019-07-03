@@ -54,17 +54,29 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private checkControlValue() {
-    if (this.template.input.type === 'dropdown') {
-      const hasOption = (this.template.input.options || []).some(option => {
-        if (option.items) {
-          return option.items.some(item => item.value === this.model);
-        }
-        return option.value === this.model;
-      });
-      if (!hasOption) {
-        this.control.setValue(null);
+    if (this.template.input.type === 'select') {
+      if (this.template.input.multiple) {
+        this.checkControlOptions();
+      } else {
+        this.checkControlOption();
       }
     }
+  }
+
+  private checkControlOption() {
+    const hasOption = (this.template.input.options || []).some(option => {
+      if (option.items) {
+        return option.items.some(item => item.value === this.model);
+      }
+      return option.value === this.model;
+    });
+    if (!hasOption) {
+      this.control.setValue(null);
+    }
+  }
+
+  private checkControlOptions() {
+
   }
 
   private checkControlStatus(): void {

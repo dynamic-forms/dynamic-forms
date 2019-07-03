@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component';
+import { DynamicFormSelectComponent } from './dynamic-form-select.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { DynamicFormDropdownComponent } from './dynamic-form-dropdown.component'
     ReactiveFormsModule
   ],
   declarations: [
-    DynamicFormDropdownComponent
+    DynamicFormSelectComponent
   ],
   entryComponents: [
-    DynamicFormDropdownComponent
+    DynamicFormSelectComponent
   ]
 })
-export class DynamicFormDropdownModule {}
+export class DynamicFormSelectModule {}

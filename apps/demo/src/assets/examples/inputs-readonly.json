@@ -47,28 +47,6 @@
           }
         },
         {
-          "key": "dropdown",
-          "type": "control",
-          "template": {
-            "label": "Dropdown",
-            "input": {
-              "type": "dropdown",
-              "defaultValue": 1,
-              "placeholder": "Select an option",
-              "options": [
-                {
-                  "value": 1,
-                  "label": "Option 1"
-                },
-                {
-                  "value": 2,
-                  "label": "Option 2"
-                }
-              ]
-            }
-          }
-        },
-        {
           "key": "numberbox",
           "type": "control",
           "template": {
@@ -88,6 +66,28 @@
             "input": {
               "type": "radio",
               "defaultValue": 2,
+              "options": [
+                {
+                  "value": 1,
+                  "label": "Option 1"
+                },
+                {
+                  "value": 2,
+                  "label": "Option 2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key": "select",
+          "type": "control",
+          "template": {
+            "label": "Select",
+            "input": {
+              "type": "select",
+              "defaultValue": 1,
+              "placeholder": "Select an option",
               "options": [
                 {
                   "value": 1,

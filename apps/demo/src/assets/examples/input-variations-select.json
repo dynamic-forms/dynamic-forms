@@ -1,0 +1,199 @@
+{
+  "fields": [
+    {
+      "key": "select1",
+      "type": "control",
+      "template": {
+        "label": "Select (Options)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3"
+            },
+            {
+              "value": 4,
+              "label": "Option 4"
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select2",
+      "type": "control",
+      "template": {
+        "label": "Select (Option Groups)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "label": "Option group 1",
+              "items": [
+                {
+                  "value": 1,
+                  "label": "Option 1"
+                },
+                {
+                  "value": 2,
+                  "label": "Option 2"
+                }
+              ]
+            },
+            {
+              "label": "Option group 2",
+              "items": [
+                {
+                  "value": 3,
+                  "label": "Option 3"
+                },
+                {
+                  "value": 4,
+                  "label": "Option 4"
+                }
+              ]
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select3",
+      "type": "control",
+      "template": {
+        "label": "Select (Options / Option Groups)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "label": "Option group 2",
+              "items": [
+                {
+                  "value": 3,
+                  "label": "Option 3"
+                },
+                {
+                  "value": 4,
+                  "label": "Option 4"
+                }
+              ]
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select4",
+      "type": "control",
+      "template": {
+        "label": "Select Multiple (Options)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select options",
+          "multiple": true,
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3"
+            },
+            {
+              "value": 4,
+              "label": "Option 4"
+            },
+            {
+              "value": 5,
+              "label": "Option 5"
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select5",
+      "type": "control",
+      "template": {
+        "label": "Select Multiple (Options / Option Groups)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select options",
+          "multiple": true,
+          "options": [
+            {
+              "label": "Option group 1",
+              "items": [
+                {
+                  "value": 1,
+                  "label": "Option 1"
+                },
+                {
+                  "value": 2,
+                  "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3"
+                }
+              ]
+            },
+            {
+              "label": "Option group 1",
+              "items": [
+                {
+                  "value": 4,
+                  "label": "Option 4"
+                },
+                {
+                  "value": 5,
+                  "label": "Option 5"
+                }
+              ]
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    }
+  ]
+}
