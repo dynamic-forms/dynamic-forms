@@ -1,5 +1,5 @@
 <select [id]="id" class="form-control" [ngClass]="{ 'readonly': field.readonly }" 
-  [multiple]="input.multiple" [formControl]="control">
+  [multiple]="input.multiple" [required]="validation?.required" [formControl]="control">
   <option [value]="null" disabled hidden>{{ input.placeholder }}</option>
   <ng-container *ngFor="let option of input.options">
     <ng-container *ngIf="!option.items; else optionGroup">

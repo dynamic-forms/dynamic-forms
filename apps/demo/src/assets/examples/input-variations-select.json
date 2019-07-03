@@ -26,6 +26,9 @@
               "label": "Option 4"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -65,6 +68,9 @@
               ]
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -99,6 +105,9 @@
               ]
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -109,7 +118,7 @@
         "label": "Select Multiple (Options)",
         "input": {
           "type": "select",
-          "placeholder": "Select an option",
+          "placeholder": "Select options",
           "multiple": true,
           "options": [
             {
@@ -133,6 +142,9 @@
               "label": "Option 5"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -143,7 +155,7 @@
         "label": "Select Multiple (Options / Option Groups)",
         "input": {
           "type": "select",
-          "placeholder": "Select an option",
+          "placeholder": "Select options",
           "multiple": true,
           "options": [
             {
@@ -177,6 +189,9 @@
               ]
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     }

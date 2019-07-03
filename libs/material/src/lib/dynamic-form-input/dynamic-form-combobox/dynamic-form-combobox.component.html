@@ -1,7 +1,7 @@
 <mat-form-field appearance="standard" color="primary" [ngClass]="{ 'readonly': field.readonly }">
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="id" type="text" [placeholder]="input.placeholder" 
-    [readonly]="field.readonly" [matAutocomplete]="auto" [formControl]="control" />
+  <input matInput [id]="id" type="text" [placeholder]="input.placeholder" [matAutocomplete]="auto" 
+    [readonly]="field.readonly" [required]="validation?.required" [formControl]="control" />
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{ option }}</mat-option>
   </mat-autocomplete>
