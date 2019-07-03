@@ -51,29 +51,6 @@
       }
     },
     {
-      "key": "select",
-      "type": "control",
-      "template": {
-        "label": "Select",
-        "input": {
-          "type": "select",
-          "options": [
-            {
-              "value": 1,
-              "label": "Option 1"
-            },
-            {
-              "value": 2,
-              "label": "Option 2"
-            }
-          ]
-        },
-        "validation": {
-          "required": true
-        }
-      }
-    },
-    {
       "key": "numberbox",
       "type": "control",
       "template": {
@@ -97,6 +74,29 @@
         "label": "Radio",
         "input": {
           "type": "radio",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "input": {
+          "type": "select",
           "options": [
             {
               "value": 1,

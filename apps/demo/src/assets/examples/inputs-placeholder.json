@@ -28,6 +28,17 @@
       }
     },
     {
+      "key": "numberbox",
+      "type": "control",
+      "template": {
+        "label": "Numberbox",
+        "input": {
+          "type": "numberbox",
+          "placeholder": "Enter a number"
+        }
+      }
+    },
+    {
       "key": "select",
       "type": "control",
       "template": {
@@ -45,17 +56,6 @@
               "label": "Option 2"
             }
           ]
-        }
-      }
-    },
-    {
-      "key": "numberbox",
-      "type": "control",
-      "template": {
-        "label": "Numberbox",
-        "input": {
-          "type": "numberbox",
-          "placeholder": "Enter a number"
         }
       }
     },

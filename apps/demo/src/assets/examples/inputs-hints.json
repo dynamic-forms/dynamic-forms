@@ -57,32 +57,6 @@
       }
     },
     {
-      "key": "select",
-      "type": "control",
-      "template": {
-        "label": "Select",
-        "input": {
-          "type": "select",
-          "options": [
-            {
-              "value": 1,
-              "label": "Option 1"
-            },
-            {
-              "value": 2,
-              "label": "Option 2"
-            }
-          ]
-        },
-        "validation": {
-          "required": true
-        },
-        "hints": {
-          "hintEnd": "Click to open selection"
-        }
-      }
-    },
-    {
       "key": "numberbox",
       "type": "control",
       "template": {
@@ -123,6 +97,32 @@
         },
         "validation": {
           "required": true
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "input": {
+          "type": "select",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        },
+        "hints": {
+          "hintEnd": "Click to open selection"
         }
       }
     },

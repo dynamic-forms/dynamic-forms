@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormSelect, DynamicFormInputComponent } from '@dynamic-forms/core';
+import { DynamicFormInputComponent, DynamicFormSelect } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-select',
