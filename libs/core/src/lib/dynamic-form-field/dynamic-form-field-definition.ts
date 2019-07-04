@@ -7,5 +7,5 @@ export interface DynamicFormFieldDefinition<FieldTemplate extends DynamicFormFie
   type: DynamicFormFieldType;
   wrappers?: DynamicFormWrapperType[];
   template: FieldTemplate;
-  expressions?: { [key: string]: string };
+  expressions?: { [key: string]: string | Function };
 }

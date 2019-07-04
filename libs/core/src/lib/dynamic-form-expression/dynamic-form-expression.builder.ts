@@ -15,10 +15,13 @@ export class DynamicFormExpressionBuilder {
     }, {}) : null;
   }
 
-  private createFieldExpression(key: string, expression: string, field: DynamicFormField): DynamicFormFieldExpression {
-    const func = this.createFieldExpressionFunction(expression);
-    const deps = this.createFieldExpressionDependencies(expression);
-    return new DynamicFormFieldExpression(key, field, func, deps);
+  private createFieldExpression(key: string, expression: string | Function, field: DynamicFormField): DynamicFormFieldExpression {
+    if (typeof expression === 'string') {
+      const func = this.createFieldExpressionFunction(expression);
+      const deps = this.createFieldExpressionDependencies(expression);
+      return new DynamicFormFieldExpression(key, field, func, deps);
+    }
+    return new DynamicFormFieldExpression(key, field, expression, []);
   }
 
   private createFieldExpressionFunction(expression: string): DynamicFormExpressionFunction {
