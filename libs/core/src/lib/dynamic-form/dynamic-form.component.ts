@@ -27,7 +27,7 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.template || changes.model) {
+    if (changes.definition || changes.model) {
       this.model = this.model || {};
       this._formField = this.formBuilder.createForm(this.definition, this.model);
     }

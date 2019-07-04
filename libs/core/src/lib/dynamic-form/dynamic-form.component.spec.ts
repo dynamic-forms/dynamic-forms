@@ -99,7 +99,7 @@ describe('DynamicFormComponent', () => {
     const definitionUpdated = <DynamicFormDefinition>{ fields: [] };
 
     component.definition = definitionUpdated;
-    component.ngOnChanges({ model: new SimpleChange(definition, definitionUpdated, false) });
+    component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
 
     expect(component.formField.model).toBe(model);
     expect(component.formField.definition).toBe(definitionUpdated);
