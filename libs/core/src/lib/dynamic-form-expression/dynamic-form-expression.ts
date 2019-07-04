@@ -1,9 +1,8 @@
-export type DynamicFormExpressionFunction = Function;
 export type DynamicFormExpressionDependency = string;
 
-export interface DynamicFormExpression {
+export interface DynamicFormExpression<Func = Function> {
   readonly key: string;
   readonly value: any;
-  readonly func: DynamicFormExpressionFunction;
+  readonly func: Func;
   readonly deps: DynamicFormExpressionDependency[];
 }

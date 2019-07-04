@@ -1,5 +1,5 @@
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpression, DynamicFormExpressionDependency, DynamicFormExpressionFunction } from './dynamic-form-expression';
+import { DynamicFormExpression } from './dynamic-form-expression';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 
 export const dynamicFormFieldExpressionArgs = [ 'model', 'parentModel', 'rootModel', 'memo' ];
@@ -9,14 +9,17 @@ export const dynamicFormFieldExpressionDependencyArgs = [
   { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
 ];
 
-export class DynamicFormFieldExpression implements DynamicFormExpression {
+export type DynamicFormFieldFunction =
+  (model: any, parentModel: any, rootModel: any, memo: DynamicFormExpressionMemoization) => any;
+
+export class DynamicFormFieldExpression implements DynamicFormExpression<DynamicFormFieldFunction> {
   protected _memo: DynamicFormExpressionMemoization;
 
   constructor(
     readonly key: string,
     readonly field: DynamicFormField,
-    readonly func: DynamicFormExpressionFunction,
-    readonly deps: DynamicFormExpressionDependency[]
+    readonly func: DynamicFormFieldFunction,
+    readonly deps: string[]
   ) {
     this._memo = { previousValue: null, currentValue: null };
   }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpressionDependency, DynamicFormExpressionFunction } from './dynamic-form-expression';
+import { DynamicFormExpressionDependency } from './dynamic-form-expression';
 import { dynamicFormFieldExpressionArgs, dynamicFormFieldExpressionDependencyArgs,
-  DynamicFormFieldExpression } from './dynamic-form-field-expression';
+  DynamicFormFieldExpression, DynamicFormFieldFunction} from './dynamic-form-field-expression';
 import { DynamicFormFieldExpressions} from './dynamic-form-field-expressions';
 
 @Injectable()
@@ -10,12 +10,13 @@ export class DynamicFormExpressionBuilder {
   createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
     const expressions = field.definition.expressions;
     return expressions ? Object.keys(expressions).reduce((result, key) => {
-      result[key] = this.createFieldExpression(key, expressions[key], field);
+      result[key] = this.createFieldExpression(key, field, expressions[key]);
       return result;
     }, {}) : null;
   }
 
-  private createFieldExpression(key: string, expression: string | Function, field: DynamicFormField): DynamicFormFieldExpression {
+  private createFieldExpression(key: string, field: DynamicFormField,
+    expression: string | DynamicFormFieldFunction): DynamicFormFieldExpression {
     if (typeof expression === 'string') {
       const func = this.createFieldExpressionFunction(expression);
       const deps = this.createFieldExpressionDependencies(expression);
@@ -24,8 +25,8 @@ export class DynamicFormExpressionBuilder {
     return new DynamicFormFieldExpression(key, field, expression, []);
   }
 
-  private createFieldExpressionFunction(expression: string): DynamicFormExpressionFunction {
-    return new Function(...dynamicFormFieldExpressionArgs, `return ${ expression };`);
+  private createFieldExpressionFunction(expression: string): DynamicFormFieldFunction {
+    return <DynamicFormFieldFunction>new Function(...dynamicFormFieldExpressionArgs, `return ${ expression };`);
   }
 
   private createFieldExpressionDependencies(expression: string): DynamicFormExpressionDependency[] {
