@@ -1,27 +1,43 @@
-# DynamicForms
+# **DynamicForms**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
-## Development server
+## **Demo**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Production https://dynamic-forms.azurewebsites.net/
+- Development https://dynamic-forms.azurewebsites.net/dev/
 
-## Code scaffolding
+## **Features**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Dynamic **reactive forms** based on **JSON** definition
+- Structuring / nesting dynamic forms by 
+  - Form group
+  - Form array
+  - Form control
+- Dynamic form controls / inputs include 
+  - Checkbox
+  - Combobox
+  - Datepicker 
+  - Numberbox
+  - Radio
+  - Select 
+  - Textarea 
+  - Textbox
 
-## Build
+## **Libraries**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### **@dynamic-forms/core**
 
-## Running unit tests
+- Library includes **extensible** core interfaces, classes, components and services 
+  - Form config
+  - Form builder
+  - Form component factory
+  - Form expression builder
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### **@dynamic-forms/bootstrap**
 
-## Running end-to-end tests
+- Library for components based on **bootstrap** and **HTML5** 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### **@dynamic-forms/material** 
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Library for components based on **@angular/material** 
