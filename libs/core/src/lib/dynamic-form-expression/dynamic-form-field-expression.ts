@@ -9,8 +9,8 @@ export const dynamicFormFieldExpressionDependencyArgs = [
   { name: 'rootModel', pattern: /rootModel+[.\w]+/g }
 ];
 
-export type DynamicFormFieldFunction =
-  (model: any, parentModel: any, rootModel: any, memo: DynamicFormExpressionMemoization) => any;
+export type DynamicFormFieldFunction = (model: any, parentModel: any, rootModel: any,
+  memo: DynamicFormExpressionMemoization) => any;
 
 export class DynamicFormFieldExpression implements DynamicFormExpression<DynamicFormFieldFunction> {
   protected _memo: DynamicFormExpressionMemoization;

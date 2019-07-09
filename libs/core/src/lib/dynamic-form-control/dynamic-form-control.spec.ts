@@ -64,11 +64,13 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
 
     formControl.setValidators(null);
+    formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).toBeNull();
+    expect(formControl.control.valid).toBe(true);
   });
 
-  it('sets control validator to defined', () => {
+  it('sets control validator', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
@@ -80,8 +82,10 @@ describe('DynamicFormControl', () => {
     ];
 
     formControl.setValidators(formControlValidators);
+    formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).not.toBeNull();
+    expect(formControl.control.valid).toBe(false);
   });
 
   it('check updates control value for select options', () => {
