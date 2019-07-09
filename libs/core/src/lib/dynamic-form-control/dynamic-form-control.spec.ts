@@ -71,6 +71,17 @@ describe('DynamicFormControl', () => {
     expect(formControl.evaluators).toEqual([]);
   });
 
+  it('sets evaluators', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+    const evaluators = [ (_) => {} ];
+
+    formControl.setEvaluators(evaluators);
+
+    expect(formControl.evaluators).toEqual(evaluators);
+  });
+
   it('sets validators to empty', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
@@ -79,6 +90,22 @@ describe('DynamicFormControl', () => {
     formControl.setValidators(null);
 
     expect(formControl.validators).toEqual([]);
+  });
+
+  it('sets validators', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+    const formControlValidators = <DynamicFormControlValidator[]>[
+      {
+        key: 'required', enabled: true, value: undefined,
+        validatorFn: Validators.required, factory: _ => Validators.required
+      }
+    ];
+
+    formControl.setValidators(formControlValidators);
+
+    expect(formControl.validators).toEqual(formControlValidators);
   });
 
   it('sets control validator to null', () => {
