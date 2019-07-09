@@ -27,13 +27,16 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     });
   }
 
+  get evaluators() { return this._evaluators; }
+  get validators() { return this._validators; }
+
   setEvaluators(evaluators: DynamicFormControlEvaluator[]) {
     this._evaluators = evaluators || [];
   }
 
   setValidators(validators: DynamicFormControlValidator[]) {
     this._validators = validators || [];
-    this._control.setValidators(this.getValidators());
+    this._control.setValidators(this.getValidatorFunctions());
   }
 
   check() {
@@ -57,9 +60,9 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 
-  private getValidators() {
+  private getValidatorFunctions() {
     return this._validators.filter(validator => validator.enabled)
-      .map(validator => validator.validator);
+      .map(validator => validator.validatorFn);
   }
 
   private checkValue() {
@@ -103,7 +106,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   private checkValidators() {
     const validatorsChanged = this.validatorsChanged();
     if (validatorsChanged) {
-      this.control.setValidators(this.getValidators());
+      this.control.setValidators(this.getValidatorFunctions());
       this.control.updateValueAndValidity();
     }
   }
@@ -115,7 +118,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
       if (validator.enabled !== enabled || validator.value !== value) {
         validator.enabled = enabled;
         validator.value = value;
-        validator.validator = enabled ? validator.factory(value) : null;
+        validator.validatorFn = enabled ? validator.factory(value) : null;
         return true;
       }
       return false;

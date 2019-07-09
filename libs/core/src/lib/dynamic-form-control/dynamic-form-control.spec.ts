@@ -15,9 +15,12 @@ describe('DynamicFormControl', () => {
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
     expect(formControl.definition).toBe(definition);
+    expect(formControl.template).toBe(definition.template);
+
     expect(formControl.model).toBeNull();
     expect(formControl.control).toBeDefined();
-    expect(formControl.template).toBe(definition.template);
+    expect(formControl.evaluators).toEqual([]);
+    expect(formControl.validators).toEqual([]);
 
     expect(root.model).toEqual({ key: null });
   });
@@ -58,6 +61,26 @@ describe('DynamicFormControl', () => {
     expect(formControl.parent.model.key).toBe(obj);
   });
 
+  it('sets evaluators to empty', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    formControl.setEvaluators(null);
+
+    expect(formControl.evaluators).toEqual([]);
+  });
+
+  it('sets validators to empty', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    formControl.setValidators(null);
+
+    expect(formControl.validators).toEqual([]);
+  });
+
   it('sets control validator to null', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
@@ -77,7 +100,7 @@ describe('DynamicFormControl', () => {
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
         key: 'required', enabled: true, value: undefined,
-        validator: Validators.required, factory: _ => Validators.required
+        validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
 
@@ -164,7 +187,7 @@ describe('DynamicFormControl', () => {
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
         key: 'required', enabled: true, value: undefined,
-        validator: Validators.required, factory: _ => Validators.required
+        validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
 

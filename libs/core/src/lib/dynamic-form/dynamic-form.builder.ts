@@ -79,8 +79,8 @@ export class DynamicFormBuilder {
       const enabled = template.validation[key];
       const value = template.input[key];
       const factory = this.validationBuilder.getValidatorFactory(key);
-      const validator = enabled ? factory(value) : null;
-      return { key, enabled, value, factory, validator };
+      const validatorFn = enabled ? factory(value) : null;
+      return { key, enabled, value, factory, validatorFn };
     }
     return null;
   }

@@ -4,6 +4,6 @@ export interface DynamicFormControlValidator {
   key: string;
   enabled: boolean;
   value: any;
-  validator: ValidatorFn;
+  validatorFn: ValidatorFn;
   factory: (value: any) => ValidatorFn;
 }
