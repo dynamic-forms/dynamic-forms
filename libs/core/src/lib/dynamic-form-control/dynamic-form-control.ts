@@ -67,29 +67,6 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
 
   private checkValue() {
     this._evaluators.forEach(evaluator => evaluator(this));
-    if (this.template.input.type === 'select') {
-      if (this.template.input.multiple) {
-        this.checkOptions();
-      } else {
-        this.checkOption();
-      }
-    }
-  }
-
-  private checkOption() {
-    const hasOption = (this.template.input.options || []).some(option => {
-      if (option.items) {
-        return option.items.some(item => item.value === this.model);
-      }
-      return option.value === this.model;
-    });
-    if (!hasOption) {
-      this.control.setValue(null);
-    }
-  }
-
-  private checkOptions() {
-
   }
 
   private checkControl(): void {
