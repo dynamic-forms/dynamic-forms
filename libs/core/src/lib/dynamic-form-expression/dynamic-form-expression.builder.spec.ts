@@ -4,7 +4,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
-import { DynamicFormFieldFunction } from './dynamic-form-field-expression';
+import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
 
 describe('DynamicFormExpressionBuilder', () => {
   beforeEach(async(() => {
@@ -45,7 +45,6 @@ describe('DynamicFormExpressionBuilder', () => {
       expect(fieldExpressions).toBeDefined();
       expect(fieldExpression).toBeDefined();
       expect(fieldExpression.field).toBe(field);
-      expect(fieldExpression.deps).toEqual(['parentModel.readonly', 'rootModel.readonly']);
       expect(fieldExpression.func).toEqual(jasmine.any(Function));
       expect(fieldExpression.value).toBe(false);
 
@@ -64,7 +63,7 @@ describe('DynamicFormExpressionBuilder', () => {
         rootModel.readonly || parentModel.readonly;
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
-      const expressions = <{ [key: string]: DynamicFormFieldFunction }> {
+      const expressions = <{ [key: string]: DynamicFormFieldExpressionFunction }> {
         'readonly': func
       };
       const definition = <DynamicFormFieldDefinition>{ expressions };
@@ -78,7 +77,6 @@ describe('DynamicFormExpressionBuilder', () => {
       expect(fieldExpressions).toBeDefined();
       expect(fieldExpression).toBeDefined();
       expect(fieldExpression.field).toBe(field);
-      expect(fieldExpression.deps).toEqual([]);
       expect(fieldExpression.func).toEqual(func);
       expect(fieldExpression.value).toBe(false);
 

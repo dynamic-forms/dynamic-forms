@@ -1,7 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DynamicFormFieldEvaluator } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldEvaluator } from '../dynamic-form-field/dynamic-form-field-evaluator';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
@@ -66,7 +66,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private checkValue() {
-    this._evaluators.forEach(evaluator => evaluator(this));
+    this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 
   private checkControl(): void {

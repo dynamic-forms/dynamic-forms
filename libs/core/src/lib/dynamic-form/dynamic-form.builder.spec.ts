@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
@@ -19,6 +20,7 @@ describe('DynamicFormBuilder', () => {
       providers: [
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
+        DynamicFormEvaluationBuilder,
         DynamicFormValidationBuilder
       ]
     });

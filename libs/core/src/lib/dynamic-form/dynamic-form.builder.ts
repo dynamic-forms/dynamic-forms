@@ -5,6 +5,7 @@ import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
+import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -19,6 +20,7 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 export class DynamicFormBuilder {
   constructor(
     private expressionBuilder: DynamicFormExpressionBuilder,
+    private evaluationBuilder: DynamicFormEvaluationBuilder,
     private validationBuilder: DynamicFormValidationBuilder
   ) {}
 
@@ -69,8 +71,8 @@ export class DynamicFormBuilder {
     return this.expressionBuilder.createFieldExpressions(field);
   }
 
-  private createEvaluators(_definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
-    return [];
+  private createEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
+    return this.evaluationBuilder.getControlEvaluators(definition);
   }
 
   private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {

@@ -77,7 +77,7 @@ describe('DynamicFormControl', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
-    const evaluators = [ (_) => {} ];
+    const evaluators = [ { func: (_) => {} } ];
 
     formControl.setEvaluators(evaluators);
 
@@ -232,7 +232,7 @@ describe('DynamicFormControl', () => {
       };
       const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
       formControl.setEvaluators([
-        DynamicFormControlEvaluators.evalSelect
+        { func: DynamicFormControlEvaluators.evalSelect }
       ]);
 
       expect(formControl.model).toBe('option1');
