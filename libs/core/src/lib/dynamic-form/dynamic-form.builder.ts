@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
-import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
@@ -45,6 +45,7 @@ export class DynamicFormBuilder {
   createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
     const field = new DynamicFormControl(root, parent, definition);
     field.setFieldExpressions(this.createFieldExpressions(field));
+    field.setEvaluators(this.createEvaluators(field.definition));
     field.setValidators(this.createValidators(field.template));
     return field;
   }
@@ -66,6 +67,10 @@ export class DynamicFormBuilder {
 
   private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
     return this.expressionBuilder.createFieldExpressions(field);
+  }
+
+  private createEvaluators(_definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
+    return [];
   }
 
   private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {

@@ -1,12 +1,14 @@
 import { DynamicFormFieldFunction } from '../dynamic-form-expression/dynamic-form-field-expression';
 import { DynamicFormWrapperType } from '../dynamic-form-wrapper/dynamic-form-wrapper-type';
+import { DynamicFormFieldEvaluation } from './dynamic-form-field-evaluation';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 
-export interface DynamicFormFieldDefinition<FieldTemplate extends DynamicFormFieldTemplate = DynamicFormFieldTemplate> {
+export interface DynamicFormFieldDefinition<Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate> {
   key: string;
   type: DynamicFormFieldType;
-  wrappers?: DynamicFormWrapperType[];
-  template: FieldTemplate;
+  template: Template;
+  evaluation?: DynamicFormFieldEvaluation;
   expressions?: { [key: string]: string | DynamicFormFieldFunction };
+  wrappers?: DynamicFormWrapperType[];
 }
