@@ -19,7 +19,7 @@ export class DynamicFormEvaluationBuilder {
     return evaluators.filter(evaluator => !!evaluator);
   }
 
-  getControlEvaluationFunction(key: string, inputType: string): DynamicFormFieldEvaluatorFunction<DynamicFormControl> {
+  private getControlEvaluationFunction(key: string, inputType: string): DynamicFormFieldEvaluatorFunction<DynamicFormControl> {
     const evaluation = DynamicFormEvaluationBuilder.controlEvaluations[key];
     return evaluation && evaluation.type === inputType ? evaluation.func : null;
   }
