@@ -1,4 +1,4 @@
-import { DynamicFormFieldEvaluation } from '../dynamic-form-evaluation/dynamic-form-field-evaluation';
+import { DynamicFormFieldEvaluatorFunction } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormFieldExpressionFunction} from '../dynamic-form-expression/dynamic-form-field-expression';
 import { DynamicFormWrapperType } from '../dynamic-form-wrapper/dynamic-form-wrapper-type';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
@@ -8,7 +8,7 @@ export interface DynamicFormFieldDefinition<Template extends DynamicFormFieldTem
   key: string;
   type: DynamicFormFieldType;
   template: Template;
-  evaluation?: DynamicFormFieldEvaluation;
+  evaluations?: { key?: string, func?: DynamicFormFieldEvaluatorFunction }[];
   expressions?: { [key: string]: string | DynamicFormFieldExpressionFunction };
   wrappers?: DynamicFormWrapperType[];
 }
