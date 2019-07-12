@@ -45,6 +45,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       const evaluators = service.getControlEvaluators(definition);
 
       expect(evaluators.length).toBe(1);
+      expect(evaluators[0]).toBeTruthy();
     })
   );
 
@@ -56,7 +57,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       const evaluators = service.getControlEvaluators(definition);
 
       expect(evaluators.length).toBe(1);
-      expect(evaluators[0]).toEqual(evaluations[0].func);
+      expect(evaluators[0]).toBeTruthy();
     })
   );
 });

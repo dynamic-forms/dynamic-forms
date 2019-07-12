@@ -15,11 +15,12 @@ export class DynamicFormControlEvaluators {
   }
 
   private static selectHasOption(formControl: DynamicFormControl) {
-    return (formControl.template.input.options || []).some(option => {
+    const hasOption = (formControl.template.input.options || []).some(option => {
       if (option.items) {
         return option.items.some(item => item.value === formControl.model);
       }
       return option.value === formControl.model;
     });
+    return hasOption;
   }
 }
