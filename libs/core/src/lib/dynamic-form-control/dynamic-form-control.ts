@@ -1,16 +1,21 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DynamicFormFieldEvaluator } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
+export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = DynamicFormInput> =
+  DynamicFormFieldEvaluator<DynamicFormControl<FormInput>>;
+
 export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput> extends DynamicFormField<
   FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
 
   protected _controlValue: Subscription;
-  protected _validators: DynamicFormControlValidator[];
+  protected _evaluators: DynamicFormControlEvaluator[] = [];
+  protected _validators: DynamicFormControlValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
     super(root, parent, definition);
@@ -22,15 +27,22 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     });
   }
 
+  get evaluators() { return this._evaluators; }
+  get validators() { return this._validators; }
+
+  setEvaluators(evaluators: DynamicFormControlEvaluator[]) {
+    this._evaluators = evaluators || [];
+  }
+
   setValidators(validators: DynamicFormControlValidator[]) {
-    this._validators = validators;
-    this._control.setValidators(this.getControlValidators());
+    this._validators = validators || [];
+    this._control.setValidators(this.getValidatorFunctions());
   }
 
   check() {
-    this.checkControlValue();
-    this.checkControlStatus();
-    this.checkControlValidators();
+    this.checkValue();
+    this.checkControl();
+    this.checkValidators();
   }
 
   destroy() {
@@ -48,38 +60,16 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 
-  private getControlValidators() {
-    return (this._validators || []).filter(validator => validator.enabled)
-      .map(validator => validator.validator);
+  private getValidatorFunctions() {
+    return this._validators.filter(validator => validator.enabled)
+      .map(validator => validator.validatorFn);
   }
 
-  private checkControlValue() {
-    if (this.template.input.type === 'select') {
-      if (this.template.input.multiple) {
-        this.checkControlOptions();
-      } else {
-        this.checkControlOption();
-      }
-    }
+  private checkValue() {
+    this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 
-  private checkControlOption() {
-    const hasOption = (this.template.input.options || []).some(option => {
-      if (option.items) {
-        return option.items.some(item => item.value === this.model);
-      }
-      return option.value === this.model;
-    });
-    if (!hasOption) {
-      this.control.setValue(null);
-    }
-  }
-
-  private checkControlOptions() {
-
-  }
-
-  private checkControlStatus(): void {
+  private checkControl(): void {
     const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
       if (disabled) {
@@ -90,22 +80,22 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     }
   }
 
-  private checkControlValidators() {
+  private checkValidators() {
     const validatorsChanged = this.validatorsChanged();
     if (validatorsChanged) {
-      this.control.setValidators(this.getControlValidators());
+      this.control.setValidators(this.getValidatorFunctions());
       this.control.updateValueAndValidity();
     }
   }
 
   private validatorsChanged(): boolean {
-    return (this._validators || []).some(validator => {
+    return this._validators.some(validator => {
       const enabled = this.template.validation[validator.key];
       const value = this.template.input[validator.key];
       if (validator.enabled !== enabled || validator.value !== value) {
         validator.enabled = enabled;
         validator.value = value;
-        validator.validator = enabled ? validator.factory(value) : null;
+        validator.validatorFn = enabled ? validator.factory(value) : null;
         return true;
       }
       return false;

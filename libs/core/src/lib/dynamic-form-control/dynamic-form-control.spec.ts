@@ -1,8 +1,10 @@
 import { Validators } from '@angular/forms';
+import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlEvaluators } from './dynamic-form-control-evaluators';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
@@ -15,9 +17,12 @@ describe('DynamicFormControl', () => {
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
     expect(formControl.definition).toBe(definition);
+    expect(formControl.template).toBe(definition.template);
+
     expect(formControl.model).toBeNull();
     expect(formControl.control).toBeDefined();
-    expect(formControl.template).toBe(definition.template);
+    expect(formControl.evaluators).toEqual([]);
+    expect(formControl.validators).toEqual([]);
 
     expect(root.model).toEqual({ key: null });
   });
@@ -58,74 +63,81 @@ describe('DynamicFormControl', () => {
     expect(formControl.parent.model.key).toBe(obj);
   });
 
-  it('sets control validator to null', () => {
+  it('sets evaluators to empty', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    formControl.setEvaluators(null);
+
+    expect(formControl.evaluators).toEqual([]);
+  });
+
+  it('sets evaluators', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+    const evaluators = [ { func: (_) => {} } ];
+
+    formControl.setEvaluators(evaluators);
+
+    expect(formControl.evaluators).toEqual(evaluators);
+  });
+
+  it('sets validators to empty', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
     formControl.setValidators(null);
 
-    expect(formControl.control.validator).toBeNull();
+    expect(formControl.validators).toEqual([]);
   });
 
-  it('sets control validator to defined', () => {
+  it('sets validators', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
         key: 'required', enabled: true, value: undefined,
-        validator: Validators.required, factory: _ => Validators.required
+        validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
 
     formControl.setValidators(formControlValidators);
 
-    expect(formControl.control.validator).not.toBeNull();
+    expect(formControl.validators).toEqual(formControlValidators);
   });
 
-  it('check updates control value for select options', () => {
-    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {
-      'key': 'option1'
-    });
-    const definition = <DynamicFormControlDefinition>{
-      key: 'key',
-      template: {
-        input: {
-          type: 'select',
-          options: <any[]>[
-            { value: 'option1', label: 'Option1' },
-            { value: 'option2', label: 'Option2' },
-            {
-              label: 'Option Group',
-              items: [
-                { value: 'option3', label: 'Option3' },
-                { value: 'option4', label: 'Option4' }
-              ]
-            }
-          ]
-        }
-      }
-    };
+  it('sets control validator to null', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
-    expect(formControl.model).toBe('option1');
-    expect(formControl.control.value).toBe('option1');
+    formControl.setValidators(null);
+    formControl.control.updateValueAndValidity();
 
-    formControl.control.setValue('option3');
-    formControl.check();
+    expect(formControl.control.validator).toBeNull();
+    expect(formControl.control.valid).toBe(true);
+  });
 
-    expect(formControl.model).toBe('option3');
-    expect(formControl.control.value).toBe('option3');
-
-    formControl.template.input.options = <any[]>[
-      { value: 'option1', label: 'Option1' },
-      { value: 'option2', label: 'Option2' }
+  it('sets control validator', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+    const formControlValidators = <DynamicFormControlValidator[]>[
+      {
+        key: 'required', enabled: true, value: undefined,
+        validatorFn: Validators.required, factory: _ => Validators.required
+      }
     ];
-    formControl.check();
 
-    expect(formControl.model).toBeNull();
-    expect(formControl.control.value).toBeNull();
+    formControl.setValidators(formControlValidators);
+    formControl.control.updateValueAndValidity();
+
+    expect(formControl.control.validator).not.toBeNull();
+    expect(formControl.control.valid).toBe(false);
   });
 
   it('check updates control disabled', () => {
@@ -160,7 +172,7 @@ describe('DynamicFormControl', () => {
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
         key: 'required', enabled: true, value: undefined,
-        validator: Validators.required, factory: _ => Validators.required
+        validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
 
@@ -192,5 +204,54 @@ describe('DynamicFormControl', () => {
     formControl.destroy();
 
     expect(formControl).toBeDefined();
+  });
+
+  describe('DynamicFormSelect', () => {
+    it('check updates model for select options', () => {
+      const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {
+        'key': 'option1'
+      });
+      const definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
+        key: 'key',
+        template: {
+          input: {
+            type: 'select',
+            options: [
+              { value: 'option1', label: 'Option1' },
+              { value: 'option2', label: 'Option2' },
+              {
+                label: 'Option Group',
+                items: [
+                  { value: 'option3', label: 'Option3' },
+                  { value: 'option4', label: 'Option4' }
+                ]
+              }
+            ]
+          }
+        }
+      };
+      const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
+      formControl.setEvaluators([
+        { func: DynamicFormControlEvaluators.evalSelect }
+      ]);
+
+      expect(formControl.model).toBe('option1');
+      expect(formControl.control.value).toBe('option1');
+
+      formControl.control.setValue('option3');
+      formControl.check();
+
+      expect(formControl.model).toBe('option3');
+      expect(formControl.control.value).toBe('option3');
+
+      formControl.template.input.options = [
+        { value: 'option1', label: 'Option1' },
+        { value: 'option2', label: 'Option2' }
+      ];
+      formControl.check();
+
+      expect(formControl.model).toBeNull();
+      expect(formControl.control.value).toBeNull();
+    });
   });
 });

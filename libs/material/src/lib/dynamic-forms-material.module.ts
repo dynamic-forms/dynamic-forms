@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormComponent } from '@dynamic-forms/core';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
@@ -20,7 +21,7 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
     MatDynamicFormValidationModule
   ],
   exports: [
-    DynamicFormsCoreModule
+    DynamicFormComponent
   ]
 })
 export class MatDynamicFormsModule {

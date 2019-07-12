@@ -2,6 +2,7 @@ import { SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormGroupComponent } from '../dynamic-form-group/dynamic-form-group.component';
@@ -39,6 +40,7 @@ describe('DynamicFormComponent', () => {
         },
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
+        DynamicFormEvaluationBuilder,
         DynamicFormValidationBuilder,
         DynamicFormValidationService
       ]
@@ -99,7 +101,7 @@ describe('DynamicFormComponent', () => {
     const definitionUpdated = <DynamicFormDefinition>{ fields: [] };
 
     component.definition = definitionUpdated;
-    component.ngOnChanges({ model: new SimpleChange(definition, definitionUpdated, false) });
+    component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
 
     expect(component.formField.model).toBe(model);
     expect(component.formField.definition).toBe(definitionUpdated);

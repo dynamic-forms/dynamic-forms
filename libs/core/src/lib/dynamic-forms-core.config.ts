@@ -1,5 +1,6 @@
 import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-array.component';
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldComponent } from './dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormGroupComponent } from './dynamic-form-group/dynamic-form-group.component';
@@ -53,6 +54,7 @@ export const dynamicFormsCoreEntryComponents = [
 export const dynamicFormsCoreServices = [
   DynamicFormBuilder,
   DynamicFormExpressionBuilder,
+  DynamicFormEvaluationBuilder,
   DynamicFormValidationBuilder,
   DynamicFormValidationService,
   DynamicFormComponentFactory

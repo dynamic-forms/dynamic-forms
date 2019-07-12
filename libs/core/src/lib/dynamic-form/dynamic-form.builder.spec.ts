@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
@@ -19,6 +20,7 @@ describe('DynamicFormBuilder', () => {
       providers: [
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
+        DynamicFormEvaluationBuilder,
         DynamicFormValidationBuilder
       ]
     });
@@ -33,9 +35,10 @@ describe('DynamicFormBuilder', () => {
       expect(form.root).toBeNull();
       expect(form.parent).toBeNull();
       expect(form.definition).toBe(definition);
+      expect(form.template).toBe(definition.template);
+
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
-      expect(form.template).toBe(definition.template);
       expect(form.fields).toBeDefined();
     })
   );
@@ -88,8 +91,9 @@ describe('DynamicFormBuilder', () => {
       expect(formGroup.root).toBe(form);
       expect(formGroup.parent).toBe(form);
       expect(formGroup.definition).toBe(definition);
-      expect(formGroup.control).toBeDefined();
       expect(formGroup.template).toBe(definition.template);
+
+      expect(formGroup.control).toBeDefined();
       expect(formGroup.fields).toBeDefined();
     })
   );
@@ -104,8 +108,9 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.root).toBe(form);
       expect(formArray.parent).toBe(form);
       expect(formArray.definition).toBe(definition);
-      expect(formArray.control).toBeDefined();
       expect(formArray.template).toBe(definition.template);
+
+      expect(formArray.control).toBeDefined();
       expect(formArray.fields).toBeDefined();
     })
   );
@@ -120,9 +125,10 @@ describe('DynamicFormBuilder', () => {
       expect(formControl.root).toBe(form);
       expect(formControl.parent).toBe(form);
       expect(formControl.definition).toBe(definition);
+      expect(formControl.template).toBe(definition.template);
+
       expect(formControl.control).toBeDefined();
       expect(formControl.control.validator).toBeNull();
-      expect(formControl.template).toBe(definition.template);
     })
   );
 

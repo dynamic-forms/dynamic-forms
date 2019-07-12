@@ -37,8 +37,7 @@ describe('DynamicFormFieldExpression', () => {
       expressionChanges
     };
     const func = getCurrencyOptions;
-    const deps = [];
-    const expression = new DynamicFormFieldExpressionTesting('key', field, func, deps);
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
     const fieldExpressionChanges = [];
     field.expressionChanges.subscribe(change => {

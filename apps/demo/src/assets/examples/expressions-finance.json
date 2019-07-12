@@ -50,7 +50,10 @@
           },
           "expressions": {
             "input.options": "(function(currencyPair) { if (memo.currencyPair === currencyPair) { return memo.previousValue; } memo.currencyPair = currencyPair; if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(4,7); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting } ]; } return []; })(parentModel.currencyPair)"
-          }
+          },
+          "evaluations": [ 
+            { "key": "select" }           
+          ]
         },
         {
           "key": "notional",
