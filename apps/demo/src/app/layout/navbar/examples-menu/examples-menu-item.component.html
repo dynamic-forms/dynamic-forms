@@ -1,0 +1,18 @@
+<ng-container *ngIf="menuItem.items">
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">
+    {{ menuItem.label }}
+  </button>
+</ng-container>
+<ng-container *ngIf="menuItem.id">
+  <a mat-menu-item [routerLink]="[ baseUrl, menuItem.id ]">
+    {{ menuItem.label }}
+  </a>
+</ng-container>
+
+<mat-menu #subMenu="matMenu">
+  <ng-container *ngFor="let menuItem of menuItem.items">
+    <app-examples-menu-item [baseUrl]="baseUrl" [menuItem]="menuItem">
+    </app-examples-menu-item>      
+  </ng-container>   
+</mat-menu>
+
