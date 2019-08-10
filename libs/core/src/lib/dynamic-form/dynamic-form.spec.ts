@@ -42,4 +42,18 @@ describe('DynamicForm', () => {
 
     expect(form.readonly).toBe(true);
   });
+
+  it('hidden returns false', () => {
+    const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
+    const form = new DynamicForm(definition, {});
+
+    expect(form.hidden).toBe(false);
+  });
+
+  it('hidden returns true if template is hidden', () => {
+    const definition = <DynamicFormDefinition>{ template: { hidden: true }, fields: [] };
+    const form = new DynamicForm(definition, {});
+
+    expect(form.hidden).toBe(true);
+  });
 });

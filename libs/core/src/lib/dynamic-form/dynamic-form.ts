@@ -6,5 +6,6 @@ export class DynamicForm extends DynamicFormGroup {
     super(null, null, definition, model);
   }
 
+  get hidden() { return this.template.hidden || false; }
   get readonly() { return this.template.readonly || false; }
 }

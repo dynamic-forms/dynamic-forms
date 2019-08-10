@@ -33,6 +33,7 @@ export abstract class DynamicFormField<
   get control() { return this._control; }
   get model() { return this._model; }
 
+  get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
   get expressionChangesSubject() { return this._expressionChangesSubject; }
