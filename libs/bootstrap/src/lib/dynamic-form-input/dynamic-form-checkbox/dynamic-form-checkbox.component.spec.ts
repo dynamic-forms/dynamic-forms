@@ -56,16 +56,13 @@ describe('DynamicFormCheckboxComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('div.form-check'));
     const inputDebugElement = checkDebugElement.query(By.css('input.form-check-input'));
-    const checkElement = <HTMLElement>checkDebugElement.nativeElement;
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(checkElement.className).not.toContain('readonly');
     expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(checkElement.className).toContain('readonly');
     expect(inputElement.readOnly).toBe(true);
   });
 });

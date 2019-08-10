@@ -106,7 +106,7 @@ describe('DynamicFormSelectComponent', () => {
     expect(optionGroupElements[1].label).toBe('group2');
   });
 
-  it('sets dynamic form control to readonly', () => {
+  /*it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const fieldElement = <HTMLSelectElement>fieldDebugElement.nativeElement;
 
@@ -116,5 +116,5 @@ describe('DynamicFormSelectComponent', () => {
     fixture.detectChanges();
 
     expect(fieldElement.className).toContain('readonly');
-  });
+  });*/
 });

@@ -63,16 +63,13 @@ describe('DynamicFormTextareaComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(fieldElement.className).not.toContain('readonly');
     expect(textareaElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(fieldElement.className).toContain('readonly');
     expect(textareaElement.readOnly).toBe(true);
   });
 });
