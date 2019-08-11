@@ -1,4 +1,4 @@
-<div class="dynamic-form-control form-group" [class.hidden]="template.hidden">
+<div class="dynamic-form-control form-group" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
   <ng-template #fieldContainer></ng-template>
   <bs-dynamic-form-validation [field]="field">
   </bs-dynamic-form-validation>

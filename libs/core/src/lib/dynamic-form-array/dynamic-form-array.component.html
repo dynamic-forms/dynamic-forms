@@ -1,4 +1,4 @@
-<div class="dynamic-form-array" [class.hidden]="template.hidden">
+<div class="dynamic-form-array" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
   <div class="dynamic-form-array-label">{{ template.label }}</div>
   <dynamic-form-validation [field]="field"></dynamic-form-validation>
 </div>

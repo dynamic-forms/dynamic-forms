@@ -2,18 +2,54 @@
   .dynamic-form {
     margin: 0 10px;
 
-    .mat-form-field, .mat-checkbox, .mat-radio-group {
-      &.readonly {
-        pointer-events: none;
+    .dynamic-form-group {
+      margin: 10px 0 20px 0;
+
+      &.hidden {
+        display: none;
       }
     }
+  
+    .dynamic-form-array {
+      margin: 10px 0 20px 0;
 
-    .mat-radio-group {
-      display: inline-flex;
+      &.hidden {
+        display: none;
+      }
+    }
+    
+    .dynamic-form-control {
+      display: flex;
       flex-direction: column;
       
-      .mat-radio-button {
-        margin: 5px 0;
+      &.hidden {
+        display: none;
+      }
+      
+      &.readonly {
+        .mat-form-field, .mat-checkbox, .mat-radio-group {
+          pointer-events: none;
+        }
+      }
+
+      .mat-radio-group-label {
+        display: block;
+        color: rgba(0,0,0,.6);
+        font-size: 75%;
+      }
+
+      .mat-radio-group {
+        display: inline-flex;
+        flex-direction: column;
+        
+        .mat-radio-button {
+          margin: 5px 0;
+        }
+      }
+
+      .mat-checkbox-error {
+        font-size: 75%;
+        margin-top: .66667em;
       }
     }
   }

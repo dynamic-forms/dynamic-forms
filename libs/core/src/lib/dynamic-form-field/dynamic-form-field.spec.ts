@@ -52,6 +52,30 @@ describe('DynamicFormField', () => {
     expect(formField.path).toBe('path.key');
   });
 
+  it('hidden returns false', () => {
+    const parent = <DynamicFormField>{ path: 'path' };
+    const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
+    const formField = new DynamicFormFieldTest(null, parent, definition);
+
+    expect(formField.hidden).toBe(false);
+  });
+
+  it('hidden returns true if parent is hidden', () => {
+    const parent = <DynamicFormField>{ path: 'path', hidden: true  };
+    const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
+    const formField = new DynamicFormFieldTest(null, parent, definition);
+
+    expect(formField.hidden).toBe(true);
+  });
+
+  it('hidden returns true if template is hidden', () => {
+    const parent = <DynamicFormField>{ path: 'path' };
+    const definition = <DynamicFormFieldDefinition>{ key: 'key', template: { hidden: true } };
+    const formField = new DynamicFormFieldTest(null, parent, definition);
+
+    expect(formField.hidden).toBe(true);
+  });
+
   it('readonly returns false', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
