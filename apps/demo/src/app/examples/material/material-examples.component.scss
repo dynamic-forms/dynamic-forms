@@ -35,7 +35,7 @@
       .mat-radio-group-label {
         display: block;
         color: rgba(0,0,0,.6);
-        font-size: 12px;
+        font-size: 75%;
       }
 
       .mat-radio-group {
@@ -45,6 +45,11 @@
         .mat-radio-button {
           margin: 5px 0;
         }
+      }
+
+      .mat-checkbox-error {
+        font-size: 75%;
+        margin-top: .66667em;
       }
     }
   }

@@ -46,6 +46,10 @@
   
     .dynamic-form-validation {
       color: #f44336;
+
+      &.invalid-feedback {
+        display: block;
+      }
     }
   }
 }
