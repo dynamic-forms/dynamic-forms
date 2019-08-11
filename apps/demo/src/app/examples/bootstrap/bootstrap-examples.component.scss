@@ -8,21 +8,6 @@
 
     margin: 0 10px;
 
-    .form-control.readonly {
-      pointer-events: none;
-      background-color: #e9ecef;
-      opacity: 1; 
-    } 
-
-    .form-check.readonly {
-      pointer-events: none;
-
-      input[type=checkbox], input[type=radio] {
-        background-color: #e9ecef;
-        opacity: 1;  
-      }
-    }
-
     .dynamic-form-group {
       margin: 10px 0 20px 0;
     }
@@ -33,6 +18,18 @@
   
     .dynamic-form-control {
       margin: 10px 0;
+
+      &.readonly {
+        label {
+          pointer-events: none;
+        }
+
+        input, select, textarea {
+          pointer-events: none;
+          background-color: #e9ecef;
+          opacity: 1;  
+        }
+      }
     }
   
     .dynamic-form-validation {
