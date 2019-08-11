@@ -6,8 +6,7 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
 
 @Component({
   selector: 'dynamic-form-validation',
-  templateUrl: './dynamic-form-validation.component.html',
-  styleUrls: ['./dynamic-form-validation.component.scss']
+  templateUrl: './dynamic-form-validation.component.html'
 })
 export class DynamicFormValidationComponent<Field extends DynamicFormField = DynamicFormField>
   extends DynamicFormFieldWrapper<Field> {

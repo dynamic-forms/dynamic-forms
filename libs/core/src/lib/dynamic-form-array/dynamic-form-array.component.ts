@@ -4,8 +4,7 @@ import { DynamicFormArray } from './dynamic-form-array';
 
 @Component({
   selector: 'dynamic-form-array',
-  templateUrl: './dynamic-form-array.component.html',
-  styleUrls: ['./dynamic-form-array.component.scss']
+  templateUrl: './dynamic-form-array.component.html'
 })
 export class DynamicFormArrayComponent extends DynamicFormFieldWrapper<DynamicFormArray> {
   get fields() { return this.field.fields; }

@@ -71,18 +71,6 @@ describe('DynamicFormGroupComponent', () => {
     expect(formGroupValidationComponent.errors).toBe(component.control.errors);
   });
 
-  it('sets dynamic form group to readonly', () => {
-    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
-
-    expect(formGroupElement.className).not.toContain('readonly');
-
-    component.template.readonly = true;
-    fixture.detectChanges();
-
-    expect(formGroupElement.className).toContain('readonly');
-  });
-
   it('sets dynamic form group to hidden', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
@@ -93,5 +81,17 @@ describe('DynamicFormGroupComponent', () => {
     fixture.detectChanges();
 
     expect(formGroupElement.className).toContain('hidden');
+  });
+
+  it('sets dynamic form group to readonly', () => {
+    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
+    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+
+    expect(formGroupElement.className).not.toContain('readonly');
+
+    component.template.readonly = true;
+    fixture.detectChanges();
+
+    expect(formGroupElement.className).toContain('readonly');
   });
 });

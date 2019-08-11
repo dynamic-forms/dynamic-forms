@@ -84,18 +84,6 @@ describe('BsDynamicFormControlComponent', () => {
     expect(component.hints).toBeDefined();
   });
 
-  it('sets dynamic form control to readonly', () => {
-    const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
-    const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
-
-    expect(formControlElement.className).not.toContain('readonly');
-
-    component.template.readonly = true;
-    fixture.detectChanges();
-
-    expect(formControlElement.className).toContain('readonly');
-  });
-
   it('sets dynamic form control to hidden', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
@@ -106,5 +94,17 @@ describe('BsDynamicFormControlComponent', () => {
     fixture.detectChanges();
 
     expect(formControlElement.className).toContain('hidden');
+  });
+
+  it('sets dynamic form control to readonly', () => {
+    const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
+    const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
+
+    expect(formControlElement.className).not.toContain('readonly');
+
+    component.template.readonly = true;
+    fixture.detectChanges();
+
+    expect(formControlElement.className).toContain('readonly');
   });
 });

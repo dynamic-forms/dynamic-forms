@@ -10,15 +10,27 @@
 
     .dynamic-form-group {
       margin: 10px 0 20px 0;
+
+      &.hidden {
+        display: none;
+      }
     }
   
     .dynamic-form-array {
       margin: 10px 0 20px 0;
+
+      &.hidden {
+        display: none;
+      }
     }
   
     .dynamic-form-control {
       margin: 10px 0;
 
+      &.hidden {
+        display: none;
+      }
+      
       &.readonly {
         label {
           pointer-events: none;
@@ -33,7 +45,7 @@
     }
   
     .dynamic-form-validation {
-      color: red;
+      color: #f44336;
     }
   }
 }

@@ -4,13 +4,28 @@
 
     .dynamic-form-group {
       margin: 10px 0 20px 0;
+
+      &.hidden {
+        display: none;
+      }
     }
   
     .dynamic-form-array {
       margin: 10px 0 20px 0;
+
+      &.hidden {
+        display: none;
+      }
     }
     
     .dynamic-form-control {
+      display: flex;
+      flex-direction: column;
+      
+      &.hidden {
+        display: none;
+      }
+      
       &.readonly {
         .mat-form-field, .mat-checkbox, .mat-radio-group {
           pointer-events: none;
