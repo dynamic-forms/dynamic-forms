@@ -79,4 +79,16 @@ describe('DynamicFormArrayComponent', () => {
 
     expect(formArrayElement.className).toContain('hidden');
   });
+
+  it('sets dynamic form array to readonly', () => {
+    const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
+    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+
+    expect(formArrayElement.className).not.toContain('readonly');
+
+    component.template.readonly = true;
+    fixture.detectChanges();
+
+    expect(formArrayElement.className).toContain('readonly');
+  });
 });

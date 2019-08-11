@@ -4,8 +4,7 @@ import { DynamicFormGroup } from './dynamic-form-group';
 
 @Component({
   selector: 'dynamic-form-group',
-  templateUrl: './dynamic-form-group.component.html',
-  styleUrls: ['./dynamic-form-group.component.scss']
+  templateUrl: './dynamic-form-group.component.html'
 })
 export class DynamicFormGroupComponent extends DynamicFormFieldWrapper<DynamicFormGroup> {
   get fields() { return this.field.fields; }

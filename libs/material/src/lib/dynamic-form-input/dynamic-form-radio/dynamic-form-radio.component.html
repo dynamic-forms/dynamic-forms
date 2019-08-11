@@ -1,7 +1,11 @@
-<mat-radio-group [ngClass]="{ 'readonly': field.readonly }" [formControl]="control">
+<label class="mat-radio-group-label">
+  {{ template.label }}
+  <span *ngIf="validation?.required"> *</span>
+</label>
+<mat-radio-group [formControl]="control">
   <ng-container *ngFor="let option of input.options; let i = index">
     <mat-radio-button [id]="id + '-' + i" color="primary" [value]="option.value">
       {{ option.label }}
     </mat-radio-button>      
   </ng-container>
-</mat-radio-group>
+</mat-radio-group> 

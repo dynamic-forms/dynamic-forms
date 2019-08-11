@@ -63,16 +63,13 @@ describe('DynamicFormDatepickerComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(fieldElement.className).not.toContain('readonly');
     expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(fieldElement.className).toContain('readonly');
     expect(inputElement.readOnly).toBe(true);
   });
 });

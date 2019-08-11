@@ -68,19 +68,14 @@ describe('DynamicFormRadioComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const checkDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
     const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
-    const checkElements = <HTMLDivElement[]>checkDebugElements.map(elem => elem.nativeElement);
     const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
 
-    expect(checkElements[0].className).not.toContain('readonly');
-    expect(checkElements[1].className).not.toContain('readonly');
     expect(inputElements[0].readOnly).not.toBe(true);
     expect(inputElements[1].readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(checkElements[0].className).toContain('readonly');
-    expect(checkElements[1].className).toContain('readonly');
     expect(inputElements[0].readOnly).toBe(true);
     expect(inputElements[1].readOnly).toBe(true);
   });

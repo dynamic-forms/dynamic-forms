@@ -3,8 +3,7 @@ import { DynamicFormValidationComponent, DynamicFormValidationService } from '@d
 
 @Component({
   selector: 'mat-dynamic-form-validation',
-  templateUrl: './dynamic-form-validation.component.html',
-  styleUrls: ['./dynamic-form-validation.component.scss']
+  templateUrl: './dynamic-form-validation.component.html'
 })
 export class MatDynamicFormValidationComponent extends DynamicFormValidationComponent {
   constructor(protected validationService: DynamicFormValidationService) {

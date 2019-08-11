@@ -62,16 +62,4 @@ describe('DynamicFormRadioComponent', () => {
     expect(inputElements[1].type).toBe('radio');
     expect(labelElements[1].innerText).toBe('label2');
   });
-
-  it('sets dynamic form control to readonly', () => {
-    const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
-    const radioElement = <HTMLElement>radioDebugElement.nativeElement;
-
-    expect(radioElement.className).not.toContain('readonly');
-
-    component.template.readonly = true;
-    fixture.detectChanges();
-
-    expect(radioElement.className).toContain('readonly');
-  });
 });

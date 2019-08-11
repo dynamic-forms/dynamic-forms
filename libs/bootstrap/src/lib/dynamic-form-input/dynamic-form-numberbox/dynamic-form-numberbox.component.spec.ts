@@ -49,13 +49,11 @@ describe('DynamicFormNumberboxComponent', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(inputElement.className).not.toContain('readonly');
     expect(inputElement.readOnly).not.toBe(true);
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(inputElement.className).toContain('readonly');
     expect(inputElement.readOnly).toBe(true);
   });
 });

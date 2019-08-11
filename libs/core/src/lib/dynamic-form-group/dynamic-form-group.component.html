@@ -1,4 +1,4 @@
-<div class="dynamic-form-group" [class.hidden]="template.hidden">
+<div class="dynamic-form-group" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
   <div class="dynamic-form-group-label">{{ template.label }}</div>
   <dynamic-form-field *ngFor="let field of fields" [field]="field"></dynamic-form-field>
   <dynamic-form-validation [field]="field"></dynamic-form-validation>

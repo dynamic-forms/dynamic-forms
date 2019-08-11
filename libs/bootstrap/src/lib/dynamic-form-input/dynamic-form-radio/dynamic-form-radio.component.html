@@ -1,5 +1,5 @@
 <ng-container *ngFor="let option of input.options; let i = index">
-  <div class="form-check" [ngClass]="{ 'readonly': field.readonly }" >
+  <div class="form-check">
     <input class="form-check-input" [id]="id + '-' + i" type="radio" [readonly]="field.readonly" 
       [value]="option.value" [formControl]="control" />
     <label class="form-check-label" [for]="id + '-' + i">{{ option.label }}</label>

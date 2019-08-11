@@ -4,8 +4,7 @@ import { MatDynamicFormInputComponent } from '../mat-dynamic-form-input.componen
 
 @Component({
   selector: 'mat-dynamic-form-checkbox',
-  templateUrl: './dynamic-form-checkbox.component.html',
-  styleUrls: ['./dynamic-form-checkbox.component.scss']
+  templateUrl: './dynamic-form-checkbox.component.html'
 })
 export class DynamicFormCheckboxComponent extends MatDynamicFormInputComponent<DynamicFormCheckbox> {
   constructor(protected validationService: DynamicFormValidationService) {
