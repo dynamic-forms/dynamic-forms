@@ -42,4 +42,16 @@ export class DynamicFormComponent implements OnChanges, OnDestroy, DoCheck {
   ngOnSubmit() {
     this.formSubmit.emit({ value: this.formGroup.value, model: this.model });
   }
+
+  validate() {
+    if (this._formField) {
+      this._formField.control.markAllAsTouched();
+    }
+  }
+
+  reset() {
+    if (this._formField) {
+      this._formField.control.reset();
+    }
+  }
 }

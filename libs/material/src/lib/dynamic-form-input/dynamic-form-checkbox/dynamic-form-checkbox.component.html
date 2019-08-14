@@ -1,8 +1,10 @@
-<mat-checkbox [id]="id" color="primary" [required]="validation?.required" [formControl]="control">
-  {{ template.label }}<span *ngIf="validation?.required"> *</span>
-</mat-checkbox>
-<div *ngIf="control.touched && control.errors" class="mat-checkbox-error">
-  <div class="mat-error">{{ errorMessage }}</div>
+<div class="mat-form-field-simple" [ngClass]="{ 'mat-form-field-simple-invalid': control.touched && control.errors }">
+  <mat-checkbox [id]="id" color="primary" [required]="validation?.required" [formControl]="control">
+    {{ template.label }}<span *ngIf="validation?.required"> *</span>
+  </mat-checkbox>
+  <div class="mat-form-field-simple-info">
+    <div *ngIf="control.touched && control.errors" class="mat-error">{{ errorMessage }}</div>
+  </div>
 </div>
 
 
