@@ -32,24 +32,41 @@
         }
       }
 
-      .mat-radio-group-label {
-        display: block;
-        color: rgba(0,0,0,.6);
-        font-size: 75%;
-      }
+      .mat-form-field-simple {
+        padding-top: .75em;
 
-      .mat-radio-group {
-        display: inline-flex;
-        flex-direction: column;
+        .mat-form-field-simple-label {
+          display: block;
+          color: rgba(0,0,0,.6);
+          font-size: 75%;
+        }
+
+        &.mat-form-field-simple-invalid {
+          .mat-form-field-simple-label {
+            color: #f44336;
+          }
+        }
         
-        .mat-radio-button {
-          margin: 5px 0;
+        .mat-radio-group {
+          display: inline-flex;
+          flex-direction: column;
+          
+          .mat-radio-button {
+            margin: 5px 0;
+          }
+        }
+
+        .mat-form-field-simple-info {
+          font-size: 75%;
+          margin-top: .66667em;
+          height: 1.34375em;
         }
       }
+    }
 
-      .mat-checkbox-error {
-        font-size: 75%;
-        margin-top: .66667em;
+    .dynamic-form-actions {
+      button {
+        margin-right: 10px;
       }
     }
   }

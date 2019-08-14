@@ -1,10 +1,14 @@
 :host ::ng-deep {
   .dynamic-form {
+    $blue: #3f51b5;
+    $red: #f44336;
+
     @import "node_modules/bootstrap/scss/functions";
     @import "node_modules/bootstrap/scss/variables";
     @import "node_modules/bootstrap/scss/mixins";
     @import "node_modules/bootstrap/scss/reboot";
     @import "node_modules/bootstrap/scss/forms";
+    @import "node_modules/bootstrap/scss/buttons";
 
     margin: 0 10px;
 
@@ -38,17 +42,23 @@
 
         input, select, textarea {
           pointer-events: none;
-          background-color: #e9ecef;
+          background-color: $gray-200;
           opacity: 1;  
         }
       }
     }
   
     .dynamic-form-validation {
-      color: #f44336;
-
       &.invalid-feedback {
         display: block;
+      }
+    }
+
+    .dynamic-form-actions {
+      margin-bottom: 5px;
+
+      button {
+        margin-right: 10px;
       }
     }
   }
