@@ -6,7 +6,8 @@
       "template": {
         "label": "Checkbox",
         "input": {
-          "type": "checkbox"
+          "type": "checkbox",
+          "defaultValue": true
         },
         "validation": {
           "required": true
@@ -21,6 +22,7 @@
         "input": {
           "type": "combobox",
           "placeholder": "Enter a text",
+          "defaultValue": "Value1",
           "options": [
             "Value1",
             "Value2",
@@ -45,7 +47,8 @@
         "label": "Datepicker",
         "input": {
           "type": "datepicker",
-          "placeholder": "Enter a date"
+          "placeholder": "Enter a date",
+          "defaultValue": "2019-01-01"
         },
         "validation": {
           "required": true
@@ -60,6 +63,7 @@
         "input": {
           "type": "numberbox",
           "placeholder": "Enter a number",
+          "defaultValue": 0.01,
           "min": -5,
           "max": 5
         },
@@ -77,6 +81,7 @@
         "label": "Radio",
         "input": {
           "type": "radio",
+          "defaultValue": 2,
           "options": [
             {
               "value": 1,
@@ -101,6 +106,7 @@
         "input": {
           "type": "select",
           "placeholder": "Select an option",
+          "defaultValue": 1,
           "options": [
             {
               "value": 1,
@@ -124,7 +130,8 @@
         "label": "Textarea",
         "input": {
           "type": "textarea",
-          "placeholder": "Enter a text"
+          "placeholder": "Enter a text",
+          "defaultValue": "Text line 1\nText line 2"
         },
         "validation": {
           "required": true
@@ -139,8 +146,9 @@
         "input": {
           "type": "textbox",
           "placeholder": "Enter a text",
+          "defaultValue": "Text 1, Text 2",
           "minLength": 5,
-          "maxLength": 10
+          "maxLength": 20
         },
         "validation": {
           "required": true,
@@ -157,7 +165,8 @@
         "input": {
           "type": "textbox",
           "inputType": "email",
-          "placeholder": "Enter an email"
+          "placeholder": "Enter an email",
+          "defaultValue": "user@gmail.com"
         },
         "validation": {
           "required": true,
@@ -174,26 +183,12 @@
           "type": "textbox",
           "inputType": "password",
           "placeholder": "Enter a password",
+          "defaultValue": "Test1234!",
           "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
         },
         "validation": {
           "required": true,
           "pattern": true
-        }
-      }
-    },
-    {
-      "key": "search",
-      "type": "control",
-      "template": {
-        "label": "Search",
-        "input": {
-          "type": "textbox",
-          "inputType": "search",
-          "placeholder": "Enter a search text"
-        },
-        "validation": {
-          "required": true
         }
       }
     }

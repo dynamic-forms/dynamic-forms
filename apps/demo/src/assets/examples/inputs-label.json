@@ -104,39 +104,6 @@
           "type": "textbox"
         }
       }
-    },
-    {
-      "key": "email",
-      "type": "control",
-      "template": {
-        "label": "Email",
-        "input": {
-          "type": "textbox",
-          "inputType": "email"
-        }
-      }
-    },
-    {
-      "key": "password",
-      "type": "control",
-      "template": {
-        "label": "Password",
-        "input": {
-          "type": "textbox",
-          "inputType": "password"
-        }
-      }
-    },
-    {
-      "key": "search",
-      "type": "control",
-      "template": {
-        "label": "Search",
-        "input": {
-          "type": "textbox",
-          "inputType": "search"
-        }
-      }
     }
   ]
 }

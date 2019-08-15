@@ -1,19 +1,24 @@
 <ng-container *ngIf="data$ | async as data">
   <mat-tab-group>
     <mat-tab label="Form">
-      <dynamic-form #dynamicForm [definition]="data.definition" [model]="data.model" (formSubmit)="onFormSubmit($event)">
-        <div class="dynamic-form-actions">
-          <button mat-flat-button type="button" color="primary" (click)="dynamicForm.validate()">
-            Validate
-          </button>
-          <button mat-flat-button type="reset" color="primary" (click)="dynamicForm.reset()">
-            Reset
-          </button> 
-          <button mat-flat-button type="submit" color="primary" [disabled]="!dynamicForm.formGroup.valid">
-            Submit          
-          </button>   
-        </div>
-      </dynamic-form>  
+      <div class="dynamic-form-wrapper">
+        <dynamic-form #dynamicForm [definition]="data.definition" [model]="data.model" (formSubmit)="onFormSubmit($event)">
+          <div class="dynamic-form-actions">
+            <button mat-flat-button type="submit" color="primary" [disabled]="!dynamicForm.formGroup.valid">
+              Submit          
+            </button>   
+            <button mat-flat-button type="button" color="primary" (click)="dynamicForm.validate()">
+              Validate
+            </button>
+            <button mat-flat-button type="reset" color="primary" (click)="dynamicForm.reset()">
+              Reset
+            </button> 
+            <button mat-flat-button type="button" color="primary" (click)="dynamicForm.resetDefault()">
+              Reset default
+            </button>
+          </div>
+        </dynamic-form>  
+      </div>
     </mat-tab>
     <mat-tab label="Definition"> 
       <pre>{{ data.definition | json }}</pre>

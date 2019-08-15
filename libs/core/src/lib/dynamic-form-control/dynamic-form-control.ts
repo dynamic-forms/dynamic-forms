@@ -13,15 +13,15 @@ export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = Dyn
 export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput> extends DynamicFormField<
   FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
 
-  protected _controlValue: Subscription;
+  protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
     super(root, parent, definition);
-    this._model = this.getModel(parent, definition);
+    this._model = this.getInitialModel();
     this._control = new FormControl(this._model);
-    this._controlValue = this._control.valueChanges.subscribe(value => {
+    this._valueSubscription = this._control.valueChanges.subscribe(value => {
       this.parent.model[this.definition.key] = value;
       this._model = this.parent.model[this.definition.key];
     });
@@ -46,17 +46,32 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   destroy() {
-    this._controlValue.unsubscribe();
+    this._valueSubscription.unsubscribe();
   }
 
-  private getModel(parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>): any {
-    if (parent.model[definition.key] === undefined) {
-      parent.model[definition.key] = this.getDefaultValue(definition.template.input);
+  reset() {
+    this._control.reset(null);
+  }
+
+  resetDefault() {
+    const defaultValue = this.getDefaultValue();
+    this._control.reset(defaultValue);
+  }
+
+  validate() {
+    this._control.markAsTouched();
+  }
+
+  private getInitialModel() {
+    const key = this.definition.key;
+    if (this.parent.model[key] === undefined) {
+      this.parent.model[key] = this.getDefaultValue();
     }
-    return parent.model[definition.key];
+    return this.parent.model[key];
   }
 
-  private getDefaultValue(input: FormInput) {
+  private getDefaultValue() {
+    const input = this.definition.template.input;
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 

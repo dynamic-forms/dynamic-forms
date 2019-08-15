@@ -53,10 +53,6 @@ describe('DynamicFormComponent', () => {
 
     component.definition = definition;
     component.model = model;
-    component.ngOnChanges({
-      definition: new SimpleChange(undefined, definition, true),
-      model: new SimpleChange(undefined, model, true)
-    });
 
     fixture.detectChanges();
   }));
@@ -116,5 +112,29 @@ describe('DynamicFormComponent', () => {
       value: component.formGroup.value,
       model: component.model
     });
+  });
+
+  it('reset calls reset of form field', () => {
+    spyOn(component.formField, 'reset');
+
+    component.reset();
+
+    expect(component.formField.reset).toHaveBeenCalled();
+  });
+
+  it('resetDefault calls resetDefault of form field', () => {
+    spyOn(component.formField, 'resetDefault');
+
+    component.resetDefault();
+
+    expect(component.formField.resetDefault).toHaveBeenCalled();
+  });
+
+  it('validate calls validate of form field', () => {
+    spyOn(component.formField, 'validate');
+
+    component.validate();
+
+    expect(component.formField.validate).toHaveBeenCalled();
   });
 });
