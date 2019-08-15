@@ -29,7 +29,7 @@ describe('DynamicFormControl', () => {
 
   const defaultValues = [ 'default', 0, false, ''];
   defaultValues.forEach(defaultValue =>
-    it(`new instance with default value '${defaultValue}' for model`, () => {
+    it(`new instance sets default value '${defaultValue}' for model`, () => {
       const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
       const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: { defaultValue } } };
       const formControl = new DynamicFormControl(root, root, definition);
@@ -204,6 +204,26 @@ describe('DynamicFormControl', () => {
     formControl.destroy();
 
     expect(formControl).toBeDefined();
+  });
+
+  it('resetDefault sets default value for model', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{
+      key: 'key',
+      template: {
+        input: {}
+      },
+    };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    expect(formControl.model).toBe(null);
+    expect(formControl.parent.model.key).toBe(null);
+
+    formControl.definition.template.input.defaultValue = 'defaultValue';
+    formControl.resetDefault();
+
+    expect(formControl.model).toBe('defaultValue');
+    expect(formControl.parent.model.key).toBe('defaultValue');
   });
 
   describe('DynamicFormSelect', () => {

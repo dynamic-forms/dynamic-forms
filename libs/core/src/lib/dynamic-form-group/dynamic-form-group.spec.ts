@@ -84,6 +84,25 @@ describe('DynamicFormGroup', () => {
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
 
+  it('resetDefault calls resetDefault of all fields', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
+    const formGroup = new DynamicFormGroup(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
+      <DynamicFormField>{ definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
+    ];
+
+    spyOn(fields[0], 'resetDefault');
+    spyOn(fields[1], 'resetDefault');
+
+    formGroup.setFields(fields);
+    formGroup.resetDefault();
+
+    expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
+    expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
+  });
+
   it('check sets disabled of control', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };

@@ -47,7 +47,10 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const formArray = new DynamicFormArray(form, form, definition);
-    const fields = [<DynamicFormField>{ check: () => {} }, <DynamicFormField>{ check: () => {} }];
+    const fields = [
+      <DynamicFormField>{ check: () => {} },
+      <DynamicFormField>{ check: () => {} }
+    ];
 
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
@@ -63,7 +66,10 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const formArray = new DynamicFormArray(form, form, template);
-    const fields = [<DynamicFormField>{ destroy: () => {} }, <DynamicFormField>{ destroy: () => {} }];
+    const fields = [
+      <DynamicFormField>{ destroy: () => {} },
+      <DynamicFormField>{ destroy: () => {} }
+    ];
 
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
@@ -73,5 +79,24 @@ describe('DynamicFormArray', () => {
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+  });
+
+  it('resetDefault calls resetDefault of all fields', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
+    const formArray = new DynamicFormArray(form, form, template);
+    const fields = [
+      <DynamicFormField>{ resetDefault: () => {} },
+      <DynamicFormField>{ resetDefault: () => {} }
+    ];
+
+    spyOn(fields[0], 'resetDefault');
+    spyOn(fields[1], 'resetDefault');
+
+    formArray.setFields(fields);
+    formArray.resetDefault();
+
+    expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
+    expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
   });
 });
