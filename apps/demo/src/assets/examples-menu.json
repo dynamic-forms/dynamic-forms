@@ -24,21 +24,34 @@
           "label": "Disabled"
         },
         { 
-          "id": "inputs-validation", 
-          "label": "Validation" 
-        },
-        { 
           "id": "inputs-hints", 
           "label": "Hints" 
-        }   
+        },
+        {
+          "label": "Variations",
+          "items": [
+            {
+              "id": "inputs-variations-select",
+              "label": "Select"
+            },
+            {
+              "id": "inputs-variations-textbox",
+              "label": "Textbox"
+            }
+          ]
+        }  
       ]
     },
     {
-      "label": "Input variations",
+      "label": "Validation",
       "items": [
-        {
-          "id": "input-variations-select",
-          "label": "Select"
+        { 
+          "id": "validation-inputs", 
+          "label": "Inputs"
+        },
+        { 
+          "id": "validation-inputs-hints", 
+          "label": "Inputs with hints" 
         }
       ]
     },

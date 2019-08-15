@@ -80,42 +80,6 @@
           "placeholder": "Enter a text"
         }
       }
-    },
-    {
-      "key": "email",
-      "type": "control",
-      "template": {
-        "label": "Email",
-        "input": {
-          "type": "textbox",
-          "inputType": "email",
-          "placeholder": "Enter an email"
-        }
-      }
-    },
-    {
-      "key": "password",
-      "type": "control",
-      "template": {
-        "label": "Password",
-        "input": {
-          "type": "textbox",
-          "inputType": "password",
-          "placeholder": "Enter a password"
-        }
-      }
-    },
-    {
-      "key": "search",
-      "type": "control",
-      "template": {
-        "label": "Search",
-        "input": {
-          "type": "textbox",
-          "inputType": "search",
-          "placeholder": "Enter a search text"
-        }
-      }
     }
   ]
 }

@@ -1,19 +1,6 @@
 {
   "fields": [
     {
-      "key": "checkbox",
-      "type": "control",
-      "template": {
-        "label": "Checkbox",
-        "input": {
-          "type": "checkbox"
-        },
-        "validation": {
-          "required": true
-        }
-      }
-    },
-    {
       "key": "combobox",
       "type": "control",
       "template": {
@@ -30,14 +17,8 @@
           "maxLength": 6,
           "pattern": "^Value[0-9]$"
         },
-        "validation": {
-          "required": true,
-          "minLength": true,
-          "maxLength": true,
-          "pattern": true
-        },
         "hints": {
-          "hintStart": "Pattern: Value[0-9]"
+          "hintStart": "Enter: Value[0-9]"
         }
       }
     },
@@ -49,9 +30,6 @@
         "input": {
           "type": "datepicker",
           "placeholder": "Enter a date"
-        },
-        "validation": {
-          "required": true
         },
         "hints": {
           "hintEnd": "Click to open calendar"
@@ -69,37 +47,9 @@
           "min": -5,
           "max": 5
         },
-        "validation": {
-          "required": true,
-          "min": true,
-          "max": true
-        },
         "hints": {
           "hintStart": "Min: -5",
           "hintEnd": "Max: 5"
-        }
-      }
-    },
-    {
-      "key": "radio",
-      "type": "control",
-      "template": {
-        "label": "Radio",
-        "input": {
-          "type": "radio",
-          "options": [
-            {
-              "value": 1,
-              "label": "Option 1"
-            },
-            {
-              "value": 2,
-              "label": "Option 2"
-            }
-          ]
-        },
-        "validation": {
-          "required": true
         }
       }
     },
@@ -122,9 +72,6 @@
             }
           ]
         },
-        "validation": {
-          "required": true
-        },
         "hints": {
           "hintEnd": "Click to open selection"
         }
@@ -139,11 +86,8 @@
           "type": "textarea",
           "placeholder": "Enter a text"
         },
-        "validation": {
-          "required": true
-        },
         "hints": {
-          "hintEnd": "Press 'Enter' for line break"
+          "hintStart": "Press 'Enter' for line break"
         }
       }
     },
@@ -156,77 +100,12 @@
           "type": "textbox",
           "placeholder": "Enter a text",
           "minLength": 5,
-          "maxLength": 10
-        },
-        "validation": {
-          "required": true,
-          "minLength": true,
-          "maxLength": true
-        },
-        "hints": {
-          "hintStart": "Min 5 characters"
+          "maxLength": 20
         }
       },
       "expressions": {
-        "hints.hintEnd": "(model || \"\").length + \"\/10\""
-      }
-    },
-    {
-      "key": "email",
-      "type": "control",
-      "template": {
-        "label": "Email",
-        "input": {
-          "type": "textbox",
-          "inputType": "email",
-          "placeholder": "Enter an email"
-        },
-        "validation": {
-          "required": true,
-          "email": true
-        },
-        "hints": {
-          "hintStart": "E.g. user@gmail.com"
-        }
-      }
-    },
-    {
-      "key": "password",
-      "type": "control",
-      "template": {
-        "label": "Password",
-        "input": {
-          "type": "textbox",
-          "inputType": "password",
-          "placeholder": "Enter a password",
-          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
-        },
-        "validation": {
-          "required": true,
-          "pattern": true
-        }
-      },
-      "expressions": {
-        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/6\"",
+        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/5\"",
         "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
-      }
-    },
-    {
-      "key": "search",
-      "type": "control",
-      "template": {
-        "label": "Search",
-        "input": {
-          "type": "textbox",
-          "inputType": "search",
-          "placeholder": "Enter a search text"
-        },
-        "validation": {
-          "required": true
-        },
-        "hints": {
-          "hintStart": "E.g. angular dynamic-forms"
-        }
       }
     }
   ]
