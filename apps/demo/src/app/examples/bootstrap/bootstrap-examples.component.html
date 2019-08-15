@@ -3,15 +3,18 @@
     <mat-tab label="Form">
       <dynamic-form #dynamicForm [definition]="data.definition" [model]="data.model" (formSubmit)="onFormSubmit($event)">
         <div class="dynamic-form-actions">
+          <button class="btn btn-primary" type="submit" [disabled]="!dynamicForm.formGroup.valid">
+            Submit          
+          </button>  
           <button class="btn btn-primary" type="button" (click)="dynamicForm.validate()">
             Validate
           </button>
           <button class="btn btn-primary" type="reset" (click)="dynamicForm.reset()">
             Reset
           </button> 
-          <button class="btn btn-primary" type="submit" [disabled]="!dynamicForm.formGroup.valid">
-            Submit          
-          </button>  
+          <button class="btn btn-primary" type="button" (click)="dynamicForm.resetDefault()">
+            Reset default
+          </button> 
         </div>
       </dynamic-form>  
     </mat-tab>

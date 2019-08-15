@@ -12,6 +12,7 @@ import { DynamicFormFieldComponent } from './dynamic-form-field.component';
 class DynamicFormFieldTest extends DynamicFormField {
   check() {}
   destroy() {}
+  resetDefault() {}
 }
 
 @Component({

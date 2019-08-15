@@ -32,6 +32,10 @@ export class DynamicFormGroup extends DynamicFormField<
     this.fields.forEach(field => field.destroy());
   }
 
+  resetDefault() {
+    this.fields.forEach(field => field.resetDefault());
+  }
+
   private createModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {
     parent.model[definition.key] = parent.model[definition.key] || {};
     return parent.model[definition.key];
