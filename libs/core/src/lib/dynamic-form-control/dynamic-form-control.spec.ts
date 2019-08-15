@@ -29,7 +29,7 @@ describe('DynamicFormControl', () => {
 
   const defaultValues = [ 'default', 0, false, ''];
   defaultValues.forEach(defaultValue =>
-    it(`new instance sets default value '${defaultValue}' for model`, () => {
+    it(`new instance sets model to default value '${defaultValue}'`, () => {
       const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
       const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: { defaultValue } } };
       const formControl = new DynamicFormControl(root, root, definition);
@@ -44,6 +44,8 @@ describe('DynamicFormControl', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
+
+    spyOn(formControl.control.valueChanges, 'subscribe');
 
     formControl.control.setValue('value');
 
@@ -206,24 +208,46 @@ describe('DynamicFormControl', () => {
     expect(formControl).toBeDefined();
   });
 
-  it('resetDefault sets default value for model', () => {
+  it('reset sets model to null', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , { key: 'value' });
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    expect(formControl.model).toBe('value');
+    expect(formControl.parent.model.key).toBe('value');
+
+    formControl.reset();
+
+    expect(formControl.model).toBe(null);
+    expect(formControl.parent.model.key).toBe(null);
+
+  });
+
+  it('resetDefault sets model to default value', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const definition = <DynamicFormControlDefinition>{
-      key: 'key',
-      template: {
-        input: {}
-      },
-    };
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
     const formControl = new DynamicFormControl(root, root, definition);
 
     expect(formControl.model).toBe(null);
     expect(formControl.parent.model.key).toBe(null);
 
-    formControl.definition.template.input.defaultValue = 'defaultValue';
+    formControl.definition.template.input.defaultValue = 'value';
     formControl.resetDefault();
 
-    expect(formControl.model).toBe('defaultValue');
-    expect(formControl.parent.model.key).toBe('defaultValue');
+    expect(formControl.model).toBe('value');
+    expect(formControl.parent.model.key).toBe('value');
+  });
+
+  it('validate calls markAsTouched of control', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    spyOn(formControl.control, 'markAsTouched');
+
+    formControl.validate();
+
+    expect(formControl.control.markAsTouched).toHaveBeenCalled();
   });
 
   describe('DynamicFormSelect', () => {

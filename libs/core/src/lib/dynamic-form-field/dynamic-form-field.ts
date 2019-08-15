@@ -59,7 +59,9 @@ export abstract class DynamicFormField<
   abstract check(): void;
   abstract destroy(): void;
 
+  abstract reset(): void;
   abstract resetDefault(): void;
+  abstract validate();
 
   protected createObject(obj: any, paths: string[]) {
     return paths.reduce((result, path) => {

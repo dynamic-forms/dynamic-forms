@@ -6,7 +6,10 @@ import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 class DynamicFormFieldTest extends DynamicFormField {
   check() {}
   destroy() {}
+
+  reset() {}
   resetDefault() {}
+  validate() {}
 }
 
 describe('DynamicFormField', () => {

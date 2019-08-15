@@ -8,7 +8,10 @@
         "input": {
           "type": "checkbox",
           "defaultValue": true
-        }  
+        },
+        "validation": {
+          "required": true
+        }
       }
     },
     {
@@ -24,7 +27,16 @@
             "Value1",
             "Value2",
             "Value3"
-          ]
+          ],
+          "minLength": 5,
+          "maxLength": 6,
+          "pattern": "^Value[0-9]$"
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true,
+          "pattern": true
         }
       }
     },
@@ -37,6 +49,9 @@
           "type": "datepicker",
           "placeholder": "Enter a date",
           "defaultValue": "2019-01-01"
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -48,8 +63,15 @@
         "input": {
           "type": "numberbox",
           "placeholder": "Enter a number",
-          "defaultValue": 0.01
-        }        
+          "defaultValue": 0.01,
+          "min": -5,
+          "max": 5
+        },
+        "validation": {
+          "required": true,
+          "min": true,
+          "max": true
+        }
       }
     },
     {
@@ -70,6 +92,9 @@
               "label": "Option 2"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -80,8 +105,8 @@
         "label": "Select",
         "input": {
           "type": "select",
-          "defaultValue": 1,
           "placeholder": "Select an option",
+          "defaultValue": 1,
           "options": [
             {
               "value": 1,
@@ -92,6 +117,9 @@
               "label": "Option 2"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -104,6 +132,9 @@
           "type": "textarea",
           "placeholder": "Enter a text",
           "defaultValue": "Text line 1\nText line 2"
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -115,7 +146,49 @@
         "input": {
           "type": "textbox",
           "placeholder": "Enter a text",
-          "defaultValue": "Text 1, Text 2"
+          "defaultValue": "Text 1, Text 2",
+          "minLength": 5,
+          "maxLength": 20
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter an email",
+          "defaultValue": "user@gmail.com"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter a password",
+          "defaultValue": "Test1234!",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
         }
       }
     }

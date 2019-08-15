@@ -114,20 +114,12 @@ describe('DynamicFormComponent', () => {
     });
   });
 
-  it('validate calls markAllAsTouched of form field control', () => {
-    spyOn(component.formField.control, 'markAllAsTouched');
-
-    component.validate();
-
-    expect(component.formField.control.markAllAsTouched).toHaveBeenCalled();
-  });
-
-  it('reset calls reset of form field control', () => {
-    spyOn(component.formField.control, 'reset');
+  it('reset calls reset of form field', () => {
+    spyOn(component.formField, 'reset');
 
     component.reset();
 
-    expect(component.formField.control.reset).toHaveBeenCalled();
+    expect(component.formField.reset).toHaveBeenCalled();
   });
 
   it('resetDefault calls resetDefault of form field', () => {
@@ -136,5 +128,13 @@ describe('DynamicFormComponent', () => {
     component.resetDefault();
 
     expect(component.formField.resetDefault).toHaveBeenCalled();
+  });
+
+  it('validate calls validate of form field', () => {
+    spyOn(component.formField, 'validate');
+
+    component.validate();
+
+    expect(component.formField.validate).toHaveBeenCalled();
   });
 });

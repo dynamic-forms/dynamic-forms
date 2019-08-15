@@ -50,6 +50,10 @@
           "label": "Inputs"
         },
         { 
+          "id": "validation-inputs-default-value", 
+          "label": "Inputs with default value" 
+        },
+        { 
           "id": "validation-inputs-hints", 
           "label": "Inputs with hints" 
         }

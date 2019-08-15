@@ -140,7 +140,7 @@
           "type": "textbox",
           "placeholder": "Enter a text",
           "minLength": 5,
-          "maxLength": 10
+          "maxLength": 20
         },
         "validation": {
           "required": true,

@@ -47,11 +47,11 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   }
 
   validate() {
-    this._formField.control.markAllAsTouched();
+    this._formField.validate();
   }
 
   reset() {
-    this._formField.control.reset();
+    this._formField.reset();
   }
 
   resetDefault() {

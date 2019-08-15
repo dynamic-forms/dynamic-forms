@@ -65,6 +65,23 @@ describe('DynamicFormGroup', () => {
     expect(fields[1].check).toHaveBeenCalledTimes(1);
   });
 
+  it('check sets disabled of control', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
+    const formGroup = new DynamicFormGroup(form, form, definition);
+
+    expect(formGroup.control.disabled).toBe(false);
+
+    definition.template.disabled = true;
+    formGroup.check();
+
+    expect(formGroup.control.disabled).toBe(true);
+
+    definition.template.disabled = false;
+    formGroup.check();
+    expect(formGroup.control.disabled).toBe(false);
+  });
+
   it('destroy calls destroy of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
@@ -82,6 +99,25 @@ describe('DynamicFormGroup', () => {
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+  });
+
+  it('reset calls reset of all fields', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
+    const formGroup = new DynamicFormGroup(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ definition: { key: 'key1' }, control: new FormControl(), reset: () => {} },
+      <DynamicFormField>{ definition: { key: 'key2' }, control: new FormControl(), reset: () => {} }
+    ];
+
+    spyOn(fields[0], 'reset');
+    spyOn(fields[1], 'reset');
+
+    formGroup.setFields(fields);
+    formGroup.reset();
+
+    expect(fields[0].reset).toHaveBeenCalledTimes(1);
+    expect(fields[1].reset).toHaveBeenCalledTimes(1);
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
@@ -103,20 +139,22 @@ describe('DynamicFormGroup', () => {
     expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
   });
 
-  it('check sets disabled of control', () => {
+  it('validate calls validate of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ definition: { key: 'key1' }, control: new FormControl(), validate: () => {} },
+      <DynamicFormField>{ definition: { key: 'key2' }, control: new FormControl(), validate: () => {} }
+    ];
 
-    expect(formGroup.control.disabled).toBe(false);
+    spyOn(fields[0], 'validate');
+    spyOn(fields[1], 'validate');
 
-    definition.template.disabled = true;
-    formGroup.check();
+    formGroup.setFields(fields);
+    formGroup.validate();
 
-    expect(formGroup.control.disabled).toBe(true);
-
-    definition.template.disabled = false;
-    formGroup.check();
-    expect(formGroup.control.disabled).toBe(false);
+    expect(fields[0].validate).toHaveBeenCalledTimes(1);
+    expect(fields[1].validate).toHaveBeenCalledTimes(1);
   });
 });

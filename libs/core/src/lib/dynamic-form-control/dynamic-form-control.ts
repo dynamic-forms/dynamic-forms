@@ -13,7 +13,7 @@ export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = Dyn
 export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput> extends DynamicFormField<
   FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
 
-  protected _controlValue: Subscription;
+  protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
@@ -21,7 +21,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     super(root, parent, definition);
     this._model = this.getInitialModel();
     this._control = new FormControl(this._model);
-    this._controlValue = this._control.valueChanges.subscribe(value => {
+    this._valueSubscription = this._control.valueChanges.subscribe(value => {
       this.parent.model[this.definition.key] = value;
       this._model = this.parent.model[this.definition.key];
     });
@@ -46,12 +46,20 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   destroy() {
-    this._controlValue.unsubscribe();
+    this._valueSubscription.unsubscribe();
+  }
+
+  reset() {
+    this._control.reset(null);
   }
 
   resetDefault() {
     const defaultValue = this.getDefaultValue();
-    this._control.setValue(defaultValue);
+    this._control.reset(defaultValue);
+  }
+
+  validate() {
+    this._control.markAsTouched();
   }
 
   private getInitialModel() {
