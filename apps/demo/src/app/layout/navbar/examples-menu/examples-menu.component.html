@@ -17,10 +17,8 @@
 
   <mat-menu #examplesMenu="matMenu">
     <ng-template matMenuContent let-baseUrl="baseUrl" let-items="items">
-      <ng-container *ngFor="let item of items">
-        <app-examples-menu-item [baseUrl]="baseUrl" [menuItem]="item">
-        </app-examples-menu-item>      
-      </ng-container>
+      <app-examples-menu-item *ngFor="let item of items" [baseUrl]="baseUrl" [menuItem]="item">
+      </app-examples-menu-item>      
     </ng-template>
   </mat-menu>
 </ng-container>
