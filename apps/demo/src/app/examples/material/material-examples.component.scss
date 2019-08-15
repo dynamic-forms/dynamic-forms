@@ -1,72 +1,79 @@
 :host ::ng-deep {
-  .dynamic-form {
-    margin: 0 10px;
+  .dynamic-form-wrapper {
+    max-width: 600px;
 
-    .dynamic-form-group {
-      margin: 10px 0 20px 0;
-
-      &.hidden {
-        display: none;
-      }
-    }
-  
-    .dynamic-form-array {
-      margin: 10px 0 20px 0;
-
-      &.hidden {
-        display: none;
-      }
-    }
-    
-    .dynamic-form-control {
+    .dynamic-form {
       display: flex;
       flex-direction: column;
+      margin: 0 10px;
       
-      &.hidden {
-        display: none;
-      }
-      
-      &.readonly {
-        .mat-form-field, .mat-checkbox, .mat-radio-group {
-          pointer-events: none;
+      .dynamic-form-group {
+        margin: 10px 0 20px 0;
+  
+        &.hidden {
+          display: none;
         }
       }
-
-      .mat-form-field-simple {
-        padding-top: .75em;
-
-        .mat-form-field-simple-label {
-          display: block;
-          color: rgba(0,0,0,.6);
-          font-size: 75%;
+    
+      .dynamic-form-array {
+        margin: 10px 0 20px 0;
+  
+        &.hidden {
+          display: none;
         }
-
-        &.mat-form-field-simple-invalid {
-          .mat-form-field-simple-label {
-            color: #f44336;
-          }
+      }
+      
+      .dynamic-form-control {
+        &.hidden {
+          display: none;
         }
         
-        .mat-radio-group {
-          display: inline-flex;
-          flex-direction: column;
-          
-          .mat-radio-button {
-            margin: 5px 0;
+        &.readonly {
+          .mat-form-field, .mat-checkbox, .mat-radio-group {
+            pointer-events: none;
           }
         }
-
-        .mat-form-field-simple-info {
-          font-size: 75%;
-          margin-top: .66667em;
-          height: 1.34375em;
+  
+        .mat-form-field {
+          width: 100%;
+        }
+  
+        .mat-form-field-simple {
+          width: 100%;
+          padding-top: .75em;
+  
+          .mat-form-field-simple-label {
+            display: block;
+            color: rgba(0,0,0,.6);
+            font-size: 75%;
+          }
+  
+          &.mat-form-field-simple-invalid {
+            .mat-form-field-simple-label {
+              color: #f44336;
+            }
+          }
+          
+          .mat-radio-group {
+            display: inline-flex;
+            flex-direction: column;
+            
+            .mat-radio-button {
+              margin: 5px 0;
+            }
+          }
+  
+          .mat-form-field-simple-info {
+            font-size: 75%;
+            margin-top: .66667em;
+          }
         }
       }
-    }
-
-    .dynamic-form-actions {
-      button {
-        margin-right: 10px;
+  
+      .dynamic-form-actions {
+        button {
+          margin-right: 10px;
+        }
       }
     }
   }
