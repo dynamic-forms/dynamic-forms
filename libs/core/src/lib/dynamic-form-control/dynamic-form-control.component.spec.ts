@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
