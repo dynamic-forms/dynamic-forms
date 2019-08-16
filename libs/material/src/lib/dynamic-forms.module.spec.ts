@@ -2,8 +2,8 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
   DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
   DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { matDynamicFormConfig } from './dynamic-forms-material.config';
-import { MatDynamicFormsModule } from './dynamic-forms-material.module';
+import { matDynamicFormConfig } from './dynamic-forms.config';
+import { MatDynamicFormsModule } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {

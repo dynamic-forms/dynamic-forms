@@ -2,7 +2,6 @@ import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-arr
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
-import { DynamicFormFieldComponent } from './dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormGroupComponent } from './dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
@@ -10,9 +9,8 @@ import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-compone
 import { DynamicFormConfig } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
-export const dynamicFormsCoreConfig: DynamicFormConfig = {
+export const dynamicFormConfig: DynamicFormConfig = {
   module: 'core',
   fieldConfig: {
     types: [
@@ -38,18 +36,7 @@ export const dynamicFormsCoreConfig: DynamicFormConfig = {
   }
 };
 
-export const dynamicFormsCoreComponents = [
-  DynamicFormComponent,
-  DynamicFormFieldComponent
-];
-
-export const dynamicFormsCoreEntryComponents = [
-  DynamicFormGroupComponent,
-  DynamicFormArrayComponent,
-  DynamicFormControlComponent
-];
-
-export const dynamicFormsCoreServices = [
+export const dynamicFormServices = [
   DynamicFormBuilder,
   DynamicFormExpressionBuilder,
   DynamicFormEvaluationBuilder,
@@ -58,7 +45,7 @@ export const dynamicFormsCoreServices = [
   DynamicFormComponentFactory
 ];
 
-export function dynamicFormsCoreConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
-  const config = configs.find(c => c.module === dynamicFormsCoreConfig.module);
+export function dynamicFormConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
+  const config = configs.find(c => c.module === dynamicFormConfig.module);
   return new DynamicFormConfigService(config);
 }
