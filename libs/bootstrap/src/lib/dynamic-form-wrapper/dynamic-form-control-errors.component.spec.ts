@@ -1,8 +1,9 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent, DynamicFormValidationService } from '@dynamic-forms/core';
-import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
+import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent,
+  DynamicFormValidationService } from '@dynamic-forms/core';
+import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
 
 @Component({
@@ -35,9 +36,9 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
 })
 class BsDynamicFormControlLabelTestModule {}
 
-describe('BsDynamicFormControlLabelComponent', () => {
-  let fixture: ComponentFixture<BsDynamicFormControlLabelComponent>;
-  let component: BsDynamicFormControlLabelComponent;
+describe('BsDynamicFormControlErrorsComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormControlErrorsComponent>;
+  let component: BsDynamicFormControlErrorsComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,9 +47,9 @@ describe('BsDynamicFormControlLabelComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
+    fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ path: 'path', template: { label: 'label' } };
+    component.field = <any>{ control: { errors: { required: { message: 'This field is required.' } }, touched: true } };
 
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
@@ -63,11 +64,10 @@ describe('BsDynamicFormControlLabelComponent', () => {
   });
 
   it('creates component template', () => {
-    const labelDebugElement = fixture.debugElement.query(By.css('label'));
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
+    const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
 
-    expect(labelElement).toBeDefined();
-    expect(labelElement.htmlFor).toBe('path');
-    expect(labelElement.innerText).toBe('label');
+    expect(errorsElement).toBeDefined();
+    expect(errorsElement.innerText).toBe('This field is required.');
   });
 });

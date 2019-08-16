@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { DynamicFormControl, DynamicFormWrapper } from '@dynamic-forms/core';
+import { DynamicFormControl, DynamicFormValidationService, DynamicFormWrapper } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-control-hints',
@@ -7,8 +7,11 @@ import { DynamicFormControl, DynamicFormWrapper } from '@dynamic-forms/core';
   styleUrls: ['./dynamic-form-control-hints.component.scss']
 })
 export class BsDynamicFormControlHintsComponent extends DynamicFormWrapper<DynamicFormControl> {
-  constructor(protected containerRef: ViewContainerRef) {
-    super(containerRef);
+  constructor(
+    protected containerRef: ViewContainerRef,
+    protected validationService: DynamicFormValidationService
+  ) {
+    super(containerRef, validationService);
   }
 
   get hints() { return this.field.template.hints; }

@@ -13,7 +13,11 @@ import { BsDynamicFormControlModule } from './dynamic-form-control.module';
   selector: 'bs-dynamic-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class BsDynamicFormInputTestComponent extends DynamicFormInputComponent {}
+class BsDynamicFormInputTestComponent extends DynamicFormInputComponent {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 @NgModule({
   imports: [
@@ -22,6 +26,9 @@ class BsDynamicFormInputTestComponent extends DynamicFormInputComponent {}
     BsDynamicFormControlModule
   ],
   declarations: [
+    BsDynamicFormInputTestComponent
+  ],
+  entryComponents: [
     BsDynamicFormInputTestComponent
   ],
   providers: [
@@ -38,9 +45,6 @@ class BsDynamicFormInputTestComponent extends DynamicFormInputComponent {}
     },
     DynamicFormValidationService,
     DynamicFormComponentFactory
-  ],
-  entryComponents: [
-    BsDynamicFormInputTestComponent
   ]
 })
 class BsDynamicFormControlComponentTestModule {}

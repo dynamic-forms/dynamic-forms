@@ -1,7 +1,8 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormInputComponent } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
 import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
 
@@ -9,7 +10,11 @@ import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
+class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 @NgModule({
   imports: [
@@ -20,6 +25,13 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
   ],
   entryComponents: [
     DynamicFormInputTestComponent
+  ],
+  providers: [
+    {
+      provide: DynamicFormConfigService,
+      useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+    },
+    DynamicFormValidationService
   ]
 })
 class DynamicFormWrapperTestModule {}
