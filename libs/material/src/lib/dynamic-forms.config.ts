@@ -1,8 +1,8 @@
-import { dynamicFormsCoreConfig, DynamicFormConfig, DynamicFormConfigService } from '@dynamic-forms/core';
+import { dynamicFormConfig, DynamicFormConfig, DynamicFormConfigService } from '@dynamic-forms/core';
 import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 
 export const matDynamicFormConfig: DynamicFormConfig = {
-  ...dynamicFormsCoreConfig,
+  ...dynamicFormConfig,
   inputConfig: matDynamicFormInputConfig,
   module: 'material'
 };

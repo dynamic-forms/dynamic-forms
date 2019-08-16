@@ -2,5 +2,5 @@
  * Public API Surface of material
  */
 
-export * from './lib/dynamic-forms-material.config';
-export * from './lib/dynamic-forms-material.module';
+export * from './lib/dynamic-forms.config';
+export * from './lib/dynamic-forms.module';
