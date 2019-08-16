@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition,
-  DynamicFormDatepicker,
-  DynamicFormDefinition,
-  DynamicFormValidationService} from '@dynamic-forms/core';
+  DynamicFormControlDefinition, DynamicFormDatepicker, DynamicFormDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 import { DynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
 

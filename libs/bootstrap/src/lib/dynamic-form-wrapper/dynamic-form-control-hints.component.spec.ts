@@ -49,7 +49,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlHintsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ path: 'path', template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } } };
+    component.field = <any>{ template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} };
 
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
@@ -75,7 +75,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     const hintEndElement = <HTMLSpanElement>hintEndDebugElement.nativeElement;
 
     expect(smallElement).toBeDefined();
-    expect(smallElement.className).toBe('dynamic-form-control-hints form-text text-muted');
+    expect(smallElement.className).toBe('dynamic-form-field-hints form-text text-muted');
     expect(hintStartElement).toBeDefined();
     expect(hintStartElement.innerText).toBe('HintStart');
     expect(hintSpacerElement).toBeDefined();

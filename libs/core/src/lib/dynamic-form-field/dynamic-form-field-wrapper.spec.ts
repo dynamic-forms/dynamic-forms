@@ -34,6 +34,36 @@ describe('DynamicFormFieldWrapper', () => {
     expect(component.errors).toEqual(errors);
   });
 
+  it('hasErrors returns true if errors exist', () => {
+    component.field = <any>{ control: { errors: {} } };
+
+    expect(component.hasErrors).toBe(true);
+  });
+
+  it('hasErrors returns false if no errors exist', () => {
+    component.field = <any>{ control: { errors: null } };
+
+    expect(component.hasErrors).toBe(false);
+  });
+
+  it('showErrors returns false if no errors exist', () => {
+    component.field = <any>{ control: { errors: null, touched: true } };
+
+    expect(component.showErrors).toBe(false);
+  });
+
+  it('showErrors returns false if errors exist but control is untouched', () => {
+    component.field = <any>{ control: { errors: {}, touched: false } };
+
+    expect(component.showErrors).toBe(false);
+  });
+
+  it('showErrors returns true if errors exist and control is touched', () => {
+    component.field = <any>{ control: { errors: {}, touched: true } };
+
+    expect(component.showErrors).toBe(true);
+  });
+
   it('errorMessage returns message from error', () => {
     const errors = { email: { message: 'The field is not a valid email' } };
 
@@ -58,23 +88,5 @@ describe('DynamicFormFieldWrapper', () => {
     component.field = <any>{ control: { errors: {} } };
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
-  });
-
-  it('showErrorMessage returns false if no errors exist', () => {
-    component.field = <any>{ control: { errors: null, touched: true } };
-
-    expect(component.showErrorMessage).toBe(false);
-  });
-
-  it('showErrorMessage returns false if errors exist but control is untouched', () => {
-    component.field = <any>{ control: { errors: {}, touched: false } };
-
-    expect(component.showErrorMessage).toBe(false);
-  });
-
-  it('showErrorMessage returns true if errors exist and control is touched', () => {
-    component.field = <any>{ control: { errors: {}, touched: true } };
-
-    expect(component.showErrorMessage).toBe(true);
   });
 });
