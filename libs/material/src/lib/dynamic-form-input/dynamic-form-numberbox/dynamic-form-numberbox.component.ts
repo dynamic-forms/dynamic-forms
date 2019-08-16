@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { DynamicFormNumberbox, DynamicFormValidationService } from '@dynamic-forms/core';
-import { MatDynamicFormInputComponent } from '../mat-dynamic-form-input.component';
+import { DynamicFormInputComponent, DynamicFormNumberbox, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-numberbox',
   templateUrl: './dynamic-form-numberbox.component.html'
 })
-export class DynamicFormNumberboxComponent extends MatDynamicFormInputComponent<DynamicFormNumberbox> {
+export class DynamicFormNumberboxComponent extends DynamicFormInputComponent<DynamicFormNumberbox> {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

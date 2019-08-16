@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
-import { MatDynamicFormInputComponent } from '../mat-dynamic-form-input.component';
+import { DynamicFormInputComponent, DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-textarea',
   templateUrl: './dynamic-form-textarea.component.html'
 })
-export class DynamicFormTextareaComponent extends MatDynamicFormInputComponent<DynamicFormTextarea> {
+export class DynamicFormTextareaComponent extends DynamicFormInputComponent<DynamicFormTextarea> {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

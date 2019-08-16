@@ -1,5 +1,5 @@
 <ng-template #fieldContainer></ng-template> 
-<small *ngIf="hints?.hintStart || hints?.hintEnd" class="dynamic-form-control-hints form-text text-muted">
+<small *ngIf="showHints" class="dynamic-form-field-hints form-text text-muted">
   <span class="hint-start" *ngIf="hints.hintStart">{{ hints?.hintStart }}</span>
   <span class="hint-spacer"></span>
   <span class="hint-end" *ngIf="hints.hintEnd">{{ hints?.hintEnd }}</span>

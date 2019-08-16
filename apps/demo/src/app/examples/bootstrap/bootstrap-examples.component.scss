@@ -12,6 +12,20 @@
 
     margin: 0 10px;
 
+    .dynamic-form-field-errors {
+      &.invalid-feedback {
+        display: block;
+      }
+    }
+
+    .dynamic-form-field-hints.form-text {
+      display: flex;
+    
+      .hint-spacer {
+        flex: 1 0 1em;
+      }
+    }
+    
     .dynamic-form-group {
       margin: 10px 0 20px 0;
 
@@ -48,12 +62,6 @@
       }
     }
   
-    .dynamic-form-validation {
-      &.invalid-feedback {
-        display: block;
-      }
-    }
-
     .dynamic-form-actions {
       margin-bottom: 5px;
 

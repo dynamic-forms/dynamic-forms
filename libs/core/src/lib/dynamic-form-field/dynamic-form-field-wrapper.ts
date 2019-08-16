@@ -16,11 +16,15 @@ export abstract class DynamicFormFieldWrapper<Field extends DynamicFormField = D
     return this.control.errors;
   }
 
-  get errorMessage() {
-    return this.validationService.getErrorMessage(this.errors);
+  get hasErrors() {
+    return (this.errors || false) && true;
   }
 
-  get showErrorMessage() {
-    return this.control.touched && (this.errors || false) && true;
+  get showErrors() {
+    return this.hasErrors && this.control.touched;
+  }
+
+  get errorMessage() {
+    return this.validationService.getErrorMessage(this.errors);
   }
 }
