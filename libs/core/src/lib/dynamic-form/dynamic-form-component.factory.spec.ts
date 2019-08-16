@@ -23,10 +23,10 @@ class DynamicFormTestComponent {
 })
 class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
   constructor(
-    protected validationService: DynamicFormValidationService,
-    protected containerRef: ViewContainerRef
+    protected containerRef: ViewContainerRef,
+    protected validationService: DynamicFormValidationService
   ) {
-    super(validationService, containerRef);
+    super(containerRef, validationService);
   }
 }
 

@@ -13,8 +13,8 @@ export class DynamicFormControlComponent extends DynamicFormFieldWrapper<Dynamic
   fieldContainer: ViewContainerRef;
 
   constructor(
-    protected validationService: DynamicFormValidationService,
-    private componentFactory: DynamicFormComponentFactory
+    protected componentFactory: DynamicFormComponentFactory,
+    protected validationService: DynamicFormValidationService
   ) {
     super(validationService);
   }
