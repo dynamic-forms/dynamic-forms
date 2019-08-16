@@ -7,7 +7,6 @@ import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormGroupComponent } from '../dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
-import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
@@ -28,8 +27,7 @@ describe('DynamicFormComponent', () => {
       declarations: [
         DynamicFormComponent,
         DynamicFormFieldComponent,
-        DynamicFormGroupComponent,
-        DynamicFormValidationComponent
+        DynamicFormGroupComponent
       ],
       providers: [
         {

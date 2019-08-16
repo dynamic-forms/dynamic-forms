@@ -1,32 +1,10 @@
-import { DynamicFormArrayComponent, DynamicFormConfig, DynamicFormConfigService, DynamicFormGroupComponent } from '@dynamic-forms/core';
-import { MatDynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { dynamicFormsCoreConfig, DynamicFormConfig, DynamicFormConfigService } from '@dynamic-forms/core';
 import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 
 export const matDynamicFormConfig: DynamicFormConfig = {
-  module: 'material',
-  wrapperConfig: {
-    types: []
-  },
-  fieldConfig: {
-    types: [
-      { type: 'group', component: DynamicFormGroupComponent },
-      { type: 'array', component: DynamicFormArrayComponent },
-      { type: 'control', component: MatDynamicFormControlComponent }
-    ]
-  },
+  ...dynamicFormsCoreConfig,
   inputConfig: matDynamicFormInputConfig,
-  validationConfig: {
-    defaultMessage: 'The field is invalid.',
-    messages: {
-      required: 'The field is required.',
-      email: 'The field is not an email.',
-      pattern: 'The field does not fit the pattern.',
-      min: 'The field does not fit the min value',
-      max: 'The field does not fit the max value',
-      minlength: 'The field does not fit the min length',
-      maxlength: 'The field does not fit the max length'
-    }
-  }
+  module: 'material'
 };
 
 export function matDynamicFormConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {

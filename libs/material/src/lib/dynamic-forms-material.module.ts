@@ -6,9 +6,7 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
 import { DynamicFormConfigService } from '@dynamic-forms/core';
 import { DynamicFormsCoreModule } from '@dynamic-forms/core';
 import { dynamicFormsCoreServices } from '@dynamic-forms/core';
-import { MatDynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
-import { MatDynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-forms-material.config';
 
 @NgModule({
@@ -16,9 +14,7 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsCoreModule,
-    MatDynamicFormControlModule,
-    MatDynamicFormInputModule,
-    MatDynamicFormValidationModule
+    MatDynamicFormInputModule
   ],
   exports: [
     DynamicFormComponent

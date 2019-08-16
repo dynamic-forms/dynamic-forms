@@ -1,5 +1,3 @@
 <div class="dynamic-form-control" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
-  <label [for]="id">{{ template.label }}</label>
   <ng-template #fieldContainer></ng-template>
-  <dynamic-form-validation [field]="field"></dynamic-form-validation>
 </div>
