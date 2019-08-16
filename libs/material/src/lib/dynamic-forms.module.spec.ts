@@ -50,7 +50,7 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot()
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',
@@ -107,7 +107,7 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot(config)
         ]
-      }).compileComponents();
+      });
     }));
 
     it('provides DYNAMIC_FORM_CONFIG',
