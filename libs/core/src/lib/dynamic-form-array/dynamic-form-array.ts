@@ -28,6 +28,18 @@ export class DynamicFormArray extends DynamicFormField<
     this.fields.forEach(field => field.destroy());
   }
 
+  reset() {
+    this.fields.forEach(field => field.reset());
+  }
+
+  resetDefault() {
+    this.fields.forEach(field => field.resetDefault());
+  }
+
+  validate() {
+    this.fields.forEach(field => field.validate());
+  }
+
   private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
     parent.model[definition.key] = parent.model[definition.key] || [];
     return parent.model[definition.key];

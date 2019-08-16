@@ -10,13 +10,13 @@ import { DynamicFormTextboxComponent } from './dynamic-form-textbox/dynamic-form
 
 export const bsDynamicFormInputConfig: DynamicFormInputConfig = {
   types: [
-    { type: 'checkbox', component: DynamicFormCheckboxComponent },
-    { type: 'combobox', component: DynamicFormComboboxComponent, wrappers: [ 'label', 'hints' ] },
-    { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label', 'hints' ] },
-    { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label', 'hints' ] },
-    { type: 'radio', component: DynamicFormRadioComponent, wrappers: [ 'label' ] },
-    { type: 'select', component: DynamicFormSelectComponent, wrappers: [ 'label', 'hints' ] },
-    { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label', 'hints' ] },
-    { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label', 'hints' ] }
+    { type: 'checkbox', component: DynamicFormCheckboxComponent, wrappers: [ 'errors' ] },
+    { type: 'combobox', component: DynamicFormComboboxComponent, wrappers: [ 'label', 'hints', 'errors' ] },
+    { type: 'datepicker', component: DynamicFormDatepickerComponent, wrappers: [ 'label', 'hints', 'errors' ] },
+    { type: 'numberbox', component: DynamicFormNumberboxComponent, wrappers: [ 'label', 'hints', 'errors' ] },
+    { type: 'radio', component: DynamicFormRadioComponent, wrappers: [ 'label', 'errors' ] },
+    { type: 'select', component: DynamicFormSelectComponent, wrappers: [ 'label', 'hints', 'errors' ] },
+    { type: 'textarea', component: DynamicFormTextareaComponent, wrappers: [ 'label', 'hints', 'errors' ] },
+    { type: 'textbox', component: DynamicFormTextboxComponent, wrappers: [ 'label', 'hints', 'errors' ] }
   ]
 };

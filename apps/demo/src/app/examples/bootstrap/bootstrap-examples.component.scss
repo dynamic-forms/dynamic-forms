@@ -3,15 +3,29 @@
     $blue: #3f51b5;
     $red: #f44336;
 
-    @import "node_modules/bootstrap/scss/functions";
-    @import "node_modules/bootstrap/scss/variables";
-    @import "node_modules/bootstrap/scss/mixins";
-    @import "node_modules/bootstrap/scss/reboot";
-    @import "node_modules/bootstrap/scss/forms";
-    @import "node_modules/bootstrap/scss/buttons";
+    @import '../../../../../../node_modules/bootstrap/scss/functions';
+    @import '../../../../../../node_modules/bootstrap/scss/variables';
+    @import '../../../../../../node_modules/bootstrap/scss/mixins';
+    @import '../../../../../../node_modules/bootstrap/scss/reboot';
+    @import '../../../../../../node_modules/bootstrap/scss/forms';
+    @import '../../../../../../node_modules/bootstrap/scss/buttons';
 
     margin: 0 10px;
 
+    .dynamic-form-field-errors {
+      &.invalid-feedback {
+        display: block;
+      }
+    }
+
+    .dynamic-form-field-hints.form-text {
+      display: flex;
+    
+      .hint-spacer {
+        flex: 1 0 1em;
+      }
+    }
+    
     .dynamic-form-group {
       margin: 10px 0 20px 0;
 
@@ -48,12 +62,6 @@
       }
     }
   
-    .dynamic-form-validation {
-      &.invalid-feedback {
-        display: block;
-      }
-    }
-
     .dynamic-form-actions {
       margin-bottom: 5px;
 

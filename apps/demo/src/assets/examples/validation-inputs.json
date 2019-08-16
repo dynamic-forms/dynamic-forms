@@ -6,9 +6,11 @@
       "template": {
         "label": "Checkbox",
         "input": {
-          "type": "checkbox",
-          "defaultValue": true
-        }  
+          "type": "checkbox"
+        },
+        "validation": {
+          "required": true
+        }
       }
     },
     {
@@ -19,12 +21,20 @@
         "input": {
           "type": "combobox",
           "placeholder": "Enter a text",
-          "defaultValue": "Value1",
           "options": [
             "Value1",
             "Value2",
             "Value3"
-          ]
+          ],
+          "minLength": 5,
+          "maxLength": 6,
+          "pattern": "^Value[0-9]$"
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true,
+          "pattern": true
         }
       }
     },
@@ -35,8 +45,10 @@
         "label": "Datepicker",
         "input": {
           "type": "datepicker",
-          "placeholder": "Enter a date",
-          "defaultValue": "2019-01-01"
+          "placeholder": "Enter a date"
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -48,8 +60,14 @@
         "input": {
           "type": "numberbox",
           "placeholder": "Enter a number",
-          "defaultValue": 0.01
-        }        
+          "min": -5,
+          "max": 5
+        },
+        "validation": {
+          "required": true,
+          "min": true,
+          "max": true
+        }
       }
     },
     {
@@ -59,7 +77,6 @@
         "label": "Radio",
         "input": {
           "type": "radio",
-          "defaultValue": 2,
           "options": [
             {
               "value": 1,
@@ -70,6 +87,9 @@
               "label": "Option 2"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -80,7 +100,6 @@
         "label": "Select",
         "input": {
           "type": "select",
-          "defaultValue": 1,
           "placeholder": "Select an option",
           "options": [
             {
@@ -92,6 +111,9 @@
               "label": "Option 2"
             }
           ]
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -102,8 +124,10 @@
         "label": "Textarea",
         "input": {
           "type": "textarea",
-          "placeholder": "Enter a text",
-          "defaultValue": "Text line 1\nText line 2"
+          "placeholder": "Enter a text"
+        },
+        "validation": {
+          "required": true
         }
       }
     },
@@ -115,7 +139,46 @@
         "input": {
           "type": "textbox",
           "placeholder": "Enter a text",
-          "defaultValue": "Text 1, Text 2"
+          "minLength": 5,
+          "maxLength": 20
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter an email"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter a password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
         }
       }
     }

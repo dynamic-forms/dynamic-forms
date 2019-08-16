@@ -7,7 +7,6 @@ import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormGroupComponent } from '../dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
-import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
@@ -28,8 +27,7 @@ describe('DynamicFormComponent', () => {
       declarations: [
         DynamicFormComponent,
         DynamicFormFieldComponent,
-        DynamicFormGroupComponent,
-        DynamicFormValidationComponent
+        DynamicFormGroupComponent
       ],
       providers: [
         {
@@ -53,10 +51,6 @@ describe('DynamicFormComponent', () => {
 
     component.definition = definition;
     component.model = model;
-    component.ngOnChanges({
-      definition: new SimpleChange(undefined, definition, true),
-      model: new SimpleChange(undefined, model, true)
-    });
 
     fixture.detectChanges();
   }));
@@ -116,5 +110,29 @@ describe('DynamicFormComponent', () => {
       value: component.formGroup.value,
       model: component.model
     });
+  });
+
+  it('reset calls reset of form field', () => {
+    spyOn(component.formField, 'reset');
+
+    component.reset();
+
+    expect(component.formField.reset).toHaveBeenCalled();
+  });
+
+  it('resetDefault calls resetDefault of form field', () => {
+    spyOn(component.formField, 'resetDefault');
+
+    component.resetDefault();
+
+    expect(component.formField.resetDefault).toHaveBeenCalled();
+  });
+
+  it('validate calls validate of form field', () => {
+    spyOn(component.formField, 'validate');
+
+    component.validate();
+
+    expect(component.formField.validate).toHaveBeenCalled();
   });
 });

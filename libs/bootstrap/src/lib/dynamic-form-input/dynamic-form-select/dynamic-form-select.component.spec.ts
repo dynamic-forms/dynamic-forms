@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
-  DynamicFormSelect } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormSelect,
+  DynamicFormValidationService} from '@dynamic-forms/core';
 import { DynamicFormSelectComponent } from './dynamic-form-select.component';
 import { DynamicFormSelectModule } from './dynamic-form-select.module';
 
@@ -16,6 +17,13 @@ describe('DynamicFormSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormSelectModule
+      ],
+      providers: [
+        {
+          provide: DynamicFormConfigService,
+          useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+        },
+        DynamicFormValidationService
       ]
     });
 

@@ -1,6 +1,7 @@
 import { AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldWrapper} from '../dynamic-form-field/dynamic-form-field-wrapper';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 
 export abstract class DynamicFormWrapper<
   Field extends DynamicFormField = DynamicFormField
@@ -11,8 +12,11 @@ export abstract class DynamicFormWrapper<
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 
-  constructor(protected containerRef: ViewContainerRef) {
-    super();
+  constructor(
+    protected containerRef: ViewContainerRef,
+    protected validationService: DynamicFormValidationService
+  ) {
+    super(validationService);
   }
 
   get ref() { return this.containerRef; }

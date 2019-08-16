@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
-import { DynamicFormValidationComponent } from '../dynamic-form-validation/dynamic-form-validation.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -24,8 +23,7 @@ describe('DynamicFormGroupComponent', () => {
       ],
       declarations: [
         DynamicFormGroupComponent,
-        DynamicFormFieldComponent,
-        DynamicFormValidationComponent
+        DynamicFormFieldComponent
       ],
       providers: [
         {
@@ -61,14 +59,11 @@ describe('DynamicFormGroupComponent', () => {
   it('creates component template', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
-    const formGroupValidationDebugElement = formGroupDebugElement.query(By.css('dynamic-form-validation'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
     const formGroupLabelElement = <HTMLElement>formGroupLabelDebugElement.nativeElement;
-    const formGroupValidationComponent = <DynamicFormValidationComponent>formGroupValidationDebugElement.componentInstance;
 
     expect(formGroupElement).toBeDefined();
     expect(formGroupLabelElement).toBeDefined();
-    expect(formGroupValidationComponent.errors).toBe(component.control.errors);
   });
 
   it('sets dynamic form group to hidden', () => {

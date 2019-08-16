@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormControl } from './dynamic-form-control';
 
@@ -11,8 +12,11 @@ export class DynamicFormControlComponent extends DynamicFormFieldWrapper<Dynamic
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 
-  constructor(private componentFactory: DynamicFormComponentFactory) {
-    super();
+  constructor(
+    protected componentFactory: DynamicFormComponentFactory,
+    protected validationService: DynamicFormValidationService
+  ) {
+    super(validationService);
   }
 
   get input() { return this.field.template.input; }
