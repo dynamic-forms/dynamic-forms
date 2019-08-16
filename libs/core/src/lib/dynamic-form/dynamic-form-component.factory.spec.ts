@@ -22,8 +22,11 @@ class DynamicFormTestComponent {
   template: `<ng-template #fieldContainer></ng-template>`
 })
 class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
-  constructor(protected containerRef: ViewContainerRef) {
-    super(containerRef);
+  constructor(
+    protected validationService: DynamicFormValidationService,
+    protected containerRef: ViewContainerRef
+  ) {
+    super(validationService, containerRef);
   }
 }
 
