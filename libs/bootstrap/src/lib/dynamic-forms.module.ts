@@ -20,10 +20,9 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
 })
 export class BsDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
-    const providers = getDynamicFormProviders(bsDynamicFormConfig, config);
     return {
       ngModule: BsDynamicFormsModule,
-      providers: providers
+      providers: getDynamicFormProviders(bsDynamicFormConfig, config)
     };
   }
 }

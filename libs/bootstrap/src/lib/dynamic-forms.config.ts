@@ -3,8 +3,9 @@ import { bsDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-inpu
 import { bsDynamicFormWrapperConfig } from './dynamic-form-wrapper/dynamic-form-wrapper.config';
 
 export const bsDynamicFormConfig: DynamicFormConfig = {
-  ...dynamicFormConfig,
   library: 'bootstrap',
+  fieldConfig: dynamicFormConfig.fieldConfig,
+  inputConfig: bsDynamicFormInputConfig,
   wrapperConfig: bsDynamicFormWrapperConfig,
-  inputConfig: bsDynamicFormInputConfig
+  validationConfig: dynamicFormConfig.validationConfig
 };

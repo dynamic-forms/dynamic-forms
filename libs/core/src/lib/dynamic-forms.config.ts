@@ -38,6 +38,8 @@ export const dynamicFormConfig: DynamicFormConfig = {
 };
 
 export function dynamicFormConfigServiceFactory(library: string, configs: DynamicFormConfig[]) {
+  console.log('library', library);
+  console.log('configs', configs);
   return new DynamicFormConfigService(configs.find(c => c.library === library));
 }
 

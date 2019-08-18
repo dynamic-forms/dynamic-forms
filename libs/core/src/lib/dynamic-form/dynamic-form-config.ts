@@ -6,9 +6,9 @@ import { DynamicFormWrapperConfig } from '../dynamic-form-wrapper/dynamic-form-w
 
 export interface DynamicFormConfig {
   library: string;
-  wrapperConfig?: DynamicFormWrapperConfig;
   fieldConfig?: DynamicFormFieldConfig;
   inputConfig?: DynamicFormInputConfig;
+  wrapperConfig?: DynamicFormWrapperConfig;
   validationConfig?: DynamicFormValidationConfig;
 }
 
