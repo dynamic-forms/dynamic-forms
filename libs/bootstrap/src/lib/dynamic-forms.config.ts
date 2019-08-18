@@ -1,15 +1,11 @@
-import { dynamicFormConfig, DynamicFormConfig, DynamicFormConfigService } from '@dynamic-forms/core';
+import { dynamicFormConfig, DynamicFormConfig } from '@dynamic-forms/core';
 import { bsDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input.config';
 import { bsDynamicFormWrapperConfig } from './dynamic-form-wrapper/dynamic-form-wrapper.config';
 
 export const bsDynamicFormConfig: DynamicFormConfig = {
-  ...dynamicFormConfig,
-  wrapperConfig: bsDynamicFormWrapperConfig,
+  library: 'bootstrap',
+  fieldConfig: dynamicFormConfig.fieldConfig,
   inputConfig: bsDynamicFormInputConfig,
-  module: 'bootstrap'
+  wrapperConfig: bsDynamicFormWrapperConfig,
+  validationConfig: dynamicFormConfig.validationConfig
 };
-
-export function bsDynamicFormConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
-  const config = configs.find(c => c.module === bsDynamicFormConfig.module);
-  return new DynamicFormConfigService(config);
-}

@@ -5,10 +5,9 @@ import { DynamicFormArrayModule } from './dynamic-form-array/dynamic-form-array.
 import { DynamicFormControlModule } from './dynamic-form-control/dynamic-form-control.module';
 import { DynamicFormFieldModule } from './dynamic-form-field/dynamic-form-field.module';
 import { DynamicFormGroupModule } from './dynamic-form-group/dynamic-form-group.module';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form/dynamic-form-config';
-import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
+import { DynamicFormConfig } from './dynamic-form/dynamic-form-config';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
-import { dynamicFormConfig, dynamicFormConfigFactory, dynamicFormServices } from './dynamic-forms.config';
+import { dynamicFormConfig, getDynamicFormProviders } from './dynamic-forms.config';
 
 @NgModule({
   imports: [
@@ -28,19 +27,7 @@ export class DynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || dynamicFormConfig,
-          multi: true
-        },
-        {
-          provide: DynamicFormConfigService,
-          useFactory: dynamicFormConfigFactory,
-          deps: [ DYNAMIC_FORM_CONFIG ]
-        },
-        ...dynamicFormServices
-      ]
+      providers: getDynamicFormProviders(dynamicFormConfig, config)
     };
   }
 }

@@ -4,7 +4,7 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigService', () => {
   const config: DynamicFormConfig = {
-    module: 'test',
+    library: 'test',
     wrapperConfig: {
       types: [ { type: 'wrapper', component: null } ]
     },

@@ -39,7 +39,7 @@ class DynamicFormFieldWrapperComponent extends DynamicFormFieldWrapper {}
     {
       provide: DYNAMIC_FORM_CONFIG,
       useValue: {
-        module: 'test',
+        library: 'test',
         fieldConfig: {
           types: [
             { type: 'field', component: DynamicFormFieldWrapperComponent }

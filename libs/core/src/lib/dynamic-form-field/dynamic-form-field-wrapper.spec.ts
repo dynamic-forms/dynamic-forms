@@ -20,7 +20,7 @@ describe('DynamicFormFieldWrapper', () => {
         required: 'The field is required'
       }
     };
-    const configService = new DynamicFormConfigService({ module: 'test', validationConfig });
+    const configService = new DynamicFormConfigService({ library: 'test', validationConfig });
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldWrapperTest(validationService);

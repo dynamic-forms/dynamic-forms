@@ -1,13 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule } from '@dynamic-forms/core';
-import { dynamicFormServices } from '@dynamic-forms/core';
-import { DynamicFormConfigService } from '@dynamic-forms/core';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
+import { getDynamicFormProviders, DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
-import { bsDynamicFormConfig, bsDynamicFormConfigFactory } from './dynamic-forms.config';
+import { bsDynamicFormConfig } from './dynamic-forms.config';
 
 @NgModule({
   imports: [
@@ -25,19 +22,7 @@ export class BsDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: BsDynamicFormsModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || bsDynamicFormConfig,
-          multi: true
-        },
-        {
-          provide: DynamicFormConfigService,
-          useFactory: bsDynamicFormConfigFactory,
-          deps: [ DYNAMIC_FORM_CONFIG ]
-        },
-        ...dynamicFormServices
-      ]
+      providers: getDynamicFormProviders(bsDynamicFormConfig, config)
     };
   }
 }

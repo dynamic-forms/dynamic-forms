@@ -53,7 +53,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
     {
       provide: DYNAMIC_FORM_CONFIG,
       useValue: {
-        module: 'test',
+        library: 'test',
         wrapperConfig: {
           types: [
             { type: 'wrapper', component: DynamicFormWrapperTestComponent }
