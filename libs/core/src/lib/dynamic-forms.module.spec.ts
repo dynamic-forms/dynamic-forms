@@ -4,7 +4,7 @@ import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form/dynamic-form-config';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { dynamicFormConfig } from './dynamic-forms.config';
@@ -19,6 +19,10 @@ describe('DynamicFormsModule', () => {
         ]
       });
     }));
+
+    it('does not provide DYNAMIC_FORM_LIBRARY', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
+    });
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
@@ -61,6 +65,12 @@ describe('DynamicFormsModule', () => {
         ]
       });
     }));
+
+    it('provides DYNAMIC_FORM_LIBRARY',
+      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
+        expect(library).toBe('core');
+      })
+    );
 
     it('provides DYNAMIC_FORM_CONFIG',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
@@ -114,7 +124,7 @@ describe('DynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      library: 'core'
+      library: 'core-extended'
     };
 
     beforeEach(async(() => {
@@ -124,6 +134,12 @@ describe('DynamicFormsModule', () => {
         ]
       });
     }));
+
+    it('provides DYNAMIC_FORM_LIBRARY',
+      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
+        expect(library).toBe('core-extended');
+      })
+    );
 
     it('provides DYNAMIC_FORM_CONFIG',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
