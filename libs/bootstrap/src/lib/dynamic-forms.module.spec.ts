@@ -99,7 +99,7 @@ describe('BsDynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      module: 'bootstrap'
+      library: 'bootstrap'
     };
 
     beforeEach(async(() => {

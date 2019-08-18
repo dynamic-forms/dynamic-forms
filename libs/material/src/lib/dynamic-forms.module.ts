@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { DynamicFormConfigService } from '@dynamic-forms/core';
-import { DynamicFormsModule } from '@dynamic-forms/core';
-import { dynamicFormServices } from '@dynamic-forms/core';
+import { getDynamicFormProviders, DynamicFormsModule , DynamicFormConfig } from '@dynamic-forms/core';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
-import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-forms.config';
+import { matDynamicFormConfig } from './dynamic-forms.config';
 
 @NgModule({
   imports: [
@@ -21,21 +18,10 @@ import { matDynamicFormConfig, matDynamicFormConfigFactory } from './dynamic-for
 })
 export class MatDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
+    const providers = getDynamicFormProviders(matDynamicFormConfig, config);
     return {
       ngModule: MatDynamicFormsModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || matDynamicFormConfig,
-          multi: true
-        },
-        {
-          provide: DynamicFormConfigService,
-          useFactory: matDynamicFormConfigFactory,
-          deps: [ DYNAMIC_FORM_CONFIG ]
-        },
-        ...dynamicFormServices
-      ]
+      providers: providers
     };
   }
 }

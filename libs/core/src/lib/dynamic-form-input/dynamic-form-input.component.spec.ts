@@ -24,7 +24,7 @@ describe('DynamicFormInputComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService({
-            module: 'test'
+            library: 'test'
           })
         },
         DynamicFormValidationService

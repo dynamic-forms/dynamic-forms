@@ -1,3 +1,4 @@
+import { Provider } from '@angular/core';
 import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-array.component';
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -6,12 +7,12 @@ import { DynamicFormGroupComponent } from './dynamic-form-group/dynamic-form-gro
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
-import { DynamicFormConfig } from './dynamic-form/dynamic-form-config';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 
 export const dynamicFormConfig: DynamicFormConfig = {
-  module: 'core',
+  library: 'core',
   fieldConfig: {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },
@@ -36,16 +37,31 @@ export const dynamicFormConfig: DynamicFormConfig = {
   }
 };
 
-export const dynamicFormServices = [
-  DynamicFormBuilder,
-  DynamicFormExpressionBuilder,
-  DynamicFormEvaluationBuilder,
-  DynamicFormValidationBuilder,
-  DynamicFormValidationService,
-  DynamicFormComponentFactory
-];
+export function dynamicFormConfigServiceFactory(library: string, configs: DynamicFormConfig[]) {
+  return new DynamicFormConfigService(configs.find(c => c.library === library));
+}
 
-export function dynamicFormConfigFactory(configs: DynamicFormConfig[]): DynamicFormConfigService {
-  const config = configs.find(c => c.module === dynamicFormConfig.module);
-  return new DynamicFormConfigService(config);
+export function getDynamicFormProviders(defaultConfig: DynamicFormConfig, config?: DynamicFormConfig): Provider[] {
+  return [
+    {
+      provide: DYNAMIC_FORM_LIBRARY,
+      useValue: config ? config.library : defaultConfig.library
+    },
+    {
+      provide: DYNAMIC_FORM_CONFIG,
+      useValue: config || defaultConfig,
+      multi: true
+    },
+    {
+      provide: DynamicFormConfigService,
+      useFactory: dynamicFormConfigServiceFactory,
+      deps: [ DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_CONFIG ]
+    },
+    DynamicFormBuilder,
+    DynamicFormExpressionBuilder,
+    DynamicFormEvaluationBuilder,
+    DynamicFormValidationBuilder,
+    DynamicFormValidationService,
+    DynamicFormComponentFactory
+  ];
 }

@@ -29,7 +29,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
     {
       provide: DynamicFormConfigService,
       useValue: new DynamicFormConfigService({
-        module: 'core',
+        library: 'core',
         inputConfig: {
           types: [
             { type: 'input', component: DynamicFormInputTestComponent }

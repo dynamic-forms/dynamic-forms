@@ -27,7 +27,7 @@ describe('DynamicFormComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService({
-            module: 'core'
+            library: 'core'
           })
         },
         DynamicFormBuilder,

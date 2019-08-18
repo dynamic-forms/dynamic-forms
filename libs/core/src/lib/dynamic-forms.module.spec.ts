@@ -114,7 +114,7 @@ describe('DynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      module: 'core'
+      library: 'core'
     };
 
     beforeEach(async(() => {

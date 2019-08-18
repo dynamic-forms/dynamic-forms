@@ -23,7 +23,7 @@ describe('DynamicFormArrayComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ module: 'core' })
+          useValue: new DynamicFormConfigService({ library: 'core' })
         },
         DynamicFormValidationService
       ]

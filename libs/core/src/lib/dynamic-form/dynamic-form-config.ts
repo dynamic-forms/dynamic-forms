@@ -5,11 +5,12 @@ import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-
 import { DynamicFormWrapperConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
 
 export interface DynamicFormConfig {
-  module: string;
+  library: string;
   wrapperConfig?: DynamicFormWrapperConfig;
   fieldConfig?: DynamicFormFieldConfig;
   inputConfig?: DynamicFormInputConfig;
   validationConfig?: DynamicFormValidationConfig;
 }
 
+export const DYNAMIC_FORM_LIBRARY = new InjectionToken<string>('DynamicFormLibrary');
 export const DYNAMIC_FORM_CONFIG = new InjectionToken<DynamicFormConfig>('DynamicFormConfig');

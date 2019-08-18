@@ -99,7 +99,7 @@ describe('MatDynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      module: 'material'
+      library: 'material'
     };
 
     beforeEach(async(() => {
