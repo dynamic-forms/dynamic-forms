@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -9,6 +7,7 @@ import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
+import { DynamicFormGroupModule } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupComponent', () => {
   let fixture: ComponentFixture<DynamicFormGroupComponent>;
@@ -19,16 +18,12 @@ describe('DynamicFormGroupComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
-      ],
-      declarations: [
-        DynamicFormGroupComponent,
-        DynamicFormFieldComponent
+        DynamicFormGroupModule
       ],
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ module: 'core' })
+          useValue: new DynamicFormConfigService({ library: 'core' })
         },
         DynamicFormValidationService
       ]

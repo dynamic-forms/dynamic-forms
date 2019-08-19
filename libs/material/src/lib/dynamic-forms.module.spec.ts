@@ -1,9 +1,9 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
   DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
-  DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { matDynamicFormConfig } from './dynamic-forms-material.config';
-import { MatDynamicFormsModule } from './dynamic-forms-material.module';
+  DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+import { matDynamicFormConfig } from './dynamic-forms.config';
+import { MatDynamicFormsModule } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {
@@ -14,6 +14,10 @@ describe('MatDynamicFormsModule', () => {
         ]
       });
     }));
+
+    it('does not provide DYNAMIC_FORM_LIBRARY', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
+    });
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
@@ -44,14 +48,20 @@ describe('MatDynamicFormsModule', () => {
     });
   });
 
-  describe('forRoot with defaultconfig', () => {
+  describe('forRoot with default config', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule.forRoot()
         ]
-      }).compileComponents();
+      });
     }));
+
+    it('provides DYNAMIC_FORM_LIBRARY',
+      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
+        expect(library).toBe('material');
+      })
+    );
 
     it('provides DYNAMIC_FORM_CONFIG',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
@@ -99,7 +109,7 @@ describe('MatDynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      module: 'material'
+      library: 'material-extended'
     };
 
     beforeEach(async(() => {
@@ -107,8 +117,14 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot(config)
         ]
-      }).compileComponents();
+      });
     }));
+
+    it('provides DYNAMIC_FORM_LIBRARY',
+      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
+        expect(library).toBe('material-extended');
+      })
+    );
 
     it('provides DYNAMIC_FORM_CONFIG',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {

@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -12,6 +10,7 @@ import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
+import { DynamicFormControlModule } from './dynamic-form-control.module';
 
 @Component({
   selector: 'dynamic-input-test',
@@ -21,18 +20,16 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule
+    DynamicFormControlModule
   ],
   declarations: [
-    DynamicFormControlComponent,
     DynamicFormInputTestComponent
   ],
   providers: [
     {
       provide: DynamicFormConfigService,
       useValue: new DynamicFormConfigService({
-        module: 'core',
+        library: 'core',
         inputConfig: {
           types: [
             { type: 'input', component: DynamicFormInputTestComponent }

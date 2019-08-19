@@ -17,7 +17,7 @@ describe('DynamicFormValidationService', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService({
-            module: 'test',
+            library: 'test',
             validationConfig: validationConfig
           })
         },
