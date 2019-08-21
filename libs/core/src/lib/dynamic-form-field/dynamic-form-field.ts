@@ -3,6 +3,7 @@ import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
+import { DynamicFormFieldOptions } from './dynamic-form-field-options';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
 export abstract class DynamicFormField<
@@ -17,11 +18,13 @@ export abstract class DynamicFormField<
   private _expressions: DynamicFormFieldExpressions;
 
   protected _path: string;
-  protected _control: Control;
   protected _model: any;
+  protected _options: DynamicFormFieldOptions;
+  protected _control: Control;
 
   constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, readonly definition: Definition) {
-    this._path = parent && parent.path ? `${parent.path}.${definition.key}` : definition.key || null;
+    this._path = this.createPath();
+    this._options = this.createOptions();
     this._template = definition.template || <Template>{};
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
@@ -29,9 +32,11 @@ export abstract class DynamicFormField<
   }
 
   get path() { return this._path; }
+  get model() { return this._model; }
+  get options() { return this._options; }
+
   get template() { return this._template; }
   get control() { return this._control; }
-  get model() { return this._model; }
 
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
@@ -68,5 +73,17 @@ export abstract class DynamicFormField<
       result[path] = result[path] || {};
       return result[path];
     }, obj);
+  }
+
+  private createPath() {
+    return this.parent && this.parent.path ? `${this.parent.path}.${this.definition.key}` : this.definition.key || null;
+  }
+
+  private createOptions() {
+    const defaultOptions = <DynamicFormFieldOptions>{ update: 'change' };
+    const rootOptions = this.root && this.root.options || {};
+    const parentOptions = this.parent && this.parent.options || {};
+    const options = this.definition.options || {};
+    return { ...defaultOptions, ...rootOptions, ...parentOptions, ...options };
   }
 }
