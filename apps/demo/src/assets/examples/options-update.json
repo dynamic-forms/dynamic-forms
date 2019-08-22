@@ -1,0 +1,75 @@
+{
+  "fields": [
+    {
+      "key": "name",
+      "type": "control",
+      "template": {
+        "label": "Name",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter your name",
+          "minLength": 5,
+          "maxLength": 20
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      },
+      "expressions": {
+        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/5\"",
+        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+      },
+      "options": {
+        "update": "change"
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter your email"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      },
+      "expressions": {
+        "hints.hintStart": "\"Length: \" + (model || \"\").length"
+      },
+      "options": {
+        "update": "blur"
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      },
+      "expressions": {
+        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/6\"",
+        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+      },
+      "options": {
+        "update": "submit"
+      }
+    }
+  ]
+}

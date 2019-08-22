@@ -19,12 +19,9 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
     super(root, parent, definition);
-    this._model = this.getInitialModel();
-    this._control = new FormControl(this._model);
-    this._valueSubscription = this._control.valueChanges.subscribe(value => {
-      this.parent.model[this.definition.key] = value;
-      this._model = this.parent.model[this.definition.key];
-    });
+    this._model = this.createModel();
+    this._control = this.createControl();
+    this._valueSubscription = this.createValueSubscription();
   }
 
   get evaluators() { return this._evaluators; }
@@ -62,12 +59,24 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._control.markAsTouched();
   }
 
-  private getInitialModel() {
+  private createModel() {
     const key = this.definition.key;
     if (this.parent.model[key] === undefined) {
       this.parent.model[key] = this.getDefaultValue();
     }
     return this.parent.model[key];
+  }
+
+  private createControl() {
+    const options = { updateOn: this.options.update };
+    return new FormControl(this._model, options);
+  }
+
+  private createValueSubscription() {
+    return this._control.valueChanges.subscribe(value => {
+      this.parent.model[this.definition.key] = value;
+      this._model = this.parent.model[this.definition.key];
+    });
   }
 
   private getDefaultValue() {

@@ -4,6 +4,7 @@ import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-a
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
+import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -82,7 +83,8 @@ export class DynamicFormBuilder {
   }
 
   private createValidator(template: DynamicFormControlTemplate, key: string): DynamicFormControlValidator {
-    if (typeof template.validation[key] !== 'boolean' || template.validation[key]) {
+    const isValidator = this.isValidator(template.validation, key);
+    if (isValidator) {
       const enabled = template.validation[key];
       const value = template.input[key];
       const factory = this.validationBuilder.getValidatorFactory(key);
@@ -90,5 +92,13 @@ export class DynamicFormBuilder {
       return { key, enabled, value, factory, validatorFn };
     }
     return null;
+  }
+
+  private isValidator(validation: DynamicFormControlValidation, key: string) {
+    if (typeof validation[key] !== 'boolean') {
+      return false;
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(validation, key);
+    return typeof descriptor.get === 'function' || validation[key];
   }
 }

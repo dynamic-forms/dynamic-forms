@@ -1,4 +1,4 @@
-export type DynamicFormFieldUpdate = 'change' | 'debounce' | 'blur' | 'submit';
+export type DynamicFormFieldUpdate = 'change' | 'blur' | 'submit';
 
 export interface DynamicFormFieldOptions {
   update?: DynamicFormFieldUpdate;
