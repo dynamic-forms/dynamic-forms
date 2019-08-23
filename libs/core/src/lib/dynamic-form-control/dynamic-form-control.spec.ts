@@ -27,7 +27,7 @@ describe('DynamicFormControl', () => {
     expect(root.model).toEqual({ key: null });
   });
 
-  const defaultValues = [ 'default', 0, false, ''];
+  const defaultValues = [ 'default', 0, false, '' ];
   defaultValues.forEach(defaultValue =>
     it(`new instance sets model to default value '${defaultValue}'`, () => {
       const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
@@ -37,6 +37,23 @@ describe('DynamicFormControl', () => {
       expect(formControl.model).toBe(defaultValue);
 
       expect(root.model).toEqual({ key: defaultValue });
+    })
+  );
+
+  const updateOptions = [
+    { value: undefined, update: undefined, updateOn: 'change' },
+    { value: 'change', update: 'change', updateOn: 'change' },
+    { value: 'debounce', update: 'debounce', updateOn: 'change' },
+    { value: 'blur', update: 'blur', updateOn: 'blur' }
+  ];
+  updateOptions.forEach(updateOption =>
+    it(`new instance sets update option '${updateOption.value}'`, () => {
+      const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+      const definition = <DynamicFormControlDefinition>{ key: 'key', template: {}, options: { update: updateOption.value } };
+      const formControl = new DynamicFormControl(root, root, definition);
+
+      expect(formControl.options.update).toBe(updateOption.update);
+      expect(formControl.control.updateOn).toBe(updateOption.updateOn);
     })
   );
 
