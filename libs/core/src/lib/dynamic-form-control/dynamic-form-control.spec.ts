@@ -1,4 +1,5 @@
 import { Validators } from '@angular/forms';
+import { DynamicFormFieldUpdate } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -44,7 +45,9 @@ describe('DynamicFormControl', () => {
     { value: undefined, update: undefined, updateOn: 'change' },
     { value: 'change', update: 'change', updateOn: 'change' },
     { value: 'debounce', update: 'debounce', updateOn: 'change' },
-    { value: 'blur', update: 'blur', updateOn: 'blur' }
+    { value: 'blur', update: 'blur', updateOn: 'blur' },
+    { value: { time: 0 }, update: { time: 0 }, updateOn: 'change' },
+    { value: { time: 200 }, update: { time: 200 }, updateOn: 'change' }
   ];
   updateOptions.forEach(updateOption =>
     it(`new instance sets update option '${updateOption.value}'`, () => {
@@ -52,8 +55,8 @@ describe('DynamicFormControl', () => {
       const definition = <DynamicFormControlDefinition>{ key: 'key', template: {}, options: { update: updateOption.value } };
       const formControl = new DynamicFormControl(root, root, definition);
 
-      expect(formControl.options.update).toBe(updateOption.update);
-      expect(formControl.control.updateOn).toBe(updateOption.updateOn);
+      expect(formControl.options.update).toEqual(<DynamicFormFieldUpdate>updateOption.update);
+      expect(formControl.control.updateOn).toEqual(updateOption.updateOn);
     })
   );
 

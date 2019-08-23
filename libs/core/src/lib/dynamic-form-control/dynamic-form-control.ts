@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DynamicFormFieldEvaluator } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
@@ -79,21 +80,26 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private get updateOn() {
-    switch (this.options.update) {
-      case 'debounce':
-        return 'change';
-      default:
-        return this.options.update;
+    const update = this.options.update;
+    if (update === 'debounce' || typeof update === 'object') {
+      return 'change';
     }
+    return update;
   }
 
   private createValueSubscription() {
-    const valueChanges = this.options.update === 'debounce'
-      ? this._control.valueChanges.pipe(debounceTime(200))
-      : this._control.valueChanges;
-    return valueChanges.subscribe({
-      next: model => this.setModel(model)
-    });
+    const update = this.options.update;
+    const valueChanges = this._control.valueChanges;
+    const observer = { next: model => this.setModel(model) };
+    if (update === 'debounce') {
+      const time = dynamicFormFieldDefaultDebounceTime;
+      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
+    }
+    if (typeof update === 'object') {
+      const time = update.time || dynamicFormFieldDefaultDebounceTime;
+      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
+    }
+    return valueChanges.subscribe(observer);
   }
 
   private setModel(model) {
