@@ -145,8 +145,10 @@ describe('DynamicFormBuilder', () => {
           },
           validation: {
             required: true,
-            email: true,
-            pattern: false
+            email: false,
+            get pattern() { return false; },
+            minLength: null,
+            maxLength: undefined
           }
         }
       };

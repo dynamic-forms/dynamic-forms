@@ -1,4 +1,5 @@
 import { Validators } from '@angular/forms';
+import { DynamicFormFieldUpdate } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -27,7 +28,7 @@ describe('DynamicFormControl', () => {
     expect(root.model).toEqual({ key: null });
   });
 
-  const defaultValues = [ 'default', 0, false, ''];
+  const defaultValues = [ 'default', 0, false, '' ];
   defaultValues.forEach(defaultValue =>
     it(`new instance sets model to default value '${defaultValue}'`, () => {
       const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
@@ -40,12 +41,29 @@ describe('DynamicFormControl', () => {
     })
   );
 
+  const updateOptions = [
+    { value: undefined, update: undefined, updateOn: 'change' },
+    { value: 'change', update: 'change', updateOn: 'change' },
+    { value: 'debounce', update: 'debounce', updateOn: 'change' },
+    { value: 'blur', update: 'blur', updateOn: 'blur' },
+    { value: { time: 0 }, update: { time: 0 }, updateOn: 'change' },
+    { value: { time: 200 }, update: { time: 200 }, updateOn: 'change' }
+  ];
+  updateOptions.forEach(updateOption =>
+    it(`new instance sets update option '${updateOption.value}'`, () => {
+      const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+      const definition = <DynamicFormControlDefinition>{ key: 'key', template: {}, options: { update: updateOption.value } };
+      const formControl = new DynamicFormControl(root, root, definition);
+
+      expect(formControl.options.update).toEqual(<DynamicFormFieldUpdate>updateOption.update);
+      expect(formControl.control.updateOn).toEqual(updateOption.updateOn);
+    })
+  );
+
   it('new instance subscribes valueChanges of control value', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
-
-    spyOn(formControl.control.valueChanges, 'subscribe');
 
     formControl.control.setValue('value');
 

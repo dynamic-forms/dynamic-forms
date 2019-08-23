@@ -1,0 +1,108 @@
+{
+  "fields": [
+    {
+      "key": "name",
+      "type": "control",
+      "template": {
+        "label": "Name",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter your name",
+          "maxLength": 20
+        },
+        "hints": {
+          "hintStart": "Update on change"
+        },
+        "validation": {
+          "required": true,
+          "maxLength": true
+        }
+      },
+      "expressions": {
+        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+      },
+      "options": {
+        "update": "change"
+      }
+    },
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter your email"
+        },
+        "hints": {
+          "hintStart": "Update on debounce (300ms)"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      },
+      "expressions": {
+        "hints.hintEnd": "\"Length \" + (model || \"\").length"
+      },
+      "options": {
+        "update": "debounce"
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "hints": {
+          "hintStart": "Update on debounce (500ms)"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      },
+      "expressions": {
+        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+      },
+      "options": {
+        "update": {
+          "time": 600
+        }
+      }
+    },
+    {
+      "key": "passwordConfirm",
+      "type": "control",
+      "template": {
+        "label": "Password Confirm ",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Confirm your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "hints": {
+          "hintStart": "Update on blur"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      },
+      "expressions": {
+        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+      },
+      "options": {
+        "update": "blur"
+      }
+    }
+  ]
+}
