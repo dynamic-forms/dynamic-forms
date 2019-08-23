@@ -36,7 +36,7 @@
           "placeholder": "Enter your email"
         },
         "hints": {
-          "hintStart": "Update on debounce"
+          "hintStart": "Update on debounce (300ms)"
         },
         "validation": {
           "required": true,
@@ -62,7 +62,7 @@
           "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
         },
         "hints": {
-          "hintStart": "Update on debounce"
+          "hintStart": "Update on debounce (500ms)"
         },
         "validation": {
           "required": true,
@@ -73,7 +73,9 @@
         "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Length: [\" + length + \"\/6,\" + length + \"\/20]\"; })()"
       },
       "options": {
-        "update": "debounce"
+        "update": {
+          "time": 600
+        }
       }
     },
     {

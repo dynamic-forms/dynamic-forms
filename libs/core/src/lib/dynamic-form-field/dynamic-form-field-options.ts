@@ -8,5 +8,5 @@ export interface DynamicFormFieldOptions {
   update?: DynamicFormFieldUpdate;
 }
 
-export const dynamicFormFieldDefaultDebounceTime = 200;
+export const dynamicFormFieldDefaultDebounceTime = 300;
 
