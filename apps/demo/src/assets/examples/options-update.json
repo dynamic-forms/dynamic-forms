@@ -19,7 +19,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Max length: \" + (model || \"\").length + \"\/20\""
+        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
       },
       "options": {
         "update": "change"
@@ -44,7 +44,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Length: \" + (model || \"\").length"
+        "hints.hintEnd": "\"Length \" + (model || \"\").length"
       },
       "options": {
         "update": "debounce"
@@ -70,7 +70,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Length: [\" + length + \"\/6,\" + length + \"\/20]\"; })()"
+        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
       "options": {
         "update": {
