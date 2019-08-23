@@ -45,8 +45,6 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
-    spyOn(formControl.control.valueChanges, 'subscribe');
-
     formControl.control.setValue('value');
 
     expect(formControl.model).toBe('value');

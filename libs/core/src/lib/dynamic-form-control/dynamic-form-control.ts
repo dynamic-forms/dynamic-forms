@@ -1,5 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { DynamicFormFieldEvaluator } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
@@ -67,21 +68,37 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     return this.parent.model[key];
   }
 
-  private createControl() {
-    const options = { updateOn: this.options.update };
-    return new FormControl(this._model, options);
-  }
-
-  private createValueSubscription() {
-    return this._control.valueChanges.subscribe(value => {
-      this.parent.model[this.definition.key] = value;
-      this._model = this.parent.model[this.definition.key];
-    });
-  }
-
   private getDefaultValue() {
     const input = this.definition.template.input;
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
+  }
+
+  private createControl() {
+    const options = { updateOn: this.updateOn };
+    return new FormControl(this._model, options);
+  }
+
+  private get updateOn() {
+    switch (this.options.update) {
+      case 'debounce':
+        return 'change';
+      default:
+        return this.options.update;
+    }
+  }
+
+  private createValueSubscription() {
+    const valueChanges = this.options.update === 'debounce'
+      ? this._control.valueChanges.pipe(debounceTime(200))
+      : this._control.valueChanges;
+    return valueChanges.subscribe({
+      next: model => this.setModel(model)
+    });
+  }
+
+  private setModel(model) {
+    this.parent.model[this.definition.key] = model;
+    this._model = this.parent.model[this.definition.key];
   }
 
   private getValidatorFunctions() {
