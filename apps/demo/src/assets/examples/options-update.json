@@ -98,7 +98,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Length: [\" + length + \"\/6,\" + length + \"\/20]\"; })()"
+        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
       "options": {
         "update": "blur"
