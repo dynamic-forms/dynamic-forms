@@ -75,6 +75,15 @@
           "label": "Finance" 
         }
       ]
+    },
+    {
+      "label": "Options",
+      "items": [
+        {
+          "id": "options-update",
+          "label": "Update strategy"
+        }
+      ]
     }
   ]
 }
