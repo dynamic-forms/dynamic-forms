@@ -10,7 +10,7 @@ export class DynamicFormEvaluationBuilder {
     'select': { type: 'select', func: DynamicFormControlEvaluators.evalSelect }
   };
 
-  getControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
+  createControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
     const evaluators = (definition.evaluations || []).map(evaluation => {
       const type = definition.template.input.type;
       const func = evaluation.func || this.getControlEvaluationFunction(evaluation.key, type);

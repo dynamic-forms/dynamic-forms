@@ -136,16 +136,17 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private validatorsChanged(): boolean {
-    return this._validators.some(validator => {
+    const changes = this._validators.map(validator => {
       const enabled = this.template.validation[validator.key];
-      const value = this.template.input[validator.key];
-      if (validator.enabled !== enabled || validator.value !== value) {
+      const parameters = this.template.input[validator.key];
+      if (validator.enabled !== enabled || validator.parameters !== parameters) {
         validator.enabled = enabled;
-        validator.value = value;
-        validator.validatorFn = enabled ? validator.factory(value) : null;
+        validator.parameters = parameters;
+        validator.validatorFn = enabled ? validator.factory(parameters) : null;
         return true;
       }
       return false;
     });
+    return changes.some(change => !!change);
   }
 }

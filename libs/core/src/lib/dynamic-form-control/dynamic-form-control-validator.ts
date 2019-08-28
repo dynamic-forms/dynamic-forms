@@ -2,8 +2,8 @@ import { ValidatorFn } from '@angular/forms';
 
 export interface DynamicFormControlValidator {
   key: string;
+  factory: (parameters: any) => ValidatorFn;
   enabled: boolean;
-  value: any;
+  parameters: any;
   validatorFn: ValidatorFn;
-  factory: (value: any) => ValidatorFn;
 }

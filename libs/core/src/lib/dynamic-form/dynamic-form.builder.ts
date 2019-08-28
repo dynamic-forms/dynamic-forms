@@ -3,8 +3,6 @@ import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
-import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
-import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -48,8 +46,8 @@ export class DynamicFormBuilder {
   createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
     const field = new DynamicFormControl(root, parent, definition);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setEvaluators(this.createEvaluators(field.definition));
-    field.setValidators(this.createValidators(field.template));
+    field.setEvaluators(this.createControlEvaluators(field.definition));
+    field.setValidators(this.createControlValidators(field.definition));
     return field;
   }
 
@@ -72,33 +70,12 @@ export class DynamicFormBuilder {
     return this.expressionBuilder.createFieldExpressions(field);
   }
 
-  private createEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
-    return this.evaluationBuilder.getControlEvaluators(definition);
+  private createControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
+    return this.evaluationBuilder.createControlEvaluators(definition);
   }
 
-  private createValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {
-    return template.validation ? Object.keys(template.validation).map(key => {
-      return this.createValidator(template, key);
-    }).filter(validator => !!validator) : [];
-  }
+  private createControlValidators(definition: DynamicFormControlDefinition): DynamicFormControlValidator[] {
+    return this.validationBuilder.createControlValidators(definition.template);
 
-  private createValidator(template: DynamicFormControlTemplate, key: string): DynamicFormControlValidator {
-    const isValidator = this.isValidator(template.validation, key);
-    if (isValidator) {
-      const enabled = template.validation[key];
-      const value = template.input[key];
-      const factory = this.validationBuilder.getValidatorFactory(key);
-      const validatorFn = enabled ? factory(value) : null;
-      return { key, enabled, value, factory, validatorFn };
-    }
-    return null;
-  }
-
-  private isValidator(validation: DynamicFormControlValidation, key: string) {
-    if (typeof validation[key] !== 'boolean') {
-      return false;
-    }
-    const descriptor = Object.getOwnPropertyDescriptor(validation, key);
-    return typeof descriptor.get === 'function' || validation[key];
   }
 }

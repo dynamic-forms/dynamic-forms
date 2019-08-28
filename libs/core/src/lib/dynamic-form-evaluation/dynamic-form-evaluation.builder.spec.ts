@@ -20,7 +20,7 @@ describe('DynamicFormEvaluationBuilder', () => {
   it('returns control validators being empty',
     inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
       const definition = <DynamicFormControlDefinition>{};
-      const evaluators = service.getControlEvaluators(definition);
+      const evaluators = service.createControlEvaluators(definition);
 
       expect(evaluators).toEqual([]);
     })
@@ -31,7 +31,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       const template = { input: { type: 'textbox' } };
       const evaluations = [ { key: 'select' }];
       const definition = <DynamicFormControlDefinition>{ template, evaluations };
-      const evaluators = service.getControlEvaluators(definition);
+      const evaluators = service.createControlEvaluators(definition);
 
       expect(evaluators).toEqual([]);
     })
@@ -42,7 +42,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       const template = { input: { type: 'select' } };
       const evaluations = [ { key: 'select' }];
       const definition = <DynamicFormControlDefinition>{ template, evaluations };
-      const evaluators = service.getControlEvaluators(definition);
+      const evaluators = service.createControlEvaluators(definition);
 
       expect(evaluators.length).toBe(1);
       expect(evaluators[0]).toBeTruthy();
@@ -54,7 +54,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       const template = { input: { type: 'select' } };
       const evaluations = [ { func: _field => {} }];
       const definition = <DynamicFormControlDefinition>{ template, evaluations };
-      const evaluators = service.getControlEvaluators(definition);
+      const evaluators = service.createControlEvaluators(definition);
 
       expect(evaluators.length).toBe(1);
       expect(evaluators[0]).toBeTruthy();

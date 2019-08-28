@@ -120,7 +120,7 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
-        key: 'required', enabled: true, value: undefined,
+        key: 'required', enabled: true, parameters: undefined,
         validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
@@ -148,7 +148,7 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
-        key: 'required', enabled: true, value: undefined,
+        key: 'required', enabled: true, parameters: undefined,
         validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
@@ -191,7 +191,7 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
       {
-        key: 'required', enabled: true, value: undefined,
+        key: 'required', enabled: true, parameters: undefined,
         validatorFn: Validators.required, factory: _ => Validators.required
       }
     ];
