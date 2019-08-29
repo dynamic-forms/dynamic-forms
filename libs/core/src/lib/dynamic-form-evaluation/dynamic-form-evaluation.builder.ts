@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlEvaluators } from '../dynamic-form-control/dynamic-form-control-evaluators';
-import { DynamicFormFieldEvaluatorFunction } from './dynamic-form-field-evaluator';
+import { DynamicFormFieldEvaluatorFunction } from '../dynamic-form-field/dynamic-form-field-evaluator';
 
 @Injectable()
 export class DynamicFormEvaluationBuilder {

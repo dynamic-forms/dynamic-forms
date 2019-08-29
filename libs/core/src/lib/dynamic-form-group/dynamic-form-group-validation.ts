@@ -1,5 +1,5 @@
-import { DynamicFormValidation } from '../dynamic-form-validation/dynamic-form-validation';
+import { DynamicFormFieldValidation } from '../dynamic-form-field/dynamic-form-field-validation';
 
-export interface DynamicFormGroupValidation extends DynamicFormValidation {
+export interface DynamicFormGroupValidation extends DynamicFormFieldValidation {
   [key: string]: any;
 }
