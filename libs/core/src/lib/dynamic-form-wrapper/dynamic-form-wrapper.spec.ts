@@ -22,7 +22,11 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
+class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 @NgModule({
   declarations: [
