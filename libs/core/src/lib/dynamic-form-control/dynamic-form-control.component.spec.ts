@@ -16,7 +16,11 @@ import { DynamicFormControlModule } from './dynamic-form-control.module';
   selector: 'dynamic-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
+class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 @NgModule({
   imports: [
