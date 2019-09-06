@@ -116,14 +116,10 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 
-  private checkControl(): void {
+  private checkControl() {
     const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
-      if (disabled) {
-        this.control.disable();
-      } else {
-        this.control.enable();
-      }
+      return disabled ? this.control.disable() : this.control.enable();
     }
   }
 
@@ -136,9 +132,8 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private validatorsChanged(): boolean {
-    const changes = this._validators.map(validator => {
-      return validator.checkChanges();
-    });
-    return changes.some(change => !!change);
+    return this._validators
+      .map(validator => validator.checkChanges())
+      .some(change => !!change);
   }
 }
