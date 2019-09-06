@@ -119,10 +119,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
-      {
-        key: 'required', enabled: true, parameters: undefined,
-        validatorFn: Validators.required, factory: _ => Validators.required
-      }
+      { key: 'required', validatorFn: Validators.required }
     ];
 
     formControl.setValidators(formControlValidators);
@@ -147,10 +144,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
-      {
-        key: 'required', enabled: true, parameters: undefined,
-        validatorFn: Validators.required, factory: _ => Validators.required
-      }
+      { key: 'required', validatorFn: Validators.required }
     ];
 
     formControl.setValidators(formControlValidators);
@@ -190,10 +184,7 @@ describe('DynamicFormControl', () => {
     };
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
-      {
-        key: 'required', enabled: true, parameters: undefined,
-        validatorFn: Validators.required, factory: _ => Validators.required
-      }
+      new DynamicFormControlValidator('required', definition.template, _ => Validators.required)
     ];
 
     formControl.setValidators(formControlValidators);

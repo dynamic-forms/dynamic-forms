@@ -5,26 +5,19 @@ import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-for
 
 @Injectable()
 export class DynamicFormValidationBuilder {
+  createControlValidators(template: DynamicFormControlTemplate) {
+    return template.validation ? Object.keys(template.validation).map(key => {
+      return this.createControlValidator(template, key);
+    }).filter(validator => !!validator) : [];
+  }
+
   createControlValidator(template: DynamicFormControlTemplate, key: string): DynamicFormControlValidator {
     if (!(template && typeof template.validation[key] === 'boolean')) {
       return undefined;
     }
 
     const factory = this.getControlValidatorFactory(key);
-    if (!factory) {
-      return undefined;
-    }
-
-    const enabled = template.validation[key];
-    const parameters = template.input[key];
-    const validatorFn = enabled ? factory(parameters) : undefined;
-    return { key, factory, enabled, parameters, validatorFn };
-  }
-
-  createControlValidators(template: DynamicFormControlTemplate) {
-    return template.validation ? Object.keys(template.validation).map(key => {
-      return this.createControlValidator(template, key);
-    }).filter(validator => !!validator) : [];
+    return factory ? new DynamicFormControlValidator(key, template, factory) : undefined;
   }
 
   private getControlValidatorFactory(key: string): (parameters: any) => ValidatorFn {

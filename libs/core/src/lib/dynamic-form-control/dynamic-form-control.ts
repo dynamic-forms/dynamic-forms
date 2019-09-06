@@ -108,7 +108,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private getValidatorFunctions() {
-    return this._validators.filter(validator => validator.enabled)
+    return this._validators.filter(validator => !!validator.validatorFn)
       .map(validator => validator.validatorFn);
   }
 
@@ -137,15 +137,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
 
   private validatorsChanged(): boolean {
     const changes = this._validators.map(validator => {
-      const enabled = this.template.validation[validator.key];
-      const parameters = this.template.input[validator.key];
-      if (validator.enabled !== enabled || validator.parameters !== parameters) {
-        validator.enabled = enabled;
-        validator.parameters = parameters;
-        validator.validatorFn = enabled ? validator.factory(parameters) : null;
-        return true;
-      }
-      return false;
+      return validator.checkChanges();
     });
     return changes.some(change => !!change);
   }
