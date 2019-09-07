@@ -13,9 +13,9 @@ export class DynamicFormControlValidator {
     readonly template: DynamicFormControlTemplate,
     readonly factory: DynamicFormControlValidatorFactory
   ) {
-    this._enabled = this.getEnabled();
-    this._parameters = this.getParameters();
-    this._validatorFn = this.getValidatorFn();
+    this._enabled = template.validation[key];
+    this._parameters = template.input[key];
+    this._validatorFn = this._enabled ? factory(this._parameters) : undefined;
   }
 
   get enabled() { return this._enabled; }
@@ -23,18 +23,14 @@ export class DynamicFormControlValidator {
   get validatorFn() { return this._validatorFn; }
 
   checkChanges(): boolean {
-    const enabled = this.getEnabled();
-    const parameters = this.getParameters();
+    const enabled = this.template.validation[this.key];
+    const parameters = this.template.input[this.key];
     if (this._enabled !== enabled || this._parameters !== parameters) {
       this._enabled = enabled;
       this._parameters = parameters;
-      this._validatorFn = this.getValidatorFn();
+      this._validatorFn = enabled ? this.factory(parameters) : undefined;
       return true;
     }
     return false;
   }
-
-  private getEnabled() { return this.template.validation[this.key]; }
-  private getParameters() { return this.template.input[this.key]; }
-  private getValidatorFn() { return this._enabled ? this.factory(this._parameters) : undefined; }
 }
