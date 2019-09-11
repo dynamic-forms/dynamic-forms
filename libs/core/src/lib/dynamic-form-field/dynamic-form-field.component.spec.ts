@@ -23,7 +23,11 @@ class DynamicFormFieldTest extends DynamicFormField {
   selector: 'dynamic-field-test',
   template: `<div>Dynamic Field</div>`
 })
-class DynamicFormFieldWrapperComponent extends DynamicFormFieldWrapper {}
+class DynamicFormFieldWrapperComponent extends DynamicFormFieldWrapper {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 @NgModule({
   imports: [
