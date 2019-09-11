@@ -1,6 +1,6 @@
-import { DynamicFormValidation } from '../dynamic-form-validation/dynamic-form-validation';
+import { DynamicFormFieldValidation } from '../dynamic-form-field/dynamic-form-field-validation';
 
-export interface DynamicFormControlValidation extends DynamicFormValidation {
+export interface DynamicFormControlValidation extends DynamicFormFieldValidation {
   required?: boolean;
   email?: boolean;
   pattern?: boolean;

@@ -1,5 +1,5 @@
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormEvaluator } from './dynamic-form-evaluator';
+import { DynamicFormEvaluator } from '../dynamic-form-evaluation/dynamic-form-evaluator';
+import { DynamicFormField } from './dynamic-form-field';
 
 export type DynamicFormFieldEvaluatorFunction<Field extends DynamicFormField =
   DynamicFormField> = (field: Field) => void;

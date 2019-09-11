@@ -12,7 +12,11 @@ import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
   selector: 'dynamic-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {}
+class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+  constructor(protected validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
+}
 
 describe('DynamicFormInputComponent', () => {
   beforeEach(async(() => {

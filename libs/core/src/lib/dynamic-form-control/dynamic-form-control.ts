@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { DynamicFormFieldEvaluator } from '../dynamic-form-evaluation/dynamic-form-field-evaluator';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldEvaluator } from '../dynamic-form-field/dynamic-form-field-evaluator';
 import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
@@ -108,7 +108,7 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private getValidatorFunctions() {
-    return this._validators.filter(validator => validator.enabled)
+    return this._validators.filter(validator => !!validator.validatorFn)
       .map(validator => validator.validatorFn);
   }
 
@@ -116,14 +116,10 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 
-  private checkControl(): void {
+  private checkControl() {
     const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
-      if (disabled) {
-        this.control.disable();
-      } else {
-        this.control.enable();
-      }
+      return disabled ? this.control.disable() : this.control.enable();
     }
   }
 
@@ -136,16 +132,8 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   }
 
   private validatorsChanged(): boolean {
-    return this._validators.some(validator => {
-      const enabled = this.template.validation[validator.key];
-      const value = this.template.input[validator.key];
-      if (validator.enabled !== enabled || validator.value !== value) {
-        validator.enabled = enabled;
-        validator.value = value;
-        validator.validatorFn = enabled ? validator.factory(value) : null;
-        return true;
-      }
-      return false;
-    });
+    return this._validators
+      .map(validator => validator.checkChanges())
+      .some(change => !!change);
   }
 }
