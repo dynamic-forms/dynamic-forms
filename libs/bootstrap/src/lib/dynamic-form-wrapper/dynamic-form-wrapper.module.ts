@@ -1,22 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
-import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
-import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
+import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors/dynamic-form-control-errors.module';
+import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints/dynamic-form-control-hints.module';
+import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label/dynamic-form-control-label.module';
 
 @NgModule({
   imports: [
-    CommonModule
-  ],
-  declarations: [
-    BsDynamicFormControlErrorsComponent,
-    BsDynamicFormControlLabelComponent,
-    BsDynamicFormControlHintsComponent
-  ],
-  entryComponents: [
-    BsDynamicFormControlErrorsComponent,
-    BsDynamicFormControlLabelComponent,
-    BsDynamicFormControlHintsComponent
+    CommonModule,
+    BsDynamicFormControlErrorsModule,
+    BsDynamicFormControlLabelModule,
+    BsDynamicFormControlHintsModule
   ]
 })
 export class BsDynamicFormWrapperModule {}
