@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
-import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
+import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label.module';
 
 @Component({
   selector: 'bs-dynamic-form-input-test',
@@ -17,7 +17,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
 
 @NgModule({
   imports: [
-    BsDynamicFormWrapperModule
+    BsDynamicFormControlLabelModule
   ],
   declarations: [
     DynamicFormInputTestComponent
