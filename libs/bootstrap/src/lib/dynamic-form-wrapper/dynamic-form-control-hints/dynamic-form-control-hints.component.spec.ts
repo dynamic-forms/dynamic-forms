@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
-import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper.module';
+import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
 
 @Component({
   selector: 'bs-dynamic-form-input-test',
@@ -18,7 +18,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
 
 @NgModule({
   imports: [
-    BsDynamicFormWrapperModule
+    BsDynamicFormControlHintsModule
   ],
   declarations: [
     DynamicFormInputTestComponent
