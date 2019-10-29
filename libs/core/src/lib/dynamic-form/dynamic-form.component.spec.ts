@@ -56,13 +56,12 @@ describe('DynamicFormComponent', () => {
   });
 
   it('creates component template', () => {
-    const formDebugElement = fixture.debugElement.query(By.css('form'));
-    const formElement = <HTMLElement>formDebugElement.nativeElement;
+    const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
+    const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
     const formComponent = formDebugElement.componentInstance;
     const formGroupComponent = <DynamicFormGroupComponent>fixture.debugElement
       .query(By.css('dynamic-form-group')).componentInstance;
 
-    expect(formElement.className).toContain('dynamic-form');
     expect(formComponent.formGroup).toBe(component.formGroup);
     expect(formGroupComponent.field).toBe(component.formField);
   });

@@ -5,17 +5,19 @@
   </button>
 
   <mat-menu #examples="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="bootstrapExamples">Bootstrap</button>
-    <button mat-menu-item [matMenuTriggerFor]="materialExamples">Material</button>
+    <button mat-menu-item [matMenuTriggerFor]="examplesMenu" 
+      [matMenuTriggerData]="{ baseUrl: '/examples/bootstrap', items: menuItems }">
+      Bootstrap
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="examplesMenu" 
+      [matMenuTriggerData]="{ baseUrl: '/examples/material', items: menuItems }">
+      Material
+    </button>
   </mat-menu>
-
-  <mat-menu #bootstrapExamples="matMenu">
-    <app-examples-menu-items [baseUrl]="'/examples/bootstrap'" [menuItems]="menuItems">
-    </app-examples-menu-items>
-  </mat-menu>
-  
-  <mat-menu #materialExamples="matMenu">
-    <app-examples-menu-items [baseUrl]="'/examples/material'" [menuItems]="menuItems">
-    </app-examples-menu-items>
+  <mat-menu #examplesMenu="matMenu">
+    <ng-template matMenuContent let-baseUrl="baseUrl" let-items="items">
+      <app-examples-menu-item *ngFor="let item of items" [baseUrl]="baseUrl" [menuItem]="item">
+      </app-examples-menu-item>      
+    </ng-template>
   </mat-menu>
 </ng-container>
