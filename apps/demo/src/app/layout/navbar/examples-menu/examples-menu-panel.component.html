@@ -1,0 +1,12 @@
+<mat-menu #menu>
+  <ng-container *ngFor="let item of items">
+    <ng-container *ngIf="item.items">
+      <button mat-menu-item [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
+      <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl" [items]="item.items">
+      </app-examples-menu-panel>
+    </ng-container>
+    <ng-container *ngIf="item.id">
+      <a mat-menu-item [routerLink]="[ baseUrl, item.id ]">{{ item.label }}</a>
+    </ng-container>
+  </ng-container>
+</mat-menu>
