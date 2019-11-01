@@ -13,10 +13,10 @@ import { ExamplesMenuService } from './examples-menu.service';
   ]
 })
 export class ExamplesMenuComponent {
-  menuItems$: Observable<ExamplesMenuItem[]>;
+  items$: Observable<ExamplesMenuItem[]>;
 
   constructor(private examplesMenuService: ExamplesMenuService) {
-    this.menuItems$ = this.examplesMenuService.getMenu().pipe(
+    this.items$ = this.examplesMenuService.getMenu().pipe(
       map(menu => menu.items)
     );
   }
