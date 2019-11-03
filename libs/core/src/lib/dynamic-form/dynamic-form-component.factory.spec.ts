@@ -10,16 +10,16 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @Component({
   selector: 'dynamic-form-test',
-  template: `<ng-template #fieldContainer></ng-template>`
+  template: `<ng-template #container></ng-template>`
 })
 class DynamicFormTestComponent {
-  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
-  fieldContainer: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef, static: true })
+  container: ViewContainerRef;
 }
 
 @Component({
   selector: 'dynamic-form-wrapper-test',
-  template: `<ng-template #fieldContainer></ng-template>`
+  template: `<ng-template #container></ng-template>`
 })
 class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
   constructor(
@@ -112,7 +112,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates field component',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { type: 'field' } };
-      const fieldComponent = factory.createFieldComponent(component.fieldContainer, <any>field);
+      const fieldComponent = factory.createFieldComponent(component.container, <any>field);
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
       expect(fieldComponent.field).toBeDefined();
@@ -122,7 +122,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates field component wrapped',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { type: 'field-wrapped' } };
-      const wrapperComponent = factory.createFieldComponent(component.fieldContainer, <any>field);
+      const wrapperComponent = factory.createFieldComponent(component.container, <any>field);
       const fieldComponent = (<DynamicFormWrapperTestComponent>wrapperComponent).fieldComponent;
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
@@ -136,7 +136,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates field component wrapped multiple',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { wrappers: ['wrapper'], type: 'field-wrapped' } };
-      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createFieldComponent(component.fieldContainer, <any>field);
+      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createFieldComponent(component.container, <any>field);
       const wrapperComponent = <DynamicFormWrapperTestComponent>wrapperWrapperComponent.fieldComponent;
       const fieldComponent = wrapperComponent.fieldComponent;
 
@@ -154,7 +154,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates input component',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { template: { input: { type: 'input' } } } };
-      const fieldComponent = factory.createInputComponent(component.fieldContainer, <any>field);
+      const fieldComponent = factory.createInputComponent(component.container, <any>field);
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
       expect(fieldComponent.field).toBeDefined();
@@ -164,7 +164,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates input component wrapped',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { template: { input: { type: 'input-wrapped' } } } };
-      const wrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.fieldContainer, <any>field);
+      const wrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
       const fieldComponent = wrapperComponent.fieldComponent;
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
@@ -178,7 +178,7 @@ describe('DynamicFormComponentFactory', () => {
   it('creates input component wrapped multiple',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { definition: { wrappers: ['wrapper'], template: { input: { type: 'input-wrapped' } } } };
-      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.fieldContainer, <any>field);
+      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
       const wrapperComponent = <DynamicFormWrapperTestComponent>wrapperWrapperComponent.fieldComponent;
       const fieldComponent = wrapperComponent.fieldComponent;
 

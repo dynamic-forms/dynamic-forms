@@ -26,40 +26,40 @@ export class DynamicFormBuilder {
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(field, field, field.definition.fields));
+    field.setFields(this.createFormFields(field.definition.fields, field, field));
     return field;
   }
 
-  createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition) {
-    const field = new DynamicFormGroup(root, parent, definition);
+  createFormGroup(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, ) {
+    const field = new DynamicFormGroup(definition, root, parent);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(root, field, definition.fields));
+    field.setFields(this.createFormFields(definition.fields, root, field));
     return field;
   }
 
-  createFormArray(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
-    const field = new DynamicFormArray(root, parent, definition);
+  createFormArray(definition: DynamicFormArrayDefinition, root: DynamicFormField, parent: DynamicFormField, ) {
+    const field = new DynamicFormArray(definition, root, parent);
     field.setFields([]);
     return field;
   }
 
-  createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
-    const field = new DynamicFormControl(root, parent, definition);
+  createFormControl(definition: DynamicFormControlDefinition, root: DynamicFormField, parent: DynamicFormField) {
+    const field = new DynamicFormControl(definition, root, parent);
     field.setFieldExpressions(this.createFieldExpressions(field));
     field.setEvaluators(this.createControlEvaluators(field.definition));
     field.setValidators(this.createControlValidators(field.definition));
     return field;
   }
 
-  private createFormFields(root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormFieldDefinition[]) {
+  private createFormFields(definitions: DynamicFormFieldDefinition[], root: DynamicFormField, parent: DynamicFormField) {
     return (definitions || []).map(definition => {
       switch (definition.type) {
         case 'group':
-          return this.createFormGroup(root, parent, <DynamicFormGroupDefinition>definition);
+          return this.createFormGroup(<DynamicFormGroupDefinition>definition, root, parent);
         case 'array':
-          return this.createFormArray(root, parent, <DynamicFormArrayDefinition>definition);
+          return this.createFormArray(<DynamicFormArrayDefinition>definition, root, parent);
         case 'control':
-          return this.createFormControl(root, parent, <DynamicFormControlDefinition>definition);
+          return this.createFormControl(<DynamicFormControlDefinition>definition, root, parent);
         default:
           throw Error(`Type ${ definition.type } is not defined`);
       }

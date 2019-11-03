@@ -33,11 +33,11 @@ describe('DynamicFormArrayComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    formArray = new DynamicFormArray(form, form, <DynamicFormArrayDefinition>{
+    formArray = new DynamicFormArray(<DynamicFormArrayDefinition>{
       key: 'key',
       template: {},
       fields: []
-    });
+    }, form, form);
     component.field = formArray;
 
     fixture.detectChanges();

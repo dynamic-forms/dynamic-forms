@@ -17,7 +17,7 @@ describe('DynamicFormField', () => {
     const root = null;
     const parent = null;
     const definition = <DynamicFormFieldDefinition>{ template: {} };
-    const formField = new DynamicFormFieldTest(root, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, root, parent);
 
     expect(formField.root).toBe(root);
     expect(formField.parent).toBe(parent);
@@ -37,7 +37,7 @@ describe('DynamicFormField', () => {
 
   it('new instance with path from key of definition', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, null, definition);
+    const formField = new DynamicFormFieldTest(definition, null, null);
 
     expect(formField.path).toBe('key');
   });
@@ -45,21 +45,21 @@ describe('DynamicFormField', () => {
   it('new instance with path from parent path and key of definition', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.path).toBe('path.key');
   });
 
   it('new instance with options from default options', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {}, options: {} };
-    const formField = new DynamicFormFieldTest(null, null, definition);
+    const formField = new DynamicFormFieldTest(definition, null, null);
 
     expect(formField.options).toEqual({ update: 'change' });
   });
 
   it('new instance with options from definition', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {}, options: { update: 'blur' } };
-    const formField = new DynamicFormFieldTest(null, null, definition);
+    const formField = new DynamicFormFieldTest(definition, null, null);
 
     expect(formField.options).toEqual({ update: 'blur' });
     expect(formField.options).not.toBe(definition.options);
@@ -68,7 +68,7 @@ describe('DynamicFormField', () => {
   it('new instance with options from parent options', () => {
     const parent = <DynamicFormField>{ path: 'path', options: { update: 'blur' } };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {}, options: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.options).toEqual({ update: 'blur' });
     expect(formField.options).not.toBe(parent.options);
@@ -78,7 +78,7 @@ describe('DynamicFormField', () => {
     const root = <DynamicFormField>{ options: { update: 'blur' } };
     const parent = <DynamicFormField>{ path: 'path', options: {} };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(root, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, root, parent);
 
     expect(formField.options).toEqual({ update: 'blur' });
     expect(formField.options).not.toBe(root.options);
@@ -87,7 +87,7 @@ describe('DynamicFormField', () => {
   it('hidden returns false', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.hidden).toBe(false);
   });
@@ -95,7 +95,7 @@ describe('DynamicFormField', () => {
   it('hidden returns true if parent is hidden', () => {
     const parent = <DynamicFormField>{ path: 'path', hidden: true  };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.hidden).toBe(true);
   });
@@ -103,7 +103,7 @@ describe('DynamicFormField', () => {
   it('hidden returns true if template is hidden', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: { hidden: true } };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.hidden).toBe(true);
   });
@@ -111,7 +111,7 @@ describe('DynamicFormField', () => {
   it('readonly returns false', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.readonly).toBe(false);
   });
@@ -119,7 +119,7 @@ describe('DynamicFormField', () => {
   it('readonly returns true if parent is readonly', () => {
     const parent = <DynamicFormField>{ path: 'path', readonly: true };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.readonly).toBe(true);
   });
@@ -127,14 +127,14 @@ describe('DynamicFormField', () => {
   it('readonly returns true if template is readonly', () => {
     const parent = <DynamicFormField>{ path: 'path' };
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: { readonly: true } };
-    const formField = new DynamicFormFieldTest(null, parent, definition);
+    const formField = new DynamicFormFieldTest(definition, null, parent);
 
     expect(formField.readonly).toBe(true);
   });
 
   it('set expressions', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
-    const formField = new DynamicFormFieldTest(null, null, definition);
+    const formField = new DynamicFormFieldTest(definition, null, null);
     const fieldExpressions = <DynamicFormFieldExpressions>{
       'required': <DynamicFormFieldExpression>{ value: true },
       'input.readonly': <DynamicFormFieldExpression>{ value: false }

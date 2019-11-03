@@ -6,9 +6,9 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
   it('new instance', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, definition);
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const formArray = new DynamicFormArray(definition, form, form);
 
     expect(formArray.path).toBe('key');
     expect(formArray.root).toBe(form);
@@ -23,9 +23,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('sets fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, definition);
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [ <DynamicFormField>{} ];
 
     formArray.setFields(fields);
@@ -34,9 +34,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('sets fields to empty array', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, definition);
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const formArray = new DynamicFormArray(definition, form, form);
 
     formArray.setFields(null);
 
@@ -44,9 +44,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('check calls check of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, definition);
+    const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [
       <DynamicFormField>{ check: () => {} },
       <DynamicFormField>{ check: () => {} }
@@ -63,9 +63,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('destroy calls destroy of all fields', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, template);
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [
       <DynamicFormField>{ destroy: () => {} },
       <DynamicFormField>{ destroy: () => {} }
@@ -82,9 +82,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('reset calls reset of all fields', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, template);
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [
       <DynamicFormField>{ reset: () => {} },
       <DynamicFormField>{ reset: () => {} }
@@ -101,9 +101,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, template);
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [
       <DynamicFormField>{ resetDefault: () => {} },
       <DynamicFormField>{ resetDefault: () => {} }
@@ -120,9 +120,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('validate calls validate of all fields', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const template = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
-    const formArray = new DynamicFormArray(form, form, template);
+    const formArray = new DynamicFormArray(definition, form, form);
     const fields = [
       <DynamicFormField>{ validate: () => {} },
       <DynamicFormField>{ validate: () => {} }

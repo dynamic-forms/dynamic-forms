@@ -67,7 +67,7 @@ describe('DynamicFormControlComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    formControl = new DynamicFormControl(form, form, <DynamicFormControlDefinition>{
+    formControl = new DynamicFormControl(<DynamicFormControlDefinition>{
       key: 'key',
       template: {
         input: {
@@ -75,7 +75,7 @@ describe('DynamicFormControlComponent', () => {
         },
         hints: {}
       }
-    });
+    }, form, form);
     component.field = formControl;
 
     fixture.detectChanges();
