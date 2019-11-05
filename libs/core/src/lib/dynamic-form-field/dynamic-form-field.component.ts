@@ -9,8 +9,8 @@ import { DynamicFormFieldWrapper } from './dynamic-form-field-wrapper';
   templateUrl: './dynamic-form-field.component.html'
 })
 export class DynamicFormFieldComponent extends DynamicFormFieldWrapper<DynamicFormField> implements OnInit {
-  @ViewChild('container', { read: ViewContainerRef, static: true })
-  container: ViewContainerRef;
+  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
+  fieldContainer: ViewContainerRef;
 
   constructor(
     protected validationService: DynamicFormValidationService,
@@ -20,10 +20,10 @@ export class DynamicFormFieldComponent extends DynamicFormFieldWrapper<DynamicFo
   }
 
   ngOnInit() {
-    this.initContainer();
+    this.initFieldContainer();
   }
 
-  private initContainer() {
-    this.componentFactory.createFieldComponent(this.container, this.field);
+  private initFieldContainer() {
+    this.componentFactory.createFieldComponent(this.fieldContainer, this.field);
   }
 }
