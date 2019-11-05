@@ -1,5 +1,6 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormFieldWrapper} from '../dynamic-form-field/dynamic-form-field-wrapper';
@@ -17,17 +18,21 @@ export class DynamicFormComponentFactory {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
+  createElementComponent(ref: ViewContainerRef, element: DynamicFormElement) {
+    return this.createFieldComponent(ref, element as DynamicFormField);
+  }
+
   createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
     const config = this.configService.getFieldTypeConfig(field.definition.type);
-    return this.createComponent(ref, field, config);
+    return this.createComponentForConfig(ref, field, config);
   }
 
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
     const config = this.configService.getInputTypeConfig(field.definition.template.input.type);
-    return this.createComponent(ref, field, config);
+    return this.createComponentForConfig(ref, field, config);
   }
 
-  private createComponent(ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
+  private createComponentForConfig(ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormComponentTypeConfig) {
     const factory = this.getComponentFactory(config.component);
     const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
     if (wrapperConfigs.length > 0) {

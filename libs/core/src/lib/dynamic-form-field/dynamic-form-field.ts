@@ -1,4 +1,5 @@
 import { Observable, Subject } from 'rxjs';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
@@ -10,9 +11,8 @@ export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
-> {
+> extends DynamicFormElement<Template, Definition> {
 
-  private _template: Template;
   private _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
   private _expressionChanges: Observable<DynamicFormExpressionChange>;
   private _expressions: DynamicFormFieldExpressions;
@@ -23,9 +23,9 @@ export abstract class DynamicFormField<
   protected _control: Control;
 
   constructor(readonly definition: Definition, readonly root: DynamicFormField, readonly parent: DynamicFormField) {
+    super(definition);
     this._path = this.createPath();
     this._options = this.createOptions();
-    this._template = definition.template || <Template>{};
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
     this._expressions = {};
@@ -35,7 +35,6 @@ export abstract class DynamicFormField<
   get model() { return this._model; }
   get options() { return this._options; }
 
-  get template() { return this._template; }
   get control() { return this._control; }
 
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
