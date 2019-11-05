@@ -8,8 +8,8 @@ export class DynamicFormGroup extends DynamicFormField<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition, model: any = null) {
-    super(root, parent, definition);
+  constructor(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, model: any = null) {
+    super(definition, root, parent);
     this._model = model || this.createModel(parent, definition);
     this._control = new FormGroup({});
   }

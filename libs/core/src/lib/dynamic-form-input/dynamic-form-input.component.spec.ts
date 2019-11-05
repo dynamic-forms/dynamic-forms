@@ -38,7 +38,7 @@ describe('DynamicFormInputComponent', () => {
 
   it('creates component', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    const field = new DynamicFormControl(root, root, <DynamicFormControlDefinition>{
+    const field = new DynamicFormControl(<DynamicFormControlDefinition>{
       key: 'key',
       template: {
         input: {
@@ -47,7 +47,7 @@ describe('DynamicFormInputComponent', () => {
         hints: {},
         validation: {}
       }
-    });
+    }, root, root);
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);
     const component = fixture.componentInstance;

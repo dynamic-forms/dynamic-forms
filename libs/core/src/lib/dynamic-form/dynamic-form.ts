@@ -3,7 +3,7 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 
 export class DynamicForm extends DynamicFormGroup {
   constructor(definition: DynamicFormDefinition, model: any) {
-    super(null, null, definition, model);
+    super(definition, null, null, model);
   }
 
   get hidden() { return this.template.hidden || false; }

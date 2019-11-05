@@ -33,11 +33,11 @@ describe('DynamicFormGroupComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
-    formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupDefinition>{
+    formGroup = new DynamicFormGroup(<DynamicFormGroupDefinition>{
       key: 'key',
       template: {},
       fields: []
-    });
+    }, form, form);
     component.field = formGroup;
 
     fixture.detectChanges();
