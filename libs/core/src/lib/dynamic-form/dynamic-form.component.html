@@ -1,6 +1,6 @@
 <div class="dynamic-form-wrapper">
   <form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
-    <dynamic-form-group [field]="formField">
+    <dynamic-form-group [element]="formField">
       <ng-content></ng-content>
     </dynamic-form-group>
   </form>

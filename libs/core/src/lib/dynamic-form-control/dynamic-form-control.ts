@@ -12,8 +12,8 @@ import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = DynamicFormInput> =
   DynamicFormFieldEvaluator<DynamicFormControl<FormInput>>;
 
-export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput> extends DynamicFormField<
-  FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
+export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput>
+  extends DynamicFormField<FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
 
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
