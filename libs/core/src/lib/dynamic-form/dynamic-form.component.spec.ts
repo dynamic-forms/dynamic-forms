@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
-import { DynamicFormGroupComponent } from '../dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -59,11 +58,8 @@ describe('DynamicFormComponent', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
     const formComponent = formDebugElement.componentInstance;
-    const formGroupComponent = <DynamicFormGroupComponent>fixture.debugElement
-      .query(By.css('dynamic-form-group')).componentInstance;
 
     expect(formComponent.formGroup).toBe(component.formGroup);
-    expect(formGroupComponent.field).toBe(component.formField);
   });
 
   it('ngOnChanges creates form field with empty model', () => {

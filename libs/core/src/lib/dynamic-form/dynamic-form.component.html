@@ -1,7 +1,8 @@
 <div class="dynamic-form-wrapper">
   <form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
-    <dynamic-form-group [element]="formField">
-      <ng-content></ng-content>
-    </dynamic-form-group>
+    <ng-container *ngFor="let element of elements">
+      <dynamic-form-element [element]="element"></dynamic-form-element>
+    </ng-container>
+    <ng-content></ng-content>
   </form>
 </div>

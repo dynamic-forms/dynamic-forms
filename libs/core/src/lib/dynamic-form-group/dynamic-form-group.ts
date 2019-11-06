@@ -3,8 +3,7 @@ import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
-export class DynamicFormGroup extends DynamicFormField<
-  FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
+export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
 
   protected _fields: DynamicFormField[] = [];
 

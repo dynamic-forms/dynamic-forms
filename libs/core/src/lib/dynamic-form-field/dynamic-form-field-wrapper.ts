@@ -2,16 +2,11 @@ import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormField } from './dynamic-form-field';
-import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
-export abstract class DynamicFormFieldWrapper<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
-  Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
-  Field extends DynamicFormField<Control, Template, Definition> = DynamicFormField<Control, Template, Definition>
-> extends DynamicFormElementWrapper<Template, Definition, Field> {
+export abstract class DynamicFormFieldWrapper<Field extends DynamicFormField = DynamicFormField>
+  extends DynamicFormElementWrapper<DynamicFormFieldTemplate, DynamicFormFieldDefinition, Field> {
 
   constructor(protected validationService: DynamicFormValidationService) {
     super();
