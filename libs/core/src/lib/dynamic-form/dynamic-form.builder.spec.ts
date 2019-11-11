@@ -11,7 +11,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
   const getForm = (model: any) => {
-    const definition = <DynamicFormDefinition>{ fields: [] };
+    const definition = <DynamicFormDefinition>{ elements: [] };
     return new DynamicForm(definition, model);
   };
 
@@ -28,7 +28,7 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ template: {}, fields: [] };
+      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
       const model = {};
       const form = builder.createForm(definition, model);
 
@@ -45,7 +45,11 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicForm including DynamicFormArray',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ fields: [ { key: 'key', type: 'array', template: {} } ] };
+      const definition = <DynamicFormDefinition>{
+        elements: [
+          <DynamicFormArrayDefinition>{ key: 'key', type: 'array', template: {} }
+        ]
+      };
       const form = builder.createForm(definition, {});
 
       expect(form.fields).toBeDefined();
@@ -55,7 +59,11 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicForm including DynamicFormControl',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ fields: [ { key: 'key', type: 'control', template: {} } ] };
+      const definition = <DynamicFormDefinition>{
+        elements: [
+          <DynamicFormControlDefinition>{ key: 'key', type: 'control', template: {} }
+        ]
+      };
       const form = builder.createForm(definition, {});
 
       expect(form.fields).toBeDefined();
@@ -65,7 +73,7 @@ describe('DynamicFormBuilder', () => {
 
   it('create DynamicForm throws error',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ fields: [ {} ] };
+      const definition = <DynamicFormDefinition>{ elements: [ {} ] };
 
       expect(() => builder.createForm(definition, {})).toThrowError();
     })
@@ -73,7 +81,11 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicForm including DynamicFormGroup',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ fields: [ { key: 'key', type: 'group', template: {} } ] };
+      const definition = <DynamicFormDefinition>{
+        elements: [
+          <DynamicFormGroupDefinition>{ key: 'key', type: 'group', template: {} }
+        ]
+      };
       const form = builder.createForm(definition, {});
 
       expect(form.fields).toBeDefined();
@@ -85,7 +97,7 @@ describe('DynamicFormBuilder', () => {
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
-      const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, fields: [] };
+      const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
       const formGroup = builder.createFormGroup(definition, form, form);
 
       expect(formGroup.root).toBe(form);
@@ -102,7 +114,7 @@ describe('DynamicFormBuilder', () => {
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
-      const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, fields: [] };
+      const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
       const formArray = builder.createFormArray(definition, form, form);
 
       expect(formArray.root).toBe(form);

@@ -9,7 +9,6 @@ import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
@@ -31,14 +30,14 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormGroup(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, ) {
+  createFormGroup(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField) {
     const field = new DynamicFormGroup(definition, root, parent);
     field.setFieldExpressions(this.createFieldExpressions(field));
     field.setElements(this.createFormElements(definition.elements, root, field));
     return field;
   }
 
-  createFormArray(definition: DynamicFormArrayDefinition, root: DynamicFormField, parent: DynamicFormField, ) {
+  createFormArray(definition: DynamicFormArrayDefinition, root: DynamicFormField, parent: DynamicFormField) {
     const field = new DynamicFormArray(definition, root, parent);
     field.setFields([]);
     return field;

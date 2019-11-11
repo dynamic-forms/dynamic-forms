@@ -39,7 +39,7 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = <DynamicFormDefinition>{ template: {}, fields: [] };
+    definition = <DynamicFormDefinition>{ elements: [] };
     model = {};
 
     component.definition = definition;
@@ -81,7 +81,7 @@ describe('DynamicFormComponent', () => {
   });
 
   it('ngOnChanges creates form field with updated definition', () => {
-    const definitionUpdated = <DynamicFormDefinition>{ fields: [] };
+    const definitionUpdated = <DynamicFormDefinition>{ elements: [] };
 
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });

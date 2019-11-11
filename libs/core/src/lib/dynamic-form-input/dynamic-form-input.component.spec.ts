@@ -37,7 +37,7 @@ describe('DynamicFormInputComponent', () => {
   }));
 
   it('creates component', () => {
-    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    const root = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const field = new DynamicFormControl(<DynamicFormControlDefinition>{
       key: 'key',
       template: {

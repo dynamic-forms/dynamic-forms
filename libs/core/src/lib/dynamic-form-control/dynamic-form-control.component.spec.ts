@@ -66,7 +66,7 @@ describe('DynamicFormControlComponent', () => {
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     formControl = new DynamicFormControl(<DynamicFormControlDefinition>{
       key: 'key',
       template: {
