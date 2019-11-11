@@ -1,5 +1,5 @@
 {
-  "fields": [
+  "elements": [
     {
       "key": "hidden",
       "type": "control",
@@ -24,7 +24,7 @@
       "expressions": {
         "hidden": "rootModel.hidden"
       },
-      "fields": [
+      "elements": [
         {
           "key": "disabled",
           "type": "control",
@@ -68,7 +68,7 @@
         "disabled": "rootModel.options.disabled",
         "readonly": "rootModel.options.readonly"
       },
-      "fields": [
+      "elements": [
         {
           "key": "email",
           "type": "control",

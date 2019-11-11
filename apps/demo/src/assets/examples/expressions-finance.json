@@ -1,12 +1,12 @@
 {
-  "fields": [
+  "elements": [
     {
       "key": "underlying",
       "type": "group",
       "expressions": {
         "label": "model.currencyPair ? `Underlying for ${ model.currencyPair }` : 'Underlying'"
       },
-      "fields": [
+      "elements": [
         {
           "key": "currencyPair",
           "type": "control",

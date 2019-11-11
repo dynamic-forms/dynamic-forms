@@ -31,6 +31,8 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
+  get isField() { return true; }
+
   get path() { return this._path; }
   get model() { return this._model; }
   get options() { return this._options; }

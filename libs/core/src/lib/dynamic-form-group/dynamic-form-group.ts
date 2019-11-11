@@ -1,10 +1,11 @@
 import { FormGroup } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
-
+  protected _elements: DynamicFormElement[] = [];
   protected _fields: DynamicFormField[] = [];
 
   constructor(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, model: any = null) {
@@ -13,10 +14,12 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
     this._control = new FormGroup({});
   }
 
+  get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  setFields(fields: DynamicFormField[]) {
-    this._fields = fields || [];
+  setElements(elements: DynamicFormElement[]) {
+    this._elements = elements || [];
+    this._fields = this._elements.filter(elem => elem.isField) as DynamicFormField[];
     this._fields.forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });

@@ -13,5 +13,5 @@ export class DynamicFormGroupComponent extends DynamicFormFieldWrapper<DynamicFo
     super(validationService);
   }
 
-  get fields() { return this.field.fields; }
+  get elements() { return this.field.elements; }
 }

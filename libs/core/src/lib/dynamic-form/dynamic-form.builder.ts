@@ -4,6 +4,7 @@ import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-a
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
+import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
@@ -26,14 +27,14 @@ export class DynamicFormBuilder {
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(field.definition.fields, field, field));
+    field.setElements(this.createFormElements(field.definition.elements, field, field));
     return field;
   }
 
   createFormGroup(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, ) {
     const field = new DynamicFormGroup(definition, root, parent);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setFields(this.createFormFields(definition.fields, root, field));
+    field.setElements(this.createFormElements(definition.elements, root, field));
     return field;
   }
 
@@ -51,7 +52,7 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  private createFormFields(definitions: DynamicFormFieldDefinition[], root: DynamicFormField, parent: DynamicFormField) {
+  private createFormElements(definitions: DynamicFormElementDefinition[], root: DynamicFormField, parent: DynamicFormField) {
     return (definitions || []).map(definition => {
       switch (definition.type) {
         case 'group':

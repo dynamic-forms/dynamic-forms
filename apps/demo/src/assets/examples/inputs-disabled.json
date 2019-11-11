@@ -1,12 +1,12 @@
 {
-  "fields": [
+  "elements": [
     {
       "key": "disabled",
       "type": "group",
       "template": {
         "disabled": true
       },
-      "fields": [
+      "elements": [
         {
           "key": "checkbox",
           "type": "control",
@@ -170,7 +170,7 @@
     {
       "key": "notDisabled",
       "type": "group",
-      "fields": [
+      "elements": [
         {
           "key": "textbox",
           "type": "control",

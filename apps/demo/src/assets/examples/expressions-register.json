@@ -1,5 +1,5 @@
 {
-  "fields": [
+  "elements": [
     {
       "key": "disabled",
       "type": "control",
@@ -31,7 +31,7 @@
         "disabled": "rootModel.disabled",
         "readonly": "rootModel.readonly"
       },
-      "fields": [
+      "elements": [
         {
           "key": "name",
           "type": "control",
@@ -93,7 +93,7 @@
           "expressions": {
             "hidden": "!parentModel.addressEnabled"
           },
-          "fields": [
+          "elements": [
             {
               "key": "town",
               "type": "control",

@@ -1,12 +1,12 @@
 {
-  "fields": [
+  "elements": [
     {
       "key": "readonly",
       "type": "group",
       "template": {
         "readonly": true
       },
-      "fields": [
+      "elements": [
         {
           "key": "checkbox",
           "type": "control",
@@ -169,7 +169,7 @@
     {
       "key": "notReadonly",
       "type": "group",
-      "fields": [
+      "elements": [
         {
           "key": "textbox",
           "type": "control",
