@@ -9,7 +9,7 @@ describe('DynamicFormGroup', () => {
   it('new instance', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.path).toBe('key');
     expect(formGroup.root).toBe(form);
@@ -26,7 +26,7 @@ describe('DynamicFormGroup', () => {
   it('sets fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key' }, control: new FormControl() }
     ];
@@ -39,7 +39,7 @@ describe('DynamicFormGroup', () => {
   it('sets fields to empty array', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
 
     formGroup.setElements(null);
 
@@ -49,7 +49,7 @@ describe('DynamicFormGroup', () => {
   it('check calls check of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), check: () => {} },
       <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), check: () => {} }
@@ -68,7 +68,7 @@ describe('DynamicFormGroup', () => {
   it('check sets disabled of control', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.control.disabled).toBe(false);
 
@@ -85,7 +85,7 @@ describe('DynamicFormGroup', () => {
   it('destroy calls destroy of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
       <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} }
@@ -104,7 +104,7 @@ describe('DynamicFormGroup', () => {
   it('reset calls reset of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), reset: () => {} },
       <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), reset: () => {} }
@@ -123,7 +123,7 @@ describe('DynamicFormGroup', () => {
   it('resetDefault calls resetDefault of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
       <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
@@ -142,7 +142,7 @@ describe('DynamicFormGroup', () => {
   it('validate calls validate of all fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-    const formGroup = new DynamicFormGroup(definition, form, form);
+    const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), validate: () => {} },
       <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), validate: () => {} }

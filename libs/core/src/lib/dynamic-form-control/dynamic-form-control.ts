@@ -19,8 +19,8 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
   protected _evaluators: DynamicFormControlEvaluator[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
-  constructor(definition: DynamicFormControlDefinition<FormInput>, root: DynamicFormField, parent: DynamicFormField) {
-    super(definition, root, parent);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
+    super(root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();

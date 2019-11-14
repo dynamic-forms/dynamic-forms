@@ -8,8 +8,8 @@ export class DynamicFormArray extends DynamicFormField<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(definition: DynamicFormArrayDefinition, root: DynamicFormField, parent: DynamicFormField) {
-    super(definition, root, parent);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+    super(root, parent, definition);
     this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);
   }

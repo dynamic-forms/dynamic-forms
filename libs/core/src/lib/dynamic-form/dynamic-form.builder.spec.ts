@@ -98,7 +98,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
-      const formGroup = builder.createFormGroup(definition, form, form);
+      const formGroup = builder.createFormGroup(form, form, definition);
 
       expect(formGroup.root).toBe(form);
       expect(formGroup.parent).toBe(form);
@@ -115,7 +115,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
-      const formArray = builder.createFormArray(definition, form, form);
+      const formArray = builder.createFormArray(form, form, definition);
 
       expect(formArray.root).toBe(form);
       expect(formArray.parent).toBe(form);
@@ -132,7 +132,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
-      const formControl = builder.createFormControl(definition, form, form);
+      const formControl = builder.createFormControl(form, form, definition);
 
       expect(formControl.root).toBe(form);
       expect(formControl.parent).toBe(form);
@@ -164,7 +164,7 @@ describe('DynamicFormBuilder', () => {
           }
         }
       };
-      const formControl = builder.createFormControl(definition, form, form);
+      const formControl = builder.createFormControl(form, form, definition);
 
       expect(formControl.control).toBeDefined();
       expect(formControl.control.validator).toBeDefined();

@@ -7,6 +7,7 @@ import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 export interface DynamicFormFieldDefinition<
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate
 > extends DynamicFormElementDefinition<Template> {
+  key?: string;
   options?: DynamicFormFieldOptions;
   evaluations?: { key?: string, func?: DynamicFormFieldEvaluatorFunction }[];
   expressions?: { [key: string]: string | DynamicFormFieldExpressionFunction };

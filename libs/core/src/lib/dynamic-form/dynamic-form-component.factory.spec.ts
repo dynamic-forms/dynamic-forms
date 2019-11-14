@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFormElementComponent } from '@dynamic-forms/core/lib/dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
+import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -61,6 +61,8 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
 @NgModule({
   declarations: [
     DynamicFormTestComponent,
+    DynamicFormElementComponent,
+    DynamicFormElementTestComponent,
     DynamicFormWrapperTestComponent,
     DynamicFormFieldTestComponent,
     DynamicFormInputTestComponent
@@ -99,7 +101,7 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
     DynamicFormComponentFactory
   ],
   entryComponents: [
-    DynamicFormElementComponent,
+    DynamicFormElementTestComponent,
     DynamicFormFieldTestComponent,
     DynamicFormInputTestComponent,
     DynamicFormWrapperTestComponent

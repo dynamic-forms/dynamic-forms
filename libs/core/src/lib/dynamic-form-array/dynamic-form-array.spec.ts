@@ -8,7 +8,7 @@ describe('DynamicFormArray', () => {
   it('new instance', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.path).toBe('key');
     expect(formArray.root).toBe(form);
@@ -25,7 +25,7 @@ describe('DynamicFormArray', () => {
   it('sets fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [ <DynamicFormField>{} ];
 
     formArray.setFields(fields);
@@ -36,7 +36,7 @@ describe('DynamicFormArray', () => {
   it('sets fields to empty array', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
 
     formArray.setFields(null);
 
@@ -46,7 +46,7 @@ describe('DynamicFormArray', () => {
   it('check calls check of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ check: () => {} },
       <DynamicFormField>{ check: () => {} }
@@ -65,7 +65,7 @@ describe('DynamicFormArray', () => {
   it('destroy calls destroy of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ destroy: () => {} },
       <DynamicFormField>{ destroy: () => {} }
@@ -84,7 +84,7 @@ describe('DynamicFormArray', () => {
   it('reset calls reset of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ reset: () => {} },
       <DynamicFormField>{ reset: () => {} }
@@ -103,7 +103,7 @@ describe('DynamicFormArray', () => {
   it('resetDefault calls resetDefault of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ resetDefault: () => {} },
       <DynamicFormField>{ resetDefault: () => {} }
@@ -122,7 +122,7 @@ describe('DynamicFormArray', () => {
   it('validate calls validate of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, elements: [] };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(definition, form, form);
+    const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ validate: () => {} },
       <DynamicFormField>{ validate: () => {} }

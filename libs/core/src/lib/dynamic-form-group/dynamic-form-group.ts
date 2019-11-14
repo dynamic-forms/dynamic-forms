@@ -5,16 +5,14 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
-  protected _elements: DynamicFormElement[] = [];
   protected _fields: DynamicFormField[] = [];
 
-  constructor(definition: DynamicFormGroupDefinition, root: DynamicFormField, parent: DynamicFormField, model: any = null) {
-    super(definition, root, parent);
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition, model: any = null) {
+    super(root, parent, definition);
     this._model = model || this.createModel(parent, definition);
     this._control = new FormGroup({});
   }
 
-  get elements() { return this._elements; }
   get fields() { return this._fields; }
 
   setElements(elements: DynamicFormElement[]) {
