@@ -5,6 +5,9 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 describe('DynamicFormConfigService', () => {
   const config: DynamicFormConfig = {
     library: 'test',
+    elementConfig: {
+      types: [ { type: 'content', component: null } ]
+    },
     fieldConfig: {
       types: [ { type: 'group', component: null } ]
     },
@@ -35,6 +38,22 @@ describe('DynamicFormConfigService', () => {
   it('returns DynamicFormConfig',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
       expect(service.config).toEqual(config);
+    })
+  );
+
+  it('returns DynamicElementTypeConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const elementTypeConfig = service.getElementTypeConfig('content');
+
+      expect(elementTypeConfig).toEqual(config.elementConfig.types[0]);
+    })
+  );
+
+  it('returns DynamicElementTypeConfig being undefined if not found',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const elementTypeConfig = service.getElementTypeConfig('element');
+
+      expect(elementTypeConfig).toBeUndefined();
     })
   );
 

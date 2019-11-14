@@ -26,6 +26,8 @@ export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicForm
     this._valueSubscription = this.createValueSubscription();
   }
 
+  get inputType() { return this.template.input.type; }
+
   get evaluators() { return this._evaluators; }
   get validators() { return this._validators; }
 

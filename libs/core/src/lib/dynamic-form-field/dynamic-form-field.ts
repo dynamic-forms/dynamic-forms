@@ -33,6 +33,8 @@ export abstract class DynamicFormField<
 
   get isField() { return true; }
 
+  get wrappers() { return this.definition.wrappers; }
+
   get path() { return this._path; }
   get model() { return this._model; }
   get options() { return this._options; }

@@ -41,13 +41,13 @@ class DynamicFormElementWrapperComponent extends DynamicFormElementWrapper {}
     DynamicFormComponentFactory
   ]
 })
-class DynamicFormFieldComponentTestModule {}
+class DynamicFormElementComponentTestModule {}
 
 describe('DynamicFormElementComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormFieldComponentTestModule
+        DynamicFormElementComponentTestModule
       ]
     });
   }));

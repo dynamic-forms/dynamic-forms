@@ -12,6 +12,8 @@ export class DynamicFormElement<
     this._template = definition.template || <Template>{};
   }
 
-  get isField() { return false; }
+  get type() { return this.definition.type; }
   get template() { return this._template; }
+
+  get isField() { return false; }
 }

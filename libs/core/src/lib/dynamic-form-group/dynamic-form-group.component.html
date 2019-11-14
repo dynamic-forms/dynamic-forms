@@ -1,6 +1,6 @@
 <div class="dynamic-form-group" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
   <div class="dynamic-form-group-label">{{ template?.label }}</div>
-  <dynamic-form-element *ngFor="let element of elements" [element]="element">    
+  <dynamic-form-element *ngFor="let element of elements" [element]="element">
   </dynamic-form-element>
 </div>
 <ng-content></ng-content>

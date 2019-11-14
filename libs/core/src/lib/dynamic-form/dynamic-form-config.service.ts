@@ -5,6 +5,11 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
 export class DynamicFormConfigService {
   constructor(@Inject(DYNAMIC_FORM_CONFIG) public config: DynamicFormConfig) {}
 
+  getElementTypeConfig(type: string) {
+    const config = this.config.elementConfig;
+    return config.types.find(f => f.type === type);
+  }
+
   getFieldTypeConfig(type: string) {
     const config = this.config.fieldConfig;
     return config.types.find(f => f.type === type);
