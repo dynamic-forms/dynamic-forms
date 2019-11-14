@@ -19,7 +19,7 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
 
   setElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
-    this._fields = this._elements.filter(elem => elem.isField) as DynamicFormField[];
+    this._fields = this._elements.filter(elem => !elem.isElement) as DynamicFormField[];
     this._fields.forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });

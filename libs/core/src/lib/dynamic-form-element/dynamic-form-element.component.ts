@@ -30,6 +30,6 @@ export class DynamicFormElementComponent<
   get template() { return this.definition.template; }
 
   private initContainer() {
-    this.componentFactory.createElementComponent(this.container, this.element);
+      this.componentFactory.createComponent(this.container, this.element);
   }
 }
