@@ -11,5 +11,5 @@ export abstract class DynamicFormElementWrapper<
   @Input() element: Element;
 
   get definition() { return this.element.definition; }
-  get template() { return this.definition.template; }
+  get template() { return this.element.template; }
 }

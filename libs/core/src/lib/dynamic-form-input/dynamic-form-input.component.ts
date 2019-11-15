@@ -10,7 +10,9 @@ export abstract class DynamicFormInputComponent<FormInput extends DynamicFormInp
     super(validationService);
   }
 
-  get input() { return this.field.template.input; }
-  get hints() { return this.field.template.hints; }
-  get validation() { return this.field.template.validation; }
+  get template() { return this.field.template; }
+
+  get input() { return this.template.input; }
+  get hints() { return this.template.hints; }
+  get validation() { return this.template.validation; }
 }
