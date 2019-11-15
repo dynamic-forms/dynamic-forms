@@ -22,7 +22,7 @@ export abstract class DynamicFormField<
   protected _options: DynamicFormFieldOptions;
   protected _control: Control;
 
-  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, readonly definition: Definition) {
+  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, definition: Definition) {
     super(definition);
     this._path = this.createPath();
     this._options = this.createOptions();
