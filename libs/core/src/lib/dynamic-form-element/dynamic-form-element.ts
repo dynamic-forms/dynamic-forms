@@ -17,13 +17,10 @@ export class DynamicFormElement<
 
   get definition() { return this._definition; }
   get template() { return this.definition.template; }
-
   get type() { return this.definition.type; }
 
-
   get elements() { return this._elements; }
-
-  setElements(elements: DynamicFormElement[]) {
+  set elements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
   }
 }

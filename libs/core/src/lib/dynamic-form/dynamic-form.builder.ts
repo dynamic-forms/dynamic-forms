@@ -27,20 +27,20 @@ export class DynamicFormBuilder {
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormElements(field, field, field.definition.elements));
+    field.elements = this.createFormElements(field, field, field.definition.elements);
     return field;
   }
 
   createFormElement(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition) {
     const element = new DynamicFormElement(definition);
-    element.setElements(this.createFormElements(root, parent, element.definition.elements));
+    element.elements = this.createFormElements(root, parent, element.definition.elements);
     return element;
   }
 
   createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition) {
     const field = new DynamicFormGroup(root, parent, definition);
     field.setFieldExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormElements(root, field, definition.elements));
+    field.elements = this.createFormElements(root, field, definition.elements);
     return field;
   }
 
