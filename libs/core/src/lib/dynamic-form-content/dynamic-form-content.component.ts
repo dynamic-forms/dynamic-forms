@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicFormElementWrapper } from '../dynamic-form-element-wrapper';
+import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
 import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 
 @Component({

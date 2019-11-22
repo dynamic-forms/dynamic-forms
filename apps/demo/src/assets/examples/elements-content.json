@@ -1,0 +1,10 @@
+{
+  "elements": [
+    {
+      "type": "content",
+      "template": {
+        "content": "<div>HTML Content</div>"
+      }
+    }
+  ]
+}

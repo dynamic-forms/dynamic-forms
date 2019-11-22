@@ -6,7 +6,7 @@ import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormFieldWrapper} from '../dynamic-form-field/dynamic-form-field-wrapper';
-import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormWrapperTypeConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -47,7 +47,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createFieldComponentForConfig(
-    ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig
+    ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputType
   ) {
     const factory = this.getComponentFactory(config.component);
     const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
@@ -96,7 +96,7 @@ export class DynamicFormComponentFactory {
   }
 
   private getWrapperTypeConfigs(
-    field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig
+    field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputType
   ) {
     const wrappers = (field.wrappers || []).concat(config.wrappers || []);
     return wrappers.map(wrapper => {

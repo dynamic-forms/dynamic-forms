@@ -3,6 +3,7 @@ import { matDynamicFormInputConfig } from './dynamic-form-input/dynamic-form-inp
 
 export const matDynamicFormConfig: DynamicFormConfig = {
   library: 'material',
+  elementConfig: dynamicFormConfig.elementConfig,
   fieldConfig: dynamicFormConfig.fieldConfig,
   inputConfig: matDynamicFormInputConfig,
   wrapperConfig: dynamicFormConfig.wrapperConfig,

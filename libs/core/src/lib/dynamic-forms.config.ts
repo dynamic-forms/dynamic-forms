@@ -1,5 +1,7 @@
 import { Provider } from '@angular/core';
 import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-array.component';
+import { DynamicFormContainerComponent } from './dynamic-form-container/dynamic-form-container.component';
+import { DynamicFormContentComponent } from './dynamic-form-content/dynamic-form-content.component';
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
@@ -13,6 +15,12 @@ import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 
 export const dynamicFormConfig: DynamicFormConfig = {
   library: 'core',
+  elementConfig: {
+    types: [
+      { type: 'content', component: DynamicFormContentComponent },
+      { type: 'container', component: DynamicFormContainerComponent }
+    ]
+  },
   fieldConfig: {
     types: [
       { type: 'group', component: DynamicFormGroupComponent },

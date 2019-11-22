@@ -31,7 +31,7 @@ describe('DynamicFormGroup', () => {
       <DynamicFormField>{ isElement: false, definition: { key: 'key' }, control: new FormControl() }
     ];
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
 
     expect(formGroup.fields).toEqual(fields);
   });
@@ -41,7 +41,7 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
-    formGroup.elements = null;
+    formGroup.setElements(null);
 
     expect(formGroup.fields).toEqual([]);
   });
@@ -58,7 +58,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
     formGroup.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -94,7 +94,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
     formGroup.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -113,7 +113,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
     formGroup.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -132,7 +132,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
     formGroup.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -151,7 +151,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formGroup.elements = fields;
+    formGroup.setElements(fields);
     formGroup.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

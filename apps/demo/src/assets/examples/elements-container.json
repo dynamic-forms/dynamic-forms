@@ -1,0 +1,24 @@
+{
+  "elements": [
+    {
+      "type": "container",
+      "template": {
+        "header": "Container"
+      },
+      "elements": [
+        {
+          "type": "content",
+          "template": {
+            "content": "<div>HTML Content 1</div>"
+          }  
+        },
+        {
+          "type": "content",
+          "template": {
+            "content": "<div>HTML Content 2</div>"
+          }  
+        }
+      ]
+    }
+  ]
+}

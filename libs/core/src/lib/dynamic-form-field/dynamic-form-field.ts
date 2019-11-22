@@ -48,7 +48,7 @@ export abstract class DynamicFormField<
   get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
 
-  setFieldExpressions(expressions: DynamicFormFieldExpressions) {
+  setExpressions(expressions: DynamicFormFieldExpressions) {
     if (expressions) {
       this._expressions = expressions;
       Object.keys(expressions).forEach(path => {

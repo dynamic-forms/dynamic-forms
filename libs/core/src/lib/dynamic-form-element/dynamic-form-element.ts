@@ -20,7 +20,8 @@ export class DynamicFormElement<
   get type() { return this.definition.type; }
 
   get elements() { return this._elements; }
-  set elements(elements: DynamicFormElement[]) {
+
+  setElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
   }
 }

@@ -43,6 +43,19 @@
       ]
     },
     {
+      "label": "Elements",
+      "items": [
+        { 
+          "id": "elements-container", 
+          "label": "Container"
+        },
+        { 
+          "id": "elements-content", 
+          "label": "Content"
+        }
+      ]
+    },
+    {
       "label": "Validation",
       "items": [
         { 
