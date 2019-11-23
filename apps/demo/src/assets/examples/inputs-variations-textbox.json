@@ -1,6 +1,12 @@
 {
   "elements": [
     {
+      "type": "content",
+      "template": {
+        "content": "<h3>Textbox variations</h3>"
+      }
+    },
+    {
       "key": "textbox",
       "type": "control",
       "template": {

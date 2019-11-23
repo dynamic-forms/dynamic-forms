@@ -1,6 +1,12 @@
 {
   "elements": [
     {
+      "type": "content",
+      "template": {
+        "content": "<h3>Inputs with default value</h3>"
+      }
+    },
+    {
       "key": "checkbox",
       "type": "control",
       "template": {

@@ -1,9 +1,36 @@
 {
   "elements": [
     {
+      "type": "content",
+      "template": {
+        "content": "<h3>Inputs disabled / enabled</h3>"
+      }
+    },
+    {
+      "key": "enabled",
+      "type": "group",
+      "template": {
+        "label": "Enabled"
+      },
+      "elements": [
+        {
+          "key": "textbox",
+          "type": "control",
+          "template": {
+            "label": "Textbox",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter a text"
+            }
+          }
+        }
+      ]
+    },
+    {
       "key": "disabled",
       "type": "group",
       "template": {
+        "label": "Disabled",
         "disabled": true
       },
       "elements": [
@@ -162,23 +189,6 @@
               "defaultValue": "angular forms JSON",
               "inputType": "search",
               "placeholder": "Enter a search text"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "key": "notDisabled",
-      "type": "group",
-      "elements": [
-        {
-          "key": "textbox",
-          "type": "control",
-          "template": {
-            "label": "Textbox (not disabled)",
-            "input": {
-              "type": "textbox",
-              "placeholder": "Enter a text"
             }
           }
         }

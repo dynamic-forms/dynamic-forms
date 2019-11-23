@@ -1,6 +1,18 @@
 {
   "elements": [
     {
+      "type": "content",
+      "template": {
+        "content": "<h3>Select variations</h3>"
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Single selection</h4>"
+      }
+    },
+    {
       "key": "select1",
       "type": "control",
       "template": {
@@ -109,6 +121,12 @@
         "validation": {
           "required": true
         }
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Multiple selection</h4>"
       }
     },
     {

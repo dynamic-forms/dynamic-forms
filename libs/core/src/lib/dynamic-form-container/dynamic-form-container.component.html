@@ -1,4 +1,5 @@
 <div class="dynamic-form-container">
-  <dynamic-form-element *ngFor="let element of elements" [element]="element">
-  </dynamic-form-element>
+  <ng-container *ngFor="let element of elements">
+    <dynamic-form-element [element]="element"></dynamic-form-element>      
+  </ng-container>
 </div>

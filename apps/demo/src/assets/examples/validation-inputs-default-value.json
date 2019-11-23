@@ -1,6 +1,12 @@
 {
   "elements": [
     {
+      "type": "content",
+      "template": {
+        "content": "<h3>Validation of inputs</h3>"
+      }
+    },
+    {
       "key": "checkbox",
       "type": "control",
       "template": {

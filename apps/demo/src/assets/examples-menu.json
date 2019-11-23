@@ -12,6 +12,10 @@
           "label": "Placeholder" 
         },
         { 
+          "id": "inputs-hints", 
+          "label": "Hints" 
+        },
+        { 
           "id": "inputs-default-value", 
           "label": "Default value" 
         },
@@ -22,10 +26,6 @@
         { 
           "id": "inputs-disabled", 
           "label": "Disabled"
-        },
-        { 
-          "id": "inputs-hints", 
-          "label": "Hints" 
         },
         {
           "label": "Variations",
@@ -40,19 +40,6 @@
             }
           ]
         }  
-      ]
-    },
-    {
-      "label": "Elements",
-      "items": [
-        { 
-          "id": "elements-container", 
-          "label": "Container"
-        },
-        { 
-          "id": "elements-content", 
-          "label": "Content"
-        }
       ]
     },
     {
