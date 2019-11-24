@@ -1,15 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormContentDefinition } from './dynamic-form-content-definition';
 import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 import { DynamicFormContentComponent } from './dynamic-form-content.component';
-import { DynamicFormContentModule } from './dynamic-form-content.module';
 
 describe('DynamicFormContentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormContentModule
+      declarations: [
+        DynamicFormContentComponent
       ]
     });
   }));
