@@ -35,7 +35,9 @@ describe('DynamicFormGroupComponent', () => {
     form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupDefinition>{
       key: 'key',
-      template: {},
+      template: {
+        label: 'label'
+      },
       elements: []
     });
     component.field = formGroup;

@@ -35,7 +35,9 @@ describe('DynamicFormArrayComponent', () => {
     form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     formArray = new DynamicFormArray(form, form, <DynamicFormArrayDefinition>{
       key: 'key',
-      template: {},
+      template: {
+        label: 'label'
+      },
       elements: []
     });
     component.field = formArray;
