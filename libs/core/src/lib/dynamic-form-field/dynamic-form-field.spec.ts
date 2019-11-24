@@ -140,7 +140,7 @@ describe('DynamicFormField', () => {
       'input.readonly': <DynamicFormFieldExpression>{ value: false }
     };
 
-    formField.setFieldExpressions(fieldExpressions);
+    formField.setExpressions(fieldExpressions);
 
     expect(formField.expressions).toBe(fieldExpressions);
     expect(formField.template['required']).toBe(true);

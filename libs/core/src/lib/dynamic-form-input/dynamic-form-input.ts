@@ -1,8 +1,7 @@
 import { DynamicFormInputOptionItem } from './dynamic-form-input-option-item';
-import { DynamicFormInputType } from './dynamic-form-input-type';
 
 export interface DynamicFormInput {
-  type: DynamicFormInputType;
+  type: string;
   defaultValue?: any;
   placeholder?: string;
   inputType?: string;

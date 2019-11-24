@@ -32,11 +32,13 @@ describe('DynamicFormArrayComponent', () => {
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {});
+    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     formArray = new DynamicFormArray(form, form, <DynamicFormArrayDefinition>{
       key: 'key',
-      template: {},
-      fields: []
+      template: {
+        label: 'label'
+      },
+      elements: []
     });
     component.field = formArray;
 

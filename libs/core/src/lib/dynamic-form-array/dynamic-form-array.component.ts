@@ -8,6 +8,7 @@ import { DynamicFormArray } from './dynamic-form-array';
   templateUrl: './dynamic-form-array.component.html'
 })
 export class DynamicFormArrayComponent extends DynamicFormFieldWrapper<DynamicFormArray> {
+
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

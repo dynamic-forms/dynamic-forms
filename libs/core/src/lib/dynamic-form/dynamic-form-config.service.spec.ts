@@ -5,14 +5,17 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 describe('DynamicFormConfigService', () => {
   const config: DynamicFormConfig = {
     library: 'test',
-    wrapperConfig: {
-      types: [ { type: 'wrapper', component: null } ]
+    elementConfig: {
+      types: [ { type: 'content', component: null } ]
     },
     fieldConfig: {
       types: [ { type: 'group', component: null } ]
     },
     inputConfig: {
       types: [ { type: 'input', component: null } ]
+    },
+    wrapperConfig: {
+      types: [ { type: 'wrapper', component: null } ]
     },
     validationConfig: {
       defaultMessage: null,
@@ -38,19 +41,19 @@ describe('DynamicFormConfigService', () => {
     })
   );
 
-  it('returns DynamicWrapperTypeConfig',
+  it('returns DynamicElementTypeConfig',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper');
+      const elementTypeConfig = service.getElementTypeConfig('content');
 
-      expect(wrapperTypeConfig).toEqual(config.wrapperConfig.types[0]);
+      expect(elementTypeConfig).toEqual(config.elementConfig.types[0]);
     })
   );
 
-  it('returns DynamicWrapperTypeConfig being undefined if not found',
+  it('returns DynamicElementTypeConfig being undefined if not found',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper2');
+      const elementTypeConfig = service.getElementTypeConfig('element');
 
-      expect(wrapperTypeConfig).toBeUndefined();
+      expect(elementTypeConfig).toBeUndefined();
     })
   );
 
@@ -83,6 +86,22 @@ describe('DynamicFormConfigService', () => {
       const inputTypeConfig = service.getInputTypeConfig('input2');
 
       expect(inputTypeConfig).toBeUndefined();
+    })
+  );
+
+  it('returns DynamicWrapperTypeConfig',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper');
+
+      expect(wrapperTypeConfig).toEqual(config.wrapperConfig.types[0]);
+    })
+  );
+
+  it('returns DynamicWrapperTypeConfig being undefined if not found',
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const wrapperTypeConfig = service.getWrapperTypeConfig('wrapper2');
+
+      expect(wrapperTypeConfig).toBeUndefined();
     })
   );
 

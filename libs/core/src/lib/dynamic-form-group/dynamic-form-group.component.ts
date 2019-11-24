@@ -8,9 +8,10 @@ import { DynamicFormGroup } from './dynamic-form-group';
   templateUrl: './dynamic-form-group.component.html'
 })
 export class DynamicFormGroupComponent extends DynamicFormFieldWrapper<DynamicFormGroup> {
+
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
 
-  get fields() { return this.field.fields; }
+  get elements() { return this.field.elements; }
 }

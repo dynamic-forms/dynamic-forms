@@ -9,6 +9,7 @@ import { DynamicFormControl } from './dynamic-form-control';
   templateUrl: './dynamic-form-control.component.html'
 })
 export class DynamicFormControlComponent extends DynamicFormFieldWrapper<DynamicFormControl> implements OnInit {
+
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
   fieldContainer: ViewContainerRef;
 

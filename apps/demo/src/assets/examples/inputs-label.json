@@ -1,5 +1,11 @@
 {
-  "fields": [
+  "elements": [
+    {
+      "type": "content",
+      "template": {
+        "content": "<h3>Inputs with label</h3>"
+      }
+    },
     {
       "key": "checkbox",
       "type": "control",

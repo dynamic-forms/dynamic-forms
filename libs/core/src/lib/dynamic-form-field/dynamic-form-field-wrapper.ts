@@ -1,15 +1,21 @@
-import { Input } from '@angular/core';
+import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormField } from './dynamic-form-field';
+import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
+import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
-export abstract class DynamicFormFieldWrapper<Field extends DynamicFormField = DynamicFormField> {
-  @Input() field: Field;
+export abstract class DynamicFormFieldWrapper<Field extends DynamicFormField = DynamicFormField>
+  extends DynamicFormElementWrapper<DynamicFormFieldTemplate, DynamicFormFieldDefinition, Field> {
 
-  constructor(protected validationService: DynamicFormValidationService) {}
+  constructor(protected validationService: DynamicFormValidationService) {
+    super();
+  }
+
+  get field() { return this.element; }
+  set field(field: Field) { this.element = field; }
 
   get id() { return this.field.path; }
-  get template() { return this.field.template; }
   get control() { return this.field.control; }
 
   get errors(): DynamicFormValidationErrors {

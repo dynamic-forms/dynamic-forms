@@ -1,9 +1,9 @@
 import { Provider } from '@angular/core';
-import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-array.component';
-import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
+import { dynamicFormElementConfig } from './dynamic-form-element/dynamic-form-element-config';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
-import { DynamicFormGroupComponent } from './dynamic-form-group/dynamic-form-group.component';
+import { dynamicFormFieldConfig } from './dynamic-form-field/dynamic-form-field-config';
+import { dynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
@@ -13,16 +13,9 @@ import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 
 export const dynamicFormConfig: DynamicFormConfig = {
   library: 'core',
-  fieldConfig: {
-    types: [
-      { type: 'group', component: DynamicFormGroupComponent },
-      { type: 'array', component: DynamicFormArrayComponent },
-      { type: 'control', component: DynamicFormControlComponent }
-    ]
-  },
-  inputConfig: {
-    types: []
-  },
+  elementConfig: dynamicFormElementConfig,
+  fieldConfig: dynamicFormFieldConfig,
+  inputConfig: dynamicFormInputConfig,
   validationConfig: {
     defaultMessage: 'The field is invalid.',
     messages: {

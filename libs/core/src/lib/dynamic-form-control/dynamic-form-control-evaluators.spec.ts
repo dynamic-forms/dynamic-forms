@@ -7,9 +7,6 @@ import { DynamicFormControlEvaluators } from './dynamic-form-control-evaluators'
 
 describe('DynamicFormControlEvaluators', () => {
   it('evaluates control value of select', () => {
-    const root = new DynamicForm(<DynamicFormDefinition>{ fields: [] } , {
-      'key': 'option1'
-    });
     const definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
       key: 'key',
       template: {
@@ -29,7 +26,10 @@ describe('DynamicFormControlEvaluators', () => {
         }
       }
     };
-    const formControl = new DynamicFormControl(root, root, definition);
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {
+      'key': 'option1'
+    });
+    const formControl = new DynamicFormControl(form, form, definition);
     formControl.template.input.options = [
       { value: 'option1', label: 'Option1' },
       { value: 'option2', label: 'Option2' }

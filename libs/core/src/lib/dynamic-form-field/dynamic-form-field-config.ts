@@ -1,14 +1,23 @@
 import { Type } from '@angular/core';
-import { DynamicFormWrapperType } from '../dynamic-form-wrapper/dynamic-form-wrapper-type';
-import { DynamicFormFieldType } from './dynamic-form-field-type';
+import { DynamicFormArrayComponent } from '../dynamic-form-array/dynamic-form-array.component';
+import { DynamicFormControlComponent } from '../dynamic-form-control/dynamic-form-control.component';
+import { DynamicFormGroupComponent } from '../dynamic-form-group/dynamic-form-group.component';
 import { DynamicFormFieldWrapper } from './dynamic-form-field-wrapper';
 
 export interface DynamicFormFieldTypeConfig {
-  type: DynamicFormFieldType;
+  type: string;
   component: Type<DynamicFormFieldWrapper>;
-  wrappers?: DynamicFormWrapperType[];
+  wrappers?: string[];
 }
 
 export interface DynamicFormFieldConfig {
   types: DynamicFormFieldTypeConfig[];
 }
+
+export const dynamicFormFieldConfig: DynamicFormFieldConfig = {
+  types: [
+    { type: 'group', component: DynamicFormGroupComponent },
+    { type: 'array', component: DynamicFormArrayComponent },
+    { type: 'control', component: DynamicFormControlComponent }
+  ]
+};

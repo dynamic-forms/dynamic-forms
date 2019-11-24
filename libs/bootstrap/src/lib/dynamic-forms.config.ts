@@ -4,6 +4,7 @@ import { bsDynamicFormWrapperConfig } from './dynamic-form-wrapper/dynamic-form-
 
 export const bsDynamicFormConfig: DynamicFormConfig = {
   library: 'bootstrap',
+  elementConfig: dynamicFormConfig.elementConfig,
   fieldConfig: dynamicFormConfig.fieldConfig,
   inputConfig: bsDynamicFormInputConfig,
   wrapperConfig: bsDynamicFormWrapperConfig,
