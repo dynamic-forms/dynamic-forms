@@ -15,9 +15,6 @@ export class DynamicFormElementComponent<
   Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>
 > extends DynamicFormElementBase<Template, Definition, Element> implements OnInit {
 
-  @Input()
-  element: Element;
-
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;
 

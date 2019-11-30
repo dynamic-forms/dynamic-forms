@@ -3,11 +3,11 @@ import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementTypeConfig } from '../dynamic-form-element/dynamic-form-element-config';
-import { DynamicFormFieldWrapperBase } from '../dynamic-form-field-wrapper/dynamic-form-field-wrapper-base';
-import { DynamicFormFieldWrapperTypeConfig } from '../dynamic-form-field-wrapper/dynamic-form-field-wrapper-config';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
+import { DynamicFormFieldWrapperTypeConfig } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 

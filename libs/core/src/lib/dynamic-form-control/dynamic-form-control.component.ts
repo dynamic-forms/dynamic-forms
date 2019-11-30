@@ -9,8 +9,8 @@ import { DynamicFormControlBase } from './dynamic-form-control-base';
 })
 export class DynamicFormControlComponent extends DynamicFormControlBase implements OnInit {
 
-  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
-  fieldContainer: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef, static: true })
+  container: ViewContainerRef;
 
   constructor(
     protected componentFactory: DynamicFormComponentFactory,
@@ -23,10 +23,10 @@ export class DynamicFormControlComponent extends DynamicFormControlBase implemen
   get hints() { return this.field.template.hints; }
 
   ngOnInit() {
-    this.initFieldContainer();
+    this.initContainer();
   }
 
-  private initFieldContainer() {
-    this.componentFactory.createInputComponent(this.fieldContainer, this.field);
+  private initContainer() {
+    this.componentFactory.createInputComponent(this.container, this.field);
   }
 }
