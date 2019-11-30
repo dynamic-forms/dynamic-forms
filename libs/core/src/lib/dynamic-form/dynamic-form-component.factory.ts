@@ -54,7 +54,7 @@ export class DynamicFormComponentFactory {
     if (wrapperConfigs.length > 0) {
       const wrapperComponents = this.createWrapperComponents(ref, field, wrapperConfigs);
       const wrapperComponent = wrapperComponents[wrapperComponents.length - 1];
-      wrapperComponent.fieldComponent = this.createFieldComponentFromFactory(wrapperComponent.ref, field, factory);
+      wrapperComponent.component = this.createFieldComponentFromFactory(wrapperComponent.ref, field, factory);
       return wrapperComponents[0];
     }
     return this.createFieldComponentFromFactory(ref, field, factory);
@@ -88,7 +88,7 @@ export class DynamicFormComponentFactory {
       const factory = this.getComponentFactory(config.component);
       const parentComponent = result[result.length - 1];
       const component = parentComponent.ref.createComponent(factory).instance;
-      parentComponent.fieldComponent = component;
+      parentComponent.component = component;
       component.field = field;
       return [ ...result, component ];
     }, <DynamicFormFieldWrapperBase[]>[ { ref: ref } ]);

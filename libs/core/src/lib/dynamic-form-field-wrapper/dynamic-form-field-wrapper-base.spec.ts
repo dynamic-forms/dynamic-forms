@@ -7,7 +7,7 @@ import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 
 @Component({
   selector: 'dynamic-form-field-wrapper-test',
-  template: `<ng-template #fieldContainer></ng-template>`
+  template: `<ng-template #container></ng-template>`
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
@@ -63,7 +63,7 @@ describe('DynamicFormFieldWrapper', () => {
       const fixture = TestBed.createComponent(DynamicFormFieldWrapperTestComponent);
       const component = fixture.componentInstance;
 
-      component.fieldComponent = component.ref.createComponent(factory).instance;
+      component.component = component.ref.createComponent(factory).instance;
       fixture.detectChanges();
 
       expect(component).toBeDefined();
