@@ -1,9 +1,9 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
+import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
-import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
-import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
@@ -23,13 +23,13 @@ class DynamicFormTestComponent {
   selector: 'dynamic-form-element-test',
   template: `<div>Dynamic Element</div>`
 })
-class DynamicFormElementTestComponent extends DynamicFormElementWrapper {}
+class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 @Component({
   selector: 'dynamic-form-field-test',
   template: `<div>Dynamic Field</div>`
 })
-class DynamicFormFieldTestComponent extends DynamicFormFieldWrapper {
+class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -39,7 +39,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldWrapper {
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

@@ -1,11 +1,11 @@
 import { Type } from '@angular/core';
 import { DynamicFormContainerComponent } from './dynamic-form-container/dynamic-form-container.component';
 import { DynamicFormContentComponent } from './dynamic-form-content/dynamic-form-content.component';
-import { DynamicFormElementWrapper } from './dynamic-form-element-wrapper';
+import { DynamicFormElementBase } from './dynamic-form-element-base';
 
 export interface DynamicFormElementTypeConfig {
   type: string;
-  component: Type<DynamicFormElementWrapper>;
+  component: Type<DynamicFormElementBase>;
 }
 
 export interface DynamicFormElementConfig {

@@ -1,17 +1,17 @@
 import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormFieldWrapper } from './dynamic-form-field-wrapper';
+import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
-class DynamicFormFieldWrapperTest extends DynamicFormFieldWrapper {
+class DynamicFormFieldBaseTest extends DynamicFormFieldBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }
 
-describe('DynamicFormFieldWrapper', () => {
+describe('DynamicFormFieldBase', () => {
   let validationConfig: DynamicFormValidationConfig;
-  let component: DynamicFormFieldWrapperTest;
+  let component: DynamicFormFieldBaseTest;
 
   beforeEach(() => {
     validationConfig = {
@@ -23,7 +23,7 @@ describe('DynamicFormFieldWrapper', () => {
     const configService = new DynamicFormConfigService({ library: 'test', validationConfig });
     const validationService = new DynamicFormValidationService(configService);
 
-    component = new DynamicFormFieldWrapperTest(validationService);
+    component = new DynamicFormFieldBaseTest(validationService);
   });
 
   it('errors returns errors from control', () => {

@@ -1,4 +1,5 @@
-<div class="dynamic-form-group" [ngClass]="{ 'hidden': field.hidden, 'readonly': field.readonly }">
+<div class="dynamic-form-group" [class.hidden]="field.hidden" [class.readonly]="field.readonly"
+  [ngClass]="template?.className">
   <ng-container *ngIf="template?.label">
     <div class="dynamic-form-group-label">{{ template?.label }}</div>
   </ng-container>
@@ -6,4 +7,3 @@
     <dynamic-form-element [element]="element"></dynamic-form-element>
   </ng-container>
 </div>
-<ng-content></ng-content>

@@ -1,11 +1,11 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementTypeConfig } from '../dynamic-form-element/dynamic-form-element-config';
-import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
-import { DynamicFormFieldWrapper} from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormWrapperTypeConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
@@ -66,7 +66,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createElementComponentFromFactory(
-    ref: ViewContainerRef, element: DynamicFormElement, factory: ComponentFactory<DynamicFormElementWrapper>
+    ref: ViewContainerRef, element: DynamicFormElement, factory: ComponentFactory<DynamicFormElementBase>
   ) {
     const component = ref.createComponent(factory).instance;
     component.element = element;
@@ -74,7 +74,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createFieldComponentFromFactory(
-    ref: ViewContainerRef, field: DynamicFormField, factory: ComponentFactory<DynamicFormFieldWrapper>
+    ref: ViewContainerRef, field: DynamicFormField, factory: ComponentFactory<DynamicFormFieldBase>
   ) {
     const component = ref.createComponent(factory).instance;
     component.field = field;
