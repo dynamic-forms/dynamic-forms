@@ -21,6 +21,7 @@ export * from './lib/dynamic-form-control/dynamic-form-control';
 export * from './lib/dynamic-form-control/dynamic-form-control-base';
 export * from './lib/dynamic-form-control/dynamic-form-control-definition';
 export * from './lib/dynamic-form-control/dynamic-form-control-template';
+export * from './lib/dynamic-form-control/dynamic-form-control-wrapper-base';
 export * from './lib/dynamic-form-control/dynamic-form-control.component';
 export * from './lib/dynamic-form-element/dynamic-form-element';
 export * from './lib/dynamic-form-element/dynamic-form-element-base';

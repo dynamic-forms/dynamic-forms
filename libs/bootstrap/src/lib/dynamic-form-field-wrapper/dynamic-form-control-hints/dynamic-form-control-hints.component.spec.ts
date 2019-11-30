@@ -54,7 +54,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-    component.fieldComponent = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
+    component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
   }));
