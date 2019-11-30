@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent,
+import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputBase,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
@@ -10,7 +10,7 @@ import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
