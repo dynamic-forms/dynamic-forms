@@ -39,6 +39,8 @@ export * from './lib/dynamic-form-field/dynamic-form-field-base';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';
 export * from './lib/dynamic-form-field/dynamic-form-field-template';
+export * from './lib/dynamic-form-field-wrapper/dynamic-form-field-wrapper-base';
+export * from './lib/dynamic-form-field-wrapper/dynamic-form-field-wrapper-config';
 export * from './lib/dynamic-form-group/dynamic-form-group';
 export * from './lib/dynamic-form-group/dynamic-form-group-base';
 export * from './lib/dynamic-form-group/dynamic-form-group-definition';
@@ -58,5 +60,3 @@ export * from './lib/dynamic-form-input/dynamic-form-textarea/dynamic-form-texta
 export * from './lib/dynamic-form-input/dynamic-form-textbox/dynamic-form-textbox';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.builder';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.service';
-export * from './lib/dynamic-form-wrapper/dynamic-form-wrapper';
-export * from './lib/dynamic-form-wrapper/dynamic-form-wrapper-config';

@@ -12,4 +12,4 @@ import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label/dy
     BsDynamicFormControlHintsModule
   ]
 })
-export class BsDynamicFormWrapperModule {}
+export class BsDynamicFormFieldWrapperModule {}

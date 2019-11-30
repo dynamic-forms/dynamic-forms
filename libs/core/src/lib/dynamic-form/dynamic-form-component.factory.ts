@@ -3,12 +3,12 @@ import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementTypeConfig } from '../dynamic-form-element/dynamic-form-element-config';
+import { DynamicFormFieldWrapperBase } from '../dynamic-form-field-wrapper/dynamic-form-field-wrapper-base';
+import { DynamicFormFieldWrapperTypeConfig } from '../dynamic-form-field-wrapper/dynamic-form-field-wrapper-config';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
-import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
-import { DynamicFormWrapperTypeConfig } from '../dynamic-form-wrapper/dynamic-form-wrapper-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 
 @Injectable()
@@ -82,7 +82,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createWrapperComponents(
-    ref: ViewContainerRef, field: DynamicFormField, configs: DynamicFormWrapperTypeConfig[]
+    ref: ViewContainerRef, field: DynamicFormField, configs:  DynamicFormFieldWrapperTypeConfig[]
   ) {
     const wrappers = configs.reduce((result, config) => {
       const factory = this.getComponentFactory(config.component);
@@ -91,7 +91,7 @@ export class DynamicFormComponentFactory {
       parentComponent.fieldComponent = component;
       component.field = field;
       return [ ...result, component ];
-    }, <DynamicFormWrapper[]>[ { ref: ref } ]);
+    }, <DynamicFormFieldWrapperBase[]>[ { ref: ref } ]);
     return wrappers.slice(1);
   }
 

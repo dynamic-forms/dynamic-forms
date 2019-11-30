@@ -3,13 +3,13 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormWrapper } from './dynamic-form-wrapper';
+import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 
 @Component({
-  selector: 'dynamic-form-wrapper-test',
+  selector: 'dynamic-form-field-wrapper-test',
   template: `<ng-template #fieldContainer></ng-template>`
 })
-class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
+class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
     protected containerRef: ViewContainerRef,
     protected validationService: DynamicFormValidationService
@@ -30,7 +30,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   declarations: [
-    DynamicFormWrapperTestComponent,
+    DynamicFormFieldWrapperTestComponent,
     DynamicFormInputTestComponent
   ],
   entryComponents: [
@@ -46,13 +46,13 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
     DynamicFormValidationService
   ]
 })
-class DynamicFormWrapperTestModule {}
+class DynamicFormFieldWrapperTestModule {}
 
-describe('DynamicFormWrapper', () => {
+describe('DynamicFormFieldWrapper', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormWrapperTestModule
+        DynamicFormFieldWrapperTestModule
       ]
     });
   }));
@@ -60,7 +60,7 @@ describe('DynamicFormWrapper', () => {
   it('creates component',
     inject([ComponentFactoryResolver], (resolver: ComponentFactoryResolver) => {
       const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-      const fixture = TestBed.createComponent(DynamicFormWrapperTestComponent);
+      const fixture = TestBed.createComponent(DynamicFormFieldWrapperTestComponent);
       const component = fixture.componentInstance;
 
       component.fieldComponent = component.ref.createComponent(factory).instance;

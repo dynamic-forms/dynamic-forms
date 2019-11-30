@@ -6,11 +6,11 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-field-template';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 
-export abstract class DynamicFormWrapper<Field extends DynamicFormField = DynamicFormField>
+export abstract class DynamicFormFieldWrapperBase<Field extends DynamicFormField = DynamicFormField>
   extends DynamicFormFieldBase<AbstractControl, DynamicFormFieldTemplate, DynamicFormFieldDefinition, Field>
     implements AfterViewInit {
 
-  fieldComponent: DynamicFormWrapper<Field> |
+  fieldComponent: DynamicFormFieldWrapperBase<Field> |
     DynamicFormFieldBase<AbstractControl, DynamicFormFieldTemplate, DynamicFormFieldDefinition, Field>;
 
   @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })

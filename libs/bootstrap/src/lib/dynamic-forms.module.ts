@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getDynamicFormProviders, DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
-import { BsDynamicFormWrapperModule } from './dynamic-form-wrapper/dynamic-form-wrapper.module';
+import { BsDynamicFormFieldWrapperModule } from './dynamic-form-wrapper/dynamic-form-field-wrapper.module';
 import { bsDynamicFormConfig } from './dynamic-forms.config';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
     ReactiveFormsModule,
     DynamicFormsModule,
     BsDynamicFormInputModule,
-    BsDynamicFormWrapperModule
+    BsDynamicFormFieldWrapperModule
   ],
   exports: [
     DynamicFormsModule
