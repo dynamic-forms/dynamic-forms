@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, NgModule, ViewContainerRef } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormWrapper } from './dynamic-form-wrapper';
@@ -22,7 +22,7 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
