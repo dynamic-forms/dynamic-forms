@@ -11,11 +11,11 @@ describe('DynamicFormConfigService', () => {
     fieldConfig: {
       types: [ { type: 'group', component: null } ]
     },
-    wrapperConfig: {
-      types: [ { type: 'wrapper', component: null } ]
-    },
     inputConfig: {
       types: [ { type: 'input', component: null } ]
+    },
+    wrapperConfig: {
+      types: [ { type: 'wrapper', component: null } ]
     },
     validationConfig: {
       defaultMessage: null,

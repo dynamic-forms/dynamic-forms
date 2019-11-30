@@ -50,7 +50,7 @@ describe('DynamicFormBuilder', () => {
     });
   }));
 
-  it('create DynamicForm throws error',
+  it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{ elements: [ {} ] };
 
@@ -138,7 +138,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicFormElement throws error',
+  it('throws error creating DynamicFormElement',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
       const definition = <DynamicFormElementDefinition>{ template: {} };
@@ -159,7 +159,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicFormGroup throws error',
+  it('throws error creating DynamicFormGroup',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
       const definition = <DynamicFormGroupDefinition>{ template: {} };
@@ -185,7 +185,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicFormArray throws error',
+  it('throws error creating DynamicFormArray',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
       const definition = <DynamicFormArrayDefinition>{ template: {} };
@@ -211,7 +211,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicFormControl throws error',
+  it('throws error creating DynamicFormControl',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
       const definition = <DynamicFormControlDefinition>{ template: {} };

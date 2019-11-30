@@ -125,6 +125,26 @@ describe('DynamicFormComponentFactory', () => {
     fixture.detectChanges();
   }));
 
+  it('creates element component for element',
+    inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
+      const element = { isElement: true, type: 'element' };
+      const elementComponent = factory.createComponent(component.container, <any>element);
+
+      expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
+      expect(elementComponent.element).toBeDefined();
+    })
+  );
+
+  it('creates field component for field',
+    inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
+      const element = { isElement: false, type: 'field' };
+      const elementComponent = factory.createComponent(component.container, <any>element);
+
+      expect(elementComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
+      expect(elementComponent.element).toBeDefined();
+    })
+  );
+
   it('creates element component',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const element = { type: 'element' };
