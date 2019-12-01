@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DynamicFormControl } from './dynamic-form-control';
+import { DynamicFormControlBase } from './dynamic-form-control-base';
 
 @Component({
   selector: 'dynamic-form-control',
   templateUrl: './dynamic-form-control.component.html'
 })
-export class DynamicFormControlComponent extends DynamicFormFieldWrapper<DynamicFormControl> implements OnInit {
+export class DynamicFormControlComponent extends DynamicFormControlBase implements OnInit {
 
-  @ViewChild('fieldContainer', { read: ViewContainerRef, static: true })
-  fieldContainer: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef, static: true })
+  container: ViewContainerRef;
 
   constructor(
     protected componentFactory: DynamicFormComponentFactory,
@@ -24,10 +23,10 @@ export class DynamicFormControlComponent extends DynamicFormFieldWrapper<Dynamic
   get hints() { return this.field.template.hints; }
 
   ngOnInit() {
-    this.initFieldContainer();
+    this.initContainer();
   }
 
-  private initFieldContainer() {
-    this.componentFactory.createInputComponent(this.fieldContainer, this.field);
+  private initContainer() {
+    this.componentFactory.createInputComponent(this.container, this.field);
   }
 }

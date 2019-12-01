@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputComponent,
+import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputBase,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
 import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
@@ -10,7 +10,7 @@ import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.mo
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -54,7 +54,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-    component.fieldComponent = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
+    component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
   }));

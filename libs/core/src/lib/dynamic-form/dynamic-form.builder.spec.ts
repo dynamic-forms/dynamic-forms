@@ -50,6 +50,14 @@ describe('DynamicFormBuilder', () => {
     });
   }));
 
+  it('throws error creating DynamicForm',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormDefinition>{ elements: [ {} ] };
+
+      expect(() => builder.createForm(definition, {})).toThrowError();
+    })
+  );
+
   it('creates DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
@@ -130,11 +138,12 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicForm throws error',
+  it('throws error creating DynamicFormElement',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormDefinition>{ elements: [ {} ] };
+      const form = getForm({});
+      const definition = <DynamicFormElementDefinition>{ template: {} };
 
-      expect(() => builder.createForm(definition, {})).toThrowError();
+      expect(() => builder.createFormElement(form, form, definition)).toThrowError('Element type undefined is not defined');
     })
   );
 
@@ -150,13 +159,12 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('create DynamicFormElement throws error',
+  it('throws error creating DynamicFormGroup',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const model = {};
-      const form = getForm(model);
-      const definition = <DynamicFormElementDefinition>{ template: {} };
+      const form = getForm({});
+      const definition = <DynamicFormGroupDefinition>{ template: {} };
 
-      expect(() => builder.createFormElement(form, form, definition)).toThrowError();
+      expect(() => builder.createFormGroup(form, form, definition)).toThrowError('Field type undefined is not defined');
     })
   );
 
@@ -177,6 +185,15 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
+  it('throws error creating DynamicFormArray',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormArrayDefinition>{ template: {} };
+
+      expect(() => builder.createFormArray(form, form, definition)).toThrowError('Field type undefined is not defined');
+    })
+  );
+
   it('creates DynamicFormArray',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
@@ -191,6 +208,15 @@ describe('DynamicFormBuilder', () => {
 
       expect(formArray.control).toBeDefined();
       expect(formArray.fields).toBeDefined();
+    })
+  );
+
+  it('throws error creating DynamicFormControl',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormControlDefinition>{ template: {} };
+
+      expect(() => builder.createFormControl(form, form, definition)).toThrowError('Field type undefined is not defined');
     })
   );
 

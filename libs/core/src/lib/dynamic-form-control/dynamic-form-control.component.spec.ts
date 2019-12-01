@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -16,7 +16,7 @@ import { DynamicFormControlModule } from './dynamic-form-control.module';
   selector: 'dynamic-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

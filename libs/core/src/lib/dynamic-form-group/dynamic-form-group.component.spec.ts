@@ -86,4 +86,21 @@ describe('DynamicFormGroupComponent', () => {
 
     expect(formGroupElement.className).toContain('readonly');
   });
+
+  it('sets class name of dynamic form group', () => {
+    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
+    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+
+    expect(formGroupElement.className).not.toContain('className1 className2');
+
+    component.template.className = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formGroupElement.className).toContain('className1 className2');
+
+    component.template.className = null;
+    fixture.detectChanges();
+
+    expect(formGroupElement.className).not.toContain('className1 className2');
+  });
 });

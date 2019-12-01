@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
+import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
-import { DynamicFormElementWrapper } from './dynamic-form-element-wrapper';
 
 @Component({
   selector: 'dynamic-form-element',
@@ -13,7 +13,7 @@ export class DynamicFormElementComponent<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
   Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>
-> extends DynamicFormElementWrapper<Template, Definition, Element> implements OnInit {
+> extends DynamicFormElementBase<Template, Definition, Element> implements OnInit {
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;

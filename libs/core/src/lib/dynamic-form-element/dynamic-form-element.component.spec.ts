@@ -4,8 +4,8 @@ import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-compon
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormElement } from './dynamic-form-element';
+import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
-import { DynamicFormElementWrapper } from './dynamic-form-element-wrapper';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 
@@ -13,17 +13,17 @@ import { DynamicFormElementModule } from './dynamic-form-element.module';
   selector: 'dynamic-element-test',
   template: `<div>Dynamic Element</div>`
 })
-class DynamicFormElementWrapperComponent extends DynamicFormElementWrapper {}
+class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
   imports: [
     DynamicFormElementModule
   ],
   declarations: [
-    DynamicFormElementWrapperComponent
+    DynamicFormElementBaseComponent
   ],
   entryComponents: [
-    DynamicFormElementWrapperComponent
+    DynamicFormElementBaseComponent
   ],
   providers: [
     {
@@ -32,7 +32,7 @@ class DynamicFormElementWrapperComponent extends DynamicFormElementWrapper {}
         library: 'test',
         elementConfig: {
           types: [
-            { type: 'element', component: DynamicFormElementWrapperComponent }
+            { type: 'element', component: DynamicFormElementBaseComponent }
           ]
         }
       }

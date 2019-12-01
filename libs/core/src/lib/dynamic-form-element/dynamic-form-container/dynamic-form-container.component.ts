@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { DynamicFormElementWrapper } from '../dynamic-form-element-wrapper';
+import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 
 @Component({
   selector: 'dynamic-form-container',
   templateUrl: './dynamic-form-container.component.html'
 })
-export class DynamicFormContainerComponent extends DynamicFormElementWrapper<DynamicFormContainerTemplate> {
+export class DynamicFormContainerComponent extends DynamicFormElementBase<DynamicFormContainerTemplate> {
   constructor() {
     super();
   }

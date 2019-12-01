@@ -1,11 +1,11 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFormElementWrapper } from '../dynamic-form-element/dynamic-form-element-wrapper';
+import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
-import { DynamicFormFieldWrapper } from '../dynamic-form-field/dynamic-form-field-wrapper';
-import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
+import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormWrapper } from '../dynamic-form-wrapper/dynamic-form-wrapper';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -23,13 +23,13 @@ class DynamicFormTestComponent {
   selector: 'dynamic-form-element-test',
   template: `<div>Dynamic Element</div>`
 })
-class DynamicFormElementTestComponent extends DynamicFormElementWrapper {}
+class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 @Component({
   selector: 'dynamic-form-field-test',
   template: `<div>Dynamic Field</div>`
 })
-class DynamicFormFieldTestComponent extends DynamicFormFieldWrapper {
+class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -39,7 +39,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldWrapper {
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -47,9 +47,9 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
 
 @Component({
   selector: 'dynamic-form-wrapper-test',
-  template: `<ng-template #fieldContainer></ng-template>`
+  template: `<ng-template #container></ng-template>`
 })
-class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
+class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
     protected containerRef: ViewContainerRef,
     protected validationService: DynamicFormValidationService
@@ -63,9 +63,9 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
     DynamicFormTestComponent,
     DynamicFormElementComponent,
     DynamicFormElementTestComponent,
-    DynamicFormWrapperTestComponent,
     DynamicFormFieldTestComponent,
-    DynamicFormInputTestComponent
+    DynamicFormInputTestComponent,
+    DynamicFormFieldWrapperTestComponent
   ],
   providers: [
     {
@@ -91,7 +91,7 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
         },
         wrapperConfig: {
           types: [
-            { type: 'wrapper', component: DynamicFormWrapperTestComponent }
+            { type: 'wrapper', component: DynamicFormFieldWrapperTestComponent }
           ]
         }
       }
@@ -104,7 +104,7 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
     DynamicFormElementTestComponent,
     DynamicFormFieldTestComponent,
     DynamicFormInputTestComponent,
-    DynamicFormWrapperTestComponent
+    DynamicFormFieldWrapperTestComponent
   ]
 })
 class DynamicFormComponentFactoryTestModule {}
@@ -124,6 +124,26 @@ describe('DynamicFormComponentFactory', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
+
+  it('creates element component for element',
+    inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
+      const element = { isElement: true, type: 'element' };
+      const elementComponent = factory.createComponent(component.container, <any>element);
+
+      expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
+      expect(elementComponent.element).toBeDefined();
+    })
+  );
+
+  it('creates field component for field',
+    inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
+      const element = { isElement: false, type: 'field' };
+      const elementComponent = factory.createComponent(component.container, <any>element);
+
+      expect(elementComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
+      expect(elementComponent.element).toBeDefined();
+    })
+  );
 
   it('creates element component',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
@@ -149,9 +169,9 @@ describe('DynamicFormComponentFactory', () => {
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { type: 'field-wrapped' };
       const wrapperComponent = factory.createFieldComponent(component.container, <any>field);
-      const fieldComponent = (<DynamicFormWrapperTestComponent>wrapperComponent).fieldComponent;
+      const fieldComponent = (<DynamicFormFieldWrapperTestComponent>wrapperComponent).component;
 
-      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperComponent.field).toBeDefined();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
@@ -162,14 +182,14 @@ describe('DynamicFormComponentFactory', () => {
   it('creates field component wrapped multiple',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { type: 'field-wrapped', wrappers: ['wrapper'] };
-      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createFieldComponent(component.container, <any>field);
-      const wrapperComponent = <DynamicFormWrapperTestComponent>wrapperWrapperComponent.fieldComponent;
-      const fieldComponent = wrapperComponent.fieldComponent;
+      const wrapperWrapperComponent = <DynamicFormFieldWrapperTestComponent>factory.createFieldComponent(component.container, <any>field);
+      const wrapperComponent = <DynamicFormFieldWrapperTestComponent>wrapperWrapperComponent.component;
+      const fieldComponent = wrapperComponent.component;
 
-      expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperWrapperComponent.field).toBeDefined();
 
-      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperComponent.field).toBeDefined();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
@@ -190,10 +210,10 @@ describe('DynamicFormComponentFactory', () => {
   it('creates input component wrapped',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { inputType: 'input-wrapped' };
-      const wrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
-      const fieldComponent = wrapperComponent.fieldComponent;
+      const wrapperComponent = <DynamicFormFieldWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
+      const fieldComponent = wrapperComponent.component;
 
-      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperComponent.field).toBeDefined();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
@@ -204,14 +224,14 @@ describe('DynamicFormComponentFactory', () => {
   it('creates input component wrapped multiple',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const field = { inputType: 'input-wrapped', wrappers: ['wrapper'] };
-      const wrapperWrapperComponent = <DynamicFormWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
-      const wrapperComponent = <DynamicFormWrapperTestComponent>wrapperWrapperComponent.fieldComponent;
-      const fieldComponent = wrapperComponent.fieldComponent;
+      const wrapperWrapperComponent = <DynamicFormFieldWrapperTestComponent>factory.createInputComponent(component.container, <any>field);
+      const wrapperComponent = <DynamicFormFieldWrapperTestComponent>wrapperWrapperComponent.component;
+      const fieldComponent = wrapperComponent.component;
 
-      expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperWrapperComponent.field).toBeDefined();
 
-      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormWrapperTestComponent));
+      expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
       expect(wrapperComponent.field).toBeDefined();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));

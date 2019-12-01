@@ -1,15 +1,15 @@
 import { Component, ComponentFactoryResolver, NgModule, ViewContainerRef } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormInputComponent } from '../dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
-import { DynamicFormWrapper } from './dynamic-form-wrapper';
+import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 
 @Component({
-  selector: 'dynamic-form-wrapper-test',
-  template: `<ng-template #fieldContainer></ng-template>`
+  selector: 'dynamic-form-field-wrapper-test',
+  template: `<ng-template #container></ng-template>`
 })
-class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
+class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
     protected containerRef: ViewContainerRef,
     protected validationService: DynamicFormValidationService
@@ -22,7 +22,7 @@ class DynamicFormWrapperTestComponent extends DynamicFormWrapper {
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`
 })
-class DynamicFormInputTestComponent extends DynamicFormInputComponent {
+class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -30,7 +30,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
 
 @NgModule({
   declarations: [
-    DynamicFormWrapperTestComponent,
+    DynamicFormFieldWrapperTestComponent,
     DynamicFormInputTestComponent
   ],
   entryComponents: [
@@ -46,13 +46,13 @@ class DynamicFormInputTestComponent extends DynamicFormInputComponent {
     DynamicFormValidationService
   ]
 })
-class DynamicFormWrapperTestModule {}
+class DynamicFormFieldWrapperTestModule {}
 
-describe('DynamicFormWrapper', () => {
+describe('DynamicFormFieldWrapper', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormWrapperTestModule
+        DynamicFormFieldWrapperTestModule
       ]
     });
   }));
@@ -60,10 +60,10 @@ describe('DynamicFormWrapper', () => {
   it('creates component',
     inject([ComponentFactoryResolver], (resolver: ComponentFactoryResolver) => {
       const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-      const fixture = TestBed.createComponent(DynamicFormWrapperTestComponent);
+      const fixture = TestBed.createComponent(DynamicFormFieldWrapperTestComponent);
       const component = fixture.componentInstance;
 
-      component.fieldComponent = component.ref.createComponent(factory).instance;
+      component.component = component.ref.createComponent(factory).instance;
       fixture.detectChanges();
 
       expect(component).toBeDefined();

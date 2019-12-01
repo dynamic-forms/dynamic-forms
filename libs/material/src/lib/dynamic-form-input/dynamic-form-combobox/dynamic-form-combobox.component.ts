@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicFormCombobox, DynamicFormInputComponent, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormCombobox, DynamicFormInputBase, DynamicFormValidationService } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -7,7 +7,7 @@ import { map, startWith } from 'rxjs/operators';
   selector: 'mat-dynamic-form-combobox',
   templateUrl: './dynamic-form-combobox.component.html'
 })
-export class DynamicFormComboboxComponent extends DynamicFormInputComponent<DynamicFormCombobox> implements OnInit {
+export class DynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> implements OnInit {
   filteredOptions: Observable<string[]>;
 
   constructor(protected validationService: DynamicFormValidationService) {

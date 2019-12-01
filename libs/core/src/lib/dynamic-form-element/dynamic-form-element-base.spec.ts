@@ -1,14 +1,14 @@
 import { DynamicFormElement } from './dynamic-form-element';
+import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
-import { DynamicFormElementWrapper } from './dynamic-form-element-wrapper';
 
-class DynamicFormElementWrapperTest extends DynamicFormElementWrapper {}
+class DynamicFormElementBaseTest extends DynamicFormElementBase {}
 
-describe('DynamicFormElementWrapper', () => {
-  let component: DynamicFormElementWrapperTest;
+describe('DynamicFormElementBase', () => {
+  let component: DynamicFormElementBaseTest;
 
   beforeEach(() => {
-    component = new DynamicFormElementWrapperTest();
+    component = new DynamicFormElementBaseTest();
   });
 
   it('component returns definition', () => {
@@ -18,6 +18,7 @@ describe('DynamicFormElementWrapper', () => {
     component.element = element;
 
     expect(component.element).toEqual(element);
-    expect(component.definition).toBe(definition);
+    expect(component.definition).toEqual(element.definition);
+    expect(component.template).toEqual(element.template);
   });
 });
