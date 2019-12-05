@@ -63,6 +63,16 @@ describe('DynamicFormGroupComponent', () => {
     expect(formGroupLabelElement).toBeDefined();
   });
 
+  it('hides dynamic form group label', () => {
+    component.template.label = null;
+    fixture.detectChanges();
+
+    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
+    const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
+
+    expect(formGroupLabelDebugElement).toBeNull();
+  });
+
   it('sets dynamic form group to hidden', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;

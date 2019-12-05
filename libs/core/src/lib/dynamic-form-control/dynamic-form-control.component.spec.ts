@@ -14,7 +14,7 @@ import { DynamicFormControlModule } from './dynamic-form-control.module';
 
 @Component({
   selector: 'dynamic-input-test',
-  template: `<div>Dynamic Input</div>`
+  template: `<div class="dynamic-form-input"></div>`
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected validationService: DynamicFormValidationService) {
@@ -91,9 +91,12 @@ describe('DynamicFormControlComponent', () => {
 
   it('creates component template', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
+    const formInputDebugElement = formControlDebugElement.query(By.css('div.dynamic-form-input'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
+    const formInputElement = <HTMLElement>formInputDebugElement.nativeElement;
 
     expect(formControlElement).toBeDefined();
+    expect(formInputElement).toBeDefined();
   });
 
   it('sets dynamic form control to hidden', () => {
@@ -118,5 +121,22 @@ describe('DynamicFormControlComponent', () => {
     fixture.detectChanges();
 
     expect(formControlElement.className).toContain('readonly');
+  });
+
+  it('sets class name of dynamic form control', () => {
+    const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
+    const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
+
+    expect(formControlElement.className).not.toContain('className1 className2');
+
+    component.template.className = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formControlElement.className).toContain('className1 className2');
+
+    component.template.className = null;
+    fixture.detectChanges();
+
+    expect(formControlElement.className).not.toContain('className1 className2');
   });
 });

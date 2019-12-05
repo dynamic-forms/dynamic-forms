@@ -62,6 +62,16 @@ describe('DynamicFormArrayComponent', () => {
     expect(formArrayLabelElement).toBeDefined();
   });
 
+  it('hides dynamic form array label', () => {
+    component.template.label = null;
+    fixture.detectChanges();
+
+    const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
+    const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-array-label'));
+
+    expect(formArrayLabelDebugElement).toBeNull();
+  });
+
   it('sets dynamic form array to hidden', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
@@ -84,5 +94,22 @@ describe('DynamicFormArrayComponent', () => {
     fixture.detectChanges();
 
     expect(formArrayElement.className).toContain('readonly');
+  });
+
+  it('sets class name of dynamic form array', () => {
+    const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
+    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+
+    expect(formArrayElement.className).not.toContain('className1 className2');
+
+    component.template.className = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formArrayElement.className).toContain('className1 className2');
+
+    component.template.className = null;
+    fixture.detectChanges();
+
+    expect(formArrayElement.className).not.toContain('className1 className2');
   });
 });
