@@ -76,40 +76,40 @@ describe('DynamicFormArrayComponent', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
 
-    expect(formArrayElement.className).not.toContain('hidden');
+    expect(formArrayElement.className).toBe('dynamic-form-array');
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formArrayElement.className).toContain('hidden');
+    expect(formArrayElement.className).toBe('dynamic-form-array hidden');
   });
 
   it('sets dynamic form array to readonly', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
 
-    expect(formArrayElement.className).not.toContain('readonly');
+    expect(formArrayElement.className).toBe('dynamic-form-array');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formArrayElement.className).toContain('readonly');
+    expect(formArrayElement.className).toBe('dynamic-form-array readonly');
   });
 
   it('sets class name of dynamic form array', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
 
-    expect(formArrayElement.className).not.toContain('className1 className2');
+    expect(formArrayElement.className).toBe('dynamic-form-array');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formArrayElement.className).toContain('className1 className2');
+    expect(formArrayElement.className).toBe('dynamic-form-array className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formArrayElement.className).not.toContain('className1 className2');
+    expect(formArrayElement.className).toBe('dynamic-form-array');
   });
 });

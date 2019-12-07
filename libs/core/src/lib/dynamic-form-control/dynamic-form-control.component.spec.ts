@@ -103,40 +103,40 @@ describe('DynamicFormControlComponent', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).not.toContain('hidden');
+    expect(formControlElement.className).toBe('dynamic-form-control');
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toContain('hidden');
+    expect(formControlElement.className).toBe('dynamic-form-control hidden');
   });
 
   it('sets dynamic form control to readonly', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).not.toContain('readonly');
+    expect(formControlElement.className).toBe('dynamic-form-control');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toContain('readonly');
+    expect(formControlElement.className).toBe('dynamic-form-control readonly');
   });
 
   it('sets class name of dynamic form control', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).not.toContain('className1 className2');
+    expect(formControlElement.className).toBe('dynamic-form-control');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formControlElement.className).toContain('className1 className2');
+    expect(formControlElement.className).toBe('dynamic-form-control className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formControlElement.className).not.toContain('className1 className2');
+    expect(formControlElement.className).toBe('dynamic-form-control');
   });
 });

@@ -40,4 +40,21 @@ describe('DynamicFormContainerComponent', () => {
 
     expect(formContainerElement).toBeDefined();
   });
+
+  it('sets class name of dynamic form container', () => {
+    const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
+    const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
+
+    expect(formContainerElement.className).toBe('dynamic-form-container');
+
+    component.template.className = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formContainerElement.className).toBe('dynamic-form-container className1 className2');
+
+    component.template.className = null;
+    fixture.detectChanges();
+
+    expect(formContainerElement.className).toBe('dynamic-form-container');
+  });
 });
