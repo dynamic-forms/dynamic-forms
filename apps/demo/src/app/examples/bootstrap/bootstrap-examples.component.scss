@@ -2,6 +2,8 @@
   .dynamic-form {
     $blue: #3f51b5;
     $red: #f44336;
+    
+    $grid-gutter-width: 30px;
 
     @import '../../../../../../node_modules/bootstrap/scss/functions';
     @import '../../../../../../node_modules/bootstrap/scss/variables';
@@ -9,8 +11,15 @@
     @import '../../../../../../node_modules/bootstrap/scss/reboot';
     @import '../../../../../../node_modules/bootstrap/scss/forms';
     @import '../../../../../../node_modules/bootstrap/scss/buttons';
+    @import '../../../../../../node_modules/bootstrap/scss/grid';
 
-    margin: 0 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    &.container {
+      margin-left: $grid-gutter-width / 2 + 10px;
+      margin-right: $grid-gutter-width / 2 + 10px;
+    }
 
     .dynamic-form-field-errors {
       &.invalid-feedback {
@@ -27,7 +36,8 @@
     }
     
     .dynamic-form-group {
-      margin: 10px 0 20px 0;
+      margin-top: 10px;
+      margin-bottom: 20px;
 
       &.hidden {
         display: none;
@@ -35,7 +45,8 @@
     }
   
     .dynamic-form-array {
-      margin: 10px 0 20px 0;
+      margin-top: 10px;
+      margin-bottom: 20px;
 
       &.hidden {
         display: none;
@@ -43,7 +54,7 @@
     }
   
     .dynamic-form-control {
-      margin: 10px 0;
+      margin-top: 10px;
 
       &.hidden {
         display: none;

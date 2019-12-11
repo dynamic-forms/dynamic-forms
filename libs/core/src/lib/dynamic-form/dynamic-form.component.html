@@ -1,5 +1,5 @@
 <div class="dynamic-form-wrapper">
-  <form class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
+  <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
     <ng-container *ngFor="let element of elements">
       <dynamic-form-element [element]="element"></dynamic-form-element>
     </ng-container>

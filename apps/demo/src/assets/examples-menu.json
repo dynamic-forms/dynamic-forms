@@ -84,6 +84,19 @@
           "label": "Update strategy"
         }
       ]
+    },
+    {
+      "label": "Layout",
+      "items": [
+        {
+          "id": "layout-form-group",
+          "label": "Layout using form group"
+        },
+        {
+          "id": "layout-element-container",
+          "label": "Layout using element container"
+        }
+      ]
     }
   ]
 }
