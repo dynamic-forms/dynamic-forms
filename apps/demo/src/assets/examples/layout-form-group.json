@@ -28,8 +28,8 @@
         {
           "key": "lastName",
           "type": "control",
-          "className": "col",
           "template": {
+            "className": "col",
             "label": "Last name",
             "input": {
               "type": "textbox",
@@ -76,6 +76,60 @@
               "type": "textbox",
               "inputType": "password",
               "placeholder": "Enter your password"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        }
+      ]    
+    },
+    {
+      "key": "address",
+      "type": "group",
+      "template": {
+        "className": "row"
+      },
+      "elements": [
+        {
+          "key": "street",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Street",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your street"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "zipCode",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Zip Code",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your zip code"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "city",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "City",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your city"
             },
             "validation": {
               "required": true
