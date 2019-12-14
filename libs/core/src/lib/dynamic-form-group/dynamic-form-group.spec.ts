@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -23,26 +24,48 @@ describe('DynamicFormGroup', () => {
     expect(form.model).toEqual({ key: {} });
   });
 
-  it('sets fields', () => {
+  it('sets elements and fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
-    const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key' }, control: new FormControl() }
+    const elements = [
+      <DynamicFormElement>{ isElement: true },
+      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl() },
+      <DynamicFormElement>{ isElement: true, elements: [
+          <DynamicFormElement>{ isElement: true, elements: [
+              <DynamicFormElement>{ isElement: true },
+              <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl() },
+              <DynamicFormField>{ isElement: false, definition: { key: 'key3' }, control: new FormControl() }
+            ]
+          },
+          <DynamicFormField>{ isElement: false, definition: { key: 'key4' }, control: new FormControl() },
+          <DynamicFormElement>{ isElement: true },
+          <DynamicFormField>{ isElement: false, definition: { key: 'key4' }, control: new FormControl() }
+        ]
+      }
+    ];
+    const fields = <DynamicFormField[]>[
+      elements[1],
+      elements[2].elements[0].elements[1],
+      elements[2].elements[0].elements[2],
+      elements[2].elements[1],
+      elements[2].elements[3]
     ];
 
-    formGroup.setElements(fields);
+    formGroup.setElements(elements);
 
+    expect(formGroup.elements).toEqual(elements);
     expect(formGroup.fields).toEqual(fields);
   });
 
-  it('sets fields to empty array', () => {
+  it('sets elements and fields to empty array', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
     formGroup.setElements(null);
 
+    expect(formGroup.elements).toEqual([]);
     expect(formGroup.fields).toEqual([]);
   });
 
