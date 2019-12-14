@@ -1,72 +1,96 @@
 :host ::ng-deep {
-  .dynamic-form {
-    $blue: #3f51b5;
-    $red: #f44336;
-
-    @import '../../../../../../node_modules/bootstrap/scss/functions';
-    @import '../../../../../../node_modules/bootstrap/scss/variables';
-    @import '../../../../../../node_modules/bootstrap/scss/mixins';
-    @import '../../../../../../node_modules/bootstrap/scss/reboot';
-    @import '../../../../../../node_modules/bootstrap/scss/forms';
-    @import '../../../../../../node_modules/bootstrap/scss/buttons';
-
-    margin: 0 10px;
-
-    .dynamic-form-field-errors {
-      &.invalid-feedback {
-        display: block;
-      }
-    }
-
-    .dynamic-form-field-hints.form-text {
-      display: flex;
+  .dynamic-form-wrapper {
+    width: 100%;
     
-      .hint-spacer {
-        flex: 1 0 1em;
-      }
+    &.small {
+      max-width: 600px;
     }
-    
-    .dynamic-form-group {
-      margin: 10px 0 20px 0;
 
-      &.hidden {
-        display: none;
-      }
-    }
+    .dynamic-form {
+      $blue: #3f51b5;
+      $red: #f44336;
+      
+      $grid-gutter-width: 20px;
   
-    .dynamic-form-array {
-      margin: 10px 0 20px 0;
-
-      &.hidden {
-        display: none;
-      }
-    }
+      @import '../../../../../../node_modules/bootstrap/scss/functions';
+      @import '../../../../../../node_modules/bootstrap/scss/variables';
+      @import '../../../../../../node_modules/bootstrap/scss/mixins';
+      @import '../../../../../../node_modules/bootstrap/scss/reboot';
+      @import '../../../../../../node_modules/bootstrap/scss/forms';
+      @import '../../../../../../node_modules/bootstrap/scss/buttons';
+      @import '../../../../../../node_modules/bootstrap/scss/grid';
   
-    .dynamic-form-control {
-      margin: 10px 0;
-
-      &.hidden {
-        display: none;
+      margin: 0 10px;
+  
+      &.container {
+        margin: 0 $grid-gutter-width / 2 + 10px;
+  
+        .row {
+          margin-top: 10px;
+          margin-bottom: 10px;
+  
+          *{
+            flex: 1 1 0;
+          }
+        }
+      }
+  
+      .dynamic-form-field-errors {
+        &.invalid-feedback {
+          display: block;
+        }
+      }
+  
+      .dynamic-form-field-hints.form-text {
+        display: flex;
+      
+        .hint-spacer {
+          flex: 1 0 1em;
+        }
       }
       
-      &.readonly {
-        label {
-          pointer-events: none;
-        }
-
-        input, select, textarea {
-          pointer-events: none;
-          background-color: $gray-200;
-          opacity: 1;  
+      .dynamic-form-group {
+        margin: 20px 0;
+  
+        &.hidden {
+          display: none;
         }
       }
-    }
+    
+      .dynamic-form-array {
+        margin: 20px 0;
   
-    .dynamic-form-actions {
-      margin-bottom: 5px;
-
-      button {
-        margin-right: 10px;
+        &.hidden {
+          display: none;
+        }
+      }
+    
+      .dynamic-form-control {
+        margin: 10px 0;
+  
+        &.hidden {
+          display: none;
+        }
+        
+        &.readonly {
+          label {
+            pointer-events: none;
+          }
+  
+          input, select, textarea {
+            pointer-events: none;
+            background-color: $gray-200;
+            opacity: 1;  
+          }
+        }
+      }
+    
+      .dynamic-form-actions {
+        margin-bottom: 5px;
+  
+        button {
+          margin-right: 10px;
+        }
       }
     }
   }

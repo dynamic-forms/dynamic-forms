@@ -3,4 +3,5 @@ export interface DynamicFormFieldTemplate {
   hidden?: boolean;
   disabled?: boolean;
   readonly?: boolean;
+  className?: string;
 }

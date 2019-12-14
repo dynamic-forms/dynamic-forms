@@ -62,6 +62,41 @@ describe('DynamicFormComponent', () => {
     expect(formComponent.formGroup).toBe(component.formGroup);
   });
 
+  it('sets class name of dynamic form wrapper', () => {
+    const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
+    const formWrapperElement = <HTMLElement>formWrapperDebugElement.nativeElement;
+
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
+
+    component.template.wrapperClassName = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper className1 className2');
+
+    component.template.wrapperClassName = null;
+    fixture.detectChanges();
+
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
+  });
+
+  it('sets class name of dynamic form', () => {
+    const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
+    const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
+    const formElement = <HTMLElement>formDebugElement.nativeElement;
+
+    expect(formElement.className).toBe('dynamic-form ng-untouched ng-pristine ng-valid');
+
+    component.template.className = 'className1 className2';
+    fixture.detectChanges();
+
+    expect(formElement.className).toBe('dynamic-form ng-untouched ng-pristine ng-valid className1 className2');
+
+    component.template.className = null;
+    fixture.detectChanges();
+
+    expect(formElement.className).toBe('dynamic-form ng-untouched ng-pristine ng-valid');
+  });
+
   it('ngOnChanges creates form field with empty model', () => {
     component.model = null;
     component.ngOnChanges({ model: new SimpleChange(model, undefined, false) });

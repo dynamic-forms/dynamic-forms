@@ -1,0 +1,139 @@
+{
+  "template": {
+    "className": "container"
+  },
+  "elements": [
+    {
+      "type": "container",
+      "template": {
+        "className": "row"
+      },
+      "elements": [
+        {
+          "key": "firstName",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "First name",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your first name"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "lastName",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Last name",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your first name"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "container",
+      "template": {
+        "className": "row"
+      },
+      "elements": [
+        {
+          "key": "email",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Email",
+            "input": {
+              "type": "textbox",
+              "inputType": "email",
+              "placeholder": "Enter your email"
+            },
+            "validation": {
+              "required": true,
+              "email": true
+            }
+          }
+        },
+        {
+          "key": "password",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Password",
+            "input": {
+              "type": "textbox",
+              "inputType": "password",
+              "placeholder": "Enter your password"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        }
+      ]    
+    },
+    {
+      "type": "container",
+      "template": {
+        "className": "row"
+      },
+      "elements": [
+        {
+          "key": "street",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Street",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your street"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "zipCode",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "Zip Code",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your zip code"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "key": "city",
+          "type": "control",
+          "template": {
+            "className": "col",
+            "label": "City",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter your city"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

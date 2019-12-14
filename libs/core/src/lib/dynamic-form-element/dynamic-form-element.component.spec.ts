@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
@@ -11,7 +12,7 @@ import { DynamicFormElementModule } from './dynamic-form-element.module';
 
 @Component({
   selector: 'dynamic-element-test',
-  template: `<div>Dynamic Element</div>`
+  template: `<div class="dynamic-form-element"></div>`
 })
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
@@ -44,25 +45,37 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 class DynamicFormElementComponentTestModule {}
 
 describe('DynamicFormElementComponent', () => {
+  let fixture: ComponentFixture<DynamicFormElementComponent>;
+  let component: DynamicFormElementComponent;
+  let element: DynamicFormElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormElementComponentTestModule
       ]
     });
-  }));
 
-  it('creates component', () => {
+    fixture = TestBed.createComponent(DynamicFormElementComponent);
+    component = fixture.componentInstance;
+
     const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
-    const element = new DynamicFormElement(definition);
-    const fixture = TestBed.createComponent(DynamicFormElementComponent);
-    const component = fixture.componentInstance;
+    element = new DynamicFormElement(definition);
     component.element = element;
 
     fixture.detectChanges();
+  }));
 
+  it('creates component', () => {
     expect(component.element).toBe(element);
-    expect(component.definition).toBe(definition);
-    expect(component.template).toBe(definition.template);
+    expect(component.definition).toBe(element.definition);
+    expect(component.template).toBe(element.template);
+  });
+
+  it('creates component template', () => {
+    const formElementDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-element'));
+    const formElementElement = <HTMLElement>formElementDebugElement.nativeElement;
+
+    expect(formElementElement).toBeDefined();
   });
 });

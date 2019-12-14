@@ -7,8 +7,8 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormInput } from './dynamic-form-input';
 
 export abstract class DynamicFormInputBase<FormInput extends DynamicFormInput = DynamicFormInput>
-  extends DynamicFormFieldBase<FormControl, DynamicFormControlTemplate,
-    DynamicFormControlDefinition, DynamicFormControl<FormInput>> {
+  extends DynamicFormFieldBase<FormControl, DynamicFormControlTemplate<FormInput>,
+    DynamicFormControlDefinition<FormInput>, DynamicFormControl<FormInput>> {
 
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);

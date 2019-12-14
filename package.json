@@ -51,7 +51,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ngxs/store": "^3.5.1",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.4.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -62,7 +62,7 @@
     "@angular/cli": "~8.3.20",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
-    "@types/node": "~12.12.14",
+    "@types/node": "~12.12.17",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.8",
     "codelyzer": "~5.2.0",
