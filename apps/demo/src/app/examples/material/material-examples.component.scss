@@ -1,6 +1,10 @@
 :host ::ng-deep {
   .dynamic-form-wrapper {
-    max-width: 100%;
+    width: 100%;
+
+    &.small {
+      max-width: 600px;
+    }
 
     .dynamic-form {
       display: flex;
@@ -10,8 +14,7 @@
       &.container {
         .row {
           display: flex;
-          margin-top: 10px;
-          margin-bottom: 10px;
+          margin: 10px 0;
 
           * {
             flex: 1 1 0;
@@ -19,20 +22,18 @@
 
           .col {
             flex: 1 0 0;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding: 0 10px;
           }
 
           .col-6 {
             flex: 1 1 50%;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding: 0 10px;
           }
         }
       }
 
       .dynamic-form-group {
-        margin: 10px 0 10px 0;
+        margin: 10px 0;
   
         &.hidden {
           display: none;
@@ -40,7 +41,7 @@
       }
     
       .dynamic-form-array {
-        margin: 10px 0 10px 0;
+        margin: 10px 0;
   
         &.hidden {
           display: none;

@@ -90,11 +90,11 @@
       "items": [
         {
           "id": "layout-form-group",
-          "label": "Layout using form group"
+          "label": "Form group"
         },
         {
           "id": "layout-element-container",
-          "label": "Layout using element container"
+          "label": "Element container"
         }
       ]
     }
