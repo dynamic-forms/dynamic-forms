@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://alexandergebuhr@dev.azure.com/alexandergebuhr/dynamic-forms/_git/dynamic-forms"
+    "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_git/dynamic-forms"
   },
   "scripts": {
     "ng": "ng",

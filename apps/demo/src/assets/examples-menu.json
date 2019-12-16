@@ -89,12 +89,30 @@
       "label": "Layout",
       "items": [
         {
-          "id": "layout-form-group",
-          "label": "Form group"
+          "label": "Columns equal",
+          "items": [
+            {
+              "id": "layout-cols-equal-form-group",
+              "label": "Form group"
+            },
+            {
+              "id": "layout-cols-equal-element-container",
+              "label": "Element container"
+            }
+          ]
         },
         {
-          "id": "layout-element-container",
-          "label": "Element container"
+          "label": "Columns unequal",
+          "items": [
+            {
+              "id": "layout-cols-unequal-form-group",
+              "label": "Form group"
+            },
+            {
+              "id": "layout-cols-unequal-element-container",
+              "label": "Element container"
+            }
+          ]
         }
       ]
     }

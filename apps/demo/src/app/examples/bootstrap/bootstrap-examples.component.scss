@@ -1,7 +1,8 @@
 :host ::ng-deep {
   .dynamic-form-wrapper {
     width: 100%;
-    
+    max-width: 800px;
+
     &.small {
       max-width: 600px;
     }
@@ -29,8 +30,11 @@
           margin-top: 10px;
           margin-bottom: 10px;
   
-          *{
-            flex: 1 1 0;
+          dynamic-form-element, 
+          dynamic-form-group, 
+          dynamic-form-array, 
+          dynamic-form-control {
+            display: contents;
           }
         }
       }
@@ -50,7 +54,8 @@
       }
       
       .dynamic-form-group {
-        margin: 20px 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
   
         &.hidden {
           display: none;
@@ -58,7 +63,8 @@
       }
     
       .dynamic-form-array {
-        margin: 20px 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
   
         &.hidden {
           display: none;
@@ -66,7 +72,8 @@
       }
     
       .dynamic-form-control {
-        margin: 10px 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
   
         &.hidden {
           display: none;
