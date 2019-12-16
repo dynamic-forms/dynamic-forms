@@ -24,6 +24,9 @@
     <mat-tab label="Model">
       <pre>{{ data.model | json }}</pre>
     </mat-tab>
+    <mat-tab label="Value">
+      <pre>{{ dynamicForm.formGroup.value | json }}</pre>
+    </mat-tab>
   </mat-tab-group>    
 </ng-container>
 
