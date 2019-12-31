@@ -11,60 +11,30 @@
       display: flex;
       flex-direction: column;
       margin: 0 10px;
-      
+
       &.container {
-        margin: 0 20px;
+        $grid-gutter-width: 20px;
+
+        @import '../../../../../../node_modules/bootstrap/scss/functions';
+        @import '../../../../../../node_modules/bootstrap/scss/variables';
+        @import '../../../../../../node_modules/bootstrap/scss/mixins';
+        @import '../../../../../../node_modules/bootstrap/scss/grid';
+
+        margin: 0 $grid-gutter-width / 2 + 10px;
+  
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
 
         .row {
-          display: flex;
-          flex-wrap: wrap;
-          margin: 10px -10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
 
           dynamic-form-element, 
           dynamic-form-group, 
           dynamic-form-array, 
           dynamic-form-control {
             display: contents;
-          }
-
-          .col {
-            flex: 1 0 0;
-            padding: 0 10px;
-          }
-
-          .col-3 {
-            flex: 0 0 25%;
-            max-width: 25%;
-            padding: 0 10px;
-            box-sizing: border-box;
-          }
-
-          .col-4 {
-            flex: 0 0 33.3333333333%;
-            max-width: 33.3333333333%;
-            padding: 0 10px;
-            box-sizing: border-box;
-          }
-
-          .col-5 {
-            flex: 0 0 41.6666666666%;
-            max-width: 41.6666666666%;
-            padding: 0 10px;
-            box-sizing: border-box;
-          }
-
-          .col-6 {
-            flex: 0 0 50%;
-            max-width: 50%;
-            padding: 0 10px;
-            box-sizing: border-box;
-          }
-
-          .col-7 {
-            flex: 0 0 58.3333333333%;
-            max-width: 58.3333333333%;
-            padding: 0 10px;
-            box-sizing: border-box;
           }
         }
       }
