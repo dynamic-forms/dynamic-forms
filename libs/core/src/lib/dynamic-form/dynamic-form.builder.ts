@@ -26,6 +26,12 @@ export class DynamicFormBuilder {
     private validationBuilder: DynamicFormValidationBuilder
   ) {}
 
+  initForm(definition: DynamicFormDefinition, model: any) {
+    const field = this.createForm(definition, model);
+    field.check();
+    return field;
+  }
+
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
     field.setExpressions(this.createFieldExpressions(field));

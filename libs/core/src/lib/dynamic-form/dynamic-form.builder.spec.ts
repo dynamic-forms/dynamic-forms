@@ -50,6 +50,23 @@ describe('DynamicFormBuilder', () => {
     });
   }));
 
+  it('initializes DynamicForm',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = <DynamicForm>{ check: () => {} };
+
+      spyOn(form, 'check').and.callThrough();
+      spyOn(builder, 'createForm').and.returnValue(form);
+
+      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+      const model = {};
+      const formCreated = builder.initForm(definition, model);
+
+      expect(form).toEqual(formCreated);
+      expect(form.check).toHaveBeenCalledTimes(1);
+      expect(builder.createForm).toHaveBeenCalledWith(definition, model);
+    })
+  );
+
   it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{ elements: [ {} ] };
@@ -74,7 +91,6 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
-
     })
   );
 
