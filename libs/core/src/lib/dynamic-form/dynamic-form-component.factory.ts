@@ -8,7 +8,7 @@ import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-b
 import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
 import { DynamicFormFieldWrapperTypeConfig } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
-import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createFieldComponentForConfig(
-    ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputType
+    ref: ViewContainerRef, field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig
   ) {
     const factory = this.getComponentFactory(config.component);
     const wrapperConfigs = this.getWrapperTypeConfigs(field, config);
@@ -96,7 +96,7 @@ export class DynamicFormComponentFactory {
   }
 
   private getWrapperTypeConfigs(
-    field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputType
+    field: DynamicFormField, config: DynamicFormFieldTypeConfig | DynamicFormInputTypeConfig
   ) {
     const wrappers = (field.wrappers || []).concat(config.wrappers || []);
     return wrappers.map(wrapper => {

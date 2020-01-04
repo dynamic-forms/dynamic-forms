@@ -1,14 +1,14 @@
 import { Type } from '@angular/core';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 
-export interface DynamicFormInputType {
+export interface DynamicFormInputTypeConfig {
   type: string;
   component: Type<DynamicFormInputBase>;
   wrappers?: string[];
 }
 
 export interface DynamicFormInputConfig {
-  types?: DynamicFormInputType[];
+  types?: DynamicFormInputTypeConfig[];
 }
 
 export const dynamicFormInputConfig: DynamicFormInputConfig = {
