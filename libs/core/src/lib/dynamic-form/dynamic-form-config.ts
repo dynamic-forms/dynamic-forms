@@ -5,8 +5,10 @@ import { DynamicFormFieldWrapperConfig } from '../dynamic-form-field/dynamic-for
 import { DynamicFormInputConfig } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 
+export type DynamicFormLibrary = 'core' | string;
+
 export interface DynamicFormConfig {
-  library: string;
+  library: DynamicFormLibrary;
   elementConfig?: DynamicFormElementConfig;
   fieldConfig?: DynamicFormFieldConfig;
   inputConfig?: DynamicFormInputConfig;
@@ -14,5 +16,5 @@ export interface DynamicFormConfig {
   validationConfig?: DynamicFormValidationConfig;
 }
 
-export const DYNAMIC_FORM_LIBRARY = new InjectionToken<string>('DynamicFormLibrary');
+export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
 export const DYNAMIC_FORM_CONFIG = new InjectionToken<DynamicFormConfig>('DynamicFormConfig');

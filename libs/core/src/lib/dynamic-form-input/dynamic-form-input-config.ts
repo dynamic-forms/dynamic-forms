@@ -8,7 +8,7 @@ export interface DynamicFormInputTypeConfig {
 }
 
 export interface DynamicFormInputConfig {
-  types?: DynamicFormInputTypeConfig[];
+  types: DynamicFormInputTypeConfig[];
 }
 
 export const dynamicFormInputConfig: DynamicFormInputConfig = {

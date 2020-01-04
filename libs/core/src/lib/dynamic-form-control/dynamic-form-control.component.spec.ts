@@ -32,14 +32,14 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
   providers: [
     {
       provide: DynamicFormConfigService,
-      useValue: new DynamicFormConfigService({
-        library: 'core',
+      useValue: new DynamicFormConfigService('test', [{
+        library: 'test',
         inputConfig: {
           types: [
             { type: 'input', component: DynamicFormInputTestComponent }
           ]
         }
-      })
+      }])
     },
     DynamicFormValidationService,
     DynamicFormComponentFactory

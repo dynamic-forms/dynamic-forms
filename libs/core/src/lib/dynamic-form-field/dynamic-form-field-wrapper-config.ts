@@ -9,3 +9,7 @@ export interface DynamicFormFieldWrapperTypeConfig {
 export interface DynamicFormFieldWrapperConfig {
   types: DynamicFormFieldWrapperTypeConfig[];
 }
+
+export const dynamicFormWrapperConfig: DynamicFormFieldWrapperConfig = {
+  types: []
+};

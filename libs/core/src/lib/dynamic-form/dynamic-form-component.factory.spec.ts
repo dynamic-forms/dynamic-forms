@@ -7,7 +7,7 @@ import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-
 import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
-import { DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
+import { DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @Component({
@@ -69,8 +69,12 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   ],
   providers: [
     {
+      provide: DYNAMIC_FORM_LIBRARY,
+      useValue: 'test'
+    },
+    {
       provide: DYNAMIC_FORM_CONFIG,
-      useValue: {
+      useValue: [{
         library: 'test',
         elementConfig: {
           types: [
@@ -94,7 +98,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
             { type: 'wrapper', component: DynamicFormFieldWrapperTestComponent }
           ]
         }
-      }
+      }]
     },
     DynamicFormConfigService,
     DynamicFormValidationService,

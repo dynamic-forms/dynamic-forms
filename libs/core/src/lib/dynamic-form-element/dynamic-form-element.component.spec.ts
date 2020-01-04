@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DYNAMIC_FORM_CONFIG } from '../dynamic-form/dynamic-form-config';
+import { DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
@@ -28,15 +28,19 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
   ],
   providers: [
     {
+      provide: DYNAMIC_FORM_LIBRARY,
+      useValue: 'test'
+    },
+    {
       provide: DYNAMIC_FORM_CONFIG,
-      useValue: {
+      useValue: [{
         library: 'test',
         elementConfig: {
           types: [
             { type: 'element', component: DynamicFormElementBaseComponent }
           ]
         }
-      }
+      }]
     },
     DynamicFormConfigService,
     DynamicFormComponentFactory

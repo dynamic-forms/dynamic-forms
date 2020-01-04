@@ -124,7 +124,12 @@ describe('DynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      library: 'core-extended'
+      library: 'core',
+      elementConfig: { types: [] },
+      fieldConfig: { types: [] },
+      inputConfig: { types: [] },
+      wrapperConfig: { types: [] },
+      validationConfig: { defaultMessage: '', messages: {} }
     };
 
     beforeEach(async(() => {
@@ -137,7 +142,7 @@ describe('DynamicFormsModule', () => {
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe('core-extended');
+        expect(library).toBe('core');
       })
     );
 

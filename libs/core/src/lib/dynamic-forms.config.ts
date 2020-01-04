@@ -3,6 +3,7 @@ import { dynamicFormElementConfig } from './dynamic-form-element/dynamic-form-el
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { dynamicFormFieldConfig } from './dynamic-form-field/dynamic-form-field-config';
+import { dynamicFormWrapperConfig } from './dynamic-form-field/dynamic-form-field-wrapper-config';
 import { dynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
@@ -16,6 +17,7 @@ export const dynamicFormConfig: DynamicFormConfig = {
   elementConfig: dynamicFormElementConfig,
   fieldConfig: dynamicFormFieldConfig,
   inputConfig: dynamicFormInputConfig,
+  wrapperConfig: dynamicFormWrapperConfig,
   validationConfig: {
     defaultMessage: 'The field is invalid.',
     messages: {
@@ -30,10 +32,6 @@ export const dynamicFormConfig: DynamicFormConfig = {
   }
 };
 
-export function dynamicFormConfigServiceFactory(library: string, configs: DynamicFormConfig[]) {
-  return new DynamicFormConfigService(configs.find(c => c.library === library));
-}
-
 export function getDynamicFormProviders(defaultConfig: DynamicFormConfig, config?: DynamicFormConfig): Provider[] {
   return [
     {
@@ -45,11 +43,7 @@ export function getDynamicFormProviders(defaultConfig: DynamicFormConfig, config
       useValue: config || defaultConfig,
       multi: true
     },
-    {
-      provide: DynamicFormConfigService,
-      useFactory: dynamicFormConfigServiceFactory,
-      deps: [ DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_CONFIG ]
-    },
+    DynamicFormConfigService,
     DynamicFormBuilder,
     DynamicFormExpressionBuilder,
     DynamicFormEvaluationBuilder,

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '../dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormArray } from './dynamic-form-array';
@@ -23,7 +24,7 @@ describe('DynamicFormArrayComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ library: 'core' })
+          useValue: new DynamicFormConfigService('test', [{ library: 'test' }])
         },
         DynamicFormValidationService
       ]

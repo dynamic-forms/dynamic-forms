@@ -20,7 +20,7 @@ describe('DynamicFormFieldBase', () => {
         required: 'The field is required'
       }
     };
-    const configService = new DynamicFormConfigService({ library: 'test', validationConfig });
+    const configService = new DynamicFormConfigService('test', [{ library: 'test', validationConfig }]);
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldBaseTest(validationService);

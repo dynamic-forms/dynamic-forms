@@ -27,9 +27,7 @@ describe('DynamicFormInputBase', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({
-            library: 'test'
-          })
+          useValue: new DynamicFormConfigService('test', [{ library: 'test' }])
         },
         DynamicFormValidationService
       ]

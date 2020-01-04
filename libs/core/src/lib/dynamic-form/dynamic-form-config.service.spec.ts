@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigService', () => {
@@ -27,8 +27,12 @@ describe('DynamicFormConfigService', () => {
     TestBed.configureTestingModule({
       providers: [
         {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: 'test'
+        },
+        {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config
+          useValue: [ config ]
         },
         DynamicFormConfigService
       ]

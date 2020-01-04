@@ -7,7 +7,7 @@ import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
@@ -38,8 +38,12 @@ describe('DynamicFormBuilder', () => {
     TestBed.configureTestingModule({
       providers: [
         {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: 'test'
+        },
+        {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config
+          useValue: [ config ]
         },
         DynamicFormConfigService,
         DynamicFormBuilder,
