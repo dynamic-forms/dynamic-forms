@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { getDynamicFormProviders, DynamicFormsModule, DynamicFormArrayModule,
-  DynamicFormConfig, DynamicFormControlModule, DynamicFormGroupModule } from '@dynamic-forms/core';
+import { dynamicFormProviders, DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfig,
+  DynamicFormContainerModule, DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
+  DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormConfig } from './dynamic-forms.config';
 
@@ -10,8 +11,10 @@ import { matDynamicFormConfig } from './dynamic-forms.config';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule,
+    DynamicFormsModule.forRoot(),
     DynamicFormArrayModule,
+    DynamicFormContainerModule,
+    DynamicFormContentModule,
     DynamicFormControlModule,
     DynamicFormGroupModule,
     MatDynamicFormInputModule
@@ -24,7 +27,31 @@ export class MatDynamicFormsModule {
   static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: MatDynamicFormsModule,
-      providers: getDynamicFormProviders(matDynamicFormConfig, config)
+      providers: [
+        {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: config ? config.library : matDynamicFormConfig.library
+        },
+        {
+          provide: DYNAMIC_FORM_CONFIG,
+          useValue: config || matDynamicFormConfig,
+          multi: true
+        },
+        ...dynamicFormProviders
+      ]
+    };
+  }
+
+  static forChild(config: DynamicFormConfig): ModuleWithProviders {
+    return {
+      ngModule: MatDynamicFormsModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_CONFIG,
+          useValue: config,
+          multi: true
+        }
+      ]
     };
   }
 }

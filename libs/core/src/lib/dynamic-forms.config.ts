@@ -1,23 +1,19 @@
 import { Provider } from '@angular/core';
-import { dynamicFormElementConfig } from './dynamic-form-element/dynamic-form-element-config';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
-import { dynamicFormFieldConfig } from './dynamic-form-field/dynamic-form-field-config';
-import { dynamicFormWrapperConfig } from './dynamic-form-field/dynamic-form-field-wrapper-config';
-import { dynamicFormInputConfig } from './dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form/dynamic-form-config';
+import { DynamicFormConfig } from './dynamic-form/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form/dynamic-form-config.service';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 
 export const dynamicFormConfig: DynamicFormConfig = {
   library: 'core',
-  elementConfig: dynamicFormElementConfig,
-  fieldConfig: dynamicFormFieldConfig,
-  inputConfig: dynamicFormInputConfig,
-  wrapperConfig: dynamicFormWrapperConfig,
+  elementConfig: { types: [] },
+  fieldConfig: { types: [] },
+  inputConfig: { types: [] },
+  wrapperConfig: { types: [] },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
     messages: {
@@ -32,23 +28,12 @@ export const dynamicFormConfig: DynamicFormConfig = {
   }
 };
 
-export function getDynamicFormProviders(defaultConfig: DynamicFormConfig, config?: DynamicFormConfig): Provider[] {
-  return [
-    {
-      provide: DYNAMIC_FORM_LIBRARY,
-      useValue: config ? config.library : defaultConfig.library
-    },
-    {
-      provide: DYNAMIC_FORM_CONFIG,
-      useValue: config || defaultConfig,
-      multi: true
-    },
-    DynamicFormConfigService,
-    DynamicFormBuilder,
-    DynamicFormExpressionBuilder,
-    DynamicFormEvaluationBuilder,
-    DynamicFormValidationBuilder,
-    DynamicFormValidationService,
-    DynamicFormComponentFactory
-  ];
-}
+export const dynamicFormProviders: Provider[] = [
+  DynamicFormConfigService,
+  DynamicFormBuilder,
+  DynamicFormExpressionBuilder,
+  DynamicFormEvaluationBuilder,
+  DynamicFormValidationBuilder,
+  DynamicFormValidationService,
+  DynamicFormComponentFactory
+];
