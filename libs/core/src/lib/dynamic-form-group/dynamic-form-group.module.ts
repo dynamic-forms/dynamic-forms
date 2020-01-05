@@ -11,7 +11,6 @@ import { DynamicFormGroupComponent } from './dynamic-form-group.component';
     ReactiveFormsModule,
     DynamicFormElementModule,
     DynamicFormsModule.forChild({
-      library: 'core',
       fieldConfig: {
         types: [
           { type: 'group', component: DynamicFormGroupComponent }

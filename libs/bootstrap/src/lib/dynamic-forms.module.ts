@@ -12,7 +12,7 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forRoot(),
+    DynamicFormsModule,
     DynamicFormArrayModule,
     DynamicFormContainerModule,
     DynamicFormContentModule,
@@ -26,17 +26,17 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
   ]
 })
 export class BsDynamicFormsModule {
-  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
+  static forRoot(config: DynamicFormConfig = bsDynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: config ? config.library : bsDynamicFormConfig.library
+          useValue: 'bootstrap'
         },
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || bsDynamicFormConfig,
+          useValue: { ...config, library: 'bootstrap' },
           multi: true
         },
         ...dynamicFormProviders
@@ -50,7 +50,7 @@ export class BsDynamicFormsModule {
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config,
+          useValue: { ...config, library: 'bootstrap' },
           multi: true
         }
       ]

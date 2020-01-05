@@ -16,17 +16,17 @@ import { dynamicFormConfig, dynamicFormProviders } from './dynamic-forms.config'
   ]
 })
 export class DynamicFormsModule {
-  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
+  static forRoot(config: DynamicFormConfig = dynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: DynamicFormsModule,
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: config ? config.library : dynamicFormConfig.library
+          useValue: 'core'
         },
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || dynamicFormConfig,
+          useValue: { ...config, library: 'core' },
           multi: true
         },
         ...dynamicFormProviders
@@ -40,7 +40,7 @@ export class DynamicFormsModule {
       providers: [
         {
           provide: DYNAMIC_FORM_CONFIG,
-          useValue: config,
+          useValue: { ...config, library: 'core' },
           multi: true
         }
       ]

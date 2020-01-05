@@ -9,7 +9,6 @@ import { DynamicFormArrayComponent } from './dynamic-form-array.component';
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsModule.forChild({
-      library: 'core',
       fieldConfig: {
         types: [
           { type: 'array', component: DynamicFormArrayComponent }

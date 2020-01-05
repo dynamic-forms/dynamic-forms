@@ -11,7 +11,7 @@ import { matDynamicFormConfig } from './dynamic-forms.config';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forRoot(),
+    DynamicFormsModule,
     DynamicFormArrayModule,
     DynamicFormContainerModule,
     DynamicFormContentModule,
@@ -24,19 +24,12 @@ import { matDynamicFormConfig } from './dynamic-forms.config';
   ]
 })
 export class MatDynamicFormsModule {
-  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
+  static forRoot(config: Partial<DynamicFormConfig> = matDynamicFormConfig): ModuleWithProviders {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: config ? config.library : matDynamicFormConfig.library
-        },
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config || matDynamicFormConfig,
-          multi: true
-        },
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'material' },
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true },
         ...dynamicFormProviders
       ]
     };
@@ -46,11 +39,7 @@ export class MatDynamicFormsModule {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config,
-          multi: true
-        }
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
       ]
     };
   }

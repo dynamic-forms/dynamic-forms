@@ -9,7 +9,6 @@ import { DynamicFormControlComponent } from './dynamic-form-control.component';
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsModule.forChild({
-      library: 'core',
       fieldConfig: {
         types: [
           { type: 'control', component: DynamicFormControlComponent }

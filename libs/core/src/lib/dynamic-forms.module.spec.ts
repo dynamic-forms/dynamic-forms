@@ -124,12 +124,7 @@ describe('DynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      library: 'core',
-      elementConfig: { types: [] },
-      fieldConfig: { types: [] },
-      inputConfig: { types: [] },
-      wrapperConfig: { types: [] },
-      validationConfig: { defaultMessage: '', messages: {} }
+      library: 'core'
     };
 
     beforeEach(async(() => {
