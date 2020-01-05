@@ -21,7 +21,7 @@ describe('DynamicFormCheckboxComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+          useValue: new DynamicFormConfigService('test', [{ library: 'test' }])
         },
         DynamicFormValidationService
       ]
