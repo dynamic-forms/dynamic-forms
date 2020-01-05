@@ -19,9 +19,12 @@ describe('MatDynamicFormsModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DYNAMIC_FORM_CONFIG', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
-    });
+    it('does not provide DYNAMIC_FORM_CONFIG for library',
+      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+        const libraryConfigs = configs.filter(cfg => cfg.library === 'bootstrap');
+        expect(libraryConfigs.length).toBe(0);
+      })
+    );
 
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
@@ -63,16 +66,18 @@ describe('MatDynamicFormsModule', () => {
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIG for library',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(matDynamicFormConfig);
+        const libraryConfigs = configs.filter(cfg => cfg.library === 'material');
+
+        expect(libraryConfigs.length).toBe(1);
+        expect(libraryConfigs[0]).toEqual(matDynamicFormConfig);
       })
     );
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(matDynamicFormConfig);
+        expect(service.config.library).toEqual('material');
       })
     );
 
@@ -109,7 +114,7 @@ describe('MatDynamicFormsModule', () => {
 
   describe('forRoot with provided config', () => {
     const config: DynamicFormConfig = {
-      library: 'material-extended'
+      library: 'material'
     };
 
     beforeEach(async(() => {
@@ -122,20 +127,22 @@ describe('MatDynamicFormsModule', () => {
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe('material-extended');
+        expect(library).toBe('material');
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIG for library',
       inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
+        const libraryConfigs = configs.filter(cfg => cfg.library === 'material');
+
+        expect(libraryConfigs.length).toBe(1);
+        expect(libraryConfigs[0]).toEqual(config);
       })
     );
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(config);
+        expect(service.config.library).toEqual('material');
       })
     );
   });
