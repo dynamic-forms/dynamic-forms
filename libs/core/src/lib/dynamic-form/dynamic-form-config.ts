@@ -8,7 +8,7 @@ import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-
 export type DynamicFormLibrary = 'core' | string;
 
 export interface DynamicFormConfig {
-  library?: DynamicFormLibrary;
+  library: DynamicFormLibrary;
   elementConfig?: DynamicFormElementConfig;
   fieldConfig?: DynamicFormFieldConfig;
   inputConfig?: DynamicFormInputConfig;

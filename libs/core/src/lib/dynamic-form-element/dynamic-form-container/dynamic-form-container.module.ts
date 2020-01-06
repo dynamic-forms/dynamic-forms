@@ -9,6 +9,7 @@ import { DynamicFormContainerComponent } from './dynamic-form-container.componen
     CommonModule,
     DynamicFormElementModule,
     DynamicFormsModule.forChild({
+      library: 'core',
       elementConfig: {
         types: [
           { type: 'container', component: DynamicFormContainerComponent  }

@@ -38,7 +38,7 @@ export class DynamicFormConfigService {
 
   private getConfig(library: DynamicFormLibrary, configs: DynamicFormConfig[]) {
     return configs.reduce((result, config) => {
-      if (config.library === 'core' || config.library === library) {
+      if (config.library === library || config.library === 'core') {
         this.extendConfig(result, config);
         return result;
       }

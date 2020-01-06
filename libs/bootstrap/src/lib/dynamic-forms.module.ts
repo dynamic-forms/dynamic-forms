@@ -30,15 +30,8 @@ export class BsDynamicFormsModule {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: 'bootstrap'
-        },
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: { ...config, library: 'bootstrap' },
-          multi: true
-        },
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'bootstrap' },
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true },
         ...dynamicFormProviders
       ]
     };
@@ -48,11 +41,7 @@ export class BsDynamicFormsModule {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: { ...config, library: 'bootstrap' },
-          multi: true
-        }
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
       ]
     };
   }

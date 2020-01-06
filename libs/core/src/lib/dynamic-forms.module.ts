@@ -20,15 +20,8 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: 'core'
-        },
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: { ...config, library: 'core' },
-          multi: true
-        },
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' },
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true },
         ...dynamicFormProviders
       ]
     };
@@ -38,11 +31,7 @@ export class DynamicFormsModule {
     return {
       ngModule: DynamicFormsModule,
       providers: [
-        {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: { ...config, library: 'core' },
-          multi: true
-        }
+        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
       ]
     };
   }
