@@ -10,10 +10,6 @@ import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 
 export const dynamicFormConfig: DynamicFormConfig = {
   library: 'core',
-  elementConfig: { types: [] },
-  fieldConfig: { types: [] },
-  inputConfig: { types: [] },
-  wrapperConfig: { types: [] },
   validationConfig: {
     defaultMessage: 'The field is invalid.',
     messages: {
