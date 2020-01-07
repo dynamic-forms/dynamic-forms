@@ -1,8 +1,7 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputBase,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
 

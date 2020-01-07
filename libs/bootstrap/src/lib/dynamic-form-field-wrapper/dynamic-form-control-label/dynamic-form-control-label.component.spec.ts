@@ -1,8 +1,7 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfig, DynamicFormConfigService, DynamicFormInputBase,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
 import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label.module';
 

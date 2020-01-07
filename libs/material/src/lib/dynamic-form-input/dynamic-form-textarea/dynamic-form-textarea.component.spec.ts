@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormTextarea,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
+  DynamicFormDefinition, DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { DynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
