@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDatepicker, DynamicFormDefinition, DynamicFormValidationService } from '@dynamic-forms/core';
-import { DynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
-import { DynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
+import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
+import { BsDynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
 
-describe('DynamicFormDatepickerComponent', () => {
-  let fixture: ComponentFixture<DynamicFormDatepickerComponent>;
-  let component: DynamicFormDatepickerComponent;
+describe('BsDynamicFormDatepickerComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormDatepickerComponent>;
+  let component: BsDynamicFormDatepickerComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormDatepicker>;
   let formControl: DynamicFormControl<DynamicFormDatepicker>;
@@ -15,7 +15,7 @@ describe('DynamicFormDatepickerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDatepickerModule
+        BsDynamicFormDatepickerModule
       ],
       providers: [
         {
@@ -26,7 +26,7 @@ describe('DynamicFormDatepickerComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormDatepickerComponent);
+    fixture = TestBed.createComponent(BsDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});

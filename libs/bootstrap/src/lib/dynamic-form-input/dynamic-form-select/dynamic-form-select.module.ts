@@ -1,18 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormSelectComponent } from './dynamic-form-select.component';
+import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
+
+export const bsDynamicFormSelectConfig: DynamicFormConfig = {
+  library: 'material',
+  inputConfig: {
+    types: [
+      { type: 'select', component: BsDynamicFormSelectComponent, wrappers: [ 'label', 'hints', 'errors' ] }
+    ]
+  }
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DynamicFormsModule.forChild(bsDynamicFormSelectConfig)
   ],
   declarations: [
-    DynamicFormSelectComponent
+    BsDynamicFormSelectComponent
   ],
   entryComponents: [
-    DynamicFormSelectComponent
+    BsDynamicFormSelectComponent
   ]
 })
-export class DynamicFormSelectModule {}
+export class BsDynamicFormSelectModule {}

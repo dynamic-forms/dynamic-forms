@@ -5,7 +5,7 @@ import { DynamicFormInputBase, DynamicFormTextbox, DynamicFormValidationService 
   selector: 'bs-dynamic-form-textbox',
   templateUrl: './dynamic-form-textbox.component.html'
 })
-export class DynamicFormTextboxComponent extends DynamicFormInputBase<DynamicFormTextbox> {
+export class BsDynamicFormTextboxComponent extends DynamicFormInputBase<DynamicFormTextbox> {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

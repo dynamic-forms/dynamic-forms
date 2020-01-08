@@ -1,18 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormComboboxComponent } from './dynamic-form-combobox.component';
+import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
+
+export const bsDynamicFormComboboxConfig: DynamicFormConfig = {
+  library: 'material',
+  inputConfig: {
+    types: [
+      { type: 'combobox', component: BsDynamicFormComboboxComponent, wrappers: [ 'label', 'hints', 'errors' ] }
+    ]
+  }
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DynamicFormsModule.forChild(bsDynamicFormComboboxConfig)
   ],
   declarations: [
-    DynamicFormComboboxComponent
+    BsDynamicFormComboboxComponent
   ],
   entryComponents: [
-    DynamicFormComboboxComponent
+    BsDynamicFormComboboxComponent
   ]
 })
-export class DynamicFormComboboxModule {}
+export class BsDynamicFormComboboxModule {}

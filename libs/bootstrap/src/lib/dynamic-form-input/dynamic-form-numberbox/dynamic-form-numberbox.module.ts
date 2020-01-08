@@ -1,18 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
+import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
+
+export const bsDynamicFormNumberboxConfig: DynamicFormConfig = {
+  library: 'material',
+  inputConfig: {
+    types: [
+      { type: 'numberbox', component: BsDynamicFormNumberboxComponent, wrappers: [ 'label', 'hints', 'errors' ] }
+    ]
+  }
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DynamicFormsModule.forChild(bsDynamicFormNumberboxConfig)
   ],
   declarations: [
-    DynamicFormNumberboxComponent
+    BsDynamicFormNumberboxComponent
   ],
   entryComponents: [
-    DynamicFormNumberboxComponent
+    BsDynamicFormNumberboxComponent
   ]
 })
-export class DynamicFormNumberboxModule {}
+export class BsDynamicFormNumberboxModule {}

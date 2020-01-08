@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormRadio, DynamicFormValidationService} from '@dynamic-forms/core';
-import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
-import { DynamicFormRadioModule } from './dynamic-form-radio.module';
+import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
+import { BsDynamicFormRadioModule } from './dynamic-form-radio.module';
 
-describe('DynamicFormRadioComponent', () => {
-  let fixture: ComponentFixture<DynamicFormRadioComponent>;
-  let component: DynamicFormRadioComponent;
+describe('BsDynamicFormRadioComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormRadioComponent>;
+  let component: BsDynamicFormRadioComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormRadio>;
   let formControl: DynamicFormControl<DynamicFormRadio>;
@@ -15,7 +15,7 @@ describe('DynamicFormRadioComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormRadioModule
+        BsDynamicFormRadioModule
       ],
       providers: [
         {
@@ -26,7 +26,7 @@ describe('DynamicFormRadioComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormRadioComponent);
+    fixture = TestBed.createComponent(BsDynamicFormRadioComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
