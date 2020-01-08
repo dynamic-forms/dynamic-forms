@@ -1,4 +1,5 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
@@ -9,7 +10,6 @@ import { DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
 import { DynamicFormFieldWrapperTypeConfig } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-config';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 
 @Injectable()
 export class DynamicFormComponentFactory {

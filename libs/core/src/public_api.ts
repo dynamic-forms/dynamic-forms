@@ -2,12 +2,9 @@
  * Public API Surface of core
  */
 
-export * from './lib/dynamic-forms.config';
 export * from './lib/dynamic-forms.module';
 export * from './lib/dynamic-form/dynamic-form';
 export * from './lib/dynamic-form/dynamic-form-component.factory';
-export * from './lib/dynamic-form/dynamic-form-config';
-export * from './lib/dynamic-form/dynamic-form-config.service';
 export * from './lib/dynamic-form/dynamic-form-definition';
 export * from './lib/dynamic-form/dynamic-form-submit';
 export * from './lib/dynamic-form/dynamic-form-template';
@@ -20,6 +17,8 @@ export * from './lib/dynamic-form-array/dynamic-form-array-definition';
 export * from './lib/dynamic-form-array/dynamic-form-array-template';
 export * from './lib/dynamic-form-array/dynamic-form-array.component';
 export * from './lib/dynamic-form-array/dynamic-form-array.module';
+export * from './lib/dynamic-form-config/dynamic-form-config';
+export * from './lib/dynamic-form-config/dynamic-form-config.service';
 export * from './lib/dynamic-form-control/dynamic-form-control';
 export * from './lib/dynamic-form-control/dynamic-form-control-base';
 export * from './lib/dynamic-form-control/dynamic-form-control-definition';

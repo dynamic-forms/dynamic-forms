@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormValidationConfig } from './dynamic-form-validation-config';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 

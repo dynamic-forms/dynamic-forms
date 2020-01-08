@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 
 @Injectable()

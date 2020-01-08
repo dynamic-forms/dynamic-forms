@@ -1,9 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form/dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-config';
+import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
+import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
+import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
+import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
+import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
+import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
-import { dynamicFormConfig, dynamicFormProviders } from './dynamic-forms.config';
+
+export const dynamicFormProviders: Provider[] = [
+  DynamicFormConfigService,
+  DynamicFormBuilder,
+  DynamicFormExpressionBuilder,
+  DynamicFormEvaluationBuilder,
+  DynamicFormValidationBuilder,
+  DynamicFormValidationService,
+  DynamicFormComponentFactory
+];
 
 @NgModule({
   imports: [
@@ -16,7 +33,7 @@ import { dynamicFormConfig, dynamicFormProviders } from './dynamic-forms.config'
   ]
 })
 export class DynamicFormsModule {
-  static forRoot(config: DynamicFormConfig = dynamicFormConfig): ModuleWithProviders {
+  static forRoot(config: DynamicFormConfig = dynamicFormConfig): ModuleWithProviders<DynamicFormsModule> {
     return {
       ngModule: DynamicFormsModule,
       providers: [
@@ -27,7 +44,7 @@ export class DynamicFormsModule {
     };
   }
 
-  static forChild(config: DynamicFormConfig): ModuleWithProviders {
+  static forChild(config: DynamicFormConfig): ModuleWithProviders<DynamicFormsModule> {
     return {
       ngModule: DynamicFormsModule,
       providers: [

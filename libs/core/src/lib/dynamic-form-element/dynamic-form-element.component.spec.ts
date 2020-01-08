@@ -1,9 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-config';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '../dynamic-form/dynamic-form-config';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';

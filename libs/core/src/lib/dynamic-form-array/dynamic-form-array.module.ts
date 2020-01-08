@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig } from '../dynamic-form/dynamic-form-config';
+import { DynamicFormConfig } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormsModule } from '../dynamic-forms.module';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 

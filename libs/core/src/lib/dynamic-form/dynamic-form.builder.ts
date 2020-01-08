@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
@@ -14,7 +15,6 @@ import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 
 @Injectable()

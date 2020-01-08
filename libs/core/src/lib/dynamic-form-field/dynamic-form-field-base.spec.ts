@@ -1,6 +1,6 @@
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
 class DynamicFormFieldBaseTest extends DynamicFormFieldBase {
