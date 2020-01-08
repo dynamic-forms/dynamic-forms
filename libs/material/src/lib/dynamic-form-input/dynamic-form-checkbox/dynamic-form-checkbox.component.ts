@@ -5,7 +5,7 @@ import { DynamicFormCheckbox, DynamicFormInputBase, DynamicFormValidationService
   selector: 'mat-dynamic-form-checkbox',
   templateUrl: './dynamic-form-checkbox.component.html'
 })
-export class DynamicFormCheckboxComponent extends DynamicFormInputBase<DynamicFormCheckbox> {
+export class MatDynamicFormCheckboxComponent extends DynamicFormInputBase<DynamicFormCheckbox> {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

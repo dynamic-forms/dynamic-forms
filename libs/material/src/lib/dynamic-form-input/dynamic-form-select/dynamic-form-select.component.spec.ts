@@ -4,12 +4,12 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormSelect, DynamicFormValidationService } from '@dynamic-forms/core';
-import { DynamicFormSelectComponent } from './dynamic-form-select.component';
-import { DynamicFormSelectModule } from './dynamic-form-select.module';
+import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
+import { MatDynamicFormSelectModule } from './dynamic-form-select.module';
 
-describe('DynamicFormSelectComponent', () => {
-  let fixture: ComponentFixture<DynamicFormSelectComponent>;
-  let component: DynamicFormSelectComponent;
+describe('MatDynamicFormSelectComponent', () => {
+  let fixture: ComponentFixture<MatDynamicFormSelectComponent>;
+  let component: MatDynamicFormSelectComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormSelect>;
   let formControl: DynamicFormControl<DynamicFormSelect>;
@@ -17,7 +17,7 @@ describe('DynamicFormSelectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormSelectModule,
+        MatDynamicFormSelectModule,
         NoopAnimationsModule
       ],
       providers: [
@@ -29,7 +29,7 @@ describe('DynamicFormSelectComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormSelectComponent);
+    fixture = TestBed.createComponent(MatDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});

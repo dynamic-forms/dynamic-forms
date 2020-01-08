@@ -3,12 +3,12 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
-import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
-import { DynamicFormTextareaModule } from './dynamic-form-textarea.module';
+import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
+import { MatDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
-describe('DynamicFormTextareaComponent', () => {
-  let fixture: ComponentFixture<DynamicFormTextareaComponent>;
-  let component: DynamicFormTextareaComponent;
+describe('MatDynamicFormTextareaComponent', () => {
+  let fixture: ComponentFixture<MatDynamicFormTextareaComponent>;
+  let component: MatDynamicFormTextareaComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
   let formControl: DynamicFormControl<DynamicFormTextarea>;
@@ -16,7 +16,7 @@ describe('DynamicFormTextareaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormTextareaModule,
+        MatDynamicFormTextareaModule,
         NoopAnimationsModule
       ],
       providers: [
@@ -28,7 +28,7 @@ describe('DynamicFormTextareaComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormTextareaComponent);
+    fixture = TestBed.createComponent(MatDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
