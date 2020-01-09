@@ -10,7 +10,7 @@ import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormsModule } from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {
-  describe('without providers', () => {
+  describe('without provided DYNAMIC_FORM_LIBRARY and DYNAMIC_FORM_CONFIG', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
@@ -35,17 +35,23 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormExpressionBuilder',
+      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormEvaluationBuilder',
+      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormValidationBuilder',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
     it('does not provide DynamicFormValidationService', () => {
       expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
@@ -56,11 +62,15 @@ describe('DynamicFormsModule', () => {
     });
   });
 
-  describe('forRoot with default config', () => {
+  describe('with provided DYNAMIC_FORM_LIBRARY and DYNAMIC_FORM_CONFIG', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsModule.forRoot()
+          DynamicFormsModule
+        ],
+        providers: [
+          { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' },
+          { provide: DYNAMIC_FORM_CONFIG, useValue: dynamicFormConfig, multi: true }
         ]
       });
     }));
@@ -119,91 +129,5 @@ describe('DynamicFormsModule', () => {
         expect(service).toBeDefined();
       })
     );
-  });
-
-  describe('forRoot with provided config', () => {
-    const config: DynamicFormConfig = {
-      library: 'core'
-    };
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          DynamicFormsModule.forRoot(config)
-        ]
-      });
-    }));
-
-    it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe('core');
-      })
-    );
-
-    it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
-      })
-    );
-
-    it('provides DynamicFormConfigService',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(config);
-      })
-    );
-  });
-
-  describe('forChild with provided config', () => {
-    const config: DynamicFormConfig = {
-      library: 'core'
-    };
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          DynamicFormsModule.forChild(config)
-        ]
-      });
-    }));
-
-    it('does not provide DYNAMIC_FORM_LIBRARY', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
-      })
-    );
-
-    it('does not provide DynamicFormConfigService', () => {
-      expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormBuilder', () => {
-      expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DynamicFormComponentFactory', () => {
-      expect(() => TestBed.get(DynamicFormComponentFactory)).toThrowError(/StaticInjectorError/);
-    });
   });
 });
