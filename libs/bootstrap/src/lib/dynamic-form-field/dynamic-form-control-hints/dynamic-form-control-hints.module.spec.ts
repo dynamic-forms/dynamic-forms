@@ -1,12 +1,12 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormControlErrorsConfig, BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
+import { bsDynamicFormControlHintsConfig, BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
 
-describe('BsDynamicFormControlErrorsModule', () => {
+describe('BsDynamicFormControlHintsModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormControlErrorsModule
+        BsDynamicFormControlHintsModule
       ]
     });
   }));
@@ -14,7 +14,7 @@ describe('BsDynamicFormControlErrorsModule', () => {
   it('provides DynamicFormConfig',
     inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
       expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(bsDynamicFormControlErrorsConfig);
+      expect(configs[0]).toEqual(bsDynamicFormControlHintsConfig);
     })
   );
 });
