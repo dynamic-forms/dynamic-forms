@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 export const matDynamicFormTextboxConfig: DynamicFormConfig = {
@@ -21,7 +21,7 @@ export const matDynamicFormTextboxConfig: DynamicFormConfig = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    DynamicFormsModule.forChild(matDynamicFormTextboxConfig)
+    DynamicFormConfigModule.forChild(matDynamicFormTextboxConfig)
   ],
   declarations: [
     MatDynamicFormTextboxComponent

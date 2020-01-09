@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const bsDynamicFormRadioConfig: DynamicFormConfig = {
@@ -17,7 +17,7 @@ export const bsDynamicFormRadioConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forChild(bsDynamicFormRadioConfig)
+    DynamicFormConfigModule.forChild(bsDynamicFormRadioConfig)
   ],
   declarations: [
     BsDynamicFormRadioComponent

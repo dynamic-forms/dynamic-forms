@@ -5,7 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { MatDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 export const matDynamicFormDatepickerConfig: DynamicFormConfig = {
@@ -25,7 +25,7 @@ export const matDynamicFormDatepickerConfig: DynamicFormConfig = {
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    DynamicFormsModule.forChild(matDynamicFormDatepickerConfig)
+    DynamicFormConfigModule.forChild(matDynamicFormDatepickerConfig)
   ],
   declarations: [
     MatDynamicFormDatepickerComponent

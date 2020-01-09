@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 export const bsDynamicFormComboboxConfig: DynamicFormConfig = {
@@ -17,7 +17,7 @@ export const bsDynamicFormComboboxConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forChild(bsDynamicFormComboboxConfig)
+    DynamicFormConfigModule.forChild(bsDynamicFormComboboxConfig)
   ],
   declarations: [
     BsDynamicFormComboboxComponent

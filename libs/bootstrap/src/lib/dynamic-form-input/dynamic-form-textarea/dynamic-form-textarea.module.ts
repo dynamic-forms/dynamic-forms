@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 export const bsDynamicFormTextareaConfig: DynamicFormConfig = {
@@ -17,7 +17,7 @@ export const bsDynamicFormTextareaConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forChild(bsDynamicFormTextareaConfig)
+    DynamicFormConfigModule.forChild(bsDynamicFormTextareaConfig)
   ],
   declarations: [
     BsDynamicFormTextareaComponent

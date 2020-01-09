@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 export const matDynamicFormSelectConfig: DynamicFormConfig = {
@@ -21,7 +21,7 @@ export const matDynamicFormSelectConfig: DynamicFormConfig = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    DynamicFormsModule.forChild(matDynamicFormSelectConfig)
+    DynamicFormConfigModule.forChild(matDynamicFormSelectConfig)
   ],
   declarations: [
     MatDynamicFormSelectComponent

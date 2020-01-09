@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 export const bsDynamicFormDatepickerConfig: DynamicFormConfig = {
@@ -17,7 +17,7 @@ export const bsDynamicFormDatepickerConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forChild(bsDynamicFormDatepickerConfig)
+    DynamicFormConfigModule.forChild(bsDynamicFormDatepickerConfig)
   ],
   declarations: [
     BsDynamicFormDatepickerComponent

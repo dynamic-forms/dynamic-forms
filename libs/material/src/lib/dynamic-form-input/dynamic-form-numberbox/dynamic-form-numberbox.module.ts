@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 export const matDynamicFormNumberboxConfig: DynamicFormConfig = {
@@ -21,7 +21,7 @@ export const matDynamicFormNumberboxConfig: DynamicFormConfig = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    DynamicFormsModule.forChild(matDynamicFormNumberboxConfig)
+    DynamicFormConfigModule.forChild(matDynamicFormNumberboxConfig)
   ],
   declarations: [
     MatDynamicFormNumberboxComponent

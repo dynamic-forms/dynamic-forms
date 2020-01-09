@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const matDynamicFormRadioConfig: DynamicFormConfig = {
@@ -19,7 +19,7 @@ export const matDynamicFormRadioConfig: DynamicFormConfig = {
     CommonModule,
     ReactiveFormsModule,
     MatRadioModule,
-    DynamicFormsModule.forChild(matDynamicFormRadioConfig)
+    DynamicFormConfigModule.forChild(matDynamicFormRadioConfig)
   ],
   declarations: [
     MatDynamicFormRadioComponent

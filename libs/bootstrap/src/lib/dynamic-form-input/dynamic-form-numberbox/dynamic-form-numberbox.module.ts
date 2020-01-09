@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
+import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 export const bsDynamicFormNumberboxConfig: DynamicFormConfig = {
@@ -17,7 +17,7 @@ export const bsDynamicFormNumberboxConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsModule.forChild(bsDynamicFormNumberboxConfig)
+    DynamicFormConfigModule.forChild(bsDynamicFormNumberboxConfig)
   ],
   declarations: [
     BsDynamicFormNumberboxComponent
