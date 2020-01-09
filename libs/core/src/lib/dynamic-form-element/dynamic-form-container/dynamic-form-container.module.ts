@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormConfig } from '../../dynamic-form-config/dynamic-form-config';
-import { DynamicFormsModule } from '../../dynamic-forms.module';
+import { DynamicFormConfigModule } from '../../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element.module';
 import { DynamicFormContainerComponent } from './dynamic-form-container.component';
 
@@ -18,13 +18,13 @@ export const dynamicFormContainerConfig: DynamicFormConfig = {
   imports: [
     CommonModule,
     DynamicFormElementModule,
-    DynamicFormsModule.forChild(dynamicFormContainerConfig)
+    DynamicFormConfigModule.forChild(dynamicFormContainerConfig)
   ],
   declarations: [
     DynamicFormContainerComponent
   ],
   exports: [
-    DynamicFormsModule,
+    DynamicFormConfigModule,
     DynamicFormContainerComponent
   ],
   entryComponents: [
