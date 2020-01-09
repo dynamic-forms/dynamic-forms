@@ -24,6 +24,10 @@ export const matDynamicFormRadioConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormRadioComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormRadioComponent
+  ],
   entryComponents: [
     MatDynamicFormRadioComponent
   ]

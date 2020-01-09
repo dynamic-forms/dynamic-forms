@@ -26,6 +26,10 @@ export const matDynamicFormTextareaConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormTextareaComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormTextareaComponent
+  ],
   entryComponents: [
     MatDynamicFormTextareaComponent
   ]

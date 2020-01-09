@@ -26,6 +26,10 @@ export const matDynamicFormCheckboxConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormCheckboxComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormCheckboxComponent
+  ],
   entryComponents: [
     MatDynamicFormCheckboxComponent
   ]

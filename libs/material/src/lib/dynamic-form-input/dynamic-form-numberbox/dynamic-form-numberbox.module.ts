@@ -26,6 +26,10 @@ export const matDynamicFormNumberboxConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormNumberboxComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormNumberboxComponent
+  ],
   entryComponents: [
     MatDynamicFormNumberboxComponent
   ]

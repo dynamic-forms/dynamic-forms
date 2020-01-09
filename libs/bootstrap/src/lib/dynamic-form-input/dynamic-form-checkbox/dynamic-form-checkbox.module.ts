@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 export const bsDynamicFormCheckboxConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'checkbox', component: BsDynamicFormCheckboxComponent, wrappers: [ 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormCheckboxConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormCheckboxConfig)
   ],
   declarations: [
+    BsDynamicFormCheckboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormCheckboxComponent
   ],
   entryComponents: [

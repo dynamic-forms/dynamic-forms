@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 export const bsDynamicFormTextboxConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'textbox', component: BsDynamicFormTextboxComponent, wrappers: [ 'label', 'hints', 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormTextboxConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormTextboxConfig)
   ],
   declarations: [
+    BsDynamicFormTextboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormTextboxComponent
   ],
   entryComponents: [

@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const bsDynamicFormRadioConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'radio', component: BsDynamicFormRadioComponent, wrappers: [ 'label', 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormRadioConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormRadioConfig)
   ],
   declarations: [
+    BsDynamicFormRadioComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormRadioComponent
   ],
   entryComponents: [

@@ -28,6 +28,10 @@ export const matDynamicFormComboboxConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormComboboxComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormComboboxComponent
+  ],
   entryComponents: [
     MatDynamicFormComboboxComponent
   ]

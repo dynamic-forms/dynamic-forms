@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 export const bsDynamicFormSelectConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'select', component: BsDynamicFormSelectComponent, wrappers: [ 'label', 'hints', 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormSelectConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormSelectConfig)
   ],
   declarations: [
+    BsDynamicFormSelectComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormSelectComponent
   ],
   entryComponents: [

@@ -26,6 +26,10 @@ export const matDynamicFormSelectConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormSelectComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormSelectComponent
+  ],
   entryComponents: [
     MatDynamicFormSelectComponent
   ]

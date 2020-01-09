@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 export const bsDynamicFormTextareaConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'textarea', component: BsDynamicFormTextareaComponent, wrappers: [ 'label', 'hints', 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormTextareaConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormTextareaConfig)
   ],
   declarations: [
+    BsDynamicFormTextareaComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormTextareaComponent
   ],
   entryComponents: [

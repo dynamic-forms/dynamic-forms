@@ -30,6 +30,10 @@ export const matDynamicFormDatepickerConfig: DynamicFormConfig = {
   declarations: [
     MatDynamicFormDatepickerComponent
   ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormDatepickerComponent
+  ],
   entryComponents: [
     MatDynamicFormDatepickerComponent
   ]

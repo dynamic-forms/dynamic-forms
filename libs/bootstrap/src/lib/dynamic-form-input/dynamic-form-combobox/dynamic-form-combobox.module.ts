@@ -5,7 +5,7 @@ import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core'
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 export const bsDynamicFormComboboxConfig: DynamicFormConfig = {
-  library: 'material',
+  library: 'bootstrap',
   inputConfig: {
     types: [
       { type: 'combobox', component: BsDynamicFormComboboxComponent, wrappers: [ 'label', 'hints', 'errors' ] }
@@ -20,6 +20,10 @@ export const bsDynamicFormComboboxConfig: DynamicFormConfig = {
     DynamicFormConfigModule.forChild(bsDynamicFormComboboxConfig)
   ],
   declarations: [
+    BsDynamicFormComboboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
     BsDynamicFormComboboxComponent
   ],
   entryComponents: [
