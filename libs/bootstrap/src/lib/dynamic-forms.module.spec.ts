@@ -1,8 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
-  DynamicFormExpressionBuilder, DynamicFormValidationBuilder, DynamicFormValidationService,
-  DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
-import { bsDynamicFormConfig } from './dynamic-forms.config';
+  DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormValidationBuilder,
+  DynamicFormValidationService, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { BsDynamicFormsModule } from './dynamic-forms.module';
 
 describe('BsDynamicFormsModule', () => {
@@ -19,28 +18,27 @@ describe('BsDynamicFormsModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
 
-    /*it('does not provide DYNAMIC_FORM_CONFIG for library',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        const libraryConfigs = configs.filter(cfg => cfg.library === 'bootstrap');
-        expect(libraryConfigs.length).toBe(0);
-      })
-    );*/
-
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DynamicFormBuilder', () => {
-      expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormExpressionBuilder',
+      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormEvaluationBuilder',
+      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
-    });
+    it('provides DynamicFormValidationBuilder',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
     it('does not provide DynamicFormValidationService', () => {
       expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
@@ -65,15 +63,6 @@ describe('BsDynamicFormsModule', () => {
         expect(library).toBe('bootstrap');
       })
     );
-
-    /*it('provides DYNAMIC_FORM_CONFIG for library',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        const libraryConfigs = configs.filter(cfg => cfg.library === 'bootstrap');
-
-        expect(libraryConfigs.length).toBe(1);
-        expect(libraryConfigs[0]).toEqual(bsDynamicFormConfig);
-      })
-    );*/
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -130,15 +119,6 @@ describe('BsDynamicFormsModule', () => {
         expect(library).toBe('bootstrap');
       })
     );
-
-    /*it('provides DYNAMIC_FORM_CONFIG for library',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
-        const libraryConfigs = configs.filter(cfg => cfg.library === 'bootstrap');
-
-        expect(libraryConfigs.length).toBe(1);
-        expect(libraryConfigs[0]).toEqual(config);
-      })
-    );*/
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
