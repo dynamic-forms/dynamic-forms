@@ -70,13 +70,13 @@ export class DynamicFormBuilder {
   }
 
   private requireElementType(type: string) {
-    if (!this.configService.getElementTypeConfig(type)) {
+    if (!this.configService.getElementType(type)) {
         throw Error(`Element type ${ type } is not defined`);
     }
   }
 
   private requireFieldType(type: string) {
-    if (!this.configService.getFieldTypeConfig(type)) {
+    if (!this.configService.getFieldType(type)) {
       throw Error(`Field type ${ type } is not defined`);
     }
   }

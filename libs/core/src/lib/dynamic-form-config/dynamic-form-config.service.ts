@@ -12,22 +12,22 @@ export class DynamicFormConfigService {
     this.config = this.getConfig(this.library, this.configs);
   }
 
-  getElementTypeConfig(type: string) {
+  getElementType(type: string) {
     const config = this.config.elementConfig;
     return config.types.find(f => f.type === type);
   }
 
-  getFieldTypeConfig(type: string) {
+  getFieldType(type: string) {
     const config = this.config.fieldConfig;
     return config.types.find(f => f.type === type);
   }
 
-  getInputTypeConfig(type: string) {
+  getInputType(type: string) {
     const config = this.config.inputConfig;
     return config.types.find(f => f.type === type);
   }
 
-  getWrapperTypeConfig(type: string) {
+  getFieldWrapperType(type: string) {
     const config = this.config.wrapperConfig;
     return config.types.find(f => f.type === type);
   }

@@ -1,12 +1,12 @@
 import { Type } from '@angular/core';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
-export interface DynamicFormFieldTypeConfig {
+export interface DynamicFormFieldType {
   type: string;
   component: Type<DynamicFormFieldBase>;
   wrappers?: string[];
 }
 
 export interface DynamicFormFieldConfig {
-  types: DynamicFormFieldTypeConfig[];
+  types: DynamicFormFieldType[];
 }
