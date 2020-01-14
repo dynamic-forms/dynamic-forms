@@ -1,5 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig,
+  DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
@@ -24,7 +25,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_CONFIGS)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -70,7 +71,7 @@ describe('DynamicFormsModule', () => {
         ],
         providers: [
           { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' },
-          { provide: DYNAMIC_FORM_CONFIG, useValue: dynamicFormConfig, multi: true }
+          { provide: DYNAMIC_FORM_CONFIGS, useValue: dynamicFormConfig, multi: true }
         ]
       });
     }));
@@ -82,7 +83,7 @@ describe('DynamicFormsModule', () => {
     );
 
     it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+      inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(dynamicFormConfig);
       })

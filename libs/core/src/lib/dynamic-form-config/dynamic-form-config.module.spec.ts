@@ -5,7 +5,7 @@ import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
@@ -24,7 +24,7 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_CONFIG', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_CONFIGS)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -72,7 +72,7 @@ describe('DynamicFormConfigModule', () => {
     );
 
     it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+      inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(dynamicFormConfig);
       })
@@ -105,7 +105,7 @@ describe('DynamicFormConfigModule', () => {
     );
 
     it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+      inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(config);
       })
@@ -136,7 +136,7 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('provides DYNAMIC_FORM_CONFIG',
-      inject([DYNAMIC_FORM_CONFIG], (configs: DynamicFormConfig[]) => {
+      inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(config);
       })

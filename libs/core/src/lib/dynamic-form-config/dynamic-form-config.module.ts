@@ -1,5 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
+import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
+import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({})
@@ -13,7 +18,7 @@ export class DynamicFormConfigModule {
           useValue: 'core'
         },
         {
-          provide: DYNAMIC_FORM_CONFIG,
+          provide: DYNAMIC_FORM_CONFIGS,
           useValue: config,
           multi: true
         },
@@ -27,8 +32,73 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_CONFIG,
+          provide: DYNAMIC_FORM_CONFIGS,
           useValue: config,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withElement(elementType: DynamicFormElementType): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ELEMENT_TYPES,
+          useValue: elementType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withField(fieldType: DynamicFormFieldType) {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_FIELD_TYPES,
+          useValue: fieldType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withInput(inputType: DynamicFormInputType) {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_INPUT_TYPES,
+          useValue: inputType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withFieldWrapper(fieldWrapperType: DynamicFormFieldWrapperType) {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
+          useValue: fieldWrapperType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withValidation(validationConfig: DynamicFormValidationConfig) {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
+          useValue: validationConfig,
           multi: true
         }
       ]

@@ -7,6 +7,8 @@ import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-
 
 export type DynamicFormLibrary = 'core' | string;
 
+export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
+
 export interface DynamicFormConfig {
   library: DynamicFormLibrary;
   elementConfig?: DynamicFormElementConfig;
@@ -16,8 +18,9 @@ export interface DynamicFormConfig {
   validationConfig?: DynamicFormValidationConfig;
 }
 
-export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
-export const DYNAMIC_FORM_CONFIG = new InjectionToken<DynamicFormConfig>('DynamicFormConfig');
+export type DynamicFormConfigs = DynamicFormConfig[];
+
+export const DYNAMIC_FORM_CONFIGS = new InjectionToken<DynamicFormConfigs>('DynamicFormConfigs');
 
 export const dynamicFormConfig: DynamicFormConfig = {
   library: 'core',

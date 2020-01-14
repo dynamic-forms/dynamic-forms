@@ -1,12 +1,14 @@
-import { Type } from '@angular/core';
-import { DynamicFormContainerComponent } from './dynamic-form-container/dynamic-form-container.component';
-import { DynamicFormContentComponent } from './dynamic-form-content/dynamic-form-content.component';
+import { InjectionToken, Type } from '@angular/core';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 
 export interface DynamicFormElementType {
   type: string;
   component: Type<DynamicFormElementBase>;
 }
+
+export type DynamicFormElementTypes = DynamicFormElementType[];
+
+export const DYNAMIC_FORM_ELEMENT_TYPES = new InjectionToken<DynamicFormElementTypes>('DynamicFormElementTypes');
 
 export interface DynamicFormElementConfig {
   types: DynamicFormElementType[];

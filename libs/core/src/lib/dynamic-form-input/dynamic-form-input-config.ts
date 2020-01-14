@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+import { InjectionToken, Type } from '@angular/core';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 
 export interface DynamicFormInputType {
@@ -7,10 +7,10 @@ export interface DynamicFormInputType {
   wrappers?: string[];
 }
 
+export type DynamicFormInputTypes = DynamicFormInputType[];
+
+export const DYNAMIC_FORM_INPUT_TYPES = new InjectionToken<DynamicFormInputTypes>('DynamicFormInputTypes');
+
 export interface DynamicFormInputConfig {
   types: DynamicFormInputType[];
 }
-
-export const dynamicFormInputConfig: DynamicFormInputConfig = {
-  types: []
-};
