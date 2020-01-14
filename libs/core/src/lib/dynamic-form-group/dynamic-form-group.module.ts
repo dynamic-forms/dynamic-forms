@@ -1,18 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
 
-export const dynamicFormGroupConfig: DynamicFormConfig = {
-  library: 'core',
-  fieldConfig: {
-    types: [
-      { type: 'group', component: DynamicFormGroupComponent }
-    ]
-  }
+export const dynamicFormGroupType: DynamicFormFieldType = {
+  type: 'group',
+  component: DynamicFormGroupComponent
 };
 
 @NgModule({
@@ -20,7 +16,7 @@ export const dynamicFormGroupConfig: DynamicFormConfig = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormElementModule,
-    DynamicFormConfigModule.forChild(dynamicFormGroupConfig)
+    DynamicFormConfigModule.withField(dynamicFormGroupType)
   ],
   declarations: [
     DynamicFormGroupComponent

@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
 import { DynamicFormConfig, DynamicFormConfigs, DynamicFormLibrary, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class DynamicFormConfigService {
 
   constructor(
     @Inject(DYNAMIC_FORM_LIBRARY) private library: DynamicFormLibrary,
-    @Inject(DYNAMIC_FORM_CONFIGS) private configs: DynamicFormConfigs,
+    @Inject(DYNAMIC_FORM_CONFIGS) private configs: DynamicFormConfigs
   ) {
     this.config = this.getConfig(this.library, this.configs);
   }

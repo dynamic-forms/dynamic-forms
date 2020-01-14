@@ -1,6 +1,11 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormElementType, DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
+import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
+import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -23,7 +28,7 @@ describe('DynamicFormConfigModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DYNAMIC_FORM_CONFIG', () => {
+    it('does not provide DYNAMIC_FORM_CONFIGS', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_CONFIGS)).toThrowError(/StaticInjectorError/);
     });
 
@@ -71,7 +76,7 @@ describe('DynamicFormConfigModule', () => {
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIGS',
       inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(dynamicFormConfig);
@@ -104,7 +109,7 @@ describe('DynamicFormConfigModule', () => {
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIGS',
       inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(config);
@@ -135,7 +140,7 @@ describe('DynamicFormConfigModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIGS',
       inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(config);
@@ -145,5 +150,103 @@ describe('DynamicFormConfigModule', () => {
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
     });
+  });
+
+  describe('withElement', () => {
+    const type: DynamicFormElementType = { type: 'elementType', component: null };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withElement(type)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_ELEMENT_TYPES',
+      inject([DYNAMIC_FORM_ELEMENT_TYPES], (types: DynamicFormElementTypes) => {
+        expect(types.length).toBe(1);
+        expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withField', () => {
+    const type: DynamicFormFieldType = { type: 'fieldType', component: null };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withField(type)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_FIELD_TYPES',
+      inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
+        expect(types.length).toBe(1);
+        expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withInput', () => {
+    const type: DynamicFormInputType = { type: 'inputType', component: null };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withInput(type)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_INPUT_TYPES',
+      inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
+        expect(types.length).toBe(1);
+        expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withFieldWrapper', () => {
+    const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withFieldWrapper(type)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPES',
+      inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
+        expect(types.length).toBe(1);
+        expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withValidation', () => {
+    const config: DynamicFormValidationConfig = {
+      defaultMessage: 'message',
+      messages: {}
+    };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withValidation(config)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
+      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(config);
+      })
+    );
   });
 });

@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '../../dynamic-form-config/dynamic-form-config';
-import { dynamicFormContentConfig, DynamicFormContentModule } from './dynamic-form-content.module';
+import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element-config';
+import { dynamicFormContentType, DynamicFormContentModule } from './dynamic-form-content.module';
 
 describe('DynamicFormContentModule', () => {
   beforeEach(async(() => {
@@ -11,10 +11,10 @@ describe('DynamicFormContentModule', () => {
     });
   }));
 
-  it('provides DynamicFormConfig',
-    inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(dynamicFormContentConfig);
+  it('provides DYNAMIC_FORM_ELEMENT_TYPES',
+    inject([DYNAMIC_FORM_ELEMENT_TYPES], (types: DynamicFormElementTypes) => {
+      expect(types.length).toBe(1);
+      expect(types[0]).toEqual(dynamicFormContentType);
     })
   );
 });

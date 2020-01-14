@@ -1,24 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
-export const dynamicFormControlConfig: DynamicFormConfig = {
-  library: 'core',
-  fieldConfig: {
-    types: [
-      { type: 'control', component: DynamicFormControlComponent }
-    ]
-  }
+export const dynamicFormControlType: DynamicFormFieldType = {
+  type: 'control',
+  component: DynamicFormControlComponent
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.forChild(dynamicFormControlConfig)
+    DynamicFormConfigModule.withField(dynamicFormControlType)
   ],
   declarations: [
     DynamicFormControlComponent

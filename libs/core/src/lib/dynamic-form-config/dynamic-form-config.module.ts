@@ -3,7 +3,7 @@ import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-f
 import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
-import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
@@ -46,7 +46,10 @@ export class DynamicFormConfigModule {
       providers: [
         {
           provide: DYNAMIC_FORM_ELEMENT_TYPES,
-          useValue: elementType,
+          useValue: {
+            type: elementType.type,
+            component: elementType.component
+          },
           multi: true
         }
       ]
@@ -97,7 +100,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
+          provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
           useValue: validationConfig,
           multi: true
         }

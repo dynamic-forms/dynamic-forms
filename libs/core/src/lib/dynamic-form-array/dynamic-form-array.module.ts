@@ -1,24 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 
-export const dynamicFormArrayConfig: DynamicFormConfig = {
-  library: 'core',
-  fieldConfig: {
-    types: [
-      { type: 'array', component: DynamicFormArrayComponent }
-    ]
-  }
+export const dynamicFormArrayType: DynamicFormFieldType = {
+  type: 'array',
+  component: DynamicFormArrayComponent
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.forChild(dynamicFormArrayConfig)
+    DynamicFormConfigModule.withField(dynamicFormArrayType)
   ],
   declarations: [
     DynamicFormArrayComponent

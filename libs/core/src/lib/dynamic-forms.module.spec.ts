@@ -24,7 +24,7 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
 
-    it('does not provide DYNAMIC_FORM_CONFIG', () => {
+    it('does not provide DYNAMIC_FORM_CONFIGS', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_CONFIGS)).toThrowError(/StaticInjectorError/);
     });
 
@@ -82,7 +82,7 @@ describe('DynamicFormsModule', () => {
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIG',
+    it('provides DYNAMIC_FORM_CONFIGS',
       inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
         expect(configs.length).toBe(1);
         expect(configs[0]).toEqual(dynamicFormConfig);

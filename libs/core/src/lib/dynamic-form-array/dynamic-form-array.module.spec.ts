@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '../dynamic-form-config/dynamic-form-config';
-import { dynamicFormArrayConfig, DynamicFormArrayModule } from './dynamic-form-array.module';
+import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
+import { dynamicFormArrayType, DynamicFormArrayModule } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
   beforeEach(async(() => {
@@ -11,10 +11,10 @@ describe('DynamicFormArrayModule', () => {
     });
   }));
 
-  it('provides DynamicFormConfig',
-    inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(dynamicFormArrayConfig);
+  it('provides DYNAMIC_FORM_FIELD_TYPES',
+    inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
+      expect(types.length).toBe(1);
+      expect(types[0]).toEqual(dynamicFormArrayType);
     })
   );
 });
