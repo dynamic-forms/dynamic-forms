@@ -9,6 +9,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 export const matDynamicFormDatepickerType: DynamicFormInputType = {
+  library: 'material',
   type: 'datepicker',
   component: MatDynamicFormDatepickerComponent
 };

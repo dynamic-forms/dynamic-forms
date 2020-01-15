@@ -7,6 +7,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 export const matDynamicFormTextareaType: DynamicFormInputType = {
+  library: 'material',
   type: 'textarea',
   component: MatDynamicFormTextareaComponent
 };

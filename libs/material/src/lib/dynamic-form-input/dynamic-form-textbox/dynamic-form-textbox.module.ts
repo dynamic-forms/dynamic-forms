@@ -7,6 +7,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 export const matDynamicFormTextboxType: DynamicFormInputType = {
+  library: 'material',
   type: 'textbox',
   component: MatDynamicFormTextboxComponent
 };

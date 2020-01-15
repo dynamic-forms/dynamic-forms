@@ -8,6 +8,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 export const matDynamicFormComboboxType: DynamicFormInputType = {
+  library: 'material',
   type: 'combobox',
   component: MatDynamicFormComboboxComponent
 };

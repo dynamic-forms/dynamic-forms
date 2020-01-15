@@ -7,6 +7,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 export const matDynamicFormSelectType: DynamicFormInputType = {
+  library: 'material',
   type: 'select',
   component: MatDynamicFormSelectComponent
 };

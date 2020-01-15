@@ -6,6 +6,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const matDynamicFormRadioType: DynamicFormInputType = {
+  library: 'material',
   type: 'radio',
   component: MatDynamicFormRadioComponent
 };

@@ -7,6 +7,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 export const matDynamicFormNumberboxType: DynamicFormInputType = {
+  library: 'material',
   type: 'numberbox',
   component: MatDynamicFormNumberboxComponent
 };

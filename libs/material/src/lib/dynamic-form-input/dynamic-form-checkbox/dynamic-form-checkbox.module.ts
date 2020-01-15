@@ -7,6 +7,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 export const matDynamicFormCheckboxType: DynamicFormInputType = {
+  library: 'material',
   type: 'checkbox',
   component: MatDynamicFormCheckboxComponent
 };
