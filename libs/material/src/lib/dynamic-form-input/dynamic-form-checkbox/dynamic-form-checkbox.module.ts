@@ -3,16 +3,12 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
-export const matDynamicFormCheckboxConfig: DynamicFormConfig = {
-  library: 'material',
-  inputConfig: {
-    types: [
-      { type: 'checkbox', component: MatDynamicFormCheckboxComponent }
-    ]
-  }
+export const matDynamicFormCheckboxType: DynamicFormInputType = {
+  type: 'checkbox',
+  component: MatDynamicFormCheckboxComponent
 };
 
 @NgModule({
@@ -21,7 +17,7 @@ export const matDynamicFormCheckboxConfig: DynamicFormConfig = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    DynamicFormConfigModule.forChild(matDynamicFormCheckboxConfig)
+    DynamicFormConfigModule.withInput(matDynamicFormCheckboxType)
   ],
   declarations: [
     MatDynamicFormCheckboxComponent

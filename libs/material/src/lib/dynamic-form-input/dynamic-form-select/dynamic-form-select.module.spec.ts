@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '@dynamic-forms/core';
-import { matDynamicFormSelectConfig, MatDynamicFormSelectModule } from './dynamic-form-select.module';
+import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '@dynamic-forms/core';
+import { matDynamicFormSelectType, MatDynamicFormSelectModule } from './dynamic-form-select.module';
 
 describe('MatDynamicFormSelectModule', () => {
   beforeEach(async(() => {
@@ -11,10 +11,10 @@ describe('MatDynamicFormSelectModule', () => {
     });
   }));
 
-  it('provides DynamicFormConfig',
-    inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(matDynamicFormSelectConfig);
+  it('provides DYNAMIC_FORM_INPUT_TYPES',
+    inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
+      expect(types.length).toBe(1);
+      expect(types[0]).toEqual(matDynamicFormSelectType);
     })
   );
 });
