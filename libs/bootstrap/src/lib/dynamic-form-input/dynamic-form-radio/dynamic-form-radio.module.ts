@@ -5,6 +5,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const bsDynamicFormRadioType: DynamicFormInputType = {
+  library: 'bootstrap',
   type: 'radio',
   component: BsDynamicFormRadioComponent,
   wrappers: [ 'label', 'errors' ]

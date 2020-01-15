@@ -5,6 +5,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { BsDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 export const bsDynamicFormTextboxType: DynamicFormInputType = {
+  library: 'bootstrap',
   type: 'textbox',
   component: BsDynamicFormTextboxComponent,
   wrappers: [ 'label', 'hints', 'errors' ]

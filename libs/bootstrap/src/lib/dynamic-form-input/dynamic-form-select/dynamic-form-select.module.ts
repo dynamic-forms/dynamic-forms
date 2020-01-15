@@ -5,6 +5,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 export const bsDynamicFormSelectType: DynamicFormInputType = {
+  library: 'bootstrap',
   type: 'select',
   component: BsDynamicFormSelectComponent,
   wrappers: [ 'label', 'hints', 'errors' ]

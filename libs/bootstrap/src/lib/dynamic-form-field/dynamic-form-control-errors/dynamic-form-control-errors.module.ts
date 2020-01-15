@@ -4,6 +4,7 @@ import { DynamicFormConfigModule, DynamicFormFieldWrapperType } from '@dynamic-f
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 
 export const bsDynamicFormControlErrorsType: DynamicFormFieldWrapperType = {
+  library: 'bootstrap',
   type: 'errors',
   component: BsDynamicFormControlErrorsComponent
 };

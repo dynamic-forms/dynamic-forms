@@ -5,6 +5,7 @@ import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/co
 import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 export const bsDynamicFormCheckboxType: DynamicFormInputType = {
+  library: 'bootstrap',
   type: 'checkbox',
   component: BsDynamicFormCheckboxComponent,
   wrappers: [ 'errors' ]

@@ -4,6 +4,7 @@ import { DynamicFormConfigModule, DynamicFormFieldWrapperType } from '@dynamic-f
 import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
 
 export const bsDynamicFormControlHintsType: DynamicFormFieldWrapperType = {
+  library: 'bootstrap',
   type: 'hints',
   component: BsDynamicFormControlHintsComponent
 };
