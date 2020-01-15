@@ -6,9 +6,9 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-c
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
 export const dynamicFormControlType: DynamicFormFieldType = {
+  library: 'core',
   type: 'control',
-  component: DynamicFormControlComponent,
-  library: 'core'
+  component: DynamicFormControlComponent
 };
 
 @NgModule({

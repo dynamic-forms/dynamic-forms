@@ -7,9 +7,9 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-c
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
 
 export const dynamicFormGroupType: DynamicFormFieldType = {
+  library: 'core',
   type: 'group',
-  component: DynamicFormGroupComponent,
-  library: 'core'
+  component: DynamicFormGroupComponent
 };
 
 @NgModule({

@@ -5,9 +5,9 @@ import { DynamicFormElementType } from '../dynamic-form-element-config';
 import { DynamicFormContentComponent } from './dynamic-form-content.component';
 
 export const dynamicFormContentType: DynamicFormElementType = {
+  library: 'core',
   type: 'content',
-  component: DynamicFormContentComponent,
-  library: 'core'
+  component: DynamicFormContentComponent
 };
 
 @NgModule({

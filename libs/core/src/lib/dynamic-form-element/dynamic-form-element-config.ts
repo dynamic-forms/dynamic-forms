@@ -3,9 +3,9 @@ import { DynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library'
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 
 export interface DynamicFormElementType<Component extends DynamicFormElementBase = DynamicFormElementBase> {
+  library?: DynamicFormLibrary;
   type: string;
   component: Type<Component>;
-  library?: DynamicFormLibrary;
 }
 
 export type DynamicFormElementTypes = DynamicFormElementType[];
