@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfig, DynamicFormContainerModule,
   DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
-  DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 import { bsDynamicFormConfig } from './dynamic-forms.config';
@@ -31,7 +31,7 @@ export class BsDynamicFormsModule {
       ngModule: BsDynamicFormsModule,
       providers: [
         { provide: DYNAMIC_FORM_LIBRARY, useValue: 'bootstrap' },
-        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
+        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
       ]
     };
   }
@@ -40,7 +40,7 @@ export class BsDynamicFormsModule {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
-        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
+        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
       ]
     };
   }

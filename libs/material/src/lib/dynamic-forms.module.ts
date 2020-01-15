@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfig, DynamicFormContainerModule,
   DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
-  DYNAMIC_FORM_CONFIG, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormConfig } from './dynamic-forms.config';
 
@@ -29,7 +29,7 @@ export class MatDynamicFormsModule {
       ngModule: MatDynamicFormsModule,
       providers: [
         { provide: DYNAMIC_FORM_LIBRARY, useValue: 'material' },
-        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
+        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
       ]
     };
   }
@@ -38,7 +38,7 @@ export class MatDynamicFormsModule {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
-        { provide: DYNAMIC_FORM_CONFIG, useValue: config, multi: true }
+        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
       ]
     };
   }
