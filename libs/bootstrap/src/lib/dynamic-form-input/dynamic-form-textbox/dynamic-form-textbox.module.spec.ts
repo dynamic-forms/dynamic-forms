@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '@dynamic-forms/core';
-import { bsDynamicFormTextboxConfig, BsDynamicFormTextboxModule } from './dynamic-form-textbox.module';
+import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '@dynamic-forms/core';
+import { bsDynamicFormTextboxType, BsDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
 describe('BsDynamicFormTextboxModule', () => {
   beforeEach(async(() => {
@@ -11,10 +11,10 @@ describe('BsDynamicFormTextboxModule', () => {
     });
   }));
 
-  it('provides DynamicFormConfig',
-    inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(bsDynamicFormTextboxConfig);
+  it('provides DYNAMIC_FORM_INPUT_TYPES',
+    inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
+      expect(types.length).toBe(1);
+      expect(types[0]).toEqual(bsDynamicFormTextboxType);
     })
   );
 });

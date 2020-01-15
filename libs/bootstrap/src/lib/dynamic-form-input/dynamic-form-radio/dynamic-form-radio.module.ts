@@ -1,23 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfig, DynamicFormConfigModule } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
-export const bsDynamicFormRadioConfig: DynamicFormConfig = {
-  library: 'bootstrap',
-  inputConfig: {
-    types: [
-      { type: 'radio', component: BsDynamicFormRadioComponent, wrappers: [ 'label', 'errors' ] }
-    ]
-  }
+export const bsDynamicFormRadioType: DynamicFormInputType = {
+  type: 'radio',
+  component: BsDynamicFormRadioComponent,
+  wrappers: [ 'label', 'errors' ]
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.forChild(bsDynamicFormRadioConfig)
+    DynamicFormConfigModule.withInput(bsDynamicFormRadioType)
   ],
   declarations: [
     BsDynamicFormRadioComponent

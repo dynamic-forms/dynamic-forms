@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '@dynamic-forms/core';
-import { bsDynamicFormControlErrorsConfig, BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
+import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '@dynamic-forms/core';
+import { bsDynamicFormControlErrorsType, BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
 
 describe('BsDynamicFormControlErrorsModule', () => {
   beforeEach(async(() => {
@@ -11,10 +11,10 @@ describe('BsDynamicFormControlErrorsModule', () => {
     });
   }));
 
-  it('provides DynamicFormConfig',
-    inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-      expect(configs.length).toBe(1);
-      expect(configs[0]).toEqual(bsDynamicFormControlErrorsConfig);
+  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPES',
+    inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
+      expect(types.length).toBe(1);
+      expect(types[0]).toEqual(bsDynamicFormControlErrorsType);
     })
   );
 });
