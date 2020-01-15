@@ -4,8 +4,9 @@ import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @NgModule({})
 export class DynamicFormConfigModule {
@@ -46,10 +47,7 @@ export class DynamicFormConfigModule {
       providers: [
         {
           provide: DYNAMIC_FORM_ELEMENT_TYPES,
-          useValue: {
-            type: elementType.type,
-            component: elementType.component
-          },
+          useValue: elementType,
           multi: true
         }
       ]

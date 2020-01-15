@@ -1,7 +1,8 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-config';
+import { DYNAMIC_FORM_CONFIGS } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';

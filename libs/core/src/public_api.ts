@@ -17,6 +17,7 @@ export * from './lib/dynamic-form-array/dynamic-form-array-definition';
 export * from './lib/dynamic-form-array/dynamic-form-array-template';
 export * from './lib/dynamic-form-array/dynamic-form-array.component';
 export * from './lib/dynamic-form-array/dynamic-form-array.module';
+export * from './lib/dynamic-form-config/dynamic-form-library';
 export * from './lib/dynamic-form-config/dynamic-form-config';
 export * from './lib/dynamic-form-config/dynamic-form-config.module';
 export * from './lib/dynamic-form-config/dynamic-form-config.service';

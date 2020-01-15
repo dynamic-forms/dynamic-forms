@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 describe('DynamicFormConfigService', () => {
   describe('with single config', () => {

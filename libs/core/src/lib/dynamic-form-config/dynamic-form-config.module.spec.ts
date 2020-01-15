@@ -10,9 +10,10 @@ import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {

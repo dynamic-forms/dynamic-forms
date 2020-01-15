@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormConfig, DynamicFormConfig,
-  DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-config';
+import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';

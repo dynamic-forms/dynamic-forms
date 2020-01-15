@@ -1,9 +1,11 @@
 import { InjectionToken, Type } from '@angular/core';
+import { DynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 
-export interface DynamicFormElementType {
+export interface DynamicFormElementType<Component extends DynamicFormElementBase = DynamicFormElementBase> {
   type: string;
-  component: Type<DynamicFormElementBase>;
+  component: Type<Component>;
+  library?: DynamicFormLibrary;
 }
 
 export type DynamicFormElementTypes = DynamicFormElementType[];

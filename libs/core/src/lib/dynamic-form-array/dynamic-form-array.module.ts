@@ -7,7 +7,8 @@ import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 
 export const dynamicFormArrayType: DynamicFormFieldType = {
   type: 'array',
-  component: DynamicFormArrayComponent
+  component: DynamicFormArrayComponent,
+  library: 'core'
 };
 
 @NgModule({

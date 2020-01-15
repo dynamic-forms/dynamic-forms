@@ -4,10 +4,7 @@ import { DynamicFormFieldConfig } from '../dynamic-form-field/dynamic-form-field
 import { DynamicFormFieldWrapperConfig } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputConfig } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
-
-export type DynamicFormLibrary = 'core' | string;
-
-export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
+import { DynamicFormLibrary } from './dynamic-form-library';
 
 export interface DynamicFormConfig {
   library: DynamicFormLibrary;

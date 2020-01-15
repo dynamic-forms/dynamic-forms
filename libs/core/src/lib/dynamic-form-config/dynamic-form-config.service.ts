@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
-import { DynamicFormConfig, DynamicFormConfigs, DynamicFormLibrary, DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config';
+import { DynamicFormConfig, DynamicFormConfigs, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
+import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @Injectable()
 export class DynamicFormConfigService {
