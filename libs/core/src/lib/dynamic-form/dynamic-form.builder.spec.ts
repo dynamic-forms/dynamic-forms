@@ -4,9 +4,11 @@ import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '../dynamic-form-config/
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
+import { DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
@@ -14,22 +16,6 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
-  const config: DynamicFormConfig = {
-    library: 'test',
-    elementConfig: {
-      types: [
-        { type: 'element', component: null }
-      ]
-    },
-    fieldConfig: {
-      types: [
-        { type: 'array', component: null },
-        { type: 'control', component: null },
-        { type: 'group', component: null }
-      ]
-    }
-  };
-
   const getForm = (model: any) => {
     const definition = <DynamicFormDefinition>{ elements: [] };
     return new DynamicForm(definition, model);
@@ -43,8 +29,18 @@ describe('DynamicFormBuilder', () => {
           useValue: 'test'
         },
         {
-          provide: DYNAMIC_FORM_CONFIGS,
-          useValue: [ config ]
+          provide: DYNAMIC_FORM_ELEMENT_TYPES,
+          useValue: [
+            { library: 'test', type: 'element', component: null }
+          ]
+        },
+        {
+          provide: DYNAMIC_FORM_FIELD_TYPES,
+          useValue: [
+            { library: 'test', type: 'array', component: null },
+            { library: 'test', type: 'control', component: null },
+            { library: 'test', type: 'group', component: null }
+          ]
         },
         DynamicFormConfigService,
         DynamicFormBuilder,

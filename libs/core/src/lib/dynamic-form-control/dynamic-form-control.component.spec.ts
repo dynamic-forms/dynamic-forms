@@ -2,7 +2,9 @@ import { Component, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
+import { DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -31,16 +33,16 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
   ],
   providers: [
     {
-      provide: DynamicFormConfigService,
-      useValue: new DynamicFormConfigService('test', [{
-        library: 'test',
-        inputConfig: {
-          types: [
-            { type: 'input', component: DynamicFormInputTestComponent }
-          ]
-        }
-      }])
+      provide: DYNAMIC_FORM_LIBRARY,
+      useValue: 'test'
     },
+    {
+      provide: DYNAMIC_FORM_INPUT_TYPES,
+      useValue: [
+        { library: 'test', type: 'input', component: DynamicFormInputTestComponent }
+      ]
+    },
+    DynamicFormConfigService,
     DynamicFormValidationService,
     DynamicFormComponentFactory
   ],
