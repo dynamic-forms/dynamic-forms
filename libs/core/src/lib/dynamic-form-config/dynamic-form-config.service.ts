@@ -3,12 +3,12 @@ import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
-import { DynamicFormConfig, DynamicFormConfigs, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
+import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @Injectable()
 export class DynamicFormConfigService {
-  readonly config: DynamicFormConfig;
+  readonly validationConfig: DynamicFormValidationConfig;
   readonly elementTypes: DynamicFormElementTypes;
   readonly fieldTypes: DynamicFormFieldTypes;
   readonly inputTypes: DynamicFormInputTypes;
@@ -16,17 +16,17 @@ export class DynamicFormConfigService {
 
   constructor(
     @Inject(DYNAMIC_FORM_LIBRARY) private library: DynamicFormLibrary,
-    @Optional() @Inject(DYNAMIC_FORM_CONFIGS) private configs: DynamicFormConfigs = null,
+    @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null,
     @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES) private _inputTypes: DynamicFormInputTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null
   ) {
-    this.config = this.getConfig(this.configs || [], this.library);
-    this.elementTypes = this.filterTypes(this._elementTypes || [], this.library);
-    this.fieldTypes = this.filterTypes(this._fieldTypes || [], this.library);
-    this.inputTypes = this.filterTypes(this._inputTypes || [], this.library);
-    this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes || [], this.library);
+    this.validationConfig = this.mergeConfigs(this._validationConfigs, this.library);
+    this.elementTypes = this.filterTypes(this._elementTypes, this.library);
+    this.fieldTypes = this.filterTypes(this._fieldTypes, this.library);
+    this.inputTypes = this.filterTypes(this._inputTypes, this.library);
+    this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes, this.library);
   }
 
   getElementType(type: string) {
@@ -46,62 +46,33 @@ export class DynamicFormConfigService {
   }
 
   getValidationConfig() {
-    return this.config.validationConfig;
+    return this.validationConfig;
   }
 
-  private filterTypes<Type extends { library?: DynamicFormLibrary, type: string }>(types: Type[], library: DynamicFormLibrary): Type[] {
+  private mergeConfigs<Config extends { library: DynamicFormLibrary }>(configs: Config[], library: DynamicFormLibrary): Config {
+    if (!configs || !configs.length) {
+      return undefined;
+    }
+
+    if (configs.length === 1) {
+      return configs[0];
+    }
+
+    const coreConfigs = configs.filter(config => config.library === 'core');
+    const libraryConfigs = configs.filter(config => config.library === library);
+    return coreConfigs.concat(libraryConfigs).reduce((result, config) => {
+      return { ...result, ...config };
+    }, { library } as Config);
+  }
+
+  private filterTypes<Type extends { library: DynamicFormLibrary, type: string }>(types: Type[], library: DynamicFormLibrary): Type[] {
+    if (!types || !types.length) {
+      return [];
+    }
+
     const libraryTypes = types.filter(type => type.library === library);
     const libraryTypeNames = libraryTypes.map(type => type.type);
     const coreTypes = types.filter(type => type.library === 'core' && !libraryTypeNames.includes(type.type));
     return [ ...coreTypes, ...libraryTypes ];
-  }
-
-  private getConfig(configs: DynamicFormConfig[], library: DynamicFormLibrary) {
-    return configs.reduce((result, config) => {
-      if (config.library === library || config.library === 'core') {
-        this.extendConfig(result, config);
-        return result;
-      }
-      return result;
-    }, <DynamicFormConfig>{ library });
-  }
-
-  private extendConfig(result: DynamicFormConfig, config: DynamicFormConfig) {
-    if (result.elementConfig || config.elementConfig) {
-      result.elementConfig = this.merge(result.elementConfig, config.elementConfig);
-    }
-    if (result.fieldConfig || config.fieldConfig) {
-      result.fieldConfig = this.merge(result.fieldConfig, config.fieldConfig);
-    }
-    if (result.inputConfig || config.inputConfig) {
-      result.inputConfig = this.merge(result.inputConfig, config.inputConfig);
-    }
-    if (result.wrapperConfig || config.wrapperConfig) {
-      result.wrapperConfig = this.merge(result.wrapperConfig, config.wrapperConfig);
-    }
-    if (result.validationConfig || config.validationConfig) {
-      result.validationConfig = { ...result.validationConfig, ...config.validationConfig };
-    }
-  }
-
-  private merge<Config extends { types: { type: string }[] }>(config1: Config, config2: Config) {
-    if (config1 && config2) {
-      return {
-        ...config1, ...config2,
-        types: this.mergeTypes(config1.types, config2.types)
-      };
-    }
-    return config1 || config2;
-  }
-
-  private mergeTypes<TypeConfig extends { type: string }>(types1: TypeConfig[], types2: TypeConfig[]) {
-    if (types1 && types2) {
-      const types = types2.map(typeConfig => typeConfig.type);
-      return [
-        ...types1.filter(typeConfig => !types.includes(typeConfig.type)),
-        ...types2
-      ];
-    }
-    return types1 || types2;
   }
 }

@@ -4,37 +4,29 @@ import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
-import { DynamicFormConfigService } from './dynamic-form-config.service';
-import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @NgModule({})
 export class DynamicFormConfigModule {
-  static forRoot(config: DynamicFormConfig = dynamicFormConfig): ModuleWithProviders<DynamicFormConfigModule> {
+  static forLibrary(library: DynamicFormLibrary): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: 'core'
-        },
-        {
-          provide: DYNAMIC_FORM_CONFIGS,
-          useValue: config,
-          multi: true
-        },
-        DynamicFormConfigService
+          useValue: library
+        }
       ]
     };
   }
 
-  static forChild(config: DynamicFormConfig): ModuleWithProviders<DynamicFormConfigModule> {
+  static withValidation(validationConfig: DynamicFormValidationConfig) {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_CONFIGS,
-          useValue: config,
+          provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
+          useValue: validationConfig,
           multi: true
         }
       ]
@@ -87,19 +79,6 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
           useValue: fieldWrapperType,
-          multi: true
-        }
-      ]
-    };
-  }
-
-  static withValidation(validationConfig: DynamicFormValidationConfig) {
-    return {
-      ngModule: DynamicFormConfigModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-          useValue: validationConfig,
           multi: true
         }
       ]

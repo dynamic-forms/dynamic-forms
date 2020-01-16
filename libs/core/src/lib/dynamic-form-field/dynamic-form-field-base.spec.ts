@@ -15,12 +15,13 @@ describe('DynamicFormFieldBase', () => {
 
   beforeEach(() => {
     validationConfig = {
+      library: 'test',
       defaultMessage: 'The field is invalid',
       messages: {
         required: 'The field is required'
       }
     };
-    const configService = new DynamicFormConfigService('test', [{ library: 'test', validationConfig }]);
+    const configService = new DynamicFormConfigService('test', [ validationConfig ]);
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldBaseTest(validationService);

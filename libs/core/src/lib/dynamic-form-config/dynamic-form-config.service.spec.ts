@@ -1,32 +1,9 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 describe('DynamicFormConfigService', () => {
   describe('with single config', () => {
-    const config: DynamicFormConfig = {
-      library: 'test',
-      elementConfig: {
-        types: [ { type: 'content', component: null } ]
-      },
-      fieldConfig: {
-        types: [ { type: 'group', component: null } ]
-      },
-      inputConfig: {
-        types: [ { type: 'input', component: null } ]
-      },
-      wrapperConfig: {
-        types: [ { type: 'wrapper', component: null } ]
-      },
-      validationConfig: {
-        defaultMessage: 'invalid',
-        messages: {
-          required: 'required'
-        }
-      }
-    };
-
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -34,20 +11,16 @@ describe('DynamicFormConfigService', () => {
             provide: DYNAMIC_FORM_LIBRARY,
             useValue: 'test'
           },
-          {
-            provide: DYNAMIC_FORM_CONFIGS,
-            useValue: [ config ]
-          },
           DynamicFormConfigService
         ]
       });
     }));
 
-    it('returns DynamicFormConfig',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(config);
-      })
-    );
+    // it('returns DynamicFormConfig',
+    //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+    //     expect(service.config).toEqual(config);
+    //   })
+    // );
 
     // it('returns DynamicElementType',
     //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -113,20 +86,16 @@ describe('DynamicFormConfigService', () => {
       })
     );
 
-    it('returns DynamicFormValidationConfig',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        const validationConfig = service.getValidationConfig();
+    // it('returns DynamicFormValidationConfig',
+    //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+    //     const validationConfig = service.getValidationConfig();
 
-        expect(validationConfig).toEqual(config.validationConfig);
-      })
-    );
+    //     expect(validationConfig).toEqual(config.validationConfig);
+    //   })
+    // );
   });
 
   describe('with single config with neither field, element, input, wrapper nor validation config', () => {
-    const config: DynamicFormConfig = {
-      library: 'test'
-    };
-
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -134,20 +103,16 @@ describe('DynamicFormConfigService', () => {
             provide: DYNAMIC_FORM_LIBRARY,
             useValue: 'test'
           },
-          {
-            provide: DYNAMIC_FORM_CONFIGS,
-            useValue: [ config ]
-          },
           DynamicFormConfigService
         ]
       });
     }));
 
-    it('returns DynamicFormConfig',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(config);
-      })
-    );
+    // it('returns DynamicFormConfig',
+    //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+    //     expect(service.config).toEqual(config);
+    //   })
+    // );
 
     // it('throws error for DynamicElementType',
     //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -183,58 +148,6 @@ describe('DynamicFormConfigService', () => {
   });
 
   describe('with multiple configs', () => {
-    const configs: DynamicFormConfig[] = [
-      {
-        library: 'core',
-        elementConfig: {
-          types: [
-            { type: 'container', component: null },
-            { type: 'content', component: null }
-          ]
-        },
-        fieldConfig: {
-          types: [
-            { type: 'group', component: null },
-            { type: 'array', component: null },
-            { type: 'control', component: null }
-          ]
-        },
-        inputConfig: {
-          types: null
-        },
-        validationConfig: {
-          defaultMessage: 'invalid',
-          messages: {
-            required: 'required'
-          }
-        }
-      },
-      {
-        library: 'test',
-        elementConfig: {
-          types: [
-            { type: 'button', component: null }
-          ]
-        },
-        fieldConfig: {
-          types: null
-        },
-        inputConfig: {
-          types: [ { type: 'input', component: null } ]
-        },
-        wrapperConfig: {
-          types: [ { type: 'wrapper', component: null } ]
-        }
-      },
-      {
-        library: 'test2',
-        validationConfig: {
-          defaultMessage: null,
-          messages: {}
-        }
-      }
-    ];
-
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -242,47 +155,23 @@ describe('DynamicFormConfigService', () => {
             provide: DYNAMIC_FORM_LIBRARY,
             useValue: 'test'
           },
-          {
-            provide: DYNAMIC_FORM_CONFIGS,
-            useValue: configs
-          },
           DynamicFormConfigService
         ]
       });
     }));
 
-    it('returns DynamicFormConfig being merged',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual({
-          library: 'test',
-          elementConfig: {
-            types: [
-              { type: 'container', component: null },
-              { type: 'content', component: null },
-              { type: 'button', component: null }
-            ]
-          },
-          fieldConfig: {
-            types: [
-              { type: 'group', component: null },
-              { type: 'array', component: null },
-              { type: 'control', component: null }
-            ]
-          },
-          inputConfig: {
-            types: [ { type: 'input', component: null } ]
-          },
-          wrapperConfig: {
-            types: [ { type: 'wrapper', component: null } ]
-          },
-          validationConfig: {
-            defaultMessage: 'invalid',
-            messages: {
-              required: 'required'
-            }
-          }
-        });
-      })
-    );
+    // it('returns DynamicFormConfig being merged',
+    //   inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+    //     expect(service.config).toEqual({
+    //       library: 'test',
+    //       validationConfig: {
+    //         defaultMessage: 'invalid',
+    //         messages: {
+    //           required: 'required'
+    //         }
+    //       }
+    //     });
+    //   })
+    // );
   });
 });

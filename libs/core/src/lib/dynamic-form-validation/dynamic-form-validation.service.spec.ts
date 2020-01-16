@@ -5,6 +5,7 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
 
 describe('DynamicFormValidationService', () => {
   const validationConfig: DynamicFormValidationConfig = {
+    library: 'test',
     defaultMessage: 'The field is invalid',
     messages: {
       required: 'The field is required'
@@ -16,7 +17,7 @@ describe('DynamicFormValidationService', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService('test', [{ library: 'test', validationConfig }])
+          useValue: new DynamicFormConfigService('test', [ validationConfig ])
         },
         DynamicFormValidationService
       ]

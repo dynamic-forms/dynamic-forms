@@ -1,5 +1,4 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormConfig, DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -22,10 +21,6 @@ describe('DynamicFormsModule', () => {
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
-    });
-
-    it('does not provide DYNAMIC_FORM_CONFIGS', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_CONFIGS)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -63,15 +58,14 @@ describe('DynamicFormsModule', () => {
     });
   });
 
-  describe('with provided DYNAMIC_FORM_LIBRARY and DYNAMIC_FORM_CONFIG', () => {
+  describe('with provided DYNAMIC_FORM_LIBRARY', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormsModule
         ],
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' },
-          { provide: DYNAMIC_FORM_CONFIGS, useValue: dynamicFormConfig, multi: true }
+          { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' }
         ]
       });
     }));
@@ -82,16 +76,9 @@ describe('DynamicFormsModule', () => {
       })
     );
 
-    it('provides DYNAMIC_FORM_CONFIGS',
-      inject([DYNAMIC_FORM_CONFIGS], (configs: DynamicFormConfig[]) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(dynamicFormConfig);
-      })
-    );
-
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config).toEqual(dynamicFormConfig);
+        expect(service).toBeDefined();
       })
     );
 

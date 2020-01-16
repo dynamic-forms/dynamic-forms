@@ -1,6 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIGS } from '../dynamic-form-config/dynamic-form-config';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
