@@ -6,8 +6,4 @@ export interface DynamicFormFieldWrapperType extends DynamicFormType<DynamicForm
 
 export type DynamicFormFieldWrapperTypes = DynamicFormFieldWrapperType[];
 
-export interface DynamicFormFieldWrapperConfig {
-  types: DynamicFormFieldWrapperTypes;
-}
-
 export const DYNAMIC_FORM_FIELD_WRAPPER_TYPES = new InjectionToken<DynamicFormFieldWrapperTypes>('DynamicFormFieldWrapperTypes');
