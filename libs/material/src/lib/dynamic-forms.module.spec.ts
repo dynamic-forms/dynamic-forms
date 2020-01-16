@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfig, DynamicFormConfigService,
+import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormValidationBuilder,
   DynamicFormValidationService, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from './dynamic-forms.module';
@@ -49,7 +49,7 @@ describe('MatDynamicFormsModule', () => {
     });
   });
 
-  describe('forRoot with default config', () => {
+  describe('forRoot', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
@@ -66,7 +66,7 @@ describe('MatDynamicFormsModule', () => {
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config.library).toEqual('material');
+        expect(service).toBeDefined();
       })
     );
 
@@ -97,32 +97,6 @@ describe('MatDynamicFormsModule', () => {
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
         expect(service).toBeDefined();
-      })
-    );
-  });
-
-  describe('forRoot with provided config', () => {
-    const config: DynamicFormConfig = {
-      library: 'material'
-    };
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          MatDynamicFormsModule.forRoot(config)
-        ]
-      });
-    }));
-
-    it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe('material');
-      })
-    );
-
-    it('provides DynamicFormConfigService',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.config.library).toEqual('material');
       })
     );
   });

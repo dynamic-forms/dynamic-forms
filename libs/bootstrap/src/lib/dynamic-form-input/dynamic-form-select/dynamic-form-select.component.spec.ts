@@ -20,7 +20,7 @@ describe('BsDynamicFormSelectComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService('test', [{ library: 'test' }])
+          useValue: new DynamicFormConfigService('test')
         },
         DynamicFormValidationService
       ]

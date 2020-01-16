@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfig, DynamicFormContainerModule,
+import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule,
   DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
-  DYNAMIC_FORM_CONFIGS, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
-import { bsDynamicFormConfig } from './dynamic-forms.config';
 
 @NgModule({
   imports: [
@@ -26,21 +25,11 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
   ]
 })
 export class BsDynamicFormsModule {
-  static forRoot(config: DynamicFormConfig = bsDynamicFormConfig): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'bootstrap' },
-        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
-      ]
-    };
-  }
-
-  static forChild(config: DynamicFormConfig): ModuleWithProviders {
-    return {
-      ngModule: BsDynamicFormsModule,
-      providers: [
-        { provide: DYNAMIC_FORM_CONFIGS, useValue: config, multi: true }
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'bootstrap' }
       ]
     };
   }
