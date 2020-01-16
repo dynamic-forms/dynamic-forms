@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element-config';
+import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element-type';
 import { dynamicFormContainerType, DynamicFormContainerModule } from './dynamic-form-container.module';
 
 describe('DynamicFormContainerModule', () => {

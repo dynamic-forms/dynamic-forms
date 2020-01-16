@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormConfigModule } from '../../dynamic-form-config/dynamic-form-config.module';
-import { DynamicFormElementType } from '../dynamic-form-element-config';
+import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormElementModule } from '../dynamic-form-element.module';
 import { DynamicFormContainerComponent } from './dynamic-form-container.component';
 

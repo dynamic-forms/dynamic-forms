@@ -6,8 +6,8 @@ import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-librar
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
-import { DYNAMIC_FORM_ELEMENT_TYPES } from './dynamic-form-element-config';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
+import { DYNAMIC_FORM_ELEMENT_TYPES } from './dynamic-form-element-type';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 

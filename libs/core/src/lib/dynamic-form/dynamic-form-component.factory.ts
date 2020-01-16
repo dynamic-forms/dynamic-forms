@@ -3,13 +3,13 @@ import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-co
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
-import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-config';
+import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
-import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
-import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-config';
+import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 
 @Injectable()
 export class DynamicFormComponentFactory {
