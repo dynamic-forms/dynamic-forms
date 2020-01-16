@@ -8,8 +8,8 @@ export interface DynamicFormFieldType extends DynamicFormType<DynamicFormFieldBa
 
 export type DynamicFormFieldTypes = DynamicFormFieldType[];
 
-export const DYNAMIC_FORM_FIELD_TYPES = new InjectionToken<DynamicFormFieldTypes>('DynamicFormFieldTypes');
-
 export interface DynamicFormFieldConfig {
-  types: DynamicFormFieldType[];
+  types: DynamicFormFieldTypes;
 }
+
+export const DYNAMIC_FORM_FIELD_TYPES = new InjectionToken<DynamicFormFieldTypes>('DynamicFormFieldTypes');

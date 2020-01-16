@@ -8,8 +8,8 @@ export interface DynamicFormInputType extends DynamicFormType<DynamicFormInputBa
 
 export type DynamicFormInputTypes = DynamicFormInputType[];
 
-export const DYNAMIC_FORM_INPUT_TYPES = new InjectionToken<DynamicFormInputTypes>('DynamicFormInputTypes');
-
 export interface DynamicFormInputConfig {
-  types: DynamicFormInputType[];
+  types: DynamicFormInputTypes;
 }
+
+export const DYNAMIC_FORM_INPUT_TYPES = new InjectionToken<DynamicFormInputTypes>('DynamicFormInputTypes');

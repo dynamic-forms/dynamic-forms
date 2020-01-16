@@ -1,40 +1,59 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-config';
+import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-config';
+import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-config';
+import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-config';
 import { DynamicFormConfig, DynamicFormConfigs, DYNAMIC_FORM_CONFIGS } from './dynamic-form-config';
 import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @Injectable()
 export class DynamicFormConfigService {
   readonly config: DynamicFormConfig;
+  readonly elementTypes: DynamicFormElementTypes;
+  readonly fieldTypes: DynamicFormFieldTypes;
+  readonly inputTypes: DynamicFormInputTypes;
+  readonly fieldWrapperTypes: DynamicFormFieldWrapperTypes;
 
   constructor(
     @Inject(DYNAMIC_FORM_LIBRARY) private library: DynamicFormLibrary,
-    @Inject(DYNAMIC_FORM_CONFIGS) private configs: DynamicFormConfigs
+    @Inject(DYNAMIC_FORM_CONFIGS) private configs: DynamicFormConfigs,
+    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes,
+    @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES) private _inputTypes: DynamicFormInputTypes,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes
   ) {
     this.config = this.getConfig(this.library, this.configs);
+    this.elementTypes = this.filterTypes(this._elementTypes || [], this.library);
+    this.fieldTypes = this.filterTypes(this._fieldTypes || [], this.library);
+    this.inputTypes = this.filterTypes(this._inputTypes || [], this.library);
+    this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes || [], this.library);
   }
 
   getElementType(type: string) {
-    const config = this.config.elementConfig;
-    return config.types.find(f => f.type === type);
+    return this.elementTypes.find(f => f.type === type);
   }
 
   getFieldType(type: string) {
-    const config = this.config.fieldConfig;
-    return config.types.find(f => f.type === type);
+    return this.fieldTypes.find(f => f.type === type);
   }
 
   getInputType(type: string) {
-    const config = this.config.inputConfig;
-    return config.types.find(f => f.type === type);
+    return this.inputTypes.find(f => f.type === type);
   }
 
   getFieldWrapperType(type: string) {
-    const config = this.config.wrapperConfig;
-    return config.types.find(f => f.type === type);
+    return this.fieldWrapperTypes.find(f => f.type === type);
   }
 
   getValidationConfig() {
     return this.config.validationConfig;
+  }
+
+  private filterTypes<Type extends { library?: DynamicFormLibrary, type: string }>(types: Type[], library: string): Type[] {
+    const libraryTypes = types.filter(type => type.library === library);
+    const libraryTypeNames = libraryTypes.map(type => type.type);
+    const coreTypes = types.filter(type => type.library === 'core' && !libraryTypeNames.includes(type.type));
+    return [ ...coreTypes, ...libraryTypes ];
   }
 
   private getConfig(library: DynamicFormLibrary, configs: DynamicFormConfig[]) {
@@ -48,18 +67,6 @@ export class DynamicFormConfigService {
   }
 
   private extendConfig(result: DynamicFormConfig, config: DynamicFormConfig) {
-    if (result.elementConfig || config.elementConfig) {
-      result.elementConfig = this.merge(result.elementConfig, config.elementConfig);
-    }
-    if (result.fieldConfig || config.fieldConfig) {
-      result.fieldConfig = this.merge(result.fieldConfig, config.fieldConfig);
-    }
-    if (result.inputConfig || config.inputConfig) {
-      result.inputConfig = this.merge(result.inputConfig, config.inputConfig);
-    }
-    if (result.wrapperConfig || config.wrapperConfig) {
-      result.wrapperConfig = this.merge(result.wrapperConfig, config.wrapperConfig);
-    }
     if (result.validationConfig || config.validationConfig) {
       result.validationConfig = { ...result.validationConfig, ...config.validationConfig };
     }
