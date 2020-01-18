@@ -52,7 +52,7 @@ export class DynamicFormConfigService {
 
     const libraryTypes = types.filter(type => type.library === this.library);
     const libraryTypeNames = libraryTypes.map(type => type.type);
-    const coreTypes = types.filter(type => type.library === 'core' && !libraryTypeNames.includes(type.type));
+    const coreTypes = types.filter(type => type.library === dynamicFormLibrary && !libraryTypeNames.includes(type.type));
     return [ ...coreTypes, ...libraryTypes ];
   }
 
