@@ -45,10 +45,6 @@ export class DynamicFormConfigService {
     return this.fieldWrapperTypes.find(f => f.type === type);
   }
 
-  getValidationConfig() {
-    return this.validationConfig;
-  }
-
   private mergeConfigs<Config extends { library: DynamicFormLibrary }>(configs: Config[], library: DynamicFormLibrary): Config {
     if (!configs || !configs.length) {
       return undefined;

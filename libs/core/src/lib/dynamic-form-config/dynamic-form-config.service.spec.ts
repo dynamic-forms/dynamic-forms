@@ -140,7 +140,7 @@ describe('DynamicFormConfigService', () => {
 
     it('returns DynamicFormValidationConfig being undefined',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        const validationConfig = service.getValidationConfig();
+        const validationConfig = service.validationConfig;
 
         expect(validationConfig).toBeUndefined();
       })

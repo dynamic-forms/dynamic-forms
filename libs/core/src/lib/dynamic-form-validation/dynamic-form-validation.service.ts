@@ -22,12 +22,12 @@ export class DynamicFormValidationService {
   }
 
   private getErrorMessageFromConfig(errorKey: string) {
-    const config = this.configService.getValidationConfig();
+    const config = this.configService.validationConfig;
     return config.messages[errorKey] || config.defaultMessage;
   }
 
   private getDefaultErrorMessage() {
-    const config = this.configService.getValidationConfig();
+    const config = this.configService.validationConfig;
     return config.defaultMessage;
   }
 }
