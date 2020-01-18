@@ -1,34 +1,20 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
+import { DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
+import { DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormConfig, DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
-import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
-  const config: DynamicFormConfig = {
-    library: 'test',
-    elementConfig: {
-      types: [
-        { type: 'element', component: null }
-      ]
-    },
-    fieldConfig: {
-      types: [
-        { type: 'array', component: null },
-        { type: 'control', component: null },
-        { type: 'group', component: null }
-      ]
-    }
-  };
-
   const getForm = (model: any) => {
     const definition = <DynamicFormDefinition>{ elements: [] };
     return new DynamicForm(definition, model);
@@ -38,8 +24,22 @@ describe('DynamicFormBuilder', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: DYNAMIC_FORM_CONFIG,
-          useValue: config
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: 'test'
+        },
+        {
+          provide: DYNAMIC_FORM_ELEMENT_TYPES,
+          useValue: [
+            { library: 'test', type: 'element', component: null }
+          ]
+        },
+        {
+          provide: DYNAMIC_FORM_FIELD_TYPES,
+          useValue: [
+            { library: 'test', type: 'array', component: null },
+            { library: 'test', type: 'control', component: null },
+            { library: 'test', type: 'group', component: null }
+          ]
         },
         DynamicFormConfigService,
         DynamicFormBuilder,
@@ -49,6 +49,23 @@ describe('DynamicFormBuilder', () => {
       ]
     });
   }));
+
+  it('initializes DynamicForm',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = <DynamicForm>{ check: () => {} };
+
+      spyOn(form, 'check').and.callThrough();
+      spyOn(builder, 'createForm').and.returnValue(form);
+
+      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+      const model = {};
+      const formCreated = builder.initForm(definition, model);
+
+      expect(form).toEqual(formCreated);
+      expect(form.check).toHaveBeenCalledTimes(1);
+      expect(builder.createForm).toHaveBeenCalledWith(definition, model);
+    })
+  );
 
   it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
@@ -74,7 +91,6 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
-
     })
   );
 

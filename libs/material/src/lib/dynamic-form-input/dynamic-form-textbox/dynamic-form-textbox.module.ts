@@ -3,20 +3,33 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormTextboxComponent } from './dynamic-form-textbox.component';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
+
+export const matDynamicFormTextboxType: DynamicFormInputType = {
+  type: 'textbox',
+  component: MatDynamicFormTextboxComponent,
+  library: matDynamicFormLibrary
+};
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    DynamicFormConfigModule.withInput(matDynamicFormTextboxType)
   ],
   declarations: [
-    DynamicFormTextboxComponent
+    MatDynamicFormTextboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormTextboxComponent
   ],
   entryComponents: [
-    DynamicFormTextboxComponent
+    MatDynamicFormTextboxComponent
   ]
 })
-export class DynamicFormTextboxModule {}
+export class MatDynamicFormTextboxModule {}

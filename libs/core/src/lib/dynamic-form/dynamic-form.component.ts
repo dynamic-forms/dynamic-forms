@@ -25,7 +25,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
 
   ngOnInit() {
     this.model = this.model || {};
-    this._formField = this.formBuilder.createForm(this.definition, this.model);
+    this._formField = this.formBuilder.initForm(this.definition, this.model);
   }
 
   ngDoCheck() {
@@ -37,7 +37,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
     const definitionChanged = changes.definition && !changes.definition.firstChange;
     if (modelChanged || definitionChanged) {
       this.model = this.model || {};
-      this._formField = this.formBuilder.createForm(this.definition, this.model);
+      this._formField = this.formBuilder.initForm(this.definition, this.model);
     }
   }
 

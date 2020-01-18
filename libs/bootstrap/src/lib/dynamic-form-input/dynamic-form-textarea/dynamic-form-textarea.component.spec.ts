@@ -1,14 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormTextarea,
-  DynamicFormValidationService} from '@dynamic-forms/core';
-import { DynamicFormTextareaComponent } from './dynamic-form-textarea.component';
-import { DynamicFormTextareaModule } from './dynamic-form-textarea.module';
+import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
+  DynamicFormDefinition, DynamicFormTextarea, DynamicFormValidationService} from '@dynamic-forms/core';
+import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
+import { BsDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
-describe('DynamicFormTextareaComponent', () => {
-  let fixture: ComponentFixture<DynamicFormTextareaComponent>;
-  let component: DynamicFormTextareaComponent;
+describe('BsDynamicFormTextareaComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormTextareaComponent>;
+  let component: BsDynamicFormTextareaComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
   let formControl: DynamicFormControl<DynamicFormTextarea>;
@@ -16,18 +15,18 @@ describe('DynamicFormTextareaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormTextareaModule
+        BsDynamicFormTextareaModule
       ],
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+          useValue: new DynamicFormConfigService('test')
         },
         DynamicFormValidationService
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormTextareaComponent);
+    fixture = TestBed.createComponent(BsDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});

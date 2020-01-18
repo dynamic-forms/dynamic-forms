@@ -2,19 +2,32 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
-import { DynamicFormRadioComponent } from './dynamic-form-radio.component';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
+
+export const matDynamicFormRadioType: DynamicFormInputType = {
+  type: 'radio',
+  component: MatDynamicFormRadioComponent,
+  library: matDynamicFormLibrary
+};
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    DynamicFormConfigModule.withInput(matDynamicFormRadioType)
   ],
   declarations: [
-    DynamicFormRadioComponent
+    MatDynamicFormRadioComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormRadioComponent
   ],
   entryComponents: [
-    DynamicFormRadioComponent
+    MatDynamicFormRadioComponent
   ]
 })
-export class DynamicFormRadioModule {}
+export class MatDynamicFormRadioModule {}

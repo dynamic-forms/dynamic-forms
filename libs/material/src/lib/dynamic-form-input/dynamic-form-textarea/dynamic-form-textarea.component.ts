@@ -5,7 +5,7 @@ import { DynamicFormInputBase, DynamicFormTextarea, DynamicFormValidationService
   selector: 'mat-dynamic-form-textarea',
   templateUrl: './dynamic-form-textarea.component.html'
 })
-export class DynamicFormTextareaComponent extends DynamicFormInputBase<DynamicFormTextarea> {
+export class MatDynamicFormTextareaComponent extends DynamicFormInputBase<DynamicFormTextarea> {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }

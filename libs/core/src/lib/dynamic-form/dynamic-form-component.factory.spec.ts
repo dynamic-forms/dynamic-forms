@@ -1,14 +1,18 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
+import { DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
+import { DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
+import { DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
-import { DYNAMIC_FORM_CONFIG } from './dynamic-form-config';
-import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @Component({
   selector: 'dynamic-form-test',
@@ -69,32 +73,34 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   ],
   providers: [
     {
-      provide: DYNAMIC_FORM_CONFIG,
-      useValue: {
-        library: 'test',
-        elementConfig: {
-          types: [
-            { type: 'element', component: DynamicFormElementTestComponent },
-          ]
-        },
-        fieldConfig: {
-          types: [
-            { type: 'field', component: DynamicFormFieldTestComponent },
-            { type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }
-          ]
-        },
-        inputConfig: {
-          types: [
-            { type: 'input', component: DynamicFormInputTestComponent },
-            { type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] }
-          ]
-        },
-        wrapperConfig: {
-          types: [
-            { type: 'wrapper', component: DynamicFormFieldWrapperTestComponent }
-          ]
-        }
-      }
+      provide: DYNAMIC_FORM_LIBRARY,
+      useValue: 'test'
+    },
+    {
+      provide: DYNAMIC_FORM_ELEMENT_TYPES,
+      useValue: [
+        { library: 'test', type: 'element', component: DynamicFormElementTestComponent }
+      ]
+    },
+    {
+      provide: DYNAMIC_FORM_FIELD_TYPES,
+      useValue: [
+        { library: 'test', type: 'field', component: DynamicFormFieldTestComponent },
+        { library: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }
+      ]
+    },
+    {
+      provide: DYNAMIC_FORM_INPUT_TYPES,
+      useValue: [
+        { library: 'test', type: 'input', component: DynamicFormInputTestComponent },
+        { library: 'test', type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] }
+      ]
+    },
+    {
+      provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
+      useValue: [
+        { library: 'test', type: 'wrapper', component: DynamicFormFieldWrapperTestComponent },
+      ]
     },
     DynamicFormConfigService,
     DynamicFormValidationService,

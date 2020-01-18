@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicFormConfigService } from '../dynamic-form/dynamic-form-config.service';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 
 @Injectable()
@@ -22,12 +22,12 @@ export class DynamicFormValidationService {
   }
 
   private getErrorMessageFromConfig(errorKey: string) {
-    const config = this.configService.getValidationConfig();
+    const config = this.configService.validationConfig;
     return config.messages[errorKey] || config.defaultMessage;
   }
 
   private getDefaultErrorMessage() {
-    const config = this.configService.getValidationConfig();
+    const config = this.configService.validationConfig;
     return config.defaultMessage;
   }
 }

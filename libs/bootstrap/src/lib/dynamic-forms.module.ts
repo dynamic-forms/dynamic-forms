@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { getDynamicFormProviders, DynamicFormsModule, DynamicFormConfig } from '@dynamic-forms/core';
-import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field-wrapper/dynamic-form-field-wrapper.module';
+import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfigModule,
+  DynamicFormContainerModule, DynamicFormContentModule, DynamicFormControlModule,
+  DynamicFormGroupModule, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+import { bsDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
+import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
-import { bsDynamicFormConfig } from './dynamic-forms.config';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsModule,
+    DynamicFormArrayModule,
+    DynamicFormConfigModule.withValidation(),
+    DynamicFormContainerModule,
+    DynamicFormContentModule,
+    DynamicFormControlModule,
+    DynamicFormGroupModule,
     BsDynamicFormInputModule,
     BsDynamicFormFieldWrapperModule
   ],
@@ -19,10 +27,15 @@ import { bsDynamicFormConfig } from './dynamic-forms.config';
   ]
 })
 export class BsDynamicFormsModule {
-  static forRoot(config?: DynamicFormConfig): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: BsDynamicFormsModule,
-      providers: getDynamicFormProviders(bsDynamicFormConfig, config)
+      providers: [
+        {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: bsDynamicFormLibrary
+        }
+      ]
     };
   }
 }

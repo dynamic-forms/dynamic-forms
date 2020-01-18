@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
@@ -14,7 +15,6 @@ import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
-import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 
 @Injectable()
@@ -25,6 +25,12 @@ export class DynamicFormBuilder {
     private evaluationBuilder: DynamicFormEvaluationBuilder,
     private validationBuilder: DynamicFormValidationBuilder
   ) {}
+
+  initForm(definition: DynamicFormDefinition, model: any) {
+    const field = this.createForm(definition, model);
+    field.check();
+    return field;
+  }
 
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
@@ -64,13 +70,13 @@ export class DynamicFormBuilder {
   }
 
   private requireElementType(type: string) {
-    if (!this.configService.getElementTypeConfig(type)) {
+    if (!this.configService.getElementType(type)) {
         throw Error(`Element type ${ type } is not defined`);
     }
   }
 
   private requireFieldType(type: string) {
-    if (!this.configService.getFieldTypeConfig(type)) {
+    if (!this.configService.getFieldType(type)) {
       throw Error(`Field type ${ type } is not defined`);
     }
   }

@@ -3,20 +3,33 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { DynamicFormSelectComponent } from './dynamic-form-select.component';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
+
+export const matDynamicFormSelectType: DynamicFormInputType = {
+  type: 'select',
+  component: MatDynamicFormSelectComponent,
+  library: matDynamicFormLibrary
+};
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    DynamicFormConfigModule.withInput(matDynamicFormSelectType)
   ],
   declarations: [
-    DynamicFormSelectComponent
+    MatDynamicFormSelectComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormSelectComponent
   ],
   entryComponents: [
-    DynamicFormSelectComponent
+    MatDynamicFormSelectComponent
   ]
 })
-export class DynamicFormSelectModule {}
+export class MatDynamicFormSelectModule {}

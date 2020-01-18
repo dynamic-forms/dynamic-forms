@@ -1,14 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormCheckbox, DynamicFormConfig, DynamicFormConfigService,
-  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
-import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
-import { DynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
+import { DynamicForm, DynamicFormCheckbox, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormValidationService } from '@dynamic-forms/core';
+import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
+import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
 
-describe('DynamicFormCheckboxComponent', () => {
-  let fixture: ComponentFixture<DynamicFormCheckboxComponent>;
-  let component: DynamicFormCheckboxComponent;
+describe('MatDynamicFormCheckboxComponent', () => {
+  let fixture: ComponentFixture<MatDynamicFormCheckboxComponent>;
+  let component: MatDynamicFormCheckboxComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormCheckbox>;
   let formControl: DynamicFormControl<DynamicFormCheckbox>;
@@ -16,18 +15,18 @@ describe('DynamicFormCheckboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormCheckboxModule
+        MatDynamicFormCheckboxModule
       ],
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+          useValue: new DynamicFormConfigService('test')
         },
         DynamicFormValidationService
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormCheckboxComponent);
+    fixture = TestBed.createComponent(MatDynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});

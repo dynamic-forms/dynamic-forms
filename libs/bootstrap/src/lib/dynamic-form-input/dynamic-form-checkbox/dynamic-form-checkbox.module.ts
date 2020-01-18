@@ -1,18 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { bsDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
+
+export const bsDynamicFormCheckboxType: DynamicFormInputType = {
+  type: 'checkbox',
+  component: BsDynamicFormCheckboxComponent,
+  wrappers: [ 'errors' ],
+  library: bsDynamicFormLibrary
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DynamicFormConfigModule.withInput(bsDynamicFormCheckboxType)
   ],
   declarations: [
-    DynamicFormCheckboxComponent
+    BsDynamicFormCheckboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
+    BsDynamicFormCheckboxComponent
   ],
   entryComponents: [
-    DynamicFormCheckboxComponent
+    BsDynamicFormCheckboxComponent
   ]
 })
-export class DynamicFormCheckboxModule {}
+export class BsDynamicFormCheckboxModule {}

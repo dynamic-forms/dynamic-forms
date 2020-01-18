@@ -4,7 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormComboboxComponent } from './dynamic-form-combobox.component';
+import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
+
+export const matDynamicFormComboboxType: DynamicFormInputType = {
+  type: 'combobox',
+  component: MatDynamicFormComboboxComponent,
+  library: matDynamicFormLibrary
+};
 
 @NgModule({
   imports: [
@@ -12,13 +20,18 @@ import { DynamicFormComboboxComponent } from './dynamic-form-combobox.component'
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    DynamicFormConfigModule.withInput(matDynamicFormComboboxType)
   ],
   declarations: [
-    DynamicFormComboboxComponent
+    MatDynamicFormComboboxComponent
+  ],
+  exports: [
+    DynamicFormConfigModule,
+    MatDynamicFormComboboxComponent
   ],
   entryComponents: [
-    DynamicFormComboboxComponent
+    MatDynamicFormComboboxComponent
   ]
 })
-export class DynamicFormComboboxModule {}
+export class MatDynamicFormComboboxModule {}

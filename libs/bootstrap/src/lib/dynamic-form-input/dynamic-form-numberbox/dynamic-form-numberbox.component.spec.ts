@@ -1,14 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfig, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormNumberbox,
-  DynamicFormValidationService} from '@dynamic-forms/core';
-import { DynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
-import { DynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
+import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
+  DynamicFormDefinition, DynamicFormNumberbox, DynamicFormValidationService} from '@dynamic-forms/core';
+import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
+import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
-describe('DynamicFormNumberboxComponent', () => {
-  let fixture: ComponentFixture<DynamicFormNumberboxComponent>;
-  let component: DynamicFormNumberboxComponent;
+describe('BsDynamicFormNumberboxComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormNumberboxComponent>;
+  let component: BsDynamicFormNumberboxComponent;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormNumberbox>;
   let formControl: DynamicFormControl<DynamicFormNumberbox>;
@@ -16,18 +15,18 @@ describe('DynamicFormNumberboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormNumberboxModule
+        BsDynamicFormNumberboxModule
       ],
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(<DynamicFormConfig>{})
+          useValue: new DynamicFormConfigService('test')
         },
         DynamicFormValidationService
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormNumberboxComponent);
+    fixture = TestBed.createComponent(BsDynamicFormNumberboxComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
