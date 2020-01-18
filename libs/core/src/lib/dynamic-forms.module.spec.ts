@@ -1,8 +1,13 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
-import { DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
+import { DYNAMIC_FORM_ELEMENT_TYPES } from './dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
+import { DYNAMIC_FORM_FIELD_TYPES } from './dynamic-form-field/dynamic-form-field-type';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from './dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DYNAMIC_FORM_INPUT_TYPES } from './dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
@@ -10,7 +15,7 @@ import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormsModule } from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {
-  describe('without provided DYNAMIC_FORM_LIBRARY and DYNAMIC_FORM_CONFIG', () => {
+  describe('without DYNAMIC_FORM_LIBRARY provided', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
@@ -22,6 +27,28 @@ describe('DynamicFormsModule', () => {
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
     });
+
+    it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_INPUT_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_FIELD_WRAPPER_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('provide DYNAMIC_FORM_VALIDATION_CONFIGS',
+      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+        expect(configs).toBeDefined();
+      })
+    );
 
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
@@ -58,21 +85,46 @@ describe('DynamicFormsModule', () => {
     });
   });
 
-  describe('with provided DYNAMIC_FORM_LIBRARY', () => {
+  describe('with DYNAMIC_FORM_LIBRARY provided', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormsModule
         ],
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: 'core' }
+          {
+            provide: DYNAMIC_FORM_LIBRARY,
+            useValue: dynamicFormLibrary
+          }
         ]
       });
     }));
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe('core');
+        expect(library).toBe(dynamicFormLibrary);
+      })
+    );
+
+    it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_INPUT_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('does not provide DYNAMIC_FORM_FIELD_WRAPPER_TYPES', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
+    });
+
+    it('provide DYNAMIC_FORM_VALIDATION_CONFIGS',
+      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+        expect(configs).toBeDefined();
       })
     );
 

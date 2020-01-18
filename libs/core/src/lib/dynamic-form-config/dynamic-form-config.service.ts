@@ -15,7 +15,7 @@ export class DynamicFormConfigService {
   readonly fieldWrapperTypes: DynamicFormFieldWrapperTypes;
 
   constructor(
-    @Inject(DYNAMIC_FORM_LIBRARY) private library: DynamicFormLibrary,
+    @Inject(DYNAMIC_FORM_LIBRARY) readonly library: DynamicFormLibrary,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null,
     @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
