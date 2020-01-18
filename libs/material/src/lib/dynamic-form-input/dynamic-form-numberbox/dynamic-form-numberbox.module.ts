@@ -4,12 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 export const matDynamicFormNumberboxType: DynamicFormInputType = {
-  library: 'material',
   type: 'numberbox',
-  component: MatDynamicFormNumberboxComponent
+  component: MatDynamicFormNumberboxComponent,
+  library: matDynamicFormLibrary
 };
 
 @NgModule({

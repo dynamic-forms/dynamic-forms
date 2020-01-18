@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { bsDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 export const bsDynamicFormSelectType: DynamicFormInputType = {
-  library: 'bootstrap',
   type: 'select',
   component: BsDynamicFormSelectComponent,
-  wrappers: [ 'label', 'hints', 'errors' ]
+  wrappers: [ 'label', 'hints', 'errors' ],
+  library: bsDynamicFormLibrary
 };
 
 @NgModule({

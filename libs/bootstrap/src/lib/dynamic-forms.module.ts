@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule,
   DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+import { bsDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 
@@ -29,7 +30,10 @@ export class BsDynamicFormsModule {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'bootstrap' }
+        {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: bsDynamicFormLibrary
+        }
       ]
     };
   }

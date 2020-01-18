@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule,
   DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
 
 @NgModule({
@@ -27,7 +28,10 @@ export class MatDynamicFormsModule {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: 'material' }
+        {
+          provide: DYNAMIC_FORM_LIBRARY,
+          useValue: matDynamicFormLibrary
+        }
       ]
     };
   }

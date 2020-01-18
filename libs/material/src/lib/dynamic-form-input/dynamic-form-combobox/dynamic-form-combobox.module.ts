@@ -5,12 +5,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 export const matDynamicFormComboboxType: DynamicFormInputType = {
-  library: 'material',
   type: 'combobox',
-  component: MatDynamicFormComboboxComponent
+  component: MatDynamicFormComboboxComponent,
+  library: matDynamicFormLibrary
 };
 
 @NgModule({

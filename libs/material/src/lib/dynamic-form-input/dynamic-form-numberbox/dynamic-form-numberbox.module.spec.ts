@@ -1,5 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '@dynamic-forms/core';
+import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { matDynamicFormNumberboxType, MatDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
 describe('MatDynamicFormNumberboxModule', () => {
@@ -15,6 +16,7 @@ describe('MatDynamicFormNumberboxModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormNumberboxType);
+      expect(types[0].library).toEqual(matDynamicFormLibrary);
     })
   );
 });
