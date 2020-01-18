@@ -10,18 +10,17 @@ class DynamicFormFieldBaseTest extends DynamicFormFieldBase {
 }
 
 describe('DynamicFormFieldBase', () => {
-  let validationConfig: DynamicFormValidationConfig;
+  const validationConfig: DynamicFormValidationConfig = {
+    library: 'test',
+    defaultMessage: 'The field is invalid',
+    messages: {
+      required: 'The field is required'
+    }
+  };
   let component: DynamicFormFieldBaseTest;
 
   beforeEach(() => {
-    validationConfig = {
-      library: 'test',
-      defaultMessage: 'The field is invalid',
-      messages: {
-        required: 'The field is required'
-      }
-    };
-    const configService = new DynamicFormConfigService('test', [ validationConfig ]);
+    const configService = new DynamicFormConfigService('test', null, null, null, null, [ validationConfig ]);
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldBaseTest(validationService);

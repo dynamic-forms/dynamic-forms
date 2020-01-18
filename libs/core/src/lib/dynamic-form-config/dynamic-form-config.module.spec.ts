@@ -5,7 +5,7 @@ import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic
 import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
-import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { dynamicFormValidationConfig, DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -71,25 +71,6 @@ describe('DynamicFormConfigModule', () => {
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toBe(lib);
-      })
-    );
-  });
-
-  describe('withValidation', () => {
-    const config: DynamicFormValidationConfig = { library: 'test',  defaultMessage: 'message', messages: {} };
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withValidation(config)
-        ]
-      });
-    }));
-
-    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
       })
     );
   });
@@ -166,6 +147,42 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
         expect(types.length).toBe(1);
         expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withValidation for default config', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withValidation()
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
+      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(dynamicFormValidationConfig);
+      })
+    );
+  });
+
+  describe('withValidation for provided config', () => {
+    const config: DynamicFormValidationConfig = { library: 'test',  defaultMessage: 'message', messages: {} };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withValidation(config)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
+      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(config);
       })
     );
   });

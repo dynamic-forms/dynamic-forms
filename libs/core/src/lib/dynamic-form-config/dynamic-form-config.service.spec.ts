@@ -138,11 +138,15 @@ describe('DynamicFormConfigService', () => {
     //   })
     // );
 
-    it('returns DynamicFormValidationConfig being undefined',
+    it('returns DynamicFormValidationConfig being empty',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         const validationConfig = service.validationConfig;
 
-        expect(validationConfig).toBeUndefined();
+        expect(validationConfig).toEqual({
+          defaultMessage: undefined,
+          messages: {},
+          library: 'test'
+        });
       })
     );
   });

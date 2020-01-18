@@ -44,11 +44,9 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
     });
 
-    it('provide DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs).toBeDefined();
-      })
-    );
+    it('does not provide DYNAMIC_FORM_VALIDATION_CONFIGS', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/StaticInjectorError/);
+    });
 
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
@@ -122,11 +120,9 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
     });
 
-    it('provide DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs).toBeDefined();
-      })
-    );
+    it('does not provide DYNAMIC_FORM_VALIDATION_CONFIGS', () => {
+      expect(() => TestBed.get(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/StaticInjectorError/);
+    });
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
