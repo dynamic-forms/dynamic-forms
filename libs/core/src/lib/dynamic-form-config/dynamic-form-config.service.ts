@@ -57,7 +57,8 @@ export class DynamicFormConfigService {
   }
 
   private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
-    const defaultConfig = { defaultMessage: undefined, messages: {}, library: this.library };
+    const library = this.library;
+    const defaultConfig = { defaultMessage: undefined, messages: {}, library };
     if (!configs || !configs.length) {
       return defaultConfig;
     }
@@ -68,7 +69,7 @@ export class DynamicFormConfigService {
       return {
         ...result, ...config,
         messages: { ...result.messages, ...config.messages },
-        library: this.library
+        library
       };
     }, defaultConfig);
   }
