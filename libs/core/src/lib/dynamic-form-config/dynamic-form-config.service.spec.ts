@@ -9,7 +9,7 @@ import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './
 
 describe('DynamicFormConfigService', () => {
   describe('with DYNAMIC_FORM_LIBRARY', () => {
-    const library: DynamicFormLibrary = 'test';
+    const library: DynamicFormLibrary = { name: 'test' };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -68,22 +68,12 @@ describe('DynamicFormConfigService', () => {
   });
 
   describe('with DYNAMIC_FORM_LIBRARY and configs for single library', () => {
-    const library: DynamicFormLibrary = 'test';
-    const elementTypes: DynamicFormElementTypes = [
-      { type: 'element', component: null, library }
-    ];
-    const fieldTypes: DynamicFormFieldTypes = [
-      { type: 'field', component: null, library }
-    ];
-    const inputTypes: DynamicFormInputTypes = [
-      { type: 'input', component: null, library }
-    ];
-    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [
-      { type: 'field-wrapper', component: null, library }
-    ];
-    const validationConfigs: DynamicFormValidationConfigs = [
-      { defaultMessage: 'message', messages: {}, library }
-    ];
+    const library: DynamicFormLibrary = { name: 'test' };
+    const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, library }];
+    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', component: null, library }];
+    const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, library }];
+    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, library }];
+    const validationConfigs: DynamicFormValidationConfigs = [{ defaultMessage: 'message', messages: {}, library }];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -145,8 +135,8 @@ describe('DynamicFormConfigService', () => {
 
   describe('with DYNAMIC_FORM_LIBRARY and configs for multiple libraries', () => {
     const coreLibrary: DynamicFormLibrary = dynamicFormLibrary;
-    const otherLibrary: DynamicFormLibrary = 'other';
-    const library: DynamicFormLibrary = 'test';
+    const otherLibrary: DynamicFormLibrary = { name: 'other' };
+    const library: DynamicFormLibrary = { name: 'test' };
 
     const elementTypes: DynamicFormElementTypes = [
       { type: 'element-1', component: null, library: coreLibrary },

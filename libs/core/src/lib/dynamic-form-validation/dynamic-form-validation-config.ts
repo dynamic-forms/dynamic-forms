@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { DynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary, DynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 
 export interface DynamicFormValidationConfig {
   defaultMessage: string;
@@ -12,7 +12,6 @@ export type DynamicFormValidationConfigs = DynamicFormValidationConfig[];
 export const DYNAMIC_FORM_VALIDATION_CONFIGS = new InjectionToken<DynamicFormValidationConfigs>('DynamicFormValidationConfigs');
 
 export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
-  library: 'core',
   defaultMessage: 'The field is invalid.',
   messages: {
     required: 'The field is required.',
@@ -22,5 +21,6 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     max: 'The field does not fit the max value',
     minlength: 'The field does not fit the min length',
     maxlength: 'The field does not fit the max length'
-  }
+  },
+  library: dynamicFormLibrary
 };

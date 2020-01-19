@@ -58,25 +58,24 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('forLibrary', () => {
-    const lib = 'test';
-
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.forLibrary(lib)
+          DynamicFormConfigModule.forLibrary({ name: 'test' })
         ]
       });
     }));
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
-        expect(library).toBe(lib);
+        expect(library).toEqual({ name: 'test' });
       })
     );
   });
 
   describe('withElement', () => {
-    const type: DynamicFormElementType = { library: 'test', type: 'elementType', component: null };
+    const library = { name: 'test' };
+    const type: DynamicFormElementType = { type: 'elementType', component: null, library };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -95,7 +94,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withField', () => {
-    const type: DynamicFormFieldType = { library: 'test', type: 'fieldType', component: null };
+    const library = { name: 'test' };
+    const type: DynamicFormFieldType = { type: 'fieldType', component: null, library };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -114,7 +114,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withInput', () => {
-    const type: DynamicFormInputType = { library: 'test', type: 'inputType', component: null };
+    const library = { name: 'test' };
+    const type: DynamicFormInputType = { type: 'inputType', component: null, library };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -133,7 +134,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withFieldWrapper', () => {
-    const type: DynamicFormFieldWrapperType = { library: 'test', type: 'fieldWrapperType', component: null };
+    const library = { name: 'test' };
+    const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null, library };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -169,7 +171,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withValidation for provided config', () => {
-    const config: DynamicFormValidationConfig = { library: 'test',  defaultMessage: 'message', messages: {} };
+    const library = { name: 'test' };
+    const config: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, library };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
