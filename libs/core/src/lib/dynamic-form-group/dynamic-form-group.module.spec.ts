@@ -16,7 +16,7 @@ describe('DynamicFormGroupModule', () => {
     inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(dynamicFormGroupType);
-      expect(types[0].library).toBe(dynamicFormLibrary);
+      expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 });

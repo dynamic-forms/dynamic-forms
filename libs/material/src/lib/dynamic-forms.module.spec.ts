@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
-  DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormValidationBuilder,
-  DynamicFormValidationService, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormLibrary,
+  DynamicFormValidationBuilder, DynamicFormValidationService, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
 import { MatDynamicFormsModule } from './dynamic-forms.module';
 
@@ -60,8 +60,8 @@ describe('MatDynamicFormsModule', () => {
     }));
 
     it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: string) => {
-        expect(library).toBe(matDynamicFormLibrary);
+      inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+        expect(library).toEqual(matDynamicFormLibrary);
       })
     );
 

@@ -27,7 +27,7 @@ import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-inpu
   ]
 })
 export class BsDynamicFormsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<BsDynamicFormsModule> {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [

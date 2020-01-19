@@ -9,7 +9,7 @@ export const bsDynamicFormTextboxType: DynamicFormInputType = {
   type: 'textbox',
   component: BsDynamicFormTextboxComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  library: bsDynamicFormLibrary
+  libraryName: bsDynamicFormLibrary.name
 };
 
 @NgModule({

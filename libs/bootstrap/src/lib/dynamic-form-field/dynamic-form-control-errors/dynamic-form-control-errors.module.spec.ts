@@ -16,7 +16,7 @@ describe('BsDynamicFormControlErrorsModule', () => {
     inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(bsDynamicFormControlErrorsType);
-      expect(types[0].library).toEqual(bsDynamicFormLibrary);
+      expect(types[0].libraryName).toEqual(bsDynamicFormLibrary.name);
     })
   );
 });

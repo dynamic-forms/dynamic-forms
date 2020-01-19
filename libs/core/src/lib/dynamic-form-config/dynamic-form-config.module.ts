@@ -33,7 +33,7 @@ export class DynamicFormConfigModule {
     };
   }
 
-  static withField(fieldType: DynamicFormFieldType) {
+  static withField(fieldType: DynamicFormFieldType): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
@@ -46,7 +46,7 @@ export class DynamicFormConfigModule {
     };
   }
 
-  static withInput(inputType: DynamicFormInputType) {
+  static withInput(inputType: DynamicFormInputType): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
@@ -59,7 +59,7 @@ export class DynamicFormConfigModule {
     };
   }
 
-  static withFieldWrapper(fieldWrapperType: DynamicFormFieldWrapperType) {
+  static withFieldWrapper(fieldWrapperType: DynamicFormFieldWrapperType): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
@@ -72,7 +72,7 @@ export class DynamicFormConfigModule {
     };
   }
 
-  static withValidation(validationConfig?: DynamicFormValidationConfig) {
+  static withValidation(validationConfig?: DynamicFormValidationConfig): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
