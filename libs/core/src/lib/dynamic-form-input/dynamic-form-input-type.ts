@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { DynamicFormType } from '../dynamic-form-config/dynamic-form-type';
+import { DynamicFormComponentType } from '../dynamic-form-config/dynamic-form-component-type';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 
-export interface DynamicFormInputType extends DynamicFormType<DynamicFormInputBase> {
+export interface DynamicFormInputType extends DynamicFormComponentType<DynamicFormInputBase> {
   wrappers?: string[];
 }
 
