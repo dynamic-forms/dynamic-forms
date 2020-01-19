@@ -1,4 +1,4 @@
-import { AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ViewChild, ViewContainerRef, Directive } from '@angular/core';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
@@ -6,6 +6,7 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
+@Directive()
 export abstract class DynamicFormFieldWrapperBase<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
