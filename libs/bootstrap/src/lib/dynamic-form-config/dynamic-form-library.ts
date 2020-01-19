@@ -1,3 +1,5 @@
 import { DynamicFormLibrary } from '@dynamic-forms/core';
 
-export const bsDynamicFormLibrary: DynamicFormLibrary = 'bootstrap';
+export const bsDynamicFormLibrary: DynamicFormLibrary = {
+  name: 'bootstrap' 
+};

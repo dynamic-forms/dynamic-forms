@@ -16,7 +16,7 @@ describe('DynamicFormContentModule', () => {
     inject([DYNAMIC_FORM_ELEMENT_TYPES], (types: DynamicFormElementTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(dynamicFormContentType);
-      expect(types[0].library).toBe(dynamicFormLibrary);
+      expect(types[0].library).toEqual(dynamicFormLibrary);
     })
   );
 });

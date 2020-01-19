@@ -52,8 +52,8 @@ export class DynamicFormConfigService {
     }
 
     const libraryTypes = this.getLibraryTypes(this.library, types);
-    const coreLibraryTypes = this.getLibraryTypes(dynamicFormLibrary, types, libraryTypes);
-    return [ ...coreLibraryTypes, ...libraryTypes ];
+    const coreTypes = this.getLibraryTypes(dynamicFormLibrary, types, libraryTypes);
+    return [ ...coreTypes, ...libraryTypes ];
   }
 
   private getLibraryTypes<Component>(

@@ -100,7 +100,7 @@ describe('DynamicFormsModule', () => {
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
-        expect(library).toBe(dynamicFormLibrary);
+        expect(library).toEqual(dynamicFormLibrary);
       })
     );
 
