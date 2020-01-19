@@ -9,7 +9,7 @@ export const bsDynamicFormDatepickerType: DynamicFormInputType = {
   type: 'datepicker',
   component: BsDynamicFormDatepickerComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  library: bsDynamicFormLibrary
+  libraryName: bsDynamicFormLibrary.name
 };
 
 @NgModule({

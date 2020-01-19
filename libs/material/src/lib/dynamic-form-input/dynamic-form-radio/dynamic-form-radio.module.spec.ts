@@ -16,7 +16,7 @@ describe('MatDynamicFormRadioModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormRadioType);
-      expect(types[0].library).toEqual(matDynamicFormLibrary);
+      expect(types[0].libraryName).toEqual(matDynamicFormLibrary.name);
     })
   );
 });

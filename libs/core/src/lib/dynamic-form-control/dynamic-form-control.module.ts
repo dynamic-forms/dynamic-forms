@@ -9,7 +9,7 @@ import { DynamicFormControlComponent } from './dynamic-form-control.component';
 export const dynamicFormControlType: DynamicFormFieldType = {
   type: 'control',
   component: DynamicFormControlComponent,
-  library: dynamicFormLibrary
+  libraryName: dynamicFormLibrary.name
 };
 
 @NgModule({

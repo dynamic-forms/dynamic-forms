@@ -11,7 +11,7 @@ import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.compone
 export const matDynamicFormComboboxType: DynamicFormInputType = {
   type: 'combobox',
   component: MatDynamicFormComboboxComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({

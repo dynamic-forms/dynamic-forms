@@ -74,8 +74,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withElement', () => {
-    const library = { name: 'test' };
-    const type: DynamicFormElementType = { type: 'elementType', component: null, library };
+    const libraryName = 'test';
+    const type: DynamicFormElementType = { type: 'elementType', component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -94,8 +94,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withField', () => {
-    const library = { name: 'test' };
-    const type: DynamicFormFieldType = { type: 'fieldType', component: null, library };
+    const libraryName = 'test';
+    const type: DynamicFormFieldType = { type: 'fieldType', component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -114,8 +114,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withInput', () => {
-    const library = { name: 'test' };
-    const type: DynamicFormInputType = { type: 'inputType', component: null, library };
+    const libraryName = 'test';
+    const type: DynamicFormInputType = { type: 'inputType', component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -134,8 +134,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withFieldWrapper', () => {
-    const library = { name: 'test' };
-    const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null, library };
+    const libraryName = 'test';
+    const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -171,8 +171,8 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('withValidation for provided config', () => {
-    const library = { name: 'test' };
-    const config: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, library };
+    const libraryName = 'test';
+    const config: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({

@@ -5,11 +5,12 @@ import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
-import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 describe('DynamicFormConfigService', () => {
   describe('with DYNAMIC_FORM_LIBRARY', () => {
-    const library: DynamicFormLibrary = { name: 'test' };
+    const libraryName: DynamicFormLibraryName = 'text';
+    const library: DynamicFormLibrary = { name: libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -30,7 +31,7 @@ describe('DynamicFormConfigService', () => {
         expect(service.fieldTypes).toEqual([]);
         expect(service.inputTypes).toEqual([]);
         expect(service.fieldWrapperTypes).toEqual([]);
-        expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, library });
+        expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName });
       })
     );
 
@@ -68,12 +69,13 @@ describe('DynamicFormConfigService', () => {
   });
 
   describe('with DYNAMIC_FORM_LIBRARY and configs for single library', () => {
-    const library: DynamicFormLibrary = { name: 'test' };
-    const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, library }];
-    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', component: null, library }];
-    const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, library }];
-    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, library }];
-    const validationConfigs: DynamicFormValidationConfigs = [{ defaultMessage: 'message', messages: {}, library }];
+    const libraryName: DynamicFormLibraryName = 'text';
+    const library: DynamicFormLibrary = { name: libraryName };
+    const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, libraryName }];
+    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', component: null, libraryName }];
+    const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, libraryName }];
+    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, libraryName }];
+    const validationConfigs: DynamicFormValidationConfigs = [{ defaultMessage: 'message', messages: {}, libraryName }];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -134,44 +136,45 @@ describe('DynamicFormConfigService', () => {
   });
 
   describe('with DYNAMIC_FORM_LIBRARY and configs for multiple libraries', () => {
-    const coreLibrary: DynamicFormLibrary = dynamicFormLibrary;
-    const otherLibrary: DynamicFormLibrary = { name: 'other' };
-    const library: DynamicFormLibrary = { name: 'test' };
+    const coreLibraryName: DynamicFormLibraryName = dynamicFormLibrary.name;
+    const otherLibraryName: DynamicFormLibraryName = 'other';
+    const libraryName: DynamicFormLibraryName = 'test';
+    const library: DynamicFormLibrary = { name: libraryName };
 
     const elementTypes: DynamicFormElementTypes = [
-      { type: 'element-1', component: null, library: coreLibrary },
-      { type: 'element-2', component: null, library: coreLibrary },
-      { type: 'element-1', component: null, library: otherLibrary },
-      { type: 'element-2', component: null, library: otherLibrary },
-      { type: 'element-3', component: null, library: otherLibrary },
-      { type: 'element-1', component: null, library: library }
+      { type: 'element-1', component: null, libraryName: coreLibraryName },
+      { type: 'element-2', component: null, libraryName: coreLibraryName },
+      { type: 'element-1', component: null, libraryName: otherLibraryName },
+      { type: 'element-2', component: null, libraryName: otherLibraryName },
+      { type: 'element-3', component: null, libraryName: otherLibraryName },
+      { type: 'element-1', component: null, libraryName: libraryName }
     ];
     const fieldTypes: DynamicFormFieldTypes = [
-      { type: 'field-1', component: null, library: coreLibrary },
-      { type: 'field-2', component: null, library: coreLibrary },
-      { type: 'field-1', component: null, library: otherLibrary },
-      { type: 'field-2', component: null, library: otherLibrary },
-      { type: 'field-3', component: null, library: otherLibrary },
-      { type: 'field-1', component: null, library: library },
+      { type: 'field-1', component: null, libraryName: coreLibraryName },
+      { type: 'field-2', component: null, libraryName: coreLibraryName },
+      { type: 'field-1', component: null, libraryName: otherLibraryName },
+      { type: 'field-2', component: null, libraryName: otherLibraryName },
+      { type: 'field-3', component: null, libraryName: otherLibraryName },
+      { type: 'field-1', component: null, libraryName: libraryName },
     ];
     const inputTypes: DynamicFormInputTypes = [
-      { type: 'input-1', component: null, library: coreLibrary },
-      { type: 'input-2', component: null, library: coreLibrary },
-      { type: 'input-1', component: null, library: otherLibrary },
-      { type: 'input-2', component: null, library: otherLibrary },
-      { type: 'input-3', component: null, library: otherLibrary },
-      { type: 'input-1', component: null, library: library },
+      { type: 'input-1', component: null, libraryName: coreLibraryName },
+      { type: 'input-2', component: null, libraryName: coreLibraryName },
+      { type: 'input-1', component: null, libraryName: otherLibraryName },
+      { type: 'input-2', component: null, libraryName: otherLibraryName },
+      { type: 'input-3', component: null, libraryName: otherLibraryName },
+      { type: 'input-1', component: null, libraryName: libraryName },
     ];
     const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [
-      { type: 'field-wrapper-1', component: null, library: coreLibrary },
-      { type: 'field-wrapper-2', component: null, library: coreLibrary },
-      { type: 'field-wrapper-1', component: null, library: otherLibrary },
-      { type: 'field-wrapper-2', component: null, library: otherLibrary },
-      { type: 'field-wrapper-3', component: null, library: otherLibrary },
-      { type: 'field-wrapper-1', component: null, library: library },
+      { type: 'field-wrapper-1', component: null, libraryName: coreLibraryName },
+      { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName },
+      { type: 'field-wrapper-1', component: null, libraryName: otherLibraryName },
+      { type: 'field-wrapper-2', component: null, libraryName: otherLibraryName },
+      { type: 'field-wrapper-3', component: null, libraryName: otherLibraryName },
+      { type: 'field-wrapper-1', component: null, libraryName: libraryName },
     ];
     const validationConfigs: DynamicFormValidationConfigs = [
-      { defaultMessage: 'message', messages: {}, library: library }
+      { defaultMessage: 'message', messages: {}, libraryName: libraryName }
     ];
 
     beforeEach(async(() => {
@@ -192,20 +195,20 @@ describe('DynamicFormConfigService', () => {
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.library).toEqual(library);
         expect(service.elementTypes).toEqual([
-          { type: 'element-2', component: null, library: coreLibrary },
-          { type: 'element-1', component: null, library: library }
+          { type: 'element-2', component: null, libraryName: coreLibraryName },
+          { type: 'element-1', component: null, libraryName: libraryName }
         ]);
         expect(service.fieldTypes).toEqual([
-          { type: 'field-2', component: null, library: coreLibrary },
-          { type: 'field-1', component: null, library: library }
+          { type: 'field-2', component: null, libraryName: coreLibraryName },
+          { type: 'field-1', component: null, libraryName: libraryName }
         ]);
         expect(service.inputTypes).toEqual([
-          { type: 'input-2', component: null, library: coreLibrary },
-          { type: 'input-1', component: null, library: library }
+          { type: 'input-2', component: null, libraryName: coreLibraryName },
+          { type: 'input-1', component: null, libraryName: libraryName }
         ]);
         expect(service.fieldWrapperTypes).toEqual([
-          { type: 'field-wrapper-2', component: null, library: coreLibrary },
-          { type: 'field-wrapper-1', component: null, library: library }
+          { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName },
+          { type: 'field-wrapper-1', component: null, libraryName: libraryName }
         ]);
         expect(service.validationConfig).toEqual(validationConfigs[0]);
       })

@@ -16,7 +16,7 @@ describe('MatDynamicFormDatepickerModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormDatepickerType);
-      expect(types[0].library).toEqual(matDynamicFormLibrary);
+      expect(types[0].libraryName).toEqual(matDynamicFormLibrary.name);
     })
   );
 });

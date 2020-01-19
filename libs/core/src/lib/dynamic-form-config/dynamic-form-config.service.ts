@@ -63,25 +63,25 @@ export class DynamicFormConfigService {
   ): DynamicFormComponentType<Component>[] {
     if (excludeTypes && excludeTypes.length) {
       const excludeTypeNames = excludeTypes.map(type => type.type);
-      return types.filter(type => type.library.name === library.name && !excludeTypeNames.includes(type.type));
+      return types.filter(type => type.libraryName === library.name && !excludeTypeNames.includes(type.type));
     }
-    return types.filter(type => type.library.name === library.name);
+    return types.filter(type => type.libraryName === library.name);
   }
 
   private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
-    const library = this.library;
-    const defaultConfig = { defaultMessage: undefined, messages: {}, library };
+    const libraryName = this.library.name;
+    const defaultConfig = { defaultMessage: undefined, messages: {}, libraryName };
     if (!configs || !configs.length) {
       return defaultConfig;
     }
 
-    const coreConfigs = configs.filter(config => config.library.name === dynamicFormLibrary.name);
-    const libraryConfigs = configs.filter(config => config.library.name === this.library.name);
+    const coreConfigs = configs.filter(config => config.libraryName === dynamicFormLibrary.name);
+    const libraryConfigs = configs.filter(config => config.libraryName === this.library.name);
     return coreConfigs.concat(libraryConfigs).reduce((result, config) => {
       return {
         ...result, ...config,
         messages: { ...result.messages, ...config.messages },
-        library
+        libraryName
       };
     }, defaultConfig);
   }

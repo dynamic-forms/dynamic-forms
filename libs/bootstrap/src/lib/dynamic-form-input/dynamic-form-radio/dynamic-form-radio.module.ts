@@ -9,7 +9,7 @@ export const bsDynamicFormRadioType: DynamicFormInputType = {
   type: 'radio',
   component: BsDynamicFormRadioComponent,
   wrappers: [ 'label', 'errors' ],
-  library: bsDynamicFormLibrary
+  libraryName: bsDynamicFormLibrary.name
 };
 
 @NgModule({

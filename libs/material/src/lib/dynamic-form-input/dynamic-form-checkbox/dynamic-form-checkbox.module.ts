@@ -10,7 +10,7 @@ import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.compone
 export const matDynamicFormCheckboxType: DynamicFormInputType = {
   type: 'checkbox',
   component: MatDynamicFormCheckboxComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({

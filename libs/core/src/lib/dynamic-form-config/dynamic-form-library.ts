@@ -1,7 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
+export type DynamicFormLibraryName = 'core' | string;
+
 export interface DynamicFormLibrary {
-  name: 'core' | string;
+  name: DynamicFormLibraryName;
 }
 
 export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');

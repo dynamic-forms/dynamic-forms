@@ -12,7 +12,7 @@ import { MatDynamicFormDatepickerComponent } from './dynamic-form-datepicker.com
 export const matDynamicFormDatepickerType: DynamicFormInputType = {
   type: 'datepicker',
   component: MatDynamicFormDatepickerComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({

@@ -9,7 +9,7 @@ import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 export const matDynamicFormRadioType: DynamicFormInputType = {
   type: 'radio',
   component: MatDynamicFormRadioComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({

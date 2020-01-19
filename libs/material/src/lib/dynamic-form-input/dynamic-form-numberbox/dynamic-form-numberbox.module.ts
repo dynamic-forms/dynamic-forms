@@ -10,7 +10,7 @@ import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.compo
 export const matDynamicFormNumberboxType: DynamicFormInputType = {
   type: 'numberbox',
   component: MatDynamicFormNumberboxComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({

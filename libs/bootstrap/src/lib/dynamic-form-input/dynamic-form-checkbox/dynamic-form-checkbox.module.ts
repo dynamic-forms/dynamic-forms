@@ -9,7 +9,7 @@ export const bsDynamicFormCheckboxType: DynamicFormInputType = {
   type: 'checkbox',
   component: BsDynamicFormCheckboxComponent,
   wrappers: [ 'errors' ],
-  library: bsDynamicFormLibrary
+  libraryName: bsDynamicFormLibrary.name
 };
 
 @NgModule({

@@ -9,7 +9,7 @@ export const bsDynamicFormComboboxType: DynamicFormInputType = {
   type: 'combobox',
   component: BsDynamicFormComboboxComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  library: bsDynamicFormLibrary
+  libraryName: bsDynamicFormLibrary.name
 };
 
 @NgModule({

@@ -16,7 +16,7 @@ describe('BsDynamicFormCheckboxModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPES], (types: DynamicFormInputTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(bsDynamicFormCheckboxType);
-      expect(types[0].library).toEqual(bsDynamicFormLibrary);
+      expect(types[0].libraryName).toEqual(bsDynamicFormLibrary.name);
     })
   );
 });

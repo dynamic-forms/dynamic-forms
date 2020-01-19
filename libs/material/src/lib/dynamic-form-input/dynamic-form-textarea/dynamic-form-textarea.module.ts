@@ -10,7 +10,7 @@ import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.compone
 export const matDynamicFormTextareaType: DynamicFormInputType = {
   type: 'textarea',
   component: MatDynamicFormTextareaComponent,
-  library: matDynamicFormLibrary
+  libraryName: matDynamicFormLibrary.name
 };
 
 @NgModule({
