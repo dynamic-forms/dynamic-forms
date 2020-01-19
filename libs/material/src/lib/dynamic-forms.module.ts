@@ -25,7 +25,7 @@ import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-inpu
   ]
 })
 export class MatDynamicFormsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<MatDynamicFormsModule> {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
