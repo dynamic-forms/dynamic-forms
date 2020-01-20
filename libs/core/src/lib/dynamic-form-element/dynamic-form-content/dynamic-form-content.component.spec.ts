@@ -50,7 +50,7 @@ describe('DynamicFormContentComponent', () => {
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formContentElement.className).toBe('dynamic-form-content className1 className2');
+    expect(formContentElement.className).toBe('className1 className2 dynamic-form-content');
 
     component.template.className = null;
     fixture.detectChanges();

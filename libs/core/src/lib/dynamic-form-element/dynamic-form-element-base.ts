@@ -1,9 +1,10 @@
-import { Input, Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
 @Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class DynamicFormElementBase<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,

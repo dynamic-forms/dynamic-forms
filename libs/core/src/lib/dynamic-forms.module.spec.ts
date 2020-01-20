@@ -25,35 +25,35 @@ describe('DynamicFormsModule', () => {
     }));
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_INPUT_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_WRAPPER_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_VALIDATION_CONFIGS', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
-      expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormBuilder', () => {
-      expect(() => TestBed.get(DynamicFormBuilder)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormBuilder)).toThrowError(/NullInjectorError/);
     });
 
     it('provides DynamicFormExpressionBuilder',
@@ -75,11 +75,11 @@ describe('DynamicFormsModule', () => {
     );
 
     it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormComponentFactory', () => {
-      expect(() => TestBed.get(DynamicFormComponentFactory)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);
     });
   });
 
@@ -105,23 +105,23 @@ describe('DynamicFormsModule', () => {
     );
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_ELEMENT_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_FIELD_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_INPUT_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_INPUT_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_WRAPPER_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_VALIDATION_CONFIGS', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/NullInjectorError/);
     });
 
     it('provides DynamicFormConfigService',
