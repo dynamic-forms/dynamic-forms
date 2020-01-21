@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { MatMenu } from '@angular/material';
+import { MatMenu } from '@angular/material/menu';
 import { ExamplesMenuItem } from './examples-menu';
 
 @Component({
