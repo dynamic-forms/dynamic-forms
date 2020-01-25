@@ -1,7 +1,9 @@
-<mat-toolbar class="navbar" color="primary">
+<mat-toolbar class="header" color="primary">
   <app-sidebar-toggle></app-sidebar-toggle>
   <a mat-button routerLink="/home">DYNAMIC FORMS</a>
   <a mat-button [href]="projectUrl" target="_blank">Project</a>
   <app-docs-menu></app-docs-menu>
   <app-examples-menu></app-examples-menu>
+  <div class="header-spacer"></div>
+  <app-versions-menu></app-versions-menu>
 </mat-toolbar>
