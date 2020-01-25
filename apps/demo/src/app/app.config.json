@@ -6,7 +6,7 @@
   },
   "repository": {
     "url": "https://dev.azure.com/alexandergebuhr/_git/dynamic-forms",
-    "branch": "master",
+    "branch": "next",
     "libraryQuery": "path=%2Flibs%2F{{library}}&version=GB{{branch}}"
   },
   "versions": [
