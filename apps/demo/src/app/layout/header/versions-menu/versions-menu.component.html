@@ -1,0 +1,13 @@
+<ng-container *ngIf="versions">
+  <button mat-button [matMenuTriggerFor]="menu">
+    Versions
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <ng-container *ngFor="let version of versions">
+      <a mat-menu-item [href]="version.url" target="_blank">{{ version.name }}</a>
+    </ng-container>
+  </mat-menu>
+
+</ng-container>

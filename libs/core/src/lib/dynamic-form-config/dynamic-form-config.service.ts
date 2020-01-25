@@ -5,10 +5,11 @@ import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormComponentType } from './dynamic-form-component-type';
-import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
 @Injectable()
 export class DynamicFormConfigService {
+  readonly libraryNames: DynamicFormLibraryName[];
   readonly elementTypes: DynamicFormElementTypes;
   readonly fieldTypes: DynamicFormFieldTypes;
   readonly inputTypes: DynamicFormInputTypes;
@@ -23,6 +24,7 @@ export class DynamicFormConfigService {
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null
   ) {
+    this.libraryNames = this.getLibraryNames();
     this.elementTypes = this.filterTypes(this._elementTypes);
     this.fieldTypes = this.filterTypes(this._fieldTypes);
     this.inputTypes = this.filterTypes(this._inputTypes);
@@ -46,26 +48,33 @@ export class DynamicFormConfigService {
     return this.fieldWrapperTypes.find(f => f.type === type);
   }
 
+  private getLibraryNames(): DynamicFormLibraryName[] {
+    const referenceLibraryNames = this.library.references || [];
+    const referenceLibraryNamesReverse = [ ...referenceLibraryNames ].reverse();
+    return [ this.library.name, ...referenceLibraryNamesReverse ];
+  }
+
   private filterTypes<Component>(types: DynamicFormComponentType<Component>[]): DynamicFormComponentType<Component>[] {
     if (!types || !types.length) {
       return [];
     }
 
-    const libraryTypes = this.getLibraryTypes(this.library, types);
-    const coreTypes = this.getLibraryTypes(dynamicFormLibrary, types, libraryTypes);
-    return [ ...coreTypes, ...libraryTypes ];
+    return this.libraryNames.reduce((filteredTypes, libraryName) => {
+      const libraryTypes = this.getLibraryTypes(libraryName, types, filteredTypes);
+      return filteredTypes.concat(libraryTypes);
+    }, []);
   }
 
   private getLibraryTypes<Component>(
-    library: DynamicFormLibrary,
+    name: DynamicFormLibraryName,
     types: DynamicFormComponentType<Component>[],
-    excludeTypes: DynamicFormComponentType<Component>[] = []
+    excludeTypes: DynamicFormComponentType<Component>[]
   ): DynamicFormComponentType<Component>[] {
     if (excludeTypes && excludeTypes.length) {
       const excludeTypeNames = excludeTypes.map(type => type.type);
-      return types.filter(type => type.libraryName === library.name && !excludeTypeNames.includes(type.type));
+      return types.filter(type => type.libraryName === name && !excludeTypeNames.includes(type.type));
     }
-    return types.filter(type => type.libraryName === library.name);
+    return types.filter(type => type.libraryName === name);
   }
 
   private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
@@ -75,14 +84,20 @@ export class DynamicFormConfigService {
       return defaultConfig;
     }
 
-    const coreConfigs = configs.filter(config => config.libraryName === dynamicFormLibrary.name);
-    const libraryConfigs = configs.filter(config => config.libraryName === this.library.name);
-    return coreConfigs.concat(libraryConfigs).reduce((result, config) => {
+    const libraryConfigs = this.getLibraryConfigs(configs);
+    return libraryConfigs.reduce((result, config) => {
       return {
         ...result, ...config,
         messages: { ...result.messages, ...config.messages },
         libraryName
       };
     }, defaultConfig);
+  }
+
+  private getLibraryConfigs(configs: DynamicFormValidationConfigs) {
+    const libraryNamesReverse = [ ...this.libraryNames ].reverse();
+    return libraryNamesReverse
+      .map(name => configs.find(config => config.libraryName === name))
+      .filter(config => !!config);
   }
 }

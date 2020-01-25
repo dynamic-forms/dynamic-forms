@@ -27,6 +27,7 @@ describe('DynamicFormConfigService', () => {
     it('returns DynamicFormConfigService with configs being empty',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.library).toEqual(library);
+        expect(service.libraryNames).toEqual([ libraryName ]);
         expect(service.elementTypes).toEqual([]);
         expect(service.fieldTypes).toEqual([]);
         expect(service.inputTypes).toEqual([]);
@@ -94,6 +95,7 @@ describe('DynamicFormConfigService', () => {
     it('returns DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.library).toEqual(library);
+        expect(service.libraryNames).toEqual([ libraryName ]);
         expect(service.elementTypes).toEqual(elementTypes);
         expect(service.fieldTypes).toEqual(fieldTypes);
         expect(service.inputTypes).toEqual(inputTypes);
@@ -139,7 +141,7 @@ describe('DynamicFormConfigService', () => {
     const coreLibraryName: DynamicFormLibraryName = dynamicFormLibrary.name;
     const otherLibraryName: DynamicFormLibraryName = 'other';
     const libraryName: DynamicFormLibraryName = 'test';
-    const library: DynamicFormLibrary = { name: libraryName };
+    const library: DynamicFormLibrary = { name: libraryName, references: [ coreLibraryName ] };
 
     const elementTypes: DynamicFormElementTypes = [
       { type: 'element-1', component: null, libraryName: coreLibraryName },
@@ -194,21 +196,22 @@ describe('DynamicFormConfigService', () => {
     it('returns DynamicFormConfigService with configs being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.library).toEqual(library);
+        expect(service.libraryNames).toEqual([ libraryName, coreLibraryName ]);
         expect(service.elementTypes).toEqual([
-          { type: 'element-2', component: null, libraryName: coreLibraryName },
-          { type: 'element-1', component: null, libraryName: libraryName }
+          { type: 'element-1', component: null, libraryName: libraryName },
+          { type: 'element-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.fieldTypes).toEqual([
-          { type: 'field-2', component: null, libraryName: coreLibraryName },
-          { type: 'field-1', component: null, libraryName: libraryName }
+          { type: 'field-1', component: null, libraryName: libraryName },
+          { type: 'field-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.inputTypes).toEqual([
-          { type: 'input-2', component: null, libraryName: coreLibraryName },
-          { type: 'input-1', component: null, libraryName: libraryName }
+          { type: 'input-1', component: null, libraryName: libraryName },
+          { type: 'input-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.fieldWrapperTypes).toEqual([
-          { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName },
-          { type: 'field-wrapper-1', component: null, libraryName: libraryName }
+          { type: 'field-wrapper-1', component: null, libraryName: libraryName },
+          { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.validationConfig).toEqual(validationConfigs[0]);
       })
