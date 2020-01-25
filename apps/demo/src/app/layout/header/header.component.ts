@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AppConfig, APP_CONFIG } from '../../app-config';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  projectUrl = 'https://dev.azure.com/alexandergebuhr/dynamic-forms';
+  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
+
+  get projectUrl() { return this.appConfig.project.url; }
 }
