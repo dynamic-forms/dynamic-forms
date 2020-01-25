@@ -1,4 +1,4 @@
-.navbar {
+.header {
   &.fixed {
     position: fixed;
     top: 0;
@@ -6,7 +6,7 @@
     right: 0;
   }
 
-  .navbar-spacer {
+  .header-spacer {
     flex: 1 1 auto;
   }
 }

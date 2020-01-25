@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { DocsMenuModule } from './docs-menu/docs-menu.module';
 import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
-import { NavbarComponent } from './navbar.component';
+import { HeaderComponent } from './header.component';
 import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
 
 @NgModule({
@@ -21,10 +21,10 @@ import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
     SidebarToggleModule
   ],
   declarations: [
-    NavbarComponent
+    HeaderComponent
   ],
   exports: [
-    NavbarComponent
+    HeaderComponent
   ]
 })
-export class NavbarModule {}
+export class HeaderModule {}
