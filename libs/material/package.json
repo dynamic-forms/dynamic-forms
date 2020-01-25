@@ -1,10 +1,10 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "0.0.1",
+  "version": "1.0.0-preview",
   "peerDependencies": {
-    "@angular/common": "~8.2.13",
-    "@angular/core": "~8.2.13",
-    "@angular/forms": "~8.2.13",
+    "@angular/common": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
     "@angular/material": "~8.2.3"
   }
 }

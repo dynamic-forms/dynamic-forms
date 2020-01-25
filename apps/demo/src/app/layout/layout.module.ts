@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { ContentModule } from './content/content.module';
-import { NavbarModule } from './navbar/navbar.module';
+import { FooterModule } from './footer/footer.module';
+import { HeaderModule } from './header/header.module';
 import { NotificationModule } from './notification/notification.module';
 import { ProgressModule } from './progress/progress.module';
 
 @NgModule({
   imports: [
-    NavbarModule,
+    HeaderModule,
     ContentModule,
+    FooterModule,
     NotificationModule,
     ProgressModule
   ],
   exports: [
-    NavbarModule,
+    HeaderModule,
     ContentModule,
+    FooterModule,
     NotificationModule,
     ProgressModule
   ]
