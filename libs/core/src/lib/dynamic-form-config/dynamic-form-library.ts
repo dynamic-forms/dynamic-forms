@@ -4,6 +4,7 @@ export type DynamicFormLibraryName = 'core' | string;
 
 export interface DynamicFormLibrary {
   name: DynamicFormLibraryName;
+  references?: DynamicFormLibraryName[];
 }
 
 export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
