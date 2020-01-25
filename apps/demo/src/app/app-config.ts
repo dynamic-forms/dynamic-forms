@@ -17,8 +17,8 @@ export interface AppVersion {
 }
 
 export interface AppConfig {
-  build: string;
   version: string;
+  build: string;
   project: AppProject;
   repository: AppRepository;
   versions: AppVersion[];

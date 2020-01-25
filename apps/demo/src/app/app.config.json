@@ -1,6 +1,6 @@
 {
+  "version": "1.0.0-preview",
   "build": "",
-  "version": "0.0.1",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
