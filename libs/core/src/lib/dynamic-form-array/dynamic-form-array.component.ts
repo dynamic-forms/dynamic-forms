@@ -12,5 +12,5 @@ export class DynamicFormArrayComponent extends DynamicFormArrayBase {
     super(validationService);
   }
 
-  get fields() { return this.field.fields; }
+  get elements() { return this.field.elements; }
 }

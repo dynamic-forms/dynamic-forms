@@ -1,4 +1,5 @@
 import { FormArray } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
@@ -14,10 +15,15 @@ export class DynamicFormArray extends DynamicFormField<
     this._control = new FormArray([]);
   }
 
+  get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  setFields(fields: DynamicFormField[]) {
-    this._fields = fields || [];
+  setElements(elements: DynamicFormElement[]) {
+    this._elements = elements;
+    this._fields = this.getFields(this._elements);
+    this._fields.forEach((field, index) => {
+      this._control.insert(index, field.control);
+    });
   }
 
   check() {
@@ -33,7 +39,12 @@ export class DynamicFormArray extends DynamicFormField<
   }
 
   resetDefault() {
-    this.fields.forEach(field => field.resetDefault());
+    if (this.definition.defaultValue) {
+      const defaultModel = this.cloneObject(this.definition.defaultValue);
+      this._control.patchValue(defaultModel);
+    } else {
+      this.fields.forEach(field => field.resetDefault());
+    }
   }
 
   validate() {
@@ -41,7 +52,26 @@ export class DynamicFormArray extends DynamicFormField<
   }
 
   private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
-    parent.model[definition.key] = parent.model[definition.key] || [];
+    parent.model[definition.key] = parent.model[definition.key] || this.getDefaultModel(definition);
     return parent.model[definition.key];
+  }
+
+  private getDefaultModel(definition: DynamicFormArrayDefinition) {
+    if (definition.defaultValue) {
+      return this.cloneObject(definition.defaultValue);
+    }
+    return Array.from({ length: definition.defaultLength || 0 }, i => {});
+  }
+
+  private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
+    return elements.reduce((result, element) => {
+      if (!element.isElement) {
+        return result.concat(element as DynamicFormField);
+      }
+      if (element.elements) {
+        return result.concat(this.getFields(element.elements));
+      }
+      return result;
+    }, <DynamicFormField[]>[]);
   }
 }

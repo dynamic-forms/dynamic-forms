@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 
@@ -16,6 +17,7 @@ export const dynamicFormArrayType: DynamicFormFieldType = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    DynamicFormElementModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType)
   ],
   declarations: [
