@@ -1,5 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import appConfigJson from './app.config.json';
 
 export interface AppProject {
   url: string;
@@ -25,6 +24,3 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('AppConfig');
-
-export const appConfig: AppConfig = appConfigJson;
-

@@ -168,6 +168,10 @@
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
                   "with": "apps/demo/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/demo/src/configs/app-config.ts",
+                  "with": "apps/demo/src/configs/app-config.prod.ts"
                 }
               ],
               "optimization": true,
