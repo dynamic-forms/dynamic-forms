@@ -9,7 +9,7 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition, model: any = null) {
     super(root, parent, definition);
-    this._model = model || this.createModel(parent, definition);
+    this._model = model || this.getModel(parent, definition);
     this._control = new FormGroup({});
   }
 
@@ -38,16 +38,28 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
   }
 
   resetDefault() {
-    this.fields.forEach(field => field.resetDefault());
+    if (this.definition.defaultValue) {
+      const defaultModel = this.cloneObject(this.definition.defaultValue);
+      this._control.patchValue(defaultModel);
+    } else {
+      this.fields.forEach(field => field.resetDefault());
+    }
   }
 
   validate() {
     this.fields.forEach(field => field.validate());
   }
 
-  private createModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {
-    parent.model[definition.key] = parent.model[definition.key] || {};
+  private getModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {
+    parent.model[definition.key] = parent.model[definition.key] || this.getDefaultModel(definition);
     return parent.model[definition.key];
+  }
+
+  private getDefaultModel(definition: DynamicFormGroupDefinition) {
+    if (definition.defaultValue) {
+      return this.cloneObject(definition.defaultValue);
+    }
+    return {};
   }
 
   private checkControl(): void {
