@@ -86,6 +86,10 @@ export abstract class DynamicFormField<
     }, obj);
   }
 
+  protected cloneObject(obj: any) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+
   private createPath() {
     return this.parent && this.parent.path ? `${this.parent.path}.${this.definition.key}` : this.definition.key || null;
   }

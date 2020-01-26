@@ -1,0 +1,57 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "users",
+      "type": "array",
+      "template": {
+        "label": "Users"
+      },
+      "defaultLength": 3,
+      "definitionTemplate": {
+        "key": "user",
+        "type": "group",
+        "template": {
+          "className": "row"
+        },
+        "elements": [
+          {
+            "key": "name",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Name",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter name",
+                "defaultValue": "user"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          },
+          {
+            "key": "email",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Email",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter email",
+                "defaultValue": "user@mail.com"
+              },
+              "validation": {
+                "required": true,
+                "email": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
