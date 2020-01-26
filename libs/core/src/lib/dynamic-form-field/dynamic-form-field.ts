@@ -17,13 +17,18 @@ export abstract class DynamicFormField<
   private _expressionChanges: Observable<DynamicFormExpressionChange>;
   private _expressions: DynamicFormFieldExpressions;
 
+  protected _root: DynamicFormField;
+  protected _parent: DynamicFormField;
+
   protected _path: string;
   protected _model: any;
   protected _options: DynamicFormFieldOptions;
   protected _control: Control;
 
-  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(definition);
+    this._root = root;
+    this._parent = parent;
     this._path = this.createPath();
     this._options = this.createOptions();
     this._expressionChangesSubject = new Subject();
@@ -34,6 +39,9 @@ export abstract class DynamicFormField<
   get isElement() { return false; }
 
   get wrappers() { return this.definition.wrappers; }
+
+  get root() { return this._root; }
+  get parent() { return this._parent; }
 
   get path() { return this._path; }
   get model() { return this._model; }

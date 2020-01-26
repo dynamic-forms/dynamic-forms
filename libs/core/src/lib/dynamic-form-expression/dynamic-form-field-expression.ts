@@ -32,7 +32,7 @@ export class DynamicFormFieldExpression implements DynamicFormExpression<Dynamic
   }
 
   private get model() { return this.field.model; }
-  private get parentModel() { return this.field.parent.model; }
+  private get parentModel() { return this.field.parent ? this.field.parent.model : undefined; }
   private get rootModel() { return this.field.root.model; }
 
   private get previousValue() { return this._memo.previousValue; }
