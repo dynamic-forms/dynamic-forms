@@ -212,9 +212,10 @@ describe('DynamicFormBuilder', () => {
 
   it('creates DynamicFormArray',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const model = {};
+      const model = { key: [ {}, {} ] };
       const form = getForm(model);
-      const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'array', template: {}, elements: [] };
+      const definitionTemplate = <DynamicFormElementDefinition>{ type: 'element' };
+      const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'array', template: {}, definitionTemplate };
       const formArray = builder.createFormArray(form, form, definition);
 
       expect(formArray.root).toBe(form);
@@ -224,6 +225,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(formArray.control).toBeDefined();
       expect(formArray.fields).toBeDefined();
+      expect(formArray.elements.length).toBe(2);
     })
   );
 

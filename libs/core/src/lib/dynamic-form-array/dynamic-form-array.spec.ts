@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -44,8 +45,20 @@ describe('DynamicFormArray', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
-    const fields = [ <DynamicFormField>{  isElement: false, control: new FormControl() } ];
-    const elements = fields;
+    const elements = [
+      <DynamicFormElement>{ isElement: true, elements: [
+          <DynamicFormElement>{ isElement: true, elements: [
+            <DynamicFormElement>{ isElement: true },
+            <DynamicFormField>{ isElement: false, control: new FormControl() }
+          ]},
+          <DynamicFormField>{ isElement: false, control: new FormControl() }
+        ]
+      }
+    ];
+    const fields = <DynamicFormField[]>[
+      elements[0].elements[0].elements[1],
+      elements[0].elements[1]
+    ];
 
     formArray.setElements(elements);
 
@@ -150,6 +163,26 @@ describe('DynamicFormArray', () => {
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
     expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
+  });
+
+  it('resetDefault calls patchValue of field if default value', () => {
+    const defaultValue = [ { value: 0 }, { value: 1 } ];
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultValue };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() },
+      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() }
+    ];
+
+    spyOn(fields[0], 'resetDefault');
+    spyOn(fields[1], 'resetDefault');
+
+    formArray.setElements(fields);
+    formArray.resetDefault();
+
+    expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
+    expect(fields[1].resetDefault).toHaveBeenCalledTimes(0);
   });
 
   it('validate calls validate of all fields', () => {
