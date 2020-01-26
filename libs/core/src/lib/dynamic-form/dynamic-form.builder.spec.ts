@@ -81,7 +81,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = builder.createForm(definition, model);
 
-      expect(form.root).toBeNull();
+      expect(form.root).toBe(form);
       expect(form.parent).toBeNull();
       expect(form.definition).toBe(definition);
       expect(form.template).toBe(definition.template);
