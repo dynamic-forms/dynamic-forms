@@ -6,4 +6,5 @@ export interface DynamicFormArrayDefinition extends DynamicFormFieldDefinition<D
   definitionTemplate: DynamicFormElementDefinition;
   defaultLength?: number;
   defaultValue?: any;
+  elements: undefined;
 }
