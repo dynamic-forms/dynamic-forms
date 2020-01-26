@@ -113,6 +113,19 @@
               "label": "Element container"
             }
           ]
+        },
+        {
+          "label": "Grid toggleable",
+          "items": [
+            {
+              "id": "layout-grid-toggleable-form-group",
+              "label": "Form group"
+            },
+            {
+              "id": "layout-grid-toggleable-element-container",
+              "label": "Element container"
+            }
+          ]
         }
       ]
     }
