@@ -1,10 +1,11 @@
 {
   "template": {
-    "className": "container"
+    "className": "grid"
   },
   "elements": [
     {
-      "type": "container",
+      "key": "name",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -13,7 +14,7 @@
           "key": "firstName",
           "type": "control",
           "template": {
-            "className": "col-6",
+            "className": "col",
             "label": "First name",
             "input": {
               "type": "textbox",
@@ -28,7 +29,7 @@
           "key": "lastName",
           "type": "control",
           "template": {
-            "className": "col-6",
+            "className": "col",
             "label": "Last name",
             "input": {
               "type": "textbox",
@@ -42,7 +43,8 @@
       ]
     },
     {
-      "type": "container",
+      "key": "login",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -51,7 +53,7 @@
           "key": "email",
           "type": "control",
           "template": {
-            "className": "col-7",
+            "className": "col",
             "label": "Email",
             "input": {
               "type": "textbox",
@@ -68,7 +70,7 @@
           "key": "password",
           "type": "control",
           "template": {
-            "className": "col-5",
+            "className": "col",
             "label": "Password",
             "input": {
               "type": "textbox",
@@ -83,7 +85,8 @@
       ]    
     },
     {
-      "type": "container",
+      "key": "address",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -92,7 +95,7 @@
           "key": "street",
           "type": "control",
           "template": {
-            "className": "col-5",
+            "className": "col",
             "label": "Street",
             "input": {
               "type": "textbox",
@@ -107,7 +110,7 @@
           "key": "zipCode",
           "type": "control",
           "template": {
-            "className": "col-3",
+            "className": "col",
             "label": "Zip Code",
             "input": {
               "type": "textbox",
@@ -122,7 +125,7 @@
           "key": "city",
           "type": "control",
           "template": {
-            "className": "col-4",
+            "className": "col",
             "label": "City",
             "input": {
               "type": "textbox",
@@ -133,7 +136,7 @@
             }
           }
         }
-      ]
+      ]    
     }
   ]
 }

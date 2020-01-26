@@ -89,27 +89,27 @@
       "label": "Layout",
       "items": [
         {
-          "label": "Columns equal",
+          "label": "Grid (equal cols)",
           "items": [
             {
-              "id": "layout-cols-equal-form-group",
+              "id": "layout-grid-equal-cols-form-group",
               "label": "Form group"
             },
             {
-              "id": "layout-cols-equal-element-container",
+              "id": "layout-grid-equal-cols-element-container",
               "label": "Element container"
             }
           ]
         },
         {
-          "label": "Columns unequal",
+          "label": "Grid (unequal cols)",
           "items": [
             {
-              "id": "layout-cols-unequal-form-group",
+              "id": "layout-grid-unequal-cols-form-group",
               "label": "Form group"
             },
             {
-              "id": "layout-cols-unequal-element-container",
+              "id": "layout-grid-unequal-cols-element-container",
               "label": "Element container"
             }
           ]

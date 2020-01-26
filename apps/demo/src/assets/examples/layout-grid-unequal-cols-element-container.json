@@ -1,11 +1,10 @@
 {
   "template": {
-    "className": "container"
+    "className": "grid"
   },
   "elements": [
     {
-      "key": "name",
-      "type": "group",
+      "type": "container",
       "template": {
         "className": "row"
       },
@@ -43,8 +42,7 @@
       ]
     },
     {
-      "key": "login",
-      "type": "group",
+      "type": "container",
       "template": {
         "className": "row"
       },
@@ -85,8 +83,7 @@
       ]    
     },
     {
-      "key": "address",
-      "type": "group",
+      "type": "container",
       "template": {
         "className": "row"
       },
@@ -136,7 +133,7 @@
             }
           }
         }
-      ]    
+      ]
     }
   ]
 }
