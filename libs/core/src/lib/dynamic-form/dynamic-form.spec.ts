@@ -8,7 +8,7 @@ describe('DynamicForm', () => {
       const form = new DynamicForm(definition, model);
 
       expect(form.path).toBeNull();
-      expect(form.root).toBeNull();
+      expect(form.root).toBe(form);
       expect(form.parent).toBeNull();
       expect(form.definition).toBe(definition);
       expect(form.model).toBe(model);
