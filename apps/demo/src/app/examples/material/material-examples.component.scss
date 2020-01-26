@@ -12,7 +12,7 @@
       flex-direction: column;
       margin: 0 10px;
 
-      &.container {
+      &.grid {
         $grid-gutter-width: 20px;
 
         @import '../../../../../../node_modules/bootstrap/scss/functions';
