@@ -57,6 +57,8 @@ export class DynamicFormBuilder {
   createFormArray(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
     this.requireFieldType(definition.type);
     const field = new DynamicFormArray(root, parent, definition);
+    field.setExpressions(this.createFieldExpressions(field));
+    field.setElements(this.createFormGroupElements(root, field, definition.definitionTemplate));
     return field;
   }
 
@@ -94,6 +96,15 @@ export class DynamicFormBuilder {
           return this.createFormElement(root, parent, definition);
       }
     });
+  }
+
+  private createFormGroupElements(root: DynamicFormField, parent: DynamicFormArray, definitionTemplate: DynamicFormElementDefinition) {
+    const modelItems = parent.model || [] as any[];
+    const definitions = modelItems.map((_item, index) => {
+      const definition = JSON.parse(JSON.stringify(definitionTemplate));
+      return { ...definition, key: index.toString() } as DynamicFormElementDefinition;
+    });
+    return this.createFormElements(root, parent, definitions);
   }
 
   private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {

@@ -48,7 +48,7 @@ describe('DynamicFormArrayComponent', () => {
   it('creates component', () => {
     expect(component.id).toBe('key');
     expect(component.control).toBeDefined();
-    expect(component.fields).toEqual([]);
+    expect(component.elements).toEqual([]);
     expect(component.template).toBeDefined();
   });
 

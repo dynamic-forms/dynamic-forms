@@ -43,6 +43,25 @@
       ]
     },
     {
+      "label": "Fields",      
+      "items": [
+        { 
+
+          "label": "Array",
+          "items": [
+            {
+              "id": "fields-array-default-length",
+              "label": "Default length" 
+            },
+            {
+              "id": "fields-array-default-value",
+              "label": "Default value" 
+            }
+          ]
+        }
+      ]
+    },
+    {
       "label": "Validation",
       "items": [
         { 

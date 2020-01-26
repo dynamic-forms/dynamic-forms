@@ -24,6 +24,15 @@ describe('DynamicFormGroup', () => {
     expect(form.model).toEqual({ key: {} });
   });
 
+  it('sets model to default value', () => {
+    const defaultValue = { value: 0 };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [], defaultValue };
+    const formGroup = new DynamicFormGroup(form, form, definition);
+
+    expect(formGroup.model).toEqual(defaultValue);
+  });
+
   it('sets elements and fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
@@ -141,6 +150,26 @@ describe('DynamicFormGroup', () => {
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
     expect(fields[1].reset).toHaveBeenCalledTimes(1);
+  });
+
+  it('resetDefault calls patchValue of field if default value', () => {
+    const defaultValue = {};
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [], defaultValue };
+    const formGroup = new DynamicFormGroup(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
+      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
+    ];
+
+    spyOn(fields[0], 'resetDefault');
+    spyOn(fields[1], 'resetDefault');
+
+    formGroup.setElements(fields);
+    formGroup.resetDefault();
+
+    expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
+    expect(fields[1].resetDefault).toHaveBeenCalledTimes(0);
   });
 
   it('resetDefault calls resetDefault of all fields', () => {

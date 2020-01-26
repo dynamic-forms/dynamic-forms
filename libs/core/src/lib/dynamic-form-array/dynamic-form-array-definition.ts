@@ -3,5 +3,8 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 export interface DynamicFormArrayDefinition extends DynamicFormFieldDefinition<DynamicFormArrayTemplate> {
-  elements: DynamicFormElementDefinition[];
+  definitionTemplate: DynamicFormElementDefinition;
+  defaultLength?: number;
+  defaultValue?: any;
+  elements: undefined;
 }
