@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
+import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
-import { DynamicFormExampleResolver } from '../dynamic-form-example.resolver';
+import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
 import { MaterialExamplesComponent } from './material-examples.component';
 
 @NgModule({
@@ -11,10 +12,18 @@ import { MaterialExamplesComponent } from './material-examples.component';
     MatDynamicFormsModule.forRoot(),
     RouterModule.forChild([
       {
-        path: ':exampleId',
+        path: ':definitionId',
         component: MaterialExamplesComponent,
         resolve: {
-          definition: DynamicFormExampleResolver
+          definition: DynamicFormDefinitionResolver
+        }
+      },
+      {
+        path: ':definitionId/models/:modelId',
+        component: MaterialExamplesComponent,
+        resolve: {
+          definition: DynamicFormDefinitionResolver,
+          model: DynamicFormModelResolver
         }
       }
     ])

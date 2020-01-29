@@ -5,11 +5,11 @@ import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class DynamicFormExampleResolver implements Resolve<Observable<DynamicFormDefinition>> {
+export class DynamicFormDefinitionResolver implements Resolve<Observable<DynamicFormDefinition>> {
   constructor(private httpClient: HttpClient) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
-    const exampleId = route.params.exampleId;
-    return this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ exampleId }.json`);
+    const definitionId = route.params.definitionId;
+    return this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ definitionId }.json`);
   }
 }
