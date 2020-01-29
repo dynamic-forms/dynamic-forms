@@ -65,6 +65,16 @@
             {
               "id": "fields-array-default-value",
               "label": "Default value" 
+            },
+            {
+              "label": "Models",
+              "items": [
+                {
+                  "id": "fields-array-model",
+                  "modelId": "fields-array-model-01",
+                  "label": "Model 01"
+                }
+              ]
             }
           ]
         }

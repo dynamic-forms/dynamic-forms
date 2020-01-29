@@ -20,9 +20,8 @@ export abstract class DynamicFormExampleComponent {
   }
 
   private mapData(data: Data): DynamicFormData {
-    return {
-      definition: data.definition,
-      model: {}
-    };
+    const definition = data.definition;
+    const model = data.model || {};
+    return { definition, model };
   }
 }
