@@ -6,7 +6,12 @@
       </app-examples-menu-panel>
     </ng-container>
     <ng-container *ngIf="item.id">
-      <a mat-menu-item [routerLink]="[ baseUrl, item.id ]">{{ item.label }}</a>
+      <ng-container *ngIf="!item.modelId; else exampleWithModel">
+        <a mat-menu-item [routerLink]="[ baseUrl, item.id ]">{{ item.label }}</a>
+      </ng-container>
+      <ng-template #exampleWithModel>
+        <a mat-menu-item [routerLink]="[ baseUrl, item.id, 'models', item.modelId ]">{{ item.label }}</a>
+      </ng-template>
     </ng-container>
   </ng-container>
 </mat-menu>

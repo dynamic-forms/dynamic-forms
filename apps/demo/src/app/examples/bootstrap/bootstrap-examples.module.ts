@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
+import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
-import { DynamicFormExampleResolver } from '../dynamic-form-example.resolver';
+import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
 @NgModule({
@@ -11,10 +12,18 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
     BsDynamicFormsModule.forRoot(),
     RouterModule.forChild([
       {
-        path: ':exampleId',
+        path: ':definitionId',
         component: BootstrapExamplesComponent,
         resolve: {
-          definition: DynamicFormExampleResolver
+          definition: DynamicFormDefinitionResolver
+        }
+      },
+      {
+        path: ':definitionId/models/:modelId',
+        component: BootstrapExamplesComponent,
+        resolve: {
+          definition: DynamicFormDefinitionResolver,
+          model: DynamicFormModelResolver
         }
       }
     ])
