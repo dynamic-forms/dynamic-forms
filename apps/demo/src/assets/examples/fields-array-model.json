@@ -9,7 +9,6 @@
       "template": {
         "label": "Users"
       },
-      "defaultLength": 3,
       "definitionTemplate": {
         "key": "user",
         "type": "group",
@@ -18,10 +17,22 @@
         },
         "elements": [
           {
+            "key": "id",
+            "type": "control",
+            "template": {
+              "className": "col-2",
+              "label": "Id",
+              "input": {
+                "type": "textbox"
+              },
+              "readonly": true
+            }
+          },
+          {
             "key": "name",
             "type": "control",
             "template": {
-              "className": "col-6",
+              "className": "col-4",
               "label": "Name",
               "input": {
                 "type": "textbox",
