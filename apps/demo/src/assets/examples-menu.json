@@ -45,6 +45,15 @@
     {
       "label": "Fields",      
       "items": [
+        {
+          "label": "Group",
+          "items": [
+            {
+              "id": "fields-group-default-value",
+              "label": "Default value"
+            }
+          ]
+        },
         { 
 
           "label": "Array",
