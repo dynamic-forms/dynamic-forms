@@ -1,3 +1,4 @@
+import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormFieldExpressionFunction} from '../dynamic-form-expression/dynamic-form-field-expression';
 import { DynamicFormFieldEvaluatorFunction } from './dynamic-form-field-evaluator';
@@ -8,6 +9,7 @@ export interface DynamicFormFieldDefinition<
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate
 > extends DynamicFormElementDefinition<Template> {
   options?: DynamicFormFieldOptions;
+  actions?: DynamicFormActionDefinition[];
   evaluations?: { key?: string, func?: DynamicFormFieldEvaluatorFunction }[];
   expressions?: { [key: string]: string | DynamicFormFieldExpressionFunction };
   wrappers?: string[];

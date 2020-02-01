@@ -1,4 +1,5 @@
 import { Observable, Subject } from 'rxjs';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
@@ -6,6 +7,7 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
+
 
 export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
@@ -24,6 +26,8 @@ export abstract class DynamicFormField<
   protected _model: any;
   protected _options: DynamicFormFieldOptions;
   protected _control: Control;
+
+  protected _actions: DynamicFormAction[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(definition);
@@ -52,9 +56,15 @@ export abstract class DynamicFormField<
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
+  get actions() { return this._actions; }
+
   get expressionChangesSubject() { return this._expressionChangesSubject; }
   get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
+
+  setActions(actions: DynamicFormAction[]) {
+    this._actions = actions;
+  }
 
   setExpressions(expressions: DynamicFormFieldExpressions) {
     if (expressions) {

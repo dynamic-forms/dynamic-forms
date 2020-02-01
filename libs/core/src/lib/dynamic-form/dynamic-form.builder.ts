@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -36,6 +38,7 @@ export class DynamicFormBuilder {
     const field = new DynamicForm(definition, model);
     field.setExpressions(this.createFieldExpressions(field));
     field.setElements(this.createFormElements(field, field, field.definition.elements));
+    field.setActions(this.createFormActions(field, field.definition.actions));
     return field;
   }
 
@@ -105,6 +108,12 @@ export class DynamicFormBuilder {
       return { ...definition, key: index.toString() } as DynamicFormElementDefinition;
     });
     return this.createFormElements(root, parent, definitions);
+  }
+
+  private createFormActions<Field extends DynamicFormField>(
+    field: Field, definitions: DynamicFormActionDefinition[]
+  ): DynamicFormAction<Field>[] {
+    return [];
   }
 
   private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
