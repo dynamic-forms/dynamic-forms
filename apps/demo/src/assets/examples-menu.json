@@ -55,7 +55,6 @@
           ]
         },
         { 
-
           "label": "Array",
           "items": [
             {
@@ -77,6 +76,19 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "label": "Elements",      
+      "items": [
+        { 
+          "id": "elements-button", 
+          "label": "Button" 
+        },
+        { 
+          "id": "elements-content", 
+          "label": "Content" 
         }
       ]
     },
