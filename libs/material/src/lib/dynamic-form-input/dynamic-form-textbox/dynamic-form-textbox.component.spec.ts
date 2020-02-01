@@ -6,7 +6,7 @@ import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormC
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { MatDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
-describe('DynamicFormTextboxComponent', () => {
+describe('MatDynamicFormTextboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormTextboxComponent>;
   let component: MatDynamicFormTextboxComponent;
   let form: DynamicForm;

@@ -32,27 +32,55 @@ describe('BsDynamicFormButtonComponent', () => {
   });
 
   it('creates component template', () => {
-    const formContentDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
-    const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formContentElement).toBeDefined();
-    expect(formContentElement.innerHTML).toBe('label');
+    expect(formButtonElement).toBeDefined();
+    expect(formButtonElement.type).toBe('button');
+    expect(formButtonElement.innerHTML).toBe('label');
   });
 
   it('sets class name of dynamic form button', () => {
-    const formContentDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
-    const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formContentElement.className).toBe('dynamic-form-button');
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formContentElement.className).toBe('dynamic-form-button className1 className2');
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formContentElement.className).toBe('dynamic-form-button');
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
+  });
+
+  it('sets type of dynamic form button', () => {
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+
+    expect(formButtonElement.type).toBe('button');
+
+    component.template.type = 'submit';
+    fixture.detectChanges();
+
+    expect(formButtonElement.type).toBe('submit');
+
+    component.template.type = 'reset';
+    fixture.detectChanges();
+
+    expect(formButtonElement.type).toBe('reset');
+
+    component.template.type = 'button';
+    fixture.detectChanges();
+
+    expect(formButtonElement.type).toBe('button');
+
+    component.template.type = null;
+    fixture.detectChanges();
+
+    expect(formButtonElement.type).toBe('button');
   });
 });
