@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormElement } from '../dynamic-form-element';
+import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
+import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 import { DynamicFormButtonComponent } from './dynamic-form-button.component';
@@ -8,7 +9,7 @@ import { DynamicFormButtonComponent } from './dynamic-form-button.component';
 describe('DynamicFormButtonComponent', () => {
   let fixture: ComponentFixture<DynamicFormButtonComponent>;
   let component: DynamicFormButtonComponent;
-  let element: DynamicFormElement<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
+  let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,9 +21,10 @@ describe('DynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(DynamicFormButtonComponent);
     component = fixture.componentInstance;
 
+    const field = <DynamicFormField>{ control: { disabled: false } };
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
     const definition = <DynamicFormButtonDefinition>{ type: 'element', template };
-    element = new DynamicFormElement<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(definition);
+    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(field, definition);
     component.element = element;
 
     fixture.detectChanges();

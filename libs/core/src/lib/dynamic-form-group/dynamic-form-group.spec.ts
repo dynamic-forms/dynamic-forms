@@ -12,6 +12,7 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
+    expect(formGroup.type).toBe('field');
     expect(formGroup.path).toBe('key');
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
@@ -38,18 +39,18 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const elements = [
-      <DynamicFormElement>{ isElement: true },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl() },
-      <DynamicFormElement>{ isElement: true, elements: [
-          <DynamicFormElement>{ isElement: true, elements: [
-              <DynamicFormElement>{ isElement: true },
-              <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl() },
-              <DynamicFormField>{ isElement: false, definition: { key: 'key3' }, control: new FormControl() }
+      <DynamicFormElement>{ type: 'element' },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl() },
+      <DynamicFormElement>{ type: 'element', elements: [
+          <DynamicFormElement>{ type: 'element', elements: [
+              <DynamicFormElement>{ type: 'element' },
+              <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl() },
+              <DynamicFormField>{ type: 'field', definition: { key: 'key3' }, control: new FormControl() }
             ]
           },
-          <DynamicFormField>{ isElement: false, definition: { key: 'key4' }, control: new FormControl() },
-          <DynamicFormElement>{ isElement: true },
-          <DynamicFormField>{ isElement: false, definition: { key: 'key4' }, control: new FormControl() }
+          <DynamicFormField>{ type: 'field', definition: { key: 'key4' }, control: new FormControl() },
+          <DynamicFormElement>{ type: 'element' },
+          <DynamicFormField>{ type: 'field', definition: { key: 'key4' }, control: new FormControl() }
         ]
       }
     ];
@@ -83,8 +84,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), check: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), check: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), check: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), check: () => {} }
     ];
 
     spyOn(fields[0], 'check');
@@ -119,8 +120,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} }
     ];
 
     spyOn(fields[0], 'destroy');
@@ -138,8 +139,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), reset: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), reset: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), reset: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), reset: () => {} }
     ];
 
     spyOn(fields[0], 'reset');
@@ -158,8 +159,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [], defaultValue };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
     ];
 
     spyOn(fields[0], 'resetDefault');
@@ -177,8 +178,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} }
     ];
 
     spyOn(fields[0], 'resetDefault');
@@ -196,8 +197,8 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, definition: { key: 'key1' }, control: new FormControl(), validate: () => {} },
-      <DynamicFormField>{ isElement: false, definition: { key: 'key2' }, control: new FormControl(), validate: () => {} }
+      <DynamicFormField>{ type: 'field', definition: { key: 'key1' }, control: new FormControl(), validate: () => {} },
+      <DynamicFormField>{ type: 'field', definition: { key: 'key2' }, control: new FormControl(), validate: () => {} }
     ];
 
     spyOn(fields[0], 'validate');

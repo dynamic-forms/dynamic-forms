@@ -110,9 +110,7 @@ export class DynamicFormBuilder {
     return this.createFormElements(root, parent, definitions);
   }
 
-  private createFormActions<Field extends DynamicFormField>(
-    field: Field, definitions: DynamicFormActionDefinition[]
-  ): DynamicFormAction<Field>[] {
+  private createFormActions<Field extends DynamicFormField>(field: Field, definitions: DynamicFormActionDefinition[]): DynamicFormAction[] {
     return [];
   }
 

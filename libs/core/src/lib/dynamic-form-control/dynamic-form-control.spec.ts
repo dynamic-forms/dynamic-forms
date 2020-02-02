@@ -14,6 +14,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
+    expect(formControl.type).toBe('field');
     expect(formControl.path).toBe('key');
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);

@@ -1,4 +1,5 @@
 import { Inject, Injectable, Optional } from '@angular/core';
+import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
@@ -12,6 +13,7 @@ export class DynamicFormConfigService {
   readonly libraryNames: DynamicFormLibraryName[];
   readonly elementTypes: DynamicFormElementTypes;
   readonly fieldTypes: DynamicFormFieldTypes;
+  readonly actionTypes: DynamicFormActionTypes;
   readonly inputTypes: DynamicFormInputTypes;
   readonly fieldWrapperTypes: DynamicFormFieldWrapperTypes;
   readonly validationConfig: DynamicFormValidationConfig;
@@ -20,6 +22,7 @@ export class DynamicFormConfigService {
     @Inject(DYNAMIC_FORM_LIBRARY) readonly library: DynamicFormLibrary,
     @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES) private _actionTypes: DynamicFormActionTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES) private _inputTypes: DynamicFormInputTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null
@@ -27,6 +30,7 @@ export class DynamicFormConfigService {
     this.libraryNames = this.getLibraryNames();
     this.elementTypes = this.filterTypes(this._elementTypes);
     this.fieldTypes = this.filterTypes(this._fieldTypes);
+    this.actionTypes = this.filterTypes(this._actionTypes);
     this.inputTypes = this.filterTypes(this._inputTypes);
     this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes);
     this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
@@ -38,6 +42,10 @@ export class DynamicFormConfigService {
 
   getFieldType(type: string) {
     return this.fieldTypes.find(f => f.type === type);
+  }
+
+  getActionType(type: string) {
+    return this.actionTypes.find(f => f.type === type);
   }
 
   getInputType(type: string) {

@@ -40,7 +40,7 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get isElement() { return false; }
+  get type(): 'element' | 'field' | 'action' { return 'field'; }
 
   get wrappers() { return this.definition.wrappers; }
 

@@ -65,7 +65,7 @@ export class DynamicFormArray extends DynamicFormField<
 
   private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
     return elements.reduce((result, element) => {
-      if (!element.isElement) {
+      if (element.type === 'field') {
         return result.concat(element as DynamicFormField);
       }
       if (element.elements) {

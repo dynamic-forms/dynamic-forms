@@ -19,6 +19,7 @@ describe('DynamicFormField', () => {
     const definition = <DynamicFormFieldDefinition>{ template: {} };
     const formField = new DynamicFormFieldTest(root, parent, definition);
 
+    expect(formField.type).toBe('field');
     expect(formField.root).toBe(root);
     expect(formField.parent).toBe(parent);
     expect(formField.definition).toBe(definition);

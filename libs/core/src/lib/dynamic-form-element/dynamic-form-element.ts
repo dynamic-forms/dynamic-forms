@@ -13,11 +13,12 @@ export class DynamicFormElement<
     this._definition.template = definition.template || <Template>{};
   }
 
-  get isElement() { return true; }
+  get type(): 'element' | 'field' | 'action' { return 'element'; }
 
   get definition() { return this._definition; }
   get template() { return this.definition.template; }
-  get type() { return this.definition.type; }
+
+  get componentType() { return this.definition.type; }
 
   get elements() { return this._elements; }
 

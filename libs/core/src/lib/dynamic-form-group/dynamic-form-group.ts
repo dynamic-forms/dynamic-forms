@@ -75,7 +75,7 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
 
   private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
     return elements.reduce((result, element) => {
-      if (!element.isElement) {
+      if (element.type === 'field') {
         return result.concat(element as DynamicFormField);
       }
       if (element.elements) {

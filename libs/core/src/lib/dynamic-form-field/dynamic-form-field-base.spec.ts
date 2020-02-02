@@ -23,7 +23,7 @@ describe('DynamicFormFieldBase', () => {
   let component: DynamicFormFieldBaseTest;
 
   beforeEach(() => {
-    const configService = new DynamicFormConfigService(library, null, null, null, null, [ validationConfig ]);
+    const configService = new DynamicFormConfigService(library, null, null, null, null, null, [ validationConfig ]);
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldBaseTest(validationService);
