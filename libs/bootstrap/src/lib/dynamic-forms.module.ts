@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfigModule,
   DynamicFormContainerModule, DynamicFormContentModule, DynamicFormControlModule,
   DynamicFormGroupModule, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+import { BsDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { bsDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
-import { BsDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
 import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 
@@ -20,7 +20,7 @@ import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-inpu
     DynamicFormContentModule,
     DynamicFormControlModule,
     DynamicFormGroupModule,
-    BsDynamicFormElementModule,
+    BsDynamicFormActionModule,
     BsDynamicFormInputModule,
     BsDynamicFormFieldWrapperModule
   ],

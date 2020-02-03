@@ -6,4 +6,4 @@ import { MatDynamicFormButtonModule } from './dynamic-form-button/dynamic-form-b
     MatDynamicFormButtonModule
   ]
 })
-export class MatDynamicFormElementModule {}
+export class MatDynamicFormActionModule {}

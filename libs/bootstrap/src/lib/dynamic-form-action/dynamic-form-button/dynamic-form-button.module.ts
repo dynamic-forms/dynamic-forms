@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { DynamicFormConfigModule, DynamicFormElementType } from '@dynamic-forms/core';
+import { DynamicFormActionType, DynamicFormConfigModule } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
 
-export const bsDynamicFormButtonType: DynamicFormElementType = {
+export const bsDynamicFormButtonType: DynamicFormActionType = {
   type: 'button',
   component: BsDynamicFormButtonComponent,
   libraryName: bsDynamicFormLibrary.name
@@ -15,7 +15,7 @@ export const bsDynamicFormButtonType: DynamicFormElementType = {
   imports: [
     CommonModule,
     MatButtonModule,
-    DynamicFormConfigModule.withElement(bsDynamicFormButtonType)
+    DynamicFormConfigModule.withAction(bsDynamicFormButtonType)
   ],
   declarations: [
     BsDynamicFormButtonComponent

@@ -6,4 +6,4 @@ import { BsDynamicFormButtonModule } from './dynamic-form-button/dynamic-form-bu
     BsDynamicFormButtonModule
   ]
 })
-export class BsDynamicFormElementModule {}
+export class BsDynamicFormActionModule {}

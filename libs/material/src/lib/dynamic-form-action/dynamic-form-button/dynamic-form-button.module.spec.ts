@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '@dynamic-forms/core';
+import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
 import { matDynamicFormButtonType, MatDynamicFormButtonModule } from './dynamic-form-button.module';
 
@@ -12,8 +12,8 @@ describe('MatDynamicFormButtonModule', () => {
     });
   }));
 
-  it('provides DYNAMIC_FORM_ELEMENT_TYPES',
-    inject([DYNAMIC_FORM_ELEMENT_TYPES], (types: DynamicFormElementTypes) => {
+  it('provides DYNAMIC_FORM_ACTION_TYPES',
+    inject([DYNAMIC_FORM_ACTION_TYPES], (types: DynamicFormActionTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormButtonType);
       expect(types[0].libraryName).toEqual(matDynamicFormLibrary.name);

@@ -5,7 +5,7 @@ import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfigModule,
   DynamicFormContainerModule, DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
-import { MatDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
+import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-inpu
     DynamicFormContentModule,
     DynamicFormControlModule,
     DynamicFormGroupModule,
-    MatDynamicFormElementModule,
+    MatDynamicFormActionModule,
     MatDynamicFormInputModule
   ],
   exports: [
