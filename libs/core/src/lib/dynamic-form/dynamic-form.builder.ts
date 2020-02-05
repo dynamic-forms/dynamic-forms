@@ -111,7 +111,7 @@ export class DynamicFormBuilder {
   }
 
   private createFormActions<Field extends DynamicFormField>(field: Field, definitions: DynamicFormActionDefinition[]): DynamicFormAction[] {
-    return definitions.map(definition => {
+    return (definitions || []).map(definition => {
       return new DynamicFormAction(field, definition);
     });
   }
