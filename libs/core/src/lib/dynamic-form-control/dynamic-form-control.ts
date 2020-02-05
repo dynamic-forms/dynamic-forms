@@ -12,14 +12,17 @@ import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = DynamicFormInput> =
   DynamicFormFieldEvaluator<DynamicFormControl<FormInput>>;
 
-export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput>
-  extends DynamicFormField<FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
+export class DynamicFormControl<
+  FormInput extends DynamicFormInput = DynamicFormInput,
+  Template extends DynamicFormControlTemplate<FormInput> = DynamicFormControlTemplate<FormInput>,
+  Definition extends DynamicFormControlDefinition<FormInput, Template> = DynamicFormControlDefinition<FormInput, Template>
+> extends DynamicFormField<FormControl, Template, Definition> {
 
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();

@@ -4,12 +4,14 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
-export class DynamicFormArray extends DynamicFormField<
-  FormArray, DynamicFormArrayTemplate, DynamicFormArrayDefinition> {
+export class DynamicFormArray<
+  Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
+  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
+> extends DynamicFormField<FormArray, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);

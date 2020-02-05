@@ -61,7 +61,7 @@ export class DynamicFormBuilder {
     this.requireFieldType(definition.type);
     const field = new DynamicFormArray(root, parent, definition);
     field.setExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormGroupElements(root, field, definition.definitionTemplate));
+    field.setElements(this.createFormArrayElements(root, field, definition.definitionTemplate));
     return field;
   }
 
@@ -101,7 +101,7 @@ export class DynamicFormBuilder {
     });
   }
 
-  private createFormGroupElements(root: DynamicFormField, parent: DynamicFormArray, definitionTemplate: DynamicFormElementDefinition) {
+  private createFormArrayElements(root: DynamicFormField, parent: DynamicFormArray, definitionTemplate: DynamicFormElementDefinition) {
     const modelItems = parent.model || [] as any[];
     const definitions = modelItems.map((_item, index) => {
       const definition = JSON.parse(JSON.stringify(definitionTemplate));
@@ -111,7 +111,9 @@ export class DynamicFormBuilder {
   }
 
   private createFormActions<Field extends DynamicFormField>(field: Field, definitions: DynamicFormActionDefinition[]): DynamicFormAction[] {
-    return [];
+    return definitions.map(definition => {
+      return new DynamicFormAction(field, definition);
+    });
   }
 
   private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
