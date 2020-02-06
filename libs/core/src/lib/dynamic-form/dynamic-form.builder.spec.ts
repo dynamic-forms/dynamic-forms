@@ -41,7 +41,8 @@ describe('DynamicFormBuilder', () => {
           useValue: [
             { library: 'test', type: 'array', component: null },
             { library: 'test', type: 'control', component: null },
-            { library: 'test', type: 'group', component: null }
+            { library: 'test', type: 'group', component: null },
+            { library: 'test', type: 'field', component: null }
           ]
         },
         {
@@ -58,23 +59,6 @@ describe('DynamicFormBuilder', () => {
       ]
     });
   }));
-
-  it('initializes DynamicForm',
-    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const form = <DynamicForm>{ check: () => {} };
-
-      spyOn(form, 'check').and.callThrough();
-      spyOn(builder, 'createForm').and.returnValue(form);
-
-      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
-      const model = {};
-      const formCreated = builder.initForm(definition, model);
-
-      expect(form).toEqual(formCreated);
-      expect(form.check).toHaveBeenCalledTimes(1);
-      expect(builder.createForm).toHaveBeenCalledWith(definition, model);
-    })
-  );
 
   it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
@@ -97,9 +81,27 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements).toEqual([]);
       expect(form.fields).toEqual([]);
+      expect(form.actions).toEqual([]);
 
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
+    })
+  );
+
+  it('initializes DynamicForm',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = <DynamicForm>{ check: () => {} };
+
+      spyOn(form, 'check').and.callThrough();
+      spyOn(builder, 'createForm').and.returnValue(form);
+
+      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+      const model = {};
+      const formCreated = builder.initForm(definition, model);
+
+      expect(form).toEqual(formCreated);
+      expect(form.check).toHaveBeenCalledTimes(1);
+      expect(builder.createForm).toHaveBeenCalledWith(definition, model);
     })
   );
 
@@ -205,6 +207,16 @@ describe('DynamicFormBuilder', () => {
       const definition = <DynamicFormFieldDefinition>{ template: {} };
 
       expect(() => builder.createFormField(form, form, definition)).toThrowError('Field type undefined is not defined');
+    })
+  );
+
+  it('throws error creating DynamicFormField',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormFieldDefinition>{ type: 'field', template: {} };
+
+      expect(() => builder.createFormField(form, form, definition))
+        .toThrowError('Creating field of type field is not supported');
     })
   );
 

@@ -30,7 +30,7 @@ export class DynamicFormComponentFactory {
       case 'action':
         return this.createActionComponent(ref, element as DynamicFormAction);
       default:
-        throw Error(`Class type ${ element.classType } is not defined`);
+        throw Error(`Creating component of class type ${ element.classType } is not supported`);
     }
   }
 

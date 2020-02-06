@@ -60,7 +60,7 @@ export class DynamicFormBuilder {
       case 'control':
         return this.createFormControl(root, parent, definition as DynamicFormControlDefinition);
       default:
-        throw Error();
+        throw Error(`Creating field of type ${ definition.type } is not supported`);
     }
   }
 
@@ -89,9 +89,9 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormAction(field: DynamicFormField, definition: DynamicFormActionDefinition) {
+  createFormAction(parent: DynamicFormField, definition: DynamicFormActionDefinition) {
     this.requireActionType(definition.type);
-    return new DynamicFormAction(field, definition);
+    return new DynamicFormAction(parent, definition);
   }
 
   private requireElementType(type: string) {
@@ -123,7 +123,7 @@ export class DynamicFormBuilder {
         case 'action':
           return this.createFormAction(parent, definition as DynamicFormActionDefinition);
         default:
-          throw Error();
+          throw Error(`Class type ${ classType } is not defined`);
       }
     });
   }
@@ -137,9 +137,9 @@ export class DynamicFormBuilder {
     return this.createFormElements(root, parent, definitions);
   }
 
-  private createFormActions<Field extends DynamicFormField>(field: Field, definitions: DynamicFormActionDefinition[]): DynamicFormAction[] {
+  private createFormActions<Field extends DynamicFormField>(parent: Field, definitions: DynamicFormActionDefinition[]) {
     return (definitions || []).map(definition => {
-      return this.createFormAction(field, definition);
+      return this.createFormAction(parent, definition);
     });
   }
 

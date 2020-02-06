@@ -147,6 +147,15 @@ describe('DynamicFormComponentFactory', () => {
     fixture.detectChanges();
   }));
 
+  it('throws error creating element component',
+    inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
+      const element = { componentType: 'element' };
+
+      expect(() => factory.createComponent(component.container, <any>element))
+        .toThrowError('Creating component of class type undefined is not supported');
+    })
+  );
+
   it('creates element component for element',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
       const element = { classType: 'element', componentType: 'element' };

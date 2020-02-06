@@ -10,14 +10,14 @@ export class DynamicFormAction<
   Field extends DynamicFormField = DynamicFormField,
 > extends DynamicFormElement<Template, Definition> {
 
-  protected readonly _field: Field;
+  protected readonly _parent: Field;
 
-  constructor(field: Field, definition: Definition) {
+  constructor(parent: Field, definition: Definition) {
     super(definition);
-    this._field = field;
+    this._parent = parent;
   }
 
   get classType(): DynamicFormClassType { return 'action'; }
 
-  get disabled() { return this._field.control.disabled; }
+  get disabled() { return this._parent.control.disabled; }
 }
