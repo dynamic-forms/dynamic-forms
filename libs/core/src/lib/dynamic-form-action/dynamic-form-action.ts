@@ -1,3 +1,4 @@
+import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
@@ -16,7 +17,7 @@ export class DynamicFormAction<
     this._field = field;
   }
 
-  get type(): 'element' | 'field' | 'action' { return 'action'; }
+  get classType(): DynamicFormClassType { return 'action'; }
 
   get disabled() { return this._field.control.disabled; }
 }

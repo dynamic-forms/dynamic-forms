@@ -149,7 +149,7 @@ describe('DynamicFormComponentFactory', () => {
 
   it('creates element component for element',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
-      const element = { type: 'element', componentType: 'element' };
+      const element = { classType: 'element', componentType: 'element' };
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
@@ -159,7 +159,7 @@ describe('DynamicFormComponentFactory', () => {
 
   it('creates field component for field',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
-      const element = { type: 'field', componentType: 'field' };
+      const element = { classType: 'field', componentType: 'field' };
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
@@ -169,7 +169,7 @@ describe('DynamicFormComponentFactory', () => {
 
   it('creates action component for action',
     inject([DynamicFormComponentFactory], (factory: DynamicFormComponentFactory) => {
-      const element = { type: 'action', componentType: 'action' };
+      const element = { classType: 'action', componentType: 'action' };
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormActionTestComponent));

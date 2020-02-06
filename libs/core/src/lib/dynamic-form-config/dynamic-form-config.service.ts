@@ -5,6 +5,7 @@ import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { DynamicFormClassType } from './dynamic-form-class-type';
 import { DynamicFormComponentType } from './dynamic-form-component-type';
 import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 
@@ -34,6 +35,18 @@ export class DynamicFormConfigService {
     this.inputTypes = this.filterTypes(this._inputTypes);
     this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes);
     this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
+  }
+
+  getClassType(type: string): DynamicFormClassType {
+    if (this.elementTypes.some(f => f.type === type)) {
+      return 'element';
+    } else if (this.fieldTypes.some(f => f.type === type)) {
+      return 'field';
+    } else if (this.actionTypes.some(f => f.type === type)) {
+      return 'action';
+    } else {
+      return undefined;
+    }
   }
 
   getElementType(type: string) {

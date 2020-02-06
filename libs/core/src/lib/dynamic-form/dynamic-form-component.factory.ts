@@ -22,7 +22,7 @@ export class DynamicFormComponentFactory {
   ) {}
 
   createComponent(ref: ViewContainerRef, element: DynamicFormElement) {
-    switch (element.type) {
+    switch (element.classType) {
       case 'element':
         return this.createElementComponent(ref, element);
       case 'field':
@@ -30,7 +30,7 @@ export class DynamicFormComponentFactory {
       case 'action':
         return this.createActionComponent(ref, element as DynamicFormAction);
       default:
-        throw Error(`Element type ${ element.type } is not defined`);
+        throw Error(`Class type ${ element.classType } is not defined`);
     }
   }
 

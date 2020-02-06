@@ -1,3 +1,4 @@
+import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
@@ -13,11 +14,10 @@ export class DynamicFormElement<
     this._definition.template = definition.template || <Template>{};
   }
 
-  get type(): 'element' | 'field' | 'action' { return 'element'; }
-
   get definition() { return this._definition; }
   get template() { return this.definition.template; }
 
+  get classType(): DynamicFormClassType { return 'element'; }
   get componentType() { return this.definition.type; }
 
   get elements() { return this._elements; }

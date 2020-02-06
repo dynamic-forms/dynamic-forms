@@ -6,7 +6,7 @@ describe('DynamicFormElement', () => {
     const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
 
-    expect(formElement.type).toBe('element');
+    expect(formElement.classType).toBe('element');
     expect(formElement.definition).toBe(definition);
     expect(formElement.template).toBe(definition.template);
     expect(formElement.componentType).toBe('type');
@@ -17,7 +17,7 @@ describe('DynamicFormElement', () => {
     const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
     const elements = [
-      <DynamicFormElement>{ type: 'element', definition: {} }
+      <DynamicFormElement>{ classType: 'element', definition: {} }
     ];
 
     formElement.setElements(elements);

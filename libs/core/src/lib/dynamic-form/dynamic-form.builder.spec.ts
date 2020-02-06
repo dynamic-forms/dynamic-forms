@@ -1,4 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
+import { DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
@@ -7,6 +9,7 @@ import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-fo
 import { DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
+import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
@@ -39,6 +42,12 @@ describe('DynamicFormBuilder', () => {
             { library: 'test', type: 'array', component: null },
             { library: 'test', type: 'control', component: null },
             { library: 'test', type: 'group', component: null }
+          ]
+        },
+        {
+          provide: DYNAMIC_FORM_ACTION_TYPES,
+          useValue: [
+            { library: 'test', type: 'action', component: null }
           ]
         },
         DynamicFormConfigService,
@@ -154,6 +163,21 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
+  it('creates DynamicForm including DynamicFormAction',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormDefinition>{
+        elements: [
+          <DynamicFormActionDefinition>{ type: 'action', template: {} }
+        ]
+      };
+      const form = builder.createForm(definition, {});
+
+      expect(form.elements.length).toBe(1);
+      expect(form.fields.length).toBe(0);
+      expect(form.model).toEqual({});
+    })
+  );
+
   it('throws error creating DynamicFormElement',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
@@ -172,6 +196,27 @@ describe('DynamicFormBuilder', () => {
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
+    })
+  );
+
+  it('throws error creating DynamicFormField',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormFieldDefinition>{ template: {} };
+
+      expect(() => builder.createFormField(form, form, definition)).toThrowError('Field type undefined is not defined');
+    })
+  );
+
+  it('creates DynamicFormField',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormFieldDefinition>{ type: 'group', template: {} };
+      const formField = builder.createFormField(form, form, definition);
+
+      expect(formField.definition).toBe(definition);
+      expect(formField.template).toBe(definition.template);
     })
   );
 
@@ -283,6 +328,27 @@ describe('DynamicFormBuilder', () => {
 
       expect(formControl.control).toBeDefined();
       expect(formControl.control.validator).toBeDefined();
+    })
+  );
+
+  it('throws error creating DynamicFormAction',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormActionDefinition>{ template: {} };
+
+      expect(() => builder.createFormAction(form, definition)).toThrowError('Action type undefined is not defined');
+    })
+  );
+
+  it('creates DynamicFormAction',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
+      const formElement = builder.createFormAction(form, definition);
+
+      expect(formElement.definition).toBe(definition);
+      expect(formElement.template).toBe(definition.template);
     })
   );
 });

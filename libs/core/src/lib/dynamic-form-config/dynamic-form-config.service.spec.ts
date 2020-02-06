@@ -38,6 +38,22 @@ describe('DynamicFormConfigService', () => {
       })
     );
 
+    it('returns DynamicFormClassType',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        const classType1 = service.getClassType('element');
+        const classType2 = service.getClassType('field');
+        const classType3 = service.getClassType('action');
+        const classType4 = service.getClassType('input');
+        const classType5 = service.getClassType('field-wrapper');
+
+        expect(classType1).toBeUndefined();
+        expect(classType2).toBeUndefined();
+        expect(classType3).toBeUndefined();
+        expect(classType4).toBeUndefined();
+        expect(classType5).toBeUndefined();
+      })
+    );
+
     it('returns DynamicFormElementType being undefined',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         const elementType = service.getElementType('element');
@@ -114,6 +130,22 @@ describe('DynamicFormConfigService', () => {
         expect(service.inputTypes).toEqual(inputTypes);
         expect(service.fieldWrapperTypes).toEqual(fieldWrapperTypes);
         expect(service.validationConfig).toEqual(validationConfigs[0]);
+      })
+    );
+
+    it('returns DynamicFormClassType',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        const classType1 = service.getClassType('element');
+        const classType2 = service.getClassType('field');
+        const classType3 = service.getClassType('action');
+        const classType4 = service.getClassType('input');
+        const classType5 = service.getClassType('field-wrapper');
+
+        expect(classType1).toBe('element');
+        expect(classType2).toBe('field');
+        expect(classType3).toBe('action');
+        expect(classType4).toBeUndefined();
+        expect(classType5).toBeUndefined();
       })
     );
 

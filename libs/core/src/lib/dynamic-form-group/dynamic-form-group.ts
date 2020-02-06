@@ -22,7 +22,7 @@ export class DynamicFormGroup<
 
   setElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
-    this._fields = this.getFields(this._elements);
+    this._fields = this.filterFields(this._elements);
     this._fields.forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
@@ -75,17 +75,5 @@ export class DynamicFormGroup<
         this.control.enable();
       }
     }
-  }
-
-  private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
-    return elements.reduce((result, element) => {
-      if (element.type === 'field') {
-        return result.concat(element as DynamicFormField);
-      }
-      if (element.elements) {
-        return result.concat(this.getFields(element.elements));
-      }
-      return result;
-    }, <DynamicFormField[]>[]);
   }
 }

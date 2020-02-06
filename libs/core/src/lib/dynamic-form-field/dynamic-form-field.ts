@@ -1,5 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
@@ -7,7 +8,6 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
-
 
 export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
@@ -40,7 +40,7 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get type(): 'element' | 'field' | 'action' { return 'field'; }
+  get classType(): DynamicFormClassType { return 'field'; }
 
   get wrappers() { return this.definition.wrappers; }
 
@@ -88,6 +88,18 @@ export abstract class DynamicFormField<
   abstract reset(): void;
   abstract resetDefault(): void;
   abstract validate();
+
+  protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
+    return elements.reduce((result, element) => {
+      if (element.classType === 'field') {
+        return result.concat(element as DynamicFormField);
+      }
+      if (element.elements) {
+        return result.concat(this.filterFields(element.elements));
+      }
+      return result;
+    }, <DynamicFormField[]>[]);
+  }
 
   protected createObject(obj: any, paths: string[]) {
     return paths.reduce((result, path) => {

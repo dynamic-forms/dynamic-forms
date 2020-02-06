@@ -8,7 +8,7 @@ describe('DynamicFormAction', () => {
     const definition = <DynamicFormActionDefinition>{ type: 'type', template: {}, elements: [] };
     const formAction = new DynamicFormAction(field, definition);
 
-    expect(formAction.type).toBe('action');
+    expect(formAction.classType).toBe('action');
     expect(formAction.definition).toBe(definition);
     expect(formAction.template).toBe(definition.template);
     expect(formAction.componentType).toBe('type');
