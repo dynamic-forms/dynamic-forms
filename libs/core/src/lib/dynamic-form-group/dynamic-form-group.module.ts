@@ -5,11 +5,8 @@ import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-con
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormGroupFactory } from './dynamic-form-group-factory';
+import { dynamicFormGroupFactory } from './dynamic-form-group-factory';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
-
-export const dynamicFormGroupFactory: DynamicFormGroupFactory =
-  (builder, root, parent, definition) => builder.createFormGroup(root, parent, definition);
 
 export const dynamicFormGroupType: DynamicFormFieldType = {
   type: 'group',

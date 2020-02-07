@@ -5,11 +5,8 @@ import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-con
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormArrayFactory } from './dynamic-form-array-factory';
+import { dynamicFormArrayFactory } from './dynamic-form-array-factory';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
-
-export const dynamicFormArrayFactory: DynamicFormArrayFactory =
-  (builder, root, parent, definition) => builder.createFormArray(root, parent, definition);
 
 export const dynamicFormArrayType: DynamicFormFieldType = {
   type: 'array',

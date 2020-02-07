@@ -83,38 +83,38 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   providers: [
     {
       provide: DYNAMIC_FORM_LIBRARY,
-      useValue: 'test'
+      useValue: { name: 'test' }
     },
     {
       provide: DYNAMIC_FORM_ELEMENT_TYPES,
       useValue: [
-        { library: 'test', type: 'element', component: DynamicFormElementTestComponent }
+        { libraryName: 'test', type: 'element', component: DynamicFormElementTestComponent }
       ]
     },
     {
       provide: DYNAMIC_FORM_FIELD_TYPES,
       useValue: [
-        { library: 'test', type: 'field', component: DynamicFormFieldTestComponent },
-        { library: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }
+        { libraryName: 'test', type: 'field', component: DynamicFormFieldTestComponent },
+        { libraryName: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }
       ]
     },
     {
       provide: DYNAMIC_FORM_ACTION_TYPES,
       useValue: [
-        { library: 'test', type: 'action', component: DynamicFormActionTestComponent }
+        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }
       ]
     },
     {
       provide: DYNAMIC_FORM_INPUT_TYPES,
       useValue: [
-        { library: 'test', type: 'input', component: DynamicFormInputTestComponent },
-        { library: 'test', type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] }
+        { libraryName: 'test', type: 'input', component: DynamicFormInputTestComponent },
+        { libraryName: 'test', type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] }
       ]
     },
     {
       provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
       useValue: [
-        { library: 'test', type: 'wrapper', component: DynamicFormFieldWrapperTestComponent },
+        { libraryName: 'test', type: 'wrapper', component: DynamicFormFieldWrapperTestComponent },
       ]
     },
     DynamicFormConfigService,

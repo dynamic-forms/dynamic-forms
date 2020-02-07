@@ -1,23 +1,64 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
-import { DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
+import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
-import { DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
+import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
-import { DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
+import { DynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
+  const elementFactory = jasmine.createSpy<DynamicFormElementFactory>('elementFactory',
+    (builder, root, parent, definition) => builder.createFormElement(root, parent, definition)
+  );
+
+  const elementTypes: DynamicFormElementTypes = [
+    { libraryName: 'test', type: 'element', factory: null, component: null },
+    { libraryName: 'test', type: 'element1', factory: elementFactory, component: null }
+  ];
+
+  const arrayFactory = jasmine.createSpy<DynamicFormArrayFactory>('arrayFactory',
+    (builder, root, parent, definition) => builder.createFormArray(root, parent, definition)
+  );
+  const controlFactory = jasmine.createSpy<DynamicFormControlFactory>('controlFactory',
+    (builder, root, parent, definition) => builder.createFormControl(root, parent, definition)
+  );
+  const groupFactory = jasmine.createSpy<DynamicFormGroupFactory>('groupFactory',
+    (builder, root, parent, definition) => builder.createFormGroup(root, parent, definition)
+  );
+
+  const fieldTypes: DynamicFormFieldTypes = [
+    { libraryName: 'test', type: 'field', factory: null, component: null },
+    { libraryName: 'test', type: 'array', factory: arrayFactory, component: null },
+    { libraryName: 'test', type: 'control', factory: controlFactory, component: null },
+    { libraryName: 'test', type: 'group', factory: groupFactory, component: null }
+  ];
+
+  const actionFactory = jasmine.createSpy<DynamicFormActionFactory>('actionFactory',
+    (builder, _root, parent, definition) => builder.createFormAction(parent, definition)
+  );
+
+  const actionTypes: DynamicFormActionTypes = [
+    { libraryName: 'test', type: 'action', factory: null, component: null },
+    { libraryName: 'test', type: 'action1', factory: actionFactory, component: null },
+  ];
+
   const getForm = (model: any) => {
     const definition = <DynamicFormDefinition>{ elements: [] };
     return new DynamicForm(definition, model);
@@ -26,46 +67,10 @@ describe('DynamicFormBuilder', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: 'test'
-        },
-        {
-          provide: DYNAMIC_FORM_ELEMENT_TYPES,
-          useValue: [
-            { library: 'test', type: 'element', component: null }
-          ]
-        },
-        {
-          provide: DYNAMIC_FORM_FIELD_TYPES,
-          useValue: [
-            {
-              library: 'test',
-              type: 'array',
-              factory: (builder, root, parent, definition) => builder.createFormArray(root, parent, definition),
-              component: null
-            },
-            {
-              library: 'test',
-              type: 'control',
-              factory: (builder, root, parent, definition) => builder.createFormControl(root, parent, definition),
-              component: null
-            },
-            {
-              library: 'test',
-              type: 'group',
-              factory: (builder, root, parent, definition) => builder.createFormGroup(root, parent, definition),
-              component: null
-            },
-            { library: 'test', type: 'field', component: null }
-          ]
-        },
-        {
-          provide: DYNAMIC_FORM_ACTION_TYPES,
-          useValue: [
-            { library: 'test', type: 'action', component: null }
-          ]
-        },
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
+        { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
+        { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
+        { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
         DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
@@ -216,37 +221,6 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('throws error creating DynamicFormField',
-    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const form = getForm({});
-      const definition = <DynamicFormFieldDefinition>{ template: {} };
-
-      expect(() => builder.createFormField(form, form, definition)).toThrowError('Field type undefined is not defined');
-    })
-  );
-
-  it('throws error creating DynamicFormField',
-    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const form = getForm({});
-      const definition = <DynamicFormFieldDefinition>{ type: 'field', template: {} };
-
-      expect(() => builder.createFormField(form, form, definition))
-        .toThrowError('Creating field of type field is not supported');
-    })
-  );
-
-  it('creates DynamicFormField',
-    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const model = {};
-      const form = getForm(model);
-      const definition = <DynamicFormFieldDefinition>{ type: 'group', template: {} };
-      const formField = builder.createFormField(form, form, definition);
-
-      expect(formField.definition).toBe(definition);
-      expect(formField.template).toBe(definition.template);
-    })
-  );
-
   it('throws error creating DynamicFormGroup',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const form = getForm({});
@@ -373,6 +347,126 @@ describe('DynamicFormBuilder', () => {
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
       const formElement = builder.createFormAction(form, definition);
+
+      expect(formElement.definition).toBe(definition);
+      expect(formElement.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormElement using default factory',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      spyOn(builder, 'createFormElement').and.callThrough();
+
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
+      const formElement = builder.createFormElementForFactory(form, form, definition);
+
+      expect(builder.createFormElement).toHaveBeenCalledWith(form, form, definition);
+
+      expect(formElement.definition).toBe(definition);
+      expect(formElement.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormElement using factory of provided element type',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormElementDefinition>{ type: 'element1', template: {} };
+      const formElement = builder.createFormElementForFactory(form, form, definition);
+
+      expect(elementFactory).toHaveBeenCalledWith(builder, form, form, definition);
+
+      expect(formElement.definition).toBe(definition);
+      expect(formElement.template).toBe(definition.template);
+    })
+  );
+
+  it('throws error creating DynamicFormField if field type is not provided',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormFieldDefinition>{ template: {} };
+
+      expect(() => builder.createFormFieldForFactory(form, form, definition)).toThrowError('Field type undefined is not defined');
+    })
+  );
+
+  it('throws error creating DynamicFormField if field type does not provide factory',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const form = getForm({});
+      const definition = <DynamicFormFieldDefinition>{ type: 'field', template: {} };
+
+      expect(() => builder.createFormFieldForFactory(form, form, definition)).toThrowError('Creating field of type field is not supported');
+    })
+  );
+
+  it('creates DynamicFormField using factory of provided field type',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormFieldDefinition>{ type: 'array', template: {} };
+      const formField = builder.createFormFieldForFactory(form, form, definition);
+
+      expect(arrayFactory).toHaveBeenCalledWith(builder, form, form, definition);
+
+      expect(formField.definition).toBe(definition);
+      expect(formField.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormField using factory of provided field type',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormFieldDefinition>{ type: 'control', template: {} };
+      const formField = builder.createFormFieldForFactory(form, form, definition);
+
+      expect(controlFactory).toHaveBeenCalledWith(builder, form, form, definition);
+
+      expect(formField.definition).toBe(definition);
+      expect(formField.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormField using factory of provided field type',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormFieldDefinition>{ type: 'group', template: {} };
+      const formField = builder.createFormFieldForFactory(form, form, definition);
+
+      expect(groupFactory).toHaveBeenCalledWith(builder, form, form, definition);
+
+      expect(formField.definition).toBe(definition);
+      expect(formField.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormAction using default factory',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      spyOn(builder, 'createFormAction').and.callThrough();
+
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
+      const formElement = builder.createFormActionForFactory(form, definition);
+
+      expect(builder.createFormAction).toHaveBeenCalledWith(form, form, definition);
+
+      expect(formElement.definition).toBe(definition);
+      expect(formElement.template).toBe(definition.template);
+    })
+  );
+
+  it('creates DynamicFormAction using factory of provided element type',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormActionDefinition>{ type: 'action1', template: {} };
+      const formElement = builder.createFormActionForFactory(form, definition);
+
+      expect(actionFactory).toHaveBeenCalledWith(builder, null, form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);

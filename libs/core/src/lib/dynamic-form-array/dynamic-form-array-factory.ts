@@ -1,11 +1,9 @@
-import { FormArray } from '@angular/forms';
-import { DynamicFormFieldFactory } from '../dynamic-form-field/dynamic-form-field-factory';
-import { DynamicFormArray } from './dynamic-form-array';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
-import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
-export type DynamicFormArrayFactory<
-  Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
-  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
-  Array extends DynamicFormArray<Template, Definition> = DynamicFormArray<Template, Definition>
-> = DynamicFormFieldFactory<FormArray, Template, Definition, Array>;
+export function dynamicFormArrayFactory(
+  builder: DynamicFormBuilder, root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition
+) {
+  return builder.createFormArray(root, parent, definition);
+}
