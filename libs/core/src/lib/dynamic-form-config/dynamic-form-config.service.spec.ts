@@ -99,7 +99,7 @@ describe('DynamicFormConfigService', () => {
     const libraryName: DynamicFormLibraryName = 'text';
     const library: DynamicFormLibrary = { name: libraryName };
     const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, libraryName }];
-    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', component: null, libraryName }];
+    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', factory: null, component: null, libraryName }];
     const actionTypes: DynamicFormActionTypes = [{ type: 'action', component: null, libraryName }];
     const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, libraryName }];
     const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, libraryName }];
@@ -205,12 +205,12 @@ describe('DynamicFormConfigService', () => {
       { type: 'element-1', component: null, libraryName: libraryName }
     ];
     const fieldTypes: DynamicFormFieldTypes = [
-      { type: 'field-1', component: null, libraryName: coreLibraryName },
-      { type: 'field-2', component: null, libraryName: coreLibraryName },
-      { type: 'field-1', component: null, libraryName: otherLibraryName },
-      { type: 'field-2', component: null, libraryName: otherLibraryName },
-      { type: 'field-3', component: null, libraryName: otherLibraryName },
-      { type: 'field-1', component: null, libraryName: libraryName },
+      { type: 'field-1', factory: null, component: null, libraryName: coreLibraryName },
+      { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName },
+      { type: 'field-1', factory: null, component: null, libraryName: otherLibraryName },
+      { type: 'field-2', factory: null, component: null, libraryName: otherLibraryName },
+      { type: 'field-3', factory: null, component: null, libraryName: otherLibraryName },
+      { type: 'field-1', factory: null, component: null, libraryName: libraryName },
     ];
     const actionTypes: DynamicFormActionTypes = [
       { type: 'action-1', component: null, libraryName: coreLibraryName },
@@ -264,8 +264,8 @@ describe('DynamicFormConfigService', () => {
           { type: 'element-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.fieldTypes).toEqual([
-          { type: 'field-1', component: null, libraryName: libraryName },
-          { type: 'field-2', component: null, libraryName: coreLibraryName }
+          { type: 'field-1', factory: null, component: null, libraryName: libraryName },
+          { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName }
         ]);
         expect(service.actionTypes).toEqual([
           { type: 'action-1', component: null, libraryName: libraryName },

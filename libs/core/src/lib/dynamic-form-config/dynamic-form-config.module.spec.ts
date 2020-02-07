@@ -96,7 +96,7 @@ describe('DynamicFormConfigModule', () => {
 
   describe('withField', () => {
     const libraryName = 'test';
-    const type: DynamicFormFieldType = { type: 'fieldType', component: null, libraryName };
+    const type: DynamicFormFieldType = { type: 'fieldType', factory: null, component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({

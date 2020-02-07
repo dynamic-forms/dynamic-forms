@@ -1,5 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
@@ -75,7 +76,7 @@ export class DynamicFormConfigService {
     return [ this.library.name, ...referenceLibraryNamesReverse ];
   }
 
-  private filterTypes<Component>(types: DynamicFormComponentType<Component>[]): DynamicFormComponentType<Component>[] {
+  private filterTypes<Type extends DynamicFormComponentType>(types: Type[]): Type[] {
     if (!types || !types.length) {
       return [];
     }
@@ -86,11 +87,8 @@ export class DynamicFormConfigService {
     }, []);
   }
 
-  private getLibraryTypes<Component>(
-    name: DynamicFormLibraryName,
-    types: DynamicFormComponentType<Component>[],
-    excludeTypes: DynamicFormComponentType<Component>[]
-  ): DynamicFormComponentType<Component>[] {
+  private getLibraryTypes<Type extends DynamicFormComponentType>(
+    name: DynamicFormLibraryName, types: Type[], excludeTypes: Type[]): Type[] {
     if (excludeTypes && excludeTypes.length) {
       const excludeTypeNames = excludeTypes.map(type => type.type);
       return types.filter(type => type.libraryName === name && !excludeTypeNames.includes(type.type));

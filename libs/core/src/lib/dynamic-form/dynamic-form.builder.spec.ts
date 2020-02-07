@@ -39,9 +39,24 @@ describe('DynamicFormBuilder', () => {
         {
           provide: DYNAMIC_FORM_FIELD_TYPES,
           useValue: [
-            { library: 'test', type: 'array', component: null },
-            { library: 'test', type: 'control', component: null },
-            { library: 'test', type: 'group', component: null },
+            {
+              library: 'test',
+              type: 'array',
+              factory: (builder, root, parent, definition) => builder.createFormArray(root, parent, definition),
+              component: null
+            },
+            {
+              library: 'test',
+              type: 'control',
+              factory: (builder, root, parent, definition) => builder.createFormControl(root, parent, definition),
+              component: null
+            },
+            {
+              library: 'test',
+              type: 'group',
+              factory: (builder, root, parent, definition) => builder.createFormGroup(root, parent, definition),
+              component: null
+            },
             { library: 'test', type: 'field', component: null }
           ]
         },

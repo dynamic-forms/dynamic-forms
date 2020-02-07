@@ -52,16 +52,13 @@ export class DynamicFormBuilder {
 
   createFormField(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormFieldDefinition): DynamicFormField {
     this.requireFieldType(definition.type);
-    switch (definition.type) {
-      case 'group':
-        return this.createFormGroup(root, parent, definition as DynamicFormGroupDefinition);
-      case 'array':
-        return this.createFormArray(root, parent, definition as DynamicFormArrayDefinition);
-      case 'control':
-        return this.createFormControl(root, parent, definition as DynamicFormControlDefinition);
-      default:
-        throw Error(`Creating field of type ${ definition.type } is not supported`);
+
+    const fieldType = this.configService.getFieldType(definition.type);
+    if (!fieldType || !fieldType.factory) {
+      throw Error(`Creating field of type ${ definition.type } is not supported`);
     }
+
+    return fieldType.factory(this, root, parent, definition);
   }
 
   createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition) {
