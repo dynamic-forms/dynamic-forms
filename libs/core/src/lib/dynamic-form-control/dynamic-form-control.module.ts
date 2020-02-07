@@ -1,18 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormClassFactory } from '../dynamic-form-config/dynamic-form-class-factory';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormControl } from './dynamic-form-control';
-import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlFactory } from './dynamic-form-control-factory';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
-export const dynamicFormControlFactory: DynamicFormClassFactory<DynamicFormControlDefinition, DynamicFormControl> =
+export const dynamicFormControlFactory: DynamicFormControlFactory =
   (builder, root, parent, definition) => builder.createFormControl(root, parent, definition);
 
-export const dynamicFormControlType: DynamicFormFieldType<DynamicFormControlDefinition, DynamicFormControl> = {
+export const dynamicFormControlType: DynamicFormFieldType = {
   type: 'control',
   factory: dynamicFormControlFactory,
   component: DynamicFormControlComponent,

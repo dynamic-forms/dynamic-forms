@@ -9,13 +9,13 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
-export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = DynamicFormInput> =
-  DynamicFormFieldEvaluator<DynamicFormControl<FormInput>>;
+export type DynamicFormControlEvaluator<Input extends DynamicFormInput = DynamicFormInput> =
+  DynamicFormFieldEvaluator<DynamicFormControl<Input>>;
 
 export class DynamicFormControl<
-  FormInput extends DynamicFormInput = DynamicFormInput,
-  Template extends DynamicFormControlTemplate<FormInput> = DynamicFormControlTemplate<FormInput>,
-  Definition extends DynamicFormControlDefinition<FormInput, Template> = DynamicFormControlDefinition<FormInput, Template>
+  Input extends DynamicFormInput = DynamicFormInput,
+  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
+  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
 > extends DynamicFormField<FormControl, Template, Definition> {
 
   protected _valueSubscription: Subscription;
