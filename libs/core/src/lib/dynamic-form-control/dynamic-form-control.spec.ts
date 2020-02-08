@@ -25,6 +25,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.path).toBe('key');
     expect(formControl.model).toBeNull();
     expect(formControl.control).toBeDefined();
+    expect(formControl.status).toBe('VALID');
 
     expect(formControl.elements).toEqual([]);
     expect(formControl.actions).toEqual([]);

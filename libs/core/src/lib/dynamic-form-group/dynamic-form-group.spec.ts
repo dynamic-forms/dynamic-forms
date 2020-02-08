@@ -24,6 +24,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.path).toBe('key');
     expect(formGroup.model).toEqual({});
     expect(formGroup.control).toBeDefined();
+    expect(formGroup.status).toBe('VALID');
 
     expect(formGroup.elements).toEqual([]);
     expect(formGroup.fields).toEqual([]);

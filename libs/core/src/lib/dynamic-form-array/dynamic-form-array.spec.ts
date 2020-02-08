@@ -23,6 +23,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.path).toBe('key');
     expect(formArray.model).toEqual([]);
     expect(formArray.control).toBeDefined();
+    expect(formArray.status).toBe('VALID');
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);

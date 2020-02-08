@@ -54,7 +54,6 @@ export abstract class DynamicFormField<
 
   get control() { return this._control; }
   get status() { return this._control.status; }
-  get valid() { return this._control.valid; }
 
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }

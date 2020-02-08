@@ -137,7 +137,7 @@ describe('DynamicFormField', () => {
     expect(formField.readonly).toBe(true);
   });
 
-  it('set expressions', () => {
+  it('inits expressions', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
     const formField = new DynamicFormFieldTest(null, null, definition);
     const fieldExpressions = <DynamicFormFieldExpressions>{
