@@ -5,10 +5,12 @@ import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-con
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { dynamicFormGroupFactory } from './dynamic-form-group-factory';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
 
 export const dynamicFormGroupType: DynamicFormFieldType = {
   type: 'group',
+  factory: dynamicFormGroupFactory,
   component: DynamicFormGroupComponent,
   libraryName: dynamicFormLibrary.name
 };

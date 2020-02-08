@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { dynamicFormControlFactory } from './dynamic-form-control-factory';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
 export const dynamicFormControlType: DynamicFormFieldType = {
   type: 'control',
+  factory: dynamicFormControlFactory,
   component: DynamicFormControlComponent,
   libraryName: dynamicFormLibrary.name
 };

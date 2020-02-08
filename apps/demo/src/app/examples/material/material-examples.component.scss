@@ -30,7 +30,8 @@
           margin-top: 10px;
           margin-bottom: 10px;
 
-          dynamic-form-element, 
+          dynamic-form-element,
+          dynamic-form-content, 
           dynamic-form-group, 
           dynamic-form-array, 
           dynamic-form-control {
@@ -105,6 +106,9 @@
       }
   
       .dynamic-form-actions {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
         button {
           margin-right: 10px;
         }

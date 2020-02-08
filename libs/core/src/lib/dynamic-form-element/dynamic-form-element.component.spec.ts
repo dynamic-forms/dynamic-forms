@@ -30,11 +30,13 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
   providers: [
     {
       provide: DYNAMIC_FORM_LIBRARY,
-      useValue: 'test'
+      useValue: { name: 'test' }
     },
     {
       provide: DYNAMIC_FORM_ELEMENT_TYPES,
-      useValue: [{ library: 'test', type: 'element', component: DynamicFormElementBaseComponent }]
+      useValue: [
+        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent }
+      ]
     },
     DynamicFormConfigService,
     DynamicFormComponentFactory

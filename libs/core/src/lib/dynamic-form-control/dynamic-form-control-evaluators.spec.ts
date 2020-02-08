@@ -29,7 +29,7 @@ describe('DynamicFormControlEvaluators', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {
       'key': 'option1'
     });
-    const formControl = new DynamicFormControl(form, form, definition);
+    const formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
     formControl.template.input.options = [
       { value: 'option1', label: 'Option1' },
       { value: 'option2', label: 'Option2' }

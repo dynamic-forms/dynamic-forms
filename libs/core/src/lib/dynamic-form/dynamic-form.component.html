@@ -3,6 +3,10 @@
     <ng-container *ngFor="let element of elements">
       <dynamic-form-element [element]="element"></dynamic-form-element>
     </ng-container>
-    <ng-content></ng-content>
+    <div class="dynamic-form-actions">
+      <ng-container *ngFor="let action of actions">
+        <dynamic-form-element [element]="action"></dynamic-form-element>
+      </ng-container>
+    </div>
   </form>
 </div>

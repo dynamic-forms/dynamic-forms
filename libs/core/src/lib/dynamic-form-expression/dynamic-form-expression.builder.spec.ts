@@ -1,7 +1,10 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
+import { DynamicFormActionExpressionFunction } from './dynamic-form-action-expression';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
@@ -83,6 +86,65 @@ describe('DynamicFormExpressionBuilder', () => {
       model.readonly = true;
 
       expect(fieldExpression.value).toBe(true);
+    })
+  );
+
+  it('returns action expressions being null',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const action = <DynamicFormAction>{ definition: {} };
+      const actionExpressions = service.createActionExpressions(action);
+
+      expect(actionExpressions).toBeNull();
+    })
+  );
+
+  it('returns action expressions',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const root = { status: 'INVALID' };
+      const parent = { status: 'VALID' };
+      const expressions = <{ [key: string]: string }> {
+        'disabled': 'parentStatus === "VALID" && rootStatus === "VALID"'
+      };
+      const definition = <DynamicFormActionDefinition>{ expressions };
+      const action = <DynamicFormAction>{ root, parent, definition };
+      const actionExpressions = service.createActionExpressions(action);
+      const actionExpression = actionExpressions['disabled'];
+
+      expect(actionExpressions).toBeDefined();
+      expect(actionExpression).toBeDefined();
+      expect(actionExpression.action).toBe(action);
+      expect(actionExpression.func).toEqual(jasmine.any(Function));
+      expect(actionExpression.value).toBe(false);
+
+      root.status = 'VALID';
+
+      expect(actionExpression.value).toBe(true);
+    })
+  );
+
+  it('returns action expressions from function',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const root = { status: 'INVALID' };
+      const parent = { status: 'VALID' };
+      const expressions = <{ [key: string]: DynamicFormActionExpressionFunction }> {
+        'disabled': (parentStatus, rootStatus) => {
+          return parentStatus === 'VALID' && rootStatus === 'VALID';
+        }
+      };
+      const definition = <DynamicFormActionDefinition>{ expressions };
+      const action = <DynamicFormAction>{ root, parent, definition };
+      const actionExpressions = service.createActionExpressions(action);
+      const actionExpression = actionExpressions['disabled'];
+
+      expect(actionExpressions).toBeDefined();
+      expect(actionExpression).toBeDefined();
+      expect(actionExpression.action).toBe(action);
+      expect(actionExpression.func).toEqual(jasmine.any(Function));
+      expect(actionExpression.value).toBe(false);
+
+      root.status = 'VALID';
+
+      expect(actionExpression.value).toBe(true);
     })
   );
 });

@@ -1,4 +1,7 @@
 import { ComponentFactory, ComponentFactoryResolver, Injectable, Type, ViewContainerRef } from '@angular/core';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormActionBase } from '../dynamic-form-action/dynamic-form-action-base';
+import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
@@ -19,23 +22,35 @@ export class DynamicFormComponentFactory {
   ) {}
 
   createComponent(ref: ViewContainerRef, element: DynamicFormElement) {
-    return element.isElement
-      ? this.createElementComponent(ref, element)
-      : this.createFieldComponent(ref, element as DynamicFormField);
+    switch (element.classType) {
+      case 'element':
+        return this.createElementComponent(ref, element);
+      case 'field':
+        return this.createFieldComponent(ref, element as DynamicFormField);
+      case 'action':
+        return this.createActionComponent(ref, element as DynamicFormAction);
+      default:
+        throw Error(`Creating component of class type ${ element.classType } is not supported`);
+    }
   }
 
   createElementComponent(ref: ViewContainerRef, element: DynamicFormElement) {
-    const type = this.configService.getElementType(element.type);
+    const type = this.configService.getElementType(element.componentType);
     return this.createElementComponentForType(ref, element, type);
   }
 
   createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
-    const type = this.configService.getFieldType(field.type);
+    const type = this.configService.getFieldType(field.componentType);
     return this.createFieldComponentForType(ref, field, type);
   }
 
+  createActionComponent(ref: ViewContainerRef, action: DynamicFormAction) {
+    const type = this.configService.getActionType(action.componentType);
+    return this.createActionComponentForType(ref, action, type);
+  }
+
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
-    const type = this.configService.getInputType(field.inputType);
+    const type = this.configService.getInputType(field.inputComponentType);
     return this.createFieldComponentForType(ref, field, type);
   }
 
@@ -60,6 +75,13 @@ export class DynamicFormComponentFactory {
     return this.createFieldComponentFromFactory(ref, field, factory);
   }
 
+  private createActionComponentForType(
+    ref: ViewContainerRef, action: DynamicFormAction, type: DynamicFormActionType
+  ) {
+    const factory = this.getComponentFactory(type.component);
+    return this.createActionComponentFromFactory(ref, action, factory);
+  }
+
   private getComponentFactory<T>(componentType: Type<T>) {
     const resolver = this.componentFactoryResolver;
     return resolver.resolveComponentFactory(componentType);
@@ -78,6 +100,14 @@ export class DynamicFormComponentFactory {
   ) {
     const component = ref.createComponent(factory).instance;
     component.field = field;
+    return component;
+  }
+
+  private createActionComponentFromFactory(
+    ref: ViewContainerRef, action: DynamicFormAction, factory: ComponentFactory<DynamicFormActionBase>
+  ) {
+    const component = ref.createComponent(factory).instance;
+    component.action = action;
     return component;
   }
 
