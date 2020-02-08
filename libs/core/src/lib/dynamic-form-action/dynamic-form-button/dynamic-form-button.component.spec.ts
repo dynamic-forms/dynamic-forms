@@ -21,10 +21,11 @@ describe('DynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(DynamicFormButtonComponent);
     component = fixture.componentInstance;
 
-    const field = <DynamicFormField>{ control: { disabled: false } };
+    const root = <DynamicFormField>{};
+    const parent = <DynamicFormField>{};
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
     const definition = <DynamicFormButtonDefinition>{ type: 'element', template };
-    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(field, definition);
+    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(root, parent, definition);
     component.element = element;
 
     fixture.detectChanges();

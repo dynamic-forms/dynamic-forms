@@ -4,9 +4,13 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 
 describe('DynamicFormAction', () => {
   it('new instance', () => {
-    const field = <DynamicFormField>{};
+    const root = <DynamicFormField>{};
+    const parent = <DynamicFormField>{};
     const definition = <DynamicFormActionDefinition>{ type: 'type', template: {}, elements: [] };
-    const formAction = new DynamicFormAction(field, definition);
+    const formAction = new DynamicFormAction(root, parent, definition);
+
+    expect(formAction.root).toBe(root);
+    expect(formAction.parent).toBe(parent);
 
     expect(formAction.classType).toBe('action');
     expect(formAction.definition).toBe(definition);
