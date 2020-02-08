@@ -123,6 +123,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
+      expect(form.actions.length).toBe(0);
       expect(form.model).toEqual({});
     })
   );
@@ -138,6 +139,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.actions.length).toBe(0);
       expect(form.model).toEqual({ key: {} });
     })
   );
@@ -153,6 +155,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.actions.length).toBe(0);
       expect(form.model).toEqual({ key: [] });
     })
   );
@@ -168,11 +171,12 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.actions.length).toBe(0);
       expect(form.model).toEqual({ key: null });
     })
   );
 
-  it('creates DynamicForm including DynamicFormAction',
+  it('creates DynamicForm including DynamicFormAction in elements',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{
         elements: [
@@ -183,11 +187,12 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
+      expect(form.actions.length).toBe(0);
       expect(form.model).toEqual({});
     })
   );
 
-  it('creates DynamicForm including DynamicFormAction',
+  it('creates DynamicForm including DynamicFormAction in actions',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{
         actions: [
