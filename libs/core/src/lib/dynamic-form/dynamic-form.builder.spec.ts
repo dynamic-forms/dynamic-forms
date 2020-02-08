@@ -1,14 +1,13 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { FormGroup } from '@angular/forms';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
 import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
-import { DynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
+import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
-import { DynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
+import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
 import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
@@ -17,42 +16,30 @@ import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
-import { DynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
+import { dynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
-  const elementFactory = jasmine.createSpy<DynamicFormElementFactory>('elementFactory',
-    (builder, root, parent, definition) => builder.createFormElement(root, parent, definition)
-  );
+  const elementFactory: DynamicFormElementFactory =
+    (builder, root, parent, definition) => builder.createFormElement(root, parent, definition);
 
   const elementTypes: DynamicFormElementTypes = [
     { libraryName: 'test', type: 'element', factory: null, component: null },
     { libraryName: 'test', type: 'element1', factory: elementFactory, component: null }
   ];
 
-  const arrayFactory = jasmine.createSpy<DynamicFormArrayFactory>('arrayFactory',
-    (builder, root, parent, definition) => builder.createFormArray(root, parent, definition)
-  );
-  const controlFactory = jasmine.createSpy<DynamicFormControlFactory>('controlFactory',
-    (builder, root, parent, definition) => builder.createFormControl(root, parent, definition)
-  );
-  const groupFactory = jasmine.createSpy<DynamicFormGroupFactory>('groupFactory',
-    (builder, root, parent, definition) => builder.createFormGroup(root, parent, definition)
-  );
-
   const fieldTypes: DynamicFormFieldTypes = [
     { libraryName: 'test', type: 'field', factory: null, component: null },
-    { libraryName: 'test', type: 'array', factory: arrayFactory, component: null },
-    { libraryName: 'test', type: 'control', factory: controlFactory, component: null },
-    { libraryName: 'test', type: 'group', factory: groupFactory, component: null }
+    { libraryName: 'test', type: 'array', factory: dynamicFormArrayFactory, component: null },
+    { libraryName: 'test', type: 'control', factory: dynamicFormControlFactory, component: null },
+    { libraryName: 'test', type: 'group', factory: dynamicFormGroupFactory, component: null }
   ];
 
-  const actionFactory = jasmine.createSpy<DynamicFormActionFactory>('actionFactory',
-    (builder, _root, parent, definition) => builder.createFormAction(parent, definition)
-  );
+  const actionFactory: DynamicFormActionFactory =
+    (builder, _root, parent, definition) => builder.createFormAction(parent, definition);
 
   const actionTypes: DynamicFormActionTypes = [
     { libraryName: 'test', type: 'action', factory: null, component: null },
@@ -196,6 +183,22 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
+      expect(form.model).toEqual({});
+    })
+  );
+
+  it('creates DynamicForm including DynamicFormAction',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormDefinition>{
+        actions: [
+          <DynamicFormActionDefinition>{ type: 'action', template: {} }
+        ]
+      };
+      const form = builder.createForm(definition, {});
+
+      expect(form.elements.length).toBe(0);
+      expect(form.fields.length).toBe(0);
+      expect(form.actions.length).toBe(1);
       expect(form.model).toEqual({});
     })
   );
@@ -376,8 +379,6 @@ describe('DynamicFormBuilder', () => {
       const definition = <DynamicFormElementDefinition>{ type: 'element1', template: {} };
       const formElement = builder.createFormElementForFactory(form, form, definition);
 
-      expect(elementFactory).toHaveBeenCalledWith(builder, form, form, definition);
-
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
     })
@@ -408,8 +409,6 @@ describe('DynamicFormBuilder', () => {
       const definition = <DynamicFormFieldDefinition>{ type: 'array', template: {} };
       const formField = builder.createFormFieldForFactory(form, form, definition);
 
-      expect(arrayFactory).toHaveBeenCalledWith(builder, form, form, definition);
-
       expect(formField.definition).toBe(definition);
       expect(formField.template).toBe(definition.template);
     })
@@ -422,8 +421,6 @@ describe('DynamicFormBuilder', () => {
       const definition = <DynamicFormFieldDefinition>{ type: 'control', template: {} };
       const formField = builder.createFormFieldForFactory(form, form, definition);
 
-      expect(controlFactory).toHaveBeenCalledWith(builder, form, form, definition);
-
       expect(formField.definition).toBe(definition);
       expect(formField.template).toBe(definition.template);
     })
@@ -435,8 +432,6 @@ describe('DynamicFormBuilder', () => {
       const form = getForm(model);
       const definition = <DynamicFormFieldDefinition>{ type: 'group', template: {} };
       const formField = builder.createFormFieldForFactory(form, form, definition);
-
-      expect(groupFactory).toHaveBeenCalledWith(builder, form, form, definition);
 
       expect(formField.definition).toBe(definition);
       expect(formField.template).toBe(definition.template);
@@ -452,7 +447,7 @@ describe('DynamicFormBuilder', () => {
       const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
       const formElement = builder.createFormActionForFactory(form, definition);
 
-      expect(builder.createFormAction).toHaveBeenCalledWith(form, form, definition);
+      expect(builder.createFormAction).toHaveBeenCalledWith(form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
@@ -465,8 +460,6 @@ describe('DynamicFormBuilder', () => {
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action1', template: {} };
       const formElement = builder.createFormActionForFactory(form, definition);
-
-      expect(actionFactory).toHaveBeenCalledWith(builder, null, form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
