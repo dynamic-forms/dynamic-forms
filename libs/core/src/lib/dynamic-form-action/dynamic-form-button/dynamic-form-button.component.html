@@ -1,0 +1,5 @@
+<button class="dynamic-form-button" 
+  [class.hidden]="template?.hidden" [ngClass]="template?.className"
+  [type]="template?.type || 'button'" [disabled]="template?.disabled"
+  (click)="onClick($event)"
+>{{ template?.label }}</button>

@@ -1,0 +1,29 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "type": "container",
+      "template": {
+        "orientation": "row"
+      },
+      "elements": [
+        {
+          "type": "content",
+          "template": {
+            "className": "col",
+            "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+          }
+        },
+        {
+          "type": "content",
+          "template": {
+            "className": "col",
+            "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+          }
+        }
+      ]
+    }
+  ]
+}

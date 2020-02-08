@@ -114,5 +114,24 @@
         "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
       }
     }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "rootStatus !== 'VALID'"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
   ]
 }

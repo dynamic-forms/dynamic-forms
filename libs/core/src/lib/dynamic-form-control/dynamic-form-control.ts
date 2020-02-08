@@ -9,33 +9,36 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
-export type DynamicFormControlEvaluator<FormInput extends DynamicFormInput = DynamicFormInput> =
-  DynamicFormFieldEvaluator<DynamicFormControl<FormInput>>;
+export type DynamicFormControlEvaluator<Input extends DynamicFormInput = DynamicFormInput> =
+  DynamicFormFieldEvaluator<DynamicFormControl<Input>>;
 
-export class DynamicFormControl<FormInput extends DynamicFormInput = DynamicFormInput>
-  extends DynamicFormField<FormControl, DynamicFormControlTemplate<FormInput>, DynamicFormControlDefinition<FormInput>> {
+export class DynamicFormControl<
+  Input extends DynamicFormInput = DynamicFormInput,
+  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
+  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
+> extends DynamicFormField<FormControl, Template, Definition> {
 
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition<FormInput>) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
   }
 
-  get inputType() { return this.template.input.type; }
+  get inputComponentType() { return this.template.input.type; }
 
   get evaluators() { return this._evaluators; }
   get validators() { return this._validators; }
 
-  setEvaluators(evaluators: DynamicFormControlEvaluator[]) {
+  initEvaluators(evaluators: DynamicFormControlEvaluator[]) {
     this._evaluators = evaluators || [];
   }
 
-  setValidators(validators: DynamicFormControlValidator[]) {
+  initValidators(validators: DynamicFormControlValidator[]) {
     this._validators = validators || [];
     this._control.setValidators(this.getValidatorFunctions());
   }

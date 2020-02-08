@@ -4,10 +4,14 @@ import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
-export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGroupTemplate, DynamicFormGroupDefinition> {
+export class DynamicFormGroup<
+  Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
+  Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
+> extends DynamicFormField<FormGroup, Template, Definition> {
+
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition, model: any = null) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition, model: any = null) {
     super(root, parent, definition);
     this._model = model || this.getModel(parent, definition);
     this._control = new FormGroup({});
@@ -16,9 +20,9 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  setElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
-    this._fields = this.getFields(this._elements);
+    this._fields = this.filterFields(this._elements);
     this._fields.forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
@@ -71,17 +75,5 @@ export class DynamicFormGroup extends DynamicFormField<FormGroup, DynamicFormGro
         this.control.enable();
       }
     }
-  }
-
-  private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
-    return elements.reduce((result, element) => {
-      if (!element.isElement) {
-        return result.concat(element as DynamicFormField);
-      }
-      if (element.elements) {
-        return result.concat(this.getFields(element.elements));
-      }
-      return result;
-    }, <DynamicFormField[]>[]);
   }
 }

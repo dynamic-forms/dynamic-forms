@@ -149,5 +149,32 @@
         }
       ]    
     }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "rootStatus !== 'VALID'"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
   ]
 }

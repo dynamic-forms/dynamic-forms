@@ -16,19 +16,24 @@ describe('DynamicFormField', () => {
   it('new instance', () => {
     const root = null;
     const parent = null;
-    const definition = <DynamicFormFieldDefinition>{ template: {} };
+    const definition = <DynamicFormFieldDefinition>{ type: 'componentType', template: {} };
     const formField = new DynamicFormFieldTest(root, parent, definition);
 
     expect(formField.root).toBe(root);
     expect(formField.parent).toBe(parent);
     expect(formField.definition).toBe(definition);
+    expect(formField.template).toBe(definition.template);
+
+    expect(formField.classType).toBe('field');
+    expect(formField.componentType).toBe('componentType');
 
     expect(formField.path).toBeNull();
     expect(formField.model).toBeUndefined();
     expect(formField.options).toBeDefined();
-
-    expect(formField.template).toBe(definition.template);
     expect(formField.control).toBeUndefined();
+
+    expect(formField.elements).toEqual([]);
+    expect(formField.actions).toEqual([]);
 
     expect(formField.expressions).toEqual({});
     expect(formField.expressionChanges).toBeTruthy();
@@ -132,7 +137,7 @@ describe('DynamicFormField', () => {
     expect(formField.readonly).toBe(true);
   });
 
-  it('set expressions', () => {
+  it('inits expressions', () => {
     const definition = <DynamicFormFieldDefinition>{ key: 'key', template: {} };
     const formField = new DynamicFormFieldTest(null, null, definition);
     const fieldExpressions = <DynamicFormFieldExpressions>{
@@ -140,7 +145,7 @@ describe('DynamicFormField', () => {
       'input.readonly': <DynamicFormFieldExpression>{ value: false }
     };
 
-    formField.setExpressions(fieldExpressions);
+    formField.initExpressions(fieldExpressions);
 
     expect(formField.expressions).toBe(fieldExpressions);
     expect(formField.template['required']).toBe(true);

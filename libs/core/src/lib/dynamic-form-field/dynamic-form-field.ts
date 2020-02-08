@@ -1,6 +1,9 @@
 import { Observable, Subject } from 'rxjs';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
+import { assignExpressions } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -25,6 +28,8 @@ export abstract class DynamicFormField<
   protected _options: DynamicFormFieldOptions;
   protected _control: Control;
 
+  protected _actions: DynamicFormAction[] = [];
+
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(definition);
     this._root = root;
@@ -36,7 +41,7 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get isElement() { return false; }
+  get classType(): DynamicFormClassType { return 'field'; }
 
   get wrappers() { return this.definition.wrappers; }
 
@@ -48,27 +53,25 @@ export abstract class DynamicFormField<
   get options() { return this._options; }
 
   get control() { return this._control; }
+  get status() { return this._control.status; }
 
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
+
+  get actions() { return this._actions; }
 
   get expressionChangesSubject() { return this._expressionChangesSubject; }
   get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
 
-  setExpressions(expressions: DynamicFormFieldExpressions) {
+  initActions(actions: DynamicFormAction[]) {
+    this._actions = actions;
+  }
+
+  initExpressions(expressions: DynamicFormFieldExpressions) {
     if (expressions) {
       this._expressions = expressions;
-      Object.keys(expressions).forEach(path => {
-        const paths = path.split('.');
-        if (paths.length > 1) {
-          const key = paths.splice(paths.length - 1, 1)[0];
-          const obj = this.createObject(this.template, paths);
-          Object.defineProperty(obj, key, { get: () => expressions[path].value });
-        } else {
-          Object.defineProperty(this.template, path, { get: () => expressions[path].value });
-        }
-      });
+      assignExpressions(this.template, this._expressions);
     }
   }
 
@@ -79,11 +82,16 @@ export abstract class DynamicFormField<
   abstract resetDefault(): void;
   abstract validate();
 
-  protected createObject(obj: any, paths: string[]) {
-    return paths.reduce((result, path) => {
-      result[path] = result[path] || {};
-      return result[path];
-    }, obj);
+  protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
+    return elements.reduce((result, element) => {
+      if (element.classType === 'field') {
+        return result.concat(element as DynamicFormField);
+      }
+      if (element.elements) {
+        return result.concat(this.filterFields(element.elements));
+      }
+      return result;
+    }, <DynamicFormField[]>[]);
   }
 
   protected cloneObject(obj: any) {

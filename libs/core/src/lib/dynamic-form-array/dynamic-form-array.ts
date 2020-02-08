@@ -4,12 +4,14 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
-export class DynamicFormArray extends DynamicFormField<
-  FormArray, DynamicFormArrayTemplate, DynamicFormArrayDefinition> {
+export class DynamicFormArray<
+  Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
+  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
+> extends DynamicFormField<FormArray, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);
@@ -18,9 +20,9 @@ export class DynamicFormArray extends DynamicFormField<
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  setElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
-    this._fields = this.getFields(this._elements);
+    this._fields = this.filterFields(this._elements);
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
@@ -61,17 +63,5 @@ export class DynamicFormArray extends DynamicFormField<
       return this.cloneObject(definition.defaultValue);
     }
     return Array.from({ length: definition.defaultLength || 0 });
-  }
-
-  private getFields(elements: DynamicFormElement[]): DynamicFormField[] {
-    return elements.reduce((result, element) => {
-      if (!element.isElement) {
-        return result.concat(element as DynamicFormField);
-      }
-      if (element.elements) {
-        return result.concat(this.getFields(element.elements));
-      }
-      return result;
-    }, <DynamicFormField[]>[]);
   }
 }
