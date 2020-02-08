@@ -2,5 +2,4 @@ import { DynamicFormFieldTemplate } from '../dynamic-form-field/dynamic-form-fie
 
 export interface DynamicFormTemplate extends DynamicFormFieldTemplate {
   wrapperClassName?: string;
-  contentHidden?: boolean;
 }
