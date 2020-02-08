@@ -20,7 +20,7 @@ export class DynamicFormArray<
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  setElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
     this._fields = this.filterFields(this._elements);
     this._fields.forEach((field, index) => {

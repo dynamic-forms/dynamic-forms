@@ -35,48 +35,48 @@ export class DynamicFormBuilder {
 
   createForm(definition: DynamicFormDefinition, model: any) {
     const field = new DynamicForm(definition, model);
-    field.setExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormElements(field, field, field.definition.elements));
-    field.setActions(this.createFormActions(field, field, field.definition.actions));
+    field.initExpressions(this.createFieldExpressions(field));
+    field.initElements(this.createFormElements(field, field, field.definition.elements));
+    field.initActions(this.createFormActions(field, field, field.definition.actions));
     return field;
   }
 
   createFormElement(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition) {
     this.requireElementType(definition.type);
     const element = new DynamicFormElement(definition);
-    element.setElements(this.createFormElements(root, parent, element.definition.elements));
+    element.initElements(this.createFormElements(root, parent, element.definition.elements));
     return element;
   }
 
   createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition) {
     this.requireFieldType(definition.type);
     const field = new DynamicFormGroup(root, parent, definition);
-    field.setExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormElements(root, field, definition.elements));
+    field.initExpressions(this.createFieldExpressions(field));
+    field.initElements(this.createFormElements(root, field, definition.elements));
     return field;
   }
 
   createFormArray(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
     this.requireFieldType(definition.type);
     const field = new DynamicFormArray(root, parent, definition);
-    field.setExpressions(this.createFieldExpressions(field));
-    field.setElements(this.createFormArrayElements(root, field, definition.definitionTemplate));
+    field.initExpressions(this.createFieldExpressions(field));
+    field.initElements(this.createFormArrayElements(root, field, definition.definitionTemplate));
     return field;
   }
 
   createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
     this.requireFieldType(definition.type);
     const field = new DynamicFormControl(root, parent, definition);
-    field.setExpressions(this.createFieldExpressions(field));
-    field.setEvaluators(this.createControlEvaluators(field.definition));
-    field.setValidators(this.createControlValidators(field.definition));
+    field.initExpressions(this.createFieldExpressions(field));
+    field.initEvaluators(this.createControlEvaluators(field.definition));
+    field.initValidators(this.createControlValidators(field.definition));
     return field;
   }
 
   createFormAction(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormActionDefinition) {
     this.requireActionType(definition.type);
     const action = new DynamicFormAction(root, parent, definition);
-    action.setExpressions(this.createActionExpressions(action));
+    action.initExpressions(this.createActionExpressions(action));
     return action;
   }
 

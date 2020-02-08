@@ -19,7 +19,7 @@ export class DynamicFormAction<
 
   get classType(): DynamicFormClassType { return 'action'; }
 
-  setExpressions(expressions: DynamicFormActionExpressions) {
+  initExpressions(expressions: DynamicFormActionExpressions) {
     if (expressions) {
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);

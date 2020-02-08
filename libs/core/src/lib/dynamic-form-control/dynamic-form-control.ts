@@ -34,11 +34,11 @@ export class DynamicFormControl<
   get evaluators() { return this._evaluators; }
   get validators() { return this._validators; }
 
-  setEvaluators(evaluators: DynamicFormControlEvaluator[]) {
+  initEvaluators(evaluators: DynamicFormControlEvaluator[]) {
     this._evaluators = evaluators || [];
   }
 
-  setValidators(validators: DynamicFormControlValidator[]) {
+  initValidators(validators: DynamicFormControlValidator[]) {
     this._validators = validators || [];
     this._control.setValidators(this.getValidatorFunctions());
   }

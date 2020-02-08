@@ -61,7 +61,7 @@ describe('DynamicFormArray', () => {
       elements[0].elements[1]
     ];
 
-    formArray.setElements(elements);
+    formArray.initElements(elements);
 
     expect(formArray.elements).toEqual(elements);
     expect(formArray.fields).toEqual(fields);
@@ -75,7 +75,7 @@ describe('DynamicFormArray', () => {
       <DynamicFormElement>{ classType: 'element' }
     ];
 
-    formArray.setElements(elements);
+    formArray.initElements(elements);
 
     expect(formArray.elements).toEqual(elements);
     expect(formArray.fields).toEqual([]);
@@ -86,7 +86,7 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    formArray.setElements(null);
+    formArray.initElements(null);
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);
@@ -104,7 +104,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -123,7 +123,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -142,7 +142,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -161,7 +161,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -181,7 +181,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -200,7 +200,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

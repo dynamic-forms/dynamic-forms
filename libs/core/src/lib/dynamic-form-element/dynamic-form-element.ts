@@ -22,7 +22,7 @@ export class DynamicFormElement<
 
   get elements() { return this._elements; }
 
-  setElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
   }
 }

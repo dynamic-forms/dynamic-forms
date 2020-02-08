@@ -20,7 +20,7 @@ describe('DynamicFormElement', () => {
       <DynamicFormElement>{ classType: 'element', definition: {} }
     ];
 
-    formElement.setElements(elements);
+    formElement.initElements(elements);
 
     expect(formElement.elements).toEqual(elements);
   });
@@ -29,7 +29,7 @@ describe('DynamicFormElement', () => {
     const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
 
-    formElement.setElements(null);
+    formElement.initElements(null);
 
     expect(formElement.elements).toEqual([]);
   });

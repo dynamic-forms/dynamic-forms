@@ -65,11 +65,11 @@ export abstract class DynamicFormField<
   get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
 
-  setActions(actions: DynamicFormAction[]) {
+  initActions(actions: DynamicFormAction[]) {
     this._actions = actions;
   }
 
-  setExpressions(expressions: DynamicFormFieldExpressions) {
+  initExpressions(expressions: DynamicFormFieldExpressions) {
     if (expressions) {
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);

@@ -89,7 +89,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
-    formControl.setEvaluators(null);
+    formControl.initEvaluators(null);
 
     expect(formControl.evaluators).toEqual([]);
   });
@@ -100,7 +100,7 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
     const evaluators = [ { func: (_) => {} } ];
 
-    formControl.setEvaluators(evaluators);
+    formControl.initEvaluators(evaluators);
 
     expect(formControl.evaluators).toEqual(evaluators);
   });
@@ -110,7 +110,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
-    formControl.setValidators(null);
+    formControl.initValidators(null);
 
     expect(formControl.validators).toEqual([]);
   });
@@ -123,7 +123,7 @@ describe('DynamicFormControl', () => {
       { key: 'required', validatorFn: Validators.required }
     ];
 
-    formControl.setValidators(formControlValidators);
+    formControl.initValidators(formControlValidators);
 
     expect(formControl.validators).toEqual(formControlValidators);
   });
@@ -133,7 +133,7 @@ describe('DynamicFormControl', () => {
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
-    formControl.setValidators(null);
+    formControl.initValidators(null);
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).toBeNull();
@@ -148,7 +148,7 @@ describe('DynamicFormControl', () => {
       { key: 'required', validatorFn: Validators.required }
     ];
 
-    formControl.setValidators(formControlValidators);
+    formControl.initValidators(formControlValidators);
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).not.toBeNull();
@@ -188,7 +188,7 @@ describe('DynamicFormControl', () => {
       new DynamicFormControlValidator('required', definition.template, _ => Validators.required)
     ];
 
-    formControl.setValidators(formControlValidators);
+    formControl.initValidators(formControlValidators);
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.valid).toBe(false);
@@ -285,7 +285,7 @@ describe('DynamicFormControl', () => {
         }
       };
       const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
-      formControl.setEvaluators([
+      formControl.initEvaluators([
         { func: DynamicFormControlEvaluators.evalSelect }
       ]);
 
