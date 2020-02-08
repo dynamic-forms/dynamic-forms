@@ -1,3 +1,4 @@
+import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
@@ -13,15 +14,15 @@ export class DynamicFormElement<
     this._definition.template = definition.template || <Template>{};
   }
 
-  get isElement() { return true; }
-
   get definition() { return this._definition; }
   get template() { return this.definition.template; }
-  get type() { return this.definition.type; }
+
+  get classType(): DynamicFormClassType { return 'element'; }
+  get componentType() { return this.definition.type; }
 
   get elements() { return this._elements; }
 
-  setElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]) {
     this._elements = elements || [];
   }
 }

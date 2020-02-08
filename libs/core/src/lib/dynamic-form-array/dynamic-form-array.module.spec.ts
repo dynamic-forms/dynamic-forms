@@ -16,6 +16,7 @@ describe('DynamicFormArrayModule', () => {
     inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(dynamicFormArrayType);
+      expect(types[0].factory).toBeDefined();
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );

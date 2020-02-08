@@ -4,8 +4,8 @@ import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memo
 
 export const dynamicFormFieldExpressionArgs = [ 'model', 'parentModel', 'rootModel', 'memo' ];
 
-export type DynamicFormFieldExpressionFunction = (model: any, parentModel: any, rootModel: any,
-  memo: DynamicFormExpressionMemoization) => any;
+export type DynamicFormFieldExpressionFunction =
+  (model: any, parentModel: any, rootModel: any, memo: DynamicFormExpressionMemoization) => any;
 
 export class DynamicFormFieldExpression implements DynamicFormExpression<DynamicFormFieldExpressionFunction> {
   protected _memo: DynamicFormExpressionMemoization;

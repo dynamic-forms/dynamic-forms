@@ -8,18 +8,26 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
   it('new instance', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'componentType', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    expect(formArray.path).toBe('key');
     expect(formArray.root).toBe(form);
     expect(formArray.parent).toBe(form);
     expect(formArray.definition).toBe(definition);
+    expect(formArray.template).toBe(definition.template);
+
+    expect(formArray.classType).toBe('field');
+    expect(formArray.componentType).toBe('componentType');
+
+    expect(formArray.path).toBe('key');
     expect(formArray.model).toEqual([]);
     expect(formArray.control).toBeDefined();
-    expect(formArray.fields).toBeDefined();
-    expect(formArray.template).toBe(definition.template);
+    expect(formArray.status).toBe('VALID');
+
+    expect(formArray.elements).toEqual([]);
+    expect(formArray.fields).toEqual([]);
+    expect(formArray.actions).toEqual([]);
 
     expect(form.model).toEqual({ key: [] });
   });
@@ -46,12 +54,12 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const elements = [
-      <DynamicFormElement>{ isElement: true, elements: [
-          <DynamicFormElement>{ isElement: true, elements: [
-            <DynamicFormElement>{ isElement: true },
-            <DynamicFormField>{ isElement: false, control: new FormControl() }
+      <DynamicFormElement>{ classType: 'element', elements: [
+          <DynamicFormElement>{ classType: 'element', elements: [
+            <DynamicFormElement>{ classType: 'element' },
+            <DynamicFormField>{ classType: 'field', control: new FormControl() }
           ]},
-          <DynamicFormField>{ isElement: false, control: new FormControl() }
+          <DynamicFormField>{ classType: 'field', control: new FormControl() }
         ]
       }
     ];
@@ -60,7 +68,7 @@ describe('DynamicFormArray', () => {
       elements[0].elements[1]
     ];
 
-    formArray.setElements(elements);
+    formArray.initElements(elements);
 
     expect(formArray.elements).toEqual(elements);
     expect(formArray.fields).toEqual(fields);
@@ -70,9 +78,11 @@ describe('DynamicFormArray', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
-    const elements = [ <DynamicFormField>{ isElement: true } ];
+    const elements = [
+      <DynamicFormElement>{ classType: 'element' }
+    ];
 
-    formArray.setElements(elements);
+    formArray.initElements(elements);
 
     expect(formArray.elements).toEqual(elements);
     expect(formArray.fields).toEqual([]);
@@ -83,7 +93,7 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    formArray.setElements(null);
+    formArray.initElements(null);
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);
@@ -94,14 +104,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, check: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, check: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', check: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', check: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -113,14 +123,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, destroy: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, destroy: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', destroy: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', destroy: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -132,14 +142,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, reset: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, reset: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', reset: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', reset: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -151,14 +161,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', resetDefault: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', resetDefault: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -171,14 +181,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, resetDefault: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', resetDefault: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', resetDefault: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -190,14 +200,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ isElement: false, validate: () => {}, control: new FormControl() },
-      <DynamicFormField>{ isElement: false, validate: () => {}, control: new FormControl() }
+      <DynamicFormField>{ classType: 'field', validate: () => {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', validate: () => {}, control: new FormControl() }
     ];
 
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formArray.setElements(fields);
+    formArray.initElements(fields);
     formArray.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

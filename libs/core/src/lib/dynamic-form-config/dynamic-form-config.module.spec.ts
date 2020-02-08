@@ -1,4 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormActionType, DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementType, DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -95,7 +96,7 @@ describe('DynamicFormConfigModule', () => {
 
   describe('withField', () => {
     const libraryName = 'test';
-    const type: DynamicFormFieldType = { type: 'fieldType', component: null, libraryName };
+    const type: DynamicFormFieldType = { type: 'fieldType', factory: null, component: null, libraryName };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -107,6 +108,26 @@ describe('DynamicFormConfigModule', () => {
 
     it('provides DYNAMIC_FORM_FIELD_TYPES',
       inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
+        expect(types.length).toBe(1);
+        expect(types[0]).toEqual(type);
+      })
+    );
+  });
+
+  describe('withAction', () => {
+    const libraryName = 'test';
+    const type: DynamicFormActionType = { type: 'actionType', component: null, libraryName };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormConfigModule.withAction(type)
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_ACTION_TYPES',
+      inject([DYNAMIC_FORM_ACTION_TYPES], (types: DynamicFormActionTypes) => {
         expect(types.length).toBe(1);
         expect(types[0]).toEqual(type);
       })
