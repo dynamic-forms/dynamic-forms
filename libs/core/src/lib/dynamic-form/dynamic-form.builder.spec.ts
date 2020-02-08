@@ -39,7 +39,7 @@ describe('DynamicFormBuilder', () => {
   ];
 
   const actionFactory: DynamicFormActionFactory =
-    (builder, _root, parent, definition) => builder.createFormAction(parent, definition);
+    (builder, root, parent, definition) => builder.createFormAction(root, parent, definition);
 
   const actionTypes: DynamicFormActionTypes = [
     { libraryName: 'test', type: 'action', factory: null, component: null },
@@ -345,7 +345,7 @@ describe('DynamicFormBuilder', () => {
       const form = getForm({});
       const definition = <DynamicFormActionDefinition>{ template: {} };
 
-      expect(() => builder.createFormAction(form, definition)).toThrowError('Action type undefined is not defined');
+      expect(() => builder.createFormAction(form, form, definition)).toThrowError('Action type undefined is not defined');
     })
   );
 
@@ -354,7 +354,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
-      const formElement = builder.createFormAction(form, definition);
+      const formElement = builder.createFormAction(form, form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
@@ -450,9 +450,9 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
-      const formElement = builder.createFormActionForFactory(form, definition);
+      const formElement = builder.createFormActionForFactory(form, form, definition);
 
-      expect(builder.createFormAction).toHaveBeenCalledWith(form, definition);
+      expect(builder.createFormAction).toHaveBeenCalledWith(form, form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);
@@ -464,7 +464,7 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action1', template: {} };
-      const formElement = builder.createFormActionForFactory(form, definition);
+      const formElement = builder.createFormActionForFactory(form, form, definition);
 
       expect(formElement.definition).toBe(definition);
       expect(formElement.template).toBe(definition.template);

@@ -11,4 +11,8 @@ export class DynamicFormButtonComponent extends DynamicFormActionBase<DynamicFor
   constructor() {
     super();
   }
+
+  onClick($event) {
+    this.action.execute($event);
+  }
 }

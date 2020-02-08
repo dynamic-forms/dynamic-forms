@@ -7,15 +7,12 @@ import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 export abstract class DynamicFormActionBase<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
-  Field extends DynamicFormField = DynamicFormField
-> extends DynamicFormElementBase<Template, Definition, DynamicFormAction<Template, Definition, Field>> {
+> extends DynamicFormElementBase<Template, Definition, DynamicFormAction<Template, Definition>> {
 
   constructor() {
     super();
   }
 
   get action() { return this.element; }
-  set action(action: DynamicFormAction<Template, Definition, Field>) { this.element = action; }
-
-  get disabled() { return this.element.disabled; }
+  set action(action: DynamicFormAction<Template, Definition>) { this.element = action; }
 }

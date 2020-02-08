@@ -1,15 +1,22 @@
 {
+  "template": {
+    "contentHidden": true
+  },
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ],
   "elements": [
     {
       "key": "login",
       "type": "group",
       "template": {
         "label": "Login"
-      },
-      "defaultValue": { 
-        "email": "user01@mail.com",
-        "password": null,
-        "remember": true
       },
       "elements": [
         {

@@ -83,12 +83,42 @@
       "label": "Elements",      
       "items": [
         { 
-          "id": "elements-button", 
-          "label": "Button" 
-        },
-        { 
           "id": "elements-content", 
           "label": "Content" 
+        },        
+        { 
+          "id": "elements-container", 
+          "label": "Container" 
+        }
+      ]
+    },
+    {
+      "label": "Actions",      
+      "items": [
+        { 
+          "label": "Button",
+          "items": [
+            {
+              "id": "actions-button-submit",
+              "label": "Submit"
+            },
+            {
+              "id": "actions-button-validate",
+              "label": "Validate"
+            },
+            {
+              "id": "actions-button-reset",
+              "label": "Reset"
+            },
+            {
+              "id": "actions-button-reset-default",
+              "label": "Reset default"
+            },
+            {
+              "id": "actions-button-all",
+              "label": "All"
+            }
+          ] 
         }
       ]
     },

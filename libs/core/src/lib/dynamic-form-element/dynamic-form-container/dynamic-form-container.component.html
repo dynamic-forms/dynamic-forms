@@ -1,4 +1,4 @@
-<div class="dynamic-form-container" [ngClass]="template?.className">
+<div class="dynamic-form-container" [ngClass]="template?.className" [class.row]="template?.orientation === 'row'">
   <ng-container *ngFor="let element of elements">
     <dynamic-form-element [element]="element"></dynamic-form-element>      
   </ng-container>

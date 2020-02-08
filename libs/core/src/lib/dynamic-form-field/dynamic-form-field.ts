@@ -3,6 +3,7 @@ import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
+import { assignExpressions } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -52,6 +53,8 @@ export abstract class DynamicFormField<
   get options() { return this._options; }
 
   get control() { return this._control; }
+  get status() { return this._control.status; }
+  get valid() { return this._control.valid; }
 
   get hidden() { return this.parent.hidden || this.template.hidden || false; }
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
@@ -69,16 +72,7 @@ export abstract class DynamicFormField<
   setExpressions(expressions: DynamicFormFieldExpressions) {
     if (expressions) {
       this._expressions = expressions;
-      Object.keys(expressions).forEach(path => {
-        const paths = path.split('.');
-        if (paths.length > 1) {
-          const key = paths.splice(paths.length - 1, 1)[0];
-          const obj = this.createObject(this.template, paths);
-          Object.defineProperty(obj, key, { get: () => expressions[path].value });
-        } else {
-          Object.defineProperty(this.template, path, { get: () => expressions[path].value });
-        }
-      });
+      assignExpressions(this.template, this._expressions);
     }
   }
 
@@ -99,13 +93,6 @@ export abstract class DynamicFormField<
       }
       return result;
     }, <DynamicFormField[]>[]);
-  }
-
-  protected createObject(obj: any, paths: string[]) {
-    return paths.reduce((result, path) => {
-      result[path] = result[path] || {};
-      return result[path];
-    }, obj);
   }
 
   protected cloneObject(obj: any) {

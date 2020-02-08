@@ -4,14 +4,12 @@ import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormControl, DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
-import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
-import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
@@ -39,7 +37,7 @@ export class DynamicFormBuilder {
     const field = new DynamicForm(definition, model);
     field.setExpressions(this.createFieldExpressions(field));
     field.setElements(this.createFormElements(field, field, field.definition.elements));
-    field.setActions(this.createFormActions(field, field.definition.actions));
+    field.setActions(this.createFormActions(field, field, field.definition.actions));
     return field;
   }
 
@@ -75,9 +73,11 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormAction(parent: DynamicFormField, definition: DynamicFormActionDefinition) {
+  createFormAction(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormActionDefinition) {
     this.requireActionType(definition.type);
-    return new DynamicFormAction(parent, definition);
+    const action = new DynamicFormAction(root, parent, definition);
+    action.setExpressions(this.createActionExpressions(action));
+    return action;
   }
 
   createFormElementForFactory(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition) {
@@ -91,7 +91,7 @@ export class DynamicFormBuilder {
     return this.createFormElement(root, parent, definition);
   }
 
-  createFormFieldForFactory(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormFieldDefinition): DynamicFormField {
+  createFormFieldForFactory(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormFieldDefinition) {
     this.requireFieldType(definition.type);
 
     const fieldType = this.configService.getFieldType(definition.type);
@@ -102,15 +102,15 @@ export class DynamicFormBuilder {
     throw Error(`Creating field of type ${ definition.type } is not supported`);
   }
 
-  createFormActionForFactory(parent: DynamicFormField, definition: DynamicFormActionDefinition) {
+  createFormActionForFactory(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormActionDefinition) {
     this.requireActionType(definition.type);
 
     const actionType = this.configService.getActionType(definition.type);
     if (actionType.factory) {
-      return actionType.factory(this, null, parent, definition);
+      return actionType.factory(this, root, parent, definition);
     }
 
-    return this.createFormAction( parent, definition);
+    return this.createFormAction(root, parent, definition);
   }
 
   private requireElementType(type: string) {
@@ -140,7 +140,7 @@ export class DynamicFormBuilder {
         case 'field':
           return this.createFormFieldForFactory(root, parent, definition as DynamicFormFieldDefinition);
         case 'action':
-          return this.createFormActionForFactory(parent, definition as DynamicFormActionDefinition);
+          return this.createFormActionForFactory(root, parent, definition as DynamicFormActionDefinition);
         default:
           throw Error(`Class type ${ classType } is not defined`);
       }
@@ -156,21 +156,25 @@ export class DynamicFormBuilder {
     return this.createFormElements(root, parent, definitions);
   }
 
-  private createFormActions<Field extends DynamicFormField>(parent: Field, definitions: DynamicFormActionDefinition[]) {
+  private createFormActions(root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormActionDefinition[]) {
     return (definitions || []).map(definition => {
-      return this.createFormActionForFactory(parent, definition);
+      return this.createFormActionForFactory(root, parent, definition);
     });
   }
 
-  private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
+  private createFieldExpressions(field: DynamicFormField) {
     return this.expressionBuilder.createFieldExpressions(field);
   }
 
-  private createControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
+  private createActionExpressions(action: DynamicFormAction) {
+    return this.expressionBuilder.createActionExpressions(action);
+  }
+
+  private createControlEvaluators(definition: DynamicFormControlDefinition) {
     return this.evaluationBuilder.createControlEvaluators(definition);
   }
 
-  private createControlValidators(definition: DynamicFormControlDefinition): DynamicFormControlValidator[] {
+  private createControlValidators(definition: DynamicFormControlDefinition) {
     return this.validationBuilder.createControlValidators(definition.template);
   }
 }

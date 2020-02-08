@@ -2,4 +2,7 @@ import { DynamicFormElementTemplate } from '../dynamic-form-element/dynamic-form
 
 export interface DynamicFormActionTemplate extends DynamicFormElementTemplate {
   label: string;
+  hidden?: boolean;
+  disabled?: boolean;
+  action?: 'resetDefault' | 'validate';
 }
