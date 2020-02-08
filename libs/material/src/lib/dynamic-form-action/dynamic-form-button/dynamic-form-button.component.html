@@ -1,5 +1,5 @@
 <button mat-flat-button class="dynamic-form-button" color="primary" 
-  [ngClass]="template?.className"
+  [class.hidden]="template?.hidden" [ngClass]="template?.className"
   [type]="template?.type || 'button'" [disabled]="template?.disabled"
   (click)="onClick($event)"
 >{{ template?.label }}</button>

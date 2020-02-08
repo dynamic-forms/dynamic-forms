@@ -18,10 +18,11 @@ describe('BsDynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormButtonComponent);
     component = fixture.componentInstance;
 
-    const field = <DynamicFormField>{ control: { disabled: false } };
+    const root = <DynamicFormField>{};
+    const parent = <DynamicFormField>{};
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
     const definition = <DynamicFormButtonDefinition>{ type: 'element', template };
-    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(field, definition);
+    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(root, parent, definition);
     component.element = element;
 
     fixture.detectChanges();
@@ -39,6 +40,18 @@ describe('BsDynamicFormButtonComponent', () => {
     expect(formButtonElement).toBeDefined();
     expect(formButtonElement.type).toBe('button');
     expect(formButtonElement.innerHTML).toBe('label');
+  });
+
+  it('sets dynamic form button to hidden', () => {
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
+
+    component.template.hidden = true;
+    fixture.detectChanges();
+
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary hidden');
   });
 
   it('sets class name of dynamic form button', () => {

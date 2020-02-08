@@ -45,6 +45,18 @@ describe('DynamicFormButtonComponent', () => {
     expect(formButtonElement.innerHTML).toBe('label');
   });
 
+  it('sets dynamic form button to hidden', () => {
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+
+    expect(formButtonElement.className).toBe('dynamic-form-button');
+
+    component.template.hidden = true;
+    fixture.detectChanges();
+
+    expect(formButtonElement.className).toBe('dynamic-form-button hidden');
+  });
+
   it('sets class name of dynamic form button', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
