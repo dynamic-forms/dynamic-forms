@@ -100,4 +100,13 @@ describe('DynamicFormButtonComponent', () => {
 
     expect(formButtonElement.type).toBe('button');
   });
+
+  it('executes action onClick', () => {
+    spyOn(component.element, 'execute');
+
+    const event = null;
+    component.onClick(event);
+
+    expect(component.element.execute).toHaveBeenCalledWith(event);
+  });
 });

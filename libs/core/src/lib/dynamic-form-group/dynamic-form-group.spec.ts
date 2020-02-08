@@ -9,18 +9,25 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 describe('DynamicFormGroup', () => {
   it('new instance', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', type: 'componentType', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
-    expect(formGroup.classType).toBe('field');
-    expect(formGroup.path).toBe('key');
+
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
     expect(formGroup.definition).toBe(definition);
+    expect(formGroup.template).toBe(definition.template);
+
+    expect(formGroup.classType).toBe('field');
+    expect(formGroup.componentType).toBe('componentType');
+
+    expect(formGroup.path).toBe('key');
     expect(formGroup.model).toEqual({});
     expect(formGroup.control).toBeDefined();
-    expect(formGroup.template).toBe(definition.template);
-    expect(formGroup.fields).toBeDefined();
+
+    expect(formGroup.elements).toEqual([]);
+    expect(formGroup.fields).toEqual([]);
+    expect(formGroup.actions).toEqual([]);
 
     expect(form.model).toEqual({ key: {} });
   });

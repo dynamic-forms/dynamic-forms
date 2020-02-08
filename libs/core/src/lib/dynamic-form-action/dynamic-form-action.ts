@@ -15,9 +15,12 @@ export class DynamicFormAction<
 
   constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, definition: Definition) {
     super(definition);
+    this._expressions = {};
   }
 
   get classType(): DynamicFormClassType { return 'action'; }
+
+  get expressions() { return this._expressions; }
 
   initExpressions(expressions: DynamicFormActionExpressions) {
     if (expressions) {
