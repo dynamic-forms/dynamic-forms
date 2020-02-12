@@ -80,7 +80,7 @@ export abstract class DynamicFormField<
 
   abstract reset(): void;
   abstract resetDefault(): void;
-  abstract validate();
+  abstract validate(): void;
 
   protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
     return elements.reduce((result, element) => {

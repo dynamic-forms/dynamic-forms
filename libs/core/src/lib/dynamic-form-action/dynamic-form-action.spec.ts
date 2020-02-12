@@ -54,6 +54,21 @@ describe('DynamicFormAction', () => {
     expect(event.stopPropagation).toHaveBeenCalled();
   });
 
+  it('executes reset of parent', () => {
+    const parent = <DynamicFormField>{ reset() {} };
+    const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
+    const formAction = new DynamicFormAction(null, parent, definition);
+    const event = <Event>{ stopPropagation() {} };
+
+    spyOn(parent, 'reset');
+    spyOn(event, 'stopPropagation');
+
+    formAction.execute(event);
+
+    expect(parent.reset).toHaveBeenCalled();
+    expect(event.stopPropagation).toHaveBeenCalled();
+  });
+
   it('executes resetDefault of parent', () => {
     const parent = <DynamicFormField>{ resetDefault() {} };
     const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'resetDefault' }, elements: [] };
