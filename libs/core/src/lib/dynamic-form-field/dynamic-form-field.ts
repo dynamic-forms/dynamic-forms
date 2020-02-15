@@ -42,14 +42,14 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get classType(): DynamicFormClassType { return 'field'; }
-
-  get wrappers() { return this.definition.wrappers; }
-
   get root() { return this._root; }
   get parent() { return this._parent; }
 
+  get key() { return this.definition.key; }
+  get index() { return this.definition.index; }
   get path() { return this._path; }
+  get classType(): DynamicFormClassType { return 'field'; }
+
   get model() { return this._model; }
   get options() { return this._options; }
 
@@ -60,6 +60,7 @@ export abstract class DynamicFormField<
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
   get actions() { return this._actions; }
+  get wrappers() { return this.definition.wrappers; }
 
   get expressionChangesSubject() { return this._expressionChangesSubject; }
   get expressionChanges() { return this._expressionChanges; }

@@ -67,11 +67,10 @@ export class DynamicFormControl<
   }
 
   private createModel() {
-    const key = this.definition.key;
-    if (this.parent.model[key] === undefined) {
-      this.parent.model[key] = this.getDefaultValue();
+    if (this.parent.model[this.key] === undefined) {
+      this.parent.model[this.key] = this.getDefaultValue();
     }
-    return this.parent.model[key];
+    return this.parent.model[this.key];
   }
 
   private getDefaultValue() {
@@ -108,8 +107,8 @@ export class DynamicFormControl<
   }
 
   private setModel(model) {
-    this.parent.model[this.definition.key] = model;
-    this._model = this.parent.model[this.definition.key];
+    this.parent.model[this.key] = model;
+    this._model = this.parent.model[this.key];
   }
 
   private getValidatorFunctions() {

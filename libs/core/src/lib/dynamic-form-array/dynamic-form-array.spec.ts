@@ -8,7 +8,7 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
   it('new instance', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'componentType', template: {} };
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', index: 1, type: 'componentType', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
@@ -17,10 +17,12 @@ describe('DynamicFormArray', () => {
     expect(formArray.definition).toBe(definition);
     expect(formArray.template).toBe(definition.template);
 
+    expect(formArray.key).toBe('key');
+    expect(formArray.index).toBe(1);
+    expect(formArray.path).toBe('key');
     expect(formArray.classType).toBe('field');
     expect(formArray.componentType).toBe('componentType');
 
-    expect(formArray.path).toBe('key');
     expect(formArray.model).toEqual([]);
     expect(formArray.control).toBeDefined();
     expect(formArray.status).toBe('VALID');
