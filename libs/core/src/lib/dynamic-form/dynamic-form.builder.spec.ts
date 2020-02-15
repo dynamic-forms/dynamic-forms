@@ -268,7 +268,7 @@ describe('DynamicFormBuilder', () => {
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = { key: [ {}, {} ] };
       const form = getForm(model);
-      const definitionTemplate = <DynamicFormElementDefinition>{ type: 'element' };
+      const definitionTemplate = <DynamicFormFieldDefinition>{ type: 'control' };
       const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'array', template: {}, definitionTemplate };
       const formArray = builder.createFormArray(form, form, definition);
 
@@ -278,12 +278,14 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.template).toBe(definition.template);
 
       expect(formArray.control).toBeDefined();
-      expect(formArray.fields).toBeDefined();
-      expect(formArray.elements.length).toBe(2);
-      expect(formArray.elements[0].definition.key).toBe('0');
-      expect(formArray.elements[0].definition.type).toBe('element');
-      expect(formArray.elements[1].definition.key).toBe('1');
-      expect(formArray.elements[1].definition.type).toBe('element');
+      expect(formArray.elements).toBeDefined();
+      expect(formArray.fields.length).toBe(2);
+      expect(formArray.fields[0].definition.key).toBe('0');
+      expect(formArray.fields[0].definition.index).toBe(0);
+      expect(formArray.fields[0].definition.type).toBe('control');
+      expect(formArray.fields[1].definition.key).toBe('1');
+      expect(formArray.fields[1].definition.index).toBe(1);
+      expect(formArray.fields[1].definition.type).toBe('control');
     })
   );
 

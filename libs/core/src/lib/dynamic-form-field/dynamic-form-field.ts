@@ -4,6 +4,7 @@ import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { assignExpressions } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -94,8 +95,8 @@ export abstract class DynamicFormField<
     }, <DynamicFormField[]>[]);
   }
 
-  protected cloneObject(obj: any) {
-    return JSON.parse(JSON.stringify(obj));
+  protected cloneObject<T>(obj: T) {
+    return cloneObject(obj);
   }
 
   private createPath() {
