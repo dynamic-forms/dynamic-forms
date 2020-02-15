@@ -1,6 +1,6 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <mat-select [id]="id" [placeholder]="input.placeholder" 
+  <mat-select [id]="inputId" [placeholder]="input.placeholder" 
     [multiple]="input.multiple" [required]="validation?.required" [formControl]="control">
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
