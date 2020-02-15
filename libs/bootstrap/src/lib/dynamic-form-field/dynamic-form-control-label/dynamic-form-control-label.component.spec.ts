@@ -48,7 +48,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ path: 'path', template: { label: 'label' } };
+    component.field = <any>{ inputId: 'inputId', template: { label: 'label' } };
 
     // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
@@ -67,7 +67,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
     expect(labelElement).toBeDefined();
-    expect(labelElement.htmlFor).toBe('path');
+    expect(labelElement.htmlFor).toBe('inputId');
     expect(labelElement.innerText).toBe('label');
   });
 });

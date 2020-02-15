@@ -40,7 +40,9 @@ describe('BsDynamicFormCheckboxComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.id).toBe('key');
+    expect(component.id).toBeUndefined();
+    expect(component.path).toBe('key');
+    expect(component.inputId).toBe('key');
   });
 
   it('creates component template', () => {
@@ -53,10 +55,10 @@ describe('BsDynamicFormCheckboxComponent', () => {
 
     expect(checkElement).toBeDefined();
     expect(inputElement).toBeDefined();
-    expect(inputElement.id).toBe(component.id);
+    expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('checkbox');
     expect(labelElement).toBeDefined();
-    expect(labelElement.htmlFor).toBe(component.id);
+    expect(labelElement.htmlFor).toBe(component.inputId);
     expect(labelElement.innerText).toBe('label');
   });
 

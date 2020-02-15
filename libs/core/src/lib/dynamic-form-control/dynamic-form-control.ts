@@ -29,7 +29,9 @@ export class DynamicFormControl<
     this._valueSubscription = this.createValueSubscription();
   }
 
-  get inputComponentType() { return this.template.input.type; }
+  get input() { return this.template.input; }
+  get inputId() { return this.id || this.path; }
+  get inputComponentType() { return this.input.type; }
 
   get evaluators() { return this._evaluators; }
   get validators() { return this._validators; }
