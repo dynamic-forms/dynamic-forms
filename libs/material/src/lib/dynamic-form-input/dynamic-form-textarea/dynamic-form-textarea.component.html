@@ -1,6 +1,6 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <textarea matInput [id]="id" [placeholder]="input.placeholder" 
+  <textarea matInput [id]="inputId" [placeholder]="input.placeholder" 
     [readonly]="field.readonly" [required]="validation?.required" [formControl]="control"
     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1">
   </textarea>

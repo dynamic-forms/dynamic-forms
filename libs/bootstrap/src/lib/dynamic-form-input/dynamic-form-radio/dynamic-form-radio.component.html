@@ -1,8 +1,8 @@
 <ng-container *ngFor="let option of input.options; let i = index">
   <div class="form-check">
-    <input class="form-check-input" [id]="id + '-' + i" type="radio" [readonly]="field.readonly" 
+    <input class="form-check-input" [id]="inputId + '-' + i" type="radio" [readonly]="field.readonly" 
       [value]="option.value" [formControl]="control" />
-    <label class="form-check-label" [for]="id + '-' + i">{{ option.label }}</label>
+    <label class="form-check-label" [for]="inputId + '-' + i">{{ option.label }}</label>
   </div>
 </ng-container>
 

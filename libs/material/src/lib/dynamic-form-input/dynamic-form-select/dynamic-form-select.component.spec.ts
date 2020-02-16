@@ -68,7 +68,9 @@ describe('MatDynamicFormSelectComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.id).toBe('key');
+    expect(component.id).toBeUndefined();
+    expect(component.path).toBe('key');
+    expect(component.inputId).toBe('key');
   });
 
   it('creates component template', () => {
@@ -84,7 +86,7 @@ describe('MatDynamicFormSelectComponent', () => {
 
     expect(fieldElement).toBeDefined();
     expect(labelElement.innerText).toBe('label');
-    expect(selectElement.id).toBe(component.id);
+    expect(selectElement.id).toBe(component.inputId);
     expect(optionElements.length).toBe(5);
     expect(optionElements[0].value).toBe('value1');
     expect(optionElements[0].viewValue).toBe('label1');

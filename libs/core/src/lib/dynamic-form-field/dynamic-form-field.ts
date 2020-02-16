@@ -4,6 +4,7 @@ import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { assignExpressions } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -41,14 +42,14 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get classType(): DynamicFormClassType { return 'field'; }
-
-  get wrappers() { return this.definition.wrappers; }
-
   get root() { return this._root; }
   get parent() { return this._parent; }
 
+  get key() { return this.definition.key; }
+  get index() { return this.definition.index; }
   get path() { return this._path; }
+  get classType(): DynamicFormClassType { return 'field'; }
+
   get model() { return this._model; }
   get options() { return this._options; }
 
@@ -59,6 +60,7 @@ export abstract class DynamicFormField<
   get readonly() { return this.parent.readonly || this.template.readonly || false; }
 
   get actions() { return this._actions; }
+  get wrappers() { return this.definition.wrappers; }
 
   get expressionChangesSubject() { return this._expressionChangesSubject; }
   get expressionChanges() { return this._expressionChanges; }
@@ -80,7 +82,7 @@ export abstract class DynamicFormField<
 
   abstract reset(): void;
   abstract resetDefault(): void;
-  abstract validate();
+  abstract validate(): void;
 
   protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
     return elements.reduce((result, element) => {
@@ -94,8 +96,8 @@ export abstract class DynamicFormField<
     }, <DynamicFormField[]>[]);
   }
 
-  protected cloneObject(obj: any) {
-    return JSON.parse(JSON.stringify(obj));
+  protected cloneObject<T>(obj: T) {
+    return cloneObject(obj);
   }
 
   private createPath() {

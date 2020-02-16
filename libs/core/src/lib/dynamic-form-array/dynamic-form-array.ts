@@ -1,5 +1,4 @@
 import { FormArray } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
@@ -20,9 +19,9 @@ export class DynamicFormArray<
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
-  initElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormField[]) {
     this._elements = elements || [];
-    this._fields = this.filterFields(this._elements);
+    this._fields = elements || [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });

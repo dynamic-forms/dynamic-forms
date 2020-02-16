@@ -15,7 +15,6 @@
         { "name": "user03", "email": "user03@mail.com" }
       ],
       "definitionTemplate": {
-        "key": "user",
         "type": "group",
         "template": {
           "className": "row"

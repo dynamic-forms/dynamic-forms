@@ -16,7 +16,9 @@ export abstract class DynamicFormInputBase<FormInput extends DynamicFormInput = 
 
   get template() { return this.field.template; }
 
-  get input() { return this.template.input; }
+  get input() { return this.field.input; }
+  get inputId() { return this.field.inputId; }
+
   get hints() { return this.template.hints; }
   get validation() { return this.template.validation; }
 }

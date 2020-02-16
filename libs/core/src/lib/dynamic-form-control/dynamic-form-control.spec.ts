@@ -11,7 +11,7 @@ import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 describe('DynamicFormControl', () => {
   it('new instance', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormControlDefinition>{ key: 'key', type: 'componentType', template: {} };
+    const definition = <DynamicFormControlDefinition>{ key: 'key', index: 1, type: 'componentType', template: {} };
     const formControl = new DynamicFormControl(root, root, definition);
 
     expect(formControl.root).toBe(root);
@@ -19,10 +19,12 @@ describe('DynamicFormControl', () => {
     expect(formControl.definition).toBe(definition);
     expect(formControl.template).toBe(definition.template);
 
+    expect(formControl.key).toBe('key');
+    expect(formControl.index).toBe(1);
+    expect(formControl.path).toBe('key');
     expect(formControl.classType).toBe('field');
     expect(formControl.componentType).toBe('componentType');
 
-    expect(formControl.path).toBe('key');
     expect(formControl.model).toBeNull();
     expect(formControl.control).toBeDefined();
     expect(formControl.status).toBe('VALID');

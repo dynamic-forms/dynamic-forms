@@ -14,12 +14,12 @@ export class DynamicFormElement<
     this._definition.template = definition.template || <Template>{};
   }
 
-  get definition() { return this._definition; }
-  get template() { return this.definition.template; }
-
+  get id() { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
   get componentType() { return this.definition.type; }
 
+  get definition() { return this._definition; }
+  get template() { return this.definition.template; }
   get elements() { return this._elements; }
 
   initElements(elements: DynamicFormElement[]) {

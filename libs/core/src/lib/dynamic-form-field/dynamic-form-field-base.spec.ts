@@ -30,6 +30,19 @@ describe('DynamicFormFieldBase', () => {
   });
 
   it('errors returns errors from control', () => {
+    const field = <any>{ id: 'id', key: 'key', index: 1, path: 'path', control: {} };
+    component.field = field;
+
+    expect(component.id).toBe('id');
+    expect(component.key).toBe('key');
+    expect(component.index).toBe(1);
+    expect(component.path).toBe('path');
+    expect(component.element).toBe(field);
+    expect(component.field).toBe(field);
+    expect(component.control).toBe(field.control);
+  });
+
+  it('errors returns errors from control', () => {
     const errors = { email: { message: 'The field is not a valid email' } };
 
     component.field = <any>{ control: { errors } };

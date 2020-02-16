@@ -34,7 +34,9 @@ describe('DynamicFormArrayComponent', () => {
 
     form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     formArray = new DynamicFormArray(form, form, <DynamicFormArrayDefinition>{
+      id: 'id',
       key: 'key',
+      index: 1,
       template: {
         label: 'label'
       },
@@ -46,7 +48,10 @@ describe('DynamicFormArrayComponent', () => {
   }));
 
   it('creates component', () => {
-    expect(component.id).toBe('key');
+    expect(component.id).toBe('id');
+    expect(component.key).toBe('key');
+    expect(component.index).toBe(1);
+    expect(component.path).toBe('key');
     expect(component.control).toBeDefined();
     expect(component.elements).toEqual([]);
     expect(component.template).toBeDefined();

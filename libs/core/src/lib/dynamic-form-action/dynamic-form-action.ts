@@ -36,6 +36,10 @@ export class DynamicFormAction<
         $event.stopPropagation();
         this.parent.validate();
         break;
+      case 'reset':
+        $event.stopPropagation();
+        this.parent.reset();
+        break;
       case 'resetDefault':
         $event.stopPropagation();
         this.parent.resetDefault();
