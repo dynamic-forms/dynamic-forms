@@ -1,7 +1,7 @@
 <div class="form-check">
-  <input [id]="id" class="form-check-input" type="checkbox" [readonly]="field.readonly" 
+  <input [id]="inputId" class="form-check-input" type="checkbox" [readonly]="field.readonly" 
     [required]="validation?.required" [formControl]="control" />
-  <label [for]="id" class="form-check-label">{{ template.label }}<span *ngIf="validation?.required"> *</span></label>  
+  <label [for]="inputId" class="form-check-label">{{ template.label }}<span *ngIf="validation?.required"> *</span></label>  
 </div>
 
 

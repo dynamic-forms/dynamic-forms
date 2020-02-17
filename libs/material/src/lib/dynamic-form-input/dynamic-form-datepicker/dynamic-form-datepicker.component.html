@@ -1,6 +1,6 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="id" [placeholder]="input.placeholder" [matDatepicker]="datepicker"
+  <input matInput [id]="inputId" [placeholder]="input.placeholder" [matDatepicker]="datepicker"
     [readonly]="field.readonly" [required]="validation?.required" [formControl]="control" />
   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
   <mat-datepicker #datepicker [disabled]="control.disabled"></mat-datepicker>

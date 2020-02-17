@@ -58,7 +58,9 @@ describe('MatDynamicFormComboboxComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.id).toBe('key');
+    expect(component.id).toBeUndefined();
+    expect(component.path).toBe('key');
+    expect(component.inputId).toBe('key');
   });
 
   it('creates component template', () => {
@@ -71,7 +73,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
     expect(fieldElement).toBeDefined();
-    expect(inputElement.id).toBe(component.id);
+    expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
     expect(labelElement.innerText).toBe('label');
     expect(autocompleteDebugElement).toBeDefined();

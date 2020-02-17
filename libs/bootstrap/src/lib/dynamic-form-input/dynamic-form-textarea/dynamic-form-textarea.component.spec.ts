@@ -40,7 +40,9 @@ describe('BsDynamicFormTextareaComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.id).toBe('key');
+    expect(component.id).toBeUndefined();
+    expect(component.path).toBe('key');
+    expect(component.inputId).toBe('key');
   });
 
   it('creates component template', () => {
@@ -48,7 +50,7 @@ describe('BsDynamicFormTextareaComponent', () => {
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
     expect(textareaElement).toBeDefined();
-    expect(textareaElement.id).toBe(component.id);
+    expect(textareaElement.id).toBe(component.inputId);
   });
 
   it('sets dynamic form control to readonly', () => {

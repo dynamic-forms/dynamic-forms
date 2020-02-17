@@ -1,7 +1,4 @@
 {
-  "template": {
-    "contentHidden": true
-  },
   "actions": [
     {
       "type": "button",

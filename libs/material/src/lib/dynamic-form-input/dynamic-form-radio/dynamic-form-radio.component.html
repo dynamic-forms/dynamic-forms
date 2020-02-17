@@ -5,7 +5,7 @@
     </label>      
     <mat-radio-group [formControl]="control">
       <ng-container *ngFor="let option of input.options; let i = index">
-        <mat-radio-button [id]="id + '-' + i" color="primary" [value]="option.value">
+        <mat-radio-button [id]="inputId + '-' + i" color="primary" [value]="option.value">
           {{ option.label }}
         </mat-radio-button>      
       </ng-container>
