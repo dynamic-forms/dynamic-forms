@@ -1,5 +1,5 @@
 <div class="mat-form-field-simple" [ngClass]="{ 'mat-form-field-simple-invalid': control.touched && control.errors }">
-  <mat-checkbox [id]="id" color="primary" [required]="validation?.required" [formControl]="control">
+  <mat-checkbox [id]="inputId" color="primary" [required]="validation?.required" [formControl]="control">
     {{ template.label }}<span *ngIf="validation?.required"> *</span>
   </mat-checkbox>
   <div class="mat-form-field-simple-info">

@@ -17,10 +17,13 @@ export abstract class DynamicFormFieldBase<
     super();
   }
 
+  get key() { return this.element.key; }
+  get index() { return this.element.index; }
+  get path() { return this.element.path; }
+
   get field() { return this.element; }
   set field(field: Field) { this.element = field; }
 
-  get id() { return this.field.path; }
   get control() { return this.field.control; }
 
   get errors(): DynamicFormValidationErrors {

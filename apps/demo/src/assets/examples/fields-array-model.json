@@ -10,7 +10,6 @@
         "label": "Users"
       },
       "definitionTemplate": {
-        "key": "user",
         "type": "group",
         "template": {
           "className": "row"
