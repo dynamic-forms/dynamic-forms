@@ -62,7 +62,6 @@ export class DynamicFormBuilder {
     const field = new DynamicFormArray(root, parent, definition);
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormArrayElements(field));
-    field.setElementFactory(this.createFormArrayElement);
     return field;
   }
 

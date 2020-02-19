@@ -1,7 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from '../dynamic-form-action';
+import { DynamicFormActionHandler } from '../dynamic-form-action.handler';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 import { DynamicFormButtonComponent } from './dynamic-form-button.component';
@@ -15,6 +16,9 @@ describe('DynamicFormButtonComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormButtonComponent
+      ],
+      providers: [
+        DynamicFormActionHandler
       ]
     });
 
@@ -101,12 +105,14 @@ describe('DynamicFormButtonComponent', () => {
     expect(formButtonElement.type).toBe('button');
   });
 
-  it('executes action onClick', () => {
-    spyOn(component.element, 'execute');
+  it('executes action onClick',
+    inject([DynamicFormActionHandler], (handler: DynamicFormActionHandler) => {
+      spyOn(handler, 'handle');
 
-    const event = null;
-    component.onClick(event);
+      const event = null;
+      component.onClick(event);
 
-    expect(component.element.execute).toHaveBeenCalledWith(event);
-  });
+      expect(handler.handle).toHaveBeenCalledWith(component.element, event);
+    })
+  );
 });
