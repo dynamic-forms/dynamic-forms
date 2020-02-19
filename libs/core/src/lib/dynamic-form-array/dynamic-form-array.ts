@@ -8,6 +8,7 @@ export class DynamicFormArray<
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
 > extends DynamicFormField<FormArray, Template, Definition> {
 
+  protected _fieldFn: (field: DynamicFormArray, index: number) => DynamicFormField;
   protected _fields: DynamicFormField[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
@@ -25,6 +26,10 @@ export class DynamicFormArray<
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
+  }
+
+  setElementFactory(fieldFn: (field: DynamicFormArray, index: number) => DynamicFormField) {
+    this._fieldFn = fieldFn;
   }
 
   check() {

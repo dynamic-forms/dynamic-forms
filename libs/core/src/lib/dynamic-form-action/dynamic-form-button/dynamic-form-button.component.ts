@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicFormActionBase } from '../dynamic-form-action-base';
+import { DynamicFormActionHandler } from '../dynamic-form-action.handler';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 
@@ -8,11 +9,11 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
   templateUrl: './dynamic-form-button.component.html'
 })
 export class DynamicFormButtonComponent extends DynamicFormActionBase<DynamicFormButtonTemplate, DynamicFormButtonDefinition> {
-  constructor() {
-    super();
+  constructor(protected actionHandler: DynamicFormActionHandler) {
+    super(actionHandler);
   }
 
   onClick($event) {
-    this.action.execute($event);
+    this.actionHandler.handle(this.action, $event);
   }
 }

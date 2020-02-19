@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormActionHandler } from './dynamic-form-action/dynamic-form-action.handler';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
@@ -26,7 +27,8 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
     DynamicFormEvaluationBuilder,
     DynamicFormValidationBuilder,
     DynamicFormValidationService,
-    DynamicFormComponentFactory
+    DynamicFormComponentFactory,
+    DynamicFormActionHandler
   ]
 })
 export class DynamicFormsModule {}

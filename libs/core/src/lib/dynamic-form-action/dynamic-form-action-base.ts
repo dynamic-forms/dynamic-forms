@@ -2,6 +2,7 @@ import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-ele
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
+import { DynamicFormActionHandler } from './dynamic-form-action.handler';
 
 export abstract class DynamicFormActionBase<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
@@ -9,7 +10,7 @@ export abstract class DynamicFormActionBase<
   Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>
 > extends DynamicFormElementBase<Template, Definition, Action> {
 
-  constructor() {
+  constructor(protected actionHandler: DynamicFormActionHandler) {
     super();
   }
 
