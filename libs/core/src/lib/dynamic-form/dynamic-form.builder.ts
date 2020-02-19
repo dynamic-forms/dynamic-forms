@@ -150,14 +150,12 @@ export class DynamicFormBuilder {
 
   private createFormArrayElements(field: DynamicFormArray) {
     const modelItems = field.model || [] as any[];
-    return modelItems.map((_item, index) => {
-      return this.createFormArrayElement(field, index);
-    });
+    return modelItems.map(_item => this.createFormArrayElement(field));
   }
 
-  private createFormArrayElement(field: DynamicFormArray, index: number) {
-    const definition = { ...cloneObject(field.definition.definitionTemplate), key: `${index}`, index };
-    return this.createFormFieldForFactory(field.root, field, definition as DynamicFormFieldDefinition);
+  private createFormArrayElement(field: DynamicFormArray) {
+    const definition = cloneObject(field.definition.definitionTemplate);
+    return this.createFormFieldForFactory(field.root, field, definition);
   }
 
   private createFormActions(root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormActionDefinition[]) {

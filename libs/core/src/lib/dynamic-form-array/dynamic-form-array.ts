@@ -20,11 +20,34 @@ export class DynamicFormArray<
   get fields() { return this._fields; }
 
   initElements(elements: DynamicFormField[]) {
-    this._elements = elements || [];
-    this._fields = elements || [];
+    this._fields = elements ? [ ...elements ] : [];
     this._fields.forEach((field, index) => {
+      field.definition.key = `${index}`;
+      field.definition.index = index;
       this._control.insert(index, field.control);
     });
+    this._elements = this._fields;
+  }
+
+  insertElement(index: number, element: DynamicFormField) {
+    if (index >= 0 && index <= this._fields.length) {
+      this._fields.splice(index, 0, element);
+      this._fields.forEach((field, idx) => {
+        if (idx >= index) {
+          field.definition.key = `${idx}`;
+          field.definition.index = idx;
+        }
+      });
+      this._control.insert(index, element.control);
+    }
+  }
+
+  pushElement(element: DynamicFormField) {
+    const index = this._fields.length;
+    element.definition.key = `${index}`;
+    element.definition.index = index;
+    this._fields.push(element);
+    this._control.push(element.control);
   }
 
   check() {
