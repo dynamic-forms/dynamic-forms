@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormAction, DynamicFormActionHandler, DynamicFormButtonDefinition,
-  DynamicFormButtonTemplate, DynamicFormField } from '@dynamic-forms/core';
+import { DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition,
+  DynamicFormButtonTemplate, DynamicFormConfigService, DynamicFormField,
+  DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 
 describe('MatDynamicFormButtonComponent', () => {
@@ -15,7 +16,9 @@ describe('MatDynamicFormButtonComponent', () => {
         MatDynamicFormButtonComponent
       ],
       providers: [
-        DynamicFormActionHandler
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
+        DynamicFormConfigService,
+        DynamicFormActionService
       ]
     });
 

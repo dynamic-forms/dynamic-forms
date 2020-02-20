@@ -1,8 +1,10 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicFormConfigService } from '../../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from '../dynamic-form-action';
-import { DynamicFormActionHandler } from '../dynamic-form-action.handler';
+import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 import { DynamicFormButtonComponent } from './dynamic-form-button.component';
@@ -18,7 +20,9 @@ describe('DynamicFormButtonComponent', () => {
         DynamicFormButtonComponent
       ],
       providers: [
-        DynamicFormActionHandler
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
+        DynamicFormConfigService,
+        DynamicFormActionService
       ]
     });
 
@@ -106,7 +110,7 @@ describe('DynamicFormButtonComponent', () => {
   });
 
   it('executes action onClick',
-    inject([DynamicFormActionHandler], (handler: DynamicFormActionHandler) => {
+    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       spyOn(handler, 'handle');
 
       const event = null;

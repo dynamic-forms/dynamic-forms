@@ -1,20 +1,24 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
-import { DynamicFormActionHandler } from './dynamic-form-action.handler';
+import { DynamicFormActionService } from './dynamic-form-action.service';
 
-describe('DynamicFormActionHandler', () => {
+describe('DynamicFormActionService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        DynamicFormActionHandler
+        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
+        DynamicFormConfigService,
+        DynamicFormActionService
       ]
     });
   }));
 
   it('executes validate of parent',
-    inject([DynamicFormActionHandler], (handler: DynamicFormActionHandler) => {
+    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       const parent = <DynamicFormField>{ validate() {} };
       const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'validate' }, elements: [] };
       const action = new DynamicFormAction(null, parent, definition);
@@ -31,7 +35,7 @@ describe('DynamicFormActionHandler', () => {
   );
 
   it('executes reset of parent',
-    inject([DynamicFormActionHandler], (handler: DynamicFormActionHandler) => {
+    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       const parent = <DynamicFormField>{ reset() {} };
       const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
       const action = new DynamicFormAction(null, parent, definition);
@@ -48,7 +52,7 @@ describe('DynamicFormActionHandler', () => {
   );
 
   it('executes resetDefault of parent',
-    inject([DynamicFormActionHandler], (handler: DynamicFormActionHandler) => {
+    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       const parent = <DynamicFormField>{ resetDefault() {} };
       const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'resetDefault' }, elements: [] };
       const action = new DynamicFormAction(null, parent, definition);
