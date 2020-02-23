@@ -66,6 +66,10 @@
               "label": "Default value" 
             },
             {
+              "id": "fields-array-actions",
+              "label": "Actions"
+            },
+            {
               "label": "Models",
               "items": [
                 {

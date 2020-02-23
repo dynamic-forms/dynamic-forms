@@ -13,4 +13,5 @@ export class DynamicFormArrayComponent extends DynamicFormArrayBase {
   }
 
   get elements() { return this.field.elements; }
+  get actions() { return this.field.actions; }
 }

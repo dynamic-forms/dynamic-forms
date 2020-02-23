@@ -19,35 +19,35 @@ export class DynamicFormArray<
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
+  get length() { return this._fields.length; }
+
   initElements(elements: DynamicFormField[]) {
     this._fields = elements ? [ ...elements ] : [];
     this._fields.forEach((field, index) => {
-      field.definition.key = `${index}`;
-      field.definition.index = index;
       this._control.insert(index, field.control);
     });
     this._elements = this._fields;
   }
 
-  insertElement(index: number, element: DynamicFormField) {
-    if (index >= 0 && index <= this._fields.length) {
-      this._fields.splice(index, 0, element);
-      this._fields.forEach((field, idx) => {
-        if (idx >= index) {
-          field.definition.key = `${idx}`;
-          field.definition.index = idx;
-        }
-      });
-      this._control.insert(index, element.control);
-    }
+  pushElement(element: DynamicFormField) {
+    this._fields.push(element);
+    this._model.push(element.model);
+    this._control.push(element.control);
   }
 
-  pushElement(element: DynamicFormField) {
-    const index = this._fields.length;
-    element.definition.key = `${index}`;
-    element.definition.index = index;
-    this._fields.push(element);
-    this._control.push(element.control);
+  popElement() {
+    const length = this.length;
+    this._fields.pop();
+    this._model.pop();
+    this._control.removeAt(length);
+  }
+
+  clearElements() {
+    this._fields = [];
+    this._model = [];
+    this._parent.model[this.key] = this._model;
+    this._control.clear();
+    this._elements = this._fields;
   }
 
   check() {

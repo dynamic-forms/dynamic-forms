@@ -4,5 +4,5 @@ export interface DynamicFormActionTemplate extends DynamicFormElementTemplate {
   label: string;
   hidden?: boolean;
   disabled?: boolean;
-  action?: 'reset' | 'resetDefault' | 'validate';
+  action?: 'reset' | 'resetDefault' | 'validate' | 'pushArrayElement' | 'popArrayElement' | 'clearArrayElements';
 }

@@ -62,7 +62,13 @@ export class DynamicFormBuilder {
     const field = new DynamicFormArray(root, parent, definition);
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormArrayElements(field));
+    field.initActions(this.createFormActions(field, field, field.definition.actions));
     return field;
+  }
+
+  createFormArrayElement(field: DynamicFormArray, index: number) {
+    const definition = { ...cloneObject(field.definition.definitionTemplate), key: `${index}`, index };
+    return this.createFormFieldForFactory(field.root, field, definition);
   }
 
   createFormControl(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition) {
@@ -150,12 +156,7 @@ export class DynamicFormBuilder {
 
   private createFormArrayElements(field: DynamicFormArray) {
     const modelItems = field.model || [] as any[];
-    return modelItems.map(_item => this.createFormArrayElement(field));
-  }
-
-  private createFormArrayElement(field: DynamicFormArray) {
-    const definition = cloneObject(field.definition.definitionTemplate);
-    return this.createFormFieldForFactory(field.root, field, definition);
+    return modelItems.map((_item, index) => this.createFormArrayElement(field , index));
   }
 
   private createFormActions(root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormActionDefinition[]) {

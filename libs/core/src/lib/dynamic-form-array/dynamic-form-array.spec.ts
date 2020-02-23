@@ -68,11 +68,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.fields).toEqual(fields);
     expect(formArray.fields).not.toBe(fields);
     expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[0].definition.key).toBe('0');
-    expect(formArray.fields[0].definition.index).toBe(0);
     expect(formArray.fields[1]).toBe(fields[1]);
-    expect(formArray.fields[1].definition.key).toBe('1');
-    expect(formArray.fields[1].definition.index).toBe(1);
   });
 
   it('sets elements and fields to empty array', () => {
@@ -84,33 +80,6 @@ describe('DynamicFormArray', () => {
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);
-  });
-
-  it('inserts element', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const formArray = new DynamicFormArray(form, form, definition);
-    const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
-    ];
-
-    const field = <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() };
-
-    formArray.initElements(fields);
-    formArray.insertElement(1, field);
-
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([ fields[0], field, fields[1] ]);
-    expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[0].definition.key).toBe('0');
-    expect(formArray.fields[0].definition.index).toBe(0);
-    expect(formArray.fields[1]).toBe(field);
-    expect(formArray.fields[1].definition.key).toBe('1');
-    expect(formArray.fields[1].definition.index).toBe(1);
-    expect(formArray.fields[2]).toBe(fields[1]);
-    expect(formArray.fields[2].definition.key).toBe('2');
-    expect(formArray.fields[2].definition.index).toBe(2);
   });
 
   it('pushes element', () => {
@@ -130,14 +99,8 @@ describe('DynamicFormArray', () => {
     expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[0], fields[1], field ]);
     expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[0].definition.key).toBe('0');
-    expect(formArray.fields[0].definition.index).toBe(0);
     expect(formArray.fields[1]).toBe(fields[1]);
-    expect(formArray.fields[1].definition.key).toBe('1');
-    expect(formArray.fields[1].definition.index).toBe(1);
     expect(formArray.fields[2]).toBe(field);
-    expect(formArray.fields[2].definition.key).toBe('2');
-    expect(formArray.fields[2].definition.index).toBe(2);
   });
 
   it('check calls check of all fields', () => {
