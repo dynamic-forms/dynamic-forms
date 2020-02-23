@@ -62,6 +62,7 @@ describe('DynamicFormArray', () => {
 
     formArray.initElements(fields);
 
+    expect(formArray.length).toBe(2);
     expect(formArray.elements).toEqual(fields as DynamicFormElement[]);
     expect(formArray.elements).not.toBe(fields as DynamicFormElement[]);
     expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
@@ -78,6 +79,7 @@ describe('DynamicFormArray', () => {
 
     formArray.initElements(null);
 
+    expect(formArray.length).toBe(0);
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);
   });
@@ -96,11 +98,47 @@ describe('DynamicFormArray', () => {
     formArray.initElements(fields);
     formArray.pushElement(field);
 
+    expect(formArray.length).toBe(3);
     expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[0], fields[1], field ]);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.fields[1]).toBe(fields[1]);
     expect(formArray.fields[2]).toBe(field);
+  });
+
+  it('pops element', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
+    ];
+
+    formArray.initElements(fields);
+    formArray.popElement();
+
+    expect(formArray.length).toBe(1);
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[0] ]);
+    expect(formArray.fields[0]).toBe(fields[0]);
+  });
+
+  it('clears elements', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
+    ];
+
+    formArray.initElements(fields);
+    formArray.clearElements();
+
+    expect(formArray.length).toBe(0);
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([]);
   });
 
   it('check calls check of all fields', () => {
