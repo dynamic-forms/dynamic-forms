@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
 
 @Injectable()
 export class DynamicFormActionService {
-  constructor(
-    private configService: DynamicFormConfigService,
-    private formBuilder: DynamicFormBuilder
-  ) {}
+  constructor(private formBuilder: DynamicFormBuilder) {}
 
   handle(action: DynamicFormAction, $event: Event) {
     switch (action.template.action) {

@@ -1,6 +1,4 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -11,8 +9,6 @@ describe('DynamicFormActionService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
-        DynamicFormConfigService,
         { provide: DynamicFormBuilder, useValue: {} },
         DynamicFormActionService
       ]
