@@ -1,0 +1,119 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "users",
+      "type": "array",
+      "template": {
+        "label": "Users"
+      },
+      "actions": [
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Push element",
+            "action": "pushArrayElement"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Pop element",
+            "action": "popArrayElement"
+          }
+        }, 
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Clear elements",
+            "action": "clearArrayElements"
+          }
+        }        
+      ],
+      "defaultValue": [
+        { "name": "user01", "email": "user01@mail.com" }
+      ],
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row"
+        },
+        "elements": [
+          {
+            "key": "name",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Name",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter name",
+                "defaultValue": "user"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          },
+          {
+            "key": "email",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Email",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter email",
+                "defaultValue": "user@mail.com"
+              },
+              "validation": {
+                "required": true,
+                "email": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "rootStatus !== 'VALID'"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

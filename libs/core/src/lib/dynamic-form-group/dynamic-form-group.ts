@@ -21,7 +21,7 @@ export class DynamicFormGroup<
   get fields() { return this._fields; }
 
   initElements(elements: DynamicFormElement[]) {
-    this._elements = elements || [];
+    this._elements = elements ? [ ...elements ] : [];
     this._fields = this.filterFields(this._elements);
     this._fields.forEach(field => {
       this._control.registerControl(field.definition.key, field.control);

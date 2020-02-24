@@ -47,6 +47,15 @@
         &.hidden {
           display: none;
         }
+
+        .dynamic-form-group-actions {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          
+          button {
+            margin-right: 10px;
+          }
+        }
       }
     
       .dynamic-form-array {
@@ -55,6 +64,15 @@
   
         &.hidden {
           display: none;
+        }
+
+        .dynamic-form-array-actions {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          
+          button {
+            margin-right: 10px;
+          }
         }
       }
       

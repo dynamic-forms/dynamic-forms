@@ -13,4 +13,5 @@ export class DynamicFormGroupComponent extends DynamicFormGroupBase {
   }
 
   get elements() { return this.field.elements; }
+  get actions() { return this.field.actions; }
 }

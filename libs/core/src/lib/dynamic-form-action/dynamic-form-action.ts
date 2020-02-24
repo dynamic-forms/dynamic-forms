@@ -28,22 +28,4 @@ export class DynamicFormAction<
       assignExpressions(this.template, this._expressions);
     }
   }
-
-  execute($event: Event) {
-    const action = this.template && this.template.action;
-    switch (action) {
-      case 'validate':
-        $event.stopPropagation();
-        this.parent.validate();
-        break;
-      case 'reset':
-        $event.stopPropagation();
-        this.parent.reset();
-        break;
-      case 'resetDefault':
-        $event.stopPropagation();
-        this.parent.resetDefault();
-        break;
-    }
-  }
 }
