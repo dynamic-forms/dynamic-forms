@@ -84,7 +84,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DynamicFormActionService', () => {
-      expect(() => TestBed.get(DynamicFormActionService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DynamicFormActionService)).toThrowError(/NullInjectorError/);
     });
   });
 
