@@ -280,12 +280,12 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.control).toBeDefined();
       expect(formArray.elements).toBeDefined();
       expect(formArray.fields.length).toBe(2);
-      expect(formArray.fields[0].definition.key).toBe('0');
-      expect(formArray.fields[0].definition.index).toBe(0);
-      expect(formArray.fields[0].definition.type).toBe('control');
-      expect(formArray.fields[1].definition.key).toBe('1');
-      expect(formArray.fields[1].definition.index).toBe(1);
-      expect(formArray.fields[1].definition.type).toBe('control');
+      expect(formArray.fields[0].key).toBe('0');
+      expect(formArray.fields[0].index).toBe(0);
+      expect(formArray.fields[0].componentType).toBe('control');
+      expect(formArray.fields[1].key).toBe('1');
+      expect(formArray.fields[1].index).toBe(1);
+      expect(formArray.fields[1].componentType).toBe('control');
     })
   );
 

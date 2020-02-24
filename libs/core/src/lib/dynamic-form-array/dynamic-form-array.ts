@@ -19,12 +19,35 @@ export class DynamicFormArray<
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 
+  get length() { return this._fields.length; }
+
   initElements(elements: DynamicFormField[]) {
-    this._elements = elements || [];
-    this._fields = elements || [];
+    this._fields = elements ? [ ...elements ] : [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
+    this._elements = this._fields;
+  }
+
+  pushElement(element: DynamicFormField) {
+    this._fields.push(element);
+    this._model.push(element.model);
+    this._control.push(element.control);
+  }
+
+  popElement() {
+    const length = this.length;
+    this._fields.pop();
+    this._model.pop();
+    this._control.removeAt(length);
+  }
+
+  clearElements() {
+    this._fields = [];
+    this._model = [];
+    this._parent.model[this.key] = this._model;
+    this._control.clear();
+    this._elements = this._fields;
   }
 
   check() {

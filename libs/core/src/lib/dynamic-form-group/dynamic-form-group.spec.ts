@@ -75,6 +75,7 @@ describe('DynamicFormGroup', () => {
     formGroup.initElements(elements);
 
     expect(formGroup.elements).toEqual(elements);
+    expect(formGroup.elements).not.toBe(elements);
     expect(formGroup.fields).toEqual(fields);
   });
 
