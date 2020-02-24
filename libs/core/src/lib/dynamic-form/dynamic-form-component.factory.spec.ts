@@ -2,6 +2,7 @@ import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core'
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormActionBase } from '../dynamic-form-action/dynamic-form-action-base';
 import { DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
@@ -45,7 +46,11 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   selector: 'dynamic-form-field-test',
   template: `<div>Dynamic Form Action</div>`
 })
-class DynamicFormActionTestComponent extends DynamicFormActionBase {}
+class DynamicFormActionTestComponent extends DynamicFormActionBase {
+  constructor(protected actionService: DynamicFormActionService) {
+    super(actionService);
+  }
+}
 
 @Component({
   selector: 'dynamic-form-input-test',
@@ -119,6 +124,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
     },
     DynamicFormConfigService,
     DynamicFormValidationService,
+    { provide: DynamicFormActionService, useValue: {} },
     DynamicFormComponentFactory
   ],
   entryComponents: [

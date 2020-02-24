@@ -1,3 +1,4 @@
+import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
@@ -8,4 +9,5 @@ export interface DynamicFormArrayDefinition<
   defaultLength?: number;
   defaultValue?: any;
   elements: undefined;
+  actions?: DynamicFormActionDefinition[];
 }
