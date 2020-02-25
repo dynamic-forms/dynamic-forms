@@ -1,6 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
+import { DynamicFormActionHandlerType, DYNAMIC_FORM_ACTION_HANDLER_TYPES } from '../dynamic-form-action/dynamic-form-action-handler-type';
 import { DynamicFormActionType, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
@@ -93,6 +96,37 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
           useValue: validationConfig || dynamicFormValidationConfig,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withActionHandler<Field extends DynamicFormField = DynamicFormField>(
+    actionHandlerType: DynamicFormActionHandlerType<Field>
+  ): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ACTION_HANDLER_TYPES,
+          useValue: actionHandlerType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withActionHandlerFactory<Field extends DynamicFormField = DynamicFormField>(
+    actionHandlerTypeFactory: (deps?: any[]) => DynamicFormActionHandler<Field>, deps?: any[]
+  ): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ACTION_HANDLER_TYPES,
+          useFactory: actionHandlerTypeFactory,
+          deps: deps,
           multi: true
         }
       ]

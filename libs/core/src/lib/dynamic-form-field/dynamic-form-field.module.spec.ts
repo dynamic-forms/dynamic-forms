@@ -1,27 +1,16 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlerTypes, DYNAMIC_FORM_ACTION_HANDLER_TYPES } from '../dynamic-form-action/dynamic-form-action-handler-type';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
-import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { dynamicFormResetActionType, dynamicFormResetDefaultActionType, dynamicFormValidateActionType } from '../dynamic-form-field/dynamic-form-field.module';
-import { dynamicFormGroupType, DynamicFormGroupModule } from './dynamic-form-group.module';
+import { dynamicFormResetActionType, dynamicFormResetDefaultActionType, dynamicFormValidateActionType, DynamicFormFieldModule } from './dynamic-form-field.module';
 
 describe('DynamicFormGroupModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormGroupModule
+        DynamicFormFieldModule
       ]
     });
   }));
-
-  it('provides DYNAMIC_FORM_FIELD_TYPES',
-    inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
-      expect(types.length).toBe(1);
-      expect(types[0]).toEqual(dynamicFormGroupType);
-      expect(types[0].factory).toEqual(jasmine.any(Function));
-      expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
-  );
 
   it('provides DYNAMIC_FORM_ACTION_HANDLER_TYPES',
     inject([DYNAMIC_FORM_ACTION_HANDLER_TYPES], (types: DynamicFormActionHandlerTypes) => {
