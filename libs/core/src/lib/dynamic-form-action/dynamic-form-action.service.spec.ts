@@ -25,57 +25,6 @@ describe('DynamicFormActionService', () => {
     });
   }));
 
-  it('executes validate of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ validate() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'validate' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'validate');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.validate).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
-  it('executes reset of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ reset() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'reset');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.reset).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
-  it('executes resetDefault of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ resetDefault() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'resetDefault' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'resetDefault');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.resetDefault).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
   it('executes pushArrayElement of parent',
     inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       const root = <DynamicFormField>{ model: {} };

@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormField } from './dynamic-form-field';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler, DynamicFormFieldModule } from './dynamic-form-field.module';
 
 describe('DynamicFormGroupModule', () => {
@@ -24,6 +25,45 @@ describe('DynamicFormGroupModule', () => {
       expect(handlers[2]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[2].func).toEqual(jasmine.any(Function));
       expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+    })
+  );
+
+  it('handler calls reset of field',
+    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
+      const handler = handlers.find(h => h.type === 'reset');
+      const field = <DynamicFormField>{ reset() {} };
+
+      spyOn(field, 'reset');
+
+      handler.func(field, null);
+
+      expect(field.reset).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls resetDefault of field',
+    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
+      const handler = handlers.find(h => h.type === 'resetDefault');
+      const field = <DynamicFormField>{ resetDefault() {} };
+
+      spyOn(field, 'resetDefault');
+
+      handler.func(field, null);
+
+      expect(field.resetDefault).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls validate of field',
+    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
+      const handler = handlers.find(h => h.type === 'validate');
+      const field = <DynamicFormField>{ validate() {} };
+
+      spyOn(field, 'validate');
+
+      handler.func(field, null);
+
+      expect(field.validate).toHaveBeenCalled();
     })
   );
 });
