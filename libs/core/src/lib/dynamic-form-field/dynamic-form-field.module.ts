@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormActionHandlerType } from '../dynamic-form-action/dynamic-form-action-handler-type';
+import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 
-export const dynamicFormResetActionType: DynamicFormActionHandlerType = {
+export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   type: 'reset',
-  handler: (field, _action) => field.reset(),
+  func: (field, _action) => field.reset(),
   libraryName: dynamicFormLibrary.name
 };
 
-export const dynamicFormResetDefaultActionType: DynamicFormActionHandlerType = {
+export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   type: 'resetDefault',
-  handler: (field, _action) => field.reset(),
+  func: (field, _action) => field.resetDefault(),
   libraryName: dynamicFormLibrary.name
 };
 
-export const dynamicFormValidateActionType: DynamicFormActionHandlerType = {
+export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   type: 'validate',
-  handler: (field, _action) => field.validate(),
+  func: (field, _action) => field.validate(),
   libraryName: dynamicFormLibrary.name
 };
 
 @NgModule({
   imports: [
-    DynamicFormConfigModule.withActionHandler(dynamicFormResetActionType),
-    DynamicFormConfigModule.withActionHandler(dynamicFormResetDefaultActionType),
-    DynamicFormConfigModule.withActionHandler(dynamicFormValidateActionType)
+    DynamicFormConfigModule.withActionHandler(dynamicFormFieldResetHandler),
+    DynamicFormConfigModule.withActionHandler(dynamicFormFieldResetDefaultHandler),
+    DynamicFormConfigModule.withActionHandler(dynamicFormFieldValidateHandler)
   ]
 })
 export class DynamicFormFieldModule {}

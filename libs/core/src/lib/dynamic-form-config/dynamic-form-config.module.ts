@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionHandlerType, DYNAMIC_FORM_ACTION_HANDLER_TYPES } from '../dynamic-form-action/dynamic-form-action-handler-type';
+import { DynamicFormActionHandler, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionType, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -103,14 +102,14 @@ export class DynamicFormConfigModule {
   }
 
   static withActionHandler<Field extends DynamicFormField = DynamicFormField>(
-    actionHandlerType: DynamicFormActionHandlerType<Field>
+    actionHandler: DynamicFormActionHandler<Field>
   ): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_HANDLER_TYPES,
-          useValue: actionHandlerType,
+          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          useValue: actionHandler,
           multi: true
         }
       ]
@@ -118,14 +117,14 @@ export class DynamicFormConfigModule {
   }
 
   static withActionHandlerFactory<Field extends DynamicFormField = DynamicFormField>(
-    actionHandlerTypeFactory: (deps?: any[]) => DynamicFormActionHandler<Field>, deps?: any[]
+    actionHandlerFactory: (deps?: any[]) => DynamicFormActionHandler<Field>, deps?: any[]
   ): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_HANDLER_TYPES,
-          useFactory: actionHandlerTypeFactory,
+          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          useFactory: actionHandlerFactory,
           deps: deps,
           multi: true
         }
