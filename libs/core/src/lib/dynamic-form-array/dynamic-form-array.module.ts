@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
@@ -19,25 +20,31 @@ export const dynamicFormArrayType: DynamicFormFieldType = {
   libraryName: dynamicFormLibrary.name
 };
 
+export function dynamicFormArrayPopElementFactory(field: DynamicFormArray) {
+  field.popElement();
+}
+
 export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'popElement',
-  func: field => field.popElement(),
+  func: dynamicFormArrayPopElementFactory,
   libraryName: dynamicFormLibrary.name
 };
 
+export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray) {
+  field.clearElements();
+}
+
 export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'clearElements',
-  func: field => field.clearElements(),
+  func: dynamicFormArrayClearElementsFactory,
   libraryName: dynamicFormLibrary.name
 };
 
 export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFormBuilder): DynamicFormActionHandler<DynamicFormArray> {
+  const func = (field: DynamicFormArray) => field.pushElement(formBuilder.createFormArrayElement(field, field.length));
   return {
     type: 'pushElement',
-    func: field => {
-      const element = formBuilder.createFormArrayElement(field, field.length);
-      field.pushElement(element);
-    },
+    func: func,
     libraryName: dynamicFormLibrary.name
   };
 }
