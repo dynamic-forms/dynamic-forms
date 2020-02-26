@@ -16,6 +16,8 @@ export class DynamicFormArray<
     this._control = new FormArray([]);
   }
 
+  get fieldClassType() { return 'array'; }
+
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 

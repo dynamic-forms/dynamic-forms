@@ -21,6 +21,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.index).toBe(1);
     expect(formArray.path).toBe('key');
     expect(formArray.classType).toBe('field');
+    expect(formArray.fieldClassType).toBe('array');
     expect(formArray.componentType).toBe('componentType');
 
     expect(formArray.model).toEqual([]);

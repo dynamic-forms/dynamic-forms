@@ -17,6 +17,8 @@ export class DynamicFormGroup<
     this._control = new FormGroup({});
   }
 
+  get fieldClassType() { return 'group'; }
+
   get elements() { return this._elements; }
   get fields() { return this._fields; }
 

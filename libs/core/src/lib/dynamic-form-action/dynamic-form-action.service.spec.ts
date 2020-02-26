@@ -22,7 +22,7 @@ describe('DynamicFormActionService', () => {
     });
   }));
 
-  it('calls func of handler and stops event propagation',
+  it('stops propagation of event and calls func of handler',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const field = <DynamicFormField>{ fieldClassType: 'fieldClassType' };
       const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
@@ -40,6 +40,24 @@ describe('DynamicFormActionService', () => {
       expect(configService.getActionHandler).toHaveBeenCalledWith('reset', 'fieldClassType');
       expect(handler.func).toHaveBeenCalledWith(field, action);
       expect(event.stopPropagation).toHaveBeenCalled();
+    })
+  );
+
+  it('does not call func of handler and stop event propagation',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const field = <DynamicFormField>{ fieldClassType: 'fieldClassType' };
+      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
+      const action = new DynamicFormAction(null, field, definition);
+      const event = <Event>{ stopPropagation() {} };
+
+      configService.getActionHandler.and.returnValue(undefined);
+
+      spyOn(event, 'stopPropagation');
+
+      service.handle(action, event);
+
+      expect(configService.getActionHandler).toHaveBeenCalledWith('reset', 'fieldClassType');
+      expect(event.stopPropagation).not.toHaveBeenCalled();
     })
   );
 });
