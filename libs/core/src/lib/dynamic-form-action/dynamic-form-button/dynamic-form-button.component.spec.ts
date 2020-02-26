@@ -1,6 +1,5 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfigService } from '../../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from '../dynamic-form-action';
@@ -21,7 +20,6 @@ describe('DynamicFormButtonComponent', () => {
       ],
       providers: [
         { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
-        DynamicFormConfigService,
         DynamicFormActionService
       ]
     });
