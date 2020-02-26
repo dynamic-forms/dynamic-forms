@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
+import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
@@ -56,9 +57,9 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormElementModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType),
-    DynamicFormConfigModule.withActionHandler(dynamicFormArrayPopElementHandler),
-    DynamicFormConfigModule.withActionHandler(dynamicFormArrayClearElementsHandler),
-    DynamicFormConfigModule.withActionHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ])
+    DynamicFormActionModule.withHandler(dynamicFormArrayPopElementHandler),
+    DynamicFormActionModule.withHandler(dynamicFormArrayClearElementsHandler),
+    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ])
   ],
   declarations: [
     DynamicFormArrayComponent

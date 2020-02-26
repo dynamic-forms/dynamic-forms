@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from './dynamic-form-field';
 
@@ -36,9 +36,9 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
 
 @NgModule({
   imports: [
-    DynamicFormConfigModule.withActionHandler(dynamicFormFieldResetHandler),
-    DynamicFormConfigModule.withActionHandler(dynamicFormFieldResetDefaultHandler),
-    DynamicFormConfigModule.withActionHandler(dynamicFormFieldValidateHandler)
+    DynamicFormActionModule.withHandler(dynamicFormFieldResetHandler),
+    DynamicFormActionModule.withHandler(dynamicFormFieldResetDefaultHandler),
+    DynamicFormActionModule.withHandler(dynamicFormFieldValidateHandler)
   ]
 })
 export class DynamicFormFieldModule {}
