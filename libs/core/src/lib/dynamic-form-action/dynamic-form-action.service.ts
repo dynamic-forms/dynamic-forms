@@ -30,14 +30,6 @@ export class DynamicFormActionService {
           const element = this.formBuilder.createFormArrayElement(field, field.length);
           field.pushElement(element);
           break;
-        case 'popArrayElement':
-          $event.stopPropagation();
-          field.popElement();
-          break;
-        case 'clearArrayElements':
-          $event.stopPropagation();
-          field.clearElements();
-          break;
       }
     }
   }

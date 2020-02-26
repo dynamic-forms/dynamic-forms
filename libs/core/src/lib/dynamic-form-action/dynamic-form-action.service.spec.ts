@@ -46,40 +46,4 @@ describe('DynamicFormActionService', () => {
       expect(event.stopPropagation).toHaveBeenCalled();
     })
   );
-
-  it('executes popArrayElement of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'popArrayElement' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'popElement');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.popElement).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
-  it('executes clearArrayElements of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'clearArrayElements' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'clearElements');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.clearElements).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
 });
