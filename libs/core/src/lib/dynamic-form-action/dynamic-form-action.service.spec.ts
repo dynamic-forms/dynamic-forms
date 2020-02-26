@@ -1,49 +1,45 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionService', () => {
-  let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
+  let configService: jasmine.SpyObj<DynamicFormConfigService>;
 
   beforeEach(async(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('' , [ 'createFormArrayElement' ]);
+    configService = jasmine.createSpyObj<DynamicFormConfigService>('' , [ 'getActionHandler' ]);
 
     TestBed.configureTestingModule({
       providers: [
         { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
-        DynamicFormConfigService,
-        { provide: DynamicFormBuilder, useValue: formBuilder },
+        { provide: DynamicFormConfigService, useValue: configService  },
         DynamicFormActionService
       ]
     });
   }));
 
-  /*it('executes pushArrayElement of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'pushArrayElement' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
+  it('calls func of handler and stops event propagation',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const field = <DynamicFormField>{ fieldClassType: 'fieldClassType' };
+      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
+      const action = new DynamicFormAction(null, field, definition);
       const event = <Event>{ stopPropagation() {} };
-      const element = <DynamicFormField>{};
+      const handler = <DynamicFormActionHandler>{ func(_field, _action) {} };
 
-      formBuilder.createFormArrayElement.and.returnValue(element);
+      configService.getActionHandler.and.returnValue(handler);
 
-      spyOn(parent, 'pushElement');
       spyOn(event, 'stopPropagation');
+      spyOn(handler, 'func');
 
-      handler.handle(action, event);
+      service.handle(action, event);
 
-      expect(formBuilder.createFormArrayElement).toHaveBeenCalledWith(parent, 0);
-      expect(parent.pushElement).toHaveBeenCalledWith(element);
+      expect(configService.getActionHandler).toHaveBeenCalledWith('reset', 'fieldClassType');
+      expect(handler.func).toHaveBeenCalledWith(field, action);
       expect(event.stopPropagation).toHaveBeenCalled();
     })
-  );*/
+  );
 });
