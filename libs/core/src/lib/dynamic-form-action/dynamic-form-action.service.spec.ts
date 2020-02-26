@@ -25,7 +25,7 @@ describe('DynamicFormActionService', () => {
     });
   }));
 
-  it('executes pushArrayElement of parent',
+  /*it('executes pushArrayElement of parent',
     inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
       const root = <DynamicFormField>{ model: {} };
       const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
@@ -45,5 +45,5 @@ describe('DynamicFormActionService', () => {
       expect(parent.pushElement).toHaveBeenCalledWith(element);
       expect(event.stopPropagation).toHaveBeenCalled();
     })
-  );
+  );*/
 });

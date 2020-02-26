@@ -117,7 +117,7 @@ export class DynamicFormConfigModule {
   }
 
   static withActionHandlerFactory<Field extends DynamicFormField = DynamicFormField>(
-    actionHandlerFactory: (deps?: any[]) => DynamicFormActionHandler<Field>, deps?: any[]
+    actionHandlerFactory: (deps?: any) => DynamicFormActionHandler<Field>, deps?: any[]
   ): ModuleWithProviders<DynamicFormConfigModule> {
     return {
       ngModule: DynamicFormConfigModule,

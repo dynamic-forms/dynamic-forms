@@ -4,6 +4,7 @@ import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-co
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
@@ -24,6 +25,10 @@ describe('DynamicFormArrayComponent', () => {
         {
           provide: DynamicFormConfigService,
           useValue: new DynamicFormConfigService({ name: 'test' })
+        },
+        {
+          provide: DynamicFormBuilder,
+          useValue: {}
         },
         DynamicFormValidationService
       ]

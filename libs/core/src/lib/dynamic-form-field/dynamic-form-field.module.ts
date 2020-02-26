@@ -5,19 +5,19 @@ import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library'
 
 export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   type: 'reset',
-  func: (field, _action) => field.reset(),
+  func: field => field.reset(),
   libraryName: dynamicFormLibrary.name
 };
 
 export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   type: 'resetDefault',
-  func: (field, _action) => field.resetDefault(),
+  func: field => field.resetDefault(),
   libraryName: dynamicFormLibrary.name
 };
 
 export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   type: 'validate',
-  func: (field, _action) => field.validate(),
+  func: field => field.validate(),
   libraryName: dynamicFormLibrary.name
 };
 
