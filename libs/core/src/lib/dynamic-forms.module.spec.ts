@@ -1,5 +1,4 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionService } from './dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
 import { DYNAMIC_FORM_ELEMENT_TYPES } from './dynamic-form-element/dynamic-form-element-type';
@@ -82,10 +81,6 @@ describe('DynamicFormsModule', () => {
     it('does not provide DynamicFormComponentFactory', () => {
       expect(() => TestBed.get(DynamicFormComponentFactory)).toThrowError(/StaticInjectorError/);
     });
-
-    it('does not provide DynamicFormActionService', () => {
-      expect(() => TestBed.get(DynamicFormActionService)).toThrowError(/StaticInjectorError/);
-    });
   });
 
   describe('with DYNAMIC_FORM_LIBRARY provided', () => {
@@ -167,12 +162,6 @@ describe('DynamicFormsModule', () => {
 
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-        expect(service).toBeDefined();
-      })
-    );
-
-    it('provides DynamicFormActionService',
-      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service).toBeDefined();
       })
     );

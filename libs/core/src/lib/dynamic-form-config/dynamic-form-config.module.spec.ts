@@ -72,6 +72,12 @@ describe('DynamicFormConfigModule', () => {
         expect(library).toEqual({ name: 'test' });
       })
     );
+
+    it('provides DynamicFormConfigService',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        expect(service).toBeDefined();
+      })
+    );
   });
 
   describe('withElement', () => {

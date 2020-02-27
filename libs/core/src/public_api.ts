@@ -19,6 +19,7 @@ export * from './lib/dynamic-form-action/dynamic-form-action-factory';
 export * from './lib/dynamic-form-action/dynamic-form-action-handler';
 export * from './lib/dynamic-form-action/dynamic-form-action-template';
 export * from './lib/dynamic-form-action/dynamic-form-action-type';
+export * from './lib/dynamic-form-action/dynamic-form-action.module';
 export * from './lib/dynamic-form-action/dynamic-form-action.service';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button-definition';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button-template';

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
@@ -66,6 +65,7 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
   ],
   exports: [
     DynamicFormConfigModule,
+    DynamicFormActionModule,
     DynamicFormArrayComponent
   ],
   entryComponents: [

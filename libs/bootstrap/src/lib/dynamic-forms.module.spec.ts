@@ -23,23 +23,17 @@ describe('BsDynamicFormsModule', () => {
       expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
     });
 
-    it('provides DynamicFormExpressionBuilder',
-      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormExpressionBuilder', () => {
+      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
+    });
 
-    it('provides DynamicFormEvaluationBuilder',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormEvaluationBuilder', () => {
+      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/StaticInjectorError/);
+    });
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormValidationBuilder', () => {
+      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
+    });
 
     it('does not provide DynamicFormValidationService', () => {
       expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);

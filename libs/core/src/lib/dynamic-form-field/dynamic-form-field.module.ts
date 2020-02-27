@@ -39,6 +39,9 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
     DynamicFormActionModule.withHandler(dynamicFormFieldResetHandler),
     DynamicFormActionModule.withHandler(dynamicFormFieldResetDefaultHandler),
     DynamicFormActionModule.withHandler(dynamicFormFieldValidateHandler)
+  ],
+  exports: [
+    DynamicFormActionModule
   ]
 })
 export class DynamicFormFieldModule {}
