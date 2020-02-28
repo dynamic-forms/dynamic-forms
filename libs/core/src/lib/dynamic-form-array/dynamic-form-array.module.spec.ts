@@ -2,6 +2,7 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
@@ -22,7 +23,7 @@ describe('DynamicFormArrayModule', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          useValue: new DynamicFormConfigService(new DynamicFormLibraryService({ name: 'test' }))
         },
         {
           provide: DynamicFormBuilder,

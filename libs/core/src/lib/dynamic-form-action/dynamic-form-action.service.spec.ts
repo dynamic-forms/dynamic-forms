@@ -1,5 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
@@ -13,7 +14,10 @@ describe('DynamicFormActionService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+        {
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService(library)
+        },
         DynamicFormActionService
       ]
     });

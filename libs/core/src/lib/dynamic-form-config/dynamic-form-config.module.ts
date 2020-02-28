@@ -7,9 +7,11 @@ import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-
 import { dynamicFormValidationConfig, DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 @NgModule({
   providers: [
+    DynamicFormLibraryService,
     DynamicFormConfigService
   ]
 })

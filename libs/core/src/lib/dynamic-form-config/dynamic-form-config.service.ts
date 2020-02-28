@@ -7,11 +7,11 @@ import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form
 import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormClassType } from './dynamic-form-class-type';
 import { DynamicFormComponentType } from './dynamic-form-component-type';
-import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibraryName } from './dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 @Injectable()
 export class DynamicFormConfigService {
-  readonly libraryNames: DynamicFormLibraryName[];
   readonly elementTypes: DynamicFormElementTypes;
   readonly fieldTypes: DynamicFormFieldTypes;
   readonly actionTypes: DynamicFormActionTypes;
@@ -20,7 +20,7 @@ export class DynamicFormConfigService {
   readonly validationConfig: DynamicFormValidationConfig;
 
   constructor(
-    @Inject(DYNAMIC_FORM_LIBRARY) readonly library: DynamicFormLibrary,
+    private readonly libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES) private _actionTypes: DynamicFormActionTypes = null,
@@ -28,14 +28,12 @@ export class DynamicFormConfigService {
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null
   ) {
-    this.libraryNames = this.getLibraryNames();
     this.elementTypes = this.filterTypes(this._elementTypes);
     this.fieldTypes = this.filterTypes(this._fieldTypes);
     this.actionTypes = this.filterTypes(this._actionTypes);
     this.inputTypes = this.filterTypes(this._inputTypes);
     this.fieldWrapperTypes = this.filterTypes(this._fieldWrapperTypes);
     this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
-
   }
 
   getClassType(type: string): DynamicFormClassType {
@@ -70,18 +68,13 @@ export class DynamicFormConfigService {
     return this.fieldWrapperTypes.find(f => f.type === type);
   }
 
-  private getLibraryNames(): DynamicFormLibraryName[] {
-    const referenceLibraryNames = this.library.references || [];
-    const referenceLibraryNamesReverse = [ ...referenceLibraryNames ].reverse();
-    return [ this.library.name, ...referenceLibraryNamesReverse ];
-  }
-
   private filterTypes<Type extends DynamicFormComponentType>(types: Type[]): Type[] {
     if (!types || !types.length) {
       return [];
     }
 
-    return this.libraryNames.reduce((filteredTypes, libraryName) => {
+    const libraryNames = this.libraryService.libraryNames;
+    return libraryNames.reduce((filteredTypes, libraryName) => {
       const libraryTypes = this.getLibraryTypes(libraryName, types, filteredTypes);
       return filteredTypes.concat(libraryTypes);
     }, []);
@@ -97,7 +90,8 @@ export class DynamicFormConfigService {
   }
 
   private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
-    const libraryName = this.library.name;
+    const library = this.libraryService.library;
+    const libraryName = library.name;
     const defaultConfig = { defaultMessage: undefined, messages: {}, libraryName };
     if (!configs || !configs.length) {
       return defaultConfig;
@@ -114,7 +108,8 @@ export class DynamicFormConfigService {
   }
 
   private getLibraryConfigs(configs: DynamicFormValidationConfigs) {
-    const libraryNamesReverse = [ ...this.libraryNames ].reverse();
+    const libraryNames = this.libraryService.libraryNames;
+    const libraryNamesReverse = [ ...libraryNames ].reverse();
     return libraryNamesReverse
       .map(name => configs.find(config => config.libraryName === name))
       .filter(config => !!config);
