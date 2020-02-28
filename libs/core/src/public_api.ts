@@ -38,6 +38,7 @@ export * from './lib/dynamic-form-config/dynamic-form-component-type';
 export * from './lib/dynamic-form-config/dynamic-form-library';
 export * from './lib/dynamic-form-config/dynamic-form-config.module';
 export * from './lib/dynamic-form-config/dynamic-form-config.service';
+export * from './lib/dynamic-form-config/dynamic-form-library.service';
 export * from './lib/dynamic-form-control/dynamic-form-control';
 export * from './lib/dynamic-form-control/dynamic-form-control-base';
 export * from './lib/dynamic-form-control/dynamic-form-control-definition';
