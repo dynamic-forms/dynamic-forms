@@ -15,7 +15,7 @@
           "template": {
             "type": "button",
             "label": "Push element",
-            "action": "pushArrayElement"
+            "action": "pushElement"
           }
         },
         {
@@ -23,7 +23,7 @@
           "template": {
             "type": "button",
             "label": "Pop element",
-            "action": "popArrayElement"
+            "action": "popElement"
           }
         }, 
         {
@@ -31,13 +31,11 @@
           "template": {
             "type": "button",
             "label": "Clear elements",
-            "action": "clearArrayElements"
+            "action": "clearElements"
           }
         }        
       ],
-      "defaultValue": [
-        { "name": "user01", "email": "user01@mail.com" }
-      ],
+      "defaultLength": 1,
       "definitionTemplate": {
         "type": "group",
         "template": {
@@ -52,8 +50,7 @@
               "label": "Name",
               "input": {
                 "type": "textbox",
-                "placeholder": "Enter name",
-                "defaultValue": "user"
+                "placeholder": "Enter name"
               },
               "validation": {
                 "required": true
@@ -68,8 +65,7 @@
               "label": "Email",
               "input": {
                 "type": "textbox",
-                "placeholder": "Enter email",
-                "defaultValue": "user@mail.com"
+                "placeholder": "Enter email"
               },
               "validation": {
                 "required": true,
