@@ -22,7 +22,6 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.index).toBe(1);
     expect(formGroup.path).toBe('key');
     expect(formGroup.classType).toBe('field');
-    expect(formGroup.fieldClassType).toBe('group');
     expect(formGroup.componentType).toBe('componentType');
 
     expect(formGroup.model).toEqual({});

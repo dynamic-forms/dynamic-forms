@@ -29,8 +29,6 @@ export class DynamicFormControl<
     this._valueSubscription = this.createValueSubscription();
   }
 
-  get fieldClassType() { return 'control'; }
-
   get input() { return this.template.input; }
   get inputId() { return this.id || this.path; }
   get inputComponentType() { return this.input.type; }

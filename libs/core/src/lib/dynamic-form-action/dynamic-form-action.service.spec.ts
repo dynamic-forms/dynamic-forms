@@ -1,62 +1,123 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormAction } from './dynamic-form-action';
-import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
-import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionService', () => {
-  const libraryName: DynamicFormLibraryName = 'text';
-  const library: DynamicFormLibrary = { name: libraryName };
+  describe('without DYNAMIC_FORM_ACTIONS_HANDLERS', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService( { name: 'test' })
+          },
+          DynamicFormActionService
+        ]
+      });
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(library)
-        },
-        DynamicFormActionService
-      ]
-    });
-  }));
+    it('returns handlers being empty',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        expect(service.handlers).toEqual([]);
+      })
+    );
 
-  it('stops propagation of event and calls func of handler',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const field = <DynamicFormField>{ fieldClassType: 'fieldClassType' };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
-      const action = new DynamicFormAction(null, field, definition);
-      const event = <Event>{ stopPropagation() {} };
-      const handler = <DynamicFormActionHandler>{ func(_field, _action) {} };
+    it('returns handler being undefined',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type');
 
-      spyOn(event, 'stopPropagation');
-      spyOn(service, 'getActionHandler').and.returnValue(handler);
-      spyOn(handler, 'func');
+        expect(handler).toBeUndefined();
+      })
+    );
 
-      service.handle(action, event);
+    it('does not call func of handler and stop event propagation',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const field = <DynamicFormField>{};
+        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
+        const event = <Event>{ stopPropagation() {} };
 
-      expect(event.stopPropagation).toHaveBeenCalled();
-      expect(service.getActionHandler).toHaveBeenCalledWith('reset', 'fieldClassType');
-      expect(handler.func).toHaveBeenCalledWith(field, action);
-    })
-  );
+        spyOn(service, 'getHandler').and.callThrough();
+        spyOn(event, 'stopPropagation');
 
-  it('does not call func of handler and stop event propagation',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const field = <DynamicFormField>{ fieldClassType: 'fieldClassType' };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
-      const action = new DynamicFormAction(null, field, definition);
-      const event = <Event>{ stopPropagation() {} };
+        service.handle(action, event);
 
-      spyOn(event, 'stopPropagation');
-      spyOn(service, 'getActionHandler').and.returnValue(undefined);
+        expect(service.getHandler).toHaveBeenCalledWith('type');
+        expect(event.stopPropagation).not.toHaveBeenCalled();
+      })
+    );
+  });
 
-      service.handle(action, event);
+  describe('with DYNAMIC_FORM_ACTION_HANDLERS', () => {
+    const handlers: DynamicFormActionHandlers = [
+      {
+        type: 'type',
+        func: () => {},
+        libraryName: 'test1'
+      },
+      {
+        type: 'type',
+        func: () => {},
+        libraryName: 'test'
+      }
+    ];
 
-      expect(event.stopPropagation).not.toHaveBeenCalled();
-      expect(service.getActionHandler).toHaveBeenCalledWith('reset', 'fieldClassType');
-    })
-  );
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService( { name: 'test' })
+          },
+          {
+            provide: DYNAMIC_FORM_ACTION_HANDLERS,
+            useValue: handlers
+          },
+          DynamicFormActionService
+        ]
+      });
+    }));
+
+    it('returns handlers',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        expect(service.handlers).toEqual([ handlers[1] ]);
+      })
+    );
+
+    it('returns handler',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type');
+
+        expect(handler).toEqual(service.handlers[0]);
+      })
+    );
+
+    it('returns handler being undefined if not found',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type1');
+
+        expect(handler).toBeUndefined();
+      })
+    );
+
+    it('calls func of handler and stops propagation of event',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const field = <DynamicFormField>{};
+        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
+        const event = <Event>{ stopPropagation() {} };
+
+        spyOn(service, 'getHandler').and.callThrough();
+        spyOn(service.handlers[0], 'func');
+        spyOn(event, 'stopPropagation');
+
+        service.handle(action, event);
+
+        expect(service.getHandler).toHaveBeenCalledWith('type');
+        expect(service.handlers[0].func).toHaveBeenCalledWith(field, action);
+        expect(event.stopPropagation).toHaveBeenCalled();
+      })
+    );
+  });
 });

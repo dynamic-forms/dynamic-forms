@@ -4,7 +4,6 @@ import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 
 class DynamicFormFieldTest extends DynamicFormField {
-  get fieldClassType() { return 'field'; }
   check() {}
   destroy() {}
 
@@ -30,7 +29,6 @@ describe('DynamicFormField', () => {
     expect(formField.index).toBe(1);
     expect(formField.path).toBe('key');
     expect(formField.classType).toBe('field');
-    expect(formField.fieldClassType).toBe('field');
     expect(formField.componentType).toBe('componentType');
 
     expect(formField.model).toBeUndefined();

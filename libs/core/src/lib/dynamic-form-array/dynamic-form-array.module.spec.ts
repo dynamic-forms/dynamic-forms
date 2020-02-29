@@ -65,9 +65,9 @@ describe('DynamicFormArrayModule', () => {
     })
   );
 
-  it('handler calls popElement of field',
+  it('handler calls popElement of array field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'popElement');
+      const handler = handlers.find(h => h.type === 'popArrayElement');
       const field = <DynamicFormArray>{ popElement() {} };
 
       spyOn(field, 'popElement');
@@ -78,9 +78,9 @@ describe('DynamicFormArrayModule', () => {
     })
   );
 
-  it('handler calls clearElements of field',
+  it('handler calls clearElements of array field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'clearElements');
+      const handler = handlers.find(h => h.type === 'clearArrayElements');
       const field = <DynamicFormArray>{ clearElements() {} };
 
       spyOn(field, 'clearElements');
@@ -91,9 +91,9 @@ describe('DynamicFormArrayModule', () => {
     })
   );
 
-  it('handler calls pushElement of field',
+  it('handler calls pushElement of array field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'pushElement');
+      const handler = handlers.find(h => h.type === 'pushArrayElement');
       const field = <DynamicFormArray>{ pushElement(_elem) {}, length: 0 };
       const element = <DynamicFormField>{};
 

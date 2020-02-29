@@ -49,7 +49,6 @@ export abstract class DynamicFormField<
   get index() { return this.definition.index; }
   get path() { return this._path; }
   get classType(): DynamicFormClassType { return 'field'; }
-  abstract get fieldClassType(): string;
 
   get model() { return this._model; }
   get options() { return this._options; }

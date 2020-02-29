@@ -8,7 +8,6 @@ export type DynamicFormActionFunc<Field extends DynamicFormField = DynamicFormFi
 
 export interface DynamicFormActionHandler<Field extends DynamicFormField = DynamicFormField> {
   type: string;
-  fieldType?: string;
   func: DynamicFormActionFunc<Field>;
   libraryName: DynamicFormLibraryName;
 }

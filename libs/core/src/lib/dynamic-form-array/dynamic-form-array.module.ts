@@ -25,8 +25,7 @@ export function dynamicFormArrayPopElementFactory(field: DynamicFormArray) {
 }
 
 export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
-  type: 'popElement',
-  fieldType: 'array',
+  type: 'popArrayElement',
   func: dynamicFormArrayPopElementFactory,
   libraryName: dynamicFormLibrary.name
 };
@@ -36,8 +35,7 @@ export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray) {
 }
 
 export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<DynamicFormArray> = {
-  type: 'clearElements',
-  fieldType: 'array',
+  type: 'clearArrayElements',
   func: dynamicFormArrayClearElementsFactory,
   libraryName: dynamicFormLibrary.name
 };
@@ -45,8 +43,7 @@ export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<Dyna
 export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFormBuilder): DynamicFormActionHandler<DynamicFormArray> {
   const func = (field: DynamicFormArray) => field.pushElement(formBuilder.createFormArrayElement(field, field.length));
   return {
-    type: 'pushElement',
-    fieldType: 'array',
+    type: 'pushArrayElement',
     func: func,
     libraryName: dynamicFormLibrary.name
   };
