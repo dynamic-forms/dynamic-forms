@@ -15,7 +15,7 @@
           "template": {
             "type": "button",
             "label": "Push element",
-            "action": "pushElement"
+            "action": "pushArrayElement"
           }
         },
         {
@@ -23,7 +23,7 @@
           "template": {
             "type": "button",
             "label": "Pop element",
-            "action": "popElement"
+            "action": "popArrayElement"
           }
         }, 
         {
@@ -31,7 +31,7 @@
           "template": {
             "type": "button",
             "label": "Clear elements",
-            "action": "clearElements"
+            "action": "clearArrayElements"
           }
         }        
       ],
