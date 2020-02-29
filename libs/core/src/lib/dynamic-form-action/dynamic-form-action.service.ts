@@ -1,50 +1,29 @@
-import { Injectable } from '@angular/core';
-import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
+import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
 
 @Injectable()
 export class DynamicFormActionService {
-  constructor(private formBuilder: DynamicFormBuilder) {}
+  readonly handlers: DynamicFormActionHandlers;
 
-  handle(action: DynamicFormAction, $event: Event) {
-    switch (action.template.action) {
-      case 'validate':
-        $event.stopPropagation();
-        action.parent.validate();
-        break;
-      case 'reset':
-        $event.stopPropagation();
-        action.parent.reset();
-        break;
-      case 'resetDefault':
-        $event.stopPropagation();
-        action.parent.resetDefault();
-        break;
-      default:
-        this.handleForField(action, $event);
-        break;
-    }
+  constructor(
+    private readonly libraryService: DynamicFormLibraryService,
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLERS)
+    private _handlers: DynamicFormActionHandlers
+  ) {
+    this.handlers = this.libraryService.filterTypes(this._handlers);
   }
 
-  private handleForField(action: DynamicFormAction, $event: Event) {
-    const field = action.parent;
-    if (field instanceof DynamicFormArray) {
-      switch (action.template.action) {
-        case 'pushArrayElement':
-          $event.stopPropagation();
-          const element = this.formBuilder.createFormArrayElement(field, field.length);
-          field.pushElement(element);
-          break;
-        case 'popArrayElement':
-          $event.stopPropagation();
-          field.popElement();
-          break;
-        case 'clearArrayElements':
-          $event.stopPropagation();
-          field.clearElements();
-          break;
-      }
+  getHandler(type: string) {
+    return this.handlers.find(f => f.type === type);
+  }
+
+  handle(action: DynamicFormAction, $event: Event) {
+    const handler = this.getHandler(action.template.action);
+    if (handler) {
+      handler.func(action.parent, action);
+      $event.stopPropagation();
     }
   }
 }

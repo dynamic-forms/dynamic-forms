@@ -5,7 +5,7 @@ import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-fo
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
@@ -54,7 +54,10 @@ describe('DynamicFormBuilder', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: { name: 'test' } },
+        {
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
+        },
         { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
         { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
         { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
