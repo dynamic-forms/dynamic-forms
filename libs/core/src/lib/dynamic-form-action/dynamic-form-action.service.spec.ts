@@ -1,132 +1,123 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
-import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
+import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionService', () => {
-  let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
+  describe('without DYNAMIC_FORM_ACTIONS_HANDLERS', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService( { name: 'test' })
+          },
+          DynamicFormActionService
+        ]
+      });
+    }));
 
-  beforeEach(async(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('' , [ 'createFormArrayElement' ]);
+    it('returns handlers being empty',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        expect(service.handlers).toEqual([]);
+      })
+    );
 
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: DynamicFormBuilder, useValue: formBuilder },
-        DynamicFormActionService
-      ]
-    });
-  }));
+    it('returns handler being undefined',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type');
 
-  it('executes validate of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ validate() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'validate' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
+        expect(handler).toBeUndefined();
+      })
+    );
 
-      spyOn(parent, 'validate');
-      spyOn(event, 'stopPropagation');
+    it('does not call func of handler and stop event propagation',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const field = <DynamicFormField>{};
+        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
+        const event = <Event>{ stopPropagation() {} };
 
-      handler.handle(action, event);
+        spyOn(service, 'getHandler').and.callThrough();
+        spyOn(event, 'stopPropagation');
 
-      expect(parent.validate).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
+        service.handle(action, event);
 
-  it('executes reset of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ reset() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'reset' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
+        expect(service.getHandler).toHaveBeenCalledWith('type');
+        expect(event.stopPropagation).not.toHaveBeenCalled();
+      })
+    );
+  });
 
-      spyOn(parent, 'reset');
-      spyOn(event, 'stopPropagation');
+  describe('with DYNAMIC_FORM_ACTION_HANDLERS', () => {
+    const handlers: DynamicFormActionHandlers = [
+      {
+        type: 'type',
+        func: () => {},
+        libraryName: 'test1'
+      },
+      {
+        type: 'type',
+        func: () => {},
+        libraryName: 'test'
+      }
+    ];
 
-      handler.handle(action, event);
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService( { name: 'test' })
+          },
+          {
+            provide: DYNAMIC_FORM_ACTION_HANDLERS,
+            useValue: handlers
+          },
+          DynamicFormActionService
+        ]
+      });
+    }));
 
-      expect(parent.reset).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
+    it('returns handlers',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        expect(service.handlers).toEqual([ handlers[1] ]);
+      })
+    );
 
-  it('executes resetDefault of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const parent = <DynamicFormField>{ resetDefault() {} };
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'resetDefault' }, elements: [] };
-      const action = new DynamicFormAction(null, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
+    it('returns handler',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type');
 
-      spyOn(parent, 'resetDefault');
-      spyOn(event, 'stopPropagation');
+        expect(handler).toEqual(service.handlers[0]);
+      })
+    );
 
-      handler.handle(action, event);
+    it('returns handler being undefined if not found',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.getHandler('type1');
 
-      expect(parent.resetDefault).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
+        expect(handler).toBeUndefined();
+      })
+    );
 
-  it('executes pushArrayElement of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'pushArrayElement' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-      const element = <DynamicFormField>{};
+    it('calls func of handler and stops propagation of event',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const field = <DynamicFormField>{};
+        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
+        const event = <Event>{ stopPropagation() {} };
 
-      formBuilder.createFormArrayElement.and.returnValue(element);
+        spyOn(service, 'getHandler').and.callThrough();
+        spyOn(service.handlers[0], 'func');
+        spyOn(event, 'stopPropagation');
 
-      spyOn(parent, 'pushElement');
-      spyOn(event, 'stopPropagation');
+        service.handle(action, event);
 
-      handler.handle(action, event);
-
-      expect(formBuilder.createFormArrayElement).toHaveBeenCalledWith(parent, 0);
-      expect(parent.pushElement).toHaveBeenCalledWith(element);
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
-  it('executes popArrayElement of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'popArrayElement' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'popElement');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.popElement).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
-
-  it('executes clearArrayElements of parent',
-    inject([DynamicFormActionService], (handler: DynamicFormActionService) => {
-      const root = <DynamicFormField>{ model: {} };
-      const parent = new DynamicFormArray(root, root, <DynamicFormArrayDefinition>{ key: 'key' });
-      const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: { action: 'clearArrayElements' }, elements: [] };
-      const action = new DynamicFormAction(root, parent, definition);
-      const event = <Event>{ stopPropagation() {} };
-
-      spyOn(parent, 'clearElements');
-      spyOn(event, 'stopPropagation');
-
-      handler.handle(action, event);
-
-      expect(parent.clearElements).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
-    })
-  );
+        expect(service.getHandler).toHaveBeenCalledWith('type');
+        expect(service.handlers[0].func).toHaveBeenCalledWith(field, action);
+        expect(event.stopPropagation).toHaveBeenCalled();
+      })
+    );
+  });
 });

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDatepicker, DynamicFormDefinition, DynamicFormValidationService } from '@dynamic-forms/core';
+  DynamicFormDatepicker, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
 
@@ -21,9 +21,10 @@ describe('MatDynamicFormDatepickerComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         DynamicFormValidationService
       ]
     });

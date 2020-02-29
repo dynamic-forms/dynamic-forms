@@ -1,24 +1,25 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
 describe('DynamicFormValidationService', () => {
-  const libraryName: DynamicFormLibraryName = 'test';
-  const library: DynamicFormLibrary = { name: libraryName };
   const validationConfig: DynamicFormValidationConfig = {
     defaultMessage: 'The field is invalid',
     messages: {
       required: 'The field is required'
     },
-    libraryName
+    libraryName: 'test'
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+        {
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
+        },
         { provide: DYNAMIC_FORM_VALIDATION_CONFIGS, useValue: [validationConfig ] },
         DynamicFormConfigService,
         DynamicFormValidationService

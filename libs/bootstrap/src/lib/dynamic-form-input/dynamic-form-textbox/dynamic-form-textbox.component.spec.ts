@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormTextbox, DynamicFormValidationService} from '@dynamic-forms/core';
+  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextbox, DynamicFormValidationService} from '@dynamic-forms/core';
 import { BsDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { BsDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
@@ -19,9 +19,10 @@ describe('DynamicFormTextboxComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         DynamicFormValidationService
       ]
     });

@@ -17,7 +17,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'required');
 
       expect(validator.key).toBe('required');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeDefined();
@@ -30,7 +30,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'email');
 
       expect(validator.key).toBe('email');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeDefined();
@@ -43,7 +43,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'pattern');
 
       expect(validator.key).toBe('pattern');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBe('[A-Za-z]*');
       expect(validator.validatorFn).toBeDefined();
@@ -56,7 +56,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'pattern');
 
       expect(validator.key).toBe('pattern');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeNull();
       expect(validator.validatorFn).toBeUndefined();
@@ -69,7 +69,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'min');
 
       expect(validator.key).toBe('min');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBe(-10);
       expect(validator.validatorFn).toBeDefined();
@@ -82,7 +82,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'min');
 
       expect(validator.key).toBe('min');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeUndefined();
@@ -95,7 +95,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'max');
 
       expect(validator.key).toBe('max');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBe(10);
       expect(validator.validatorFn).toBeDefined();
@@ -108,7 +108,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'max');
 
       expect(validator.key).toBe('max');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeUndefined();
@@ -121,7 +121,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'minLength');
 
       expect(validator.key).toBe('minLength');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBe(5);
       expect(validator.validatorFn).toBeDefined();
@@ -134,7 +134,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'minLength');
 
       expect(validator.key).toBe('minLength');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeUndefined();
@@ -147,7 +147,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'maxLength');
 
       expect(validator.key).toBe('maxLength');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBe(10);
       expect(validator.validatorFn).toBeDefined();
@@ -160,7 +160,7 @@ describe('DynamicFormValidationBuilder', () => {
       const validator = service.createControlValidator(template, 'maxLength');
 
       expect(validator.key).toBe('maxLength');
-      expect(validator.factory).toBeDefined();
+      expect(validator.factory).toEqual(jasmine.any(Function));
       expect(validator.enabled).toBe(true);
       expect(validator.parameters).toBeUndefined();
       expect(validator.validatorFn).toBeUndefined();

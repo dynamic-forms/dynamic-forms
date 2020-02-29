@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormNumberbox, DynamicFormValidationService} from '@dynamic-forms/core';
+  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormNumberbox, DynamicFormValidationService} from '@dynamic-forms/core';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
@@ -19,9 +19,10 @@ describe('BsDynamicFormNumberboxComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         DynamicFormValidationService
       ]
     });

@@ -2,6 +2,7 @@ import { SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
@@ -25,7 +26,7 @@ describe('DynamicFormComponent', () => {
       providers: [
         {
           provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          useValue: new DynamicFormConfigService(new DynamicFormLibraryService({ name: 'test' }))
         },
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,

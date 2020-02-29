@@ -1,5 +1,6 @@
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-config/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
@@ -23,7 +24,8 @@ describe('DynamicFormFieldBase', () => {
   let component: DynamicFormFieldBaseTest;
 
   beforeEach(() => {
-    const configService = new DynamicFormConfigService(library, null, null, null, null, null, [ validationConfig ]);
+    const libraryService = new DynamicFormLibraryService(library);
+    const configService = new DynamicFormConfigService(libraryService, null, null, null, null, null, [ validationConfig ]);
     const validationService = new DynamicFormValidationService(configService);
 
     component = new DynamicFormFieldBaseTest(validationService);

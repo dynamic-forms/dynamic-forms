@@ -14,6 +14,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
@@ -27,6 +28,10 @@ describe('DynamicFormConfigModule', () => {
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
+    });
+
+    it('does not provide DynamicFormLibraryService', () => {
+      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -70,6 +75,18 @@ describe('DynamicFormConfigModule', () => {
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toEqual({ name: 'test' });
+      })
+    );
+
+    it('provides DynamicFormLibraryService',
+      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+        expect(service).toBeDefined();
+      })
+    );
+
+    it('provides DynamicFormConfigService',
+      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        expect(service).toBeDefined();
       })
     );
   });
