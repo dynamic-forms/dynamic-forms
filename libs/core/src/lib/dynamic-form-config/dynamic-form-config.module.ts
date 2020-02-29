@@ -5,9 +5,16 @@ import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormValidationConfig, DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { DynamicFormConfigService } from './dynamic-form-config.service';
 import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
-@NgModule({})
+@NgModule({
+  providers: [
+    DynamicFormLibraryService,
+    DynamicFormConfigService
+  ]
+})
 export class DynamicFormConfigModule {
   static forLibrary(library: DynamicFormLibrary): ModuleWithProviders<DynamicFormConfigModule> {
     return {

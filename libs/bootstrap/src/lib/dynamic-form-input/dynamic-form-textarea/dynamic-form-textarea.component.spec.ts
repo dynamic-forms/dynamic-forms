@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormTextarea, DynamicFormValidationService} from '@dynamic-forms/core';
+  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextarea, DynamicFormValidationService} from '@dynamic-forms/core';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { BsDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
@@ -19,9 +19,10 @@ describe('BsDynamicFormTextareaComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService({ name: 'test' })
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         DynamicFormValidationService
       ]
     });

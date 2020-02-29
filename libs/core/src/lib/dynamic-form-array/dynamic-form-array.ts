@@ -31,8 +31,8 @@ export class DynamicFormArray<
 
   pushElement(element: DynamicFormField) {
     this._fields.push(element);
-    this._model.push(element.model);
     this._control.push(element.control);
+    this._elements = this._fields;
   }
 
   popElement() {
@@ -40,12 +40,13 @@ export class DynamicFormArray<
     this._fields.pop();
     this._model.pop();
     this._control.removeAt(length);
+    this._parent.model[this.key] = this._model;
+    this._elements = this._fields;
   }
 
   clearElements() {
     this._fields = [];
     this._model = [];
-    this._parent.model[this.key] = this._model;
     this._control.clear();
     this._elements = this._fields;
   }

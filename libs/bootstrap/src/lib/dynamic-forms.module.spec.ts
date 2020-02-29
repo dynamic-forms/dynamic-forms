@@ -1,7 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormLibrary,
-  DynamicFormValidationBuilder, DynamicFormValidationService, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DynamicFormLibraryService, DynamicFormValidationBuilder, DynamicFormValidationService,
+  DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
 import { BsDynamicFormsModule } from './dynamic-forms.module';
 
@@ -17,6 +18,10 @@ describe('BsDynamicFormsModule', () => {
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
+    });
+
+    it('does not provide DynamicFormLibraryService', () => {
+      expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -41,10 +46,6 @@ describe('BsDynamicFormsModule', () => {
       })
     );
 
-    it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);
-    });
-
     it('does not provide DynamicFormComponentFactory', () => {
       expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);
     });
@@ -62,6 +63,14 @@ describe('BsDynamicFormsModule', () => {
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toEqual(bsDynamicFormLibrary);
+      })
+    );
+
+    it('provides DynamicFormLibraryService',
+      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+        expect(service).toBeDefined();
+        expect(service.library).toEqual(bsDynamicFormLibrary);
+        expect(service.libraryNames).toEqual([ 'bootstrap', 'core' ]);
       })
     );
 

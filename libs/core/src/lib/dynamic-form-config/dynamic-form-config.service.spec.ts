@@ -6,7 +6,8 @@ import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
-import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from './dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 describe('DynamicFormConfigService', () => {
   describe('with DYNAMIC_FORM_LIBRARY', () => {
@@ -17,8 +18,8 @@ describe('DynamicFormConfigService', () => {
       TestBed.configureTestingModule({
         providers: [
           {
-            provide: DYNAMIC_FORM_LIBRARY,
-            useValue: library
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService(library)
           },
           DynamicFormConfigService
         ]
@@ -27,8 +28,6 @@ describe('DynamicFormConfigService', () => {
 
     it('returns DynamicFormConfigService with configs being empty',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName ]);
         expect(service.elementTypes).toEqual([]);
         expect(service.actionTypes).toEqual([]);
         expect(service.fieldTypes).toEqual([]);
@@ -108,7 +107,10 @@ describe('DynamicFormConfigService', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService(library)
+          },
           { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
@@ -122,8 +124,6 @@ describe('DynamicFormConfigService', () => {
 
     it('returns DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName ]);
         expect(service.elementTypes).toEqual(elementTypes);
         expect(service.fieldTypes).toEqual(fieldTypes);
         expect(service.actionTypes).toEqual(actionTypes);
@@ -243,7 +243,10 @@ describe('DynamicFormConfigService', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService(library)
+          },
           { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
@@ -257,8 +260,6 @@ describe('DynamicFormConfigService', () => {
 
     it('returns DynamicFormConfigService with configs being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName, coreLibraryName ]);
         expect(service.elementTypes).toEqual([
           { type: 'element-1', component: null, libraryName: libraryName },
           { type: 'element-2', component: null, libraryName: coreLibraryName }
