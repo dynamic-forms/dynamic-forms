@@ -21,7 +21,7 @@ describe('MatDynamicFormsModule', () => {
     });
 
     it('does not provide DynamicFormLibraryService', () => {
-      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
@@ -29,15 +29,15 @@ describe('MatDynamicFormsModule', () => {
     });
 
     it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormValidationService', () => {
