@@ -21,28 +21,30 @@ describe('BsDynamicFormsModule', () => {
     });
 
     it('does not provide DynamicFormLibraryService', () => {
-      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
 
-    it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.get(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
-    });
+    it('provides DynamicFormExpressionBuilder',
+      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
-    });
+    it('provides DynamicFormEvaluationBuilder',
+      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
-    it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);
-    });
+    it('provides DynamicFormValidationBuilder',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service).toBeDefined();
+      })
+    );
 
     it('does not provide DynamicFormComponentFactory', () => {
       expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);

@@ -30,7 +30,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DynamicFormLibraryService', () => {
-      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
