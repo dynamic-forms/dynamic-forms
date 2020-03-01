@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
@@ -20,7 +20,7 @@ describe('DynamicFormValidationService', () => {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' })
         },
-        { provide: DYNAMIC_FORM_VALIDATION_CONFIGS, useValue: [validationConfig ] },
+        { provide: DYNAMIC_FORM_VALIDATION_CONFIGS, useValue: [ validationConfig ] },
         DynamicFormConfigService,
         DynamicFormValidationService
       ]

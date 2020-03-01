@@ -1,11 +1,11 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
-import { DynamicFormLibraryService } from '../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopElementHandler, dynamicFormArrayType, DynamicFormArrayModule } from './dynamic-form-array.module';

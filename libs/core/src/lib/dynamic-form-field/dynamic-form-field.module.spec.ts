@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
-import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormField } from './dynamic-form-field';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler, DynamicFormFieldModule } from './dynamic-form-field.module';
 

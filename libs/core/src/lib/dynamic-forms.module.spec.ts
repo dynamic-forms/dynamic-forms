@@ -1,13 +1,13 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-config/dynamic-form-library';
-import { DynamicFormLibraryService } from './dynamic-form-config/dynamic-form-library.service';
 import { DYNAMIC_FORM_ELEMENT_TYPES } from './dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DYNAMIC_FORM_FIELD_TYPES } from './dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from './dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DYNAMIC_FORM_INPUT_TYPES } from './dynamic-form-input/dynamic-form-input-type';
+import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-library.service';
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';

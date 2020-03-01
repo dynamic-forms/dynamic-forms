@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element-type';
 import { dynamicFormContainerType, DynamicFormContainerModule } from './dynamic-form-container.module';
 
