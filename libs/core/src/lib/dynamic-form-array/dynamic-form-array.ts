@@ -32,19 +32,19 @@ export class DynamicFormArray<
   pushElement(element: DynamicFormField) {
     this._fields.push(element);
     this._control.push(element.control);
-    this._elements = this._fields;
   }
 
   popElement() {
     const length = this.length;
-    this._fields.pop();
-    this._model.pop();
-    this._control.removeAt(length);
-    this._parent.model[this.key] = this._model;
-    this._elements = this._fields;
+    if (length > 0) {
+      this._fields.pop().destroy();
+      this._model.pop();
+      this._control.removeAt(length - 1);
+    }
   }
 
   clearElements() {
+    this._fields.forEach(field => field.destroy());
     this._fields = [];
     this._model = [];
     this._control.clear();
