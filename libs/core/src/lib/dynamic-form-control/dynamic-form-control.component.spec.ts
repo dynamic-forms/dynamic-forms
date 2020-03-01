@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
-import { DYNAMIC_FORM_LIBRARY } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -33,8 +33,8 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
   ],
   providers: [
     {
-      provide: DYNAMIC_FORM_LIBRARY,
-      useValue: { name: 'test' }
+      provide: DynamicFormLibraryService,
+      useValue: new DynamicFormLibraryService({ name: 'test' })
     },
     {
       provide: DYNAMIC_FORM_INPUT_TYPES,

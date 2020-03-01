@@ -24,7 +24,7 @@ describe('DynamicFormConfigModule', () => {
     });
   });
 
-  describe('for provided DynamicFormLibraryService', () => {
+  describe('with DynamicFormLibraryService provided', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
@@ -207,6 +207,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withValidation(config)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
