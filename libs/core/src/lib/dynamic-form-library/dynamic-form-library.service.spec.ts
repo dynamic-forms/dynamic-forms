@@ -1,11 +1,10 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 describe('DynamicFormLibraryService', () => {
   describe('with DYNAMIC_FORM_LIBRARY', () => {
-    const libraryName: DynamicFormLibraryName = 'text';
-    const library: DynamicFormLibrary = { name: libraryName };
+    const library: DynamicFormLibrary = { name: 'test' };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -19,53 +18,60 @@ describe('DynamicFormLibraryService', () => {
       });
     }));
 
-    it('returns DynamicFormLibraryService with configs being empty',
+    it('returns library, library names and library names in reverse order',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
         expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName ]);
+        expect(service.libraryNames).toEqual([ 'test' ]);
+        expect(service.libraryNamesReverse).toEqual([ 'test' ]);
       })
     );
   });
 
-  describe('with DYNAMIC_FORM_LIBRARY and configs for single library', () => {
-    const libraryName: DynamicFormLibraryName = 'text';
-    const library: DynamicFormLibrary = { name: libraryName };
+  describe('with DYNAMIC_FORM_LIBRARY including library references', () => {
+    const library: DynamicFormLibrary = {
+      name: 'test',
+      references: [ 'test-core', 'test-core-extension' ]
+    };
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+          {
+            provide: DYNAMIC_FORM_LIBRARY,
+            useValue: library
+          },
           DynamicFormLibraryService
         ]
       });
     }));
 
-    it('returns DynamicFormLibraryService',
+    it('returns library, library names and library names in reverse order',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
         expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName ]);
+        expect(service.libraryNames).toEqual([ 'test', 'test-core-extension', 'test-core' ]);
+        expect(service.libraryNamesReverse).toEqual([ 'test-core', 'test-core-extension', 'test' ]);
       })
     );
   });
 
-  describe('with DYNAMIC_FORM_LIBRARY and configs for multiple libraries', () => {
-    const coreLibraryName: DynamicFormLibraryName = dynamicFormLibrary.name;
-    const libraryName: DynamicFormLibraryName = 'test';
-    const library: DynamicFormLibrary = { name: libraryName, references: [ coreLibraryName ] };
-
+  describe('with DYNAMIC_FORM_LIBRARY being dynamicFormLibrary', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: DYNAMIC_FORM_LIBRARY, useValue: library },
+          {
+            provide: DYNAMIC_FORM_LIBRARY,
+            useValue: dynamicFormLibrary
+          },
           DynamicFormLibraryService
         ]
       });
     }));
 
-    it('returns DynamicFormLibraryService with configs being filtered and merged',
+    it('returns library, library names and library names in reverse order',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service.library).toEqual(library);
-        expect(service.libraryNames).toEqual([ libraryName, coreLibraryName ]);
+        expect(service.library).toEqual( dynamicFormLibrary);
+        expect(service.libraryNames).toEqual([ 'core' ]);
+        expect(service.libraryNamesReverse).toEqual([ 'core' ]);
       })
     );
   });
