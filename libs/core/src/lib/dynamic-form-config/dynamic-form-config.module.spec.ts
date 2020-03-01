@@ -1,20 +1,13 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType, DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementType, DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
-import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormValidationConfig, DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
-import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
-import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
-import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
-import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
@@ -26,63 +19,25 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('does not provide DYNAMIC_FORM_LIBRARY', () => {
-      expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormLibraryService', () => {
-      expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
-    });
-
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
-
-    it('does not provide DynamicFormBuilder', () => {
-      expect(() => TestBed.inject(DynamicFormBuilder)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormExpressionBuilder', () => {
-      expect(() => TestBed.inject(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormValidationBuilder', () => {
-      expect(() => TestBed.inject(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);
-    });
-
-    it('does not provide DynamicFormComponentFactory', () => {
-      expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);
-    });
   });
 
-  describe('forLibrary', () => {
+  describe('with DynamicFormLibraryService provided', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.forLibrary({ name: 'test' })
+          DynamicFormConfigModule
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
-
-    it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
-        expect(library).toEqual({ name: 'test' });
-      })
-    );
-
-    it('provides DynamicFormLibraryService',
-      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeDefined();
-      })
-    );
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -99,6 +54,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withElement(type)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -119,6 +80,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withField(type)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -139,6 +106,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withAction(type)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -159,6 +132,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withInput(type)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -179,6 +158,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFieldWrapper(type)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -196,6 +181,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withValidation()
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));
@@ -216,6 +207,12 @@ describe('DynamicFormConfigModule', () => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withValidation(config)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
         ]
       });
     }));

@@ -1,8 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
-import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { dynamicFormGroupType, DynamicFormGroupModule } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupModule', () => {

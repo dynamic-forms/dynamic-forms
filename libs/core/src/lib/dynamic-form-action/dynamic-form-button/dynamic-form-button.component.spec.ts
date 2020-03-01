@@ -1,7 +1,7 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormLibraryService } from '../../dynamic-form-config/dynamic-form-library.service';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
+import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';

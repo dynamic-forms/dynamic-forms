@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
-import { DynamicFormLibraryName } from './dynamic-form-library';
+import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 
 export interface DynamicFormComponentType<Component extends DynamicFormElementBase = DynamicFormElementBase> {
   type: string;

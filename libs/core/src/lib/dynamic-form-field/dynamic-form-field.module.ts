@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
-import { dynamicFormLibrary } from '../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormField } from './dynamic-form-field';
 
 export function dynamicFormFieldResetFactory(field: DynamicFormField) {

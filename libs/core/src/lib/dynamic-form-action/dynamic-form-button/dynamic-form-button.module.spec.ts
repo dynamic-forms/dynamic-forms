@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { dynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action-type';
 import { dynamicFormButtonType, DynamicFormButtonModule } from './dynamic-form-button.module';
 

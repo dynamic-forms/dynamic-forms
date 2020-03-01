@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-config/dynamic-form-library';
+import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 
 export interface DynamicFormValidationConfig {
   defaultMessage: string;
