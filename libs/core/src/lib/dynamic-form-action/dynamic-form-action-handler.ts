@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { DynamicFormLibraryName } from '../dynamic-form-config/dynamic-form-library';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormAction } from './dynamic-form-action';
 
 export type DynamicFormActionFunc<Field extends DynamicFormField = DynamicFormField> =
