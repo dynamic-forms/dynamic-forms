@@ -24,9 +24,10 @@ describe('DynamicFormArrayComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(new DynamicFormLibraryService({ name: 'test' }))
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         {
           provide: DynamicFormBuilder,
           useValue: {}

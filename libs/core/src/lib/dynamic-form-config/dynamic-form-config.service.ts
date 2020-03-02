@@ -5,7 +5,6 @@ import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormClassType } from './dynamic-form-class-type';
 
 @Injectable()
@@ -15,7 +14,6 @@ export class DynamicFormConfigService {
   readonly actionTypes: DynamicFormActionTypes;
   readonly inputTypes: DynamicFormInputTypes;
   readonly fieldWrapperTypes: DynamicFormFieldWrapperTypes;
-  readonly validationConfig: DynamicFormValidationConfig;
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
@@ -23,15 +21,13 @@ export class DynamicFormConfigService {
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES) private _actionTypes: DynamicFormActionTypes = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES) private _inputTypes: DynamicFormInputTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS) private _validationConfigs: DynamicFormValidationConfigs = null
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null
   ) {
     this.elementTypes = this.libraryService.filterTypes(this._elementTypes);
     this.fieldTypes = this.libraryService.filterTypes(this._fieldTypes);
     this.actionTypes = this.libraryService.filterTypes(this._actionTypes);
     this.inputTypes = this.libraryService.filterTypes(this._inputTypes);
     this.fieldWrapperTypes = this.libraryService.filterTypes(this._fieldWrapperTypes);
-    this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
   }
 
   getClassType(type: string): DynamicFormClassType {
@@ -64,29 +60,5 @@ export class DynamicFormConfigService {
 
   getFieldWrapperType(type: string) {
     return this.fieldWrapperTypes.find(f => f.type === type);
-  }
-
-  private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
-    const library = this.libraryService.library;
-    const libraryName = library.name;
-    const defaultConfig = { defaultMessage: undefined, messages: {}, libraryName };
-    if (!configs || !configs.length) {
-      return defaultConfig;
-    }
-
-    const libraryConfigs = this.getLibraryConfigs(configs);
-    return libraryConfigs.reduce((result, config) => {
-      return {
-        ...result, ...config,
-        messages: { ...result.messages, ...config.messages },
-        libraryName
-      };
-    }, defaultConfig);
-  }
-
-  private getLibraryConfigs(configs: DynamicFormValidationConfigs) {
-    return this.libraryService.libraryNamesReverse
-      .map(name => configs.find(config => config.libraryName === name))
-      .filter(config => !!config);
   }
 }
