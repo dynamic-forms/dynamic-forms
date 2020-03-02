@@ -5,8 +5,7 @@ import { DynamicFormConfigModule } from './dynamic-form-config/dynamic-form-conf
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormLibraryModule } from './dynamic-form-library/dynamic-form-library.module';
-import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
-import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormValidationModule } from './dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
@@ -17,19 +16,19 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
     ReactiveFormsModule,
     DynamicFormLibraryModule,
     DynamicFormConfigModule,
+    DynamicFormValidationModule,
     DynamicFormModule
   ],
   exports: [
     DynamicFormLibraryModule,
     DynamicFormConfigModule,
+    DynamicFormValidationModule,
     DynamicFormModule
   ],
   providers: [
     DynamicFormBuilder,
     DynamicFormExpressionBuilder,
     DynamicFormEvaluationBuilder,
-    DynamicFormValidationBuilder,
-    DynamicFormValidationService,
     DynamicFormComponentFactory
   ]
 })

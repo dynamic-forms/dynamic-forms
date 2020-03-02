@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormField } from './dynamic-form-field';
 
 export function dynamicFormFieldResetFactory(field: DynamicFormField) {
@@ -36,11 +37,13 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
 
 @NgModule({
   imports: [
+    DynamicFormValidationModule,
     DynamicFormActionModule.withHandler(dynamicFormFieldResetHandler),
     DynamicFormActionModule.withHandler(dynamicFormFieldResetDefaultHandler),
     DynamicFormActionModule.withHandler(dynamicFormFieldValidateHandler)
   ],
   exports: [
+    DynamicFormValidationModule,
     DynamicFormActionModule
   ]
 })
