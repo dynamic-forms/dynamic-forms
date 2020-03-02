@@ -5,7 +5,6 @@ import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES }
 import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormValidationConfig, DynamicFormValidationConfig, DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
@@ -172,55 +171,6 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
         expect(types.length).toBe(1);
         expect(types[0]).toEqual(type);
-      })
-    );
-  });
-
-  describe('withValidation for default config', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withValidation()
-        ],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
-      });
-    }));
-
-    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(dynamicFormValidationConfig);
-      })
-    );
-  });
-
-  describe('withValidation for provided config', () => {
-    const libraryName = 'test';
-    const config: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, libraryName };
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withValidation(config)
-        ],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
-      });
-    }));
-
-    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
       })
     );
   });

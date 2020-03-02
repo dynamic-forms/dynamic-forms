@@ -4,7 +4,6 @@ import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-f
 import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
-import { dynamicFormValidationConfig, DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({
@@ -72,19 +71,6 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
           useValue: fieldWrapperType,
-          multi: true
-        }
-      ]
-    };
-  }
-
-  static withValidation(validationConfig?: DynamicFormValidationConfig): ModuleWithProviders<DynamicFormConfigModule> {
-    return {
-      ngModule: DynamicFormConfigModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-          useValue: validationConfig || dynamicFormValidationConfig,
           multi: true
         }
       ]
