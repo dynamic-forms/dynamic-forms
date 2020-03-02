@@ -6,7 +6,6 @@ import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationConfigs, DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigService', () => {
@@ -33,7 +32,6 @@ describe('DynamicFormConfigService', () => {
         expect(service.fieldTypes).toEqual([]);
         expect(service.inputTypes).toEqual([]);
         expect(service.fieldWrapperTypes).toEqual([]);
-        expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName });
       })
     );
 
@@ -102,7 +100,6 @@ describe('DynamicFormConfigService', () => {
     const actionTypes: DynamicFormActionTypes = [{ type: 'action', component: null, libraryName }];
     const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, libraryName }];
     const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, libraryName }];
-    const validationConfigs: DynamicFormValidationConfigs = [{ defaultMessage: 'message', messages: {}, libraryName }];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -116,7 +113,6 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPES, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES, useValue: fieldWrapperTypes },
-          { provide: DYNAMIC_FORM_VALIDATION_CONFIGS, useValue: validationConfigs },
           DynamicFormConfigService
         ]
       });
@@ -129,7 +125,6 @@ describe('DynamicFormConfigService', () => {
         expect(service.actionTypes).toEqual(actionTypes);
         expect(service.inputTypes).toEqual(inputTypes);
         expect(service.fieldWrapperTypes).toEqual(fieldWrapperTypes);
-        expect(service.validationConfig).toEqual(validationConfigs[0]);
       })
     );
 
@@ -236,9 +231,6 @@ describe('DynamicFormConfigService', () => {
       { type: 'field-wrapper-3', component: null, libraryName: otherLibraryName },
       { type: 'field-wrapper-1', component: null, libraryName: libraryName },
     ];
-    const validationConfigs: DynamicFormValidationConfigs = [
-      { defaultMessage: 'message', messages: {}, libraryName: libraryName }
-    ];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -252,7 +244,6 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPES, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES, useValue: fieldWrapperTypes },
-          { provide: DYNAMIC_FORM_VALIDATION_CONFIGS, useValue: validationConfigs },
           DynamicFormConfigService
         ]
       });
@@ -280,7 +271,6 @@ describe('DynamicFormConfigService', () => {
           { type: 'field-wrapper-1', component: null, libraryName: libraryName },
           { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName }
         ]);
-        expect(service.validationConfig).toEqual(validationConfigs[0]);
       })
     );
   });

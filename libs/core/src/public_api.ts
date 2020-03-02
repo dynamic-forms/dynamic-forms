@@ -107,4 +107,5 @@ export * from './lib/dynamic-form-library/dynamic-form-library.module';
 export * from './lib/dynamic-form-library/dynamic-form-library.service';
 export * from './lib/dynamic-form-validation/dynamic-form-validation-config';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.builder';
+export * from './lib/dynamic-form-validation/dynamic-form-validation.module';
 export * from './lib/dynamic-form-validation/dynamic-form-validation.service';
