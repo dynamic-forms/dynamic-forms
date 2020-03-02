@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormConfigModule,
-  DynamicFormContainerModule, DynamicFormContentModule, DynamicFormControlModule, DynamicFormGroupModule,
+import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule, DynamicFormContentModule,
+  DynamicFormControlModule, DynamicFormGroupModule, DynamicFormValidationModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { matDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
@@ -13,12 +13,12 @@ import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-inpu
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsModule,
-    DynamicFormConfigModule.withValidation(),
     DynamicFormArrayModule,
     DynamicFormContainerModule,
     DynamicFormContentModule,
     DynamicFormControlModule,
     DynamicFormGroupModule,
+    DynamicFormValidationModule.withValidation(),
     MatDynamicFormActionModule,
     MatDynamicFormInputModule
   ],
