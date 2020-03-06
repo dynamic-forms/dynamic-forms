@@ -22,7 +22,7 @@
         "label": "Options"
       },
       "expressions": {
-        "hidden": "rootModel.hidden"
+        "hidden": "data.rootModel.hidden"
       },
       "elements": [
         {
@@ -64,9 +64,9 @@
         "label": "Login"
       },
       "expressions": {
-        "hidden": "rootModel.hidden",
-        "disabled": "rootModel.options.disabled",
-        "readonly": "rootModel.options.readonly"
+        "hidden": "data.rootModel.hidden",
+        "disabled": "data.rootModel.options.disabled",
+        "readonly": "data.rootModel.options.readonly"
       },
       "elements": [
         {
@@ -85,7 +85,7 @@
             }
           },
           "expressions": {
-            "validation.required": "rootModel.options.required"
+            "validation.required": "data.rootModel.options.required"
           }
         },
         {
@@ -103,7 +103,7 @@
             }
           },
           "expressions": {
-            "validation.required": "rootModel.options.required"
+            "validation.required": "data.rootModel.options.required"
           }
         }
       ]

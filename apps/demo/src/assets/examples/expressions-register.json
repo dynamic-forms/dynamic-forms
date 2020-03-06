@@ -28,8 +28,8 @@
         "label": "Register"
       },
       "expressions": {
-        "disabled": "rootModel.disabled",
-        "readonly": "rootModel.readonly"
+        "disabled": "data.rootModel.disabled",
+        "readonly": "data.rootModel.readonly"
       },
       "elements": [
         {
@@ -91,7 +91,7 @@
           "key": "address",
           "type": "group",
           "expressions": {
-            "hidden": "!parentModel.addressEnabled"
+            "hidden": "!data.parentModel.addressEnabled"
           },
           "elements": [
             {
@@ -112,7 +112,7 @@
                 }
               },
               "expressions": {
-                "validation.required": "rootModel.register.addressEnabled"
+                "validation.required": "data.rootModel.register.addressEnabled"
               }
             },
             {
@@ -133,7 +133,7 @@
                 }
               },
               "expressions": {
-                "validation.required": "rootModel.register.addressEnabled"
+                "validation.required": "data.rootModel.register.addressEnabled"
               }
             }
           ]

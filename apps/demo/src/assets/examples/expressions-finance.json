@@ -4,7 +4,7 @@
       "key": "underlying",
       "type": "group",
       "expressions": {
-        "label": "model.currencyPair ? `Underlying for ${ model.currencyPair }` : 'Underlying'"
+        "label": "data.model.currencyPair ? `Underlying for ${ data.model.currencyPair }` : 'Underlying'"
       },
       "elements": [
         {
@@ -49,7 +49,7 @@
             }
           },
           "expressions": {
-            "input.options": "(function(currencyPair) { if (memo.currencyPair === currencyPair) { return memo.previousValue; } memo.currencyPair = currencyPair; if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(4,7); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting } ]; } return []; })(parentModel.currencyPair)"
+            "input.options": "(function(currencyPair) { if (memo.currencyPair === currencyPair) { return memo.previousValue; } memo.currencyPair = currencyPair; if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(4,7); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting } ]; } return []; })(data.parentModel.currencyPair)"
           },
           "evaluations": [ 
             { "key": "select" }           

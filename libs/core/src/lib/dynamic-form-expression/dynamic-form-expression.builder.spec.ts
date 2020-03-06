@@ -8,6 +8,7 @@ import { DynamicFormActionExpressionFunction } from './dynamic-form-action-expre
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
+import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
 describe('DynamicFormExpressionBuilder', () => {
   beforeEach(async(() => {
@@ -35,13 +36,15 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: string }> {
-        'readonly': 'rootModel.readonly || parentModel.readonly'
+        'readonly': 'data.rootModel.readonly || data.parentModel.readonly'
+      };
+      const expressionData = <DynamicFormFieldExpressionData>{
+        rootModel: root.model,
+        parentModel: parent.model,
+        model: model.child.child
       };
       const definition = <DynamicFormFieldDefinition>{ expressions };
-      const field = <DynamicFormField>{
-        root, parent, definition, model: model.child.child,
-        expressionChangesSubject, expressionChanges
-      };
+      const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
@@ -62,18 +65,20 @@ describe('DynamicFormExpressionBuilder', () => {
       const model = { readonly: false, child: { readonly: false, child: {} } };
       const root = <DynamicFormField>{ model };
       const parent = <DynamicFormField>{ model: model.child };
-      const func = (_model: any, parentModel: any, rootModel: any, _memo: DynamicFormExpressionMemoization) =>
-        rootModel.readonly || parentModel.readonly;
+      const func = (data: DynamicFormFieldExpressionData, _memo: DynamicFormExpressionMemoization) =>
+        data.rootModel.readonly || data.parentModel.readonly;
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: DynamicFormFieldExpressionFunction }> {
         'readonly': func
       };
-      const definition = <DynamicFormFieldDefinition>{ expressions };
-      const field = <DynamicFormField>{
-        root, parent, definition, model: model.child.child,
-        expressionChangesSubject, expressionChanges
+      const expressionData = <DynamicFormFieldExpressionData>{
+        rootModel: root.model,
+        parentModel: parent.model,
+        model: model.child.child
       };
+      const definition = <DynamicFormFieldDefinition>{ expressions };
+      const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
