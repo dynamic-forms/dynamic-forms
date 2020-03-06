@@ -25,7 +25,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+        "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
       },
       "options": {
         "update": "change"
@@ -50,7 +50,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Length \" + (model || \"\").length"
+        "hints.hintEnd": "\"Length \" + (data.model || \"\").length"
       },
       "options": {
         "update": "debounce"
@@ -76,7 +76,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+        "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
       "options": {
         "update": {
@@ -104,7 +104,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+        "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
       "options": {
         "update": "blur"

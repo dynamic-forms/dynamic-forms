@@ -1,6 +1,6 @@
 {
   "expressions": {
-    "className": "rootModel && rootModel.gridEnabled ? 'grid' : null"
+    "className": "data.rootModel && data.rootModel.gridEnabled ? 'grid' : null"
   },
   "elements": [
     {

@@ -171,8 +171,8 @@
         }
       },
       "expressions": {
-        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/5\"",
-        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+        "hints.hintStart": "\"Min \" + (data.model || \"\").length + \"\/5\"",
+        "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
       }
     },
     {
@@ -211,8 +211,8 @@
         }
       },
       "expressions": {
-        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/6\"",
-        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+        "hints.hintStart": "\"Min \" + (data.model || \"\").length + \"\/6\"",
+        "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
       }
     }
   ],
