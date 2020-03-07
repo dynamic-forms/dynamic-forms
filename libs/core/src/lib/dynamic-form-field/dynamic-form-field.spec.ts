@@ -13,6 +13,7 @@ class DynamicFormFieldTest extends DynamicFormField {
   validate() {}
 
   initModel(model: any) { this._model = model; }
+  initControl(control: any) { this._control = control; }
 }
 
 describe('DynamicFormField', () => {
@@ -144,16 +145,18 @@ describe('DynamicFormField', () => {
     expect(field.readonly).toBe(true);
   });
 
-  it('returns expression data with id, key, index and model', () => {
+  it('returns expression data with id, key, index, model and status', () => {
     const definition = <DynamicFormFieldDefinition>{ id: 'id', key: 'key', index: 1, template: {} };
     const field = new DynamicFormFieldTest(null, null, definition);
 
-    field.initModel({});
+    field.initModel({ value: 'VALUE' });
+    field.initControl({ status: 'VALID'});
 
     expect(field.expressionData.id).toBe('id');
     expect(field.expressionData.key).toBe('key');
     expect(field.expressionData.index).toBe(1);
-    expect(field.expressionData.model).toEqual({});
+    expect(field.expressionData.model).toEqual({ value: 'VALUE' });
+    expect(field.expressionData.status).toBe('VALID');
   });
 
   it('returns expression data with expression data of parent and root being undefined', () => {
