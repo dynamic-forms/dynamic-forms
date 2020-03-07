@@ -3,7 +3,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
-const getCurrencyOptions = (_model, parentModel, _rootModel, memo) => {
+const getCurrencyOptions = (data, memo) => {
   return (function(currencyPair) {
     if (memo.currencyPair === currencyPair) {
       return memo.previousValue;
@@ -18,7 +18,7 @@ const getCurrencyOptions = (_model, parentModel, _rootModel, memo) => {
       ];
     }
     return [];
-  })(parentModel.currencyPair);
+  })(data.parent.model.currencyPair);
 };
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
@@ -30,9 +30,11 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
-      root: { model: {} },
-      parent: { model: { currencyPair: 'EUR/USD' } },
-      model: {},
+      expressionData: {
+        model: {},
+        parent: { model: { currencyPair: 'EUR/USD' } },
+        root: {},
+      },
       expressionChangesSubject,
       expressionChanges
     };
@@ -70,7 +72,7 @@ describe('DynamicFormFieldExpression', () => {
     });
     expect(expressionValue2).toBe(expressionValue1);
 
-    field.parent.model.currencyPair = 'EUR/GBP';
+    field.expressionData.parent.model.currencyPair = 'EUR/GBP';
 
     const expressionValue3 = expression.value;
 
@@ -84,7 +86,7 @@ describe('DynamicFormFieldExpression', () => {
       { value: 'GBP', label: 'GBP' }
     ]);
 
-    field.parent.model.currencyPair = null;
+    field.expressionData.parent.model.currencyPair = null;
 
     const expressionValue4 = expression.value;
 
@@ -107,29 +109,33 @@ describe('DynamicFormFieldExpression', () => {
     expect(fieldExpressionChanges[2].currentValue).toBe(expressionValue4);
   });
 
-  it('get value does not throw exception if parent is not set', () => {
+  it('get value does not throw exception', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
-      root: { model: {} },
-      parent: null,
-      model: {},
+      expressionData: {
+        model: null,
+        parent: { model: { currencyPair: 'EUR/USD' } },
+        root: null
+      },
       expressionChangesSubject,
       expressionChanges
     };
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
-    expect(() => expression.value).toThrow();
+    expect(() => expression.value).not.toThrow();
   });
 
-  it('get value throws exception if root is not set', () => {
+  it('get value throws exception', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
-      root: null,
-      parent: { model: { currencyPair: 'EUR/USD' } },
-      model: {},
+      expressionData: {
+        model: null,
+        parent: null,
+        root: null
+      },
       expressionChangesSubject,
       expressionChanges
     };

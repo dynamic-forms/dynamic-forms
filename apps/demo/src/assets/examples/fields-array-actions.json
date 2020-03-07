@@ -7,33 +7,44 @@
       "key": "users",
       "type": "array",
       "template": {
-        "label": "Users"
+        "label": "Users",
+        "classNameLabel": "bold",
+        "classNameActions": "reverse"
       },
       "actions": [
         {
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Push element",
-            "action": "pushArrayElement"
+            "label": "Clear users",
+            "action": "clearArrayElements"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
         },
         {
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Pop element",
+            "label": "Pop user",
             "action": "popArrayElement"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
-        }, 
+        },
         {
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Clear elements",
-            "action": "clearArrayElements"
+            "label": "Push user",
+            "action": "pushArrayElement"
+          },
+          "expressions": {
+            "disabled": "data.parent.length >= 5"
           }
-        }        
+        }
       ],
       "defaultLength": 1,
       "definitionTemplate": {
@@ -85,7 +96,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {

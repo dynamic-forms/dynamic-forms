@@ -8,6 +8,7 @@ import { DynamicFormActionExpressionFunction } from './dynamic-form-action-expre
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
+import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
 describe('DynamicFormExpressionBuilder', () => {
   beforeEach(async(() => {
@@ -35,13 +36,15 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: string }> {
-        'readonly': 'rootModel.readonly || parentModel.readonly'
+        'readonly': 'data.root.model.readonly || data.parent.model.readonly'
+      };
+      const expressionData = <DynamicFormFieldExpressionData>{
+        model: model.child.child,
+        parent: { model: parent.model },
+        root: { model: root.model }
       };
       const definition = <DynamicFormFieldDefinition>{ expressions };
-      const field = <DynamicFormField>{
-        root, parent, definition, model: model.child.child,
-        expressionChangesSubject, expressionChanges
-      };
+      const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
@@ -62,18 +65,20 @@ describe('DynamicFormExpressionBuilder', () => {
       const model = { readonly: false, child: { readonly: false, child: {} } };
       const root = <DynamicFormField>{ model };
       const parent = <DynamicFormField>{ model: model.child };
-      const func = (_model: any, parentModel: any, rootModel: any, _memo: DynamicFormExpressionMemoization) =>
-        rootModel.readonly || parentModel.readonly;
+      const func = (data: DynamicFormFieldExpressionData, _memo: DynamicFormExpressionMemoization) =>
+        data.root.model.readonly || data.parent.model.readonly;
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: DynamicFormFieldExpressionFunction }> {
         'readonly': func
       };
-      const definition = <DynamicFormFieldDefinition>{ expressions };
-      const field = <DynamicFormField>{
-        root, parent, definition, model: model.child.child,
-        expressionChangesSubject, expressionChanges
+      const expressionData = <DynamicFormFieldExpressionData>{
+        model: model.child.child,
+        parent: { model: parent.model },
+        root: { model: root.model }
       };
+      const definition = <DynamicFormFieldDefinition>{ expressions };
+      const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
@@ -102,11 +107,12 @@ describe('DynamicFormExpressionBuilder', () => {
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parent = { status: 'VALID' };
+      const expressionData = { root, parent };
       const expressions = <{ [key: string]: string }> {
-        'disabled': 'parentStatus === "VALID" && rootStatus === "VALID"'
+        'disabled': 'data.parent.status === "VALID" && data.root.status === "VALID"'
       };
       const definition = <DynamicFormActionDefinition>{ expressions };
-      const action = <DynamicFormAction>{ root, parent, definition };
+      const action = <DynamicFormAction>{ definition, expressionData };
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 
@@ -126,13 +132,14 @@ describe('DynamicFormExpressionBuilder', () => {
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parent = { status: 'VALID' };
+      const expressionData = { root, parent };
       const expressions = <{ [key: string]: DynamicFormActionExpressionFunction }> {
-        'disabled': (parentStatus, rootStatus) => {
-          return parentStatus === 'VALID' && rootStatus === 'VALID';
+        'disabled': (data) => {
+          return data.parent.status === 'VALID' && data.root.status === 'VALID';
         }
       };
       const definition = <DynamicFormActionDefinition>{ expressions };
-      const action = <DynamicFormAction>{ root, parent, definition };
+      const action = <DynamicFormAction>{ definition, expressionData };
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 

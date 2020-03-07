@@ -110,8 +110,8 @@
         }
       },
       "expressions": {
-        "hints.hintStart": "\"Min \" + (model || \"\").length + \"\/5\"",
-        "hints.hintEnd": "\"Max \" + (model || \"\").length + \"\/20\""
+        "hints.hintStart": "\"Min \" + (data.model || \"\").length + \"\/5\"",
+        "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
       }
     }
   ],
@@ -123,7 +123,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {
