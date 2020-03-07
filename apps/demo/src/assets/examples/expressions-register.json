@@ -28,8 +28,8 @@
         "label": "Register"
       },
       "expressions": {
-        "disabled": "data.rootModel.disabled",
-        "readonly": "data.rootModel.readonly"
+        "disabled": "data.root.model.disabled",
+        "readonly": "data.root.model.readonly"
       },
       "elements": [
         {
@@ -91,7 +91,7 @@
           "key": "address",
           "type": "group",
           "expressions": {
-            "hidden": "!data.parentModel.addressEnabled"
+            "hidden": "!data.parent.model.addressEnabled"
           },
           "elements": [
             {
@@ -112,7 +112,7 @@
                 }
               },
               "expressions": {
-                "validation.required": "data.rootModel.register.addressEnabled"
+                "validation.required": "data.root.model.register.addressEnabled"
               }
             },
             {
@@ -133,7 +133,7 @@
                 }
               },
               "expressions": {
-                "validation.required": "data.rootModel.register.addressEnabled"
+                "validation.required": "data.root.model.register.addressEnabled"
               }
             }
           ]
@@ -149,7 +149,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {

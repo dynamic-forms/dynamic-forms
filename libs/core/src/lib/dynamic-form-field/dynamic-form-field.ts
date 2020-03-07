@@ -115,6 +115,7 @@ export abstract class DynamicFormField<
       key: () => this.key,
       index: () => this.index,
       model: () => this.model,
+      status: () => this.control.status,
       parent: () => this.parent ? this.parent.expressionData : undefined,
       root: () => this.root ? this.root.expressionData : undefined
     });

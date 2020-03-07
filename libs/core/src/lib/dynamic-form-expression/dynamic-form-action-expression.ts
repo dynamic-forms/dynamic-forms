@@ -1,9 +1,10 @@
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormExpression } from './dynamic-form-expression';
 
-export const dynamicFormActionExpressionArgs = [ 'parentStatus', 'rootStatus' ];
+export const dynamicFormActionExpressionArgs = [ 'data' ];
 
-export type DynamicFormActionExpressionFunction = (rootStatus: string, parentStatus: string) => any;
+export type DynamicFormActionExpressionFunction = (data: DynamicFormActionExpressionData) => any;
 
 export class DynamicFormActionExpression implements DynamicFormExpression<DynamicFormActionExpressionFunction> {
   constructor(
@@ -12,8 +13,5 @@ export class DynamicFormActionExpression implements DynamicFormExpression<Dynami
     readonly func: DynamicFormActionExpressionFunction
   ) {}
 
-  get value() { return this.func(this.parentStatus, this.rootStatus); }
-
-  private get parentStatus() { return this.action.parent.status; }
-  private get rootStatus() { return this.action.root.status; }
+  get value() { return this.func(this.action.expressionData); }
 }

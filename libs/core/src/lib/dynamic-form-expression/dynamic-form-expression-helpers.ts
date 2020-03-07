@@ -1,6 +1,5 @@
 import { extendObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFormExpressions } from './dynamic-form-expressions';
-import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
 export function assignExpressions<Func = Function>(template: any, expressions: DynamicFormFormExpressions<Func>) {
   Object.keys(expressions).forEach(path => {
@@ -15,7 +14,7 @@ export function assignExpressions<Func = Function>(template: any, expressions: D
   });
 }
 
-export function assignExpressionData(data: DynamicFormFieldExpressionData, expressions: { [key: string]: () => any }) {
+export function assignExpressionData(data: any, expressions: { [key: string]: () => any }) {
   return Object.keys(expressions).forEach(key => {
     Object.defineProperty(data, key, { get: expressions[key] });
   });

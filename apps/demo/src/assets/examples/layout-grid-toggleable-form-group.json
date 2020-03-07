@@ -1,6 +1,6 @@
 {
   "expressions": {
-    "className": "data.rootModel && data.rootModel.gridEnabled ? 'grid' : null"
+    "className": "data.root.model && data.root.model.gridEnabled ? 'grid' : null"
   },
   "elements": [
     {
@@ -158,7 +158,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {

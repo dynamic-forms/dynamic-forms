@@ -107,11 +107,12 @@ describe('DynamicFormExpressionBuilder', () => {
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parent = { status: 'VALID' };
+      const expressionData = { root, parent };
       const expressions = <{ [key: string]: string }> {
-        'disabled': 'parentStatus === "VALID" && rootStatus === "VALID"'
+        'disabled': 'data.parent.status === "VALID" && data.root.status === "VALID"'
       };
       const definition = <DynamicFormActionDefinition>{ expressions };
-      const action = <DynamicFormAction>{ root, parent, definition };
+      const action = <DynamicFormAction>{ definition, expressionData };
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 
@@ -131,13 +132,14 @@ describe('DynamicFormExpressionBuilder', () => {
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parent = { status: 'VALID' };
+      const expressionData = { root, parent };
       const expressions = <{ [key: string]: DynamicFormActionExpressionFunction }> {
-        'disabled': (parentStatus, rootStatus) => {
-          return parentStatus === 'VALID' && rootStatus === 'VALID';
+        'disabled': (data) => {
+          return data.parent.status === 'VALID' && data.root.status === 'VALID';
         }
       };
       const definition = <DynamicFormActionDefinition>{ expressions };
-      const action = <DynamicFormAction>{ root, parent, definition };
+      const action = <DynamicFormAction>{ definition, expressionData };
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 

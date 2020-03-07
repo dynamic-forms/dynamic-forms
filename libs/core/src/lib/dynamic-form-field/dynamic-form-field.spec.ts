@@ -144,7 +144,7 @@ describe('DynamicFormField', () => {
     expect(field.readonly).toBe(true);
   });
 
-  it('returns expression data with id, key and index', () => {
+  it('returns expression data with id, key, index and model', () => {
     const definition = <DynamicFormFieldDefinition>{ id: 'id', key: 'key', index: 1, template: {} };
     const field = new DynamicFormFieldTest(null, null, definition);
 

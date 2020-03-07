@@ -22,7 +22,7 @@
         "label": "Options"
       },
       "expressions": {
-        "hidden": "data.rootModel.hidden"
+        "hidden": "data.root.model.hidden"
       },
       "elements": [
         {
@@ -64,9 +64,9 @@
         "label": "Login"
       },
       "expressions": {
-        "hidden": "data.rootModel.hidden",
-        "disabled": "data.rootModel.options.disabled",
-        "readonly": "data.rootModel.options.readonly"
+        "hidden": "data.root.model.hidden",
+        "disabled": "data.root.model.options.disabled",
+        "readonly": "data.root.model.options.readonly"
       },
       "elements": [
         {
@@ -85,7 +85,7 @@
             }
           },
           "expressions": {
-            "validation.required": "data.rootModel.options.required"
+            "validation.required": "data.root.model.options.required"
           }
         },
         {
@@ -103,7 +103,7 @@
             }
           },
           "expressions": {
-            "validation.required": "data.rootModel.options.required"
+            "validation.required": "data.root.model.options.required"
           }
         }
       ]
@@ -117,7 +117,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {

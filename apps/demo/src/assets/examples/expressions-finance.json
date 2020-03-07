@@ -49,7 +49,7 @@
             }
           },
           "expressions": {
-            "input.options": "(function(currencyPair) { if (memo.currencyPair === currencyPair) { return memo.previousValue; } memo.currencyPair = currencyPair; if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(4,7); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting } ]; } return []; })(data.parentModel.currencyPair)"
+            "input.options": "(function(currencyPair) { if (memo.currencyPair === currencyPair) { return memo.previousValue; } memo.currencyPair = currencyPair; if (currencyPair) { var underlying = currencyPair.substring(0,3); var accounting = currencyPair.substring(4,7); return [ { value: underlying, label: underlying }, { value: accounting, label: accounting } ]; } return []; })(data.parent.model.currencyPair)"
           },
           "evaluations": [ 
             { "key": "select" }           
@@ -112,7 +112,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "rootStatus !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID'"
       }
     },
     {
