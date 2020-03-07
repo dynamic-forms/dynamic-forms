@@ -18,6 +18,9 @@
             "type": "button",
             "label": "Clear users",
             "action": "clearArrayElements"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
         },
         {
@@ -26,6 +29,9 @@
             "type": "button",
             "label": "Pop user",
             "action": "popArrayElement"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
         },
         {
@@ -34,6 +40,9 @@
             "type": "button",
             "label": "Push user",
             "action": "pushArrayElement"
+          },
+          "expressions": {
+            "disabled": "data.parent.length >= 5"
           }
         }
       ],
