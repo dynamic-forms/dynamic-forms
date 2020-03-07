@@ -71,6 +71,7 @@ export * from './lib/dynamic-form-expression/dynamic-form-expression-helpers';
 export * from './lib/dynamic-form-expression/dynamic-form-expression-memoization';
 export * from './lib/dynamic-form-expression/dynamic-form-expression-state';
 export * from './lib/dynamic-form-expression/dynamic-form-expression.builder';
+export * from './lib/dynamic-form-expression/dynamic-form-field-expression-data';
 export * from './lib/dynamic-form-expression/dynamic-form-field-expression';
 export * from './lib/dynamic-form-expression/dynamic-form-field-expressions';
 export * from './lib/dynamic-form-field/dynamic-form-field';

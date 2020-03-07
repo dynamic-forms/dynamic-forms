@@ -18,9 +18,9 @@ export abstract class DynamicFormField<
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
 
-  private _expressionData: DynamicFormFieldExpressionData;
   private _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
   private _expressionChanges: Observable<DynamicFormExpressionChange>;
+  private _expressionData: DynamicFormFieldExpressionData;
   private _expressions: DynamicFormFieldExpressions;
 
   protected _root: DynamicFormField;
@@ -39,9 +39,9 @@ export abstract class DynamicFormField<
     this._parent = parent;
     this._path = this.createPath();
     this._options = this.createOptions();
-    this._expressionData = this.createExpressionData();
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
+    this._expressionData = this.createExpressionData();
     this._expressions = {};
   }
 
@@ -65,10 +65,10 @@ export abstract class DynamicFormField<
   get actions() { return this._actions; }
   get wrappers() { return this.definition.wrappers; }
 
-  get expressionData() { return this._expressionData; }
-  get expressionChangesSubject() { return this._expressionChangesSubject; }
-  get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
+  get expressionData() { return this._expressionData; }
+  get expressionChanges() { return this._expressionChanges; }
+  get expressionChangesSubject() { return this._expressionChangesSubject; }
 
   initActions(actions: DynamicFormAction[]) {
     this._actions = actions;
@@ -111,9 +111,12 @@ export abstract class DynamicFormField<
   private createExpressionData() {
     const expressionData = {} as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
+      id: () => this.id,
+      key: () => this.key,
+      index: () => this.index,
       model: () => this.model,
-      rootModel: () => this.root ? this.root.model : undefined,
-      parentModel: () => this.parent ? this.parent.model : undefined
+      parent: () => this.parent ? this.parent.expressionData : undefined,
+      root: () => this.root ? this.root.expressionData : undefined
     });
     return expressionData;
   }

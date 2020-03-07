@@ -36,12 +36,12 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: string }> {
-        'readonly': 'data.rootModel.readonly || data.parentModel.readonly'
+        'readonly': 'data.root.model.readonly || data.parent.model.readonly'
       };
       const expressionData = <DynamicFormFieldExpressionData>{
-        rootModel: root.model,
-        parentModel: parent.model,
-        model: model.child.child
+        model: model.child.child,
+        parent: { model: parent.model },
+        root: { model: root.model }
       };
       const definition = <DynamicFormFieldDefinition>{ expressions };
       const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };
@@ -66,16 +66,16 @@ describe('DynamicFormExpressionBuilder', () => {
       const root = <DynamicFormField>{ model };
       const parent = <DynamicFormField>{ model: model.child };
       const func = (data: DynamicFormFieldExpressionData, _memo: DynamicFormExpressionMemoization) =>
-        data.rootModel.readonly || data.parentModel.readonly;
+        data.root.model.readonly || data.parent.model.readonly;
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = <{ [key: string]: DynamicFormFieldExpressionFunction }> {
         'readonly': func
       };
       const expressionData = <DynamicFormFieldExpressionData>{
-        rootModel: root.model,
-        parentModel: parent.model,
-        model: model.child.child
+        model: model.child.child,
+        parent: { model: parent.model },
+        root: { model: root.model }
       };
       const definition = <DynamicFormFieldDefinition>{ expressions };
       const field = <DynamicFormField>{ definition, expressionData, expressionChangesSubject, expressionChanges };

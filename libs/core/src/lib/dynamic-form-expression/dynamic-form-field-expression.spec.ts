@@ -18,7 +18,7 @@ const getCurrencyOptions = (data, memo) => {
       ];
     }
     return [];
-  })(data.parentModel.currencyPair);
+  })(data.parent.model.currencyPair);
 };
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
@@ -31,9 +31,9 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       expressionData: {
-        rootModel: {},
-        parentModel: { currencyPair: 'EUR/USD' },
         model: {},
+        parent: { model: { currencyPair: 'EUR/USD' } },
+        root: {},
       },
       expressionChangesSubject,
       expressionChanges
@@ -72,7 +72,7 @@ describe('DynamicFormFieldExpression', () => {
     });
     expect(expressionValue2).toBe(expressionValue1);
 
-    field.expressionData.parentModel.currencyPair = 'EUR/GBP';
+    field.expressionData.parent.model.currencyPair = 'EUR/GBP';
 
     const expressionValue3 = expression.value;
 
@@ -86,7 +86,7 @@ describe('DynamicFormFieldExpression', () => {
       { value: 'GBP', label: 'GBP' }
     ]);
 
-    field.expressionData.parentModel.currencyPair = null;
+    field.expressionData.parent.model.currencyPair = null;
 
     const expressionValue4 = expression.value;
 
@@ -114,9 +114,9 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       expressionData: {
-        rootModel: null,
-        parentModel: { currencyPair: 'EUR/USD' },
         model: null,
+        parent: { model: { currencyPair: 'EUR/USD' } },
+        root: null
       },
       expressionChangesSubject,
       expressionChanges
@@ -132,9 +132,9 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = <DynamicFormField>{
       expressionData: {
-        rootModel: null,
-        parentModel: null,
         model: null,
+        parent: null,
+        root: null
       },
       expressionChangesSubject,
       expressionChanges
