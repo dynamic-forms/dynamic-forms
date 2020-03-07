@@ -14,6 +14,7 @@ export class DynamicFormArray<
     super(root, parent, definition);
     this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);
+    this.extendExpressionData({ length: () => this.length });
   }
 
   get elements() { return this._elements; }
@@ -44,11 +45,14 @@ export class DynamicFormArray<
   }
 
   clearElements() {
-    this._fields.forEach(field => field.destroy());
-    this._fields = [];
-    this._model = [];
-    this._control.clear();
-    this._elements = this._fields;
+    const length = this.length;
+    if (length > 0) {
+      this._fields.forEach(field => field.destroy());
+      this._fields = [];
+      this._model = [];
+      this._control.clear();
+      this._elements = this._fields;
+    }
   }
 
   check() {

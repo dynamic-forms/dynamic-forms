@@ -68,7 +68,7 @@ describe('DynamicFormGroupComponent', () => {
     expect(formGroupLabelElement).toBeDefined();
   });
 
-  it('hides dynamic form group label', () => {
+  it('hides dynamic form group label if not defined', () => {
     component.template.label = null;
     fixture.detectChanges();
 
@@ -76,6 +76,26 @@ describe('DynamicFormGroupComponent', () => {
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
 
     expect(formGroupLabelDebugElement).toBeNull();
+  });
+
+  it('hides dynamic form group label if set hidden', () => {
+    component.template.labelHidden = true;
+    fixture.detectChanges();
+
+    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
+    const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
+
+    expect(formGroupLabelDebugElement).toBeNull();
+  });
+
+  it('sets class name for dynamic form group label', () => {
+    component.template.classNameLabel = 'class-name-label';
+    fixture.detectChanges();
+
+    const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
+    const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label.class-name-label'));
+
+    expect(formGroupLabelDebugElement).toBeDefined();
   });
 
   it('sets dynamic form group to hidden', () => {

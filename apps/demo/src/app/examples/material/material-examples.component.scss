@@ -31,10 +31,13 @@
           margin-bottom: 10px;
 
           dynamic-form-element,
-          dynamic-form-content, 
+          dynamic-form-content,
+          dynamic-form-container, 
           dynamic-form-group, 
           dynamic-form-array, 
-          dynamic-form-control {
+          dynamic-form-control,
+          .dynamic-form-group-elements,
+          .dynamic-form-array-elements  {
             display: contents;
           }
         }
@@ -48,11 +51,35 @@
           display: none;
         }
 
+        .dynamic-form-group-label {
+          font-weight: 600;
+
+          &.bold {
+            font-weight: 700;
+          }
+
+          &.uppercase {
+            text-transform: uppercase;
+          }
+        }
+
         .dynamic-form-group-actions {
+          display: flex;
+          flex-direction: row;
           margin-top: 10px;
           margin-bottom: 10px;
+
+          &.reverse {
+            flex-direction: row-reverse;
+
+            button {
+              margin-left: 10px;
+              margin-right: 0px;
+            }
+          }
           
           button {
+            margin-left: 0px;
             margin-right: 10px;
           }
         }
@@ -66,11 +93,35 @@
           display: none;
         }
 
+        .dynamic-form-array-label {
+          font-weight: 600;
+
+          &.bold {
+            font-weight: 700;
+          }
+
+          &.uppercase {
+            text-transform: uppercase;
+          }
+        }
+      
         .dynamic-form-array-actions {
+          display: flex;
+          flex-direction: row;
           margin-top: 10px;
           margin-bottom: 10px;
+
+          &.reverse {
+            flex-direction: row-reverse;
+            
+            button {
+              margin-left: 10px;
+              margin-right: 0px;
+            }
+          }
           
           button {
+            margin-left: 0px;
             margin-right: 10px;
           }
         }

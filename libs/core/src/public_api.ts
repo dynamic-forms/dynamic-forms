@@ -63,6 +63,7 @@ export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-cont
 export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-content.module';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluator';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluation.builder';
+export * from './lib/dynamic-form-expression/dynamic-form-action-expression-data';
 export * from './lib/dynamic-form-expression/dynamic-form-action-expression';
 export * from './lib/dynamic-form-expression/dynamic-form-action-expressions';
 export * from './lib/dynamic-form-expression/dynamic-form-expression';
@@ -71,6 +72,7 @@ export * from './lib/dynamic-form-expression/dynamic-form-expression-helpers';
 export * from './lib/dynamic-form-expression/dynamic-form-expression-memoization';
 export * from './lib/dynamic-form-expression/dynamic-form-expression-state';
 export * from './lib/dynamic-form-expression/dynamic-form-expression.builder';
+export * from './lib/dynamic-form-expression/dynamic-form-field-expression-data';
 export * from './lib/dynamic-form-expression/dynamic-form-field-expression';
 export * from './lib/dynamic-form-expression/dynamic-form-field-expressions';
 export * from './lib/dynamic-form-field/dynamic-form-field';
