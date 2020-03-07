@@ -8,7 +8,7 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
   it('new instance', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', index: 1, type: 'componentType', template: {} };
+    const definition = <DynamicFormArrayDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
@@ -17,6 +17,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.definition).toBe(definition);
     expect(formArray.template).toBe(definition.template);
 
+    expect(formArray.id).toBe('id');
     expect(formArray.key).toBe('key');
     expect(formArray.index).toBe(1);
     expect(formArray.path).toBe('key');
@@ -49,6 +50,18 @@ describe('DynamicFormArray', () => {
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.model).toEqual([ undefined, undefined ]);
+  });
+
+  it('returns expression data with id, key, index and model', () => {
+    const definition = <DynamicFormArrayDefinition>{  id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
+    const formArray = new DynamicFormArray(form, form, definition);
+
+    expect(formArray.expressionData.id).toBe('id');
+    expect(formArray.expressionData.key).toBe('key');
+    expect(formArray.expressionData.index).toBe(1);
+    expect(formArray.expressionData.model).toEqual([]);
+    expect(formArray.expressionData.length).toEqual(0);
   });
 
   it('sets elements and fields', () => {
@@ -133,6 +146,22 @@ describe('DynamicFormArray', () => {
     expect(fields[1].destroy).toHaveBeenCalled();
   });
 
+  it('does not pop element if length is zero', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+
+    spyOn(formArray.fields, 'pop');
+    spyOn(formArray.model, 'pop');
+    spyOn(formArray.control, 'removeAt');
+
+    formArray.popElement();
+
+    expect(formArray.fields.pop).not.toHaveBeenCalled();
+    expect(formArray.model.pop).not.toHaveBeenCalled();
+    expect(formArray.control.removeAt).not.toHaveBeenCalled();
+  });
+
   it('clears elements', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
@@ -155,6 +184,18 @@ describe('DynamicFormArray', () => {
     expect(formArray.control.clear).toHaveBeenCalled();
     expect(fields[0].destroy).toHaveBeenCalled();
     expect(fields[1].destroy).toHaveBeenCalled();
+  });
+
+  it('does not clear element if length is zero', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+
+    spyOn(formArray.control, 'clear');
+
+    formArray.clearElements();
+
+    expect(formArray.control.clear).not.toHaveBeenCalled();
   });
 
   it('check calls check of all fields', () => {

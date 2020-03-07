@@ -13,3 +13,9 @@ export function assignExpressions<Func = Function>(template: any, expressions: D
     }
   });
 }
+
+export function assignExpressionData(data: any, expressions: { [key: string]: () => any }) {
+  return Object.keys(expressions).forEach(key => {
+    Object.defineProperty(data, key, { get: expressions[key] });
+  });
+}

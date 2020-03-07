@@ -3,9 +3,10 @@ import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
-import { assignExpressions } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { assignExpressions, assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
+import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
-import { DynamicFormFieldExpressions } from './../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
@@ -19,6 +20,7 @@ export abstract class DynamicFormField<
 
   private _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
   private _expressionChanges: Observable<DynamicFormExpressionChange>;
+  private _expressionData: DynamicFormFieldExpressionData;
   private _expressions: DynamicFormFieldExpressions;
 
   protected _root: DynamicFormField;
@@ -39,6 +41,7 @@ export abstract class DynamicFormField<
     this._options = this.createOptions();
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
+    this._expressionData = this.createExpressionData();
     this._expressions = {};
   }
 
@@ -62,9 +65,10 @@ export abstract class DynamicFormField<
   get actions() { return this._actions; }
   get wrappers() { return this.definition.wrappers; }
 
-  get expressionChangesSubject() { return this._expressionChangesSubject; }
-  get expressionChanges() { return this._expressionChanges; }
   get expressions() { return this._expressions; }
+  get expressionData() { return this._expressionData; }
+  get expressionChanges() { return this._expressionChanges; }
+  get expressionChangesSubject() { return this._expressionChangesSubject; }
 
   initActions(actions: DynamicFormAction[]) {
     this._actions = actions;
@@ -98,6 +102,24 @@ export abstract class DynamicFormField<
 
   protected cloneObject<T>(obj: T) {
     return cloneObject(obj);
+  }
+
+  protected extendExpressionData(expressions: { [key: string]: () => any }) {
+    assignExpressionData(this._expressionData, expressions);
+  }
+
+  private createExpressionData() {
+    const expressionData = {} as DynamicFormFieldExpressionData;
+    assignExpressionData(expressionData, {
+      id: () => this.id,
+      key: () => this.key,
+      index: () => this.index,
+      model: () => this.model,
+      status: () => this.control.status,
+      parent: () => this.parent ? this.parent.expressionData : undefined,
+      root: () => this.root ? this.root.expressionData : undefined
+    });
+    return expressionData;
   }
 
   private createPath() {
