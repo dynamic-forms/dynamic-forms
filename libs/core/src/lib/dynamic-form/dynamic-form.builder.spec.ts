@@ -332,7 +332,7 @@ describe('DynamicFormBuilder', () => {
           validation: {
             required: true,
             email: false,
-            get pattern() { return false; },
+            get pattern(): boolean { return false; },
             minLength: null,
             maxLength: undefined
           }

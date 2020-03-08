@@ -13,5 +13,5 @@ export class DynamicFormActionExpression implements DynamicFormExpression<Dynami
     readonly func: DynamicFormActionExpressionFunction
   ) {}
 
-  get value() { return this.func(this.action.expressionData); }
+  get value(): any { return this.func(this.action.expressionData); }
 }

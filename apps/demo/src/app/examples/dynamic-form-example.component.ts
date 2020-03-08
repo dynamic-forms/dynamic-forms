@@ -15,7 +15,7 @@ export abstract class DynamicFormExampleComponent {
     );
   }
 
-  onFormSubmit(data: DynamicFormSubmit) {
+  onFormSubmit(data: DynamicFormSubmit): void {
     this.dialog.open(DynamicFormDialogComponent, { data });
   }
 

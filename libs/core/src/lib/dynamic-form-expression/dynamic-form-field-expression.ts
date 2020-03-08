@@ -19,7 +19,7 @@ export class DynamicFormFieldExpression implements DynamicFormExpression<Dynamic
     this._memo = { previousValue: null, currentValue: null };
   }
 
-  get value() {
+  get value(): any {
     this.previousValue = this.currentValue;
     this.currentValue = this.func(this.field.expressionData, this._memo);
     if (this.previousValue !== this.currentValue) {
@@ -32,8 +32,8 @@ export class DynamicFormFieldExpression implements DynamicFormExpression<Dynamic
     return this.currentValue;
   }
 
-  private get previousValue() { return this._memo.previousValue; }
-  private get currentValue() { return this._memo.currentValue; }
+  private get previousValue(): any { return this._memo.previousValue; }
+  private get currentValue(): any { return this._memo.currentValue; }
 
   private set previousValue(value: any) { this._memo.previousValue = value; }
   private set currentValue(value: any) { this._memo.currentValue = value; }

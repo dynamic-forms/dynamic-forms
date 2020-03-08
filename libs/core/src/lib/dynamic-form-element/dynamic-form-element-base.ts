@@ -12,8 +12,8 @@ export abstract class DynamicFormElementBase<
 > {
   @Input() element: Element;
 
-  get id() { return this.element.id; }
+  get id(): string { return this.element.id; }
 
-  get definition() { return this.element.definition; }
-  get template() { return this.element.template; }
+  get definition(): Definition { return this.element.definition; }
+  get template(): Template { return this.element.template; }
 }

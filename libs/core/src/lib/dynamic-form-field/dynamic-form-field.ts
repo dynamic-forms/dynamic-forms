@@ -45,36 +45,36 @@ export abstract class DynamicFormField<
     this._expressions = {};
   }
 
-  get root() { return this._root; }
-  get parent() { return this._parent; }
+  get root(): DynamicFormField { return this._root; }
+  get parent(): DynamicFormField { return this._parent; }
 
-  get key() { return this.definition.key; }
-  get index() { return this.definition.index; }
-  get path() { return this._path; }
+  get key(): string { return this.definition.key; }
+  get index(): number { return this.definition.index; }
+  get path(): string { return this._path; }
   get classType(): DynamicFormClassType { return 'field'; }
 
-  get model() { return this._model; }
-  get options() { return this._options; }
+  get model(): any { return this._model; }
+  get options(): DynamicFormFieldOptions { return this._options; }
 
-  get control() { return this._control; }
-  get status() { return this._control.status; }
+  get control(): Control { return this._control; }
+  get status(): string { return this._control.status; }
 
-  get hidden() { return this.parent.hidden || this.template.hidden || false; }
-  get readonly() { return this.parent.readonly || this.template.readonly || false; }
+  get hidden(): boolean { return this.parent.hidden || this.template.hidden || false; }
+  get readonly(): boolean { return this.parent.readonly || this.template.readonly || false; }
 
-  get actions() { return this._actions; }
-  get wrappers() { return this.definition.wrappers; }
+  get actions(): DynamicFormAction[] { return this._actions; }
+  get wrappers(): string[] { return this.definition.wrappers; }
 
-  get expressions() { return this._expressions; }
-  get expressionData() { return this._expressionData; }
-  get expressionChanges() { return this._expressionChanges; }
-  get expressionChangesSubject() { return this._expressionChangesSubject; }
+  get expressions(): DynamicFormFieldExpressions { return this._expressions; }
+  get expressionData(): DynamicFormFieldExpressionData { return this._expressionData; }
+  get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
+  get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
 
-  initActions(actions: DynamicFormAction[]) {
+  initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;
   }
 
-  initExpressions(expressions: DynamicFormFieldExpressions) {
+  initExpressions(expressions: DynamicFormFieldExpressions): void {
     if (expressions) {
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);
@@ -100,15 +100,15 @@ export abstract class DynamicFormField<
     }, <DynamicFormField[]>[]);
   }
 
-  protected cloneObject<T>(obj: T) {
+  protected cloneObject<T>(obj: T): T {
     return cloneObject(obj);
   }
 
-  protected extendExpressionData(expressions: { [key: string]: () => any }) {
+  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
     assignExpressionData(this._expressionData, expressions);
   }
 
-  private createExpressionData() {
+  private createExpressionData(): DynamicFormFieldExpressionData {
     const expressionData = {} as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
       id: () => this.id,
@@ -122,11 +122,11 @@ export abstract class DynamicFormField<
     return expressionData;
   }
 
-  private createPath() {
+  private createPath(): string {
     return this.parent && this.parent.path ? `${this.parent.path}.${this.definition.key}` : this.definition.key || null;
   }
 
-  private createOptions() {
+  private createOptions(): DynamicFormFieldOptions {
     const defaultOptions = <DynamicFormFieldOptions>{ update: 'change' };
     const rootOptions = this.root && this.root.options || {};
     const parentOptions = this.parent && this.parent.options || {};

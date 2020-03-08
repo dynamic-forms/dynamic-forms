@@ -8,6 +8,6 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
     this._root = this;
   }
 
-  get hidden() { return this.template.hidden || false; }
-  get readonly() { return this.template.readonly || false; }
+  get hidden(): boolean { return this.template.hidden || false; }
+  get readonly(): boolean { return this.template.readonly || false; }
 }

@@ -1,9 +1,9 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormActionType, DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormElementType, DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormClassType } from './dynamic-form-class-type';
 
@@ -42,23 +42,23 @@ export class DynamicFormConfigService {
     }
   }
 
-  getElementType(type: string) {
+  getElementType(type: string): DynamicFormElementType {
     return this.elementTypes.find(f => f.type === type);
   }
 
-  getFieldType(type: string) {
+  getFieldType(type: string): DynamicFormFieldType {
     return this.fieldTypes.find(f => f.type === type);
   }
 
-  getActionType(type: string) {
+  getActionType(type: string): DynamicFormActionType {
     return this.actionTypes.find(f => f.type === type);
   }
 
-  getInputType(type: string) {
+  getInputType(type: string): DynamicFormInputType {
     return this.inputTypes.find(f => f.type === type);
   }
 
-  getFieldWrapperType(type: string) {
+  getFieldWrapperType(type: string): DynamicFormFieldWrapperType {
     return this.fieldWrapperTypes.find(f => f.type === type);
   }
 }
