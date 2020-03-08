@@ -10,7 +10,7 @@ import { SidebarToggle } from '../../../state/layout/layout.actions';
 export class SidebarToggleComponent {
   constructor(private store: Store) {}
 
-  toggle() {
+  toggle(): void {
     this.store.dispatch([
       new SidebarToggle()
     ]);

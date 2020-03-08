@@ -12,7 +12,7 @@ import { Layout } from './layout.model';
 })
 export class LayoutState {
   @Action(SidebarToggle)
-  toggle(context: StateContext<Layout>, _: SidebarToggle) {
+  toggle(context: StateContext<Layout>, _: SidebarToggle): void {
     const state = context.getState();
     context.patchState({
       sidebar: {

@@ -6,7 +6,7 @@ import { DynamicFormFieldEvaluatorFunction } from '../dynamic-form-field/dynamic
 
 @Injectable()
 export class DynamicFormEvaluationBuilder {
-  static readonly controlEvaluations = {
+  static readonly controlEvaluations: { [key: string]: { type: string, func: (control: DynamicFormControl) => void } } = {
     'select': { type: 'select', func: DynamicFormControlEvaluators.evalSelect }
   };
 

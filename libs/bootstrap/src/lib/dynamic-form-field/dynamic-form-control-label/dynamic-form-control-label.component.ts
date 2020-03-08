@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-control-label',
@@ -13,6 +13,6 @@ export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrappe
     super(containerRef, validationService);
   }
 
-  get inputId() { return this.field.inputId; }
-  get validation() { return this.field.template.validation; }
+  get inputId(): string { return this.field.inputId; }
+  get validation(): DynamicFormControlValidation { return this.field.template.validation; }
 }

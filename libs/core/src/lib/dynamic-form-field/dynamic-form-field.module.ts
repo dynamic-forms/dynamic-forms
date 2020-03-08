@@ -5,7 +5,7 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormField } from './dynamic-form-field';
 
-export function dynamicFormFieldResetFactory(field: DynamicFormField) {
+export function dynamicFormFieldResetFactory(field: DynamicFormField): void {
   field.reset();
 }
 
@@ -15,7 +15,7 @@ export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldResetDefaultFactory(field: DynamicFormField) {
+export function dynamicFormFieldResetDefaultFactory(field: DynamicFormField): void {
   field.resetDefault();
 }
 
@@ -25,7 +25,7 @@ export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldValidateFactory(field: DynamicFormField) {
+export function dynamicFormFieldValidateFactory(field: DynamicFormField): void {
   field.validate();
 }
 

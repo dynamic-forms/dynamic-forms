@@ -17,7 +17,7 @@ export class NotificationComponent {
     this.state$ = this.store.select(NotificationState);
   }
 
-  remove(item: NotificationItem) {
+  remove(item: NotificationItem): void {
     this.store.dispatch(new NotificationItemPop(item));
   }
 }

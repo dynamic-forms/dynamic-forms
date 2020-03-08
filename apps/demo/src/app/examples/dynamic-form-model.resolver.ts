@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class DynamicFormModelResolver implements Resolve<Observable<any>> {
   constructor(private httpClient: HttpClient) {}
 
-  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
+  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<any> {
     const modelId = route.params.modelId;
     return this.httpClient.get(`./assets/examples/models/${ modelId }.json`);
   }

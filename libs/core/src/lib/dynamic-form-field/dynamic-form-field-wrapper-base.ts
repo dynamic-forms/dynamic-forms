@@ -27,9 +27,9 @@ export abstract class DynamicFormFieldWrapperBase<
     super(validationService);
   }
 
-  get ref() { return this.containerRef; }
+  get ref(): ViewContainerRef { return this.containerRef; }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const viewRef = this.containerRef.detach(0);
     this.container.insert(viewRef);
   }

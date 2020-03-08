@@ -5,15 +5,15 @@ import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 
 class DynamicFormFieldTest extends DynamicFormField {
-  check() {}
-  destroy() {}
+  check(): void {}
+  destroy(): void {}
 
-  reset() {}
-  resetDefault() {}
-  validate() {}
+  reset(): void {}
+  resetDefault(): void {}
+  validate(): void {}
 
-  initModel(model: any) { this._model = model; }
-  initControl(control: any) { this._control = control; }
+  initModel(model: any): void { this._model = model; }
+  initControl(control: any): void { this._control = control; }
 }
 
 describe('DynamicFormField', () => {
