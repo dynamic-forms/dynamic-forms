@@ -17,7 +17,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
-  @Output() formSubmit = new EventEmitter<DynamicFormSubmit>();
+  @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
 
   constructor(private formBuilder: DynamicFormBuilder) {}
 

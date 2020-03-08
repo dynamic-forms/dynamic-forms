@@ -126,7 +126,10 @@
     ],
     "typedef": [
       true, 
-      "call-signature"
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
     ],
     "typedef-whitespace": [
       true,

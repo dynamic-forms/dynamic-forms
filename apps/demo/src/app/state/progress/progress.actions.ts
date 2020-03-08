@@ -1,11 +1,11 @@
 import { ProgressItem } from './progress.model';
 
 export class ProgressItemPush {
-  static readonly type = '[ProgressItem] PUSH';
+  static readonly type: string = '[ProgressItem] PUSH';
   constructor(public item: ProgressItem) {}
 }
 
 export class ProgressItemPop {
-  static readonly type = '[ProgressItem] POP';
+  static readonly type: string = '[ProgressItem] POP';
   constructor(public item: ProgressItem) {}
 }

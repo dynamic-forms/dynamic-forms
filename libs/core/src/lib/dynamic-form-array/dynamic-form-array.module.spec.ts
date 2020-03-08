@@ -94,7 +94,7 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls pushElement of array field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
       const handler = handlers.find(h => h.type === 'pushArrayElement');
-      const field = <DynamicFormArray>{ pushElement(_elem): void {}, length: 0 };
+      const field = <DynamicFormArray>{ pushElement(_elem: DynamicFormField): void {}, length: 0 };
       const element = <DynamicFormField>{};
 
       formBuilder.createFormArrayElement.and.returnValue(element);

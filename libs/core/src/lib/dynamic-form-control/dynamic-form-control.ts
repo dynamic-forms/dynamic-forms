@@ -108,7 +108,7 @@ export class DynamicFormControl<
     return valueChanges.subscribe(observer);
   }
 
-  private setModel(model): void {
+  private setModel(model: any): void {
     this.parent.model[this.key] = model;
     this._model = this.parent.model[this.key];
   }
