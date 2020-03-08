@@ -20,22 +20,22 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/@dynamic-forms/core"
+        "dist/v8/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/@dynamic-forms/core/*"
+        "dist/v8/@dynamic-forms/core/*"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/@dynamic-forms/bootstrap"
+        "dist/v8/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/bootstrap/*": [
-        "dist/@dynamic-forms/bootstrap/*"
+        "dist/v8/@dynamic-forms/bootstrap/*"
       ],
       "@dynamic-forms/material": [
-        "dist/@dynamic-forms/material"
+        "dist/v8/@dynamic-forms/material"
       ],
       "@dynamic-forms/material/*": [
-        "dist/@dynamic-forms/material/*"
+        "dist/v8/@dynamic-forms/material/*"
       ]
     }
   },
