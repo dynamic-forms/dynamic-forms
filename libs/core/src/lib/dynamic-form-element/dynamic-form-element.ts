@@ -14,15 +14,15 @@ export class DynamicFormElement<
     this._definition.template = definition.template || <Template>{};
   }
 
-  get id() { return this.definition.id; }
+  get id(): string { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
-  get componentType() { return this.definition.type; }
+  get componentType(): string { return this.definition.type; }
 
-  get definition() { return this._definition; }
-  get template() { return this.definition.template; }
-  get elements() { return this._elements; }
+  get definition(): Definition { return this._definition; }
+  get template(): Template { return this.definition.template; }
+  get elements(): DynamicFormElement[] { return this._elements; }
 
-  initElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]): void {
     this._elements = elements || [];
   }
 }

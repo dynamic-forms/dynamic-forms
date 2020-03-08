@@ -21,7 +21,7 @@ export class DynamicFormComponentFactory {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
-  createComponent(ref: ViewContainerRef, element: DynamicFormElement) {
+  createComponent(ref: ViewContainerRef, element: DynamicFormElement): DynamicFormElementBase {
     switch (element.classType) {
       case 'element':
         return this.createElementComponent(ref, element);
@@ -34,36 +34,36 @@ export class DynamicFormComponentFactory {
     }
   }
 
-  createElementComponent(ref: ViewContainerRef, element: DynamicFormElement) {
+  createElementComponent(ref: ViewContainerRef, element: DynamicFormElement): DynamicFormElementBase {
     const type = this.configService.getElementType(element.componentType);
     return this.createElementComponentForType(ref, element, type);
   }
 
-  createFieldComponent(ref: ViewContainerRef, field: DynamicFormField) {
+  createFieldComponent(ref: ViewContainerRef, field: DynamicFormField): DynamicFormFieldBase {
     const type = this.configService.getFieldType(field.componentType);
     return this.createFieldComponentForType(ref, field, type);
   }
 
-  createActionComponent(ref: ViewContainerRef, action: DynamicFormAction) {
+  createActionComponent(ref: ViewContainerRef, action: DynamicFormAction): DynamicFormActionBase {
     const type = this.configService.getActionType(action.componentType);
     return this.createActionComponentForType(ref, action, type);
   }
 
-  createInputComponent(ref: ViewContainerRef, field: DynamicFormControl) {
+  createInputComponent(ref: ViewContainerRef, field: DynamicFormControl): DynamicFormFieldBase {
     const type = this.configService.getInputType(field.inputComponentType);
     return this.createFieldComponentForType(ref, field, type);
   }
 
   private createElementComponentForType(
     ref: ViewContainerRef, element: DynamicFormElement, type: DynamicFormElementType
-  ) {
+  ): DynamicFormElementBase {
     const factory = this.getComponentFactory(type.component);
     return this.createElementComponentFromFactory(ref, element, factory);
   }
 
   private createFieldComponentForType(
     ref: ViewContainerRef, field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType
-  ) {
+  ): DynamicFormFieldBase {
     const factory = this.getComponentFactory(type.component);
     const wrapperTypes = this.getWrapperTypes(field, type);
     if (wrapperTypes.length > 0) {
@@ -77,19 +77,19 @@ export class DynamicFormComponentFactory {
 
   private createActionComponentForType(
     ref: ViewContainerRef, action: DynamicFormAction, type: DynamicFormActionType
-  ) {
+  ): DynamicFormActionBase {
     const factory = this.getComponentFactory(type.component);
     return this.createActionComponentFromFactory(ref, action, factory);
   }
 
-  private getComponentFactory<T>(componentType: Type<T>) {
+  private getComponentFactory<T>(componentType: Type<T>): ComponentFactory<T> {
     const resolver = this.componentFactoryResolver;
     return resolver.resolveComponentFactory(componentType);
   }
 
   private createElementComponentFromFactory(
     ref: ViewContainerRef, element: DynamicFormElement, factory: ComponentFactory<DynamicFormElementBase>
-  ) {
+  ): DynamicFormElementBase {
     const component = ref.createComponent(factory).instance;
     component.element = element;
     return component;
@@ -97,7 +97,7 @@ export class DynamicFormComponentFactory {
 
   private createFieldComponentFromFactory(
     ref: ViewContainerRef, field: DynamicFormField, factory: ComponentFactory<DynamicFormFieldBase>
-  ) {
+  ): DynamicFormFieldBase {
     const component = ref.createComponent(factory).instance;
     component.field = field;
     return component;
@@ -105,7 +105,7 @@ export class DynamicFormComponentFactory {
 
   private createActionComponentFromFactory(
     ref: ViewContainerRef, action: DynamicFormAction, factory: ComponentFactory<DynamicFormActionBase>
-  ) {
+  ): DynamicFormActionBase {
     const component = ref.createComponent(factory).instance;
     component.action = action;
     return component;
@@ -113,7 +113,7 @@ export class DynamicFormComponentFactory {
 
   private createWrapperComponents(
     ref: ViewContainerRef, field: DynamicFormField, types:  DynamicFormFieldWrapperType[]
-  ) {
+  ): DynamicFormFieldWrapperBase[] {
     const wrappers = types.reduce((result, type) => {
       const factory = this.getComponentFactory(type.component);
       const parentComponent = result[result.length - 1];
@@ -127,7 +127,7 @@ export class DynamicFormComponentFactory {
 
   private getWrapperTypes(
     field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType
-  ) {
+  ): DynamicFormFieldWrapperType[] {
     const wrappers = (field.wrappers || []).concat(type.wrappers || []);
     return wrappers.map(wrapper => {
       return this.configService.getFieldWrapperType(wrapper);

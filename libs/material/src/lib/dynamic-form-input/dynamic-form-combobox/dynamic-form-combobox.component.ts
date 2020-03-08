@@ -14,14 +14,14 @@ export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<Dynami
     super(validationService);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.filteredOptions = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this.getFilteredOptions(value))
     );
   }
 
-  private getFilteredOptions(value: string) {
+  private getFilteredOptions(value: string): string[] {
     const options = this.input.options || [];
     const valueNormalized = value ? value.toUpperCase() : null;
     return valueNormalized

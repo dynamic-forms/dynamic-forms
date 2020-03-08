@@ -20,7 +20,7 @@ export const dynamicFormArrayType: DynamicFormFieldType = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormArrayPopElementFactory(field: DynamicFormArray) {
+export function dynamicFormArrayPopElementFactory(field: DynamicFormArray): void {
   field.popElement();
 }
 
@@ -30,7 +30,7 @@ export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<Dynamic
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray) {
+export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray): void {
   field.clearElements();
 }
 

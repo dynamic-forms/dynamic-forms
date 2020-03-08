@@ -23,17 +23,17 @@ export class DynamicFormAction<
 
   get classType(): DynamicFormClassType { return 'action'; }
 
-  get expressions() { return this._expressions; }
-  get expressionData() { return this._expressionData; }
+  get expressions(): DynamicFormActionExpressions { return this._expressions; }
+  get expressionData(): DynamicFormActionExpressionData { return this._expressionData; }
 
-  initExpressions(expressions: DynamicFormActionExpressions) {
+  initExpressions(expressions: DynamicFormActionExpressions): void {
     if (expressions) {
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);
     }
   }
 
-  private createExpressionData() {
+  private createExpressionData(): DynamicFormActionExpressionData {
     const expressionData = {} as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
       parent: () => this.parent ? this.parent.expressionData : undefined,

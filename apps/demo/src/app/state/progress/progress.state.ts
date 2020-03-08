@@ -10,7 +10,7 @@ import { Progress } from './progress.model';
 })
 export class ProgressState {
   @Action(ProgressItemPush)
-  push(context: StateContext<Progress>, action: ProgressItemPush) {
+  push(context: StateContext<Progress>, action: ProgressItemPush): void {
     const state = context.getState();
     context.patchState({
       items: [ ...state.items, action.item ]
@@ -18,7 +18,7 @@ export class ProgressState {
   }
 
   @Action(ProgressItemPop)
-  pop(context: StateContext<Progress>, action: ProgressItemPop) {
+  pop(context: StateContext<Progress>, action: ProgressItemPop): void {
     const state = context.getState();
     context.patchState({
       items: state.items.filter(item => item.id !== action.item.id)

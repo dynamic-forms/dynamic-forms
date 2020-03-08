@@ -11,7 +11,7 @@ export class RoutingHandler {
     this.router.events.subscribe(event => this.handle(event));
   }
 
-  private handle(event: Event) {
+  private handle(event: Event): void {
     if (event instanceof NavigationStart) {
       this.store.dispatch(new ProgressItemPush({ id: event.id }));
     } else if (event instanceof NavigationCancel || event instanceof NavigationError) {

@@ -14,6 +14,6 @@ export abstract class DynamicFormActionBase<
     super();
   }
 
-  get action() { return this.element; }
+  get action(): Action { return this.element; }
   set action(action: Action) { this.element = action; }
 }

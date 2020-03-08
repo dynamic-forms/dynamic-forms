@@ -16,7 +16,7 @@ export class DynamicFormValidationService {
     this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
   }
 
-  getErrorMessage(errors: DynamicFormValidationErrors) {
+  getErrorMessage(errors: DynamicFormValidationErrors): string {
     if (!errors) {
       return null;
     }
@@ -31,11 +31,11 @@ export class DynamicFormValidationService {
     return error && error.message ? error.message : this.getErrorMessageFromConfig(errorKey);
   }
 
-  private getErrorMessageFromConfig(errorKey: string) {
+  private getErrorMessageFromConfig(errorKey: string): string {
     return this.validationConfig.messages[errorKey] || this.validationConfig.defaultMessage;
   }
 
-  private getDefaultErrorMessage() {
+  private getDefaultErrorMessage(): string {
     return this.validationConfig.defaultMessage;
   }
 
@@ -57,7 +57,7 @@ export class DynamicFormValidationService {
     }, defaultConfig);
   }
 
-  private getLibraryConfigs(configs: DynamicFormValidationConfigs) {
+  private getLibraryConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfigs {
     return this.libraryService.libraryNamesReverse
       .map(name => configs.find(config => config.libraryName === name))
       .filter(config => !!config);
