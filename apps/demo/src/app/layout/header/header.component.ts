@@ -9,5 +9,5 @@ import { AppConfig, APP_CONFIG } from '../../app-config';
 export class HeaderComponent {
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
 
-  get projectUrl() { return this.appConfig.project.url; }
+  get projectUrl(): string { return this.appConfig.project.url; }
 }

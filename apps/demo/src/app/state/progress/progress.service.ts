@@ -8,7 +8,7 @@ import { ProgressItem } from './progress.model';
 export class ProgressService {
   constructor(private store: Store) {}
 
-  execute(action: Observable<any>, item: ProgressItem) {
+  execute(action: Observable<any>, item: ProgressItem): void {
     this.store.dispatch(new ProgressItemPush(item));
     action.subscribe(_ => {
       this.store.dispatch(new ProgressItemPop(item));

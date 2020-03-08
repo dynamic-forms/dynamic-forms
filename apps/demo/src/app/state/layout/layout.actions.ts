@@ -1,3 +1,3 @@
 export class SidebarToggle {
-  static readonly type = '[Sidebar] TOGGLE';
+  static readonly type: string = '[Sidebar] TOGGLE';
 }

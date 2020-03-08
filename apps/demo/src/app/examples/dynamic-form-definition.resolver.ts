@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class DynamicFormDefinitionResolver implements Resolve<Observable<DynamicFormDefinition>> {
   constructor(private httpClient: HttpClient) {}
 
-  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
+  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<DynamicFormDefinition> {
     const definitionId = route.params.definitionId;
     return this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ definitionId }.json`);
   }

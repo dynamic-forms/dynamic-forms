@@ -1,5 +1,5 @@
 import { Action, State, StateContext } from '@ngxs/store';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { NotificationItemPop, NotificationItemPush, NotificationToggle } from './notification.actions';
 import { Notification } from './notification.model';
@@ -13,7 +13,7 @@ import { Notification } from './notification.model';
 })
 export class NotificationState {
   @Action(NotificationToggle)
-  toggle(context: StateContext<Notification>, _action: NotificationToggle) {
+  toggle(context: StateContext<Notification>, _action: NotificationToggle): void {
     const state = context.getState();
     context.patchState({
       enabled: !state.enabled
@@ -21,7 +21,7 @@ export class NotificationState {
   }
 
   @Action(NotificationItemPush)
-  push(context: StateContext<Notification>, action: NotificationItemPush) {
+  push(context: StateContext<Notification>, action: NotificationItemPush): Observable<any> {
     const state = context.getState();
     const item = action.item;
     context.patchState({
@@ -38,7 +38,7 @@ export class NotificationState {
   }
 
   @Action(NotificationItemPop)
-  pop(context: StateContext<Notification>, action: NotificationItemPush) {
+  pop(context: StateContext<Notification>, action: NotificationItemPush): void {
     const state = context.getState();
     context.patchState({
       items: state.items.filter(item => item.id !== action.item.id)

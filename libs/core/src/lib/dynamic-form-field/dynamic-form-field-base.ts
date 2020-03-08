@@ -17,28 +17,28 @@ export abstract class DynamicFormFieldBase<
     super();
   }
 
-  get key() { return this.element.key; }
-  get index() { return this.element.index; }
-  get path() { return this.element.path; }
+  get key(): string { return this.element.key; }
+  get index(): number { return this.element.index; }
+  get path(): string { return this.element.path; }
 
-  get field() { return this.element; }
+  get field(): Field { return this.element; }
   set field(field: Field) { this.element = field; }
 
-  get control() { return this.field.control; }
+  get control(): Control { return this.field.control; }
 
   get errors(): DynamicFormValidationErrors {
     return this.control.errors;
   }
 
-  get hasErrors() {
+  get hasErrors(): boolean {
     return (this.errors || false) && true;
   }
 
-  get showErrors() {
+  get showErrors(): boolean {
     return this.hasErrors && this.control.touched;
   }
 
-  get errorMessage() {
+  get errorMessage(): string {
     return this.validationService.getErrorMessage(this.errors);
   }
 }

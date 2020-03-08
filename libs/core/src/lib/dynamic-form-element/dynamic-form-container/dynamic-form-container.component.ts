@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 
@@ -11,5 +12,5 @@ export class DynamicFormContainerComponent extends DynamicFormElementBase<Dynami
     super();
   }
 
-  get elements() { return this.element.elements; }
+  get elements(): DynamicFormElement[] { return this.element.elements; }
 }

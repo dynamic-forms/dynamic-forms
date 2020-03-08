@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { AppConfig, APP_CONFIG } from '../../../app-config';
+import { AppConfig, AppRepository, APP_CONFIG } from '../../../app-config';
 
 @Component({
   selector: 'app-docs-menu-items',
@@ -14,16 +14,16 @@ export class DocsMenuItemsComponent implements OnInit {
 
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
 
-  get codeUrl() { return this._codeUrl; }
+  get codeUrl(): string { return this._codeUrl; }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const query = this.getQuery();
     this._codeUrl = `${this.repo.url}?${query}`;
   }
 
-  private get repo() { return this.appConfig.repository; }
+  private get repo(): AppRepository { return this.appConfig.repository; }
 
-  private getQuery() {
+  private getQuery(): string {
     return this.repo.libraryQuery
       .replace('{{library}}', this.library)
       .replace('{{branch}}', this.repo.branch);

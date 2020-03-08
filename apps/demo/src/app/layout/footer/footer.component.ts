@@ -9,10 +9,10 @@ import { AppConfig, APP_CONFIG } from '../../app-config';
 export class FooterComponent {
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
 
-  get buildVersion() {
+  get buildVersion(): string {
     return this.build ? `${this.version}-${this.build}` : this.version;
   }
 
-  private get version() { return this.appConfig.version; }
-  private get build() { return this.appConfig.build; }
+  private get version(): string { return this.appConfig.version; }
+  private get build(): string { return this.appConfig.build; }
 }

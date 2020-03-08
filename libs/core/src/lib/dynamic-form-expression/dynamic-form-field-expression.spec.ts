@@ -1,10 +1,11 @@
 import { Subject } from 'rxjs';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
+import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
 const getCurrencyOptions = (data, memo) => {
-  return (function(currencyPair) {
+  return (function(currencyPair: string): any[] {
     if (memo.currencyPair === currencyPair) {
       return memo.previousValue;
     }
@@ -22,7 +23,7 @@ const getCurrencyOptions = (data, memo) => {
 };
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
-  get memo() { return this._memo; }
+  get memo(): DynamicFormExpressionMemoization { return this._memo; }
 }
 
 describe('DynamicFormFieldExpression', () => {

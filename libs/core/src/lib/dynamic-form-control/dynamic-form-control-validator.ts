@@ -18,9 +18,9 @@ export class DynamicFormControlValidator {
     this._validatorFn = this._enabled ? factory(this._parameters) : undefined;
   }
 
-  get enabled() { return this._enabled; }
-  get parameters() { return this._parameters; }
-  get validatorFn() { return this._validatorFn; }
+  get enabled(): boolean { return this._enabled; }
+  get parameters(): any { return this._parameters; }
+  get validatorFn(): ValidatorFn { return this._validatorFn; }
 
   checkChanges(): boolean {
     const enabled = this.template.validation[this.key];

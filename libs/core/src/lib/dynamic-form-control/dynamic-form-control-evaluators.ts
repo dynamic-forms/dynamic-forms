@@ -1,7 +1,7 @@
 import { DynamicFormControl } from './dynamic-form-control';
 
 export class DynamicFormControlEvaluators {
-  static evalSelect(formControl: DynamicFormControl) {
+  static evalSelect(formControl: DynamicFormControl): void {
     const valid = formControl.template.input.multiple
       ? DynamicFormControlEvaluators.selectHasOptions(formControl)
       : DynamicFormControlEvaluators.selectHasOption(formControl);
@@ -10,11 +10,11 @@ export class DynamicFormControlEvaluators {
     }
   }
 
-  private static selectHasOptions(_formControl: DynamicFormControl) {
+  private static selectHasOptions(_formControl: DynamicFormControl): boolean {
     return true;
   }
 
-  private static selectHasOption(formControl: DynamicFormControl) {
+  private static selectHasOption(formControl: DynamicFormControl): boolean {
     const hasOption = (formControl.template.input.options || []).some(option => {
       if (option.items) {
         return option.items.some(item => item.value === formControl.model);

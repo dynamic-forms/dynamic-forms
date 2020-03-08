@@ -17,10 +17,10 @@ export class DynamicFormGroup<
     this._control = new FormGroup({});
   }
 
-  get elements() { return this._elements; }
-  get fields() { return this._fields; }
+  get elements(): DynamicFormElement[] { return this._elements; }
+  get fields(): DynamicFormField[] { return this._fields; }
 
-  initElements(elements: DynamicFormElement[]) {
+  initElements(elements: DynamicFormElement[]): void {
     this._elements = elements ? [ ...elements ] : [];
     this._fields = this.filterFields(this._elements);
     this._fields.forEach(field => {
@@ -28,20 +28,20 @@ export class DynamicFormGroup<
     });
   }
 
-  check() {
+  check(): void {
     this.checkControl();
     this.fields.forEach(field => field.check());
   }
 
-  destroy() {
+  destroy(): void {
     this.fields.forEach(field => field.destroy());
   }
 
-  reset() {
+  reset(): void {
     this.fields.forEach(field => field.reset());
   }
 
-  resetDefault() {
+  resetDefault(): void {
     if (this.definition.defaultValue) {
       const defaultModel = this.cloneObject(this.definition.defaultValue);
       this._control.patchValue(defaultModel);
@@ -50,7 +50,7 @@ export class DynamicFormGroup<
     }
   }
 
-  validate() {
+  validate(): void {
     this.fields.forEach(field => field.validate());
   }
 
@@ -59,7 +59,7 @@ export class DynamicFormGroup<
     return parent.model[definition.key];
   }
 
-  private getDefaultModel(definition: DynamicFormGroupDefinition) {
+  private getDefaultModel(definition: DynamicFormGroupDefinition): any {
     if (definition.defaultValue) {
       return this.cloneObject(definition.defaultValue);
     }
