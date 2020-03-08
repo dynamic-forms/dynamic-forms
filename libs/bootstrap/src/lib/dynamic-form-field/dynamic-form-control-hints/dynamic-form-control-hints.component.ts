@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-control-hints',
@@ -13,15 +13,17 @@ export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrappe
     super(containerRef, validationService);
   }
 
-  get hints() {
+  get hints(): DynamicFormControlHints {
     return this.field.template.hints;
   }
 
-  get hasHints() {
-    return this.hints ? this.hints.hintStart || this.hints.hintEnd : false;
+  get hasHints(): boolean {
+    return this.hints
+      ? (this.hints.hintStart || this.hints.hintEnd) && true
+      : false;
   }
 
-  get showHints() {
+  get showHints(): boolean {
     return this.hasHints && !this.showErrors;
   }
 }

@@ -1,4 +1,5 @@
 import { FormArray } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
@@ -17,12 +18,12 @@ export class DynamicFormArray<
     this.extendExpressionData({ length: () => this.length });
   }
 
-  get elements() { return this._elements; }
-  get fields() { return this._fields; }
+  get elements(): DynamicFormElement[] { return this._elements; }
+  get fields(): DynamicFormField[] { return this._fields; }
 
-  get length() { return this._fields.length; }
+  get length(): number { return this._fields.length; }
 
-  initElements(elements: DynamicFormField[]) {
+  initElements(elements: DynamicFormField[]): void {
     this._fields = elements ? [ ...elements ] : [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
@@ -30,12 +31,12 @@ export class DynamicFormArray<
     this._elements = this._fields;
   }
 
-  pushElement(element: DynamicFormField) {
+  pushElement(element: DynamicFormField): void {
     this._fields.push(element);
     this._control.push(element.control);
   }
 
-  popElement() {
+  popElement(): void {
     const length = this.length;
     if (length > 0) {
       this._fields.pop().destroy();
@@ -44,7 +45,7 @@ export class DynamicFormArray<
     }
   }
 
-  clearElements() {
+  clearElements(): void {
     const length = this.length;
     if (length > 0) {
       this._fields.forEach(field => field.destroy());
@@ -55,19 +56,19 @@ export class DynamicFormArray<
     }
   }
 
-  check() {
+  check(): void {
     this.fields.forEach(field => field.check());
   }
 
-  destroy() {
+  destroy(): void {
     this.fields.forEach(field => field.destroy());
   }
 
-  reset() {
+  reset(): void {
     this.fields.forEach(field => field.reset());
   }
 
-  resetDefault() {
+  resetDefault(): void {
     if (this.definition.defaultValue) {
       const defaultModel = this.cloneObject(this.definition.defaultValue);
       this._control.patchValue(defaultModel);
@@ -76,16 +77,16 @@ export class DynamicFormArray<
     }
   }
 
-  validate() {
+  validate(): void {
     this.fields.forEach(field => field.validate());
   }
 
-  private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition) {
+  private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition): any {
     parent.model[definition.key] = parent.model[definition.key] || this.getDefaultModel(definition);
     return parent.model[definition.key];
   }
 
-  private getDefaultModel(definition: DynamicFormArrayDefinition) {
+  private getDefaultModel(definition: DynamicFormArrayDefinition): any {
     if (definition.defaultValue) {
       return this.cloneObject(definition.defaultValue);
     }

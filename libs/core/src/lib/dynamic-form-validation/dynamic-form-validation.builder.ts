@@ -5,7 +5,7 @@ import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-for
 
 @Injectable()
 export class DynamicFormValidationBuilder {
-  createControlValidators(template: DynamicFormControlTemplate) {
+  createControlValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {
     return template.validation ? Object.keys(template.validation).map(key => {
       return this.createControlValidator(template, key);
     }).filter(validator => !!validator) : [];

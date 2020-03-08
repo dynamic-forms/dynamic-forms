@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -19,7 +19,7 @@ export class DynamicFormControl<
 > extends DynamicFormField<FormControl, Template, Definition> {
 
   protected _valueSubscription: Subscription;
-  protected _evaluators: DynamicFormControlEvaluator[] = [];
+  protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
   protected _validators: DynamicFormControlValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
@@ -29,63 +29,63 @@ export class DynamicFormControl<
     this._valueSubscription = this.createValueSubscription();
   }
 
-  get input() { return this.template.input; }
-  get inputId() { return this.id || this.path; }
-  get inputComponentType() { return this.input.type; }
+  get input(): Input { return this.template.input; }
+  get inputId(): string { return this.id || this.path; }
+  get inputComponentType(): string { return this.input.type; }
 
-  get evaluators() { return this._evaluators; }
-  get validators() { return this._validators; }
+  get evaluators(): DynamicFormControlEvaluator<Input>[] { return this._evaluators; }
+  get validators(): DynamicFormControlValidator[] { return this._validators; }
 
-  initEvaluators(evaluators: DynamicFormControlEvaluator[]) {
+  initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
     this._evaluators = evaluators || [];
   }
 
-  initValidators(validators: DynamicFormControlValidator[]) {
+  initValidators(validators: DynamicFormControlValidator[]): void {
     this._validators = validators || [];
     this._control.setValidators(this.getValidatorFunctions());
   }
 
-  check() {
+  check(): void {
     this.checkValue();
     this.checkControl();
     this.checkValidators();
   }
 
-  destroy() {
+  destroy(): void {
     this._valueSubscription.unsubscribe();
   }
 
-  reset() {
+  reset(): void {
     this._control.reset(null);
   }
 
-  resetDefault() {
+  resetDefault(): void {
     const defaultValue = this.getDefaultValue();
     this._control.reset(defaultValue);
   }
 
-  validate() {
+  validate(): void {
     this._control.markAsTouched();
   }
 
-  private createModel() {
+  private createModel(): any {
     if (this.parent.model[this.key] === undefined) {
       this.parent.model[this.key] = this.getDefaultValue();
     }
     return this.parent.model[this.key];
   }
 
-  private getDefaultValue() {
+  private getDefaultValue(): any {
     const input = this.definition.template.input;
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 
-  private createControl() {
+  private createControl(): FormControl {
     const options = { updateOn: this.updateOn };
     return new FormControl(this._model, options);
   }
 
-  private get updateOn() {
+  private get updateOn(): 'change' | 'blur' {
     const update = this.options.update;
     if (update === 'debounce' || typeof update === 'object') {
       return 'change';
@@ -93,7 +93,7 @@ export class DynamicFormControl<
     return update;
   }
 
-  private createValueSubscription() {
+  private createValueSubscription(): Subscription {
     const update = this.options.update;
     const valueChanges = this._control.valueChanges;
     const observer = { next: model => this.setModel(model) };
@@ -108,28 +108,28 @@ export class DynamicFormControl<
     return valueChanges.subscribe(observer);
   }
 
-  private setModel(model) {
+  private setModel(model): void {
     this.parent.model[this.key] = model;
     this._model = this.parent.model[this.key];
   }
 
-  private getValidatorFunctions() {
+  private getValidatorFunctions(): ValidatorFn[] {
     return this._validators.filter(validator => !!validator.validatorFn)
       .map(validator => validator.validatorFn);
   }
 
-  private checkValue() {
+  private checkValue(): void {
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 
-  private checkControl() {
+  private checkControl(): void {
     const disabled = this.parent.control.disabled || this.template.disabled || false;
     if (this.control.disabled !== disabled) {
       return disabled ? this.control.disable() : this.control.enable();
     }
   }
 
-  private checkValidators() {
+  private checkValidators(): void {
     const validatorsChanged = this.validatorsChanged();
     if (validatorsChanged) {
       this.control.setValidators(this.getValidatorFunctions());

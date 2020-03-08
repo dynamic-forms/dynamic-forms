@@ -31,7 +31,7 @@ describe('DynamicFormGroupModule', () => {
   it('handler calls reset of field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
       const handler = handlers.find(h => h.type === 'reset');
-      const field = <DynamicFormField>{ reset() {} };
+      const field = <DynamicFormField>{ reset(): void {} };
 
       spyOn(field, 'reset');
 
@@ -44,7 +44,7 @@ describe('DynamicFormGroupModule', () => {
   it('handler calls resetDefault of field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
       const handler = handlers.find(h => h.type === 'resetDefault');
-      const field = <DynamicFormField>{ resetDefault() {} };
+      const field = <DynamicFormField>{ resetDefault(): void {} };
 
       spyOn(field, 'resetDefault');
 
@@ -57,7 +57,7 @@ describe('DynamicFormGroupModule', () => {
   it('handler calls validate of field',
     inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
       const handler = handlers.find(h => h.type === 'validate');
-      const field = <DynamicFormField>{ validate() {} };
+      const field = <DynamicFormField>{ validate(): void {} };
 
       spyOn(field, 'validate');
 

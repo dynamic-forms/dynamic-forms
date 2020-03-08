@@ -37,7 +37,7 @@ describe('DynamicFormActionService', () => {
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const field = <DynamicFormField>{};
         const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation() {} };
+        const event = <Event>{ stopPropagation(): void {} };
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(event, 'stopPropagation');
@@ -106,7 +106,7 @@ describe('DynamicFormActionService', () => {
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const field = <DynamicFormField>{};
         const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation() {} };
+        const event = <Event>{ stopPropagation(): void {} };
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[0], 'func');

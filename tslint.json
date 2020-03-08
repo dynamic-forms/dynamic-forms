@@ -124,6 +124,10 @@
       true,
       "allow-null-check"
     ],
+    "typedef": [
+      true, 
+      "call-signature"
+    ],
     "typedef-whitespace": [
       true,
       {

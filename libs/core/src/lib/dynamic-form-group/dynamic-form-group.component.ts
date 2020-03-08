@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormGroupBase } from './dynamic-form-group-base';
 
@@ -12,6 +14,6 @@ export class DynamicFormGroupComponent extends DynamicFormGroupBase {
     super(validationService);
   }
 
-  get elements() { return this.field.elements; }
-  get actions() { return this.field.actions; }
+  get elements(): DynamicFormElement[] { return this.field.elements; }
+  get actions(): DynamicFormAction[] { return this.field.actions; }
 }

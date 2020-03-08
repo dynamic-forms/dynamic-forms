@@ -13,7 +13,7 @@ export class DynamicFormButtonComponent extends DynamicFormActionBase<DynamicFor
     super(actionService);
   }
 
-  onClick($event) {
+  onClick($event): void {
     this.actionService.handle(this.action, $event);
   }
 }

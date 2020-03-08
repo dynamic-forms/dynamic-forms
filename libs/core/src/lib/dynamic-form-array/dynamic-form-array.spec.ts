@@ -126,8 +126,8 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy() {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy() {} }
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
     ];
 
     spyOn(formArray.control, 'removeAt');
@@ -167,8 +167,8 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy() {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy() {} }
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
     ];
 
     spyOn(formArray.control, 'clear');

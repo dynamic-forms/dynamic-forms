@@ -22,14 +22,14 @@ export class DynamicFormElementComponent<
     super();
   }
 
-  ngOnInit() {
+  get definition(): Definition { return this.element.definition; }
+  get template(): Template { return this.element.template; }
+
+  ngOnInit(): void {
     this.initContainer();
   }
 
-  get definition() { return this.element.definition; }
-  get template() { return this.element.template; }
-
-  private initContainer() {
+  private initContainer(): void {
       this.componentFactory.createComponent(this.container, this.element);
   }
 }
