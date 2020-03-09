@@ -1,7 +1,7 @@
 import { AppConfig } from './../app/app-config';
 
 export const appConfig: AppConfig = {
-  version: '1.0.0-preview',
+  version: '8.0.0-preview',
   build: '',
   project: {
     url: 'https://dev.azure.com/alexandergebuhr/dynamic-forms'

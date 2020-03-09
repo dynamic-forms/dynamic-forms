@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "1.0.0-preview",
+  "version": "8.0.0-preview",
   "author": "Alexander Gebuhr <alexandergebuhr@outlook.com>",
   "description": "DynamicForms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
