@@ -13,11 +13,11 @@ export const appConfig: AppConfig = {
   },
   versions: [
     {
-      name: 'Latest',
+      name: '8.0.0-preview',
       url: 'https://dynamic-forms.azurewebsites.net'
     },
     {
-      name: 'Next',
+      name: '9.0.0-preview',
       url: 'https://dynamic-forms.azurewebsites.net/next'
     }
   ]
