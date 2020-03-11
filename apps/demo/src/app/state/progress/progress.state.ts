@@ -1,9 +1,9 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
-import { Progress } from './progress.model';
+import { Progress, PROGRESS } from './progress.model';
 
 @State<Progress>({
-  name: 'progress',
+  name: PROGRESS,
   defaults: {
     items: []
   }

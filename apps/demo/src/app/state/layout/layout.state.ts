@@ -1,9 +1,9 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { SidebarToggle } from './layout.actions';
-import { Layout } from './layout.model';
+import { Layout, LAYOUT } from './layout.model';
 
 @State<Layout>({
-  name: 'sidebar',
+  name: LAYOUT,
   defaults: {
     sidebar: {
       opened: false
@@ -12,7 +12,7 @@ import { Layout } from './layout.model';
 })
 export class LayoutState {
   @Action(SidebarToggle)
-  toggle(context: StateContext<Layout>, _: SidebarToggle): void {
+  toggle(context: StateContext<Layout>, _action: SidebarToggle): void {
     const state = context.getState();
     context.patchState({
       sidebar: {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from './state/config/config.service';
 import { RoutingHandler } from './state/routing/routing.handler';
 
 @Component({
@@ -7,5 +8,10 @@ import { RoutingHandler } from './state/routing/routing.handler';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(protected routingHandler: RoutingHandler) {}
+  constructor(
+    protected configService: ConfigService,
+    protected routingHandler: RoutingHandler
+  ) {
+    this.configService.load();
+  }
 }

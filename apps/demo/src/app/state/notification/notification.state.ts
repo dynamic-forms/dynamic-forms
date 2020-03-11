@@ -2,10 +2,10 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { EMPTY, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { NotificationItemPop, NotificationItemPush, NotificationToggle } from './notification.actions';
-import { Notification } from './notification.model';
+import { Notification, NOTIFICATION } from './notification.model';
 
 @State<Notification>({
-  name: 'notification',
+  name: NOTIFICATION,
   defaults: {
     enabled: true,
     items: []

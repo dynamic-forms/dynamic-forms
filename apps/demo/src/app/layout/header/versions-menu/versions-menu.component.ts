@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { AppConfig, AppVersion, APP_CONFIG } from '../../../app-config';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Config, CONFIG } from '../../../state/config/config.model';
 
 @Component({
   selector: 'app-versions-menu',
@@ -7,7 +9,6 @@ import { AppConfig, AppVersion, APP_CONFIG } from '../../../app-config';
   styleUrls: ['./versions-menu.component.scss']
 })
 export class VersionsMenuComponent {
-  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
-
-  get versions(): AppVersion[] { return this.appConfig.versions; }
+  @Select(CONFIG)
+  config$: Observable<Config>;
 }
