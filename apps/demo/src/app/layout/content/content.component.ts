@@ -1,8 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { LayoutState } from '../../state/layout/layout.state';
+import { Layout, LAYOUT } from '../../state/layout/layout.model';
 
 @Component({
   selector: 'app-content',
@@ -10,11 +10,12 @@ import { LayoutState } from '../../state/layout/layout.state';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent {
-  mobileQuery: MediaQueryList;
-  layoutState$: Observable<LayoutState>;
+  @Select(LAYOUT)
+  layout$: Observable<Layout>;
 
-  constructor(private store: Store, private media: MediaMatcher) {
+  mobileQuery: MediaQueryList;
+
+  constructor(private media: MediaMatcher) {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
-    this.layoutState$ = this.store.select(LayoutState);
   }
 }
