@@ -1,5 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { AppConfig, APP_CONFIG } from '../../app-config';
+import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Config, CONFIG } from '../../state/config/config.model';
 
 @Component({
   selector: 'app-footer',
@@ -7,12 +9,6 @@ import { AppConfig, APP_CONFIG } from '../../app-config';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
-
-  get buildVersion(): string {
-    return this.build ? `${this.version}-${this.build}` : this.version;
-  }
-
-  private get version(): string { return this.appConfig.version; }
-  private get build(): string { return this.appConfig.build; }
+  @Select(CONFIG)
+  config$: Observable<Config>;
 }

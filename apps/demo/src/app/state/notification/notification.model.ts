@@ -1,3 +1,5 @@
+import { StateToken } from '@ngxs/store';
+
 export enum NotificationItemType {
   Error = 0,
   Warning = 1
@@ -15,3 +17,5 @@ export interface Notification {
   enabled: boolean;
   items: NotificationItem[];
 }
+
+export const NOTIFICATION = new StateToken<Notification>('notification');

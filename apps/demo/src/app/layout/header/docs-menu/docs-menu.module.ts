@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { CodeUrlPipe } from './code-url.pipe';
 import { DocsMenuItemsComponent } from './docs-menu-items.component';
 import { DocsMenuComponent } from './docs-menu.component';
 
@@ -16,6 +17,7 @@ import { DocsMenuComponent } from './docs-menu.component';
     MatMenuModule
   ],
   declarations: [
+    CodeUrlPipe,
     DocsMenuItemsComponent,
     DocsMenuComponent
   ],

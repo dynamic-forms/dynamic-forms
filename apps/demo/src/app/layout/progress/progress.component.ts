@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ProgressState } from './../../state/progress/progress.state';
+import { Progress, PROGRESS } from '../../state/progress/progress.model';
 
 @Component({
   selector: 'app-progress',
@@ -9,9 +9,6 @@ import { ProgressState } from './../../state/progress/progress.state';
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
-  state$: Observable<ProgressState>;
-
-  constructor(private store: Store) {
-    this.state$ = this.store.select(ProgressState);
-  }
+  @Select(PROGRESS)
+  progress$: Observable<Progress>;
 }

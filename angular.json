@@ -131,7 +131,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/@dynamic-forms/demo",
+            "outputPath": "dist/v8/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -153,10 +153,6 @@
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
                   "with": "apps/demo/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "apps/demo/src/configs/app-config.ts",
-                  "with": "apps/demo/src/configs/app-config.prod.ts"
                 }
               ],
               "optimization": true,

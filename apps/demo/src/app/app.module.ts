@@ -3,8 +3,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { appConfig } from './../configs/app-config';
-import { APP_CONFIG } from './app-config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppStateModule } from './app-state.module';
 import { AppComponent } from './app.component';
@@ -29,10 +27,6 @@ import { HttpRequestInterceptor } from './services/http-request.interceptor';
     DocsModule
   ],
   providers: [
-    {
-      provide: APP_CONFIG,
-      useValue: appConfig
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
