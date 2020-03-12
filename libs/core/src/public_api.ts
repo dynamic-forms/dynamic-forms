@@ -40,6 +40,7 @@ export * from './lib/dynamic-form-config/dynamic-form-config.service';
 export * from './lib/dynamic-form-control/dynamic-form-control';
 export * from './lib/dynamic-form-control/dynamic-form-control-base';
 export * from './lib/dynamic-form-control/dynamic-form-control-definition';
+export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-factory';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-template';

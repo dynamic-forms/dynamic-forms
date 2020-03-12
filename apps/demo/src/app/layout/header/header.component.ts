@@ -1,5 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { AppConfig, APP_CONFIG } from '../../app-config';
+import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Config, CONFIG } from '../../state/config/config.model';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +9,6 @@ import { AppConfig, APP_CONFIG } from '../../app-config';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
-
-  get projectUrl(): string { return this.appConfig.project.url; }
+  @Select(CONFIG)
+  config$: Observable<Config>;
 }

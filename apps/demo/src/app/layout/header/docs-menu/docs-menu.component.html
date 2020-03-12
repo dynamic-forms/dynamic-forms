@@ -1,22 +1,24 @@
-<button mat-button [matMenuTriggerFor]="docs">
-  Documentation
-  <mat-icon>arrow_drop_down</mat-icon>
-</button>
-
-<mat-menu #docs="matMenu">
-  <a mat-menu-item routerLink="/docs/core" [matMenuTriggerFor]="coreDocs">Core</a>
-  <a mat-menu-item routerLink="/docs/bootstrap" [matMenuTriggerFor]="bootstrapDocs">Bootstrap</a>
-  <a mat-menu-item routerLink="/docs/material" [matMenuTriggerFor]="materialDocs">Material</a>
-</mat-menu>
-
-<mat-menu #coreDocs="matMenu">
-  <app-docs-menu-items [library]="'core'"></app-docs-menu-items>
-</mat-menu>
-
-<mat-menu #bootstrapDocs="matMenu">
-  <app-docs-menu-items [library]="'bootstrap'"></app-docs-menu-items>
-</mat-menu>
-
-<mat-menu #materialDocs="matMenu">
-  <app-docs-menu-items [library]="'material'"></app-docs-menu-items>
-</mat-menu>
+<ng-container *ngIf="config$ | async as config">
+  <button mat-button [matMenuTriggerFor]="docs">
+    Documentation
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  
+  <mat-menu #docs="matMenu">
+    <a mat-menu-item routerLink="/docs/core" [matMenuTriggerFor]="coreDocs">Core</a>
+    <a mat-menu-item routerLink="/docs/bootstrap" [matMenuTriggerFor]="bootstrapDocs">Bootstrap</a>
+    <a mat-menu-item routerLink="/docs/material" [matMenuTriggerFor]="materialDocs">Material</a>
+  </mat-menu>
+  
+  <mat-menu #coreDocs="matMenu">
+    <app-docs-menu-items [repository]="config.repository" [library]="'core'"></app-docs-menu-items>
+  </mat-menu>
+  
+  <mat-menu #bootstrapDocs="matMenu">
+    <app-docs-menu-items [repository]="config.repository" [library]="'bootstrap'"></app-docs-menu-items>
+  </mat-menu>
+  
+  <mat-menu #materialDocs="matMenu">
+    <app-docs-menu-items [repository]="config.repository" [library]="'material'"></app-docs-menu-items>
+  </mat-menu>
+</ng-container>

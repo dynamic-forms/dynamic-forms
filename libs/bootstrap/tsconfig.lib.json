@@ -16,10 +16,10 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/@dynamic-forms/core"
+        "dist/v9/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/@dynamic-forms/core/*"
+        "dist/v9/@dynamic-forms/core/*"
       ]
     }
   },
