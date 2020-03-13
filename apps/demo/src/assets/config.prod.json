@@ -12,11 +12,11 @@
   "versions": [
     {
       "name": "8.0.0-preview",
-      "url": "https://dynamic-forms.azurewebsites.net"
+      "url": "https://dynamic-forms.azurewebsites.net/v8"
     },
     {
       "name": "9.0.0-preview",
-      "url": "https://dynamic-forms.azurewebsites.net/next"
+      "url": "https://dynamic-forms.azurewebsites.net/v9"
     }
   ]
 }
