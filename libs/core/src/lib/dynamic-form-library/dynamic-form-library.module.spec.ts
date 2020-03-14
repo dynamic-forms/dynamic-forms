@@ -14,11 +14,11 @@ describe('DynamicFormLibraryModule', () => {
     }));
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormLibraryService', () => {
-      expect(() => TestBed.get(DynamicFormLibraryService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
     });
   });
 

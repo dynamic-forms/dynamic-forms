@@ -1,13 +1,13 @@
 {
-  "version": "8.0.0-preview",
+  "version": "9.0.0-preview",
   "build": "",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
   "repository": {
     "url": "https://dev.azure.com/alexandergebuhr/_git/dynamic-forms",
-    "branch": "master",
-    "libraryQuery": "path=%2Flibs%2F{{library}}&version=GB{{branch}}"
+    "branch": "release/v9",
+    "libraryQuery": "version=GB{{branch}}&path=/libs/{{library}}"
   },
   "versions": [
     {

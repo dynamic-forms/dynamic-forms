@@ -23,7 +23,7 @@ describe('DynamicFormValidationModule', () => {
     );
 
     it('does not provide DynamicFormValidationService', () => {
-      expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);
     });
   });
 

@@ -1,4 +1,4 @@
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data } from '@angular/router';
 import { DynamicFormSubmit } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';

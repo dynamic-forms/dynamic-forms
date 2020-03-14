@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
 import { MatDynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
 import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
@@ -26,8 +25,8 @@ import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form
   ],
   providers: [
     {
-      provide: MAT_LABEL_GLOBAL_OPTIONS,
-      useValue: { float: 'always' }
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { floatLabel: 'always' }
     }
   ]
 })

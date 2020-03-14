@@ -19,7 +19,7 @@ describe('DynamicFormConfigModule', () => {
     }));
 
     it('does not provide DynamicFormConfigService', () => {
-      expect(() => TestBed.get(DynamicFormConfigService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
   });
 

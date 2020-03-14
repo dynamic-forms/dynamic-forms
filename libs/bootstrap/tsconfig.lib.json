@@ -16,15 +16,14 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v8/@dynamic-forms/core"
+        "dist/v9/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v8/@dynamic-forms/core/*"
+        "dist/v9/@dynamic-forms/core/*"
       ]
     }
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

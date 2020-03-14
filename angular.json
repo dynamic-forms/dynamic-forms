@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
             "project": "libs/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -52,6 +57,11 @@
           "options": {
             "tsConfig": "libs/bootstrap/tsconfig.lib.json",
             "project": "libs/bootstrap/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/bootstrap/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -90,6 +100,11 @@
           "options": {
             "tsConfig": "libs/material/tsconfig.lib.json",
             "project": "libs/material/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/material/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -124,14 +139,15 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/v8/@dynamic-forms/demo",
+            "aot": true,
+            "outputPath": "dist/v9/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -169,6 +185,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -252,5 +272,8 @@
       }
     }
   },
-  "defaultProject": "dynamic-forms-demo"
+  "defaultProject": "dynamic-forms-demo",
+  "cli": {
+    "analytics": false
+  }
 }
