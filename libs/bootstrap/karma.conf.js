@@ -20,8 +20,8 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     junitReporter: {
-      outputDir: require('path').join(__dirname, '../../tests/junit'),
-      outputFile: 'dynamic-forms-bootstrap.xml',
+      outputDir: require('path').join(__dirname, '../../dist/v8/tests'),
+      outputFile: 'dynamic-forms-bootstrap.junit.xml',
       useBrowserName: false
     },
     coverageIstanbulReporter: {
