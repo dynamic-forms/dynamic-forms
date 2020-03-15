@@ -13,9 +13,9 @@ export interface NotificationItem {
   duration?: number;
 }
 
-export interface Notification {
+export interface Notifications {
   enabled: boolean;
   items: NotificationItem[];
 }
 
-export const NOTIFICATION = new StateToken<Notification>('notification');
+export const NOTIFICATIONS = new StateToken<Notifications>('notifications');
