@@ -1,5 +1,4 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { ConfigInit } from './config.actions';
 import { Config, CONFIG, Repository, Version } from './config.model';
 
