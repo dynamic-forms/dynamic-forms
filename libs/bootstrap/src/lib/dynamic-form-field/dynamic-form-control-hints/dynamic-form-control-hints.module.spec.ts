@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '@dynamic-forms/core';
-import { bsDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { bsDynamicFormControlHintsType, BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
 
 describe('BsDynamicFormControlHintsModule', () => {
