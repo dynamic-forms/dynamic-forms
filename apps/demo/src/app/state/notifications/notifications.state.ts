@@ -1,19 +1,19 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { EMPTY, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { NotificationItemPop, NotificationItemPush, NotificationToggle } from './notification.actions';
-import { Notification, NOTIFICATION } from './notification.model';
+import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
+import { Notifications, NOTIFICATIONS } from './notifications.model';
 
-@State<Notification>({
-  name: NOTIFICATION,
+@State<Notifications>({
+  name: NOTIFICATIONS,
   defaults: {
     enabled: true,
     items: []
   }
 })
-export class NotificationState {
-  @Action(NotificationToggle)
-  toggle(context: StateContext<Notification>, _action: NotificationToggle): void {
+export class NotificationsState {
+  @Action(NotificationsToggle)
+  toggle(context: StateContext<Notifications>, _action: NotificationsToggle): void {
     const state = context.getState();
     context.patchState({
       enabled: !state.enabled
@@ -21,7 +21,7 @@ export class NotificationState {
   }
 
   @Action(NotificationItemPush)
-  push(context: StateContext<Notification>, action: NotificationItemPush): Observable<any> {
+  push(context: StateContext<Notifications>, action: NotificationItemPush): Observable<any> {
     const state = context.getState();
     const item = action.item;
     context.patchState({
@@ -38,7 +38,7 @@ export class NotificationState {
   }
 
   @Action(NotificationItemPop)
-  pop(context: StateContext<Notification>, action: NotificationItemPush): void {
+  pop(context: StateContext<Notifications>, action: NotificationItemPush): void {
     const state = context.getState();
     context.patchState({
       items: state.items.filter(item => item.id !== action.item.id)

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Config, CONFIG } from '../../../state/config/config.model';
+import { Repository } from '../../../state/config/config.model';
+import { ConfigState } from '../../../state/config/config.state';
 
 @Component({
   selector: 'app-docs-menu',
@@ -9,6 +10,6 @@ import { Config, CONFIG } from '../../../state/config/config.model';
   styleUrls: ['./docs-menu.component.scss']
 })
 export class DocsMenuComponent {
-  @Select(CONFIG)
-  config$: Observable<Config>;
+  @Select(ConfigState.repository)
+  repository$: Observable<Repository>;
 }

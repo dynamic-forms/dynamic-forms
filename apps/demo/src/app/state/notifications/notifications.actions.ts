@@ -1,7 +1,7 @@
-import { NotificationItem } from './notification.model';
+import { NotificationItem } from './notifications.model';
 
-export class NotificationToggle {
-  static readonly type: string = '[Notification] Toggle';
+export class NotificationsToggle {
+  static readonly type: string = '[Notifications] Toggle';
 }
 
 export class NotificationItemPush {

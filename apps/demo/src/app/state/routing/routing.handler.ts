@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { NotificationItemPush } from '../notification/notification.actions';
-import { NotificationItem, NotificationItemType } from '../notification/notification.model';
+import { NotificationItemPush } from '../notifications/notifications.actions';
+import { NotificationItem, NotificationItemType } from '../notifications/notifications.model';
 import { ProgressItemPop, ProgressItemPush } from '../progress/progress.actions';
 
 @Injectable()

@@ -1,12 +1,12 @@
-<ng-container *ngIf="config$ | async as config">
-  <ng-container *ngIf="config.versions && config.versions.length">
+<ng-container *ngIf="versions$ | async as versions">
+  <ng-container *ngIf="versions.length">
     <button mat-button [matMenuTriggerFor]="menu">
       Versions
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
   
     <mat-menu #menu="matMenu">
-      <ng-container *ngFor="let version of config.versions">
+      <ng-container *ngFor="let version of versions">
         <a mat-menu-item [href]="version.url" target="_blank">{{ version.name }}</a>
       </ng-container>
     </mat-menu>  
