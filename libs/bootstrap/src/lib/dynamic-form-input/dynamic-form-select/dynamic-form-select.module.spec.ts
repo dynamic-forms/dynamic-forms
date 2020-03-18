@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '@dynamic-forms/core';
-import { bsDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { bsDynamicFormSelectType, BsDynamicFormSelectModule } from './dynamic-form-select.module';
 
 describe('BsDynamicFormSelectModule', () => {

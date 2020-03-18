@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
-import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 export const matDynamicFormTextareaType: DynamicFormInputType = {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ContentModule } from './content/content.module';
 import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
-import { NotificationModule } from './notification/notification.module';
+import { NotificationsModule } from './notifications/notifications.module';
 import { ProgressModule } from './progress/progress.module';
 
 @NgModule({
@@ -10,14 +10,14 @@ import { ProgressModule } from './progress/progress.module';
     HeaderModule,
     ContentModule,
     FooterModule,
-    NotificationModule,
+    NotificationsModule,
     ProgressModule
   ],
   exports: [
     HeaderModule,
     ContentModule,
     FooterModule,
-    NotificationModule,
+    NotificationsModule,
     ProgressModule
   ]
 })
