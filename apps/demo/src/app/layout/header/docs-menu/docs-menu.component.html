@@ -1,4 +1,4 @@
-<ng-container *ngIf="config$ | async as config">
+<ng-container *ngIf="repository$ | async as repository">
   <button mat-button [matMenuTriggerFor]="docs">
     Documentation
     <mat-icon>arrow_drop_down</mat-icon>
@@ -11,14 +11,14 @@
   </mat-menu>
   
   <mat-menu #coreDocs="matMenu">
-    <app-docs-menu-items [repository]="config.repository" [library]="'core'"></app-docs-menu-items>
+    <app-docs-menu-items [repository]="repository" [library]="'core'"></app-docs-menu-items>
   </mat-menu>
   
   <mat-menu #bootstrapDocs="matMenu">
-    <app-docs-menu-items [repository]="config.repository" [library]="'bootstrap'"></app-docs-menu-items>
+    <app-docs-menu-items [repository]="repository" [library]="'bootstrap'"></app-docs-menu-items>
   </mat-menu>
   
   <mat-menu #materialDocs="matMenu">
-    <app-docs-menu-items [repository]="config.repository" [library]="'material'"></app-docs-menu-items>
+    <app-docs-menu-items [repository]="repository" [library]="'material'"></app-docs-menu-items>
   </mat-menu>
 </ng-container>

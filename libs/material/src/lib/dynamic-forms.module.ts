@@ -5,8 +5,8 @@ import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule,
   DynamicFormControlModule, DynamicFormGroupModule, DynamicFormValidationModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
-import { matDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
+import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
 @NgModule({
   imports: [

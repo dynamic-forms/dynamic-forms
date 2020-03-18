@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '@dynamic-forms/core';
-import { matDynamicFormLibrary } from '../../dynamic-form-config/dynamic-form-library';
+import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { matDynamicFormTextboxType, MatDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
 describe('MatDynamicFormTextboxModule', () => {

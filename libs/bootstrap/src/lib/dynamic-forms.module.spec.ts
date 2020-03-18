@@ -3,7 +3,7 @@ import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigServi
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormLibrary,
   DynamicFormLibraryService, DynamicFormValidationBuilder, DynamicFormValidationService,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
-import { bsDynamicFormLibrary } from './dynamic-form-config/dynamic-form-library';
+import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormsModule } from './dynamic-forms.module';
 
 describe('BsDynamicFormsModule', () => {

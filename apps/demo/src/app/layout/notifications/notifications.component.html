@@ -1,8 +1,8 @@
-<ng-container *ngIf="notification$ | async as notification">
-  <ng-container *ngIf="notification.enabled">
-    <div *ngIf="notification.items.length > 0" class="notification">
+<ng-container *ngIf="notifications$ | async as notifications">
+  <ng-container *ngIf="notifications.enabled">
+    <div *ngIf="notifications.items.length > 0" class="notifications">
       <mat-chip-list class="notification-items">
-        <mat-chip class="notification-item" *ngFor="let item of notification.items" 
+        <mat-chip class="notification-item" *ngFor="let item of notifications.items" 
           [removable]="true" (removed)="remove(item)" selected>
           {{ item.title }}<mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
