@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { NotificationComponent } from './notification.component';
+import { NotificationsComponent } from './notifications.component';
 
 @NgModule({
   declarations: [
-    NotificationComponent
+    NotificationsComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +14,7 @@ import { NotificationComponent } from './notification.component';
     MatIconModule
   ],
   exports: [
-    NotificationComponent
+    NotificationsComponent
   ]
 })
-export class NotificationModule {}
+export class NotificationsModule {}

@@ -10,8 +10,8 @@ export class ProgressService {
 
   execute(action: Observable<any>, item: ProgressItem): void {
     this.store.dispatch(new ProgressItemPush(item));
-    action.subscribe(_ => {
-      this.store.dispatch(new ProgressItemPop(item));
+    action.subscribe({
+      complete: () => this.store.dispatch(new ProgressItemPop(item))
     });
   }
 }
