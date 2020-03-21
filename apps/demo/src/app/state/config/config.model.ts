@@ -18,6 +18,7 @@ export interface Version {
 export interface Config {
   version: string;
   build: string;
+  release: string;
   project: Project;
   repository: Repository;
   versions: Version[];

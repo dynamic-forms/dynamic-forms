@@ -1,6 +1,7 @@
 {
-  "version": "9.0.0-preview",
-  "build": "",
+  "version": "9.0.0-beta",
+  "build": "1",
+  "release": "1",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
@@ -11,11 +12,11 @@
   },
   "versions": [
     {
-      "name": "8.0.0-preview",
+      "name": "8.0.0-beta",
       "url": "https://dynamic-forms.azurewebsites.net/v8"
     },
     {
-      "name": "9.0.0-preview",
+      "name": "9.0.0-beta",
       "url": "https://dynamic-forms.azurewebsites.net/v9"
     }
   ]
