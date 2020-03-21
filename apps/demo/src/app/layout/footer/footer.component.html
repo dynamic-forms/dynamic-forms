@@ -1,7 +1,7 @@
 <mat-toolbar class="footer" color="primary">
   <ng-container *ngIf="config$ | async as config">
     <div class="version">
-      <span>Version: </span>
+      <span>Version </span>
       <span>{{ config.version }}</span>
       <ng-container *ngIf="config.build">
         <span>.</span>
