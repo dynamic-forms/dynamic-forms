@@ -1,6 +1,7 @@
 {
   "version": "8.0.0-beta",
   "build": "1",
+  "release": "1",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
