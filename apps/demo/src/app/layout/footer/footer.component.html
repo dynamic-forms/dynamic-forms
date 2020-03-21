@@ -3,10 +3,10 @@
     <div class="version">
       <span>Version </span>
       <span>{{ config.version }}</span>
-      <ng-container *ngIf="config.build">
-        <span>.</span>
-        <span>{{ config.build }}</span>
-      </ng-container>
+      <span>.</span>
+      <span>{{ config.build }}</span>
+      <span>-</span>
+      <span>{{ config.release }}</span>
     </div>
   </ng-container>
 </mat-toolbar>
