@@ -117,6 +117,29 @@
         }
       }
     },
+    "dynamic-forms-libs": {
+      "root": "libs",
+      "projectType": "library",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/test.ts",
+            "tsConfig": "libs/tsconfig.spec.json",
+            "karmaConfig": "libs/karma.conf.js",
+            "codeCoverageExclude": [
+              "libs/test.ts",
+              "libs/core/src/public_api.ts",
+              "libs/core/src/test.ts",
+              "libs/bootstrap/src/public_api.ts",
+              "libs/bootstrap/src/test.ts",
+              "libs/material/src/public_api.ts",
+              "libs/material/src/test.ts"
+            ]
+          }
+        }
+      }
+    },
     "dynamic-forms-demo": {
       "root": "",
       "sourceRoot": "apps/demo/src",
