@@ -1,4 +1,4 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
 import { Notifications, NOTIFICATIONS } from './notifications.model';
 
@@ -10,6 +10,11 @@ import { Notifications, NOTIFICATIONS } from './notifications.model';
   }
 })
 export class NotificationsState {
+  @Selector()
+  static enabled(state: Notifications): boolean {
+    return state.enabled;
+  }
+
   @Action(NotificationsToggle)
   toggle(context: StateContext<Notifications>, _action: NotificationsToggle): void {
     const state = context.getState();
