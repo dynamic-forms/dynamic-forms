@@ -11,8 +11,6 @@ export class SidebarToggleComponent {
   constructor(private store: Store) {}
 
   toggle(): void {
-    this.store.dispatch([
-      new SidebarToggle()
-    ]);
+    this.store.dispatch([ new SidebarToggle() ]);
   }
 }
