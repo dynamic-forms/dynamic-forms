@@ -1,0 +1,8 @@
+<button mat-icon-button (click)="toggle()">
+  <ng-container *ngIf="enabled$ | async; else notificationsDisabled">
+    <mat-icon >notifications</mat-icon>
+  </ng-container>
+  <ng-template #notificationsDisabled>
+    <mat-icon>notifications_off</mat-icon>
+  </ng-template>
+</button>

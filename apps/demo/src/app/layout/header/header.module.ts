@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { DocsMenuModule } from './docs-menu/docs-menu.module';
 import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { HeaderComponent } from './header.component';
+import { NotificationsToggleModule } from './notifications-toggle/notifications-toggle.module';
 import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
 import { VersionsMenuModule } from './versions-menu/versions-menu.module';
 
@@ -19,6 +20,7 @@ import { VersionsMenuModule } from './versions-menu/versions-menu.module';
     MatToolbarModule,
     DocsMenuModule,
     ExamplesMenuModule,
+    NotificationsToggleModule,
     SidebarToggleModule,
     VersionsMenuModule
   ],
