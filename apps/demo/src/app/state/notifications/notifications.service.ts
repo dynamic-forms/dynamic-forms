@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { throwError, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { v4 as uuid } from 'uuid';
 import { NotificationItemPop, NotificationItemPush } from './notifications.actions';
 import { NotificationItem, NotificationMessage, NotificationMessages, NotificationType } from './notifications.model';
 
@@ -40,6 +41,6 @@ export class NotificationsService {
   }
 
   private getNotificationItem(message: NotificationMessage): NotificationItem {
-    return { id: `Notification${ Date.now() }`, ...message };
+    return { id: `Notification-${ uuid() }`, ...message };
   }
 }
