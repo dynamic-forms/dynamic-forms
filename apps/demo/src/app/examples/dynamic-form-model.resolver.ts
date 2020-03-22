@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NotificationMessages, NotificationType } from '../state/notifications/notifications.model';
+import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
 @Injectable()
@@ -20,9 +20,9 @@ export class DynamicFormModelResolver implements Resolve<Observable<any>> {
   }
 
   private getNotificationMessages(): NotificationMessages {
-    const info = { type: NotificationType.Info, title: `Loading model started`, duration: 2000 };
-    const success = { type: NotificationType.Info, title: `Loading model succeeded`, duration: 2000 };
-    const error = { type: NotificationType.Error, title: `Loading model failed`, duration: 3000 };
+    const info = this.notificationsService.getInfoMessage(`Loading model started`);
+    const success = this.notificationsService.getInfoMessage(`Loading model succeeded`);
+    const error = this.notificationsService.getErrorMessage(`Loading model failed`);
     return { info, success, error };
   }
 }

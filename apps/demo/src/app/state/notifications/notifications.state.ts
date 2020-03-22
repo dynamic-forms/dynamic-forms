@@ -1,6 +1,6 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
-import { Notifications, NotificationType, NOTIFICATIONS } from './notifications.model';
+import { Notifications, NOTIFICATIONS } from './notifications.model';
 
 @State<Notifications>({
   name: NOTIFICATIONS,
@@ -25,10 +25,8 @@ export class NotificationsState {
     context.patchState({
       items: [ item, ...state.items ]
     });
-    if (item.type !== NotificationType.Error && item.duration) {
-      setTimeout(() => {
-        context.dispatch(new NotificationItemPop(item));
-      }, item.duration);
+    if (item.duration) {
+      setTimeout(() => context.dispatch(new NotificationItemPop(item)), item.duration);
     }
   }
 

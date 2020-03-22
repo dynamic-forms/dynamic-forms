@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
-import { NotificationMessages, NotificationType } from '../state/notifications/notifications.model';
+import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
 @Injectable()
@@ -21,9 +21,9 @@ export class DynamicFormDefinitionResolver implements Resolve<Observable<Dynamic
   }
 
   private getNotificationMessages(): NotificationMessages {
-    const info = { type: NotificationType.Info, title: `Loading definition started`, duration: 2000 };
-    const success = { type: NotificationType.Info, title: `Loading definition succeeded`, duration: 2000 };
-    const error = { type: NotificationType.Error, title: `Loading definition failed`, duration: 3000 };
+    const info = this.notificationsService.getInfoMessage(`Loading definition started`);
+    const success = this.notificationsService.getInfoMessage(`Loading definition succeeded`);
+    const error = this.notificationsService.getErrorMessage(`Loading definition failed`);
     return { info, success, error };
   }
 }

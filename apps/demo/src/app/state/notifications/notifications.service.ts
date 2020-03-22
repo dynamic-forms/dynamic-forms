@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { throwError, Observable } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { NotificationItemPop, NotificationItemPush } from './notifications.actions';
 import { NotificationItem, NotificationMessage, NotificationMessages, NotificationType } from './notifications.model';
 
 @Injectable()
 export class NotificationsService {
   constructor(private store: Store) {}
+
+  getInfoMessage(title: string, message?: string): NotificationMessage {
+    return { type: NotificationType.Info, title, message, duration: 2000 };
+  }
+
+  getErrorMessage(title: string, message?: string): NotificationMessage {
+    return { type: NotificationType.Error, title, message, duration: 3000 };
+  }
 
   pipe<T>(action: Observable<T>, messages: NotificationMessages): Observable<T> {
     const infoItem = this.pushNotification(messages.info);
