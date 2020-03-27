@@ -27,9 +27,6 @@ export const matDynamicFormSelectType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormSelectComponent
-  ],
-  entryComponents: [
-    MatDynamicFormSelectComponent
   ]
 })
 export class MatDynamicFormSelectModule {}

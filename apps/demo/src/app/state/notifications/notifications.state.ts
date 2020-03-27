@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
 import { Notifications, NOTIFICATIONS } from './notifications.model';
@@ -9,6 +10,7 @@ import { Notifications, NOTIFICATIONS } from './notifications.model';
     items: []
   }
 })
+@Injectable()
 export class NotificationsState {
   @Selector()
   static enabled(state: Notifications): boolean {

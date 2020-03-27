@@ -21,9 +21,6 @@ export const bsDynamicFormControlErrorsType: DynamicFormFieldWrapperType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormControlErrorsComponent
-  ],
-  entryComponents: [
-    BsDynamicFormControlErrorsComponent
   ]
 })
 export class BsDynamicFormControlErrorsModule {}

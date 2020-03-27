@@ -24,9 +24,6 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
   declarations: [
     DynamicFormElementBaseComponent
   ],
-  entryComponents: [
-    DynamicFormElementBaseComponent
-  ],
   providers: [
     {
       provide: DynamicFormLibraryService,

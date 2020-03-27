@@ -27,9 +27,6 @@ export const matDynamicFormTextareaType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormTextareaComponent
-  ],
-  entryComponents: [
-    MatDynamicFormTextareaComponent
   ]
 })
 export class MatDynamicFormTextareaModule {}

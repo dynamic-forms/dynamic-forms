@@ -25,9 +25,6 @@ export const matDynamicFormRadioType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormRadioComponent
-  ],
-  entryComponents: [
-    MatDynamicFormRadioComponent
   ]
 })
 export class MatDynamicFormRadioModule {}

@@ -11,9 +11,6 @@ import { DynamicFormElementComponent } from './dynamic-form-element.component';
   ],
   exports: [
     DynamicFormElementComponent
-  ],
-  entryComponents: [
-    DynamicFormElementComponent
   ]
 })
 export class DynamicFormElementModule {}

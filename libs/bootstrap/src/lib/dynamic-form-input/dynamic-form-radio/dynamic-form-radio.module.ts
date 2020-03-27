@@ -24,9 +24,6 @@ export const bsDynamicFormRadioType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormRadioComponent
-  ],
-  entryComponents: [
-    BsDynamicFormRadioComponent
   ]
 })
 export class BsDynamicFormRadioModule {}

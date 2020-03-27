@@ -23,9 +23,6 @@ export const bsDynamicFormButtonType: DynamicFormActionType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormButtonComponent
-  ],
-  entryComponents: [
-    BsDynamicFormButtonComponent
   ]
 })
 export class BsDynamicFormButtonModule {}

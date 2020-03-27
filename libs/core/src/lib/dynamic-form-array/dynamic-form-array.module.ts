@@ -67,9 +67,6 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormConfigModule,
     DynamicFormActionModule,
     DynamicFormArrayComponent
-  ],
-  entryComponents: [
-    DynamicFormArrayComponent
   ]
 })
 export class DynamicFormArrayModule {}

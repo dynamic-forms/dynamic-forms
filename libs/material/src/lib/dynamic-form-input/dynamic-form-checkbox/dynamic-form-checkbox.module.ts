@@ -27,9 +27,6 @@ export const matDynamicFormCheckboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormCheckboxComponent
-  ],
-  entryComponents: [
-    MatDynamicFormCheckboxComponent
   ]
 })
 export class MatDynamicFormCheckboxModule {}
