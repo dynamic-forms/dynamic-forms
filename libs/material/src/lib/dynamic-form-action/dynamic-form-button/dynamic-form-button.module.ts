@@ -23,9 +23,6 @@ export const matDynamicFormButtonType: DynamicFormActionType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormButtonComponent
-  ],
-  entryComponents: [
-    MatDynamicFormButtonComponent
   ]
 })
 export class MatDynamicFormButtonModule {}

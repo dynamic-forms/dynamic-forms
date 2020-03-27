@@ -27,9 +27,6 @@ export const matDynamicFormNumberboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormNumberboxComponent
-  ],
-  entryComponents: [
-    MatDynamicFormNumberboxComponent
   ]
 })
 export class MatDynamicFormNumberboxModule {}

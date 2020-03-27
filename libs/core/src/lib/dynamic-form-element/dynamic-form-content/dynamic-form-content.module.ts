@@ -22,9 +22,6 @@ export const dynamicFormContentType: DynamicFormElementType = {
   exports: [
     DynamicFormConfigModule,
     DynamicFormContentComponent
-  ],
-  entryComponents: [
-    DynamicFormContentComponent
   ]
 })
 export class DynamicFormContentModule {}

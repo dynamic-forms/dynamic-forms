@@ -45,9 +45,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
     DynamicFormConfigService,
     DynamicFormValidationService,
     DynamicFormComponentFactory
-  ],
-  entryComponents: [
-    DynamicFormInputTestComponent
   ]
 })
 class DynamicFormControlComponentTestModule {}

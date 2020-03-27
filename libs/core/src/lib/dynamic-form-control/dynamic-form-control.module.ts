@@ -28,9 +28,6 @@ export const dynamicFormControlType: DynamicFormFieldType = {
   exports: [
     DynamicFormConfigModule,
     DynamicFormControlComponent
-  ],
-  entryComponents: [
-    DynamicFormControlComponent
   ]
 })
 export class DynamicFormControlModule {}

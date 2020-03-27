@@ -24,9 +24,6 @@ export const bsDynamicFormCheckboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormCheckboxComponent
-  ],
-  entryComponents: [
-    BsDynamicFormCheckboxComponent
   ]
 })
 export class BsDynamicFormCheckboxModule {}

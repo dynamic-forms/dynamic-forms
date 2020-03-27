@@ -24,9 +24,6 @@ export const bsDynamicFormDatepickerType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormDatepickerComponent
-  ],
-  entryComponents: [
-    BsDynamicFormDatepickerComponent
   ]
 })
 export class BsDynamicFormDatepickerModule {}

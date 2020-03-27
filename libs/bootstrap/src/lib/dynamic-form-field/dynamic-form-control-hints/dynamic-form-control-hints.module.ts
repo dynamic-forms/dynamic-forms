@@ -21,9 +21,6 @@ export const bsDynamicFormControlHintsType: DynamicFormFieldWrapperType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormControlHintsComponent
-  ],
-  entryComponents: [
-    BsDynamicFormControlHintsComponent
   ]
 })
 export class BsDynamicFormControlHintsModule {}

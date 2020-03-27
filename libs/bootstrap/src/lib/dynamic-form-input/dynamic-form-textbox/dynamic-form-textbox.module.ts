@@ -24,9 +24,6 @@ export const bsDynamicFormTextboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormTextboxComponent
-  ],
-  entryComponents: [
-    BsDynamicFormTextboxComponent
   ]
 })
 export class BsDynamicFormTextboxModule {}

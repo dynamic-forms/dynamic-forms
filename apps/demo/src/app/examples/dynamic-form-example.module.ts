@@ -19,9 +19,6 @@ import { DynamicFormModelResolver } from './dynamic-form-model.resolver';
   declarations: [
     DynamicFormDialogComponent
   ],
-  entryComponents: [
-    DynamicFormDialogComponent
-  ],
   exports: [
     CommonModule,
     HttpClientModule,

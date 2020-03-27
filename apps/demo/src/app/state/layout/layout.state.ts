@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { SidebarToggle } from './layout.actions';
 import { Layout, LAYOUT } from './layout.model';
@@ -10,6 +11,7 @@ import { Layout, LAYOUT } from './layout.model';
     }
   }
 })
+@Injectable()
 export class LayoutState {
   @Action(SidebarToggle)
   toggle(context: StateContext<Layout>, _action: SidebarToggle): void {

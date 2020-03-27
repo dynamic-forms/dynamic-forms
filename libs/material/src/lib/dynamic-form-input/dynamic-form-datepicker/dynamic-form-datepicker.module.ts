@@ -31,9 +31,6 @@ export const matDynamicFormDatepickerType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormDatepickerComponent
-  ],
-  entryComponents: [
-    MatDynamicFormDatepickerComponent
   ]
 })
 export class MatDynamicFormDatepickerModule {}

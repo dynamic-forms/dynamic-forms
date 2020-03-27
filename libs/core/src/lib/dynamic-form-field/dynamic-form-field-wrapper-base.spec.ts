@@ -33,9 +33,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
     DynamicFormFieldWrapperTestComponent,
     DynamicFormInputTestComponent
   ],
-  entryComponents: [
-    DynamicFormInputTestComponent
-  ],
   providers: [
     {
       provide: DynamicFormLibraryService,

@@ -29,9 +29,6 @@ export const matDynamicFormComboboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormComboboxComponent
-  ],
-  entryComponents: [
-    MatDynamicFormComboboxComponent
   ]
 })
 export class MatDynamicFormComboboxModule {}
