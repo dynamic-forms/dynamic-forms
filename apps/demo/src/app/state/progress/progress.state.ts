@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
 import { Progress, PROGRESS } from './progress.model';
@@ -8,6 +9,7 @@ import { Progress, PROGRESS } from './progress.model';
     items: []
   }
 })
+@Injectable()
 export class ProgressState {
   @Action(ProgressItemPush)
   push(context: StateContext<Progress>, action: ProgressItemPush): void {

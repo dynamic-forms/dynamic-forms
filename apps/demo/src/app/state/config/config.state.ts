@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ConfigInit } from './config.actions';
 import { Config, CONFIG, Repository, Version } from './config.model';
@@ -6,6 +7,7 @@ import { Config, CONFIG, Repository, Version } from './config.model';
   name: CONFIG,
   defaults: null
 })
+@Injectable()
 export class ConfigState {
   @Selector()
   static repository(state: Config): Repository {

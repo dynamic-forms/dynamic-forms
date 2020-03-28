@@ -2,15 +2,19 @@
   position: fixed;
   top: 64px;
   right: 0;
-  width: 150px;
+  max-width: 250px;
   margin: 4px;
   z-index: 99998;
 
-  .notification-items {
-    width: 150px;
+  mat-chip-list {
+    &::ng-deep {
+      .mat-chip-list-wrapper {
+        justify-content: flex-end;
+      }  
+    }
+  }
 
-    .notification-item {
-      width: 150px; 
-    }   
+  mat-chip {
+    text-overflow: ellipsis; 
   }
 }

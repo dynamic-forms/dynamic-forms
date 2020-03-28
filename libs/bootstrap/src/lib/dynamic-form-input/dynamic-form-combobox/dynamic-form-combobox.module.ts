@@ -24,9 +24,6 @@ export const bsDynamicFormComboboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormComboboxComponent
-  ],
-  entryComponents: [
-    BsDynamicFormComboboxComponent
   ]
 })
 export class BsDynamicFormComboboxModule {}

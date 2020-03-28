@@ -1,16 +1,27 @@
 import { StateToken } from '@ngxs/store';
 
-export enum NotificationItemType {
+export enum NotificationType {
   Error = 0,
-  Warning = 1
+  Warning = 1,
+  Info = 2,
+  Debug = 3
 }
 
-export interface NotificationItem {
-  id: any;
-  type: NotificationItemType;
+export interface NotificationMessage {
+  type: NotificationType;
   title: string;
   message?: string;
   duration?: number;
+}
+
+export interface NotificationMessages {
+  info: NotificationMessage;
+  success: NotificationMessage;
+  error: NotificationMessage;
+}
+
+export interface NotificationItem extends NotificationMessage {
+  id: any;
 }
 
 export interface Notifications {

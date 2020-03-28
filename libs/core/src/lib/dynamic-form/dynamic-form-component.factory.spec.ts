@@ -126,13 +126,6 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
     DynamicFormValidationService,
     { provide: DynamicFormActionService, useValue: {} },
     DynamicFormComponentFactory
-  ],
-  entryComponents: [
-    DynamicFormElementTestComponent,
-    DynamicFormFieldTestComponent,
-    DynamicFormActionTestComponent,
-    DynamicFormInputTestComponent,
-    DynamicFormFieldWrapperTestComponent
   ]
 })
 class DynamicFormComponentFactoryTestModule {}

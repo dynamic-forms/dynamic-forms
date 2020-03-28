@@ -27,9 +27,6 @@ export const matDynamicFormTextboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormTextboxComponent
-  ],
-  entryComponents: [
-    MatDynamicFormTextboxComponent
   ]
 })
 export class MatDynamicFormTextboxModule {}

@@ -24,9 +24,6 @@ export const bsDynamicFormNumberboxType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormNumberboxComponent
-  ],
-  entryComponents: [
-    BsDynamicFormNumberboxComponent
   ]
 })
 export class BsDynamicFormNumberboxModule {}

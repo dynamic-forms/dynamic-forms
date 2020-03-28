@@ -30,9 +30,6 @@ export const dynamicFormGroupType: DynamicFormFieldType = {
   exports: [
     DynamicFormConfigModule,
     DynamicFormGroupComponent
-  ],
-  entryComponents: [
-    DynamicFormGroupComponent
   ]
 })
 export class DynamicFormGroupModule {}
