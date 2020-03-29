@@ -31,7 +31,10 @@ describe('DynamicFormComponent', () => {
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
         DynamicFormEvaluationBuilder,
-        DynamicFormValidationBuilder,
+        {
+          provide: DynamicFormValidationBuilder,
+          useValue: {}
+        },
         DynamicFormValidationService
       ]
     });

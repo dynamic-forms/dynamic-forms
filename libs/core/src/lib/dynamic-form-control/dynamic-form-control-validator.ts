@@ -1,7 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
-
-export type DynamicFormControlValidatorFactory = (parameters: any) => ValidatorFn;
+import { DynamicFormControlValidatorFactory } from './dynamic-form-control-validator-factory';
 
 export class DynamicFormControlValidator {
   private _enabled: boolean;

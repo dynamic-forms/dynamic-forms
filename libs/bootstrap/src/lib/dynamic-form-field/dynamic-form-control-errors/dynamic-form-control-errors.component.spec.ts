@@ -49,8 +49,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
     component = fixture.componentInstance;
     component.field = <any>{ control: { errors: { required: { message: 'This field is required.' } }, touched: true } };
 
-    // tslint:disable-next-line: deprecation
-    const resolver = TestBed.get(ComponentFactoryResolver);
+    const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 

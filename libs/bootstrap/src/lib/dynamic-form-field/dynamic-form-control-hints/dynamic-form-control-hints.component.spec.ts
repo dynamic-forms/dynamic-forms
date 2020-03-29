@@ -49,8 +49,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     component = fixture.componentInstance;
     component.field = <any>{ template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} };
 
-    // tslint:disable-next-line: deprecation
-    const resolver = TestBed.get(ComponentFactoryResolver);
+    const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 

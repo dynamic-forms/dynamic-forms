@@ -5,7 +5,11 @@ import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-con
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { dynamicFormControlFactory } from './dynamic-form-control-factory';
+import { dynamicFormControlEmailValidatorType, dynamicFormControlMaxLengthValidatorType, dynamicFormControlMaxValidatorType,
+  dynamicFormControlMinLengthValidatorType, dynamicFormControlMinValidatorType, dynamicFormControlPatternValidatorType,
+  dynamicFormControlRequiredValidatorType } from './dynamic-form-control-validator-type';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
 export const dynamicFormControlType: DynamicFormFieldType = {
@@ -20,7 +24,14 @@ export const dynamicFormControlType: DynamicFormFieldType = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormFieldModule,
-    DynamicFormConfigModule.withField(dynamicFormControlType)
+    DynamicFormConfigModule.withField(dynamicFormControlType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlRequiredValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlEmailValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlPatternValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlMinValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlMaxValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlMinLengthValidatorType),
+    DynamicFormValidationModule.withControlValidator(dynamicFormControlMaxLengthValidatorType)
   ],
   declarations: [
     DynamicFormControlComponent
