@@ -93,5 +93,4 @@ export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorTypes 
   dynamicFormControlMaxValidatorType,
   dynamicFormControlMinLengthValidatorType,
   dynamicFormControlMaxLengthValidatorType
-
 ];
