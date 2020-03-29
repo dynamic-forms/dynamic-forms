@@ -6,7 +6,10 @@ export class DynamicFormLibraryService {
   readonly libraryNames: DynamicFormLibraryName[];
   readonly libraryNamesReverse: DynamicFormLibraryName[];
 
-  constructor(@Inject(DYNAMIC_FORM_LIBRARY) readonly library: DynamicFormLibrary) {
+  constructor(
+    @Inject(DYNAMIC_FORM_LIBRARY)
+    readonly library: DynamicFormLibrary
+  ) {
     this.libraryNames = this.getLibraryNames();
     this.libraryNamesReverse = [ ...this.libraryNames ].reverse();
   }

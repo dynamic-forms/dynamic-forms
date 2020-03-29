@@ -17,11 +17,16 @@ export class DynamicFormConfigService {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES) private _elementTypes: DynamicFormElementTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES) private _fieldTypes: DynamicFormFieldTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES) private _actionTypes: DynamicFormActionTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES) private _inputTypes: DynamicFormInputTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES) private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null
+    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES)
+    private _elementTypes: DynamicFormElementTypes = null,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES)
+    private _fieldTypes: DynamicFormFieldTypes = null,
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES)
+    private _actionTypes: DynamicFormActionTypes = null,
+    @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES)
+    private _inputTypes: DynamicFormInputTypes = null,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)
+    private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null
   ) {
     this.elementTypes = this.libraryService.filterTypes(this._elementTypes);
     this.fieldTypes = this.libraryService.filterTypes(this._fieldTypes);

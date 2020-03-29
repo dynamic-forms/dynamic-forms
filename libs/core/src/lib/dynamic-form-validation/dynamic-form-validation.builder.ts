@@ -1,10 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Validators, ValidatorFn } from '@angular/forms';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
+import { DynamicFormControlValidatorType, DynamicFormControlValidatorTypes,
+  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 
 @Injectable()
 export class DynamicFormValidationBuilder {
+  readonly controlValidatorTypes: DynamicFormControlValidatorTypes;
+
+  constructor(
+    private readonly libraryService: DynamicFormLibraryService,
+    @Optional() @Inject(DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES)
+    private _controlValidatorTypes: DynamicFormControlValidatorTypes,
+  ) {
+    this.controlValidatorTypes = this.libraryService.filterTypes(this._controlValidatorTypes);
+  }
+
+  getControlValidatorType(type: string): DynamicFormControlValidatorType {
+    return this.controlValidatorTypes.find(f => f.type === type);
+  }
+
   createControlValidators(template: DynamicFormControlTemplate): DynamicFormControlValidator[] {
     return template.validation ? Object.keys(template.validation).map(key => {
       return this.createControlValidator(template, key);
@@ -16,28 +32,7 @@ export class DynamicFormValidationBuilder {
       return undefined;
     }
 
-    const factory = this.getControlValidatorFactory(key);
-    return factory ? new DynamicFormControlValidator(key, template, factory) : undefined;
-  }
-
-  private getControlValidatorFactory(key: string): (parameters: any) => ValidatorFn {
-    switch (key) {
-      case 'required':
-        return _ => Validators.required;
-      case 'email':
-        return _ => Validators.email;
-      case 'pattern':
-        return (pattern?: string | RegExp) => pattern ? Validators.pattern(pattern) : undefined;
-      case 'min':
-        return (min?: number) => Number.isFinite(min) ? Validators.min(min) : undefined;
-      case 'max':
-        return (max?: number) => Number.isFinite(max) ? Validators.max(max) : undefined;
-      case 'minLength':
-        return (minLength?: number) => Number.isFinite(minLength) ? Validators.minLength(minLength) : undefined;
-      case 'maxLength':
-        return (maxLength?: number) => Number.isFinite(maxLength) ? Validators.maxLength(maxLength) : undefined;
-      default:
-        return undefined;
-    }
+    const validatorType = this.getControlValidatorType(key);
+    return validatorType ? new DynamicFormControlValidator(key, template, validatorType.factory) : undefined;
   }
 }

@@ -16,11 +16,9 @@ describe('DynamicFormValidationModule', () => {
       });
     }));
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormValidationBuilder', () => {
+      expect(() => TestBed.get(DynamicFormValidationBuilder)).toThrowError(/StaticInjectorError/);
+    });
 
     it('does not provide DynamicFormValidationService', () => {
       expect(() => TestBed.get(DynamicFormValidationService)).toThrowError(/StaticInjectorError/);
