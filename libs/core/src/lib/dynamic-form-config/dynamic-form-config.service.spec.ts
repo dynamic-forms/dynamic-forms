@@ -9,7 +9,7 @@ import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigService', () => {
-  describe('with DYNAMIC_FORM_LIBRARY', () => {
+  describe('with DynamicFormLibraryService', () => {
     const libraryName: DynamicFormLibraryName = 'text';
     const library: DynamicFormLibrary = { name: libraryName };
 
@@ -25,7 +25,7 @@ describe('DynamicFormConfigService', () => {
       });
     }));
 
-    it('returns DynamicFormConfigService with configs being empty',
+    it('returns types being empty',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.elementTypes).toEqual([]);
         expect(service.actionTypes).toEqual([]);
@@ -92,8 +92,8 @@ describe('DynamicFormConfigService', () => {
     );
   });
 
-  describe('with DYNAMIC_FORM_LIBRARY and configs for single library', () => {
-    const libraryName: DynamicFormLibraryName = 'text';
+  describe('with DynamicFormLibraryService and types for single library', () => {
+    const libraryName: DynamicFormLibraryName = 'test';
     const library: DynamicFormLibrary = { name: libraryName };
     const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, libraryName }];
     const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', factory: null, component: null, libraryName }];
@@ -118,7 +118,7 @@ describe('DynamicFormConfigService', () => {
       });
     }));
 
-    it('returns DynamicFormConfigService',
+    it('returns provided types',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.elementTypes).toEqual(elementTypes);
         expect(service.fieldTypes).toEqual(fieldTypes);
@@ -185,7 +185,7 @@ describe('DynamicFormConfigService', () => {
     );
   });
 
-  describe('with DYNAMIC_FORM_LIBRARY and configs for multiple libraries', () => {
+  describe('with DynamicFormLibraryService and types for multiple libraries', () => {
     const coreLibraryName: DynamicFormLibraryName = dynamicFormLibrary.name;
     const otherLibraryName: DynamicFormLibraryName = 'other';
     const libraryName: DynamicFormLibraryName = 'test';
@@ -249,7 +249,7 @@ describe('DynamicFormConfigService', () => {
       });
     }));
 
-    it('returns DynamicFormConfigService with configs being filtered and merged',
+    it('returns provided types being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.elementTypes).toEqual([
           { type: 'element-1', component: null, libraryName: libraryName },

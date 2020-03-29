@@ -40,11 +40,9 @@ describe('MatDynamicFormsModule', () => {
       })
     );
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormValidationBuilder', () => {
+      expect(() => TestBed.inject(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
+    });
 
     it('does not provide DynamicFormValidationService', () => {
       expect(() => TestBed.inject(DynamicFormValidationService)).toThrowError(/NullInjectorError/);

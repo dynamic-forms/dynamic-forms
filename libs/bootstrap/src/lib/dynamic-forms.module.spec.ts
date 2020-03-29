@@ -40,11 +40,9 @@ describe('BsDynamicFormsModule', () => {
       })
     );
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
-      })
-    );
+    it('does not provide DynamicFormValidationBuilder', () => {
+      expect(() => TestBed.inject(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
+    });
 
     it('does not provide DynamicFormComponentFactory', () => {
       expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);
