@@ -26,7 +26,7 @@ export const dynamicFormControlRequiredValidatorType: DynamicFormControlValidato
 };
 
 export function dynamicFormControlEmailValidatorFn(_: any): ValidatorFn {
-  return Validators.required;
+  return Validators.email;
 }
 
 export const dynamicFormControlEmailValidatorType: DynamicFormControlValidatorType = {
