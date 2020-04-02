@@ -10,7 +10,7 @@ export interface DynamicFormControlValidatorType {
   libraryName: DynamicFormLibraryName;
 }
 
-export type DynamicFormControlValidatorTypes = DynamicFormControlValidatorType[];
+export type DynamicFormControlValidatorTypes = (DynamicFormControlValidatorType | DynamicFormControlValidatorType[])[];
 
 export const DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES =
   new InjectionToken<DynamicFormControlValidatorTypes>('DynamicFormControlValidatorTypes');
@@ -85,7 +85,7 @@ export const dynamicFormControlMaxLengthValidatorType: DynamicFormControlValidat
   libraryName: dynamicFormLibrary.name
 };
 
-export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorTypes = [
+export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorType[] = [
   dynamicFormControlRequiredValidatorType,
   dynamicFormControlEmailValidatorType,
   dynamicFormControlPatternValidatorType,

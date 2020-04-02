@@ -1,9 +1,9 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormActionType, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -95,11 +95,11 @@ describe('DynamicFormConfigService', () => {
   describe('with DynamicFormLibraryService and types for single library', () => {
     const libraryName: DynamicFormLibraryName = 'test';
     const library: DynamicFormLibrary = { name: libraryName };
-    const elementTypes: DynamicFormElementTypes = [{ type: 'element', component: null, libraryName }];
-    const fieldTypes: DynamicFormFieldTypes = [{ type: 'field', factory: null, component: null, libraryName }];
-    const actionTypes: DynamicFormActionTypes = [{ type: 'action', component: null, libraryName }];
-    const inputTypes: DynamicFormInputTypes = [{ type: 'input', component: null, libraryName }];
-    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [{ type: 'field-wrapper', component: null, libraryName }];
+    const elementTypes: DynamicFormElementType[] = [{ type: 'element', component: null, libraryName }];
+    const fieldTypes: DynamicFormFieldType[] = [{ type: 'field', factory: null, component: null, libraryName }];
+    const actionTypes: DynamicFormActionType[] = [{ type: 'action', component: null, libraryName }];
+    const inputTypes: DynamicFormInputType[] = [{ type: 'input', component: null, libraryName }];
+    const fieldWrapperTypes: DynamicFormFieldWrapperType[] = [{ type: 'field-wrapper', component: null, libraryName }];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -191,7 +191,7 @@ describe('DynamicFormConfigService', () => {
     const libraryName: DynamicFormLibraryName = 'test';
     const library: DynamicFormLibrary = { name: libraryName, references: [ coreLibraryName ] };
 
-    const elementTypes: DynamicFormElementTypes = [
+    const elementTypes: DynamicFormElementType[] = [
       { type: 'element-1', component: null, libraryName: coreLibraryName },
       { type: 'element-2', component: null, libraryName: coreLibraryName },
       { type: 'element-1', component: null, libraryName: otherLibraryName },
@@ -199,7 +199,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'element-3', component: null, libraryName: otherLibraryName },
       { type: 'element-1', component: null, libraryName: libraryName }
     ];
-    const fieldTypes: DynamicFormFieldTypes = [
+    const fieldTypes: DynamicFormFieldType[] = [
       { type: 'field-1', factory: null, component: null, libraryName: coreLibraryName },
       { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName },
       { type: 'field-1', factory: null, component: null, libraryName: otherLibraryName },
@@ -207,7 +207,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'field-3', factory: null, component: null, libraryName: otherLibraryName },
       { type: 'field-1', factory: null, component: null, libraryName: libraryName },
     ];
-    const actionTypes: DynamicFormActionTypes = [
+    const actionTypes: DynamicFormActionType[] = [
       { type: 'action-1', component: null, libraryName: coreLibraryName },
       { type: 'action-2', component: null, libraryName: coreLibraryName },
       { type: 'action-1', component: null, libraryName: otherLibraryName },
@@ -215,7 +215,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'action-3', component: null, libraryName: otherLibraryName },
       { type: 'action-1', component: null, libraryName: libraryName },
     ];
-    const inputTypes: DynamicFormInputTypes = [
+    const inputTypes: DynamicFormInputType[] = [
       { type: 'input-1', component: null, libraryName: coreLibraryName },
       { type: 'input-2', component: null, libraryName: coreLibraryName },
       { type: 'input-1', component: null, libraryName: otherLibraryName },
@@ -223,7 +223,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'input-3', component: null, libraryName: otherLibraryName },
       { type: 'input-1', component: null, libraryName: libraryName },
     ];
-    const fieldWrapperTypes: DynamicFormFieldWrapperTypes = [
+    const fieldWrapperTypes: DynamicFormFieldWrapperType[] = [
       { type: 'field-wrapper-1', component: null, libraryName: coreLibraryName },
       { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName },
       { type: 'field-wrapper-1', component: null, libraryName: otherLibraryName },

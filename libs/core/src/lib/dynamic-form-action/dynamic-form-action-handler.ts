@@ -12,6 +12,6 @@ export interface DynamicFormActionHandler<Field extends DynamicFormField = Dynam
   libraryName: DynamicFormLibraryName;
 }
 
-export type DynamicFormActionHandlers = DynamicFormActionHandler[];
+export type DynamicFormActionHandlers = (DynamicFormActionHandler | DynamicFormActionHandler[])[];
 
 export const DYNAMIC_FORM_ACTION_HANDLERS = new InjectionToken<DynamicFormActionHandlers>('DynamicFormActionHandlers');

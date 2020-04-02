@@ -9,11 +9,11 @@ import { DynamicFormClassType } from './dynamic-form-class-type';
 
 @Injectable()
 export class DynamicFormConfigService {
-  readonly elementTypes: DynamicFormElementTypes;
-  readonly fieldTypes: DynamicFormFieldTypes;
-  readonly actionTypes: DynamicFormActionTypes;
-  readonly inputTypes: DynamicFormInputTypes;
-  readonly fieldWrapperTypes: DynamicFormFieldWrapperTypes;
+  readonly elementTypes: DynamicFormElementType[];
+  readonly fieldTypes: DynamicFormFieldType[];
+  readonly actionTypes: DynamicFormActionType[];
+  readonly inputTypes: DynamicFormInputType[];
+  readonly fieldWrapperTypes: DynamicFormFieldWrapperType[];
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,

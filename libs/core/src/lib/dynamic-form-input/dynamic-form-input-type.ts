@@ -6,6 +6,6 @@ export interface DynamicFormInputType extends DynamicFormComponentType<DynamicFo
   wrappers?: string[];
 }
 
-export type DynamicFormInputTypes = DynamicFormInputType[];
+export type DynamicFormInputTypes = (DynamicFormInputType | DynamicFormInputType[])[];
 
 export const DYNAMIC_FORM_INPUT_TYPES = new InjectionToken<DynamicFormInputTypes>('DynamicFormInputTypes');

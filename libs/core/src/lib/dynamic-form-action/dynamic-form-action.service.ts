@@ -5,7 +5,7 @@ import { DynamicFormActionHandler, DynamicFormActionHandlers, DYNAMIC_FORM_ACTIO
 
 @Injectable()
 export class DynamicFormActionService {
-  readonly handlers: DynamicFormActionHandlers;
+  readonly handlers: DynamicFormActionHandler[];
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,

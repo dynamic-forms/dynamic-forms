@@ -8,6 +8,6 @@ export interface DynamicFormFieldType extends DynamicFormComponentType<DynamicFo
   wrappers?: string[];
 }
 
-export type DynamicFormFieldTypes = DynamicFormFieldType[];
+export type DynamicFormFieldTypes = (DynamicFormFieldType | DynamicFormFieldType[])[];
 
 export const DYNAMIC_FORM_FIELD_TYPES = new InjectionToken<DynamicFormFieldTypes>('DynamicFormFieldTypes');

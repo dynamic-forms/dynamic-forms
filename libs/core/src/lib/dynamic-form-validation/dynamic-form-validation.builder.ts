@@ -7,7 +7,7 @@ import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-
 
 @Injectable()
 export class DynamicFormValidationBuilder {
-  readonly controlValidatorTypes: DynamicFormControlValidatorTypes;
+  readonly controlValidatorTypes: DynamicFormControlValidatorType[];
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,

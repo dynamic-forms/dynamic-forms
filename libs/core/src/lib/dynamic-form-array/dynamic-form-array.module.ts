@@ -56,8 +56,10 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormElementModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType),
-    DynamicFormActionModule.withHandler(dynamicFormArrayPopElementHandler),
-    DynamicFormActionModule.withHandler(dynamicFormArrayClearElementsHandler),
+    DynamicFormActionModule.withHandlers([
+      dynamicFormArrayPopElementHandler,
+      dynamicFormArrayClearElementsHandler
+    ]),
     DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ])
   ],
   declarations: [

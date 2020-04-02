@@ -7,6 +7,6 @@ export interface DynamicFormActionType extends DynamicFormComponentType<DynamicF
   factory?: DynamicFormActionFactory;
 }
 
-export type DynamicFormActionTypes = DynamicFormActionType[];
+export type DynamicFormActionTypes = (DynamicFormActionType | DynamicFormActionType[])[];
 
 export const DYNAMIC_FORM_ACTION_TYPES = new InjectionToken<DynamicFormActionTypes>('DynamicFormActionTypes');

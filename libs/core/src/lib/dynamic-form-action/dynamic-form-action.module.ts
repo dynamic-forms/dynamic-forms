@@ -24,6 +24,21 @@ export class DynamicFormActionModule {
     };
   }
 
+  static withHandlers<Field extends DynamicFormField = DynamicFormField>(
+    handlers: DynamicFormActionHandler<Field>[]
+  ): ModuleWithProviders<DynamicFormActionModule> {
+    return {
+      ngModule: DynamicFormActionModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          useValue: handlers,
+          multi: true
+        }
+      ]
+    };
+  }
+
   static withHandlerFactory<Field extends DynamicFormField = DynamicFormField>(
     handlerFactory: (deps?: any) => DynamicFormActionHandler<Field>, deps?: any[]
   ): ModuleWithProviders<DynamicFormActionModule> {

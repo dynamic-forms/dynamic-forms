@@ -7,6 +7,6 @@ export interface DynamicFormElementType extends DynamicFormComponentType<Dynamic
   factory?: DynamicFormElementFactory;
 }
 
-export type DynamicFormElementTypes = DynamicFormElementType[];
+export type DynamicFormElementTypes = (DynamicFormElementType | DynamicFormElementType[])[];
 
 export const DYNAMIC_FORM_ELEMENT_TYPES = new InjectionToken<DynamicFormElementTypes>('DynamicFormElementTypes');
