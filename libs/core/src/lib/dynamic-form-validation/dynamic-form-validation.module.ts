@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DynamicFormControlValidatorType,
-  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES } from '../dynamic-form-control/dynamic-form-control-validator-type';
+  DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { dynamicFormValidationConfig, DynamicFormValidationConfig,
   DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
@@ -18,7 +18,7 @@ export class DynamicFormValidationModule {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES,
+          provide: DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG,
           useValue: controlValidatorType,
           multi: true
         }
@@ -31,7 +31,7 @@ export class DynamicFormValidationModule {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES,
+          provide: DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG,
           useValue: controlValidatorTypes,
           multi: true
         }

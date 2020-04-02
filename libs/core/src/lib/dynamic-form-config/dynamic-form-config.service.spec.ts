@@ -1,9 +1,9 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionType, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormActionType, DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormInputType, DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -108,11 +108,11 @@ describe('DynamicFormConfigService', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(library)
           },
-          { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
-          { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
-          { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
-          { provide: DYNAMIC_FORM_INPUT_TYPES, useValue: inputTypes },
-          { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES, useValue: fieldWrapperTypes },
+          { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
+          { provide: DYNAMIC_FORM_FIELD_CONFIG, useValue: fieldTypes },
+          { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
+          { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
+          { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
       });
@@ -239,11 +239,11 @@ describe('DynamicFormConfigService', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(library)
           },
-          { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
-          { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
-          { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
-          { provide: DYNAMIC_FORM_INPUT_TYPES, useValue: inputTypes },
-          { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES, useValue: fieldWrapperTypes },
+          { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
+          { provide: DYNAMIC_FORM_FIELD_CONFIG, useValue: fieldTypes },
+          { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
+          { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
+          { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
       });

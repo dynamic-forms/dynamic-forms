@@ -1,9 +1,14 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { DynamicFormActionType, DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormElementType, DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldType, DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldWrapperType, DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputType, DynamicFormInputTypes, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormActionConfig, DynamicFormActionType,
+  DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormElementConfig, DynamicFormElementType,
+  DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormFieldConfig, DynamicFormFieldType,
+  DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldWrapperConfig, DynamicFormFieldWrapperType,
+  DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormInputConfig, DynamicFormInputType,
+  DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormClassType } from './dynamic-form-class-type';
 
@@ -17,22 +22,22 @@ export class DynamicFormConfigService {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPES)
-    private _elementTypes: DynamicFormElementTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPES)
-    private _fieldTypes: DynamicFormFieldTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPES)
-    private _actionTypes: DynamicFormActionTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPES)
-    private _inputTypes: DynamicFormInputTypes = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPES)
-    private _fieldWrapperTypes: DynamicFormFieldWrapperTypes = null
+    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_CONFIG)
+    private elementConfig: DynamicFormElementConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_CONFIG)
+    private fieldConfig: DynamicFormFieldConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_CONFIG)
+    private actionConfig: DynamicFormActionConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_INPUT_CONFIG)
+    private inputConfig: DynamicFormInputConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_CONFIG)
+    private fieldWrapperConfig: DynamicFormFieldWrapperConfig = null
   ) {
-    this.elementTypes = this.libraryService.filterTypes(this._elementTypes);
-    this.fieldTypes = this.libraryService.filterTypes(this._fieldTypes);
-    this.actionTypes = this.libraryService.filterTypes(this._actionTypes);
-    this.inputTypes = this.libraryService.filterTypes(this._inputTypes);
-    this.fieldWrapperTypes = this.libraryService.filterTypes(this._fieldWrapperTypes);
+    this.elementTypes = this.libraryService.filterTypes(this.elementConfig);
+    this.fieldTypes = this.libraryService.filterTypes(this.fieldConfig);
+    this.actionTypes = this.libraryService.filterTypes(this.actionConfig);
+    this.inputTypes = this.libraryService.filterTypes(this.inputConfig);
+    this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperConfig);
   }
 
   getClassType(type: string): DynamicFormClassType {

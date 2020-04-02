@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
-import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionConfig, DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -9,11 +9,11 @@ import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-fo
 import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
-import { DynamicFormElementTypes, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementConfig, DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
-import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldConfig, DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { dynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -26,12 +26,12 @@ describe('DynamicFormBuilder', () => {
   const elementFactory: DynamicFormElementFactory =
     (builder, root, parent, definition) => builder.createFormElement(root, parent, definition);
 
-  const elementTypes: DynamicFormElementTypes = [
+  const elementTypes: DynamicFormElementConfig = [
     { libraryName: 'test', type: 'element', factory: null, component: null },
     { libraryName: 'test', type: 'element1', factory: elementFactory, component: null }
   ];
 
-  const fieldTypes: DynamicFormFieldTypes = [
+  const fieldTypes: DynamicFormFieldConfig = [
     { libraryName: 'test', type: 'field', factory: null, component: null },
     { libraryName: 'test', type: 'array', factory: dynamicFormArrayFactory, component: null },
     { libraryName: 'test', type: 'control', factory: dynamicFormControlFactory, component: null },
@@ -41,7 +41,7 @@ describe('DynamicFormBuilder', () => {
   const actionFactory: DynamicFormActionFactory =
     (builder, root, parent, definition) => builder.createFormAction(root, parent, definition);
 
-  const actionTypes: DynamicFormActionTypes = [
+  const actionTypes: DynamicFormActionConfig = [
     { libraryName: 'test', type: 'action', factory: null, component: null },
     { libraryName: 'test', type: 'action1', factory: actionFactory, component: null },
   ];
@@ -58,9 +58,9 @@ describe('DynamicFormBuilder', () => {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' })
         },
-        { provide: DYNAMIC_FORM_ELEMENT_TYPES, useValue: elementTypes },
-        { provide: DYNAMIC_FORM_FIELD_TYPES, useValue: fieldTypes },
-        { provide: DYNAMIC_FORM_ACTION_TYPES, useValue: actionTypes },
+        { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
+        { provide: DYNAMIC_FORM_FIELD_CONFIG, useValue: fieldTypes },
+        { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
         DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,

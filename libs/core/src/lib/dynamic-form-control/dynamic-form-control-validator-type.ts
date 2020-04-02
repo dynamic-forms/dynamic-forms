@@ -10,10 +10,10 @@ export interface DynamicFormControlValidatorType {
   libraryName: DynamicFormLibraryName;
 }
 
-export type DynamicFormControlValidatorTypes = (DynamicFormControlValidatorType | DynamicFormControlValidatorType[])[];
+export type DynamicFormControlValidatorConfig = (DynamicFormControlValidatorType | DynamicFormControlValidatorType[])[];
 
-export const DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES =
-  new InjectionToken<DynamicFormControlValidatorTypes>('DynamicFormControlValidatorTypes');
+export const DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG =
+  new InjectionToken<DynamicFormControlValidatorConfig>('DynamicFormControlValidatorConfig');
 
 export function dynamicFormControlRequiredValidatorFn(_: any): ValidatorFn {
   return Validators.required;

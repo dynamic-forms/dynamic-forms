@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
-import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorTypes,
-  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorConfig,
+  DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
@@ -45,7 +45,7 @@ describe('DynamicFormValidationBuilder', () => {
             useValue: new DynamicFormLibraryService({ name: dynamicFormLibrary.name })
           },
           {
-            provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES,
+            provide: DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG,
             useValue: dynamicFormControlValidatorTypes
           },
           DynamicFormValidationBuilder
@@ -256,7 +256,7 @@ describe('DynamicFormValidationBuilder', () => {
     const libraryName: DynamicFormLibraryName = 'test';
     const library: DynamicFormLibrary = { name: libraryName, references: [ coreLibraryName ] };
 
-    const controlValidatorTypes: DynamicFormControlValidatorTypes = [
+    const controlValidatorTypes: DynamicFormControlValidatorConfig = [
       { type: 'validator-1', factory: null, libraryName: coreLibraryName },
       { type: 'validator-2', factory: null, libraryName: coreLibraryName },
       { type: 'validator-1', factory: null, libraryName: otherLibraryName },
@@ -273,7 +273,7 @@ describe('DynamicFormValidationBuilder', () => {
             useValue: new DynamicFormLibraryService(library)
           },
           {
-            provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES,
+            provide: DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG,
             useValue: controlValidatorTypes
           },
           DynamicFormValidationBuilder
