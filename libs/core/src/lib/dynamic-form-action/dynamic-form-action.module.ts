@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormActionHandler, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
+import { DynamicFormActionHandler, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
@@ -16,7 +16,7 @@ export class DynamicFormActionModule {
       ngModule: DynamicFormActionModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useValue: handler,
           multi: true
         }
@@ -31,7 +31,7 @@ export class DynamicFormActionModule {
       ngModule: DynamicFormActionModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useValue: handlers,
           multi: true
         }
@@ -46,7 +46,7 @@ export class DynamicFormActionModule {
       ngModule: DynamicFormActionModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_HANDLERS,
+          provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useFactory: handlerFactory,
           deps: deps,
           multi: true

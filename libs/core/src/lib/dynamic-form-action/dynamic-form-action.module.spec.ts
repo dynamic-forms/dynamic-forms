@@ -1,6 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormActionHandler, DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
+import { DynamicFormActionHandler, DynamicFormActionHandlerConfig,
+  DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler';
 import { DynamicFormActionModule } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
@@ -59,8 +60,8 @@ describe('DynamicFormActionModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ACTION_HANDLERS',
-      inject([DYNAMIC_FORM_ACTION_HANDLERS], (config: DynamicFormActionHandlers) => {
+    it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
+      inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(handler);
       })
@@ -88,8 +89,8 @@ describe('DynamicFormActionModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ACTION_HANDLERS',
-      inject([DYNAMIC_FORM_ACTION_HANDLERS], (config: DynamicFormActionHandlers) => {
+    it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
+      inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(handlers);
       })

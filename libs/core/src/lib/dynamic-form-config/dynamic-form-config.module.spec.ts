@@ -68,10 +68,10 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ELEMENT_TYPES',
-      inject([DYNAMIC_FORM_ELEMENT_CONFIG], (types: DynamicFormElementConfig) => {
-        expect(types.length).toBe(1);
-        expect(types[0]).toEqual(type);
+    it('provides DYNAMIC_FORM_ELEMENT_CONFIG',
+      inject([DYNAMIC_FORM_ELEMENT_CONFIG], (config: DynamicFormElementConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(type);
       })
     );
   });
@@ -97,7 +97,7 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ELEMENT_TYPES',
+    it('provides DYNAMIC_FORM_ELEMENT_CONFIG',
       inject([DYNAMIC_FORM_ELEMENT_CONFIG], (config: DynamicFormElementConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
@@ -123,10 +123,10 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_FIELD_TYPES',
-      inject([DYNAMIC_FORM_FIELD_CONFIG], (types: DynamicFormFieldConfig) => {
-        expect(types.length).toBe(1);
-        expect(types[0]).toEqual(type);
+    it('provides DYNAMIC_FORM_FIELD_CONFIG',
+      inject([DYNAMIC_FORM_FIELD_CONFIG], (config: DynamicFormFieldConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(type);
       })
     );
   });
@@ -152,7 +152,7 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_FIELD_TYPES',
+    it('provides DYNAMIC_FORM_FIELD_CONFIG',
       inject([DYNAMIC_FORM_FIELD_CONFIG], (config: DynamicFormFieldConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
@@ -178,10 +178,10 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ACTION_TYPES',
-      inject([DYNAMIC_FORM_ACTION_CONFIG], (types: DynamicFormActionConfig) => {
-        expect(types.length).toBe(1);
-        expect(types[0]).toEqual(type);
+    it('provides DYNAMIC_FORM_ACTION_CONFIG',
+      inject([DYNAMIC_FORM_ACTION_CONFIG], (config: DynamicFormActionConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(type);
       })
     );
   });
@@ -207,7 +207,7 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_ACTION_TYPES',
+    it('provides DYNAMIC_FORM_ACTION_CONFIG',
       inject([DYNAMIC_FORM_ACTION_CONFIG], (config: DynamicFormActionConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
@@ -233,10 +233,10 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_INPUT_TYPES',
-      inject([DYNAMIC_FORM_INPUT_CONFIG], (types: DynamicFormInputConfig) => {
-        expect(types.length).toBe(1);
-        expect(types[0]).toEqual(type);
+    it('provides DYNAMIC_FORM_INPUT_CONFIG',
+      inject([DYNAMIC_FORM_INPUT_CONFIG], (config: DynamicFormInputConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(type);
       })
     );
   });
@@ -262,7 +262,7 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_INPUT_TYPES',
+    it('provides DYNAMIC_FORM_INPUT_CONFIG',
       inject([DYNAMIC_FORM_INPUT_CONFIG], (config: DynamicFormInputConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
@@ -288,10 +288,10 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPES',
-      inject([DYNAMIC_FORM_FIELD_WRAPPER_CONFIG], (types: DynamicFormFieldWrapperConfig) => {
-        expect(types.length).toBe(1);
-        expect(types[0]).toEqual(type);
+    it('provides DYNAMIC_FORM_FIELD_WRAPPER_CONFIG',
+      inject([DYNAMIC_FORM_FIELD_WRAPPER_CONFIG], (config: DynamicFormFieldWrapperConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(type);
       })
     );
   });
@@ -317,7 +317,7 @@ describe('DynamicFormConfigModule', () => {
       });
     }));
 
-    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPES',
+    it('provides DYNAMIC_FORM_FIELD_WRAPPER_CONFIG',
       inject([DYNAMIC_FORM_FIELD_WRAPPER_CONFIG], (config: DynamicFormFieldWrapperConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);

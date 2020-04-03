@@ -1,6 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormFieldWrapperTypes, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '@dynamic-forms/core';
-import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
+import { DynamicFormFieldWrapperConfig, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '@dynamic-forms/core';
 import { bsDynamicFormControlHintsType, BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
 
 describe('BsDynamicFormControlHintsModule', () => {
@@ -12,11 +11,10 @@ describe('BsDynamicFormControlHintsModule', () => {
     });
   }));
 
-  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPES',
-    inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPES], (types: DynamicFormFieldWrapperTypes) => {
-      expect(types.length).toBe(1);
-      expect(types[0]).toEqual(bsDynamicFormControlHintsType);
-      expect(types[0].libraryName).toEqual(bsDynamicFormLibrary.name);
+  it('provides DYNAMIC_FORM_FIELD_WRAPPER_CONFIG',
+    inject([DYNAMIC_FORM_FIELD_WRAPPER_CONFIG], (config: DynamicFormFieldWrapperConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(bsDynamicFormControlHintsType);
     })
   );
 });
