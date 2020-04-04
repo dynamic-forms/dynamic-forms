@@ -1,6 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionTypes, DYNAMIC_FORM_ACTION_TYPES } from '@dynamic-forms/core';
-import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
+import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
 import { matDynamicFormButtonType, MatDynamicFormButtonModule } from './dynamic-form-button.module';
 
 describe('MatDynamicFormButtonModule', () => {
@@ -12,11 +11,10 @@ describe('MatDynamicFormButtonModule', () => {
     });
   }));
 
-  it('provides DYNAMIC_FORM_ACTION_TYPES',
-    inject([DYNAMIC_FORM_ACTION_TYPES], (types: DynamicFormActionTypes) => {
+  it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
+    inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (types: DynamicFormActionTypeConfig) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormButtonType);
-      expect(types[0].libraryName).toEqual(matDynamicFormLibrary.name);
     })
   );
 });

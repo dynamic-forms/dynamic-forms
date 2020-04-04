@@ -2,11 +2,12 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
-import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionService', () => {
-  describe('without DYNAMIC_FORM_ACTIONS_HANDLERS', () => {
+  describe('without DYNAMIC_FORM_ACTIONS_HANDLER_CONFIG', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -50,8 +51,8 @@ describe('DynamicFormActionService', () => {
     );
   });
 
-  describe('with DYNAMIC_FORM_ACTION_HANDLERS', () => {
-    const handlers: DynamicFormActionHandlers = [
+  describe('with DYNAMIC_FORM_ACTION_HANDLER_CONFIG', () => {
+    const handlers: DynamicFormActionHandler[] = [
       {
         type: 'type',
         func: () => {},
@@ -72,7 +73,7 @@ describe('DynamicFormActionService', () => {
             useValue: new DynamicFormLibraryService( { name: 'test' })
           },
           {
-            provide: DYNAMIC_FORM_ACTION_HANDLERS,
+            provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
             useValue: handlers
           },
           DynamicFormActionService
