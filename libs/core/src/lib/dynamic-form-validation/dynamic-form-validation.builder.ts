@@ -1,8 +1,8 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
-import { DynamicFormControlValidatorConfig, DynamicFormControlValidatorType,
-  DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import { DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 
 @Injectable()
@@ -11,10 +11,10 @@ export class DynamicFormValidationBuilder {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_CONTROL_VALIDATOR_CONFIG)
-    private _controlValidatorTypes: DynamicFormControlValidatorConfig,
+    @Optional() @Inject(DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG)
+    private controlValidatorTypeConfig: DynamicFormControlValidatorTypeConfig,
   ) {
-    this.controlValidatorTypes = this.libraryService.filterTypes(this._controlValidatorTypes);
+    this.controlValidatorTypes = this.libraryService.filterTypes(this.controlValidatorTypeConfig);
   }
 
   getControlValidatorType(type: string): DynamicFormControlValidatorType {

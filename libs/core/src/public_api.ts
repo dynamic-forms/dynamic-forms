@@ -51,6 +51,7 @@ export * from './lib/dynamic-form-control/dynamic-form-control-validation';
 export * from './lib/dynamic-form-control/dynamic-form-control-validator';
 export * from './lib/dynamic-form-control/dynamic-form-control-validator-factory';
 export * from './lib/dynamic-form-control/dynamic-form-control-validator-type';
+export * from './lib/dynamic-form-control/dynamic-form-control-validator-type-config';
 export * from './lib/dynamic-form-control/dynamic-form-control-wrapper-base';
 export * from './lib/dynamic-form-control/dynamic-form-control.component';
 export * from './lib/dynamic-form-control/dynamic-form-control.module';
