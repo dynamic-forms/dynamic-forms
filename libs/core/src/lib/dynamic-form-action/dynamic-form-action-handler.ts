@@ -1,4 +1,3 @@
-import { InjectionToken } from '@angular/core';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -11,7 +10,3 @@ export interface DynamicFormActionHandler<Field extends DynamicFormField = Dynam
   func: DynamicFormActionFunc<Field>;
   libraryName: DynamicFormLibraryName;
 }
-
-export type DynamicFormActionHandlerConfig = (DynamicFormActionHandler | DynamicFormActionHandler[])[];
-
-export const DYNAMIC_FORM_ACTION_HANDLER_CONFIG = new InjectionToken<DynamicFormActionHandlerConfig>('DynamicFormActionHandlerConfig');

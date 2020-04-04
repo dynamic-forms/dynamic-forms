@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormActionHandler, DynamicFormActionHandlerConfig,
-  DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG} from './dynamic-form-action-handler-config';
 import { DynamicFormActionModule } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 

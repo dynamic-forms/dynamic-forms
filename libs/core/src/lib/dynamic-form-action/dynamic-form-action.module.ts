@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormActionHandler, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 @NgModule({
