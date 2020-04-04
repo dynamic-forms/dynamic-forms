@@ -5,7 +5,8 @@ import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-ele
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
-import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -125,7 +126,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG,
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
           useValue: fieldWrapperType,
           multi: true
         }
@@ -138,7 +139,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG,
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
           useValue: fieldWrapperTypes,
           multi: true
         }

@@ -5,7 +5,8 @@ import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-ele
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
-import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
@@ -116,7 +117,7 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
-          { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
+          { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
       });
@@ -247,7 +248,7 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
-          { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
+          { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
       });

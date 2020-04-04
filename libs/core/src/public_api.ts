@@ -98,6 +98,7 @@ export * from './lib/dynamic-form-field/dynamic-form-field-type-config';
 export * from './lib/dynamic-form-field/dynamic-form-field-validation';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-base';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-type';
+export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-type-config';
 export * from './lib/dynamic-form-field/dynamic-form-field.module';
 export * from './lib/dynamic-form-group/dynamic-form-group';
 export * from './lib/dynamic-form-group/dynamic-form-group-base';

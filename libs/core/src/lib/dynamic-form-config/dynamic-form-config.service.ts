@@ -5,8 +5,8 @@ import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-ele
 import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
-import { DynamicFormFieldWrapperConfig, DynamicFormFieldWrapperType,
-  DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -30,14 +30,14 @@ export class DynamicFormConfigService {
     private actionTypeConfig: DynamicFormActionTypeConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPE_CONFIG)
     private inputTypeConfig: DynamicFormInputTypeConfig = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_CONFIG)
-    private fieldWrapperConfig: DynamicFormFieldWrapperConfig = null
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG)
+    private fieldWrapperTypeConfig: DynamicFormFieldWrapperTypeConfig = null
   ) {
     this.elementTypes = this.libraryService.filterTypes(this.elementTypeConfig);
     this.fieldTypes = this.libraryService.filterTypes(this.fieldTypeConfig);
     this.actionTypes = this.libraryService.filterTypes(this.actionTypeConfig);
     this.inputTypes = this.libraryService.filterTypes(this.inputTypeConfig);
-    this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperConfig);
+    this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperTypeConfig);
   }
 
   getClassType(type: string): DynamicFormClassType {
