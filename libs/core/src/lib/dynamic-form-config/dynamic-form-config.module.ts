@@ -6,7 +6,8 @@ import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynami
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputType, DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({
@@ -98,7 +99,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_INPUT_CONFIG,
+          provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
           useValue: inputType,
           multi: true
         }
@@ -111,7 +112,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_INPUT_CONFIG,
+          provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
           useValue: inputTypes,
           multi: true
         }

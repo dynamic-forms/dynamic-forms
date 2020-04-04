@@ -111,6 +111,7 @@ export * from './lib/dynamic-form-input/dynamic-form-input';
 export * from './lib/dynamic-form-input/dynamic-form-input-base';
 export * from './lib/dynamic-form-input/dynamic-form-input-option-item';
 export * from './lib/dynamic-form-input/dynamic-form-input-type';
+export * from './lib/dynamic-form-input/dynamic-form-input-type-config';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox';
 export * from './lib/dynamic-form-input/dynamic-form-combobox/dynamic-form-combobox';
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker';

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
-import { DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -37,7 +37,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
       useValue: new DynamicFormLibraryService({ name: 'test' })
     },
     {
-      provide: DYNAMIC_FORM_INPUT_CONFIG,
+      provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'input', component: DynamicFormInputTestComponent }
       ]

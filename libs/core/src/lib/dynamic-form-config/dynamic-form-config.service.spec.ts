@@ -6,7 +6,8 @@ import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynami
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputType, DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -114,7 +115,7 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
-          { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
+          { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
@@ -245,7 +246,7 @@ describe('DynamicFormConfigService', () => {
           { provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
-          { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
+          { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
           DynamicFormConfigService
         ]
