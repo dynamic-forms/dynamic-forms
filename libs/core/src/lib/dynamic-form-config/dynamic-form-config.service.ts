@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { DynamicFormActionConfig, DynamicFormActionType,
-  DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementConfig, DynamicFormElementType,
   DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
@@ -26,8 +26,8 @@ export class DynamicFormConfigService {
     private elementConfig: DynamicFormElementConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPE_CONFIG)
     private fieldTypeConfig: DynamicFormFieldTypeConfig = null,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_CONFIG)
-    private actionConfig: DynamicFormActionConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPE_CONFIG)
+    private actionTypeConfig: DynamicFormActionTypeConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_CONFIG)
     private inputConfig: DynamicFormInputConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_CONFIG)
@@ -35,7 +35,7 @@ export class DynamicFormConfigService {
   ) {
     this.elementTypes = this.libraryService.filterTypes(this.elementConfig);
     this.fieldTypes = this.libraryService.filterTypes(this.fieldTypeConfig);
-    this.actionTypes = this.libraryService.filterTypes(this.actionConfig);
+    this.actionTypes = this.libraryService.filterTypes(this.actionTypeConfig);
     this.inputTypes = this.libraryService.filterTypes(this.inputConfig);
     this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperConfig);
   }

@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormActionBase } from '../dynamic-form-action/dynamic-form-action-base';
-import { DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
@@ -104,7 +104,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
       ]
     },
     {
-      provide: DYNAMIC_FORM_ACTION_CONFIG,
+      provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }
       ]

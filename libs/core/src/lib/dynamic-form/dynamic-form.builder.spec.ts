@@ -1,7 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
-import { DynamicFormActionConfig, DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -41,7 +41,7 @@ describe('DynamicFormBuilder', () => {
   const actionFactory: DynamicFormActionFactory =
     (builder, root, parent, definition) => builder.createFormAction(root, parent, definition);
 
-  const actionTypes: DynamicFormActionConfig = [
+  const actionTypes: DynamicFormActionTypeConfig = [
     { libraryName: 'test', type: 'action', factory: null, component: null },
     { libraryName: 'test', type: 'action1', factory: actionFactory, component: null },
   ];
@@ -60,7 +60,7 @@ describe('DynamicFormBuilder', () => {
         },
         { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
         { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
-        { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
+        { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
         DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,

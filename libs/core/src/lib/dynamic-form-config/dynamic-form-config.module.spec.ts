@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionConfig, DynamicFormActionType,
-  DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
+import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementConfig, DynamicFormElementType,
   DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
@@ -179,7 +179,7 @@ describe('DynamicFormConfigModule', () => {
     }));
 
     it('provides DYNAMIC_FORM_ACTION_CONFIG',
-      inject([DYNAMIC_FORM_ACTION_CONFIG], (config: DynamicFormActionConfig) => {
+      inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
       })
@@ -208,7 +208,7 @@ describe('DynamicFormConfigModule', () => {
     }));
 
     it('provides DYNAMIC_FORM_ACTION_CONFIG',
-      inject([DYNAMIC_FORM_ACTION_CONFIG], (config: DynamicFormActionConfig) => {
+      inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
       })
