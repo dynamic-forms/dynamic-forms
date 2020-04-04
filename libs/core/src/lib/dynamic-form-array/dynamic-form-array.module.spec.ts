@@ -1,14 +1,15 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
+import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldTypes, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
+import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
+  dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
-import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopElementHandler, dynamicFormArrayType, DynamicFormArrayModule } from './dynamic-form-array.module';
+import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopElementHandler, dynamicFormArrayType,
+  DynamicFormArrayModule } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
   let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
@@ -22,8 +23,8 @@ describe('DynamicFormArrayModule', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(new DynamicFormLibraryService({ name: 'test' }))
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
         },
         {
           provide: DynamicFormBuilder,
@@ -34,7 +35,9 @@ describe('DynamicFormArrayModule', () => {
   }));
 
   it('provides DYNAMIC_FORM_FIELD_TYPES',
-    inject([DYNAMIC_FORM_FIELD_TYPES], (types: DynamicFormFieldTypes) => {
+    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      const types = service.fieldTypes;
+
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(dynamicFormArrayType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
@@ -43,7 +46,9 @@ describe('DynamicFormArrayModule', () => {
   );
 
   it('provides DYNAMIC_FORM_ACTION_HANDLERS',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handlers = service.handlers;
+
       expect(handlers.length).toBe(6);
       expect(handlers[0]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[0].func).toEqual(jasmine.any(Function));
@@ -66,8 +71,8 @@ describe('DynamicFormArrayModule', () => {
   );
 
   it('handler calls popElement of array field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'popArrayElement');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'popArrayElement');
       const field = <DynamicFormArray>{ popElement(): void {} };
 
       spyOn(field, 'popElement');
@@ -79,8 +84,8 @@ describe('DynamicFormArrayModule', () => {
   );
 
   it('handler calls clearElements of array field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'clearArrayElements');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'clearArrayElements');
       const field = <DynamicFormArray>{ clearElements(): void {} };
 
       spyOn(field, 'clearElements');
@@ -92,8 +97,8 @@ describe('DynamicFormArrayModule', () => {
   );
 
   it('handler calls pushElement of array field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'pushArrayElement');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'pushArrayElement');
       const field = <DynamicFormArray>{ pushElement(_elem: DynamicFormField): void {}, length: 0 };
       const element = <DynamicFormField>{};
 

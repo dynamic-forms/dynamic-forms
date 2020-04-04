@@ -1,19 +1,12 @@
-import { InjectionToken } from '@angular/core';
 import { Validators, ValidatorFn } from '@angular/forms';
 import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormControlValidatorFactory } from './dynamic-form-control-validator-factory';
-
 
 export interface DynamicFormControlValidatorType {
   type: string;
   factory: DynamicFormControlValidatorFactory;
   libraryName: DynamicFormLibraryName;
 }
-
-export type DynamicFormControlValidatorTypes = DynamicFormControlValidatorType[];
-
-export const DYNAMIC_FORM_CONTROL_VALIDATOR_TYPES =
-  new InjectionToken<DynamicFormControlValidatorTypes>('DynamicFormControlValidatorTypes');
 
 export function dynamicFormControlRequiredValidatorFn(_: any): ValidatorFn {
   return Validators.required;
@@ -85,7 +78,7 @@ export const dynamicFormControlMaxLengthValidatorType: DynamicFormControlValidat
   libraryName: dynamicFormLibrary.name
 };
 
-export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorTypes = [
+export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorType[] = [
   dynamicFormControlRequiredValidatorType,
   dynamicFormControlEmailValidatorType,
   dynamicFormControlPatternValidatorType,
