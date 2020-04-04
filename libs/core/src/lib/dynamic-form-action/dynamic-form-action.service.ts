@@ -1,16 +1,17 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
-import { DynamicFormActionHandler, DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from './dynamic-form-action-handler';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 
 @Injectable()
 export class DynamicFormActionService {
-  readonly handlers: DynamicFormActionHandlers;
+  readonly handlers: DynamicFormActionHandler[];
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLERS)
-    private _handlers: DynamicFormActionHandlers
+    @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
+    private _handlers: DynamicFormActionHandlerConfig
   ) {
     this.handlers = this.libraryService.filterTypes(this._handlers);
   }

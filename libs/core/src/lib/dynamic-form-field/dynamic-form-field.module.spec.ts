@@ -1,20 +1,30 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionHandlers, DYNAMIC_FORM_ACTION_HANDLERS } from '../dynamic-form-action/dynamic-form-action-handler';
+import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormField } from './dynamic-form-field';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler, DynamicFormFieldModule } from './dynamic-form-field.module';
+import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
+  dynamicFormFieldValidateHandler, DynamicFormFieldModule } from './dynamic-form-field.module';
 
 describe('DynamicFormGroupModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormFieldModule
+      ],
+      providers: [
+        {
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
+        }
       ]
     });
   }));
 
   it('provides DYNAMIC_FORM_ACTION_HANDLERS',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handlers = service.handlers;
+
       expect(handlers.length).toBe(3);
       expect(handlers[0]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[0].func).toEqual(jasmine.any(Function));
@@ -29,8 +39,8 @@ describe('DynamicFormGroupModule', () => {
   );
 
   it('handler calls reset of field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'reset');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'reset');
       const field = <DynamicFormField>{ reset(): void {} };
 
       spyOn(field, 'reset');
@@ -42,8 +52,8 @@ describe('DynamicFormGroupModule', () => {
   );
 
   it('handler calls resetDefault of field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'resetDefault');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'resetDefault');
       const field = <DynamicFormField>{ resetDefault(): void {} };
 
       spyOn(field, 'resetDefault');
@@ -55,8 +65,8 @@ describe('DynamicFormGroupModule', () => {
   );
 
   it('handler calls validate of field',
-    inject([DYNAMIC_FORM_ACTION_HANDLERS], (handlers: DynamicFormActionHandlers) => {
-      const handler = handlers.find(h => h.type === 'validate');
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'validate');
       const field = <DynamicFormField>{ validate(): void {} };
 
       spyOn(field, 'validate');

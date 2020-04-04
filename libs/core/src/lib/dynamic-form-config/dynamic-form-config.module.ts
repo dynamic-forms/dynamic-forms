@@ -1,9 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormActionType, DYNAMIC_FORM_ACTION_TYPES } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_TYPES } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_TYPES } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_TYPES } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
-import { DynamicFormInputType, DYNAMIC_FORM_INPUT_TYPES } from '../dynamic-form-input/dynamic-form-input-type';
+import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
+import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
+import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
+import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({
@@ -17,8 +22,21 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ELEMENT_TYPES,
+          provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
           useValue: elementType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withElements(elementTypes: DynamicFormElementType[]): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
+          useValue: elementTypes,
           multi: true
         }
       ]
@@ -30,8 +48,21 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_FIELD_TYPES,
+          provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
           useValue: fieldType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withFields(fieldTypes: DynamicFormFieldType[]): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
+          useValue: fieldTypes,
           multi: true
         }
       ]
@@ -43,8 +74,21 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ACTION_TYPES,
+          provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
           useValue: actionType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withActions(actionTypes: DynamicFormActionType[]): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
+          useValue: actionTypes,
           multi: true
         }
       ]
@@ -56,8 +100,21 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_INPUT_TYPES,
+          provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
           useValue: inputType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withInputs(inputTypes: DynamicFormInputType[]): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
+          useValue: inputTypes,
           multi: true
         }
       ]
@@ -69,8 +126,21 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPES,
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
           useValue: fieldWrapperType,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withFieldWrappers(fieldWrapperTypes: DynamicFormFieldWrapperType[]): ModuleWithProviders<DynamicFormConfigModule> {
+    return {
+      ngModule: DynamicFormConfigModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
+          useValue: fieldWrapperTypes,
           multi: true
         }
       ]
