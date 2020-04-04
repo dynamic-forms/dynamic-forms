@@ -1,8 +1,8 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
-import { DynamicFormElementConfig, DynamicFormElementType,
-  DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperConfig, DynamicFormFieldWrapperType,
@@ -22,8 +22,8 @@ export class DynamicFormConfigService {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_CONFIG)
-    private elementConfig: DynamicFormElementConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_ELEMENT_TYPE_CONFIG)
+    private elementTypeConfig: DynamicFormElementTypeConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPE_CONFIG)
     private fieldTypeConfig: DynamicFormFieldTypeConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_ACTION_TYPE_CONFIG)
@@ -33,7 +33,7 @@ export class DynamicFormConfigService {
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_CONFIG)
     private fieldWrapperConfig: DynamicFormFieldWrapperConfig = null
   ) {
-    this.elementTypes = this.libraryService.filterTypes(this.elementConfig);
+    this.elementTypes = this.libraryService.filterTypes(this.elementTypeConfig);
     this.fieldTypes = this.libraryService.filterTypes(this.fieldTypeConfig);
     this.actionTypes = this.libraryService.filterTypes(this.actionTypeConfig);
     this.inputTypes = this.libraryService.filterTypes(this.inputConfig);

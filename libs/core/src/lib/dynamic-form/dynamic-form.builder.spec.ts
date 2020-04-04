@@ -9,7 +9,7 @@ import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-fo
 import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
-import { DynamicFormElementConfig, DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
@@ -26,7 +26,7 @@ describe('DynamicFormBuilder', () => {
   const elementFactory: DynamicFormElementFactory =
     (builder, root, parent, definition) => builder.createFormElement(root, parent, definition);
 
-  const elementTypes: DynamicFormElementConfig = [
+  const elementTypes: DynamicFormElementTypeConfig = [
     { libraryName: 'test', type: 'element', factory: null, component: null },
     { libraryName: 'test', type: 'element1', factory: elementFactory, component: null }
   ];
@@ -58,7 +58,7 @@ describe('DynamicFormBuilder', () => {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' })
         },
-        { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
+        { provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, useValue: elementTypes },
         { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
         { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
         DynamicFormConfigService,

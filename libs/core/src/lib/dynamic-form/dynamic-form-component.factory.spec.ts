@@ -5,7 +5,7 @@ import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
-import { DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
@@ -91,7 +91,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
       useValue: new DynamicFormLibraryService({ name: 'test' })
     },
     {
-      provide: DYNAMIC_FORM_ELEMENT_CONFIG,
+      provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'element', component: DynamicFormElementTestComponent }
       ]

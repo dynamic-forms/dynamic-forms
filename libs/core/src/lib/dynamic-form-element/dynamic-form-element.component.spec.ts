@@ -7,7 +7,7 @@ import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-compon
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
-import { DYNAMIC_FORM_ELEMENT_CONFIG } from './dynamic-form-element-type';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element-type-config';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 
@@ -33,7 +33,7 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
       useValue: new DynamicFormLibraryService({ name: 'test' })
     },
     {
-      provide: DYNAMIC_FORM_ELEMENT_CONFIG,
+      provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent }
       ]

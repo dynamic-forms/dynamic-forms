@@ -1,7 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
-import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
@@ -19,7 +20,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ELEMENT_CONFIG,
+          provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
           useValue: elementType,
           multi: true
         }
@@ -32,7 +33,7 @@ export class DynamicFormConfigModule {
       ngModule: DynamicFormConfigModule,
       providers: [
         {
-          provide: DYNAMIC_FORM_ELEMENT_CONFIG,
+          provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
           useValue: elementTypes,
           multi: true
         }

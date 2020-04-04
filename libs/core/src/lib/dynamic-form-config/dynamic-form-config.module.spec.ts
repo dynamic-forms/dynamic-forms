@@ -1,8 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
-import { DynamicFormElementConfig, DynamicFormElementType,
-  DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperConfig, DynamicFormFieldWrapperType,
@@ -69,7 +69,7 @@ describe('DynamicFormConfigModule', () => {
     }));
 
     it('provides DYNAMIC_FORM_ELEMENT_CONFIG',
-      inject([DYNAMIC_FORM_ELEMENT_CONFIG], (config: DynamicFormElementConfig) => {
+      inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
       })
@@ -98,7 +98,7 @@ describe('DynamicFormConfigModule', () => {
     }));
 
     it('provides DYNAMIC_FORM_ELEMENT_CONFIG',
-      inject([DYNAMIC_FORM_ELEMENT_CONFIG], (config: DynamicFormElementConfig) => {
+      inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
       })

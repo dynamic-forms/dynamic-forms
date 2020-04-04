@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
-import { DYNAMIC_FORM_ELEMENT_CONFIG } from './dynamic-form-element/dynamic-form-element-type';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-type-config';
@@ -34,7 +34,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPE_CONFIG)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
@@ -116,7 +116,7 @@ describe('DynamicFormsModule', () => {
     );
 
     it('does not provide DYNAMIC_FORM_ELEMENT_CONFIG', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_ELEMENT_TYPE_CONFIG)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_CONFIG', () => {
