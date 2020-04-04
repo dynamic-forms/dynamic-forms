@@ -3,7 +3,7 @@ import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-con
 import { DYNAMIC_FORM_ELEMENT_CONFIG } from './dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
-import { DYNAMIC_FORM_FIELD_CONFIG } from './dynamic-form-field/dynamic-form-field-type';
+import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-type-config';
 import { DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from './dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DYNAMIC_FORM_INPUT_CONFIG } from './dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library/dynamic-form-library';
@@ -38,7 +38,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_TYPES', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPE_CONFIG)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_INPUT_CONFIG', () => {
@@ -120,7 +120,7 @@ describe('DynamicFormsModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_FIELD_CONFIG', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_CONFIG)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.get(DYNAMIC_FORM_FIELD_TYPE_CONFIG)).toThrowError(/StaticInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_INPUT_CONFIG', () => {

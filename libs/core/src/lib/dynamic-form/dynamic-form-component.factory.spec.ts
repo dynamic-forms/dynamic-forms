@@ -8,7 +8,7 @@ import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-ele
 import { DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
-import { DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
+import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
 import { DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
@@ -97,7 +97,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
       ]
     },
     {
-      provide: DYNAMIC_FORM_FIELD_CONFIG,
+      provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'field', component: DynamicFormFieldTestComponent },
         { libraryName: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }

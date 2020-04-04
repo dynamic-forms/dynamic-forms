@@ -1,7 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType, DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementType, DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldType, DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType, DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputType, DYNAMIC_FORM_INPUT_CONFIG } from '../dynamic-form-input/dynamic-form-input-type';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
@@ -109,7 +110,7 @@ describe('DynamicFormConfigService', () => {
             useValue: new DynamicFormLibraryService(library)
           },
           { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
-          { provide: DYNAMIC_FORM_FIELD_CONFIG, useValue: fieldTypes },
+          { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },
@@ -240,7 +241,7 @@ describe('DynamicFormConfigService', () => {
             useValue: new DynamicFormLibraryService(library)
           },
           { provide: DYNAMIC_FORM_ELEMENT_CONFIG, useValue: elementTypes },
-          { provide: DYNAMIC_FORM_FIELD_CONFIG, useValue: fieldTypes },
+          { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_CONFIG, useValue: fieldWrapperTypes },

@@ -3,8 +3,8 @@ import { DynamicFormActionConfig, DynamicFormActionType,
   DYNAMIC_FORM_ACTION_CONFIG } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormElementConfig, DynamicFormElementType,
   DYNAMIC_FORM_ELEMENT_CONFIG } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormFieldConfig, DynamicFormFieldType,
-  DYNAMIC_FORM_FIELD_CONFIG } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperConfig, DynamicFormFieldWrapperType,
   DYNAMIC_FORM_FIELD_WRAPPER_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import { DynamicFormInputConfig, DynamicFormInputType,
@@ -24,8 +24,8 @@ export class DynamicFormConfigService {
     private readonly libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_ELEMENT_CONFIG)
     private elementConfig: DynamicFormElementConfig = null,
-    @Optional() @Inject(DYNAMIC_FORM_FIELD_CONFIG)
-    private fieldConfig: DynamicFormFieldConfig = null,
+    @Optional() @Inject(DYNAMIC_FORM_FIELD_TYPE_CONFIG)
+    private fieldTypeConfig: DynamicFormFieldTypeConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_ACTION_CONFIG)
     private actionConfig: DynamicFormActionConfig = null,
     @Optional() @Inject(DYNAMIC_FORM_INPUT_CONFIG)
@@ -34,7 +34,7 @@ export class DynamicFormConfigService {
     private fieldWrapperConfig: DynamicFormFieldWrapperConfig = null
   ) {
     this.elementTypes = this.libraryService.filterTypes(this.elementConfig);
-    this.fieldTypes = this.libraryService.filterTypes(this.fieldConfig);
+    this.fieldTypes = this.libraryService.filterTypes(this.fieldTypeConfig);
     this.actionTypes = this.libraryService.filterTypes(this.actionConfig);
     this.inputTypes = this.libraryService.filterTypes(this.inputConfig);
     this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperConfig);
