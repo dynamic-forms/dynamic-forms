@@ -10,23 +10,26 @@
   <h3>Features</h3>
   <ul>
     <li>Dynamic <strong>reactive forms</strong> based on <strong>JSON</strong> definition</li>
-    <li>Structuring / nesting dynamic forms by
+    <li>Dynamic forms support structuring / nesting by
       <ul>
         <li>Dynamic form elements (container, content)</li>
         <li>Dynamic form fields (group, array, control)</li> 
         <li>Dynamic form actions (button)</li> 
       </ul>
     </li>
-    <li>Dynamic form controls / inputs include
+    <li>Dynamic form controls support
       <ul>
-        <li>Checkbox</li>
-        <li>Combobox</li> 
-        <li>Datepicker</li> 
-        <li>Numberbox</li>
-        <li>Radio</li>
-        <li>Select</li>  
-        <li>Textarea</li> 
-        <li>Textbox</li>  
+        <li>Dynamic form inputs
+          <ul>
+            <li>Checkbox</li>
+            <li>Combobox, radio and select</li> 
+            <li>Textbox and textarea</li> 
+            <li>Datepicker</li> 
+            <li>Numberbox</li>
+          </ul>
+        </li>
+        <li>Dynamic form input validation</li>
+        <li>Dynamic from input hints</li>
       </ul>
     </li> 
   </ul>
@@ -35,12 +38,44 @@
   <h3>Libraries</h3>
   <h4>@dynamic-forms/core</h4>
   <ul>
-    <li>Library includes <strong>extensible</strong> core interfaces, classes, components and services
+    <li>Library includes <strong>extensible</strong> interfaces, classes, components, factories, services and <strong>modules</strong>
       <ul>
-        <li>Form config</li>
-        <li>Form builder</li>
-        <li>Form component factory</li>
-        <li>Form expression builder</li>
+        <li>Dynamic form config module for registration of components
+          <ul></ul>
+        </li>
+        <li>Dynamic form module includes
+          <ul>
+            <li>Builder to create form groups, arrays and controls</li>
+            <li>Component factory to resolve registered components</li>
+            <li>Component to render components</li>
+          </ul>
+        </li>
+        <li>Dynamic form control module includes
+          <ul>
+            <li>Component to render input</li>
+          </ul>
+        </li>
+        <li>Dynamic form group module includes
+          <ul>
+            <li>Component to render controls</li>
+          </ul>
+        </li>
+        <li>Dynamic form array module includes
+          <ul>
+            <li>Component to render groups and controls</li>
+          </ul>
+        </li>
+        <li>Dynamic form validation module for registration of validators and messages 
+          <ul>
+            <li>Builder to create validators</li>
+            <li>Service to resolve validation messages</li>
+          </ul>
+        </li>
+        <li>Dynamic form action module for registration of action handlers
+          <ul>
+            <li>Service to resolve action handlers</li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
