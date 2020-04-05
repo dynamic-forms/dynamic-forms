@@ -1,7 +1,9 @@
 {
   "version": "8.0.0-beta",
-  "build": "1",
-  "release": "1",
+  "build": "187",
+  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=1&_a=summary",
+  "release": "13",
+  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=1&_a=releases",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
