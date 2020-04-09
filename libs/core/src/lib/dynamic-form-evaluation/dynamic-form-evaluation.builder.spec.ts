@@ -1,5 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
+import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation.builder';
 
@@ -10,18 +13,16 @@ describe('DynamicFormEvaluationBuilder', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
+          },
+          {
+            provide: DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
+            useValue: dynamicFormControlEvaluatorTypes
           },
           DynamicFormEvaluationBuilder
         ]
       });
     }));
-
-    it('has control evaluations', () => {
-      const controlEvaluations = DynamicFormEvaluationBuilder.controlEvaluations;
-
-      expect(controlEvaluations).toBeTruthy();
-    });
 
     it('returns control validators being empty',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {

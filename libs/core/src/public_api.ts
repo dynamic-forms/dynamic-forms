@@ -45,7 +45,6 @@ export * from './lib/dynamic-form-control/dynamic-form-control-definition';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type-config';
-export * from './lib/dynamic-form-control/dynamic-form-control-evaluators';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-factory';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';

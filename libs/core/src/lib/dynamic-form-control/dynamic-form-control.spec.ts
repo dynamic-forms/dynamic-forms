@@ -5,7 +5,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { DynamicFormControlEvaluators } from './dynamic-form-control-evaluators';
+import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-type';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
@@ -294,7 +294,7 @@ describe('DynamicFormControl', () => {
       };
       const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
       formControl.initEvaluators([
-        { func: DynamicFormControlEvaluators.evalSelect }
+        { func: dynamicFormSelectEvaluatorFn }
       ]);
 
       expect(formControl.model).toBe('option1');
