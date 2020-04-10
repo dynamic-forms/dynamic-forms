@@ -2,15 +2,12 @@ import { FormControl, ValidatorFn } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldEvaluator } from '../dynamic-form-field/dynamic-form-field-evaluator';
 import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
-
-export type DynamicFormControlEvaluator<Input extends DynamicFormInput = DynamicFormInput> =
-  DynamicFormFieldEvaluator<DynamicFormControl<Input>>;
 
 export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,

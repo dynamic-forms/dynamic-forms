@@ -1,4 +1,7 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import { DynamicFormControlValidatorTypeConfig,
+  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormValidationConfig, DynamicFormValidationConfig, DynamicFormValidationConfigs,
   DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
@@ -49,6 +52,63 @@ describe('DynamicFormValidationModule', () => {
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service).toBeDefined();
+      })
+    );
+  });
+
+  describe('withControlValidator', () => {
+    const controlValidatorType: DynamicFormControlValidatorType = {
+      type: 'validator',
+      factory: null,
+      libraryName: 'test'
+    };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withControlValidator(controlValidatorType)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(controlValidatorType);
+      })
+    );
+  });
+
+  describe('withControlValidators', () => {
+    const controlValidatorTypes: DynamicFormControlValidatorType[] = [
+      { type: 'validator1', factory: null, libraryName: 'test' },
+      { type: 'validator2', factory: null, libraryName: 'test' },
+    ];
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withControlValidators(controlValidatorTypes)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(controlValidatorTypes);
       })
     );
   });

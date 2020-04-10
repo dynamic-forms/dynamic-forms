@@ -3,9 +3,9 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { DynamicFormControlEvaluators } from './dynamic-form-control-evaluators';
+import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-type';
 
-describe('DynamicFormControlEvaluators', () => {
+describe('DynamicFormControlEvaluatorType', () => {
   it('evaluates control value of select', () => {
     const definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
       key: 'key',
@@ -35,7 +35,7 @@ describe('DynamicFormControlEvaluators', () => {
       { value: 'option2', label: 'Option2' }
     ];
 
-    DynamicFormControlEvaluators.evalSelect(formControl);
+    dynamicFormSelectEvaluatorFn(formControl);
 
     expect(formControl.control.value).toBe('option1');
 
@@ -44,7 +44,7 @@ describe('DynamicFormControlEvaluators', () => {
       { value: 'option3', label: 'Option3' }
     ];
 
-    DynamicFormControlEvaluators.evalSelect(formControl);
+    dynamicFormSelectEvaluatorFn(formControl);
 
     expect(formControl.control.value).toBeNull();
   });
