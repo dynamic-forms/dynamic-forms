@@ -17,7 +17,7 @@ describe('DynamicFormEvaluationModule', () => {
     }));
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
-      expect(() => TestBed.get(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
     });
   });
 
