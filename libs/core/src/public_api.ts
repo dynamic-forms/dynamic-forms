@@ -42,7 +42,9 @@ export * from './lib/dynamic-form-config/dynamic-form-config.service';
 export * from './lib/dynamic-form-control/dynamic-form-control';
 export * from './lib/dynamic-form-control/dynamic-form-control-base';
 export * from './lib/dynamic-form-control/dynamic-form-control-definition';
-export * from './lib/dynamic-form-control/dynamic-form-control-evaluators';
+export * from './lib/dynamic-form-control/dynamic-form-control-evaluator';
+export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type';
+export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type-config';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-factory';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';
@@ -74,6 +76,7 @@ export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-cont
 export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-content.module';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluator';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluation.builder';
+export * from './lib/dynamic-form-evaluation/dynamic-form-evaluation.module';
 export * from './lib/dynamic-form-expression/dynamic-form-action-expression-data';
 export * from './lib/dynamic-form-expression/dynamic-form-action-expression';
 export * from './lib/dynamic-form-expression/dynamic-form-action-expressions';
