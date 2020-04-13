@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoreDocsComponent } from './core-docs.component';
 import { CoreCoverageComponent } from './coverage/core-coverage.component';
+import { CoreDocComponent } from './doc/core-doc.component';
 
 const routes: Routes = [
   {
     path: 'docs/core',
-    component: CoreDocsComponent
+    redirectTo: 'docs/core/doc',
+    pathMatch: 'full'
+  },
+  {
+    path: 'docs/core/doc',
+    component: CoreDocComponent
   },
   {
     path: 'docs/core/coverage',
@@ -21,8 +26,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    CoreDocsComponent,
-    CoreCoverageComponent
+    CoreCoverageComponent,
+    CoreDocComponent
   ],
   exports: [
     RouterModule

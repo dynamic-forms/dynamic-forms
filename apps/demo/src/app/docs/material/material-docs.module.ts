@@ -2,12 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialCoverageComponent } from './coverage/material-coverage.component';
-import { MaterialDocsComponent } from './material-docs.component';
+import { MaterialDocComponent } from './doc/material-doc.component';
 
 const routes: Routes = [
   {
     path: 'docs/material',
-    component: MaterialDocsComponent
+    redirectTo: 'docs/material/doc',
+    pathMatch: 'full'
+  },
+  {
+    path: 'docs/material/doc',
+    component: MaterialDocComponent
   },
   {
     path: 'docs/material/coverage',
@@ -21,8 +26,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    MaterialDocsComponent,
-    MaterialCoverageComponent
+    MaterialCoverageComponent,
+    MaterialDocComponent
   ],
   exports: [
     RouterModule
