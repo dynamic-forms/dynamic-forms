@@ -11,9 +11,9 @@ export class DynamicFormActionService {
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
-    private _handlers: DynamicFormActionHandlerConfig
+    private handlerConfig: DynamicFormActionHandlerConfig
   ) {
-    this.handlers = this.libraryService.filterTypes(this._handlers);
+    this.handlers = this.libraryService.filterTypes(this.handlerConfig);
   }
 
   getHandler(type: string): DynamicFormActionHandler {
