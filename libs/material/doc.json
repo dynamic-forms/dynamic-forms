@@ -1,0 +1,11 @@
+{
+  "$schema": "./../../node_modules/@compodoc/compodoc/src/config/schema.json",
+  "tsconfig": "./tsconfig.lib.json",
+  "output": "./../../apps/demo/src/assets/docs/material",
+  "name": "@dynamic-forms/material",
+  "theme": "material",
+  "disableCoverage": true,
+  "disableDomTree": true,
+  "disableGraph": true,
+  "hideGenerator": true
+}
