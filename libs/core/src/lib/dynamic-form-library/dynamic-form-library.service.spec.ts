@@ -25,6 +25,23 @@ describe('DynamicFormLibraryService', () => {
         expect(service.libraryNamesReverse).toEqual([ 'test' ]);
       })
     );
+
+    it('returns filtered types',
+      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+        const type1 = { type: 'type1', libraryName: 'test' };
+        const types2 = [
+          { type: 'type2', libraryName: 'test' },
+          { type: 'type3', libraryName: 'test' },
+          { type: 'type4', libraryName: 'other' }
+        ];
+        const type3 = { type: 'type3', libraryName: 'other' };
+        const type4 = { type: 'type4', libraryName: 'test' };
+
+        const filteredTypes = service.filterTypes([ type1, types2, type3, type4 ]);
+
+        expect(filteredTypes).toEqual([ type1, types2[0], types2[1], type4 ]);
+      })
+    );
   });
 
   describe('with DYNAMIC_FORM_LIBRARY including library references', () => {

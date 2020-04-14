@@ -6,12 +6,15 @@ export class DynamicFormLibraryService {
   readonly libraryNames: DynamicFormLibraryName[];
   readonly libraryNamesReverse: DynamicFormLibraryName[];
 
-  constructor(@Inject(DYNAMIC_FORM_LIBRARY) readonly library: DynamicFormLibrary) {
+  constructor(
+    @Inject(DYNAMIC_FORM_LIBRARY)
+    readonly library: DynamicFormLibrary
+  ) {
     this.libraryNames = this.getLibraryNames();
     this.libraryNamesReverse = [ ...this.libraryNames ].reverse();
   }
 
-  filterTypes<Type extends  { type: string, libraryName: DynamicFormLibraryName }>(types: Type[]): Type[] {
+  filterTypes<Type extends  { type: string, libraryName: DynamicFormLibraryName }>(types: (Type | Type[])[]): Type[] {
     if (!types || !types.length) {
       return [];
     }
@@ -23,12 +26,19 @@ export class DynamicFormLibraryService {
   }
 
   private getLibraryTypes<Type extends { type: string, libraryName: DynamicFormLibraryName }>(
-    name: DynamicFormLibraryName, types: Type[], excludeTypes: Type[]): Type[] {
+    name: DynamicFormLibraryName, types: (Type | Type[])[], excludeTypes: Type[]): Type[] {
+    const typesFlattened = this.getTypesFlattened(types);
     if (excludeTypes && excludeTypes.length) {
       const excludeTypeNames = excludeTypes.map(type => type.type);
-      return types.filter(type => type.libraryName === name && !excludeTypeNames.includes(type.type));
+      return typesFlattened.filter(type => type.libraryName === name && !excludeTypeNames.includes(type.type));
     }
-    return types.filter(type => type.libraryName === name);
+    return typesFlattened.filter(type => type.libraryName === name);
+  }
+
+  private getTypesFlattened<Type>(types: (Type | Type[])[]): Type[] {
+    return types.reduce<Type[]>((result, type) => {
+      return result.concat(type);
+    }, []);
   }
 
   private getLibraryNames(): DynamicFormLibraryName[] {

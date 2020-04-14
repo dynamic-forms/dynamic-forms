@@ -38,9 +38,11 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
 @NgModule({
   imports: [
     DynamicFormValidationModule,
-    DynamicFormActionModule.withHandler(dynamicFormFieldResetHandler),
-    DynamicFormActionModule.withHandler(dynamicFormFieldResetDefaultHandler),
-    DynamicFormActionModule.withHandler(dynamicFormFieldValidateHandler)
+    DynamicFormActionModule.withHandlers([
+      dynamicFormFieldResetHandler,
+      dynamicFormFieldResetDefaultHandler,
+      dynamicFormFieldValidateHandler
+    ])
   ],
   exports: [
     DynamicFormValidationModule,

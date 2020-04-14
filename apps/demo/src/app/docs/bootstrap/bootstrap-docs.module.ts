@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BootstrapDocsComponent } from './bootstrap-docs.component';
 import { BootstrapCoverageComponent } from './coverage/bootstrap-coverage.component';
+import { BootstrapDocComponent } from './doc/bootstrap-doc.component';
 
 const routes: Routes = [
   {
     path: 'docs/bootstrap',
-    component: BootstrapDocsComponent
+    redirectTo: 'docs/bootstrap/doc',
+    pathMatch: 'full'
+  },
+  {
+    path: 'docs/bootstrap/doc',
+    component: BootstrapDocComponent
   },
   {
     path: 'docs/bootstrap/coverage',
@@ -21,8 +26,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    BootstrapDocsComponent,
-    BootstrapCoverageComponent
+    BootstrapCoverageComponent,
+    BootstrapDocComponent
   ],
   exports: [
     RouterModule
