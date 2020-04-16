@@ -8,5 +8,6 @@
   "disableDomTree": true,
   "disableGraph": true,
   "disablePrivate": true,
+  "disableRoutesGraph": true,
   "hideGenerator": true
 }
