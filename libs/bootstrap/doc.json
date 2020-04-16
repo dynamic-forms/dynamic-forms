@@ -7,5 +7,6 @@
   "disableCoverage": true,
   "disableDomTree": true,
   "disableGraph": true,
+  "disablePrivate": true,
   "hideGenerator": true
 }

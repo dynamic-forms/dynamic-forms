@@ -23,7 +23,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "doc": "npx compodoc",
     "build:core": "ng build dynamic-forms-core",
     "build:bootstrap": "ng build dynamic-forms-bootstrap",
     "build:material": "ng build dynamic-forms-material",
@@ -42,7 +41,10 @@
     "doc:libs": "npm run doc:core && npm run doc:bootstrap && npm run doc:material",
     "serve:core": "ng build dynamic-forms-core --watch",
     "serve:bootstrap": "ng build dynamic-forms-bootstrap --watch",
-    "serve:material": "ng build dynamic-forms-material --watch"
+    "serve:material": "ng build dynamic-forms-material --watch",
+    "serve:doc:core": "cd libs/core && npx compodoc -c doc.json --serve --watch",
+    "serve:doc:bootstrap": "cd libs/bootstrap && npx compodoc -c doc.json --serve --watch",
+    "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch"
   },
   "private": true,
   "dependencies": {
