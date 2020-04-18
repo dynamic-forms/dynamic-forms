@@ -82,7 +82,7 @@ export class DynamicFormBuilder {
     const field = new DynamicFormControl(root, parent, definition);
     field.initExpressions(this.createFieldExpressions(field));
     field.initEvaluators(this.createControlEvaluators(field.definition));
-    field.initValidators(this.createControlValidators(field.definition));
+    field.initValidators(this.createControlValidators(field));
     return field;
   }
 
@@ -195,7 +195,7 @@ export class DynamicFormBuilder {
     return this.evaluationBuilder.createControlEvaluators(definition);
   }
 
-  private createControlValidators(definition: DynamicFormControlDefinition): DynamicFormControlValidator[] {
-    return this.validationBuilder.createControlValidators(definition.template);
+  private createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
+    return this.validationBuilder.createControlValidators(control);
   }
 }

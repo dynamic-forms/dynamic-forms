@@ -1,6 +1,6 @@
-import { Validators, ValidatorFn } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormControlValidatorFactory } from './dynamic-form-control-validator-factory';
+import { DynamicFormControlValidatorFactory, DynamicFormControlValidatorFn } from './dynamic-form-control-validator';
 
 export interface DynamicFormControlValidatorType {
   type: string;
@@ -8,7 +8,7 @@ export interface DynamicFormControlValidatorType {
   libraryName: DynamicFormLibraryName;
 }
 
-export function dynamicFormControlRequiredValidatorFn(_: any): ValidatorFn {
+export function dynamicFormControlRequiredValidatorFn(_: any): DynamicFormControlValidatorFn {
   return Validators.required;
 }
 
@@ -18,7 +18,7 @@ export const dynamicFormControlRequiredValidatorType: DynamicFormControlValidato
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlEmailValidatorFn(_: any): ValidatorFn {
+export function dynamicFormControlEmailValidatorFn(_: any): DynamicFormControlValidatorFn {
   return Validators.email;
 }
 
@@ -28,7 +28,7 @@ export const dynamicFormControlEmailValidatorType: DynamicFormControlValidatorTy
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlPatternValidatorFn(pattern?: string | RegExp): ValidatorFn {
+export function dynamicFormControlPatternValidatorFn(pattern?: string | RegExp): DynamicFormControlValidatorFn {
   return pattern ? Validators.pattern(pattern) : undefined;
 }
 
@@ -38,7 +38,7 @@ export const dynamicFormControlPatternValidatorType: DynamicFormControlValidator
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlMinValidatorFn(min?: number): ValidatorFn {
+export function dynamicFormControlMinValidatorFn(min?: number): DynamicFormControlValidatorFn {
   return Number.isFinite(min) ? Validators.min(min) : undefined;
 }
 
@@ -48,7 +48,7 @@ export const dynamicFormControlMinValidatorType: DynamicFormControlValidatorType
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlMaxValidatorFn(max?: number): ValidatorFn {
+export function dynamicFormControlMaxValidatorFn(max?: number): DynamicFormControlValidatorFn {
   return Number.isFinite(max) ? Validators.max(max) : undefined;
 }
 
@@ -58,7 +58,7 @@ export const dynamicFormControlMaxValidatorType: DynamicFormControlValidatorType
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlMinLengthValidatorFn(minLength?: number): ValidatorFn {
+export function dynamicFormControlMinLengthValidatorFn(minLength?: number): DynamicFormControlValidatorFn {
   return Number.isFinite(minLength) ? Validators.minLength(minLength) : undefined;
 }
 
@@ -68,7 +68,7 @@ export const dynamicFormControlMinLengthValidatorType: DynamicFormControlValidat
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlMaxLengthValidatorFn(maxLength?: number): ValidatorFn {
+export function dynamicFormControlMaxLengthValidatorFn(maxLength?: number): DynamicFormControlValidatorFn {
   return Number.isFinite(maxLength) ? Validators.maxLength(maxLength) : undefined;
 }
 
