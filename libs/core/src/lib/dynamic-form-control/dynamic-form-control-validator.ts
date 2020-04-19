@@ -12,10 +12,6 @@ export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormC
     super(key, field, factory);
   }
 
-  protected getEnabled(): boolean {
-    return this.field.template.validation[this.key];
-  }
-
   protected getParameters(): any {
     return this.field.template.input[this.key];
   }

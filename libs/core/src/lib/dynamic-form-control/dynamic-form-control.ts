@@ -1,4 +1,4 @@
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -7,7 +7,6 @@ import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
-import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,
@@ -17,7 +16,6 @@ export class DynamicFormControl<
 
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
-  protected _validators: DynamicFormControlValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
@@ -31,15 +29,9 @@ export class DynamicFormControl<
   get inputComponentType(): string { return this.input.type; }
 
   get evaluators(): DynamicFormControlEvaluator<Input>[] { return this._evaluators; }
-  get validators(): DynamicFormControlValidator[] { return this._validators; }
 
   initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
     this._evaluators = evaluators || [];
-  }
-
-  initValidators(validators: DynamicFormControlValidator[]): void {
-    this._validators = validators || [];
-    this._control.setValidators(this.getValidatorFunctions());
   }
 
   check(): void {
@@ -110,11 +102,6 @@ export class DynamicFormControl<
     this._model = this.parent.model[this.key];
   }
 
-  private getValidatorFunctions(): ValidatorFn[] {
-    return this._validators.filter(validator => !!validator.validatorFn)
-      .map(validator => validator.validatorFn);
-  }
-
   private checkValue(): void {
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
@@ -124,19 +111,5 @@ export class DynamicFormControl<
     if (this.control.disabled !== disabled) {
       return disabled ? this.control.disable() : this.control.enable();
     }
-  }
-
-  private checkValidators(): void {
-    const validatorsChanged = this.validatorsChanged();
-    if (validatorsChanged) {
-      this.control.setValidators(this.getValidatorFunctions());
-      this.control.updateValueAndValidity();
-    }
-  }
-
-  private validatorsChanged(): boolean {
-    return this._validators
-      .map(validator => validator.checkChanges())
-      .some(change => !!change);
   }
 }

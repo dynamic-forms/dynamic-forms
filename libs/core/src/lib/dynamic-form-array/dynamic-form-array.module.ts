@@ -8,9 +8,11 @@ import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-e
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayFactory } from './dynamic-form-array-factory';
+import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
 
 export const dynamicFormArrayType: DynamicFormFieldType = {
@@ -60,7 +62,8 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
       dynamicFormArrayPopElementHandler,
       dynamicFormArrayClearElementsHandler
     ]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ])
+    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ]),
+    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes)
   ],
   declarations: [
     DynamicFormArrayComponent

@@ -1,8 +1,14 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
+import { dynamicFormArrayValidatorTypes } from '../dynamic-form-array/dynamic-form-array-validator-type';
+import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
+import { dynamicFormGroupValidatorTypes } from '../dynamic-form-group/dynamic-form-group-validator-type';
+import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
@@ -21,18 +27,45 @@ describe('DynamicFormValidationBuilder', () => {
       });
     }));
 
-    it('returns types being empty',
+    it('returns control validator types being empty',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service.controlValidatorTypes).toEqual([]);
       })
     );
 
+    it('returns group validator types being empty',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.groupValidatorTypes).toEqual([]);
+      })
+    );
 
-    it('returns DynamicFormControlValidatorType being undefined',
+    it('returns array validator types being empty',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.arrayValidatorTypes).toEqual([]);
+      })
+    );
+
+    it('returns control validator type being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const controlValidatorType = service.getControlValidatorType('validator');
 
         expect(controlValidatorType).toBeUndefined();
+      })
+    );
+
+    it('returns group validator type being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const groupValidatorType = service.getGroupValidatorType('validator');
+
+        expect(groupValidatorType).toBeUndefined();
+      })
+    );
+
+    it('returns array validator type being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const arrayValidatorType = service.getArrayValidatorType('validator');
+
+        expect(arrayValidatorType).toBeUndefined();
       })
     );
   });
@@ -49,18 +82,38 @@ describe('DynamicFormValidationBuilder', () => {
             provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
             useValue: dynamicFormControlValidatorTypes
           },
+          {
+            provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+            useValue: dynamicFormGroupValidatorTypes
+          },
+          {
+            provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+            useValue: dynamicFormArrayValidatorTypes
+          },
           DynamicFormValidationBuilder
         ]
       });
     }));
 
-    it('returns provided types',
+    it('returns provided control validator types',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service.controlValidatorTypes).toEqual(dynamicFormControlValidatorTypes);
       })
     );
 
-    it('returns DynamicFormControlValidatorType',
+    it('returns provided group validator types',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.groupValidatorTypes).toEqual(dynamicFormGroupValidatorTypes);
+      })
+    );
+
+    it('returns provided array validator types',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.arrayValidatorTypes).toEqual(dynamicFormArrayValidatorTypes);
+      })
+    );
+
+    it('returns control valiator type for required',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const controlValidatorType = service.getControlValidatorType('required');
 
@@ -249,6 +302,61 @@ describe('DynamicFormValidationBuilder', () => {
         const validator = service.createControlValidator(control, 'json');
 
         expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns group valiator type for required',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const groupValidatorType = service.getGroupValidatorType('required');
+
+        expect(groupValidatorType).toEqual(dynamicFormGroupValidatorTypes[0]);
+      })
+    );
+
+    it('returns group validator for required',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
+        const validator = service.createGroupValidator(group, 'required');
+
+        expect(validator.key).toBe('required');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBeUndefined();
+        expect(validator.validatorFn).toBeDefined();
+      })
+    );
+
+    it('returns array valiator type for minLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const arrayValidatorType = service.getArrayValidatorType('minLength');
+
+        expect(arrayValidatorType).toEqual(dynamicFormArrayValidatorTypes[0]);
+      })
+    );
+
+    it('returns array validator for minLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: { minLength: 2, validation: { minLength: true } } };
+        const validator = service.createArrayValidator(array, 'minLength');
+
+        expect(validator.key).toBe('minLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBe(2);
+        expect(validator.validatorFn).toBeDefined();
+      })
+    );
+
+    it('returns array validator for maxLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: { maxLength: 5, validation: { maxLength: true } } };
+        const validator = service.createArrayValidator(array, 'maxLength');
+
+        expect(validator.key).toBe('maxLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBe(5);
+        expect(validator.validatorFn).toBeDefined();
       })
     );
   });

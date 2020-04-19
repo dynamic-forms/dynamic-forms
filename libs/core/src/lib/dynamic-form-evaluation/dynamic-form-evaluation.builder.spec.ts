@@ -1,5 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
 import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
@@ -26,8 +26,8 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators being empty',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = <DynamicFormControlDefinition>{};
-        const evaluators = service.createControlEvaluators(definition);
+        const control = <DynamicFormControl>{ definition: {} };
+        const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators).toEqual([]);
       })
@@ -37,8 +37,8 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'textbox' } };
         const evaluations = [ { key: 'select' }];
-        const definition = <DynamicFormControlDefinition>{ template, evaluations };
-        const evaluators = service.createControlEvaluators(definition);
+        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators).toEqual([]);
       })
@@ -48,8 +48,8 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'select' } };
         const evaluations = [ { key: 'select' }];
-        const definition = <DynamicFormControlDefinition>{ template, evaluations };
-        const evaluators = service.createControlEvaluators(definition);
+        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators.length).toBe(1);
         expect(evaluators[0]).toBeTruthy();
@@ -60,8 +60,8 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'select' } };
         const evaluations = [ { func: _field => {} }];
-        const definition = <DynamicFormControlDefinition>{ template, evaluations };
-        const evaluators = service.createControlEvaluators(definition);
+        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators.length).toBe(1);
         expect(evaluators[0]).toBeTruthy();

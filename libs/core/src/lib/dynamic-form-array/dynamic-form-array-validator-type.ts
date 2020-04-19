@@ -8,21 +8,21 @@ export interface DynamicFormArrayValidatorType {
 }
 
 export function dynamicFormArrayMinLengthValidatorFn(minLength?: number): DynamicFormArrayValidatorFn {
-  return Number.isFinite(minLength) ? undefined : undefined;
+  return Number.isFinite(minLength) ? null : undefined;
 }
 
 export const dynamicFormArrayMinLengthValidatorType: DynamicFormArrayValidatorType = {
-  type: 'minArrayLength',
+  type: 'minLength',
   factory: dynamicFormArrayMinLengthValidatorFn,
   libraryName: dynamicFormLibrary.name
 };
 
 export function dynamicFormArrayMaxLengthValidatorFn(maxLength?: number): DynamicFormArrayValidatorFn {
-  return Number.isFinite(maxLength) ? undefined : undefined;
+  return Number.isFinite(maxLength) ? null : undefined;
 }
 
 export const dynamicFormArrayMaxLengthValidatorType: DynamicFormArrayValidatorType = {
-  type: 'maxArrayLength',
+  type: 'maxLength',
   factory: dynamicFormArrayMaxLengthValidatorFn,
   libraryName: dynamicFormLibrary.name
 };

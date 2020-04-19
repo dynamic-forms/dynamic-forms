@@ -12,11 +12,7 @@ export class DynamicFormArrayValidator extends DynamicFormFieldValidator<FormArr
     super(key, field, factory);
   }
 
-  protected getEnabled(): boolean {
-    return false;
-  }
-
   protected getParameters(): any {
-    return this._field.template[this._key];
+    return this.field.template[this.key];
   }
 }

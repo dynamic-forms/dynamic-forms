@@ -14,21 +14,19 @@ export abstract class DynamicFormFieldValidator<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Field extends DynamicFormField<Control> = DynamicFormField<Control>
 > {
-  protected _key: string;
-  protected _field: Field;
-  protected _factory: DynamicFormFieldValidatorFactory<Control>;
+  private _key: string;
+  private _field: Field;
+  private _factory: DynamicFormFieldValidatorFactory<Control>;
 
-  protected _enabled: boolean;
-  protected _parameters: any;
-  protected _validatorFn: DynamicFormFieldValidatorFn<Control>;
+  private _enabled: boolean;
+  private _parameters: any;
+  private _validatorFn: DynamicFormFieldValidatorFn<Control>;
 
   constructor(key: string, field: Field, factory: DynamicFormFieldValidatorFactory<Control>) {
     this._key = key;
     this._field = field;
     this._factory = factory;
-    this._enabled =  this.getEnabled();
-    this._parameters = this.getParameters();
-    this._validatorFn = this.getValidatorFn();
+    this.init();
   }
 
   get key(): string { return this._key; }
@@ -51,8 +49,17 @@ export abstract class DynamicFormFieldValidator<
     return false;
   }
 
-  protected abstract getEnabled(): boolean;
   protected abstract getParameters(): any;
+
+  private init(): void {
+    this._enabled = this.getEnabled();
+    this._parameters = this.getParameters();
+    this._validatorFn = this.getValidatorFn();
+  }
+
+  private getEnabled(): boolean {
+    return this._field.template.validation[this._key];
+  }
 
   private getValidatorFn(): DynamicFormFieldValidatorFn<Control> {
     return this._enabled ? this._factory(this._parameters) : undefined;
