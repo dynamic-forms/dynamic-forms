@@ -104,6 +104,7 @@ export * from './lib/dynamic-form-field/dynamic-form-field-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-type-config';
 export * from './lib/dynamic-form-field/dynamic-form-field-validation';
 export * from './lib/dynamic-form-field/dynamic-form-field-validator';
+export * from './lib/dynamic-form-field/dynamic-form-field-validator-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-base';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper-type-config';

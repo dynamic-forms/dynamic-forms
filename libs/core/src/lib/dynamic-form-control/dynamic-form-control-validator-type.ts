@@ -1,12 +1,9 @@
-import { Validators } from '@angular/forms';
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormControlValidatorFactory, DynamicFormControlValidatorFn } from './dynamic-form-control-validator';
+import { FormControl, Validators } from '@angular/forms';
+import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormControlValidatorFn } from './dynamic-form-control-validator';
 
-export interface DynamicFormControlValidatorType {
-  type: string;
-  factory: DynamicFormControlValidatorFactory;
-  libraryName: DynamicFormLibraryName;
-}
+export interface DynamicFormControlValidatorType extends DynamicFormFieldValidatorType<FormControl> {}
 
 export function dynamicFormControlRequiredValidatorFn(_: any): DynamicFormControlValidatorFn {
   return Validators.required;

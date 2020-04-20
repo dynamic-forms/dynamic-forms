@@ -1,13 +1,15 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
-import { dynamicFormArrayValidatorTypes } from '../dynamic-form-array/dynamic-form-array-validator-type';
+import { DynamicFormArrayValidation } from '../dynamic-form-array/dynamic-form-array-validation';
+import { dynamicFormArrayValidatorTypes, DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
 import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
-import { dynamicFormGroupValidatorTypes } from '../dynamic-form-group/dynamic-form-group-validator-type';
+import { DynamicFormGroupValidation } from '../dynamic-form-group/dynamic-form-group-validation';
+import { dynamicFormGroupValidatorTypes, DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
 import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -326,6 +328,34 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
+    it('returns group validator being undefined if template is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const group = <DynamicFormGroup>{ template: null };
+        const validator = service.createGroupValidator(group, 'required');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns group validator being undefined if validation is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const group = <DynamicFormGroup>{ template: { validation: { required: null } } };
+        const validator = service.createGroupValidator(group, 'required');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns group validator being undefined if validator factory is not available',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const validation = <DynamicFormGroupValidation>{ minLength: true };
+        const group = <DynamicFormGroup>{ template: { validation } };
+        const validator = service.createGroupValidator(group, 'minLength');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
     it('returns array valiator type for minLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const arrayValidatorType = service.getArrayValidatorType('minLength');
@@ -347,6 +377,19 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
+    it('returns array validator for minLength with validatorFn being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: { validation: { minLength: true } } };
+        const validator = service.createArrayValidator(array, 'minLength');
+
+        expect(validator.key).toBe('minLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBeUndefined();
+        expect(validator.validatorFn).toBeUndefined();
+      })
+    );
+
     it('returns array validator for maxLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const array = <DynamicFormArray>{ template: { maxLength: 5, validation: { maxLength: true } } };
@@ -359,6 +402,47 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.validatorFn).toBeDefined();
       })
     );
+
+    it('returns array validator for maxLength with validatorFn being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: { validation: { maxLength: true } } };
+        const validator = service.createArrayValidator(array, 'maxLength');
+
+        expect(validator.key).toBe('maxLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBeUndefined();
+        expect(validator.validatorFn).toBeUndefined();
+      })
+    );
+
+    it('returns array validator being undefined if template is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: null };
+        const validator = service.createArrayValidator(array, 'minLength');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns array validator being undefined if validation is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const array = <DynamicFormArray>{ template: { validation: { minLength: null } } };
+        const validator = service.createArrayValidator(array, 'minLength');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns array validator being undefined if validator factory is not available',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const validation = <DynamicFormArrayValidation>{ required: true };
+        const array = <DynamicFormArray>{ template: { validation } };
+        const validator = service.createArrayValidator(array, 'required');
+
+        expect(validator).toBeUndefined();
+      })
+    );
   });
 
   describe('with DynamicFormLibraryService and types for multiple libraries', () => {
@@ -368,12 +452,28 @@ describe('DynamicFormValidationBuilder', () => {
     const library: DynamicFormLibrary = { name: libraryName, references: [ coreLibraryName ] };
 
     const controlValidatorTypes: DynamicFormControlValidatorType[] = [
-      { type: 'validator-1', factory: null, libraryName: coreLibraryName },
-      { type: 'validator-2', factory: null, libraryName: coreLibraryName },
-      { type: 'validator-1', factory: null, libraryName: otherLibraryName },
-      { type: 'validator-2', factory: null, libraryName: otherLibraryName },
-      { type: 'validator-3', factory: null, libraryName: otherLibraryName },
-      { type: 'validator-1', factory: null, libraryName: libraryName }
+      { type: 'control-validator-1', factory: null, libraryName: coreLibraryName },
+      { type: 'control-validator-2', factory: null, libraryName: coreLibraryName },
+      { type: 'control-validator-1', factory: null, libraryName: otherLibraryName },
+      { type: 'control-validator-2', factory: null, libraryName: otherLibraryName },
+      { type: 'control-validator-3', factory: null, libraryName: otherLibraryName },
+      { type: 'control-validator-1', factory: null, libraryName: libraryName }
+    ];
+    const groupValidatorTypes: DynamicFormGroupValidatorType[] = [
+      { type: 'group-validator-1', factory: null, libraryName: coreLibraryName },
+      { type: 'group-validator-2', factory: null, libraryName: coreLibraryName },
+      { type: 'group-validator-1', factory: null, libraryName: otherLibraryName },
+      { type: 'group-validator-2', factory: null, libraryName: otherLibraryName },
+      { type: 'group-validator-3', factory: null, libraryName: otherLibraryName },
+      { type: 'group-validator-1', factory: null, libraryName: libraryName }
+    ];
+    const arrayValidatorTypes: DynamicFormArrayValidatorType[] = [
+      { type: 'array-validator-1', factory: null, libraryName: coreLibraryName },
+      { type: 'array-validator-2', factory: null, libraryName: coreLibraryName },
+      { type: 'array-validator-1', factory: null, libraryName: otherLibraryName },
+      { type: 'array-validator-2', factory: null, libraryName: otherLibraryName },
+      { type: 'array-validator-3', factory: null, libraryName: otherLibraryName },
+      { type: 'array-validator-1', factory: null, libraryName: libraryName }
     ];
 
     beforeEach(async(() => {
@@ -387,6 +487,14 @@ describe('DynamicFormValidationBuilder', () => {
             provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
             useValue: controlValidatorTypes
           },
+          {
+            provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+            useValue: groupValidatorTypes
+          },
+          {
+            provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+            useValue: arrayValidatorTypes
+          },
           DynamicFormValidationBuilder
         ]
       });
@@ -395,8 +503,16 @@ describe('DynamicFormValidationBuilder', () => {
     it('returns provided types being filtered and merged',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service.controlValidatorTypes).toEqual([
-          { type: 'validator-1', factory: null, libraryName: libraryName },
-          { type: 'validator-2', factory: null, libraryName: coreLibraryName }
+          { type: 'control-validator-1', factory: null, libraryName: libraryName },
+          { type: 'control-validator-2', factory: null, libraryName: coreLibraryName }
+        ]);
+        expect(service.groupValidatorTypes).toEqual([
+          { type: 'group-validator-1', factory: null, libraryName: libraryName },
+          { type: 'group-validator-2', factory: null, libraryName: coreLibraryName }
+        ]);
+        expect(service.arrayValidatorTypes).toEqual([
+          { type: 'array-validator-1', factory: null, libraryName: libraryName },
+          { type: 'array-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
       })
     );

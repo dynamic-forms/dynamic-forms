@@ -1,14 +1,17 @@
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
+import { FormArray } from '@angular/forms';
+import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
 
-export interface DynamicFormArrayValidatorType {
-  type: string;
-  factory: DynamicFormArrayValidatorFactory;
-  libraryName: DynamicFormLibraryName;
-}
+export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<FormArray> {}
 
 export function dynamicFormArrayMinLengthValidatorFn(minLength?: number): DynamicFormArrayValidatorFn {
-  return Number.isFinite(minLength) ? null : undefined;
+  const validatorFn = (array: FormArray) => {
+    return array.value && array.value.length < minLength
+      ? { 'minlengthArray': { 'requiredLength': minLength, 'actualLength': array.value.length } }
+      : null;
+  };
+  return Number.isFinite(minLength) ? validatorFn : undefined;
 }
 
 export const dynamicFormArrayMinLengthValidatorType: DynamicFormArrayValidatorType = {
@@ -18,7 +21,12 @@ export const dynamicFormArrayMinLengthValidatorType: DynamicFormArrayValidatorTy
 };
 
 export function dynamicFormArrayMaxLengthValidatorFn(maxLength?: number): DynamicFormArrayValidatorFn {
-  return Number.isFinite(maxLength) ? null : undefined;
+  const validatorFn = (array: FormArray) => {
+    return array.value && array.value.length > maxLength
+      ? { 'maxlengthArray': { 'requiredLength': maxLength, 'actualLength': array.value.length } }
+      : null;
+  };
+  return Number.isFinite(maxLength) ? validatorFn : undefined;
 }
 
 export const dynamicFormArrayMaxLengthValidatorType: DynamicFormArrayValidatorType = {

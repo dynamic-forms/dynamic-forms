@@ -1,14 +1,12 @@
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormGroupValidatorFactory, DynamicFormGroupValidatorFn } from './dynamic-form-group-validator';
+import { FormGroup } from '@angular/forms';
+import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormGroupValidatorFn } from './dynamic-form-group-validator';
 
-export interface DynamicFormGroupValidatorType {
-  type: string;
-  factory: DynamicFormGroupValidatorFactory;
-  libraryName: DynamicFormLibraryName;
-}
+export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidatorType<FormGroup> {}
 
 export function dynamicFormGroupRequiredValidatorFn(_: any): DynamicFormGroupValidatorFn {
-  return null;
+  return (group: FormGroup) => group.value ? null : { 'requiredGroup': true };
 }
 
 export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorType = {

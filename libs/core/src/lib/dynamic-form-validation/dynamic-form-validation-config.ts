@@ -20,7 +20,10 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     min: 'The field does not fit the min value',
     max: 'The field does not fit the max value',
     minlength: 'The field does not fit the min length',
-    maxlength: 'The field does not fit the max length'
+    maxlength: 'The field does not fit the max length',
+    requiredGroup: 'The group is required.',
+    minlengthArray: 'The array does not fit the min length',
+    maxlengthArray: 'The array does not fit the max length'
   },
   libraryName: dynamicFormLibrary.name
 };
