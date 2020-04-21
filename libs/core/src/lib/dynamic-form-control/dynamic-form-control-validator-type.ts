@@ -5,7 +5,7 @@ import { DynamicFormControlValidatorFn } from './dynamic-form-control-validator'
 
 export interface DynamicFormControlValidatorType extends DynamicFormFieldValidatorType<FormControl> {}
 
-export function dynamicFormControlRequiredValidatorFn(_: any): DynamicFormControlValidatorFn {
+export function dynamicFormControlRequiredValidatorFn(_param?: any): DynamicFormControlValidatorFn {
   return Validators.required;
 }
 
@@ -15,7 +15,7 @@ export const dynamicFormControlRequiredValidatorType: DynamicFormControlValidato
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormControlEmailValidatorFn(_: any): DynamicFormControlValidatorFn {
+export function dynamicFormControlEmailValidatorFn(_param?: any): DynamicFormControlValidatorFn {
   return Validators.email;
 }
 

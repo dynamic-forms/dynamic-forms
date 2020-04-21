@@ -8,7 +8,7 @@ export type DynamicFormFieldValidatorFn<
 
 export type DynamicFormFieldValidatorFactory<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl
-> = (parameters: any) => DynamicFormFieldValidatorFn<Control>;
+> = (parameters?: any) => DynamicFormFieldValidatorFn<Control>;
 
 export abstract class DynamicFormFieldValidator<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,

@@ -5,10 +5,10 @@ import { DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
 
 export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<FormArray> {}
 
-export function dynamicFormArrayMinLengthValidatorFn(minLength?: number): DynamicFormArrayValidatorFn {
+export function dynamicFormArrayMinLengthValidatorFactory(minLength?: number): DynamicFormArrayValidatorFn {
   const validatorFn = (array: FormArray) => {
     return array.value && array.value.length < minLength
-      ? { 'minlengthArray': { 'requiredLength': minLength, 'actualLength': array.value.length } }
+      ? { minlengthArray: { requiredLength: minLength, actualLength: array.value.length } }
       : null;
   };
   return Number.isFinite(minLength) ? validatorFn : undefined;
@@ -16,14 +16,14 @@ export function dynamicFormArrayMinLengthValidatorFn(minLength?: number): Dynami
 
 export const dynamicFormArrayMinLengthValidatorType: DynamicFormArrayValidatorType = {
   type: 'minLength',
-  factory: dynamicFormArrayMinLengthValidatorFn,
+  factory: dynamicFormArrayMinLengthValidatorFactory,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormArrayMaxLengthValidatorFn(maxLength?: number): DynamicFormArrayValidatorFn {
+export function dynamicFormArrayMaxLengthValidatorFactory(maxLength?: number): DynamicFormArrayValidatorFn {
   const validatorFn = (array: FormArray) => {
     return array.value && array.value.length > maxLength
-      ? { 'maxlengthArray': { 'requiredLength': maxLength, 'actualLength': array.value.length } }
+      ? { maxlengthArray: { requiredLength: maxLength, actualLength: array.value.length } }
       : null;
   };
   return Number.isFinite(maxLength) ? validatorFn : undefined;
@@ -31,7 +31,7 @@ export function dynamicFormArrayMaxLengthValidatorFn(maxLength?: number): Dynami
 
 export const dynamicFormArrayMaxLengthValidatorType: DynamicFormArrayValidatorType = {
   type: 'maxLength',
-  factory: dynamicFormArrayMaxLengthValidatorFn,
+  factory: dynamicFormArrayMaxLengthValidatorFactory,
   libraryName: dynamicFormLibrary.name
 };
 
