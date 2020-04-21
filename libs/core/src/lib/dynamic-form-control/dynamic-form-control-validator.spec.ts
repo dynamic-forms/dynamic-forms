@@ -10,6 +10,8 @@ describe('DynamicFormControlValidator', () => {
 
     expect(validator.key).toBe('required');
     expect(validator.field).toBe(control);
+    expect(validator.factory).toBe(factory);
+
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBeUndefined();
     expect(validator.validatorFn).toBeDefined();
