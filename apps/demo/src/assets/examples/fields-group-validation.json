@@ -1,0 +1,114 @@
+{
+  "elements": [
+    {
+      "key": "register",
+      "type": "group",
+      "template": {
+        "label": "Login",
+        "validation": {
+          "required": true
+        }
+      },
+      "elements": [
+        {
+          "key": "email",
+          "type": "control",
+          "template": {
+            "label": "Email",
+            "input": {
+              "type": "textbox",
+              "inputType": "email",
+              "placeholder": "Enter your email"
+            },
+            "validation": {
+              "required": true,
+              "email": true
+            }
+          }
+        },
+        {
+          "key": "password",
+          "type": "control",
+          "template": {
+            "label": "Password",
+            "input": {
+              "type": "textbox",
+              "inputType": "password",
+              "placeholder": "Enter your password",
+              "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+            },
+            "validation": {
+              "required": true,
+              "pattern": true
+            }
+          }
+        },
+        {
+          "key": "confirmPassword",
+          "type": "control",
+          "template": {
+            "label": "Confirm Password ",
+            "input": {
+              "type": "textbox",
+              "inputType": "password",
+              "placeholder": "Confirm your password",
+              "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+            },
+            "validation": {
+              "required": true,
+              "pattern": true
+            }
+          }
+        },
+        {
+          "key": "termsAndConditions",
+          "type": "control",
+          "template": {
+            "label": "Accept terms & conditions",
+            "input": {
+              "type": "checkbox"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

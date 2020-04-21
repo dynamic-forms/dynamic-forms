@@ -105,11 +105,4 @@ export class DynamicFormControl<
   private checkValue(): void {
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
-
-  private checkControl(): void {
-    const disabled = this.parent.control.disabled || this.template.disabled || false;
-    if (this.control.disabled !== disabled) {
-      return disabled ? this.control.disable() : this.control.enable();
-    }
-  }
 }

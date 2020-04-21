@@ -110,12 +110,11 @@ export abstract class DynamicFormField<
     }, <DynamicFormField[]>[]);
   }
 
-  protected cloneObject<T>(obj: T): T {
-    return cloneObject(obj);
-  }
-
-  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
-    assignExpressionData(this._expressionData, expressions);
+  protected checkControl(): void {
+    const disabled = (this.parent && this.parent.control.disabled) || this.template.disabled || false;
+    if (this.control.disabled !== disabled) {
+      return disabled ? this.control.disable() : this.control.enable();
+    }
   }
 
   protected checkValidators(): void {
@@ -124,6 +123,14 @@ export abstract class DynamicFormField<
       this.control.setValidators(this.getValidatorFunctions());
       this.control.updateValueAndValidity();
     }
+  }
+
+  protected cloneObject<T>(obj: T): T {
+    return cloneObject(obj);
+  }
+
+  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
+    assignExpressionData(this._expressionData, expressions);
   }
 
   private createExpressionData(): DynamicFormFieldExpressionData {

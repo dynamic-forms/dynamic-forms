@@ -34,6 +34,7 @@ export class DynamicFormArray<
   pushElement(element: DynamicFormField): void {
     this._fields.push(element);
     this._control.push(element.control);
+    this._control.markAsTouched();
   }
 
   popElement(): void {
@@ -42,6 +43,7 @@ export class DynamicFormArray<
       this._fields.pop().destroy();
       this._model.pop();
       this._control.removeAt(length - 1);
+      this._control.markAsTouched();
     }
   }
 
@@ -52,11 +54,14 @@ export class DynamicFormArray<
       this._fields = [];
       this._model = [];
       this._control.clear();
+      this._control.markAsTouched();
       this._elements = this._fields;
     }
   }
 
   check(): void {
+    this.checkControl();
+    this.checkValidators();
     this.fields.forEach(field => field.check());
   }
 
@@ -79,6 +84,7 @@ export class DynamicFormArray<
 
   validate(): void {
     this.fields.forEach(field => field.validate());
+    this._control.markAsTouched();
   }
 
   private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition): any {

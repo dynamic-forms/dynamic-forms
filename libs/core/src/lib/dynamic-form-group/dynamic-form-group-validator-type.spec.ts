@@ -1,23 +1,30 @@
 import { FormGroup } from '@angular/forms';
-import { dynamicFormGroupRequiredValidatorFn } from './dynamic-form-group-validator-type';
+import { dynamicFormGroupRequiredValidatorFactory } from './dynamic-form-group-validator-type';
 
 describe('DynamicFormGroupValidatorType', () => {
-  it('dynamicFormArrayMinLengthValidatorFactory returns validatorFn' , () => {
-    const validatorFn = dynamicFormGroupRequiredValidatorFn();
+  it('dynamicFormGroupRequiredValidatorFactory returns validatorFn' , () => {
+    const validatorFn = dynamicFormGroupRequiredValidatorFactory();
 
     expect(validatorFn).toBeDefined();
   });
 
-  it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error' , () => {
-    const validatorFn = dynamicFormGroupRequiredValidatorFn();
-    const group = <FormGroup>{ value: {} };
+  it('validatorFn of dynamicFormGroupRequiredValidatorFactory returns no error' , () => {
+    const validatorFn = dynamicFormGroupRequiredValidatorFactory();
+    const group = <FormGroup>{ value: { value1: 'value1', value2: 'value2' } };
 
     expect(validatorFn(group)).toBeNull();
   });
 
-  it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns error' , () => {
-    const validatorFn = dynamicFormGroupRequiredValidatorFn();
+  it('validatorFn of dynamicFormGroupRequiredValidatorFactory returns no error' , () => {
+    const validatorFn = dynamicFormGroupRequiredValidatorFactory();
     const group = <FormGroup>{ value: null };
+
+    expect(validatorFn(group)).toBeNull();
+  });
+
+  it('validatorFn of dynamicFormGroupRequiredValidatorFactory returns no error' , () => {
+    const validatorFn = dynamicFormGroupRequiredValidatorFactory();
+    const group = <FormGroup>{ value: { value1: null, value2: 'value2' } };
 
     expect(validatorFn(group)).toEqual({ requiredGroup: true });
   });

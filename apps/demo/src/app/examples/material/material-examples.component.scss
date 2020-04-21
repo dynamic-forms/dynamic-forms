@@ -8,6 +8,8 @@
     }
 
     .dynamic-form {
+      $red: #f44336;
+
       display: flex;
       flex-direction: column;
       margin: 0 10px;
@@ -63,6 +65,11 @@
           }
         }
 
+        .dynamic-form-group-errors {
+          color: $red;
+          font-size: 14px;
+        }
+
         .dynamic-form-group-actions {
           display: flex;
           flex-direction: row;
@@ -105,6 +112,11 @@
           }
         }
       
+        .dynamic-form-array-errors {
+          color: $red;
+          font-size: 14px;
+        }
+
         .dynamic-form-array-actions {
           display: flex;
           flex-direction: row;
