@@ -78,6 +78,11 @@
           }
         }
 
+        .dynamic-form-group-errors {
+          color: $red;
+          font-size: 14px;
+        }
+
         .dynamic-form-group-actions {
           display: flex;
           flex-direction: row;
@@ -118,6 +123,11 @@
           &.uppercase {
             text-transform: uppercase;
           }
+        }
+
+        .dynamic-form-array-errors {
+          color: $red;
+          font-size: 14px;
         }
 
         .dynamic-form-array-actions {

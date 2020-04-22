@@ -30,6 +30,7 @@ export class DynamicFormGroup<
 
   check(): void {
     this.checkControl();
+    this.checkValidators();
     this.fields.forEach(field => field.check());
   }
 
@@ -51,6 +52,7 @@ export class DynamicFormGroup<
   }
 
   validate(): void {
+    this._control.markAsTouched();
     this.fields.forEach(field => field.validate());
   }
 
@@ -64,16 +66,5 @@ export class DynamicFormGroup<
       return this.cloneObject(definition.defaultValue);
     }
     return {};
-  }
-
-  private checkControl(): void {
-    const disabled = (this.parent && this.parent.control.disabled) || this.template.disabled || false;
-    if (this.control.disabled !== disabled) {
-      if (disabled) {
-        this.control.disable();
-      } else {
-        this.control.enable();
-      }
-    }
   }
 }

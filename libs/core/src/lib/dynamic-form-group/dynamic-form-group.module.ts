@@ -6,7 +6,9 @@ import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-e
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { dynamicFormGroupFactory } from './dynamic-form-group-factory';
+import { dynamicFormGroupValidatorTypes } from './dynamic-form-group-validator-type';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
 
 export const dynamicFormGroupType: DynamicFormFieldType = {
@@ -22,7 +24,8 @@ export const dynamicFormGroupType: DynamicFormFieldType = {
     ReactiveFormsModule,
     DynamicFormElementModule,
     DynamicFormFieldModule,
-    DynamicFormConfigModule.withField(dynamicFormGroupType)
+    DynamicFormConfigModule.withField(dynamicFormGroupType),
+    DynamicFormValidationModule.withGroupValidators(dynamicFormGroupValidatorTypes)
   ],
   declarations: [
     DynamicFormGroupComponent

@@ -11,6 +11,7 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
+import { DynamicFormFieldValidator, DynamicFormFieldValidatorFn } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
@@ -32,6 +33,8 @@ export abstract class DynamicFormField<
   protected _control: Control;
 
   protected _actions: DynamicFormAction[] = [];
+
+  protected _validators: DynamicFormFieldValidator[] = [];
 
   constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
     super(definition);
@@ -70,6 +73,8 @@ export abstract class DynamicFormField<
   get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
   get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
 
+  get validators(): DynamicFormFieldValidator[] { return this._validators; }
+
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;
   }
@@ -79,6 +84,11 @@ export abstract class DynamicFormField<
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);
     }
+  }
+
+  initValidators(validators: DynamicFormFieldValidator[]): void {
+    this._validators = validators || [];
+    this._control.setValidators(this.getValidatorFunctions());
   }
 
   abstract check(): void;
@@ -98,6 +108,21 @@ export abstract class DynamicFormField<
       }
       return result;
     }, <DynamicFormField[]>[]);
+  }
+
+  protected checkControl(): void {
+    const disabled = (this.parent && this.parent.control.disabled) || this.template.disabled || false;
+    if (this.control.disabled !== disabled) {
+      return disabled ? this.control.disable() : this.control.enable();
+    }
+  }
+
+  protected checkValidators(): void {
+    const validatorsChanged = this.validatorsChanged();
+    if (validatorsChanged) {
+      this.control.setValidators(this.getValidatorFunctions());
+      this.control.updateValueAndValidity();
+    }
   }
 
   protected cloneObject<T>(obj: T): T {
@@ -120,6 +145,18 @@ export abstract class DynamicFormField<
       root: () => this.root ? this.root.expressionData : undefined
     });
     return expressionData;
+  }
+
+  private getValidatorFunctions(): DynamicFormFieldValidatorFn[] {
+    return this._validators
+      .filter(validator => !!validator.validatorFn)
+      .map(validator => validator.validatorFn);
+  }
+
+  private validatorsChanged(): boolean {
+    return this._validators
+      .map(validator => validator.checkChanges())
+      .some(change => !!change);
   }
 
   private createPath(): string {

@@ -254,7 +254,29 @@ describe('DynamicFormBuilder', () => {
       expect(formGroup.template).toBe(definition.template);
 
       expect(formGroup.control).toBeDefined();
+      expect(formGroup.control.validator).toBeNull();
+
       expect(formGroup.fields).toBeDefined();
+    })
+  );
+
+  it('creates DynamicFormGroup including validator',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormGroupDefinition>{
+        key: 'key',
+        type: 'group',
+        template: {
+          validation: {
+            required: true
+          }
+        }
+      };
+      const formGroup = builder.createFormGroup(form, form, definition);
+
+      expect(formGroup.control).toBeDefined();
+      expect(formGroup.control.validator).toBeDefined();
     })
   );
 
@@ -281,6 +303,8 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.template).toBe(definition.template);
 
       expect(formArray.control).toBeDefined();
+      expect(formArray.control.validator).toBeNull();
+
       expect(formArray.elements).toBeDefined();
       expect(formArray.fields.length).toBe(2);
       expect(formArray.fields[0].key).toBe('0');
@@ -289,6 +313,27 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.fields[1].key).toBe('1');
       expect(formArray.fields[1].index).toBe(1);
       expect(formArray.fields[1].componentType).toBe('control');
+    })
+  );
+
+  it('creates DynamicFormArray including validator',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const definition = <DynamicFormArrayDefinition>{
+        key: 'key',
+        type: 'array',
+        template: {
+          validation: {
+            minLength: true,
+            maxLength: false
+          }
+        }
+      };
+      const formArray = builder.createFormArray(form, form, definition);
+
+      expect(formArray.control).toBeDefined();
+      expect(formArray.control.validator).toBeDefined();
     })
   );
 
@@ -318,7 +363,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('creates DynamicFormControl including DynamicFormValidation',
+  it('creates DynamicFormControl including validation',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
