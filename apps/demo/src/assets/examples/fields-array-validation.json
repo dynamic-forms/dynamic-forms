@@ -1,0 +1,132 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "users",
+      "type": "array",
+      "template": {
+        "label": "Users",
+        "classNameLabel": "bold",
+        "classNameActions": "reverse",
+        "minLength": 3,
+        "maxLength": 5,
+        "validation": {
+          "minLength": true,
+          "maxLength": true
+        }
+      },
+      "actions": [
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Clear users",
+            "action": "clearArrayElements"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Pop user",
+            "action": "popArrayElement"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Push user",
+            "action": "pushArrayElement"
+          },
+          "expressions": {
+            "disabled": "data.parent.length >= 10"
+          }
+        }
+      ],
+      "defaultLength": 1,
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row"
+        },
+        "elements": [
+          {
+            "key": "name",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Name",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter name"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          },
+          {
+            "key": "email",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Email",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter email"
+              },
+              "validation": {
+                "required": true,
+                "email": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

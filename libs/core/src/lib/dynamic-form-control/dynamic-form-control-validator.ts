@@ -1,35 +1,18 @@
-import { ValidatorFn } from '@angular/forms';
-import { DynamicFormControlTemplate } from './dynamic-form-control-template';
-import { DynamicFormControlValidatorFactory } from './dynamic-form-control-validator-factory';
+import { FormControl } from '@angular/forms';
+import { DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn } from '../dynamic-form-field/dynamic-form-field-validator';
+import { DynamicFormControl } from './dynamic-form-control';
 
-export class DynamicFormControlValidator {
-  private _enabled: boolean;
-  private _parameters: any;
-  private _validatorFn: ValidatorFn;
+export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<FormControl>;
 
-  constructor(
-    readonly key: string,
-    readonly template: DynamicFormControlTemplate,
-    readonly factory: DynamicFormControlValidatorFactory
-  ) {
-    this._enabled = template.validation[key];
-    this._parameters = template.input[key];
-    this._validatorFn = this._enabled ? factory(this._parameters) : undefined;
+export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<FormControl>;
+
+export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormControl, DynamicFormControl> {
+
+  constructor(key: string, field: DynamicFormControl, factory: DynamicFormControlValidatorFactory) {
+    super(key, field, factory);
   }
 
-  get enabled(): boolean { return this._enabled; }
-  get parameters(): any { return this._parameters; }
-  get validatorFn(): ValidatorFn { return this._validatorFn; }
-
-  checkChanges(): boolean {
-    const enabled = this.template.validation[this.key];
-    const parameters = this.template.input[this.key];
-    if (this._enabled !== enabled || this._parameters !== parameters) {
-      this._enabled = enabled;
-      this._parameters = parameters;
-      this._validatorFn = enabled ? this.factory(parameters) : undefined;
-      return true;
-    }
-    return false;
+  protected getParameters(): any {
+    return this.field.template.input[this.key];
   }
 }

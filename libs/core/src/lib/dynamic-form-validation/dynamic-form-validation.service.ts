@@ -11,7 +11,7 @@ export class DynamicFormValidationService {
   constructor(
     protected libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS)
-    private _validationConfigs: DynamicFormValidationConfigs = null
+    private _validationConfigs: DynamicFormValidationConfigs
   ) {
     this.validationConfig = this.mergeValidationConfigs(this._validationConfigs);
   }
