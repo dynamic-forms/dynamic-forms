@@ -1,5 +1,5 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control-evaluator';
 import { DynamicFormControlEvaluatorType } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
 import { DynamicFormControlEvaluatorTypeConfig,
@@ -22,9 +22,9 @@ export class DynamicFormEvaluationBuilder {
     return this.controlEvaluatorTypes.find(f => f.type === type);
   }
 
-  createControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
-    const evaluators = (definition.evaluations || []).map(evaluation => {
-      const type = this.getControlEvaluatorType(definition.template.input.type);
+  createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {
+    const evaluators = (control.definition.evaluations || []).map(evaluation => {
+      const type = this.getControlEvaluatorType(control.definition.template.input.type);
       return type ? { key: evaluation.key, func: type.func } : null;
     });
     return evaluators.filter(evaluator => !!evaluator);

@@ -17,10 +17,13 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     required: 'The field is required.',
     email: 'The field is not an email.',
     pattern: 'The field does not fit the pattern.',
-    min: 'The field does not fit the min value',
-    max: 'The field does not fit the max value',
-    minlength: 'The field does not fit the min length',
-    maxlength: 'The field does not fit the max length'
+    min: 'The field does not fit the min value.',
+    max: 'The field does not fit the max value.',
+    minlength: 'The field does not fit the min length.',
+    maxlength: 'The field does not fit the max length.',
+    minlengthArray: 'The array does not fit the min length.',
+    maxlengthArray: 'The array does not fit the max length.',
+    requiredGroup: 'The group requires all fields.'
   },
   libraryName: dynamicFormLibrary.name
 };

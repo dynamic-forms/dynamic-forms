@@ -3,6 +3,7 @@ import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
+import { DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
@@ -18,6 +19,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
+import { DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
@@ -58,6 +60,7 @@ export class DynamicFormBuilder {
     const field = new DynamicFormGroup(root, parent, definition);
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormElements(root, field, field.definition.elements));
+    field.initValidators(this.createGroupValidators(field));
     return field;
   }
 
@@ -67,6 +70,7 @@ export class DynamicFormBuilder {
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormArrayElements(field));
     field.initActions(this.createFormActions(field, field, field.definition.actions));
+    field.initValidators(this.createArrayValidators(field));
     return field;
   }
 
@@ -81,8 +85,8 @@ export class DynamicFormBuilder {
     this.requireFieldType(definition.type);
     const field = new DynamicFormControl(root, parent, definition);
     field.initExpressions(this.createFieldExpressions(field));
-    field.initEvaluators(this.createControlEvaluators(field.definition));
-    field.initValidators(this.createControlValidators(field.definition));
+    field.initEvaluators(this.createControlEvaluators(field));
+    field.initValidators(this.createControlValidators(field));
     return field;
   }
 
@@ -191,11 +195,19 @@ export class DynamicFormBuilder {
     return this.expressionBuilder.createActionExpressions(action);
   }
 
-  private createControlEvaluators(definition: DynamicFormControlDefinition): DynamicFormControlEvaluator[] {
-    return this.evaluationBuilder.createControlEvaluators(definition);
+  private createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {
+    return this.evaluationBuilder.createControlEvaluators(control);
   }
 
-  private createControlValidators(definition: DynamicFormControlDefinition): DynamicFormControlValidator[] {
-    return this.validationBuilder.createControlValidators(definition.template);
+  private createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
+    return this.validationBuilder.createControlValidators(control);
+  }
+
+  private createGroupValidators(group: DynamicFormGroup): DynamicFormGroupValidator[] {
+    return this.validationBuilder.createGroupValidators(group);
+  }
+
+  private createArrayValidators(array: DynamicFormArray): DynamicFormArrayValidator[] {
+    return this.validationBuilder.createArrayValidators(array);
   }
 }

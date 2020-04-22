@@ -51,6 +51,10 @@
             {
               "id": "fields-group-default-value",
               "label": "Default value"
+            },
+            {
+              "id": "fields-group-validation",
+              "label": "Validation"
             }
           ]
         },
@@ -68,6 +72,10 @@
             {
               "id": "fields-array-actions",
               "label": "Actions"
+            },
+            {
+              "id": "fields-array-validation",
+              "label": "Validation"
             },
             {
               "label": "Models",
