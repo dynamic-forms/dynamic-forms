@@ -9,6 +9,9 @@
       <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
     </div>  
   </ng-container>
+  <ng-container *ngIf="showErrors">
+    <div class="dynamic-form-array-errors">{{ errorMessage }}</div> 
+  </ng-container>
   <ng-container *ngIf="actions?.length">
     <div class="dynamic-form-array-actions" [ngClass]="template?.classNameActions">
       <dynamic-form-element *ngFor="let action of actions" [element]="action"></dynamic-form-element>

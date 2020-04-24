@@ -193,7 +193,7 @@ describe('DynamicFormControl', () => {
     };
     const formControl = new DynamicFormControl(root, root, definition);
     const formControlValidators = <DynamicFormControlValidator[]>[
-      new DynamicFormControlValidator('required', definition.template, _ => Validators.required)
+      new DynamicFormControlValidator('required', formControl, _ => Validators.required)
     ];
 
     formControl.initValidators(formControlValidators);
