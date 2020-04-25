@@ -19,10 +19,10 @@
         "./node_modules/@angular/*"
       ],
       "@dynamic-forms/core": [
-        "dist/v9/@dynamic-forms/core"
+        "dist/v10/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v9/@dynamic-forms/core/*"
+        "dist/v10/@dynamic-forms/core/*"
       ]
     }
   },
