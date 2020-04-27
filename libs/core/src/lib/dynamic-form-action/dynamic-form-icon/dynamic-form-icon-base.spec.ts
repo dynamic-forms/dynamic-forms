@@ -1,22 +1,40 @@
+import { Component } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
+import { DynamicFormIconBase } from './dynamic-form-icon-base';
 import { DynamicFormIconDefinition } from './dynamic-form-icon-definition';
 import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
-import { DynamicFormIconComponent } from './dynamic-form-icon.component';
 
-describe('DynamicFormIconComponent', () => {
-  let fixture: ComponentFixture<DynamicFormIconComponent>;
-  let component: DynamicFormIconComponent;
+@Component({
+  selector: 'dynamic-form-icon-test',
+  template: `
+    <button class="dynamic-form-icon"
+      [class.hidden]="template?.hidden" [ngClass]="template?.className"
+      [type]="template?.type || 'button'" [disabled]="template?.disabled"
+      (click)="onClick($event)"
+    >{{ template?.label }}</button>
+  `
+})
+class DynamicFormIconTestComponent extends DynamicFormIconBase {
+  constructor(protected actionService: DynamicFormActionService) {
+    super(actionService);
+  }
+}
+
+
+describe('DynamicFormIconBase', () => {
+  let fixture: ComponentFixture<DynamicFormIconTestComponent>;
+  let component: DynamicFormIconTestComponent;
   let element: DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormIconComponent
+        DynamicFormIconTestComponent
       ],
       providers: [
         {
@@ -27,7 +45,7 @@ describe('DynamicFormIconComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormIconComponent);
+    fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
     const root = <DynamicFormField>{};
