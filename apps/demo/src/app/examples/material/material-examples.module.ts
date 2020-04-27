@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
@@ -9,6 +10,15 @@ import { MaterialExamplesComponent } from './material-examples.component';
 @NgModule({
   imports: [
     DynamicFormExampleModule,
+    DynamicFormIconModule.withIcons({
+      icons: {
+        submit: 'send',
+        validate: 'live_help',
+        reset: 'delete',
+        resetDefault: 'restore_page'
+      },
+      libraryName: 'material'
+    }),
     MatDynamicFormsModule.forRoot(),
     RouterModule.forChild([
       {

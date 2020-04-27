@@ -131,6 +131,15 @@
               "label": "All"
             }
           ] 
+        },
+        { 
+          "label": "Icon",
+          "items": [
+            {
+              "id": "actions-icon-all",
+              "label": "All"
+            }
+          ] 
         }
       ]
     },

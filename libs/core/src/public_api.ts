@@ -27,6 +27,13 @@ export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button-template';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.component';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.module';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-config';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-definition';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-template';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.component';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.module';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.pipe';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.service';
 export * from './lib/dynamic-form-array/dynamic-form-array';
 export * from './lib/dynamic-form-array/dynamic-form-array-base';
 export * from './lib/dynamic-form-array/dynamic-form-array-definition';
