@@ -1,31 +1,69 @@
 import { async, inject, TestBed } from '@angular/core/testing';
-import { DynamicFormConfigService } from '../../dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormIconType, DynamicFormIconModule } from './dynamic-form-icon.module';
+import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
+import { DynamicFormIconModule } from './dynamic-form-icon.module';
+import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconModule', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        DynamicFormIconModule
-      ],
-      providers: [
-        {
-          provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-        }
-      ]
+  describe('without providers', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormIconModule
+        ]
+      });
+    }));
+
+    it('does not provide DynamicFormIconService', () => {
+      expect(() => TestBed.get(DynamicFormIconService)).toThrowError(/StaticInjectorError/);
     });
-  }));
+  });
 
-  it('provides DYNAMIC_FORM_ACTION_TYPES',
-    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-      const types = service.actionTypes;
+  describe('with DynamicFormLibraryService provided', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormIconModule
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    }));
 
-      expect(types.length).toBe(1);
-      expect(types[0]).toEqual(dynamicFormIconType);
-      expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
-  );
+    it('provides DynamicFormIconService',
+      inject([DynamicFormIconService], (service: DynamicFormIconService) => {
+        expect(service).toBeDefined();
+      })
+    );
+  });
+
+  describe('withIcons for provided icon config', () => {
+    const libraryName = 'test';
+    const config: DynamicFormIconConfig = { icons: {}, libraryName };
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormIconModule.withIcons(config)
+        ],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    }));
+
+    it('provides DYNAMIC_FORM_ICON_CONFIGS',
+      inject([DYNAMIC_FORM_ICON_CONFIGS], (configs: DynamicFormIconConfigs) => {
+        expect(configs.length).toBe(1);
+        expect(configs[0]).toEqual(config);
+      })
+    );
+  });
 });
