@@ -35,14 +35,13 @@ export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<Dynamic
 
 export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
   const field = action.parent && action.parent.parent;
-  if (field && field.fieldClassType === 'array') {
-    return <DynamicFormArray>field;
-  }
-  return null;
+  return field && field.fieldClassType === 'array'
+    ? <DynamicFormArray>field
+    : undefined;
 }
 
 export function dynamicFormArrayRemoveElementFactory(field: DynamicFormArray, action: DynamicFormAction): void {
-  if (field && action.parent) {
+  if (field && action.parent && action.parent.index >= 0) {
     field.removeElement(action.parent.index);
   }
 }

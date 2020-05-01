@@ -1,4 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -86,6 +87,61 @@ describe('DynamicFormArrayModule', () => {
     })
   );
 
+  it('handler returns array parent of action',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const field = <DynamicFormField>{ fieldClassType: 'array' };
+      const parent = <DynamicFormField>{ parent: field };
+      const action = <DynamicFormAction>{ parent: parent };
+
+      const result = handler.fieldFunc(action);
+
+      expect(result).toBe(field);
+    })
+  );
+
+  it('handler returns undefined as array parent of action',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const field = <DynamicFormField>{ fieldClassType: 'group' };
+      const parent = <DynamicFormField>{ parent: field };
+      const action = <DynamicFormAction>{ parent: parent };
+
+      const result = handler.fieldFunc(action);
+
+      expect(result).toBeUndefined();
+    })
+  );
+
+  it('handler calls removeElement of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const field = <DynamicFormArray>{ removeElement(_index: number): void {} };
+      const parent = <DynamicFormField>{ index: 1 };
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'removeElement');
+
+      handler.func(field, action);
+
+      expect(field.removeElement).toHaveBeenCalledWith(1);
+    })
+  );
+
+  it('handler does not call removeElement of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const field = <DynamicFormArray>{ removeElement(_index: number): void {} };
+      const parent = <DynamicFormField>{};
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'removeElement');
+
+      handler.func(field, action);
+
+      expect(field.removeElement).not.toHaveBeenCalled();
+    })
+  );
   it('handler calls clearElements of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'clearArrayElements');
