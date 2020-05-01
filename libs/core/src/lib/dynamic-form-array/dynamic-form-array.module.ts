@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
@@ -32,6 +33,27 @@ export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<Dynamic
   libraryName: dynamicFormLibrary.name
 };
 
+export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
+  const field = action.parent && action.parent.parent;
+  if (field && field.fieldClassType === 'array') {
+    return <DynamicFormArray>field;
+  }
+  return null;
+}
+
+export function dynamicFormArrayRemoveElementFactory(field: DynamicFormArray, action: DynamicFormAction): void {
+  if (field && action.parent) {
+    field.removeElement(action.parent.index);
+  }
+}
+
+export const dynamicFormArrayRemoveElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
+  type: 'removeArrayElement',
+  fieldFunc: getDynamicFormArray,
+  func: dynamicFormArrayRemoveElementFactory,
+  libraryName: dynamicFormLibrary.name
+};
+
 export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray): void {
   field.clearElements();
 }
@@ -60,6 +82,7 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormConfigModule.withField(dynamicFormArrayType),
     DynamicFormActionModule.withHandlers([
       dynamicFormArrayPopElementHandler,
+      dynamicFormArrayRemoveElementHandler,
       dynamicFormArrayClearElementsHandler
     ]),
     DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ]),

@@ -13,9 +13,10 @@ import { MaterialExamplesComponent } from './material-examples.component';
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',
-        validate: 'live_help',
+        validate: 'error',
         reset: 'delete',
-        resetDefault: 'restore_page'
+        resetDefault: 'restore_page',
+        remove: 'clear'
       },
       libraryName: 'material'
     }),

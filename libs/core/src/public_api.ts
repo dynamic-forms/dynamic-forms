@@ -101,6 +101,7 @@ export * from './lib/dynamic-form-expression/dynamic-form-field-expression';
 export * from './lib/dynamic-form-expression/dynamic-form-field-expressions';
 export * from './lib/dynamic-form-field/dynamic-form-field';
 export * from './lib/dynamic-form-field/dynamic-form-field-base';
+export * from './lib/dynamic-form-field/dynamic-form-field-class-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-control';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';

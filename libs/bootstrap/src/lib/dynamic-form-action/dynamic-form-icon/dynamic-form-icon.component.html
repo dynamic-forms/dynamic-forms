@@ -1,5 +1,5 @@
-<button class="dynamic-form-icon btn btn-default" 
+<button class="dynamic-form-icon btn btn-outline-primary" 
   [class.hidden]="template?.hidden" [ngClass]="template?.className"
   [type]="template?.type || 'button'" [disabled]="template?.disabled" 
   (click)="onClick($event)"
->{{ template?.label }}</button>
+><i class="material-icons">{{ template | dynamicFormIcon }}</i></button>

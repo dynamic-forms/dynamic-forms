@@ -72,7 +72,7 @@
             "key": "email",
             "type": "control",
             "template": {
-              "className": "col-6",
+              "className": "col-5",
               "label": "Email",
               "input": {
                 "type": "textbox",
@@ -82,6 +82,14 @@
                 "required": true,
                 "email": true
               }
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "icon": "remove",
+              "label": "Remove user",
+              "action": "removeArrayElement"
             }
           }
         ]
