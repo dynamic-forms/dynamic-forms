@@ -23,6 +23,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.index).toBe(1);
     expect(formControl.path).toBe('key');
     expect(formControl.classType).toBe('field');
+    expect(formControl.fieldClassType).toBe('control');
     expect(formControl.componentType).toBe('componentType');
 
     expect(formControl.model).toBeNull();

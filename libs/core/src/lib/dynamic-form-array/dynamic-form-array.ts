@@ -1,6 +1,7 @@
 import { FormArray } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
@@ -17,6 +18,8 @@ export class DynamicFormArray<
     this._control = new FormArray([]);
     this.extendExpressionData({ length: () => this.length });
   }
+
+  get fieldClassType(): DynamicFormFieldClassType { return 'array'; }
 
   get elements(): DynamicFormElement[] { return this._elements; }
   get fields(): DynamicFormField[] { return this._fields; }
@@ -56,6 +59,19 @@ export class DynamicFormArray<
       this._control.clear();
       this._control.markAsTouched();
       this._elements = this._fields;
+    }
+  }
+
+  removeElement(index: number): void {
+    if (index >= 0 && index < this.length) {
+      this._fields.splice(index, 1).forEach(field => field.destroy());
+      this._fields.forEach((field, idx) => {
+        field.definition.key = `${idx}`;
+        field.definition.index = idx;
+      });
+      this._model.splice(index, 1);
+      this._control.removeAt(index);
+      this._control.markAsTouched();
     }
   }
 
