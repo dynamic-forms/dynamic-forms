@@ -15,7 +15,7 @@ describe('DynamicFormIconModule', () => {
     }));
 
     it('does not provide DynamicFormIconService', () => {
-      expect(() => TestBed.get(DynamicFormIconService)).toThrowError(/StaticInjectorError/);
+      expect(() => TestBed.inject(DynamicFormIconService)).toThrowError(/NullInjectorError/);
     });
   });
 

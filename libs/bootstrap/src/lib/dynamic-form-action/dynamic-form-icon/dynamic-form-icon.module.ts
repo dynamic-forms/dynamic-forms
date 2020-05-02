@@ -22,9 +22,6 @@ export const bsDynamicFormIconType: DynamicFormActionType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormIconComponent
-  ],
-  entryComponents: [
-    BsDynamicFormIconComponent
   ]
 })
 export class BsDynamicFormIconModule {}

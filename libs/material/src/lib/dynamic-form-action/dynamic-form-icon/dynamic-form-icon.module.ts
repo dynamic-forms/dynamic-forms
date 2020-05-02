@@ -28,9 +28,6 @@ export const matDynamicFormIconType: DynamicFormActionType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormIconComponent
-  ],
-  entryComponents: [
-    MatDynamicFormIconComponent
   ]
 })
 export class MatDynamicFormIconModule {}
