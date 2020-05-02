@@ -1,22 +1,39 @@
+import { Component } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
+import { DynamicFormButtonBase } from './dynamic-form-button-base';
 import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
-import { DynamicFormButtonComponent } from './dynamic-form-button.component';
 
-describe('DynamicFormButtonComponent', () => {
-  let fixture: ComponentFixture<DynamicFormButtonComponent>;
-  let component: DynamicFormButtonComponent;
+@Component({
+  selector: 'dynamic-form-button-test',
+  template: `
+    <button class="dynamic-form-button"
+      [class.hidden]="template?.hidden" [ngClass]="template?.className"
+      [type]="template?.type || 'button'" [disabled]="template?.disabled"
+      (click)="onClick($event)"
+    >{{ template?.label }}</button>
+  `
+})
+class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
+  constructor(protected actionService: DynamicFormActionService) {
+    super(actionService);
+  }
+}
+
+describe('DynamicFormButtonBase', () => {
+  let fixture: ComponentFixture<DynamicFormButtonTestComponent>;
+  let component: DynamicFormButtonTestComponent;
   let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormButtonComponent
+        DynamicFormButtonTestComponent
       ],
       providers: [
         {
@@ -27,7 +44,7 @@ describe('DynamicFormButtonComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormButtonComponent);
+    fixture = TestBed.createComponent(DynamicFormButtonTestComponent);
     component = fixture.componentInstance;
 
     const root = <DynamicFormField>{};

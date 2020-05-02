@@ -20,8 +20,8 @@ describe('DynamicFormArray', () => {
     expect(formArray.id).toBe('id');
     expect(formArray.key).toBe('key');
     expect(formArray.index).toBe(1);
-    expect(formArray.path).toBe('key');
     expect(formArray.classType).toBe('field');
+    expect(formArray.fieldClassType).toBe('array');
     expect(formArray.componentType).toBe('componentType');
 
     expect(formArray.model).toEqual([]);
@@ -131,6 +131,7 @@ describe('DynamicFormArray', () => {
     ];
 
     spyOn(formArray.control, 'removeAt');
+    spyOn(formArray.control, 'markAsTouched');
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
@@ -142,6 +143,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.fields).toEqual([ fields[0] ]);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
+    expect(formArray.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).not.toHaveBeenCalled();
     expect(fields[1].destroy).toHaveBeenCalled();
   });
@@ -154,12 +156,14 @@ describe('DynamicFormArray', () => {
     spyOn(formArray.fields, 'pop');
     spyOn(formArray.model, 'pop');
     spyOn(formArray.control, 'removeAt');
+    spyOn(formArray.control, 'markAsTouched');
 
     formArray.popElement();
 
     expect(formArray.fields.pop).not.toHaveBeenCalled();
     expect(formArray.model.pop).not.toHaveBeenCalled();
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
   });
 
   it('clears elements', () => {
@@ -172,6 +176,7 @@ describe('DynamicFormArray', () => {
     ];
 
     spyOn(formArray.control, 'clear');
+    spyOn(formArray.control, 'markAsTouched');
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
@@ -182,6 +187,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([]);
     expect(formArray.control.clear).toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).toHaveBeenCalled();
     expect(fields[1].destroy).toHaveBeenCalled();
   });
@@ -192,10 +198,68 @@ describe('DynamicFormArray', () => {
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.control, 'clear');
+    spyOn(formArray.control, 'markAsTouched');
 
     formArray.clearElements();
 
     expect(formArray.control.clear).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
+  });
+
+  it('removes element', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+    ];
+
+    spyOn(formArray.control, 'removeAt');
+    spyOn(formArray.control, 'markAsTouched');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(fields[2], 'destroy');
+    spyOn(fields[3], 'destroy');
+
+    formArray.initElements(fields);
+    formArray.removeElement(1);
+
+    expect(formArray.length).toBe(3);
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[0], fields[2], fields[3] ]);
+    expect(formArray.fields[0]).toBe(fields[0]);
+    expect(formArray.fields[0].definition.index).toBe(0);
+    expect(formArray.fields[1]).toBe(fields[2]);
+    expect(formArray.fields[1].definition.index).toBe(1);
+    expect(formArray.fields[2]).toBe(fields[3]);
+    expect(formArray.fields[2].definition.index).toBe(2);
+    expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
+    expect(formArray.control.markAsTouched).toHaveBeenCalled();
+    expect(fields[0].destroy).not.toHaveBeenCalled();
+    expect(fields[1].destroy).toHaveBeenCalled();
+    expect(fields[2].destroy).not.toHaveBeenCalled();
+    expect(fields[3].destroy).not.toHaveBeenCalled();
+  });
+
+  it('does not remove element if index is invalid', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+
+    spyOn(formArray.fields, 'splice');
+    spyOn(formArray.model, 'splice');
+    spyOn(formArray.control, 'removeAt');
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.removeElement(1);
+
+    expect(formArray.fields.splice).not.toHaveBeenCalled();
+    expect(formArray.model.splice).not.toHaveBeenCalled();
+    expect(formArray.control.removeAt).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
   });
 
   it('check calls check of all fields', () => {
