@@ -7,6 +7,7 @@ import { assignExpressions, assignExpressionData } from '../dynamic-form-express
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
+import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
@@ -27,7 +28,6 @@ export abstract class DynamicFormField<
   protected _root: DynamicFormField;
   protected _parent: DynamicFormField;
 
-  protected _path: string;
   protected _model: any;
   protected _options: DynamicFormFieldOptions;
   protected _control: Control;
@@ -40,7 +40,6 @@ export abstract class DynamicFormField<
     super(definition);
     this._root = root;
     this._parent = parent;
-    this._path = this.createPath();
     this._options = this.createOptions();
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
@@ -53,7 +52,10 @@ export abstract class DynamicFormField<
 
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
-  get path(): string { return this._path; }
+  get path(): string {
+    const parentPath = this.parent && this.parent.path;
+    return parentPath ? `${parentPath}.${this.key}` : this.key || null;
+  }
   get classType(): DynamicFormClassType { return 'field'; }
 
   get model(): any { return this._model; }
@@ -90,6 +92,8 @@ export abstract class DynamicFormField<
     this._validators = validators || [];
     this._control.setValidators(this.getValidatorFunctions());
   }
+
+  abstract get fieldClassType(): DynamicFormFieldClassType;
 
   abstract check(): void;
   abstract destroy(): void;
@@ -157,10 +161,6 @@ export abstract class DynamicFormField<
     return this._validators
       .map(validator => validator.checkChanges())
       .some(change => !!change);
-  }
-
-  private createPath(): string {
-    return this.parent && this.parent.path ? `${this.parent.path}.${this.definition.key}` : this.definition.key || null;
   }
 
   private createOptions(): DynamicFormFieldOptions {

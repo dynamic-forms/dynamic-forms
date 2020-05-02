@@ -1,5 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
@@ -16,6 +17,8 @@ export class DynamicFormGroup<
     this._model = model || this.getModel(parent, definition);
     this._control = new FormGroup({});
   }
+
+  get fieldClassType(): DynamicFormFieldClassType { return 'group'; }
 
   get elements(): DynamicFormElement[] { return this._elements; }
   get fields(): DynamicFormField[] { return this._fields; }

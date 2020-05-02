@@ -2,6 +2,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
@@ -23,6 +24,8 @@ export class DynamicFormControl<
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
   }
+
+  get fieldClassType(): DynamicFormFieldClassType { return 'control'; }
 
   get input(): Input { return this.template.input; }
   get inputId(): string { return this.id || this.path; }
