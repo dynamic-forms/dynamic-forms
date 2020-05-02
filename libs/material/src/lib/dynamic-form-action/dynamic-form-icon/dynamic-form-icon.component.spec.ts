@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionService, DynamicFormField, DynamicFormIconDefinition,
   DynamicFormIconTemplate, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
+import { MatDynamicFormIconModule } from './dynamic-form-icon.module';
 
 describe('MatDynamicFormIconComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormIconComponent>;
@@ -11,8 +12,8 @@ describe('MatDynamicFormIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MatDynamicFormIconComponent
+      imports: [
+        MatDynamicFormIconModule
       ],
       providers: [
         {
@@ -47,35 +48,34 @@ describe('MatDynamicFormIconComponent', () => {
 
     expect(formButtonElement).toBeDefined();
     expect(formButtonElement.type).toBe('button');
-    expect(formButtonElement.innerHTML).toBe('label');
   });
 
   it('sets dynamic form icon to hidden', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon');
+    expect(formButtonElement.className).toBe('dynamic-form-icon mat-icon-button mat-button-base mat-primary');
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon hidden');
+    expect(formButtonElement.className).toBe('dynamic-form-icon mat-icon-button mat-button-base mat-primary hidden');
   });
 
   it('sets class name of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon');
+    expect(formButtonElement.className).toBe('dynamic-form-icon mat-icon-button mat-button-base mat-primary');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon className1 className2');
+    expect(formButtonElement.className).toBe('dynamic-form-icon mat-icon-button mat-button-base mat-primary className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon');
+    expect(formButtonElement.className).toBe('dynamic-form-icon mat-icon-button mat-button-base mat-primary');
   });
 });

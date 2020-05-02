@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition, DynamicFormButtonTemplate,
   DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
+import { BsDynamicFormButtonModule } from './dynamic-form-button.module';
 
 describe('BsDynamicFormButtonComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormButtonComponent>;
@@ -11,8 +12,8 @@ describe('BsDynamicFormButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        BsDynamicFormButtonComponent
+      imports: [
+        BsDynamicFormButtonModule
       ],
       providers: [
         {
@@ -47,7 +48,7 @@ describe('BsDynamicFormButtonComponent', () => {
 
     expect(formButtonElement).toBeDefined();
     expect(formButtonElement.type).toBe('button');
-    expect(formButtonElement.innerHTML).toBe('label');
+    expect(formButtonElement.innerText).toBe('label');
   });
 
   it('sets dynamic form button to hidden', () => {
