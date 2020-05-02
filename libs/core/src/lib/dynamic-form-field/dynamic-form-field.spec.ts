@@ -2,9 +2,12 @@ import { DynamicFormFieldExpression } from '../dynamic-form-expression/dynamic-f
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from './dynamic-form-field';
+import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 
 class DynamicFormFieldTest extends DynamicFormField {
+  get fieldClassType(): DynamicFormFieldClassType { return null; }
+
   check(): void {}
   destroy(): void {}
 
@@ -31,7 +34,6 @@ describe('DynamicFormField', () => {
     expect(field.id).toBe('id');
     expect(field.key).toBe('key');
     expect(field.index).toBe(1);
-    expect(field.path).toBe('key');
     expect(field.classType).toBe('field');
     expect(field.componentType).toBe('componentType');
 
