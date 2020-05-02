@@ -46,7 +46,12 @@
           }
         }
       ],
-      "defaultLength": 1,
+      "defaultValue": [
+        { "name": "user01", "email": "user01@mail.com" },
+        { "name": "user02", "email": "user02@mail.com" },
+        { "name": "user03", "email": "user03@mail.com" },
+        {}
+      ],
       "definitionTemplate": {
         "type": "group",
         "template": {
@@ -57,7 +62,7 @@
             "key": "name",
             "type": "control",
             "template": {
-              "className": "col-6",
+              "className": "col-5",
               "label": "Name",
               "input": {
                 "type": "textbox",
@@ -82,6 +87,15 @@
                 "required": true,
                 "email": true
               }
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "className": "col-1",
+              "label": "Remove user",
+              "icon": "remove",
+              "action": "removeArrayElement"
             }
           }
         ]

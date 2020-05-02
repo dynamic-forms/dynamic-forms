@@ -12,7 +12,6 @@ describe('DynamicFormGroup', () => {
     const definition = <DynamicFormGroupDefinition>{ key: 'key', index: 1, type: 'componentType', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
-
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
     expect(formGroup.definition).toBe(definition);
@@ -22,6 +21,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.index).toBe(1);
     expect(formGroup.path).toBe('key');
     expect(formGroup.classType).toBe('field');
+    expect(formGroup.fieldClassType).toBe('group');
     expect(formGroup.componentType).toBe('componentType');
 
     expect(formGroup.model).toEqual({});
