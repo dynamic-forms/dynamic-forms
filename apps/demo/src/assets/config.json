@@ -20,6 +20,10 @@
     {
       "name": "9.0.0-beta",
       "url": "https://dynamic-forms.azurewebsites.net/v9/dev"
+    },
+    {
+      "name": "10.0.0-beta",
+      "url": "https://dynamic-forms.azurewebsites.net/v10/dev"
     }
   ]
 }
