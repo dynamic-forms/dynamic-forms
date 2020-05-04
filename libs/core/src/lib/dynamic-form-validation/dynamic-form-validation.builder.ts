@@ -9,6 +9,7 @@ import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-for
 import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DynamicFormControlValidatorTypeConfig,
   DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
 import { DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
@@ -59,7 +60,8 @@ export class DynamicFormValidationBuilder {
       return undefined;
     }
 
-    const validatorType = this.getControlValidatorType(key);
+    const type = this.getValidatorType(control, key);
+    const validatorType = this.getControlValidatorType(type);
     return validatorType ? new DynamicFormControlValidator(key, control, validatorType.factory) : undefined;
   }
 
@@ -74,7 +76,8 @@ export class DynamicFormValidationBuilder {
       return undefined;
     }
 
-    const validatorType = this.getGroupValidatorType(key);
+    const type = this.getValidatorType(group, key);
+    const validatorType = this.getGroupValidatorType(type);
     return validatorType ? new DynamicFormGroupValidator(key, group, validatorType.factory) : undefined;
   }
 
@@ -89,7 +92,13 @@ export class DynamicFormValidationBuilder {
       return undefined;
     }
 
-    const validatorType = this.getArrayValidatorType(key);
+    const type = this.getValidatorType(array, key);
+    const validatorType = this.getArrayValidatorType(type);
     return validatorType ? new DynamicFormArrayValidator(key, array, validatorType.factory) : undefined;
+  }
+
+  private getValidatorType(field: DynamicFormField, key: string): string {
+    const validator = field.definition.validators && field.definition.validators[key];
+    return validator ? validator.type : key;
   }
 }

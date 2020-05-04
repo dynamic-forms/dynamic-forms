@@ -63,7 +63,7 @@
             "key": "name",
             "type": "control",
             "template": {
-              "className": "col-6",
+              "className": "col-5",
               "label": "Name",
               "input": {
                 "type": "textbox",
@@ -88,6 +88,15 @@
                 "required": true,
                 "email": true
               }
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "className": "col-1",
+              "label": "Remove user",
+              "icon": "remove",
+              "action": "removeArrayElement"
             }
           }
         ]
