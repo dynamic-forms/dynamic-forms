@@ -18,12 +18,19 @@ export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorTyp
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormGroupEqualValidatorFactory(parameters?: { keys: string[] }, message?: string): DynamicFormGroupValidatorFn {
+export function dynamicFormGroupEqualValidatorFactory(
+  parameters?: { keys: string[] }, message?: string, key?: string
+): DynamicFormGroupValidatorFn {
   return (group: FormGroup) => {
     const keys = parameters && parameters.keys;
     if (group.value && keys && keys.length > 1) {
       for (let i = 1; i < keys.length; i++) {
         if (group.value[keys[i - 1]] !== group.value[keys[i]]) {
+          if (key) {
+            const error = {};
+            error[key] = { message };
+            return error;
+          }
           return { equal: { message } };
         }
       }

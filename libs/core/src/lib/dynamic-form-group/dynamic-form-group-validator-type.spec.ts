@@ -50,9 +50,16 @@ describe('DynamicFormGroupValidatorType', () => {
   });
 
   it('validatorFn of dynamicFormGroupEqualValidatorFactory returns error' , () => {
-    const validatorFn = dynamicFormGroupEqualValidatorFactory({ keys: [ 'value1', 'value2' ] }, 'error message');
+    const validatorFn = dynamicFormGroupEqualValidatorFactory({ keys: [ 'value1', 'value2' ] }, 'message');
     const group = <FormGroup>{ value: { value1: 'value1', value2: 'value2' } };
 
-    expect(validatorFn(group)).toEqual({ equal: { message: 'error message' }});
+    expect(validatorFn(group)).toEqual({ equal: { message: 'message' }});
+  });
+
+  it('validatorFn of dynamicFormGroupEqualValidatorFactory returns error' , () => {
+    const validatorFn = dynamicFormGroupEqualValidatorFactory({ keys: [ 'password', 'confirmPassword' ] }, 'password message', 'password');
+    const group = <FormGroup>{ value: { password: 'Test12345', confirmPassword: 'Test1234' } };
+
+    expect(validatorFn(group)).toEqual({ password: { message: 'password message' }});
   });
 });

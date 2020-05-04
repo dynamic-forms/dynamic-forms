@@ -9,7 +9,7 @@ export type DynamicFormFieldValidatorFn<
 
 export type DynamicFormFieldValidatorFactory<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl
-> = (parameters?: any, message?: string) => DynamicFormFieldValidatorFn<Control>;
+> = (parameters?: any, message?: string, key?: string) => DynamicFormFieldValidatorFn<Control>;
 
 export abstract class DynamicFormFieldValidator<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
@@ -71,6 +71,6 @@ export abstract class DynamicFormFieldValidator<
   }
 
   private getValidatorFn(): DynamicFormFieldValidatorFn<Control> {
-    return this._enabled ? this._factory(this._parameters, this._message) : undefined;
+    return this._enabled ? this._factory(this._parameters, this._message, this._key) : undefined;
   }
 }
