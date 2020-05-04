@@ -5,7 +5,7 @@ import { DynamicFormGroupValidatorFn } from './dynamic-form-group-validator';
 
 export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidatorType<FormGroup> {}
 
-export function dynamicFormGroupRequiredValidatorFactory(_: any): DynamicFormGroupValidatorFn {
+export function dynamicFormGroupRequiredValidatorFactory(): DynamicFormGroupValidatorFn {
   return (group: FormGroup) => {
     const keys = Object.keys(group.value || {});
     return keys.some(key => !group.value[key]) ? { requiredGroup: true } : null;
@@ -18,7 +18,7 @@ export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorTyp
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormGroupEqualValidatorFactory(parameters: { keys: string[] }, message?: string): DynamicFormGroupValidatorFn {
+export function dynamicFormGroupEqualValidatorFactory(parameters?: { keys: string[] }, message?: string): DynamicFormGroupValidatorFn {
   return (group: FormGroup) => {
     const keys = parameters && parameters.keys;
     if (group.value && keys && keys.length > 1) {

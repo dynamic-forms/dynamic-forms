@@ -13,8 +13,6 @@ export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGro
   }
 
   protected getParameters(): any {
-    return this.definition
-      ? this.definition.parameters
-      : this.field.template[this.key];
+    return this.definition ? this.definition.parameters : this.field.template[this.key];
   }
 }

@@ -125,7 +125,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for required',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { required: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
         const validator = service.createControlValidator(control, 'required');
 
         expect(validator.key).toBe('required');
@@ -138,7 +138,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for email',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { email: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { email: true } } };
         const validator = service.createControlValidator(control, 'email');
 
         expect(validator.key).toBe('email');
@@ -151,7 +151,10 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for pattern',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { pattern: '[A-Za-z]*' }, validation: { pattern: true } } };
+        const control = <DynamicFormControl>{
+          definition: {},
+          template: { input: { pattern: '[A-Za-z]*' }, validation: { pattern: true } }
+        };
         const validator = service.createControlValidator(control, 'pattern');
 
         expect(validator.key).toBe('pattern');
@@ -164,7 +167,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for pattern with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { pattern: null }, validation: { pattern: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { pattern: null }, validation: { pattern: true } } };
         const validator = service.createControlValidator(control, 'pattern');
 
         expect(validator.key).toBe('pattern');
@@ -177,7 +180,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for min',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { min: -10 }, validation: { min: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { min: -10 }, validation: { min: true } } };
         const validator = service.createControlValidator(control, 'min');
 
         expect(validator.key).toBe('min');
@@ -190,7 +193,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for min with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { min: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { min: true } } };
         const validator = service.createControlValidator(control, 'min');
 
         expect(validator.key).toBe('min');
@@ -203,7 +206,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for max',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { max: 10 }, validation: { max: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { max: 10 }, validation: { max: true } } };
         const validator = service.createControlValidator(control, 'max');
 
         expect(validator.key).toBe('max');
@@ -216,7 +219,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for max with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { max: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { max: true } } };
         const validator = service.createControlValidator(control, 'max');
 
         expect(validator.key).toBe('max');
@@ -229,7 +232,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for minLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { minLength: 5 }, validation: { minLength: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { minLength: 5 }, validation: { minLength: true } } };
         const validator = service.createControlValidator(control, 'minLength');
 
         expect(validator.key).toBe('minLength');
@@ -242,7 +245,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for minLength with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { minLength: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { minLength: true } } };
         const validator = service.createControlValidator(control, 'minLength');
 
         expect(validator.key).toBe('minLength');
@@ -255,7 +258,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for maxLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: { maxLength: 10 }, validation: { maxLength: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { maxLength: 10 }, validation: { maxLength: true } } };
         const validator = service.createControlValidator(control, 'maxLength');
 
         expect(validator.key).toBe('maxLength');
@@ -268,7 +271,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator for maxLength with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { maxLength: true } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { maxLength: true } } };
         const validator = service.createControlValidator(control, 'maxLength');
 
         expect(validator.key).toBe('maxLength');
@@ -281,7 +284,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator being undefined if template is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: null };
+        const control = <DynamicFormControl>{ definition: {}, template: null };
         const validator = service.createControlValidator(control, 'required');
 
         expect(validator).toBeUndefined();
@@ -290,7 +293,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns control validator being undefined if validation is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const control = <DynamicFormControl>{ template: { input: {}, validation: { required: null } } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: null } } };
         const validator = service.createControlValidator(control, 'required');
 
         expect(validator).toBeUndefined();
@@ -300,7 +303,7 @@ describe('DynamicFormValidationBuilder', () => {
     it('returns control validator being undefined if validator factory is not available',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const validation = <DynamicFormControlValidation>{ json: true };
-        const control = <DynamicFormControl>{ template: { input: { type: 'textarea' }, validation } };
+        const control = <DynamicFormControl>{ definition: {}, template: { input: { type: 'textarea' }, validation } };
         const validator = service.createControlValidator(control, 'json');
 
         expect(validator).toBeUndefined();
@@ -317,7 +320,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns group validator for required',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
+        const group = <DynamicFormGroup>{ definition: {}, template: { validation: { required: true } } };
         const validator = service.createGroupValidator(group, 'required');
 
         expect(validator.key).toBe('required');
@@ -330,7 +333,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns group validator being undefined if template is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const group = <DynamicFormGroup>{ template: null };
+        const group = <DynamicFormGroup>{ definition: {}, template: null };
         const validator = service.createGroupValidator(group, 'required');
 
         expect(validator).toBeUndefined();
@@ -339,7 +342,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns group validator being undefined if validation is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const group = <DynamicFormGroup>{ template: { validation: { required: null } } };
+        const group = <DynamicFormGroup>{ definition: {}, template: { validation: { required: null } } };
         const validator = service.createGroupValidator(group, 'required');
 
         expect(validator).toBeUndefined();
@@ -349,7 +352,7 @@ describe('DynamicFormValidationBuilder', () => {
     it('returns group validator being undefined if validator factory is not available',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const validation = <DynamicFormGroupValidation>{ minLength: true };
-        const group = <DynamicFormGroup>{ template: { validation } };
+        const group = <DynamicFormGroup>{ definition: {}, template: { validation } };
         const validator = service.createGroupValidator(group, 'minLength');
 
         expect(validator).toBeUndefined();
@@ -366,7 +369,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator for minLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: { minLength: 2, validation: { minLength: true } } };
+        const array = <DynamicFormArray>{ definition: {}, template: { minLength: 2, validation: { minLength: true } } };
         const validator = service.createArrayValidator(array, 'minLength');
 
         expect(validator.key).toBe('minLength');
@@ -379,7 +382,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator for minLength with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: { validation: { minLength: true } } };
+        const array = <DynamicFormArray>{ definition: {}, template: { validation: { minLength: true } } };
         const validator = service.createArrayValidator(array, 'minLength');
 
         expect(validator.key).toBe('minLength');
@@ -392,7 +395,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator for maxLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: { maxLength: 5, validation: { maxLength: true } } };
+        const array = <DynamicFormArray>{ definition: {}, template: { maxLength: 5, validation: { maxLength: true } } };
         const validator = service.createArrayValidator(array, 'maxLength');
 
         expect(validator.key).toBe('maxLength');
@@ -405,7 +408,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator for maxLength with validatorFn being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: { validation: { maxLength: true } } };
+        const array = <DynamicFormArray>{ definition: {}, template: { validation: { maxLength: true } } };
         const validator = service.createArrayValidator(array, 'maxLength');
 
         expect(validator.key).toBe('maxLength');
@@ -418,7 +421,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator being undefined if template is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: null };
+        const array = <DynamicFormArray>{ definition: {}, template: null };
         const validator = service.createArrayValidator(array, 'minLength');
 
         expect(validator).toBeUndefined();
@@ -427,7 +430,7 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator being undefined if validation is invalid',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const array = <DynamicFormArray>{ template: { validation: { minLength: null } } };
+        const array = <DynamicFormArray>{ definition: {}, template: { validation: { minLength: null } } };
         const validator = service.createArrayValidator(array, 'minLength');
 
         expect(validator).toBeUndefined();
@@ -437,7 +440,7 @@ describe('DynamicFormValidationBuilder', () => {
     it('returns array validator being undefined if validator factory is not available',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const validation = <DynamicFormArrayValidation>{ required: true };
-        const array = <DynamicFormArray>{ template: { validation } };
+        const array = <DynamicFormArray>{ definition: {}, template: { validation } };
         const validator = service.createArrayValidator(array, 'required');
 
         expect(validator).toBeUndefined();
