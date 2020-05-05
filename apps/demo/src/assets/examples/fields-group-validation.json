@@ -1,12 +1,21 @@
 {
   "elements": [
     {
-      "key": "register",
+      "key": "login",
       "type": "group",
       "template": {
         "label": "Login",
         "validation": {
-          "required": true
+          "password": true
+        }
+      },
+      "validators": {
+        "password": {
+          "type": "equal",
+          "parameters": {
+            "keys": [ "password", "confirmPassword" ]
+          },
+          "message": "Confirm password needs to equal password"
         }
       },
       "elements": [
@@ -59,17 +68,26 @@
               "pattern": true
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "key": "termsAndConditions",
+      "type": "group",
+      "template": {
+        "label": "Terms & conditions",
+        "validation": {
+          "required": true
+        }
+      },
+      "elements": [
         {
-          "key": "termsAndConditions",
+          "key": "accept",
           "type": "control",
           "template": {
-            "label": "Accept terms & conditions",
+            "label": "Accept",
             "input": {
               "type": "checkbox"
-            },
-            "validation": {
-              "required": true
             }
           }
         }
