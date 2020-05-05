@@ -13,6 +13,6 @@ export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormC
   }
 
   protected getParameters(): any {
-    return this.field.template.input[this.key];
+    return this.definition ? this.definition.parameters : this.field.template.input[this.key];
   }
 }
