@@ -177,6 +177,18 @@
             background-color: $gray-200;
             opacity: 1;  
           }
+
+          .custom-control {
+            label:before {
+              pointer-events: none;
+            }
+            
+            &.custom-switch {
+              .custom-control-input {
+                visibility: hidden;
+              }
+            }
+          }
         }
       }
     
