@@ -47,9 +47,9 @@ describe('BsDynamicFormCheckboxComponent', () => {
   });
 
   it('creates component template', () => {
-    const checkDebugElement = fixture.debugElement.query(By.css('div.form-check'));
-    const inputDebugElement = checkDebugElement.query(By.css('input.form-check-input'));
-    const labelDebugElement = checkDebugElement.query(By.css('label.form-check-label'));
+    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
+    const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
+    const labelDebugElement = checkDebugElement.query(By.css('label.custom-control-label'));
     const checkElement = <HTMLDivElement>checkDebugElement.nativeElement;
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
@@ -64,8 +64,8 @@ describe('BsDynamicFormCheckboxComponent', () => {
   });
 
   it('sets dynamic form control to readonly', () => {
-    const checkDebugElement = fixture.debugElement.query(By.css('div.form-check'));
-    const inputDebugElement = checkDebugElement.query(By.css('input.form-check-input'));
+    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
+    const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
     expect(inputElement.readOnly).not.toBe(true);
