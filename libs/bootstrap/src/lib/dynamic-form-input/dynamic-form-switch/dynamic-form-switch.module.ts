@@ -24,9 +24,6 @@ export const bsDynamicFormSwitchType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormSwitchComponent
-  ],
-  entryComponents: [
-    BsDynamicFormSwitchComponent
   ]
 })
 export class BsDynamicFormSwitchModule {}

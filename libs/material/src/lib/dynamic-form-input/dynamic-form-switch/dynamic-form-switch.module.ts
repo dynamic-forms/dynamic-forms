@@ -25,9 +25,6 @@ export const matDynamicFormSwitchType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormSwitchComponent
-  ],
-  entryComponents: [
-    MatDynamicFormSwitchComponent
   ]
 })
 export class MatDynamicFormSwitchModule {}
