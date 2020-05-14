@@ -151,7 +151,7 @@
         }
         
         &.readonly {
-          .mat-form-field, .mat-checkbox, .mat-radio-group {
+          .mat-form-field, .mat-checkbox, .mat-radio-group, .mat-slide-toggle {
             pointer-events: none;
           }
         }

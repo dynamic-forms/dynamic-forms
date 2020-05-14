@@ -7,6 +7,7 @@ import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynami
 import { MatDynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
 import { MatDynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
 import { MatDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-select.module';
+import { MatDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
 import { MatDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
 import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
 
@@ -20,6 +21,7 @@ import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form
     MatDynamicFormNumberboxModule,
     MatDynamicFormRadioModule,
     MatDynamicFormSelectModule,
+    MatDynamicFormSwitchModule,
     MatDynamicFormTextareaModule,
     MatDynamicFormTextboxModule
   ],
