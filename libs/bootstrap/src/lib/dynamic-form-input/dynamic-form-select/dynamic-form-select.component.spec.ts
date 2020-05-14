@@ -71,7 +71,7 @@ describe('BsDynamicFormSelectComponent', () => {
   });
 
   it('creates component template', () => {
-    const selectDebugElement = fixture.debugElement.query(By.css('select.form-control'));
+    const selectDebugElement = fixture.debugElement.query(By.css('select.custom-select'));
     const optionDebugElements = selectDebugElement.queryAll(By.css('option'));
     const optionGroupDebugElements = selectDebugElement.queryAll(By.css('optgroup'));
 

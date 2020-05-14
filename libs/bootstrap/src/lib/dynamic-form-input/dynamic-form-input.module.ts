@@ -6,6 +6,7 @@ import { BsDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic
 import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
 import { BsDynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
 import { BsDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-select.module';
+import { BsDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
 import { BsDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
 import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
 
@@ -18,6 +19,7 @@ import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-
     BsDynamicFormNumberboxModule,
     BsDynamicFormRadioModule,
     BsDynamicFormSelectModule,
+    BsDynamicFormSwitchModule,
     BsDynamicFormTextareaModule,
     BsDynamicFormTextboxModule
   ]

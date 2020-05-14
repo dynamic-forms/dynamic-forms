@@ -45,7 +45,9 @@
     "serve:material": "ng build dynamic-forms-material --watch",
     "serve:doc:core": "cd libs/core && npx compodoc -c doc.json --serve --watch",
     "serve:doc:bootstrap": "cd libs/bootstrap && npx compodoc -c doc.json --serve --watch",
-    "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch"
+    "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch",
+    "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v9/",
+    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v9/"
   },
   "private": true,
   "dependencies": {
@@ -60,10 +62,10 @@
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
     "@ngxs/store": "^3.6.2",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.0",
     "rxjs": "~6.5.5",
-    "tslib": "^1.11.2",
-    "uuid": "^7.0.3",
+    "tslib": "^1.13.0",
+    "uuid": "^8.0.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
@@ -75,7 +77,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.5.10",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "~13.13.5",
+    "@types/node": "~14.0.1",
     "@types/uuid": "^7.0.3",
     "codelyzer": "~5.2.2",
     "jasmine-core": "^3.5.0",
@@ -84,7 +86,7 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.2",
     "karma-jasmine": "^3.1.1",
-    "karma-jasmine-html-reporter": "^1.5.3",
+    "karma-jasmine-html-reporter": "^1.5.4",
     "karma-junit-reporter": "^2.0.1",
     "ng-packagr": "^9.1.3",
     "protractor": "~5.4.4",

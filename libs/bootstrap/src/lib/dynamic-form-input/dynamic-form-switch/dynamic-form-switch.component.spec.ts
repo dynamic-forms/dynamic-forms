@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormCheckbox, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
-import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
-import { BsDynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
+import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
+  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
+import { BsDynamicFormSwitchComponent } from './dynamic-form-switch.component';
+import { BsDynamicFormSwitchModule } from './dynamic-form-switch.module';
 
-describe('BsDynamicFormCheckboxComponent', () => {
-  let fixture: ComponentFixture<BsDynamicFormCheckboxComponent>;
-  let component: BsDynamicFormCheckboxComponent;
+describe('BsDynamicFormSwitchComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormSwitchComponent>;
+  let component: BsDynamicFormSwitchComponent;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormCheckbox>;
-  let formControl: DynamicFormControl<DynamicFormCheckbox>;
+  let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
+  let formControl: DynamicFormControl<DynamicFormSwitch>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormCheckboxModule
+        BsDynamicFormSwitchModule
       ],
       providers: [
         {
@@ -27,12 +27,12 @@ describe('BsDynamicFormCheckboxComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(BsDynamicFormCheckboxComponent);
+    fixture = TestBed.createComponent(BsDynamicFormSwitchComponent);
     component = fixture.componentInstance;
 
     form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCheckbox>>{ key: 'key', template: { label: 'label' } };
-    formControl = new DynamicFormControl<DynamicFormCheckbox>(form, form, definition);
+    definition = <DynamicFormControlDefinition<DynamicFormSwitch>>{ key: 'key', template: { label: 'label' } };
+    formControl = new DynamicFormControl<DynamicFormSwitch>(form, form, definition);
 
     component.field = formControl;
 
@@ -47,7 +47,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
   });
 
   it('creates component template', () => {
-    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
+    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-switch'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.custom-control-label'));
     const checkElement = <HTMLDivElement>checkDebugElement.nativeElement;
@@ -64,7 +64,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
   });
 
   it('sets dynamic form control to readonly', () => {
-    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
+    const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-switch'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 

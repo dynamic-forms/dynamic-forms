@@ -102,6 +102,17 @@
       }
     },
     {
+      "key": "switch",
+      "type": "control",
+      "template": {
+        "label": "Switch",
+        "input": {
+          "type": "switch",
+          "defaultValue": true
+        }
+      }
+    },
+    {
       "key": "textarea",
       "type": "control",
       "template": {
