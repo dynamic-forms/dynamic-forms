@@ -1,0 +1,43 @@
+{
+  "elements": [
+    {
+      "type": "content",
+      "template": {
+        "content": "<h3>Checkbox variations</h3>"
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Default</h4>"
+      }
+    },
+    {
+      "key": "checkbox",
+      "type": "control",
+      "template": {
+        "label": "Checkbox",
+        "input": {
+          "type": "checkbox"
+        }
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Indeterminate</h4>"
+      }
+    },
+    {
+      "key": "checkbox",
+      "type": "control",
+      "template": {
+        "label": "Checkbox",
+        "input": {
+          "type": "checkbox",
+          "indeterminate": true
+        }
+      }
+    }
+  ]
+}

@@ -3,20 +3,7 @@
     {
       "type": "content",
       "template": {
-        "content": "<h3>Validation of inputs</h3>"
-      }
-    },
-    {
-      "key": "checkbox",
-      "type": "control",
-      "template": {
-        "label": "Checkbox",
-        "input": {
-          "type": "checkbox"
-        },
-        "validation": {
-          "required": true
-        }
+        "content": "<h3>Validation of inputs with hints</h3>"
       }
     },
     {
