@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
-import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
+import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 
-export const matDynamicFormCheckboxType: DynamicFormInputType = {
-  type: 'checkbox',
-  component: MatDynamicFormCheckboxComponent,
+export const matDynamicFormSwitchType: DynamicFormInputType = {
+  type: 'switch',
+  component: MatDynamicFormSwitchComponent,
   libraryName: matDynamicFormLibrary.name
 };
 
@@ -16,15 +16,15 @@ export const matDynamicFormCheckboxType: DynamicFormInputType = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCheckboxModule,
-    DynamicFormConfigModule.withInput(matDynamicFormCheckboxType)
+    MatSlideToggleModule,
+    DynamicFormConfigModule.withInput(matDynamicFormSwitchType)
   ],
   declarations: [
-    MatDynamicFormCheckboxComponent
+    MatDynamicFormSwitchComponent
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormCheckboxComponent
+    MatDynamicFormSwitchComponent
   ]
 })
-export class MatDynamicFormCheckboxModule {}
+export class MatDynamicFormSwitchModule {}
