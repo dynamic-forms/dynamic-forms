@@ -6,10 +6,10 @@ export interface DynamicFormInputOptionItem {
 
 export interface DynamicFormInputOption extends DynamicFormInputOptionItem {
   value: string | number;
-  items: undefined;
+  items?: undefined;
 }
 
 export interface DynamicFormInputOptionGroup extends DynamicFormInputOptionItem {
-  value: undefined;
+  value?: undefined;
   items: DynamicFormInputOption[];
 }
