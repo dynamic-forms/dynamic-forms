@@ -47,9 +47,9 @@ describe('MatDynamicFormSwitchComponent', () => {
   });
 
   it('creates component template', () => {
-    const checkDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
-    const inputDebugElement = checkDebugElement.query(By.css('input.mat-checkbox-input'));
-    const labelDebugElement = checkDebugElement.query(By.css('span.mat-checkbox-label'));
+    const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
+    const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
+    const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
 
