@@ -7,7 +7,7 @@ export interface Project {
 export interface Repository {
   url: string;
   branch: string;
-  libraryQuery: string;
+  libraryPath: string;
 }
 
 export interface Version {
