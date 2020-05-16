@@ -13,6 +13,6 @@ export class DynamicFormArrayValidator extends DynamicFormFieldValidator<FormArr
   }
 
   protected getParameters(): any {
-    return this.field.template[this.key];
+    return this.definition ? this.definition.parameters : this.field.template[this.key];
   }
 }

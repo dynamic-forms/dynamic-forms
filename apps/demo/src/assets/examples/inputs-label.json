@@ -92,6 +92,16 @@
       }
     },
     {
+      "key": "switch",
+      "type": "control",
+      "template": {
+        "label": "Switch",
+        "input": {
+          "type": "switch"
+        }
+      }
+    },
+    {
       "key": "textarea",
       "type": "control",
       "template": {

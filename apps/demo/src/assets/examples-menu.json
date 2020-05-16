@@ -31,6 +31,10 @@
           "label": "Variations",
           "items": [
             {
+              "id": "inputs-variations-checkbox",
+              "label": "Checkbox"
+            },
+            {
               "id": "inputs-variations-select",
               "label": "Select"
             },
@@ -128,6 +132,15 @@
             },
             {
               "id": "actions-button-all",
+              "label": "All"
+            }
+          ] 
+        },
+        { 
+          "label": "Icon",
+          "items": [
+            {
+              "id": "actions-icon-all",
               "label": "All"
             }
           ] 

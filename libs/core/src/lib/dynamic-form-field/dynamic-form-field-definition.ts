@@ -3,6 +3,7 @@ import { DynamicFormFieldExpressionFunction} from '../dynamic-form-expression/dy
 import { DynamicFormFieldEvaluatorFn } from './dynamic-form-field-evaluator';
 import { DynamicFormFieldOptions } from './dynamic-form-field-options';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
+import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
 export interface DynamicFormFieldDefinition<
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate
@@ -12,5 +13,6 @@ export interface DynamicFormFieldDefinition<
   options?: DynamicFormFieldOptions;
   evaluations?: { key?: string, func?: DynamicFormFieldEvaluatorFn }[];
   expressions?: { [key: string]: string | DynamicFormFieldExpressionFunction };
+  validators?: { [key: string]: DynamicFormFieldValidatorDefinition };
   wrappers?: string[];
 }

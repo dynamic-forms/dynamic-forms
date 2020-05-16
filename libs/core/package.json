@@ -1,9 +1,9 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "9.0.0-beta",
+  "version": "10.0.0-beta",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/forms": "^9.0.0"
+    "@angular/common": "^10.0.0-next",
+    "@angular/core": "^10.0.0-next",
+    "@angular/forms": "^10.0.0-next"
   }
 }

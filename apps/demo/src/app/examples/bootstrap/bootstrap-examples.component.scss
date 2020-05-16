@@ -17,6 +17,7 @@
       @import '../../../../../../node_modules/bootstrap/scss/reboot';
       @import '../../../../../../node_modules/bootstrap/scss/forms';
       @import '../../../../../../node_modules/bootstrap/scss/buttons';
+      @import '../../../../../../node_modules/bootstrap/scss/custom-forms';
 
       margin: 0 10px;
 
@@ -37,9 +38,15 @@
           dynamic-form-group, 
           dynamic-form-array, 
           dynamic-form-control,
+          bs-dynamic-form-button,
+          bs-dynamic-form-icon ,
           .dynamic-form-group-elements,
-          .dynamic-form-array-elements   {
+          .dynamic-form-array-elements {
             display: contents;
+          }
+
+          .dynamic-form-icon {
+            align-self: center;
           }
         }
       }
@@ -170,6 +177,18 @@
             background-color: $gray-200;
             opacity: 1;  
           }
+
+          .custom-control {
+            label:before {
+              pointer-events: none;
+            }
+            
+            &.custom-switch {
+              .custom-control-input {
+                visibility: hidden;
+              }
+            }
+          }
         }
       }
     
@@ -179,6 +198,10 @@
         button {
           margin-right: 10px;
         }
+      }
+
+      .dynamic-form-icon {
+        height: 38px; 
       }
     }
   }

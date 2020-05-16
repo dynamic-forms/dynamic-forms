@@ -38,9 +38,15 @@
           dynamic-form-group, 
           dynamic-form-array, 
           dynamic-form-control,
+          mat-dynamic-form-button,
+          mat-dynamic-form-icon,
           .dynamic-form-group-elements,
           .dynamic-form-array-elements  {
             display: contents;
+          }
+
+          .dynamic-form-icon {
+            align-self: center;
           }
         }
       }
@@ -145,7 +151,7 @@
         }
         
         &.readonly {
-          .mat-form-field, .mat-checkbox, .mat-radio-group {
+          .mat-form-field, .mat-checkbox, .mat-radio-group, .mat-slide-toggle {
             pointer-events: none;
           }
         }
@@ -193,6 +199,11 @@
         button {
           margin-right: 10px;
         }
+      }
+
+      .dynamic-form-icon {
+        width: 40px;
+        height: 40px; 
       }
     }
   }
