@@ -4,6 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0"
+    "@angular/forms": "^8.0.0",
+    "@dynamic-forms/core": "^8.0.0-beta",
+    "bootstrap": " ~4.5.0"
   }
 }
