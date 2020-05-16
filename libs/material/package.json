@@ -5,6 +5,7 @@
     "@angular/common": "^10.0.0-next",
     "@angular/core": "^10.0.0-next",
     "@angular/forms": "^10.0.0-next",
-    "@angular/material": "^9.0.0"
+    "@angular/material": "^10.0.0-next",
+    "@dynamic-forms/core": "^10.0.0-beta"
   }
 }

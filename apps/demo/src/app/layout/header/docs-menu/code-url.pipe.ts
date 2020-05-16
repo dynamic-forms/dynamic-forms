@@ -5,12 +5,12 @@ import { Repository } from '../../../state/config/config.model';
 @Pipe({ name: 'appCodeUrl' })
 export class CodeUrlPipe implements PipeTransform {
   transform(repo: Repository, library: string): string {
-    const query = this.getQuery(repo, library);
-    return encodeURI(`${repo.url}?${query}`);
+    const path = this.getPath(repo, library);
+    return encodeURI(`${repo.url}/${path}`);
   }
 
-  private getQuery(repo: Repository, library: string): string {
-    return repo.libraryQuery
+  private getPath(repo: Repository, library: string): string {
+    return repo.libraryPath
       .replace('{{library}}', library)
       .replace('{{branch}}', repo.branch);
   }
