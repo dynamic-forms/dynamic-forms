@@ -7,6 +7,7 @@ export interface Project {
 export interface Repository {
   url: string;
   branch: string;
+  branchPath: string;
   libraryPath: string;
 }
 
