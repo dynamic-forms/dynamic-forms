@@ -29,7 +29,7 @@
       }
     },
     {
-      "key": "checkbox",
+      "key": "checkboxIndeterminate",
       "type": "control",
       "template": {
         "label": "Checkbox",
