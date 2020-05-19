@@ -10,7 +10,8 @@
   "repository": {
     "url": "https://github.com/dynamic-forms/dynamic-forms",
     "branch": "release/v9",
-    "libraryPath": "tree/{{branch}}/libs/{{library}}"
+    "branchPath": "tree/{{branch}}",
+    "libraryPath": "libs/{{library}}"
   },
   "versions": [
     {
