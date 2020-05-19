@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { CodeUrlPipe } from './code-url.pipe';
+import { HeaderPipesModule } from '../pipes/pipes.module';
 import { DocsMenuItemsComponent } from './docs-menu-items.component';
 import { DocsMenuComponent } from './docs-menu.component';
 
@@ -14,10 +14,10 @@ import { DocsMenuComponent } from './docs-menu.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    HeaderPipesModule
   ],
   declarations: [
-    CodeUrlPipe,
     DocsMenuItemsComponent,
     DocsMenuComponent
   ],
