@@ -1,11 +1,15 @@
 {
   "name": "@dynamic-forms/material",
   "version": "10.0.0-beta",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^10.0.0-next",
     "@angular/core": "^10.0.0-next",
     "@angular/forms": "^10.0.0-next",
     "@angular/material": "^10.0.0-next",
     "@dynamic-forms/core": "^10.0.0-beta"
-  }
+  },
+  "sideEffects": false
 }
