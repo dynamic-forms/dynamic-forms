@@ -8,6 +8,7 @@ import { DocsMenuModule } from './docs-menu/docs-menu.module';
 import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { HeaderComponent } from './header.component';
 import { NotificationsToggleModule } from './notifications-toggle/notifications-toggle.module';
+import { HeaderPipesModule } from './pipes/pipes.module';
 import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
 import { VersionsMenuModule } from './versions-menu/versions-menu.module';
 
@@ -19,6 +20,7 @@ import { VersionsMenuModule } from './versions-menu/versions-menu.module';
     MatIconModule,
     MatToolbarModule,
     DocsMenuModule,
+    HeaderPipesModule,
     ExamplesMenuModule,
     NotificationsToggleModule,
     SidebarToggleModule,
