@@ -1,6 +1,6 @@
 <mat-toolbar class="header" color="primary">
   <app-sidebar-toggle></app-sidebar-toggle>
-  <a mat-button routerLink="/home">DYNAMIC FORMS</a>
+  <a mat-button routerLink="/home">dynamic-forms</a>
   <ng-container *ngIf="config$ | async as config">
     <a mat-button [href]="config.project.url" target="_blank">Project</a>
   </ng-container>
@@ -9,4 +9,9 @@
   <div class="header-spacer"></div>
   <app-notifications-toggle></app-notifications-toggle>
   <app-versions-menu></app-versions-menu>
+  <ng-container *ngIf="config$ | async as config">
+    <a mat-button mat-icon-button [href]="config.repository | appCodeUrl" target="_blank">
+      <mat-icon svgIcon="github"></mat-icon>
+    </a>
+  </ng-container>
 </mat-toolbar>
