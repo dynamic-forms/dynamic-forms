@@ -10,6 +10,7 @@ import { DocsModule } from './docs/docs.module';
 import { HomeModule } from './home/home.module';
 import { LayoutModule } from './layout/layout.module';
 import { HttpRequestInterceptor } from './services/http-request.interceptor';
+import { IconService } from './services/icon.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpRequestInterceptor } from './services/http-request.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
       multi: true
-    }
+    },
+    IconService
   ],
   bootstrap: [
     AppComponent
