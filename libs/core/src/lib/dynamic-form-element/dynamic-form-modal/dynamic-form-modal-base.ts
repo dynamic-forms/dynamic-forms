@@ -1,5 +1,5 @@
-import { DynamicFormAction } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
+import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
