@@ -1,5 +1,4 @@
-import { DynamicFormActionExpression } from './dynamic-form-action-expression';
+import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
+import { DynamicFormExpressions } from './dynamic-form-expressions';
 
-export interface DynamicFormActionExpressions {
-  [key: string]: DynamicFormActionExpression;
-}
+export interface DynamicFormActionExpressions extends DynamicFormExpressions<DynamicFormActionExpressionData> {}

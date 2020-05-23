@@ -1,16 +1,14 @@
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
-import { DynamicFormExpression } from './dynamic-form-expression';
+import { DynamicFormExpression, DynamicFormExpressionFunc } from './dynamic-form-expression';
 
-export const dynamicFormActionExpressionArgs = [ 'data' ];
+export type DynamicFormActionExpressionFunc = DynamicFormExpressionFunc<DynamicFormActionExpressionData>;
 
-export type DynamicFormActionExpressionFunction = (data: DynamicFormActionExpressionData) => any;
-
-export class DynamicFormActionExpression implements DynamicFormExpression<DynamicFormActionExpressionFunction> {
+export class DynamicFormActionExpression implements DynamicFormExpression<DynamicFormActionExpressionData> {
   constructor(
     readonly key: string,
     readonly action: DynamicFormAction,
-    readonly func: DynamicFormActionExpressionFunction
+    readonly func: DynamicFormActionExpressionFunc
   ) {}
 
   get value(): any { return this.func(this.action.expressionData); }

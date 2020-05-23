@@ -3,6 +3,17 @@
     {
       "type": "modal",
       "template": {},
+      "trigger": {
+        "type": "button",
+        "template": {
+          "type": "button",
+          "label": "Open Modal",
+          "action": "openModal"
+        },
+        "expressions": {
+          "disabled": "data.parent.isOpen"
+        }
+      },
       "elements": [
         {
           "type": "content",

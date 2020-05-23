@@ -1,5 +1,4 @@
-import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
+import { DynamicFormExpressions } from './dynamic-form-expressions';
+import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
-export interface DynamicFormFieldExpressions {
-  [key: string]: DynamicFormFieldExpression;
-}
+export interface DynamicFormFieldExpressions extends DynamicFormExpressions<DynamicFormFieldExpressionData> {}

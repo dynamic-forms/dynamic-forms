@@ -1,7 +1,10 @@
 import { extendObject } from '../dynamic-form/dynamic-form-helpers';
-import { DynamicFormFormExpressions } from './dynamic-form-expressions';
+import { DynamicFormExpressionData } from './dynamic-form-expression-data';
+import { DynamicFormExpressions } from './dynamic-form-expressions';
 
-export function assignExpressions<Func = Function>(template: any, expressions: DynamicFormFormExpressions<Func>): void {
+export function assignExpressions<Data extends DynamicFormExpressionData = DynamicFormExpressionData>(
+  template: any, expressions: DynamicFormExpressions<Data>
+): void {
   Object.keys(expressions).forEach(path => {
     const paths = path.split('.');
     if (paths.length > 1) {

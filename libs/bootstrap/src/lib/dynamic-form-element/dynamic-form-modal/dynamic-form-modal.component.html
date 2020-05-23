@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" [disabled]="isOpen$ | async" (click)="open()">Open Modal</button>
+<dynamic-form-element [element]="trigger"></dynamic-form-element>
 
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
   <div class="modal-dialog modal-dialog-centered">

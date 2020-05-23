@@ -51,6 +51,7 @@ export class DynamicFormBuilder {
   createFormElement(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition): DynamicFormElement {
     this.requireElementType(definition.type);
     const element = new DynamicFormElement(definition);
+    element.initExpressions(this.createElementExpressions(element));
     element.initElements(this.createFormElements(root, parent, element.definition.elements));
     return element;
   }
@@ -164,6 +165,18 @@ export class DynamicFormBuilder {
     });
   }
 
+  createElementExpressions(element: DynamicFormElement): DynamicFormActionExpressions {
+    return this.expressionBuilder.createElementExpressions(element);
+  }
+
+  createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
+    return this.expressionBuilder.createFieldExpressions(field);
+  }
+
+  createActionExpressions(action: DynamicFormAction): DynamicFormActionExpressions {
+    return this.expressionBuilder.createActionExpressions(action);
+  }
+
   private requireElementType(type: string): void {
     if (this.configService.getClassType(type) !== 'element') {
         throw Error(`Element type ${ type } is not defined`);
@@ -185,14 +198,6 @@ export class DynamicFormBuilder {
   private createFormArrayElements(field: DynamicFormArray): DynamicFormField[] {
     const modelItems = field.model || [] as any[];
     return modelItems.map((_item, index) => this.createFormArrayElement(field , index));
-  }
-
-  private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
-    return this.expressionBuilder.createFieldExpressions(field);
-  }
-
-  private createActionExpressions(action: DynamicFormAction): DynamicFormActionExpressions {
-    return this.expressionBuilder.createActionExpressions(action);
   }
 
   private createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {

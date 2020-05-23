@@ -13,6 +13,8 @@ export abstract class DynamicFormModalBase extends DynamicFormElementBase<
     super();
   }
 
+  get trigger(): DynamicFormAction { return this.element.trigger; }
+
   get elements(): DynamicFormElement[] { return this.element.elements; }
   get actions(): DynamicFormAction[] { return this.element.actions; }
 

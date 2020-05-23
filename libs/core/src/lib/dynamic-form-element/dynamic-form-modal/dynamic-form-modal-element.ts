@@ -8,18 +8,27 @@ export class DynamicFormModalElement extends DynamicFormElement<DynamicFormModal
   private _isOpenSubject: BehaviorSubject<boolean>;
   private _isOpenChange: Observable<boolean>;
 
+  protected _trigger: DynamicFormAction;
   protected _actions: DynamicFormAction[] = [];
 
   constructor(definition: DynamicFormModalDefinition) {
     super(definition);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChange = this._isOpenSubject.asObservable();
+    this.extendExpressionData({
+      isOpen: () => this.isOpen
+    });
   }
 
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChange(): Observable<boolean> { return this._isOpenChange; }
 
+  get trigger(): DynamicFormAction { return this._trigger; }
   get actions(): DynamicFormAction[] { return this._actions; }
+
+  initTrigger(trigger: DynamicFormAction): void {
+    this._trigger = trigger;
+  }
 
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions || [];

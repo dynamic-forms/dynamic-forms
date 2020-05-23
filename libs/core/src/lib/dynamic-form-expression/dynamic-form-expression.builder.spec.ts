@@ -4,7 +4,7 @@ import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
-import { DynamicFormActionExpressionFunction } from './dynamic-form-action-expression';
+import { DynamicFormActionExpressionFunc } from './dynamic-form-action-expression';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
@@ -133,7 +133,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const root = { status: 'INVALID' };
       const parent = { status: 'VALID' };
       const expressionData = { root, parent };
-      const expressions = <{ [key: string]: DynamicFormActionExpressionFunction }> {
+      const expressions = <{ [key: string]: DynamicFormActionExpressionFunc }> {
         'disabled': (data) => {
           return data.parent.status === 'VALID' && data.root.status === 'VALID';
         }

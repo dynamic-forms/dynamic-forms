@@ -1,11 +1,8 @@
-import { Observable, Subject } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
-import { assignExpressions, assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
-import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
@@ -18,12 +15,7 @@ export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
-> extends DynamicFormElement<Template, Definition> {
-
-  private _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
-  private _expressionChanges: Observable<DynamicFormExpressionChange>;
-  private _expressionData: DynamicFormFieldExpressionData;
-  private _expressions: DynamicFormFieldExpressions;
+> extends DynamicFormElement<Template, Definition, DynamicFormFieldExpressionData> {
 
   protected _root: DynamicFormField;
   protected _parent: DynamicFormField;
@@ -41,10 +33,6 @@ export abstract class DynamicFormField<
     this._root = root;
     this._parent = parent;
     this._options = this.createOptions();
-    this._expressionChangesSubject = new Subject();
-    this._expressionChanges = this._expressionChangesSubject.asObservable();
-    this._expressionData = this.createExpressionData();
-    this._expressions = {};
   }
 
   get root(): DynamicFormField { return this._root; }
@@ -70,22 +58,10 @@ export abstract class DynamicFormField<
   get actions(): DynamicFormAction[] { return this._actions; }
   get wrappers(): string[] { return this.definition.wrappers; }
 
-  get expressions(): DynamicFormFieldExpressions { return this._expressions; }
-  get expressionData(): DynamicFormFieldExpressionData { return this._expressionData; }
-  get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
-  get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
-
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
 
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;
-  }
-
-  initExpressions(expressions: DynamicFormFieldExpressions): void {
-    if (expressions) {
-      this._expressions = expressions;
-      assignExpressions(this.template, this._expressions);
-    }
   }
 
   initValidators(validators: DynamicFormFieldValidator[]): void {
@@ -133,11 +109,7 @@ export abstract class DynamicFormField<
     return cloneObject(obj);
   }
 
-  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
-    assignExpressionData(this._expressionData, expressions);
-  }
-
-  private createExpressionData(): DynamicFormFieldExpressionData {
+  protected createExpressionData(): DynamicFormFieldExpressionData {
     const expressionData = {} as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
       id: () => this.id,
