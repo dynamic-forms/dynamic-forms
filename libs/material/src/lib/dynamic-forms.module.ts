@@ -5,6 +5,7 @@ import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule,
   DynamicFormControlModule, DynamicFormGroupModule, DynamicFormValidationModule,
   DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
 import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
+import { MatDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
@@ -19,6 +20,7 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
     DynamicFormControlModule,
     DynamicFormGroupModule,
     DynamicFormValidationModule.withValidation(),
+    MatDynamicFormElementModule,
     MatDynamicFormActionModule,
     MatDynamicFormInputModule
   ],

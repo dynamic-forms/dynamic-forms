@@ -7,5 +7,6 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 export type DynamicFormClassFactory<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
-  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>
-> = (builder: DynamicFormBuilder, root: DynamicFormField, parent: DynamicFormField, definition: Definition) => Element;
+  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
+  ParentElement extends DynamicFormElement = DynamicFormField
+> = (builder: DynamicFormBuilder, root: DynamicFormField, parent: ParentElement, definition: Definition) => Element;

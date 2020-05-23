@@ -18,6 +18,7 @@
       @import '../../../../../../node_modules/bootstrap/scss/forms';
       @import '../../../../../../node_modules/bootstrap/scss/buttons';
       @import '../../../../../../node_modules/bootstrap/scss/custom-forms';
+      @import '../../../../../../node_modules/bootstrap/scss/modal';
 
       margin: 0 10px;
 
@@ -197,6 +198,12 @@
   
         button {
           margin-right: 10px;
+        }
+      }
+
+      .dynamic-form-modal { 
+        &.modal {
+          display: block;
         }
       }
 

@@ -15,7 +15,7 @@ export class DynamicFormAction<
   private _expressions: DynamicFormActionExpressions;
   private _expressionData: DynamicFormActionExpressionData;
 
-  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormField, definition: Definition) {
+  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormElement | DynamicFormField, definition: Definition) {
     super(definition);
     this._expressionData = this.createExpressionData();
     this._expressions = {};
@@ -36,8 +36,8 @@ export class DynamicFormAction<
   private createExpressionData(): DynamicFormActionExpressionData {
     const expressionData = {} as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
-      parent: () => this.parent ? this.parent.expressionData : undefined,
-      root: () => this.root ? this.root.expressionData : undefined
+      root: () => this.root ? this.root.expressionData : undefined,
+      parent: () => this.parent ? (<DynamicFormField>this.parent).expressionData : undefined
     });
     return expressionData;
   }

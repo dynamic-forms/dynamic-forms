@@ -6,6 +6,7 @@ import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-ac
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
@@ -34,21 +35,22 @@ export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<Dynamic
 };
 
 export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
-  const field = action.parent && action.parent.parent;
-  return field && field.fieldClassType === 'array'
+  const field = <DynamicFormField>action.parent;
+  return field && field.parent && field.fieldClassType === 'array'
     ? <DynamicFormArray>field
     : undefined;
 }
 
 export function dynamicFormArrayRemoveElementFactory(field: DynamicFormArray, action: DynamicFormAction): void {
-  if (field && action.parent && action.parent.index >= 0) {
-    field.removeElement(action.parent.index);
+  const parentField = <DynamicFormField>action.parent;
+  if (field && parentField && parentField.index >= 0) {
+    field.removeElement(parentField.index);
   }
 }
 
 export const dynamicFormArrayRemoveElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'removeArrayElement',
-  fieldFunc: getDynamicFormArray,
+  elementFunc: getDynamicFormArray,
   func: dynamicFormArrayRemoveElementFactory,
   libraryName: dynamicFormLibrary.name
 };

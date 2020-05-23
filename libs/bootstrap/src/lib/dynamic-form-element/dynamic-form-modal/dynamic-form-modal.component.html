@@ -1,0 +1,18 @@
+<button type="button" class="btn btn-primary" [disabled]="isOpen$ | async" (click)="open()">Open Modal</button>
+
+<div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <dynamic-form-element *ngFor="let element of elements" 
+          [element]="element"
+        ></dynamic-form-element>           
+      </div>
+      <div *ngIf="actions.length" class="modal-footer">
+        <dynamic-form-element *ngFor="let action of actions" 
+          [element]="action"
+        ></dynamic-form-element>      
+      </div>
+    </div>
+  </div>
+</div>

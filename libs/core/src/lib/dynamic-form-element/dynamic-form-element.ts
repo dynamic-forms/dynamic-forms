@@ -1,3 +1,4 @@
+
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
@@ -8,6 +9,7 @@ export class DynamicFormElement<
 > {
   protected _definition: Definition;
   protected _elements: DynamicFormElement[] = [];
+
 
   constructor(definition: Definition) {
     this._definition = definition;

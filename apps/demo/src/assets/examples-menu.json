@@ -105,6 +105,10 @@
         { 
           "id": "elements-container", 
           "label": "Container" 
+        },        
+        { 
+          "id": "elements-modal", 
+          "label": "Modal" 
         }
       ]
     },

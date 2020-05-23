@@ -1,0 +1,16 @@
+<button type="button" [disabled]="isOpen" (click)="open()">Open Modal</button>
+
+<ng-template #modalTemplate>
+  <div class="dynamic-form-modal" [ngClass]="template?.className">
+    <div mat-dialog-content>
+      <dynamic-form-element *ngFor="let element of elements" 
+        [element]="element"
+      ></dynamic-form-element>      
+    </div>
+    <div *ngIf="actions.length" mat-dialog-actions>
+      <dynamic-form-element *ngFor="let action of actions" 
+        [element]="action"
+      ></dynamic-form-element>      
+    </div>
+  </div>
+</ng-template>

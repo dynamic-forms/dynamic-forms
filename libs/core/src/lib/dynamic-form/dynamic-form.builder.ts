@@ -91,7 +91,7 @@ export class DynamicFormBuilder {
   }
 
   createFormAction(
-    root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormActionDefinition
+    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
     const action = new DynamicFormAction(root, parent, definition);
@@ -126,7 +126,7 @@ export class DynamicFormBuilder {
   }
 
   createFormActionForFactory(
-    root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormActionDefinition
+    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
 
@@ -136,6 +136,32 @@ export class DynamicFormBuilder {
     }
 
     return this.createFormAction(root, parent, definition);
+  }
+
+  createFormElements(
+    root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormElementDefinition[]
+  ): DynamicFormElement[] {
+    return (definitions || []).map(definition => {
+      const classType = this.configService.getClassType(definition.type);
+      switch (classType) {
+        case 'element':
+          return this.createFormElementForFactory(root, parent, definition);
+        case 'field':
+          return this.createFormFieldForFactory(root, parent, definition as DynamicFormFieldDefinition);
+        case 'action':
+          return this.createFormActionForFactory(root, parent, definition as DynamicFormActionDefinition);
+        default:
+          throw Error(`Class type ${ classType } is not defined`);
+      }
+    });
+  }
+
+  createFormActions(
+    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
+  ): DynamicFormAction[] {
+    return (definitions || []).map(definition => {
+      return this.createFormActionForFactory(root, parent, definition);
+    });
   }
 
   private requireElementType(type: string): void {
@@ -156,35 +182,9 @@ export class DynamicFormBuilder {
     }
   }
 
-  private createFormElements(
-    root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormElementDefinition[]
-  ): DynamicFormElement[] {
-    return (definitions || []).map(definition => {
-      const classType = this.configService.getClassType(definition.type);
-      switch (classType) {
-        case 'element':
-          return this.createFormElementForFactory(root, parent, definition);
-        case 'field':
-          return this.createFormFieldForFactory(root, parent, definition as DynamicFormFieldDefinition);
-        case 'action':
-          return this.createFormActionForFactory(root, parent, definition as DynamicFormActionDefinition);
-        default:
-          throw Error(`Class type ${ classType } is not defined`);
-      }
-    });
-  }
-
   private createFormArrayElements(field: DynamicFormArray): DynamicFormField[] {
     const modelItems = field.model || [] as any[];
     return modelItems.map((_item, index) => this.createFormArrayElement(field , index));
-  }
-
-  private createFormActions(
-    root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormActionDefinition[]
-  ): DynamicFormAction[] {
-    return (definitions || []).map(definition => {
-      return this.createFormActionForFactory(root, parent, definition);
-    });
   }
 
   private createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {

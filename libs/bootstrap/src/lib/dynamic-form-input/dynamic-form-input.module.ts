@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BsDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
 import { BsDynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
@@ -12,7 +11,6 @@ import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-
 
 @NgModule({
   imports: [
-    CommonModule,
     BsDynamicFormCheckboxModule,
     BsDynamicFormComboboxModule,
     BsDynamicFormDatepickerModule,
