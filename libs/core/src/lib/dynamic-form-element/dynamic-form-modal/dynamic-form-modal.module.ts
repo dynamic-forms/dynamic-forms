@@ -2,33 +2,33 @@ import { NgModule } from '@angular/core';
 import { DynamicFormActionHandler } from '../../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
-import { DynamicFormModalElement } from './dynamic-form-modal-element';
+import { DynamicFormModal } from './dynamic-form-modal';
 
-export function dynamicFormModalOpenFactory(element: DynamicFormModalElement): void {
-  element.open();
+export function dynamicFormModalOpenFactory(modal: DynamicFormModal): void {
+  modal.open();
 }
 
-export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormModalElement> = {
+export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'openModal',
   func: dynamicFormModalOpenFactory,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalCloseFactory(element: DynamicFormModalElement): void {
-  element.close();
+export function dynamicFormModalCloseFactory(modal: DynamicFormModal): void {
+  modal.close();
 }
 
-export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormModalElement> = {
+export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'closeModal',
   func: dynamicFormModalCloseFactory,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalToggleFactory(element: DynamicFormModalElement): void {
-  element.toggle();
+export function dynamicFormModalToggleFactory(modal: DynamicFormModal): void {
+  modal.toggle();
 }
 
-export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicFormModalElement> = {
+export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleModal',
   func: dynamicFormModalToggleFactory,
   libraryName: dynamicFormLibrary.name

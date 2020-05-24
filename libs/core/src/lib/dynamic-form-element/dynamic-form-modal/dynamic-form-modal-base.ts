@@ -2,12 +2,12 @@ import { Observable } from 'rxjs';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
+import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
-import { DynamicFormModalElement } from './dynamic-form-modal-element';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
 export abstract class DynamicFormModalBase extends DynamicFormElementBase<
-  DynamicFormModalTemplate, DynamicFormModalDefinition, DynamicFormModalElement
+  DynamicFormModalTemplate, DynamicFormModalDefinition, DynamicFormModal
 > {
   constructor() {
     super();

@@ -4,7 +4,7 @@ import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
-export class DynamicFormModalElement extends DynamicFormElement<DynamicFormModalTemplate, DynamicFormModalDefinition> {
+export class DynamicFormModal extends DynamicFormElement<DynamicFormModalTemplate, DynamicFormModalDefinition> {
   private _isOpenSubject: BehaviorSubject<boolean>;
   private _isOpenChange: Observable<boolean>;
 
