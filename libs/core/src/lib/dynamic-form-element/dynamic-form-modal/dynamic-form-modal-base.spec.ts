@@ -21,5 +21,49 @@ describe('DynamicFormModalBase', () => {
     expect(component.element).toEqual(element);
     expect(component.definition).toEqual(element.definition);
     expect(component.template).toEqual(element.template);
+    expect(component.trigger).toBeUndefined();
+    expect(component.elements).toEqual([]);
+    expect(component.actions).toEqual([]);
+    expect(component.isOpen).toBeFalse();
+    expect(component.isOpen$).toBeTruthy();
+  });
+
+  it('component calls open of modal', () => {
+    const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'element', template: {} };
+    const element = new DynamicFormModal(definition);
+
+    spyOn(element, 'open').and.callThrough();
+
+    component.element = element;
+
+    component.open();
+
+    expect(element.open).toHaveBeenCalled();
+  });
+
+  it('component calls close of modal', () => {
+    const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'element', template: {} };
+    const element = new DynamicFormModal(definition);
+
+    spyOn(element, 'close').and.callThrough();
+
+    component.element = element;
+
+    component.close();
+
+    expect(element.close).toHaveBeenCalled();
+  });
+
+  it('component calls toggle of modal', () => {
+    const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'element', template: {} };
+    const element = new DynamicFormModal(definition);
+
+    spyOn(element, 'toggle').and.callThrough();
+
+    component.element = element;
+
+    component.toggle();
+
+    expect(element.toggle).toHaveBeenCalled();
   });
 });
