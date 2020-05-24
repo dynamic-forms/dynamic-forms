@@ -96,7 +96,7 @@ describe('DynamicFormArrayModule', () => {
 
       const result = handler.elementFunc(action);
 
-      expect(result).toBe(field);
+      expect(result).toEqual(field);
     })
   );
 

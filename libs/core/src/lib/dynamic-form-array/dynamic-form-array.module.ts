@@ -35,8 +35,8 @@ export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<Dynamic
 };
 
 export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
-  const field = <DynamicFormField>action.parent;
-  return field && field.parent && field.fieldClassType === 'array'
+  const field = action.parent && (<DynamicFormField>action.parent).parent;
+  return field && field.fieldClassType === 'array'
     ? <DynamicFormArray>field
     : undefined;
 }
