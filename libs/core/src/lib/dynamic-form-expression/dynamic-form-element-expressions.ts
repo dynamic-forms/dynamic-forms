@@ -1,4 +1,4 @@
-import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
+import { DynamicFormElementExpression } from './dynamic-form-element-expression';
 import { DynamicFormExpressions } from './dynamic-form-expressions';
 
-export interface DynamicFormElementExpressions extends DynamicFormExpressions<DynamicFormElementExpressionData> {}
+export interface DynamicFormElementExpressions extends DynamicFormExpressions<DynamicFormElementExpression> {}

@@ -1,9 +1,9 @@
 import { extendObject } from '../dynamic-form/dynamic-form-helpers';
-import { DynamicFormExpressionData } from './dynamic-form-expression-data';
+import { DynamicFormExpression } from './dynamic-form-expression';
 import { DynamicFormExpressions } from './dynamic-form-expressions';
 
-export function assignExpressions<Data extends DynamicFormExpressionData = DynamicFormExpressionData>(
-  template: any, expressions: DynamicFormExpressions<Data>
+export function assignExpressions<Expression extends DynamicFormExpression = DynamicFormExpression>(
+  template: any, expressions: DynamicFormExpressions<Expression>
 ): void {
   Object.keys(expressions).forEach(path => {
     const paths = path.split('.');

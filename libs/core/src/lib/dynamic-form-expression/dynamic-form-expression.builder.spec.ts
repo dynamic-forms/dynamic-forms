@@ -7,7 +7,7 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormActionExpressionFunc } from './dynamic-form-action-expression';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
-import { DynamicFormFieldExpressionFunction } from './dynamic-form-field-expression';
+import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
 describe('DynamicFormExpressionBuilder', () => {
@@ -69,7 +69,7 @@ describe('DynamicFormExpressionBuilder', () => {
         data.root.model.readonly || data.parent.model.readonly;
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
-      const expressions = <{ [key: string]: DynamicFormFieldExpressionFunction }> {
+      const expressions = <{ [key: string]: DynamicFormFieldExpressionFunc }> {
         'readonly': func
       };
       const expressionData = <DynamicFormFieldExpressionData>{

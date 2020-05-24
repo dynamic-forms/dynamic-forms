@@ -1,9 +1,9 @@
 import { Observable, Subject } from 'rxjs';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElementExpressionData } from '../dynamic-form-expression/dynamic-form-element-expression-data';
+import { DynamicFormElementExpressions } from '../dynamic-form-expression/dynamic-form-element-expressions';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { assignExpressions, assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
-import { DynamicFormExpressions } from '../dynamic-form-expression/dynamic-form-expressions';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
@@ -11,7 +11,7 @@ export class DynamicFormElement<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
   ExpressionData extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
-  Expressions extends DynamicFormExpressions<ExpressionData> = DynamicFormExpressions<ExpressionData>
+  Expressions extends DynamicFormElementExpressions = DynamicFormElementExpressions
 > {
 
   protected _definition: Definition;

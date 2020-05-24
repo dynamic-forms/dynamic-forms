@@ -3,6 +3,7 @@ import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
+import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
@@ -15,7 +16,7 @@ export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
-> extends DynamicFormElement<Template, Definition, DynamicFormFieldExpressionData> {
+> extends DynamicFormElement<Template, Definition, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
 
   protected _root: DynamicFormField;
   protected _parent: DynamicFormField;

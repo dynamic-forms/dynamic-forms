@@ -13,6 +13,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormActionExpressions } from '../dynamic-form-expression/dynamic-form-action-expressions';
+import { DynamicFormElementExpressions } from '../dynamic-form-expression/dynamic-form-element-expressions';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -165,7 +166,7 @@ export class DynamicFormBuilder {
     });
   }
 
-  createElementExpressions(element: DynamicFormElement): DynamicFormActionExpressions {
+  createElementExpressions(element: DynamicFormElement): DynamicFormElementExpressions {
     return this.expressionBuilder.createElementExpressions(element);
   }
 
