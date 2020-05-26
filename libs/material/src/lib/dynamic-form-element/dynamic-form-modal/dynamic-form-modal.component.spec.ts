@@ -34,22 +34,51 @@ describe('MatDynamicFormModalComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
+    expect(component.isOpen).toBeFalse();
   });
 
-  it('opens and closes modal', async(() => {
+  it('opens modal', async(() => {
     modal.open();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      expect(component).toBeDefined();
+      expect(component.isOpen).toBeTrue();
+    });
+  }));
+
+  it('closes modal', async(() => {
+    modal.open();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+
+      expect(component.isOpen).toBeTrue();
 
       modal.close();
 
       fixture.whenStable().then(() => {
         fixture.detectChanges();
 
-        expect(component).toBeDefined();
+        expect(component.isOpen).toBeFalse();
+      });
+    });
+  }));
+
+  it('toggles modal', async(() => {
+    modal.toggle();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+
+      expect(component.isOpen).toBeTrue();
+
+      modal.toggle();
+
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+
+        expect(component.isOpen).toBeFalse();
       });
     });
   }));

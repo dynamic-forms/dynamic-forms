@@ -19,7 +19,7 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
   }
 
   ngOnInit(): void {
-    this._isOpenSubscription = this.element.isOpenChange.subscribe(isOpen => {
+    this._isOpenSubscription = this.isOpen$.subscribe(isOpen => {
       return isOpen ? this.openDialog() : this.closeDialog();
     });
   }
