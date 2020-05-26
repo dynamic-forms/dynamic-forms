@@ -18,8 +18,8 @@ describe('DynamicFormModal', () => {
     expect(element.expressionData).toBeTruthy();
     expect(element.expressionData.isOpen).toBeFalse();
 
-    expect(element.trigger).toBeUndefined();
     expect(element.actions).toEqual([]);
+    expect(element.trigger).toBeUndefined();
 
     expect(element.isOpen).toBeFalse();
   });
@@ -45,16 +45,6 @@ describe('DynamicFormModal', () => {
     expect(element.elements).toEqual([]);
   });
 
-  it('sets trigger', () => {
-    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
-    const trigger = <DynamicFormAction>{ classType: 'action', definition: {} };
-
-    element.initTrigger(trigger);
-
-    expect(element.trigger).toEqual(trigger);
-  });
-
   it('sets actions', () => {
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(definition);
@@ -74,6 +64,16 @@ describe('DynamicFormModal', () => {
     element.initActions(null);
 
     expect(element.actions).toEqual([]);
+  });
+
+  it('sets trigger', () => {
+    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
+    const element = new DynamicFormModal(definition);
+    const trigger = <DynamicFormAction>{ classType: 'action', definition: {} };
+
+    element.initTrigger(trigger);
+
+    expect(element.trigger).toEqual(trigger);
   });
 
   it('open, close and toggle sets isOpen', () => {

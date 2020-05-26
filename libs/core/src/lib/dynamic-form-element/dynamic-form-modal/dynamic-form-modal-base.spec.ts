@@ -21,8 +21,8 @@ describe('DynamicFormModalBase', () => {
     expect(component.element).toEqual(element);
     expect(component.definition).toEqual(element.definition);
     expect(component.template).toEqual(element.template);
-    expect(component.trigger).toBeUndefined();
     expect(component.elements).toEqual([]);
+    expect(component.trigger).toBeUndefined();
     expect(component.actions).toEqual([]);
     expect(component.isOpen).toBeFalse();
     expect(component.isOpen$).toBeTruthy();

@@ -5,27 +5,7 @@
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@dynamic-forms/core": [
-        "libs/core/src/public_api"
-      ],
-      "@dynamic-forms/core/*": [
-        "libs/core/src/lib/*"
-      ],
-      "@dynamic-forms/bootstrap": [
-        "libs/bootstrap/src/public_api"
-      ],
-      "@dynamic-forms/bootstrap/*": [
-        "libs/bootstrap/src/lib/*"
-      ],
-      "@dynamic-forms/material": [
-        "libs/material/src/public_api"
-      ],
-      "@dynamic-forms/material/*": [
-        "libs/material/src/lib/*"
-      ]
-    }
+    ]
   },
   "files": [
     "test.ts"

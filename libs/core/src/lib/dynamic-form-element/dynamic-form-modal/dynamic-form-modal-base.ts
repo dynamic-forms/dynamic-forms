@@ -13,10 +13,9 @@ export abstract class DynamicFormModalBase extends DynamicFormElementBase<
     super();
   }
 
-  get trigger(): DynamicFormAction { return this.element.trigger; }
-
   get elements(): DynamicFormElement[] { return this.element.elements; }
   get actions(): DynamicFormAction[] { return this.element.actions; }
+  get trigger(): DynamicFormAction { return this.element.trigger; }
 
   get isOpen(): boolean { return this.element.isOpen; }
   get isOpen$(): Observable<boolean> { return this.element.isOpenChange; }

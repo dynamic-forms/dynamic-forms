@@ -1,5 +1,5 @@
-<dynamic-form-element [element]="trigger"></dynamic-form-element>
-
+<dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
+  
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
