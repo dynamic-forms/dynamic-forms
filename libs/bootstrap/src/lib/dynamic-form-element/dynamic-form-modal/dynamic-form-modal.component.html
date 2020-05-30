@@ -1,8 +1,21 @@
 <dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
   
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered" [style.width]="template?.width" 
+    [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
     <div class="modal-content">
+      <div class="modal-header" *ngIf="template && (template.titleHtml || template.title)">
+        <div class="modal-title" 
+          *ngIf="template?.titleHtml; else titlePlain" 
+          [ngClass]="template.titleClassName" 
+          [innerHTML]="template.titleHtml"
+        ></div>
+        <ng-template #titlePlain>
+          <div class="modal-title"
+            [ngClass]="template.titleClassName"
+          >{{template.title}}</div>
+        </ng-template>
+      </div>    
       <div class="modal-body">
         <dynamic-form-element *ngFor="let element of elements" 
           [element]="element"

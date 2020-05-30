@@ -1,214 +1,233 @@
-:host ::ng-deep {
-  .dynamic-form-wrapper {
-    width: 100%;
-    max-width: 800px;
+.dynamic-form-wrapper.bootstrap {
+  width: 100%;
+  max-width: 800px;
 
-    &.small {
-      max-width: 600px;
-    }
+  &.small {
+    max-width: 600px;
+  }
 
-    .dynamic-form {
-      $blue: #3f51b5;
-      $red: #f44336;
-      
-      @import '../../../../../../node_modules/bootstrap/scss/functions';
-      @import '../../../../../../node_modules/bootstrap/scss/variables';
-      @import '../../../../../../node_modules/bootstrap/scss/mixins';
-      @import '../../../../../../node_modules/bootstrap/scss/reboot';
-      @import '../../../../../../node_modules/bootstrap/scss/forms';
-      @import '../../../../../../node_modules/bootstrap/scss/buttons';
-      @import '../../../../../../node_modules/bootstrap/scss/custom-forms';
-      @import '../../../../../../node_modules/bootstrap/scss/modal';
-
-      margin: 0 10px;
-
-      &.grid {
-        $grid-gutter-width: 20px;
-
-        @import '../../../../../../node_modules/bootstrap/scss/grid';
-
-        margin: 0 $grid-gutter-width / 2 + 10px;
-  
-        .row {
-          margin-top: 10px;
-          margin-bottom: 10px;
-  
-          dynamic-form-element, 
-          dynamic-form-content,
-          dynamic-form-container, 
-          dynamic-form-group, 
-          dynamic-form-array, 
-          dynamic-form-control,
-          bs-dynamic-form-button,
-          bs-dynamic-form-icon ,
-          .dynamic-form-group-elements,
-          .dynamic-form-array-elements {
-            display: contents;
-          }
-
-          .dynamic-form-icon {
-            align-self: center;
-          }
-        }
-      }
-  
-      .dynamic-form-field-errors {
-        &.invalid-feedback {
-          display: block;
-        }
-      }
-  
-      .dynamic-form-field-hints.form-text {
-        display: flex;
-      
-        .hint-spacer {
-          flex: 1 0 1em;
-        }
-      }
-      
-      .dynamic-form-group {
-        margin-top: 20px;
-        margin-bottom: 20px;
-  
-        &.hidden {
-          display: none;
-        }
-
-        .dynamic-form-group-label {
-          font-weight: 600;
-
-          &.bold {
-            font-weight: 700;
-          }
-
-          &.uppercase {
-            text-transform: uppercase;
-          }
-        }
-
-        .dynamic-form-group-errors {
-          color: $red;
-          font-size: 14px;
-        }
-
-        .dynamic-form-group-actions {
-          display: flex;
-          flex-direction: row;
-          margin-top: 10px;
-          margin-bottom: 10px;
-
-          &.reverse {
-            flex-direction: row-reverse;
-
-            button {
-              margin-left: 10px;
-              margin-right: 0px;
-            }
-          }
-          
-          button {
-            margin-left: 0px;
-            margin-right: 10px;
-          }
-        }
-      }
+  .dynamic-form {
+    $blue: #3f51b5;
+    $red: #f44336;
     
-      .dynamic-form-array {
-        margin-top: 20px;
-        margin-bottom: 20px;
-  
-        &.hidden {
-          display: none;
-        }
+    @import '../../../../../../node_modules/bootstrap/scss/functions';
+    @import '../../../../../../node_modules/bootstrap/scss/variables';
+    @import '../../../../../../node_modules/bootstrap/scss/mixins';
+    @import '../../../../../../node_modules/bootstrap/scss/reboot';
+    @import '../../../../../../node_modules/bootstrap/scss/forms';
+    @import '../../../../../../node_modules/bootstrap/scss/buttons';
+    @import '../../../../../../node_modules/bootstrap/scss/custom-forms';
+    @import '../../../../../../node_modules/bootstrap/scss/modal';
 
-        .dynamic-form-array-label {
-          font-weight: 600;
+    margin: 0 10px;
 
-          &.bold {
-            font-weight: 700;
-          }
+    &.grid {
+      $grid-gutter-width: 20px;
 
-          &.uppercase {
-            text-transform: uppercase;
-          }
-        }
+      @import '../../../../../../node_modules/bootstrap/scss/grid';
 
-        .dynamic-form-array-errors {
-          color: $red;
-          font-size: 14px;
-        }
+      margin: 0 $grid-gutter-width / 2 + 10px;
 
-        .dynamic-form-array-actions {
-          display: flex;
-          flex-direction: row;
-          margin-top: 10px;
-          margin-bottom: 10px;
-
-          &.reverse {
-            flex-direction: row-reverse;
-
-            button {
-              margin-left: 10px;
-              margin-right: 0px;
-            }
-          }
-          
-          button {
-            margin-left: 0px;
-            margin-right: 10px;
-          }
-        }
-      }
-    
-      .dynamic-form-control {
+      .row {
         margin-top: 10px;
         margin-bottom: 10px;
-  
-        &.hidden {
-          display: none;
-        }
-        
-        &.readonly {
-          label {
-            pointer-events: none;
-          }
-  
-          input, select, textarea {
-            pointer-events: none;
-            background-color: $gray-200;
-            opacity: 1;  
-          }
 
-          .custom-control {
-            label:before {
-              pointer-events: none;
-            }
-            
-            &.custom-switch {
-              .custom-control-input {
-                visibility: hidden;
-              }
-            }
-          }
+        dynamic-form-element, 
+        dynamic-form-content,
+        dynamic-form-container, 
+        dynamic-form-group, 
+        dynamic-form-array, 
+        dynamic-form-control,
+        bs-dynamic-form-button,
+        bs-dynamic-form-icon ,
+        .dynamic-form-group-elements,
+        .dynamic-form-array-elements {
+          display: contents;
+        }
+
+        .dynamic-form-icon {
+          align-self: center;
         }
       }
+    }
+
+    .dynamic-form-field-errors {
+      &.invalid-feedback {
+        display: block;
+      }
+    }
+
+    .dynamic-form-field-hints.form-text {
+      display: flex;
     
-      .dynamic-form-actions {
-        margin-bottom: 5px;
-  
+      .hint-spacer {
+        flex: 1 0 1em;
+      }
+    }
+    
+    .dynamic-form-group {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      &.hidden {
+        display: none;
+      }
+
+      .dynamic-form-group-label {
+        font-weight: 600;
+
+        &.bold {
+          font-weight: 700;
+        }
+
+        &.uppercase {
+          text-transform: uppercase;
+        }
+      }
+
+      .dynamic-form-group-errors {
+        color: $red;
+        font-size: 14px;
+      }
+
+      .dynamic-form-group-actions {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        &.reverse {
+          flex-direction: row-reverse;
+
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+        }
+        
         button {
+          margin-left: 0px;
           margin-right: 10px;
         }
       }
+    }
+  
+    .dynamic-form-array {
+      margin-top: 20px;
+      margin-bottom: 20px;
 
-      .dynamic-form-modal { 
-        &.modal {
-          display: block;
+      &.hidden {
+        display: none;
+      }
+
+      .dynamic-form-array-label {
+        font-weight: 600;
+
+        &.bold {
+          font-weight: 700;
+        }
+
+        &.uppercase {
+          text-transform: uppercase;
         }
       }
 
-      .dynamic-form-icon {
-        height: 38px; 
+      .dynamic-form-array-errors {
+        color: $red;
+        font-size: 14px;
+      }
+
+      .dynamic-form-array-actions {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        &.reverse {
+          flex-direction: row-reverse;
+
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+        }
+        
+        button {
+          margin-left: 0px;
+          margin-right: 10px;
+        }
+      }
+    }
+  
+    .dynamic-form-control {
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &.hidden {
+        display: none;
+      }
+      
+      &.readonly {
+        label {
+          pointer-events: none;
+        }
+
+        input, select, textarea {
+          pointer-events: none;
+          background-color: $gray-200;
+          opacity: 1;  
+        }
+
+        .custom-control {
+          label:before {
+            pointer-events: none;
+          }
+          
+          &.custom-switch {
+            .custom-control-input {
+              visibility: hidden;
+            }
+          }
+        }
+      }
+    }
+  
+    .dynamic-form-actions {
+      margin-bottom: 5px;
+
+      button {
+        margin-right: 10px;
+      }
+    }
+
+    .dynamic-form-icon {
+      height: 38px; 
+    }
+
+    .dynamic-form-modal {
+      background-color: rgba(0, 0, 0, 0.32);
+      
+      &.modal {
+        display: block;
+      }
+
+      .modal-header {
+        .modal-title {
+          &.modal-title-bg {
+            font-size: 22px;
+            font-weight: bold;
+          }
+
+          &.modal-title-md {
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+          &.modal-title-sm {
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
       }
     }
   }

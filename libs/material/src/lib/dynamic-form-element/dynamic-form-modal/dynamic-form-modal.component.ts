@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DynamicFormModalBase } from '@dynamic-forms/core';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dynamic-form-modal.component.html'
 })
 export class MatDynamicFormModalComponent extends DynamicFormModalBase implements OnInit, OnDestroy {
-  private _dialog: { ref: MatDialogRef<any>, subscription: Subscription };
+  private _dialog: { reference: MatDialogRef<any>, subscription: Subscription };
   private _isOpenSubscription: Subscription;
 
   @ViewChild('modalTemplate', { static: true })
@@ -31,18 +31,30 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
 
   private openDialog(): void {
     this.closeDialog();
-    const ref = this.dialog.open(this.modalTemplate);
-    const subscription = ref.beforeClosed().subscribe(_ => {
+    const config = this.getDialogConfig();
+    const reference = this.dialog.open(this.modalTemplate, config);
+    const subscription = reference.beforeClosed().subscribe(_ => {
       this.element.close();
     });
-    this._dialog = { ref, subscription };
+    this._dialog = { reference, subscription };
   }
 
   private closeDialog(): void {
     if (this._dialog) {
-      this._dialog.ref.close();
+      this._dialog.reference.close();
       this._dialog.subscription.unsubscribe();
       this._dialog = null;
     }
+  }
+
+  private getDialogConfig(): MatDialogConfig {
+    const config = new MatDialogConfig();
+    if (this.template) {
+      config.panelClass = [ 'dynamic-form-wrapper', 'material' ];
+      Object.defineProperty(config, 'width', { get: () => this.template.width });
+      Object.defineProperty(config, 'minWidth', { get: () => this.template.minWidth });
+      Object.defineProperty(config, 'maxWidth', { get: () => this.template.maxWidth });
+    }
+    return config;
   }
 }

@@ -4,14 +4,17 @@ import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
-export class DynamicFormModal extends DynamicFormElement<DynamicFormModalTemplate, DynamicFormModalDefinition> {
+export class DynamicFormModal<
+  Template extends DynamicFormModalTemplate = DynamicFormModalTemplate,
+  Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>
+> extends DynamicFormElement<Template, Definition> {
   private _isOpenSubject: BehaviorSubject<boolean>;
   private _isOpenChange: Observable<boolean>;
 
   protected _actions: DynamicFormAction[] = [];
   protected _trigger: DynamicFormAction;
 
-  constructor(definition: DynamicFormModalDefinition) {
+  constructor(definition: Definition) {
     super(definition);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChange = this._isOpenSubject.asObservable();

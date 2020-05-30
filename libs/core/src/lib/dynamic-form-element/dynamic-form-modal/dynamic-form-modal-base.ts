@@ -6,9 +6,12 @@ import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
-export abstract class DynamicFormModalBase extends DynamicFormElementBase<
-  DynamicFormModalTemplate, DynamicFormModalDefinition, DynamicFormModal
-> {
+export abstract class DynamicFormModalBase<
+  Template extends DynamicFormModalTemplate = DynamicFormModalTemplate,
+  Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>,
+  Modal extends DynamicFormModal<Template, Definition> = DynamicFormModal<Template, Definition>
+> extends DynamicFormElementBase<Template, Definition, Modal> {
+
   constructor() {
     super();
   }

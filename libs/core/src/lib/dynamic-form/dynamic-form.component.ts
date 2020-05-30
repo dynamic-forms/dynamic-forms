@@ -15,6 +15,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   private _formField: DynamicForm;
 
+  @Input() theme: string;
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
   @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();

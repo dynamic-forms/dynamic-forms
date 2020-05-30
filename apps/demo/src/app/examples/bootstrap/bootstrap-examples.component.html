@@ -1,7 +1,8 @@
 <ng-container *ngIf="data$ | async as data">
   <mat-tab-group>
     <mat-tab label="Form">
-      <dynamic-form #dynamicForm 
+      <dynamic-form #dynamicForm
+        [theme]="'bootstrap'" 
         [definition]="data.definition" [model]="data.model" 
         (formSubmit)="onFormSubmit($event)">
       </dynamic-form>  

@@ -2,7 +2,12 @@
   "elements": [
     {
       "type": "modal",
-      "template": {},
+      "template": {
+        "title": "Modal",
+        "titleClassName": "modal-title-bg",
+        "width": "600px",
+        "maxWidth": "calc(100% - 1rem)"
+      },
       "trigger": {
         "type": "button",
         "template": {
