@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
+import { DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -26,7 +26,12 @@ describe('MatDynamicFormModalComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormModalComponent);
     component = fixture.componentInstance;
 
-    modal = new DynamicFormModal(<DynamicFormModalDefinition>{});
+    const template = <DynamicFormModalTemplate>{
+      title: 'Title',
+      minWidth: '600px',
+      maxWidth: '100%'
+    };
+    modal = new DynamicFormModal(<DynamicFormModalDefinition>{ template });
     component.element = modal;
 
     fixture.detectChanges();
@@ -43,7 +48,18 @@ describe('MatDynamicFormModalComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
+      const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
+      const formElement = <HTMLDivElement>formWrapperElement.querySelector('div.dynamic-form');
+      const modalElement = <HTMLDivElement>formElement.querySelector('div.dynamic-form-modal');
+      const modalHeaderElement = <HTMLDivElement>modalElement.querySelector('div.modal-header');
+      const modalBodyElement = <HTMLDivElement>modalElement.querySelector('div.modal-body');
+
       expect(component.isOpen).toBeTrue();
+      expect(formWrapperElement).toBeTruthy();
+      expect(modalElement).toBeDefined();
+      expect(modalHeaderElement).toBeDefined();
+      expect(modalHeaderElement.innerText).toBe('Title');
+      expect(modalBodyElement).toBeDefined();
     });
   }));
 
