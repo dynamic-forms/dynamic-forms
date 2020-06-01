@@ -73,7 +73,8 @@
               "validation": {
                 "required": true
               }
-            }
+            },
+            "unregistered": true
           },
           {
             "key": "email",
@@ -90,7 +91,8 @@
                 "required": true,
                 "email": true
               }
-            }
+            },
+            "unregistered": true
           },
           {
             "type": "modal",

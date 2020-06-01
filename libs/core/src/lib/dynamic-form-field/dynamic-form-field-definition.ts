@@ -15,4 +15,5 @@ export interface DynamicFormFieldDefinition<
   expressions?: { [key: string]: string | DynamicFormFieldExpressionFunc };
   validators?: { [key: string]: DynamicFormFieldValidatorDefinition };
   wrappers?: string[];
+  unregistered?: boolean;
 }

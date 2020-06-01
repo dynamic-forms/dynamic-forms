@@ -61,6 +61,8 @@ export abstract class DynamicFormField<
 
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
 
+  get unregistered(): boolean { return this.definition.unregistered; }
+
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;
   }
