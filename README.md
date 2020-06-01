@@ -32,7 +32,7 @@
 
 - Dynamic [**reactive forms**](https://angular.io/guide/reactive-forms) based on **JSON** definition
 - Structuring / nesting dynamic forms by
-  - Dynamic form elements (container, content)
+  - Dynamic form elements (container, content, modal)
   - Dynamic form fields (group, array, control)
   - Dynamic form actions (button, icon)
 - Dynamic form controls / inputs include 

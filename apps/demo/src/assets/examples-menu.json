@@ -82,6 +82,10 @@
               "label": "Validation"
             },
             {
+              "id": "fields-array-modal",
+              "label": "Modal"
+            },
+            {
               "label": "Models",
               "items": [
                 {

@@ -39,14 +39,16 @@
         dynamic-form-array, 
         dynamic-form-control,
         bs-dynamic-form-button,
-        bs-dynamic-form-icon ,
+        bs-dynamic-form-icon,
+        bs-dynamic-form-modal,
         .dynamic-form-group-elements,
         .dynamic-form-array-elements {
           display: contents;
         }
 
-        .dynamic-form-icon {
-          align-self: center;
+        .dynamic-form-icon-wrapper {
+          display: flex;
+          align-items: center;
         }
       }
     }

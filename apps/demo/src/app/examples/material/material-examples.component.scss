@@ -39,13 +39,15 @@
         dynamic-form-control,
         mat-dynamic-form-button,
         mat-dynamic-form-icon,
+        mat-dynamic-form-modal,
         .dynamic-form-group-elements,
         .dynamic-form-array-elements  {
           display: contents;
         }
 
-        .dynamic-form-icon {
-          align-self: center;
+        .dynamic-form-icon-wrapper {
+          display: flex;
+          align-items: center;
         }
       }
     }

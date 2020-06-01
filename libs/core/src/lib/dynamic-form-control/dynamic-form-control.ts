@@ -106,6 +106,11 @@ export class DynamicFormControl<
   }
 
   private checkValue(): void {
+    const model = this.parent.model[this.key];
+    if (this._control.value !== model || this._model !== model) {
+      this._model = model;
+      this._control.setValue(model, { onlySelf: true, emitEvent: false });
+    }
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 }
