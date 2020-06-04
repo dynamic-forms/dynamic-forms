@@ -5,10 +5,9 @@ import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
   it('new instance', () => {
-    const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'type', template: {}, elements: [] };
+    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(definition);
 
-    expect(element.id).toBe('id');
     expect(element.classType).toBe('element');
     expect(element.componentType).toBe('type');
     expect(element.definition).toBe(definition);

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
+import { v4 as dynamicFormIdBuilder } from 'uuid';
 import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
@@ -20,7 +21,7 @@ import { MaterialExamplesComponent } from './material-examples.component';
       },
       libraryName: 'material'
     }),
-    MatDynamicFormsModule.forRoot(),
+    MatDynamicFormsModule.forRoot(dynamicFormIdBuilder),
     RouterModule.forChild([
       {
         path: ':definitionId',

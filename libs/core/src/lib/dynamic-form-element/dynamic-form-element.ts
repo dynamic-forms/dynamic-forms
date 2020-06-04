@@ -31,7 +31,6 @@ export class DynamicFormElement<
     this._expressions = <Expressions>{};
   }
 
-  get id(): string { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
   get componentType(): string { return this.definition.type; }
 
