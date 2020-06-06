@@ -9,6 +9,7 @@ export * from './lib/dynamic-form/dynamic-form-definition';
 export * from './lib/dynamic-form/dynamic-form-helpers';
 export * from './lib/dynamic-form/dynamic-form-submit';
 export * from './lib/dynamic-form/dynamic-form-template';
+export * from './lib/dynamic-form/dynamic-form-theme';
 export * from './lib/dynamic-form/dynamic-form-id.builder';
 export * from './lib/dynamic-form/dynamic-form.builder';
 export * from './lib/dynamic-form/dynamic-form.component';

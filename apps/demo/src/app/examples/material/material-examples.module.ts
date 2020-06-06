@@ -21,7 +21,10 @@ import { MaterialExamplesComponent } from './material-examples.component';
       },
       libraryName: 'material'
     }),
-    MatDynamicFormsModule.forRoot(dynamicFormIdBuilder),
+    MatDynamicFormsModule.forRoot({
+      theme: 'material',
+      idBuilder: dynamicFormIdBuilder
+    }),
     RouterModule.forChild([
       {
         path: ':definitionId',

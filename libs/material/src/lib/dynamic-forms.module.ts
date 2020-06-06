@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule, DynamicFormContentModule,
   DynamicFormControlModule, DynamicFormGroupModule, DynamicFormIdBuilder, DynamicFormValidationModule,
-  DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY } from '@dynamic-forms/core';
+  DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { MatDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
 import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
@@ -29,7 +29,7 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
   ]
 })
 export class MatDynamicFormsModule {
-  static forRoot(idBuilder?: DynamicFormIdBuilder): ModuleWithProviders<MatDynamicFormsModule> {
+  static forRoot(config?: { theme?: string, idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [
@@ -38,8 +38,12 @@ export class MatDynamicFormsModule {
           useValue: matDynamicFormLibrary
         },
         {
+          provide: DYNAMIC_FORM_THEME,
+          useValue: config && config.theme
+        },
+        {
           provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: idBuilder
+          useValue: config && config.idBuilder
         }
       ]
     };

@@ -1,4 +1,4 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
@@ -6,6 +6,7 @@ import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormSubmit } from './dynamic-form-submit';
 import { DynamicFormTemplate } from './dynamic-form-template';
+import { DYNAMIC_FORM_THEME } from './dynamic-form-theme';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
@@ -15,12 +16,15 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   private _formField: DynamicForm;
 
-  @Input() theme: string;
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
   @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
 
-  constructor(private formBuilder: DynamicFormBuilder) {}
+  constructor(
+    private formBuilder: DynamicFormBuilder,
+    @Optional() @Inject(DYNAMIC_FORM_THEME)
+    public formTheme: string
+  ) {}
 
   get formField(): DynamicForm { return this._formField; }
   get formGroup(): FormGroup { return this._formField.control; }

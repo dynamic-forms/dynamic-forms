@@ -21,7 +21,10 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
       },
       libraryName: 'bootstrap'
     }),
-    BsDynamicFormsModule.forRoot(dynamicFormIdBuilder),
+    BsDynamicFormsModule.forRoot({
+      theme: 'bootstrap',
+      idBuilder: dynamicFormIdBuilder
+    }),
     RouterModule.forChild([
       {
         path: ':definitionId',
