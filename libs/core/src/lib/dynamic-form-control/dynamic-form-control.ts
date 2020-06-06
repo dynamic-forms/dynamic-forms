@@ -112,9 +112,9 @@ export class DynamicFormControl<
       this._control.setValue(model, {
         onlySelf: true,
         emitEvent: false,
-        emitViewToModelChange: true,
-        emitModelToViewChange: true
+        emitViewToModelChange: true
       });
+      this._control.markAsTouched();
     }
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
