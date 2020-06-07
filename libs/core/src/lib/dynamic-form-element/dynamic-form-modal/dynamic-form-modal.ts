@@ -1,5 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
@@ -8,19 +9,29 @@ export class DynamicFormModal<
   Template extends DynamicFormModalTemplate = DynamicFormModalTemplate,
   Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
+
   private _isOpenSubject: BehaviorSubject<boolean>;
   private _isOpenChange: Observable<boolean>;
+
+  protected _root: DynamicForm;
 
   protected _actions: DynamicFormAction[] = [];
   protected _trigger: DynamicFormAction;
 
-  constructor(definition: Definition) {
+  constructor(root: DynamicForm, definition: Definition) {
     super(definition);
+    this._root = root;
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChange = this._isOpenSubject.asObservable();
     this.extendExpressionData({
       isOpen: () => this.isOpen
     });
+  }
+
+  get root(): DynamicForm { return this._root; }
+
+  get wrapperClassName(): string {
+    return this.root.template && this.root.template.wrapperClassName;
   }
 
   get isOpen(): boolean { return this._isOpenSubject.value; }

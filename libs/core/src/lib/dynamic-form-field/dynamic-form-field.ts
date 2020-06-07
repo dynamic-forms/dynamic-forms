@@ -4,6 +4,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
@@ -18,7 +19,7 @@ export abstract class DynamicFormField<
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
 > extends DynamicFormElement<Template, Definition, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
 
-  protected _root: DynamicFormField;
+  protected _root: DynamicForm;
   protected _parent: DynamicFormField;
 
   protected _model: any;
@@ -29,14 +30,14 @@ export abstract class DynamicFormField<
 
   protected _validators: DynamicFormFieldValidator[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(definition);
     this._root = root;
     this._parent = parent;
     this._options = this.createOptions();
   }
 
-  get root(): DynamicFormField { return this._root; }
+  get root(): DynamicForm { return this._root; }
   get parent(): DynamicFormField { return this._parent; }
 
   get id(): string { return this.definition.id; }

@@ -4,6 +4,7 @@ import { DynamicFormActionExpressionData } from '../dynamic-form-expression/dyna
 import { DynamicFormActionExpressions } from '../dynamic-form-expression/dynamic-form-action-expressions';
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 
@@ -12,7 +13,7 @@ export class DynamicFormAction<
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>
 > extends DynamicFormElement<Template, Definition, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
 
-  constructor(readonly root: DynamicFormField, readonly parent: DynamicFormElement | DynamicFormField, definition: Definition) {
+  constructor(readonly root: DynamicForm, readonly parent: DynamicFormElement | DynamicFormField, definition: Definition) {
     super(definition);
   }
 

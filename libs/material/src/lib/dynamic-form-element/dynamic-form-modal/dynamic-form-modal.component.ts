@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
-import { DynamicFormModalBase } from '@dynamic-forms/core';
+import { DynamicFormModalBase, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,7 +14,11 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
   @ViewChild('modalTemplate', { static: true })
   modalTemplate: TemplateRef<any>;
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    @Optional() @Inject(DYNAMIC_FORM_THEME)
+    public theme: string
+  ) {
     super();
   }
 
@@ -50,7 +54,6 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
     if (this.template) {
-      config.panelClass = [ 'dynamic-form-wrapper', 'material' ];
       Object.defineProperty(config, 'width', { get: () => this.template.width });
       Object.defineProperty(config, 'minWidth', { get: () => this.template.minWidth });
       Object.defineProperty(config, 'maxWidth', { get: () => this.template.maxWidth });

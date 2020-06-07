@@ -52,7 +52,7 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormElement(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition): DynamicFormElement {
+  createFormElement(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormElementDefinition): DynamicFormElement {
     this.requireElementType(definition.type);
     const element = new DynamicFormElement(definition);
     element.initExpressions(this.createElementExpressions(element));
@@ -60,7 +60,7 @@ export class DynamicFormBuilder {
     return element;
   }
 
-  createFormGroup(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup {
+  createFormGroup(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup {
     this.requireFieldType(definition.type);
     const field = new DynamicFormGroup(root, parent, definition);
     field.initId(this.createFieldId(field));
@@ -70,13 +70,13 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormArray(root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
+  createFormArray(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
     this.requireFieldType(definition.type);
     const field = new DynamicFormArray(root, parent, definition);
     field.initId(this.createFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormArrayElements(field));
-    field.initActions(this.createFormActions(field, field, field.definition.actions));
+    field.initActions(this.createFormActions(root, field, field.definition.actions));
     field.initValidators(this.createArrayValidators(field));
     return field;
   }
@@ -87,7 +87,7 @@ export class DynamicFormBuilder {
   }
 
   createFormControl(
-    root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormControlDefinition
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormControlDefinition
   ): DynamicFormControl {
     this.requireFieldType(definition.type);
     const field = new DynamicFormControl(root, parent, definition);
@@ -99,7 +99,7 @@ export class DynamicFormBuilder {
   }
 
   createFormAction(
-    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
+    root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
     const action = new DynamicFormAction(root, parent, definition);
@@ -108,7 +108,7 @@ export class DynamicFormBuilder {
   }
 
   createFormElementForFactory(
-    root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormElementDefinition
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormElementDefinition
   ): DynamicFormElement {
     this.requireElementType(definition.type);
 
@@ -121,7 +121,7 @@ export class DynamicFormBuilder {
   }
 
   createFormFieldForFactory(
-    root: DynamicFormField, parent: DynamicFormField, definition: DynamicFormFieldDefinition
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormFieldDefinition
   ): DynamicFormField {
     this.requireFieldType(definition.type);
 
@@ -134,7 +134,7 @@ export class DynamicFormBuilder {
   }
 
   createFormActionForFactory(
-    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
+    root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
 
@@ -147,7 +147,7 @@ export class DynamicFormBuilder {
   }
 
   createFormElements(
-    root: DynamicFormField, parent: DynamicFormField, definitions: DynamicFormElementDefinition[]
+    root: DynamicForm, parent: DynamicFormField, definitions: DynamicFormElementDefinition[]
   ): DynamicFormElement[] {
     return (definitions || []).map(definition => {
       const classType = this.configService.getClassType(definition.type);
@@ -165,7 +165,7 @@ export class DynamicFormBuilder {
   }
 
   createFormActions(
-    root: DynamicFormField, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
+    root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
   ): DynamicFormAction[] {
     return (definitions || []).map(definition => {
       return this.createFormActionForFactory(root, parent, definition);

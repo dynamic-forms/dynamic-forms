@@ -2,6 +2,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from '../dynamic-form-element/dynamic-form-element-template';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 
 export type DynamicFormClassFactory<
@@ -9,4 +10,4 @@ export type DynamicFormClassFactory<
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
   Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
   ParentElement extends DynamicFormElement = DynamicFormField
-> = (builder: DynamicFormBuilder, root: DynamicFormField, parent: ParentElement, definition: Definition) => Element;
+> = (builder: DynamicFormBuilder, root: DynamicForm, parent: ParentElement, definition: Definition) => Element;

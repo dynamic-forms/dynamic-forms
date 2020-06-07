@@ -1,7 +1,9 @@
 <dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
 
 <ng-template #modalTemplate>
-  <div class="dynamic-form">
+  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.wrapperClassName 
+  ? [ theme, template.wrapperClassName ] : theme || element.root.template?.wrapperClassName">
+  <div class="dynamic-form" [ngClass]="element.root.template?.className">
     <div class="dynamic-form-modal" [ngClass]="template?.className">
       <div *ngIf="template && (template.titleHtml || template.title)" class="modal-header">
         <div *ngIf="template?.titleHtml; else titlePlain" class="modal-title"
@@ -25,5 +27,6 @@
         ></dynamic-form-element>      
       </div>    
     </div>  
+  </div>
   </div>
 </ng-template>
