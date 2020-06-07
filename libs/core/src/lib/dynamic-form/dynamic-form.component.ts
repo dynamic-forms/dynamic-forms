@@ -23,7 +23,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   constructor(
     private formBuilder: DynamicFormBuilder,
     @Optional() @Inject(DYNAMIC_FORM_THEME)
-    public formTheme: string
+    public theme: string
   ) {}
 
   get formField(): DynamicForm { return this._formField; }

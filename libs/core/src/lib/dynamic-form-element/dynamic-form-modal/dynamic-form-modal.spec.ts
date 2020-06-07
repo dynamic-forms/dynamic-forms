@@ -1,12 +1,14 @@
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
   it('new instance', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
 
     expect(element.classType).toBe('element');
     expect(element.componentType).toBe('type');
@@ -24,8 +26,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('sets elements', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
     const elements = [
       <DynamicFormElement>{ classType: 'element', definition: {} }
     ];
@@ -36,8 +39,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('sets elements to empty array', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
 
     element.initElements(null);
 
@@ -45,8 +49,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('sets actions', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
     const actions = [
       <DynamicFormAction>{ classType: 'action', definition: {} }
     ];
@@ -57,8 +62,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('sets actions to empty array', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
 
     element.initActions(null);
 
@@ -66,8 +72,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('sets trigger', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
     const trigger = <DynamicFormAction>{ classType: 'action', definition: {} };
 
     element.initTrigger(trigger);
@@ -76,8 +83,9 @@ describe('DynamicFormModal', () => {
   });
 
   it('open, close and toggle sets isOpen', () => {
+    const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(definition);
+    const element = new DynamicFormModal(root, definition);
 
     element.open();
 

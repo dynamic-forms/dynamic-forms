@@ -1,5 +1,6 @@
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { dynamicFormModalFactory } from './dynamic-form-modal-factory';
@@ -21,7 +22,7 @@ describe('dynamicFormModalFactory', () => {
     builder.createFormActions.and.returnValue(actions);
     builder.createFormAction.and.returnValue(trigger);
 
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'element', template: {}, elements: [], actions: [], trigger: {} };
 
