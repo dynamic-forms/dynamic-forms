@@ -19,10 +19,13 @@ describe('DynamicFormModal', () => {
     expect(element.expressionData).toBeTruthy();
     expect(element.expressionData.isOpen).toBeFalse();
 
-    expect(element.actions).toEqual([]);
-    expect(element.trigger).toBeUndefined();
+    expect(element.root).toBe(root);
 
     expect(element.isOpen).toBeFalse();
+    expect(element.isOpenChange).toBeTruthy();
+
+    expect(element.actions).toEqual([]);
+    expect(element.trigger).toBeUndefined();
   });
 
   it('sets elements', () => {
