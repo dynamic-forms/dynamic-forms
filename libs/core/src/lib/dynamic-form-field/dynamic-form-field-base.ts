@@ -17,6 +17,7 @@ export abstract class DynamicFormFieldBase<
     super();
   }
 
+  get id(): string { return this.element.id; }
   get key(): string { return this.element.key; }
   get index(): number { return this.element.index; }
   get path(): string { return this.element.path; }

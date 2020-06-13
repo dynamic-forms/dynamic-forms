@@ -3,6 +3,7 @@ import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormButtonBase } from './dynamic-form-button-base';
@@ -47,7 +48,7 @@ describe('DynamicFormButtonBase', () => {
     fixture = TestBed.createComponent(DynamicFormButtonTestComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
     const definition = <DynamicFormButtonDefinition>{ type: 'element', template };

@@ -3,6 +3,7 @@ import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormIconBase } from './dynamic-form-icon-base';
@@ -48,7 +49,7 @@ describe('DynamicFormIconBase', () => {
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormIconTemplate>{ label: 'label' };
     const definition = <DynamicFormIconDefinition>{ type: 'element', template };
