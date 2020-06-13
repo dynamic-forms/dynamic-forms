@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -31,7 +31,8 @@ describe('MatDynamicFormModalComponent', () => {
       minWidth: '600px',
       maxWidth: '100%'
     };
-    modal = new DynamicFormModal(<DynamicFormModalDefinition>{ template });
+    const root = <DynamicForm>{};
+    modal = new DynamicFormModal(root, <DynamicFormModalDefinition>{ template });
     component.element = modal;
 
     fixture.detectChanges();

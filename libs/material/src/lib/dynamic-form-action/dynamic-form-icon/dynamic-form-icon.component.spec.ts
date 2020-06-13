@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormAction, DynamicFormActionService, DynamicFormField, DynamicFormIconDefinition,
-  DynamicFormIconTemplate, DynamicFormLibraryService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormField,
+  DynamicFormIconDefinition, DynamicFormIconTemplate, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
 import { MatDynamicFormIconModule } from './dynamic-form-icon.module';
 
@@ -27,7 +27,7 @@ describe('MatDynamicFormIconComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormIconComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormIconTemplate>{ label: 'label' };
     const definition = <DynamicFormIconDefinition>{ type: 'element', template };

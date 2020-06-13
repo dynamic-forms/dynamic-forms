@@ -30,10 +30,6 @@ export class DynamicFormModal<
 
   get root(): DynamicForm { return this._root; }
 
-  get wrapperClassName(): string {
-    return this.root.template && this.root.template.wrapperClassName;
-  }
-
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChange(): Observable<boolean> { return this._isOpenChange; }
 

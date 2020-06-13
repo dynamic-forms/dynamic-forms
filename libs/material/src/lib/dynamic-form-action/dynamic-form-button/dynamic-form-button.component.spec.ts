@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition, DynamicFormButtonTemplate,
-  DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition,
+  DynamicFormButtonTemplate, DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 import { MatDynamicFormButtonModule } from './dynamic-form-button.module';
 
@@ -27,7 +27,7 @@ describe('MatDynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormButtonComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
     const definition = <DynamicFormButtonDefinition>{ type: 'element', template };
