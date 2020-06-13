@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormModalBase, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { Subscription } from 'rxjs';
 
