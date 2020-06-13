@@ -2,12 +2,13 @@ import { DynamicFormActionExpression } from '../dynamic-form-expression/dynamic-
 import { DynamicFormActionExpressions } from '../dynamic-form-expression/dynamic-form-action-expressions';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 
 describe('DynamicFormAction', () => {
   it('new instance', () => {
-    const root = <DynamicFormField>{};
+    const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: {}, elements: [] };
     const action = new DynamicFormAction(root, parent, definition);
@@ -37,7 +38,7 @@ describe('DynamicFormAction', () => {
   it('returns expression data with expression data of parent and root being defined', () => {
     const rootExpressionData = <DynamicFormFieldExpressionData>{};
     const parentExpressionData = <DynamicFormFieldExpressionData>{};
-    const root = <DynamicFormField>{ expressionData: rootExpressionData };
+    const root = <DynamicForm>{ expressionData: rootExpressionData };
     const parent = <DynamicFormField>{ expressionData: parentExpressionData };
     const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: {}, elements: [] };
     const action = new DynamicFormAction(root, parent, definition);

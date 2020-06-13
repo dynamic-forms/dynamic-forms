@@ -164,6 +164,23 @@ describe('DynamicFormControl', () => {
     expect(formControl.control.valid).toBe(false);
   });
 
+  it('check updates control value', () => {
+    const root = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
+    const formControl = new DynamicFormControl(root, root, definition);
+
+    spyOn(formControl.control, 'setValue').and.callThrough();
+    spyOn(formControl.control, 'markAsTouched');
+
+    root.model['key'] = 'value';
+    formControl.check();
+
+    expect(formControl.model).toBe('value');
+    expect(formControl.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
+    expect(formControl.control.markAsTouched).toHaveBeenCalled();
+    expect(formControl.control.value).toBe('value');
+  });
+
   it('check updates control disabled', () => {
     const root = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormControlDefinition>{ key: 'key', template: { input: {} } };
