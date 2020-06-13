@@ -1,4 +1,5 @@
 import { Inject, Injectable, Optional } from '@angular/core';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -24,15 +25,15 @@ export class DynamicFormActionService {
   handle(action: DynamicFormAction, $event: Event): void {
     const handler = this.getHandler(action.template.action);
     if (handler) {
-      const field = this.getField(handler, action);
-      handler.func(field, action);
+      const element = this.getElement(handler, action);
+      handler.func(element, action);
       $event.stopPropagation();
     }
   }
 
-  private getField(handler: DynamicFormActionHandler, action: DynamicFormAction): DynamicFormField {
-    return handler.fieldFunc
-      ? handler.fieldFunc(action)
+  private getElement(handler: DynamicFormActionHandler, action: DynamicFormAction): DynamicFormElement | DynamicFormField {
+    return handler.elementFunc
+      ? handler.elementFunc(action)
       : action.parent;
   }
 }

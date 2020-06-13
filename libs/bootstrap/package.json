@@ -1,11 +1,15 @@
 {
   "name": "@dynamic-forms/bootstrap",
   "version": "10.0.0-beta",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^10.0.0-next",
     "@angular/core": "^10.0.0-next",
     "@angular/forms": "^10.0.0-next",
     "@dynamic-forms/core": "^10.0.0-beta",
     "bootstrap": " ~4.5.0"
-  }
+  },
+  "sideEffects": false
 }

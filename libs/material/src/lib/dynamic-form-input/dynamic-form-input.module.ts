@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
@@ -13,7 +12,6 @@ import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form
 
 @NgModule({
   imports: [
-    CommonModule,
     MatFormFieldModule,
     MatDynamicFormCheckboxModule,
     MatDynamicFormComboboxModule,

@@ -1,21 +1,19 @@
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpression } from './dynamic-form-expression';
+import { DynamicFormElementExpression, DynamicFormElementExpressionFunc } from './dynamic-form-element-expression';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
-export const dynamicFormFieldExpressionArgs = [ 'data', 'memo' ];
+export type DynamicFormFieldExpressionFunc = DynamicFormElementExpressionFunc<DynamicFormFieldExpressionData>;
 
-export type DynamicFormFieldExpressionFunction =
-  (data: DynamicFormFieldExpressionData, memo: DynamicFormExpressionMemoization) => any;
-
-export class DynamicFormFieldExpression implements DynamicFormExpression<DynamicFormFieldExpressionFunction> {
+export class DynamicFormFieldExpression extends DynamicFormElementExpression {
   protected _memo: DynamicFormExpressionMemoization;
 
   constructor(
     readonly key: string,
     readonly field: DynamicFormField,
-    readonly func: DynamicFormFieldExpressionFunction
+    readonly func: DynamicFormFieldExpressionFunc
   ) {
+    super(key, field, func);
     this._memo = { previousValue: null, currentValue: null };
   }
 
