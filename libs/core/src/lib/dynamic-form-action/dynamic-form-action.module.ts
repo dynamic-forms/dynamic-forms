@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { DynamicFormActionService } from './dynamic-form-action.service';
@@ -10,8 +10,8 @@ import { DynamicFormActionService } from './dynamic-form-action.service';
   ]
 })
 export class DynamicFormActionModule {
-  static withHandler<Field extends DynamicFormField = DynamicFormField>(
-    handler: DynamicFormActionHandler<Field>
+  static withHandler<Element extends DynamicFormElement = DynamicFormElement>(
+    handler: DynamicFormActionHandler<Element>
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -25,8 +25,8 @@ export class DynamicFormActionModule {
     };
   }
 
-  static withHandlers<Field extends DynamicFormField = DynamicFormField>(
-    handlers: DynamicFormActionHandler<Field>[]
+  static withHandlers<Element extends DynamicFormElement = DynamicFormElement>(
+    handlers: DynamicFormActionHandler<Element>[]
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -40,8 +40,8 @@ export class DynamicFormActionModule {
     };
   }
 
-  static withHandlerFactory<Field extends DynamicFormField = DynamicFormField>(
-    handlerFactory: (deps?: any) => DynamicFormActionHandler<Field>, deps?: any[]
+  static withHandlerFactory<Element extends DynamicFormElement = DynamicFormElement>(
+    handlerFactory: (deps?: any) => DynamicFormActionHandler<Element>, deps?: any[]
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,

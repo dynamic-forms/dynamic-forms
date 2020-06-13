@@ -92,7 +92,7 @@
           {
             "type": "icon",
             "template": {
-              "className": "col-1",
+              "wrapperClassName": "col-1",
               "label": "Remove user",
               "icon": "remove",
               "action": "removeArrayElement"

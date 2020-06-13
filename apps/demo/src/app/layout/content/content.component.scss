@@ -1,12 +1,15 @@
 .container {
-  min-height: calc(100% - 64px);
+  min-height: calc(100vh - 64px);
 
   .sidebar {
     width: 250px;
   }
 
   .content {
+    min-height: calc(100vh - 64px);
+
     .card {
+      min-height: calc(100vh - 116px);
       margin: 10px;
     }  
   }

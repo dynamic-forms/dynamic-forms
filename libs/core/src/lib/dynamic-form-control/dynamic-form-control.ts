@@ -5,6 +5,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
@@ -18,7 +19,7 @@ export class DynamicFormControl<
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
@@ -106,6 +107,12 @@ export class DynamicFormControl<
   }
 
   private checkValue(): void {
+    const model = this.parent.model[this.key];
+    if (this._control.value !== model || this._model !== model) {
+      this._model = model;
+      this._control.setValue(model, { onlySelf: true, emitEvent: false });
+      this._control.markAsTouched();
+    }
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }
 }

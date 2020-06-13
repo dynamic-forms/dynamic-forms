@@ -4,9 +4,11 @@ import { DynamicFormArrayValidation } from '../dynamic-form-array/dynamic-form-a
 import { dynamicFormArrayValidatorTypes, DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
 import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupValidation } from '../dynamic-form-group/dynamic-form-group-validation';
 import { dynamicFormGroupValidatorTypes, DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
@@ -307,6 +309,24 @@ describe('DynamicFormValidationBuilder', () => {
         const validator = service.createControlValidator(control, 'json');
 
         expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns control validator for validator definition',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const validators = <{ [key: string]: DynamicFormFieldValidatorDefinition }>{
+          customMin: { type: 'min', parameters: -10, message: 'message' }
+        };
+        const definition = <DynamicFormControlDefinition>{ validators };
+        const validation = <DynamicFormControlValidation>{ customMin: true };
+        const control = <DynamicFormControl>{ definition, template: { input: {}, validation } };
+        const validator = service.createControlValidator(control, 'customMin');
+
+        expect(validator.key).toBe('customMin');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBe(-10);
+        expect(validator.validatorFn).toBeDefined();
       })
     );
 

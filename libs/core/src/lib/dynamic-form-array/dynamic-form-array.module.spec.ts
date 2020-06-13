@@ -94,9 +94,9 @@ describe('DynamicFormArrayModule', () => {
       const parent = <DynamicFormField>{ parent: field };
       const action = <DynamicFormAction>{ parent: parent };
 
-      const result = handler.fieldFunc(action);
+      const result = handler.elementFunc(action);
 
-      expect(result).toBe(field);
+      expect(result).toEqual(field);
     })
   );
 
@@ -107,7 +107,7 @@ describe('DynamicFormArrayModule', () => {
       const parent = <DynamicFormField>{ parent: field };
       const action = <DynamicFormAction>{ parent: parent };
 
-      const result = handler.fieldFunc(action);
+      const result = handler.elementFunc(action);
 
       expect(result).toBeUndefined();
     })

@@ -13,11 +13,6 @@ module.exports = function (config) {
       require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    files: [
-      'core/src/**/*.spec.ts',
-      'bootstrap/src/**/*.spec.ts',
-      'material/src/**/*.spec.ts'
-    ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
