@@ -13,6 +13,9 @@ export * from './lib/dynamic-form-field/dynamic-form-control-hints/dynamic-form-
 export * from './lib/dynamic-form-field/dynamic-form-control-hints/dynamic-form-control-hints.module';
 export * from './lib/dynamic-form-field/dynamic-form-control-label/dynamic-form-control-label.component';
 export * from './lib/dynamic-form-field/dynamic-form-control-label/dynamic-form-control-label.module';
+export * from './lib/dynamic-form-element/dynamic-form-element.module';
+export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.component';
+export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.module';
 export * from './lib/dynamic-form-input/dynamic-form-input.module';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox.component';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox.module';

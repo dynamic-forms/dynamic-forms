@@ -1,4 +1,5 @@
-<div class="dynamic-form-wrapper" [ngClass]="template?.wrapperClassName">
+<div class="dynamic-form-wrapper" [ngClass]="theme && template?.wrapperClassName 
+  ? [ theme, template.wrapperClassName ] : theme || template?.wrapperClassName">
   <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
     <ng-container *ngFor="let element of elements">
       <dynamic-form-element [element]="element"></dynamic-form-element>

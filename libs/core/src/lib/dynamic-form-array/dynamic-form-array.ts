@@ -2,6 +2,7 @@ import { FormArray } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
@@ -12,7 +13,7 @@ export class DynamicFormArray<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicFormField, parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
     this._model = this.getModel(parent, definition);
     this._control = new FormArray([]);

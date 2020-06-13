@@ -3,10 +3,9 @@ import { DynamicFormElementDefinition } from './dynamic-form-element-definition'
 
 describe('DynamicFormElement', () => {
   it('new instance', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'type', template: {}, elements: [] };
+    const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
 
-    expect(formElement.id).toBe('id');
     expect(formElement.classType).toBe('element');
     expect(formElement.componentType).toBe('type');
     expect(formElement.definition).toBe(definition);

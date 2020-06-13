@@ -65,7 +65,7 @@ describe('DynamicFormActionService', () => {
       },
       {
         type: 'type-field-func',
-        fieldFunc: (action) => action.parent.parent,
+        elementFunc: (action) => (<DynamicFormField>action.parent).parent,
         func: () => {},
         libraryName: 'test'
       }
@@ -127,7 +127,7 @@ describe('DynamicFormActionService', () => {
       })
     );
 
-    it('calls fieldFunc and func of handler and stops propagation of event',
+    it('calls elementFunc and func of handler and stops propagation of event',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const parent = <DynamicFormField>{};
         const field = <DynamicFormField>{ parent: parent };
@@ -135,14 +135,14 @@ describe('DynamicFormActionService', () => {
         const event = <Event>{ stopPropagation(): void {} };
 
         spyOn(service, 'getHandler').and.callThrough();
-        spyOn(service.handlers[1], 'fieldFunc').and.callThrough();
+        spyOn(service.handlers[1], 'elementFunc').and.callThrough();
         spyOn(service.handlers[1], 'func');
         spyOn(event, 'stopPropagation');
 
         service.handle(action, event);
 
         expect(service.getHandler).toHaveBeenCalledWith('type-field-func');
-        expect(service.handlers[1].fieldFunc).toHaveBeenCalledWith(action);
+        expect(service.handlers[1].elementFunc).toHaveBeenCalledWith(action);
         expect(service.handlers[1].func).toHaveBeenCalledWith(parent, action);
         expect(event.stopPropagation).toHaveBeenCalled();
       })
