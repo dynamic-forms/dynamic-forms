@@ -12,12 +12,11 @@ describe('DynamicFormElementBase', () => {
   });
 
   it('component returns definition', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
     const element = new DynamicFormElement(definition);
 
     component.element = element;
 
-    expect(component.id).toBe('id');
     expect(component.element).toEqual(element);
     expect(component.definition).toEqual(element.definition);
     expect(component.template).toEqual(element.template);

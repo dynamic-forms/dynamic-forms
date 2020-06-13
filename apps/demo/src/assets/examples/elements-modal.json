@@ -1,0 +1,50 @@
+{
+  "elements": [
+    {
+      "type": "modal",
+      "template": {
+        "title": "Modal",
+        "titleClassName": "modal-title-bg",
+        "width": "600px",
+        "maxWidth": "calc(100% - 1rem)"
+      },
+      "trigger": {
+        "type": "button",
+        "template": {
+          "type": "button",
+          "label": "Open Modal",
+          "action": "openModal"
+        },
+        "expressions": {
+          "disabled": "data.parent.isOpen"
+        }
+      },
+      "elements": [
+        {
+          "type": "content",
+          "template": {
+            "className": "col",
+            "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+          }
+        },
+        {
+          "type": "content",
+          "template": {
+            "className": "col",
+            "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Close Modal",
+            "action": "closeModal"
+          }
+        }
+      ]
+    }
+  ]
+}
