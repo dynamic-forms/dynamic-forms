@@ -229,3 +229,15 @@
     }    
   }
 }
+
+.mat-dialog-container {
+  .dynamic-form-wrapper.material {
+    .dynamic-form {
+      margin: 0px;
+
+      &.grid {
+        margin: 0px;
+      }
+    }
+  }
+}
