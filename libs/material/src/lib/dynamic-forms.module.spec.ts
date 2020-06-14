@@ -22,11 +22,11 @@ describe('MatDynamicFormsModule', () => {
     });
 
     it('does not provide DYNAMIC_FORM_THEME', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DYNAMIC_FORM_ID_BUILDER', () => {
-      expect(() => TestBed.get(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
     });
 
     it('does not provide DynamicFormLibraryService', () => {
