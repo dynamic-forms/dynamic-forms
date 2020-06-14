@@ -1,6 +1,8 @@
 import { DynamicFormElementDefinition } from '../dynamic-form-element-definition';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 
-export interface DynamicFormContainerDefinition extends DynamicFormElementDefinition<DynamicFormContainerTemplate> {
+export interface DynamicFormContainerDefinition<
+  Template extends DynamicFormContainerTemplate = DynamicFormContainerTemplate
+> extends DynamicFormElementDefinition<Template> {
   elements: DynamicFormElementDefinition[];
 }
