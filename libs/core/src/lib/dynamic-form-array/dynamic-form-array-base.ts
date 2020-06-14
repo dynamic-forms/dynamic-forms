@@ -5,9 +5,12 @@ import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
-export abstract class DynamicFormArrayBase extends DynamicFormFieldBase<
-  FormArray, DynamicFormArrayTemplate, DynamicFormArrayDefinition, DynamicFormArray
-> {
+export abstract class DynamicFormArrayBase<
+  Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
+  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
+  Array extends DynamicFormArray<Template, Definition> = DynamicFormArray<Template, Definition>
+> extends DynamicFormFieldBase<FormArray, Template, Definition, Array> {
+
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
