@@ -2,18 +2,21 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationConfig, DynamicFormValidationConfigs,
   DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
+import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
 describe('DynamicFormValidationService', () => {
   describe('without validation config', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule
+        ],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' })
-          },
-          DynamicFormValidationService
+          }
         ]
       });
     }));
