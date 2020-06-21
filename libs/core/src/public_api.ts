@@ -85,6 +85,11 @@ export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-cont
 export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-content-template';
 export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-content.component';
 export * from './lib/dynamic-form-element/dynamic-form-content/dynamic-form-content.module';
+export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown-definition';
+export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown-template';
+export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown.component';
+export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown.module';
+export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown.service';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-base';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-definition';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal';
