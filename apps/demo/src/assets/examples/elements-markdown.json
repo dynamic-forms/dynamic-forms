@@ -9,7 +9,7 @@
     {
       "type": "markdown",
       "template": {
-        "source": "/assets/examples/markdown/elements-markdown.md"
+        "source": "./assets/examples/markdown/elements-markdown.md"
       }
     }
   ]
