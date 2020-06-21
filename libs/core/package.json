@@ -7,7 +7,8 @@
   "peerDependencies": {
     "@angular/common": "^10.0.0-next",
     "@angular/core": "^10.0.0-next",
-    "@angular/forms": "^10.0.0-next"
+    "@angular/forms": "^10.0.0-next",
+    "marked": "^1.1.0"
   },
   "sideEffects": false
 }
