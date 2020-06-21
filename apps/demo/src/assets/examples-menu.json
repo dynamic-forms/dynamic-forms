@@ -109,7 +109,11 @@
         { 
           "id": "elements-container", 
           "label": "Container" 
-        },        
+        },       
+        { 
+          "id": "elements-markdown", 
+          "label": "Markdown" 
+        },       
         { 
           "id": "elements-modal", 
           "label": "Modal" 

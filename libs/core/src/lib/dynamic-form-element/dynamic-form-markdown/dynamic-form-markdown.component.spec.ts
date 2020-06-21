@@ -14,7 +14,7 @@ describe('DynamicFormMarkdownComponent', () => {
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
   beforeEach(async(() => {
-    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'parse', 'load' ]);
+    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -44,17 +44,18 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('creates component template', () => {
-    service.parse.and.returnValue(undefined);
+    service.compile.and.returnValue(undefined);
 
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
     const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
 
     expect(formMarkdownElement).toBeDefined();
     expect(formMarkdownElement.innerHTML).toBe('');
+    expect(service.compile).toHaveBeenCalledWith(undefined, undefined);
   });
 
   it('creates component template for markdown', () => {
-    service.parse.and.returnValue('<h1>Title</h1>');
+    service.compile.and.returnValue('<h1>Title</h1>');
 
     component.element.template.markdown = '# Title';
 
@@ -65,12 +66,13 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeDefined();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
+    expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
   });
 
   it('creates component template for markdown source', async(() => {
-    service.load.and.returnValue(of('<h1>Title</h1>'));
+    service.compileFromSource.and.returnValue(of('<h1>Title</h1>'));
 
-    component.element.template.source = 'assets/README.md';
+    component.element.template.source = '/assets/README.md';
 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
@@ -79,6 +81,7 @@ describe('DynamicFormMarkdownComponent', () => {
 
       expect(formMarkdownElement).toBeDefined();
       expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
+      expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README.md', undefined);
     });
   }));
 });

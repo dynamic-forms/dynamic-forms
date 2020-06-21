@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "markdown",
+      "template": {
+        "markdown": "# Markdown from definition"
+      }
+    },
+    {
+      "type": "markdown",
+      "template": {
+        "source": "/assets/examples/markdown/elements-markdown.md"
+      }
+    }
+  ]
+}

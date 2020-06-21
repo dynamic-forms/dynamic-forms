@@ -32,8 +32,8 @@ export class DynamicFormMarkdownComponent<
     this.markdown$ = this._markdownSubject.asObservable().pipe(
       switchMap(value => {
         return value.source
-          ? this.markdownService.load(value.source, this.definition.options)
-          : of(this.markdownService.parse(value.source, this.definition.options));
+          ? this.markdownService.compileFromSource(value.source, this.definition.options)
+          : of(this.markdownService.compile(value.markdown, this.definition.options));
       })
     );
   }
