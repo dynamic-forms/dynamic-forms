@@ -1,8 +1,8 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "8.0.0-beta",
-  "author": "Alexander Gebuhr <alexandergebuhr@outlook.com>",
-  "description": "DynamicForms is an Angular project for dynamic forms based on JSON.",
+  "version": "8.0.0-next.0",
+  "author": "dynamic-forms",
+  "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
     "angular",
     "forms",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamic-forms/dynamic-forms"
+    "url": "https://github.com/dynamic-forms/dynamic-forms.git"
   },
   "scripts": {
     "ng": "ng",
