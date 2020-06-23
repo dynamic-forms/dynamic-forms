@@ -1,6 +1,14 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "10.0.0-beta",
+  "version": "10.0.0-next.0",
+  "author": "dynamic-forms",
+  "description": "dynamic-forms - core library",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dynamic-forms/dynamic-forms.git",
+    "directory": "libs/core"
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   },
@@ -10,5 +18,8 @@
     "@angular/forms": "^10.0.0-next",
     "marked": "^1.1.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
