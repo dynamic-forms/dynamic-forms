@@ -1,9 +1,9 @@
 {
-  "version": "9.0.0-beta",
+  "version": "9.0.0",
   "build": "187",
-  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=4&_a=summary",
-  "release": "13",
-  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=2&_a=releases",
+  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=1&_a=summary",
+  "release": "17",
+  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=1&_a=releases",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
@@ -15,15 +15,15 @@
   },
   "versions": [
     {
-      "name": "8.0.0-beta",
+      "name": "8.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v8/dev"
     },
     {
-      "name": "9.0.0-beta",
+      "name": "9.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v9/dev"
     },
     {
-      "name": "10.0.0-beta",
+      "name": "10.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v10/dev"
     }
   ]
