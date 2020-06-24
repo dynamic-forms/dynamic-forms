@@ -1,6 +1,14 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "10.0.0-beta",
+  "version": "10.0.0-next.0",
+  "author": "dynamic-forms",
+  "description": "dynamic-forms - component library using bootstrap",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dynamic-forms/dynamic-forms.git",
+    "directory": "libs/bootstrap"
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   },
@@ -8,8 +16,11 @@
     "@angular/common": "^10.0.0-next",
     "@angular/core": "^10.0.0-next",
     "@angular/forms": "^10.0.0-next",
-    "@dynamic-forms/core": "^10.0.0-beta",
+    "@dynamic-forms/core": "^10.0.0-next.0",
     "bootstrap": " ~4.5.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
