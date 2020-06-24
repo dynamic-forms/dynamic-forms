@@ -1,8 +1,8 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "8.0.0-beta",
-  "author": "Alexander Gebuhr <alexandergebuhr@outlook.com>",
-  "description": "DynamicForms is an Angular project for dynamic forms based on JSON.",
+  "version": "8.0.0-next.0",
+  "author": "dynamic-forms",
+  "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
     "angular",
     "forms",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamic-forms/dynamic-forms"
+    "url": "https://github.com/dynamic-forms/dynamic-forms.git"
   },
   "scripts": {
     "ng": "ng",
@@ -46,7 +46,11 @@
     "serve:doc:bootstrap": "cd libs/bootstrap && npx compodoc -c doc.json --serve --watch",
     "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch",
     "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v8/",
-    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v8/"
+    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v8/",
+    "publish:core": "npm publish dist/v8/@dynamic-forms/core --tag v8",
+    "publish:bootstrap": "npm publish dist/v8/@dynamic-forms/bootstrap --tag v8",
+    "publish:material": "npm publish dist/v8/@dynamic-forms/material --tag v8",
+    "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material"
   },
   "private": true,
   "dependencies": {
@@ -69,9 +73,9 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.26",
-    "@angular-devkit/build-ng-packagr": "~0.803.26",
-    "@angular/cli": "~8.3.26",
+    "@angular-devkit/build-angular": "~0.803.28",
+    "@angular-devkit/build-ng-packagr": "~0.803.28",
+    "@angular/cli": "~8.3.28",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@compodoc/compodoc": "^1.1.11",
