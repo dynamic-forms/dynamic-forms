@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "9.0.0-next.0",
+  "version": "9.0.0-next.1",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "license": "MIT",
@@ -14,9 +14,11 @@
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/material": "^9.0.0",
-    "@dynamic-forms/core": "^9.0.0-next.0"
+    "@dynamic-forms/core": "^9.0.0-next.1"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/",
+    "access": "restricted",
+    "tag": "v9"
   }
 }
