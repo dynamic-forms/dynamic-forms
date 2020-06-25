@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "9.0.0-next.0",
+  "version": "9.0.0-next.1",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -16,6 +16,8 @@
     "marked": "^1.1.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/",
+    "access": "restricted",
+    "tag": "v9"
   }
 }
