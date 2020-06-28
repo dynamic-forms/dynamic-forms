@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "8.0.0-next.2",
+  "version": "8.0.0-next.3",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -23,9 +23,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:core": "ng build dynamic-forms-core",
-    "build:bootstrap": "ng build dynamic-forms-bootstrap",
-    "build:material": "ng build dynamic-forms-material",
+    "copy:assets:core": "cd libs/core/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/core/assets",
+    "copy:assets:bootstrap": "cd libs/bootstrap/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/bootstrap/assets",
+    "copy:assets:material": "cd libs/material/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/material/assets",
+    "copy:assets:libs": "npm run copy:assets:core && npm run copy:assets:bootstrap && npm run copy:assets:material",
+    "build:core": "ng build dynamic-forms-core && npm run copy:assets:core",
+    "build:bootstrap": "ng build dynamic-forms-bootstrap && npm run copy:assets:bootstrap",
+    "build:material": "ng build dynamic-forms-material && npm run copy:assets:material",
     "build:libs": "npm run build:core && npm run build:bootstrap && npm run build:material",
     "build:demo": "ng build dynamic-forms-demo",
     "build:demo:prod": "ng build dynamic-forms-demo --prod --aot",
@@ -50,7 +54,7 @@
     "publish:core": "cd dist/v8/@dynamic-forms/core && npm publish",
     "publish:bootstrap": "cd dist/v8/@dynamic-forms/bootstrap && npm publish",
     "publish:material": "cd dist/v8/@dynamic-forms/material && npm publish",
-    "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material"   
+    "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material"
   },
   "private": true,
   "dependencies": {
@@ -85,6 +89,7 @@
     "@types/node": "~14.0.14",
     "@types/uuid": "^8.0.0",
     "codelyzer": "~5.2.2",
+    "copyfiles": "^2.3.0",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "^5.0.2",
     "karma": "^5.1.0",
