@@ -44,9 +44,9 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 
 ### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=release%2Fv8)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=release%2Fv8)
 
-- `npm install @dynamic-forms/core@v8.0.0-next.3`
-- `npm install @dynamic-forms/bootstrap@v8.0.0-next.3`
-- `npm install @dynamic-forms/material@v8.0.0-next.3`
+- `npm install @dynamic-forms/core@v8.0.0-next.2`
+- `npm install @dynamic-forms/bootstrap@v8.0.0-next.2`
+- `npm install @dynamic-forms/material@v8.0.0-next.2`
 
 ### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=release%2Fv9)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=release%2Fv9)
 
