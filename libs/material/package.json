@@ -14,7 +14,8 @@
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/material": "^9.0.0",
-    "@dynamic-forms/core": "^9.0.0-next.1"
+    "@dynamic-forms/core": "^9.0.0-next.1",
+    "bootstrap": "~4.5.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
