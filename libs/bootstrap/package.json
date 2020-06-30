@@ -22,7 +22,6 @@
   "sideEffects": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
-    "access": "restricted",
-    "tag": "v10"
+    "access": "restricted"
   }
 }
