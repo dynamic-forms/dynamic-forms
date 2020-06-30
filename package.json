@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "8.0.0-next.2",
+  "version": "8.0.0-next.3",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -55,9 +55,9 @@
     "clean:styles:bootstrap": "rimraf dist/v8/@dynamic-forms/bootstrap/assets/scss",
     "clean:styles:material": "rimraf dist/v8/@dynamic-forms/material/assets/scss",
     "clean:styles:libs": "npm run clean:styles:core && npm run clean:styles:bootstrap && npm run clean:styles:material",
-    "copy:styles:core": "npm run clean:styles:core && cd libs/core/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/core/assets",
-    "copy:styles:bootstrap": "npm run clean:styles:bootstrap && cd libs/bootstrap/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/bootstrap/assets",
-    "copy:styles:material": "npm run clean:styles:material && cd libs/material/src/assets && copyfiles \"./**/*.scss\" ../../../../dist/v8/@dynamic-forms/material/assets",
+    "copy:styles:core": "npm run clean:styles:core && cd libs/core/assets && copyfiles \"./**/*.scss\" ../../../dist/v8/@dynamic-forms/core/assets",
+    "copy:styles:bootstrap": "npm run clean:styles:bootstrap && cd libs/bootstrap/assets && copyfiles \"./**/*.scss\" ../../../dist/v8/@dynamic-forms/bootstrap/assets",
+    "copy:styles:material": "npm run clean:styles:material && cd libs/material/assets && copyfiles \"./**/*.scss\" ../../../dist/v8/@dynamic-forms/material/assets",
     "copy:styles:libs": "npm run copy:styles:core && npm run copy:styles:bootstrap && npm run copy:styles:material"
   },
   "private": true,
