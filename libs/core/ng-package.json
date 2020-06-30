@@ -3,5 +3,8 @@
   "dest": "../../dist/v9/@dynamic-forms/core",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "assets": [
+    "assets"
+  ]
 }
