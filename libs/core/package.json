@@ -16,12 +16,12 @@
     "@angular/common": "^10.0.0",
     "@angular/core": "^10.0.0",
     "@angular/forms": "^10.0.0",
+    "bootstrap": "~4.5.0",
     "marked": "^1.1.0"
   },
   "sideEffects": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
-    "access": "restricted",
-    "tag": "v10"
+    "access": "restricted"
   }
 }

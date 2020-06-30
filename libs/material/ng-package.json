@@ -6,5 +6,8 @@
     "umdModuleIds": {
       "@dynamic-forms/core": "dynamicFormsCore"
     }
-  }
+  },
+  "assets": [
+    "assets"
+  ]
 }
