@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "10.0.0-next.1",
+  "version": "10.0.0-next.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "@angular/common": "^10.0.0",
     "@angular/core": "^10.0.0",
     "@angular/forms": "^10.0.0",
-    "@dynamic-forms/core": "^10.0.0-next.1",
+    "@dynamic-forms/core": "^10.0.0-next.2",
     "bootstrap": " ~4.5.0"
   },
   "sideEffects": false,
