@@ -1,14 +1,16 @@
 import { AppPage } from './app.po';
 
-describe('workspace-project App', () => {
+describe('dynamic-forms-demo app', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('has url and title', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to dynamic-forms!');
+
+    expect(page.getUrl()).toContain('/home');
+    expect(page.getTitle()).toEqual('dynamic-forms');
   });
 });
