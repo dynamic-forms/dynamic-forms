@@ -248,7 +248,7 @@
             "tsConfig": [
               "apps/demo/src/tsconfig.app.json",
               "apps/demo/src/tsconfig.spec.json",
-              "apps/demo-e2e/tsconfig.json"
+              "apps/demo-e2e/tsconfig.e2e.json"
             ],
             "exclude": [
               "**/node_modules/**"
