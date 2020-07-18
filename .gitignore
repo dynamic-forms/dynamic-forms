@@ -26,6 +26,7 @@ speed-measure-plugin.json
 .settings/
 *.sublime-workspace
 *.user
+*.DotSettings
 
 # IDE - VSCode
 .vscode/*
@@ -40,6 +41,7 @@ speed-measure-plugin.json
 /connect.lock
 /coverage
 /libpeerconnection.log
+debug.log
 npm-debug.log
 yarn-error.log
 testem.log
@@ -48,3 +50,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
