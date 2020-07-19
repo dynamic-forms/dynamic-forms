@@ -169,6 +169,9 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       margin-bottom: 5px;
 
       button {
