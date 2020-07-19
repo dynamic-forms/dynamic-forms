@@ -162,6 +162,10 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-actions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
       margin-top: 10px;
       margin-bottom: 10px;
       
