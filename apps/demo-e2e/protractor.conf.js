@@ -2,6 +2,23 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter } = require('jasmine-spec-reporter');
+const BeautifulReporter = require('protractor-beautiful-reporter');
+
+const specReporter = new SpecReporter({ 
+  spec: { 
+    displayStacktrace: true 
+  } 
+});
+
+const beautifulReporter = new BeautifulReporter({
+  baseDirectory: 'dist/v8/e2e',
+  screenshotsSubfolder: 'screenshots',
+  jsonsSubfolder: 'jsons',
+  takeScreenShotsOnlyForFailedSpecs: false,
+  docName: 'index.html',
+  docTitle: 'dynamic-forms demo - e2e report',
+  preserveDirectory: false
+});
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -23,6 +40,7 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+    jasmine.getEnv().addReporter(specReporter);
+    jasmine.getEnv().addReporter(beautifulReporter.getJasmine2Reporter());
   }
 };

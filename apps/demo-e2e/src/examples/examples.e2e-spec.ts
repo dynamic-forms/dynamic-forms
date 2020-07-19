@@ -1,5 +1,4 @@
 import { ExamplesMenu, ExamplesMenuItem } from 'apps/demo/src/app/layout/header/examples-menu/examples-menu';
-import { by, element } from 'protractor';
 import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
@@ -13,13 +12,13 @@ export function getExamples(items: ExamplesMenuItem[], namePrefix?: string): Exa
   }, []);
 }
 
-describe('dynamic-forms-demo examples', () => {
+describe('dynamic-forms demo examples', () => {
   const themes = [ 'bootstrap', 'material' ];
   const examples = getExamples((examplesConfig as ExamplesMenu).items);
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
-      let page;
+      let page: ExamplesPage;
 
       beforeEach(() => {
         page = new ExamplesPage(theme);
@@ -41,24 +40,40 @@ describe('dynamic-forms-demo examples', () => {
           it('has url, title and form', () => {
             page.navigateToExample(example);
 
-            const root = element(by.tagName('dynamic-form'));
-            const wrapper = root.element(by.css('.dynamic-form-wrapper'));
-            const form = wrapper.element(by.css('.dynamic-form'));
-            const formElements = form.all(by.tagName('dynamic-form-element'));
-            const formActions = form.element(by.css('.dynamic-form-actions'));
-            const formControlElements = form.all(by.tagName('dynamic-form-control'));
-            const formActionElements = formActions.all(by.tagName('dynamic-form-element'));
-
             expect(page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
-            expect(wrapper.getAttribute('class')).toContain(theme);
-            expect(form.getTagName()).toBe('form');
-            expect(formElements.count()).toBeGreaterThan(0);
 
-            formControlElements.count().then(count => {
+            expect(page.findRootElement().isPresent()).toBe(true);
+            expect(page.findWrapperElement().isPresent()).toBe(true);
+            expect(page.findFormElement().isPresent()).toBe(true);
+            expect(page.findFormActionsElement().isPresent()).toBe(true);
+            expect(page.findFormElements().count()).toBeGreaterThan(0);
+
+            const controlElements = page.findFormControlElements();
+            const actionElements = page.findFormActionElements();
+
+            controlElements.each(controlElement => {
+              const inputElement = page.findFormInputElement(controlElement);
+
+              expect(controlElement.isPresent()).toBe(true);
+              expect(inputElement.isPresent()).toBe(true);
+            });
+
+            controlElements.count().then(count => {
               if (count > 0) {
-                expect(formActionElements.count()).toBeGreaterThan(0);
+                const actionButtonElements = page.findFormActionButtonElements();
+                const validateButtonElement = page.findFormValidateButtonElement();
+
+                expect(actionElements.count()).toBeGreaterThan(0);
+                expect(actionButtonElements.count()).toBeGreaterThan(0);
+
+                validateButtonElement.isPresent().then(isPresent => {
+                  if (isPresent) {
+                    console.log('validate button present');
+                    validateButtonElement.click();
+                  }
+                });
               } else {
-                expect(formActionElements.count()).toBe(0);
+                expect(actionElements.count()).toBe(0);
               }
             });
           });
