@@ -28,6 +28,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
+  chromeDriver: './../../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_84.0.4147.30.exe',
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
