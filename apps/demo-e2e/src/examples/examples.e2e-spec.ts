@@ -24,11 +24,11 @@ describe('dynamic-forms demo examples', () => {
         page = new ExamplesPage(theme);
       });
 
-      it('has url and title', () => {
-        page.navigateTo();
+      it('has url and title', async () => {
+        await page.navigateTo();
 
-        expect(page.getUrl()).toContain(`/examples/${theme}`);
-        expect(page.getTitle()).toEqual('dynamic-forms');
+        expect(await page.getUrl()).toContain(`/examples/${theme}`);
+        expect(await page.getTitle()).toEqual('dynamic-forms');
       });
 
       examples.forEach(example => {
@@ -37,45 +37,47 @@ describe('dynamic-forms demo examples', () => {
           : `for example "${example.name}" with id "${example.id}"`;
 
         describe(description, () => {
-          it('has url, title and form', () => {
-            page.navigateToExample(example);
+          it('has url, title and form', async () => {
+            await page.navigateToExample(example);
 
-            expect(page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
+            expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
 
-            expect(page.findRootElement().isPresent()).toBe(true);
-            expect(page.findWrapperElement().isPresent()).toBe(true);
-            expect(page.findFormElement().isPresent()).toBe(true);
-            expect(page.findFormActionsElement().isPresent()).toBe(true);
-            expect(page.findFormElements().count()).toBeGreaterThan(0);
+            expect(await page.findRootElement().isPresent()).toBe(true);
+            expect(await page.findWrapperElement().isPresent()).toBe(true);
+            expect(await page.findFormElement().isPresent()).toBe(true);
+            expect(await page.findFormActionsElement().isPresent()).toBe(true);
+            expect(await page.findFormElements().count()).toBeGreaterThan(0);
 
             const controlElements = page.findFormControlElements();
             const actionElements = page.findFormActionElements();
 
-            controlElements.each(controlElement => {
-              const inputElement = page.findFormInputElement(controlElement);
+            if (await controlElements.count() > 0) {
+              const actionButtonElements = page.findFormActionButtonElements();
+              const validateButtonElement = page.findFormValidateButtonElement();
 
-              expect(controlElement.isPresent()).toBe(true);
-              expect(inputElement.isPresent()).toBe(true);
-            });
+              expect(await actionElements.count()).toBeGreaterThan(0);
+              expect(await actionButtonElements.count()).toBeGreaterThan(0);
 
-            controlElements.count().then(count => {
-              if (count > 0) {
-                const actionButtonElements = page.findFormActionButtonElements();
-                const validateButtonElement = page.findFormValidateButtonElement();
-
-                expect(actionElements.count()).toBeGreaterThan(0);
-                expect(actionButtonElements.count()).toBeGreaterThan(0);
-
-                validateButtonElement.isPresent().then(isPresent => {
-                  if (isPresent) {
-                    console.log('validate button present');
-                    validateButtonElement.click();
-                  }
-                });
-              } else {
-                expect(actionElements.count()).toBe(0);
+              const isPresent = await validateButtonElement.isPresent();
+              if (isPresent) {
+                await validateButtonElement.click();
               }
-            });
+
+              await controlElements.each(async controlElement => {
+                const inputElement = page.findFormInputElement(controlElement);
+
+                expect(await controlElement.isPresent()).toBe(true);
+                expect(await inputElement.isPresent()).toBe(true);
+
+                const isEditable = await page.isEditableFormControl(controlElement, inputElement);
+                if (isEditable) {
+                  expect(await page.editFormControl(controlElement, inputElement)).toBe(true);
+                }
+              });
+
+            } else {
+              expect(await actionElements.count()).toBe(0);
+            }
           });
         });
       });
