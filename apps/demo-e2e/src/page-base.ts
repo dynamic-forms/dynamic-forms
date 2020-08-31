@@ -1,4 +1,4 @@
-import { browser, promise } from 'protractor';
+import { browser, by, element, promise, ElementArrayFinder, ElementFinder } from 'protractor';
 
 export abstract class Page {
   constructor(protected baseUrl: string) {}
@@ -13,5 +13,13 @@ export abstract class Page {
 
   getTitle(): promise.Promise<string> {
     return browser.getTitle();
+  }
+
+  findElement(selector: string): ElementFinder {
+    return element(by.css(selector));
+  }
+
+  findElements(selector: string): ElementArrayFinder {
+    return element.all(by.css(selector));
   }
 }

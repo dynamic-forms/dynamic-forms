@@ -1,4 +1,5 @@
 import { ExamplesMenu, ExamplesMenuItem } from 'apps/demo/src/app/layout/header/examples-menu/examples-menu';
+import { Control } from './elements';
 import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
@@ -45,38 +46,58 @@ describe('dynamic-forms demo examples', () => {
             expect(await page.findRootElement().isPresent()).toBe(true);
             expect(await page.findWrapperElement().isPresent()).toBe(true);
             expect(await page.findFormElement().isPresent()).toBe(true);
-            expect(await page.findFormActionsElement().isPresent()).toBe(true);
+            expect(await page.findActionsElement().isPresent()).toBe(true);
             expect(await page.findFormElements().count()).toBeGreaterThan(0);
 
-            const controlElements = page.findFormControlElements();
-            const actionElements = page.findFormActionElements();
+            const controlElements = page.findControlElements();
+            const actionElements = page.findActionElements();
 
-            if (await controlElements.count() > 0) {
-              const actionButtonElements = page.findFormActionButtonElements();
-              const validateButtonElement = page.findFormValidateButtonElement();
+            if (await controlElements.count() === 0) {
+              expect(await actionElements.count()).toBe(0);
+            } else {
+              const actionButtonElements = page.findActionButtonElements();
+              const validateButtonElement = page.findValidateButtonElement();
+              const submitButtonElement = page.findSubmitButtonElement();
 
               expect(await actionElements.count()).toBeGreaterThan(0);
               expect(await actionButtonElements.count()).toBeGreaterThan(0);
 
-              const isPresent = await validateButtonElement.isPresent();
-              if (isPresent) {
+              const validateButtonPresent = await validateButtonElement.isPresent();
+              if (validateButtonPresent) {
                 await validateButtonElement.click();
               }
 
-              await controlElements.each(async controlElement => {
-                const inputElement = page.findFormInputElement(controlElement);
+              const controlElementCount = await controlElements.count();
+              for (let index = 0; index < controlElementCount; index++) {
+                const controlElement = controlElements.get(index);
+                const control = new Control(controlElement, theme);
+                const controlInfo = await control.getControlInfo();
 
-                expect(await controlElement.isPresent()).toBe(true);
-                expect(await inputElement.isPresent()).toBe(true);
+                expect(controlInfo.type).toBeDefined();
+                expect(controlInfo.isPresent).toBe(true);
 
-                const isEditable = await page.isEditableFormControl(controlElement, inputElement);
-                if (isEditable) {
-                  expect(await page.editFormControl(controlElement, inputElement)).toBe(true);
+                const input = await control.getInput();
+                const inputInfo = await input.getInputInfo();
+
+                expect(inputInfo.isPresent).toBe(true);
+
+                const editable = !(controlInfo.readonly || inputInfo.readonly || inputInfo.disabled);
+                if (editable) {
+                  if (!inputInfo.value) {
+                    await input.editInputValue();
+                    await page.closeOverlayBackdrop();
+                  }
+
+                  expect(await input.getInputValue()).toBeTruthy();
                 }
-              });
+              }
 
-            } else {
-              expect(await actionElements.count()).toBe(0);
+              const submitButtonPresent = await submitButtonElement.isPresent();
+              if (submitButtonPresent) {
+                return await submitButtonElement.click();
+              }
+
+              return Promise.resolve();
             }
           });
         });

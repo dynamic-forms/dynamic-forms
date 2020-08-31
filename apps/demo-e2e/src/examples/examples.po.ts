@@ -1,4 +1,4 @@
-import { by, element, ElementArrayFinder, ElementFinder } from 'protractor';
+import { by, ElementArrayFinder, ElementFinder } from 'protractor';
 import { Page } from '../page-base';
 
 export interface Example {
@@ -8,7 +8,7 @@ export interface Example {
 }
 
 export class ExamplesPage extends Page {
-  constructor(theme: string) {
+  constructor(public theme: string) {
     super(`/examples/${theme}`);
   }
 
@@ -18,7 +18,7 @@ export class ExamplesPage extends Page {
   }
 
   findRootElement(): ElementFinder {
-    return element(by.css('dynamic-form'));
+    return this.findElement('dynamic-form');
   }
 
   findWrapperElement(): ElementFinder {
@@ -36,78 +36,40 @@ export class ExamplesPage extends Page {
     return formElement.all(by.css('dynamic-form-element'));
   }
 
-  findFormControlElements(): ElementArrayFinder {
+  findControlElements(): ElementArrayFinder {
     const formElement = this.findFormElement();
-    return formElement.all(by.css('dynamic-form-control'));
+    return formElement.all(by.css('div.dynamic-form-control'));
   }
 
-  findFormInputElement(formControlElement: ElementFinder): ElementFinder {
-    return formControlElement.element(by.css('input,textarea,select,mat-select'));
-  }
-
-  findFormActionsElement(): ElementFinder {
+  findActionsElement(): ElementFinder {
     const formElement = this.findFormElement();
     return formElement.element(by.css('.dynamic-form-actions'));
   }
 
-  findFormActionElements(): ElementArrayFinder {
-    const formActionsElement = this.findFormActionsElement();
-    return formActionsElement.all(by.css('dynamic-form-element'));
+  findActionElements(): ElementArrayFinder {
+    const actionsElement = this.findActionsElement();
+    return actionsElement.all(by.css('dynamic-form-element'));
   }
 
-  findFormActionButtonElements(): ElementArrayFinder {
-    const formActionsElement = this.findFormActionsElement();
-    return formActionsElement.all(by.css('button'));
+  findActionButtonElements(): ElementArrayFinder {
+    const actionsElement = this.findActionsElement();
+    return actionsElement.all(by.css('button'));
   }
 
-  findFormValidateButtonElement(): ElementFinder {
-    const formActionsElement = this.findFormActionsElement();
+  findValidateButtonElement(): ElementFinder {
+    const formActionsElement = this.findActionsElement();
     return formActionsElement.element(by.cssContainingText('button', 'Validate'));
   }
 
-  async isEditableFormControl(formControlElement: ElementFinder, formInputElement: ElementFinder): Promise<boolean> {
-    const className = await formControlElement.getAttribute('class');
-    const isReadonly = await formInputElement.getAttribute('readonly');
-    const isEnabled = await formInputElement.isEnabled();
-    return !className.includes('readonly') && !isReadonly && isEnabled;
+  findSubmitButtonElement(): ElementFinder {
+    const formActionsElement = this.findActionsElement();
+    return formActionsElement.element(by.cssContainingText('button', 'Submit'));
   }
 
-  async editFormControl(formControlElement: ElementFinder, formInputElement: ElementFinder): Promise<boolean> {
-    const tag = await formInputElement.getTagName();
-    const type = await formInputElement.getAttribute('type');
-
-    if (type === 'checkbox') {
-      const formLabelElement = formControlElement.element(by.css('label'));
-      await formLabelElement.click();
-      return true;
-    }
-
-    const value = this.getFormInputValue(tag, type);
-    if (value) {
-      await formInputElement.sendKeys(value);
-      return true;
-    }
-
-    return false;
-  }
-
-  private getFormInputValue(tag: string, type: string): string {
-    switch (type) {
-      case 'text':
-        return 'Test';
-      case 'email':
-        return 'Test@test.com';
-      case 'password':
-        return 'Test1234!';
-      case 'number':
-        return '2020';
-      case 'date':
-        return '01-01-2020';
-      default:
-        if (tag === 'textarea') {
-          return 'Test line 1\nTest line 2';
-        }
-        return null;
-    }
+  async closeOverlayBackdrop(): Promise<void> {
+    const backdropElement = this.findElement('.cdk-overlay-backdrop');
+    return await backdropElement.isPresent()
+      ? await backdropElement.click()
+      : Promise.resolve();
   }
 }
