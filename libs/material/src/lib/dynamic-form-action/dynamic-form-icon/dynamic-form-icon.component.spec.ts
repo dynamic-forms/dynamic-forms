@@ -30,7 +30,7 @@ describe('MatDynamicFormIconComponent', () => {
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormIconTemplate>{ label: 'label' };
-    const definition = <DynamicFormIconDefinition>{ type: 'element', template };
+    const definition = <DynamicFormIconDefinition>{ id: 'id', type: 'element', template };
     element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
     component.element = element;
 
@@ -47,6 +47,7 @@ describe('MatDynamicFormIconComponent', () => {
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
     expect(formButtonElement).toBeDefined();
+    expect(formButtonElement.id).toBe('id');
     expect(formButtonElement.type).toBe('button');
   });
 

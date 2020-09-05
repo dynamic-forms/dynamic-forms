@@ -11,14 +11,15 @@ describe('DynamicFormElementBase', () => {
     component = new DynamicFormElementBaseTest();
   });
 
-  it('component returns definition', () => {
-    const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
+  it('returns properties of element', () => {
+    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'element', template: {} };
     const element = new DynamicFormElement(definition);
 
     component.element = element;
 
-    expect(component.element).toEqual(element);
-    expect(component.definition).toEqual(element.definition);
-    expect(component.template).toEqual(element.template);
+    expect(component.id).toBe(element.id);
+    expect(component.element).toBe(element);
+    expect(component.definition).toBe(element.definition);
+    expect(component.template).toBe(element.template);
   });
 });
