@@ -1,6 +1,7 @@
 {
   "actions": [
     {
+      "id": "action-validate",
       "type": "button",
       "template": {
         "type": "button",

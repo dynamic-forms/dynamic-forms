@@ -43,34 +43,31 @@ describe('dynamic-forms demo examples', () => {
 
             expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
 
-            expect(await page.findRootElement().isPresent()).toBe(true);
-            expect(await page.findWrapperElement().isPresent()).toBe(true);
-            expect(await page.findFormElement().isPresent()).toBe(true);
-            expect(await page.findActionsElement().isPresent()).toBe(true);
-            expect(await page.findFormElements().count()).toBeGreaterThan(0);
+            expect(await page.findRoot().isPresent()).toBe(true);
+            expect(await page.findWrapper().isPresent()).toBe(true);
+            expect(await page.findForm().isPresent()).toBe(true);
+            expect(await page.findActions().isPresent()).toBe(true);
+            expect(await page.findElements().count()).toBeGreaterThan(0);
 
-            const controlElements = page.findControlElements();
-            const actionElements = page.findActionElements();
+            const controls = page.findControls();
+            const actions = page.findActionElements();
 
-            if (await controlElements.count() === 0) {
-              expect(await actionElements.count()).toBe(0);
+            if (await controls.count() === 0) {
+              expect(await actions.count()).toBe(0);
             } else {
-              const actionButtonElements = page.findActionButtonElements();
-              const validateButtonElement = page.findValidateButtonElement();
-              const submitButtonElement = page.findSubmitButtonElement();
+              const actionButtons = page.findActionButtons();
 
-              expect(await actionElements.count()).toBeGreaterThan(0);
-              expect(await actionButtonElements.count()).toBeGreaterThan(0);
+              expect(await actions.count()).toBeGreaterThan(0);
+              expect(await actionButtons.count()).toBeGreaterThan(0);
 
-              const validateButtonPresent = await validateButtonElement.isPresent();
-              if (validateButtonPresent) {
-                await validateButtonElement.click();
+              const validateButton = page.findValidateButton();
+              if (await validateButton.isPresent()) {
+                await validateButton.click();
               }
 
-              const controlElementCount = await controlElements.count();
-              for (let index = 0; index < controlElementCount; index++) {
-                const controlElement = controlElements.get(index);
-                const control = new Control(controlElement, theme);
+              const controlCount = await controls.count();
+              for (let index = 0; index < controlCount; index++) {
+                const control = new Control(controls.get(index), theme);
                 const controlInfo = await control.getControlInfo();
 
                 expect(controlInfo.type).toBeDefined();
@@ -85,16 +82,27 @@ describe('dynamic-forms demo examples', () => {
                 if (editable) {
                   if (!inputInfo.value) {
                     await input.editInputValue();
-                    await page.closeOverlayBackdrop();
+                    await page.closeOverlay();
                   }
 
                   expect(await input.getInputValue()).toBeTruthy();
                 }
               }
 
-              const submitButtonPresent = await submitButtonElement.isPresent();
-              if (submitButtonPresent) {
-                return await submitButtonElement.click();
+              const submitButton = page.findSubmitButton();
+              if (await submitButton.isPresent() && await submitButton.isEnabled()) {
+                await submitButton.click();
+                await page.closeSubmitDialog();
+              }
+
+              const resetButton = page.findResetButton();
+              if (await resetButton.isPresent() && await resetButton.isEnabled()) {
+                await resetButton.click();
+              }
+
+              const resetDefaultButton = page.findResetDefaultButton();
+              if (await resetDefaultButton.isPresent() && await resetDefaultButton.isEnabled()) {
+                await resetDefaultButton.click();
               }
 
               return Promise.resolve();

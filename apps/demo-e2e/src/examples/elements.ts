@@ -93,6 +93,10 @@ export class Input {
         const checkedRadio = this.control.element.element(by.css('input[type="radio"]:checked'));
         return await checkedRadio.isPresent() ? await checkedRadio.getAttribute('value') : null;
       case 'select':
+        if (this.control.theme === 'material') {
+          const selectedValue = this.control.element.element(by.css('span.mat-select-value-text'));
+          return await selectedValue.isPresent() ? await selectedValue.getText() : null;
+        }
         const selectedOption = this.control.element.element(by.css('option:checked'));
         if (await selectedOption.isPresent()) {
           const value = await selectedOption.getAttribute('value');

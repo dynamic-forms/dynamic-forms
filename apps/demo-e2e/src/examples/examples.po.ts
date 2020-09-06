@@ -17,59 +17,78 @@ export class ExamplesPage extends Page {
     await this.navigateTo(relativeUrl);
   }
 
-  findRootElement(): ElementFinder {
+  findRoot(): ElementFinder {
     return this.findElement('dynamic-form');
   }
 
-  findWrapperElement(): ElementFinder {
-    const rootElement = this.findRootElement();
-    return rootElement.element(by.css('.dynamic-form-wrapper'));
+  findWrapper(): ElementFinder {
+    const root = this.findRoot();
+    return root.element(by.css('.dynamic-form-wrapper'));
   }
 
-  findFormElement(): ElementFinder {
-    const wrapperElement = this.findWrapperElement();
-    return wrapperElement.element(by.css('form.dynamic-form'));
+  findForm(): ElementFinder {
+    const wrapper = this.findWrapper();
+    return wrapper.element(by.css('form.dynamic-form'));
   }
 
-  findFormElements(): ElementArrayFinder {
-    const formElement = this.findFormElement();
-    return formElement.all(by.css('dynamic-form-element'));
+  findElements(): ElementArrayFinder {
+    const form = this.findForm();
+    return form.all(by.css('dynamic-form-element'));
   }
 
-  findControlElements(): ElementArrayFinder {
-    const formElement = this.findFormElement();
-    return formElement.all(by.css('div.dynamic-form-control'));
+  findControls(): ElementArrayFinder {
+    const form = this.findForm();
+    return form.all(by.css('div.dynamic-form-control'));
   }
 
-  findActionsElement(): ElementFinder {
-    const formElement = this.findFormElement();
+  findActions(): ElementFinder {
+    const formElement = this.findForm();
     return formElement.element(by.css('.dynamic-form-actions'));
   }
 
   findActionElements(): ElementArrayFinder {
-    const actionsElement = this.findActionsElement();
-    return actionsElement.all(by.css('dynamic-form-element'));
+    const actions = this.findActions();
+    return actions.all(by.css('dynamic-form-element'));
   }
 
-  findActionButtonElements(): ElementArrayFinder {
-    const actionsElement = this.findActionsElement();
+  findActionButtons(): ElementArrayFinder {
+    const actionsElement = this.findActions();
     return actionsElement.all(by.css('button'));
   }
 
-  findValidateButtonElement(): ElementFinder {
-    const formActionsElement = this.findActionsElement();
-    return formActionsElement.element(by.cssContainingText('button', 'Validate'));
+  findValidateButton(): ElementFinder {
+    const formActions = this.findActions();
+    return formActions.element(by.css('button[id="action-validate"]'));
   }
 
-  findSubmitButtonElement(): ElementFinder {
-    const formActionsElement = this.findActionsElement();
-    return formActionsElement.element(by.cssContainingText('button', 'Submit'));
+  findSubmitButton(): ElementFinder {
+    const formActions = this.findActions();
+    return formActions.element(by.css('button[id="action-submit"]'));
   }
 
-  async closeOverlayBackdrop(): Promise<void> {
-    const backdropElement = this.findElement('.cdk-overlay-backdrop');
-    return await backdropElement.isPresent()
-      ? await backdropElement.click()
+  findResetButton(): ElementFinder {
+    const formActions = this.findActions();
+    return formActions.element(by.css('button[id="action-reset"]'));
+  }
+
+  findResetDefaultButton(): ElementFinder {
+    const formActions = this.findActions();
+    return formActions.element(by.css('button[id="action-reset-default"]'));
+  }
+
+  async closeOverlay(): Promise<void> {
+    const backdrop = this.findElement('.cdk-overlay-backdrop');
+    return await backdrop.isPresent()
+      ? await backdrop.click()
       : Promise.resolve();
+  }
+
+  async closeSubmitDialog(): Promise<void> {
+    const dialog = this.findElement('app-dynamic-form-dialog');
+    if (await dialog.isPresent()) {
+      const closeButton = dialog.element(by.css('.mat-dialog-actions button'));
+      await closeButton.click();
+    }
+    return Promise.resolve();
   }
 }

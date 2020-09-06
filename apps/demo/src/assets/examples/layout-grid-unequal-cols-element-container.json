@@ -138,6 +138,7 @@
   ],
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
@@ -148,6 +149,7 @@
       }
     },
     {
+      "id": "action-validate",
       "type": "button",
       "template": {
         "type": "button",
@@ -156,6 +158,7 @@
       }
     },
     {
+      "id": "action-reset",
       "type": "button",
       "template": {
         "type": "reset",
