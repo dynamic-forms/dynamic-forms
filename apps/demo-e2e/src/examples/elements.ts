@@ -52,7 +52,7 @@ export class Input {
   }
 
   async isPresent(): Promise<boolean> {
-    return await this.inputElement.isPresent();
+    return this.inputElement.isPresent();
   }
 
   async isEditable(): Promise<boolean> {
@@ -60,30 +60,31 @@ export class Input {
   }
 
   async getInputType(): Promise<string> {
-    return await this.inputElement.getAttribute('type');
+    return this.inputElement.getAttribute('type');
   }
 
   async getInputValue(): Promise<string | boolean> {
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        return await this.inputElement.getAttribute('checked');
+        return this.inputElement.getAttribute('checked');
       case 'radio':
         const checkedRadio = this.control.element.element(by.css('input[type="radio"]:checked'));
-        return await checkedRadio.isPresent() ? await checkedRadio.getAttribute('value') : null;
+        return await checkedRadio.isPresent() ? checkedRadio.getAttribute('value') : null;
       case 'select':
         if (this.control.theme === 'material') {
           const selectedValue = this.control.element.element(by.css('span.mat-select-value-text'));
-          return await selectedValue.isPresent() ? await selectedValue.getText() : null;
+          return await selectedValue.isPresent() ? selectedValue.getText() : null;
         }
         const selectedOption = this.control.element.element(by.css('option:checked'));
         if (await selectedOption.isPresent()) {
-          const value = await selectedOption.getAttribute('value');
-          return value !== 'null' ? value : null;
+          const selectedValue = await selectedOption.getAttribute('value');
+          return selectedValue !== 'null' ? selectedValue : null;
         }
         return null;
       default:
-        return await this.inputElement.getAttribute('value');
+        const value = await this.inputElement.getAttribute('value');
+        return value ? value.trim() : value;
     }
   }
 
