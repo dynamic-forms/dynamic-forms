@@ -110,7 +110,7 @@ export class Input {
         const optionValue = await this.getEditInputValue();
         await this.inputElement.click();
         await this.inputElement.sendKeys(optionValue);
-        return this.control.theme !== 'material' ?  this.inputElement.click() : Promise.resolve();
+        return this.control.theme !== 'material' ? this.inputElement.click() : Promise.resolve();
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
