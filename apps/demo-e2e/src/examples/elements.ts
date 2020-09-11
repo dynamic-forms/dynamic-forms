@@ -52,38 +52,29 @@ export class Input {
   }
 
   async isPresent(): Promise<boolean> {
-    return this.inputElement.isPresent();
+    return await this.inputElement.isPresent();
   }
 
   async isEditable(): Promise<boolean> {
-    if (!await this.control.isEditable()) {
-      return false;
-    }
-
-    const className = await this.inputElement.getAttribute('class');
-    if (className.includes('hidden') || className.includes('readonly')) {
-      return false;
-    }
-
-    return this.inputElement.isEnabled();
+    return await this.control.isEditable() && await this.inputElement.isEnabled();
   }
 
   async getInputType(): Promise<string> {
-    return this.inputElement.getAttribute('type');
+    return await this.inputElement.getAttribute('type');
   }
 
   async getInputValue(): Promise<string | boolean> {
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        return this.inputElement.getAttribute('checked');
+        return await this.inputElement.getAttribute('checked');
       case 'radio':
         const checkedRadio = this.control.element.element(by.css('input[type="radio"]:checked'));
-        return await checkedRadio.isPresent() ? checkedRadio.getAttribute('value') : null;
+        return await checkedRadio.isPresent() ? await checkedRadio.getAttribute('value') : null;
       case 'select':
         if (this.control.theme === 'material') {
           const selectedValue = this.control.element.element(by.css('span.mat-select-value-text'));
-          return await selectedValue.isPresent() ? selectedValue.getText() : null;
+          return await selectedValue.isPresent() ? await selectedValue.getText() : null;
         }
         const selectedOption = this.control.element.element(by.css('option:checked'));
         if (await selectedOption.isPresent()) {
@@ -92,7 +83,7 @@ export class Input {
         }
         return null;
       default:
-        return this.inputElement.getAttribute('value');
+        return await this.inputElement.getAttribute('value');
     }
   }
 
