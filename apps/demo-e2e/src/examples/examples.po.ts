@@ -41,54 +41,38 @@ export class ExamplesPage extends Page {
     return form.all(by.css('div.dynamic-form-control'));
   }
 
-  findActions(): ElementFinder {
+  findActionsWrapper(): ElementFinder {
     const formElement = this.findForm();
     return formElement.element(by.css('.dynamic-form-actions'));
   }
 
-  findActionElements(): ElementArrayFinder {
-    const actions = this.findActions();
+  findActions(): ElementArrayFinder {
+    const actions = this.findActionsWrapper();
     return actions.all(by.css('dynamic-form-element'));
   }
 
   findActionButtons(): ElementArrayFinder {
-    const actionsElement = this.findActions();
+    const actionsElement = this.findActionsWrapper();
     return actionsElement.all(by.css('button'));
   }
 
   findValidateButton(): ElementFinder {
-    const formActions = this.findActions();
+    const formActions = this.findActionsWrapper();
     return formActions.element(by.css('button[id="action-validate"]'));
   }
 
   findSubmitButton(): ElementFinder {
-    const formActions = this.findActions();
+    const formActions = this.findActionsWrapper();
     return formActions.element(by.css('button[id="action-submit"]'));
   }
 
   findResetButton(): ElementFinder {
-    const formActions = this.findActions();
+    const formActions = this.findActionsWrapper();
     return formActions.element(by.css('button[id="action-reset"]'));
   }
 
   findResetDefaultButton(): ElementFinder {
-    const formActions = this.findActions();
+    const formActions = this.findActionsWrapper();
     return formActions.element(by.css('button[id="action-reset-default"]'));
-  }
-
-  async closeOverlay(): Promise<void> {
-    const backdrop = this.findElement('.cdk-overlay-backdrop');
-    return await backdrop.isPresent()
-      ? await backdrop.click()
-      : Promise.resolve();
-  }
-
-  async closeSubmitDialog(): Promise<void> {
-    const dialog = this.findElement('app-dynamic-form-dialog');
-    if (await dialog.isPresent()) {
-      const closeButton = dialog.element(by.css('.mat-dialog-actions button'));
-      await closeButton.click();
-    }
-    return Promise.resolve();
   }
 }

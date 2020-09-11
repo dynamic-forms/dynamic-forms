@@ -1,6 +1,7 @@
 {
   "elements": [
     {
+      "id": "input-hidden",
       "key": "hidden",
       "type": "control",
       "template": {
@@ -26,6 +27,7 @@
       },
       "elements": [
         {
+          "id": "input-disabled",
           "key": "disabled",
           "type": "control",
           "template": {
@@ -46,6 +48,7 @@
           }
         },
         {
+          "id": "input-readonly",
           "key": "readonly",
           "type": "control",
           "template": {

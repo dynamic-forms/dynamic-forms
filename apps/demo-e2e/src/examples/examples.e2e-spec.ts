@@ -38,7 +38,7 @@ describe('dynamic-forms demo examples', () => {
           : `for example "${example.name}" with id "${example.id}"`;
 
         describe(description, () => {
-          it('has url, title and form', async () => {
+          it('has url, title and form', async (done) => {
             await page.navigateToExample(example);
 
             expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
@@ -46,11 +46,11 @@ describe('dynamic-forms demo examples', () => {
             expect(await page.findRoot().isPresent()).toBe(true);
             expect(await page.findWrapper().isPresent()).toBe(true);
             expect(await page.findForm().isPresent()).toBe(true);
-            expect(await page.findActions().isPresent()).toBe(true);
+            expect(await page.findActionsWrapper().isPresent()).toBe(true);
             expect(await page.findElements().count()).toBeGreaterThan(0);
 
             const controls = page.findControls();
-            const actions = page.findActionElements();
+            const actions = page.findActions();
 
             if (await controls.count() === 0) {
               expect(await actions.count()).toBe(0);
@@ -61,6 +61,25 @@ describe('dynamic-forms demo examples', () => {
               expect(await actionButtons.count()).toBeGreaterThan(0);
 
               const validateButton = page.findValidateButton();
+              const resetButton = page.findResetButton();
+              const resetDefaultButton = page.findResetDefaultButton();
+
+              if (await validateButton.isPresent()) {
+                await validateButton.click();
+              }
+
+              if (await resetButton.isPresent() && await resetButton.isEnabled()) {
+                await resetButton.click();
+              }
+
+              if (await validateButton.isPresent()) {
+                await validateButton.click();
+              }
+
+              if (await resetDefaultButton.isPresent() && await resetDefaultButton.isEnabled()) {
+                await resetDefaultButton.click();
+              }
+
               if (await validateButton.isPresent()) {
                 await validateButton.click();
               }
@@ -68,46 +87,33 @@ describe('dynamic-forms demo examples', () => {
               const controlCount = await controls.count();
               for (let index = 0; index < controlCount; index++) {
                 const control = new Control(controls.get(index), theme);
-                const controlInfo = await control.getControlInfo();
 
-                expect(controlInfo.type).toBeDefined();
-                expect(controlInfo.isPresent).toBe(true);
+                expect(await control.isPresent()).toBe(true);
+                expect(await control.getControlType()).toBeTruthy();
 
                 const input = await control.getInput();
-                const inputInfo = await input.getInputInfo();
 
-                expect(inputInfo.isPresent).toBe(true);
+                expect(await input.isPresent()).toBe(true);
 
-                const editable = !(controlInfo.readonly || inputInfo.readonly || inputInfo.disabled);
-                if (editable) {
-                  if (!inputInfo.value) {
+                const isEditable = await input.isEditable();
+                if (isEditable) {
+                  const inputValue = await input.getInputValue();
+                  if (!inputValue) {
                     await input.editInputValue();
-                    await page.closeOverlay();
                   }
 
-                  expect(await input.getInputValue()).toBeTruthy();
+                  expect(await input.checkInputValue()).toBe(true);
                 }
               }
 
               const submitButton = page.findSubmitButton();
               if (await submitButton.isPresent() && await submitButton.isEnabled()) {
                 await submitButton.click();
-                await page.closeSubmitDialog();
               }
-
-              const resetButton = page.findResetButton();
-              if (await resetButton.isPresent() && await resetButton.isEnabled()) {
-                await resetButton.click();
-              }
-
-              const resetDefaultButton = page.findResetDefaultButton();
-              if (await resetDefaultButton.isPresent() && await resetDefaultButton.isEnabled()) {
-                await resetDefaultButton.click();
-              }
-
-              return Promise.resolve();
             }
-          });
+
+            done();
+          }, 60000);
         });
       });
     });

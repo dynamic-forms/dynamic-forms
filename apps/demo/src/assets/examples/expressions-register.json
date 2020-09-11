@@ -1,6 +1,7 @@
 {
   "elements": [
     {
+      "id": "input-disbled",
       "key": "disabled",
       "type": "control",
       "template": {
@@ -12,6 +13,7 @@
       }
     },
     {
+      "id": "input-readonly",
       "key": "readonly",
       "type": "control",
       "template": {

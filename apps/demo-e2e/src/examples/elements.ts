@@ -1,12 +1,5 @@
 import { by, ElementArrayFinder, ElementFinder } from 'protractor';
 
-export interface ControlInfo {
-  isPresent: boolean;
-  readonly: boolean;
-  hidden: boolean;
-  type: string;
-}
-
 export class Control {
   private readonly _types: string[] = [
     'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox'
@@ -14,18 +7,18 @@ export class Control {
 
   constructor(public element: ElementFinder, public theme: string) {}
 
+  async isPresent(): Promise<boolean> {
+    return this.element.isPresent();
+  }
+
+  async isEditable(): Promise<boolean> {
+    const className = await this.element.getAttribute('class');
+    return !(className.includes('hidden') || className.includes('readonly'));
+  }
+
   async getControlType(): Promise<string> {
     const className = await this.element.getAttribute('class');
     return this.getType(className);
-  }
-
-  async getControlInfo(): Promise<ControlInfo> {
-    const isPresent = await this.element.isPresent();
-    const className = await this.element.getAttribute('class');
-    const readonly = className.includes('readonly');
-    const hidden = className.includes('hidden');
-    const type = this.getType(className);
-    return { isPresent, readonly, hidden, type };
   }
 
   async getInput(): Promise<Input> {
@@ -51,16 +44,6 @@ export class Control {
   }
 }
 
-export interface InputInfo {
-  isPresent: boolean;
-  id: string;
-  tag: string;
-  type: string;
-  readonly: boolean;
-  disabled: boolean;
-  value: string | boolean;
-}
-
 export class Input {
   readonly inputElement: ElementFinder;
 
@@ -68,34 +51,39 @@ export class Input {
     this.inputElement = this.inputElements instanceof ElementArrayFinder ? this.inputElements.get(0) : this.inputElements;
   }
 
-  async getInputInfo(): Promise<InputInfo> {
-    const isPresent = await this.inputElement.isPresent();
-    const id = await  this.inputElement.getAttribute('class');
-    const tag = await  this.inputElement.getTagName();
-    const type = await  this.inputElement.getAttribute('type');
-    const className = await  this.inputElement.getAttribute('class');
-    const readonly = className.includes('readonly');
-    const disabled = !await  this.inputElement.isEnabled();
-    const value = await this.getInputValue();
-    return { isPresent, id, tag, type, readonly, disabled, value };
+  async isPresent(): Promise<boolean> {
+    return this.inputElement.isPresent();
+  }
+
+  async isEditable(): Promise<boolean> {
+    if (!await this.control.isEditable()) {
+      return false;
+    }
+
+    const className = await this.inputElement.getAttribute('class');
+    if (className.includes('hidden') || className.includes('readonly')) {
+      return false;
+    }
+
+    return this.inputElement.isEnabled();
   }
 
   async getInputType(): Promise<string> {
-    return await this.inputElement.getAttribute('type');
+    return this.inputElement.getAttribute('type');
   }
 
   async getInputValue(): Promise<string | boolean> {
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        return await this.inputElement.getAttribute('checked');
+        return this.inputElement.getAttribute('checked');
       case 'radio':
         const checkedRadio = this.control.element.element(by.css('input[type="radio"]:checked'));
-        return await checkedRadio.isPresent() ? await checkedRadio.getAttribute('value') : null;
+        return await checkedRadio.isPresent() ? checkedRadio.getAttribute('value') : null;
       case 'select':
         if (this.control.theme === 'material') {
           const selectedValue = this.control.element.element(by.css('span.mat-select-value-text'));
-          return await selectedValue.isPresent() ? await selectedValue.getText() : null;
+          return await selectedValue.isPresent() ? selectedValue.getText() : null;
         }
         const selectedOption = this.control.element.element(by.css('option:checked'));
         if (await selectedOption.isPresent()) {
@@ -104,48 +92,69 @@ export class Input {
         }
         return null;
       default:
-        return await this.inputElement.getAttribute('value');
+        return this.inputElement.getAttribute('value');
     }
   }
 
+  async checkInputValue(): Promise<boolean> {
+    const inputId = await this.inputElement.getAttribute('id');
+    const inputValue = await this.getInputValue();
+    return this.isInputForFalse(inputId) ? !inputValue : !!inputValue;
+  }
+
   async editInputValue(): Promise<void> {
+    const inputId = await this.inputElement.getAttribute('id');
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        return this.control.element.element(by.css('label')).click();
+        const labelElement = this.control.element.element(by.css('label'));
+        if (this.isInputForFalse(inputId)) {
+          await labelElement.click();
+        }
+        return labelElement.click();
       case 'radio':
-        const inputElementId = await this.inputElement.getAttribute('id');
-        return await this.control.element.element(by.css(`label[for="${inputElementId}"]`)).click();
+        return this.control.element.element(by.css(`label[for="${inputId}"]`)).click();
       case 'select':
         const optionValue = await this.getEditInputValue();
         await this.inputElement.click();
         await this.inputElement.sendKeys(optionValue);
-        return await this.inputElement.click();
+        return this.control.theme !== 'material' ?  this.inputElement.click() : Promise.resolve();
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
-        return value ? await this.inputElement.sendKeys(value) : Promise.resolve();
+        return value ? this.inputElement.sendKeys(value) : Promise.resolve();
     }
   }
 
-  private getEditInputValue(type?: string): string {
+  private isInputForFalse(inputId: string): boolean {
+    switch (inputId) {
+      case 'input-hidden':
+      case 'input-disabled':
+      case 'input-readonly':
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  private getEditInputValue(type?: string): string | number {
     switch (this.controlType) {
       case 'combobox':
         return 'Value1';
       case 'numberbox':
-        return '2020';
+        return 5;
       case 'datepicker':
         return '01-01-2020';
       case 'select':
-        return 'Option 1';
+        return 'Option 2';
       case 'textarea':
-        return 'Test line 1\nTest line 2';
+        return 'Line 1\nLine 2';
       case 'textbox':
         return type === 'email'
-          ? 'Test@test.com'
+          ? 'user@mail.com'
           : type === 'password'
             ? 'Test1234!'
-            : 'Test';
+            : 'Value';
       default:
         return null;
     }
