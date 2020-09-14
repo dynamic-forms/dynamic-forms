@@ -100,6 +100,7 @@ describe('dynamic-forms demo examples', () => {
                   const inputValue = await input.getInputValue();
                   if (!inputValue) {
                     await input.editInputValue();
+                    await page.pressEscape();
                   }
 
                   expect(await input.checkInputValue()).toBe(true);

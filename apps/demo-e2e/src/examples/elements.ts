@@ -1,4 +1,7 @@
-import { by, ElementArrayFinder, ElementFinder } from 'protractor';
+import { By, ElementArrayFinder, ElementFinder } from 'protractor';
+import { protractor } from 'protractor/built/ptor';
+
+const KEY = protractor.Key;
 
 export class Control {
   private readonly _types: string[] = [
@@ -25,16 +28,16 @@ export class Control {
     const controlType = await this.getControlType();
     switch (controlType) {
       case 'radio':
-        const radioElements = this.element.all(by.css('input[type="radio"]'));
+        const radioElements = this.element.all(By.css('input[type="radio"]'));
         return new Input(controlType, this, radioElements);
       case 'select':
-        const selectElement = this.element.element(by.css('select,mat-select'));
+        const selectElement = this.element.element(By.css('select,mat-select'));
         return new Input(controlType, this, selectElement);
       case 'textarea':
-        const textareaElement = this.element.element(by.css('textarea'));
+        const textareaElement = this.element.element(By.css('textarea'));
         return new Input(controlType, this, textareaElement);
       default:
-        const inputElement = this.element.element(by.css('input'));
+        const inputElement = this.element.element(By.css('input'));
         return new Input(controlType, this, inputElement);
     }
   }
@@ -69,14 +72,14 @@ export class Input {
       case 'switch':
         return this.inputElement.getAttribute('checked');
       case 'radio':
-        const checkedRadio = this.control.element.element(by.css('input[type="radio"]:checked'));
+        const checkedRadio = this.control.element.element(By.css('input[type="radio"]:checked'));
         return await checkedRadio.isPresent() ? checkedRadio.getAttribute('value') : null;
       case 'select':
         if (this.control.theme === 'material') {
-          const selectedValue = this.control.element.element(by.css('span.mat-select-value-text'));
+          const selectedValue = this.control.element.element(By.css('span.mat-select-value-text'));
           return await selectedValue.isPresent() ? selectedValue.getText() : null;
         }
-        const selectedOption = this.control.element.element(by.css('option:checked'));
+        const selectedOption = this.control.element.element(By.css('option:checked'));
         if (await selectedOption.isPresent()) {
           const selectedValue = await selectedOption.getAttribute('value');
           return selectedValue !== 'null' ? selectedValue : null;
@@ -99,18 +102,19 @@ export class Input {
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        const labelElement = this.control.element.element(by.css('label'));
+        const labelElement = this.control.element.element(By.css('label'));
         if (this.isInputForFalse(inputId)) {
           await labelElement.click();
         }
         return labelElement.click();
       case 'radio':
-        return this.control.element.element(by.css(`label[for="${inputId}"]`)).click();
+        return this.control.element.element(By.css(`label[for="${inputId}"]`)).click();
       case 'select':
-        const optionValue = await this.getEditInputValue();
+        const keys = this.control.theme !== 'material'
+          ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER ]
+          : [ KEY.ARROW_DOWN, KEY.ENTER ];
         await this.inputElement.click();
-        await this.inputElement.sendKeys(optionValue);
-        return this.control.theme !== 'material' ? this.inputElement.click() : Promise.resolve();
+        return await this.inputElement.sendKeys(...keys);
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
@@ -138,7 +142,7 @@ export class Input {
       case 'datepicker':
         return '01-01-2020';
       case 'select':
-        return 'Option 2';
+        return 'Option 1';
       case 'textarea':
         return 'Line 1\nLine 2';
       case 'textbox':
