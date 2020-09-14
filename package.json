@@ -29,7 +29,7 @@
     "e2e:chrome:v85": "ng e2e --no-webdriver-update --configuration=chrome-v85",
     "e2e:chrome:driver:v83": "node node_modules/protractor/bin/webdriver-manager update --versions.chrome 83.0.4103.39",
     "e2e:chrome:driver:v84": "node node_modules/protractor/bin/webdriver-manager update --versions.chrome 84.0.4147.30",
-    "e2e:chrome:driver:v85": "node node_modules/protractor/bin/webdriver-manager update --versions.chrome 85.0.4183.87",
+    "e2e:chrome:driver:v85": "node node_modules/protractor/bin/webdriver-manager update --versions.chrome 85.0.4183.83",
     "build:core": "ng build dynamic-forms-core && npm run copy:styles:core",
     "build:bootstrap": "ng build dynamic-forms-bootstrap && npm run copy:styles:bootstrap",
     "build:material": "ng build dynamic-forms-material && npm run copy:styles:material",
