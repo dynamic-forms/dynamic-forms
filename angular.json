@@ -270,6 +270,9 @@
             },
             "chrome-v84": {
               "protractorConfig": "apps/demo-e2e/protractor.conf.chrome-v84.js"
+            },
+            "chrome-v85": {
+              "protractorConfig": "apps/demo-e2e/protractor.conf.chrome-v85.js"
             }
           }
         }
