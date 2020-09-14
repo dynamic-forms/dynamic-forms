@@ -1,6 +1,7 @@
 {
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
