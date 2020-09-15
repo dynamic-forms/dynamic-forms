@@ -8,7 +8,6 @@ import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-valida
 export interface DynamicFormFieldDefinition<
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate
 > extends DynamicFormElementDefinition<Template> {
-  id?: string;
   key?: string;
   index?: number;
   options?: DynamicFormFieldOptions;
