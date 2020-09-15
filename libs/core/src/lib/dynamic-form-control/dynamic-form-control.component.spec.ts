@@ -39,7 +39,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
     {
       provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'input', component: DynamicFormInputTestComponent }
+        { libraryName: 'test', type: 'input-type', component: DynamicFormInputTestComponent }
       ]
     },
     DynamicFormConfigService,
@@ -72,7 +72,7 @@ describe('DynamicFormControlComponent', () => {
       index: 1,
       template: {
         input: {
-          type: 'input'
+          type: 'input-type'
         },
         hints: {}
       }
@@ -107,40 +107,40 @@ describe('DynamicFormControlComponent', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).toBe('dynamic-form-control');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type');
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toBe('dynamic-form-control hidden');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type hidden');
   });
 
   it('sets dynamic form control to readonly', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).toBe('dynamic-form-control');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type');
 
     component.template.readonly = true;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toBe('dynamic-form-control readonly');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type readonly');
   });
 
   it('sets class name of dynamic form control', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
 
-    expect(formControlElement.className).toBe('dynamic-form-control');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formControlElement.className).toBe('dynamic-form-control className1 className2');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toBe('dynamic-form-control');
+    expect(formControlElement.className).toBe('dynamic-form-control input-type');
   });
 });

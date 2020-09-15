@@ -1,4 +1,4 @@
-import { by, element, ElementArrayFinder, ElementFinder } from 'protractor';
+import { protractor, By, ElementArrayFinder, ElementFinder } from 'protractor';
 import { Page } from '../page-base';
 
 export interface Example {
@@ -8,7 +8,7 @@ export interface Example {
 }
 
 export class ExamplesPage extends Page {
-  constructor(theme: string) {
+  constructor(public theme: string) {
     super(`/examples/${theme}`);
   }
 
@@ -17,51 +17,66 @@ export class ExamplesPage extends Page {
     await this.navigateTo(relativeUrl);
   }
 
-  findRootElement(): ElementFinder {
-    return element(by.css('dynamic-form'));
+  findRoot(): ElementFinder {
+    return this.findElement('dynamic-form');
   }
 
-  findWrapperElement(): ElementFinder {
-    const rootElement = this.findRootElement();
-    return rootElement.element(by.css('.dynamic-form-wrapper'));
+  findWrapper(): ElementFinder {
+    const root = this.findRoot();
+    return root.element(By.css('.dynamic-form-wrapper'));
   }
 
-  findFormElement(): ElementFinder {
-    const wrapperElement = this.findWrapperElement();
-    return wrapperElement.element(by.css('form.dynamic-form'));
+  findForm(): ElementFinder {
+    const wrapper = this.findWrapper();
+    return wrapper.element(By.css('form.dynamic-form'));
   }
 
-  findFormElements(): ElementArrayFinder {
-    const formElement = this.findFormElement();
-    return formElement.all(by.css('dynamic-form-element'));
+  findElements(): ElementArrayFinder {
+    const form = this.findForm();
+    return form.all(By.css('dynamic-form-element'));
   }
 
-  findFormControlElements(): ElementArrayFinder {
-    const formElement = this.findFormElement();
-    return formElement.all(by.css('dynamic-form-control'));
+  findControls(): ElementArrayFinder {
+    const form = this.findForm();
+    return form.all(By.css('div.dynamic-form-control'));
   }
 
-  findFormActionsElement(): ElementFinder {
-    const formElement = this.findFormElement();
-    return formElement.element(by.css('.dynamic-form-actions'));
+  findActionsWrapper(): ElementFinder {
+    const formElement = this.findForm();
+    return formElement.element(By.css('.dynamic-form-actions'));
   }
 
-  findFormActionElements(): ElementArrayFinder {
-    const formActionsElement = this.findFormActionsElement();
-    return formActionsElement.all(by.css('dynamic-form-element'));
+  findActions(): ElementArrayFinder {
+    const actions = this.findActionsWrapper();
+    return actions.all(By.css('dynamic-form-element'));
   }
 
-  findFormInputElement(formControlElement: ElementFinder): ElementFinder {
-    return formControlElement.element(by.css('input,textarea,select,mat-select'));
+  findActionButtons(): ElementArrayFinder {
+    const actionsElement = this.findActionsWrapper();
+    return actionsElement.all(By.css('button'));
   }
 
-  findFormActionButtonElements(): ElementArrayFinder {
-    const formActionsElement = this.findFormActionsElement();
-    return formActionsElement.all(by.css('button'));
+  findValidateButton(): ElementFinder {
+    const formActions = this.findActionsWrapper();
+    return formActions.element(By.css('button[id="action-validate"]'));
   }
 
-  findFormValidateButtonElement(): ElementFinder {
-    const formActionsElement = this.findFormActionsElement();
-    return formActionsElement.element(by.cssContainingText('button', 'Validate'));
+  findSubmitButton(): ElementFinder {
+    const formActions = this.findActionsWrapper();
+    return formActions.element(By.css('button[id="action-submit"]'));
+  }
+
+  findResetButton(): ElementFinder {
+    const formActions = this.findActionsWrapper();
+    return formActions.element(By.css('button[id="action-reset"]'));
+  }
+
+  findResetDefaultButton(): ElementFinder {
+    const formActions = this.findActionsWrapper();
+    return formActions.element(By.css('button[id="action-reset-default"]'));
+  }
+
+  async pressEscape(): Promise<void> {
+    return this.findElement('body').sendKeys(protractor.Key.ESCAPE);
   }
 }

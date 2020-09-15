@@ -54,11 +54,11 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - `npm install @dynamic-forms/bootstrap@v9.0.0-next.2`
 - `npm install @dynamic-forms/material@v9.0.0-next.2`
 
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-next.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-next.1)
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-next.2)
 
-- `npm install @dynamic-forms/core@v10.0.0-next.1`
-- `npm install @dynamic-forms/bootstrap@v10.0.0-next.1`
-- `npm install @dynamic-forms/material@v10.0.0-next.1`
+- `npm install @dynamic-forms/core@v10.0.0-next.2`
+- `npm install @dynamic-forms/bootstrap@v10.0.0-next.2`
+- `npm install @dynamic-forms/material@v10.0.0-next.2`
 
 ## **Libraries**
 

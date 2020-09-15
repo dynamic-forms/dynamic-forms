@@ -40,7 +40,6 @@ export abstract class DynamicFormField<
   get root(): DynamicForm { return this._root; }
   get parent(): DynamicFormField { return this._parent; }
 
-  get id(): string { return this.definition.id; }
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
   get path(): string {
@@ -64,10 +63,6 @@ export abstract class DynamicFormField<
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
 
   get unregistered(): boolean { return this.definition.unregistered; }
-
-  initId(id: string): void {
-    this._definition.id = id;
-  }
 
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;

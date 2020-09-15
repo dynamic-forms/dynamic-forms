@@ -42,5 +42,6 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(specReporter);
     jasmine.getEnv().addReporter(beautifulReporter.getJasmine2Reporter());
-  }
+  },
+  SELENIUM_PROMISE_MANAGER: false
 };

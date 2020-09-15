@@ -10,16 +10,17 @@ describe('DynamicFormAction', () => {
   it('new instance', () => {
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
-    const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: {}, elements: [] };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'componentType', template: {}, elements: [] };
     const action = new DynamicFormAction(root, parent, definition);
 
-    expect(action.root).toBe(root);
-    expect(action.parent).toBe(parent);
+    expect(action.id).toBe('id');
+    expect(action.classType).toBe('action');
+    expect(action.componentType).toBe('componentType');
     expect(action.definition).toBe(definition);
     expect(action.template).toBe(definition.template);
 
-    expect(action.classType).toBe('action');
-    expect(action.componentType).toBe('componentType');
+    expect(action.root).toBe(root);
+    expect(action.parent).toBe(parent);
 
     expect(action.elements).toEqual([]);
 

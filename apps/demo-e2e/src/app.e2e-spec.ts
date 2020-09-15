@@ -10,7 +10,7 @@ describe('dynamic-forms demo app', () => {
   it('has url and title', async () => {
     await page.navigateTo();
 
-    expect(page.getUrl()).toContain('/home');
-    expect(page.getTitle()).toEqual('dynamic-forms');
+    expect(await page.getUrl()).toContain('/home');
+    expect(await page.getTitle()).toEqual('dynamic-forms');
   });
 });

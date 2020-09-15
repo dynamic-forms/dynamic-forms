@@ -9,17 +9,20 @@
     "url": "https://github.com/dynamic-forms/dynamic-forms.git",
     "directory": "libs/material"
   },
+  "dependencies": {
+    "tslib": "^1.13.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/material": "^9.0.0",
     "@dynamic-forms/core": "^9.0.0-next.2",
-    "bootstrap": "~4.5.0"
+    "bootstrap": "^4.5.2",
+    "rxjs": "~6.6.3" 
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
-    "access": "restricted",
     "tag": "v9"
   }
 }
