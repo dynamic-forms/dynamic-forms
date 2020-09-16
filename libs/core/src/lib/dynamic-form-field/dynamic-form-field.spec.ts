@@ -27,16 +27,16 @@ describe('DynamicFormField', () => {
     const definition = <DynamicFormFieldDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
     const field = new DynamicFormFieldTest(root, parent, definition);
 
-    expect(field.root).toBe(root);
-    expect(field.parent).toBe(parent);
-    expect(field.definition).toBe(definition);
-    expect(field.template).toBe(definition.template);
-
     expect(field.id).toBe('id');
     expect(field.key).toBe('key');
     expect(field.index).toBe(1);
     expect(field.classType).toBe('field');
     expect(field.componentType).toBe('componentType');
+    expect(field.definition).toBe(definition);
+    expect(field.template).toBe(definition.template);
+
+    expect(field.root).toBe(root);
+    expect(field.parent).toBe(parent);
 
     expect(field.model).toBeUndefined();
     expect(field.options).toBeDefined();

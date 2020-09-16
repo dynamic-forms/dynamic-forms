@@ -1,6 +1,7 @@
 {
   "actions": [
     {
+      "id": "action-reset-default",
       "type": "button",
       "template": {
         "type": "button",

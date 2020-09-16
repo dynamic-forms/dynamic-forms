@@ -11,7 +11,7 @@ const specReporter = new SpecReporter({
 });
 
 const beautifulReporter = new BeautifulReporter({
-  baseDirectory: 'dist/v10/e2e',
+  baseDirectory: 'dist/v8/e2e',
   screenshotsSubfolder: 'screenshots',
   jsonsSubfolder: 'jsons',
   takeScreenShotsOnlyForFailedSpecs: false,
@@ -28,7 +28,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-  chromeDriver: './../../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_84.0.4147.30.exe',
+  chromeDriver: './../../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_85.0.4183.83.exe',
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
