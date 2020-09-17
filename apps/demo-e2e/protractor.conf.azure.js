@@ -1,8 +1,13 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
+const os = require('os');
+const path = require('path');
 const { SpecReporter } = require('jasmine-spec-reporter');
 const BeautifulReporter = require('protractor-beautiful-reporter');
+
+const chromeDriverFileName = os.type() === 'Windows_NT' ? 'chromedriver.exe' : 'chromedriver';
+const chromeDriver = process.env.CHROMEWEBDRIVER ? path.join(process.env.CHROMEWEBDRIVER, chromeDriverFileName) : null;
 
 const specReporter = new SpecReporter({ 
   spec: { 
@@ -28,7 +33,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-  chromeDriver: './../../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_85.0.4183.83.exe',
+  chromeDriver: chromeDriver,
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
