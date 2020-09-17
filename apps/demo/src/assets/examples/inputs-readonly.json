@@ -207,6 +207,7 @@
   ],
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
@@ -217,6 +218,7 @@
       }
     },
     {
+      "id": "action-reset",
       "type": "button",
       "template": {
         "type": "reset",
@@ -224,6 +226,7 @@
       }
     },
     {
+      "id": "action-reset-default",
       "type": "button",
       "template": {
         "type": "button",
