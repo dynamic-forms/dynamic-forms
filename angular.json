@@ -285,14 +285,8 @@
             "production": {
               "devServerTarget": "dynamic-forms-demo:serve:production"
             },
-            "chrome-v83": {
-              "protractorConfig": "apps/demo-e2e/protractor.conf.chrome-v83.js"
-            },
-            "chrome-v84": {
-              "protractorConfig": "apps/demo-e2e/protractor.conf.chrome-v84.js"
-            },
-            "chrome-v85": {
-              "protractorConfig": "apps/demo-e2e/protractor.conf.chrome-v85.js"
+            "azure": {
+              "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
             }
           }
         }
