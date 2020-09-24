@@ -120,6 +120,26 @@
           "type": "textbox"
         }
       }
+    },
+    {
+      "key": "toggle",
+      "type": "control",
+      "template": {
+        "label": "Toggle",
+        "input": {
+          "type": "toggle",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        }
+      }
     }
   ],
   "actions": [

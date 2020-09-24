@@ -1,6 +1,6 @@
 <ng-container *ngFor="let option of input.options; let i = index">
   <div class="custom-control custom-radio">
-    <input class="custom-control-input" [id]="inputId + '-' + i" type="radio" [readonly]="field.readonly" 
+    <input class="custom-control-input" type="radio" [id]="inputId + '-' + i" [name]="inputId" [readonly]="field.readonly" 
       [value]="option.value" [formControl]="control" />
     <label class="custom-control-label" [for]="inputId + '-' + i">{{ option.label }}</label>
   </div>

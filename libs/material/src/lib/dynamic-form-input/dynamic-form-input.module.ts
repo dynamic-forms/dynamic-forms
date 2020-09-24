@@ -10,6 +10,7 @@ import { MatDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-s
 import { MatDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
 import { MatDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
 import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
+import { MatDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-toggle.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form
     MatDynamicFormSelectModule,
     MatDynamicFormSwitchModule,
     MatDynamicFormTextareaModule,
-    MatDynamicFormTextboxModule
+    MatDynamicFormTextboxModule,
+    MatDynamicFormToggleModule
   ],
   providers: [
     {

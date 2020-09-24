@@ -1,0 +1,9 @@
+<div class="btn-group btn-group-toggle">
+  <ng-container *ngFor="let option of input.options; let i = index">
+    <label class="btn btn-light" [class.active]="control.value === option.value">
+      <input type="radio" [id]="inputId + '-' + i" [name]="inputId" [readonly]="field.readonly" 
+        [value]="option.value" [formControl]="control" autocomplete="off" />
+      {{option.label}}
+    </label>
+  </ng-container>
+</div>

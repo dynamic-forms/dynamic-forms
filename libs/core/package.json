@@ -18,7 +18,7 @@
     "@angular/forms": "^8.0.0",
     "bootstrap": "^4.5.2",
     "marked": "^1.1.1",
-    "rxjs": "~6.6.2"
+    "rxjs": "~6.6.3"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",

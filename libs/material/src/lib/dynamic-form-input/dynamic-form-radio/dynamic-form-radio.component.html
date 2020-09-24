@@ -1,17 +1,10 @@
-<div class="mat-form-field-simple" [ngClass]="{ 'mat-form-field-simple-invalid': control.touched && control.errors }">
-  <div class="mat-form-field-simple-wrapper">
-    <label class="mat-form-field-simple-label">
-      {{ template.label }}<span *ngIf="validation?.required"> *</span>
-    </label>      
-    <mat-radio-group [formControl]="control">
-      <ng-container *ngFor="let option of input.options; let i = index">
-        <mat-radio-button [id]="inputId + '-' + i" color="primary" [value]="option.value">
-          {{ option.label }}
-        </mat-radio-button>      
-      </ng-container>
-    </mat-radio-group>
-  </div>
-  <div class="mat-form-field-simple-info">
-    <div *ngIf="control.touched && control.errors" class="mat-error">{{ errorMessage }}</div>
-  </div>
-</div>
+<mat-dynamic-form-input-wrapper [label]="template.label" [required]="validation?.required" 
+  [invalid]="control.touched && control.errors" [errorMessage]="control.touched && control.errors ? errorMessage : null">
+  <mat-radio-group [formControl]="control">
+    <ng-container *ngFor="let option of input.options; let i = index">
+      <mat-radio-button [id]="inputId + '-' + i" color="primary" [value]="option.value">
+        {{ option.label }}
+      </mat-radio-button>      
+    </ng-container>
+  </mat-radio-group>
+</mat-dynamic-form-input-wrapper>
