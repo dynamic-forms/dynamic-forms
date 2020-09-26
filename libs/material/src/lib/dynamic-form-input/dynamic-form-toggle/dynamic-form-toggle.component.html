@@ -2,7 +2,7 @@
   [invalid]="control.touched && control.errors" [errorMessage]="control.touched && control.errors ? errorMessage : null">
   <mat-button-toggle-group [formControl]="control">
     <ng-container  *ngFor="let option of input.options; let i = index">
-      <mat-button-toggle [id]="inputId + '-' + i" [value]="option.value">
+      <mat-button-toggle [id]="inputId + '-' + i" [value]="option.value" [disabled]="option.disabled">
         {{ option.label }}
       </mat-button-toggle>
     </ng-container>
