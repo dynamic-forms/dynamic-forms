@@ -166,6 +166,21 @@ $dynamic-form-material-red: #f44336;
           }
         }
       }
+
+      .btn-group.btn-group-toggle {
+        display: block;
+
+        .btn.btn-light {
+          &.disabled {
+            pointer-events: none;
+            
+            &.active {
+              background-color: #dae0e5;
+              border-color: #d3d9df;    
+            }
+          }
+        }
+      }
     }
   
     .dynamic-form-actions {
