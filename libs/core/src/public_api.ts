@@ -123,6 +123,7 @@ export * from './lib/dynamic-form-field/dynamic-form-field-control';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';
 export * from './lib/dynamic-form-field/dynamic-form-field-factory';
+export * from './lib/dynamic-form-field/dynamic-form-field-settings';
 export * from './lib/dynamic-form-field/dynamic-form-field-template';
 export * from './lib/dynamic-form-field/dynamic-form-field-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-type-config';
