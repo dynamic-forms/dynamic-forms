@@ -1,14 +1,13 @@
 <ng-container *ngIf="!input.multiple; else optionsMultiple">
-  <select [id]="inputId" class="custom-select" 
-    [required]="validation?.required" [formControl]="control">
+  <select class="custom-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
     <option [value]="null" hidden>{{ input.placeholder }}</option>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value">{{ option.label }}</option>      
+        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>      
       </ng-container>
       <ng-template #optionGroup>
-        <optgroup [label]="option.label">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value">{{ optionItem.label }}</option>
+        <optgroup [label]="option.label" [disabled]="option.disabled">
+          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
         </optgroup>      
       </ng-template>
     </ng-container>
@@ -16,15 +15,14 @@
 </ng-container>
 
 <ng-template #optionsMultiple>
-  <select [id]="inputId" class="custom-select"
-    [required]="validation?.required" [formControl]="control" multiple>
+  <select class="custom-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value">{{ option.label }}</option>      
+        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>      
       </ng-container>
       <ng-template #optionGroup>
-        <optgroup [label]="option.label">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value">{{ optionItem.label }}</option>
+        <optgroup [label]="option.label" [disabled]="option.disabled">
+          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
         </optgroup>      
       </ng-template>
     </ng-container>
