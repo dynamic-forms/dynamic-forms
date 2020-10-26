@@ -27,8 +27,8 @@
       "expressions": {
         "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
       },
-      "options": {
-        "update": "change"
+      "settings": {
+        "updateType": "change"
       }
     },
     {
@@ -52,8 +52,8 @@
       "expressions": {
         "hints.hintEnd": "\"Length \" + (data.model || \"\").length"
       },
-      "options": {
-        "update": "debounce"
+      "settings": {
+        "updateType": "debounce"
       }
     },
     {
@@ -78,17 +78,16 @@
       "expressions": {
         "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
-      "options": {
-        "update": {
-          "time": 600
-        }
+      "settings": {
+        "updateType": "debounce",
+        "updateDebounce": 500
       }
     },
     {
       "key": "passwordConfirm",
       "type": "control",
       "template": {
-        "label": "Password Confirm ",
+        "label": "Password Confirm",
         "input": {
           "type": "textbox",
           "inputType": "password",
@@ -106,8 +105,28 @@
       "expressions": {
         "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
       },
-      "options": {
-        "update": "blur"
+      "settings": {
+        "updateType": "blur"
+      }
+    },
+    {
+      "key": "comment",
+      "type": "control",
+      "template": {
+        "label": "Comment",
+        "input": {
+          "type": "textarea",
+          "placeholder": "Enter a comment"
+        },
+        "hints": {
+          "hintStart": "Update on submit"
+        }
+      },
+      "expressions": {
+        "hints.hintEnd": "\"Length \" + (data.model || \"\").length"
+      },
+      "settings": {
+        "updateType": "submit"
       }
     }
   ],

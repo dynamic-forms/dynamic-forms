@@ -120,7 +120,11 @@ $dynamic-form-material-red: #f44336;
       }
       
       &.readonly {
-        .mat-form-field, .mat-checkbox, .mat-radio-group, .mat-slide-toggle {
+        .mat-form-field, 
+        .mat-checkbox, 
+        .mat-radio-group, 
+        .mat-slide-toggle, 
+        .mat-button-toggle {
           pointer-events: none;
         }
       }

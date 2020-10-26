@@ -3,29 +3,24 @@
     {
       "type": "content",
       "template": {
-        "content": "<h3>Inputs with default value</h3>"
+        "content": "<h3>Inputs plain</h3>"
       }
     },
     {
       "key": "checkbox",
       "type": "control",
       "template": {
-        "label": "Checkbox",
         "input": {
-          "type": "checkbox",
-          "defaultValue": true
-        }  
+          "type": "checkbox"
+        }
       }
     },
     {
       "key": "combobox",
       "type": "control",
       "template": {
-        "label": "Combobox",
         "input": {
           "type": "combobox",
-          "placeholder": "Enter a text",
-          "defaultValue": "Value1",
           "options": [
             "Value1",
             "Value2",
@@ -38,11 +33,8 @@
       "key": "datepicker",
       "type": "control",
       "template": {
-        "label": "Datepicker",
         "input": {
-          "type": "datepicker",
-          "placeholder": "Enter a date",
-          "defaultValue": "2019-01-01"
+          "type": "datepicker"
         }
       }
     },
@@ -50,22 +42,17 @@
       "key": "numberbox",
       "type": "control",
       "template": {
-        "label": "Numberbox",
         "input": {
-          "type": "numberbox",
-          "placeholder": "Enter a number",
-          "defaultValue": 0.01
-        }        
+          "type": "numberbox"
+        }
       }
     },
     {
       "key": "radio",
       "type": "control",
       "template": {
-        "label": "Radio",
         "input": {
           "type": "radio",
-          "defaultValue": 2,
           "options": [
             {
               "value": 1,
@@ -88,11 +75,8 @@
       "key": "select",
       "type": "control",
       "template": {
-        "label": "Select",
         "input": {
           "type": "select",
-          "defaultValue": 1,
-          "placeholder": "Select an option",
           "options": [
             {
               "value": 1,
@@ -115,10 +99,8 @@
       "key": "switch",
       "type": "control",
       "template": {
-        "label": "Switch",
         "input": {
-          "type": "switch",
-          "defaultValue": true
+          "type": "switch"
         }
       }
     },
@@ -126,11 +108,8 @@
       "key": "textarea",
       "type": "control",
       "template": {
-        "label": "Textarea",
         "input": {
-          "type": "textarea",
-          "placeholder": "Enter a text",
-          "defaultValue": "Text line 1\nText line 2"
+          "type": "textarea"
         }
       }
     },
@@ -138,11 +117,8 @@
       "key": "textbox",
       "type": "control",
       "template": {
-        "label": "Textbox",
         "input": {
-          "type": "textbox",
-          "placeholder": "Enter a text",
-          "defaultValue": "Text 1, Text 2"
+          "type": "textbox"
         }
       }
     },
@@ -150,10 +126,8 @@
       "key": "toggle",
       "type": "control",
       "template": {
-        "label": "Toggle",
         "input": {
           "type": "toggle",
-          "defaultValue": 1,
           "options": [
             {
               "value": 1,
@@ -191,15 +165,6 @@
       "template": {
         "type": "reset",
         "label": "Reset"
-      }
-    },
-    {
-      "id": "action-reset-default",
-      "type": "button",
-      "template": {
-        "type": "button",
-        "label": "Reset default",
-        "action": "resetDefault"
       }
     }
   ]

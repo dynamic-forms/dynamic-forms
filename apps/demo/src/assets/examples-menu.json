@@ -1,8 +1,13 @@
 {
+  "label": "Definition of control",
   "items": [
     {
       "label": "Inputs",      
       "items": [
+        { 
+          "id": "inputs-plain", 
+          "label": "Plain" 
+        },
         { 
           "id": "inputs-label", 
           "label": "Label" 
@@ -194,10 +199,10 @@
       ]
     },
     {
-      "label": "Options",
+      "label": "Settings",
       "items": [
         {
-          "id": "options-update",
+          "id": "settings-update",
           "label": "Update strategy"
         }
       ]
@@ -241,6 +246,20 @@
             {
               "id": "layout-grid-toggleable-element-container",
               "label": "Element container"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Definitions",
+      "items": [
+        {
+          "label": "Control",
+          "items": [
+            {
+              "id": "definition-control-groups",
+              "label": "Groups"
             }
           ]
         }

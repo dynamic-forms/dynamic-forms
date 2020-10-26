@@ -6,4 +6,5 @@ export type DynamicFormRadioOption = DynamicFormInputOption;
 export interface DynamicFormRadio extends DynamicFormInput {
   type: 'radio';
   options: DynamicFormInputOption[];
+  inline?: boolean;
 }
