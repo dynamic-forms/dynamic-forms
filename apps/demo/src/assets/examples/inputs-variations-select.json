@@ -31,11 +31,21 @@
             },
             {
               "value": 3,
-              "label": "Option 3"
+              "label": "Option 3",
+              "disabled": true
             },
             {
               "value": 4,
               "label": "Option 4"
+            },
+            {
+              "value": 5,
+              "label": "Option 5"
+            },
+            {
+              "value": 6,
+              "label": "Option 6",
+              "disabled": true
             }
           ]
         },
@@ -63,6 +73,11 @@
                 {
                   "value": 2,
                   "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3",
+                  "disabled": true
                 }
               ]
             },
@@ -70,12 +85,17 @@
               "label": "Option group 2",
               "items": [
                 {
-                  "value": 3,
-                  "label": "Option 3"
-                },
-                {
                   "value": 4,
                   "label": "Option 4"
+                },
+                {
+                  "value": 5,
+                  "label": "Option 5"
+                },
+                {
+                  "value": 6,
+                  "label": "Option 6",
+                  "disabled": true
                 }
               ]
             }
@@ -104,17 +124,46 @@
               "label": "Option 2"
             },
             {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            },
+            {
               "label": "Option group 2",
               "items": [
                 {
-                  "value": 3,
+                  "value": 4,
                   "label": "Option 3"
                 },
                 {
-                  "value": 4,
-                  "label": "Option 4"
+                  "value": 5,
+                  "label": "Option 5"
+                },
+                {
+                  "value": 6,
+                  "label": "Option 6",
+                  "disabled": true
                 }
               ]
+            },
+            {
+              "label": "Option group 3",
+              "items": [
+                {
+                  "value": 7,
+                  "label": "Option 7"
+                },
+                {
+                  "value": 8,
+                  "label": "Option 8"
+                },
+                {
+                  "value": 9,
+                  "label": "Option 9",
+                  "disabled": true
+                }
+              ],
+              "disabled": true
             }
           ]
         },
@@ -149,7 +198,8 @@
             },
             {
               "value": 3,
-              "label": "Option 3"
+              "label": "Option 3",
+              "disabled": true
             },
             {
               "value": 4,
@@ -158,6 +208,11 @@
             {
               "value": 5,
               "label": "Option 5"
+            },
+            {
+              "value": 6,
+              "label": "Option 6",
+              "disabled": true
             }
           ]
         },
@@ -170,7 +225,7 @@
       "key": "select5",
       "type": "control",
       "template": {
-        "label": "Select Multiple (Options / Option Groups)",
+        "label": "Select Multiple (Option Groups)",
         "input": {
           "type": "select",
           "placeholder": "Select options",
@@ -189,12 +244,13 @@
                 },
                 {
                   "value": 3,
-                  "label": "Option 3"
+                  "label": "Option 3",
+                  "disabled": true
                 }
               ]
             },
             {
-              "label": "Option group 1",
+              "label": "Option group 2",
               "items": [
                 {
                   "value": 4,
@@ -203,8 +259,80 @@
                 {
                   "value": 5,
                   "label": "Option 5"
+                },
+                {
+                  "value": 6,
+                  "label": "Option 6",
+                  "disabled": true
                 }
               ]
+            }
+          ]
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "select6",
+      "type": "control",
+      "template": {
+        "label": "Select Multiple (Options / Option Groups)",
+        "input": {
+          "type": "select",
+          "placeholder": "Select options",
+          "multiple": true,
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            },
+            {
+              "label": "Option group 2",
+              "items": [
+                {
+                  "value": 4,
+                  "label": "Option 4"
+                },
+                {
+                  "value": 5,
+                  "label": "Option 5"
+                },
+                {
+                  "value": 6,
+                  "label": "Option 6",
+                  "disabled": true
+                }
+              ]
+            },
+            {
+              "label": "Option group 3",
+              "items": [
+                {
+                  "value": 7,
+                  "label": "Option 7"
+                },
+                {
+                  "value": 8,
+                  "label": "Option 8"
+                },
+                {
+                  "value": 9,
+                  "label": "Option 9",
+                  "disabled": true
+                }
+              ],
+              "disabled": true
             }
           ]
         },

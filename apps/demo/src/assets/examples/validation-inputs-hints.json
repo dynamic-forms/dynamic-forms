@@ -74,29 +74,6 @@
       }
     },
     {
-      "key": "radio",
-      "type": "control",
-      "template": {
-        "label": "Radio",
-        "input": {
-          "type": "radio",
-          "options": [
-            {
-              "value": 1,
-              "label": "Option 1"
-            },
-            {
-              "value": 2,
-              "label": "Option 2"
-            }
-          ]
-        },
-        "validation": {
-          "required": true
-        }
-      }
-    },
-    {
       "key": "select",
       "type": "control",
       "template": {
@@ -112,6 +89,11 @@
             {
               "value": 2,
               "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
             }
           ]
         },
