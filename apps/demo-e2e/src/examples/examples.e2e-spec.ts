@@ -97,8 +97,7 @@ describe('dynamic-forms demo examples', () => {
 
                 const isEditable = await input.isEditable();
                 if (isEditable) {
-                  const inputValue = await input.getInputValue();
-                  if (!inputValue) {
+                  if (!await input.getInputValue() || await input.isInputForFalse()) {
                     await input.editInputValue();
                     await page.pressEscape();
                   }

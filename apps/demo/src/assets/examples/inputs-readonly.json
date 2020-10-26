@@ -101,6 +101,11 @@
                 {
                   "value": 2,
                   "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3",
+                  "disabled": true
                 }
               ]
             }
@@ -123,6 +128,11 @@
                 {
                   "value": 2,
                   "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3",
+                  "disabled": true
                 }
               ]
             }
@@ -199,6 +209,32 @@
               "defaultValue": "angular forms JSON",
               "inputType": "search",
               "placeholder": "Enter a search text"
+            }
+          }
+        },
+        {
+          "key": "toggle",
+          "type": "control",
+          "template": {
+            "label": "Toggle",
+            "input": {
+              "type": "toggle",
+              "options": [
+                {
+                  "value": 1,
+                  "label": "Option 1"
+                },
+                {
+                  "value": 2,
+                  "label": "Option 2"
+                },
+                {
+                  "value": 3,
+                  "label": "Option 3",
+                  "disabled": true
+                }
+              ],
+              "defaultValue": 2
             }
           }
         }

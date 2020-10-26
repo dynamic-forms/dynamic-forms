@@ -1,5 +1,4 @@
 import { Validators } from '@angular/forms';
-import { DynamicFormFieldUpdate } from '../dynamic-form-field/dynamic-form-field-options';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -51,22 +50,21 @@ describe('DynamicFormControl', () => {
     })
   );
 
-  const updateOptions = [
-    { value: undefined, update: undefined, updateOn: 'change' },
-    { value: 'change', update: 'change', updateOn: 'change' },
-    { value: 'debounce', update: 'debounce', updateOn: 'change' },
-    { value: 'blur', update: 'blur', updateOn: 'blur' },
-    { value: { time: 0 }, update: { time: 0 }, updateOn: 'change' },
-    { value: { time: 200 }, update: { time: 200 }, updateOn: 'change' }
+  const items = [
+    { settings: { updateType: undefined }, updateOn: 'change' },
+    { settings: { updateType: 'change', }, updateOn: 'change' },
+    { settings: { updateType: 'debounce' }, updateOn: 'change' },
+    { settings: { updateType: 'debounce', updateDebounce: 0 }, updateOn: 'change' },
+    { settings: { updateType: 'debounce', updateDebounce: 200 }, updateOn: 'change' },
+    { settings: { updateType: 'blur' }, updateOn: 'blur' },
   ];
-  updateOptions.forEach(updateOption =>
-    it(`new instance sets update option '${updateOption.value}'`, () => {
+  items.forEach(item =>
+    it(`new instance sets update option '${item.settings}'`, () => {
       const root = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-      const definition = <DynamicFormControlDefinition>{ key: 'key', template: {}, options: { update: updateOption.value } };
+      const definition = <DynamicFormControlDefinition>{ key: 'key', template: {}, settings: item.settings };
       const formControl = new DynamicFormControl(root, root, definition);
 
-      expect(formControl.options.update).toEqual(<DynamicFormFieldUpdate>updateOption.update);
-      expect(formControl.control.updateOn).toEqual(updateOption.updateOn);
+      expect(formControl.control.updateOn).toEqual(item.updateOn);
     })
   );
 

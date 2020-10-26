@@ -12,6 +12,7 @@ $dynamic-form-material-red: #f44336;
     @import '~bootstrap/scss/reboot';
     @import '~bootstrap/scss/forms';
     @import '~bootstrap/scss/buttons';
+    @import '~bootstrap/scss/button-group';
     @import '~bootstrap/scss/custom-forms';
     @import '~bootstrap/scss/modal';
         
@@ -151,7 +152,6 @@ $dynamic-form-material-red: #f44336;
         input, select, textarea {
           pointer-events: none;
           background-color: $gray-200;
-          opacity: 1;  
         }
 
         .custom-control {
@@ -162,6 +162,21 @@ $dynamic-form-material-red: #f44336;
           &.custom-switch {
             .custom-control-input {
               visibility: hidden;
+            }
+          }
+        }
+      }
+
+      .btn-group.btn-group-toggle {
+        display: block;
+
+        .btn.btn-light {
+          &.disabled {
+            pointer-events: none;
+            
+            &.active {
+              background-color: #dae0e5;
+              border-color: #d3d9df;    
             }
           }
         }
