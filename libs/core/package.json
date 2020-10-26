@@ -17,7 +17,7 @@
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
     "bootstrap": "^4.5.3",
-    "marked": "^1.2.0",
+    "marked": "^1.2.2",
     "rxjs": "~6.6.3"
   },
   "publishConfig": {

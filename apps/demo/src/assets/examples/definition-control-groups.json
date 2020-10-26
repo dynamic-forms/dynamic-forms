@@ -380,8 +380,8 @@
               "template": {
                 "label": "Default value",
                 "input": {
-                  "type": "select",
-                  "placeholder": "Select a default value" 
+                  "type": "textbox",
+                  "placeholder": "Enter a default value" 
                 }
               }
             }
@@ -533,6 +533,19 @@
           }
         }
       ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
     }
   ]
 }
