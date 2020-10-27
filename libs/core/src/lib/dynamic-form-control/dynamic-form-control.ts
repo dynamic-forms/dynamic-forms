@@ -1,9 +1,9 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
-import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
+import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
@@ -16,6 +16,7 @@ export class DynamicFormControl<
   Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
 > extends DynamicFormField<FormControl, Template, Definition> {
 
+  private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
 
@@ -78,25 +79,23 @@ export class DynamicFormControl<
     return new FormControl(this._model, options);
   }
 
-  private get updateOn(): 'change' | 'blur' {
-    const update = this.options.update;
-    if (update === 'debounce' || typeof update === 'object') {
+  private get updateOn(): 'change' | 'blur' | 'submit' {
+    if (this.settings.updateType === 'debounce') {
       return 'change';
     }
-    return update;
+    return this.settings.updateType;
   }
 
   private createValueSubscription(): Subscription {
-    const update = this.options.update;
     const valueChanges = this._control.valueChanges;
     const observer = { next: model => this.setModel(model) };
-    if (update === 'debounce') {
-      const time = dynamicFormFieldDefaultDebounceTime;
-      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
-    }
-    if (typeof update === 'object') {
-      const time = update.time || dynamicFormFieldDefaultDebounceTime;
-      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
+    if (this.settings.updateType === 'debounce') {
+      const debounce = this.settings.updateDebounce || dynamicFormFieldDefaultDebounce;
+      return valueChanges.pipe(
+        tap(() => this._valueChanging = true),
+        debounceTime(debounce),
+        tap(() => this._valueChanging = false),
+      ).subscribe(observer);
     }
     return valueChanges.subscribe(observer);
   }
@@ -108,7 +107,7 @@ export class DynamicFormControl<
 
   private checkValue(): void {
     const model = this.parent.model[this.key];
-    if (this._control.value !== model || this._model !== model) {
+    if (!this._valueChanging && (this._control.value !== model || this._model !== model)) {
       this._model = model;
       this._control.setValue(model, { onlySelf: true, emitEvent: false });
       this._control.markAsTouched();

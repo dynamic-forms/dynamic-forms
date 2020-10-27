@@ -1,14 +1,21 @@
-import { By, ElementArrayFinder, ElementFinder } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { protractor, By, ElementArrayFinder, ElementFinder } from 'protractor';
 
 const KEY = protractor.Key;
 
 export class Control {
   private readonly _types: string[] = [
-    'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox'
+    'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle'
   ];
 
   constructor(public element: ElementFinder, public theme: string) {}
+
+  findElement(css: string): ElementFinder {
+    return this.element.element(By.css(css));
+  }
+
+  findElements(css: string): ElementArrayFinder {
+    return this.element.all(By.css(css));
+  }
 
   async isPresent(): Promise<boolean> {
     return this.element.isPresent();
@@ -28,17 +35,15 @@ export class Control {
     const controlType = await this.getControlType();
     switch (controlType) {
       case 'radio':
-        const radioElements = this.element.all(By.css('input[type="radio"]'));
-        return new Input(controlType, this, radioElements);
+        return new Input(controlType, this, this.findElements('input[type="radio"]'));
       case 'select':
-        const selectElement = this.element.element(By.css('select,mat-select'));
-        return new Input(controlType, this, selectElement);
+        return new Input(controlType, this, this.findElement('select,mat-select'));
       case 'textarea':
-        const textareaElement = this.element.element(By.css('textarea'));
-        return new Input(controlType, this, textareaElement);
+        return new Input(controlType, this, this.findElement('textarea'));
+      case 'toggle':
+        return new Input(controlType, this, this.findElements('input[type="radio"],mat-button-toggle'));
       default:
-        const inputElement = this.element.element(By.css('input'));
-        return new Input(controlType, this, inputElement);
+        return new Input(controlType, this, this.findElement('input'));
     }
   }
 
@@ -66,25 +71,40 @@ export class Input {
     return this.inputElement.getAttribute('type');
   }
 
+  async isInputForFalse(): Promise<boolean> {
+    const inputId = await this.inputElement.getAttribute('id');
+    switch (inputId) {
+      case 'input-hidden':
+      case 'input-hidden-input':
+      case 'input-disabled':
+      case 'input-disabled-input':
+      case 'input-readonly':
+      case 'input-readonly-input':
+        return true;
+      default:
+        return false;
+    }
+  }
+
   async getInputValue(): Promise<string | boolean> {
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
         return this.inputElement.getAttribute('checked');
       case 'radio':
-        const checkedRadio = this.control.element.element(By.css('input[type="radio"]:checked'));
-        return await checkedRadio.isPresent() ? checkedRadio.getAttribute('value') : null;
+        const checkedRadio = this.control.findElement('input[type="radio"]:checked');
+        return await checkedRadio.isPresent() ? true : false;
       case 'select':
         if (this.control.theme === 'material') {
-          const selectedValue = this.control.element.element(By.css('span.mat-select-value-text'));
+          const selectedValue = this.control.findElement('span.mat-select-value-text');
           return await selectedValue.isPresent() ? selectedValue.getText() : null;
-        }
-        const selectedOption = this.control.element.element(By.css('option:checked'));
-        if (await selectedOption.isPresent()) {
-          const selectedValue = await selectedOption.getAttribute('value');
+        } else {
+          const selectedValue = await this.inputElement.getAttribute('value');
           return selectedValue !== 'null' ? selectedValue : null;
         }
-        return null;
+      case 'toggle':
+        const checkedToggle = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
+        return await checkedToggle.isPresent() ? true : false;
       default:
         const value = await this.inputElement.getAttribute('value');
         return value ? value.trim() : value;
@@ -92,44 +112,31 @@ export class Input {
   }
 
   async checkInputValue(): Promise<boolean> {
-    const inputId = await this.inputElement.getAttribute('id');
     const inputValue = await this.getInputValue();
-    return this.isInputForFalse(inputId) ? !inputValue : !!inputValue;
+    return await this.isInputForFalse() ? !inputValue : !!inputValue;
   }
 
   async editInputValue(): Promise<void> {
-    const inputId = await this.inputElement.getAttribute('id');
     switch (this.controlType) {
       case 'checkbox':
       case 'switch':
-        const labelElement = this.control.element.element(By.css('label'));
-        if (this.isInputForFalse(inputId)) {
-          await labelElement.click();
+        if (await this.isInputForFalse() && !await this.getInputValue()) {
+          await this.inputElement.sendKeys(KEY.SPACE);
         }
-        return labelElement.click();
+        return this.inputElement.sendKeys(KEY.SPACE);
       case 'radio':
-        return this.control.element.element(By.css(`label[for="${inputId}"]`)).click();
+      case 'toggle':
+        return this.inputElement.sendKeys(KEY.SPACE);
       case 'select':
         const keys = this.control.theme !== 'material'
           ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER ]
           : [ KEY.ARROW_DOWN, KEY.ENTER ];
         await this.inputElement.click();
-        return await this.inputElement.sendKeys(...keys);
+        return this.inputElement.sendKeys(...keys);
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
         return value ? this.inputElement.sendKeys(value) : Promise.resolve();
-    }
-  }
-
-  private isInputForFalse(inputId: string): boolean {
-    switch (inputId) {
-      case 'input-hidden':
-      case 'input-disabled':
-      case 'input-readonly':
-        return true;
-      default:
-        return false;
     }
   }
 
@@ -141,8 +148,6 @@ export class Input {
         return 5;
       case 'datepicker':
         return '01-01-2020';
-      case 'select':
-        return 'Option 1';
       case 'textarea':
         return 'Line 1\nLine 2';
       case 'textbox':
@@ -155,5 +160,4 @@ export class Input {
         return null;
     }
   }
-
 }

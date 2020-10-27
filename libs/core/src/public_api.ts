@@ -123,6 +123,7 @@ export * from './lib/dynamic-form-field/dynamic-form-field-control';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';
 export * from './lib/dynamic-form-field/dynamic-form-field-factory';
+export * from './lib/dynamic-form-field/dynamic-form-field-settings';
 export * from './lib/dynamic-form-field/dynamic-form-field-template';
 export * from './lib/dynamic-form-field/dynamic-form-field-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-type-config';
@@ -159,6 +160,7 @@ export * from './lib/dynamic-form-input/dynamic-form-select/dynamic-form-select'
 export * from './lib/dynamic-form-input/dynamic-form-switch/dynamic-form-switch';
 export * from './lib/dynamic-form-input/dynamic-form-textarea/dynamic-form-textarea';
 export * from './lib/dynamic-form-input/dynamic-form-textbox/dynamic-form-textbox';
+export * from './lib/dynamic-form-input/dynamic-form-toggle/dynamic-form-toggle';
 export * from './lib/dynamic-form-library/dynamic-form-library';
 export * from './lib/dynamic-form-library/dynamic-form-library.module';
 export * from './lib/dynamic-form-library/dynamic-form-library.service';

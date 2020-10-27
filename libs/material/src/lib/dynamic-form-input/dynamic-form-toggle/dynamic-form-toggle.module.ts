@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormInputWrapperModule } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.module';
-import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
+import { MatDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 
-export const matDynamicFormRadioType: DynamicFormInputType = {
-  type: 'radio',
-  component: MatDynamicFormRadioComponent,
+export const matDynamicFormToggleType: DynamicFormInputType = {
+  type: 'toggle',
+  component: MatDynamicFormToggleComponent,
   libraryName: matDynamicFormLibrary.name
 };
 
@@ -17,16 +17,19 @@ export const matDynamicFormRadioType: DynamicFormInputType = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatRadioModule,
+    MatButtonToggleModule,
     MatDynamicFormInputWrapperModule,
-    DynamicFormConfigModule.withInput(matDynamicFormRadioType)
+    DynamicFormConfigModule.withInput(matDynamicFormToggleType)
   ],
   declarations: [
-    MatDynamicFormRadioComponent
+    MatDynamicFormToggleComponent
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormRadioComponent
+    MatDynamicFormToggleComponent
+  ],
+  entryComponents: [
+    MatDynamicFormToggleComponent
   ]
 })
-export class MatDynamicFormRadioModule {}
+export class MatDynamicFormToggleModule {}
