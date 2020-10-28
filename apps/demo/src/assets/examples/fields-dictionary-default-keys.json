@@ -4,51 +4,46 @@
   },
   "elements": [
     {
-      "key": "users",
-      "type": "array",
+      "key": "validation",
+      "type": "dictionary",
       "template": {
-        "label": "Users"
+        "label": "Validation",
+        "classNameLabel": "bold"
       },
-      "defaultLength": 3,
+      "defaultKeys": [
+        "required",
+        "pattern"
+      ],
       "definitionTemplate": {
         "type": "group",
         "template": {
           "className": "row",
-          "classNameLabel": "col-12"
+          "classNameLabel": "col-12 capitalize"
         },
         "expressions": {
-          "label": "(function(index) { return (index + 1) + '. User'; })(data.index)"
+          "label": "(function(key) { return key; })(data.key)"
         },
         "elements": [
           {
-            "key": "name",
+            "key": "enabled",
             "type": "control",
             "template": {
-              "className": "col-6",
-              "label": "Name",
+              "className": "col-2 align-self-center",
+              "label": "Enabled",
               "input": {
-                "type": "textbox",
-                "placeholder": "Enter name"
-              },
-              "validation": {
-                "required": true
+                "type": "switch"
               }
             }
           },
           {
-            "key": "email",
+            "key": "message",
             "type": "control",
             "template": {
-              "className": "col-6",
-              "label": "Email",
+              "className": "col-10",
+              "label": "Message",
               "input": {
                 "type": "textbox",
-                "inputType": "email",
-                "placeholder": "Enter email"
-              },
-              "validation": {
-                "required": true,
-                "email": true
+                "placeholder": "Enter a message"
               }
             }
           }

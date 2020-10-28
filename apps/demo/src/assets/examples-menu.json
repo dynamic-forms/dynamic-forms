@@ -101,6 +101,19 @@
               ]
             }
           ]
+        },
+        {
+          "label": "Dictionary",
+          "items": [
+            {
+              "id": "fields-dictionary-default-keys",
+              "label": "Default keys" 
+            },
+            {
+              "id": "fields-dictionary-default-value",
+              "label": "Default value"
+            }
+          ]
         }
       ]
     },

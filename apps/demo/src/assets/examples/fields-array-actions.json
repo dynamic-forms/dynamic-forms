@@ -55,7 +55,11 @@
       "definitionTemplate": {
         "type": "group",
         "template": {
-          "className": "row"
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(function(index) { return (index + 1) + '. User'; })(data.index)"
         },
         "elements": [
           {

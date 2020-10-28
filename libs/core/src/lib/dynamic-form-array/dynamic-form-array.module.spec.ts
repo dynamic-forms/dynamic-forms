@@ -9,6 +9,8 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
+import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
+import { DynamicFormArrayValidatorTypeConfig, DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from './dynamic-form-array-validator-type-config';
 import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopElementHandler, dynamicFormArrayRemoveElementHandler,
   dynamicFormArrayType, DynamicFormArrayModule} from './dynamic-form-array.module';
 
@@ -43,6 +45,13 @@ describe('DynamicFormArrayModule', () => {
       expect(types[0]).toEqual(dynamicFormArrayType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
+    })
+  );
+
+  it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
+    inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(dynamicFormArrayValidatorTypes);
     })
   );
 

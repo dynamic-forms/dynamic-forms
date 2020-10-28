@@ -81,13 +81,13 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormElementModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType),
+    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes),
     DynamicFormActionModule.withHandlers([
       dynamicFormArrayPopElementHandler,
       dynamicFormArrayRemoveElementHandler,
       dynamicFormArrayClearElementsHandler
     ]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ]),
-    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes)
+    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ])
   ],
   declarations: [
     DynamicFormArrayComponent
