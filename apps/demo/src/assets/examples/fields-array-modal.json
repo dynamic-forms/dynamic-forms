@@ -23,7 +23,7 @@
           "template": {
             "type": "button",
             "label": "Clear users",
-            "action": "clearArrayElements"
+            "action": "clearArrayFields"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -34,7 +34,7 @@
           "template": {
             "type": "button",
             "label": "Pop user",
-            "action": "popArrayElement"
+            "action": "popArrayField"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -45,7 +45,7 @@
           "template": {
             "type": "button",
             "label": "Push user",
-            "action": "pushArrayElement"
+            "action": "pushArrayField"
           },
           "expressions": {
             "disabled": "data.parent.length >= 10"
@@ -60,7 +60,7 @@
           "classNameLabel": "col-12"
         },
         "expressions": {
-          "label": "(function(index) { return (index + 1) + '. User'; })(data.index)"
+          "label": "(data.index + 1) + '. User'"
         },
         "elements": [
           {
@@ -181,7 +181,7 @@
               "wrapperClassName": "col-1",
               "label": "Remove user",
               "icon": "remove",
-              "action": "removeArrayElement"
+              "action": "removeArrayField"
             }
           }
         ]

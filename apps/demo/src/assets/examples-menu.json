@@ -112,6 +112,14 @@
             {
               "id": "fields-dictionary-default-value",
               "label": "Default value"
+            },
+            {
+              "id": "fields-dictionary-actions",
+              "label": "Actions"
+            },
+            {
+              "id": "fields-dictionary-modal",
+              "label": "Modal"
             }
           ]
         }

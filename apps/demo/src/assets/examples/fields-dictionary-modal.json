@@ -1,0 +1,273 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "items",
+      "type": "dictionary",
+      "template": {
+        "label": "Items",
+        "classNameLabel": "bold",
+        "classNameActions": "reverse"
+      },
+      "actions": [
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Clear items",
+            "action": "clearDictionaryFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Register item",
+            "action": "registerDictionaryField"
+          }
+        }
+      ],
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row"
+        },
+        "elements": [
+          {
+            "key": "id",
+            "type": "control",
+            "template": {
+              "className": "col-10",
+              "label": "Id",
+              "input": {
+                "type": "textbox"
+              },
+              "validation": {
+                "required": true
+              },
+              "readonly": true
+            },
+            "expressions": {
+              "input.defaultValue": "data.parent.key"
+            }
+          },
+          {
+            "type": "modal",
+            "template": {
+              "title": "Edit item",
+              "titleClassName": "modal-title-md",
+              "width": "600px",
+              "heigth": "calc(100vw - 1rem)",
+              "maxWidth": "calc(100vh - 1rem)"
+            },
+            "trigger": {
+              "type": "icon",
+              "template": {
+                "wrapperClassName": "col-1",
+                "label": "Edit item",
+                "icon": "edit",
+                "action": "openModal"
+              }
+            },
+            "elements": [
+              {
+                "key": "id",
+                "type": "control",
+                "template": {
+                  "label": "Id",
+                  "input": {
+                    "type": "textbox"
+                  },
+                  "validation": {
+                    "required": true
+                  },
+                  "readonly": true
+                },
+                "unregistered": true
+              },
+              {
+                "key": "name",
+                "type": "control",
+                "template": {
+                  "label": "Name",
+                  "input": {
+                    "type": "textbox",
+                    "placeholder": "Enter a name"
+                  },
+                  "validation": {
+                    "required": true
+                  }
+                }
+              },
+              {
+                "key": "items",
+                "type": "dictionary",
+                "template": {
+                  "label": "Child Items",
+                  "classNameLabel": "bold",
+                  "classNameActions": "reverse"
+                },
+                "expressions": {
+                  "label": "data.length ? 'Child items' : null"
+                },
+                "actions": [
+                  {
+                    "type": "button",
+                    "template": {
+                      "type": "button",
+                      "label": "Clear child items",
+                      "action": "clearDictionaryFields"
+                    },
+                    "expressions": {
+                      "disabled": "!data.parent.length"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "template": {
+                      "type": "button",
+                      "label": "Register child item",
+                      "action": "registerDictionaryField"
+                    }
+                  }
+                ],
+                "definitionTemplate": {
+                  "type": "group",
+                  "template": {
+                    "className": "row"
+                  },
+                  "elements": [
+                    {
+                      "key": "parentId",
+                      "type": "control",
+                      "template": {
+                        "className": "col-12",
+                        "label": "Parent Id",
+                        "input": {
+                          "type": "textbox"
+                        },
+                        "validation": {
+                          "required": true
+                        },
+                        "hidden": true,
+                        "readonly": true
+                      },
+                      "expressions": {
+                        "input.defaultValue": "data.parent.parent.parent.key"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "type": "control",
+                      "template": {
+                        "className": "col-11",
+                        "label": "Id",
+                        "input": {
+                          "type": "textbox"
+                        },
+                        "validation": {
+                          "required": true
+                        },
+                        "readonly": true
+                      },
+                      "expressions": {
+                        "input.defaultValue": "data.parent.key"
+                      }
+                    },
+                    {
+                      "type": "icon",
+                      "template": {
+                        "wrapperClassName": "col-1",
+                        "label": "Remove item",
+                        "icon": "remove",
+                        "action": "removeDictionaryField"
+                      }
+                    },
+                    {
+                      "key": "name",
+                      "type": "control",
+                      "template": {
+                        "className": "col-11",
+                        "label": "Name",
+                        "input": {
+                          "type": "textbox",
+                          "placeholder": "Enter a name"
+                        },
+                        "validation": {
+                          "required": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "actions": [
+              {
+                "type": "button",
+                "template": {
+                  "type": "button",
+                  "label": "Close",
+                  "action": "closeModal"
+                }
+              }
+            ]
+          },
+          {
+            "type": "icon",
+            "template": {
+              "wrapperClassName": "col-1",
+              "label": "Remove item",
+              "icon": "remove",
+              "action": "removeDictionaryElement"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

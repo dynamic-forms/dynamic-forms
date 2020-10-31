@@ -21,7 +21,7 @@
           "classNameLabel": "col-12 capitalize"
         },
         "expressions": {
-          "label": "(function(key) { return key; })(data.key)"
+          "label": "data.key"
         },
         "elements": [
           {

@@ -35,6 +35,41 @@ export class DynamicFormDictionary<
     this._elements = this._fields;
   }
 
+  registerField(field: DynamicFormField): void {
+    const index = this._fields.findIndex(f => f.key === field.key);
+    if (index >= 0) {
+      this._fields[index] = field;
+    } else {
+      this._fields.push(field);
+    }
+    this._control.registerControl(field.key, field.control);
+    this._control.markAsTouched();
+  }
+
+  removeField(key: string): void {
+    const index = this._fields.findIndex(field => field.key === key);
+    if (index >= 0 && index < this.length) {
+      this._fields.splice(index, 1).forEach(field => field.destroy());
+      delete this._model[key];
+      this._control.removeControl(key);
+      this._control.markAsTouched();
+    }
+  }
+
+  clearFields(): void {
+    const length = this.length;
+    if (length > 0) {
+      this._fields.map(field => {
+        this._control.removeControl(field.key);
+        field.destroy();
+      });
+      this._fields = [];
+      this._model = {};
+      this._control.markAsTouched();
+      this._elements = this._fields;
+    }
+  }
+
   check(): void {
     this.checkControl();
     this.checkValidators();

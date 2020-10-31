@@ -21,7 +21,7 @@
           "classNameLabel": "col-12"
         },
         "expressions": {
-          "label": "(function(index) { return (index + 1) + '. User'; })(data.index)"
+          "label": "(data.index + 1) + '. User'"
         },
         "elements": [
           {

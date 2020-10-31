@@ -11,14 +11,14 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
 import { DynamicFormArrayValidatorTypeConfig, DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from './dynamic-form-array-validator-type-config';
-import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopElementHandler, dynamicFormArrayRemoveElementHandler,
+import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopFieldHandler, dynamicFormArrayRemoveFieldHandler,
   dynamicFormArrayType, DynamicFormArrayModule} from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
   let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(async(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('' , [ 'createFormArrayElement' ]);
+    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', [ 'createFormArrayField' ]);
 
     TestBed.configureTestingModule({
       imports: [
@@ -69,36 +69,53 @@ describe('DynamicFormArrayModule', () => {
       expect(handlers[2]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[2].func).toEqual(jasmine.any(Function));
       expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[3]).toEqual(dynamicFormArrayPopElementHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[4]).toEqual(dynamicFormArrayRemoveElementHandler);
+      expect(handlers[4]).toEqual(dynamicFormArrayPopFieldHandler);
       expect(handlers[4].func).toEqual(jasmine.any(Function));
       expect(handlers[4].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[5]).toEqual(dynamicFormArrayClearElementsHandler);
+      expect(handlers[5]).toEqual(dynamicFormArrayRemoveFieldHandler);
       expect(handlers[5].func).toEqual(jasmine.any(Function));
       expect(handlers[5].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[6]).toEqual(dynamicFormArrayClearElementsHandler);
       expect(handlers[6].func).toEqual(jasmine.any(Function));
       expect(handlers[6].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 
-  it('handler calls popElement of array field',
+  it('handler calls pushField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'popArrayElement');
-      const field = <DynamicFormArray>{ popElement(): void {} };
+      const handler = service.handlers.find(h => h.type === 'pushArrayField');
+      const field = <DynamicFormArray>{ pushField(_elem: DynamicFormField): void {}, length: 0 };
+      const element = <DynamicFormField>{};
 
-      spyOn(field, 'popElement');
+      formBuilder.createFormArrayField.and.returnValue(element);
+
+      spyOn(field, 'pushField');
 
       handler.func(field, null);
 
-      expect(field.popElement).toHaveBeenCalled();
+      expect(formBuilder.createFormArrayField).toHaveBeenCalledWith(field, 0);
+      expect(field.pushField).toHaveBeenCalledWith(element);
+    })
+  );
+
+  it('handler calls popField of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'popArrayField');
+      const field = <DynamicFormArray>{ popField(): void {} };
+
+      spyOn(field, 'popField');
+
+      handler.func(field, null);
+
+      expect(field.popField).toHaveBeenCalled();
     })
   );
 
   it('handler returns array parent of action',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const handler = service.handlers.find(h => h.type === 'removeArrayField');
       const field = <DynamicFormField>{ fieldClassType: 'array' };
       const parent = <DynamicFormField>{ parent: field };
       const action = <DynamicFormAction>{ parent: parent };
@@ -111,7 +128,7 @@ describe('DynamicFormArrayModule', () => {
 
   it('handler returns undefined as array parent of action',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
+      const handler = service.handlers.find(h => h.type === 'removeArrayField');
       const field = <DynamicFormField>{ fieldClassType: 'group' };
       const parent = <DynamicFormField>{ parent: field };
       const action = <DynamicFormAction>{ parent: parent };
@@ -122,62 +139,46 @@ describe('DynamicFormArrayModule', () => {
     })
   );
 
-  it('handler calls removeElement of array field',
+  it('handler calls removeField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
-      const field = <DynamicFormArray>{ removeElement(_index: number): void {} };
+      const handler = service.handlers.find(h => h.type === 'removeArrayField');
+      const field = <DynamicFormArray>{ removeField(_index: number): void {} };
       const parent = <DynamicFormField>{ index: 1 };
       const action = <DynamicFormAction>{ parent: parent };
 
-      spyOn(field, 'removeElement');
+      spyOn(field, 'removeField');
 
       handler.func(field, action);
 
-      expect(field.removeElement).toHaveBeenCalledWith(1);
+      expect(field.removeField).toHaveBeenCalledWith(1);
     })
   );
 
-  it('handler does not call removeElement of array field',
+  it('handler does not call removeField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'removeArrayElement');
-      const field = <DynamicFormArray>{ removeElement(_index: number): void {} };
+      const handler = service.handlers.find(h => h.type === 'removeArrayField');
+      const field = <DynamicFormArray>{ removeField(_index: number): void {} };
       const parent = <DynamicFormField>{};
       const action = <DynamicFormAction>{ parent: parent };
 
-      spyOn(field, 'removeElement');
+      spyOn(field, 'removeField');
 
       handler.func(field, action);
 
-      expect(field.removeElement).not.toHaveBeenCalled();
-    })
-  );
-  it('handler calls clearElements of array field',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'clearArrayElements');
-      const field = <DynamicFormArray>{ clearElements(): void {} };
-
-      spyOn(field, 'clearElements');
-
-      handler.func(field, null);
-
-      expect(field.clearElements).toHaveBeenCalled();
+      expect(field.removeField).not.toHaveBeenCalled();
     })
   );
 
-  it('handler calls pushElement of array field',
+  it('handler calls clearFields of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'pushArrayElement');
-      const field = <DynamicFormArray>{ pushElement(_elem: DynamicFormField): void {}, length: 0 };
-      const element = <DynamicFormField>{};
+      const handler = service.handlers.find(h => h.type === 'clearArrayFields');
+      const field = <DynamicFormArray>{ clearFields(): void {} };
 
-      formBuilder.createFormArrayElement.and.returnValue(element);
-
-      spyOn(field, 'pushElement');
+      spyOn(field, 'clearFields');
 
       handler.func(field, null);
 
-      expect(formBuilder.createFormArrayElement).toHaveBeenCalledWith(field, 0);
-      expect(field.pushElement).toHaveBeenCalledWith(element);
+      expect(field.clearFields).toHaveBeenCalled();
     })
   );
 });

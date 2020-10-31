@@ -14,6 +14,8 @@ describe('DynamicFormDictionary', () => {
 
     expect(formDictionary.root).toBe(form);
     expect(formDictionary.parent).toBe(form);
+    expect(formDictionary.settings).toBeTruthy();
+
     expect(formDictionary.definition).toBe(definition);
     expect(formDictionary.template).toBe(definition.template);
 
@@ -95,6 +97,151 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.length).toBe(0);
     expect(formDictionary.elements).toEqual([]);
     expect(formDictionary.fields).toEqual([]);
+  });
+
+  it('registers field by pushing field', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formDictionary = new DynamicFormDictionary(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ key: 'item1', classType: 'field', definition: {}, control: new FormControl() },
+      <DynamicFormField>{ key: 'item2', classType: 'field', definition: {}, control: new FormControl() }
+    ];
+    const field = <DynamicFormField>{ key: 'item3',  classType: 'field', definition: {}, control: new FormControl() };
+
+    spyOn(formDictionary.control, 'registerControl');
+    spyOn(formDictionary.control, 'markAsTouched');
+
+    formDictionary.initElements(fields);
+    formDictionary.registerField(field);
+
+    expect(formDictionary.length).toBe(3);
+    expect(formDictionary.elements).toBe(formDictionary.fields as DynamicFormElement[]);
+    expect(formDictionary.fields.length).toEqual(3);
+    expect(formDictionary.fields[0]).toBe(fields[0]);
+    expect(formDictionary.fields[1]).toBe(fields[1]);
+    expect(formDictionary.fields[2]).toBe(field);
+    expect(formDictionary.control.registerControl).toHaveBeenCalledWith('item3', field.control);
+    expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
+  });
+
+  it('registers field by replacing field', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formDictionary = new DynamicFormDictionary(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ key: 'item1', classType: 'field', definition: {}, control: new FormControl() },
+      <DynamicFormField>{ key: 'item2', classType: 'field', definition: {}, control: new FormControl() },
+      <DynamicFormField>{ key: 'item3', classType: 'field', definition: {}, control: new FormControl() }
+    ];
+    const field = <DynamicFormField>{ key: 'item2', classType: 'field', definition: {}, control: new FormControl() };
+
+    spyOn(formDictionary.control, 'registerControl');
+    spyOn(formDictionary.control, 'markAsTouched');
+
+    formDictionary.initElements(fields);
+    formDictionary.registerField(field);
+
+    expect(formDictionary.length).toBe(3);
+    expect(formDictionary.elements).toBe(formDictionary.fields as DynamicFormElement[]);
+    expect(formDictionary.fields.length).toEqual(3);
+    expect(formDictionary.fields[0]).toBe(fields[0]);
+    expect(formDictionary.fields[1]).toBe(field);
+    expect(formDictionary.fields[2]).toBe(fields[2]);
+    expect(formDictionary.control.registerControl).toHaveBeenCalledWith('item2', field.control);
+    expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
+  });
+
+  it('removes field', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formDictionary = new DynamicFormDictionary(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ key: 'key-3', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+    ];
+
+    spyOn(formDictionary.control, 'removeControl');
+    spyOn(formDictionary.control, 'markAsTouched');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(fields[2], 'destroy');
+    spyOn(fields[3], 'destroy');
+
+    formDictionary.initElements(fields);
+    formDictionary.removeField('key-2');
+
+    expect(formDictionary.length).toBe(3);
+    expect(formDictionary.elements).toBe(formDictionary.fields as DynamicFormElement[]);
+    expect(formDictionary.fields.length).toBe(3);
+    expect(formDictionary.fields[0]).toBe(fields[0]);
+    expect(formDictionary.fields[1]).toBe(fields[2]);
+    expect(formDictionary.fields[2]).toBe(fields[3]);
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-2');
+    expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
+    expect(fields[0].destroy).not.toHaveBeenCalled();
+    expect(fields[1].destroy).toHaveBeenCalled();
+    expect(fields[2].destroy).not.toHaveBeenCalled();
+    expect(fields[3].destroy).not.toHaveBeenCalled();
+  });
+
+  it('does not remove field if index is invalid', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formDictionary = new DynamicFormDictionary(form, form, definition);
+
+    spyOn(formDictionary.fields, 'splice');
+    spyOn(formDictionary.control, 'removeControl');
+    spyOn(formDictionary.control, 'markAsTouched');
+
+    formDictionary.removeField('key');
+
+    expect(formDictionary.fields.splice).not.toHaveBeenCalled();
+    expect(formDictionary.control.removeControl).not.toHaveBeenCalled();
+    expect(formDictionary.control.markAsTouched).not.toHaveBeenCalled();
+  });
+
+  it('clears fields', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formDictionary = new DynamicFormDictionary(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
+      <DynamicFormField>{ key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+    ];
+
+    spyOn(formDictionary.control, 'removeControl');
+    spyOn(formDictionary.control, 'markAsTouched');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+
+    formDictionary.initElements(fields);
+    formDictionary.clearFields();
+
+    expect(formDictionary.length).toBe(0);
+    expect(formDictionary.elements).toBe(formDictionary.fields as DynamicFormElement[]);
+    expect(formDictionary.fields).toEqual([]);
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-1');
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-2');
+    expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
+    expect(fields[0].destroy).toHaveBeenCalled();
+    expect(fields[1].destroy).toHaveBeenCalled();
+  });
+
+  it('does not clear fields if length is zero', () => {
+    const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormDictionary(form, form, definition);
+
+    spyOn(formArray.control, 'removeControl');
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.clearFields();
+
+    expect(formArray.control.removeControl).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
   });
 
   it('check calls check of all fields', () => {
