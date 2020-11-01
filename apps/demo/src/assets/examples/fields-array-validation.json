@@ -23,7 +23,7 @@
           "template": {
             "type": "button",
             "label": "Clear users",
-            "action": "clearArrayElements"
+            "action": "clearArrayFields"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -34,7 +34,7 @@
           "template": {
             "type": "button",
             "label": "Pop user",
-            "action": "popArrayElement"
+            "action": "popArrayField"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -45,7 +45,7 @@
           "template": {
             "type": "button",
             "label": "Push user",
-            "action": "pushArrayElement"
+            "action": "pushArrayField"
           },
           "expressions": {
             "disabled": "data.parent.length >= 10"
@@ -56,7 +56,11 @@
       "definitionTemplate": {
         "type": "group",
         "template": {
-          "className": "row"
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(data.index + 1) + '. User'"
         },
         "elements": [
           {
@@ -82,6 +86,7 @@
               "label": "Email",
               "input": {
                 "type": "textbox",
+                "inputType": "email",
                 "placeholder": "Enter email"
               },
               "validation": {
@@ -96,7 +101,7 @@
               "wrapperClassName": "col-1",
               "label": "Remove user",
               "icon": "remove",
-              "action": "removeArrayElement"
+              "action": "removeArrayField"
             }
           }
         ]
@@ -105,6 +110,7 @@
   ],
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
@@ -115,6 +121,7 @@
       }
     },
     {
+      "id": "action-validate",
       "type": "button",
       "template": {
         "type": "button",
@@ -123,6 +130,7 @@
       }
     },
     {
+      "id": "action-reset",
       "type": "button",
       "template": {
         "type": "reset",
@@ -130,6 +138,7 @@
       }
     },
     {
+      "id": "action-reset-default",
       "type": "button",
       "template": {
         "type": "button",

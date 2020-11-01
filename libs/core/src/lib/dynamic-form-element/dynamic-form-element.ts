@@ -31,6 +31,7 @@ export class DynamicFormElement<
     this._expressions = <Expressions>{};
   }
 
+  get id(): string { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
   get componentType(): string { return this.definition.type; }
 
@@ -43,6 +44,10 @@ export class DynamicFormElement<
   get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
   get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
 
+  initId(id: string): void {
+    this._definition.id = id;
+  }
+
   initElements(elements: DynamicFormElement[]): void {
     this._elements = elements || [];
   }
@@ -54,13 +59,13 @@ export class DynamicFormElement<
     }
   }
 
-  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
-    assignExpressionData(this._expressionData, expressions);
-  }
-
   protected createExpressionData(): ExpressionData {
     const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {});
     return expressionData;
+  }
+
+  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
+    assignExpressionData(this._expressionData, expressions);
   }
 }

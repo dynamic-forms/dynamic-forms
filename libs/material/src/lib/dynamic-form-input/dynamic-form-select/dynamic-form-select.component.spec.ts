@@ -43,18 +43,23 @@ describe('MatDynamicFormSelectComponent', () => {
           options: [
             { value: 'value1', label: 'label1' },
             { value: 'value2', label: 'label2' },
+            { value: 'value3', label: 'label3', disabled: true },
             {
               label: 'group1',
               items: [
-                { value: 'value3', label: 'label3' },
-                { value: 'value4', label: 'label4' }
+                { value: 'value4', label: 'label4' },
+                { value: 'value5', label: 'label5' },
+                { value: 'value6', label: 'label6', disabled: true }
               ]
             },
             {
               label: 'group2',
               items: [
-                { value: 'value5', label: 'label5' }
-              ]
+                { value: 'value7', label: 'label7' },
+                { value: 'value8', label: 'label8' },
+                { value: 'value9', label: 'label9', disabled: true },
+              ],
+              disabled: true
             }
           ]
         }
@@ -88,23 +93,45 @@ describe('MatDynamicFormSelectComponent', () => {
     expect(fieldElement).toBeDefined();
     expect(labelElement.innerText).toBe('label');
     expect(selectElement.id).toBe(component.inputId);
-    expect(optionElements.length).toBe(5);
+    expect(optionElements.length).toBe(9);
     expect(optionElements[0].value).toBe('value1');
+    expect(optionElements[0].disabled).toBe(false);
     expect(optionElements[0].viewValue).toBe('label1');
     expect(optionElements[1].value).toBe('value2');
+    expect(optionElements[1].disabled).toBe(false);
     expect(optionElements[1].viewValue).toBe('label2');
-    expect(optionElements[2].group).toBe(optionGroupElements[0]);
     expect(optionElements[2].value).toBe('value3');
+    expect(optionElements[2].disabled).toBe(true);
     expect(optionElements[2].viewValue).toBe('label3');
     expect(optionElements[3].group).toBe(optionGroupElements[0]);
     expect(optionElements[3].value).toBe('value4');
+    expect(optionElements[3].disabled).toBe(false);
     expect(optionElements[3].viewValue).toBe('label4');
-    expect(optionElements[4].group).toBe(optionGroupElements[1]);
+    expect(optionElements[4].group).toBe(optionGroupElements[0]);
     expect(optionElements[4].value).toBe('value5');
+    expect(optionElements[4].disabled).toBe(false);
     expect(optionElements[4].viewValue).toBe('label5');
+    expect(optionElements[5].group).toBe(optionGroupElements[0]);
+    expect(optionElements[5].value).toBe('value6');
+    expect(optionElements[5].disabled).toBe(true);
+    expect(optionElements[5].viewValue).toBe('label6');
+    expect(optionElements[6].group).toBe(optionGroupElements[1]);
+    expect(optionElements[6].value).toBe('value7');
+    expect(optionElements[6].disabled).toBe(true);
+    expect(optionElements[6].viewValue).toBe('label7');
+    expect(optionElements[7].group).toBe(optionGroupElements[1]);
+    expect(optionElements[7].value).toBe('value8');
+    expect(optionElements[7].disabled).toBe(true);
+    expect(optionElements[7].viewValue).toBe('label8');
+    expect(optionElements[8].group).toBe(optionGroupElements[1]);
+    expect(optionElements[8].value).toBe('value9');
+    expect(optionElements[8].disabled).toBe(true);
+    expect(optionElements[8].viewValue).toBe('label9');
 
     expect(optionGroupElements.length).toBe(2);
     expect(optionGroupElements[0].label).toBe('group1');
+    expect(optionGroupElements[0].disabled).toBe(false);
     expect(optionGroupElements[1].label).toBe('group2');
+    expect(optionGroupElements[1].disabled).toBe(true);
   });
 });

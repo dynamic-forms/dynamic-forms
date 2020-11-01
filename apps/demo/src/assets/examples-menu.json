@@ -1,8 +1,13 @@
 {
+  "label": "Definition of control",
   "items": [
     {
       "label": "Inputs",      
       "items": [
+        { 
+          "id": "inputs-plain", 
+          "label": "Plain" 
+        },
         { 
           "id": "inputs-label", 
           "label": "Label" 
@@ -94,6 +99,27 @@
                   "label": "Model 01"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "label": "Dictionary",
+          "items": [
+            {
+              "id": "fields-dictionary-default-keys",
+              "label": "Default keys" 
+            },
+            {
+              "id": "fields-dictionary-default-value",
+              "label": "Default value"
+            },
+            {
+              "id": "fields-dictionary-actions",
+              "label": "Actions"
+            },
+            {
+              "id": "fields-dictionary-modal",
+              "label": "Modal"
             }
           ]
         }
@@ -194,10 +220,10 @@
       ]
     },
     {
-      "label": "Options",
+      "label": "Settings",
       "items": [
         {
-          "id": "options-update",
+          "id": "settings-update",
           "label": "Update strategy"
         }
       ]
@@ -241,6 +267,20 @@
             {
               "id": "layout-grid-toggleable-element-container",
               "label": "Element container"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Definitions",
+      "items": [
+        {
+          "label": "Control",
+          "items": [
+            {
+              "id": "definition-control-groups",
+              "label": "Groups"
             }
           ]
         }

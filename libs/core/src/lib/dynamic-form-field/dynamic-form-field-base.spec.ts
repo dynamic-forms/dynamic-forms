@@ -29,7 +29,7 @@ describe('DynamicFormFieldBase', () => {
     component = new DynamicFormFieldBaseTest(validationService);
   });
 
-  it('errors returns errors from control', () => {
+  it('returns properties of field', () => {
     const field = <any>{ id: 'id', key: 'key', index: 1, path: 'path', control: {} };
     component.field = field;
 

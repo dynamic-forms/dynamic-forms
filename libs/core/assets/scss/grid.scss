@@ -10,6 +10,7 @@ $dynamic-form-grid-row-margin-bottom: 10px;
     @import '~bootstrap/scss/variables';
     @import '~bootstrap/scss/mixins';
     @import '~bootstrap/scss/grid';
+    @import '~bootstrap/scss/utilities/flex';
 
     margin: 0 $dynamic-form-grid-gutter-width / 2 + 10px;
   
@@ -20,16 +21,18 @@ $dynamic-form-grid-row-margin-bottom: 10px;
     .row {
       margin-top: $dynamic-form-grid-row-margin-top;
       margin-bottom: $dynamic-form-grid-row-margin-bottom;
-  
+        
       dynamic-form-element, 
       dynamic-form-content,
       dynamic-form-container,
       dynamic-form-markdown, 
       dynamic-form-group, 
       dynamic-form-array, 
+      dynamic-form-dictionary, 
       dynamic-form-control,
       .dynamic-form-group-elements,
-      .dynamic-form-array-elements {
+      .dynamic-form-array-elements,
+      .dynamic-form-dictionary-elements {
         display: contents;
       }
   

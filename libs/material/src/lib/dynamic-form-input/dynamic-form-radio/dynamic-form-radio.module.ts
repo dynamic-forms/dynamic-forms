@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
+import { MatDynamicFormInputWrapperModule } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.module';
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 export const matDynamicFormRadioType: DynamicFormInputType = {
@@ -17,6 +18,7 @@ export const matDynamicFormRadioType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     MatRadioModule,
+    MatDynamicFormInputWrapperModule,
     DynamicFormConfigModule.withInput(matDynamicFormRadioType)
   ],
   declarations: [

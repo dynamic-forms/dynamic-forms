@@ -3,6 +3,8 @@ import { DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-for
 import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormDictionaryValidatorType } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
+import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
 import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { dynamicFormValidationConfig, DynamicFormValidationConfig,
@@ -17,91 +19,117 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
   ]
 })
 export class DynamicFormValidationModule {
-  static withControlValidator(controlValidatorType: DynamicFormControlValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
+  static withControlValidator(type: DynamicFormControlValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
     return {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
-          useValue: controlValidatorType,
+          useValue: type,
           multi: true
         }
       ]
     };
   }
 
-  static withControlValidators(controlValidatorTypes: DynamicFormControlValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
+  static withControlValidators(types: DynamicFormControlValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
     return {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
           provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
-          useValue: controlValidatorTypes,
+          useValue: types,
           multi: true
         }
       ]
     };
   }
 
-  static withArrayValidator(arrayValidatorType: DynamicFormArrayValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
-    return {
-      ngModule: DynamicFormValidationModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
-          useValue: arrayValidatorType,
-          multi: true
-        }
-      ]
-    };
-  }
-
-  static withArrayValidators(arrayValidatorTypes: DynamicFormArrayValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
-    return {
-      ngModule: DynamicFormValidationModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
-          useValue: arrayValidatorTypes,
-          multi: true
-        }
-      ]
-    };
-  }
-
-  static withGroupValidator(groupValidatorType: DynamicFormGroupValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
+  static withGroupValidator(type: DynamicFormGroupValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
     return {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
           provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
-          useValue: groupValidatorType,
+          useValue: type,
           multi: true
         }
       ]
     };
   }
 
-  static withGroupValidators(groupValidatorTypes: DynamicFormGroupValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
+  static withGroupValidators(types: DynamicFormGroupValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
     return {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
           provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
-          useValue: groupValidatorTypes,
+          useValue: types,
           multi: true
         }
       ]
     };
   }
 
-  static withValidation(validationConfig?: DynamicFormValidationConfig): ModuleWithProviders<DynamicFormValidationModule> {
+  static withArrayValidator(type: DynamicFormArrayValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
+    return {
+      ngModule: DynamicFormValidationModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+          useValue: type,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withArrayValidators(types: DynamicFormArrayValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
+    return {
+      ngModule: DynamicFormValidationModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+          useValue: types,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withDictionaryValidator(type: DynamicFormDictionaryValidatorType): ModuleWithProviders<DynamicFormValidationModule> {
+    return {
+      ngModule: DynamicFormValidationModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+          useValue: type,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withDictionaryValidators(types: DynamicFormDictionaryValidatorType[]): ModuleWithProviders<DynamicFormValidationModule> {
+    return {
+      ngModule: DynamicFormValidationModule,
+      providers: [
+        {
+          provide: DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+          useValue: types,
+          multi: true
+        }
+      ]
+    };
+  }
+
+  static withValidation(config?: DynamicFormValidationConfig): ModuleWithProviders<DynamicFormValidationModule> {
     return {
       ngModule: DynamicFormValidationModule,
       providers: [
         {
           provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-          useValue: validationConfig || dynamicFormValidationConfig,
+          useValue: config || dynamicFormValidationConfig,
           multi: true
         }
       ]

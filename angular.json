@@ -247,39 +247,27 @@
           "options": {
             "tsConfig": [
               "apps/demo/src/tsconfig.app.json",
-              "apps/demo/src/tsconfig.spec.json"
+              "apps/demo/src/tsconfig.spec.json",
+              "apps/demo-e2e/tsconfig.e2e.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "dynamic-forms-demo-e2e": {
-      "root": "apps/demo-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "apps/demo-e2e/protractor.conf.js",
-            "devServerTarget": "dynamic-forms:serve"
+            "devServerTarget": "dynamic-forms-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dynamic-forms:serve:production"
+              "devServerTarget": "dynamic-forms-demo:serve:production"
+            },
+            "azure": {
+              "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
