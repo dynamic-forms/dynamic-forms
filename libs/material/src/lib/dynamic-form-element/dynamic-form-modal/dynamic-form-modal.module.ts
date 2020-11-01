@@ -27,9 +27,6 @@ export const matDynamicFormModalType: DynamicFormElementType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormModalComponent
-  ],
-  entryComponents: [
-    MatDynamicFormModalComponent
   ]
 })
 export class MatDynamicFormModalModule {}

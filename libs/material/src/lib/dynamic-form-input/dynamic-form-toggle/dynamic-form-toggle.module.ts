@@ -27,9 +27,6 @@ export const matDynamicFormToggleType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     MatDynamicFormToggleComponent
-  ],
-  entryComponents: [
-    MatDynamicFormToggleComponent
   ]
 })
 export class MatDynamicFormToggleModule {}

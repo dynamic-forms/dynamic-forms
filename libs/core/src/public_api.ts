@@ -68,6 +68,17 @@ export * from './lib/dynamic-form-control/dynamic-form-control-validator-type-co
 export * from './lib/dynamic-form-control/dynamic-form-control-wrapper-base';
 export * from './lib/dynamic-form-control/dynamic-form-control.component';
 export * from './lib/dynamic-form-control/dynamic-form-control.module';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-base';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-definition';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-factory';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-template';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-validation';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-validator';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary.component';
+export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary.module';
 export * from './lib/dynamic-form-element/dynamic-form-element';
 export * from './lib/dynamic-form-element/dynamic-form-element-base';
 export * from './lib/dynamic-form-element/dynamic-form-element-definition';
