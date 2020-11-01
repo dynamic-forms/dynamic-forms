@@ -5,6 +5,10 @@ import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
   dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
+import { DynamicFormControlEvaluatorTypeConfig, DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from './dynamic-form-control-evaluator-type-config';
+import { dynamicFormControlValidatorTypes } from './dynamic-form-control-validator-type';
+import { DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from './dynamic-form-control-validator-type-config';
 import { dynamicFormControlType, DynamicFormControlModule } from './dynamic-form-control.module';
 
 describe('DynamicFormControlModule', () => {
@@ -30,6 +34,20 @@ describe('DynamicFormControlModule', () => {
       expect(types[0]).toEqual(dynamicFormControlType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
+    })
+  );
+
+  it('provides DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG',
+    inject([DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG], (config: DynamicFormControlEvaluatorTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(dynamicFormControlEvaluatorTypes);
+    })
+  );
+
+  it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
+    inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(dynamicFormControlValidatorTypes);
     })
   );
 

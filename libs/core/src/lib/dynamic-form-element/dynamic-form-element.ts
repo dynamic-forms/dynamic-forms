@@ -59,13 +59,13 @@ export class DynamicFormElement<
     }
   }
 
-  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
-    assignExpressionData(this._expressionData, expressions);
-  }
-
   protected createExpressionData(): ExpressionData {
     const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {});
     return expressionData;
+  }
+
+  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
+    assignExpressionData(this._expressionData, expressions);
   }
 }

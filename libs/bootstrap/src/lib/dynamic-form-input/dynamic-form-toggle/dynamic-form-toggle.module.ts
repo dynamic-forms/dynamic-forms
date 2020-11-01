@@ -24,9 +24,6 @@ export const bsDynamicFormToggleType: DynamicFormInputType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormToggleComponent
-  ],
-  entryComponents: [
-    BsDynamicFormToggleComponent
   ]
 })
 export class BsDynamicFormToggleModule {}

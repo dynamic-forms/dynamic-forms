@@ -26,7 +26,7 @@
 - Dynamic [**reactive forms**](https://angular.io/guide/reactive-forms) based on **JSON** definition
 - Structuring / nesting dynamic forms by
   - Dynamic form elements (container, content, markdown, modal)
-  - Dynamic form fields (group, array, control)
+  - Dynamic form fields (control, group, array, dictionary)
   - Dynamic form actions (button, icon)
 - Dynamic form controls / inputs include
   - Dynamic form inputs
@@ -67,7 +67,7 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - Library includes **extensible** interfaces, classes, components, factories, services and **modules**
   - Dynamic form config module for registration of components
   - Dynamic form module includes
-    - Builder to create form groups, arrays and controls
+    - Builder to create form controls, groups, arrays and dictionaries
     - Component factory to resolve registered components
     - Component to render elements, fields and actions
   - Dynamic form control module includes
