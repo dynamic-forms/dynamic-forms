@@ -21,13 +21,14 @@ export abstract class DynamicFormField<
 
   protected _root: DynamicForm;
   protected _parent: DynamicFormField;
+  protected _settings: DynamicFormFieldSettings;
 
   protected _model: any;
-  protected _settings: DynamicFormFieldSettings;
+  protected _parameters: any;
+
   protected _control: Control;
 
   protected _actions: DynamicFormAction[] = [];
-
   protected _validators: DynamicFormFieldValidator[] = [];
 
   constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
@@ -39,6 +40,7 @@ export abstract class DynamicFormField<
 
   get root(): DynamicForm { return this._root; }
   get parent(): DynamicFormField { return this._parent; }
+  get settings(): DynamicFormFieldSettings { return this._settings; }
 
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
@@ -49,7 +51,6 @@ export abstract class DynamicFormField<
   get classType(): DynamicFormClassType { return 'field'; }
 
   get model(): any { return this._model; }
-  get settings(): DynamicFormFieldSettings { return this._settings; }
 
   get control(): Control { return this._control; }
   get status(): string { return this._control.status; }
@@ -57,12 +58,16 @@ export abstract class DynamicFormField<
   get hidden(): boolean { return this.parent.hidden || this.template.hidden || false; }
   get readonly(): boolean { return this.parent.readonly || this.template.readonly || false; }
 
-  get actions(): DynamicFormAction[] { return this._actions; }
   get wrappers(): string[] { return this.definition.wrappers; }
+  get unregistered(): boolean { return this.definition.unregistered; }
 
+  get actions(): DynamicFormAction[] { return this._actions; }
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
 
-  get unregistered(): boolean { return this.definition.unregistered; }
+  initExpressions(expressions: DynamicFormFieldExpressions): void {
+    super.initExpressions(expressions);
+    this.afterInitExpressions();
+  }
 
   initActions(actions: DynamicFormAction[]): void {
     this._actions = actions;
@@ -81,6 +86,8 @@ export abstract class DynamicFormField<
   abstract reset(): void;
   abstract resetDefault(): void;
   abstract validate(): void;
+
+  protected afterInitExpressions(): void {}
 
   protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
     return elements.reduce((result, element) => {

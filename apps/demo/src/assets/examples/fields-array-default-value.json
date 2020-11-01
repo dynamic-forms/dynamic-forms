@@ -17,7 +17,11 @@
       "definitionTemplate": {
         "type": "group",
         "template": {
-          "className": "row"
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(data.index + 1) + '. User'"
         },
         "elements": [
           {

@@ -5,6 +5,8 @@ import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
   dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { dynamicFormGroupValidatorTypes } from './dynamic-form-group-validator-type';
+import { DynamicFormGroupValidatorTypeConfig, DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from './dynamic-form-group-validator-type-config';
 import { dynamicFormGroupType, DynamicFormGroupModule } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupModule', () => {
@@ -30,6 +32,13 @@ describe('DynamicFormGroupModule', () => {
       expect(types[0]).toEqual(dynamicFormGroupType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
+    })
+  );
+
+  it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
+    inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(dynamicFormGroupValidatorTypes);
     })
   );
 

@@ -24,55 +24,56 @@ export const dynamicFormArrayType: DynamicFormFieldType = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormArrayPopElementFactory(field: DynamicFormArray): void {
-  field.popElement();
+export function dynamicFormArrayPushFieldHandlerFactory(formBuilder: DynamicFormBuilder): DynamicFormActionHandler<DynamicFormArray> {
+  const func = (field: DynamicFormArray) => {
+    const element = formBuilder.createFormArrayField(field, field.length);
+    return field.pushField(element);
+  };
+  return {
+    type: 'pushArrayField',
+    func: func,
+    libraryName: dynamicFormLibrary.name
+  };
 }
 
-export const dynamicFormArrayPopElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
-  type: 'popArrayElement',
-  func: dynamicFormArrayPopElementFactory,
+export function dynamicFormArrayPopField(field: DynamicFormArray): void {
+  field.popField();
+}
+
+export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFormArray> = {
+  type: 'popArrayField',
+  func: dynamicFormArrayPopField,
   libraryName: dynamicFormLibrary.name
 };
 
 export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
   const field = action.parent && (<DynamicFormField>action.parent).parent;
-  return field && field.fieldClassType === 'array'
-    ? <DynamicFormArray>field
-    : undefined;
+  return field && field.fieldClassType === 'array' ? <DynamicFormArray>field : undefined;
 }
 
-export function dynamicFormArrayRemoveElementFactory(field: DynamicFormArray, action: DynamicFormAction): void {
-  const parentField = <DynamicFormField>action.parent;
-  if (field && parentField && parentField.index >= 0) {
-    field.removeElement(parentField.index);
+export function dynamicFormArrayRemoveField(field: DynamicFormArray, action: DynamicFormAction): void {
+  const childField = <DynamicFormField>action.parent;
+  if (field && childField && childField.index >= 0) {
+    field.removeField(childField.index);
   }
 }
 
-export const dynamicFormArrayRemoveElementHandler: DynamicFormActionHandler<DynamicFormArray> = {
-  type: 'removeArrayElement',
+export const dynamicFormArrayRemoveFieldHandler: DynamicFormActionHandler<DynamicFormArray> = {
+  type: 'removeArrayField',
   elementFunc: getDynamicFormArray,
-  func: dynamicFormArrayRemoveElementFactory,
+  func: dynamicFormArrayRemoveField,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormArrayClearElementsFactory(field: DynamicFormArray): void {
-  field.clearElements();
+export function dynamicFormArrayClearFields(field: DynamicFormArray): void {
+  field.clearFields();
 }
 
 export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<DynamicFormArray> = {
-  type: 'clearArrayElements',
-  func: dynamicFormArrayClearElementsFactory,
+  type: 'clearArrayFields',
+  func: dynamicFormArrayClearFields,
   libraryName: dynamicFormLibrary.name
 };
-
-export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFormBuilder): DynamicFormActionHandler<DynamicFormArray> {
-  const func = (field: DynamicFormArray) => field.pushElement(formBuilder.createFormArrayElement(field, field.length));
-  return {
-    type: 'pushArrayElement',
-    func: func,
-    libraryName: dynamicFormLibrary.name
-  };
-}
 
 @NgModule({
   imports: [
@@ -81,13 +82,13 @@ export function dynamicFormArrayPushElementHandlerFactory(formBuilder: DynamicFo
     DynamicFormElementModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType),
+    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes),
+    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [ DynamicFormBuilder ]),
     DynamicFormActionModule.withHandlers([
-      dynamicFormArrayPopElementHandler,
-      dynamicFormArrayRemoveElementHandler,
+      dynamicFormArrayPopFieldHandler,
+      dynamicFormArrayRemoveFieldHandler,
       dynamicFormArrayClearElementsHandler
-    ]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushElementHandlerFactory, [ DynamicFormBuilder ]),
-    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes)
+    ])
   ],
   declarations: [
     DynamicFormArrayComponent
