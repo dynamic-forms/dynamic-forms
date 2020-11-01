@@ -28,7 +28,7 @@
           "template": {
             "type": "button",
             "label": "Register item",
-            "action": "registerDictionaryElement"
+            "action": "registerDictionaryField"
           }
         }
       ],

@@ -28,7 +28,8 @@ describe('MatDynamicFormModalComponent', () => {
 
     const template = <DynamicFormModalTemplate>{
       title: 'Title',
-      minWidth: '600px',
+      width: '800px',
+      minWidth: '800px',
       maxWidth: '100%'
     };
     const root = <DynamicForm>{};

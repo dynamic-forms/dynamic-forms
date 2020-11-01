@@ -61,9 +61,8 @@
             "template": {
               "title": "Edit item",
               "titleClassName": "modal-title-md",
-              "width": "600px",
-              "heigth": "calc(100vw - 1rem)",
-              "maxWidth": "calc(100vh - 1rem)"
+              "width": "800px",
+              "maxWidth": "calc(100% - 1rem)"
             },
             "trigger": {
               "type": "icon",
@@ -224,7 +223,7 @@
               "wrapperClassName": "col-1",
               "label": "Remove item",
               "icon": "remove",
-              "action": "removeDictionaryElement"
+              "action": "removeDictionaryField"
             }
           }
         ]
