@@ -4,62 +4,52 @@
   },
   "elements": [
     {
-      "key": "users",
-      "type": "array",
+      "key": "validation",
+      "type": "dictionary",
       "template": {
-        "label": "Users"
+        "label": "Validation",
+        "classNameLabel": "bold"
+      },
+      "defaultValue": {
+        "required": {
+          "enabled": true,
+          "message": "The field is required"
+        },
+        "pattern": {
+          "enabled": false,
+          "message": "The field does not fit the pattern"
+        }
       },
       "definitionTemplate": {
         "type": "group",
         "template": {
           "className": "row",
-          "classNameLabel": "col-12"
+          "classNameLabel": "col-12 capitalize"
         },
         "expressions": {
-          "label": "(data.index + 1) + '. User'"
+          "label": "data.key"
         },
         "elements": [
           {
-            "key": "id",
+            "key": "enabled",
             "type": "control",
             "template": {
-              "className": "col-2",
-              "label": "Id",
+              "className": "col-2 align-self-center",
+              "label": "Enabled",
               "input": {
-                "type": "textbox"
-              },
-              "readonly": true
-            }
-          },
-          {
-            "key": "name",
-            "type": "control",
-            "template": {
-              "className": "col-4",
-              "label": "Name",
-              "input": {
-                "type": "textbox",
-                "placeholder": "Enter name"
-              },
-              "validation": {
-                "required": true
+                "type": "switch"
               }
             }
           },
           {
-            "key": "email",
+            "key": "message",
             "type": "control",
             "template": {
-              "className": "col-6",
-              "label": "Email",
+              "className": "col-10",
+              "label": "Message",
               "input": {
                 "type": "textbox",
-                "inputType": "email",
-                "placeholder": "Enter email"
-              },
-              "validation": {
-                "required": true,
-                "email": true
+                "placeholder": "Enter a message"
               }
             }
           }

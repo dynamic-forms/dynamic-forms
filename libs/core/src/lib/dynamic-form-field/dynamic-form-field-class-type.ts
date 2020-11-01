@@ -1,1 +1,1 @@
-export type DynamicFormFieldClassType = 'control' | 'group' | 'array';
+export type DynamicFormFieldClassType = 'control' | 'group' | 'array' | 'dictionary';
