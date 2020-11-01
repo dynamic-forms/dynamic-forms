@@ -48,17 +48,17 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - `npm install @dynamic-forms/bootstrap@v8.0.0-next.4`
 - `npm install @dynamic-forms/material@v8.0.0-next.4`
 
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0-next.2)
+### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0-next.3)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0-next.3)
 
-- `npm install @dynamic-forms/core@v9.0.0-next.2`
-- `npm install @dynamic-forms/bootstrap@v9.0.0-next.2`
-- `npm install @dynamic-forms/material@v9.0.0-next.2`
+- `npm install @dynamic-forms/core@v9.0.0-next.3`
+- `npm install @dynamic-forms/bootstrap@v9.0.0-next.3`
+- `npm install @dynamic-forms/material@v9.0.0-next.3`
 
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-next.2)
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-next.3)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-next.3)
 
-- `npm install @dynamic-forms/core@v10.0.0-next.2`
-- `npm install @dynamic-forms/bootstrap@v10.0.0-next.2`
-- `npm install @dynamic-forms/material@v10.0.0-next.2`
+- `npm install @dynamic-forms/core@v10.0.0-next.3`
+- `npm install @dynamic-forms/bootstrap@v10.0.0-next.3`
+- `npm install @dynamic-forms/material@v10.0.0-next.3`
 
 ## **Libraries**
 
