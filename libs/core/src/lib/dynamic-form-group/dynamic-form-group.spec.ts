@@ -14,6 +14,8 @@ describe('DynamicFormGroup', () => {
 
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
+    expect(formGroup.settings).toBeTruthy();
+
     expect(formGroup.definition).toBe(definition);
     expect(formGroup.template).toBe(definition.template);
 
@@ -25,6 +27,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.componentType).toBe('componentType');
 
     expect(formGroup.model).toEqual({});
+
     expect(formGroup.control).toBeDefined();
     expect(formGroup.status).toBe('VALID');
 

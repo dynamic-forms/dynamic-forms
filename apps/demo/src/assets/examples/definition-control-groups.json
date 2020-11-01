@@ -196,7 +196,7 @@
                   "template": {
                     "type": "button",
                     "label": "Clear options",
-                    "action": "clearArrayElements"
+                    "action": "clearArrayFields"
                   }
                 },
                 {
@@ -204,7 +204,7 @@
                   "template": {
                     "type": "button",
                     "label": "Pop option",
-                    "action": "popArrayElement"
+                    "action": "popArrayField"
                   },
                   "expressions": {
                     "disabled": "!data.parent.length"
@@ -215,27 +215,32 @@
                   "template": {
                     "type": "button",
                     "label": "Push option",
-                    "action": "pushArrayElement"
+                    "action": "pushArrayField"
                   }
                 }
               ],
               "definitionTemplate": {
                 "type": "group",
                 "template": {
-                  "className": "row"
+                  "className": "row",
+                  "classNameLabel": "col-12"
                 },
+                "expressions": {
+                  "label": "(data.index + 1) + '. Option / Option Group'"
+                },                
                 "elements": [
                   {
-                    "key": "isGroup",
+                    "key": "isOption",
                     "type": "control",
                     "template": {
-                      "label": "Option Group",
-                      "className": "col-12",
+                      "label": "Option",
+                      "className": "col-2 align-self-center",
                       "input": {
                         "type": "switch",
-                        "defaultValue": false
+                        "defaultValue": true
                       }
-                    }
+                    },
+                    "unregistered": true
                   },
                   {
                     "key": "label",
@@ -252,7 +257,7 @@
                       }
                     },
                     "expressions": {
-                      "className": "data.parent.model.isGroup ? 'col-11' : 'col-6'"
+                      "className": "data.parent.model.isOption ? 'col-5' : 'col-9'"
                     }
                   },
                   {
@@ -260,7 +265,7 @@
                     "type": "control",
                     "template": {
                       "label": "Value",
-                      "className": "col-5",
+                      "className": "col-4",
                       "input": {
                         "type": "textbox",
                         "placeholder": "Enter a value"
@@ -270,8 +275,8 @@
                       }
                     },
                     "expressions": {
-                      "hidden": "data.parent.model.isGroup",
-                      "disabled": "data.parent.model.isGroup"
+                      "hidden": "!data.parent.model.isOption",
+                      "disabled": "!data.parent.model.isOption"
                     }
                   },
                   {
@@ -280,7 +285,7 @@
                       "wrapperClassName": "col-1",
                       "label": "Remove option",
                       "icon": "remove",
-                      "action": "removeArrayElement"
+                      "action": "removeArrayField"
                     }
                   },
                   {
@@ -296,7 +301,7 @@
                         "template": {
                           "type": "button",
                           "label": "Clear options",
-                          "action": "clearArrayElements"
+                          "action": "clearArrayFields"
                         }
                       },
                       {
@@ -304,7 +309,7 @@
                         "template": {
                           "type": "button",
                           "label": "Pop option",
-                          "action": "popArrayElement"
+                          "action": "popArrayField"
                         },
                         "expressions": {
                           "disabled": "!data.parent.length"
@@ -315,14 +320,18 @@
                         "template": {
                           "type": "button",
                           "label": "Push option",
-                          "action": "pushArrayElement"
+                          "action": "pushArrayField"
                         }
                       }
                     ],
                     "definitionTemplate": {
                       "type": "group",
                       "template": {
-                        "className": "row"
+                        "className": "row",
+                        "classNameLabel": "col-12"
+                      },
+                      "expressions": {
+                        "label": "(data.parent.parent.index + 1) + '.' + (data.index + 1) + '. Option'"
                       },
                       "elements": [
                         {
@@ -361,14 +370,14 @@
                             "wrapperClassName": "col-1",
                             "label": "Remove option",
                             "icon": "remove",
-                            "action": "removeArrayElement"
+                            "action": "removeArrayField"
                           }
                         }
                       ]
                     },
                     "expressions": {
-                      "hidden": "!data.parent.model.isGroup",
-                      "disabled": "!data.parent.model.isGroup"
+                      "hidden": "data.parent.model.isOption",
+                      "disabled": "data.parent.model.isOption"
                     }
                   }
                 ]
@@ -474,10 +483,10 @@
       ]
     },
     {
-      "key": "options",
+      "key": "settings",
       "type": "group",
       "template": {
-        "label": "Options"
+        "label": "Settings"
       },
       "elements": [
         {

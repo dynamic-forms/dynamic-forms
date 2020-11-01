@@ -9,6 +9,11 @@ import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-for
 import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DynamicFormControlValidatorTypeConfig,
   DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
+import { DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
+import { DynamicFormDictionaryValidatorType } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
+import { DynamicFormDictionaryValidatorTypeConfig,
+  DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
@@ -22,6 +27,7 @@ export class DynamicFormValidationBuilder {
   readonly controlValidatorTypes: DynamicFormControlValidatorType[];
   readonly groupValidatorTypes: DynamicFormGroupValidatorType[];
   readonly arrayValidatorTypes: DynamicFormArrayValidatorType[];
+  readonly dictionaryValidatorTypes: DynamicFormDictionaryValidatorType[];
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
@@ -30,11 +36,14 @@ export class DynamicFormValidationBuilder {
     @Optional() @Inject(DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG)
     private groupValidatorTypeConfig: DynamicFormGroupValidatorTypeConfig,
     @Optional() @Inject(DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG)
-    private arrayValidatorTypeConfig: DynamicFormArrayValidatorTypeConfig
+    private arrayValidatorTypeConfig: DynamicFormArrayValidatorTypeConfig,
+    @Optional() @Inject(DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG)
+    private dictionaryValidatorTypeConfig: DynamicFormDictionaryValidatorTypeConfig
   ) {
     this.controlValidatorTypes = this.libraryService.filterTypes(this.controlValidatorTypeConfig);
     this.groupValidatorTypes = this.libraryService.filterTypes(this.groupValidatorTypeConfig);
     this.arrayValidatorTypes = this.libraryService.filterTypes(this.arrayValidatorTypeConfig);
+    this.dictionaryValidatorTypes = this.libraryService.filterTypes(this.dictionaryValidatorTypeConfig);
   }
 
   getControlValidatorType(type: string): DynamicFormControlValidatorType {
@@ -47,6 +56,10 @@ export class DynamicFormValidationBuilder {
 
   getArrayValidatorType(type: string): DynamicFormArrayValidatorType {
     return this.arrayValidatorTypes.find(f => f.type === type);
+  }
+
+  getDictionaryValidatorType(type: string): DynamicFormDictionaryValidatorType {
+    return this.dictionaryValidatorTypes.find(f => f.type === type);
   }
 
   createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
@@ -95,6 +108,22 @@ export class DynamicFormValidationBuilder {
     const type = this.getValidatorType(array, key);
     const validatorType = this.getArrayValidatorType(type);
     return validatorType ? new DynamicFormArrayValidator(key, array, validatorType.factory) : undefined;
+  }
+
+  createDictionaryValidators(dictionary: DynamicFormDictionary): DynamicFormDictionaryValidator[] {
+    return dictionary.template.validation ? Object.keys(dictionary.template.validation).map(key => {
+      return this.createDictionaryValidator(dictionary, key);
+    }).filter(validator => !!validator) : [];
+  }
+
+  createDictionaryValidator(dictionary: DynamicFormDictionary, key: string): DynamicFormDictionaryValidator {
+    if (!(dictionary.template && typeof dictionary.template.validation[key] === 'boolean')) {
+      return undefined;
+    }
+
+    const type = this.getValidatorType(dictionary, key);
+    const validatorType = this.getDictionaryValidatorType(type);
+    return validatorType ? new DynamicFormDictionaryValidator(key, dictionary, validatorType.factory) : undefined;
   }
 
   private getValidatorType(field: DynamicFormField, key: string): string {
