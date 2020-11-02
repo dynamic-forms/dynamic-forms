@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "9.0.0-next.2",
+  "version": "9.0.0-next.3",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -8,17 +8,20 @@
     "type": "git",
     "url": "https://github.com/dynamic-forms/dynamic-forms.git",
     "directory": "libs/core"
+  },  
+  "dependencies": {
+    "tslib": "^1.14.1"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
-    "bootstrap": "~4.5.0",
-    "marked": "^1.1.0"
+    "bootstrap": "^4.5.3",
+    "marked": "^1.2.2",
+    "rxjs":  "~6.6.3" 
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
-    "access": "restricted",
     "tag": "v9"
   }
 }

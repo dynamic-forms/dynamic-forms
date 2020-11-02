@@ -74,6 +74,11 @@
             {
               "value": 2,
               "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
             }
           ]
         }
@@ -96,6 +101,11 @@
             {
               "value": 2,
               "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
             }
           ]
         }
@@ -135,10 +145,37 @@
           "defaultValue": "Text 1, Text 2"
         }
       }
+    },
+    {
+      "key": "toggle",
+      "type": "control",
+      "template": {
+        "label": "Toggle",
+        "input": {
+          "type": "toggle",
+          "defaultValue": 1,
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            }
+          ]
+        }
+      }
     }
   ],
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
@@ -149,6 +186,7 @@
       }
     },
     {
+      "id": "action-reset",
       "type": "button",
       "template": {
         "type": "reset",
@@ -156,6 +194,7 @@
       }
     },
     {
+      "id": "action-reset-default",
       "type": "button",
       "template": {
         "type": "button",

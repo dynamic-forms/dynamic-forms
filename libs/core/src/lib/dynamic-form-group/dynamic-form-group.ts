@@ -15,8 +15,9 @@ export class DynamicFormGroup<
 
   constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition, model: any = null) {
     super(root, parent, definition);
-    this._model = model || this.getModel(parent, definition);
     this._control = new FormGroup({});
+    this._model = model || this.getModel(parent, definition);
+    this._parameters = {};
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return 'group'; }

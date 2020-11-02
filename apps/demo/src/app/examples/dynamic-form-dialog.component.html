@@ -1,10 +1,14 @@
 <div mat-dialog-content>
   <mat-tab-group>
-    <mat-tab label="Value"> 
-      <pre>{{ data.value | json }}</pre>
+    <mat-tab label="Value">
+      <ng-template matTabContent>
+        <pre>{{ data.value | json }}</pre>
+      </ng-template> 
     </mat-tab>
     <mat-tab label="Model">
-      <pre>{{ data.model | json }}</pre>
+      <ng-template matTabContent>
+        <pre>{{ data.model | json }}</pre>
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 </div>

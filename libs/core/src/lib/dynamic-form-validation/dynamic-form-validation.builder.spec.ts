@@ -8,6 +8,10 @@ import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-fo
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
 import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
+import { DynamicFormDictionaryValidation } from '../dynamic-form-dictionary/dynamic-form-dictionary-validation';
+import { dynamicFormDictionaryValidatorTypes } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
+import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupValidation } from '../dynamic-form-group/dynamic-form-group-validation';
@@ -49,6 +53,12 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
+    it('returns dictionary validator types being empty',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.dictionaryValidatorTypes).toEqual([]);
+      })
+    );
+
     it('returns control validator type being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const controlValidatorType = service.getControlValidatorType('validator');
@@ -67,9 +77,17 @@ describe('DynamicFormValidationBuilder', () => {
 
     it('returns array validator type being undefined',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        const arrayValidatorType = service.getArrayValidatorType('validator');
+        const arrayValidatorType = service.getDictionaryValidatorType('validator');
 
         expect(arrayValidatorType).toBeUndefined();
+      })
+    );
+
+    it('returns dictionary validator type being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionaryValidatorType = service.getDictionaryValidatorType('validator');
+
+        expect(dictionaryValidatorType).toBeUndefined();
       })
     );
   });
@@ -94,6 +112,10 @@ describe('DynamicFormValidationBuilder', () => {
             provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
             useValue: dynamicFormArrayValidatorTypes
           },
+          {
+            provide: DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+            useValue: dynamicFormDictionaryValidatorTypes
+          },
           DynamicFormValidationBuilder
         ]
       });
@@ -117,7 +139,13 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
-    it('returns control valiator type for required',
+    it('returns provided dictionary validator types',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        expect(service.dictionaryValidatorTypes).toEqual(dynamicFormDictionaryValidatorTypes);
+      })
+    );
+
+    it('returns control validator type for required',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const controlValidatorType = service.getControlValidatorType('required');
 
@@ -330,7 +358,7 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
-    it('returns group valiator type for required',
+    it('returns group validator type for required',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const groupValidatorType = service.getGroupValidatorType('required');
 
@@ -379,7 +407,7 @@ describe('DynamicFormValidationBuilder', () => {
       })
     );
 
-    it('returns array valiator type for minLength',
+    it('returns array validator type for minLength',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         const arrayValidatorType = service.getArrayValidatorType('minLength');
 
@@ -466,6 +494,94 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator).toBeUndefined();
       })
     );
+
+    it('returns dictionary validator type for minLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionaryValidatorType = service.getDictionaryValidatorType('minLength');
+
+        expect(dictionaryValidatorType).toEqual(dynamicFormDictionaryValidatorTypes[0]);
+      })
+    );
+
+    it('returns dictionary validator for minLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { minLength: 2, validation: { minLength: true } } };
+        const validator = service.createDictionaryValidator(dictionary, 'minLength');
+
+        expect(validator.key).toBe('minLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBe(2);
+        expect(validator.validatorFn).toBeDefined();
+      })
+    );
+
+    it('returns dictionary validator for minLength with validatorFn being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { validation: { minLength: true } } };
+        const validator = service.createDictionaryValidator(dictionary, 'minLength');
+
+        expect(validator.key).toBe('minLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBeUndefined();
+        expect(validator.validatorFn).toBeUndefined();
+      })
+    );
+
+    it('returns dictionary validator for maxLength',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { maxLength: 5, validation: { maxLength: true } } };
+        const validator = service.createDictionaryValidator(dictionary, 'maxLength');
+
+        expect(validator.key).toBe('maxLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBe(5);
+        expect(validator.validatorFn).toBeDefined();
+      })
+    );
+
+    it('returns dictionary validator for maxLength with validatorFn being undefined',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { validation: { maxLength: true } } };
+        const validator = service.createDictionaryValidator(dictionary, 'maxLength');
+
+        expect(validator.key).toBe('maxLength');
+        expect(validator.factory).toEqual(jasmine.any(Function));
+        expect(validator.enabled).toBe(true);
+        expect(validator.parameters).toBeUndefined();
+        expect(validator.validatorFn).toBeUndefined();
+      })
+    );
+
+    it('returns dictionary validator being undefined if template is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: null };
+        const validator = service.createDictionaryValidator(dictionary, 'minLength');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns dictionary validator being undefined if validation is invalid',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { validation: { minLength: null } } };
+        const validator = service.createDictionaryValidator(dictionary, 'minLength');
+
+        expect(validator).toBeUndefined();
+      })
+    );
+
+    it('returns array validator being undefined if validator factory is not available',
+      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+        const validation = <DynamicFormDictionaryValidation>{ required: true };
+        const dictionary = <DynamicFormDictionary>{ definition: {}, template: { validation } };
+        const validator = service.createDictionaryValidator(dictionary, 'required');
+
+        expect(validator).toBeUndefined();
+      })
+    );
   });
 
   describe('with DynamicFormLibraryService and types for multiple libraries', () => {
@@ -498,6 +614,14 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'array-validator-3', factory: null, libraryName: otherLibraryName },
       { type: 'array-validator-1', factory: null, libraryName: libraryName }
     ];
+    const dictionaryValidatorTypes: DynamicFormArrayValidatorType[] = [
+      { type: 'dictionary-validator-1', factory: null, libraryName: coreLibraryName },
+      { type: 'dictionary-validator-2', factory: null, libraryName: coreLibraryName },
+      { type: 'dictionary-validator-1', factory: null, libraryName: otherLibraryName },
+      { type: 'dictionary-validator-2', factory: null, libraryName: otherLibraryName },
+      { type: 'dictionary-validator-3', factory: null, libraryName: otherLibraryName },
+      { type: 'dictionary-validator-1', factory: null, libraryName: libraryName }
+    ];
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -518,6 +642,10 @@ describe('DynamicFormValidationBuilder', () => {
             provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
             useValue: arrayValidatorTypes
           },
+          {
+            provide: DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+            useValue: dictionaryValidatorTypes
+          },
           DynamicFormValidationBuilder
         ]
       });
@@ -536,6 +664,10 @@ describe('DynamicFormValidationBuilder', () => {
         expect(service.arrayValidatorTypes).toEqual([
           { type: 'array-validator-1', factory: null, libraryName: libraryName },
           { type: 'array-validator-2', factory: null, libraryName: coreLibraryName }
+        ]);
+        expect(service.dictionaryValidatorTypes).toEqual([
+          { type: 'dictionary-validator-1', factory: null, libraryName: libraryName },
+          { type: 'dictionary-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
       })
     );
