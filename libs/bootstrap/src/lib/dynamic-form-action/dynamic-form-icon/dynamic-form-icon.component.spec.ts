@@ -30,7 +30,7 @@ describe('BsDynamicFormIconComponent', () => {
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormIconTemplate>{ label: 'label', icon: 'icon' };
-    const definition = <DynamicFormIconDefinition>{ type: 'element', template };
+    const definition = <DynamicFormIconDefinition>{ id: 'id', type: 'element', template };
     element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
     component.element = element;
 
@@ -49,6 +49,7 @@ describe('BsDynamicFormIconComponent', () => {
     const formIconElement = <HTMLElement>formIconDebugElement.nativeElement;
 
     expect(formButtonElement).toBeDefined();
+    expect(formButtonElement.id).toBe('id');
     expect(formButtonElement.type).toBe('button');
     expect(formIconElement.innerText).toBe('icon');
   });

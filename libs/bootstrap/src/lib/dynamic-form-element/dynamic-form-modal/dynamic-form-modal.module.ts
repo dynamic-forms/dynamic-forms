@@ -25,9 +25,6 @@ export const bsDynamicFormModalType: DynamicFormElementType = {
   exports: [
     DynamicFormConfigModule,
     BsDynamicFormModalComponent
-  ],
-  entryComponents: [
-    BsDynamicFormModalComponent
   ]
 })
 export class BsDynamicFormModalModule {}

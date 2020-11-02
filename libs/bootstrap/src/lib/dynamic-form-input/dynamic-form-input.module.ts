@@ -8,6 +8,7 @@ import { BsDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-se
 import { BsDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
 import { BsDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
 import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
+import { BsDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-toggle.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-
     BsDynamicFormSelectModule,
     BsDynamicFormSwitchModule,
     BsDynamicFormTextareaModule,
-    BsDynamicFormTextboxModule
+    BsDynamicFormTextboxModule,
+    BsDynamicFormToggleModule
   ]
 })
 export class BsDynamicFormInputModule {}

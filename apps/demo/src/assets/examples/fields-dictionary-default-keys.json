@@ -1,0 +1,93 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "validation",
+      "type": "dictionary",
+      "template": {
+        "label": "Validation",
+        "classNameLabel": "bold"
+      },
+      "defaultKeys": [
+        "required",
+        "pattern"
+      ],
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row",
+          "classNameLabel": "col-12 capitalize"
+        },
+        "expressions": {
+          "label": "data.key"
+        },
+        "elements": [
+          {
+            "key": "enabled",
+            "type": "control",
+            "template": {
+              "className": "col-2 align-self-center",
+              "label": "Enabled",
+              "input": {
+                "type": "switch"
+              }
+            }
+          },
+          {
+            "key": "message",
+            "type": "control",
+            "template": {
+              "className": "col-10",
+              "label": "Message",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter a message"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

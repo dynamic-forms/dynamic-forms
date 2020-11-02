@@ -35,13 +35,13 @@ export class DynamicFormArray<
     this._elements = this._fields;
   }
 
-  pushElement(element: DynamicFormField): void {
+  pushField(element: DynamicFormField): void {
     this._fields.push(element);
     this._control.push(element.control);
     this._control.markAsTouched();
   }
 
-  popElement(): void {
+  popField(): void {
     const length = this.length;
     if (length > 0) {
       this._fields.pop().destroy();
@@ -51,19 +51,7 @@ export class DynamicFormArray<
     }
   }
 
-  clearElements(): void {
-    const length = this.length;
-    if (length > 0) {
-      this._fields.forEach(field => field.destroy());
-      this._fields = [];
-      this._model = [];
-      this._control.clear();
-      this._control.markAsTouched();
-      this._elements = this._fields;
-    }
-  }
-
-  removeElement(index: number): void {
+  removeField(index: number): void {
     if (index >= 0 && index < this.length) {
       this._fields.splice(index, 1).forEach(field => field.destroy());
       this._fields.forEach((field, idx) => {
@@ -73,6 +61,18 @@ export class DynamicFormArray<
       this._model.splice(index, 1);
       this._control.removeAt(index);
       this._control.markAsTouched();
+    }
+  }
+
+  clearFields(): void {
+    const length = this.length;
+    if (length > 0) {
+      this._fields.forEach(field => field.destroy());
+      this._fields = [];
+      this._model = [];
+      this._control.clear();
+      this._control.markAsTouched();
+      this._elements = this._fields;
     }
   }
 

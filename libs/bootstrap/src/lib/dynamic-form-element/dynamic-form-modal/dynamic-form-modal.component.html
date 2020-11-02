@@ -1,8 +1,8 @@
 <dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
   
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
-  <div class="modal-dialog modal-dialog-centered" [style.width]="template?.width" 
-    [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
+    [style.width]="template?.width" [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
     <div class="modal-content">
       <div class="modal-header" *ngIf="template && (template.titleHtml || template.title)">
         <div class="modal-title" 

@@ -37,7 +37,8 @@ describe('MatDynamicFormRadioComponent', () => {
         input: {
           options: [
             { value: 'value1', label: 'label1' },
-            { value: 'value2', label: 'label2' }
+            { value: 'value2', label: 'label2' },
+            { value: 'value3', label: 'label3', disabled: true }
           ]
         }
       }
@@ -65,11 +66,21 @@ describe('MatDynamicFormRadioComponent', () => {
     const labelElements = <HTMLDivElement[]>labelDebugElements.map(elem => elem.nativeElement);
 
     expect(radioElement).toBeDefined();
+    expect(inputElements.length).toBe(3);
     expect(inputElements[0].id).toBe(`key-0-input`);
     expect(inputElements[0].type).toBe('radio');
+    expect(inputElements[0].value).toBe('value1');
+    expect(inputElements[0].disabled).toBe(false);
     expect(labelElements[0].innerText).toBe('label1');
     expect(inputElements[1].id).toBe('key-1-input');
     expect(inputElements[1].type).toBe('radio');
+    expect(inputElements[1].value).toBe('value2');
+    expect(inputElements[1].disabled).toBe(false);
     expect(labelElements[1].innerText).toBe('label2');
+    expect(inputElements[2].id).toBe('key-2-input');
+    expect(inputElements[2].type).toBe('radio');
+    expect(inputElements[2].value).toBe('value3');
+    expect(inputElements[2].disabled).toBe(true);
+    expect(labelElements[2].innerText).toBe('label3');
   });
 });
