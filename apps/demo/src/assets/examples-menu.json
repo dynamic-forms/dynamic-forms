@@ -118,6 +118,10 @@
               "label": "Actions"
             },
             {
+              "id": "fields-dictionary-dialog",
+              "label": "Dialog"
+            },
+            {
               "id": "fields-dictionary-modal",
               "label": "Modal"
             }
