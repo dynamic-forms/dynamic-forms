@@ -4,9 +4,10 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormField } from './dynamic-form-field';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
-  dynamicFormFieldValidateHandler, DynamicFormFieldModule } from './dynamic-form-field.module';
+  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler,
+  DynamicFormFieldModule } from './dynamic-form-field.module';
 
-describe('DynamicFormGroupModule', () => {
+describe('DynamicFormFieldModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -25,7 +26,7 @@ describe('DynamicFormGroupModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(3);
+      expect(handlers.length).toBe(4);
       expect(handlers[0]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[0].func).toEqual(jasmine.any(Function));
       expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
@@ -35,6 +36,9 @@ describe('DynamicFormGroupModule', () => {
       expect(handlers[2]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[2].func).toEqual(jasmine.any(Function));
       expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[3]).toEqual(dynamicFormSubmitHandler);
+      expect(handlers[3].func).toEqual(jasmine.any(Function));
+      expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 

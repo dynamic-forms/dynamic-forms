@@ -24,7 +24,14 @@ describe('dynamicFormModalFactory', () => {
 
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
-    const definition = <DynamicFormModalDefinition>{ id: 'id', type: 'element', template: {}, elements: [], footerActions: [], trigger: {} };
+    const definition = <DynamicFormModalDefinition>{
+      id: 'id',
+      type: 'element',
+      template: {},
+      elements: [],
+      footerActions: [],
+      trigger: {}
+    };
 
     const modal = dynamicFormModalFactory(builder, root, parent, definition);
 
