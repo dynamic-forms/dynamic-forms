@@ -15,8 +15,10 @@ export class DynamicFormModal<
 
   protected _root: DynamicForm;
 
-  protected _actions: DynamicFormAction[] = [];
   protected _trigger: DynamicFormAction;
+
+  protected _headerActions: DynamicFormAction[] = [];
+  protected _footerActions: DynamicFormAction[] = [];
 
   constructor(root: DynamicForm, definition: Definition) {
     super(definition);
@@ -30,18 +32,24 @@ export class DynamicFormModal<
 
   get root(): DynamicForm { return this._root; }
 
+  get trigger(): DynamicFormAction { return this._trigger; }
+
+  get headerActions(): DynamicFormAction[] { return this._headerActions; }
+  get footerActions(): DynamicFormAction[] { return this._footerActions; }
+
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChange(): Observable<boolean> { return this._isOpenChange; }
 
-  get actions(): DynamicFormAction[] { return this._actions; }
-  get trigger(): DynamicFormAction { return this._trigger; }
-
-  initActions(actions: DynamicFormAction[]): void {
-    this._actions = actions || [];
-  }
-
   initTrigger(trigger: DynamicFormAction): void {
     this._trigger = trigger;
+  }
+
+  initHeaderActions(actions: DynamicFormAction[]): void {
+    this._headerActions = actions || [];
+  }
+
+  initFooterActions(actions: DynamicFormAction[]): void {
+    this._footerActions = actions || [];
   }
 
   open(): void {

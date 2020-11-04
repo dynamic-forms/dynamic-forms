@@ -1,30 +1,23 @@
 <dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
 
-<ng-template #modalTemplate>
-  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.wrapperClassName 
-  ? [ theme, template.wrapperClassName ] : theme || element.root.template?.wrapperClassName">
+<ng-template #modalTemplateRef>
+  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.classNameWrapper 
+  ? [ theme, template.classNameWrapper ] : theme || element.root.template?.classNameWrapper">
     <div class="dynamic-form" [ngClass]="element.root.template?.className">
       <div class="dynamic-form-modal" [ngClass]="template?.className">
-        <div *ngIf="template && (template.titleHtml || template.title)" class="modal-header">
-          <div *ngIf="template?.titleHtml; else titlePlain" class="modal-title"
-            [ngClass]="template.titleClassName"
-            [innerHTML]="template.titleHtml"
+        <div class="modal-header" *ngIf="template?.titleHtml || template?.title">
+          <div class="modal-title" *ngIf="template?.titleHtml; else titlePlain" 
+            [ngClass]="template.classNameTitle" [innerHTML]="template.titleHtml"
           ></div>
           <ng-template #titlePlain>
-            <div class="modal-title"
-              [ngClass]="template.titleClassName"
-            >{{template.title}}</div>
+            <div class="modal-title" [ngClass]="template.classNameTitle">{{template.title}}</div>
           </ng-template>
         </div>
-        <div class="modal-content" mat-dialog-content>
-          <dynamic-form-element *ngFor="let element of elements" 
-            [element]="element"
-          ></dynamic-form-element>      
+        <div class="modal-content" [ngClass]="template.classNameElements" mat-dialog-content>
+          <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>      
         </div>
-        <div *ngIf="actions.length" class="modal-footer" mat-dialog-actions>
-          <dynamic-form-element *ngFor="let action of actions" 
-            [element]="action"
-          ></dynamic-form-element>      
+        <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter" mat-dialog-actions>
+          <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>      
         </div>    
       </div>  
     </div>

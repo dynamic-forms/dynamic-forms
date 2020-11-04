@@ -9,6 +9,7 @@ export interface DynamicFormElementDefinition<
   type?: string;
   template?: Template;
   elements?: DynamicFormElementDefinition[];
-  actions?: DynamicFormActionDefinition[];
+  headerActions?: DynamicFormActionDefinition[];
+  footerActions?: DynamicFormActionDefinition[];
   expressions?: { [key: string]: string | DynamicFormElementExpressionFunc };
 }

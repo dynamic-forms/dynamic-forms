@@ -12,8 +12,8 @@ export class MatDynamicFormButtonComponent extends DynamicFormButtonBase impleme
   private _dialogRef: { reference: MatDialogRef<any>, subscription: Subscription };
   private _dialogOpenSubscription: Subscription;
 
-  @ViewChild('dialogTemplate', { static: true })
-  dialogTemplate: TemplateRef<any>;
+  @ViewChild('dialogTemplateRef', { static: true })
+  dialogTemplateRef: TemplateRef<any>;
 
   constructor(
     protected actionService: DynamicFormActionService,
@@ -38,7 +38,7 @@ export class MatDynamicFormButtonComponent extends DynamicFormButtonBase impleme
   private openDialogRef(): void {
     this.closeDialogRef();
     const config = this.getDialogConfig();
-    const reference = this.dialogService.open(this.dialogTemplate, config);
+    const reference = this.dialogService.open(this.dialogTemplateRef, config);
     const subscription = reference.beforeClosed().subscribe(_ => {
       this.action.closeDialog();
     });
@@ -56,9 +56,9 @@ export class MatDynamicFormButtonComponent extends DynamicFormButtonBase impleme
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
     if (this.template) {
-      Object.defineProperty(config, 'width', { get: () => this.template.width });
-      Object.defineProperty(config, 'minWidth', { get: () => this.template.minWidth });
-      Object.defineProperty(config, 'maxWidth', { get: () => this.template.maxWidth });
+      Object.defineProperty(config, 'width', { get: () => this.template.dialogWidth });
+      Object.defineProperty(config, 'minWidth', { get: () => this.template.dialogMinWidth });
+      Object.defineProperty(config, 'maxWidth', { get: () => this.template.dialogMaxWidth });
     }
     return config;
   }

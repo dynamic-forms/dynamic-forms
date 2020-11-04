@@ -51,7 +51,8 @@ export class DynamicFormBuilder {
     const field = new DynamicForm(definition, model);
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormElements(field, field, field.definition.elements));
-    field.initActions(this.createFormActions(field, field, field.definition.actions));
+    field.initHeaderActions(this.createFormActions(field, field, field.definition.headerActions));
+    field.initFooterActions(this.createFormActions(field, field, field.definition.footerActions));
     return field;
   }
 
@@ -80,6 +81,8 @@ export class DynamicFormBuilder {
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormElements(root, field, field.definition.elements));
     field.initValidators(this.createGroupValidators(field));
+    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
+    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
     return field;
   }
 
@@ -89,8 +92,9 @@ export class DynamicFormBuilder {
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormArrayElements(field));
-    field.initActions(this.createFormActions(root, field, field.definition.actions));
     field.initValidators(this.createArrayValidators(field));
+    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
+    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
     return field;
   }
 
@@ -105,8 +109,9 @@ export class DynamicFormBuilder {
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormDictionaryElements(field));
-    field.initActions(this.createFormActions(root, field, field.definition.actions));
     field.initValidators(this.createDictionaryValidators(field));
+    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
+    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
     return field;
   }
 
@@ -125,7 +130,8 @@ export class DynamicFormBuilder {
       const dialog = this.createForm(action.dialogDefinition, {});
       dialog.initExpressions(this.createFieldExpressions(dialog));
       dialog.initElements(this.createFormElements(dialog, dialog, dialog.definition.elements));
-      dialog.initActions(this.createFormActions(root, action, dialog.definition.actions));
+      dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
+      dialog.initFooterActions(this.createFormActions(root, action, dialog.definition.footerActions));
       action.initDialog(dialog);
     }
     return action;

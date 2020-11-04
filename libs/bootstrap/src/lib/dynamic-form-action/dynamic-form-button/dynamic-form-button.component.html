@@ -8,27 +8,19 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
     [style.width]="template?.width" [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
     <div class="modal-content">
-      <div class="modal-header" *ngIf="template && (template.titleHtml || template.title)">
-        <div class="modal-title" 
-          *ngIf="template?.titleHtml; else titlePlain" 
-          [ngClass]="template.titleClassName" 
+      <div class="modal-header" *ngIf="template?.titleHtml || template?.title" [ngClass]="dialogTemplate?.classNameHeader">
+        <div class="modal-title" *ngIf="template?.titleHtml; else titlePlain" [ngClass]="template.className" 
           [innerHTML]="template.titleHtml"
         ></div>
         <ng-template #titlePlain>
-          <div class="modal-title"
-            [ngClass]="template.titleClassName"
-          >{{template.title}}</div>
+          <div class="modal-title" [ngClass]="template.className">{{template.title}}</div>
         </ng-template>
       </div>    
-      <div class="modal-body">
-        <dynamic-form-element *ngFor="let dialogElement of dialogElements" 
-          [element]="dialogElement"
-        ></dynamic-form-element>           
+      <div class="modal-body" [ngClass]="dialogTemplate?.classNameElements">
+        <dynamic-form-element *ngFor="let elementof dialogElements" [element]="element"></dynamic-form-element>           
       </div>
-      <div *ngIf="dialogActions.length" class="modal-footer">
-        <dynamic-form-element *ngFor="let dialogAction of dialogActions" 
-          [element]="dialogAction"
-        ></dynamic-form-element>      
+      <div class="modal-footer" *ngIf="dialogFooterActions?.length" [ngClass]="dialogTemplate?.classNameFooter">
+        <dynamic-form-element *ngFor="let action of dialogFooterActions" [element]="action"></dynamic-form-element>      
       </div>
     </div>
   </div>

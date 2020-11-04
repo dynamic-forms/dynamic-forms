@@ -5,4 +5,9 @@ export interface DynamicFormActionTemplate extends DynamicFormElementTemplate {
   hidden?: boolean;
   disabled?: boolean;
   action: string;
+  dialogTitle?: string;
+  dialogTitleHtml?: string;
+  dialogWidth?: string;
+  dialogMinWidth?: string;
+  dialogMaxWidth?: string;
 }

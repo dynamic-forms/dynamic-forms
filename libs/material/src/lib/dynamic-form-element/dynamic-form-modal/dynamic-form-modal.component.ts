@@ -11,8 +11,8 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
   private _dialog: { reference: MatDialogRef<any>, subscription: Subscription };
   private _isOpenSubscription: Subscription;
 
-  @ViewChild('modalTemplate', { static: true })
-  modalTemplate: TemplateRef<any>;
+  @ViewChild('modalTemplateRef', { static: true })
+  modalTemplateRef: TemplateRef<any>;
 
   constructor(
     private dialog: MatDialog,
@@ -36,7 +36,7 @@ export class MatDynamicFormModalComponent extends DynamicFormModalBase implement
   private openDialog(): void {
     this.closeDialog();
     const config = this.getDialogConfig();
-    const reference = this.dialog.open(this.modalTemplate, config);
+    const reference = this.dialog.open(this.modalTemplateRef, config);
     const subscription = reference.beforeClosed().subscribe(_ => {
       this.element.close();
     });

@@ -1,5 +1,5 @@
 {
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",
@@ -30,7 +30,7 @@
             }
           }
         ],
-        "actions": [
+        "footerActions": [ 
           {
             "type": "button",
             "template": {

@@ -28,11 +28,11 @@ export function dynamicFormDictionaryRegisterFieldHandlerFactory(
   formBuilder: DynamicFormBuilder
 ): DynamicFormActionHandler<DynamicFormDictionary> {
   const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
-    const dialogAction = <DynamicFormAction>action.parent;
-    const key = dialogAction.dialog ? dialogAction.dialog.model.key : formBuilder.createId();
+    const parent = <DynamicFormAction>action.parent;
+    const key = parent.dialog ? parent.dialog.model.key : formBuilder.createId();
     const element = formBuilder.createFormDictionaryField(field, key);
-    if (dialogAction) {
-      dialogAction.closeDialog();
+    if (parent.dialog) {
+      parent.closeDialog();
     }
     return field.registerField(element);
   };

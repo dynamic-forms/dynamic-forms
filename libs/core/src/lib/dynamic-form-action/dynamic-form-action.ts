@@ -32,12 +32,14 @@ export class DynamicFormAction<
   get dialogDefinition(): DynamicFormDefinition { return this.definition.dialogDefinition; }
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
-  get dialog(): DynamicForm { return this._dialog; }
-  get dialogElements(): DynamicFormElement[] { return this._dialog ? this._dialog.elements : undefined; }
-  get dialogActions(): DynamicFormAction[] { return this._dialog ? this._dialog.actions : undefined; }
-
   get dialogOpen(): boolean { return this._dialogOpenSubject.value; }
   get dialogOpenChange(): Observable<boolean> { return this._dialogOpenChange; }
+
+  get dialog(): DynamicForm { return this._dialog; }
+  get dialogElements(): DynamicFormElement[] { return this._dialog ? this._dialog.elements : undefined; }
+
+  get dialogHeaderActions(): DynamicFormAction[] { return this._dialog ? this._dialog.headerActions : undefined; }
+  get dialogFooterActions(): DynamicFormAction[] { return this._dialog ? this._dialog.footerActions : undefined; }
 
   initDialog(dialog: DynamicForm): void {
     this._dialog = dialog;

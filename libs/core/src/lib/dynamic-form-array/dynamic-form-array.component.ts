@@ -22,5 +22,5 @@ export class DynamicFormArrayComponent<
   }
 
   get elements(): DynamicFormElement[] { return this.field.elements; }
-  get actions(): DynamicFormAction[] { return this.field.actions; }
+  get actions(): DynamicFormAction[] { return this.field.footerActions; }
 }

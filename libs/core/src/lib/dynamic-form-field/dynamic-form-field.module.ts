@@ -38,10 +38,9 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
 };
 
 export function dynamicFormSubmit(form: DynamicForm, action: DynamicFormAction): void {
-  if (action.dialogOpen) {
-    action.closeDialog();
-  } else if ((<DynamicFormAction>action.parent).dialogOpen) {
-    (<DynamicFormAction>action.parent).closeDialog();
+  const parent = <DynamicFormAction>action.parent;
+  if (parent.dialogOpen) {
+    parent.closeDialog();
   }
   form.submit();
 }

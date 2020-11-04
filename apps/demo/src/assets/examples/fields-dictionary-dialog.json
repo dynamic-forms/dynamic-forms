@@ -9,7 +9,7 @@
       "template": {
         "label": "Items",
         "classNameLabel": "bold",
-        "classNameActions": "reverse"
+        "classNameFooter": "reverse"
       },
       "defaultValue": {
         "00000000-0000-0000-0000-000000000000": {
@@ -18,7 +18,7 @@
           "items": {}
         }
       },
-      "actions": [
+      "footerActions": [ 
         {
           "type": "button",
           "template": {
@@ -53,7 +53,7 @@
                 }
               }
             ],
-            "actions": [
+            "footerActions": [ 
               {
                 "type": "button",
                 "template": {
@@ -104,7 +104,7 @@
           {
             "type": "icon",
             "template": {
-              "wrapperClassName": "col-1",
+              "classNameWrapper":  "col-1",
               "label": "Remove item",
               "icon": "remove",
               "action": "removeDictionaryField"
@@ -132,12 +132,12 @@
               "label": "Child Items",
               "className": "col-12",
               "classNameLabel": "bold",
-              "classNameActions": "reverse"
+              "classNameFooter": "reverse"
             },
             "expressions": {
               "label": "data.length ? 'Child items' : null"
             },
-            "actions": [
+            "footerActions": [ 
               {
                 "type": "button",
                 "template": {
@@ -185,7 +185,7 @@
                 {
                   "type": "icon",
                   "template": {
-                    "wrapperClassName": "col-1",
+                    "classNameWrapper":  "col-1",
                     "label": "Remove child item",
                     "icon": "remove",
                     "action": "removeDictionaryField"
@@ -231,7 +231,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

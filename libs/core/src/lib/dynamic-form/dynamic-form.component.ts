@@ -34,7 +34,9 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
 
   get template(): DynamicFormTemplate { return this._formField.template; }
   get elements(): DynamicFormElement[] { return this._formField.elements; }
-  get actions(): DynamicFormAction[] { return this._formField.actions; }
+
+  get headerActions(): DynamicFormAction[] { return this._formField.headerActions; }
+  get footerActions(): DynamicFormAction[] { return this._formField.footerActions; }
 
   ngOnInit(): void {
     this.initFormField();
