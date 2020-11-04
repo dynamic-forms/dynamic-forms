@@ -1,37 +1,58 @@
 import { NgModule } from '@angular/core';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
+import { DynamicFormDialog } from '../dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 
-export function dynamicFormFieldResetFactory(field: DynamicFormField): void {
+export function dynamicFormFieldReset(field: DynamicFormField): void {
   field.reset();
 }
 
 export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   type: 'reset',
-  func: dynamicFormFieldResetFactory,
+  func: dynamicFormFieldReset,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldResetDefaultFactory(field: DynamicFormField): void {
+export function dynamicFormFieldResetDefault(field: DynamicFormField): void {
   field.resetDefault();
 }
 
 export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   type: 'resetDefault',
-  func: dynamicFormFieldResetDefaultFactory,
+  func: dynamicFormFieldResetDefault,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldValidateFactory(field: DynamicFormField): void {
+export function dynamicFormFieldValidate(field: DynamicFormField): void {
   field.validate();
 }
 
 export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   type: 'validate',
-  func: dynamicFormFieldValidateFactory,
+  func: dynamicFormFieldValidate,
+  libraryName: dynamicFormLibrary.name
+};
+
+export function dynamicFormSubmit(form: DynamicForm, action: DynamicFormAction): void {
+  if (action.parent instanceof DynamicFormDialog) {
+    action.parent.close();
+  }
+  form.submit();
+}
+
+export function getDynamicForm(action: DynamicFormAction): DynamicForm {
+  return action.root;
+}
+
+export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
+  type: 'submit',
+  elementFunc: getDynamicForm,
+  func: dynamicFormSubmit,
   libraryName: dynamicFormLibrary.name
 };
 
@@ -41,7 +62,8 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
     DynamicFormActionModule.withHandlers([
       dynamicFormFieldResetHandler,
       dynamicFormFieldResetDefaultHandler,
-      dynamicFormFieldValidateHandler
+      dynamicFormFieldValidateHandler,
+      dynamicFormSubmitHandler
     ])
   ],
   exports: [

@@ -1,4 +1,3 @@
-
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
@@ -13,9 +12,9 @@ export function dynamicFormDialogFactory(
   dialogAction.initExpressions(builder.createActionExpressions(dialogAction));
 
   const dialogForm = builder.createForm(dialogAction.dialogDefinition, {});
-  dialogForm.initExpressions(this.createFieldExpressions(dialogForm));
-  dialogForm.initElements(this.createFormElements(dialogForm, dialogForm, dialogForm.definition.elements));
-  dialogForm.initActions(this.createFormActions(dialogForm, dialogAction, dialogForm.definition.actions));
+  dialogForm.initExpressions(builder.createFieldExpressions(dialogForm));
+  dialogForm.initElements(builder.createFormElements(dialogForm, dialogForm, dialogForm.definition.elements));
+  dialogForm.initActions(builder.createFormActions(root, dialogAction, dialogForm.definition.actions));
 
   dialogAction.initForm(dialogForm);
 

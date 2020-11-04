@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { dynamicFormDialogFactory, DynamicFormActionType, DynamicFormConfigModule,
-  DynamicFormDialogModule } from '@dynamic-forms/core';
+  DynamicFormDialogModule, DynamicFormElementModule } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
@@ -15,6 +15,7 @@ export const bsDynamicFormDialogType: DynamicFormActionType = {
 @NgModule({
   imports: [
     CommonModule,
+    DynamicFormElementModule,
     DynamicFormDialogModule,
     DynamicFormConfigModule.withAction(bsDynamicFormDialogType)
   ],

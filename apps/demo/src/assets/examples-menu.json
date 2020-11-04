@@ -118,12 +118,12 @@
               "label": "Actions"
             },
             {
-              "id": "fields-dictionary-dialog",
-              "label": "Dialog"
-            },
-            {
               "id": "fields-dictionary-modal",
               "label": "Modal"
+            },
+            {
+              "id": "fields-dictionary-dialog",
+              "label": "Dialog"
             }
           ]
         }
@@ -184,6 +184,15 @@
             {
               "id": "actions-icon-all",
               "label": "All"
+            }
+          ] 
+        },
+        { 
+          "label": "Dialog",
+          "items": [
+            {
+              "id": "actions-dialog-submit",
+              "label": "Submit"
             }
           ] 
         }

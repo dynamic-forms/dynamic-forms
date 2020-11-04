@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
+import { DynamicFormDialog } from '../dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -27,21 +28,35 @@ export const dynamicFormDictionaryType: DynamicFormFieldType = {
 export function dynamicFormDictionaryRegisterFieldHandlerFactory(
   formBuilder: DynamicFormBuilder
 ): DynamicFormActionHandler<DynamicFormDictionary> {
-  const func = (field: DynamicFormDictionary) => {
-    const key = formBuilder.createId();
+  const keyFunc = (action: DynamicFormAction) => {
+    if (action.parent instanceof DynamicFormDialog) {
+      return action.parent.dialog.model.key;
+    }
+    return formBuilder.createId();
+  };
+  const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
+    const key = keyFunc(action);
     const element = formBuilder.createFormDictionaryField(field, key);
     return field.registerField(element);
   };
   return {
     type: 'registerDictionaryField',
+    elementFunc: getDynamicFormDictionary,
     func: func,
     libraryName: dynamicFormLibrary.name
   };
 }
 
 export function getDynamicFormDictionary(action: DynamicFormAction): DynamicFormDictionary {
-  const field = action.parent && (<DynamicFormField>action.parent).parent;
-  return field && field.fieldClassType === 'dictionary' ? <DynamicFormDictionary>field : undefined;
+  const field = <DynamicFormField>action.parent;
+  if (field.fieldClassType === 'dictionary') {
+    return <DynamicFormDictionary>field;
+  }
+
+  const parentField = <DynamicFormField>field.parent;
+  return parentField && parentField.fieldClassType === 'dictionary'
+    ? <DynamicFormDictionary>parentField
+    : undefined;
 }
 
 export function dynamicFormDictionaryRemoveField(field: DynamicFormDictionary, action: DynamicFormAction): void {

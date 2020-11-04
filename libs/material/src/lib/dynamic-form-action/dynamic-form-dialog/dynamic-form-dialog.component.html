@@ -4,5 +4,33 @@
   (click)="open()"
 >{{ template?.label }}</button>
 
-<ng-container *ngIf="isOpen">
-</ng-container>
+<ng-template #dialogTemplate>
+  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.wrapperClassName 
+  ? [ theme, template.wrapperClassName ] : theme || element.root.template?.wrapperClassName">
+    <div class="dynamic-form" [ngClass]="element.root.template?.className">
+      <div class="dynamic-form-modal" [ngClass]="template?.className">
+        <div *ngIf="template && (template.titleHtml || template.title)" class="modal-header">
+          <div *ngIf="template?.titleHtml; else titlePlain" class="modal-title"
+            [ngClass]="template.titleClassName"
+            [innerHTML]="template.titleHtml"
+          ></div>
+          <ng-template #titlePlain>
+            <div class="modal-title"
+              [ngClass]="template.titleClassName"
+            >{{template.title}}</div>
+          </ng-template>
+        </div>
+        <div class="modal-content" mat-dialog-content>
+          <dynamic-form-element *ngFor="let dialogElement of dialogElements" 
+            [element]="dialogElement"
+          ></dynamic-form-element>      
+        </div>
+        <div *ngIf="dialogActions.length" class="modal-footer" mat-dialog-actions>
+          <dynamic-form-element *ngFor="let dialogAction of dialogActions" 
+            [element]="dialogAction"
+          ></dynamic-form-element>      
+        </div>    
+      </div>  
+    </div>
+  </div>
+</ng-template>

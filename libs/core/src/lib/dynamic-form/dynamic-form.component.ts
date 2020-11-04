@@ -1,5 +1,6 @@
 import { Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicForm } from './dynamic-form';
@@ -14,7 +15,9 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
+
   private _formField: DynamicForm;
+  private _formFieldSubmit: Subscription;
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
@@ -34,8 +37,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   get actions(): DynamicFormAction[] { return this._formField.actions; }
 
   ngOnInit(): void {
-    this.model = this.model || {};
-    this._formField = this.formBuilder.initForm(this.definition, this.model);
+    this.initFormField();
   }
 
   ngDoCheck(): void {
@@ -46,16 +48,17 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
     const modelChanged = changes.model && !changes.model.firstChange;
     const definitionChanged = changes.definition && !changes.definition.firstChange;
     if (modelChanged || definitionChanged) {
-      this.model = this.model || {};
-      this._formField = this.formBuilder.initForm(this.definition, this.model);
+      this.destroyFormField();
+      this.initFormField();
     }
   }
 
   ngOnDestroy(): void {
     this._formField.destroy();
+    this._formFieldSubmit.unsubscribe();
   }
 
-  ngOnSubmit(): void {
+  submit(): void {
     this.formSubmit.emit({ value: this.formGroup.value, model: this.model });
   }
 
@@ -69,5 +72,16 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
 
   resetDefault(): void {
     this._formField.resetDefault();
+  }
+
+  private initFormField(): void {
+    this.model = this.model || {};
+    this._formField = this.formBuilder.initForm(this.definition, this.model);
+    this._formFieldSubmit = this._formField.submit$.subscribe({ next: () => this.submit() });
+  }
+
+  private destroyFormField(): void {
+    this._formField.destroy();
+    this._formFieldSubmit.unsubscribe();
   }
 }

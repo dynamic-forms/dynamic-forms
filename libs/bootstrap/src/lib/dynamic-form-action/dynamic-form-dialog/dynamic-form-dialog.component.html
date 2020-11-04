@@ -4,7 +4,7 @@
   (click)="open()"
 >{{ template?.label }}</button>
 
-<div *ngIf="isOpen$ | async" class="dynamic-form-dialog modal" [ngClass]="template?.className">
+<div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
     [style.width]="template?.width" [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
     <div class="modal-content">
@@ -25,7 +25,7 @@
           [element]="dialogElement"
         ></dynamic-form-element>           
       </div>
-      <div *ngIf="actions.length" class="modal-footer">
+      <div *ngIf="dialogActions.length" class="modal-footer">
         <dynamic-form-element *ngFor="let dialogAction of dialogActions" 
           [element]="dialogAction"
         ></dynamic-form-element>      

@@ -24,7 +24,7 @@
           "template": {
             "type": "button",
             "label": "Clear items",
-            "action": "clearDictionaryElements"
+            "action": "clearDictionaryFields"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -35,7 +35,46 @@
           "template": {
             "type": "button",
             "label": "Register item",
-            "action": "registerDictionaryField"
+            "action": "openDialog",
+            "title": "Register item"
+          },
+          "dialogDefinition": {
+            "elements": [
+              {
+                "key": "key",
+                "type": "control",
+                "template": {
+                  "label": "Key",
+                  "input": {
+                    "type": "textbox"
+                  },
+                  "validation": {
+                    "required": true
+                  }
+                }
+              }
+            ],
+            "actions": [
+              {
+                "type": "button",
+                "template": {
+                  "type": "button",
+                  "label": "Cancel",
+                  "action": "closeDialog"
+                }  
+              },
+              {
+                "type": "button",
+                "template": {
+                  "type": "button",
+                  "label": "Register",
+                  "action": "registerDictionaryField"
+                },
+                "expressions": {
+                  "disabled": "data.parent.dialog.status !== 'VALID'"
+                }  
+              }
+            ]
           }
         }
       ],
@@ -69,7 +108,7 @@
               "wrapperClassName": "col-1",
               "label": "Remove item",
               "icon": "remove",
-              "action": "removeDictionaryElement"
+              "action": "removeDictionaryField"
             }
           },
           {

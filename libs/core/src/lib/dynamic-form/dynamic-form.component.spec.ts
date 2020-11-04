@@ -133,7 +133,7 @@ describe('DynamicFormComponent', () => {
   it('ngOnSubmit emits form submit', () => {
     spyOn(component.formSubmit, 'emit');
 
-    component.ngOnSubmit();
+    component.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,

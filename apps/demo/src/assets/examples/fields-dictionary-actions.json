@@ -24,7 +24,7 @@
           "template": {
             "type": "button",
             "label": "Clear items",
-            "action": "clearDictionaryElements"
+            "action": "clearDictionaryFields"
           },
           "expressions": {
             "disabled": "!data.parent.length"
@@ -69,7 +69,7 @@
               "wrapperClassName": "col-1",
               "label": "Remove item",
               "icon": "remove",
-              "action": "removeDictionaryElement"
+              "action": "removeDictionaryField"
             }
           },
           {

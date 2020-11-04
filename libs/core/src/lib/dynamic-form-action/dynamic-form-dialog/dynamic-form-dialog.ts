@@ -22,6 +22,10 @@ export class DynamicFormDialog<
     super(root, parent, definition);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChange = this._isOpenSubject.asObservable();
+    this.extendExpressionData({
+      isOpen: () => this.isOpen,
+      dialog: () => this.dialog ? this.dialog.expressionData : undefined
+    });
   }
 
   get isOpen(): boolean { return this._isOpenSubject.value; }
@@ -30,7 +34,7 @@ export class DynamicFormDialog<
   get dialogDefinition(): DynamicFormDefinition { return this.definition.dialogDefinition; }
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
-  get dialogForm(): DynamicForm { return this._form; }
+  get dialog(): DynamicForm { return this._form; }
   get dialogElements(): DynamicFormElement[] { return this._form.elements; }
   get dialogActions(): DynamicFormAction[] { return this._form.actions; }
 
