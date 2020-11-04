@@ -10,4 +10,5 @@ export interface DynamicFormActionTemplate extends DynamicFormElementTemplate {
   dialogWidth?: string;
   dialogMinWidth?: string;
   dialogMaxWidth?: string;
+  classNameDialogTitle?: string;
 }

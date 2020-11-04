@@ -6,14 +6,14 @@
 
 <div *ngIf="dialogOpen$ | async" class="dynamic-form-modal modal" [ngClass]="template?.className">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
-    [style.width]="template?.width" [style.min-width]="template?.minWidth" [style.max-width]="template?.maxWidth">
+    [style.width]="template?.dialogWidth" [style.min-width]="template?.dialogMinWidth" [style.max-width]="template?.dialogMaxWidth">
     <div class="modal-content">
-      <div class="modal-header" *ngIf="template?.titleHtml || template?.title" [ngClass]="dialogTemplate?.classNameHeader">
-        <div class="modal-title" *ngIf="template?.titleHtml; else titlePlain" [ngClass]="template.className" 
-          [innerHTML]="template.titleHtml"
+      <div class="modal-header" *ngIf="template?.dialogTitleHtml || template?.dialogTitle" [ngClass]="dialogTemplate?.classNameHeader">
+        <div class="modal-title" *ngIf="template?.dialogTitleHtml; else titlePlain" [ngClass]="template?.classNameDialogTitle" 
+          [innerHTML]="template.dialogTitleHtml"
         ></div>
         <ng-template #titlePlain>
-          <div class="modal-title" [ngClass]="template.className">{{template.title}}</div>
+          <div class="modal-title" [ngClass]="template.classNameDialogTitle">{{template.dialogTitle}}</div>
         </ng-template>
       </div>    
       <div class="modal-body" [ngClass]="dialogTemplate?.classNameElements">
