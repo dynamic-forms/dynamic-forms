@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormDialog } from '../dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -28,15 +27,13 @@ export const dynamicFormDictionaryType: DynamicFormFieldType = {
 export function dynamicFormDictionaryRegisterFieldHandlerFactory(
   formBuilder: DynamicFormBuilder
 ): DynamicFormActionHandler<DynamicFormDictionary> {
-  const keyFunc = (action: DynamicFormAction) => {
-    if (action.parent instanceof DynamicFormDialog) {
-      return action.parent.dialog.model.key;
-    }
-    return formBuilder.createId();
-  };
   const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
-    const key = keyFunc(action);
+    const dialogAction = <DynamicFormAction>action.parent;
+    const key = dialogAction.dialog ? dialogAction.dialog.model.key : formBuilder.createId();
     const element = formBuilder.createFormDictionaryField(field, key);
+    if (dialogAction) {
+      dialogAction.closeDialog();
+    }
     return field.registerField(element);
   };
   return {

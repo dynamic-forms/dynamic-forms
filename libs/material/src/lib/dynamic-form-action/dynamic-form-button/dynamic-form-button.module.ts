@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { DynamicFormActionType, DynamicFormConfigModule } from '@dynamic-forms/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { dynamicFormDialogHandlers, DynamicFormActionModule, DynamicFormActionType,
+  DynamicFormConfigModule, DynamicFormElementModule } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 
@@ -15,13 +17,17 @@ export const matDynamicFormButtonType: DynamicFormActionType = {
   imports: [
     CommonModule,
     MatButtonModule,
-    DynamicFormConfigModule.withAction(matDynamicFormButtonType)
+    MatDialogModule,
+    DynamicFormElementModule,
+    DynamicFormConfigModule.withAction(matDynamicFormButtonType),
+    DynamicFormActionModule.withHandlers(dynamicFormDialogHandlers)
   ],
   declarations: [
     MatDynamicFormButtonComponent
   ],
   exports: [
     DynamicFormConfigModule,
+    DynamicFormActionModule,
     MatDynamicFormButtonComponent
   ],
   entryComponents: [

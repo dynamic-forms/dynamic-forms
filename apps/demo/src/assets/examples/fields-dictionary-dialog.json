@@ -31,11 +31,10 @@
           }
         },
         {
-          "type": "dialog",
+          "type": "button",
           "template": {
             "type": "button",
             "label": "Register item",
-            "action": "openDialog",
             "title": "Register item"
           },
           "dialogDefinition": {

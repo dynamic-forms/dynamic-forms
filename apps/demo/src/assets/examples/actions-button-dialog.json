@@ -2,11 +2,10 @@
   "actions": [
     {
       "id": "action-submit",
-      "type": "dialog",
+      "type": "button",
       "template": {
         "type": "button",
         "label": "Delete",
-        "action": "openDialog",
         "title": "Delete account"
       },
       "expressions": {

@@ -175,6 +175,10 @@
             {
               "id": "actions-button-all",
               "label": "All"
+            },
+            {
+              "id": "actions-button-dialog",
+              "label": "Dialog"
             }
           ] 
         },
@@ -184,15 +188,6 @@
             {
               "id": "actions-icon-all",
               "label": "All"
-            }
-          ] 
-        },
-        { 
-          "label": "Dialog",
-          "items": [
-            {
-              "id": "actions-dialog-submit",
-              "label": "Submit"
             }
           ] 
         }

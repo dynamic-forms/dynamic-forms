@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
@@ -16,4 +19,24 @@ export abstract class DynamicFormActionBase<
 
   get action(): Action { return this.element; }
   set action(action: Action) { this.element = action; }
+
+  get dialog(): DynamicForm { return this.action.dialog; }
+  get dialogElements(): DynamicFormElement[] { return this.action.dialogElements; }
+  get dialogActions(): DynamicFormAction[] { return this.action.dialogActions; }
+
+  get dialogOpen(): boolean { return this.action.dialogOpen; }
+  get dialogOpen$(): Observable<boolean> { return this.action.dialogOpenChange; }
+
+  handleEvent($event: Event): void {
+    if (this.dialog) {
+      return this.dialogOpen
+        ? this.actionService.handle(this.action, $event)
+        : this.openDialog();
+    }
+    return this.actionService.handle(this.action, $event);
+  }
+
+  openDialog(): void { this.action.openDialog(); }
+  closeDialog(): void { this.action.closeDialog(); }
+  toggleDialog(): void { this.action.toggleDialog(); }
 }

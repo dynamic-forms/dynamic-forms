@@ -35,11 +35,6 @@ export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-tem
 export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.module';
 export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.pipe';
 export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.service';
-export * from './lib/dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog-base';
-export * from './lib/dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog-definition';
-export * from './lib/dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog-factory';
-export * from './lib/dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog-template';
-export * from './lib/dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog.module';
 export * from './lib/dynamic-form-array/dynamic-form-array';
 export * from './lib/dynamic-form-array/dynamic-form-array-base';
 export * from './lib/dynamic-form-array/dynamic-form-array-definition';

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormDialog } from '../dynamic-form-action/dynamic-form-dialog/dynamic-form-dialog';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -39,8 +38,10 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
 };
 
 export function dynamicFormSubmit(form: DynamicForm, action: DynamicFormAction): void {
-  if (action.parent instanceof DynamicFormDialog) {
-    action.parent.close();
+  if (action.dialogOpen) {
+    action.closeDialog();
+  } else if ((<DynamicFormAction>action.parent).dialogOpen) {
+    (<DynamicFormAction>action.parent).closeDialog();
   }
   form.submit();
 }
