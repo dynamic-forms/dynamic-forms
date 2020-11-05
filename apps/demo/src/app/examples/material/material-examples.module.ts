@@ -21,7 +21,10 @@ export function dynamicFormIdBuilder(): string {
         validate: 'error',
         reset: 'delete',
         resetDefault: 'restore_page',
-        remove: 'clear'
+        remove: 'clear',
+        push: 'add',
+        pop: 'remove',
+        register: 'add'
       },
       libraryName: 'material'
     }),

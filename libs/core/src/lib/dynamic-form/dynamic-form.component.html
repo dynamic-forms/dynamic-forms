@@ -2,8 +2,10 @@
   ? [ theme, template.classNameWrapper ] : theme || template?.classNameWrapper">
   <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="submit()">
     <div class="dynamic-form-header" *ngIf="template?.label || headerActions?.length" [ngClass]="template?.classNameHeader">
-      <div class="dynamic-form-header-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
-      <!--<dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>-->
+      <div class="dynamic-form-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
+      <div class="dynamic-form-toolbar" *ngIf="headerActions?.length" >
+        <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
+      </div>
     </div>
     <div class="dynamic-form-elements" *ngIf="elements?.length" [ngClass]="template?.classNameElements">
       <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>

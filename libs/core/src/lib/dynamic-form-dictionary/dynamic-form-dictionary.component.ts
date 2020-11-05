@@ -22,5 +22,7 @@ export class DynamicFormDictionaryComponent<
   }
 
   get elements(): DynamicFormElement[] { return this.field.elements; }
-  get actions(): DynamicFormAction[] { return this.field.footerActions; }
+
+  get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
+  get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
 }
