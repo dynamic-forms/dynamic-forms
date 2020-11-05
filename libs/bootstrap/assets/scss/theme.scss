@@ -321,6 +321,22 @@ $dynamic-form-material-red: #f44336;
           }
         }
       }
+
+      .modal-footer {
+        &.reverse {
+          flex-direction: row-reverse;
+  
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+        }
+  
+        button {
+          margin-left: 0px;
+          margin-right: 10px;
+        }
+      }
     }
   }
 }
