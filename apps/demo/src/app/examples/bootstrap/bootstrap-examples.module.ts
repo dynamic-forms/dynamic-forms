@@ -21,9 +21,10 @@ export function dynamicFormIdBuilder(): string {
         validate: 'error',
         reset: 'delete',
         resetDefault: 'restore_page',
-        remove: 'clear',
         push: 'add',
         pop: 'remove',
+        remove: 'clear',
+        clear: 'clear',
         register: 'add'
       },
       libraryName: 'bootstrap'

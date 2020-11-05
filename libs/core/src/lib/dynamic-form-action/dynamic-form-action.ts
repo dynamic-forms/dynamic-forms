@@ -41,6 +41,10 @@ export class DynamicFormAction<
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog ? this._dialog.headerActions : undefined; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog ? this._dialog.footerActions : undefined; }
 
+  checkDialog(): void {
+    return this._dialog && this._dialog.check();
+  }
+
   initDialog(dialog: DynamicForm): void {
     this._dialog = dialog;
   }

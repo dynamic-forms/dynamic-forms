@@ -1,25 +1,19 @@
 <dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
 
-<ng-template #modalTemplateRef>
-  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.classNameWrapper 
-  ? [ theme, template.classNameWrapper ] : theme || element.root.template?.classNameWrapper">
-    <div class="dynamic-form" [ngClass]="element.root.template?.className">
-      <div class="dynamic-form-modal" [ngClass]="template?.className">
-        <div class="modal-header" *ngIf="template?.titleHtml || template?.title">
-          <div class="modal-title" *ngIf="template?.titleHtml; else titlePlain" 
-            [ngClass]="template.classNameTitle" [innerHTML]="template.titleHtml"
-          ></div>
-          <ng-template #titlePlain>
-            <div class="modal-title" [ngClass]="template.classNameTitle">{{template.title}}</div>
-          </ng-template>
-        </div>
-        <div class="modal-content" [ngClass]="template.classNameElements" mat-dialog-content>
-          <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>      
-        </div>
-        <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter" mat-dialog-actions>
-          <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>      
-        </div>    
-      </div>  
-    </div>
-  </div>
-</ng-template>
+<mat-dynamic-form-dialog 
+  [isOpen$]="isOpen$"
+  [elements]="elements" 
+  [headerActions]="headerActions" 
+  [footerActions]="footerActions"
+  [width]="template.width" 
+  [minWidth]="template.width" 
+  [maxWidth]="template.maxWidth"
+  [title]="template.title" 
+  [titleHtml]="template.titleHtml"
+  [classNameForm]="element.root.template?.className" 
+  [classNameModal]="template.className"
+  [classNameTitle]="template.classNameTitle" 
+  [classNameElements]="template.classNameElements"
+  [classNameHeader]="template.classNameHeader" 
+  [classNameFooter]="template.classNameFooter"
+></mat-dynamic-form-dialog>

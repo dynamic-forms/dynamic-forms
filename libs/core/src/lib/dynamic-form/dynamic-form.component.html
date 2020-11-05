@@ -1,5 +1,4 @@
-<div class="dynamic-form-wrapper" [ngClass]="theme && template?.classNameWrapper
-  ? [ theme, template.classNameWrapper ] : theme || template?.classNameWrapper">
+<div class="dynamic-form-wrapper" [ngClass]="theme">
   <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="submit()">
     <div class="dynamic-form-header" *ngIf="template?.label || headerActions?.length" [ngClass]="template?.classNameHeader">
       <div class="dynamic-form-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>

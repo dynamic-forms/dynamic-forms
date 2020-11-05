@@ -4,26 +4,21 @@
   (click)="onClick($event)"
 >{{ template?.label }}</button>
 
-<ng-template #dialogTemplateRef>
-  <div class="dynamic-form-wrapper" [ngClass]="theme && element.root.template?.classNameWrapper 
-  ? [ theme, template.classNameWrapper ] : theme || element.root.template?.classNameWrapper">
-    <div class="dynamic-form" [ngClass]="element.root.template?.className">
-      <div class="dynamic-form-modal" [ngClass]="template?.className">
-        <div class="modal-header" *ngIf="template?.dialogTitleHtml || template?.dialogTitle" [ngClass]="dialogTemplate?.classNameHeader">
-          <div class="modal-title" *ngIf="template?.dialogTitleHtml; else titlePlain" [ngClass]="template.classNameDialogTitle" 
-            [innerHTML]="template.dialogTitleHtml"
-          ></div>
-          <ng-template #titlePlain>
-            <div class="modal-title" [ngClass]="template.classNameDialogTitle">{{template.dialogTitle}}</div>
-          </ng-template>
-        </div>
-        <div class="modal-content" [ngClass]="dialogTemplate?.classNameElements" mat-dialog-content>
-          <dynamic-form-element *ngFor="let element of dialogElements" [element]="element"></dynamic-form-element>      
-        </div>
-        <div class="modal-footer" *ngIf="dialogFooterActions?.length" [ngClass]="dialogTemplate?.classNameFooter" mat-dialog-actions>
-          <dynamic-form-element *ngFor="let action of dialogFooterActions" [element]="action"></dynamic-form-element>      
-        </div>    
-      </div>  
-    </div>
-  </div>
-</ng-template>
+<mat-dynamic-form-dialog 
+  *ngIf="dialog"
+  [isOpen$]="dialogOpen$"
+  [elements]="dialogElements" 
+  [headerActions]="dialogHeaderActions" 
+  [footerActions]="dialogFooterActions"
+  [width]="template.dialogWidth" 
+  [minWidth]="template.dialogMinWidth" 
+  [maxWidth]="template.dialogMaxWidth"
+  [title]="template.dialogTitle" 
+  [titleHtml]="template.dialogTitleHtml"
+  [classNameForm]="element.root.template?.className" 
+  [classNameModal]="template.className"
+  [classNameTitle]="template.classNameDialogTitle" 
+  [classNameElements]="dialogTemplate.classNameElements"
+  [classNameHeader]="dialogTemplate.classNameHeader" 
+  [classNameFooter]="dialogTemplate.classNameFooter"
+></mat-dynamic-form-dialog>
