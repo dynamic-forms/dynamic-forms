@@ -71,7 +71,7 @@
                   "action": "registerDictionaryField"
                 },
                 "expressions": {
-                  "disabled": "data.parent.dialog.status !== 'VALID'"
+                  "disabled": "!data.parent.dialog.model.key"
                 }  
               }
             ]
