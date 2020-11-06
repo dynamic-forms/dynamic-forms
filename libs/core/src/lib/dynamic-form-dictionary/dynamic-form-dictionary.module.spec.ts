@@ -55,7 +55,7 @@ describe('DynamicFormDictionaryModule', () => {
     })
   );
 
-  it('handler calls registerField of dictionaryy field',
+  it('handler calls registerField of dictionary field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'registerDictionaryField');
       const field = <DynamicFormDictionary>{ registerField(_elem: DynamicFormField): void {}, length: 0 };
@@ -67,7 +67,7 @@ describe('DynamicFormDictionaryModule', () => {
 
       spyOn(field, 'registerField');
 
-      handler.func(field, null);
+      handler.func(field, <any>{ parent: {} });
 
       expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
       expect(field.registerField).toHaveBeenCalledWith(element);
