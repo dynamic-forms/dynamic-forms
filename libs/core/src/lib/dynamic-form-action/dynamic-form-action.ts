@@ -17,48 +17,47 @@ export class DynamicFormAction<
 > extends DynamicFormElement<Template, Definition, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
 
   private _dialogOpenSubject: BehaviorSubject<boolean>;
-  private _dialogOpenChange: Observable<boolean>;
+  private _dialogOpenChanges: Observable<boolean>;
 
   protected _dialog: DynamicForm;
 
   constructor(readonly root: DynamicForm, readonly parent: DynamicFormElement | DynamicFormField, definition: Definition) {
     super(definition);
     this._dialogOpenSubject = new BehaviorSubject(false);
-    this._dialogOpenChange = this._dialogOpenSubject.asObservable();
+    this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
   }
 
   get classType(): DynamicFormClassType { return 'action'; }
 
+  get dialogOpen(): boolean { return this._dialogOpenSubject.value; }
+  get dialogOpenChanges(): Observable<boolean> { return this._dialogOpenChanges; }
+
   get dialogDefinition(): DynamicFormDefinition { return this.definition.dialogDefinition; }
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
-  get dialogOpen(): boolean { return this._dialogOpenSubject.value; }
-  get dialogOpenChange(): Observable<boolean> { return this._dialogOpenChange; }
-
   get dialog(): DynamicForm { return this._dialog; }
-  get dialogElements(): DynamicFormElement[] { return this._dialog ? this._dialog.elements : undefined; }
-
-  get dialogHeaderActions(): DynamicFormAction[] { return this._dialog ? this._dialog.headerActions : undefined; }
-  get dialogFooterActions(): DynamicFormAction[] { return this._dialog ? this._dialog.footerActions : undefined; }
-
-  checkDialog(): void {
-    return this._dialog && this._dialog.check();
-  }
+  get dialogElements(): DynamicFormElement[] { return this._dialog.elements; }
+  get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
+  get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
   initDialog(dialog: DynamicForm): void {
     this._dialog = dialog;
   }
 
   openDialog(): void {
-    return !this.dialogOpen && this._dialogOpenSubject.next(true);
+    return this.dialog && !this.dialogOpen && this._dialogOpenSubject.next(true);
   }
 
   closeDialog(): void {
-    return this.dialogOpen && this._dialogOpenSubject.next(false);
+    return this.dialog && this.dialogOpen && this._dialogOpenSubject.next(false);
   }
 
   toggleDialog(): void {
-    this._dialogOpenSubject.next(!this.dialogOpen);
+    return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
+  }
+
+  checkDialog(): void {
+    return this.dialog && this.dialogOpen && this._dialog.check();
   }
 
   protected createExpressionData(): DynamicFormActionExpressionData {

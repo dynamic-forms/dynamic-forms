@@ -22,17 +22,16 @@ export abstract class DynamicFormActionBase<
   get action(): Action { return this.element; }
   set action(action: Action) { this.element = action; }
 
-  get dialogDefinition(): DynamicFormDefinition { return this.element.dialogDefinition; }
-  get dialogTemplate(): DynamicFormTemplate { return this.element.dialogTemplate; }
+  get dialogOpen(): boolean { return this.action.dialogOpen; }
+  get dialogOpen$(): Observable<boolean> { return this.action.dialogOpenChanges; }
 
-  get dialogOpen(): boolean { return this.element.dialogOpen; }
-  get dialogOpen$(): Observable<boolean> { return this.element.dialogOpenChange; }
+  get dialogDefinition(): DynamicFormDefinition { return this.action.dialogDefinition; }
+  get dialogTemplate(): DynamicFormTemplate { return this.action.dialogTemplate; }
 
-  get dialog(): DynamicForm { return this.element.dialog; }
-  get dialogElements(): DynamicFormElement[] { return this.element.dialogElements; }
-
-  get dialogHeaderActions(): DynamicFormAction[] { return this.element.dialogHeaderActions; }
-  get dialogFooterActions(): DynamicFormAction[] { return this.element.dialogFooterActions; }
+  get dialog(): DynamicForm { return this.action.dialog; }
+  get dialogElements(): DynamicFormElement[] { return this.action.dialogElements; }
+  get dialogHeaderActions(): DynamicFormAction[] { return this.action.dialogHeaderActions; }
+  get dialogFooterActions(): DynamicFormAction[] { return this.action.dialogFooterActions; }
 
   handleEvent($event: Event): void {
     if (this.dialog) {

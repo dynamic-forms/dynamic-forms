@@ -131,7 +131,6 @@ export class DynamicFormBuilder {
       const dialog = this.createForm(action.dialogDefinition, {});
       dialog.initExpressions(this.createFieldExpressions(dialog));
       dialog.initElements(this.createFormElements(dialog, dialog, dialog.definition.elements));
-      dialog.initValidators(this.createGroupValidators(dialog));
       dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
       dialog.initFooterActions(this.createFormActions(root, action, dialog.definition.footerActions));
       action.initDialog(dialog);

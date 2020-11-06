@@ -5,7 +5,7 @@ import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
@@ -22,8 +22,9 @@ describe('DynamicFormModal', () => {
     expect(element.root).toBe(root);
 
     expect(element.isOpen).toBeFalse();
-    expect(element.isOpenChange).toBeTruthy();
+    expect(element.isOpenChanges).toBeTruthy();
 
+    expect(element.headerActions).toEqual([]);
     expect(element.footerActions).toEqual([]);
     expect(element.trigger).toBeUndefined();
   });

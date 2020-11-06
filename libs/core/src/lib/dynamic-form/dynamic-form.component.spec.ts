@@ -73,12 +73,12 @@ describe('DynamicFormComponent', () => {
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
 
-    component.template.classNameWrapper = 'className1 className2';
+    component.theme = 'theme';
     fixture.detectChanges();
 
-    expect(formWrapperElement.className).toBe('dynamic-form-wrapper className1 className2');
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper theme');
 
-    component.template.classNameWrapper = null;
+    component.theme = null;
     fixture.detectChanges();
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
