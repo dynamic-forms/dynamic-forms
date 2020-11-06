@@ -1,7 +1,10 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
   dynamicFormFieldValidateHandler, dynamicFormSubmitHandler,
@@ -78,6 +81,51 @@ describe('DynamicFormFieldModule', () => {
       handler.func(field, null);
 
       expect(field.validate).toHaveBeenCalled();
+    })
+  );
+
+  it('handler returns root form',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'submit');
+      const root = <DynamicForm>{ submit(): void {} };
+      const action = <DynamicFormAction>{ root };
+
+      const form = handler.elementFunc(action);
+
+      expect(form).toBe(root);
+    })
+  );
+
+  it('handler calls submit of form',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'submit');
+      const form = <DynamicForm>{ submit(): void {} };
+      const field = <DynamicFormField>{};
+      const action = <DynamicFormAction>{ root: form, parent: field };
+
+      spyOn(form, 'submit');
+
+      handler.func(form, action);
+
+      expect(form.submit).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls closeDialog of parent action and submit of form',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'submit');
+      const form = <DynamicForm>{ submit(): void {} };
+      const dialog = <DynamicForm>{};
+      const dialogAction = <DynamicFormAction>{ dialog, dialogOpen: true, closeDialog(): void {} };
+      const action = <DynamicFormAction>{ root: form, parent: <DynamicFormElement>dialogAction };
+
+      spyOn(form, 'submit');
+      spyOn(dialogAction, 'closeDialog');
+
+      handler.func(form, action);
+
+      expect(form.submit).toHaveBeenCalled();
+      expect(dialogAction.closeDialog).toHaveBeenCalled();
     })
   );
 });

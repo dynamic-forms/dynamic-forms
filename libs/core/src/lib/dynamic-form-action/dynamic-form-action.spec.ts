@@ -40,24 +40,29 @@ describe('DynamicFormAction', () => {
     expect(() => action.dialogFooterActions).toThrow();
   });
 
-  it('returns expression data with expression data of parent and root being undefined', () => {
+  it('returns expression data with expression data of parent, root and dialog being undefined', () => {
     const definition = <DynamicFormActionDefinition>{ template: {} };
     const action = new DynamicFormAction(null, null, definition);
 
     expect(action.expressionData.parent).toBeUndefined();
     expect(action.expressionData.root).toBeUndefined();
+    expect(action.expressionData.dialog).toBeUndefined();
   });
 
-  it('returns expression data with expression data of parent and root being defined', () => {
+  it('returns expression data with expression data of parent, root and dialog being defined', () => {
     const rootExpressionData = <DynamicFormFieldExpressionData>{};
     const parentExpressionData = <DynamicFormFieldExpressionData>{};
+    const dialogExpressionData = <DynamicFormFieldExpressionData>{};
     const root = <DynamicForm>{ expressionData: rootExpressionData };
     const parent = <DynamicFormField>{ expressionData: parentExpressionData };
+    const dialog = <DynamicForm>{ expressionData: dialogExpressionData };
     const definition = <DynamicFormActionDefinition>{ template: {} };
     const action = new DynamicFormAction(root, parent, definition);
+    action.initDialog(dialog);
 
     expect(action.expressionData.parent).toEqual(parentExpressionData);
     expect(action.expressionData.root).toEqual(rootExpressionData);
+    expect(action.expressionData.dialog).toEqual(dialogExpressionData);
   });
 
   it('inits expressions', () => {

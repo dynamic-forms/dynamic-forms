@@ -73,4 +73,38 @@ describe('DynamicFormActionBase', () => {
     expect(component.dialogHeaderActions).toBe(dialog.headerActions);
     expect(component.dialogFooterActions).toBe(dialog.footerActions);
   });
+
+  it('open, close, toggle and check dialog throws if no dialog', () => {
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {} };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+
+    component.action = action;
+
+    expect(() => component.openDialog()).not.toThrow();
+    expect(() => component.closeDialog()).not.toThrow();
+    expect(() => component.toggleDialog()).not.toThrow();
+    expect(() => component.checkDialog()).not.toThrow();
+  });
+
+  it('opens, closes and toggles dialog', () => {
+    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+    const definition = <DynamicFormActionDefinition>{ template: {}, dialogDefinition };
+    const action = new DynamicFormAction(null, null, definition);
+    const dialog = new DynamicForm(dialogDefinition, {});
+
+    action.initDialog(dialog);
+    component.action = action;
+
+    spyOn(action, 'openDialog');
+    spyOn(action, 'closeDialog');
+    spyOn(action, 'toggleDialog');
+
+    component.openDialog();
+    component.closeDialog();
+    component.toggleDialog();
+
+    expect(action.openDialog).toHaveBeenCalled();
+    expect(action.closeDialog).toHaveBeenCalled();
+    expect(action.toggleDialog).toHaveBeenCalled();
+  });
 });

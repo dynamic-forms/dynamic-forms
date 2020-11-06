@@ -45,4 +45,5 @@ export abstract class DynamicFormActionBase<
   openDialog(): void { this.action.openDialog(); }
   closeDialog(): void { this.action.closeDialog(); }
   toggleDialog(): void { this.action.toggleDialog(); }
+  checkDialog(): void { this.action.checkDialog(); }
 }
