@@ -17,7 +17,11 @@
       "definitionTemplate": {
         "type": "group",
         "template": {
-          "className": "row"
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(data.index + 1) + '. User'"
         },
         "elements": [
           {
@@ -43,6 +47,7 @@
               "label": "Email",
               "input": {
                 "type": "textbox",
+                "inputType": "email",
                 "placeholder": "Enter email"
               },
               "validation": {
@@ -57,6 +62,7 @@
   ],
   "actions": [
     {
+      "id": "action-submit",
       "type": "button",
       "template": {
         "type": "submit",
@@ -67,6 +73,7 @@
       }
     },
     {
+      "id": "action-validate",
       "type": "button",
       "template": {
         "type": "button",
@@ -75,6 +82,7 @@
       }
     },
     {
+      "id": "action-reset",
       "type": "button",
       "template": {
         "type": "reset",
@@ -82,6 +90,7 @@
       }
     },
     {
+      "id": "action-reset-default",
       "type": "button",
       "template": {
         "type": "button",

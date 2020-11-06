@@ -30,7 +30,7 @@ describe('BsDynamicFormButtonComponent', () => {
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
     const template = <DynamicFormButtonTemplate>{ label: 'label' };
-    const definition = <DynamicFormButtonDefinition>{ type: 'element', template };
+    const definition = <DynamicFormButtonDefinition>{ id: 'id', type: 'element', template };
     element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(root, parent, definition);
     component.element = element;
 
@@ -47,6 +47,7 @@ describe('BsDynamicFormButtonComponent', () => {
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
     expect(formButtonElement).toBeDefined();
+    expect(formButtonElement.id).toBe('id');
     expect(formButtonElement.type).toBe('button');
     expect(formButtonElement.innerText).toBe('label');
   });

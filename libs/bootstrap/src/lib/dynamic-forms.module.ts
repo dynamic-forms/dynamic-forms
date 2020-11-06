@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormContainerModule, DynamicFormContentModule,
-  DynamicFormControlModule, DynamicFormGroupModule, DynamicFormIdBuilder, DynamicFormMarkdownModule,
-  DynamicFormValidationModule, DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY,
-  DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+  DynamicFormControlModule, DynamicFormDictionaryModule, DynamicFormGroupModule, DynamicFormIdBuilder,
+  DynamicFormMarkdownModule, DynamicFormValidationModule, DYNAMIC_FORM_ID_BUILDER,
+  DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { BsDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { BsDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
@@ -16,13 +16,14 @@ import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-librar
     CommonModule,
     ReactiveFormsModule,
     DynamicFormsModule,
+    DynamicFormControlModule,
+    DynamicFormGroupModule,
     DynamicFormArrayModule,
+    DynamicFormDictionaryModule,
+    DynamicFormValidationModule.withValidation(),
     DynamicFormContainerModule,
     DynamicFormContentModule,
     DynamicFormMarkdownModule,
-    DynamicFormControlModule,
-    DynamicFormGroupModule,
-    DynamicFormValidationModule.withValidation(),
     BsDynamicFormElementModule,
     BsDynamicFormActionModule,
     BsDynamicFormInputModule,

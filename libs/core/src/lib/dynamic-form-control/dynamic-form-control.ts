@@ -1,9 +1,9 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
-import { dynamicFormFieldDefaultDebounceTime } from '../dynamic-form-field/dynamic-form-field-options';
+import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
@@ -16,6 +16,7 @@ export class DynamicFormControl<
   Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
 > extends DynamicFormField<FormControl, Template, Definition> {
 
+  private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
 
@@ -61,6 +62,13 @@ export class DynamicFormControl<
     this._control.markAsTouched();
   }
 
+  protected afterInitExpressions(): void {
+    const keys = Object.keys(this._expressions);
+    if (keys.includes('input.defaultValue')) {
+      this.checkDefaultValue();
+    }
+  }
+
   private createModel(): any {
     if (this.parent.model[this.key] === undefined) {
       this.parent.model[this.key] = this.getDefaultValue();
@@ -68,50 +76,64 @@ export class DynamicFormControl<
     return this.parent.model[this.key];
   }
 
+  private createControl(): FormControl {
+    const options = { updateOn: this.getUpdateOn() };
+    return new FormControl(this._model, options);
+  }
+
+  private createValueSubscription(): Subscription {
+    const valueChanges = this._control.valueChanges;
+    const observer = { next: value => this.setModel(value) };
+    if (this.settings.updateType === 'debounce') {
+      const debounce = this.settings.updateDebounce || dynamicFormFieldDefaultDebounce;
+      return valueChanges.pipe(
+        tap(() => this._valueChanging = true),
+        debounceTime(debounce),
+        tap(() => this._valueChanging = false),
+      ).subscribe(observer);
+    }
+    return valueChanges.subscribe(observer);
+  }
+
   private getDefaultValue(): any {
     const input = this.definition.template.input;
     return input && input.defaultValue !== undefined ? input.defaultValue : null;
   }
 
-  private createControl(): FormControl {
-    const options = { updateOn: this.updateOn };
-    return new FormControl(this._model, options);
-  }
-
-  private get updateOn(): 'change' | 'blur' {
-    const update = this.options.update;
-    if (update === 'debounce' || typeof update === 'object') {
+  private getUpdateOn(): 'change' | 'blur' | 'submit' {
+    if (this.settings.updateType === 'debounce') {
       return 'change';
     }
-    return update;
+    return this.settings.updateType;
   }
 
-  private createValueSubscription(): Subscription {
-    const update = this.options.update;
-    const valueChanges = this._control.valueChanges;
-    const observer = { next: model => this.setModel(model) };
-    if (update === 'debounce') {
-      const time = dynamicFormFieldDefaultDebounceTime;
-      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
-    }
-    if (typeof update === 'object') {
-      const time = update.time || dynamicFormFieldDefaultDebounceTime;
-      return valueChanges.pipe(debounceTime(time)).subscribe(observer);
-    }
-    return valueChanges.subscribe(observer);
-  }
-
-  private setModel(model: any): void {
-    this.parent.model[this.key] = model;
+  private setModel(value: any): void {
+    this.parent.model[this.key] = value;
     this._model = this.parent.model[this.key];
   }
 
+  private setValue(value: any, markAsTouched: boolean): void {
+    this._control.setValue(value, { onlySelf: true, emitEvent: false });
+    return markAsTouched && this._control.markAsTouched();
+  }
+
+  private checkDefaultValue(): void {
+    const defaultValue = this.getDefaultValue();
+    if (this.model !== defaultValue) {
+      this.setModel(defaultValue);
+      this.setValue(defaultValue, false);
+    }
+  }
+
   private checkValue(): void {
-    const model = this.parent.model[this.key];
-    if (this._control.value !== model || this._model !== model) {
-      this._model = model;
-      this._control.setValue(model, { onlySelf: true, emitEvent: false });
-      this._control.markAsTouched();
+    if (this._valueChanging) {
+      return;
+    }
+
+    const value = this.parent.model[this.key];
+    if (this._control.value !== value || this._model !== value) {
+      this.setModel(value);
+      this.setValue(value, true);
     }
     this._evaluators.forEach(evaluator => evaluator.func(this));
   }

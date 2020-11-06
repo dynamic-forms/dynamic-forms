@@ -1,0 +1,171 @@
+{
+  "elements": [
+    {
+      "type": "content",
+      "template": {
+        "content": "<h3>Inputs plain</h3>"
+      }
+    },
+    {
+      "key": "checkbox",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "checkbox"
+        }
+      }
+    },
+    {
+      "key": "combobox",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "combobox",
+          "options": [
+            "Value1",
+            "Value2",
+            "Value3"
+          ]
+        }
+      }
+    },
+    {
+      "key": "datepicker",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "datepicker"
+        }
+      }
+    },
+    {
+      "key": "numberbox",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "numberbox"
+        }
+      }
+    },
+    {
+      "key": "radio",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "radio",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "select",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "switch",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "switch"
+        }
+      }
+    },
+    {
+      "key": "textarea",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "textarea"
+        }
+      }
+    },
+    {
+      "key": "textbox",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "textbox"
+        }
+      }
+    },
+    {
+      "key": "toggle",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "toggle",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            },
+            {
+              "value": 3,
+              "label": "Option 3",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ]
+}
