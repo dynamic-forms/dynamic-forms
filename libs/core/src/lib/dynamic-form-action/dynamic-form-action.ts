@@ -56,10 +56,6 @@ export class DynamicFormAction<
     return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
   }
 
-  checkDialog(): void {
-    return this.dialog && this.dialogOpen && this._dialog.check();
-  }
-
   protected createExpressionData(): DynamicFormActionExpressionData {
     const expressionData = {} as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {

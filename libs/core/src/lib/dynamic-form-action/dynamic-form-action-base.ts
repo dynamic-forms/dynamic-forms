@@ -1,3 +1,4 @@
+import { DoCheck } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
@@ -13,7 +14,7 @@ export abstract class DynamicFormActionBase<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
   Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>
-> extends DynamicFormElementBase<Template, Definition, Action> {
+> extends DynamicFormElementBase<Template, Definition, Action> implements DoCheck {
 
   constructor(protected actionService: DynamicFormActionService) {
     super();
@@ -33,6 +34,11 @@ export abstract class DynamicFormActionBase<
   get dialogHeaderActions(): DynamicFormAction[] { return this.action.dialogHeaderActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this.action.dialogFooterActions; }
 
+  ngDoCheck(): void {
+    return this.dialog && this.dialogOpen && this.dialog.check();
+  }
+
+
   handleEvent($event: Event): void {
     if (this.dialog) {
       return this.dialogOpen
@@ -45,5 +51,4 @@ export abstract class DynamicFormActionBase<
   openDialog(): void { this.action.openDialog(); }
   closeDialog(): void { this.action.closeDialog(); }
   toggleDialog(): void { this.action.toggleDialog(); }
-  checkDialog(): void { this.action.checkDialog(); }
 }

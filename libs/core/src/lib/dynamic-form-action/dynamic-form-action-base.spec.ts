@@ -74,7 +74,7 @@ describe('DynamicFormActionBase', () => {
     expect(component.dialogFooterActions).toBe(dialog.footerActions);
   });
 
-  it('open, close, toggle and check dialog throws if no dialog', () => {
+  it('open, close, and toggle dialog throws if no dialog', () => {
     const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {} };
     const action = new DynamicFormAction(<any>{}, <any>{}, definition);
 
@@ -83,7 +83,6 @@ describe('DynamicFormActionBase', () => {
     expect(() => component.openDialog()).not.toThrow();
     expect(() => component.closeDialog()).not.toThrow();
     expect(() => component.toggleDialog()).not.toThrow();
-    expect(() => component.checkDialog()).not.toThrow();
   });
 
   it('opens, closes and toggles dialog', () => {
@@ -106,5 +105,38 @@ describe('DynamicFormActionBase', () => {
     expect(action.openDialog).toHaveBeenCalled();
     expect(action.closeDialog).toHaveBeenCalled();
     expect(action.toggleDialog).toHaveBeenCalled();
+  });
+
+  it('checks dialog', () => {
+    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {}, dialogDefinition };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+    const dialog = new DynamicForm(dialogDefinition, {});
+
+    action.initDialog(dialog);
+    action.openDialog();
+
+    spyOn(dialog, 'check');
+
+    component.action = action;
+    component.ngDoCheck();
+
+    expect(dialog.check).toHaveBeenCalled();
+  });
+
+  it('does not check dialog if not open', () => {
+    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {}, dialogDefinition };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+    const dialog = new DynamicForm(dialogDefinition, {});
+
+    action.initDialog(dialog);
+
+    spyOn(dialog, 'check');
+
+    component.action = action;
+    component.ngDoCheck();
+
+    expect(dialog.check).not.toHaveBeenCalled();
   });
 });

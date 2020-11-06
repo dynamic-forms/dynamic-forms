@@ -103,7 +103,7 @@ describe('DynamicFormAction', () => {
     expect(action.dialogFooterActions).toEqual([]);
   });
 
-  it('open, close, toggle and check dialog do not throw if no dialog', () => {
+  it('open, close and toggle dialog do not throw if no dialog', () => {
     const dialogDefinition = <DynamicFormDefinition>{ template: {} };
     const definition = <DynamicFormActionDefinition>{ template: {}, dialogDefinition };
     const action = new DynamicFormAction(null, null, definition);
@@ -111,7 +111,6 @@ describe('DynamicFormAction', () => {
     expect(() => action.openDialog()).not.toThrow();
     expect(() => action.closeDialog()).not.toThrow();
     expect(() => action.toggleDialog()).not.toThrow();
-    expect(() => action.checkDialog()).not.toThrow();
   });
 
   it('opens, closes and toggles dialog', (done) => {
@@ -186,34 +185,5 @@ describe('DynamicFormAction', () => {
     expect(dialogOpenChanges).toEqual([ false ]);
 
     done();
-  });
-
-  it('checks dialog', () => {
-    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
-    const definition = <DynamicFormActionDefinition>{ template: {}, dialogDefinition };
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
-
-    spyOn(dialog, 'check');
-
-    action.initDialog(dialog);
-    action.openDialog();
-    action.checkDialog();
-
-    expect(dialog.check).toHaveBeenCalled();
-  });
-
-  it('does not check dialog if dialog is not open', () => {
-    const dialogDefinition = <DynamicFormDefinition>{ type: 'componentType', template: {}, elements: [] };
-    const definition = <DynamicFormActionDefinition>{ type: 'componentType', template: {}, elements: [], dialogDefinition };
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
-
-    spyOn(dialog, 'check');
-
-    action.initDialog(dialog);
-    action.checkDialog();
-
-    expect(dialog.check).not.toHaveBeenCalled();
   });
 });
