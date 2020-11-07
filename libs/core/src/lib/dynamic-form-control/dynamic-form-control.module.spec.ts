@@ -2,7 +2,7 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
-  dynamicFormFieldValidateHandler } from '../dynamic-form-field/dynamic-form-field.module';
+  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler} from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
@@ -55,7 +55,7 @@ describe('DynamicFormControlModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(3);
+      expect(handlers.length).toBe(4);
       expect(handlers[0]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[0].func).toEqual(jasmine.any(Function));
       expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
@@ -65,6 +65,9 @@ describe('DynamicFormControlModule', () => {
       expect(handlers[2]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[2].func).toEqual(jasmine.any(Function));
       expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[3]).toEqual(dynamicFormSubmitHandler);
+      expect(handlers[3].func).toEqual(jasmine.any(Function));
+      expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 });

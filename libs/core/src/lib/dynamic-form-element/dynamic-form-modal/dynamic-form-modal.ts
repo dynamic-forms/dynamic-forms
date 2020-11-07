@@ -11,18 +11,20 @@ export class DynamicFormModal<
 > extends DynamicFormElement<Template, Definition> {
 
   private _isOpenSubject: BehaviorSubject<boolean>;
-  private _isOpenChange: Observable<boolean>;
+  private _isOpenChanges: Observable<boolean>;
 
   protected _root: DynamicForm;
 
-  protected _actions: DynamicFormAction[] = [];
   protected _trigger: DynamicFormAction;
+
+  protected _headerActions: DynamicFormAction[] = [];
+  protected _footerActions: DynamicFormAction[] = [];
 
   constructor(root: DynamicForm, definition: Definition) {
     super(definition);
     this._root = root;
     this._isOpenSubject = new BehaviorSubject(false);
-    this._isOpenChange = this._isOpenSubject.asObservable();
+    this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
       isOpen: () => this.isOpen
     });
@@ -30,18 +32,24 @@ export class DynamicFormModal<
 
   get root(): DynamicForm { return this._root; }
 
-  get isOpen(): boolean { return this._isOpenSubject.value; }
-  get isOpenChange(): Observable<boolean> { return this._isOpenChange; }
-
-  get actions(): DynamicFormAction[] { return this._actions; }
   get trigger(): DynamicFormAction { return this._trigger; }
 
-  initActions(actions: DynamicFormAction[]): void {
-    this._actions = actions || [];
-  }
+  get headerActions(): DynamicFormAction[] { return this._headerActions; }
+  get footerActions(): DynamicFormAction[] { return this._footerActions; }
+
+  get isOpen(): boolean { return this._isOpenSubject.value; }
+  get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
   initTrigger(trigger: DynamicFormAction): void {
     this._trigger = trigger;
+  }
+
+  initHeaderActions(actions: DynamicFormAction[]): void {
+    this._headerActions = actions || [];
+  }
+
+  initFooterActions(actions: DynamicFormAction[]): void {
+    this._footerActions = actions || [];
   }
 
   open(): void {

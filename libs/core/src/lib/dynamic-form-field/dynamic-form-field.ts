@@ -28,8 +28,10 @@ export abstract class DynamicFormField<
 
   protected _control: Control;
 
-  protected _actions: DynamicFormAction[] = [];
   protected _validators: DynamicFormFieldValidator[] = [];
+
+  protected _headerActions: DynamicFormAction[] = [];
+  protected _footerActions: DynamicFormAction[] = [];
 
   constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(definition);
@@ -61,21 +63,27 @@ export abstract class DynamicFormField<
   get wrappers(): string[] { return this.definition.wrappers; }
   get unregistered(): boolean { return this.definition.unregistered; }
 
-  get actions(): DynamicFormAction[] { return this._actions; }
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
+
+  get headerActions(): DynamicFormAction[] { return this._headerActions; }
+  get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
   initExpressions(expressions: DynamicFormFieldExpressions): void {
     super.initExpressions(expressions);
     this.afterInitExpressions();
   }
 
-  initActions(actions: DynamicFormAction[]): void {
-    this._actions = actions;
-  }
-
   initValidators(validators: DynamicFormFieldValidator[]): void {
     this._validators = validators || [];
     this._control.setValidators(this.getValidatorFunctions());
+  }
+
+  initHeaderActions(actions: DynamicFormAction[]): void {
+    this._headerActions = actions;
+  }
+
+  initFooterActions(actions: DynamicFormAction[]): void {
+    this._footerActions = actions;
   }
 
   abstract get fieldClassType(): DynamicFormFieldClassType;

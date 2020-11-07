@@ -6,6 +6,8 @@ export * from './lib/dynamic-forms.module';
 export * from './lib/dynamic-form-action/dynamic-form-action.module';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.component';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.module';
+export * from './lib/dynamic-form-dialog/dynamic-form-dialog.component';
+export * from './lib/dynamic-form-dialog/dynamic-form-dialog.module';
 export * from './lib/dynamic-form-element/dynamic-form-element.module';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.component';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.module';

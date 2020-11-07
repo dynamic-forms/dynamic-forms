@@ -4,33 +4,33 @@ import { DynamicFormActionModule } from '../../dynamic-form-action/dynamic-form-
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormModal } from './dynamic-form-modal';
 
-export function dynamicFormModalOpenFactory(modal: DynamicFormModal): void {
+export function dynamicFormModalOpen(modal: DynamicFormModal): void {
   modal.open();
 }
 
 export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'openModal',
-  func: dynamicFormModalOpenFactory,
+  func: dynamicFormModalOpen,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalCloseFactory(modal: DynamicFormModal): void {
+export function dynamicFormModalClose(modal: DynamicFormModal): void {
   modal.close();
 }
 
 export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'closeModal',
-  func: dynamicFormModalCloseFactory,
+  func: dynamicFormModalClose,
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalToggleFactory(modal: DynamicFormModal): void {
+export function dynamicFormModalToggle(modal: DynamicFormModal): void {
   modal.toggle();
 }
 
 export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleModal',
-  func: dynamicFormModalToggleFactory,
+  func: dynamicFormModalToggle,
   libraryName: dynamicFormLibrary.name
 };
 
