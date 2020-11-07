@@ -71,7 +71,7 @@
                   "action": "registerDictionaryField"
                 },
                 "expressions": {
-                  "disabled": "!data.parent.dialog.model.key"
+                  "disabled": "data.parent.dialog.status !== 'VALID'"
                 }  
               }
             ]
@@ -105,7 +105,7 @@
           {
             "type": "icon",
             "template": {
-              "classNameWrapper":  "col-1",
+              "classNameWrapper": "col-1",
               "label": "Remove item",
               "icon": "remove",
               "action": "removeDictionaryField"
@@ -155,7 +155,46 @@
                 "template": {
                   "type": "button",
                   "label": "Register child item",
-                  "action": "registerDictionaryField"
+                  "title": "Register child item",
+                  "dialogTitle": "Register child item"
+                },
+                "dialogDefinition": {
+                  "elements": [
+                    {
+                      "key": "key",
+                      "type": "control",
+                      "template": {
+                        "label": "Key",
+                        "input": {
+                          "type": "textbox"
+                        },
+                        "validation": {
+                          "required": true
+                        }
+                      }
+                    }
+                  ],
+                  "footerActions": [ 
+                    {
+                      "type": "button",
+                      "template": {
+                        "type": "button",
+                        "label": "Cancel",
+                        "action": "closeDialog"
+                      }  
+                    },
+                    {
+                      "type": "button",
+                      "template": {
+                        "type": "button",
+                        "label": "Register",
+                        "action": "registerDictionaryField"
+                      },
+                      "expressions": {
+                        "disabled": "data.parent.dialog.status !== 'VALID'"
+                      }  
+                    }
+                  ]
                 }
               }
             ],

@@ -128,7 +128,7 @@ export class DynamicFormBuilder {
     action.initId(this.getActionId(action));
     action.initExpressions(this.createActionExpressions(action));
     if (action.dialogDefinition) {
-      const dialog = this.createForm(action.dialogDefinition, {});
+      const dialog = new DynamicForm(action.dialogDefinition, {});
       dialog.initExpressions(this.createFieldExpressions(dialog));
       dialog.initElements(this.createFormElements(dialog, dialog, dialog.definition.elements));
       dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
