@@ -3,9 +3,10 @@ import { DynamicFormDictionaryValidation } from './dynamic-form-dictionary-valid
 
 export interface DynamicFormDictionaryTemplate extends DynamicFormFieldTemplate<DynamicFormDictionaryValidation> {
   labelHidden?: boolean;
-  classNameLabel?: string;
-  classNameElements?: string;
-  classNameActions?: string;
   minLength?: number;
   maxLength?: number;
+  classNameLabel?: string;
+  classNameHeader?: string;
+  classNameElements?: string;
+  classNameFooter?: string;
 }

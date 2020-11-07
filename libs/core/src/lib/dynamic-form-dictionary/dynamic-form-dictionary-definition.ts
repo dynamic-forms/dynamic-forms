@@ -9,5 +9,5 @@ export interface DynamicFormDictionaryDefinition<
   defaultKeys?: string[];
   defaultValue?: any;
   elements: undefined;
-  actions?: DynamicFormActionDefinition[];
+  footerActions?: DynamicFormActionDefinition[];
 }

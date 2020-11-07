@@ -109,7 +109,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements).toEqual([]);
       expect(form.fields).toEqual([]);
-      expect(form.actions).toEqual([]);
+      expect(form.footerActions).toEqual([]);
 
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
@@ -144,7 +144,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({});
     })
   );
@@ -160,7 +160,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: null });
     })
   );
@@ -176,7 +176,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: {} });
     })
   );
@@ -192,7 +192,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: [] });
     })
   );
@@ -208,7 +208,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: {} });
     })
   );
@@ -224,7 +224,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
-      expect(form.actions.length).toBe(0);
+      expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({});
     })
   );
@@ -232,7 +232,7 @@ describe('DynamicFormBuilder', () => {
   it('creates DynamicForm including DynamicFormAction in actions',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{
-        actions: [
+        footerActions: [
           <DynamicFormActionDefinition>{ type: 'action', template: {} }
         ]
       };
@@ -240,7 +240,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(0);
       expect(form.fields.length).toBe(0);
-      expect(form.actions.length).toBe(1);
+      expect(form.footerActions.length).toBe(1);
       expect(form.model).toEqual({});
     })
   );

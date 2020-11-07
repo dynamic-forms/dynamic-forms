@@ -32,7 +32,7 @@ describe('DynamicFormDictionary', () => {
 
     expect(formDictionary.elements).toEqual([]);
     expect(formDictionary.fields).toEqual([]);
-    expect(formDictionary.actions).toEqual([]);
+    expect(formDictionary.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: {} });
   });
