@@ -43,7 +43,7 @@ export class ExamplesPage extends Page {
 
   findActionsWrapper(): ElementFinder {
     const formElement = this.findForm();
-    return formElement.element(By.css('.dynamic-form-actions'));
+    return formElement.element(By.css('.dynamic-form-footer'));
   }
 
   findActions(): ElementArrayFinder {
