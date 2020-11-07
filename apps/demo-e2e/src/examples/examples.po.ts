@@ -52,28 +52,28 @@ export class ExamplesPage extends Page {
   }
 
   findActionButtons(): ElementArrayFinder {
-    const actionsElement = this.findActionsWrapper();
-    return actionsElement.all(By.css('button'));
+    const actionsWrapper = this.findActionsWrapper();
+    return actionsWrapper.all(By.css('button'));
   }
 
   findValidateButton(): ElementFinder {
-    const formActions = this.findActionsWrapper();
-    return formActions.element(By.css('button[id="action-validate"]'));
+    const actionsWrapper = this.findActionsWrapper();
+    return actionsWrapper.element(By.css('button[id="action-validate"]'));
   }
 
   findSubmitButton(): ElementFinder {
-    const formActions = this.findActionsWrapper();
-    return formActions.element(By.css('button[id="action-submit"]'));
+    const actionsWrapper = this.findActionsWrapper();
+    return actionsWrapper.element(By.css('button[id="action-submit"]'));
   }
 
   findResetButton(): ElementFinder {
-    const formActions = this.findActionsWrapper();
-    return formActions.element(By.css('button[id="action-reset"]'));
+    const actionsWrapper = this.findActionsWrapper();
+    return actionsWrapper.element(By.css('button[id="action-reset"]'));
   }
 
   findResetDefaultButton(): ElementFinder {
-    const formActions = this.findActionsWrapper();
-    return formActions.element(By.css('button[id="action-reset-default"]'));
+    const actionsWrapper = this.findActionsWrapper();
+    return actionsWrapper.element(By.css('button[id="action-reset-default"]'));
   }
 
   async pressEscape(): Promise<void> {
