@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Optional, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { Observable, Subscription } from 'rxjs';
@@ -34,6 +34,9 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
   @Input() classNameHeader: string;
   @Input() classNameFooter: string;
 
+  // tslint:disable-next-line: typedef
+  @Output() escaped = new EventEmitter();
+
   constructor(private dialog: MatDialog, @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string) {}
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
     const config = this.getDialogConfig();
     const reference = this.dialog.open(this.dialogTemplateRef, config);
     const subscription = reference.beforeClosed().subscribe(_ => {
-      // this.element.close();
+      return this.escaped.emit();
     });
     this._dialog = { reference, subscription };
   }

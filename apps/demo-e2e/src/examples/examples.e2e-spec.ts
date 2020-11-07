@@ -46,17 +46,18 @@ describe('dynamic-forms demo examples', () => {
             expect(await page.findRoot().isPresent()).toBe(true);
             expect(await page.findWrapper().isPresent()).toBe(true);
             expect(await page.findForm().isPresent()).toBe(true);
-            expect(await page.findActionsWrapper().isPresent()).toBe(true);
             expect(await page.findElements().count()).toBeGreaterThan(0);
 
             const controls = page.findControls();
             const actions = page.findActions();
 
             if (await controls.count() === 0) {
+              expect(await page.findActionsWrapper().isPresent()).toBe(false);
               expect(await actions.count()).toBe(0);
             } else {
               const actionButtons = page.findActionButtons();
 
+              expect(await page.findActionsWrapper().isPresent()).toBe(true);
               expect(await actions.count()).toBeGreaterThan(0);
               expect(await actionButtons.count()).toBeGreaterThan(0);
 
