@@ -196,6 +196,10 @@
             {
               "id": "actions-icon-all",
               "label": "All"
+            },
+            {
+              "id": "actions-icon-dialog",
+              "label": "Dialog"
             }
           ] 
         }
