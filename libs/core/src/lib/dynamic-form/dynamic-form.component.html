@@ -1,13 +1,16 @@
-<div class="dynamic-form-wrapper" [ngClass]="theme && template?.wrapperClassName 
-  ? [ theme, template.wrapperClassName ] : theme || template?.wrapperClassName">
-  <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()">
-    <ng-container *ngFor="let element of elements">
-      <dynamic-form-element [element]="element"></dynamic-form-element>
-    </ng-container>
-    <div class="dynamic-form-actions">
-      <ng-container *ngFor="let action of actions">
-        <dynamic-form-element [element]="action"></dynamic-form-element>
-      </ng-container>
+<div class="dynamic-form-wrapper" [ngClass]="theme">
+  <form class="dynamic-form" [ngClass]="template?.className" [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div class="dynamic-form-header" *ngIf="template?.label || headerActions?.length" [ngClass]="template?.classNameHeader">
+      <div class="dynamic-form-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
+      <div class="dynamic-form-toolbar" *ngIf="headerActions?.length" >
+        <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
+      </div>
+    </div>
+    <div class="dynamic-form-elements" *ngIf="elements?.length" [ngClass]="template?.classNameElements">
+      <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
+    </div>
+    <div class="dynamic-form-footer" *ngIf="footerActions?.length" [ngClass]="template?.classNameFooter">
+      <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>
     </div>
   </form>
 </div>

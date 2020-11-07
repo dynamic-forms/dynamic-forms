@@ -9,7 +9,7 @@
       "template": {
         "label": "Users",
         "classNameLabel": "bold",
-        "classNameActions": "reverse",
+        "classNameFooter": "reverse",
         "minLength": 3,
         "maxLength": 5,
         "validation": {
@@ -17,7 +17,7 @@
           "maxLength": true
         }
       },
-      "actions": [
+      "footerActions": [ 
         {
           "type": "button",
           "template": {
@@ -116,7 +116,7 @@
             "trigger": {
               "type": "icon",
               "template": {
-                "wrapperClassName": "col-1",
+                "classNameWrapper":  "col-1",
                 "label": "Edit user",
                 "icon": "edit",
                 "action": "openModal"
@@ -164,7 +164,7 @@
                 ]
               }
             ],
-            "actions": [
+            "footerActions": [ 
               {
                 "type": "button",
                 "template": {
@@ -178,7 +178,7 @@
           {
             "type": "icon",
             "template": {
-              "wrapperClassName": "col-1",
+              "classNameWrapper":  "col-1",
               "label": "Remove user",
               "icon": "remove",
               "action": "removeArrayField"
@@ -188,7 +188,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

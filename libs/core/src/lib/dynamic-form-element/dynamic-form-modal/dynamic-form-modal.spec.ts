@@ -5,7 +5,7 @@ import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
@@ -22,13 +22,14 @@ describe('DynamicFormModal', () => {
     expect(element.root).toBe(root);
 
     expect(element.isOpen).toBeFalse();
-    expect(element.isOpenChange).toBeTruthy();
+    expect(element.isOpenChanges).toBeTruthy();
 
-    expect(element.actions).toEqual([]);
+    expect(element.headerActions).toEqual([]);
+    expect(element.footerActions).toEqual([]);
     expect(element.trigger).toBeUndefined();
   });
 
-  it('sets elements', () => {
+  it('inits elements', () => {
     const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
@@ -41,7 +42,7 @@ describe('DynamicFormModal', () => {
     expect(element.elements).toEqual(elements);
   });
 
-  it('sets elements to empty array', () => {
+  it('inits elements with empty array', () => {
     const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
@@ -51,30 +52,7 @@ describe('DynamicFormModal', () => {
     expect(element.elements).toEqual([]);
   });
 
-  it('sets actions', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(root, definition);
-    const actions = [
-      <DynamicFormAction>{ classType: 'action', definition: {} }
-    ];
-
-    element.initActions(actions);
-
-    expect(element.actions).toEqual(actions);
-  });
-
-  it('sets actions to empty array', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
-    const element = new DynamicFormModal(root, definition);
-
-    element.initActions(null);
-
-    expect(element.actions).toEqual([]);
-  });
-
-  it('sets trigger', () => {
+  it('inits trigger', () => {
     const root = <DynamicForm>{};
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
@@ -83,6 +61,32 @@ describe('DynamicFormModal', () => {
     element.initTrigger(trigger);
 
     expect(element.trigger).toEqual(trigger);
+  });
+
+  it('inits header and footer actions', () => {
+    const root = <DynamicForm>{};
+    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
+    const element = new DynamicFormModal(root, definition);
+    const headerActions = [ <DynamicFormAction>{ classType: 'action', definition: {} } ];
+    const footerActions = [ <DynamicFormAction>{ classType: 'action', definition: {} } ];
+
+    element.initHeaderActions(headerActions);
+    element.initFooterActions(footerActions);
+
+    expect(element.headerActions).toEqual(headerActions);
+    expect(element.footerActions).toEqual(footerActions);
+  });
+
+  it('inits header and footer actions with empty arrays', () => {
+    const root = <DynamicForm>{};
+    const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
+    const element = new DynamicFormModal(root, definition);
+
+    element.initFooterActions(null);
+    element.initFooterActions(null);
+
+    expect(element.headerActions).toEqual([]);
+    expect(element.footerActions).toEqual([]);
   });
 
   it('open, close and toggle sets isOpen', () => {

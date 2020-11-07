@@ -31,7 +31,7 @@
 - Dynamic form controls / inputs include
   - Dynamic form inputs
     - Checkbox and switch
-    - Combobox, radio and select
+    - Combobox, radio, select and toggle
     - Textbox and textarea
     - Datepicker
     - Numberbox

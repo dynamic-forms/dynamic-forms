@@ -30,7 +30,7 @@ describe('DynamicFormArray', () => {
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);
-    expect(formArray.actions).toEqual([]);
+    expect(formArray.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: [] });
   });

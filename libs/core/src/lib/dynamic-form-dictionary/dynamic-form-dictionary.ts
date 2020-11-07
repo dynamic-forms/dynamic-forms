@@ -59,12 +59,12 @@ export class DynamicFormDictionary<
   clearFields(): void {
     const length = this.length;
     if (length > 0) {
-      this._fields.map(field => {
-        this._control.removeControl(field.key);
+      this._fields.forEach(field => {
         field.destroy();
+        delete this._model[field.key];
+        this._control.removeControl(field.key);
       });
       this._fields = [];
-      this._model = {};
       this._control.markAsTouched();
       this._elements = this._fields;
     }

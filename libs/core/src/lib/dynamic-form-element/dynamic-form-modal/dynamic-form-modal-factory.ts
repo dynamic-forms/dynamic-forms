@@ -10,7 +10,8 @@ export function dynamicFormModalFactory(
   const element = new DynamicFormModal(root, definition);
   element.initExpressions(builder.createElementExpressions(element));
   element.initElements(builder.createFormElements(root, parent, element.definition.elements));
-  element.initActions(builder.createFormActions(root, element, element.definition.actions));
   element.initTrigger(builder.createFormAction(root, element, element.definition.trigger));
+  element.initHeaderActions(builder.createFormActions(root, element, element.definition.headerActions));
+  element.initFooterActions(builder.createFormActions(root, element, element.definition.footerActions));
   return element;
 }
