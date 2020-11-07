@@ -73,12 +73,12 @@ describe('DynamicFormComponent', () => {
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
 
-    component.template.wrapperClassName = 'className1 className2';
+    component.theme = 'theme';
     fixture.detectChanges();
 
-    expect(formWrapperElement.className).toBe('dynamic-form-wrapper className1 className2');
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper theme');
 
-    component.template.wrapperClassName = null;
+    component.theme = null;
     fixture.detectChanges();
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
@@ -133,7 +133,7 @@ describe('DynamicFormComponent', () => {
   it('ngOnSubmit emits form submit', () => {
     spyOn(component.formSubmit, 'emit');
 
-    component.ngOnSubmit();
+    component.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,

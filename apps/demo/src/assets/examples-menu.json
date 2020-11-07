@@ -79,8 +79,12 @@
               "label": "Default value" 
             },
             {
-              "id": "fields-array-actions",
-              "label": "Actions"
+              "id": "fields-array-actions-footer",
+              "label": "Actions in footer"
+            },
+            {
+              "id": "fields-array-actions-header",
+              "label": "Actions in header"
             },
             {
               "id": "fields-array-validation",
@@ -114,12 +118,20 @@
               "label": "Default value"
             },
             {
-              "id": "fields-dictionary-actions",
-              "label": "Actions"
+              "id": "fields-dictionary-actions-footer",
+              "label": "Actions in footer"
+            },
+            {
+              "id": "fields-dictionary-actions-header",
+              "label": "Actions in header"
             },
             {
               "id": "fields-dictionary-modal",
               "label": "Modal"
+            },
+            {
+              "id": "fields-dictionary-dialog",
+              "label": "Dialog"
             }
           ]
         }
@@ -171,6 +183,10 @@
             {
               "id": "actions-button-all",
               "label": "All"
+            },
+            {
+              "id": "actions-button-dialog",
+              "label": "Dialog"
             }
           ] 
         },

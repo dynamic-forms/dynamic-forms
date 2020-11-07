@@ -28,19 +28,42 @@ $dynamic-form-material-red: #f44336;
         display: none;
       }
 
-      .dynamic-form-group-label {
-        font-weight: 600;
+      .dynamic-form-group-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
 
-        &.bold {
-          font-weight: 700;
+        &.border-bottom {
+          padding-bottom: 2px;
+          border-bottom: 1px solid rgba(0,0,0, 0.4);      
         }
 
-        &.uppercase {
-          text-transform: uppercase;
+        .dynamic-form-group-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
         }
+        
+        .dynamic-form-group-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
 
-        &.capitalize {
-          text-transform: capitalize;
+          button {
+            margin-left: 10px;
+          }
         }
       }
 
@@ -79,19 +102,42 @@ $dynamic-form-material-red: #f44336;
         display: none;
       }
 
-      .dynamic-form-array-label {
-        font-weight: 600;
+      .dynamic-form-array-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
 
-        &.bold {
-          font-weight: 700;
+        &.border-bottom {
+          padding-bottom: 2px;
+          border-bottom: 1px solid rgba(0,0,0, 0.4);      
         }
 
-        &.uppercase {
-          text-transform: uppercase;
+        .dynamic-form-array-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
         }
 
-        &.capitalize {
-          text-transform: capitalize;
+        .dynamic-form-array-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+
+          button {
+            margin-left: 10px;
+          }
         }
       }
     
@@ -100,7 +146,7 @@ $dynamic-form-material-red: #f44336;
         font-size: 14px;
       }
 
-      .dynamic-form-array-actions {
+      .dynamic-form-array-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
@@ -130,28 +176,50 @@ $dynamic-form-material-red: #f44336;
         display: none;
       }
 
-      .dynamic-form-dictionary-label {
-        font-weight: 600;
+      .dynamic-form-dictionary-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
 
-        &.bold {
-          font-weight: 700;
+        &.border-bottom {
+          padding-bottom: 2px;
+          border-bottom: 1px solid rgba(0,0,0, 0.4);      
         }
 
-        &.uppercase {
-          text-transform: uppercase;
+        .dynamic-form-dictionary-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
         }
 
-        &.capitalize {
-          text-transform: capitalize;
+        .dynamic-form-dictionary-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+
+          button {
+            margin-left: 10px;
+          }
         }
       }
-    
+
       .dynamic-form-dictionary-errors {
         color: $dynamic-form-material-red;
         font-size: 14px;
       }
 
-      .dynamic-form-dictionary-actions {
+      .dynamic-form-dictionary-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
@@ -224,7 +292,25 @@ $dynamic-form-material-red: #f44336;
       }
     }
 
-    .dynamic-form-actions {
+    .dynamic-form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+
+      &.border-bottom {
+        padding-bottom: 2px;
+        border-bottom: 1px solid rgba(0,0,0, 0.4);      
+      }
+      
+      .dynamic-form-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-self: flex-end;
+      }
+    }
+
+    .dynamic-form-footer {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -232,7 +318,17 @@ $dynamic-form-material-red: #f44336;
       margin-top: 10px;
       margin-bottom: 10px;
       
+      &.reverse {
+        flex-direction: row-reverse;
+
+        button {
+          margin-left: 10px;
+          margin-right: 0px;
+        }
+      }
+
       button {
+        margin-left: 0px;
         margin-right: 10px;
       }
     }
@@ -259,6 +355,22 @@ $dynamic-form-material-red: #f44336;
             font-size: 20px;
             font-weight: bold;
           }
+        }
+      }
+
+      .modal-footer {
+        &.reverse {
+          flex-direction: row-reverse;
+  
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+        }
+  
+        button {
+          margin-left: 0px;
+          margin-right: 10px;
         }
       }
     }    

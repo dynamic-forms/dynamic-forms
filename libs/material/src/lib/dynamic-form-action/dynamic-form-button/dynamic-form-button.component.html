@@ -3,3 +3,22 @@
   [type]="template?.type || 'button'" [disabled]="template?.disabled"
   (click)="onClick($event)"
 >{{ template?.label }}</button>
+
+<mat-dynamic-form-dialog 
+  *ngIf="dialog"
+  [isOpen$]="dialogOpen$"
+  [elements]="dialogElements" 
+  [headerActions]="dialogHeaderActions" 
+  [footerActions]="dialogFooterActions"
+  [width]="template?.dialogWidth" 
+  [minWidth]="template?.dialogMinWidth" 
+  [maxWidth]="template?.dialogMaxWidth"
+  [title]="template?.dialogTitle" 
+  [titleHtml]="template?.dialogTitleHtml"
+  [classNameForm]="element.root.template?.className" 
+  [classNameModal]="template?.className"
+  [classNameTitle]="template?.classNameDialogTitle" 
+  [classNameElements]="dialogTemplate?.classNameElements"
+  [classNameHeader]="dialogTemplate?.classNameHeader" 
+  [classNameFooter]="dialogTemplate?.classNameFooter"
+></mat-dynamic-form-dialog>
