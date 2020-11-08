@@ -1,4 +1,71 @@
 {
+  "template": {
+    "label": "Delete Account",
+    "validation": {
+      "equalPassword": true
+    }
+  },
+  "elements": [
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter your email"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      }
+    },
+    {
+      "key": "confirmPassword",
+      "type": "control",
+      "template": {
+        "label": "Confirm Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      }
+    }
+  ],
+  "validators": {
+    "equalPassword": {
+      "type": "equal",
+      "parameters": {
+        "keys": [ "password", "confirmPassword" ]
+      },
+      "message": "The password does not fit the confirm password"
+    }
+  },
   "footerActions": [ 
     {
       "id": "action-submit",
@@ -52,79 +119,6 @@
           }
         ]
       }
-    }
-  ],
-  "elements": [
-    {
-      "key": "account",
-      "type": "group",
-      "template": {
-        "label": "Delete Account",
-        "validation": {
-          "equalPassword": true
-        }
-      },
-      "validators": {
-        "equalPassword": {
-          "type": "equal",
-          "parameters": {
-            "keys": [ "password", "confirmPassword" ]
-          },
-          "message": "The password does not fit the confirm password"
-        }
-      },
-      "elements": [
-        {
-          "key": "email",
-          "type": "control",
-          "template": {
-            "label": "Email",
-            "input": {
-              "type": "textbox",
-              "inputType": "email",
-              "placeholder": "Enter your email"
-            },
-            "validation": {
-              "required": true,
-              "email": true
-            }
-          }
-        },
-        {
-          "key": "password",
-          "type": "control",
-          "template": {
-            "label": "Password",
-            "input": {
-              "type": "textbox",
-              "inputType": "password",
-              "placeholder": "Enter your password",
-              "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
-            },
-            "validation": {
-              "required": true,
-              "pattern": true
-            }
-          }
-        },
-        {
-          "key": "confirmPassword",
-          "type": "control",
-          "template": {
-            "label": "Confirm Password",
-            "input": {
-              "type": "textbox",
-              "inputType": "password",
-              "placeholder": "Enter your password",
-              "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
-            },
-            "validation": {
-              "required": true,
-              "pattern": true
-            }
-          }
-        }
-      ]
     }
   ]
 }

@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Select variations"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Select variations</h3>"
-      }
-    },
     {
       "type": "content",
       "template": {

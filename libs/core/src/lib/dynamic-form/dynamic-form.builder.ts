@@ -51,6 +51,7 @@ export class DynamicFormBuilder {
     const field = new DynamicForm(definition, model);
     field.initExpressions(this.createFieldExpressions(field));
     field.initElements(this.createFormElements(field, field, field.definition.elements));
+    field.initValidators(this.createGroupValidators(field));
     field.initHeaderActions(this.createFormActions(field, field, field.definition.headerActions));
     field.initFooterActions(this.createFormActions(field, field, field.definition.footerActions));
     return field;

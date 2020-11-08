@@ -9,6 +9,7 @@
     <div class="dynamic-form-elements" *ngIf="elements?.length" [ngClass]="template?.classNameElements">
       <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
     </div>
+    <div class="dynamic-form-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
     <div class="dynamic-form-footer" *ngIf="footerActions?.length" [ngClass]="template?.classNameFooter">
       <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>
     </div>
