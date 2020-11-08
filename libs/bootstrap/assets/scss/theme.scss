@@ -51,10 +51,11 @@ $dynamic-form-material-red: #f44336;
       margin-bottom: 10px;
 
       .dynamic-form-label {
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 600;
 
         &.bold {
-          font-weight: 800;
+          font-weight: 700;
         }
 
         &.uppercase {
