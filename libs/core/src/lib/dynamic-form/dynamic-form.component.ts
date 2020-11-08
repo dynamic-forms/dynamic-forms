@@ -18,8 +18,8 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 })
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
 
-  private _field: DynamicForm;
-  private _fieldSubmit: Subscription;
+  private _form: DynamicForm;
+  private _formSubmit: Subscription;
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
@@ -31,14 +31,14 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string
   ) {}
 
-  get formField(): DynamicForm { return this._field; }
-  get formGroup(): FormGroup { return this._field.control; }
+  get form(): DynamicForm { return this._form; }
+  get formGroup(): FormGroup { return this._form.control; }
 
-  get template(): DynamicFormTemplate { return this._field.template; }
-  get elements(): DynamicFormElement[] { return this._field.elements; }
+  get template(): DynamicFormTemplate { return this._form.template; }
+  get elements(): DynamicFormElement[] { return this._form.elements; }
 
-  get headerActions(): DynamicFormAction[] { return this._field.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this._field.footerActions; }
+  get headerActions(): DynamicFormAction[] { return this._form.headerActions; }
+  get footerActions(): DynamicFormAction[] { return this._form.footerActions; }
 
   get errors(): DynamicFormValidationErrors {
     return this.formGroup.errors;
@@ -57,25 +57,25 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   }
 
   ngOnInit(): void {
-    this.initFormField();
+    this.initForm();
   }
 
   ngDoCheck(): void {
-    this._field.check();
+    this._form.check();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     const modelChanged = changes.model && !changes.model.firstChange;
     const definitionChanged = changes.definition && !changes.definition.firstChange;
     if (modelChanged || definitionChanged) {
-      this.destroyFormField();
-      this.initFormField();
+      this.destroyForm();
+      this.initForm();
     }
   }
 
   ngOnDestroy(): void {
-    this._field.destroy();
-    this._fieldSubmit.unsubscribe();
+    this._form.destroy();
+    this._formSubmit.unsubscribe();
   }
 
   submit(): void {
@@ -83,25 +83,25 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   }
 
   validate(): void {
-    this._field.validate();
+    this._form.validate();
   }
 
   reset(): void {
-    this._field.reset();
+    this._form.reset();
   }
 
   resetDefault(): void {
-    this._field.resetDefault();
+    this._form.resetDefault();
   }
 
-  private initFormField(): void {
+  private initForm(): void {
     this.model = this.model || {};
-    this._field = this.formBuilder.initForm(this.definition, this.model);
-    this._fieldSubmit = this._field.submit$.subscribe({ next: () => this.submit() });
+    this._form = this.formBuilder.initForm(this.definition, this.model);
+    this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
   }
 
-  private destroyFormField(): void {
-    this._field.destroy();
-    this._fieldSubmit.unsubscribe();
+  private destroyForm(): void {
+    this._form.destroy();
+    this._formSubmit.unsubscribe();
   }
 }
