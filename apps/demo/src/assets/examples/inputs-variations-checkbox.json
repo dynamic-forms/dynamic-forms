@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Checkbox variations"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Checkbox variations</h3>"
-      }
-    },
     {
       "type": "content",
       "template": {

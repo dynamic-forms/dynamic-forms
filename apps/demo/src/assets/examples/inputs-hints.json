@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs with hints"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs with hints</h3>"
-      }
-    },
     {
       "key": "combobox",
       "type": "control",
