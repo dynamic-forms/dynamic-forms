@@ -42,6 +42,66 @@ $dynamic-form-material-red: #f44336;
       }
     }
     
+    .dynamic-form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+
+      .dynamic-form-label {
+        font-weight: 600;
+
+        &.bold {
+          font-weight: 700;
+        }
+
+        &.uppercase {
+          text-transform: uppercase;
+        }
+
+        &.capitalize {
+          text-transform: capitalize;
+        }
+      }
+
+      .dynamic-form-toolbar {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .dynamic-form-errors {
+      color: $red;
+      font-size: 14px;
+    }  
+
+    .dynamic-form-footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 5px;
+
+      &.reverse {
+        flex-direction: row-reverse;
+
+        button {
+          margin-left: 10px;
+          margin-right: 0px;
+        }
+      }
+
+      button {
+        margin-left: 0px;
+        margin-right: 10px;
+      }
+    }
+
     .dynamic-form-group {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -55,11 +115,6 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
         
         .dynamic-form-group-label {
           font-weight: 600;
@@ -92,7 +147,7 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-group-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
       .dynamic-form-group-footer {
         display: flex;
@@ -130,11 +185,6 @@ $dynamic-form-material-red: #f44336;
         align-items: center;
         width: 100%;
 
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
-
         .dynamic-form-array-label {
           font-weight: 600;
   
@@ -166,7 +216,7 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-array-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
       .dynamic-form-array-footer {
         display: flex;
@@ -204,11 +254,6 @@ $dynamic-form-material-red: #f44336;
         align-items: center;
         width: 100%;
 
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
-
         .dynamic-form-dictionary-label {
           font-weight: 600;
   
@@ -240,7 +285,7 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-dictionary-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
       .dynamic-form-dictionary-footer {
         display: flex;
@@ -311,50 +356,6 @@ $dynamic-form-material-red: #f44336;
       }
     }
   
-    .dynamic-form-header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-
-      &.border-bottom {
-        padding-bottom: 2px;
-        border-bottom: 1px solid rgba(0,0,0, 0.4);      
-      }
-
-      .dynamic-form-toolbar {
-        flex: 1 1 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-
-        button {
-          margin-left: 10px;
-        }
-      }
-    }
-
-    .dynamic-form-footer {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 5px;
-
-      &.reverse {
-        flex-direction: row-reverse;
-
-        button {
-          margin-left: 10px;
-          margin-right: 0px;
-        }
-      }
-
-      button {
-        margin-left: 0px;
-        margin-right: 10px;
-      }
-    }
-
     .dynamic-form-icon {
       height: 38px;
       padding: 0.375rem; 
