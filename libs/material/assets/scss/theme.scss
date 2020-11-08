@@ -25,12 +25,14 @@ $dynamic-form-material-red: #f44336;
       flex-direction: row;
       align-items: center;
       width: 100%;
-      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
       .dynamic-form-label {
-        font-weight: 600;
+        font-weight: 700;
 
         &.bold {
-          font-weight: 700;
+          font-weight: 800;
         }
 
         &.uppercase {
@@ -83,8 +85,8 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-group {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -95,6 +97,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
         .dynamic-form-group-label {
           font-weight: 600;
@@ -152,8 +156,8 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-array {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -164,6 +168,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
         .dynamic-form-array-label {
           font-weight: 600;
@@ -221,8 +227,8 @@ $dynamic-form-material-red: #f44336;
     }
     
     .dynamic-form-dictionary {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -232,7 +238,9 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         align-items: center;
         width: 100%;
-
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
         .dynamic-form-dictionary-label {
           font-weight: 600;
   
