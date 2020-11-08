@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs readonly / editable"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs readonly / editable</h3>"
-      }
-    },
     {
       "key": "editable",
       "type": "group",

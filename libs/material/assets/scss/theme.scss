@@ -20,9 +20,74 @@ $dynamic-form-material-red: #f44336;
       }
     }
 
-    .dynamic-form-group {
+    .dynamic-form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
       margin-top: 10px;
       margin-bottom: 10px;
+
+      .dynamic-form-label {
+        font-size: 18px;
+        font-weight: 600;
+
+        &.bold {
+          font-weight: 700;
+        }
+
+        &.uppercase {
+          text-transform: uppercase;
+        }
+
+        &.capitalize {
+          text-transform: capitalize;
+        }
+      }
+
+      .dynamic-form-toolbar {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .dynamic-form-errors {
+      color: $dynamic-form-material-red;
+      font-size: 14px;
+    }  
+
+    .dynamic-form-footer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      
+      &.reverse {
+        flex-direction: row-reverse;
+
+        button {
+          margin-left: 10px;
+          margin-right: 0px;
+        }
+      }
+
+      button {
+        margin-left: 0px;
+        margin-right: 10px;
+      }
+    }
+
+    .dynamic-form-group {
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -33,11 +98,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
+        margin-top: 10px;
+        margin-bottom: 10px;
 
         .dynamic-form-group-label {
           font-weight: 600;
@@ -70,9 +132,9 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-group-errors {
         color: $dynamic-form-material-red;
         font-size: 14px;
-      }
+      }  
 
-      .dynamic-form-group-actions {
+      .dynamic-form-group-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
@@ -95,8 +157,8 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-array {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -107,11 +169,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
+        margin-top: 10px;
+        margin-bottom: 10px;
 
         .dynamic-form-array-label {
           font-weight: 600;
@@ -144,7 +203,7 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-array-errors {
         color: $dynamic-form-material-red;
         font-size: 14px;
-      }
+      }  
 
       .dynamic-form-array-footer {
         display: flex;
@@ -169,8 +228,8 @@ $dynamic-form-material-red: #f44336;
     }
     
     .dynamic-form-dictionary {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
 
       &.hidden {
         display: none;
@@ -180,12 +239,9 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         align-items: center;
         width: 100%;
-
-        &.border-bottom {
-          padding-bottom: 2px;
-          border-bottom: 1px solid rgba(0,0,0, 0.4);      
-        }
-
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
         .dynamic-form-dictionary-label {
           font-weight: 600;
   
@@ -217,7 +273,7 @@ $dynamic-form-material-red: #f44336;
       .dynamic-form-dictionary-errors {
         color: $dynamic-form-material-red;
         font-size: 14px;
-      }
+      }  
 
       .dynamic-form-dictionary-footer {
         display: flex;
@@ -289,47 +345,6 @@ $dynamic-form-material-red: #f44336;
           font-size: 75%;
           margin-top: .66667em;
         }
-      }
-    }
-
-    .dynamic-form-header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-
-      &.border-bottom {
-        padding-bottom: 2px;
-        border-bottom: 1px solid rgba(0,0,0, 0.4);      
-      }
-      
-      .dynamic-form-toolbar {
-        display: flex;
-        flex-direction: row;
-        align-self: flex-end;
-      }
-    }
-
-    .dynamic-form-footer {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      
-      &.reverse {
-        flex-direction: row-reverse;
-
-        button {
-          margin-left: 10px;
-          margin-right: 0px;
-        }
-      }
-
-      button {
-        margin-left: 0px;
-        margin-right: 10px;
       }
     }
 
