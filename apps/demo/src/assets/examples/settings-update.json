@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Update strategy"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Update strategy</h3>"
-      }
-    },
     {
       "key": "name",
       "type": "control",

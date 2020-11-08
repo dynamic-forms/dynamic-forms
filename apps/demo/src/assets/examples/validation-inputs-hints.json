@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Validation of inputs with hints"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Validation of inputs with hints</h3>"
-      }
-    },
     {
       "key": "combobox",
       "type": "control",
