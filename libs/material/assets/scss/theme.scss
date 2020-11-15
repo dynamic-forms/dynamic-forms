@@ -14,6 +14,7 @@ $dynamic-form-material-red: #f44336;
       .row {
         mat-dynamic-form-button,
         mat-dynamic-form-icon,
+        mat-dynamic-form-dialog,
         mat-dynamic-form-modal {
           display: contents;
         }
@@ -86,9 +87,6 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-group {
-      // margin-top: 10px;
-      // margin-bottom: 10px;
-
       &.hidden {
         display: none;
       }
@@ -157,9 +155,6 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-array {
-      // margin-top: 10px;
-      // margin-bottom: 10px;
-
       &.hidden {
         display: none;
       }
@@ -228,9 +223,6 @@ $dynamic-form-material-red: #f44336;
     }
     
     .dynamic-form-dictionary {
-      // margin-top: 10px;
-      // margin-bottom: 10px;
-
       &.hidden {
         display: none;
       }
