@@ -109,7 +109,7 @@
             "type": "modal",
             "template": {
               "title": "Edit user",
-              "titleClassName": "modal-title-md",
+              "classNameTitle": "modal-title-md",
               "width": "600px",
               "maxWidth": "calc(100% - 1rem)"
             },

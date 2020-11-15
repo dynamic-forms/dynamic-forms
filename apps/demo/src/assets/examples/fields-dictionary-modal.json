@@ -67,7 +67,7 @@
             "type": "modal",
             "template": {
               "title": "Edit item",
-              "titleClassName": "modal-title-md",
+              "classNameTitle": "modal-title-md",
               "width": "800px",
               "maxWidth": "calc(100% - 1rem)"
             },

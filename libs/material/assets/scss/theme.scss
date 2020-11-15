@@ -347,6 +347,10 @@ $dynamic-form-material-red: #f44336;
     
     .dynamic-form-modal {
       .modal-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
         .modal-title {
           &.modal-title-bg {
             font-size: 24px;
@@ -362,6 +366,13 @@ $dynamic-form-material-red: #f44336;
             font-size: 20px;
             font-weight: bold;
           }
+        }
+
+        .modal-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
         }
       }
 
@@ -391,6 +402,12 @@ $dynamic-form-material-red: #f44336;
 
       &.grid {
         margin: 0px;
+
+        .row {
+          &.mat-dialog-content {
+            padding: 0px;
+          }
+        }
       }
     }
   }
