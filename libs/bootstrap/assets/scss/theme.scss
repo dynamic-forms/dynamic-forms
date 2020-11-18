@@ -91,8 +91,8 @@ $dynamic-form-material-red: #f44336;
       margin-top: 10px;
       margin-bottom: 10px;
 
-      &.reverse {
-        flex-direction: row-reverse;
+      &.content-end {
+        justify-content: flex-end;
 
         button {
           margin-left: 10px;
@@ -158,8 +158,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -226,8 +226,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -294,8 +294,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -400,8 +400,8 @@ $dynamic-form-material-red: #f44336;
       }
 
       .modal-footer {
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
   
           button {
             margin-left: 10px;
