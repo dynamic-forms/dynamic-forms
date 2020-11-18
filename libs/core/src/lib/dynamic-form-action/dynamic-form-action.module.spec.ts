@@ -1,8 +1,10 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormDialogHandlers, DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { DynamicFormAction } from './dynamic-form-action';
+import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG} from './dynamic-form-action-handler-config';
-import { DynamicFormActionModule } from './dynamic-form-action.module';
+import { dynamicFormDialogHandlers, DynamicFormActionModule } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {
@@ -36,7 +38,7 @@ describe('DynamicFormActionModule', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
           }
         ]
       });
@@ -45,6 +47,45 @@ describe('DynamicFormActionModule', () => {
     it('provides DynamicFormActionService',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service).toBeDefined();
+      })
+    );
+
+    it('handler calls openDialog of action',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.handlers.find(h => h.type === 'openDialog');
+        const action = <DynamicFormAction>{ openDialog(): void {} };
+
+        spyOn(action, 'openDialog');
+
+        handler.func(action, null);
+
+        expect(action.openDialog).toHaveBeenCalled();
+      })
+    );
+
+    it('handler calls closeDialog of action',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.handlers.find(h => h.type === 'closeDialog');
+        const action = <DynamicFormAction>{ closeDialog(): void {} };
+
+        spyOn(action, 'closeDialog');
+
+        handler.func(action, null);
+
+        expect(action.closeDialog).toHaveBeenCalled();
+      })
+    );
+
+    it('handler calls toggleDialog of action',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const handler = service.handlers.find(h => h.type === 'toggleDialog');
+        const action = <DynamicFormAction>{ toggleDialog(): void {} };
+
+        spyOn(action, 'toggleDialog');
+
+        handler.func(action, null);
+
+        expect(action.toggleDialog).toHaveBeenCalled();
       })
     );
   });
