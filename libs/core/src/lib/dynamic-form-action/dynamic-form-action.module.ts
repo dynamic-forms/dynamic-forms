@@ -1,12 +1,17 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { dynamicFormDialogHandlers, DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 @NgModule({
   providers: [
-    DynamicFormActionService
+    DynamicFormActionService,
+    {
+      provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
+      useValue: dynamicFormDialogHandlers,
+      multi: true
+    }
   ]
 })
 export class DynamicFormActionModule {

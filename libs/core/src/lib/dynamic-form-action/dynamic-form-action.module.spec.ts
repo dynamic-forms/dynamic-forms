@@ -1,6 +1,6 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormActionHandler } from './dynamic-form-action-handler';
+import { dynamicFormDialogHandlers, DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG} from './dynamic-form-action-handler-config';
 import { DynamicFormActionModule } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
@@ -18,6 +18,13 @@ describe('DynamicFormActionModule', () => {
     it('does not provide DynamicFormActionService', () => {
       expect(() => TestBed.get(DynamicFormActionService)).toThrowError(/StaticInjectorError/);
     });
+
+    it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
+      inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(dynamicFormDialogHandlers);
+      })
+    );
   });
 
   describe('with DynamicFormLibraryService provided', () => {
@@ -62,8 +69,8 @@ describe('DynamicFormActionModule', () => {
 
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(handler);
+        expect(config.length).toBe(2);
+        expect(config[1]).toEqual(handler);
       })
     );
   });
@@ -91,8 +98,8 @@ describe('DynamicFormActionModule', () => {
 
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(handlers);
+        expect(config.length).toBe(2);
+        expect(config[1]).toEqual(handlers);
       })
     );
   });
