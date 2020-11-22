@@ -21,7 +21,11 @@ export class DynamicFormAction<
 
   protected _dialog: DynamicForm;
 
-  constructor(readonly root: DynamicForm, readonly parent: DynamicFormElement | DynamicFormField, definition: Definition) {
+  constructor(
+    readonly root: DynamicForm,
+    readonly parent: DynamicFormElement | DynamicFormAction | DynamicFormField,
+    definition: Definition
+  ) {
     super(definition);
     this._dialogOpenSubject = new BehaviorSubject(false);
     this._dialogOpenChanges = this._dialogOpenSubject.asObservable();

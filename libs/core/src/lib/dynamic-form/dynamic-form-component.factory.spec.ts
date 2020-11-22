@@ -43,7 +43,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
 }
 
 @Component({
-  selector: 'dynamic-form-field-test',
+  selector: 'dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`
 })
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
@@ -124,7 +124,10 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
     },
     DynamicFormConfigService,
     DynamicFormValidationService,
-    { provide: DynamicFormActionService, useValue: {} },
+    {
+      provide: DynamicFormActionService,
+      useValue: {}
+    },
     DynamicFormComponentFactory
   ],
   entryComponents: [
