@@ -8,8 +8,7 @@
       "type": "dictionary",
       "template": {
         "label": "Items",
-        "classNameLabel": "bold",
-        "classNameFooter": "reverse"
+        "classNameLabel": "bold"
       },
       "defaultValue": {
         "00000000-0000-0000-0000-000000000000": {
@@ -95,8 +94,7 @@
             "template": {
               "label": "Child Items",
               "className": "col-12",
-              "classNameLabel": "bold",
-              "classNameFooter": "reverse"
+              "classNameLabel": "bold"
             },
             "headerActions": [
               {

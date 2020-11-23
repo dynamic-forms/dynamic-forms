@@ -1,5 +1,5 @@
-import { Component, Inject, Input, Optional } from '@angular/core';
-import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+import { Component, Input } from '@angular/core';
+import { DynamicFormAction, DynamicFormElement } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,10 +22,9 @@ export class BsDynamicFormDialogComponent {
 
   @Input() classNameForm: string;
   @Input() classNameModal: string;
-  @Input() classNameTitle: string;
   @Input() classNameElements: string;
   @Input() classNameHeader: string;
   @Input() classNameFooter: string;
 
-  constructor(@Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string) {}
+  @Input() classNameTitle: string;
 }

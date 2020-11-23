@@ -38,7 +38,6 @@ export abstract class DynamicFormActionBase<
     return this.dialog && this.dialogOpen && this.dialog.check();
   }
 
-
   handleEvent($event: Event): void {
     if (this.dialog) {
       return this.dialogOpen

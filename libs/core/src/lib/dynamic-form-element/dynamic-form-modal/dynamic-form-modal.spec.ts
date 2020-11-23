@@ -82,7 +82,7 @@ describe('DynamicFormModal', () => {
     const definition = <DynamicFormModalDefinition>{ type: 'type', template: {}, elements: [] };
     const element = new DynamicFormModal(root, definition);
 
-    element.initFooterActions(null);
+    element.initHeaderActions(null);
     element.initFooterActions(null);
 
     expect(element.headerActions).toEqual([]);

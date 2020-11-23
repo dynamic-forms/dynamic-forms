@@ -109,10 +109,31 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements).toEqual([]);
       expect(form.fields).toEqual([]);
+
+      expect(form.headerActions).toEqual([]);
       expect(form.footerActions).toEqual([]);
 
       expect(form.model).toBe(model);
       expect(form.control).toBeDefined();
+      expect(form.control.validator).toBeNull();
+    })
+  );
+
+  it('creates DynamicForm including validator',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const definition = <DynamicFormDefinition>{
+        template: {
+          validation: {
+            required: true
+          }
+        },
+        elements: []
+      };
+      const form = builder.createForm(definition, model);
+
+      expect(form.control).toBeDefined();
+      expect(form.control.validator).toBeDefined();
     })
   );
 
@@ -144,6 +165,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({});
     })
@@ -160,6 +182,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: null });
     })
@@ -176,6 +199,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: {} });
     })
@@ -192,6 +216,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: [] });
     })
@@ -208,6 +233,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(1);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({ key: {} });
     })
@@ -224,12 +250,30 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(1);
       expect(form.fields.length).toBe(0);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(0);
       expect(form.model).toEqual({});
     })
   );
 
-  it('creates DynamicForm including DynamicFormAction in actions',
+  it('creates DynamicForm including DynamicFormAction in header actions',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormDefinition>{
+        headerActions: [
+          <DynamicFormActionDefinition>{ type: 'action', template: {} }
+        ]
+      };
+      const form = builder.createForm(definition, {});
+
+      expect(form.elements.length).toBe(0);
+      expect(form.fields.length).toBe(0);
+      expect(form.headerActions.length).toBe(1);
+      expect(form.footerActions.length).toBe(0);
+      expect(form.model).toEqual({});
+    })
+  );
+
+  it('creates DynamicForm including DynamicFormAction in footer actions',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const definition = <DynamicFormDefinition>{
         footerActions: [
@@ -240,6 +284,7 @@ describe('DynamicFormBuilder', () => {
 
       expect(form.elements.length).toBe(0);
       expect(form.fields.length).toBe(0);
+      expect(form.headerActions.length).toBe(0);
       expect(form.footerActions.length).toBe(1);
       expect(form.model).toEqual({});
     })
@@ -495,10 +540,27 @@ describe('DynamicFormBuilder', () => {
       const model = {};
       const form = getForm(model);
       const definition = <DynamicFormActionDefinition>{ type: 'action', template: {} };
-      const formElement = builder.createFormAction(form, form, definition);
+      const formAction = builder.createFormAction(form, form, definition);
 
-      expect(formElement.definition).toBe(definition);
-      expect(formElement.template).toBe(definition.template);
+      expect(formAction.definition).toBe(definition);
+      expect(formAction.template).toBe(definition.template);
+      expect(formAction.dialog).toBeUndefined();
+    })
+  );
+
+  it('creates DynamicFormAction including dialog form',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = {};
+      const form = getForm(model);
+      const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+      const definition = <DynamicFormActionDefinition>{ type: 'action', template: {}, dialogDefinition };
+      const formAction = builder.createFormAction(form, form, definition);
+
+      expect(formAction.definition).toBe(definition);
+      expect(formAction.template).toBe(definition.template);
+      expect(formAction.dialog).toBeTruthy();
+      expect(formAction.dialog.definition).toBe(dialogDefinition);
+      expect(formAction.dialog.template).toBe(dialogDefinition.template);
     })
   );
 
