@@ -1,8 +1,8 @@
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" [ngClass]="classNameModal"
     [style.width]="width" [style.min-width]="minWidth" [style.max-width]="maxWidth">
     <div class="modal-content">
-      <div class="modal-header" *ngIf="titleHtml || title">
+      <div class="modal-header" *ngIf="title || titleHtml || headerActions?.length" [ngClass]="classNameHeader">
         <div class="modal-title" *ngIf="titleHtml; else titlePlain" 
           [ngClass]="classNameTitle" [innerHTML]="titleHtml"
         ></div>

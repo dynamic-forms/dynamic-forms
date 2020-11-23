@@ -13,12 +13,13 @@ class DynamicFormActionBaseTest extends DynamicFormActionBase {
 }
 
 describe('DynamicFormActionBase', () => {
+  let actionService: DynamicFormActionService;
   let component: DynamicFormActionBaseTest;
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService({ name: 'test' });
-    const actionService = new DynamicFormActionService(libraryService, []);
 
+    actionService = new DynamicFormActionService(libraryService, []);
     component = new DynamicFormActionBaseTest(actionService);
   });
 
@@ -138,5 +139,57 @@ describe('DynamicFormActionBase', () => {
     component.ngDoCheck();
 
     expect(dialog.check).not.toHaveBeenCalled();
+  });
+
+  it('handles event by calling handle of action service', () => {
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {} };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+    const event = <Event>{};
+
+    spyOn(actionService, 'handle');
+
+    component.action = action;
+    component.handleEvent(event);
+
+    expect(actionService.handle).toHaveBeenCalledWith(action, event);
+  });
+
+  it('handles event by calling handle of action service if dialog and dialog is open', () => {
+    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {}, dialogDefinition };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+    const dialog = new DynamicForm(dialogDefinition, {});
+    const event = <Event>{};
+
+    action.initDialog(dialog);
+    component.action = action;
+    component.openDialog();
+
+    spyOn(action, 'openDialog');
+    spyOn(actionService, 'handle');
+
+    component.handleEvent(event);
+
+    expect(action.openDialog).not.toHaveBeenCalled();
+    expect(actionService.handle).toHaveBeenCalledWith(action, event);
+  });
+
+  it('handles event by calling openDialog of action if dialog but dialog not open', () => {
+    const dialogDefinition = <DynamicFormDefinition>{ template: {} };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'element', template: {}, dialogDefinition };
+    const action = new DynamicFormAction(<any>{}, <any>{}, definition);
+    const dialog = new DynamicForm(dialogDefinition, {});
+    const event = <Event>{};
+
+    action.initDialog(dialog);
+    component.action = action;
+
+    spyOn(action, 'openDialog');
+    spyOn(actionService, 'handle');
+
+    component.handleEvent(event);
+
+    expect(action.openDialog).toHaveBeenCalled();
+    expect(actionService.handle).not.toHaveBeenCalled();
   });
 });

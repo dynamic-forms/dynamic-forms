@@ -7,7 +7,7 @@ import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 
 describe('DynamicFormDictionary', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const definition = <DynamicFormDictionaryDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
     const formDictionary = new DynamicFormDictionary(form, form, definition);

@@ -9,18 +9,18 @@
       "template": {
         "label": "Users",
         "classNameLabel": "bold",
-        "classNameFooter": "reverse"
+        "classNameFooter": "content-end"
       },
       "footerActions": [ 
         {
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Clear users",
-            "action": "clearArrayFields"
+            "label": "Push user",
+            "action": "pushArrayField"
           },
           "expressions": {
-            "disabled": "!data.parent.length"
+            "disabled": "data.parent.length >= 5"
           }
         },
         {
@@ -38,11 +38,11 @@
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Push user",
-            "action": "pushArrayField"
+            "label": "Clear users",
+            "action": "clearArrayFields"
           },
           "expressions": {
-            "disabled": "data.parent.length >= 5"
+            "disabled": "!data.parent.length"
           }
         }
       ],

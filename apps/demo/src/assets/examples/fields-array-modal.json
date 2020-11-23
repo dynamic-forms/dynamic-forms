@@ -9,7 +9,7 @@
       "template": {
         "label": "Users",
         "classNameLabel": "bold",
-        "classNameFooter": "reverse",
+        "classNameFooter": "content-end",
         "minLength": 3,
         "maxLength": 5,
         "validation": {
@@ -22,11 +22,11 @@
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Clear users",
-            "action": "clearArrayFields"
+            "label": "Push user",
+            "action": "pushArrayField"
           },
           "expressions": {
-            "disabled": "!data.parent.length"
+            "disabled": "data.parent.length >= 10"
           }
         },
         {
@@ -44,11 +44,11 @@
           "type": "button",
           "template": {
             "type": "button",
-            "label": "Push user",
-            "action": "pushArrayField"
+            "label": "Clear users",
+            "action": "clearArrayFields"
           },
           "expressions": {
-            "disabled": "data.parent.length >= 10"
+            "disabled": "!data.parent.length"
           }
         }
       ],
@@ -109,7 +109,7 @@
             "type": "modal",
             "template": {
               "title": "Edit user",
-              "titleClassName": "modal-title-md",
+              "classNameTitle": "modal-title-md",
               "width": "600px",
               "maxWidth": "calc(100% - 1rem)"
             },
