@@ -9,7 +9,7 @@
       "template": {
         "label": "Items",
         "classNameLabel": "bold",
-        "classNameFooter": "reverse"
+        "classNameFooter": "content-end"
       },
       "defaultValue": {
         "00000000-0000-0000-0000-000000000000": {
@@ -18,18 +18,7 @@
           "items": {}
         }
       },
-      "footerActions": [ 
-        {
-          "type": "button",
-          "template": {
-            "type": "button",
-            "label": "Clear items",
-            "action": "clearDictionaryFields"
-          },
-          "expressions": {
-            "disabled": "!data.parent.length"
-          }
-        },
+      "footerActions": [
         {
           "type": "button",
           "template": {
@@ -75,6 +64,17 @@
                 }  
               }
             ]
+          }
+        }, 
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Clear items",
+            "action": "clearDictionaryFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
         }
       ],
@@ -133,23 +133,12 @@
               "label": "Child Items",
               "className": "col-12",
               "classNameLabel": "bold",
-              "classNameFooter": "reverse"
+              "classNameFooter": "content-end"
             },
             "expressions": {
               "label": "data.length ? 'Child items' : null"
             },
             "footerActions": [ 
-              {
-                "type": "button",
-                "template": {
-                  "type": "button",
-                  "label": "Clear child items",
-                  "action": "clearDictionaryFields"
-                },
-                "expressions": {
-                  "disabled": "!data.parent.length"
-                }
-              },
               {
                 "type": "button",
                 "template": {
@@ -195,6 +184,17 @@
                       }  
                     }
                   ]
+                }
+              },
+              {
+                "type": "button",
+                "template": {
+                  "type": "button",
+                  "label": "Clear child items",
+                  "action": "clearDictionaryFields"
+                },
+                "expressions": {
+                  "disabled": "!data.parent.length"
                 }
               }
             ],

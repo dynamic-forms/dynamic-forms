@@ -9,7 +9,7 @@
       "template": {
         "label": "Items",
         "classNameLabel": "bold",
-        "classNameFooter": "reverse"
+        "classNameFooter": "content-end"
       },
       "defaultValue": {
         "00000000-0000-0000-0000-000000000000": {
@@ -18,7 +18,15 @@
           "items": {}
         }
       },
-      "footerActions": [ 
+      "footerActions": [
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Register item",
+            "action": "registerDictionaryField"
+          }
+        }, 
         {
           "type": "button",
           "template": {
@@ -28,14 +36,6 @@
           },
           "expressions": {
             "disabled": "!data.parent.length"
-          }
-        },
-        {
-          "type": "button",
-          "template": {
-            "type": "button",
-            "label": "Register item",
-            "action": "registerDictionaryField"
           }
         }
       ],
@@ -67,7 +67,7 @@
             "type": "modal",
             "template": {
               "title": "Edit item",
-              "titleClassName": "modal-title-md",
+              "classNameTitle": "modal-title-md",
               "width": "800px",
               "maxWidth": "calc(100% - 1rem)"
             },
@@ -116,12 +116,20 @@
                 "template": {
                   "label": "Child Items",
                   "classNameLabel": "bold",
-                  "classNameFooter": "reverse"
+                  "classNameFooter": "content-end"
                 },
                 "expressions": {
                   "label": "data.length ? 'Child items' : null"
                 },
-                "footerActions": [ 
+                "footerActions": [
+                  {
+                    "type": "button",
+                    "template": {
+                      "type": "button",
+                      "label": "Register child item",
+                      "action": "registerDictionaryField"
+                    }
+                  }, 
                   {
                     "type": "button",
                     "template": {
@@ -131,14 +139,6 @@
                     },
                     "expressions": {
                       "disabled": "!data.parent.length"
-                    }
-                  },
-                  {
-                    "type": "button",
-                    "template": {
-                      "type": "button",
-                      "label": "Register child item",
-                      "action": "registerDictionaryField"
                     }
                   }
                 ],

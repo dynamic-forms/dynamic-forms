@@ -4,8 +4,8 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormTemplate } from './dynamic-form-template';
 
 export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFormDefinition> {
-  private _submit: Subject<void>;
-  private _submit$: Observable<void>;
+  private _submit: Subject<boolean>;
+  private _submit$: Observable<boolean>;
 
   constructor(definition: DynamicFormDefinition, model: any) {
     super(null, null, definition, model);
@@ -17,9 +17,9 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
   get hidden(): boolean { return this.template.hidden || false; }
   get readonly(): boolean { return this.template.readonly || false; }
 
-  get submit$(): Observable<void> { return this._submit$; }
+  get submit$(): Observable<boolean> { return this._submit$; }
 
   submit(): void {
-    this._submit.next();
+    this._submit.next(true);
   }
 }
