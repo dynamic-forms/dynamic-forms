@@ -91,8 +91,8 @@ $dynamic-form-material-red: #f44336;
       margin-top: 10px;
       margin-bottom: 10px;
 
-      &.reverse {
-        flex-direction: row-reverse;
+      &.content-end {
+        justify-content: flex-end;
 
         button {
           margin-left: 10px;
@@ -107,9 +107,6 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-group {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
-
       &.hidden {
         display: none;
       }
@@ -161,8 +158,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -178,9 +175,6 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-array {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
-
       &.hidden {
         display: none;
       }
@@ -232,8 +226,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -249,9 +243,6 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-dictionary {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
-
       &.hidden {
         display: none;
       }
@@ -303,8 +294,8 @@ $dynamic-form-material-red: #f44336;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -379,6 +370,10 @@ $dynamic-form-material-red: #f44336;
       }
 
       .modal-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
         .modal-title {
           &.modal-title-bg {
             font-size: 22px;
@@ -395,11 +390,18 @@ $dynamic-form-material-red: #f44336;
             font-weight: bold;
           }
         }
+
+        .modal-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+        }
       }
 
       .modal-footer {
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
   
           button {
             margin-left: 10px;

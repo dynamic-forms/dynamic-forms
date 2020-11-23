@@ -7,7 +7,7 @@ import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const definition = <DynamicFormArrayDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);

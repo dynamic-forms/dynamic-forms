@@ -1,10 +1,14 @@
 {
+  "template": {
+    "className": "grid"
+  },
   "elements": [
     {
       "type": "modal",
       "template": {
         "title": "Modal",
-        "titleClassName": "modal-title-bg",
+        "classNameTitle": "modal-title-bg",
+        "classNameElements": "row",
         "width": "600px",
         "maxWidth": "calc(100% - 1rem)"
       },
@@ -32,6 +36,17 @@
           "template": {
             "className": "col",
             "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+          }
+        }
+      ],
+      "headerActions": [ 
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "label": "Close Modal",
+            "icon": "clear",
+            "action": "closeModal"
           }
         }
       ],

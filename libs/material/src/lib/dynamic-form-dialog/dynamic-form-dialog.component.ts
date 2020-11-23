@@ -29,10 +29,11 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
 
   @Input() classNameForm: string;
   @Input() classNameModal: string;
-  @Input() classNameTitle: string;
   @Input() classNameElements: string;
   @Input() classNameHeader: string;
   @Input() classNameFooter: string;
+
+  @Input() classNameTitle: string;
 
   // tslint:disable-next-line: typedef
   @Output() escaped = new EventEmitter();
