@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "declarationMap": true,
     "target": "es2015",
     "declaration": true,
     "sourceMap": true,
@@ -19,10 +20,10 @@
         "./node_modules/@angular/*"
       ],
       "@dynamic-forms/core": [
-        "dist/v10/@dynamic-forms/core"
+        "dist/v11/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v10/@dynamic-forms/core/*"
+        "dist/v11/@dynamic-forms/core/*"
       ]
     }
   },

@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Validation of inputs"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Validation of inputs</h3>"
-      }
-    },
     {
       "key": "checkbox",
       "type": "control",
@@ -240,7 +237,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

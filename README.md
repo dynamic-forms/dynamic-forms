@@ -18,8 +18,13 @@
 
 ### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=develop%2Fv10)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=develop%2Fv10) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=release%2Fv10)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=release%2Fv10)
 
-- Built with [Angular 10](https://next.angular.io/)
+- Built with [Angular 10](https://v10.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v10/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v10/)
+
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=develop%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=develop%2Fv11) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=release%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=release%2Fv11)
+
+- Built with [Angular 11](https://v11.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
 
 ## **Features**
 
@@ -31,7 +36,7 @@
 - Dynamic form controls / inputs include
   - Dynamic form inputs
     - Checkbox and switch
-    - Combobox, radio and select
+    - Combobox, radio, select and toggle
     - Textbox and textarea
     - Datepicker
     - Numberbox
@@ -59,6 +64,12 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - `npm install @dynamic-forms/core@v10.0.0-next.3`
 - `npm install @dynamic-forms/bootstrap@v10.0.0-next.3`
 - `npm install @dynamic-forms/material@v10.0.0-next.3`
+
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0-next.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0-next.1)
+
+- `npm install @dynamic-forms/core@v11.0.0-next.1`
+- `npm install @dynamic-forms/bootstrap@v11.0.0-next.1`
+- `npm install @dynamic-forms/material@v11.0.0-next.1`
 
 ## **Libraries**
 

@@ -1,0 +1,149 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "elements": [
+    {
+      "key": "users",
+      "type": "array",
+      "template": {
+        "label": "Users",
+        "classNameLabel": "bold",
+        "classNameFooter": "content-end"
+      },
+      "footerActions": [ 
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Push user",
+            "action": "pushArrayField"
+          },
+          "expressions": {
+            "disabled": "data.parent.length >= 5"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Pop user",
+            "action": "popArrayField"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        },
+        {
+          "type": "button",
+          "template": {
+            "type": "button",
+            "label": "Clear users",
+            "action": "clearArrayFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        }
+      ],
+      "defaultValue": [
+        { "name": "user01", "email": "user01@mail.com" },
+        { "name": "user02", "email": "user02@mail.com" },
+        { "name": "user03", "email": "user03@mail.com" },
+        {}
+      ],
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(data.index + 1) + '. User'"
+        },
+        "elements": [
+          {
+            "key": "name",
+            "type": "control",
+            "template": {
+              "className": "col-5",
+              "label": "Name",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter name"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          },
+          {
+            "key": "email",
+            "type": "control",
+            "template": {
+              "className": "col-6",
+              "label": "Email",
+              "input": {
+                "type": "textbox",
+                "inputType": "email",
+                "placeholder": "Enter email"
+              },
+              "validation": {
+                "required": true,
+                "email": true
+              }
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "classNameWrapper":  "col-1",
+              "label": "Remove user",
+              "icon": "remove",
+              "action": "removeArrayField"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "footerActions": [ 
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

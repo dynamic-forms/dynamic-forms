@@ -9,13 +9,14 @@
       "template": {
         "label": "Users",
         "classNameLabel": "bold",
-        "classNameActions": "reverse"
+        "classNameFooter": "content-end"
       },
-      "actions": [
+      "headerActions": [
         {
-          "type": "button",
+          "type": "icon",
           "template": {
             "type": "button",
+            "icon": "remove",
             "label": "Clear users",
             "action": "clearArrayFields"
           },
@@ -24,9 +25,10 @@
           }
         },
         {
-          "type": "button",
+          "type": "icon",
           "template": {
             "type": "button",
+            "icon": "pop",
             "label": "Pop user",
             "action": "popArrayField"
           },
@@ -35,9 +37,10 @@
           }
         },
         {
-          "type": "button",
+          "type": "icon",
           "template": {
             "type": "button",
+            "icon": "push",
             "label": "Push user",
             "action": "pushArrayField"
           },
@@ -97,7 +100,7 @@
           {
             "type": "icon",
             "template": {
-              "wrapperClassName": "col-1",
+              "classNameWrapper":  "col-1",
               "label": "Remove user",
               "icon": "remove",
               "action": "removeArrayField"
@@ -107,7 +110,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

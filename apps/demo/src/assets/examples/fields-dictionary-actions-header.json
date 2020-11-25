@@ -8,8 +8,7 @@
       "type": "dictionary",
       "template": {
         "label": "Items",
-        "classNameLabel": "bold",
-        "classNameActions": "reverse"
+        "classNameLabel": "bold"
       },
       "defaultValue": {
         "00000000-0000-0000-0000-000000000000": {
@@ -18,24 +17,26 @@
           "items": {}
         }
       },
-      "actions": [
+      "headerActions": [ 
         {
-          "type": "button",
+          "type": "icon",
           "template": {
             "type": "button",
-            "label": "Clear items",
-            "action": "clearDictionaryElements"
-          },
-          "expressions": {
-            "disabled": "!data.parent.length"
+            "icon": "register",
+            "label": "Register item",
+            "action": "registerDictionaryField"
           }
         },
         {
-          "type": "button",
+          "type": "icon",
           "template": {
             "type": "button",
-            "label": "Register item",
-            "action": "registerDictionaryField"
+            "icon": "clear",
+            "label": "Clear items",
+            "action": "clearDictionaryFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
           }
         }
       ],
@@ -66,10 +67,10 @@
           {
             "type": "icon",
             "template": {
-              "wrapperClassName": "col-1",
+              "classNameWrapper": "col-1",
               "label": "Remove item",
               "icon": "remove",
-              "action": "removeDictionaryElement"
+              "action": "removeDictionaryField"
             }
           },
           {
@@ -93,30 +94,28 @@
             "template": {
               "label": "Child Items",
               "className": "col-12",
-              "classNameLabel": "bold",
-              "classNameActions": "reverse"
+              "classNameLabel": "bold"
             },
-            "expressions": {
-              "label": "data.length ? 'Child items' : null"
-            },
-            "actions": [
+            "headerActions": [
               {
-                "type": "button",
+                "type": "icon",
+                "template": {
+                  "type": "icon",
+                  "icon": "register",
+                  "label": "Register child item",
+                  "action": "registerDictionaryField"
+                }
+              }, 
+              {
+                "type": "icon",
                 "template": {
                   "type": "button",
+                  "icon": "clear",
                   "label": "Clear child items",
                   "action": "clearDictionaryFields"
                 },
                 "expressions": {
                   "disabled": "!data.parent.length"
-                }
-              },
-              {
-                "type": "button",
-                "template": {
-                  "type": "button",
-                  "label": "Register child item",
-                  "action": "registerDictionaryField"
                 }
               }
             ],
@@ -147,7 +146,7 @@
                 {
                   "type": "icon",
                   "template": {
-                    "wrapperClassName": "col-1",
+                    "classNameWrapper":  "col-1",
                     "label": "Remove child item",
                     "icon": "remove",
                     "action": "removeDictionaryField"
@@ -193,7 +192,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",
