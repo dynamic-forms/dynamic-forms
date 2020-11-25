@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/v10/@dynamic-forms/core",
+  "dest": "../../dist/v11/@dynamic-forms/core",
   "lib": {
     "entryFile": "src/public_api.ts"
   },
