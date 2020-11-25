@@ -10,7 +10,7 @@
       "prefix": "core",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
             "project": "libs/core/ng-package.json"
@@ -53,7 +53,7 @@
       "prefix": "bootstrap",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/bootstrap/tsconfig.lib.json",
             "project": "libs/bootstrap/ng-package.json"
@@ -96,7 +96,7 @@
       "prefix": "material",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/material/tsconfig.lib.json",
             "project": "libs/material/ng-package.json"
@@ -170,7 +170,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/v10/@dynamic-forms/demo",
+            "outputPath": "dist/v11/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -187,7 +187,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v10"
+                "dist/v11"
               ]
             },
             "styles": [
@@ -207,7 +207,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
