@@ -100,7 +100,7 @@
               {
                 "type": "icon",
                 "template": {
-                  "type": "icon",
+                  "type": "button",
                   "icon": "register",
                   "label": "Register child item",
                   "action": "registerDictionaryField"
