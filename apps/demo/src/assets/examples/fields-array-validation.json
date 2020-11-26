@@ -98,7 +98,7 @@
           {
             "type": "icon",
             "template": {
-              "classNameWrapper":  "col-1",
+              "classNameWrapper": "col-1",
               "label": "Remove user",
               "icon": "remove",
               "action": "removeArrayField"

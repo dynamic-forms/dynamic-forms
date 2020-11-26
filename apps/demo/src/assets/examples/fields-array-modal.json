@@ -116,7 +116,7 @@
             "trigger": {
               "type": "icon",
               "template": {
-                "classNameWrapper":  "col-1",
+                "classNameWrapper": "col-1",
                 "label": "Edit user",
                 "icon": "edit",
                 "action": "openModal"
@@ -178,7 +178,7 @@
           {
             "type": "icon",
             "template": {
-              "classNameWrapper":  "col-1",
+              "classNameWrapper": "col-1",
               "label": "Remove user",
               "icon": "remove",
               "action": "removeArrayField"
