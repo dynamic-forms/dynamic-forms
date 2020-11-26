@@ -100,7 +100,7 @@
               {
                 "type": "icon",
                 "template": {
-                  "type": "icon",
+                  "type": "button",
                   "icon": "register",
                   "label": "Register child item",
                   "action": "registerDictionaryField"
@@ -146,7 +146,7 @@
                 {
                   "type": "icon",
                   "template": {
-                    "classNameWrapper":  "col-1",
+                    "classNameWrapper": "col-1",
                     "label": "Remove child item",
                     "icon": "remove",
                     "action": "removeDictionaryField"
