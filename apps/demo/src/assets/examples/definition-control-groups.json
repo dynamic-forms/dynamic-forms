@@ -282,7 +282,7 @@
                   {
                     "type": "icon",
                     "template": {
-                      "classNameWrapper":  "col-1",
+                      "classNameWrapper": "col-1",
                       "label": "Remove option",
                       "icon": "remove",
                       "action": "removeArrayField"
@@ -367,7 +367,7 @@
                         {
                           "type": "icon",
                           "template": {
-                            "classNameWrapper":  "col-1",
+                            "classNameWrapper": "col-1",
                             "label": "Remove option",
                             "icon": "remove",
                             "action": "removeArrayField"
