@@ -16,12 +16,14 @@ export abstract class DynamicFormModalBase<
     super();
   }
 
-  get elements(): DynamicFormElement[] { return this.element.elements; }
-  get actions(): DynamicFormAction[] { return this.element.actions; }
   get trigger(): DynamicFormAction { return this.element.trigger; }
 
   get isOpen(): boolean { return this.element.isOpen; }
-  get isOpen$(): Observable<boolean> { return this.element.isOpenChange; }
+  get isOpen$(): Observable<boolean> { return this.element.isOpenChanges; }
+
+  get elements(): DynamicFormElement[] { return this.element.elements; }
+  get headerActions(): DynamicFormAction[] { return this.element.headerActions; }
+  get footerActions(): DynamicFormAction[] { return this.element.footerActions; }
 
   open(): void { this.element.open(); }
   close(): void { this.element.close(); }

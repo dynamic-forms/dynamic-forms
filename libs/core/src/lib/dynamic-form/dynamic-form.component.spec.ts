@@ -25,9 +25,10 @@ describe('DynamicFormComponent', () => {
       ],
       providers: [
         {
-          provide: DynamicFormConfigService,
-          useValue: new DynamicFormConfigService(new DynamicFormLibraryService({ name: 'test' }))
+          provide: DynamicFormLibraryService,
+          useValue: new DynamicFormLibraryService({ name: 'test' })
         },
+        DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
         {
@@ -36,7 +37,9 @@ describe('DynamicFormComponent', () => {
         },
         {
           provide: DynamicFormValidationBuilder,
-          useValue: {}
+          useValue: {
+            createGroupValidators: () => []
+          }
         },
         DynamicFormValidationService
       ]
@@ -55,8 +58,8 @@ describe('DynamicFormComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.formField.definition).toBe(definition);
-    expect(component.formField.model).toBe(model);
+    expect(component.form.definition).toBe(definition);
+    expect(component.form.model).toBe(model);
   });
 
   it('creates component template', () => {
@@ -73,12 +76,12 @@ describe('DynamicFormComponent', () => {
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
 
-    component.template.wrapperClassName = 'className1 className2';
+    component.theme = 'theme';
     fixture.detectChanges();
 
-    expect(formWrapperElement.className).toBe('dynamic-form-wrapper className1 className2');
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper theme');
 
-    component.template.wrapperClassName = null;
+    component.theme = null;
     fixture.detectChanges();
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
@@ -106,8 +109,8 @@ describe('DynamicFormComponent', () => {
     component.model = null;
     component.ngOnChanges({ model: new SimpleChange(model, undefined, false) });
 
-    expect(component.formField.model).toEqual({});
-    expect(component.formField.definition).toBe(definition);
+    expect(component.form.model).toEqual({});
+    expect(component.form.definition).toBe(definition);
   });
 
   it('ngOnChanges creates form field with updated model', () => {
@@ -116,8 +119,8 @@ describe('DynamicFormComponent', () => {
     component.model = modelUpdated;
     component.ngOnChanges({ model: new SimpleChange(model, modelUpdated, false) });
 
-    expect(component.formField.model).toBe(modelUpdated);
-    expect(component.formField.definition).toBe(definition);
+    expect(component.form.model).toBe(modelUpdated);
+    expect(component.form.definition).toBe(definition);
   });
 
   it('ngOnChanges creates form field with updated definition', () => {
@@ -126,14 +129,14 @@ describe('DynamicFormComponent', () => {
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
 
-    expect(component.formField.model).toBe(model);
-    expect(component.formField.definition).toBe(definitionUpdated);
+    expect(component.form.model).toBe(model);
+    expect(component.form.definition).toBe(definitionUpdated);
   });
 
   it('ngOnSubmit emits form submit', () => {
     spyOn(component.formSubmit, 'emit');
 
-    component.ngOnSubmit();
+    component.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,
@@ -142,26 +145,26 @@ describe('DynamicFormComponent', () => {
   });
 
   it('reset calls reset of form field', () => {
-    spyOn(component.formField, 'reset');
+    spyOn(component.form, 'reset');
 
     component.reset();
 
-    expect(component.formField.reset).toHaveBeenCalled();
+    expect(component.form.reset).toHaveBeenCalled();
   });
 
   it('resetDefault calls resetDefault of form field', () => {
-    spyOn(component.formField, 'resetDefault');
+    spyOn(component.form, 'resetDefault');
 
     component.resetDefault();
 
-    expect(component.formField.resetDefault).toHaveBeenCalled();
+    expect(component.form.resetDefault).toHaveBeenCalled();
   });
 
   it('validate calls validate of form field', () => {
-    spyOn(component.formField, 'validate');
+    spyOn(component.form, 'validate');
 
     component.validate();
 
-    expect(component.formField.validate).toHaveBeenCalled();
+    expect(component.form.validate).toHaveBeenCalled();
   });
 });
