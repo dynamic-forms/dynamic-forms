@@ -9,5 +9,5 @@ export interface DynamicFormArrayDefinition<
   defaultLength?: number;
   defaultValue?: any;
   elements: undefined;
-  actions?: DynamicFormActionDefinition[];
+  footerActions?: DynamicFormActionDefinition[];
 }

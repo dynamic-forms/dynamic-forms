@@ -5,6 +5,7 @@ import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-co
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
@@ -55,10 +56,11 @@ describe('DynamicFormDictionaryModule', () => {
     })
   );
 
-  it('handler calls registerField of dictionaryy field',
+  it('handler calls registerField of dictionary field with generated key',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'registerDictionaryField');
       const field = <DynamicFormDictionary>{ registerField(_elem: DynamicFormField): void {}, length: 0 };
+      const action = <DynamicFormAction>{ parent: {} };
       const elementKey = 'key';
       const element = <DynamicFormField>{};
 
@@ -67,10 +69,44 @@ describe('DynamicFormDictionaryModule', () => {
 
       spyOn(field, 'registerField');
 
-      handler.func(field, null);
+      handler.func(field, action);
 
       expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
       expect(field.registerField).toHaveBeenCalledWith(element);
+    })
+  );
+
+  it('handler calls registerField of dictionary field with key from dialog',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'registerDictionaryField');
+      const field = <DynamicFormDictionary>{ registerField(_elem: DynamicFormField): void {}, length: 0 };
+      const dialog = <DynamicForm>{ model: { key: 'key' }};
+      const parent = <DynamicFormAction>{ dialog, closeDialog(): void {} };
+      const action = <DynamicFormAction>{ parent };
+      const element = <DynamicFormField>{};
+
+      formBuilder.createFormDictionaryField.and.returnValue(element);
+
+      spyOn(field, 'registerField');
+      spyOn(parent, 'closeDialog');
+
+      handler.func(field, action);
+
+      expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
+      expect(field.registerField).toHaveBeenCalledWith(element);
+      expect(parent.closeDialog).toHaveBeenCalled();
+    })
+  );
+
+  it('handler returns dictionary of action',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
+      const field = <DynamicFormField>{ fieldClassType: 'dictionary' };
+      const action = <DynamicFormAction>{ parent: field };
+
+      const result = handler.elementFunc(action);
+
+      expect(result).toEqual(field);
     })
   );
 

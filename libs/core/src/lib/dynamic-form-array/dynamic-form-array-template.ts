@@ -3,9 +3,10 @@ import { DynamicFormArrayValidation } from './dynamic-form-array-validation';
 
 export interface DynamicFormArrayTemplate extends DynamicFormFieldTemplate<DynamicFormArrayValidation> {
   labelHidden?: boolean;
-  classNameLabel?: string;
-  classNameElements?: string;
-  classNameActions?: string;
   minLength?: number;
   maxLength?: number;
+  classNameLabel?: string;
+  classNameHeader?: string;
+  classNameElements?: string;
+  classNameFooter?: string;
 }

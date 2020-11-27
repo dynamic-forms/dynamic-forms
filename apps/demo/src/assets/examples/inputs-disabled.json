@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs disabled / enabled"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs disabled / enabled</h3>"
-      }
-    },
     {
       "key": "enabled",
       "type": "group",
@@ -242,7 +239,7 @@
       ]
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

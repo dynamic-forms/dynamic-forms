@@ -1,20 +1,16 @@
 <div class="dynamic-form-array" [class.hidden]="field.hidden" [class.readonly]="field.readonly" [ngClass]="template?.className">
-  <ng-container *ngIf="template?.label && !template?.labelHidden">
-    <div class="dynamic-form-array-label" [ngClass]="template?.classNameLabel">
-      {{ template?.label }}
+  <div class="dynamic-form-array-header" *ngIf="!template?.labelHidden && template?.label || headerActions?.length" 
+    [ngClass]="template?.classNameHeader">
+    <div class="dynamic-form-array-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
+    <div class="dynamic-form-array-toolbar" *ngIf="headerActions?.length" >
+      <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
     </div>
-  </ng-container>
-  <ng-container *ngIf="elements?.length">
-    <div class="dynamic-form-array-elements" [ngClass]="template?.classNameElements">
-      <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
-    </div>  
-  </ng-container>
-  <ng-container *ngIf="showErrors">
-    <div class="dynamic-form-array-errors">{{ errorMessage }}</div> 
-  </ng-container>
-  <ng-container *ngIf="actions?.length">
-    <div class="dynamic-form-array-actions" [ngClass]="template?.classNameActions">
-      <dynamic-form-element *ngFor="let action of actions" [element]="action"></dynamic-form-element>
-    </div> 
-  </ng-container>
+  </div>
+  <div class="dynamic-form-array-elements" *ngIf="elements?.length" [ngClass]="template?.classNameElements">
+    <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
+  </div>
+  <div class="dynamic-form-array-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
+  <div class="dynamic-form-array-footer" *ngIf="footerActions?.length" [ngClass]="template?.classNameFooter">
+    <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>
+  </div>
 </div>

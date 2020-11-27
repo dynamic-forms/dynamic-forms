@@ -68,11 +68,12 @@ export class DynamicFormArray<
     const length = this.length;
     if (length > 0) {
       this._fields.forEach(field => field.destroy());
-      this._fields = [];
-      this._model = [];
       this._control.clear();
-      this._control.markAsTouched();
+      this._fields = [];
       this._elements = this._fields;
+      this._model = [];
+      this._parent.model[this.key] = this._model;
+      this._control.markAsTouched();
     }
   }
 
