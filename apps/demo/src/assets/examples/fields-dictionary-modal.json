@@ -74,7 +74,7 @@
             "trigger": {
               "type": "icon",
               "template": {
-                "classNameWrapper":  "col-1",
+                "classNameWrapper": "col-1",
                 "label": "Edit item",
                 "icon": "edit",
                 "action": "openModal"
@@ -188,7 +188,7 @@
                     {
                       "type": "icon",
                       "template": {
-                        "classNameWrapper":  "col-1",
+                        "classNameWrapper": "col-1",
                         "label": "Remove item",
                         "icon": "remove",
                         "action": "removeDictionaryField"
@@ -227,7 +227,7 @@
           {
             "type": "icon",
             "template": {
-              "classNameWrapper":  "col-1",
+              "classNameWrapper": "col-1",
               "label": "Remove item",
               "icon": "remove",
               "action": "removeDictionaryField"
