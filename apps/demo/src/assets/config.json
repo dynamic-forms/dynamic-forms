@@ -25,6 +25,10 @@
     {
       "name": "10.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v10/dev"
+    },
+    {
+      "name": "11.0.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v11/dev"
     }
   ]
 }

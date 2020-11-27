@@ -1,0 +1,25 @@
+<ng-template #dialogTemplateRef>
+  <div class="dynamic-form-wrapper" [ngClass]="theme">
+    <div class="dynamic-form" [ngClass]="classNameForm">
+      <div class="dynamic-form-modal" [ngClass]="classNameModal">
+        <div class="modal-header" *ngIf="title || titleHtml || headerActions?.length" [ngClass]="classNameHeader">
+          <div class="modal-title" *ngIf="titleHtml; else titlePlain" 
+            [ngClass]="classNameTitle" [innerHTML]="titleHtml"
+          ></div>
+          <ng-template #titlePlain>
+            <div class="modal-title" [ngClass]="classNameTitle">{{title}}</div>
+          </ng-template>
+          <div class="modal-toolbar" *ngIf="headerActions?.length">
+            <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>      
+          </div> 
+        </div>
+        <div class="modal-body" [ngClass]="classNameElements" mat-dialog-content>
+          <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>      
+        </div>
+        <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="classNameFooter" mat-dialog-actions>
+          <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>      
+        </div>    
+      </div>  
+    </div>
+  </div>
+</ng-template>

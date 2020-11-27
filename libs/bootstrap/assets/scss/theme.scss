@@ -42,15 +42,16 @@ $dynamic-form-material-red: #f44336;
       }
     }
     
-    .dynamic-form-group {
-      margin-top: 20px;
-      margin-bottom: 20px;
+    .dynamic-form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
 
-      &.hidden {
-        display: none;
-      }
-
-      .dynamic-form-group-label {
+      .dynamic-form-label {
+        font-size: 18px;
         font-weight: 600;
 
         &.bold {
@@ -66,19 +67,99 @@ $dynamic-form-material-red: #f44336;
         }
       }
 
+      .dynamic-form-toolbar {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .dynamic-form-errors {
+      color: $red;
+      font-size: 14px;
+    }  
+
+    .dynamic-form-footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &.content-end {
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+          margin-right: 0px;
+        }
+      }
+
+      button {
+        margin-left: 0px;
+        margin-right: 10px;
+      }
+    }
+
+    .dynamic-form-group {
+      &.hidden {
+        display: none;
+      }
+
+      .dynamic-form-group-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        .dynamic-form-group-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
+        }
+        
+        .dynamic-form-group-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+
+          button {
+            margin-left: 10px;
+          }
+        }
+      }
+
       .dynamic-form-group-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
-      .dynamic-form-group-actions {
+      .dynamic-form-group-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -94,42 +175,59 @@ $dynamic-form-material-red: #f44336;
     }
   
     .dynamic-form-array {
-      margin-top: 20px;
-      margin-bottom: 20px;
-
       &.hidden {
         display: none;
       }
 
-      .dynamic-form-array-label {
-        font-weight: 600;
+      .dynamic-form-array-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
-        &.bold {
-          font-weight: 700;
+        .dynamic-form-array-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
         }
 
-        &.uppercase {
-          text-transform: uppercase;
-        }
+        .dynamic-form-array-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
 
-        &.capitalize {
-          text-transform: capitalize;
+          button {
+            margin-left: 10px;
+          }
         }
       }
 
       .dynamic-form-array-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
-      .dynamic-form-array-actions {
+      .dynamic-form-array-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -145,42 +243,59 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-dictionary {
-      margin-top: 20px;
-      margin-bottom: 20px;
-
       &.hidden {
         display: none;
       }
 
-      .dynamic-form-dictionary-label {
-        font-weight: 600;
+      .dynamic-form-dictionary-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
-        &.bold {
-          font-weight: 700;
+        .dynamic-form-dictionary-label {
+          font-weight: 600;
+  
+          &.bold {
+            font-weight: 700;
+          }
+  
+          &.uppercase {
+            text-transform: uppercase;
+          }
+  
+          &.capitalize {
+            text-transform: capitalize;
+          }
         }
+        
+        .dynamic-form-dictionary-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
 
-        &.uppercase {
-          text-transform: uppercase;
-        }
-
-        &.capitalize {
-          text-transform: capitalize;
+          button {
+            margin-left: 10px;
+          }
         }
       }
 
       .dynamic-form-dictionary-errors {
         color: $red;
         font-size: 14px;
-      }
+      }  
 
-      .dynamic-form-dictionary-actions {
+      .dynamic-form-dictionary-footer {
         display: flex;
         flex-direction: row;
         margin-top: 10px;
         margin-bottom: 10px;
 
-        &.reverse {
-          flex-direction: row-reverse;
+        &.content-end {
+          justify-content: flex-end;
 
           button {
             margin-left: 10px;
@@ -242,17 +357,6 @@ $dynamic-form-material-red: #f44336;
       }
     }
   
-    .dynamic-form-actions {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 5px;
-
-      button {
-        margin-right: 10px;
-      }
-    }
-
     .dynamic-form-icon {
       height: 38px;
       padding: 0.375rem; 
@@ -266,6 +370,10 @@ $dynamic-form-material-red: #f44336;
       }
 
       .modal-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
         .modal-title {
           &.modal-title-bg {
             font-size: 22px;
@@ -281,6 +389,29 @@ $dynamic-form-material-red: #f44336;
             font-size: 18px;
             font-weight: bold;
           }
+        }
+
+        .modal-toolbar {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+        }
+      }
+
+      .modal-footer {
+        &.content-end {
+          justify-content: flex-end;
+  
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+        }
+  
+        button {
+          margin-left: 0px;
+          margin-right: 10px;
         }
       }
     }

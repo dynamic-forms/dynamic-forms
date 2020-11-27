@@ -190,7 +190,7 @@
               "template": {
                 "label": "Options"
               },
-              "actions": [
+              "footerActions": [ 
                 {
                   "type": "button",
                   "template": {
@@ -282,7 +282,7 @@
                   {
                     "type": "icon",
                     "template": {
-                      "wrapperClassName": "col-1",
+                      "classNameWrapper": "col-1",
                       "label": "Remove option",
                       "icon": "remove",
                       "action": "removeArrayField"
@@ -295,7 +295,7 @@
                       "label": "Options of group",
                       "className": "col-12"
                     },
-                    "actions": [
+                    "footerActions": [ 
                       {
                         "type": "button",
                         "template": {
@@ -367,7 +367,7 @@
                         {
                           "type": "icon",
                           "template": {
-                            "wrapperClassName": "col-1",
+                            "classNameWrapper": "col-1",
                             "label": "Remove option",
                             "icon": "remove",
                             "action": "removeArrayField"
@@ -544,7 +544,7 @@
       ]
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

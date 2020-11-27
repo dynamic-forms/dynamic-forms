@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs with placeholder"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs with placeholder</h3>"
-      }
-    },
     {
       "key": "combobox",
       "type": "control",
@@ -88,7 +85,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

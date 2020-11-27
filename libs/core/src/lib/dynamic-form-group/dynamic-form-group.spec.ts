@@ -33,7 +33,7 @@ describe('DynamicFormGroup', () => {
 
     expect(formGroup.elements).toEqual([]);
     expect(formGroup.fields).toEqual([]);
-    expect(formGroup.actions).toEqual([]);
+    expect(formGroup.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: {} });
   });

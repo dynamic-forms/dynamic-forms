@@ -5,5 +5,5 @@ import { DynamicFormTemplate } from './dynamic-form-template';
 
 export interface DynamicFormDefinition extends DynamicFormFieldDefinition<DynamicFormTemplate> {
   elements: DynamicFormElementDefinition[];
-  actions?: DynamicFormActionDefinition[];
+  footerActions?: DynamicFormActionDefinition[];
 }

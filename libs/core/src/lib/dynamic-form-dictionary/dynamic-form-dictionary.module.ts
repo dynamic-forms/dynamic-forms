@@ -27,21 +27,33 @@ export const dynamicFormDictionaryType: DynamicFormFieldType = {
 export function dynamicFormDictionaryRegisterFieldHandlerFactory(
   formBuilder: DynamicFormBuilder
 ): DynamicFormActionHandler<DynamicFormDictionary> {
-  const func = (field: DynamicFormDictionary) => {
-    const key = formBuilder.createId();
+  const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
+    const parent = <DynamicFormAction>action.parent;
+    const key = parent.dialog ? parent.dialog.model.key : formBuilder.createId();
     const element = formBuilder.createFormDictionaryField(field, key);
+    if (parent.dialog) {
+      parent.closeDialog();
+    }
     return field.registerField(element);
   };
   return {
     type: 'registerDictionaryField',
+    elementFunc: getDynamicFormDictionary,
     func: func,
     libraryName: dynamicFormLibrary.name
   };
 }
 
 export function getDynamicFormDictionary(action: DynamicFormAction): DynamicFormDictionary {
-  const field = action.parent && (<DynamicFormField>action.parent).parent;
-  return field && field.fieldClassType === 'dictionary' ? <DynamicFormDictionary>field : undefined;
+  const field = <DynamicFormField>action.parent;
+  if (field.fieldClassType === 'dictionary') {
+    return <DynamicFormDictionary>field;
+  }
+
+  const parentField = <DynamicFormField>field.parent;
+  return parentField && parentField.fieldClassType === 'dictionary'
+    ? <DynamicFormDictionary>parentField
+    : undefined;
 }
 
 export function dynamicFormDictionaryRemoveField(field: DynamicFormDictionary, action: DynamicFormAction): void {

@@ -35,7 +35,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.status).toBe('VALID');
 
     expect(formControl.elements).toEqual([]);
-    expect(formControl.actions).toEqual([]);
+    expect(formControl.footerActions).toEqual([]);
     expect(formControl.evaluators).toEqual([]);
     expect(formControl.validators).toEqual([]);
 

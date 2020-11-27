@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Textbox variations"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Textbox variations</h3>"
-      }
-    },
     {
       "key": "textbox",
       "type": "control",
@@ -54,7 +51,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",
