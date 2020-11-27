@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs plain"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs plain</h3>"
-      }
-    },
     {
       "key": "checkbox",
       "type": "control",
@@ -147,7 +144,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

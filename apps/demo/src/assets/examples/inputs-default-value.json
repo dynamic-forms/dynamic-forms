@@ -1,11 +1,8 @@
 {
+  "template": {
+    "label": "Inputs with default value"
+  },
   "elements": [
-    {
-      "type": "content",
-      "template": {
-        "content": "<h3>Inputs with default value</h3>"
-      }
-    },
     {
       "key": "checkbox",
       "type": "control",
@@ -173,7 +170,7 @@
       }
     }
   ],
-  "actions": [
+  "footerActions": [ 
     {
       "id": "action-submit",
       "type": "button",

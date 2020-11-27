@@ -15,6 +15,6 @@ export abstract class DynamicFormIconBase<
   }
 
   onClick($event: Event): void {
-    this.actionService.handle(this.action, $event);
+    this.handleEvent($event);
   }
 }

@@ -25,16 +25,16 @@ describe('DynamicFormModalModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(3);
-      expect(handlers[0]).toEqual(dynamicFormModalOpenHandler);
-      expect(handlers[0].func).toEqual(jasmine.any(Function));
-      expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[1]).toEqual(dynamicFormModalCloseHandler);
-      expect(handlers[1].func).toEqual(jasmine.any(Function));
-      expect(handlers[1].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[2]).toEqual(dynamicFormModalToggleHandler);
-      expect(handlers[2].func).toEqual(jasmine.any(Function));
-      expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers.length).toBe(6);
+      expect(handlers[3]).toEqual(dynamicFormModalOpenHandler);
+      expect(handlers[3].func).toEqual(jasmine.any(Function));
+      expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[4]).toEqual(dynamicFormModalCloseHandler);
+      expect(handlers[4].func).toEqual(jasmine.any(Function));
+      expect(handlers[4].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[5]).toEqual(dynamicFormModalToggleHandler);
+      expect(handlers[5].func).toEqual(jasmine.any(Function));
+      expect(handlers[5].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 

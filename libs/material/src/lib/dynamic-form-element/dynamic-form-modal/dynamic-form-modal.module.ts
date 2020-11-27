@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
 import { dynamicFormModalFactory, DynamicFormConfigModule, DynamicFormElementModule,
   DynamicFormElementType, DynamicFormModalModule } from '@dynamic-forms/core';
+import { MatDynamicFormDialogModule } from '../../dynamic-form-dialog/dynamic-form-dialog.module';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 
@@ -19,7 +19,7 @@ export const matDynamicFormModalType: DynamicFormElementType = {
     DynamicFormElementModule,
     DynamicFormModalModule,
     DynamicFormConfigModule.withElement(matDynamicFormModalType),
-    MatDialogModule
+    MatDynamicFormDialogModule
   ],
   declarations: [
     MatDynamicFormModalComponent
