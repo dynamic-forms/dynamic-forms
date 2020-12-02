@@ -69,7 +69,7 @@
             "key": "name",
             "type": "control",
             "template": {
-              "className": "col-5",
+              "className": "col-4",
               "label": "Name",
               "input": {
                 "type": "textbox",
@@ -84,7 +84,7 @@
             "key": "email",
             "type": "control",
             "template": {
-              "className": "col-6",
+              "className": "col-5",
               "label": "Email",
               "input": {
                 "type": "textbox",
@@ -95,6 +95,30 @@
                 "required": true,
                 "email": true
               }
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "classNameWrapper": "col-1",
+              "label": "Move user down",
+              "icon": "moveDown",
+              "action": "moveArrayFieldDown"
+            },
+            "expressions": {
+              "disabled": "data.parent.index === data.parent.parent.length - 1"
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "classNameWrapper": "col-1",
+              "label": "Move user up",
+              "icon": "moveUp",
+              "action": "moveArrayFieldUp"
+            },
+            "expressions": {
+              "disabled": "data.parent.index === 0"
             }
           },
           {

@@ -262,6 +262,102 @@ describe('DynamicFormArray', () => {
     expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
   });
 
+  it('moves field down', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
+    ];
+
+    formArray.initElements(fields);
+
+    spyOn(formArray.control, 'removeAt').and.callThrough();
+    spyOn(formArray.control, 'insert').and.callThrough();
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.moveFieldDown(0);
+
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
+    expect(formArray.fields[0].definition.index).toBe(0);
+    expect(formArray.fields[1].definition.index).toBe(1);
+    expect(formArray.control.removeAt).toHaveBeenCalledWith(0);
+    expect(formArray.control.insert).toHaveBeenCalledWith(1, fields[0].control);
+    expect(formArray.control.markAsTouched).toHaveBeenCalled();
+  });
+
+  it('does not move field down', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+    ];
+
+    formArray.initElements(fields);
+
+    spyOn(formArray.control, 'removeAt').and.callThrough();
+    spyOn(formArray.control, 'insert').and.callThrough();
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.moveFieldDown(0);
+
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[0] ]);
+    expect(formArray.control.removeAt).not.toHaveBeenCalled();
+    expect(formArray.control.insert).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
+  });
+
+  it('moves field up', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+      <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
+    ];
+
+    formArray.initElements(fields);
+
+    spyOn(formArray.control, 'removeAt').and.callThrough();
+    spyOn(formArray.control, 'insert').and.callThrough();
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.moveFieldUp(1);
+
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
+    expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
+    expect(formArray.control.insert).toHaveBeenCalledWith(0, fields[1].control);
+    expect(formArray.control.markAsTouched).toHaveBeenCalled();
+  });
+
+  it('does not move field up', () => {
+    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
+    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const formArray = new DynamicFormArray(form, form, definition);
+    const fields = [
+      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+    ];
+
+    formArray.initElements(fields);
+
+    spyOn(formArray.control, 'removeAt').and.callThrough();
+    spyOn(formArray.control, 'insert').and.callThrough();
+    spyOn(formArray.control, 'markAsTouched');
+
+    formArray.moveFieldUp(0);
+
+    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.fields).toEqual([ fields[0] ]);
+    expect(formArray.control.removeAt).not.toHaveBeenCalled();
+    expect(formArray.control.insert).not.toHaveBeenCalled();
+    expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
+  });
+
   it('check calls check of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});

@@ -77,6 +77,34 @@ export class DynamicFormArray<
     }
   }
 
+  moveFieldDown(index: number): void {
+    if (index >= 0 && index < this.length - 1) {
+      const field = this._fields.splice(index, 1)[0];
+      this._fields.splice(index + 1, 0, field);
+      this._fields[index].definition.index = index;
+      this._fields[index + 1].definition.index = index + 1;
+      const value = this._model.splice(index, 1)[0];
+      this._model.splice(index + 1, 0, value);
+      this._control.removeAt(index);
+      this._control.insert(index + 1, field.control);
+      this._control.markAsTouched();
+    }
+  }
+
+  moveFieldUp(index: number): void {
+    if (index >= 1 && index < this.length) {
+      const field = this._fields.splice(index, 1)[0];
+      this._fields.splice(index - 1, 0, field);
+      this._fields[index - 1].definition.index = index - 1;
+      this._fields[index].definition.index = index;
+      const value = this._model.splice(index, 1)[0];
+      this._model.splice(index - 1, 0, value);
+      this._control.removeAt(index);
+      this._control.insert(index - 1, field.control);
+      this._control.markAsTouched();
+    }
+  }
+
   check(): void {
     this.checkControl();
     this.checkValidators();

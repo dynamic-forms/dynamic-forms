@@ -69,9 +69,37 @@ export function dynamicFormArrayClearFields(field: DynamicFormArray): void {
   field.clearFields();
 }
 
-export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<DynamicFormArray> = {
+export const dynamicFormArrayClearFieldsHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'clearArrayFields',
   func: dynamicFormArrayClearFields,
+  libraryName: dynamicFormLibrary.name
+};
+
+export function dynamicFormArrayMoveFieldDown(field: DynamicFormArray, action: DynamicFormAction): void {
+  const childField = <DynamicFormField>action.parent;
+  if (field && childField && childField.index >= 0) {
+    field.moveFieldDown(childField.index);
+  }
+}
+
+export const dynamicFormArrayMoveFieldDownHandler: DynamicFormActionHandler<DynamicFormArray> = {
+  type: 'moveArrayFieldDown',
+  elementFunc: getDynamicFormArray,
+  func: dynamicFormArrayMoveFieldDown,
+  libraryName: dynamicFormLibrary.name
+};
+
+export function dynamicFormArrayMoveFieldUp(field: DynamicFormArray, action: DynamicFormAction): void {
+  const childField = <DynamicFormField>action.parent;
+  if (field && childField && childField.index >= 0) {
+    field.moveFieldUp(childField.index);
+  }
+}
+
+export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<DynamicFormArray> = {
+  type: 'moveArrayFieldUp',
+  elementFunc: getDynamicFormArray,
+  func: dynamicFormArrayMoveFieldUp,
   libraryName: dynamicFormLibrary.name
 };
 
@@ -87,7 +115,9 @@ export const dynamicFormArrayClearElementsHandler: DynamicFormActionHandler<Dyna
     DynamicFormActionModule.withHandlers([
       dynamicFormArrayPopFieldHandler,
       dynamicFormArrayRemoveFieldHandler,
-      dynamicFormArrayClearElementsHandler
+      dynamicFormArrayClearFieldsHandler,
+      dynamicFormArrayMoveFieldDownHandler,
+      dynamicFormArrayMoveFieldUpHandler
     ])
   ],
   declarations: [
