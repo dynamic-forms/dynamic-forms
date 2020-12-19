@@ -23,6 +23,7 @@ export abstract class DynamicFormField<
   protected _parent: DynamicFormField;
   protected _settings: DynamicFormFieldSettings;
 
+  protected _depth: number;
   protected _model: any;
   protected _parameters: any;
 
@@ -37,6 +38,7 @@ export abstract class DynamicFormField<
     super(definition);
     this._root = root;
     this._parent = parent;
+    this._depth = this.getDepth();
     this._settings = this.createSettings();
   }
 
@@ -46,6 +48,7 @@ export abstract class DynamicFormField<
 
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
+  get depth(): number { return this._depth; }
   get path(): string {
     const parentPath = this.parent && this.parent.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
@@ -134,10 +137,12 @@ export abstract class DynamicFormField<
       id: () => this.id,
       key: () => this.key,
       index: () => this.index,
+      depth: () => this.depth,
       model: () => this.model,
+      value: () => this.control.value,
       status: () => this.control.status,
       parent: () => this.parent ? this.parent.expressionData : undefined,
-      root: () => this.root ? this.root.expressionData : undefined
+      root: () => this.root ? this.root.expressionData : undefined,
     });
     return expressionData;
   }
@@ -152,6 +157,10 @@ export abstract class DynamicFormField<
     return this._validators
       .map(validator => validator.checkChanges())
       .some(change => !!change);
+  }
+
+  private getDepth(): number {
+    return this.parent ? this.parent.depth + 1 : 0;
   }
 
   private createSettings(): DynamicFormFieldSettings {

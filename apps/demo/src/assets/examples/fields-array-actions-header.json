@@ -16,12 +16,12 @@
           "type": "icon",
           "template": {
             "type": "button",
-            "icon": "remove",
-            "label": "Clear users",
-            "action": "clearArrayFields"
+            "icon": "push",
+            "label": "Push user",
+            "action": "pushArrayField"
           },
           "expressions": {
-            "disabled": "!data.parent.length"
+            "disabled": "data.parent.length >= 5"
           }
         },
         {
@@ -40,12 +40,12 @@
           "type": "icon",
           "template": {
             "type": "button",
-            "icon": "push",
-            "label": "Push user",
-            "action": "pushArrayField"
+            "icon": "remove",
+            "label": "Clear users",
+            "action": "clearArrayFields"
           },
           "expressions": {
-            "disabled": "data.parent.length >= 5"
+            "disabled": "!data.parent.length"
           }
         }
       ],

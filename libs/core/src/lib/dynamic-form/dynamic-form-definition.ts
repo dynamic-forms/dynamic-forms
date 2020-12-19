@@ -1,9 +1,9 @@
-import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormTemplate } from './dynamic-form-template';
 
 export interface DynamicFormDefinition extends DynamicFormFieldDefinition<DynamicFormTemplate> {
+  reference: undefined;
   elements: DynamicFormElementDefinition[];
-  footerActions?: DynamicFormActionDefinition[];
+  references?: { [key: string]: DynamicFormElementDefinition };
 }

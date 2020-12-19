@@ -1,0 +1,14 @@
+<div class="dynamic-form-tabs">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let item of element.items">
+      <a class="nav-link" href="#">{{item.label}}</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" *ngFor="let item of element.items">
+      <dynamic-form-element *ngFor="let element of item.elements" 
+        [element]="element"
+      ></dynamic-form-element>
+    </div>
+  </div>
+</div>
