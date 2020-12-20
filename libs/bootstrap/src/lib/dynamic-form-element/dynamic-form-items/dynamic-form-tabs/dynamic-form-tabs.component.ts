@@ -5,4 +5,8 @@ import { DynamicFormItemsBase } from '@dynamic-forms/core';
   selector: 'bs-dynamic-form-tabs',
   templateUrl: './dynamic-form-tabs.component.html'
 })
-export class BsDynamicFormTabsComponent extends DynamicFormItemsBase {}
+export class BsDynamicFormTabsComponent extends DynamicFormItemsBase {
+  constructor() {
+    super();
+  }
+}

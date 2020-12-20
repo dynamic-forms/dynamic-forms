@@ -6,6 +6,10 @@ import { DynamicFormItemsBase } from '@dynamic-forms/core';
   templateUrl: './dynamic-form-accordion.component.html'
 })
 export class BsDynamicFormAccordionComponent extends DynamicFormItemsBase {
+  constructor() {
+    super();
+  }
+
   toggleItem(index: number): void {
     this.selectItem(index !== this.selectedIndex ? index : undefined);
   }
