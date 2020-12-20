@@ -5,4 +5,8 @@ import { DynamicFormItemsBase } from '@dynamic-forms/core';
   selector: 'bs-dynamic-form-accordion',
   templateUrl: './dynamic-form-accordion.component.html'
 })
-export class BsDynamicFormAccordionComponent extends DynamicFormItemsBase {}
+export class BsDynamicFormAccordionComponent extends DynamicFormItemsBase {
+  toggleItem(index: number): void {
+    this.selectItem(index !== this.selectedIndex ? index : undefined);
+  }
+}

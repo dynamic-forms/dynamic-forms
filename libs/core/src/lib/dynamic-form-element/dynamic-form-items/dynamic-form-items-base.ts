@@ -15,4 +15,11 @@ export abstract class DynamicFormItemsBase<
   }
 
   get items(): DynamicFormItem[] { return this.element.items; }
+
+  get selectedIndex(): number { return this.element.selectedIndex; }
+  get selectedItem(): DynamicFormItem { return this.element.selectedItem; }
+
+  selectItem(index: number): void {
+    this.element.selectItem(index);
+  }
 }
