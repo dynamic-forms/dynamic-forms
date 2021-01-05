@@ -28,7 +28,7 @@ export class DynamicFormArray<
   get length(): number { return this._fields.length; }
 
   initElements(elements: DynamicFormField[]): void {
-    this._fields = elements ? [ ...elements ] : [];
+    this._fields = elements || [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });

@@ -58,7 +58,7 @@ describe('MatDynamicFormToggleComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const toggleGroupDebugElement = fixture.debugElement.query(By.css('mat-button-toggle-group'));
     const toggleDebugElements = toggleGroupDebugElement.queryAll(By.css('mat-button-toggle'));
     const toggleComponents = toggleDebugElements.map(elem => <MatButtonToggle>elem.componentInstance);

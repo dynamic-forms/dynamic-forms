@@ -25,9 +25,7 @@ export class DynamicFormControl<
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
-    this.extendExpressionData({
-      input: () => this.input
-    });
+    this.extendExpressionData({ input: () => this.input });
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return 'control'; }

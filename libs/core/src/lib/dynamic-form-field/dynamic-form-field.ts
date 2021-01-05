@@ -4,6 +4,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
+import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
@@ -67,6 +68,10 @@ export abstract class DynamicFormField<
   get unregistered(): boolean { return this.definition.unregistered; }
 
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
+
+  get errors(): DynamicFormValidationErrors { return this.control.errors; }
+  get hasErrors(): boolean { return (this.errors || false) && true; }
+  get showErrors(): boolean { return this.hasErrors && this.control.touched; }
 
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }

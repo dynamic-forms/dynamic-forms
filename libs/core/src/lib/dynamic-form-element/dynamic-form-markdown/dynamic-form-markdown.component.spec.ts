@@ -43,7 +43,7 @@ describe('DynamicFormMarkdownComponent', () => {
     expect(component.element).toBe(element);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     service.compile.and.returnValue(undefined);
 
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
@@ -54,7 +54,7 @@ describe('DynamicFormMarkdownComponent', () => {
     expect(service.compile).toHaveBeenCalledWith(undefined, undefined);
   });
 
-  it('creates component template for markdown', () => {
+  it('renders component template for markdown', () => {
     service.compile.and.returnValue('<h1>Title</h1>');
 
     component.element.template.markdown = '# Title';
@@ -69,7 +69,7 @@ describe('DynamicFormMarkdownComponent', () => {
     expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
   });
 
-  it('creates component template for markdown source', async(() => {
+  it('renders component template for markdown source', async(() => {
     service.compileFromSource.and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.source = '/assets/README.md';

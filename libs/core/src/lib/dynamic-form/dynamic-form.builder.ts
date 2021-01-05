@@ -88,6 +88,7 @@ export class DynamicFormBuilder {
   }
 
   createFormArray(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
+    this.requireFieldType(definition.type);
     const field = new DynamicFormArray(root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
@@ -101,7 +102,7 @@ export class DynamicFormBuilder {
   createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = definitionTemplate.reference
-      ? this.createDefinition(definitionTemplate, field.root)
+      ? this.mergeDefinition(definitionTemplate, field.root)
       : cloneObject(definitionTemplate);
     const definition = { ...definitionBase, key: `${index}`, index  };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -122,7 +123,7 @@ export class DynamicFormBuilder {
   createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = definitionTemplate.reference
-      ? this.createDefinition(definitionTemplate, field.root)
+      ? this.mergeDefinition(definitionTemplate, field.root)
       : cloneObject(definitionTemplate);
     const definition = { ...definitionBase, key };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -189,7 +190,7 @@ export class DynamicFormBuilder {
     root: DynamicForm, parent: DynamicFormField, definitions: DynamicFormElementDefinition[]
   ): DynamicFormElement[] {
     return (definitions || []).map(definition => {
-      const elementDefintion = this.getDefintion(definition, root);
+      const elementDefintion = this.getDefinition(definition, root);
       const classType = this.configService.getClassType(elementDefintion.type);
       switch (classType) {
         case 'element':
@@ -208,18 +209,13 @@ export class DynamicFormBuilder {
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
   ): DynamicFormAction[] {
     return (definitions || []).map(definition => {
-      const actionDefinition = this.getDefintion(definition, root);
+      const actionDefinition = this.getDefinition(definition, root);
       return this.createFormActionForFactory(root, parent, actionDefinition);
     });
   }
 
-  getDefintion<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
-    return definition.reference ? this.createDefinition(definition, root) : definition;
-  }
-
-  createDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
-    const reference = cloneObject(root.definition.references[definition.reference]);
-    return mergeObject(reference, definition);
+  getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
+    return definition.reference ? this.mergeDefinition(definition, root) : definition;
   }
 
   createId(): string {
@@ -248,6 +244,14 @@ export class DynamicFormBuilder {
 
   createActionExpressions(action: DynamicFormAction): DynamicFormActionExpressions {
     return this.expressionBuilder.createActionExpressions(action);
+  }
+
+  private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
+    if (!root.definition.references || !root.definition.references[definition.reference]) {
+      throw Error(`Definition reference ${ definition.reference } is not defined`);
+    }
+    const reference = cloneObject(root.definition.references[definition.reference]);
+    return mergeObject(reference, definition);
   }
 
   private requireElementType(type: string): void {

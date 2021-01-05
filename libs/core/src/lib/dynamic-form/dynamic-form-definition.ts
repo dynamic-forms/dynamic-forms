@@ -3,7 +3,7 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormTemplate } from './dynamic-form-template';
 
 export interface DynamicFormDefinition extends DynamicFormFieldDefinition<DynamicFormTemplate> {
-  reference: undefined;
+  reference?: undefined;
   elements: DynamicFormElementDefinition[];
   references?: { [key: string]: DynamicFormElementDefinition };
 }

@@ -64,7 +64,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
     const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
 

@@ -57,7 +57,7 @@ describe('BsDynamicFormToggleComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const wrapperDebugElement = fixture.debugElement.query(By.css('div.btn-group.btn-group-toggle'));
     const labelDebugElements = wrapperDebugElement.queryAll(By.css('label.btn.btn-light'));
     const inputDebugElements = labelDebugElements.map(elem => elem.query(By.css('input')));

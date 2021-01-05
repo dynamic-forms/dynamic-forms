@@ -42,7 +42,7 @@ describe('BsDynamicFormIconComponent', () => {
     expect(component.template.label).toBe('label');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formIconDebugElement = formButtonDebugElement.query(By.css('i.material-icons'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;

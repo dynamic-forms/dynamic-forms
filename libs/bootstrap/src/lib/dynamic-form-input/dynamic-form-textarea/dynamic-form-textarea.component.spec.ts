@@ -46,7 +46,7 @@ describe('BsDynamicFormTextareaComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 

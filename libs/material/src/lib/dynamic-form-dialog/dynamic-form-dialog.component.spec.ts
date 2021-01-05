@@ -73,7 +73,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    xit('creates component template', () => {
+    xit('renders component template', () => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
 
       expect(formWrapperElement).toBeNull();
@@ -90,7 +90,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('renders component template', () => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
       const formElement = formWrapperElement.querySelector('.dynamic-form');
       const modalElement = formElement.querySelector('.dynamic-form-modal');

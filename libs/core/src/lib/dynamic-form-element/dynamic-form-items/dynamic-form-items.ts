@@ -24,7 +24,7 @@ export class DynamicFormItems<
   get selectedItem(): DynamicFormItem { return this._selectedItem; }
 
   initElements(elements: DynamicFormItem[]): void {
-    this._items = elements ? [ ...elements ] : [];
+    this._items = elements || [];
     this._elements = this._items;
     this.selectItem(0);
   }
