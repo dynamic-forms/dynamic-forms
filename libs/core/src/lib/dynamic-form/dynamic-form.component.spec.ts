@@ -62,12 +62,26 @@ describe('DynamicFormComponent', () => {
     expect(component.form.model).toBe(model);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
     const formComponent = formDebugElement.componentInstance;
 
     expect(formComponent.formGroup).toBe(component.formGroup);
+  });
+
+  it('renders component template with errors', () => {
+    component.formGroup.setErrors({});
+    component.formGroup.markAsTouched();
+
+    expect(component.hasErrors).toBe(true);
+    expect(component.showErrors).toBe(true);
+
+    fixture.detectChanges();
+
+    const formErrorsDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-errors'));
+
+    expect(formErrorsDebugElement).toBeTruthy();
   });
 
   it('sets class name of dynamic form wrapper', () => {
@@ -137,6 +151,17 @@ describe('DynamicFormComponent', () => {
     spyOn(component.formSubmit, 'emit');
 
     component.submit();
+
+    expect(component.formSubmit.emit).toHaveBeenCalledWith({
+      value: component.formGroup.value,
+      model: component.model
+    });
+  });
+
+  it('form submit emits form submit', () => {
+    spyOn(component.formSubmit, 'emit');
+
+    component.form.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,

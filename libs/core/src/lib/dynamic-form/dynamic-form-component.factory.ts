@@ -50,7 +50,7 @@ export class DynamicFormComponentFactory {
   }
 
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl): DynamicFormFieldBase {
-    const type = this.configService.getInputType(field.inputComponentType);
+    const type = this.configService.getInputType(field.inputType);
     return this.createFieldComponentForType(ref, field, type);
   }
 

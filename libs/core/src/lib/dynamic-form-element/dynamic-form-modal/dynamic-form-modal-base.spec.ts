@@ -3,13 +3,13 @@ import { DynamicFormModal} from './dynamic-form-modal';
 import { DynamicFormModalBase } from './dynamic-form-modal-base';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
-class DynamicFormModalBaseTest extends DynamicFormModalBase {}
+class DynamicFormModalTestComponent extends DynamicFormModalBase {}
 
 describe('DynamicFormModalBase', () => {
-  let component: DynamicFormModalBaseTest;
+  let component: DynamicFormModalTestComponent;
 
   beforeEach(() => {
-    component = new DynamicFormModalBaseTest();
+    component = new DynamicFormModalTestComponent();
   });
 
   it('component returns definition', () => {

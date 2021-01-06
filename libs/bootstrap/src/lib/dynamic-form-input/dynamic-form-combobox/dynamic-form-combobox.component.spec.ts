@@ -58,7 +58,7 @@ describe('BsDynamicFormComboboxComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
     const inputListDebugElement = fixture.debugElement.query(By.css('datalist'));
     const inputListItemDebugElements = inputListDebugElement.queryAll(By.css('option'));

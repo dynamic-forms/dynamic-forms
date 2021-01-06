@@ -57,7 +57,7 @@ describe('BsDynamicFormRadioComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElements = fixture.debugElement.queryAll(By.css('div.custom-control.custom-radio'));
     const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.custom-control-input')));
     const labelDebugElements = checkDebugElements.map(elem => elem.query(By.css('label.custom-control-label')));

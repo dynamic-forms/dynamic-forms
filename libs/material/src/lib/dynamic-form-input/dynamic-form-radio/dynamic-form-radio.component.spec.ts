@@ -57,7 +57,7 @@ describe('MatDynamicFormRadioComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
     const inputDebugElements = radioDebugElement.queryAll(By.css('input.mat-radio-input'));
     const labelDebugElements = radioDebugElement.queryAll(By.css('div.mat-radio-label-content'));

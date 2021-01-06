@@ -5,5 +5,6 @@ import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 export interface DynamicFormMarkdownDefinition<
   Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate
 > extends DynamicFormElementDefinition<Template> {
+  elements: undefined;
   options?: DynamicFormMarkdownOptions;
 }

@@ -8,6 +8,6 @@ export interface DynamicFormArrayDefinition<
   definitionTemplate: DynamicFormFieldDefinition;
   defaultLength?: number;
   defaultValue?: any;
-  elements: undefined;
+  elements?: undefined;
   footerActions?: DynamicFormActionDefinition[];
 }

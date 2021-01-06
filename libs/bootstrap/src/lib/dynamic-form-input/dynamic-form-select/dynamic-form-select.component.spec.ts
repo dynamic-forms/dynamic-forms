@@ -75,7 +75,7 @@ describe('BsDynamicFormSelectComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const selectDebugElement = fixture.debugElement.query(By.css('select.custom-select'));
     const optionDebugElements = selectDebugElement.queryAll(By.css('option'));
     const optionGroupDebugElements = selectDebugElement.queryAll(By.css('optgroup'));
