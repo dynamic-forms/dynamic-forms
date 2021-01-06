@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { DynamicFormItemsBase } from '@dynamic-forms/core';
+import { DynamicFormAccordionBase } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-accordion',
   templateUrl: './dynamic-form-accordion.component.html'
 })
-export class BsDynamicFormAccordionComponent extends DynamicFormItemsBase {
+export class BsDynamicFormAccordionComponent extends DynamicFormAccordionBase {
   constructor() {
     super();
-  }
-
-  toggleItem(index: number): void {
-    this.selectItem(index !== this.selectedIndex ? index : undefined);
   }
 }

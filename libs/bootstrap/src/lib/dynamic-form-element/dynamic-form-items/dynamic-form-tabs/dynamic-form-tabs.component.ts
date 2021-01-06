@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DynamicFormItemsBase } from '@dynamic-forms/core';
+import { DynamicFormTabsBase } from '@dynamic-forms/core';
 
 @Component({
   selector: 'bs-dynamic-form-tabs',
   templateUrl: './dynamic-form-tabs.component.html'
 })
-export class BsDynamicFormTabsComponent extends DynamicFormItemsBase {
+export class BsDynamicFormTabsComponent extends DynamicFormTabsBase {
   constructor() {
     super();
   }

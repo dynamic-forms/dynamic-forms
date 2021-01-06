@@ -104,6 +104,8 @@ export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items-
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items-factory';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items-template';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion-base';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-tabs/dynamic-form-tabs-base';
 export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown-definition';
 export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown-template';
 export * from './lib/dynamic-form-element/dynamic-form-markdown/dynamic-form-markdown.component';

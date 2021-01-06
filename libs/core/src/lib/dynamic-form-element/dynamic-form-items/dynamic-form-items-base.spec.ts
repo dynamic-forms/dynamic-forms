@@ -3,13 +3,13 @@ import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsBase } from './dynamic-form-items-base';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
-class DynamicFormItemsBaseTest extends DynamicFormItemsBase {}
+class DynamicFormItemsTestComponent extends DynamicFormItemsBase {}
 
 describe('DynamicFormItemsBase', () => {
-  let component: DynamicFormItemsBaseTest;
+  let component: DynamicFormItemsTestComponent;
 
   beforeEach(() => {
-    component = new DynamicFormItemsBaseTest();
+    component = new DynamicFormItemsTestComponent();
   });
 
   it('returns properties of element', () => {

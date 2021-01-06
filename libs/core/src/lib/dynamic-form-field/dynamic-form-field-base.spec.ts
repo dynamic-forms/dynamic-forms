@@ -4,7 +4,7 @@ import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
-class DynamicFormFieldBaseTest extends DynamicFormFieldBase {
+class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -20,13 +20,13 @@ describe('DynamicFormFieldBase', () => {
     },
     libraryName
   };
-  let component: DynamicFormFieldBaseTest;
+  let component: DynamicFormFieldTestComponent;
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService(library);
     const validationService = new DynamicFormValidationService(libraryService, [ validationConfig ]);
 
-    component = new DynamicFormFieldBaseTest(validationService);
+    component = new DynamicFormFieldTestComponent(validationService);
   });
 
   it('returns properties of field', () => {
