@@ -66,7 +66,7 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.expressionData.length).toEqual(0);
   });
 
-  it('sets elements and fields', () => {
+  it('inits elements and fields', () => {
     const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formDictionary = new DynamicFormDictionary(form, form, definition);
@@ -87,7 +87,7 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.fields[1]).toBe(fields[1]);
   });
 
-  it('sets elements and fields to empty array', () => {
+  it('inits elements and fields with empty array', () => {
     const definition = <DynamicFormDictionaryDefinition>{ key: 'key', template: {} };
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const formDictionary = new DynamicFormDictionary(form, form, definition);

@@ -190,6 +190,16 @@
               "template": {
                 "label": "Options"
               },
+              "defaultValue": [
+                {
+                  "value": "option1",
+                  "label": "Option1"
+                }
+              ],
+              "expressions": {
+                "hidden": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'",
+                "disabled": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'"
+              },
               "footerActions": [ 
                 {
                   "type": "button",
@@ -295,6 +305,7 @@
                       "label": "Options of group",
                       "className": "col-12"
                     },
+
                     "footerActions": [ 
                       {
                         "type": "button",
@@ -392,6 +403,10 @@
                   "type": "textbox",
                   "placeholder": "Enter a default value" 
                 }
+              },
+              "expressions": {
+                "input.type": "data.parent.model.type || 'textbox'",
+                "input.options": "data.parent.value.options"
               }
             }
           ]

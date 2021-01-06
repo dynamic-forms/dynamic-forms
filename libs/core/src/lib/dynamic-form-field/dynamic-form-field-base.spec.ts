@@ -4,7 +4,7 @@ import { DynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
-class DynamicFormFieldBaseTest extends DynamicFormFieldBase {
+class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
@@ -20,17 +20,17 @@ describe('DynamicFormFieldBase', () => {
     },
     libraryName
   };
-  let component: DynamicFormFieldBaseTest;
+  let component: DynamicFormFieldTestComponent;
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService(library);
     const validationService = new DynamicFormValidationService(libraryService, [ validationConfig ]);
 
-    component = new DynamicFormFieldBaseTest(validationService);
+    component = new DynamicFormFieldTestComponent(validationService);
   });
 
   it('returns properties of field', () => {
-    const field = <any>{ id: 'id', key: 'key', index: 1, path: 'path', control: {} };
+    const field = <any>{ id: 'id', key: 'key', index: 1, path: 'path', control: {}, errors: {}, hasError: true, showErrors: false };
     component.field = field;
 
     expect(component.id).toBe('id');
@@ -40,68 +40,33 @@ describe('DynamicFormFieldBase', () => {
     expect(component.element).toBe(field);
     expect(component.field).toBe(field);
     expect(component.control).toBe(field.control);
-  });
-
-  it('errors returns errors from control', () => {
-    const errors = { email: { message: 'The field is not a valid email' } };
-
-    component.field = <any>{ control: { errors } };
-
-    expect(component.errors).toEqual(errors);
-  });
-
-  it('hasErrors returns true if errors exist', () => {
-    component.field = <any>{ control: { errors: {} } };
-
-    expect(component.hasErrors).toBe(true);
-  });
-
-  it('hasErrors returns false if no errors exist', () => {
-    component.field = <any>{ control: { errors: null } };
-
-    expect(component.hasErrors).toBe(false);
-  });
-
-  it('showErrors returns false if no errors exist', () => {
-    component.field = <any>{ control: { errors: null, touched: true } };
-
-    expect(component.showErrors).toBe(false);
-  });
-
-  it('showErrors returns false if errors exist but control is untouched', () => {
-    component.field = <any>{ control: { errors: {}, touched: false } };
-
-    expect(component.showErrors).toBe(false);
-  });
-
-  it('showErrors returns true if errors exist and control is touched', () => {
-    component.field = <any>{ control: { errors: {}, touched: true } };
-
-    expect(component.showErrors).toBe(true);
+    expect(component.errors).toBe(field.errors);
+    expect(component.hasErrors).toBe(field.hasErrors);
+    expect(component.showErrors).toBe(field.showErrors);
   });
 
   it('errorMessage returns message from error', () => {
     const errors = { email: { message: 'The field is not a valid email' } };
 
-    component.field = <any>{ control: { errors } };
+    component.field = <any>{ errors };
 
     expect(component.errorMessage).toEqual(errors.email.message);
   });
 
   it('errorMessage returns message from config', () => {
-    component.field = <any>{ control: { errors: { required: {} } } };
+    component.field = <any>{ errors: { required: {} } };
 
     expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
   it('errorMessage returns default message from config for unknown error', () => {
-    component.field = <any>{ control: { errors: { pattern: {} } } };
+    component.field = <any>{ errors: { pattern: {} } };
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });
 
   it('errorMessage returns default message from config for unspecified error', () => {
-    component.field = <any>{ control: { errors: {} } };
+    component.field = <any>{ errors: {} };
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });

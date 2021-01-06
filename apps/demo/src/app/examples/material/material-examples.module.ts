@@ -25,6 +25,8 @@ export function dynamicFormIdBuilder(): string {
         pop: 'remove',
         remove: 'clear',
         clear: 'clear',
+        moveDown: 'arrow_downward',
+        moveUp: 'arrow_upward',
         register: 'add'
       },
       libraryName: 'material'

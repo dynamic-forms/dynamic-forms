@@ -1,0 +1,82 @@
+{
+  "template": {
+    "label": "Inputs using references"
+  },
+  "references": {
+    "textboxMinMaxLength": {
+      "type": "control",
+      "template": {
+        "label": "Textbox",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter a text"
+        },
+        "validation": {
+          "required": true,
+          "minLength": true,
+          "maxLength": true
+        }
+      },
+      "expressions": {
+        "hints.hintStart": "'Min ' + (data.model || '').length + '/' + data.input.minLength",
+        "hints.hintEnd": "'Max ' + (data.model || '').length + '/' + data.input.maxLength"
+      }
+    }
+  },
+  "elements": [
+    {
+      "key": "textbox1",
+      "reference": "textboxMinMaxLength",
+      "template": {
+        "label": "Textbox 1",
+        "input": {
+          "minLength": 1,
+          "maxLength": 5  
+        }
+      }
+    },
+    {
+      "key": "textbox2",
+      "reference": "textboxMinMaxLength",
+      "template": {
+        "label": "Textbox 2",
+        "input": {
+          "minLength": 5,
+          "maxLength": 10  
+        }
+      }
+    },
+    {
+      "key": "textbox3",
+      "reference": "textboxMinMaxLength",
+      "template": {
+        "label": "Textbox 3",
+        "input": {
+          "minLength": 10,
+          "maxLength": 20  
+        }
+      }
+    }
+  ],
+  "footerActions": [ 
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ]
+}

@@ -33,7 +33,7 @@ describe('DynamicFormContentComponent', () => {
     expect(component.content).toBe('<span>Content</span>');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
     const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
 

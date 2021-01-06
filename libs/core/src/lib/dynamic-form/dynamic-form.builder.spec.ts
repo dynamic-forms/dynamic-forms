@@ -1,4 +1,5 @@
 import { async, inject, TestBed } from '@angular/core/testing';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
@@ -51,8 +52,8 @@ describe('DynamicFormBuilder', () => {
     { libraryName: 'test', type: 'action1', factory: actionFactory, component: null },
   ];
 
-  const getForm = (model: any) => {
-    const definition = <DynamicFormDefinition>{ elements: [] };
+  const getForm = (model: any, references?: { [key: string]: DynamicFormElementDefinition }) => {
+    const definition = <DynamicFormDefinition>{ elements: [], references };
     return new DynamicForm(definition, model);
   };
 
@@ -448,6 +449,34 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
+    it('creates DynamicFormArray with definition template reference',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = { key: [ {}, {} ] };
+      const form = getForm(model, { 'array-control': <DynamicFormFieldDefinition>{ type: 'control' } });
+      const definitionTemplate = <DynamicFormFieldDefinition>{ reference: 'array-control' };
+      const definition = <DynamicFormArrayDefinition>{ key: 'key', type: 'array', template: {}, definitionTemplate };
+      const formArray = builder.createFormArray(form, form, definition);
+
+      expect(formArray.root).toBe(form);
+      expect(formArray.parent).toBe(form);
+      expect(formArray.definition).toBe(definition);
+      expect(formArray.template).toBe(definition.template);
+
+      expect(formArray.control).toBeDefined();
+      expect(formArray.control.validator).toBeNull();
+
+      expect(formArray.elements).toBeDefined();
+      expect(formArray.fields.length).toBe(2);
+      expect(formArray.fields[0].key).toBe('0');
+      expect(formArray.fields[0].index).toBe(0);
+      expect(formArray.fields[0].componentType).toBe('control');
+      expect(formArray.fields[1].key).toBe('1');
+      expect(formArray.fields[1].index).toBe(1);
+      expect(formArray.fields[1].componentType).toBe('control');
+    })
+  );
+
+
   it('creates DynamicFormArray including validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
@@ -483,6 +512,33 @@ describe('DynamicFormBuilder', () => {
       const model = { key: { value1: undefined, value2: undefined } };
       const form = getForm(model);
       const definitionTemplate = <DynamicFormFieldDefinition>{ type: 'control' };
+      const definition = <DynamicFormDictionaryDefinition>{ key: 'key', type: 'dictionary', template: {}, definitionTemplate };
+      const formDictionary = builder.createFormDictionary(form, form, definition);
+
+      expect(formDictionary.root).toBe(form);
+      expect(formDictionary.parent).toBe(form);
+      expect(formDictionary.definition).toBe(definition);
+      expect(formDictionary.template).toBe(definition.template);
+
+      expect(formDictionary.control).toBeDefined();
+      expect(formDictionary.control.validator).toBeNull();
+
+      expect(formDictionary.elements).toBeDefined();
+      expect(formDictionary.fields.length).toBe(2);
+      expect(formDictionary.fields[0].key).toBe('value1');
+      expect(formDictionary.fields[0].index).toBeUndefined();
+      expect(formDictionary.fields[0].componentType).toBe('control');
+      expect(formDictionary.fields[1].key).toBe('value2');
+      expect(formDictionary.fields[1].index).toBeUndefined();
+      expect(formDictionary.fields[1].componentType).toBe('control');
+    })
+  );
+
+  it('creates DynamicFormDictionary with definition template reference',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const model = { key: { value1: undefined, value2: undefined } };
+      const form = getForm(model, { 'dictionary-control': <DynamicFormFieldDefinition>{ type: 'control' } });
+      const definitionTemplate = <DynamicFormFieldDefinition>{ reference: 'dictionary-control' };
       const definition = <DynamicFormDictionaryDefinition>{ key: 'key', type: 'dictionary', template: {}, definitionTemplate };
       const formDictionary = builder.createFormDictionary(form, form, definition);
 
@@ -674,6 +730,47 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
+  it('getDefinition returns definition',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormElementDefinition>{};
+      const result = builder.getDefinition(definition, null);
+
+      expect(result).toBe(definition);
+    })
+  );
+
+  it('getDefinition returns merged definition from references',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormElementDefinition>{ reference: 'ref', template: { className: 'className' }, expressions: { readonly: 'parent.readonly' } };
+      const definitionRef = <DynamicFormElementDefinition>{ type: 'type', template: { classNameWrapper: 'classNameWrapper' } };
+      const definitionRoot = <DynamicFormDefinition>{ references: { ref: definitionRef }, elements: [] };
+      const root = <DynamicForm>{ definition: definitionRoot };
+      const result = builder.getDefinition(definition, root);
+
+      expect(result).toEqual({
+        reference: 'ref',
+        type: 'type',
+        template: {
+          className: 'className',
+          classNameWrapper: 'classNameWrapper'
+        },
+        expressions: {
+          readonly: 'parent.readonly'
+        }
+      });
+    })
+  );
+
+  it('getDefinition throws if definition reference is not defined',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormElementDefinition>{ reference: 'ref' };
+      const definitionRoot = <DynamicFormDefinition>{ references: {}, elements: [] };
+      const root = <DynamicForm>{ definition: definitionRoot };
+
+      expect(() => builder.getDefinition(definition, root)).toThrowError('Definition reference ref is not defined');
+    })
+  );
+
   it('getFieldId returns id from id builder',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const field = <DynamicFormField>{ settings: { autoGeneratedId: true } };
@@ -683,12 +780,39 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('getFieldId returns id from field id',
+  it('getFieldId returns id from field',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const field = <DynamicFormField>{ id: 'dynamic-form-field-id', settings: { autoGeneratedId: true } };
       const id = builder.getFieldId(field);
 
       expect(id).toBe('dynamic-form-field-id');
+    })
+  );
+
+  it('getActionId returns id from id builder',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const action = <DynamicFormAction>{ parent: {}, template: { action: 'action' } };
+      const id = builder.getActionId(action);
+
+      expect(id).toBe('dynamic-form-id-action');
+    })
+  );
+
+  it('getActionId returns id from parent',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const action = <DynamicFormAction>{ parent: { id: 'parent-id' }, template: { action: 'action' } };
+      const id = builder.getActionId(action);
+
+      expect(id).toBe('parent-id-action');
+    })
+  );
+
+  it('getActionId returns id from action',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const action = <DynamicFormAction>{ id: 'dynamic-form-action-id' };
+      const id = builder.getActionId(action);
+
+      expect(id).toBe('dynamic-form-action-id');
     })
   );
 });

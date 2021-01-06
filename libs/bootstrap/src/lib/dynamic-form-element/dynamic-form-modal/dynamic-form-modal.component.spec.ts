@@ -42,7 +42,7 @@ describe('BsDynamicFormModalComponent', () => {
     expect(component.isOpen).toBeFalse();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
 
     expect(component).toBeDefined();

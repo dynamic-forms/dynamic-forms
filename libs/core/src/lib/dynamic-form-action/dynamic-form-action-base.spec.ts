@@ -6,7 +6,7 @@ import { DynamicFormActionBase } from './dynamic-form-action-base';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
-class DynamicFormActionBaseTest extends DynamicFormActionBase {
+class DynamicFormActionTestComponent extends DynamicFormActionBase {
   constructor(protected actionService: DynamicFormActionService) {
     super(actionService);
   }
@@ -14,13 +14,13 @@ class DynamicFormActionBaseTest extends DynamicFormActionBase {
 
 describe('DynamicFormActionBase', () => {
   let actionService: DynamicFormActionService;
-  let component: DynamicFormActionBaseTest;
+  let component: DynamicFormActionTestComponent;
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService({ name: 'test' });
 
     actionService = new DynamicFormActionService(libraryService, []);
-    component = new DynamicFormActionBaseTest(actionService);
+    component = new DynamicFormActionTestComponent(actionService);
   });
 
   it('creates instance', () => {

@@ -17,16 +17,16 @@
               "placeholder": "Select the currency pair",
               "options": [
                 {
-                  "value": "EUR\/USD",
-                  "label": "EUR\/USD"
+                  "value": "EUR/USD",
+                  "label": "EUR/USD"
                 },
                 {
-                  "value": "EUR\/GBP",
-                  "label": "EUR\/GBP"
+                  "value": "EUR/GBP",
+                  "label": "EUR/GBP"
                 },
                 {
-                  "value": "EUR\/CHF",
-                  "label": "EUR\/CHF"
+                  "value": "EUR/CHF",
+                  "label": "EUR/CHF"
                 }
               ]
             },

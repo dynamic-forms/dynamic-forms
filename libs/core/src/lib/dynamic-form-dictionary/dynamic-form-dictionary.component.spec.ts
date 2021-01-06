@@ -64,7 +64,7 @@ describe('DynamicFormDictionaryComponent', () => {
     expect(component.template).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-dictionary-label'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;

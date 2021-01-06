@@ -58,7 +58,7 @@ describe('DynamicFormGroupComponent', () => {
     expect(component.elements).toEqual([]);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
