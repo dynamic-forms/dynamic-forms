@@ -417,5 +417,21 @@ $dynamic-form-material-red: #f44336;
         }
       }
     }
+
+    .dynamic-form-accordion {
+      .card-header {
+        cursor: pointer;
+      }
+    }
+
+    .dynamic-form-tabs {
+      .card-header {
+        .card-header-tabs {
+          .nav-item {
+            cursor: pointer;
+          }
+        }  
+      }
+    }
   }
 }
