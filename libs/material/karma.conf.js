@@ -23,7 +23,12 @@ module.exports = function (config) {
     },
     coverageReporter: {
       dir: require('path').join(__dirname, '../../apps/demo/src/assets/coverage/material'),
-      reports: ['html', 'lcovonly', 'cobertura'],
+      subdir: '.',
+      reporters: [ 
+        { type: 'html' }, 
+        { type: 'lcovonly' },
+        { type: 'cobertura' }
+      ],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml', 'junit'],
