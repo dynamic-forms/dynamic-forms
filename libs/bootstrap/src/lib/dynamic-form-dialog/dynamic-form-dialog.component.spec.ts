@@ -39,9 +39,6 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
       useValue: {}
     },
     DynamicFormComponentFactory
-  ],
-  entryComponents: [
-    DynamicFormActionTestComponent
   ]
 })
 class DynamicFormActionComponentTestModule {}
@@ -72,7 +69,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('renders component template', () => {
       const debugElement = fixture.debugElement.query(By.css('.dynamic-form-modal'));
 
       expect(debugElement).toBeNull();
@@ -89,7 +86,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('renders component template', () => {
       const debugElement = fixture.debugElement.query(By.css('.dynamic-form-modal.modal'));
       const dialogDebugElement = debugElement.query(By.css('.modal-dialog.modal-dialog-centered.modal-dialog-scrollable'));
       const contentDebugElement = dialogDebugElement.query(By.css('.modal-content'));

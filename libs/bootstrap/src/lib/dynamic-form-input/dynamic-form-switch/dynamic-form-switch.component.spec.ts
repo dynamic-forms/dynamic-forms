@@ -46,7 +46,7 @@ describe('BsDynamicFormSwitchComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-switch'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.custom-control-label'));

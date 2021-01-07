@@ -2,7 +2,7 @@ import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 
 describe('DynamicFormElement', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
 
@@ -14,7 +14,7 @@ describe('DynamicFormElement', () => {
     expect(formElement.elements).toEqual([]);
   });
 
-  it('sets elements', () => {
+  it('inits elements', () => {
     const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
     const elements = [
@@ -23,10 +23,10 @@ describe('DynamicFormElement', () => {
 
     formElement.initElements(elements);
 
-    expect(formElement.elements).toEqual(elements);
+    expect(formElement.elements).toBe(elements);
   });
 
-  it('sets elements to empty array', () => {
+  it('inits elements with empty array', () => {
     const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
     const formElement = new DynamicFormElement(definition);
 

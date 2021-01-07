@@ -7,7 +7,7 @@ import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 
 describe('DynamicFormGroup', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', index: 1, type: 'componentType', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
@@ -47,7 +47,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.model).toEqual(defaultValue);
   });
 
-  it('sets elements and fields', () => {
+  it('inits elements and fields', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
@@ -77,12 +77,11 @@ describe('DynamicFormGroup', () => {
 
     formGroup.initElements(elements);
 
-    expect(formGroup.elements).toEqual(elements);
-    expect(formGroup.elements).not.toBe(elements);
+    expect(formGroup.elements).toBe(elements);
     expect(formGroup.fields).toEqual(fields);
   });
 
-  it('sets elements and fields to empty array', () => {
+  it('inits elements and fields with empty array', () => {
     const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
     const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);

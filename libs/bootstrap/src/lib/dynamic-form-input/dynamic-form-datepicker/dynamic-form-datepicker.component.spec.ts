@@ -46,7 +46,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 

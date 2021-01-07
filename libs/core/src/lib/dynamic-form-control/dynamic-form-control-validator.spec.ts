@@ -5,7 +5,7 @@ import { DynamicFormControlValidation } from './dynamic-form-control-validation'
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControlValidator', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
     const factory = _ => Validators.required;
     const validator = new DynamicFormControlValidator('required', control, factory);
@@ -19,7 +19,7 @@ describe('DynamicFormControlValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance for validator definition', () => {
+  it('creates instance for validator definition', () => {
     const minMaxLength = <DynamicFormFieldValidatorDefinition> {
       type: 'minMaxLength',
       parameters: {
@@ -54,28 +54,28 @@ describe('DynamicFormControlValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance throws exception if definition not valid', () => {
+  it('creating instance throws exception if definition not valid', () => {
     const control = <DynamicFormControl>{ template: { input: {}, validation: { required: true } } };
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
-  it('new instance throws exception if input not valid', () => {
+  it('creating instance throws exception if input not valid', () => {
     const control = <DynamicFormControl>{ definition: {}, template: { input: null, validation: { required: true } } };
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
-  it('new instance throws exception if validation not valid', () => {
+  it('creating instance throws exception if validation not valid', () => {
     const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: null } };
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
-  it('new instance throws exception if factory not valid', () => {
+  it('creating instance throws exception if factory not valid', () => {
     const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
 
     expect(() => new DynamicFormControlValidator('required', control, null)).toThrowError();
