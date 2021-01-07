@@ -46,7 +46,7 @@ describe('MatDynamicFormSwitchComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));

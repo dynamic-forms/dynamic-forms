@@ -2,13 +2,13 @@ import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 
-class DynamicFormElementBaseTest extends DynamicFormElementBase {}
+class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 describe('DynamicFormElementBase', () => {
-  let component: DynamicFormElementBaseTest;
+  let component: DynamicFormElementTestComponent;
 
   beforeEach(() => {
-    component = new DynamicFormElementBaseTest();
+    component = new DynamicFormElementTestComponent();
   });
 
   it('returns properties of element', () => {

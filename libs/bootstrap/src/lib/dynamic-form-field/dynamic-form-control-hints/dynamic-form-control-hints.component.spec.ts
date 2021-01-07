@@ -64,7 +64,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const smallDebugElement = fixture.debugElement.query(By.css('small'));
     const hintStartDebugElement = smallDebugElement.query(By.css('span.hint-start'));
     const hintSpacerDebugElement = smallDebugElement.query(By.css('span.hint-spacer'));

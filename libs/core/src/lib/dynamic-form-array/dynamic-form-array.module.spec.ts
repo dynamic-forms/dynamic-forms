@@ -11,7 +11,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
 import { DynamicFormArrayValidatorTypeConfig, DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from './dynamic-form-array-validator-type-config';
-import { dynamicFormArrayClearElementsHandler, dynamicFormArrayPopFieldHandler,
+import { dynamicFormArrayClearFieldsHandler, dynamicFormArrayPopFieldHandler,
   dynamicFormArrayRemoveFieldHandler, dynamicFormArrayType, DynamicFormArrayModule } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
@@ -59,7 +59,7 @@ describe('DynamicFormArrayModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(11);
+      expect(handlers.length).toBe(13);
       expect(handlers[3]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
@@ -80,7 +80,7 @@ describe('DynamicFormArrayModule', () => {
       expect(handlers[9]).toEqual(dynamicFormArrayRemoveFieldHandler);
       expect(handlers[9].func).toEqual(jasmine.any(Function));
       expect(handlers[9].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[10]).toEqual(dynamicFormArrayClearElementsHandler);
+      expect(handlers[10]).toEqual(dynamicFormArrayClearFieldsHandler);
       expect(handlers[10].func).toEqual(jasmine.any(Function));
       expect(handlers[10].libraryName).toEqual(dynamicFormLibrary.name);
     })
@@ -182,6 +182,66 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, null);
 
       expect(field.clearFields).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls moveFieldDown of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'moveArrayFieldDown');
+      const field = <DynamicFormArray>{ moveFieldDown(_index: number): void {} };
+      const parent = <DynamicFormField>{ index: 1 };
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'moveFieldDown');
+
+      handler.func(field, action);
+
+      expect(field.moveFieldDown).toHaveBeenCalledWith(1);
+    })
+  );
+
+  it('handler does not call moveFieldDown of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'moveArrayFieldDown');
+      const field = <DynamicFormArray>{ moveFieldDown(_index: number): void {} };
+      const parent = <DynamicFormField>{};
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'moveFieldDown');
+
+      handler.func(field, action);
+
+      expect(field.moveFieldDown).not.toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls moveFieldUp of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'moveArrayFieldUp');
+      const field = <DynamicFormArray>{ moveFieldUp(_index: number): void {} };
+      const parent = <DynamicFormField>{ index: 1 };
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'moveFieldUp');
+
+      handler.func(field, action);
+
+      expect(field.moveFieldUp).toHaveBeenCalledWith(1);
+    })
+  );
+
+  it('handler does not call moveFieldDown of array field',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'moveArrayFieldUp');
+      const field = <DynamicFormArray>{ moveFieldUp(_index: number): void {} };
+      const parent = <DynamicFormField>{};
+      const action = <DynamicFormAction>{ parent: parent };
+
+      spyOn(field, 'moveFieldUp');
+
+      handler.func(field, action);
+
+      expect(field.moveFieldUp).not.toHaveBeenCalled();
     })
   );
 });

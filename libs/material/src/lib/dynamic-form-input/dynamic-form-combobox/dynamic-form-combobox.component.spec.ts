@@ -64,7 +64,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
@@ -95,7 +95,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     });
   }));
 
-  it('sets value and options for autocomplete', async(() => {
+  it('inits value and options for autocomplete', async(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
@@ -120,7 +120,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     });
   }));
 
-  it('sets value and filtered options for autocomplete', async(() => {
+  it('inits value and filtered options for autocomplete', async(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;

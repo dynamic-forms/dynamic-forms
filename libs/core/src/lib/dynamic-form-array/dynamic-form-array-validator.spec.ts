@@ -5,7 +5,7 @@ import { DynamicFormArrayValidation } from './dynamic-form-array-validation';
 import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 describe('DynamicFormArrayValidator', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const array = <DynamicFormArray>{ definition: {}, template: { minLength: 3, validation: { minLength: true } } };
     const factory = (minLength: number) => {
       return Number.isFinite(minLength)
@@ -26,7 +26,7 @@ describe('DynamicFormArrayValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance for validator definition', () => {
+  it('creates  instance for validator definition', () => {
     const minMaxLength = <DynamicFormFieldValidatorDefinition> {
       type: 'minMaxLength',
       parameters: {
@@ -61,7 +61,7 @@ describe('DynamicFormArrayValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance throws exception if definition not valid', () => {
+  it('creating instance throws exception if definition not valid', () => {
     const array = <DynamicFormArray>{ template: { minLength: 3, validation: { minLength: true } } };
     const factory = (minLength: number) => {
       return Number.isFinite(minLength)
@@ -72,7 +72,7 @@ describe('DynamicFormArrayValidator', () => {
     expect(() => new DynamicFormArrayValidator('minLength', array, factory)).toThrowError();
   });
 
-  it('new instance throws exception if validation not valid', () => {
+  it('creating instance throws exception if validation not valid', () => {
     const array = <DynamicFormArray>{ definition: {}, template: { minLength: 3, validation: null } };
     const factory = (minLength: number) => {
       return Number.isFinite(minLength)
@@ -83,7 +83,7 @@ describe('DynamicFormArrayValidator', () => {
     expect(() => new DynamicFormArrayValidator('minLength', array, factory)).toThrowError();
   });
 
-  it('new instance throws exception if factory not valid', () => {
+  it('creating instance throws exception if factory not valid', () => {
     const array = <DynamicFormArray>{ definition: {}, template: { validation: { minLength: true } } };
 
     expect(() => new DynamicFormArrayValidator('minLength', array, null)).toThrowError();

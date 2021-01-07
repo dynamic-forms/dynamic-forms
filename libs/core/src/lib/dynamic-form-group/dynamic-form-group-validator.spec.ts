@@ -5,7 +5,7 @@ import { DynamicFormGroupValidation } from './dynamic-form-group-validation';
 import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 describe('DynamicFormGroupValidator', () => {
-  it('new instance', () => {
+  it('creates instance', () => {
     const group = <DynamicFormGroup>{ definition: {}, template: { validation: { required: true } } };
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('required', group, factory);
@@ -22,7 +22,7 @@ describe('DynamicFormGroupValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance for validator definition', () => {
+  it('creates instance for validator definition', () => {
     const equal = <DynamicFormFieldValidatorDefinition> {
       type: 'equal',
       parameters: {
@@ -48,21 +48,21 @@ describe('DynamicFormGroupValidator', () => {
     expect(validator.validatorFn).toBeDefined();
   });
 
-  it('new instance throws exception if definition not valid', () => {
+  it('creating instance throws exception if definition not valid', () => {
     const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
 
     expect(() => new DynamicFormGroupValidator('required', group, factory)).toThrowError();
   });
 
-  it('new instance throws exception if validation not valid', () => {
+  it('creating instance throws exception if validation not valid', () => {
     const group = <DynamicFormGroup>{ definition: {}, template: { validation: null } };
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
 
     expect(() => new DynamicFormGroupValidator('required', group, factory)).toThrowError();
   });
 
-  it('new instance throws exception if factory not valid', () => {
+  it('creating instance throws exception if factory not valid', () => {
     const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
 
     expect(() => new DynamicFormGroupValidator('required', group, null)).toThrowError();

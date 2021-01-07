@@ -1,0 +1,48 @@
+{
+  "elements": [
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "template": {
+            "label": "Item 1"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "template": {
+            "label": "Item 2"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "template": {
+            "label": "Item 3"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Header 3</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

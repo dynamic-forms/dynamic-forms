@@ -28,7 +28,7 @@ export class DynamicFormArray<
   get length(): number { return this._fields.length; }
 
   initElements(elements: DynamicFormField[]): void {
-    this._fields = elements ? [ ...elements ] : [];
+    this._fields = elements || [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
@@ -73,6 +73,34 @@ export class DynamicFormArray<
       this._elements = this._fields;
       this._model = [];
       this._parent.model[this.key] = this._model;
+      this._control.markAsTouched();
+    }
+  }
+
+  moveFieldDown(index: number): void {
+    if (index >= 0 && index < this.length - 1) {
+      const field = this._fields.splice(index, 1)[0];
+      this._fields.splice(index + 1, 0, field);
+      this._fields[index].definition.index = index;
+      this._fields[index + 1].definition.index = index + 1;
+      const value = this._model.splice(index, 1)[0];
+      this._model.splice(index + 1, 0, value);
+      this._control.removeAt(index);
+      this._control.insert(index + 1, field.control);
+      this._control.markAsTouched();
+    }
+  }
+
+  moveFieldUp(index: number): void {
+    if (index >= 1 && index < this.length) {
+      const field = this._fields.splice(index, 1)[0];
+      this._fields.splice(index - 1, 0, field);
+      this._fields[index - 1].definition.index = index - 1;
+      this._fields[index].definition.index = index;
+      const value = this._model.splice(index, 1)[0];
+      this._model.splice(index - 1, 0, value);
+      this._control.removeAt(index);
+      this._control.insert(index - 1, field.control);
       this._control.markAsTouched();
     }
   }
