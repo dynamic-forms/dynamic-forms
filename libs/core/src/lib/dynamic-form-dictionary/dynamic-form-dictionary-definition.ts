@@ -8,6 +8,6 @@ export interface DynamicFormDictionaryDefinition<
   definitionTemplate: DynamicFormFieldDefinition;
   defaultKeys?: string[];
   defaultValue?: any;
-  elements: undefined;
+  elements?: undefined;
   footerActions?: DynamicFormActionDefinition[];
 }

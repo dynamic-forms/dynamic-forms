@@ -14,6 +14,8 @@ $dynamic-form-material-red: #f44336;
     @import '~bootstrap/scss/buttons';
     @import '~bootstrap/scss/button-group';
     @import '~bootstrap/scss/custom-forms';
+    @import '~bootstrap/scss/nav';
+    @import '~bootstrap/scss/card';
     @import '~bootstrap/scss/modal';
         
     margin: 0 10px;
@@ -413,6 +415,22 @@ $dynamic-form-material-red: #f44336;
           margin-left: 0px;
           margin-right: 10px;
         }
+      }
+    }
+
+    .dynamic-form-accordion {
+      .card-header {
+        cursor: pointer;
+      }
+    }
+
+    .dynamic-form-tabs {
+      .card-header {
+        .card-header-tabs {
+          .nav-item {
+            cursor: pointer;
+          }
+        }  
       }
     }
   }

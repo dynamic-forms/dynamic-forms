@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayValidation } from '../dynamic-form-array/dynamic-form-array-validation';
 import { dynamicFormArrayValidatorTypes, DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
@@ -23,7 +23,7 @@ import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder'
 
 describe('DynamicFormValidationBuilder', () => {
   describe('with DynamicFormLibraryService', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -93,7 +93,7 @@ describe('DynamicFormValidationBuilder', () => {
   });
 
   describe('with DynamicFormLibraryService and types for single library', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -623,7 +623,7 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'dictionary-validator-1', factory: null, libraryName: libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {

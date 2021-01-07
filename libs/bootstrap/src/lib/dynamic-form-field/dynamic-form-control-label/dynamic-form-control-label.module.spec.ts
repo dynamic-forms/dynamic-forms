@@ -1,9 +1,9 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '@dynamic-forms/core';
 import { bsDynamicFormControlLabelType, BsDynamicFormControlLabelModule } from './dynamic-form-control-label.module';
 
 describe('BsDynamicFormControlLabelModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelModule

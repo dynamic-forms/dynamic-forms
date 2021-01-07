@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -38,7 +38,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlErrorsComponent>;
   let component: BsDynamicFormControlErrorsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -47,7 +47,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ control: { errors: { required: { message: 'This field is required.' } }, touched: true } };
+    component.field = <any>{ errors: { required: { message: 'This field is required.' } }, showErrors: true };
 
     const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
@@ -60,7 +60,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
     const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
 

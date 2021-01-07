@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../../dynamic-form-action/dynamic-form-action.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
@@ -7,7 +7,7 @@ import { dynamicFormModalCloseHandler, dynamicFormModalOpenHandler, dynamicFormM
   DynamicFormModalModule } from './dynamic-form-modal.module';
 
 describe('DynamicFormModalModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormModalModule

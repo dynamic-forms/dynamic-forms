@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormToggleComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormToggle>;
   let formControl: DynamicFormControl<DynamicFormToggle>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormToggleModule
@@ -58,7 +58,7 @@ describe('MatDynamicFormToggleComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const toggleGroupDebugElement = fixture.debugElement.query(By.css('mat-button-toggle-group'));
     const toggleDebugElements = toggleGroupDebugElement.queryAll(By.css('mat-button-toggle'));
     const toggleComponents = toggleDebugElements.map(elem => <MatButtonToggle>elem.componentInstance);

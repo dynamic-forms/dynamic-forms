@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -38,7 +38,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlHintsComponent>;
   let component: BsDynamicFormControlHintsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormWrapperTestModule
@@ -60,7 +60,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const smallDebugElement = fixture.debugElement.query(By.css('small'));
     const hintStartDebugElement = smallDebugElement.query(By.css('span.hint-start'));
     const hintSpacerDebugElement = smallDebugElement.query(By.css('span.hint-spacer'));

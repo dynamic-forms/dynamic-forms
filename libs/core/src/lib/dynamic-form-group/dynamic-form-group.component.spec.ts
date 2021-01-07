@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -15,7 +15,7 @@ describe('DynamicFormGroupComponent', () => {
   let form: DynamicForm;
   let formGroup: DynamicFormGroup;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormGroupModule
@@ -58,7 +58,7 @@ describe('DynamicFormGroupComponent', () => {
     expect(component.elements).toEqual([]);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;

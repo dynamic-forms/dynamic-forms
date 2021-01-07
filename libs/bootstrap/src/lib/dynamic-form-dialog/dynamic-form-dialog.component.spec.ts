@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
@@ -39,9 +39,6 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
       useValue: {}
     },
     DynamicFormComponentFactory
-  ],
-  entryComponents: [
-    DynamicFormActionTestComponent
   ]
 })
 class DynamicFormActionComponentTestModule {}
@@ -50,7 +47,7 @@ describe('BsDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormDialogComponent>;
   let component: BsDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormActionComponentTestModule,
@@ -63,7 +60,7 @@ describe('BsDynamicFormDialogComponent', () => {
   }));
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
     }));
@@ -72,7 +69,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('renders component template', () => {
       const debugElement = fixture.debugElement.query(By.css('.dynamic-form-modal'));
 
       expect(debugElement).toBeNull();
@@ -80,7 +77,7 @@ describe('BsDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
     }));
@@ -89,7 +86,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('renders component template', () => {
       const debugElement = fixture.debugElement.query(By.css('.dynamic-form-modal.modal'));
       const dialogDebugElement = debugElement.query(By.css('.modal-dialog.modal-dialog-centered.modal-dialog-scrollable'));
       const contentDebugElement = dialogDebugElement.query(By.css('.modal-content'));
