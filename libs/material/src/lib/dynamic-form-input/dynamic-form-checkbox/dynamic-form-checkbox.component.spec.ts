@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormCheckbox, DynamicFormConfigService, DynamicFormControl,
   DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormCheckbox>;
   let formControl: DynamicFormControl<DynamicFormCheckbox>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormCheckboxModule
@@ -46,7 +46,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-checkbox-input'));
     const labelDebugElement = checkDebugElement.query(By.css('span.mat-checkbox-label'));

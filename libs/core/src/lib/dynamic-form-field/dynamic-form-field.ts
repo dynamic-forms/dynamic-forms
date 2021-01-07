@@ -4,6 +4,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-expression/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
+import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
@@ -23,6 +24,7 @@ export abstract class DynamicFormField<
   protected _parent: DynamicFormField;
   protected _settings: DynamicFormFieldSettings;
 
+  protected _depth: number;
   protected _model: any;
   protected _parameters: any;
 
@@ -37,6 +39,7 @@ export abstract class DynamicFormField<
     super(definition);
     this._root = root;
     this._parent = parent;
+    this._depth = this.getDepth();
     this._settings = this.createSettings();
   }
 
@@ -46,6 +49,7 @@ export abstract class DynamicFormField<
 
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
+  get depth(): number { return this._depth; }
   get path(): string {
     const parentPath = this.parent && this.parent.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
@@ -64,6 +68,10 @@ export abstract class DynamicFormField<
   get unregistered(): boolean { return this.definition.unregistered; }
 
   get validators(): DynamicFormFieldValidator[] { return this._validators; }
+
+  get errors(): DynamicFormValidationErrors { return this.control.errors; }
+  get hasErrors(): boolean { return (this.errors || false) && true; }
+  get showErrors(): boolean { return this.hasErrors && this.control.touched; }
 
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
@@ -134,10 +142,12 @@ export abstract class DynamicFormField<
       id: () => this.id,
       key: () => this.key,
       index: () => this.index,
+      depth: () => this.depth,
       model: () => this.model,
+      value: () => this.control.value,
       status: () => this.control.status,
       parent: () => this.parent ? this.parent.expressionData : undefined,
-      root: () => this.root ? this.root.expressionData : undefined
+      root: () => this.root ? this.root.expressionData : undefined,
     });
     return expressionData;
   }
@@ -152,6 +162,10 @@ export abstract class DynamicFormField<
     return this._validators
       .map(validator => validator.checkChanges())
       .some(change => !!change);
+  }
+
+  private getDepth(): number {
+    return this.parent ? this.parent.depth + 1 : 0;
   }
 
   private createSettings(): DynamicFormFieldSettings {

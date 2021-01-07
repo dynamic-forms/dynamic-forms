@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
@@ -19,7 +19,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 describe('DynamicFormInputBase', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormInputTestComponent

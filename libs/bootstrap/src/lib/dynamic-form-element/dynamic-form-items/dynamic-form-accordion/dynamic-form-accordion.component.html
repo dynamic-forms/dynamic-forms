@@ -1,0 +1,10 @@
+<div class="dynamic-form-accordion">
+  <div class="card" *ngFor="let item of element.items; let index = index">
+    <div class="card-header" (click)="toggleItem(index)">{{item.label}}</div>
+    <div class="card-body" *ngIf="index === selectedIndex">
+      <dynamic-form-element *ngFor="let element of item.elements" 
+        [element]="element"
+      ></dynamic-form-element>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -17,7 +17,7 @@ describe('DynamicFormDictionaryComponent', () => {
   let form: DynamicForm;
   let formDictionary: DynamicFormDictionary;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormDictionaryModule
@@ -64,7 +64,7 @@ describe('DynamicFormDictionaryComponent', () => {
     expect(component.template).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-dictionary-label'));
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;

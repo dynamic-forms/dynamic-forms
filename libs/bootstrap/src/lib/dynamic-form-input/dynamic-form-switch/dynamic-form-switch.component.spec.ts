@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('BsDynamicFormSwitchComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
   let formControl: DynamicFormControl<DynamicFormSwitch>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormSwitchModule
@@ -46,7 +46,7 @@ describe('BsDynamicFormSwitchComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-switch'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.custom-control-label'));

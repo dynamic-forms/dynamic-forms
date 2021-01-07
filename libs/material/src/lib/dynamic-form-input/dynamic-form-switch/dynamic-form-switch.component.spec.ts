@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('MatDynamicFormSwitchComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
   let formControl: DynamicFormControl<DynamicFormSwitch>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSwitchModule
@@ -46,7 +46,7 @@ describe('MatDynamicFormSwitchComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));

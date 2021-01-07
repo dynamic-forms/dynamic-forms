@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
 import { DynamicFormArrayValidatorTypeConfig,
   DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
@@ -20,7 +20,7 @@ import { DynamicFormValidationService } from './dynamic-form-validation.service'
 
 describe('DynamicFormValidationModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule
@@ -38,7 +38,7 @@ describe('DynamicFormValidationModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule
@@ -72,7 +72,7 @@ describe('DynamicFormValidationModule', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withControlValidator(controlValidatorType)
@@ -100,7 +100,7 @@ describe('DynamicFormValidationModule', () => {
       { type: 'validator2', factory: null, libraryName: 'test' },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withControlValidators(controlValidatorTypes)
@@ -129,7 +129,7 @@ describe('DynamicFormValidationModule', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withGroupValidator(groupValidatorType)
@@ -157,7 +157,7 @@ describe('DynamicFormValidationModule', () => {
       { type: 'validator2', factory: null, libraryName: 'test' },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withGroupValidators(groupValidatorTypes)
@@ -186,7 +186,7 @@ describe('DynamicFormValidationModule', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withArrayValidator(arrayValidatorType)
@@ -214,7 +214,7 @@ describe('DynamicFormValidationModule', () => {
       { type: 'validator2', factory: null, libraryName: 'test' },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withArrayValidators(arrayValidatorTypes)
@@ -243,7 +243,7 @@ describe('DynamicFormValidationModule', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withDictionaryValidator(dictionaryValidatorType)
@@ -271,7 +271,7 @@ describe('DynamicFormValidationModule', () => {
       { type: 'validator2', factory: null, libraryName: 'test' },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withDictionaryValidators(dictionaryValidatorTypes)
@@ -294,7 +294,7 @@ describe('DynamicFormValidationModule', () => {
   });
 
   describe('withValidation for default config', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withValidation()
@@ -320,7 +320,7 @@ describe('DynamicFormValidationModule', () => {
     const libraryName = 'test';
     const config: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormValidationModule.withValidation(config)

@@ -5,8 +5,8 @@ import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 export interface DynamicFormModalDefinition<
   Template extends DynamicFormModalTemplate = DynamicFormModalTemplate
 > extends DynamicFormElementDefinition<Template> {
+  trigger: DynamicFormActionDefinition;
   elements: DynamicFormElementDefinition[];
   headerActions?: DynamicFormActionDefinition[];
   footerActions?: DynamicFormActionDefinition[];
-  trigger?: DynamicFormActionDefinition;
 }
