@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
@@ -9,7 +9,7 @@ describe('BsDynamicFormModalComponent', () => {
   let component: BsDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormModalModule
@@ -49,7 +49,7 @@ describe('BsDynamicFormModalComponent', () => {
     expect(modalDebugElement).toBeNull();
   });
 
-  it('opens modal', async(() => {
+  it('opens modal', waitForAsync(() => {
     modal.open();
 
     fixture.whenStable().then(() => {
@@ -75,7 +75,7 @@ describe('BsDynamicFormModalComponent', () => {
     });
   }));
 
-  it('closes modal', async(() => {
+  it('closes modal', waitForAsync(() => {
     modal.open();
 
     fixture.whenStable().then(() => {
@@ -96,7 +96,7 @@ describe('BsDynamicFormModalComponent', () => {
     });
   }));
 
-  it('toggles modal', async(() => {
+  it('toggles modal', waitForAsync(() => {
     modal.toggle();
 
     fixture.whenStable().then(() => {

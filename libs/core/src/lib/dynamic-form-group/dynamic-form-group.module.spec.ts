@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
@@ -10,7 +10,7 @@ import { DynamicFormGroupValidatorTypeConfig, DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_
 import { dynamicFormGroupType, DynamicFormGroupModule } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormGroupModule

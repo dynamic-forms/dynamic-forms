@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
@@ -6,7 +6,7 @@ describe('DynamicFormLibraryService', () => {
   describe('with DYNAMIC_FORM_LIBRARY', () => {
     const library: DynamicFormLibrary = { name: 'test' };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -50,7 +50,7 @@ describe('DynamicFormLibraryService', () => {
       references: [ 'test-core', 'test-core-extension' ]
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -72,7 +72,7 @@ describe('DynamicFormLibraryService', () => {
   });
 
   describe('with DYNAMIC_FORM_LIBRARY being dynamicFormLibrary', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         providers: [
           {

@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
@@ -15,7 +15,7 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule
@@ -29,7 +29,7 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule
@@ -54,7 +54,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormElementType = { type: 'elementType', component: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withElement(type)
@@ -83,7 +83,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'elementType2', component: null, libraryName },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withElements(types)
@@ -109,7 +109,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormFieldType = { type: 'fieldType', factory: null, component: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withField(type)
@@ -138,7 +138,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'fieldType2', factory: null, component: null, libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFields(types)
@@ -164,7 +164,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormActionType = { type: 'actionType', component: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withAction(type)
@@ -193,7 +193,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'actionType2', component: null, libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withActions(types)
@@ -219,7 +219,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormInputType = { type: 'inputType', component: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withInput(type)
@@ -248,7 +248,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'inputType', component: null, libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withInputs(types)
@@ -274,7 +274,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFieldWrapper(type)
@@ -303,7 +303,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'fieldWrapperType', component: null, libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFieldWrappers(types)

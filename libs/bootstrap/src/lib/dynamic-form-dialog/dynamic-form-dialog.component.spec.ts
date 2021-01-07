@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
@@ -47,7 +47,7 @@ describe('BsDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormDialogComponent>;
   let component: BsDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormActionComponentTestModule,
@@ -60,7 +60,7 @@ describe('BsDynamicFormDialogComponent', () => {
   }));
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
     }));
@@ -77,7 +77,7 @@ describe('BsDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
     }));

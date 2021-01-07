@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -17,7 +17,7 @@ import { dynamicFormArrayClearFieldsHandler, dynamicFormArrayPopFieldHandler,
 describe('DynamicFormArrayModule', () => {
   let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', [ 'createFormArrayField' ]);
 
     TestBed.configureTestingModule({

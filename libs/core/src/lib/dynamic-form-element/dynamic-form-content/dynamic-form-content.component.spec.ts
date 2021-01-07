@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormContentDefinition } from './dynamic-form-content-definition';
@@ -10,7 +10,7 @@ describe('DynamicFormContentComponent', () => {
   let component: DynamicFormContentComponent;
   let element: DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormContentComponent
