@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { DynamicFormElement } from '../dynamic-form-element';
@@ -13,7 +13,7 @@ describe('DynamicFormMarkdownComponent', () => {
   let component: DynamicFormMarkdownComponent;
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
 
     TestBed.configureTestingModule({
@@ -69,7 +69,7 @@ describe('DynamicFormMarkdownComponent', () => {
     expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
   });
 
-  it('renders component template for markdown source', async(() => {
+  it('renders component template for markdown source', waitForAsync(() => {
     service.compileFromSource.and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.source = '/assets/README.md';

@@ -1,5 +1,5 @@
 import { Component, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
-import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormActionBase } from '../dynamic-form-action/dynamic-form-action-base';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
@@ -137,7 +137,7 @@ describe('DynamicFormComponentFactory', () => {
   let component: DynamicFormTestComponent;
   let fixture: ComponentFixture<DynamicFormTestComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormComponentFactoryTestModule

@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
@@ -47,7 +47,7 @@ describe('MatDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormDialogComponent>;
   let component: MatDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -61,7 +61,7 @@ describe('MatDynamicFormDialogComponent', () => {
   }));
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
     }));
@@ -78,7 +78,7 @@ describe('MatDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
     }));
@@ -105,7 +105,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(footerElement).toBeNull();
     });
 
-    it('renders theme', async(() => {
+    it('renders theme', waitForAsync(() => {
       component.theme = 'theme';
 
       fixture.detectChanges();
@@ -116,7 +116,7 @@ describe('MatDynamicFormDialogComponent', () => {
       });
     }));
 
-    it('renders title', async(() => {
+    it('renders title', waitForAsync(() => {
       component.title = 'Title';
 
       fixture.detectChanges();
@@ -129,7 +129,7 @@ describe('MatDynamicFormDialogComponent', () => {
       });
     }));
 
-    it('renders title html', async(() => {
+    it('renders title html', waitForAsync(() => {
       component.titleHtml = '<b>Title</b>';
 
       fixture.detectChanges();
@@ -142,7 +142,7 @@ describe('MatDynamicFormDialogComponent', () => {
       });
     }));
 
-    it('renders header actions', async(() => {
+    it('renders header actions', waitForAsync(() => {
       component.headerActions = [
         <DynamicFormAction>{ classType: 'action', componentType: 'action' }
       ];
@@ -157,7 +157,7 @@ describe('MatDynamicFormDialogComponent', () => {
       });
     }));
 
-    it('renders footer actions', async(() => {
+    it('renders footer actions', waitForAsync(() => {
       component.footerActions = [
         <DynamicFormAction>{ classType: 'action', componentType: 'action' }
       ];
@@ -171,7 +171,7 @@ describe('MatDynamicFormDialogComponent', () => {
       });
     }));
 
-    it('renders class names', async(() => {
+    it('renders class names', waitForAsync(() => {
       component.theme = 'theme';
       component.title = 'Title';
       component.headerActions = [

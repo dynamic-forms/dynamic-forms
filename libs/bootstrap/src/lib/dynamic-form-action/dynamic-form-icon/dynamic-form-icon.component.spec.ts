@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormField,
   DynamicFormIconDefinition, DynamicFormIconTemplate, DynamicFormLibraryService } from '@dynamic-forms/core';
@@ -10,7 +10,7 @@ describe('BsDynamicFormIconComponent', () => {
   let component: BsDynamicFormIconComponent;
   let element: DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormIconModule

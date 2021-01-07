@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
 import { DynamicFormIconModule } from './dynamic-form-icon.module';
@@ -6,7 +6,7 @@ import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule
@@ -20,7 +20,7 @@ describe('DynamicFormIconModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule
@@ -45,7 +45,7 @@ describe('DynamicFormIconModule', () => {
     const libraryName = 'test';
     const config: DynamicFormIconConfig = { icons: {}, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule.withIcons(config)

@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormControlEvaluatorType } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
 import { DynamicFormControlEvaluatorTypeConfig,
   DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
@@ -8,7 +8,7 @@ import { DynamicFormEvaluationModule } from './dynamic-form-evaluation.module';
 
 describe('DynamicFormEvaluationModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormEvaluationModule
@@ -22,7 +22,7 @@ describe('DynamicFormEvaluationModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormEvaluationModule
@@ -50,7 +50,7 @@ describe('DynamicFormEvaluationModule', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormEvaluationModule.withControlEvaluator(controlEvaluatorType)
@@ -78,7 +78,7 @@ describe('DynamicFormEvaluationModule', () => {
       { type: 'evaluator2', func: null, libraryName: 'test' },
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormEvaluationModule.withControlEvaluators(controlEvaluatorTypes)

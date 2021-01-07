@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -9,7 +9,7 @@ import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule
@@ -30,7 +30,7 @@ describe('DynamicFormActionModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule
@@ -94,7 +94,7 @@ describe('DynamicFormActionModule', () => {
     const libraryName = 'test';
     const handler: DynamicFormActionHandler = { type: 'handlerType', func: null, libraryName };
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule.withHandler(handler)
@@ -123,7 +123,7 @@ describe('DynamicFormActionModule', () => {
       { type: 'handlerType2', func: null, libraryName }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule.withHandlers(handlers)

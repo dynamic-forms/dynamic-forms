@@ -1,9 +1,9 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, waitForAsync, TestBed } from '@angular/core/testing';
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '@dynamic-forms/core';
 import { bsDynamicFormToggleType, BsDynamicFormToggleModule } from './dynamic-form-toggle.module';
 
 describe('BsDynamicFormToggleModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormToggleModule

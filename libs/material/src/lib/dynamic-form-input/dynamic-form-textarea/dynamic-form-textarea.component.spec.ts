@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormTextareaComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
   let formControl: DynamicFormControl<DynamicFormTextarea>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormTextareaModule,

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
@@ -9,7 +9,7 @@ describe('MatDynamicFormModalComponent', () => {
   let component: MatDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -44,7 +44,7 @@ describe('MatDynamicFormModalComponent', () => {
     expect(component.isOpen).toBeFalse();
   });
 
-  it('opens modal', async(() => {
+  it('opens modal', waitForAsync(() => {
     modal.open();
 
     fixture.whenStable().then(() => {
@@ -65,7 +65,7 @@ describe('MatDynamicFormModalComponent', () => {
     });
   }));
 
-  it('closes modal', async(() => {
+  it('closes modal', waitForAsync(() => {
     modal.open();
 
     fixture.whenStable().then(() => {
@@ -83,7 +83,7 @@ describe('MatDynamicFormModalComponent', () => {
     });
   }));
 
-  it('toggles modal', async(() => {
+  it('toggles modal', waitForAsync(() => {
     modal.toggle();
 
     fixture.whenStable().then(() => {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
   let formControl: DynamicFormControl<DynamicFormCombobox>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormComboboxModule,
@@ -80,7 +80,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     expect(autocompleteDebugElement).toBeDefined();
   });
 
-  it('sets dynamic form control to readonly', async(() => {
+  it('sets dynamic form control to readonly', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
@@ -95,7 +95,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     });
   }));
 
-  it('inits value and options for autocomplete', async(() => {
+  it('inits value and options for autocomplete', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
@@ -120,7 +120,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     });
   }));
 
-  it('inits value and filtered options for autocomplete', async(() => {
+  it('inits value and filtered options for autocomplete', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
