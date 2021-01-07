@@ -1,0 +1,11 @@
+<mat-accordion class="dynamic-form-accordion">
+   <mat-expansion-panel *ngFor="let item of element.items; let index = index" 
+    [expanded]="index === selectedIndex" (opened)="openItem(index)" (closed)="closeItem(index)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{item.label}}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <dynamic-form-element *ngFor="let element of item.elements" 
+      [element]="element"
+    ></dynamic-form-element>
+   </mat-expansion-panel>
+</mat-accordion>

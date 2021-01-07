@@ -25,13 +25,14 @@ export class DynamicFormControl<
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
+    this.extendExpressionData({ input: () => this.input });
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return 'control'; }
 
   get input(): Input { return this.template.input; }
   get inputId(): string { return this.id || this.path; }
-  get inputComponentType(): string { return this.input.type; }
+  get inputType(): string { return this.input.type; }
 
   get evaluators(): DynamicFormControlEvaluator<Input>[] { return this._evaluators; }
 

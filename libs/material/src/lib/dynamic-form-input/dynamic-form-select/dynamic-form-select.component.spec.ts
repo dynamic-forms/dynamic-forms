@@ -79,7 +79,7 @@ describe('MatDynamicFormSelectComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const selectDebugElement = fieldDebugElement.query(By.css('mat-select'));

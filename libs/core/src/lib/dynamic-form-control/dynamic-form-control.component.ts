@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -17,7 +17,10 @@ export class DynamicFormControlComponent<
   Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
   Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>,
   Control extends DynamicFormControl<Input, Template, Definition> = DynamicFormControl<Input, Template, Definition>
-> extends DynamicFormControlBase<Input, Template, Definition, Control> implements OnInit {
+> extends DynamicFormControlBase<Input, Template, Definition, Control> implements OnInit, DoCheck {
+
+  private initialized: boolean;
+  private inputType: string;
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;
@@ -36,7 +39,20 @@ export class DynamicFormControlComponent<
     this.initContainer();
   }
 
+  ngDoCheck(): void {
+    if (this.initialized && this.field.inputType !== this.inputType) {
+      this.updateContainer();
+    }
+  }
+
   private initContainer(): void {
+    this.initialized = true;
+    this.inputType = this.field.inputType;
     this.componentFactory.createInputComponent(this.container, this.field);
+  }
+
+  private updateContainer(): void {
+    this.container.clear();
+    this.initContainer();
   }
 }

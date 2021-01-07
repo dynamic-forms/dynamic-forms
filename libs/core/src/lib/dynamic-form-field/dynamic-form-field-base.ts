@@ -26,17 +26,9 @@ export abstract class DynamicFormFieldBase<
 
   get control(): Control { return this.field.control; }
 
-  get errors(): DynamicFormValidationErrors {
-    return this.control.errors;
-  }
-
-  get hasErrors(): boolean {
-    return (this.errors || false) && true;
-  }
-
-  get showErrors(): boolean {
-    return this.hasErrors && this.control.touched;
-  }
+  get errors(): DynamicFormValidationErrors { return this.field.errors; }
+  get hasErrors(): boolean { return this.field.hasErrors; }
+  get showErrors(): boolean { return this.field.showErrors; }
 
   get errorMessage(): string {
     return this.validationService.getErrorMessage(this.errors);

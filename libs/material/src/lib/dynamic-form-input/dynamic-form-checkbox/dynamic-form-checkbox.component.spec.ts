@@ -46,7 +46,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-checkbox-input'));
     const labelDebugElement = checkDebugElement.query(By.css('span.mat-checkbox-label'));

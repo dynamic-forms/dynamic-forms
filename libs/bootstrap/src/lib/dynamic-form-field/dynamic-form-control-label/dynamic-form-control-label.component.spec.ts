@@ -60,7 +60,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const labelDebugElement = fixture.debugElement.query(By.css('label'));
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
