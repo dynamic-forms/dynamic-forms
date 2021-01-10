@@ -158,7 +158,7 @@
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
-            "tsConfig": "apps/demo/src/tsconfig.app.json",
+            "tsConfig": "apps/demo/tsconfig.app.json",
             "assets": [
               "apps/demo/src/web.config",
               "apps/demo/src/favicon.ico",
@@ -229,8 +229,8 @@
           "options": {
             "main": "apps/demo/src/test.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
-            "tsConfig": "apps/demo/src/tsconfig.spec.json",
-            "karmaConfig": "apps/demo/src/karma.conf.js",
+            "tsConfig": "apps/demo/tsconfig.spec.json",
+            "karmaConfig": "apps/demo/karma.conf.js",
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
@@ -246,8 +246,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/demo/src/tsconfig.app.json",
-              "apps/demo/src/tsconfig.spec.json",
+              "apps/demo/tsconfig.app.json",
+              "apps/demo/tsconfig.spec.json",
               "apps/demo-e2e/tsconfig.e2e.json"
             ],
             "exclude": [

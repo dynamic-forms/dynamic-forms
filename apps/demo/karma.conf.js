@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     files: [
@@ -18,9 +19,14 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    junitReporter: {
+      outputDir: require('path').join(__dirname, '../../dist/v8/tests'),
+      outputFile: 'dynamic-forms-demo.junit.xml',
+      useBrowserName: false
+    },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/@dynamic-forms/demo'),
-      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: require('path').join(__dirname, '../../apps/demo/src/assets/coverage/demo'),
+      reports: ['html', 'lcovonly', 'cobertura'],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
