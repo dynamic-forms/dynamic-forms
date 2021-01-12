@@ -9,7 +9,7 @@ describe('BsDynamicFormModalComponent', () => {
   let component: BsDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormModalModule
@@ -35,7 +35,7 @@ describe('BsDynamicFormModalComponent', () => {
     component.element = modal;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

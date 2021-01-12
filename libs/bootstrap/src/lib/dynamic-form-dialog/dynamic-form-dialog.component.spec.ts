@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
@@ -50,7 +50,7 @@ describe('BsDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormDialogComponent>;
   let component: BsDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormActionComponentTestModule,
@@ -60,13 +60,13 @@ describe('BsDynamicFormDialogComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormDialogComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
       expect(component).toBeDefined();
@@ -80,10 +80,10 @@ describe('BsDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
       expect(component).toBeDefined();

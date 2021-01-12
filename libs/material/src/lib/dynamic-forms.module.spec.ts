@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormIdBuilder,
   DynamicFormLibrary, DynamicFormLibraryService, DynamicFormValidationBuilder,
@@ -9,13 +9,13 @@ import { MatDynamicFormsModule } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule
         ]
       });
-    }));
+    });
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
@@ -59,13 +59,13 @@ describe('MatDynamicFormsModule', () => {
   });
 
   describe('forRoot', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule.forRoot()
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
@@ -131,7 +131,7 @@ describe('MatDynamicFormsModule', () => {
   });
 
   describe('forRoot with config', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule.forRoot({
@@ -140,7 +140,7 @@ describe('MatDynamicFormsModule', () => {
           })
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_THEME',
       inject([DYNAMIC_FORM_THEME], (theme: string) => {

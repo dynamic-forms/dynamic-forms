@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormToggle, DynamicFormValidationService} from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('BsDynamicFormToggleComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormToggle>;
   let formControl: DynamicFormControl<DynamicFormToggle>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormToggleModule
@@ -48,7 +48,7 @@ describe('BsDynamicFormToggleComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

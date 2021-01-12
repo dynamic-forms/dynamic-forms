@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -17,7 +17,7 @@ describe('DynamicFormArrayComponent', () => {
   let form: DynamicForm;
   let formArray: DynamicFormArray;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormArrayModule
@@ -52,7 +52,7 @@ describe('DynamicFormArrayComponent', () => {
     component.field = formArray;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.id).toBe('id');

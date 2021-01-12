@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -41,7 +41,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlLabelComponent>;
   let component: BsDynamicFormControlLabelComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -52,13 +52,12 @@ describe('BsDynamicFormControlLabelComponent', () => {
     component = fixture.componentInstance;
     component.field = <any>{ inputId: 'inputId', template: { label: 'label' } };
 
-    // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormCheckbox, DynamicFormConfigService, DynamicFormControl,
   DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormCheckbox>;
   let formControl: DynamicFormControl<DynamicFormCheckbox>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormCheckboxModule
@@ -37,7 +37,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

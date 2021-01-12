@@ -6,6 +6,6 @@ export interface DynamicFormItemsDefinition<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   ItemDefinition extends DynamicFormItemDefinition = DynamicFormItemDefinition
 > extends DynamicFormElementDefinition<Template> {
-  elements: undefined;
+  elements?: undefined;
   items: ItemDefinition[];
 }

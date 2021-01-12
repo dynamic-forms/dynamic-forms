@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -15,7 +15,7 @@ import { dynamicFormDictionaryType, DynamicFormDictionaryModule } from './dynami
 describe('DynamicFormDictionaryModule', () => {
   let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', [
       'createFormDictionaryField',
       'createId'
@@ -36,7 +36,7 @@ describe('DynamicFormDictionaryModule', () => {
         }
       ]
     });
-  }));
+  });
 
   it('provides DYNAMIC_FORM_FIELD_TYPES',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {

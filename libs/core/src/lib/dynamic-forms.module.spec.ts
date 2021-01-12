@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -17,13 +17,13 @@ import { DynamicFormsModule } from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY provided', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormsModule
         ]
       });
-    }));
+    });
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.get(DYNAMIC_FORM_LIBRARY)).toThrowError(/StaticInjectorError/);
@@ -85,7 +85,7 @@ describe('DynamicFormsModule', () => {
   });
 
   describe('with DYNAMIC_FORM_LIBRARY provided', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormsModule
@@ -97,7 +97,7 @@ describe('DynamicFormsModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {

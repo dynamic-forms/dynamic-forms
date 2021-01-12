@@ -50,7 +50,7 @@ describe('MatDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormDialogComponent>;
   let component: MatDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -61,13 +61,13 @@ describe('MatDynamicFormDialogComponent', () => {
 
     fixture = TestBed.createComponent(MatDynamicFormDialogComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
       expect(component).toBeDefined();
@@ -81,10 +81,10 @@ describe('MatDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
       expect(component).toBeDefined();

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
@@ -31,7 +31,7 @@ describe('DynamicFormButtonBase', () => {
   let component: DynamicFormButtonTestComponent;
   let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormButtonTestComponent
@@ -56,7 +56,7 @@ describe('DynamicFormButtonBase', () => {
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);

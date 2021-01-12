@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition,
   DynamicFormButtonTemplate, DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
@@ -10,7 +10,7 @@ describe('BsDynamicFormButtonComponent', () => {
   let component: BsDynamicFormButtonComponent;
   let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormButtonModule
@@ -35,7 +35,7 @@ describe('BsDynamicFormButtonComponent', () => {
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);

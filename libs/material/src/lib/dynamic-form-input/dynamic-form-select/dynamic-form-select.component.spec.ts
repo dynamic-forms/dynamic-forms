@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSelect } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,7 @@ describe('MatDynamicFormSelectComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSelect>;
   let formControl: DynamicFormControl<DynamicFormSelect>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSelectModule,
@@ -70,7 +70,7 @@ describe('MatDynamicFormSelectComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

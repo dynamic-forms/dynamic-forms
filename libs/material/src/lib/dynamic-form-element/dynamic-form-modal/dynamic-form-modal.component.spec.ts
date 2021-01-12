@@ -9,7 +9,7 @@ describe('MatDynamicFormModalComponent', () => {
   let component: MatDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -37,7 +37,7 @@ describe('MatDynamicFormModalComponent', () => {
     component.element = modal;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeDefined();

@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
@@ -57,7 +57,7 @@ describe('DynamicFormBuilder', () => {
     return new DynamicForm(definition, model);
   };
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -87,7 +87,7 @@ describe('DynamicFormBuilder', () => {
         DynamicFormValidationBuilder
       ]
     });
-  }));
+  });
 
   it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
