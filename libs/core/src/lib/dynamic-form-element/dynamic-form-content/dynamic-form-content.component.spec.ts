@@ -37,7 +37,7 @@ describe('DynamicFormContentComponent', () => {
     const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
     const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
 
-    expect(formContentElement).toBeDefined();
+    expect(formContentElement).toBeTruthy();
     expect(formContentElement.innerHTML).toBe('<span>Content</span>');
   });
 

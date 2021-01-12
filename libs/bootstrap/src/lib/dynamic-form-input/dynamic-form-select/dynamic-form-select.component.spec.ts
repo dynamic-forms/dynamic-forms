@@ -69,7 +69,7 @@ describe('BsDynamicFormSelectComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -89,7 +89,7 @@ describe('BsDynamicFormSelectComponent', () => {
       };
     });
 
-    expect(selectElement).toBeDefined();
+    expect(selectElement).toBeTruthy();
     expect(selectElement.id).toBe(component.inputId);
     expect(optionElements.length).toBe(10);
     expect(optionElements[0].hidden).toBe(true);

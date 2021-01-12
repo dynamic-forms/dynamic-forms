@@ -58,7 +58,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   }));
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -73,11 +73,11 @@ describe('MatDynamicFormComboboxComponent', () => {
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
     expect(labelElement.innerText).toBe('label');
-    expect(autocompleteDebugElement).toBeDefined();
+    expect(autocompleteDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form control to readonly', async(() => {

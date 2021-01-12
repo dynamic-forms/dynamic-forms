@@ -60,14 +60,14 @@ describe('BsDynamicFormControlLabelComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
     const labelDebugElement = fixture.debugElement.query(By.css('label'));
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(labelElement).toBeDefined();
+    expect(labelElement).toBeTruthy();
     expect(labelElement.htmlFor).toBe('inputId');
     expect(labelElement.innerText).toBe('label');
   });

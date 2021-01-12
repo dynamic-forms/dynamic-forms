@@ -48,7 +48,7 @@ describe('BsDynamicFormIconComponent', () => {
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
     const formIconElement = <HTMLElement>formIconDebugElement.nativeElement;
 
-    expect(formButtonElement).toBeDefined();
+    expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.id).toBe('id');
     expect(formButtonElement.type).toBe('button');
     expect(formIconElement.innerText).toBe('icon');

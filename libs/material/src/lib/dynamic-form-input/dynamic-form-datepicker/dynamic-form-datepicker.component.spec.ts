@@ -42,7 +42,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -56,7 +56,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');

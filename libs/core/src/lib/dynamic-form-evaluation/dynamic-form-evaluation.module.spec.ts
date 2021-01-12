@@ -38,7 +38,7 @@ describe('DynamicFormEvaluationModule', () => {
 
     it('provides DynamicFormEvaluationBuilder',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });

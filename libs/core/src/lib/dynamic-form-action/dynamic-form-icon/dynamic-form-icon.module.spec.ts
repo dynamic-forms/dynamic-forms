@@ -36,7 +36,7 @@ describe('DynamicFormIconModule', () => {
 
     it('provides DynamicFormIconService',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });

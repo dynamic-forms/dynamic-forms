@@ -40,7 +40,7 @@ describe('BsDynamicFormTextareaComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -50,7 +50,7 @@ describe('BsDynamicFormTextareaComponent', () => {
     const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(textareaElement).toBeDefined();
+    expect(textareaElement).toBeTruthy();
     expect(textareaElement.id).toBe(component.inputId);
   });
 

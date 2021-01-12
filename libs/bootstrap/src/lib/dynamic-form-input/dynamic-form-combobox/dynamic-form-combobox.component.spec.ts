@@ -52,7 +52,7 @@ describe('BsDynamicFormComboboxComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -67,7 +67,7 @@ describe('BsDynamicFormComboboxComponent', () => {
     const inputListElement = <HTMLDataListElement>inputListDebugElement.nativeElement;
     const inputListItemElements = <HTMLOptionElement[]>inputListItemDebugElements.map(elem => elem.nativeElement);
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
     expect(inputElement.list).toBe(inputListElement);

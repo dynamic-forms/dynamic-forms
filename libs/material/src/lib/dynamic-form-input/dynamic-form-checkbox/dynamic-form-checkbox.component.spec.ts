@@ -40,7 +40,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -53,7 +53,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');
     expect(inputElement.type).toBe('checkbox');
     expect(labelElement.innerText).toBe('label');

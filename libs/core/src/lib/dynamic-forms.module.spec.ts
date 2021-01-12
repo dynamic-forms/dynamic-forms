@@ -63,7 +63,7 @@ describe('DynamicFormsModule', () => {
 
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
@@ -107,7 +107,7 @@ describe('DynamicFormsModule', () => {
 
     it('provides DynamicFormLibraryService',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
         expect(service.library).toEqual(dynamicFormLibrary);
         expect(service.libraryNames).toEqual([ 'core' ]);
       })
@@ -135,43 +135,43 @@ describe('DynamicFormsModule', () => {
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormBuilder',
       inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormEvaluationBuilder',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });

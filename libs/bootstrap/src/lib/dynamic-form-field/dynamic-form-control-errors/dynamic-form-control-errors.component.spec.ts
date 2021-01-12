@@ -60,14 +60,14 @@ describe('BsDynamicFormControlErrorsComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
     const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
     const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
 
-    expect(errorsElement).toBeDefined();
+    expect(errorsElement).toBeTruthy();
     expect(errorsElement.innerText).toBe('This field is required.');
   });
 });

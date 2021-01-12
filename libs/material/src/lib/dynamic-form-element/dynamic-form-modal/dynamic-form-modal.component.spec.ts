@@ -40,7 +40,7 @@ describe('MatDynamicFormModalComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.isOpen).toBeFalse();
   });
 
@@ -58,10 +58,10 @@ describe('MatDynamicFormModalComponent', () => {
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();
-      expect(modalElement).toBeDefined();
-      expect(modalHeaderElement).toBeDefined();
+      expect(modalElement).toBeTruthy();
+      expect(modalHeaderElement).toBeTruthy();
       expect(modalHeaderElement.innerText).toBe('Title');
-      expect(modalBodyElement).toBeDefined();
+      expect(modalBodyElement).toBeTruthy();
     });
   }));
 

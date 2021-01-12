@@ -70,8 +70,8 @@ describe('DynamicFormArrayComponent', () => {
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
     const formArrayLabelElement = <HTMLElement>formArrayLabelDebugElement.nativeElement;
 
-    expect(formArrayElement).toBeDefined();
-    expect(formArrayLabelElement).toBeDefined();
+    expect(formArrayElement).toBeTruthy();
+    expect(formArrayLabelElement).toBeTruthy();
   });
 
   it('hides dynamic form array label if not defined', () => {
@@ -101,7 +101,7 @@ describe('DynamicFormArrayComponent', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-array-label.class-name-label'));
 
-    expect(formArrayLabelDebugElement).toBeDefined();
+    expect(formArrayLabelDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form array to hidden', () => {

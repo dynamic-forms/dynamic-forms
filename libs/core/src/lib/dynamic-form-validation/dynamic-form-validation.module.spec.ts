@@ -54,13 +54,13 @@ describe('DynamicFormValidationModule', () => {
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });

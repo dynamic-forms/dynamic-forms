@@ -115,9 +115,9 @@ describe('DynamicFormControlComponent', () => {
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
     const formInputElement = <HTMLElement>formInputDebugElement.nativeElement;
 
-    expect(formControlElement).toBeDefined();
+    expect(formControlElement).toBeTruthy();
     expect(formControlElement.className).toBe('dynamic-form-control input-1');
-    expect(formInputElement).toBeDefined();
+    expect(formInputElement).toBeTruthy();
   });
 
   it('updates component template', () => {
@@ -130,9 +130,9 @@ describe('DynamicFormControlComponent', () => {
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
     const formInputElement = <HTMLElement>formInputDebugElement.nativeElement;
 
-    expect(formControlElement).toBeDefined();
+    expect(formControlElement).toBeTruthy();
     expect(formControlElement.className).toBe('dynamic-form-control input-2');
-    expect(formInputElement).toBeDefined();
+    expect(formInputElement).toBeTruthy();
   });
 
   it('sets dynamic form control to hidden', () => {

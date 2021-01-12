@@ -60,7 +60,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
@@ -74,13 +74,13 @@ describe('BsDynamicFormControlHintsComponent', () => {
     const hintSpacerElement = <HTMLSpanElement>hintSpacerDebugElement.nativeElement;
     const hintEndElement = <HTMLSpanElement>hintEndDebugElement.nativeElement;
 
-    expect(smallElement).toBeDefined();
+    expect(smallElement).toBeTruthy();
     expect(smallElement.className).toBe('dynamic-form-field-hints form-text text-muted');
-    expect(hintStartElement).toBeDefined();
+    expect(hintStartElement).toBeTruthy();
     expect(hintStartElement.innerText).toBe('HintStart');
-    expect(hintSpacerElement).toBeDefined();
+    expect(hintSpacerElement).toBeTruthy();
     expect(hintSpacerElement.innerText).toBe('');
-    expect(hintEndElement).toBeDefined();
+    expect(hintEndElement).toBeTruthy();
     expect(hintEndElement.innerText).toBe('HintEnd');
 
     component.field.template.hints.hintEnd = null;

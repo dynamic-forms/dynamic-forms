@@ -44,7 +44,7 @@ describe('DynamicFormLibraryModule', () => {
 
     it('provides DynamicFormLibraryService',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
         expect(service.library).toEqual(testLibrary);
       })
     );

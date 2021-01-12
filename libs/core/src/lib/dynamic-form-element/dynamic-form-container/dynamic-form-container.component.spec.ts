@@ -38,7 +38,7 @@ describe('DynamicFormContainerComponent', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
     const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
 
-    expect(formContainerElement).toBeDefined();
+    expect(formContainerElement).toBeTruthy();
   });
 
   it('sets class name of dynamic form container', () => {

@@ -46,7 +46,7 @@ describe('DynamicFormActionModule', () => {
 
     it('provides DynamicFormActionService',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 

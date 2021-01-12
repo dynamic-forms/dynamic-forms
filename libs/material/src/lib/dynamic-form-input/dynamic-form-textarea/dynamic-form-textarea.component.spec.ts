@@ -42,7 +42,7 @@ describe('MatDynamicFormTextareaComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -56,7 +56,7 @@ describe('MatDynamicFormTextareaComponent', () => {
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(textareaElement.id).toBe(component.inputId);
     expect(textareaElement.type).toBe('textarea');
     expect(labelElement.innerText).toBe('label');

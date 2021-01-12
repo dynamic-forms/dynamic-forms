@@ -57,7 +57,7 @@ describe('DynamicFormMarkdownModule', () => {
 
     it('provides DynamicFormMarkdownService',
       inject([DynamicFormMarkdownService], (service: DynamicFormMarkdownService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 

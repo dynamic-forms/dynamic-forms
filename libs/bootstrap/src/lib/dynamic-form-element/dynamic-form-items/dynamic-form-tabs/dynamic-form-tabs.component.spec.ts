@@ -29,7 +29,7 @@ describe('BsDynamicFormTabsComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template ', () => {

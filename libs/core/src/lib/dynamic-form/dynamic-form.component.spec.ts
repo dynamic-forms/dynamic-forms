@@ -57,7 +57,7 @@ describe('DynamicFormComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.form.definition).toBe(definition);
     expect(component.form.model).toBe(model);
   });

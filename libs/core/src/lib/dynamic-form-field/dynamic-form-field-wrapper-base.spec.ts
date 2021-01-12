@@ -64,7 +64,7 @@ describe('DynamicFormFieldWrapper', () => {
       component.component = component.ref.createComponent(factory).instance;
       fixture.detectChanges();
 
-      expect(component).toBeDefined();
+      expect(component).toBeTruthy();
     })
   );
 });

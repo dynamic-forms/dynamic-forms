@@ -51,7 +51,7 @@ describe('MatDynamicFormRadioComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -65,7 +65,7 @@ describe('MatDynamicFormRadioComponent', () => {
     const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
     const labelElements = <HTMLDivElement[]>labelDebugElements.map(elem => elem.nativeElement);
 
-    expect(radioElement).toBeDefined();
+    expect(radioElement).toBeTruthy();
     expect(inputElements.length).toBe(3);
     expect(inputElements[0].id).toBe(`key-0-input`);
     expect(inputElements[0].type).toBe('radio');

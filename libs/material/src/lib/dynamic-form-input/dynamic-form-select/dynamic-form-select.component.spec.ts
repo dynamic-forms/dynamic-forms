@@ -73,7 +73,7 @@ describe('MatDynamicFormSelectComponent', () => {
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -90,7 +90,7 @@ describe('MatDynamicFormSelectComponent', () => {
     const optionElements = selectComponent.options.toArray();
     const optionGroupElements = selectComponent.optionGroups.toArray();
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(selectElement.id).toBe(component.inputId);
     expect(optionElements.length).toBe(9);

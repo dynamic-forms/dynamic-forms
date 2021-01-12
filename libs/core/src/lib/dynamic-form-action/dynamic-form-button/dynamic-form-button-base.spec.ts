@@ -67,7 +67,7 @@ describe('DynamicFormButtonBase', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formButtonElement).toBeDefined();
+    expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
     expect(formButtonElement.innerHTML).toBe('label');
   });

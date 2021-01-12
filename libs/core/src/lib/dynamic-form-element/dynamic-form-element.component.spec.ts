@@ -76,6 +76,6 @@ describe('DynamicFormElementComponent', () => {
     const formElementDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-element'));
     const formElementElement = <HTMLElement>formElementDebugElement.nativeElement;
 
-    expect(formElementElement).toBeDefined();
+    expect(formElementElement).toBeTruthy();
   });
 });
