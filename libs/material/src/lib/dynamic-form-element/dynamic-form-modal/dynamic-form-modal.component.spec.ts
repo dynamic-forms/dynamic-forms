@@ -9,7 +9,7 @@ describe('MatDynamicFormModalComponent', () => {
   let component: MatDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -37,19 +37,18 @@ describe('MatDynamicFormModalComponent', () => {
     component.element = modal;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.isOpen).toBeFalse();
   });
 
   it('opens modal', async(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
       const formElement = <HTMLDivElement>formWrapperElement.querySelector('div.dynamic-form');
       const modalElement = <HTMLDivElement>formElement.querySelector('div.dynamic-form-modal');
@@ -58,26 +57,24 @@ describe('MatDynamicFormModalComponent', () => {
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();
-      expect(modalElement).toBeDefined();
-      expect(modalHeaderElement).toBeDefined();
+      expect(modalElement).toBeTruthy();
+      expect(modalHeaderElement).toBeTruthy();
       expect(modalHeaderElement.innerText).toBe('Title');
-      expect(modalBodyElement).toBeDefined();
+      expect(modalBodyElement).toBeTruthy();
     });
   }));
 
   it('closes modal', async(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });
@@ -86,16 +83,14 @@ describe('MatDynamicFormModalComponent', () => {
   it('toggles modal', async(() => {
     modal.toggle();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });
