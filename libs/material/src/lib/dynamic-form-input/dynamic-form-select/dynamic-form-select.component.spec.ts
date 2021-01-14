@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSelect } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,7 @@ describe('MatDynamicFormSelectComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSelect>;
   let formControl: DynamicFormControl<DynamicFormSelect>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSelectModule,
@@ -70,10 +70,10 @@ describe('MatDynamicFormSelectComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -90,7 +90,7 @@ describe('MatDynamicFormSelectComponent', () => {
     const optionElements = selectComponent.options.toArray();
     const optionGroupElements = selectComponent.optionGroups.toArray();
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(selectElement.id).toBe(component.inputId);
     expect(optionElements.length).toBe(9);

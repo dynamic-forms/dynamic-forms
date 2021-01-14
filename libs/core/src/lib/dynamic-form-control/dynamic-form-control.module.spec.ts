@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
@@ -12,7 +12,7 @@ import { DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_T
 import { dynamicFormControlType, DynamicFormControlModule } from './dynamic-form-control.module';
 
 describe('DynamicFormControlModule', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormControlModule
@@ -24,7 +24,7 @@ describe('DynamicFormControlModule', () => {
         }
       ]
     });
-  }));
+  });
 
   it('provides DYNAMIC_FORM_FIELD_TYPES',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {

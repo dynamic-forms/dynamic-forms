@@ -35,7 +35,7 @@ describe('DynamicFormField', () => {
 
     expect(field.root).toBe(root);
     expect(field.parent).toBe(parent);
-    expect(field.settings).toBeDefined();
+    expect(field.settings).toBeTruthy();
 
     expect(field.definition).toBe(definition);
     expect(field.template).toBe(definition.template);

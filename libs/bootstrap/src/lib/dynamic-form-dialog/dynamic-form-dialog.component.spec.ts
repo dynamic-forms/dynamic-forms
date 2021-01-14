@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
@@ -50,7 +50,7 @@ describe('BsDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormDialogComponent>;
   let component: BsDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormActionComponentTestModule,
@@ -60,16 +60,16 @@ describe('BsDynamicFormDialogComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormDialogComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
-      expect(component).toBeDefined();
+      expect(component).toBeTruthy();
     });
 
     it('renders component template', () => {
@@ -80,13 +80,13 @@ describe('BsDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
-      expect(component).toBeDefined();
+      expect(component).toBeTruthy();
     });
 
     it('renders component template', () => {
@@ -98,11 +98,11 @@ describe('BsDynamicFormDialogComponent', () => {
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer'));
 
-      expect(debugElement).toBeDefined();
-      expect(dialogDebugElement).toBeDefined();
-      expect(contentDebugElement).toBeDefined();
+      expect(debugElement).toBeTruthy();
+      expect(dialogDebugElement).toBeTruthy();
+      expect(contentDebugElement).toBeTruthy();
 
-      expect(bodyDebugElement).toBeDefined();
+      expect(bodyDebugElement).toBeTruthy();
       expect(headerDebugElement).toBeNull();
       expect(footerDebugElement).toBeNull();
     });
@@ -117,7 +117,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const titleDebugElement = headerDebugElement.query(By.css('.modal-title'));
       const titleElement = <HTMLElement>titleDebugElement.nativeElement;
 
-      expect(titleDebugElement).toBeDefined();
+      expect(titleDebugElement).toBeTruthy();
       expect(titleElement.innerText).toBe('Title');
     });
 
@@ -131,7 +131,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const titleDebugElement = headerDebugElement.query(By.css('.modal-title'));
       const titleElement = <HTMLElement>titleDebugElement.nativeElement;
 
-      expect(titleDebugElement).toBeDefined();
+      expect(titleDebugElement).toBeTruthy();
       expect(titleElement.innerHTML).toBe('<b>Title</b>');
     });
 
@@ -146,7 +146,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header'));
       const toolbarDebugElement = headerDebugElement.query(By.css('.modal-toolbar'));
 
-      expect(toolbarDebugElement).toBeDefined();
+      expect(toolbarDebugElement).toBeTruthy();
     });
 
     it('renders footer actions', () => {
@@ -159,7 +159,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const contentDebugElement = fixture.debugElement.query(By.css('.modal-content'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer'));
 
-      expect(footerDebugElement).toBeDefined();
+      expect(footerDebugElement).toBeTruthy();
     });
 
     it('renders class names', () => {
@@ -188,19 +188,19 @@ describe('BsDynamicFormDialogComponent', () => {
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header.class-header'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer.class-footer'));
 
-      const titleDebugElement = headerDebugElement.query(By.css('.modal-header.class-title'));
+      const titleDebugElement = headerDebugElement.query(By.css('.modal-title.class-title'));
       const toolbarDebugElement = headerDebugElement.query(By.css('.modal-toolbar'));
 
-      expect(debugElement).toBeDefined();
-      expect(dialogDebugElement).toBeDefined();
-      expect(contentDebugElement).toBeDefined();
+      expect(debugElement).toBeTruthy();
+      expect(dialogDebugElement).toBeTruthy();
+      expect(contentDebugElement).toBeTruthy();
 
-      expect(bodyDebugElement).toBeDefined();
-      expect(headerDebugElement).toBeDefined();
-      expect(footerDebugElement).toBeDefined();
+      expect(bodyDebugElement).toBeTruthy();
+      expect(headerDebugElement).toBeTruthy();
+      expect(footerDebugElement).toBeTruthy();
 
-      expect(titleDebugElement).toBeDefined();
-      expect(toolbarDebugElement).toBeDefined();
+      expect(titleDebugElement).toBeTruthy();
+      expect(toolbarDebugElement).toBeTruthy();
     });
   });
 });

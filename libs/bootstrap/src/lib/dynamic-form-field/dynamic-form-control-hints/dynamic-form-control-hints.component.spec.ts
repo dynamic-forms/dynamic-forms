@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -41,7 +41,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlHintsComponent>;
   let component: BsDynamicFormControlHintsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormWrapperTestModule
@@ -52,16 +52,15 @@ describe('BsDynamicFormControlHintsComponent', () => {
     component = fixture.componentInstance;
     component.field = <any>{ template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} };
 
-    // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
@@ -75,13 +74,13 @@ describe('BsDynamicFormControlHintsComponent', () => {
     const hintSpacerElement = <HTMLSpanElement>hintSpacerDebugElement.nativeElement;
     const hintEndElement = <HTMLSpanElement>hintEndDebugElement.nativeElement;
 
-    expect(smallElement).toBeDefined();
+    expect(smallElement).toBeTruthy();
     expect(smallElement.className).toBe('dynamic-form-field-hints form-text text-muted');
-    expect(hintStartElement).toBeDefined();
+    expect(hintStartElement).toBeTruthy();
     expect(hintStartElement.innerText).toBe('HintStart');
-    expect(hintSpacerElement).toBeDefined();
+    expect(hintSpacerElement).toBeTruthy();
     expect(hintSpacerElement.innerText).toBe('');
-    expect(hintEndElement).toBeDefined();
+    expect(hintEndElement).toBeTruthy();
     expect(hintEndElement.innerText).toBe('HintEnd');
 
     component.field.template.hints.hintEnd = null;

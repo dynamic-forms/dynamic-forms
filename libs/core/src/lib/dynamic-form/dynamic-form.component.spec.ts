@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -18,7 +18,7 @@ describe('DynamicFormComponent', () => {
   let definition: DynamicFormDefinition;
   let model: any;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormModule
@@ -54,10 +54,10 @@ describe('DynamicFormComponent', () => {
     component.model = model;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.form.definition).toBe(definition);
     expect(component.form.model).toBe(model);
   });

@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
@@ -71,7 +71,7 @@ describe('DynamicFormControlComponent', () => {
   let form: DynamicForm;
   let formControl: DynamicFormControl;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormControlComponentTestModule
@@ -96,17 +96,17 @@ describe('DynamicFormControlComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.id).toBe('id');
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
-    expect(component.input).toBeDefined();
-    expect(component.hints).toBeDefined();
+    expect(component.template).toBeTruthy();
+    expect(component.control).toBeTruthy();
+    expect(component.input).toBeTruthy();
+    expect(component.hints).toBeTruthy();
   });
 
   it('renders component template', () => {
@@ -115,9 +115,9 @@ describe('DynamicFormControlComponent', () => {
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
     const formInputElement = <HTMLElement>formInputDebugElement.nativeElement;
 
-    expect(formControlElement).toBeDefined();
+    expect(formControlElement).toBeTruthy();
     expect(formControlElement.className).toBe('dynamic-form-control input-1');
-    expect(formInputElement).toBeDefined();
+    expect(formInputElement).toBeTruthy();
   });
 
   it('updates component template', () => {
@@ -130,9 +130,9 @@ describe('DynamicFormControlComponent', () => {
     const formControlElement = <HTMLElement>formControlDebugElement.nativeElement;
     const formInputElement = <HTMLElement>formInputDebugElement.nativeElement;
 
-    expect(formControlElement).toBeDefined();
+    expect(formControlElement).toBeTruthy();
     expect(formControlElement.className).toBe('dynamic-form-control input-2');
-    expect(formInputElement).toBeDefined();
+    expect(formInputElement).toBeTruthy();
   });
 
   it('sets dynamic form control to hidden', () => {

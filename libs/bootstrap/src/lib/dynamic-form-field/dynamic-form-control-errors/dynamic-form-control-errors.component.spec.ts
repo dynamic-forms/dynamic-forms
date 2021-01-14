@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -41,7 +41,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlErrorsComponent>;
   let component: BsDynamicFormControlErrorsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -57,17 +57,17 @@ describe('BsDynamicFormControlErrorsComponent', () => {
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
     const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
     const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
 
-    expect(errorsElement).toBeDefined();
+    expect(errorsElement).toBeTruthy();
     expect(errorsElement.innerText).toBe('This field is required.');
   });
 });

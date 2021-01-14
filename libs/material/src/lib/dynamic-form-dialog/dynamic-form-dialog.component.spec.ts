@@ -50,7 +50,7 @@ describe('MatDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormDialogComponent>;
   let component: MatDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -61,16 +61,16 @@ describe('MatDynamicFormDialogComponent', () => {
 
     fixture = TestBed.createComponent(MatDynamicFormDialogComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
-      expect(component).toBeDefined();
+      expect(component).toBeTruthy();
     });
 
     xit('renders component template', () => {
@@ -81,13 +81,13 @@ describe('MatDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
-    }));
+    });
 
     it('creates component', () => {
-      expect(component).toBeDefined();
+      expect(component).toBeTruthy();
     });
 
     it('renders component template', () => {
@@ -99,11 +99,11 @@ describe('MatDynamicFormDialogComponent', () => {
       const headerElement = modalElement.querySelector('.modal-header');
       const footerElement = modalElement.querySelector('.modal-footer');
 
-      expect(formWrapperElement).toBeDefined();
-      expect(formElement).toBeDefined();
-      expect(modalElement).toBeDefined();
+      expect(formWrapperElement).toBeTruthy();
+      expect(formElement).toBeTruthy();
+      expect(modalElement).toBeTruthy();
 
-      expect(bodyElement).toBeDefined();
+      expect(bodyElement).toBeTruthy();
       expect(headerElement).toBeNull();
       expect(footerElement).toBeNull();
     });
@@ -115,7 +115,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.theme');
 
-        expect(formWrapperElement).toBeDefined();
+        expect(formWrapperElement).toBeTruthy();
       });
     }));
 
@@ -156,7 +156,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const headerElement = modalElement.querySelector('.modal-header');
         const toolbarDebugElement = headerElement.querySelector('.modal-toolbar');
 
-        expect(toolbarDebugElement).toBeDefined();
+        expect(toolbarDebugElement).toBeTruthy();
       });
     }));
 
@@ -170,7 +170,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const footerElement = modalElement.querySelector('.modal-footer');
 
-        expect(footerElement).toBeDefined();
+        expect(footerElement).toBeTruthy();
       });
     }));
 
@@ -201,19 +201,19 @@ describe('MatDynamicFormDialogComponent', () => {
         const headerElement = modalElement.querySelector('.modal-header.class-header');
         const footerElement = modalElement.querySelector('.modal-footer.class-footer');
 
-        const titleElement = headerElement.querySelector('.modal-header.class-title');
+        const titleElement = headerElement.querySelector('.modal-title.class-title');
         const toolbarElement = headerElement.querySelector('.modal-toolbar');
 
-        expect(formWrapperElement).toBeDefined();
-        expect(formElement).toBeDefined();
-        expect(modalElement).toBeDefined();
+        expect(formWrapperElement).toBeTruthy();
+        expect(formElement).toBeTruthy();
+        expect(modalElement).toBeTruthy();
 
-        expect(bodyElement).toBeDefined();
-        expect(headerElement).toBeDefined();
-        expect(footerElement).toBeDefined();
+        expect(bodyElement).toBeTruthy();
+        expect(headerElement).toBeTruthy();
+        expect(footerElement).toBeTruthy();
 
-        expect(titleElement).toBeDefined();
-        expect(toolbarElement).toBeDefined();
+        expect(titleElement).toBeTruthy();
+        expect(toolbarElement).toBeTruthy();
       });
     }));
   });

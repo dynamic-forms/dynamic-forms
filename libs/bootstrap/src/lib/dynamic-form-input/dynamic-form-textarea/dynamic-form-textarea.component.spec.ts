@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextarea, DynamicFormValidationService} from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('BsDynamicFormTextareaComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
   let formControl: DynamicFormControl<DynamicFormTextarea>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormTextareaModule
@@ -37,10 +37,10 @@ describe('BsDynamicFormTextareaComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -50,7 +50,7 @@ describe('BsDynamicFormTextareaComponent', () => {
     const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
     const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
 
-    expect(textareaElement).toBeDefined();
+    expect(textareaElement).toBeTruthy();
     expect(textareaElement.id).toBe(component.inputId);
   });
 
