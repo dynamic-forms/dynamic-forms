@@ -1,19 +1,43 @@
-import { waitForAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { ContentComponent } from './layout/content/content.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { NotificationsComponent } from './layout/notifications/notifications.component';
+import { ProgressComponent } from './layout/progress/progress.component';
+import { IconService } from './services/icon.service';
+import { ConfigService } from './state/config/config.service';
+import { RoutingHandler } from './state/routing/routing.handler';
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule
+      ],
+      providers: [
+        { provide: ConfigService, useValue: { load: () => {} } },
+        { provide: IconService, useValue: { register: () => {} } },
+        { provide: RoutingHandler, useValue: {} }
       ]
-    });
-  }));
+    })
+    .overrideTemplate(HeaderComponent, '')
+    .overrideTemplate(ContentComponent, '')
+    .overrideTemplate(FooterComponent, '')
+    .overrideTemplate(ProgressComponent, '')
+    .overrideTemplate(NotificationsComponent, '');
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
+  });
+
+  it('creates component', () => {
+    expect(component).toBeTruthy();
   });
 });

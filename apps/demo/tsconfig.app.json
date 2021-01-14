@@ -1,11 +1,8 @@
 {
-  "extends": "../../../tsconfig.spec.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../out-tsc/spec",
-    "types": [
-      "jasmine",
-      "node"
-    ],
+    "outDir": "../../out-tsc/app",
+    "types": [],
     "paths": {
       "@dynamic-forms/core": [
         "dist/v10/@dynamic-forms/core"
@@ -28,11 +25,7 @@
     }
   },
   "files": [
-    "test.ts",
-    "polyfills.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
+    "src/main.ts",
+    "src/polyfills.ts"
   ]
 }

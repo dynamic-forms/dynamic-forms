@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -15,7 +15,7 @@ describe('DynamicFormGroupComponent', () => {
   let form: DynamicForm;
   let formGroup: DynamicFormGroup;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormGroupModule
@@ -45,16 +45,16 @@ describe('DynamicFormGroupComponent', () => {
     component.field = formGroup;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBe('id');
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
+    expect(component.template).toBeTruthy();
+    expect(component.control).toBeTruthy();
     expect(component.elements).toEqual([]);
   });
 
@@ -64,8 +64,8 @@ describe('DynamicFormGroupComponent', () => {
     const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
     const formGroupLabelElement = <HTMLElement>formGroupLabelDebugElement.nativeElement;
 
-    expect(formGroupElement).toBeDefined();
-    expect(formGroupLabelElement).toBeDefined();
+    expect(formGroupElement).toBeTruthy();
+    expect(formGroupLabelElement).toBeTruthy();
   });
 
   it('hides dynamic form group label if not defined', () => {
@@ -95,7 +95,7 @@ describe('DynamicFormGroupComponent', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label.class-name-label'));
 
-    expect(formGroupLabelDebugElement).toBeDefined();
+    expect(formGroupLabelDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form group to hidden', () => {

@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
@@ -15,13 +15,13 @@ import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression'
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 
 describe('DynamicFormExpressionBuilder', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DynamicFormExpressionBuilder
       ]
     });
-  }));
+  });
 
   it('returns element expressions being null',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
@@ -44,8 +44,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const elementExpressions = service.createElementExpressions(element);
       const elementExpression = elementExpressions['disabled'];
 
-      expect(elementExpressions).toBeDefined();
-      expect(elementExpression).toBeDefined();
+      expect(elementExpressions).toBeTruthy();
+      expect(elementExpression).toBeTruthy();
       expect(elementExpression.element).toBe(element);
       expect(elementExpression.func).toEqual(jasmine.any(Function));
       expect(elementExpression.value).toBe(false);
@@ -70,8 +70,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const elementExpressions = service.createElementExpressions(element);
       const elementExpression = elementExpressions['disabled'];
 
-      expect(elementExpressions).toBeDefined();
-      expect(elementExpression).toBeDefined();
+      expect(elementExpressions).toBeTruthy();
+      expect(elementExpression).toBeTruthy();
       expect(elementExpression.element).toBe(element);
       expect(elementExpression.func).toEqual(jasmine.any(Function));
       expect(elementExpression.value).toBe(false);
@@ -111,8 +111,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
-      expect(fieldExpressions).toBeDefined();
-      expect(fieldExpression).toBeDefined();
+      expect(fieldExpressions).toBeTruthy();
+      expect(fieldExpression).toBeTruthy();
       expect(fieldExpression.field).toBe(field);
       expect(fieldExpression.func).toEqual(jasmine.any(Function));
       expect(fieldExpression.value).toBe(false);
@@ -145,8 +145,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
-      expect(fieldExpressions).toBeDefined();
-      expect(fieldExpression).toBeDefined();
+      expect(fieldExpressions).toBeTruthy();
+      expect(fieldExpression).toBeTruthy();
       expect(fieldExpression.field).toBe(field);
       expect(fieldExpression.func).toEqual(func);
       expect(fieldExpression.value).toBe(false);
@@ -179,8 +179,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 
-      expect(actionExpressions).toBeDefined();
-      expect(actionExpression).toBeDefined();
+      expect(actionExpressions).toBeTruthy();
+      expect(actionExpression).toBeTruthy();
       expect(actionExpression.action).toBe(action);
       expect(actionExpression.func).toEqual(jasmine.any(Function));
       expect(actionExpression.value).toBe(false);
@@ -206,8 +206,8 @@ describe('DynamicFormExpressionBuilder', () => {
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 
-      expect(actionExpressions).toBeDefined();
-      expect(actionExpression).toBeDefined();
+      expect(actionExpressions).toBeTruthy();
+      expect(actionExpression).toBeTruthy();
       expect(actionExpression.action).toBe(action);
       expect(actionExpression.func).toEqual(jasmine.any(Function));
       expect(actionExpression.value).toBe(false);
