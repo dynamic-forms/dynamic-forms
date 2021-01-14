@@ -1,4 +1,4 @@
 export interface DynamicFormElementTemplate {
-  classNameWrapper?: string;
   className?: string;
+  [key: string]: any;
 }

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFormLibraryService } from '@dynamic-forms/core';
+import { By } from '@angular/platform-browser';
+import { DynamicFormItems, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 import { BsDynamicFormAccordionModule } from './dynamic-form-accordion.module';
 
@@ -22,9 +23,29 @@ describe('BsDynamicFormAccordionComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormAccordionComponent);
     component = fixture.componentInstance;
+    component.element = new DynamicFormItems({ template: {}, items: [] });
+
+    fixture.detectChanges();
   });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
+  });
+
+  it('renders component template ', () => {
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-accordion'));
+
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('renders class name', () => {
+    component.element.template.className = 'class-name';
+
+    fixture.detectChanges();
+
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-accordion'));
+    const element = debugElement.nativeElement;
+
+    expect(element).toBeTruthy();
   });
 });

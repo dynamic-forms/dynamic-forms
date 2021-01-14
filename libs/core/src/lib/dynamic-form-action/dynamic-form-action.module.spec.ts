@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -9,13 +9,13 @@ import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {
   describe('without providers', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule
         ]
       });
-    }));
+    });
 
     it('does not provide DynamicFormActionService', () => {
       expect(() => TestBed.inject(DynamicFormActionService)).toThrowError(/NullInjectorError/);
@@ -30,7 +30,7 @@ describe('DynamicFormActionModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule
@@ -42,11 +42,11 @@ describe('DynamicFormActionModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DynamicFormActionService',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
@@ -94,7 +94,7 @@ describe('DynamicFormActionModule', () => {
     const libraryName = 'test';
     const handler: DynamicFormActionHandler = { type: 'handlerType', func: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule.withHandler(handler)
@@ -106,7 +106,7 @@ describe('DynamicFormActionModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
@@ -123,7 +123,7 @@ describe('DynamicFormActionModule', () => {
       { type: 'handlerType2', func: null, libraryName }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormActionModule.withHandlers(handlers)
@@ -135,7 +135,7 @@ describe('DynamicFormActionModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG',
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {

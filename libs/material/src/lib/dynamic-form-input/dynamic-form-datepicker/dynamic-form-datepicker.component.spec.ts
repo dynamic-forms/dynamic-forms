@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormDatepicker>;
   let formControl: DynamicFormControl<DynamicFormDatepicker>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormDatepickerModule,
@@ -39,10 +39,10 @@ describe('MatDynamicFormDatepickerComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -56,7 +56,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');

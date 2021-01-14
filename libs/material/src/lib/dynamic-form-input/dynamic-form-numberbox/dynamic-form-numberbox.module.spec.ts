@@ -1,15 +1,15 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '@dynamic-forms/core';
 import { matDynamicFormNumberboxType, MatDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
 describe('MatDynamicFormNumberboxModule', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormNumberboxModule
       ]
     });
-  }));
+  });
 
   it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {

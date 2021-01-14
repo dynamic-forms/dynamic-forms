@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
 import { DynamicFormIconModule } from './dynamic-form-icon.module';
@@ -6,13 +6,13 @@ import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconModule', () => {
   describe('without providers', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule
         ]
       });
-    }));
+    });
 
     it('does not provide DynamicFormIconService', () => {
       expect(() => TestBed.inject(DynamicFormIconService)).toThrowError(/NullInjectorError/);
@@ -20,7 +20,7 @@ describe('DynamicFormIconModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule
@@ -32,11 +32,11 @@ describe('DynamicFormIconModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DynamicFormIconService',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });
@@ -45,7 +45,7 @@ describe('DynamicFormIconModule', () => {
     const libraryName = 'test';
     const config: DynamicFormIconConfig = { icons: {}, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormIconModule.withIcons(config)
@@ -57,7 +57,7 @@ describe('DynamicFormIconModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ICON_CONFIGS',
       inject([DYNAMIC_FORM_ICON_CONFIGS], (configs: DynamicFormIconConfigs) => {

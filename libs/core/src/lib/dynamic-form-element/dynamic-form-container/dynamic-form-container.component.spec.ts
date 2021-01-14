@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementComponent } from '../dynamic-form-element.component';
@@ -11,7 +11,7 @@ describe('DynamicFormContainerComponent', () => {
   let component: DynamicFormContainerComponent;
   let element: DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormElementComponent,
@@ -28,7 +28,7 @@ describe('DynamicFormContainerComponent', () => {
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
@@ -38,7 +38,7 @@ describe('DynamicFormContainerComponent', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
     const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
 
-    expect(formContainerElement).toBeDefined();
+    expect(formContainerElement).toBeTruthy();
   });
 
   it('sets class name of dynamic form container', () => {

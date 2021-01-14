@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormIconConfig, DynamicFormIconConfigs,
   DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
@@ -7,7 +7,7 @@ import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconService', () => {
   describe('without inco config', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -17,7 +17,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config being empty',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
@@ -46,7 +46,7 @@ describe('DynamicFormIconService', () => {
       libraryName: 'test'
     };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -60,7 +60,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
@@ -122,7 +122,7 @@ describe('DynamicFormIconService', () => {
       }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -139,7 +139,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config being empty',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
