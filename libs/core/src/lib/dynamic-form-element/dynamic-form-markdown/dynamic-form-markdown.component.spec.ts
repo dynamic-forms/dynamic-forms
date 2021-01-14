@@ -13,7 +13,7 @@ describe('DynamicFormMarkdownComponent', () => {
   let component: DynamicFormMarkdownComponent;
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
 
     TestBed.configureTestingModule({
@@ -37,7 +37,7 @@ describe('DynamicFormMarkdownComponent', () => {
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
@@ -49,7 +49,7 @@ describe('DynamicFormMarkdownComponent', () => {
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
     const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
 
-    expect(formMarkdownElement).toBeDefined();
+    expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('');
     expect(service.compile).toHaveBeenCalledWith(undefined, undefined);
   });
@@ -64,7 +64,7 @@ describe('DynamicFormMarkdownComponent', () => {
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
     const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
 
-    expect(formMarkdownElement).toBeDefined();
+    expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
     expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
   });
@@ -79,7 +79,7 @@ describe('DynamicFormMarkdownComponent', () => {
       const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
       const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
 
-      expect(formMarkdownElement).toBeDefined();
+      expect(formMarkdownElement).toBeTruthy();
       expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
       expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README.md', undefined);
     });

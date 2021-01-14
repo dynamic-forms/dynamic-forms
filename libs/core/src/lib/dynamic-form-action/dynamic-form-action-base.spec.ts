@@ -36,7 +36,7 @@ describe('DynamicFormActionBase', () => {
     expect(component.template).toBe(action.template);
 
     expect(component.dialogOpen).toBeFalse();
-    expect(component.dialogOpen$).toBeDefined();
+    expect(component.dialogOpen$).toBeTruthy();
 
     expect(component.dialogDefinition).toBeUndefined();
     expect(() => component.dialogTemplate).toThrow();
@@ -64,7 +64,7 @@ describe('DynamicFormActionBase', () => {
     expect(component.template).toBe(action.template);
 
     expect(component.dialogOpen).toBeFalse();
-    expect(component.dialogOpen$).toBeDefined();
+    expect(component.dialogOpen$).toBeTruthy();
 
     expect(component.dialogDefinition).toBe(dialogDefinition);
     expect(component.dialogTemplate).toBe(dialogDefinition.template);

@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
@@ -18,7 +18,7 @@ describe('DynamicFormConfigService', () => {
     const libraryName: DynamicFormLibraryName = 'text';
     const library: DynamicFormLibrary = { name: libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -28,7 +28,7 @@ describe('DynamicFormConfigService', () => {
           DynamicFormConfigService
         ]
       });
-    }));
+    });
 
     it('returns types being empty',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -106,7 +106,7 @@ describe('DynamicFormConfigService', () => {
     const inputTypes: DynamicFormInputType[] = [{ type: 'input', component: null, libraryName }];
     const fieldWrapperTypes: DynamicFormFieldWrapperType[] = [{ type: 'field-wrapper', component: null, libraryName }];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -121,7 +121,7 @@ describe('DynamicFormConfigService', () => {
           DynamicFormConfigService
         ]
       });
-    }));
+    });
 
     it('returns provided types',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -237,7 +237,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'field-wrapper-1', component: null, libraryName: libraryName },
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -252,7 +252,7 @@ describe('DynamicFormConfigService', () => {
           DynamicFormConfigService
         ]
       });
-    }));
+    });
 
     it('returns provided types being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {

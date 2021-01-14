@@ -24,7 +24,9 @@ $dynamic-form-material-red: #f44336;
       .row {
         bs-dynamic-form-button,
         bs-dynamic-form-icon,
-        bs-dynamic-form-modal {
+        bs-dynamic-form-modal,
+        bs-dynamic-form-accordion,
+        bs-dynamic-form-tabs {
           display: contents;
         }
       }

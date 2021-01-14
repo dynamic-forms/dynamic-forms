@@ -28,7 +28,7 @@ describe('DynamicFormGroup', () => {
 
     expect(formGroup.model).toEqual({});
 
-    expect(formGroup.control).toBeDefined();
+    expect(formGroup.control).toBeTruthy();
     expect(formGroup.status).toBe('VALID');
 
     expect(formGroup.elements).toEqual([]);

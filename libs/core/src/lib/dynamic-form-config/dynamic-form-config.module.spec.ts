@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
@@ -15,13 +15,13 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule
         ]
       });
-    }));
+    });
 
     it('does not provide DynamicFormConfigService', () => {
       expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
@@ -29,7 +29,7 @@ describe('DynamicFormConfigModule', () => {
   });
 
   describe('with DynamicFormLibraryService provided', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule
@@ -41,11 +41,11 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });
@@ -54,7 +54,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormElementType = { type: 'elementType', component: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withElement(type)
@@ -66,7 +66,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG',
       inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
@@ -83,7 +83,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'elementType2', component: null, libraryName },
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withElements(types)
@@ -95,7 +95,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG',
       inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
@@ -109,7 +109,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormFieldType = { type: 'fieldType', factory: null, component: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withField(type)
@@ -121,7 +121,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG',
       inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
@@ -138,7 +138,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'fieldType2', factory: null, component: null, libraryName }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFields(types)
@@ -150,7 +150,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG',
       inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
@@ -164,7 +164,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormActionType = { type: 'actionType', component: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withAction(type)
@@ -176,7 +176,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
       inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
@@ -193,7 +193,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'actionType2', component: null, libraryName }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withActions(types)
@@ -205,7 +205,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
       inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
@@ -219,7 +219,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormInputType = { type: 'inputType', component: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withInput(type)
@@ -231,7 +231,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
       inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
@@ -248,7 +248,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'inputType', component: null, libraryName }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withInputs(types)
@@ -260,7 +260,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
       inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
@@ -274,7 +274,7 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const type: DynamicFormFieldWrapperType = { type: 'fieldWrapperType', component: null, libraryName };
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFieldWrapper(type)
@@ -286,7 +286,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
@@ -303,7 +303,7 @@ describe('DynamicFormConfigModule', () => {
       { type: 'fieldWrapperType', component: null, libraryName }
     ];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormConfigModule.withFieldWrappers(types)
@@ -315,7 +315,7 @@ describe('DynamicFormConfigModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {

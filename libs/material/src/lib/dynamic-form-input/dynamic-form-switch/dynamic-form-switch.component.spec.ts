@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('MatDynamicFormSwitchComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
   let formControl: DynamicFormControl<DynamicFormSwitch>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSwitchModule
@@ -37,10 +37,10 @@ describe('MatDynamicFormSwitchComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -53,7 +53,7 @@ describe('MatDynamicFormSwitchComponent', () => {
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');
     expect(inputElement.type).toBe('checkbox');
     expect(labelElement.innerText).toBe('label');

@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextbox, DynamicFormValidationService} from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('DynamicFormTextboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormTextbox>;
   let formControl: DynamicFormControl<DynamicFormTextbox>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormTextboxModule
@@ -37,10 +37,10 @@ describe('DynamicFormTextboxComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -50,7 +50,7 @@ describe('DynamicFormTextboxComponent', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
   });

@@ -9,7 +9,7 @@ describe('BsDynamicFormModalComponent', () => {
   let component: BsDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormModalModule
@@ -35,26 +35,25 @@ describe('BsDynamicFormModalComponent', () => {
     component.element = modal;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.isOpen).toBeFalse();
   });
 
   it('renders component template', () => {
     const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
 
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(modalDebugElement).toBeNull();
   });
 
   it('opens modal', waitForAsync(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
       const modalDialogDebugElement = modalDebugElement.query(By.css('div.modal-dialog'));
       const modalHeaderDebugElement = modalDialogDebugElement.query(By.css('div.modal-header'));
@@ -65,29 +64,27 @@ describe('BsDynamicFormModalComponent', () => {
       const modalBodyElement = <HTMLDivElement>modalBodyDebugElement.nativeElement;
 
       expect(component.isOpen).toBeTrue();
-      expect(modalElement).toBeDefined();
-      expect(modalDialogElement).toBeDefined();
+      expect(modalElement).toBeTruthy();
+      expect(modalDialogElement).toBeTruthy();
       expect(modalDialogElement.style.minWidth).toBe('600px');
       expect(modalDialogElement.style.maxWidth).toBe('100%');
-      expect(modalHeaderElement).toBeDefined();
+      expect(modalHeaderElement).toBeTruthy();
       expect(modalHeaderElement.innerText).toBe('Title');
-      expect(modalBodyElement).toBeDefined();
+      expect(modalBodyElement).toBeTruthy();
     });
   }));
 
   it('closes modal', waitForAsync(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
 
         expect(component.isOpen).toBeFalse();
@@ -99,16 +96,14 @@ describe('BsDynamicFormModalComponent', () => {
   it('toggles modal', waitForAsync(() => {
     modal.toggle();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });

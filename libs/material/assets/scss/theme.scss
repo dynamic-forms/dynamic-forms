@@ -5,16 +5,15 @@ $dynamic-form-material-red: #f44336;
   .dynamic-form {
     display: flex;
     flex-direction: column;
-
-    &:not(.grid) {
-      margin: 0 20px;
-    }
+    margin: 0 10px;
 
     &.grid {
       .row {
         mat-dynamic-form-button,
         mat-dynamic-form-icon,
-        mat-dynamic-form-modal {
+        mat-dynamic-form-modal,
+        mat-dynamic-form-accordion,
+        mat-dynamic-form-tabs {
           display: contents;
         }
       }
@@ -390,7 +389,23 @@ $dynamic-form-material-red: #f44336;
           margin-right: 10px;
         }
       }
-    }    
+    } 
+    
+    .dynamic-form-accordion {
+      &.mat-accordion {
+        .mat-expansion-panel:last-of-type {
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+    .dynamic-form-tabs {
+      .mat-tab-body-content {
+        padding: 0 10px;
+      }
+    }
   }
 }
 

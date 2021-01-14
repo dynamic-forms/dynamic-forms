@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormIdBuilder,
   DynamicFormLibrary, DynamicFormLibraryService, DynamicFormValidationBuilder,
@@ -9,13 +9,13 @@ import { MatDynamicFormsModule } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule
         ]
       });
-    }));
+    });
 
     it('does not provide DYNAMIC_FORM_LIBRARY', () => {
       expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
@@ -61,13 +61,13 @@ describe('MatDynamicFormsModule', () => {
   });
 
   describe('forRoot', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule.forRoot()
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
@@ -89,7 +89,7 @@ describe('MatDynamicFormsModule', () => {
 
     it('provides DynamicFormLibraryService',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
         expect(service.library).toEqual(matDynamicFormLibrary);
         expect(service.libraryNames).toEqual([ 'material', 'core' ]);
       })
@@ -97,43 +97,43 @@ describe('MatDynamicFormsModule', () => {
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormBuilder',
       inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });
 
   describe('forRoot with config', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           MatDynamicFormsModule.forRoot({
@@ -142,7 +142,7 @@ describe('MatDynamicFormsModule', () => {
           })
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_THEME',
       inject([DYNAMIC_FORM_THEME], (theme: string) => {
@@ -152,7 +152,7 @@ describe('MatDynamicFormsModule', () => {
 
     it('provides DYNAMIC_FORM_ID_BUILDER being undefined',
       inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
   });

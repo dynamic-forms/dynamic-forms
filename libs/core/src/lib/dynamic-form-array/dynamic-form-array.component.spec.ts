@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -17,7 +17,7 @@ describe('DynamicFormArrayComponent', () => {
   let form: DynamicForm;
   let formArray: DynamicFormArray;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormArrayModule
@@ -52,16 +52,16 @@ describe('DynamicFormArrayComponent', () => {
     component.field = formArray;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.id).toBe('id');
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.control).toBeDefined();
+    expect(component.control).toBeTruthy();
     expect(component.elements).toEqual([]);
-    expect(component.template).toBeDefined();
+    expect(component.template).toBeTruthy();
   });
 
   it('renders component template', () => {
@@ -70,8 +70,8 @@ describe('DynamicFormArrayComponent', () => {
     const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
     const formArrayLabelElement = <HTMLElement>formArrayLabelDebugElement.nativeElement;
 
-    expect(formArrayElement).toBeDefined();
-    expect(formArrayLabelElement).toBeDefined();
+    expect(formArrayElement).toBeTruthy();
+    expect(formArrayLabelElement).toBeTruthy();
   });
 
   it('hides dynamic form array label if not defined', () => {
@@ -101,7 +101,7 @@ describe('DynamicFormArrayComponent', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-array'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-array-label.class-name-label'));
 
-    expect(formArrayLabelDebugElement).toBeDefined();
+    expect(formArrayLabelDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form array to hidden', () => {

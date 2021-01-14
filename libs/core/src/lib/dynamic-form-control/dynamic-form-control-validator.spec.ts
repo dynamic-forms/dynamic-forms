@@ -16,7 +16,7 @@ describe('DynamicFormControlValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBeUndefined();
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creates instance for validator definition', () => {
@@ -51,7 +51,7 @@ describe('DynamicFormControlValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(minMaxLength.parameters);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creating instance throws exception if definition not valid', () => {
@@ -97,7 +97,7 @@ describe('DynamicFormControlValidator', () => {
     const validator = new DynamicFormControlValidator('required', control, factory);
 
     expect(validator.enabled).toBe(true);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
 
     control.template.validation.required = false;
     const changes = validator.checkChanges();
@@ -113,7 +113,7 @@ describe('DynamicFormControlValidator', () => {
     const validator = new DynamicFormControlValidator('min', control, factory);
 
     expect(validator.parameters).toBe(0);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
 
     control.template.input.min = null;
     const changes = validator.checkChanges();

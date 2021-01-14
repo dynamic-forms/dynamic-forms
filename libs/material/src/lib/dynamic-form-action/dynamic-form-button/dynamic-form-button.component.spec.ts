@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition,
   DynamicFormButtonTemplate, DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
@@ -10,7 +10,7 @@ describe('MatDynamicFormButtonComponent', () => {
   let component: MatDynamicFormButtonComponent;
   let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormButtonModule
@@ -35,7 +35,7 @@ describe('MatDynamicFormButtonComponent', () => {
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
@@ -46,7 +46,7 @@ describe('MatDynamicFormButtonComponent', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
 
-    expect(formButtonElement).toBeDefined();
+    expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.id).toBe('id');
     expect(formButtonElement.type).toBe('button');
     expect(formButtonElement.innerText).toBe('label');
