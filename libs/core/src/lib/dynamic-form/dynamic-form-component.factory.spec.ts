@@ -171,7 +171,7 @@ describe('DynamicFormComponentFactory', () => {
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
-      expect(elementComponent.element).toBeDefined();
+      expect(elementComponent.element).toBeTruthy();
     })
   );
 
@@ -181,7 +181,7 @@ describe('DynamicFormComponentFactory', () => {
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
-      expect(elementComponent.element).toBeDefined();
+      expect(elementComponent.element).toBeTruthy();
     })
   );
 
@@ -191,7 +191,7 @@ describe('DynamicFormComponentFactory', () => {
       const elementComponent = factory.createComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormActionTestComponent));
-      expect(elementComponent.element).toBeDefined();
+      expect(elementComponent.element).toBeTruthy();
     })
   );
 
@@ -201,7 +201,7 @@ describe('DynamicFormComponentFactory', () => {
       const elementComponent = factory.createElementComponent(component.container, <any>element);
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
-      expect(elementComponent.element).toBeDefined();
+      expect(elementComponent.element).toBeTruthy();
     })
   );
 
@@ -211,7 +211,7 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = factory.createFieldComponent(component.container, <any>field);
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 
@@ -222,10 +222,10 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = (<DynamicFormFieldWrapperTestComponent>wrapperComponent).component;
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperComponent.field).toBeDefined();
+      expect(wrapperComponent.field).toBeTruthy();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 
@@ -237,13 +237,13 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = wrapperComponent.component;
 
       expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperWrapperComponent.field).toBeDefined();
+      expect(wrapperWrapperComponent.field).toBeTruthy();
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperComponent.field).toBeDefined();
+      expect(wrapperComponent.field).toBeTruthy();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 
@@ -253,7 +253,7 @@ describe('DynamicFormComponentFactory', () => {
       const actionComponent = factory.createActionComponent(component.container, <any>action);
 
       expect(actionComponent).toEqual(jasmine.any(DynamicFormActionTestComponent));
-      expect(actionComponent.action).toBeDefined();
+      expect(actionComponent.action).toBeTruthy();
     })
   );
 
@@ -263,7 +263,7 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = factory.createInputComponent(component.container, <any>field);
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 
@@ -274,10 +274,10 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = wrapperComponent.component;
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperComponent.field).toBeDefined();
+      expect(wrapperComponent.field).toBeTruthy();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 
@@ -289,13 +289,13 @@ describe('DynamicFormComponentFactory', () => {
       const fieldComponent = wrapperComponent.component;
 
       expect(wrapperWrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperWrapperComponent.field).toBeDefined();
+      expect(wrapperWrapperComponent.field).toBeTruthy();
 
       expect(wrapperComponent).toEqual(jasmine.any(DynamicFormFieldWrapperTestComponent));
-      expect(wrapperComponent.field).toBeDefined();
+      expect(wrapperComponent.field).toBeTruthy();
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
-      expect(fieldComponent.field).toBeDefined();
+      expect(fieldComponent.field).toBeTruthy();
     })
   );
 });

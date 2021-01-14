@@ -11,7 +11,7 @@ describe('DynamicFormArrayValidatorType', () => {
   it('dynamicFormArrayMinLengthValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error' , () => {
@@ -44,7 +44,7 @@ describe('DynamicFormArrayValidatorType', () => {
   it('dynamicFormArrayMaxLengthValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormArrayMaxLengthValidatorFactory(2);
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormArrayMaxLengthValidatorFactory returns no error' , () => {

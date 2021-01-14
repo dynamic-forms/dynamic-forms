@@ -5,7 +5,7 @@ describe('DynamicFormGroupValidatorType', () => {
   it('dynamicFormGroupRequiredValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormGroupRequiredValidatorFactory();
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormGroupRequiredValidatorFactory returns no error' , () => {
@@ -32,7 +32,7 @@ describe('DynamicFormGroupValidatorType', () => {
   it('dynamicFormGroupEqualValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormGroupEqualValidatorFactory(null);
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormGroupEqualValidatorFactory returns no error' , () => {

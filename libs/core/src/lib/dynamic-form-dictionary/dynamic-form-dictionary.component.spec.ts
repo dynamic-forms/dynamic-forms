@@ -59,9 +59,9 @@ describe('DynamicFormDictionaryComponent', () => {
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.control).toBeDefined();
+    expect(component.control).toBeTruthy();
     expect(component.elements).toEqual([]);
-    expect(component.template).toBeDefined();
+    expect(component.template).toBeTruthy();
   });
 
   it('renders component template', () => {

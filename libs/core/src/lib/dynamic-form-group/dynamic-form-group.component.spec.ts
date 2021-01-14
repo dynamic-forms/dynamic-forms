@@ -53,8 +53,8 @@ describe('DynamicFormGroupComponent', () => {
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
+    expect(component.template).toBeTruthy();
+    expect(component.control).toBeTruthy();
     expect(component.elements).toEqual([]);
   });
 

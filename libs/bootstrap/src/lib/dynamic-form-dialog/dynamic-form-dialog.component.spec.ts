@@ -188,7 +188,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header.class-header'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer.class-footer'));
 
-      const titleDebugElement = headerDebugElement.query(By.css('.modal-header.class-title'));
+      const titleDebugElement = headerDebugElement.query(By.css('.modal-title.class-title'));
       const toolbarDebugElement = headerDebugElement.query(By.css('.modal-toolbar'));
 
       expect(debugElement).toBeTruthy();

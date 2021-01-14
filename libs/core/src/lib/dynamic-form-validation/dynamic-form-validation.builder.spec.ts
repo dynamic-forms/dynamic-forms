@@ -162,7 +162,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBeUndefined();
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -175,7 +175,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBeUndefined();
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -191,7 +191,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe('[A-Za-z]*');
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -217,7 +217,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(-10);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -243,7 +243,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(10);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -269,7 +269,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(5);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -295,7 +295,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(10);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -354,7 +354,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(-10);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -375,7 +375,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBeUndefined();
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -424,7 +424,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(2);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -450,7 +450,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(5);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -512,7 +512,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(2);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 
@@ -538,7 +538,7 @@ describe('DynamicFormValidationBuilder', () => {
         expect(validator.factory).toEqual(jasmine.any(Function));
         expect(validator.enabled).toBe(true);
         expect(validator.parameters).toBe(5);
-        expect(validator.validatorFn).toBeDefined();
+        expect(validator.validatorFn).toBeTruthy();
       })
     );
 

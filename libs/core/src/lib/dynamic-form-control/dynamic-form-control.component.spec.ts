@@ -103,10 +103,10 @@ describe('DynamicFormControlComponent', () => {
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
-    expect(component.input).toBeDefined();
-    expect(component.hints).toBeDefined();
+    expect(component.template).toBeTruthy();
+    expect(component.control).toBeTruthy();
+    expect(component.input).toBeTruthy();
+    expect(component.hints).toBeTruthy();
   });
 
   it('renders component template', () => {

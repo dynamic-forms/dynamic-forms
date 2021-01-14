@@ -201,7 +201,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const headerElement = modalElement.querySelector('.modal-header.class-header');
         const footerElement = modalElement.querySelector('.modal-footer.class-footer');
 
-        const titleElement = headerElement.querySelector('.modal-header.class-title');
+        const titleElement = headerElement.querySelector('.modal-title.class-title');
         const toolbarElement = headerElement.querySelector('.modal-toolbar');
 
         expect(formWrapperElement).toBeTruthy();

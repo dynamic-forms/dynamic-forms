@@ -47,9 +47,8 @@ describe('MatDynamicFormModalComponent', () => {
   it('opens modal', async(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
       const formElement = <HTMLDivElement>formWrapperElement.querySelector('div.dynamic-form');
       const modalElement = <HTMLDivElement>formElement.querySelector('div.dynamic-form-modal');
@@ -68,16 +67,14 @@ describe('MatDynamicFormModalComponent', () => {
   it('closes modal', async(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });
@@ -86,16 +83,14 @@ describe('MatDynamicFormModalComponent', () => {
   it('toggles modal', async(() => {
     modal.toggle();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });

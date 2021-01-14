@@ -252,7 +252,7 @@ describe('DynamicFormConfigService', () => {
           DynamicFormConfigService
         ]
       });
-    });;
+    });
 
     it('returns provided types being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
