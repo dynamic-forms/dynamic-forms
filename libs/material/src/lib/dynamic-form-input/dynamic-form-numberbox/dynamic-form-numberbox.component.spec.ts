@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormNumberboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormNumberbox>;
   let formControl: DynamicFormControl<DynamicFormNumberbox>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormNumberboxModule,
@@ -39,10 +39,10 @@ describe('MatDynamicFormNumberboxComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
@@ -56,7 +56,7 @@ describe('MatDynamicFormNumberboxComponent', () => {
     const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('number');
     expect(labelElement.innerText).toBe('label');

@@ -11,9 +11,9 @@ describe('DynamicForm', () => {
       expect(form.parent).toBeNull();
       expect(form.definition).toBe(definition);
       expect(form.model).toBe(model);
-      expect(form.control).toBeDefined();
+      expect(form.control).toBeTruthy();
       expect(form.template).toBe(definition.template);
-      expect(form.fields).toBeDefined();
+      expect(form.fields).toBeTruthy();
   });
 
   it('create instance throws if no template provided', () => {

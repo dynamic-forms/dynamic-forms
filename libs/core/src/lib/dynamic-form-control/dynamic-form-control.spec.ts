@@ -31,7 +31,7 @@ describe('DynamicFormControl', () => {
 
     expect(formControl.model).toBeNull();
 
-    expect(formControl.control).toBeDefined();
+    expect(formControl.control).toBeTruthy();
     expect(formControl.status).toBe('VALID');
 
     expect(formControl.elements).toEqual([]);
@@ -278,7 +278,7 @@ describe('DynamicFormControl', () => {
 
     formControl.destroy();
 
-    expect(formControl).toBeDefined();
+    expect(formControl).toBeTruthy();
   });
 
   it('reset sets model to null', () => {

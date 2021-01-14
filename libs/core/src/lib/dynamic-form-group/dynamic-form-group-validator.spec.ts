@@ -19,7 +19,7 @@ describe('DynamicFormGroupValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBeUndefined();
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creates instance for validator definition', () => {
@@ -45,7 +45,7 @@ describe('DynamicFormGroupValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(equal.parameters);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creating instance throws exception if definition not valid', () => {
@@ -84,7 +84,7 @@ describe('DynamicFormGroupValidator', () => {
     const validator = new DynamicFormGroupValidator('required', control, factory);
 
     expect(validator.enabled).toBe(true);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
 
     control.template.validation.required = false;
     const changes = validator.checkChanges();

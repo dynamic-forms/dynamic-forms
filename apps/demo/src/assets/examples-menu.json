@@ -331,6 +331,14 @@
             {
               "id": "definition-control-groups",
               "label": "Groups"
+            },
+            {
+              "id": "definition-control-accordion",
+              "label": "Accordion"
+            },
+            {
+              "id": "definition-control-tabs",
+              "label": "Tabs"
             }
           ]
         }

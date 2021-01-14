@@ -23,7 +23,7 @@ describe('DynamicFormDictionaryValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(3);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creates instance for validator definition', () => {
@@ -58,7 +58,7 @@ describe('DynamicFormDictionaryValidator', () => {
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(minMaxLength.parameters);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
   });
 
   it('creating instance throws exception if definition not valid', () => {
@@ -113,7 +113,7 @@ describe('DynamicFormDictionaryValidator', () => {
     const validator = new DynamicFormDictionaryValidator('minLength', array, factory);
 
     expect(validator.enabled).toBe(true);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
 
     array.template.validation.minLength = false;
     const changes = validator.checkChanges();
@@ -133,7 +133,7 @@ describe('DynamicFormDictionaryValidator', () => {
     const validator = new DynamicFormDictionaryValidator('minLength', array, factory);
 
     expect(validator.parameters).toBe(3);
-    expect(validator.validatorFn).toBeDefined();
+    expect(validator.validatorFn).toBeTruthy();
 
     array.template.minLength = null;
     const changes = validator.checkChanges();

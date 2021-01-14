@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -38,7 +38,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlLabelComponent>;
   let component: BsDynamicFormControlLabelComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -54,17 +54,17 @@ describe('BsDynamicFormControlLabelComponent', () => {
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('renders component template', () => {
     const labelDebugElement = fixture.debugElement.query(By.css('label'));
     const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
 
-    expect(labelElement).toBeDefined();
+    expect(labelElement).toBeTruthy();
     expect(labelElement.htmlFor).toBe('inputId');
     expect(labelElement.innerText).toBe('label');
   });

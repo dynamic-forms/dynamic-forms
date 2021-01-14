@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
@@ -11,7 +11,7 @@ import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
   DynamicFormFieldModule } from './dynamic-form-field.module';
 
 describe('DynamicFormFieldModule', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormFieldModule
@@ -23,7 +23,7 @@ describe('DynamicFormFieldModule', () => {
         }
       ]
     });
-  }));
+  });
 
   it('provides DYNAMIC_FORM_ACTION_HANDLERS',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {

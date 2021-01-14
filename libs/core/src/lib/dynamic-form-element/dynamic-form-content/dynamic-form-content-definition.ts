@@ -4,5 +4,5 @@ import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 export interface DynamicFormContentDefinition<
   Template extends DynamicFormContentTemplate = DynamicFormContentTemplate
 > extends DynamicFormElementDefinition<Template> {
-  elements: undefined;
+  elements?: undefined;
 }

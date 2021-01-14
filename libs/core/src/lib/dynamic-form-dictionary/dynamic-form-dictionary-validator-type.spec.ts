@@ -11,7 +11,7 @@ describe('DynamicFormDictionaryValidatorType', () => {
   it('dynamicFormDictionaryMinLengthValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormDictionaryMinLengthValidatorFactory(1);
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormDictionaryMinLengthValidatorFactory returns no error' , () => {
@@ -44,7 +44,7 @@ describe('DynamicFormDictionaryValidatorType', () => {
   it('dynamicFormDictionaryMaxLengthValidatorFactory returns validatorFn' , () => {
     const validatorFn = dynamicFormDictionaryMaxLengthValidatorFactory(2);
 
-    expect(validatorFn).toBeDefined();
+    expect(validatorFn).toBeTruthy();
   });
 
   it('validatorFn of dynamicFormDictionaryMaxLengthValidatorFactory returns no error' , () => {
