@@ -17,7 +17,7 @@
     "@angular/core": "^11.0.0",
     "@angular/forms": "^11.0.0",
     "bootstrap": "^4.5.3",
-    "marked": "^1.2.5",
+    "marked": "^1.2.7",
     "rxjs":  "~6.6.3" 
   },
   "sideEffects": false,

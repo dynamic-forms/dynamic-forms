@@ -1,4 +1,4 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
 import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
@@ -8,7 +8,7 @@ import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation.builder'
 
 describe('DynamicFormEvaluationBuilder', () => {
   describe('with DynamicFormLibraryService', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -22,7 +22,7 @@ describe('DynamicFormEvaluationBuilder', () => {
           DynamicFormEvaluationBuilder
         ]
       });
-    }));
+    });
 
     it('returns control validators being empty',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {

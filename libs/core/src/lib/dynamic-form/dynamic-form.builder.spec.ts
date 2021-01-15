@@ -1,15 +1,18 @@
-import { inject, waitForAsync, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionFactory } from '../dynamic-form-action/dynamic-form-action-factory';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
+import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
+import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dynamic-form-dictionary-definition';
 import { dynamicFormDictionaryFactory } from '../dynamic-form-dictionary/dynamic-form-dictionary-factory';
+import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
 import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
@@ -20,6 +23,7 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { dynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
+import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
@@ -57,7 +61,15 @@ describe('DynamicFormBuilder', () => {
     return new DynamicForm(definition, model);
   };
 
-  beforeEach(waitForAsync(() => {
+  const validatorTypes = [
+    {
+      type: 'required',
+      factory: (field: any) => !field ? { required: true } : null,
+      libraryName: 'test'
+    }
+  ];
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -80,6 +92,22 @@ describe('DynamicFormBuilder', () => {
           provide: DYNAMIC_FORM_ID_BUILDER,
           useValue: () => 'dynamic-form-id'
         },
+        {
+          provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+          useValue: validatorTypes
+        },
+        {
+          provide: DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
+          useValue: validatorTypes
+        },
+        {
+          provide: DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+          useValue: validatorTypes
+        },
+        {
+          provide: DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+          useValue: validatorTypes
+        },
         DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
@@ -87,7 +115,7 @@ describe('DynamicFormBuilder', () => {
         DynamicFormValidationBuilder
       ]
     });
-  }));
+  });
 
   it('throws error creating DynamicForm',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
@@ -115,12 +143,12 @@ describe('DynamicFormBuilder', () => {
       expect(form.footerActions).toEqual([]);
 
       expect(form.model).toBe(model);
-      expect(form.control).toBeDefined();
+      expect(form.control).toBeTruthy();
       expect(form.control.validator).toBeNull();
     })
   );
 
-  it('creates DynamicForm including validator',
+  it('creates DynamicForm with validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const definition = <DynamicFormDefinition>{
@@ -133,8 +161,8 @@ describe('DynamicFormBuilder', () => {
       };
       const form = builder.createForm(definition, model);
 
-      expect(form.control).toBeDefined();
-      expect(form.control.validator).toBeDefined();
+      expect(form.validators.length).toBeTruthy();
+      expect(form.control.validator).toBeTruthy();
     })
   );
 
@@ -333,12 +361,12 @@ describe('DynamicFormBuilder', () => {
       expect(formControl.definition).toBe(definition);
       expect(formControl.template).toBe(definition.template);
 
-      expect(formControl.control).toBeDefined();
+      expect(formControl.control).toBeTruthy();
       expect(formControl.control.validator).toBeNull();
     })
   );
 
-  it('creates DynamicFormControl including validation',
+  it('creates DynamicFormControl with validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
@@ -360,8 +388,8 @@ describe('DynamicFormBuilder', () => {
       };
       const formControl = builder.createFormControl(form, form, definition);
 
-      expect(formControl.control).toBeDefined();
-      expect(formControl.control.validator).toBeDefined();
+      expect(formControl.validators.length).toBeTruthy();
+      expect(formControl.control.validator).toBeTruthy();
     })
   );
 
@@ -386,14 +414,14 @@ describe('DynamicFormBuilder', () => {
       expect(formGroup.definition).toBe(definition);
       expect(formGroup.template).toBe(definition.template);
 
-      expect(formGroup.control).toBeDefined();
+      expect(formGroup.control).toBeTruthy();
       expect(formGroup.control.validator).toBeNull();
 
-      expect(formGroup.fields).toBeDefined();
+      expect(formGroup.fields).toBeTruthy();
     })
   );
 
-  it('creates DynamicFormGroup including validator',
+  it('creates DynamicFormGroup with validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
@@ -408,8 +436,8 @@ describe('DynamicFormBuilder', () => {
       };
       const formGroup = builder.createFormGroup(form, form, definition);
 
-      expect(formGroup.control).toBeDefined();
-      expect(formGroup.control.validator).toBeDefined();
+      expect(formGroup.validators.length).toBeTruthy();
+      expect(formGroup.control.validator).toBeTruthy();
     })
   );
 
@@ -435,10 +463,10 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.definition).toBe(definition);
       expect(formArray.template).toBe(definition.template);
 
-      expect(formArray.control).toBeDefined();
+      expect(formArray.control).toBeTruthy();
       expect(formArray.control.validator).toBeNull();
 
-      expect(formArray.elements).toBeDefined();
+      expect(formArray.elements).toBeTruthy();
       expect(formArray.fields.length).toBe(2);
       expect(formArray.fields[0].key).toBe('0');
       expect(formArray.fields[0].index).toBe(0);
@@ -462,10 +490,10 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.definition).toBe(definition);
       expect(formArray.template).toBe(definition.template);
 
-      expect(formArray.control).toBeDefined();
+      expect(formArray.control).toBeTruthy();
       expect(formArray.control.validator).toBeNull();
 
-      expect(formArray.elements).toBeDefined();
+      expect(formArray.elements).toBeTruthy();
       expect(formArray.fields.length).toBe(2);
       expect(formArray.fields[0].key).toBe('0');
       expect(formArray.fields[0].index).toBe(0);
@@ -477,7 +505,7 @@ describe('DynamicFormBuilder', () => {
   );
 
 
-  it('creates DynamicFormArray including validator',
+  it('creates DynamicFormArray with validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
@@ -486,6 +514,7 @@ describe('DynamicFormBuilder', () => {
         type: 'array',
         template: {
           validation: {
+            required: true,
             minLength: true,
             maxLength: false
           }
@@ -493,8 +522,8 @@ describe('DynamicFormBuilder', () => {
       };
       const formArray = builder.createFormArray(form, form, definition);
 
-      expect(formArray.control).toBeDefined();
-      expect(formArray.control.validator).toBeDefined();
+      expect(formArray.validators.length).toBeTruthy();
+      expect(formArray.control.validator).toBeTruthy();
     })
   );
 
@@ -520,10 +549,10 @@ describe('DynamicFormBuilder', () => {
       expect(formDictionary.definition).toBe(definition);
       expect(formDictionary.template).toBe(definition.template);
 
-      expect(formDictionary.control).toBeDefined();
+      expect(formDictionary.control).toBeTruthy();
       expect(formDictionary.control.validator).toBeNull();
 
-      expect(formDictionary.elements).toBeDefined();
+      expect(formDictionary.elements).toBeTruthy();
       expect(formDictionary.fields.length).toBe(2);
       expect(formDictionary.fields[0].key).toBe('value1');
       expect(formDictionary.fields[0].index).toBeUndefined();
@@ -547,10 +576,10 @@ describe('DynamicFormBuilder', () => {
       expect(formDictionary.definition).toBe(definition);
       expect(formDictionary.template).toBe(definition.template);
 
-      expect(formDictionary.control).toBeDefined();
+      expect(formDictionary.control).toBeTruthy();
       expect(formDictionary.control.validator).toBeNull();
 
-      expect(formDictionary.elements).toBeDefined();
+      expect(formDictionary.elements).toBeTruthy();
       expect(formDictionary.fields.length).toBe(2);
       expect(formDictionary.fields[0].key).toBe('value1');
       expect(formDictionary.fields[0].index).toBeUndefined();
@@ -561,7 +590,7 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('creates DynamicFormDictionary including validator',
+  it('creates DynamicFormDictionary with validator',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const model = {};
       const form = getForm(model);
@@ -570,6 +599,7 @@ describe('DynamicFormBuilder', () => {
         type: 'dictionary',
         template: {
           validation: {
+            required: true,
             minLength: true,
             maxLength: false
           }
@@ -577,8 +607,8 @@ describe('DynamicFormBuilder', () => {
       };
       const formDictionary = builder.createFormDictionary(form, form, definition);
 
-      expect(formDictionary.control).toBeDefined();
-      expect(formDictionary.control.validator).toBeDefined();
+      expect(formDictionary.validators.length).toBeTruthy();
+      expect(formDictionary.control.validator).toBeTruthy();
     })
   );
 

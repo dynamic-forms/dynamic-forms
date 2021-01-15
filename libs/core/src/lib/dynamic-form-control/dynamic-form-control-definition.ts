@@ -6,7 +6,7 @@ export interface DynamicFormControlDefinition<
   FormInput extends DynamicFormInput = DynamicFormInput,
   Template extends DynamicFormControlTemplate<FormInput> = DynamicFormControlTemplate<FormInput>
 > extends DynamicFormFieldDefinition<Template> {
-  elements: undefined;
-  headerActions: undefined;
-  footerActions: undefined;
+  elements?: undefined;
+  headerActions?: undefined;
+  footerActions?: undefined;
 }

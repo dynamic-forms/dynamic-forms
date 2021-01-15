@@ -29,7 +29,7 @@ describe('DynamicFormAction', () => {
     expect(action.expressionData).toBeTruthy();
 
     expect(action.dialogOpen).toBeFalse();
-    expect(action.dialogOpenChanges).toBeDefined();
+    expect(action.dialogOpenChanges).toBeTruthy();
 
     expect(action.dialogDefinition).toBeUndefined();
     expect(() => action.dialogTemplate).toThrow();
@@ -89,7 +89,7 @@ describe('DynamicFormAction', () => {
     action.initDialog(dialog);
 
     expect(action.dialogOpen).toBeFalse();
-    expect(action.dialogOpenChanges).toBeDefined();
+    expect(action.dialogOpenChanges).toBeTruthy();
 
     expect(action.dialogDefinition).toBe(dialogDefinition);
     expect(action.dialogTemplate).toBe(dialogDefinition.template);
