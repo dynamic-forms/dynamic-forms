@@ -60,6 +60,7 @@ export abstract class DynamicFormField<
 
   get control(): Control { return this._control; }
   get status(): string { return this._control.status; }
+  get value(): any { return this._control.value; }
 
   get hidden(): boolean { return this.parent.hidden || this.template.hidden || false; }
   get readonly(): boolean { return this.parent.readonly || this.template.readonly || false; }
