@@ -1,7 +1,42 @@
 import { FormGroup } from '@angular/forms';
-import { dynamicFormDictionaryMaxLengthValidatorFactory, dynamicFormDictionaryMinLengthValidatorFactory } from './dynamic-form-dictionary-validator-type';
+import { dynamicFormDictionaryMaxLengthValidatorFactory, dynamicFormDictionaryMinLengthValidatorFactory,
+  dynamicFormDictionaryRequiredValidatorFactory } from './dynamic-form-dictionary-validator-type';
 
 describe('DynamicFormDictionaryValidatorType', () => {
+  it('dynamicFormDictionaryRequiredValidatorFactory returns validatorFn' , () => {
+    const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
+
+    expect(validatorFn).toBeTruthy();
+  });
+
+  it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns no error' , () => {
+    const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
+    const formGroup = <FormGroup>{ value: { key: undefined } };
+
+    expect(validatorFn(formGroup)).toBeNull();
+  });
+
+  it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is undefined' , () => {
+    const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
+    const formGroup = <FormGroup>{ value: undefined };
+
+    expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
+  });
+
+  it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is null' , () => {
+    const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
+    const formGroup = <FormGroup>{ value: null };
+
+    expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
+  });
+
+  it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is empty' , () => {
+    const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
+    const formGroup = <FormGroup>{ value: {} };
+
+    expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
+  });
+
   it('dynamicFormDictionaryMinLengthValidatorFactory returns validatorFn being undefined' , () => {
     const validatorFn = dynamicFormDictionaryMinLengthValidatorFactory(null);
 

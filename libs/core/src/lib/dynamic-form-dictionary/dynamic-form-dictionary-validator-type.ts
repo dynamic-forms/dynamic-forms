@@ -1,9 +1,21 @@
 import { FormGroup } from '@angular/forms';
 import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormDictionaryValidatorFn } from './dynamic-form-dictionary-validator';
+import { DynamicFormDictionaryValidatorFactory, DynamicFormDictionaryValidatorFn } from './dynamic-form-dictionary-validator';
 
-export interface DynamicFormDictionaryValidatorType extends DynamicFormFieldValidatorType<FormGroup> {}
+export interface DynamicFormDictionaryValidatorType extends DynamicFormFieldValidatorType<DynamicFormDictionaryValidatorFactory> {}
+
+export function dynamicFormDictionaryRequiredValidatorFactory(): DynamicFormDictionaryValidatorFn {
+  return (group: FormGroup) => {
+    return !group.value || Object.keys(group.value).length === 0 ? { requiredDictionary: true } : null;
+  };
+}
+
+export const dynamicFormDictionaryRequiredValidatorType: DynamicFormDictionaryValidatorType = {
+  type: 'required',
+  factory: dynamicFormDictionaryRequiredValidatorFactory,
+  libraryName: dynamicFormLibrary.name
+};
 
 export function dynamicFormDictionaryMinLengthValidatorFactory(minLength?: number): DynamicFormDictionaryValidatorFn {
   if (!Number.isFinite(minLength)) {
@@ -18,7 +30,6 @@ export function dynamicFormDictionaryMinLengthValidatorFactory(minLength?: numbe
     const actualLength = Object.keys(group.value).length;
     return actualLength < minLength ? { minlengthDictionary: { requiredLength: minLength, actualLength } } : null;
   };
-
 }
 
 export const dynamicFormDictionaryMinLengthValidatorType: DynamicFormDictionaryValidatorType = {
@@ -49,6 +60,7 @@ export const dynamicFormDictionaryMaxLengthValidatorType: DynamicFormDictionaryV
 };
 
 export const dynamicFormDictionaryValidatorTypes: DynamicFormDictionaryValidatorType[] = [
+  dynamicFormDictionaryRequiredValidatorType,
   dynamicFormDictionaryMinLengthValidatorType,
   dynamicFormDictionaryMaxLengthValidatorType
 ];
