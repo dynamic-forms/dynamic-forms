@@ -27,9 +27,10 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.componentType).toBe('componentType');
 
     expect(formGroup.model).toEqual({});
-
-    expect(formGroup.control).toBeTruthy();
+    expect(formGroup.value).toEqual({});
+    expect(formGroup.valid).toBeTrue();
     expect(formGroup.status).toBe('VALID');
+    expect(formGroup.control).toBeTruthy();
 
     expect(formGroup.elements).toEqual([]);
     expect(formGroup.fields).toEqual([]);
