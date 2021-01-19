@@ -127,24 +127,63 @@ describe('DynamicFormComponent', () => {
     expect(component.form.definition).toBe(definition);
   });
 
-  it('ngOnChanges creates form field with updated model', () => {
-    const modelUpdated = {};
+  it('ngOnChanges creates form with changed model', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+    const modelChanged = {};
 
-    component.model = modelUpdated;
-    component.ngOnChanges({ model: new SimpleChange(model, modelUpdated, false) });
+    component.model = modelChanged;
+    component.ngOnChanges({ model: new SimpleChange(model, modelChanged, false) });
 
-    expect(component.form.model).toBe(modelUpdated);
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
+    expect(component.form.model).toBe(modelChanged);
     expect(component.form.definition).toBe(definition);
   });
 
-  it('ngOnChanges creates form field with updated definition', () => {
+  it('ngOnChanges creates form with changed definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
     const definitionUpdated = <DynamicFormDefinition>{ elements: [] };
 
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
 
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
     expect(component.form.model).toBe(model);
     expect(component.form.definition).toBe(definitionUpdated);
+  });
+
+  it('ngOnChanges creates form with changed model and definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+    const modelChanged = {};
+    const definitionChanged = <DynamicFormDefinition>{ elements: [] };
+
+    component.model = modelChanged;
+    component.definition = definitionChanged;
+    component.ngOnChanges({
+      model: new SimpleChange(model, modelChanged, false),
+      definition: new SimpleChange(definition, definitionChanged, false)
+    });
+
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
+    expect(component.form.model).toBe(modelChanged);
+    expect(component.form.definition).toBe(definitionChanged);
+  });
+
+  it('ngOnChanges does not create form with unchanged model and definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+
+    component.ngOnChanges({});
+
+    expect(component.form).toBe(form);
+    expect(component.formGroup).toBe(formGroup);
+    expect(component.form.model).toBe(model);
+    expect(component.form.definition).toBe(definition);
   });
 
   it('ngOnSubmit emits form submit', () => {

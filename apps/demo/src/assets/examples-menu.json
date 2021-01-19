@@ -126,6 +126,10 @@
               "label": "Actions in header"
             },
             {
+              "id": "fields-dictionary-validation",
+              "label": "Validation"
+            },
+            {
               "id": "fields-dictionary-modal",
               "label": "Modal"
             },
