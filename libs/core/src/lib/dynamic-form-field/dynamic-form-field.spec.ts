@@ -176,7 +176,7 @@ describe('DynamicFormField', () => {
     expect(field.unregistered).toBeTrue();
   });
 
-  it('returns expression data with id, key, index, model and status', () => {
+  it('returns expression data with id, key, index, depth, model, value, valid and status', () => {
     const definition = <DynamicFormFieldDefinition>{ id: 'id', key: 'key', index: 1, template: {} };
     const field = new DynamicFormTestField(null, null, definition);
 
@@ -188,7 +188,8 @@ describe('DynamicFormField', () => {
     expect(field.expressionData.index).toBe(1);
     expect(field.expressionData.depth).toBe(0);
     expect(field.expressionData.model).toBe(field.model);
-    expect(field.expressionData.value).toBe(field.control.value);
+    expect(field.expressionData.value).toBe(field.value);
+    expect(field.expressionData.valid).toBe(field.valid);
     expect(field.expressionData.status).toBe('VALID');
   });
 
