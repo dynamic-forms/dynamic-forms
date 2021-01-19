@@ -77,7 +77,7 @@
       "template": {
         "label": "Terms & conditions",
         "validation": {
-          "required": true
+          "allRequired": true
         }
       },
       "elements": [

@@ -30,9 +30,10 @@ describe('DynamicFormControl', () => {
     expect(formControl.componentType).toBe('componentType');
 
     expect(formControl.model).toBeNull();
-
-    expect(formControl.control).toBeTruthy();
+    expect(formControl.value).toBeNull();
+    expect(formControl.valid).toBeTrue();
     expect(formControl.status).toBe('VALID');
+    expect(formControl.control).toBeTruthy();
 
     expect(formControl.elements).toEqual([]);
     expect(formControl.footerActions).toEqual([]);
@@ -103,19 +104,20 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
 
     formControl.control.setValue('value');
+    formControl.check();
 
-    expect(formControl.control.value).toBe('value');
+    expect(formControl.value).toBe('value');
     expect(formControl.model).toBeNull();
     expect(formControl.parent.model.key).toBeNull();
 
     of({}).pipe(delay(150)).subscribe(() => {
-      expect(formControl.control.value).toBe('value');
+      expect(formControl.value).toBe('value');
       expect(formControl.model).toBeNull();
       expect(formControl.parent.model.key).toBeNull();
     });
 
     of({}).pipe(delay(300)).subscribe(() => {
-      expect(formControl.control.value).toBe('value');
+      expect(formControl.value).toBe('value');
       expect(formControl.model).toBe('value');
       expect(formControl.parent.model.key).toBe('value');
       done();
@@ -213,9 +215,9 @@ describe('DynamicFormControl', () => {
     formControl.check();
 
     expect(formControl.model).toBe('value');
+    expect(formControl.value).toBe('value');
     expect(formControl.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
     expect(formControl.control.markAsTouched).toHaveBeenCalled();
-    expect(formControl.control.value).toBe('value');
   });
 
   it('check updates control disabled', () => {
