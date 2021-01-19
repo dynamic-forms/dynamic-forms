@@ -1,9 +1,21 @@
 import { FormArray } from '@angular/forms';
 import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
+import { DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
 
-export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<FormArray> {}
+export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<DynamicFormArrayValidatorFactory> {}
+
+export function dynamicFormArrayRequiredValidatorFactory(): DynamicFormArrayValidatorFn {
+  return (array: FormArray) => {
+    return !array.value || array.value.length === 0 ? { requiredArray: true } : null;
+  };
+}
+
+export const dynamicFormArrayRequiredValidatorType: DynamicFormArrayValidatorType = {
+  type: 'required',
+  factory: dynamicFormArrayRequiredValidatorFactory,
+  libraryName: dynamicFormLibrary.name
+};
 
 export function dynamicFormArrayMinLengthValidatorFactory(minLength?: number): DynamicFormArrayValidatorFn {
   const validatorFn = (array: FormArray) => {
@@ -36,6 +48,7 @@ export const dynamicFormArrayMaxLengthValidatorType: DynamicFormArrayValidatorTy
 };
 
 export const dynamicFormArrayValidatorTypes: DynamicFormArrayValidatorType[] = [
+  dynamicFormArrayRequiredValidatorType,
   dynamicFormArrayMinLengthValidatorType,
   dynamicFormArrayMaxLengthValidatorType
 ];
