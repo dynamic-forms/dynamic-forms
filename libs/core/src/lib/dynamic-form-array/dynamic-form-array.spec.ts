@@ -25,8 +25,10 @@ describe('DynamicFormArray', () => {
     expect(formArray.componentType).toBe('componentType');
 
     expect(formArray.model).toEqual([]);
-    expect(formArray.control).toBeTruthy();
+    expect(formArray.value).toEqual([]);
+    expect(formArray.valid).toBeTrue();
     expect(formArray.status).toBe('VALID');
+    expect(formArray.control).toBeTruthy();
 
     expect(formArray.elements).toEqual([]);
     expect(formArray.fields).toEqual([]);

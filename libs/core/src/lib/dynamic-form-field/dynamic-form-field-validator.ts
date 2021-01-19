@@ -4,29 +4,35 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
 export type DynamicFormFieldValidatorFn<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
 > = (control: Control) => ValidationErrors | null;
 
 export type DynamicFormFieldValidatorFactory<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl
-> = (parameters?: any, message?: string, key?: string) => DynamicFormFieldValidatorFn<Control>;
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>
+> = (parameters?: any, message?: string, key?: string, field?: Field) => ValidatorFn;
 
 export abstract class DynamicFormFieldValidator<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>,
+  ValidatorFactory extends
+    DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
+      = DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
 > {
   private _key: string;
   private _field: Field;
-  private _factory: DynamicFormFieldValidatorFactory<Control>;
+  private _factory: ValidatorFactory;
 
   private _definition: DynamicFormFieldValidatorDefinition;
   private _message: string;
 
   private _enabled: boolean;
   private _parameters: any;
-  private _validatorFn: DynamicFormFieldValidatorFn<Control>;
+  private _validatorFn: ValidatorFn;
 
-  constructor(key: string, field: Field, factory: DynamicFormFieldValidatorFactory<Control>) {
+  constructor(key: string, field: Field, factory: ValidatorFactory) {
     this._key = key;
     this._field = field;
     this._factory = factory;
@@ -37,14 +43,14 @@ export abstract class DynamicFormFieldValidator<
 
   get key(): string { return this._key; }
   get field(): Field { return this._field; }
-  get factory(): DynamicFormFieldValidatorFactory<Control> { return this._factory; }
+  get factory(): ValidatorFactory { return this._factory; }
 
   get definition(): DynamicFormFieldValidatorDefinition { return this._definition; }
   get message(): any { return this._message; }
 
   get enabled(): boolean { return this._enabled; }
   get parameters(): any { return this._parameters; }
-  get validatorFn(): DynamicFormFieldValidatorFn<Control> { return this._validatorFn; }
+  get validatorFn(): ValidatorFn { return this._validatorFn; }
 
   checkChanges(): boolean {
     const enabled = this.getEnabled();
@@ -70,7 +76,7 @@ export abstract class DynamicFormFieldValidator<
     return this._field.template.validation[this._key];
   }
 
-  private getValidatorFn(): DynamicFormFieldValidatorFn<Control> {
-    return this._enabled ? this._factory(this._parameters, this._message, this._key) : undefined;
+  private getValidatorFn(): ValidatorFn {
+    return this._enabled ? this._factory(this._parameters, this._message, this._key, this._field) : undefined;
   }
 }

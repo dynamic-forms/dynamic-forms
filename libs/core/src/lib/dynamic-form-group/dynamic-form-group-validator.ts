@@ -4,10 +4,9 @@ import { DynamicFormGroup } from './dynamic-form-group';
 
 export type DynamicFormGroupValidatorFn = DynamicFormFieldValidatorFn<FormGroup>;
 
-export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<FormGroup>;
+export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<FormGroup, DynamicFormGroup>;
 
 export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGroup, DynamicFormGroup> {
-
   constructor(key: string, field: DynamicFormGroup, factory: DynamicFormGroupValidatorFactory) {
     super(key, field, factory);
   }

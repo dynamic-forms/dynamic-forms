@@ -1,7 +1,42 @@
 import { FormArray } from '@angular/forms';
-import { dynamicFormArrayMaxLengthValidatorFactory, dynamicFormArrayMinLengthValidatorFactory } from './dynamic-form-array-validator-type';
+import { dynamicFormArrayMaxLengthValidatorFactory, dynamicFormArrayMinLengthValidatorFactory,
+  dynamicFormArrayRequiredValidatorFactory } from './dynamic-form-array-validator-type';
 
 describe('DynamicFormArrayValidatorType', () => {
+  it('dynamicFormArrayRequiredValidatorFactory returns validatorFn' , () => {
+    const validatorFn = dynamicFormArrayRequiredValidatorFactory();
+
+    expect(validatorFn).toBeTruthy();
+  });
+
+  it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns no error' , () => {
+    const validatorFn = dynamicFormArrayRequiredValidatorFactory();
+    const formArray = <FormArray>{ value: [ {} ] };
+
+    expect(validatorFn(formArray)).toBeNull();
+  });
+
+  it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is undefined' , () => {
+    const validatorFn = dynamicFormArrayRequiredValidatorFactory();
+    const formArray = <FormArray>{ value: undefined };
+
+    expect(validatorFn(formArray)).toEqual({ requiredArray: true });
+  });
+
+  it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is null' , () => {
+    const validatorFn = dynamicFormArrayRequiredValidatorFactory();
+    const formArray = <FormArray>{ value: null };
+
+    expect(validatorFn(formArray)).toEqual({ requiredArray: true });
+  });
+
+  it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is empty' , () => {
+    const validatorFn = dynamicFormArrayRequiredValidatorFactory();
+    const formArray = <FormArray>{ value: [] };
+
+    expect(validatorFn(formArray)).toEqual({ requiredArray: true });
+  });
+
   it('dynamicFormArrayMinLengthValidatorFactory returns validatorFn being undefined' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(null);
 
@@ -21,7 +56,14 @@ describe('DynamicFormArrayValidatorType', () => {
     expect(validatorFn(formArray)).toBeNull();
   });
 
-  it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error if value is not defined' , () => {
+  it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error if value is undefined' , () => {
+    const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
+    const formArray = <FormArray>{ value: undefined };
+
+    expect(validatorFn(formArray)).toBeNull();
+  });
+
+  it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error if value is null' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
     const formArray = <FormArray>{ value: null };
 

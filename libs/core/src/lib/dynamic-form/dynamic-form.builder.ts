@@ -273,13 +273,12 @@ export class DynamicFormBuilder {
   }
 
   private createFormArrayElements(array: DynamicFormArray): DynamicFormField[] {
-    const model = array.model || [] as any[];
+    const model = array.model as any[];
     return model.map((_item, index) => this.createFormArrayField(array , index));
   }
 
   private createFormDictionaryElements(dictionary: DynamicFormDictionary): DynamicFormField[] {
-    const model = dictionary.model || {} as any;
-    return Object.keys(model).map((key, _index) => this.createFormDictionaryField(dictionary, key));
+    return Object.keys(dictionary.model).map((key, _index) => this.createFormDictionaryField(dictionary, key));
   }
 
   private createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {

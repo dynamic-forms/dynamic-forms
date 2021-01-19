@@ -27,8 +27,10 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.componentType).toBe('componentType');
 
     expect(formDictionary.model).toEqual({});
-    expect(formDictionary.control).toBeTruthy();
+    expect(formDictionary.value).toEqual({});
+    expect(formDictionary.valid).toBeTrue();
     expect(formDictionary.status).toBe('VALID');
+    expect(formDictionary.control).toBeTruthy();
 
     expect(formDictionary.elements).toEqual([]);
     expect(formDictionary.fields).toEqual([]);
