@@ -4,7 +4,7 @@ import { DynamicFormArray } from './dynamic-form-array';
 
 export type DynamicFormArrayValidatorFn = DynamicFormFieldValidatorFn<FormArray>;
 
-export type DynamicFormArrayValidatorFactory = DynamicFormFieldValidatorFactory<FormArray>;
+export type DynamicFormArrayValidatorFactory = DynamicFormFieldValidatorFactory<FormArray, DynamicFormArray>;
 
 export class DynamicFormArrayValidator extends DynamicFormFieldValidator<FormArray, DynamicFormArray> {
 

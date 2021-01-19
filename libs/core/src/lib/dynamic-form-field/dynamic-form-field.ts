@@ -57,9 +57,10 @@ export abstract class DynamicFormField<
   get classType(): DynamicFormClassType { return 'field'; }
 
   get model(): any { return this._model; }
-
-  get control(): Control { return this._control; }
+  get value(): any { return this._control.value; }
+  get valid(): boolean { return this._control.valid; }
   get status(): string { return this._control.status; }
+  get control(): Control { return this._control; }
 
   get hidden(): boolean { return this.parent.hidden || this.template.hidden || false; }
   get readonly(): boolean { return this.parent.readonly || this.template.readonly || false; }
@@ -144,8 +145,9 @@ export abstract class DynamicFormField<
       index: () => this.index,
       depth: () => this.depth,
       model: () => this.model,
-      value: () => this.control.value,
-      status: () => this.control.status,
+      value: () => this.value,
+      valid: () => this.valid,
+      status: () => this.status,
       parent: () => this.parent ? this.parent.expressionData : undefined,
       root: () => this.root ? this.root.expressionData : undefined,
     });
