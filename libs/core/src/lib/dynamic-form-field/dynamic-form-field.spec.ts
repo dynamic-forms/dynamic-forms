@@ -48,7 +48,9 @@ describe('DynamicFormField', () => {
     expect(field.componentType).toBe('componentType');
 
     expect(field.model).toBeUndefined();
-
+    expect(() => field.value).toThrowError();
+    expect(() => field.valid).toThrowError();
+    expect(() => field.status).toThrowError();
     expect(field.control).toBeUndefined();
 
     expect(field.elements).toEqual([]);
