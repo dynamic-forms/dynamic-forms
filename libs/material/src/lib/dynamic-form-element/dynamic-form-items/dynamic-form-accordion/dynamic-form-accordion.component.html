@@ -1,6 +1,7 @@
 <mat-accordion class="dynamic-form-accordion" [ngClass]="template?.className">
    <mat-expansion-panel *ngFor="let item of element.items; let index = index" 
     [ngClass]="item.template?.className" [expanded]="index === selectedIndex" 
+    [disabled]="item.disabled"
     (opened)="openItem(index)" (closed)="closeItem(index)">
     <mat-expansion-panel-header>
       <mat-panel-title>{{item.label}}</mat-panel-title>

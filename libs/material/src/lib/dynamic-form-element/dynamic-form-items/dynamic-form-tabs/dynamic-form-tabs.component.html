@@ -1,6 +1,7 @@
 <mat-tab-group class="dynamic-form-tabs" [ngClass]="template?.className" 
   [selectedIndex]="selectedIndex" (selectedIndexChange)="selectItem($event)">
-  <mat-tab *ngFor="let item of element.items" [ngClass]="item.template?.className" [label]="item.label">
+  <mat-tab *ngFor="let item of element.items" [ngClass]="item.template?.className" 
+    [label]="item.label" [disabled]="item.disabled">
     <dynamic-form-element *ngFor="let element of item.elements" 
       [element]="element"
     ></dynamic-form-element>

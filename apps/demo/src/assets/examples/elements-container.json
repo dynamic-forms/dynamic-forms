@@ -13,14 +13,14 @@
           "type": "content",
           "template": {
             "className": "col",
-            "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+            "content": "<h3>Heading 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
           }
         },
         {
           "type": "content",
           "template": {
             "className": "col",
-            "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+            "content": "<h3>Heading 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
           }
         }
       ]

@@ -45,4 +45,20 @@ describe('DynamicFormItems', () => {
     expect(formItems.selectedIndex).toBeUndefined();
     expect(formItems.selectedItem).toBeUndefined();
   });
+
+  it('selects first item being not disabled', () => {
+    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
+    const formItems = new DynamicFormItems(definition);
+    const items = [
+      <DynamicFormItem>{ classType: 'element', definition: {}, disabled: true },
+      <DynamicFormItem>{ classType: 'element', definition: {}, disabled: false }
+    ];
+
+    formItems.initElements(items);
+
+    expect(formItems.items).toBe(items);
+    expect(formItems.elements).toBe(items);
+    expect(formItems.selectedIndex).toBe(1);
+    expect(formItems.selectedItem).toBe(items[1]);
+  });
 });

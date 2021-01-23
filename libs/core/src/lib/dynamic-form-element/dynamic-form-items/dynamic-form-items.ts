@@ -26,16 +26,21 @@ export class DynamicFormItems<
   initElements(elements: DynamicFormItem[]): void {
     this._items = elements || [];
     this._elements = this._items;
-    this.selectItem(0);
+    this.selectFirstItem();
   }
 
-  selectItem(index: number): void {
-    if (index >= 0 && index < this._items.length) {
+  selectItem(index?: number): void {
+    if (index >= 0 && index < this.items.length && !this.items[index].disabled) {
       this._selectedIndex = index;
-      this._selectedItem = this._items[index];
+      this._selectedItem = this.items[index];
     } else {
       this._selectedIndex = undefined;
       this._selectedItem = undefined;
     }
+  }
+
+  selectFirstItem(): void {
+    const itemIndex = this._items.findIndex(item => !item.disabled);
+    this.selectItem(itemIndex);
   }
 }

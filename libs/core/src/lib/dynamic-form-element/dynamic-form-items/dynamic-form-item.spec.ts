@@ -4,7 +4,7 @@ import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 
 describe('DynamicFormItem', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', template: { label: 'label' }, elements: [] };
+    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', template: { label: 'label', disabled: true }, elements: [] };
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.id).toBe('id');
@@ -14,6 +14,7 @@ describe('DynamicFormItem', () => {
     expect(formItem.template).toBe(definition.template);
     expect(formItem.elements).toEqual([]);
     expect(formItem.label).toBe('label');
+    expect(formItem.disabled).toBe(true);
   });
 
   it('inits elements', () => {

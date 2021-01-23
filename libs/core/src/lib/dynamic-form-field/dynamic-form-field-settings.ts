@@ -1,7 +1,3 @@
-export interface DynamicFormFieldUpdateDebounce {
-  time: number;
-}
-
 export type DynamicFormFieldUpdateType = 'change' | 'debounce' | 'blur' | 'submit';
 
 export interface DynamicFormFieldSettings {

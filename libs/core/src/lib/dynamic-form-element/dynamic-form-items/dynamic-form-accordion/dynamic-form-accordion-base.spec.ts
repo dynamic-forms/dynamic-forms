@@ -18,9 +18,17 @@ describe('DynamicFormAccordionBase', () => {
   it('openItem calls selectItem of element', () => {
     spyOn(component.element, 'selectItem');
 
+    component.openItem(1);
+
+    expect(component.element.selectItem).toHaveBeenCalledWith(1);
+  });
+
+  it('openItem does not call selectItem of element', () => {
+    spyOn(component.element, 'selectItem');
+
     component.openItem(0);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(0);
+    expect(component.element.selectItem).not.toHaveBeenCalledWith(0);
   });
 
   it('closeItem calls selectItem of element', () => {
