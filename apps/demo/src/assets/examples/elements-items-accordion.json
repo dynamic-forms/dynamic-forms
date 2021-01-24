@@ -1,12 +1,17 @@
 {
-  "elements": [
-    {
-      "type": "accordion",
+  "references": {
+    "item": {
+      "template": {
+        "label": "Item 1"
+      },
+      "expressions": {
+        "label": "'Item ' + (data.index + 1)"
+      }
+    },
+    "items": {
       "items": [
         {
-          "template": {
-            "label": "Item 1"
-          },
+          "reference": "item",
           "elements": [
             {
               "type": "content",
@@ -17,9 +22,7 @@
           ]
         },
         {
-          "template": {
-            "label": "Item 2"
-          },
+          "reference": "item",
           "elements": [
             {
               "type": "content",
@@ -30,9 +33,7 @@
           ]
         },
         {
-          "template": {
-            "label": "Item 3"
-          },
+          "reference": "item",
           "elements": [
             {
               "type": "content",
@@ -43,12 +44,26 @@
           ]
         },
         {
+          "reference": "item",
           "template": {
-            "label": "Item 4",
             "disabled": true
-          }
+          },
+          "elements": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 4</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
         }
       ]
+    }
+  },
+  "elements": [
+    {
+      "reference": "items",
+      "type": "accordion"
     }
   ]
 }

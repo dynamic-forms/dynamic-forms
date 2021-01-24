@@ -4,7 +4,8 @@ import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 
 describe('DynamicFormItem', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', template: { label: 'label', disabled: true }, elements: [] };
+    const template = { label: 'label', disabled: true };
+    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1, template, elements: [] };
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.id).toBe('id');
@@ -13,6 +14,7 @@ describe('DynamicFormItem', () => {
     expect(formItem.definition).toBe(definition);
     expect(formItem.template).toBe(definition.template);
     expect(formItem.elements).toEqual([]);
+    expect(formItem.index).toBe(1);
     expect(formItem.label).toBe('label');
     expect(formItem.disabled).toBe(true);
   });
@@ -36,5 +38,12 @@ describe('DynamicFormItem', () => {
     formItem.initElements(null);
 
     expect(formItem.elements).toEqual([]);
+  });
+
+  it('returns expression data with index', () => {
+    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1 };
+    const formItem = new DynamicFormItem(definition);
+
+    expect(formItem.expressionData.index).toBe(1);
   });
 });

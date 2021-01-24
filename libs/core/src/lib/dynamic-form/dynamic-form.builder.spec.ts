@@ -771,9 +771,31 @@ describe('DynamicFormBuilder', () => {
 
   it('getDefinition returns merged definition from references',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const definition = <DynamicFormElementDefinition>{ reference: 'ref', template: { className: 'className' }, expressions: { readonly: 'parent.readonly' } };
-      const definitionRef = <DynamicFormElementDefinition>{ type: 'type', template: { classNameWrapper: 'classNameWrapper' } };
-      const definitionRoot = <DynamicFormDefinition>{ references: { ref: definitionRef }, elements: [] };
+      const definitionRef = <DynamicFormElementDefinition>{
+        type: 'type',
+        template: {
+          classNameWrapper: 'classNameWrapper'
+        },
+        elements: [
+          { reference: 'refElement' }
+        ]
+      };
+      const definition = <DynamicFormElementDefinition>{
+        reference: 'ref',
+        template: {
+          className: 'className'
+        },
+        expressions: {
+          readonly: 'parent.readonly'
+        },
+        elements: [
+          { template: { label: 'Element 1' } },
+          { reference: 'refElement', template: { label: 'Element 2' } }
+        ]
+      };
+
+      const references = { ref: definitionRef };
+      const definitionRoot = <DynamicFormDefinition>{ references, elements: [] };
       const root = <DynamicForm>{ definition: definitionRoot };
       const result = builder.getDefinition(definition, root);
 
@@ -786,7 +808,11 @@ describe('DynamicFormBuilder', () => {
         },
         expressions: {
           readonly: 'parent.readonly'
-        }
+        },
+        elements: [
+          { reference: 'refElement', template: { label: 'Element 1' } },
+          { reference: 'refElement', template: { label: 'Element 2' } }
+        ]
       });
     })
   );
@@ -798,6 +824,40 @@ describe('DynamicFormBuilder', () => {
       const root = <DynamicForm>{ definition: definitionRoot };
 
       expect(() => builder.getDefinition(definition, root)).toThrowError('Definition reference ref is not defined');
+    })
+  );
+
+  it('getDefinitionClone returns merged definition from references',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definitionRef = <DynamicFormElementDefinition>{ type: 'type' };
+      const definition = <DynamicFormElementDefinition>{ reference: 'ref', template: { options: [ 'Value1', 'Value2' ] } };
+
+      const references = { ref: definitionRef };
+      const definitionRoot = <DynamicFormDefinition>{ references, elements: [] };
+      const root = <DynamicForm>{ definition: definitionRoot };
+      const result = builder.getDefinitionClone(definition, root);
+
+      expect(result).toEqual({ reference: 'ref', type: 'type', template: { options: [ 'Value1', 'Value2' ] } });
+    })
+  );
+
+  it('getDefinitionClone returns definition',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormElementDefinition>{};
+      const result = builder.getDefinitionClone(definition, null);
+
+      expect(result).toEqual(definition);
+      expect(result).not.toBe(definition);
+    })
+  );
+
+  it('getDefinitionClone throws if definition reference is not defined',
+    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const definition = <DynamicFormElementDefinition>{ reference: 'ref' };
+      const definitionRoot = <DynamicFormDefinition>{ references: {}, elements: [] };
+      const root = <DynamicForm>{ definition: definitionRoot };
+
+      expect(() => builder.getDefinitionClone(definition, root)).toThrowError('Definition reference ref is not defined');
     })
   );
 

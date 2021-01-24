@@ -9,7 +9,7 @@ export interface DynamicFormFieldExpressionData extends DynamicFormElementExpres
   readonly value: any;
   readonly valid: any;
   readonly status: string;
-  readonly [key: string]: any;
   readonly root: DynamicFormFieldExpressionData;
   readonly parent: DynamicFormFieldExpressionData;
+  readonly [key: string]: any;
 }

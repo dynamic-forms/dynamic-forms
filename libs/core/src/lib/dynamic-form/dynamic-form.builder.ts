@@ -101,9 +101,7 @@ export class DynamicFormBuilder {
 
   createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
-    const definitionBase = definitionTemplate.reference
-      ? this.mergeDefinition(definitionTemplate, field.root)
-      : cloneObject(definitionTemplate);
+    const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key: `${index}`, index  };
     return this.createFormFieldForFactory(field.root, field, definition);
   }
@@ -122,9 +120,7 @@ export class DynamicFormBuilder {
 
   createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
-    const definitionBase = definitionTemplate.reference
-      ? this.mergeDefinition(definitionTemplate, field.root)
-      : cloneObject(definitionTemplate);
+    const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key };
     return this.createFormFieldForFactory(field.root, field, definition);
   }
@@ -216,6 +212,10 @@ export class DynamicFormBuilder {
 
   getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
     return definition.reference ? this.mergeDefinition(definition, root) : definition;
+  }
+
+  getDefinitionClone<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
+    return definition.reference ? this.mergeDefinition(definition, root) : cloneObject(definition);
   }
 
   createId(): string {

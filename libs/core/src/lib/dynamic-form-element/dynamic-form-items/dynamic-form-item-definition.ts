@@ -3,4 +3,6 @@ import { DynamicFormItemTemplate } from './dynamic-form-item-template';
 
 export interface DynamicFormItemDefinition<
   Template extends DynamicFormItemTemplate = DynamicFormItemTemplate
-> extends DynamicFormElementDefinition<Template> {}
+> extends DynamicFormElementDefinition<Template> {
+  index?: number;
+}
