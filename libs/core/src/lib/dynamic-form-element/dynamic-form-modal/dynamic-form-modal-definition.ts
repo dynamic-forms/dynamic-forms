@@ -6,7 +6,7 @@ export interface DynamicFormModalDefinition<
   Template extends DynamicFormModalTemplate = DynamicFormModalTemplate
 > extends DynamicFormElementDefinition<Template> {
   trigger: DynamicFormActionDefinition;
-  elements: DynamicFormElementDefinition[];
+  children: DynamicFormElementDefinition[];
   headerActions?: DynamicFormActionDefinition[];
   footerActions?: DynamicFormActionDefinition[];
 }

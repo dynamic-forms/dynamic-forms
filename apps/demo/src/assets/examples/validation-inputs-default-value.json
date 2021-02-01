@@ -2,7 +2,7 @@
   "template": {
     "label": "Validation of inputs"
   },
-  "elements": [
+  "children":[
     {
       "key": "checkbox",
       "type": "control",

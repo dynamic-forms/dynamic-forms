@@ -2,13 +2,13 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children":[
     {
       "type": "modal",
       "template": {
         "title": "Modal",
         "classNameTitle": "modal-title-bg",
-        "classNameElements": "row",
+        "classNameChildren": "row",
         "width": "600px",
         "maxWidth": "calc(100% - 1rem)"
       },
@@ -23,7 +23,7 @@
           "disabled": "data.parent.isOpen"
         }
       },
-      "elements": [
+      "children":[
         {
           "type": "content",
           "template": {

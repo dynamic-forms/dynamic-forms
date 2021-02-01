@@ -7,7 +7,7 @@
 <bs-dynamic-form-dialog
   *ngIf="dialog" 
   [isOpen$]="dialogOpen$"
-  [elements]="dialogElements" 
+  [children]="dialogChildren" 
   [headerActions]="dialogHeaderActions" 
   [footerActions]="dialogFooterActions"
   [width]="template?.dialogWidth" 
@@ -18,7 +18,7 @@
   [classNameForm]="element.root.template?.className" 
   [classNameModal]="template.className"
   [classNameTitle]="template?.classNameDialogTitle" 
-  [classNameElements]="dialogTemplate?.classNameElements"
+  [classNameChildren]="dialogTemplate?.classNameChildren"
   [classNameHeader]="dialogTemplate?.classNameHeader" 
   [classNameFooter]="dialogTemplate?.classNameFooter"
 ></bs-dynamic-form-dialog>

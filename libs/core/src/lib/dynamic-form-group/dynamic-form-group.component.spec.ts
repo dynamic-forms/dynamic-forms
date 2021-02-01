@@ -32,7 +32,7 @@ describe('DynamicFormGroupComponent', () => {
     fixture = TestBed.createComponent(DynamicFormGroupComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupDefinition>{
       id: 'id',
       key: 'key',
@@ -40,7 +40,7 @@ describe('DynamicFormGroupComponent', () => {
       template: {
         label: 'label'
       },
-      elements: []
+      children: []
     });
     component.field = formGroup;
 
@@ -55,7 +55,7 @@ describe('DynamicFormGroupComponent', () => {
     expect(component.path).toBe('key');
     expect(component.template).toBeTruthy();
     expect(component.control).toBeTruthy();
-    expect(component.elements).toEqual([]);
+    expect(component.children).toEqual([]);
   });
 
   it('renders component template', () => {

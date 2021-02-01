@@ -26,7 +26,7 @@ describe('DynamicFormControlEvaluatorType', () => {
         }
       }
     };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {
       'key': 'option1'
     });
     const formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);

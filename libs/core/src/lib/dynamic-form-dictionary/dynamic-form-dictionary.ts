@@ -22,17 +22,17 @@ export class DynamicFormDictionary<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'dictionary'; }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
+  get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
 
   get length(): number { return this._fields.length; }
 
-  initElements(elements: DynamicFormField[]): void {
-    this._fields = elements ? [ ...elements ] : [];
+  initChildren(children: DynamicFormField[]): void {
+    this._fields = children ? [ ...children ] : [];
     this._fields.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
-    this._elements = this._fields;
+    this._children = this._fields;
   }
 
   registerField(field: DynamicFormField): void {
@@ -64,7 +64,7 @@ export class DynamicFormDictionary<
         this._control.removeControl(field.key);
       });
       this._fields = [];
-      this._elements = this._fields;
+      this._children = this._fields;
       this._model = {};
       this._parent.model[this.key] = this._model;
       this._control.markAsTouched();

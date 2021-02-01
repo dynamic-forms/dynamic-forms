@@ -9,7 +9,7 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 describe('DynamicFormArray', () => {
   it('creates instance', () => {
     const definition = <DynamicFormArrayDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.root).toBe(form);
@@ -30,7 +30,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.status).toBe('VALID');
     expect(formArray.control).toBeTruthy();
 
-    expect(formArray.elements).toEqual([]);
+    expect(formArray.children).toEqual([]);
     expect(formArray.fields).toEqual([]);
     expect(formArray.footerActions).toEqual([]);
 
@@ -40,7 +40,7 @@ describe('DynamicFormArray', () => {
   it('sets model to default value', () => {
     const defaultValue = [ { value: 0 }, { value: 1 } ];
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultValue };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.model).toEqual(defaultValue);
@@ -48,7 +48,7 @@ describe('DynamicFormArray', () => {
 
   it('sets model to default length', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultLength: 2 };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.model).toEqual([ undefined, undefined ]);
@@ -56,7 +56,7 @@ describe('DynamicFormArray', () => {
 
   it('returns expression data with id, key, index and model', () => {
     const definition = <DynamicFormArrayDefinition>{  id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] }, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.expressionData.id).toBe('id');
@@ -66,40 +66,40 @@ describe('DynamicFormArray', () => {
     expect(formArray.expressionData.length).toEqual(0);
   });
 
-  it('inits elements and fields', () => {
+  it('inits children and fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
     ];
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
 
     expect(formArray.length).toBe(2);
-    expect(formArray.elements).toBe(fields as DynamicFormElement[]);
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual(fields);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.fields[1]).toBe(fields[1]);
   });
 
-  it('inits elements and fields with empty array', () => {
+  it('inits children and fields with empty array', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    formArray.initElements(null);
+    formArray.initChildren(null);
 
     expect(formArray.length).toBe(0);
-    expect(formArray.elements).toEqual([]);
+    expect(formArray.children).toEqual([]);
     expect(formArray.fields).toEqual([]);
   });
 
   it('pushes field', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
@@ -109,11 +109,11 @@ describe('DynamicFormArray', () => {
 
     spyOn(formArray.control, 'push');
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
     formArray.pushField(field);
 
     expect(formArray.length).toBe(3);
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields.length).toBe(3);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.fields[1]).toBe(fields[1]);
@@ -123,7 +123,7 @@ describe('DynamicFormArray', () => {
 
   it('pops field', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
@@ -135,11 +135,11 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
     formArray.popField();
 
     expect(formArray.length).toBe(1);
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields.length).toBe(1);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
@@ -150,7 +150,7 @@ describe('DynamicFormArray', () => {
 
   it('does not pop field if length is zero', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.fields, 'pop');
@@ -168,7 +168,7 @@ describe('DynamicFormArray', () => {
 
   it('removes field', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
@@ -184,11 +184,11 @@ describe('DynamicFormArray', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
     formArray.removeField(1);
 
     expect(formArray.length).toBe(3);
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields.length).toBe(3);
     expect(formArray.fields[0]).toBe(fields[0]);
     expect(formArray.fields[0].definition.index).toBe(0);
@@ -206,7 +206,7 @@ describe('DynamicFormArray', () => {
 
   it('does not remove field if index is invalid', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.fields, 'splice');
@@ -224,7 +224,7 @@ describe('DynamicFormArray', () => {
 
   it('clears fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
@@ -236,11 +236,11 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
     formArray.clearFields();
 
     expect(formArray.length).toBe(0);
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([]);
     expect(formArray.control.clear).toHaveBeenCalled();
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
@@ -250,7 +250,7 @@ describe('DynamicFormArray', () => {
 
   it('does not clear fields if length is zero', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.control, 'clear');
@@ -264,14 +264,14 @@ describe('DynamicFormArray', () => {
 
   it('moves field down', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
       <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
     ];
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -279,7 +279,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldDown(0);
 
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
     expect(formArray.fields[0].definition.index).toBe(0);
     expect(formArray.fields[1].definition.index).toBe(1);
@@ -290,13 +290,13 @@ describe('DynamicFormArray', () => {
 
   it('does not move field down', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
     ];
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -304,7 +304,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldDown(0);
 
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[0] ]);
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.insert).not.toHaveBeenCalled();
@@ -313,14 +313,14 @@ describe('DynamicFormArray', () => {
 
   it('moves field up', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
       <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
     ];
 
-    formArray.initElements([ ...fields ]);
+    formArray.initChildren([ ...fields ]);
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -328,7 +328,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldUp(1);
 
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
     expect(formArray.control.insert).toHaveBeenCalledWith(0, fields[1].control);
@@ -337,13 +337,13 @@ describe('DynamicFormArray', () => {
 
   it('does not move field up', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
     ];
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -351,7 +351,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldUp(0);
 
-    expect(formArray.elements).toBe(formArray.fields as DynamicFormElement[]);
+    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
     expect(formArray.fields).toEqual([ fields[0] ]);
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.insert).not.toHaveBeenCalled();
@@ -360,7 +360,7 @@ describe('DynamicFormArray', () => {
 
   it('check calls check of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), check: () => {} },
@@ -370,7 +370,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -379,7 +379,7 @@ describe('DynamicFormArray', () => {
 
   it('destroy calls destroy of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
@@ -389,7 +389,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -398,7 +398,7 @@ describe('DynamicFormArray', () => {
 
   it('reset calls reset of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), reset: () => {} },
@@ -408,7 +408,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -417,7 +417,7 @@ describe('DynamicFormArray', () => {
 
   it('resetDefault calls resetDefault of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} },
@@ -427,7 +427,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -437,7 +437,7 @@ describe('DynamicFormArray', () => {
   it('resetDefault calls patchValue of field if default value', () => {
     const defaultValue = [ { value: 0 }, { value: 1 } ];
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultValue };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} },
@@ -447,7 +447,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -456,7 +456,7 @@ describe('DynamicFormArray', () => {
 
   it('validate calls validate of all fields', () => {
     const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), validate: () => {} },
@@ -466,7 +466,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formArray.initElements(fields);
+    formArray.initChildren(fields);
     formArray.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

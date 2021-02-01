@@ -11,7 +11,7 @@ describe('DynamicFormAction', () => {
   it('creates instance', () => {
     const root = <DynamicForm>{};
     const parent = <DynamicFormField>{};
-    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'componentType', template: {}, elements: [] };
+    const definition = <DynamicFormActionDefinition>{ id: 'id', type: 'componentType', template: {}, children: [] };
     const action = new DynamicFormAction(root, parent, definition);
 
     expect(action.id).toBe('id');
@@ -23,7 +23,7 @@ describe('DynamicFormAction', () => {
     expect(action.root).toBe(root);
     expect(action.parent).toBe(parent);
 
-    expect(action.elements).toEqual([]);
+    expect(action.children).toEqual([]);
 
     expect(action.expressions).toEqual({});
     expect(action.expressionData).toBeTruthy();
@@ -35,7 +35,7 @@ describe('DynamicFormAction', () => {
     expect(() => action.dialogTemplate).toThrow();
 
     expect(action.dialog).toBeUndefined();
-    expect(() => action.dialogElements).toThrow();
+    expect(() => action.dialogChildren).toThrow();
     expect(() => action.dialogHeaderActions).toThrow();
     expect(() => action.dialogFooterActions).toThrow();
   });
@@ -98,7 +98,7 @@ describe('DynamicFormAction', () => {
     expect(action.dialog.definition).toBe(dialogDefinition);
     expect(action.dialog.template).toBe(dialogDefinition.template);
 
-    expect(action.dialogElements).toEqual([]);
+    expect(action.dialogChildren).toEqual([]);
     expect(action.dialogHeaderActions).toEqual([]);
     expect(action.dialogFooterActions).toEqual([]);
   });

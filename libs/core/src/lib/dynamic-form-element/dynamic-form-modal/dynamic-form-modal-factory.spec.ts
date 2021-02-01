@@ -8,7 +8,7 @@ import { dynamicFormModalFactory } from './dynamic-form-modal-factory';
 describe('dynamicFormModalFactory', () => {
   it('return modal', () => {
     const expressions = {};
-    const elements = [];
+    const children = [];
     const actions = [];
     const trigger = <DynamicFormAction>{};
     const builder = jasmine.createSpyObj<DynamicFormBuilder>('builder', [
@@ -18,7 +18,7 @@ describe('dynamicFormModalFactory', () => {
       'createFormAction'
     ]);
     builder.createElementExpressions.and.returnValue(expressions);
-    builder.createFormElements.and.returnValue(elements);
+    builder.createFormElements.and.returnValue(children);
     builder.createFormActions.and.returnValue(actions);
     builder.createFormAction.and.returnValue(trigger);
 
@@ -28,7 +28,7 @@ describe('dynamicFormModalFactory', () => {
       id: 'id',
       type: 'element',
       template: {},
-      elements: [],
+      children: [],
       footerActions: [],
       trigger: {}
     };
@@ -37,12 +37,12 @@ describe('dynamicFormModalFactory', () => {
 
     expect(modal.definition).toBe(definition);
     expect(modal.expressions).toBe(expressions);
-    expect(modal.elements).toBe(elements);
-    expect(modal.footerActions).toBe(actions);
     expect(modal.trigger).toBe(trigger);
+    expect(modal.children).toBe(children);
+    expect(modal.footerActions).toBe(actions);
 
     expect(builder.createElementExpressions).toHaveBeenCalledWith(modal);
-    expect(builder.createFormElements).toHaveBeenCalledWith(root, parent, definition.elements);
+    expect(builder.createFormElements).toHaveBeenCalledWith(root, parent, definition.children);
     expect(builder.createFormActions).toHaveBeenCalledWith(root, modal, definition.footerActions);
     expect(builder.createFormAction).toHaveBeenCalledWith(root, modal, definition.trigger);
   });

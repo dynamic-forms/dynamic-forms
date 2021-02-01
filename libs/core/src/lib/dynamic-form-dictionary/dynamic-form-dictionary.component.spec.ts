@@ -39,7 +39,7 @@ describe('DynamicFormDictionaryComponent', () => {
     fixture = TestBed.createComponent(DynamicFormDictionaryComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
+    form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
     formDictionary = new DynamicFormDictionary(form, form, <DynamicFormDictionaryDefinition>{
       id: 'id',
       key: 'key',
@@ -47,7 +47,7 @@ describe('DynamicFormDictionaryComponent', () => {
       template: {
         label: 'label'
       },
-      elements: []
+      children: []
     });
     component.field = formDictionary;
 
@@ -60,7 +60,7 @@ describe('DynamicFormDictionaryComponent', () => {
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
     expect(component.control).toBeTruthy();
-    expect(component.elements).toEqual([]);
+    expect(component.children).toEqual([]);
     expect(component.template).toBeTruthy();
   });
 

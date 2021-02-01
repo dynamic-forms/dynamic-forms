@@ -40,7 +40,7 @@ export class DynamicFormAction<
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
   get dialog(): DynamicForm { return this._dialog; }
-  get dialogElements(): DynamicFormElement[] { return this._dialog.elements; }
+  get dialogChildren(): DynamicFormElement[] { return this._dialog.children; }
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 

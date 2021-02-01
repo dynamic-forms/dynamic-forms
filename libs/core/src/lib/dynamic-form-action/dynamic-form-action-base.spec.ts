@@ -42,7 +42,7 @@ describe('DynamicFormActionBase', () => {
     expect(() => component.dialogTemplate).toThrow();
 
     expect(component.dialog).toBeUndefined();
-    expect(() => component.dialogElements).toThrow();
+    expect(() => component.dialogChildren).toThrow();
     expect(() => component.dialogHeaderActions).toThrow();
     expect(() => component.dialogFooterActions).toThrow();
   });
@@ -70,7 +70,7 @@ describe('DynamicFormActionBase', () => {
     expect(component.dialogTemplate).toBe(dialogDefinition.template);
 
     expect(component.dialog).toBe(dialog);
-    expect(component.dialogElements).toBe(dialog.elements);
+    expect(component.dialogChildren).toBe(dialog.children);
     expect(component.dialogHeaderActions).toBe(dialog.headerActions);
     expect(component.dialogFooterActions).toBe(dialog.footerActions);
   });

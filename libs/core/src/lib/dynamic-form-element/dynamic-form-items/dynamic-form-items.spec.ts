@@ -4,7 +4,7 @@ import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
 describe('DynamicFormItems', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {}, elements: [] };
+    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {}, children: [] };
     const formItems = new DynamicFormItems(definition);
 
     expect(formItems.id).toBe('id');
@@ -12,13 +12,13 @@ describe('DynamicFormItems', () => {
     expect(formItems.componentType).toBe('type');
     expect(formItems.definition).toBe(definition);
     expect(formItems.template).toBe(definition.template);
-    expect(formItems.elements).toEqual([]);
+    expect(formItems.children).toEqual([]);
     expect(formItems.items).toEqual([]);
     expect(formItems.selectedIndex).toBeUndefined();
     expect(formItems.selectedItem).toBeUndefined();
   });
 
-  it('inits elements', () => {
+  it('inits children', () => {
     const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
     const formItems = new DynamicFormItems(definition);
     const items = [
@@ -26,22 +26,22 @@ describe('DynamicFormItems', () => {
       <DynamicFormItem>{ classType: 'element', definition: {} }
     ];
 
-    formItems.initElements(items);
+    formItems.initChildren(items);
 
     expect(formItems.items).toBe(items);
-    expect(formItems.elements).toBe(items);
+    expect(formItems.children).toBe(items);
     expect(formItems.selectedIndex).toBe(0);
     expect(formItems.selectedItem).toBe(items[0]);
   });
 
-  it('inits elements with empty array', () => {
+  it('inits children with empty array', () => {
     const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
     const formItems = new DynamicFormItems(definition);
 
-    formItems.initElements(null);
+    formItems.initChildren(null);
 
     expect(formItems.items).toEqual([]);
-    expect(formItems.elements).toEqual([]);
+    expect(formItems.children).toEqual([]);
     expect(formItems.selectedIndex).toBeUndefined();
     expect(formItems.selectedItem).toBeUndefined();
   });
@@ -54,10 +54,10 @@ describe('DynamicFormItems', () => {
       <DynamicFormItem>{ classType: 'element', definition: {}, disabled: false }
     ];
 
-    formItems.initElements(items);
+    formItems.initChildren(items);
 
     expect(formItems.items).toBe(items);
-    expect(formItems.elements).toBe(items);
+    expect(formItems.children).toBe(items);
     expect(formItems.selectedIndex).toBe(1);
     expect(formItems.selectedItem).toBe(items[1]);
   });

@@ -13,8 +13,8 @@
           <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>      
         </div> 
       </div>
-      <div class="modal-body" [ngClass]="classNameElements">
-        <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>      
+      <div class="modal-body" [ngClass]="classNameChildren">
+        <dynamic-form-element *ngFor="let child of children" [element]="child"></dynamic-form-element>      
       </div>
       <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="classNameFooter">
         <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>      

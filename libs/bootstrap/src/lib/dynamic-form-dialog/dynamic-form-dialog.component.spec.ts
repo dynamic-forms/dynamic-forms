@@ -173,7 +173,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';
-      component.classNameElements = 'class-elements';
+      component.classNameChildren = 'class-children';
       component.classNameHeader = 'class-header';
       component.classNameFooter = 'class-footer';
       component.classNameTitle = 'class-title';
@@ -184,7 +184,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const dialogDebugElement = debugElement.query(By.css('.modal-dialog.modal-dialog-centered.modal-dialog-scrollable.class-modal'));
       const contentDebugElement = dialogDebugElement.query(By.css('.modal-content'));
 
-      const bodyDebugElement = contentDebugElement.query(By.css('.modal-body.class-elements'));
+      const bodyDebugElement = contentDebugElement.query(By.css('.modal-body.class-children'));
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header.class-header'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer.class-footer'));
 

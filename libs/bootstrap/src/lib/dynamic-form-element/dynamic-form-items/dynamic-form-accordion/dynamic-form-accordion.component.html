@@ -2,8 +2,8 @@
   <div class="card" *ngFor="let item of element.items; let index = index">
     <div class="card-header" [class.disabled]="item.disabled" (click)="toggleItem(index)">{{item.label}}</div>
     <div class="card-body" *ngIf="index === selectedIndex">
-      <dynamic-form-element *ngFor="let element of item.elements" 
-        [element]="element"
+      <dynamic-form-element *ngFor="let child of item.children" 
+        [element]="child"
       ></dynamic-form-element>
     </div>
   </div>

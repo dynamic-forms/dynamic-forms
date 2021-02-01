@@ -22,12 +22,12 @@ export class DynamicFormGroup<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'group'; }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
+  get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
 
-  initElements(elements: DynamicFormElement[]): void {
-    this._elements = elements || [];
-    this._fields = this.filterFields(this._elements);
+  initChildren(children: DynamicFormElement[]): void {
+    this._children = children || [];
+    this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
@@ -71,5 +71,17 @@ export class DynamicFormGroup<
       return this.cloneObject(definition.defaultValue);
     }
     return {};
+  }
+
+  private filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
+    return elements.reduce((result, element) => {
+      if (element.classType === 'field') {
+        return result.concat(element as DynamicFormField);
+      }
+      if (element.children) {
+        return result.concat(this.filterFields(element.children));
+      }
+      return result;
+    }, <DynamicFormField[]>[]);
   }
 }

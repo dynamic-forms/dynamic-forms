@@ -22,17 +22,17 @@ export class DynamicFormArray<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'array'; }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
+  get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
 
   get length(): number { return this._fields.length; }
 
-  initElements(elements: DynamicFormField[]): void {
-    this._fields = elements || [];
+  initChildren(children: DynamicFormField[]): void {
+    this._fields = children || [];
     this._fields.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
-    this._elements = this._fields;
+    this._children = this._fields;
   }
 
   pushField(element: DynamicFormField): void {
@@ -70,7 +70,7 @@ export class DynamicFormArray<
       this._fields.forEach(field => field.destroy());
       this._control.clear();
       this._fields = [];
-      this._elements = this._fields;
+      this._children = this._fields;
       this._model = [];
       this._parent.model[this.key] = this._model;
       this._control.markAsTouched();

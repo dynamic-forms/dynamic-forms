@@ -21,8 +21,7 @@ export class DynamicFormGroupComponent<
     super(validationService);
   }
 
-  get elements(): DynamicFormElement[] { return this.field.elements; }
-
+  get children(): DynamicFormElement[] { return this.field.children; }
   get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
   get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
 }

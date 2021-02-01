@@ -47,7 +47,7 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = <DynamicFormDefinition>{ elements: [] };
+    definition = <DynamicFormDefinition>{ children: [] };
     model = {};
 
     component.definition = definition;
@@ -144,7 +144,7 @@ describe('DynamicFormComponent', () => {
   it('ngOnChanges creates form with changed definition', () => {
     const form = component.form;
     const formGroup = component.formGroup;
-    const definitionUpdated = <DynamicFormDefinition>{ elements: [] };
+    const definitionUpdated = <DynamicFormDefinition>{ children: [] };
 
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
@@ -159,7 +159,7 @@ describe('DynamicFormComponent', () => {
     const form = component.form;
     const formGroup = component.formGroup;
     const modelChanged = {};
-    const definitionChanged = <DynamicFormDefinition>{ elements: [] };
+    const definitionChanged = <DynamicFormDefinition>{ children: [] };
 
     component.model = modelChanged;
     component.definition = definitionChanged;

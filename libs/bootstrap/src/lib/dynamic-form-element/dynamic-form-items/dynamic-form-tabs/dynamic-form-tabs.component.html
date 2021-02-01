@@ -8,8 +8,8 @@
     </nav>  
   </div>
   <div class="card-body" *ngIf="selectedItem">
-    <dynamic-form-element *ngFor="let element of selectedItem.elements" 
-      [element]="element"
+    <dynamic-form-element *ngFor="let child of selectedItem.children" 
+      [element]="child"
     ></dynamic-form-element>
   </div>
 </div>

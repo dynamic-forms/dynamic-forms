@@ -5,7 +5,7 @@ import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 describe('DynamicFormItem', () => {
   it('creates instance', () => {
     const template = { label: 'label', disabled: true };
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1, template, elements: [] };
+    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1, template, children: [] };
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.id).toBe('id');
@@ -13,31 +13,31 @@ describe('DynamicFormItem', () => {
     expect(formItem.componentType).toBe('type');
     expect(formItem.definition).toBe(definition);
     expect(formItem.template).toBe(definition.template);
-    expect(formItem.elements).toEqual([]);
+    expect(formItem.children).toEqual([]);
     expect(formItem.index).toBe(1);
     expect(formItem.label).toBe('label');
     expect(formItem.disabled).toBe(true);
   });
 
-  it('inits elements', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children', () => {
+    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, children: [] };
     const formItem = new DynamicFormItem(definition);
-    const elements = [
+    const children = [
       <DynamicFormElement>{ classType: 'element', definition: {} }
     ];
 
-    formItem.initElements(elements);
+    formItem.initChildren(children);
 
-    expect(formItem.elements).toEqual(elements);
+    expect(formItem.children).toEqual(children);
   });
 
-  it('inits elements with empty array', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children with empty array', () => {
+    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, children: [] };
     const formItem = new DynamicFormItem(definition);
 
-    formItem.initElements(null);
+    formItem.initChildren(null);
 
-    expect(formItem.elements).toEqual([]);
+    expect(formItem.children).toEqual([]);
   });
 
   it('returns expression data with index', () => {

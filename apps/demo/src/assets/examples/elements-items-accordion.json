@@ -12,7 +12,7 @@
       "items": [
         {
           "reference": "item",
-          "elements": [
+          "children":[
             {
               "type": "content",
               "template": {
@@ -23,7 +23,7 @@
         },
         {
           "reference": "item",
-          "elements": [
+          "children":[
             {
               "type": "content",
               "template": {
@@ -34,7 +34,7 @@
         },
         {
           "reference": "item",
-          "elements": [
+          "children":[
             {
               "type": "content",
               "template": {
@@ -48,7 +48,7 @@
           "template": {
             "disabled": true
           },
-          "elements": [
+          "children":[
             {
               "type": "content",
               "template": {
@@ -60,7 +60,7 @@
       ]
     }
   },
-  "elements": [
+  "children":[
     {
       "reference": "items",
       "type": "accordion"

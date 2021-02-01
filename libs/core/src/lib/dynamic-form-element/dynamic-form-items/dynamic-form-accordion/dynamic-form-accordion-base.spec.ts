@@ -12,7 +12,7 @@ describe('DynamicFormAccordionBase', () => {
     const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
     component = new DynamicFormAccordionTestComponent();
     component.element = new DynamicFormItems(definition);
-    component.element.initElements([ <DynamicFormItem>{} ]) ;
+    component.element.initChildren([ <DynamicFormItem>{} ]) ;
   });
 
   it('openItem calls selectItem of element', () => {

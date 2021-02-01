@@ -186,7 +186,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';
-      component.classNameElements = 'class-elements';
+      component.classNameChildren = 'class-children';
       component.classNameHeader = 'class-header';
       component.classNameFooter = 'class-footer';
       component.classNameTitle = 'class-title';
@@ -197,7 +197,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const formElement = formWrapperElement.querySelector('.dynamic-form.class-form');
         const modalElement = formElement.querySelector('.dynamic-form-modal.class-modal');
 
-        const bodyElement = modalElement.querySelector('.modal-body.class-elements');
+        const bodyElement = modalElement.querySelector('.modal-body.class-children');
         const headerElement = modalElement.querySelector('.modal-header.class-header');
         const footerElement = modalElement.querySelector('.modal-footer.class-footer');
 

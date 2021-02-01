@@ -17,15 +17,15 @@ export class DynamicFormItems<
     super(definition);
   }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
+  get children(): DynamicFormElement[] { return this._children; }
   get items(): DynamicFormItem[] { return this._items; }
 
   get selectedIndex(): number { return this._selectedIndex; }
   get selectedItem(): DynamicFormItem { return this._selectedItem; }
 
-  initElements(elements: DynamicFormItem[]): void {
-    this._items = elements || [];
-    this._elements = this._items;
+  initChildren(children: DynamicFormItem[]): void {
+    this._items = children || [];
+    this._children = this._items;
     this.selectFirstItem();
   }
 

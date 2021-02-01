@@ -5,8 +5,8 @@
       <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
     </div>
   </div>
-  <div class="dynamic-form-dictionary-elements" *ngIf="elements?.length" [ngClass]="template?.classNameElements">
-    <dynamic-form-element *ngFor="let element of elements" [element]="element"></dynamic-form-element>
+  <div class="dynamic-form-dictionary-children" *ngIf="children?.length" [ngClass]="template?.classNameChildren">
+    <dynamic-form-element *ngFor="let child of children" [element]="child"></dynamic-form-element>
   </div>  
   <div class="dynamic-form-dictionary-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
   <div class="dynamic-form-dictionary-footer" *ngIf="footerActions?.length" [ngClass]="template?.classNameFooter">

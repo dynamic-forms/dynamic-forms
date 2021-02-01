@@ -53,7 +53,7 @@ describe('DynamicFormField', () => {
     expect(() => field.status).toThrowError();
     expect(field.control).toBeUndefined();
 
-    expect(field.elements).toEqual([]);
+    expect(field.children).toEqual([]);
     expect(field.footerActions).toEqual([]);
 
     expect(field.expressions).toEqual({});

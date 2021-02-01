@@ -17,7 +17,7 @@ describe('DynamicFormItemsBase', () => {
     const element = new DynamicFormItems(definition);
     const items = [ <DynamicFormItem>{} ];
 
-    element.initElements(items);
+    element.initChildren(items);
     component.element = element;
 
     expect(component.id).toBe(element.id);

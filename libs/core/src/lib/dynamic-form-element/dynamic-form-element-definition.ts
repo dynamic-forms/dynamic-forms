@@ -6,8 +6,8 @@ export interface DynamicFormElementDefinition<
 > {
   id?: string;
   type?: string;
-  template?: Template;
-  elements?: DynamicFormElementDefinition[];
-  expressions?: { [key: string]: string | DynamicFormElementExpressionFunc };
   reference?: string;
+  template?: Template;
+  expressions?: { [key: string]: string | DynamicFormElementExpressionFunc };
+  children?: DynamicFormElementDefinition[];
 }

@@ -106,18 +106,6 @@ export abstract class DynamicFormField<
 
   protected afterInitExpressions(): void {}
 
-  protected filterFields(elements: DynamicFormElement[]): DynamicFormField[] {
-    return elements.reduce((result, element) => {
-      if (element.classType === 'field') {
-        return result.concat(element as DynamicFormField);
-      }
-      if (element.elements) {
-        return result.concat(this.filterFields(element.elements));
-      }
-      return result;
-    }, <DynamicFormField[]>[]);
-  }
-
   protected checkControl(): void {
     const disabled = (this.parent && this.parent.control.disabled) || this.template.disabled || false;
     if (this.control.disabled !== disabled) {

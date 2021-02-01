@@ -2,7 +2,7 @@
 
 <bs-dynamic-form-dialog 
   [isOpen$]="isOpen$"
-  [elements]="elements" 
+  [children]="children" 
   [headerActions]="headerActions" 
   [footerActions]="footerActions"
   [width]="template?.width" 
@@ -13,7 +13,7 @@
   [classNameForm]="element.root.template?.className" 
   [classNameModal]="template?.className"
   [classNameTitle]="template?.classNameTitle" 
-  [classNameElements]="template?.classNameElements"
+  [classNameChildren]="template?.classNameChildren"
   [classNameHeader]="template?.classNameHeader" 
   [classNameFooter]="template?.classNameFooter"
 ></bs-dynamic-form-dialog>

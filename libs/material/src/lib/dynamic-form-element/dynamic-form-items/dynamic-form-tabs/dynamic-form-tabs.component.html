@@ -2,8 +2,8 @@
   [selectedIndex]="selectedIndex" (selectedIndexChange)="selectItem($event)">
   <mat-tab *ngFor="let item of element.items" [ngClass]="item.template?.className" 
     [label]="item.label" [disabled]="item.disabled">
-    <dynamic-form-element *ngFor="let element of item.elements" 
-      [element]="element"
+    <dynamic-form-element *ngFor="let child of item.children" 
+      [element]="child"
     ></dynamic-form-element>
    </mat-tab>
 </mat-tab-group>

@@ -8,8 +8,8 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 
 describe('DynamicFormGroup', () => {
   it('creates instance', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', index: 1, type: 'componentType', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', index: 1, type: 'componentType', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.root).toBe(form);
@@ -32,7 +32,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.status).toBe('VALID');
     expect(formGroup.control).toBeTruthy();
 
-    expect(formGroup.elements).toEqual([]);
+    expect(formGroup.children).toEqual([]);
     expect(formGroup.fields).toEqual([]);
     expect(formGroup.footerActions).toEqual([]);
 
@@ -41,22 +41,22 @@ describe('DynamicFormGroup', () => {
 
   it('sets model to default value', () => {
     const defaultValue = { value: 0 };
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] }, {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [], defaultValue };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] }, {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [], defaultValue };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.model).toEqual(defaultValue);
   });
 
-  it('inits elements and fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+  it('inits children and fields', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , { key: {} });
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
-    const elements = [
+    const children = [
       <DynamicFormElement>{ classType: 'element' },
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl() },
-      <DynamicFormElement>{ classType: 'element', elements: [
-          <DynamicFormElement>{ classType: 'element', elements: [
+      <DynamicFormElement>{ classType: 'element', children: [
+          <DynamicFormElement>{ classType: 'element', children: [
               <DynamicFormElement>{ classType: 'element' },
               <DynamicFormField>{ classType: 'field', definition: { key: 'key2' }, control: new FormControl() },
               <DynamicFormField>{ classType: 'field', definition: { key: 'key3' }, control: new FormControl() }
@@ -69,33 +69,33 @@ describe('DynamicFormGroup', () => {
       }
     ];
     const fields = <DynamicFormField[]>[
-      elements[1],
-      elements[2].elements[0].elements[1],
-      elements[2].elements[0].elements[2],
-      elements[2].elements[1],
-      elements[2].elements[3]
+      children[1],
+      children[2].children[0].children[1],
+      children[2].children[0].children[2],
+      children[2].children[1],
+      children[2].children[3]
     ];
 
-    formGroup.initElements(elements);
+    formGroup.initChildren(children);
 
-    expect(formGroup.elements).toBe(elements);
+    expect(formGroup.children).toBe(children);
     expect(formGroup.fields).toEqual(fields);
   });
 
-  it('inits elements and fields with empty array', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+  it('inits children and fields with empty array', () => {
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
-    formGroup.initElements(null);
+    formGroup.initChildren(null);
 
-    expect(formGroup.elements).toEqual([]);
+    expect(formGroup.children).toEqual([]);
     expect(formGroup.fields).toEqual([]);
   });
 
   it('check calls check of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , { key: {} });
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , { key: {} });
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), check: () => {} },
@@ -105,7 +105,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -113,8 +113,8 @@ describe('DynamicFormGroup', () => {
   });
 
   it('check sets disabled of control', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
 
     expect(formGroup.control.disabled).toBe(false);
@@ -130,8 +130,8 @@ describe('DynamicFormGroup', () => {
   });
 
   it('destroy calls destroy of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
@@ -141,7 +141,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -149,8 +149,8 @@ describe('DynamicFormGroup', () => {
   });
 
   it('reset calls reset of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), reset: () => {} },
@@ -160,7 +160,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -169,8 +169,8 @@ describe('DynamicFormGroup', () => {
 
   it('resetDefault calls patchValue of field if default value', () => {
     const defaultValue = {};
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [], defaultValue };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [], defaultValue };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
@@ -180,7 +180,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -188,8 +188,8 @@ describe('DynamicFormGroup', () => {
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), resetDefault: () => {} },
@@ -199,7 +199,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -207,8 +207,8 @@ describe('DynamicFormGroup', () => {
   });
 
   it('validate calls validate of all fields', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, elements: [] };
+    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = <DynamicFormGroupDefinition>{ key: 'key', template: {}, children: [] };
     const formGroup = new DynamicFormGroup(form, form, definition);
     const fields = [
       <DynamicFormField>{ classType: 'field', definition: { key: 'key1' }, control: new FormControl(), validate: () => {} },
@@ -218,7 +218,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formGroup.initElements(fields);
+    formGroup.initChildren(fields);
     formGroup.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

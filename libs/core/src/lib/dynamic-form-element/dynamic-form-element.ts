@@ -15,7 +15,7 @@ export class DynamicFormElement<
 > {
 
   protected _definition: Definition;
-  protected _elements: DynamicFormElement[] = [];
+  protected _children: DynamicFormElement[] = [];
 
   protected _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
   protected _expressionChanges: Observable<DynamicFormExpressionChange>;
@@ -37,19 +37,16 @@ export class DynamicFormElement<
 
   get definition(): Definition { return this._definition; }
   get template(): Template { return this.definition.template; }
-  get elements(): DynamicFormElement[] { return this._elements; }
 
   get expressions(): Expressions { return this._expressions; }
   get expressionData(): ExpressionData { return this._expressionData; }
   get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
   get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
 
+  get children(): DynamicFormElement[] { return this._children; }
+
   initId(id: string): void {
     this._definition.id = id;
-  }
-
-  initElements(elements: DynamicFormElement[]): void {
-    this._elements = elements || [];
   }
 
   initExpressions(expressions: Expressions): void {
@@ -57,6 +54,10 @@ export class DynamicFormElement<
       this._expressions = expressions;
       assignExpressions(this.template, this._expressions);
     }
+  }
+
+  initChildren(children: DynamicFormElement[]): void {
+    this._children = children || [];
   }
 
   protected createExpressionData(): ExpressionData {
