@@ -70,6 +70,6 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createExpressionFunction<Func extends Function>(expression: string): Func {
-    return <Func>new Function(...dynamicFormExpressionArgs, `return ${ expression };`);
+    return new Function(...dynamicFormExpressionArgs, `return ${ expression };`) as Func;
   }
 }

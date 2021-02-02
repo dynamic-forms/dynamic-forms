@@ -24,11 +24,11 @@ export class DynamicFormElement<
 
   constructor(definition: Definition) {
     this._definition = definition;
-    this._definition.template = definition.template || <Template>{};
+    this._definition.template = definition.template || {} as Template;
     this._expressionChangesSubject = new Subject();
     this._expressionChanges = this._expressionChangesSubject.asObservable();
     this._expressionData = this.createExpressionData();
-    this._expressions = <Expressions>{};
+    this._expressions = {} as Expressions;
   }
 
   get id(): string { return this.definition.id; }

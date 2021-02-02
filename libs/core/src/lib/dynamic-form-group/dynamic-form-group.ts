@@ -82,6 +82,6 @@ export class DynamicFormGroup<
         return result.concat(this.filterFields(element.children));
       }
       return result;
-    }, <DynamicFormField[]>[]);
+    }, [] as DynamicFormField[]);
   }
 }
