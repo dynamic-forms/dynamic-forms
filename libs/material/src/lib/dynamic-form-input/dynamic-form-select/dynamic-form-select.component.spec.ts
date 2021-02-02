@@ -33,8 +33,8 @@ describe('MatDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         label: 'label',
@@ -64,7 +64,7 @@ describe('MatDynamicFormSelectComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormSelect>;
     formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
     component.field = formControl;
@@ -83,10 +83,10 @@ describe('MatDynamicFormSelectComponent', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const selectDebugElement = fieldDebugElement.query(By.css('mat-select'));
-    const selectComponent = <MatSelect>selectDebugElement.componentInstance;
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const selectElement = <HTMLElement>selectDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const selectComponent = selectDebugElement.componentInstance as MatSelect;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const selectElement = selectDebugElement.nativeElement as HTMLElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
     const optionElements = selectComponent.options.toArray();
     const optionGroupElements = selectComponent.optionGroups.toArray();
 

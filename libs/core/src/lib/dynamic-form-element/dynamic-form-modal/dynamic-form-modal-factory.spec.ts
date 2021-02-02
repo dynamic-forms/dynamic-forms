@@ -10,7 +10,7 @@ describe('dynamicFormModalFactory', () => {
     const expressions = {};
     const children = [];
     const actions = [];
-    const trigger = <DynamicFormAction>{};
+    const trigger = {} as DynamicFormAction;
     const builder = jasmine.createSpyObj<DynamicFormBuilder>('builder', [
       'createElementExpressions',
       'createFormElements',
@@ -22,16 +22,16 @@ describe('dynamicFormModalFactory', () => {
     builder.createFormActions.and.returnValue(actions);
     builder.createFormAction.and.returnValue(trigger);
 
-    const root = <DynamicForm>{};
-    const parent = <DynamicFormField>{};
-    const definition = <DynamicFormModalDefinition>{
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormField;
+    const definition = {
       id: 'id',
       type: 'element',
       template: {},
       children: [],
       footerActions: [],
       trigger: {}
-    };
+    } as DynamicFormModalDefinition;
 
     const modal = dynamicFormModalFactory(builder, root, parent, definition);
 

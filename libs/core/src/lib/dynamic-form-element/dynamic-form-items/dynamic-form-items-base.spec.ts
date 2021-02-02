@@ -13,9 +13,9 @@ describe('DynamicFormItemsBase', () => {
   });
 
   it('returns properties of element', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const element = new DynamicFormItems(definition);
-    const items = [ <DynamicFormItem>{} ];
+    const items = [ {} as DynamicFormItem ];
 
     element.initChildren(items);
     component.element = element;
@@ -30,7 +30,7 @@ describe('DynamicFormItemsBase', () => {
   });
 
   it('calls selectItem of element', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const element = new DynamicFormItems(definition);
 
     spyOn(element, 'selectItem');

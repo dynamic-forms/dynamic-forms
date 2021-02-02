@@ -3,7 +3,7 @@ import { DynamicFormElementDefinition } from './dynamic-form-element-definition'
 
 describe('DynamicFormElement', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'type', template: {}, children: [] };
+    const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
 
     expect(formElement.id).toBe('id');
@@ -15,10 +15,10 @@ describe('DynamicFormElement', () => {
   });
 
   it('inits children', () => {
-    const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, children: [] };
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
     const children = [
-      <DynamicFormElement>{ classType: 'element', definition: {} }
+      { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
     formElement.initChildren(children);
@@ -27,7 +27,7 @@ describe('DynamicFormElement', () => {
   });
 
   it('inits children with empty array', () => {
-    const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, children: [] };
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
 
     formElement.initChildren(null);

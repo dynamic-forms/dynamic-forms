@@ -1,4 +1,4 @@
-import { DynamicFormElementExpressionFunc } from '../dynamic-form-expression/dynamic-form-element-expression';
+import { DynamicFormElementExpressionFunc } from './dynamic-form-element-expression-func';
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
 export interface DynamicFormElementDefinition<

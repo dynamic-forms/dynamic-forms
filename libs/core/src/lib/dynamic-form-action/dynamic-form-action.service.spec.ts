@@ -36,9 +36,9 @@ describe('DynamicFormActionService', () => {
 
     it('does not call func of handler and stop event propagation',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const field = <DynamicFormField>{};
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const field = {} as DynamicFormField;
+        const action = { parent: field, template: { action: 'type' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(event, 'stopPropagation');
@@ -65,7 +65,7 @@ describe('DynamicFormActionService', () => {
       },
       {
         type: 'type-field-func',
-        elementFunc: (action) => (<DynamicFormField>action.parent).parent,
+        elementFunc: (action) => (action.parent as DynamicFormField).parent,
         func: () => {},
         libraryName: 'test'
       }
@@ -111,9 +111,9 @@ describe('DynamicFormActionService', () => {
 
     it('calls func of handler and stops propagation of event',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const field = <DynamicFormField>{};
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const field = {} as DynamicFormField;
+        const action = { parent: field, template: { action: 'type' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[0], 'func');
@@ -129,10 +129,10 @@ describe('DynamicFormActionService', () => {
 
     it('calls elementFunc and func of handler and stops propagation of event',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const parent = <DynamicFormField>{};
-        const field = <DynamicFormField>{ parent: parent };
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type-field-func' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const parent = {} as DynamicFormField;
+        const field = { parent: parent } as DynamicFormField;
+        const action = { parent: field, template: { action: 'type-field-func' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[1], 'elementFunc').and.callThrough();

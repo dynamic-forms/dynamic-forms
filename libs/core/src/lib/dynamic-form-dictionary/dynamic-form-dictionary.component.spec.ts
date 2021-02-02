@@ -39,8 +39,8 @@ describe('DynamicFormDictionaryComponent', () => {
     fixture = TestBed.createComponent(DynamicFormDictionaryComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
-    formDictionary = new DynamicFormDictionary(form, form, <DynamicFormDictionaryDefinition>{
+    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    formDictionary = new DynamicFormDictionary(form, form, {
       id: 'id',
       key: 'key',
       index: 1,
@@ -48,7 +48,7 @@ describe('DynamicFormDictionaryComponent', () => {
         label: 'label'
       },
       children: []
-    });
+    } as DynamicFormDictionaryDefinition);
     component.field = formDictionary;
 
     fixture.detectChanges();
@@ -67,8 +67,8 @@ describe('DynamicFormDictionaryComponent', () => {
   it('renders component template', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-dictionary-label'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
-    const formArrayLabelElement = <HTMLElement>formArrayLabelDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
+    const formArrayLabelElement = formArrayLabelDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement).toBeTruthy();
     expect(formArrayLabelElement).toBeTruthy();
@@ -106,7 +106,7 @@ describe('DynamicFormDictionaryComponent', () => {
 
   it('sets dynamic form dictionary to hidden', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 
@@ -118,7 +118,7 @@ describe('DynamicFormDictionaryComponent', () => {
 
   it('sets dynamic form dictionary to readonly', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 
@@ -130,7 +130,7 @@ describe('DynamicFormDictionaryComponent', () => {
 
   it('sets class name of dynamic form dictionary', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 

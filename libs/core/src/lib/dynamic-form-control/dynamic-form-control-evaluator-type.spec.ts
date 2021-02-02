@@ -7,7 +7,7 @@ import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-t
 
 describe('DynamicFormControlEvaluatorType', () => {
   it('evaluates control value of select', () => {
-    const definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
+    const definition = {
       key: 'key',
       template: {
         input: {
@@ -25,8 +25,8 @@ describe('DynamicFormControlEvaluatorType', () => {
           ]
         }
       }
-    };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {
+    } as DynamicFormControlDefinition<DynamicFormSelect>;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {
       'key': 'option1'
     });
     const formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
@@ -39,10 +39,10 @@ describe('DynamicFormControlEvaluatorType', () => {
 
     expect(formControl.control.value).toBe('option1');
 
-    formControl.template.input.options = <any[]>[
+    formControl.template.input.options = [
       { value: 'option2', label: 'Option2' },
       { value: 'option3', label: 'Option3' }
-    ];
+    ] as any[];
 
     dynamicFormSelectEvaluatorFn(formControl);
 

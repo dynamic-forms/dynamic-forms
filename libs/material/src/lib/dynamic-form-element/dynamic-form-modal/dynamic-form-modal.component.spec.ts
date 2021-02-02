@@ -26,14 +26,14 @@ describe('MatDynamicFormModalComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormModalComponent);
     component = fixture.componentInstance;
 
-    const template = <DynamicFormModalTemplate>{
+    const template = {
       title: 'Title',
       width: '800px',
       minWidth: '800px',
       maxWidth: '100%'
-    };
-    const root = <DynamicForm>{};
-    modal = new DynamicFormModal(root, <DynamicFormModalDefinition>{ template });
+    } as DynamicFormModalTemplate;
+    const root = {} as DynamicForm;
+    modal = new DynamicFormModal(root, { template } as DynamicFormModalDefinition);
     component.element = modal;
 
     fixture.detectChanges();
@@ -50,10 +50,10 @@ describe('MatDynamicFormModalComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
-      const formElement = <HTMLDivElement>formWrapperElement.querySelector('div.dynamic-form');
-      const modalElement = <HTMLDivElement>formElement.querySelector('div.dynamic-form-modal');
-      const modalHeaderElement = <HTMLDivElement>modalElement.querySelector('div.modal-header');
-      const modalBodyElement = <HTMLDivElement>modalElement.querySelector('div.modal-body');
+      const formElement = formWrapperElement.querySelector('div.dynamic-form') as HTMLDivElement;
+      const modalElement = formElement.querySelector('div.dynamic-form-modal') as HTMLDivElement;
+      const modalHeaderElement = modalElement.querySelector('div.modal-header') as HTMLDivElement;
+      const modalBodyElement = modalElement.querySelector('div.modal-body') as HTMLDivElement;
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();

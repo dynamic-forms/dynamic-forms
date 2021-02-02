@@ -8,8 +8,8 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormArrayDefinition>{ id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] }, {});
+    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.root).toBe(form);
@@ -39,24 +39,24 @@ describe('DynamicFormArray', () => {
 
   it('sets model to default value', () => {
     const defaultValue = [ { value: 0 }, { value: 1 } ];
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultValue };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {}, defaultValue } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.model).toEqual(defaultValue);
   });
 
   it('sets model to default length', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultLength: 2 };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {}, defaultLength: 2 } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.model).toEqual([ undefined, undefined ]);
   });
 
   it('returns expression data with id, key, index and model', () => {
-    const definition = <DynamicFormArrayDefinition>{  id: 'id', key: 'key', index: 1, type: 'componentType', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] }, {});
+    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     expect(formArray.expressionData.id).toBe('id');
@@ -67,12 +67,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('inits children and fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
+      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
     ];
 
     formArray.initChildren(fields);
@@ -86,8 +86,8 @@ describe('DynamicFormArray', () => {
   });
 
   it('inits children and fields with empty array', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     formArray.initChildren(null);
@@ -98,14 +98,14 @@ describe('DynamicFormArray', () => {
   });
 
   it('pushes field', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() }
+      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
     ];
-    const field = <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl() };
+    const field = { classType: 'field', definition: {}, control: new FormControl() }  as DynamicFormField;
 
     spyOn(formArray.control, 'push');
 
@@ -122,12 +122,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('pops field', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'removeAt');
@@ -149,8 +149,8 @@ describe('DynamicFormArray', () => {
   });
 
   it('does not pop field if length is zero', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.fields, 'pop');
@@ -167,14 +167,14 @@ describe('DynamicFormArray', () => {
   });
 
   it('removes field', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'removeAt');
@@ -205,8 +205,8 @@ describe('DynamicFormArray', () => {
   });
 
   it('does not remove field if index is invalid', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.fields, 'splice');
@@ -223,12 +223,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('clears fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} }
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'clear');
@@ -249,8 +249,8 @@ describe('DynamicFormArray', () => {
   });
 
   it('does not clear fields if length is zero', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
     spyOn(formArray.control, 'clear');
@@ -263,12 +263,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('moves field down', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
-      <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
+      { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
+      { classType: 'field', definition: { index: 1 }, control: new FormControl() } as DynamicFormField
     ];
 
     formArray.initChildren([ ...fields ]);
@@ -289,11 +289,11 @@ describe('DynamicFormArray', () => {
   });
 
   it('does not move field down', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+      { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
     ];
 
     formArray.initChildren(fields);
@@ -312,12 +312,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('moves field up', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
-      <DynamicFormField>{ classType: 'field', definition: { index: 1 }, control: new FormControl() }
+      { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
+      { classType: 'field', definition: { index: 1 }, control: new FormControl() } as DynamicFormField
     ];
 
     formArray.initChildren([ ...fields ]);
@@ -336,11 +336,11 @@ describe('DynamicFormArray', () => {
   });
 
   it('does not move field up', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: { index: 0 }, control: new FormControl() },
+      { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
     ];
 
     formArray.initChildren(fields);
@@ -359,12 +359,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('check calls check of all fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), check: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), check: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), check: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), check: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'check');
@@ -378,12 +378,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('destroy calls destroy of all fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'destroy');
@@ -397,12 +397,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('reset calls reset of all fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), reset: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), reset: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'reset');
@@ -416,12 +416,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'resetDefault');
@@ -436,12 +436,12 @@ describe('DynamicFormArray', () => {
 
   it('resetDefault calls patchValue of field if default value', () => {
     const defaultValue = [ { value: 0 }, { value: 1 } ];
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {}, defaultValue };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {}, defaultValue } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'resetDefault');
@@ -455,12 +455,12 @@ describe('DynamicFormArray', () => {
   });
 
   it('validate calls validate of all fields', () => {
-    const definition = <DynamicFormArrayDefinition>{ key: 'key', template: {} };
-    const form = new DynamicForm(<DynamicFormDefinition>{ children: [] } , {});
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
     const fields = [
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), validate: () => {} },
-      <DynamicFormField>{ classType: 'field', definition: {}, control: new FormControl(), validate: () => {} }
+      { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} } as DynamicFormField
     ];
 
     spyOn(fields[0], 'validate');

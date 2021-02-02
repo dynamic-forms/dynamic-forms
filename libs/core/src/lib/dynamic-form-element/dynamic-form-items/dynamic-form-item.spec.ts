@@ -5,7 +5,7 @@ import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 describe('DynamicFormItem', () => {
   it('creates instance', () => {
     const template = { label: 'label', disabled: true };
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1, template, children: [] };
+    const definition = { id: 'id', type: 'type', index: 1, template, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.id).toBe('id');
@@ -20,10 +20,10 @@ describe('DynamicFormItem', () => {
   });
 
   it('inits children', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, children: [] };
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
     const children = [
-      <DynamicFormElement>{ classType: 'element', definition: {} }
+      { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
     formItem.initChildren(children);
@@ -32,7 +32,7 @@ describe('DynamicFormItem', () => {
   });
 
   it('inits children with empty array', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, children: [] };
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
 
     formItem.initChildren(null);
@@ -41,7 +41,7 @@ describe('DynamicFormItem', () => {
   });
 
   it('returns expression data with index', () => {
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', index: 1 };
+    const definition = { id: 'id', type: 'type', index: 1 } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.expressionData.index).toBe(1);

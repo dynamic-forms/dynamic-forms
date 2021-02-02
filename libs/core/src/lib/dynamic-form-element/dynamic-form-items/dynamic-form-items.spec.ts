@@ -4,7 +4,7 @@ import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
 describe('DynamicFormItems', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {}, children: [] };
+    const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(definition);
 
     expect(formItems.id).toBe('id');
@@ -19,11 +19,11 @@ describe('DynamicFormItems', () => {
   });
 
   it('inits children', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
+    const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(definition);
     const items = [
-      <DynamicFormItem>{ classType: 'element', definition: {} },
-      <DynamicFormItem>{ classType: 'element', definition: {} }
+      { classType: 'element', definition: {} } as DynamicFormItem,
+      { classType: 'element', definition: {} } as DynamicFormItem
     ];
 
     formItems.initChildren(items);
@@ -35,7 +35,7 @@ describe('DynamicFormItems', () => {
   });
 
   it('inits children with empty array', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
+    const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(definition);
 
     formItems.initChildren(null);
@@ -47,11 +47,11 @@ describe('DynamicFormItems', () => {
   });
 
   it('selects first item being not disabled', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'type', template: {} };
+    const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(definition);
     const items = [
-      <DynamicFormItem>{ classType: 'element', definition: {}, disabled: true },
-      <DynamicFormItem>{ classType: 'element', definition: {}, disabled: false }
+      { classType: 'element', definition: {}, disabled: true } as DynamicFormItem,
+      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem
     ];
 
     formItems.initChildren(items);

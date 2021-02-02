@@ -22,8 +22,8 @@ describe('DynamicFormContainerComponent', () => {
     fixture = TestBed.createComponent(DynamicFormContainerComponent);
     component = fixture.componentInstance;
 
-    const template = <DynamicFormContainerTemplate>{};
-    const definition = <DynamicFormContainerDefinition>{ type: 'element', template };
+    const template = {} as DynamicFormContainerTemplate;
+    const definition = { type: 'element', template } as DynamicFormContainerDefinition;
     element = new DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>(definition);
     component.element = element;
 
@@ -36,14 +36,14 @@ describe('DynamicFormContainerComponent', () => {
 
   it('renders component template', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
+    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
 
     expect(formContainerElement).toBeTruthy();
   });
 
   it('sets class name of dynamic form container', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
+    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
 
     expect(formContainerElement.className).toBe('dynamic-form-container');
 

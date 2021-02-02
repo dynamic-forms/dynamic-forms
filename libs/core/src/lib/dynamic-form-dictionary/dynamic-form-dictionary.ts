@@ -28,7 +28,7 @@ export class DynamicFormDictionary<
   get length(): number { return this._fields.length; }
 
   initChildren(children: DynamicFormField[]): void {
-    this._fields = children ? [ ...children ] : [];
+    this._fields = children || [];
     this._fields.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });

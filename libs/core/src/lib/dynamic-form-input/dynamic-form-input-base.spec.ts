@@ -35,8 +35,8 @@ describe('DynamicFormInputBase', () => {
   });
 
   it('creates component', () => {
-    const form = new DynamicForm(<DynamicFormDefinition>{ key: 'root', children: [] } , {});
-    const field = new DynamicFormControl(form, form, <DynamicFormControlDefinition>{
+    const form = new DynamicForm({ key: 'root', children: [] } as DynamicFormDefinition, {});
+    const field = new DynamicFormControl(form, form, {
       id: 'id',
       key: 'key',
       index: 1,
@@ -47,7 +47,7 @@ describe('DynamicFormInputBase', () => {
         hints: {},
         validation: {}
       }
-    });
+    } as DynamicFormControlDefinition);
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);
     const component = fixture.componentInstance;

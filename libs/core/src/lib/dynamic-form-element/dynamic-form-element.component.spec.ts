@@ -59,7 +59,7 @@ describe('DynamicFormElementComponent', () => {
     fixture = TestBed.createComponent(DynamicFormElementComponent);
     component = fixture.componentInstance;
 
-    const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
+    const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
     element = new DynamicFormElement(definition);
     component.element = element;
 
@@ -74,7 +74,7 @@ describe('DynamicFormElementComponent', () => {
 
   it('renders component template', () => {
     const formElementDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-element'));
-    const formElementElement = <HTMLElement>formElementDebugElement.nativeElement;
+    const formElementElement = formElementDebugElement.nativeElement as HTMLElement;
 
     expect(formElementElement).toBeTruthy();
   });

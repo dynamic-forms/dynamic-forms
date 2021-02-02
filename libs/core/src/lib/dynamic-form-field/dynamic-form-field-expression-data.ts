@@ -1,4 +1,4 @@
-import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
+import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
 
 export interface DynamicFormFieldExpressionData extends DynamicFormElementExpressionData {
   readonly id: string;

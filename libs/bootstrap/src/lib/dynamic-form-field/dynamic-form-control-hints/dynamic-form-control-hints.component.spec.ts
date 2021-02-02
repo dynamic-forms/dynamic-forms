@@ -50,7 +50,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlHintsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} };
+    component.field = { template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} } as any;
 
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
@@ -69,10 +69,10 @@ describe('BsDynamicFormControlHintsComponent', () => {
     const hintSpacerDebugElement = smallDebugElement.query(By.css('span.hint-spacer'));
     const hintEndDebugElement = smallDebugElement.query(By.css('span.hint-end'));
 
-    const smallElement = <HTMLElement>smallDebugElement.nativeElement;
-    const hintStartElement = <HTMLSpanElement>hintStartDebugElement.nativeElement;
-    const hintSpacerElement = <HTMLSpanElement>hintSpacerDebugElement.nativeElement;
-    const hintEndElement = <HTMLSpanElement>hintEndDebugElement.nativeElement;
+    const smallElement = smallDebugElement.nativeElement as HTMLElement;
+    const hintStartElement = hintStartDebugElement.nativeElement as HTMLSpanElement;
+    const hintSpacerElement = hintSpacerDebugElement.nativeElement as HTMLSpanElement;
+    const hintEndElement = hintEndDebugElement.nativeElement as HTMLSpanElement;
 
     expect(smallElement).toBeTruthy();
     expect(smallElement.className).toBe('dynamic-form-field-hints form-text text-muted');

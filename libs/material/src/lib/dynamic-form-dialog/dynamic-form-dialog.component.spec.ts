@@ -126,7 +126,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerText).toBe('Title');
       });
@@ -139,7 +139,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerHTML).toBe('<b>Title</b>');
       });
@@ -147,7 +147,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders header actions', async(() => {
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -162,7 +162,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders footer actions', async(() => {
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -178,10 +178,10 @@ describe('MatDynamicFormDialogComponent', () => {
       component.theme = 'theme';
       component.title = 'Title';
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       component.classNameForm = 'class-form';
