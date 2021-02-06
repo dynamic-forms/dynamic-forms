@@ -17,8 +17,10 @@ import { DynamicFormFieldValidator, DynamicFormFieldValidatorFn } from './dynami
 export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
-  Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>
-> extends DynamicFormElement<Template, Definition, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
+  Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
+  ExpressionData extends DynamicFormFieldExpressionData = DynamicFormFieldExpressionData,
+  Expressions extends DynamicFormFieldExpressions<ExpressionData> = DynamicFormFieldExpressions<ExpressionData>
+> extends DynamicFormElement<Template, Definition, ExpressionData, Expressions> {
 
   protected _root: DynamicForm;
   protected _parent: DynamicFormField;
@@ -77,7 +79,7 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
-  initExpressions(expressions: DynamicFormFieldExpressions): void {
+  initExpressions(expressions: Expressions): void {
     super.initExpressions(expressions);
     this.afterInitExpressions();
   }
@@ -125,8 +127,8 @@ export abstract class DynamicFormField<
     return cloneObject(obj);
   }
 
-  protected createExpressionData(): DynamicFormFieldExpressionData {
-    const expressionData = {} as DynamicFormFieldExpressionData;
+  protected createExpressionData(): ExpressionData {
+    const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {
       id: () => this.id,
       key: () => this.key,

@@ -13,8 +13,10 @@ import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 
 export class DynamicFormAction<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
-  Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>
-> extends DynamicFormElement<Template, Definition, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
+  Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
+  ExpressionData extends DynamicFormActionExpressionData = DynamicFormActionExpressionData,
+  Expressions extends DynamicFormActionExpressions<ExpressionData> = DynamicFormActionExpressions<ExpressionData>
+> extends DynamicFormElement<Template, Definition, ExpressionData, Expressions> {
 
   private _dialogOpenSubject: BehaviorSubject<boolean>;
   private _dialogOpenChanges: Observable<boolean>;
@@ -60,8 +62,8 @@ export class DynamicFormAction<
     return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
   }
 
-  protected createExpressionData(): DynamicFormActionExpressionData {
-    const expressionData = {} as DynamicFormActionExpressionData;
+  protected createExpressionData(): ExpressionData {
+    const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {
       root: () => this.root ? this.root.expressionData : undefined,
       parent: () => this.parent ? this.parent.expressionData : undefined,

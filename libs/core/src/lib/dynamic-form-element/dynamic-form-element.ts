@@ -11,7 +11,7 @@ export class DynamicFormElement<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
   ExpressionData extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
-  Expressions extends DynamicFormElementExpressions = DynamicFormElementExpressions
+  Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>
 > {
 
   protected _definition: Definition;
