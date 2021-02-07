@@ -19,10 +19,9 @@ export abstract class DynamicFormInputBase<
     super(validationService);
   }
 
-  get template(): Template { return this.field.template; }
-
   get input(): Input { return this.field.input; }
   get inputId(): string { return this.field.inputId; }
+  get inputType(): string { return this.field.inputType; }
 
   get hints(): DynamicFormControlHints { return this.template.hints; }
   get validation(): DynamicFormControlValidation { return this.template.validation; }

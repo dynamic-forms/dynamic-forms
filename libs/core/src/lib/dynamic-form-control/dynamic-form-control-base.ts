@@ -18,9 +18,6 @@ export abstract class DynamicFormControlBase<
     super(validationService);
   }
 
-  get hidden(): boolean { return this.field.hidden; }
-  get readonly(): boolean { return this.field.readonly; }
-
   get input(): Input { return this.field.input; }
   get inputId(): string { return this.field.inputId; }
   get inputType(): string { return this.field.inputType; }

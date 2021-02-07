@@ -1,4 +1,4 @@
-<div class="dynamic-form-group" [class.hidden]="field.hidden" [class.readonly]="field.readonly" [ngClass]="template?.className">
+<div class="dynamic-form-group" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template?.className">
   <div class="dynamic-form-group-header" *ngIf="!template?.labelHidden && template?.label || headerActions?.length" 
     [ngClass]="template?.classNameHeader">
     <div class="dynamic-form-group-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
