@@ -41,7 +41,7 @@ describe('DynamicFormModalModule', () => {
   it('handler calls open of modal',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'openModal');
-      const modal = <DynamicFormModal>{ open(): void {} };
+      const modal = { open(): void {} } as DynamicFormModal;
 
       spyOn(modal, 'open');
 
@@ -54,7 +54,7 @@ describe('DynamicFormModalModule', () => {
   it('handler calls close of modal',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'closeModal');
-      const modal = <DynamicFormModal>{ close(): void {} };
+      const modal = { close(): void {} } as DynamicFormModal;
 
       spyOn(modal, 'close');
 
@@ -67,7 +67,7 @@ describe('DynamicFormModalModule', () => {
   it('handler calls toggle of modal',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'toggleModal');
-      const modal = <DynamicFormModal>{ toggle(): void {} };
+      const modal = { toggle(): void {} } as DynamicFormModal;
 
       spyOn(modal, 'toggle');
 

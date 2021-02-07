@@ -5,37 +5,37 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
 export class DynamicFormItems<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
-  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>
-> extends DynamicFormElement<Template, Definition> {
-
-  protected _items: DynamicFormItem[] = [];
+  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
+  Item extends DynamicFormItem = DynamicFormItem
+> extends DynamicFormElement<Template, Definition, Item> {
 
   protected _selectedIndex: number;
-  protected _selectedItem: DynamicFormItem;
+  protected _selectedItem: Item;
 
   constructor(definition: Definition) {
     super(definition);
   }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
-  get items(): DynamicFormItem[] { return this._items; }
-
   get selectedIndex(): number { return this._selectedIndex; }
-  get selectedItem(): DynamicFormItem { return this._selectedItem; }
+  get selectedItem(): Item { return this._selectedItem; }
 
-  initElements(elements: DynamicFormItem[]): void {
-    this._items = elements || [];
-    this._elements = this._items;
-    this.selectItem(0);
+  initChildren(children: Item[]): void {
+    this._children = children || [];
+    this.selectFirstItem();
   }
 
-  selectItem(index: number): void {
-    if (index >= 0 && index < this._items.length) {
+  selectItem(index?: number): void {
+    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
       this._selectedIndex = index;
-      this._selectedItem = this._items[index];
+      this._selectedItem = this._children[index];
     } else {
       this._selectedIndex = undefined;
       this._selectedItem = undefined;
     }
+  }
+
+  selectFirstItem(): void {
+    const itemIndex = this._children.findIndex(item => !item.disabled);
+    this.selectItem(itemIndex);
   }
 }

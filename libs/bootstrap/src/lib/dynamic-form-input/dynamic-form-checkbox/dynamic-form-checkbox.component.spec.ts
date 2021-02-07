@@ -30,8 +30,8 @@ describe('BsDynamicFormCheckboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCheckbox>>{ key: 'key', template: { label: 'label' } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormCheckbox>;
     formControl = new DynamicFormControl<DynamicFormCheckbox>(form, form, definition);
 
     component.field = formControl;
@@ -50,9 +50,9 @@ describe('BsDynamicFormCheckboxComponent', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.custom-control-label'));
-    const checkElement = <HTMLDivElement>checkDebugElement.nativeElement;
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const checkElement = checkDebugElement.nativeElement as HTMLDivElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(checkElement).toBeTruthy();
     expect(inputElement).toBeTruthy();
@@ -66,7 +66,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('div.custom-control.custom-checkbox'));
     const inputDebugElement = checkDebugElement.query(By.css('input.custom-control-input'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

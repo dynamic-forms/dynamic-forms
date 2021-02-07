@@ -33,8 +33,8 @@ describe('MatDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         label: 'label',
@@ -46,7 +46,7 @@ describe('MatDynamicFormComboboxComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormCombobox>;
     formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
 
     component.field = formControl;
@@ -69,9 +69,9 @@ describe('MatDynamicFormComboboxComponent', () => {
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(fieldElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
@@ -83,7 +83,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   it('sets dynamic form control to readonly', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 
@@ -98,7 +98,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   it('inits value and options for autocomplete', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     inputElement.value = '';
     inputElement.dispatchEvent(new Event('input'));
@@ -106,7 +106,7 @@ describe('MatDynamicFormComboboxComponent', () => {
 
     fixture.whenStable().then(() => {
       const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
-      const autocompleteComponent = <MatAutocomplete>autocompleteDebugElement.componentInstance;
+      const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
       const optionElements = autocompleteComponent.options.toArray();
 
       expect(inputElement.value).toBe('');
@@ -123,7 +123,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   it('inits value and filtered options for autocomplete', waitForAsync(() => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     inputElement.value = 'Value1';
     inputElement.dispatchEvent(new Event('input'));
@@ -131,7 +131,7 @@ describe('MatDynamicFormComboboxComponent', () => {
 
     fixture.whenStable().then(() => {
       const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
-      const autocompleteComponent = <MatAutocomplete>autocompleteDebugElement.componentInstance;
+      const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
       const optionElements = autocompleteComponent.options.toArray();
 
       expect(inputElement.value).toBe('Value1');

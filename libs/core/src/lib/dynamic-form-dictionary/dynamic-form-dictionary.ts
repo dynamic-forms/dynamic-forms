@@ -1,5 +1,4 @@
 import { FormGroup } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -9,9 +8,7 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 export class DynamicFormDictionary<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<FormGroup, Template, Definition> {
-
-  protected _fields: DynamicFormField[] = [];
+> extends DynamicFormField<FormGroup, Template, Definition, DynamicFormField> {
 
   constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
@@ -22,34 +19,30 @@ export class DynamicFormDictionary<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'dictionary'; }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
-  get fields(): DynamicFormField[] { return this._fields; }
+  get length(): number { return this._children.length; }
 
-  get length(): number { return this._fields.length; }
-
-  initElements(elements: DynamicFormField[]): void {
-    this._fields = elements ? [ ...elements ] : [];
-    this._fields.filter(field => !field.unregistered).forEach(field => {
+  initChildren(children: DynamicFormField[]): void {
+    this._children = children || [];
+    this._children.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
-    this._elements = this._fields;
   }
 
   registerField(field: DynamicFormField): void {
-    const index = this._fields.findIndex(f => f.key === field.key);
+    const index = this._children.findIndex(f => f.key === field.key);
     if (index >= 0) {
-      this._fields[index] = field;
+      this._children[index] = field;
     } else {
-      this._fields.push(field);
+      this._children.push(field);
     }
     this._control.registerControl(field.key, field.control);
     this._control.markAsTouched();
   }
 
   removeField(key: string): void {
-    const index = this._fields.findIndex(field => field.key === key);
+    const index = this._children.findIndex(field => field.key === key);
     if (index >= 0 && index < this.length) {
-      this._fields.splice(index, 1).forEach(field => field.destroy());
+      this._children.splice(index, 1).forEach(field => field.destroy());
       delete this._model[key];
       this._control.removeControl(key);
       this._control.markAsTouched();
@@ -59,12 +52,11 @@ export class DynamicFormDictionary<
   clearFields(): void {
     const length = this.length;
     if (length > 0) {
-      this._fields.forEach(field => {
+      this._children.forEach(field => {
         field.destroy();
         this._control.removeControl(field.key);
       });
-      this._fields = [];
-      this._elements = this._fields;
+      this._children = [];
       this._model = {};
       this._parent.model[this.key] = this._model;
       this._control.markAsTouched();
@@ -74,15 +66,15 @@ export class DynamicFormDictionary<
   check(): void {
     this.checkControl();
     this.checkValidators();
-    this.fields.forEach(field => field.check());
+    this._children.forEach(field => field.check());
   }
 
   destroy(): void {
-    this.fields.forEach(field => field.destroy());
+    this._children.forEach(field => field.destroy());
   }
 
   reset(): void {
-    this.fields.forEach(field => field.reset());
+    this._children.forEach(field => field.reset());
   }
 
   resetDefault(): void {
@@ -90,12 +82,12 @@ export class DynamicFormDictionary<
       const defaultModel = this.cloneObject(this.definition.defaultValue);
       this._control.patchValue(defaultModel);
     } else {
-      this.fields.forEach(field => field.resetDefault());
+      this._children.forEach(field => field.resetDefault());
     }
   }
 
   validate(): void {
-    this.fields.forEach(field => field.validate());
+    this._children.forEach(field => field.validate());
     this._control.markAsTouched();
   }
 

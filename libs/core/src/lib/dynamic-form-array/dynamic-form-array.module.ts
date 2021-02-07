@@ -47,12 +47,12 @@ export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFo
 };
 
 export function getDynamicFormArray(action: DynamicFormAction): DynamicFormArray {
-  const field = action.parent && (<DynamicFormField>action.parent).parent;
-  return field && field.fieldClassType === 'array' ? <DynamicFormArray>field : undefined;
+  const field = action.parent && (action.parent as DynamicFormField).parent;
+  return field && field.fieldClassType === 'array' ? field as DynamicFormArray : undefined;
 }
 
 export function dynamicFormArrayRemoveField(field: DynamicFormArray, action: DynamicFormAction): void {
-  const childField = <DynamicFormField>action.parent;
+  const childField = action.parent as DynamicFormField;
   if (field && childField && childField.index >= 0) {
     field.removeField(childField.index);
   }
@@ -76,7 +76,7 @@ export const dynamicFormArrayClearFieldsHandler: DynamicFormActionHandler<Dynami
 };
 
 export function dynamicFormArrayMoveFieldDown(field: DynamicFormArray, action: DynamicFormAction): void {
-  const childField = <DynamicFormField>action.parent;
+  const childField = action.parent as DynamicFormField;
   if (field && childField && childField.index >= 0) {
     field.moveFieldDown(childField.index);
   }
@@ -90,7 +90,7 @@ export const dynamicFormArrayMoveFieldDownHandler: DynamicFormActionHandler<Dyna
 };
 
 export function dynamicFormArrayMoveFieldUp(field: DynamicFormArray, action: DynamicFormAction): void {
-  const childField = <DynamicFormField>action.parent;
+  const childField = action.parent as DynamicFormField;
   if (field && childField && childField.index >= 0) {
     field.moveFieldUp(childField.index);
   }

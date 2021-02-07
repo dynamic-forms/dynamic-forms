@@ -13,8 +13,8 @@ describe('DynamicFormModalBase', () => {
   });
 
   it('component returns definition', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'element', template: {} };
+    const root = {} as DynamicForm;
+    const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(root, definition);
 
     component.element = element;
@@ -22,7 +22,7 @@ describe('DynamicFormModalBase', () => {
     expect(component.element).toEqual(element);
     expect(component.definition).toEqual(element.definition);
     expect(component.template).toEqual(element.template);
-    expect(component.elements).toEqual([]);
+    expect(component.children).toEqual([]);
     expect(component.trigger).toBeUndefined();
     expect(component.headerActions).toEqual([]);
     expect(component.footerActions).toEqual([]);
@@ -31,8 +31,8 @@ describe('DynamicFormModalBase', () => {
   });
 
   it('component calls open of modal', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'element', template: {} };
+    const root = {} as DynamicForm;
+    const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(root, definition);
 
     spyOn(element, 'open').and.callThrough();
@@ -45,8 +45,8 @@ describe('DynamicFormModalBase', () => {
   });
 
   it('component calls close of modal', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'element', template: {} };
+    const root = {} as DynamicForm;
+    const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(root, definition);
 
     spyOn(element, 'close').and.callThrough();
@@ -59,8 +59,8 @@ describe('DynamicFormModalBase', () => {
   });
 
   it('component calls toggle of modal', () => {
-    const root = <DynamicForm>{};
-    const definition = <DynamicFormModalDefinition>{ type: 'element', template: {} };
+    const root = {} as DynamicForm;
+    const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(root, definition);
 
     spyOn(element, 'toggle').and.callThrough();

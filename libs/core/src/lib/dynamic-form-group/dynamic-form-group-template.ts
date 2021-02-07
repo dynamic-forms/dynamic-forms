@@ -5,6 +5,6 @@ export interface DynamicFormGroupTemplate extends DynamicFormFieldTemplate<Dynam
   labelHidden?: boolean;
   classNameLabel?: string;
   classNameHeader?: string;
-  classNameElements?: string;
+  classNameChildren?: string;
   classNameFooter?: string;
 }

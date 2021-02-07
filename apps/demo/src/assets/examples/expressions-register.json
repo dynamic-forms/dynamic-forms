@@ -1,5 +1,5 @@
 {
-  "elements": [
+  "children":[
     {
       "id": "input-disabled",
       "key": "disabled",
@@ -33,7 +33,7 @@
         "disabled": "data.root.model.disabled",
         "readonly": "data.root.model.readonly"
       },
-      "elements": [
+      "children":[
         {
           "key": "name",
           "type": "control",
@@ -95,7 +95,7 @@
           "expressions": {
             "hidden": "!data.parent.model.addressEnabled"
           },
-          "elements": [
+          "children":[
             {
               "key": "town",
               "type": "control",
