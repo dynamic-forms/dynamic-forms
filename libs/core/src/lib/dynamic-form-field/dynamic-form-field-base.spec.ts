@@ -30,7 +30,7 @@ describe('DynamicFormFieldBase', () => {
   });
 
   it('returns properties of field', () => {
-    const field = <any>{ id: 'id', key: 'key', index: 1, path: 'path', control: {}, errors: {}, hasError: true, showErrors: false };
+    const field = { id: 'id', key: 'key', index: 1, path: 'path', control: {}, errors: {}, hasError: true, showErrors: false } as any;
     component.field = field;
 
     expect(component.id).toBe('id');
@@ -48,25 +48,25 @@ describe('DynamicFormFieldBase', () => {
   it('errorMessage returns message from error', () => {
     const errors = { email: { message: 'The field is not a valid email' } };
 
-    component.field = <any>{ errors };
+    component.field = { errors } as any;
 
     expect(component.errorMessage).toEqual(errors.email.message);
   });
 
   it('errorMessage returns message from config', () => {
-    component.field = <any>{ errors: { required: {} } };
+    component.field = { errors: { required: {} } } as any;
 
     expect(component.errorMessage).toEqual(validationConfig.messages.required);
   });
 
   it('errorMessage returns default message from config for unknown error', () => {
-    component.field = <any>{ errors: { pattern: {} } };
+    component.field = { errors: { pattern: {} } } as any;
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });
 
   it('errorMessage returns default message from config for unspecified error', () => {
-    component.field = <any>{ errors: {} };
+    component.field = { errors: {} } as any;
 
     expect(component.errorMessage).toEqual(validationConfig.defaultMessage);
   });

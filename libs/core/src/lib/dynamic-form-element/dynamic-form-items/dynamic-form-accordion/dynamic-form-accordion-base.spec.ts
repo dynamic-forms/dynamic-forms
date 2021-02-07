@@ -9,18 +9,26 @@ describe('DynamicFormAccordionBase', () => {
   let component: DynamicFormAccordionTestComponent;
 
   beforeEach(() => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     component = new DynamicFormAccordionTestComponent();
     component.element = new DynamicFormItems(definition);
-    component.element.initElements([ <DynamicFormItem>{} ]) ;
+    component.element.initChildren([ {} as DynamicFormItem ]) ;
   });
 
   it('openItem calls selectItem of element', () => {
     spyOn(component.element, 'selectItem');
 
+    component.openItem(1);
+
+    expect(component.element.selectItem).toHaveBeenCalledWith(1);
+  });
+
+  it('openItem does not call selectItem of element', () => {
+    spyOn(component.element, 'selectItem');
+
     component.openItem(0);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(0);
+    expect(component.element.selectItem).not.toHaveBeenCalledWith(0);
   });
 
   it('closeItem calls selectItem of element', () => {

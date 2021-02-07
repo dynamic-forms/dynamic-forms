@@ -48,7 +48,7 @@ describe('DynamicFormFieldModule', () => {
   it('handler calls reset of field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'reset');
-      const field = <DynamicFormField>{ reset(): void {} };
+      const field = { reset(): void {} } as DynamicFormField;
 
       spyOn(field, 'reset');
 
@@ -61,7 +61,7 @@ describe('DynamicFormFieldModule', () => {
   it('handler calls resetDefault of field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'resetDefault');
-      const field = <DynamicFormField>{ resetDefault(): void {} };
+      const field = { resetDefault(): void {} } as DynamicFormField;
 
       spyOn(field, 'resetDefault');
 
@@ -74,7 +74,7 @@ describe('DynamicFormFieldModule', () => {
   it('handler calls validate of field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'validate');
-      const field = <DynamicFormField>{ validate(): void {} };
+      const field = { validate(): void {} } as DynamicFormField;
 
       spyOn(field, 'validate');
 
@@ -87,8 +87,8 @@ describe('DynamicFormFieldModule', () => {
   it('handler returns root form',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'submit');
-      const root = <DynamicForm>{ submit(): void {} };
-      const action = <DynamicFormAction>{ root };
+      const root = { submit(): void {} } as DynamicForm;
+      const action = { root } as DynamicFormAction;
 
       const form = handler.elementFunc(action);
 
@@ -99,9 +99,9 @@ describe('DynamicFormFieldModule', () => {
   it('handler calls submit of form',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'submit');
-      const form = <DynamicForm>{ submit(): void {} };
-      const field = <DynamicFormField>{};
-      const action = <DynamicFormAction>{ root: form, parent: field };
+      const form = { submit(): void {} } as DynamicForm;
+      const field = {} as DynamicFormField;
+      const action = { root: form, parent: field } as DynamicFormAction;
 
       spyOn(form, 'submit');
 
@@ -114,10 +114,10 @@ describe('DynamicFormFieldModule', () => {
   it('handler calls closeDialog of parent action and submit of form',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'submit');
-      const form = <DynamicForm>{ submit(): void {} };
-      const dialog = <DynamicForm>{};
-      const dialogAction = <DynamicFormAction>{ dialog, dialogOpen: true, closeDialog(): void {} };
-      const action = <DynamicFormAction>{ root: form, parent: <DynamicFormElement>dialogAction };
+      const form = { submit(): void {} } as DynamicForm;
+      const dialog = {} as DynamicForm;
+      const dialogAction = { dialog, dialogOpen: true, closeDialog(): void {} } as DynamicFormAction;
+      const action = { root: form, parent: dialogAction as DynamicFormElement } as DynamicFormAction;
 
       spyOn(form, 'submit');
       spyOn(dialogAction, 'closeDialog');

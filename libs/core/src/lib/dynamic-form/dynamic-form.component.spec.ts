@@ -47,7 +47,7 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = <DynamicFormDefinition>{ elements: [] };
+    definition = { children: [] } as DynamicFormDefinition;
     model = {};
 
     component.definition = definition;
@@ -86,7 +86,7 @@ describe('DynamicFormComponent', () => {
 
   it('sets class name of dynamic form wrapper', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
-    const formWrapperElement = <HTMLElement>formWrapperDebugElement.nativeElement;
+    const formWrapperElement = formWrapperDebugElement.nativeElement as HTMLElement;
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
 
@@ -104,7 +104,7 @@ describe('DynamicFormComponent', () => {
   it('sets class name of dynamic form', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
-    const formElement = <HTMLElement>formDebugElement.nativeElement;
+    const formElement = formDebugElement.nativeElement as HTMLElement;
 
     expect(formElement.className).toBe('dynamic-form ng-untouched ng-pristine ng-valid');
 
@@ -144,7 +144,7 @@ describe('DynamicFormComponent', () => {
   it('ngOnChanges creates form with changed definition', () => {
     const form = component.form;
     const formGroup = component.formGroup;
-    const definitionUpdated = <DynamicFormDefinition>{ elements: [] };
+    const definitionUpdated = { children: [] } as DynamicFormDefinition;
 
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
@@ -159,7 +159,7 @@ describe('DynamicFormComponent', () => {
     const form = component.form;
     const formGroup = component.formGroup;
     const modelChanged = {};
-    const definitionChanged = <DynamicFormDefinition>{ elements: [] };
+    const definitionChanged = { children: [] } as DynamicFormDefinition;
 
     component.model = modelChanged;
     component.definition = definitionChanged;

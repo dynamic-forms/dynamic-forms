@@ -30,7 +30,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'required' };
+        const template = { icon: 'required' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('required');
@@ -70,7 +70,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon being undefined',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{};
+        const template = {} as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBeUndefined();
@@ -79,7 +79,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon not being mapped',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'pattern' };
+        const template = { icon: 'pattern' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('pattern');
@@ -88,7 +88,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon being mapped from config',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'required' };
+        const template = { icon: 'required' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('icon-required');

@@ -2,7 +2,7 @@
   "template": {
     "label": "Inputs plain"
   },
-  "elements": [
+  "children":[
     {
       "key": "checkbox",
       "type": "control",

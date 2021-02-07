@@ -121,7 +121,7 @@ export class DynamicFormComponentFactory {
       parentComponent.component = component;
       component.field = field;
       return [ ...result, component ];
-    }, <DynamicFormFieldWrapperBase[]>[ { ref: ref } ]);
+    }, [ { ref: ref } ] as DynamicFormFieldWrapperBase[]);
     return wrappers.slice(1);
   }
 

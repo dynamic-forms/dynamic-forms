@@ -23,7 +23,7 @@ describe('BsDynamicFormTabsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormTabsComponent);
     component = fixture.componentInstance;
-    component.element = new DynamicFormItems({ template: {}, items: [] });
+    component.element = new DynamicFormItems({ template: {}, children: [] });
 
     fixture.detectChanges();
   });
