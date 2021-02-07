@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children":[
     {
       "key": "validation",
       "type": "dictionary",
@@ -29,7 +29,7 @@
         "expressions": {
           "label": "data.key"
         },
-        "elements": [
+        "children":[
           {
             "key": "enabled",
             "type": "control",

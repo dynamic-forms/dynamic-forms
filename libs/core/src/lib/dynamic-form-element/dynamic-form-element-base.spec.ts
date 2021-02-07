@@ -12,7 +12,7 @@ describe('DynamicFormElementBase', () => {
   });
 
   it('returns properties of element', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(definition);
 
     component.element = element;

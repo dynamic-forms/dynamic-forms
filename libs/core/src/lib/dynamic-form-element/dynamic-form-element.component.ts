@@ -22,9 +22,6 @@ export class DynamicFormElementComponent<
     super();
   }
 
-  get definition(): Definition { return this.element.definition; }
-  get template(): Template { return this.element.template; }
-
   ngOnInit(): void {
     this.initContainer();
   }

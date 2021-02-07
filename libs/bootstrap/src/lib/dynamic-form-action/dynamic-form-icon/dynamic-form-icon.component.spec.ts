@@ -27,10 +27,10 @@ describe('BsDynamicFormIconComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormIconComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicForm>{};
-    const parent = <DynamicFormField>{};
-    const template = <DynamicFormIconTemplate>{ label: 'label', icon: 'icon' };
-    const definition = <DynamicFormIconDefinition>{ id: 'id', type: 'element', template };
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormField;
+    const template = { label: 'label', icon: 'icon' } as DynamicFormIconTemplate;
+    const definition = { id: 'id', type: 'element', template } as DynamicFormIconDefinition;
     element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
     component.element = element;
 
@@ -45,8 +45,8 @@ describe('BsDynamicFormIconComponent', () => {
   it('renders component template', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formIconDebugElement = formButtonDebugElement.query(By.css('i.material-icons'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
-    const formIconElement = <HTMLElement>formIconDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
+    const formIconElement = formIconDebugElement.nativeElement as HTMLElement;
 
     expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.id).toBe('id');
@@ -56,7 +56,7 @@ describe('BsDynamicFormIconComponent', () => {
 
   it('sets dynamic form icon to hidden', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon btn btn-outline-primary');
 
@@ -68,7 +68,7 @@ describe('BsDynamicFormIconComponent', () => {
 
   it('sets class name of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon btn btn-outline-primary');
 
@@ -85,7 +85,7 @@ describe('BsDynamicFormIconComponent', () => {
 
   it('sets type of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement  as HTMLButtonElement;
 
     expect(formButtonElement.type).toBe('button');
 

@@ -21,7 +21,7 @@ export abstract class DynamicFormModalBase<
   get isOpen(): boolean { return this.element.isOpen; }
   get isOpen$(): Observable<boolean> { return this.element.isOpenChanges; }
 
-  get elements(): DynamicFormElement[] { return this.element.elements; }
+  get children(): DynamicFormElement[] { return this.element.children; }
   get headerActions(): DynamicFormAction[] { return this.element.headerActions; }
   get footerActions(): DynamicFormAction[] { return this.element.footerActions; }
 

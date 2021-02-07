@@ -14,7 +14,7 @@ export abstract class DynamicFormItemsBase<
     super();
   }
 
-  get items(): DynamicFormItem[] { return this.element.items; }
+  get children(): DynamicFormItem[] { return this.element.children; }
 
   get selectedIndex(): number { return this.element.selectedIndex; }
   get selectedItem(): DynamicFormItem { return this.element.selectedItem; }

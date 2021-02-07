@@ -2,7 +2,7 @@
   "template": {
     "label": "Inputs with default value"
   },
-  "elements": [
+  "children":[
     {
       "key": "checkbox",
       "type": "control",

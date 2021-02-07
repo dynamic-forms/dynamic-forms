@@ -53,7 +53,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls openDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'openDialog');
-        const action = <DynamicFormAction>{ openDialog(): void {} };
+        const action = { openDialog(): void {} } as DynamicFormAction;
 
         spyOn(action, 'openDialog');
 
@@ -66,7 +66,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls closeDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'closeDialog');
-        const action = <DynamicFormAction>{ closeDialog(): void {} };
+        const action = { closeDialog(): void {} } as DynamicFormAction;
 
         spyOn(action, 'closeDialog');
 
@@ -79,7 +79,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls toggleDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'toggleDialog');
-        const action = <DynamicFormAction>{ toggleDialog(): void {} };
+        const action = { toggleDialog(): void {} } as DynamicFormAction;
 
         spyOn(action, 'toggleDialog');
 
