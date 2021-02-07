@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryBase } from './dynamic-form-dictionary-base';
@@ -20,8 +18,4 @@ export class DynamicFormDictionaryComponent<
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
-
-  get children(): DynamicFormElement[] { return this.field.children; }
-  get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
 }

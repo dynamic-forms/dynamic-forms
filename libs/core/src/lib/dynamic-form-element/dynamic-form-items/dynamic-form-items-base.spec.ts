@@ -24,7 +24,7 @@ describe('DynamicFormItemsBase', () => {
     expect(component.element).toBe(element);
     expect(component.definition).toBe(element.definition);
     expect(component.template).toBe(element.template);
-    expect(component.items).toBe(items);
+    expect(component.children).toBe(items);
     expect(component.selectedItem).toBe(items[0]);
     expect(component.selectedIndex).toBe(0);
   });

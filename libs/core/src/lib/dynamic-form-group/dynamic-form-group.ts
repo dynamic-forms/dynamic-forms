@@ -36,15 +36,15 @@ export class DynamicFormGroup<
   check(): void {
     this.checkControl();
     this.checkValidators();
-    this.fields.forEach(field => field.check());
+    this._fields.forEach(field => field.check());
   }
 
   destroy(): void {
-    this.fields.forEach(field => field.destroy());
+    this._fields.forEach(field => field.destroy());
   }
 
   reset(): void {
-    this.fields.forEach(field => field.reset());
+    this._fields.forEach(field => field.reset());
   }
 
   resetDefault(): void {
@@ -52,13 +52,13 @@ export class DynamicFormGroup<
       const defaultModel = this.cloneObject(this.definition.defaultValue);
       this._control.patchValue(defaultModel);
     } else {
-      this.fields.forEach(field => field.resetDefault());
+      this._fields.forEach(field => field.resetDefault());
     }
   }
 
   validate(): void {
     this._control.markAsTouched();
-    this.fields.forEach(field => field.validate());
+    this._fields.forEach(field => field.validate());
   }
 
   private getModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {

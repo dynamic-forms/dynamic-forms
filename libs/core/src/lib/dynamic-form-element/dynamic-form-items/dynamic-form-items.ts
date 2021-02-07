@@ -5,34 +5,29 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
 export class DynamicFormItems<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
-  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>
-> extends DynamicFormElement<Template, Definition> {
-
-  protected _items: DynamicFormItem[] = [];
+  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
+  Item extends DynamicFormItem = DynamicFormItem
+> extends DynamicFormElement<Template, Definition, Item> {
 
   protected _selectedIndex: number;
-  protected _selectedItem: DynamicFormItem;
+  protected _selectedItem: Item;
 
   constructor(definition: Definition) {
     super(definition);
   }
 
-  get children(): DynamicFormElement[] { return this._children; }
-  get items(): DynamicFormItem[] { return this._items; }
-
   get selectedIndex(): number { return this._selectedIndex; }
-  get selectedItem(): DynamicFormItem { return this._selectedItem; }
+  get selectedItem(): Item { return this._selectedItem; }
 
-  initChildren(children: DynamicFormItem[]): void {
-    this._items = children || [];
-    this._children = this._items;
+  initChildren(children: Item[]): void {
+    this._children = children || [];
     this.selectFirstItem();
   }
 
   selectItem(index?: number): void {
-    if (index >= 0 && index < this.items.length && !this.items[index].disabled) {
+    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
       this._selectedIndex = index;
-      this._selectedItem = this.items[index];
+      this._selectedItem = this._children[index];
     } else {
       this._selectedIndex = undefined;
       this._selectedItem = undefined;
@@ -40,7 +35,7 @@ export class DynamicFormItems<
   }
 
   selectFirstItem(): void {
-    const itemIndex = this._items.findIndex(item => !item.disabled);
+    const itemIndex = this._children.findIndex(item => !item.disabled);
     this.selectItem(itemIndex);
   }
 }

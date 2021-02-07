@@ -467,13 +467,13 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.control.validator).toBeNull();
 
       expect(formArray.children).toBeTruthy();
-      expect(formArray.fields.length).toBe(2);
-      expect(formArray.fields[0].key).toBe('0');
-      expect(formArray.fields[0].index).toBe(0);
-      expect(formArray.fields[0].componentType).toBe('control');
-      expect(formArray.fields[1].key).toBe('1');
-      expect(formArray.fields[1].index).toBe(1);
-      expect(formArray.fields[1].componentType).toBe('control');
+      expect(formArray.children.length).toBe(2);
+      expect(formArray.children[0].key).toBe('0');
+      expect(formArray.children[0].index).toBe(0);
+      expect(formArray.children[0].componentType).toBe('control');
+      expect(formArray.children[1].key).toBe('1');
+      expect(formArray.children[1].index).toBe(1);
+      expect(formArray.children[1].componentType).toBe('control');
     })
   );
 
@@ -494,13 +494,13 @@ describe('DynamicFormBuilder', () => {
       expect(formArray.control.validator).toBeNull();
 
       expect(formArray.children).toBeTruthy();
-      expect(formArray.fields.length).toBe(2);
-      expect(formArray.fields[0].key).toBe('0');
-      expect(formArray.fields[0].index).toBe(0);
-      expect(formArray.fields[0].componentType).toBe('control');
-      expect(formArray.fields[1].key).toBe('1');
-      expect(formArray.fields[1].index).toBe(1);
-      expect(formArray.fields[1].componentType).toBe('control');
+      expect(formArray.children.length).toBe(2);
+      expect(formArray.children[0].key).toBe('0');
+      expect(formArray.children[0].index).toBe(0);
+      expect(formArray.children[0].componentType).toBe('control');
+      expect(formArray.children[1].key).toBe('1');
+      expect(formArray.children[1].index).toBe(1);
+      expect(formArray.children[1].componentType).toBe('control');
     })
   );
 
@@ -553,13 +553,13 @@ describe('DynamicFormBuilder', () => {
       expect(formDictionary.control.validator).toBeNull();
 
       expect(formDictionary.children).toBeTruthy();
-      expect(formDictionary.fields.length).toBe(2);
-      expect(formDictionary.fields[0].key).toBe('value1');
-      expect(formDictionary.fields[0].index).toBeUndefined();
-      expect(formDictionary.fields[0].componentType).toBe('control');
-      expect(formDictionary.fields[1].key).toBe('value2');
-      expect(formDictionary.fields[1].index).toBeUndefined();
-      expect(formDictionary.fields[1].componentType).toBe('control');
+      expect(formDictionary.children.length).toBe(2);
+      expect(formDictionary.children[0].key).toBe('value1');
+      expect(formDictionary.children[0].index).toBeUndefined();
+      expect(formDictionary.children[0].componentType).toBe('control');
+      expect(formDictionary.children[1].key).toBe('value2');
+      expect(formDictionary.children[1].index).toBeUndefined();
+      expect(formDictionary.children[1].componentType).toBe('control');
     })
   );
 
@@ -580,13 +580,13 @@ describe('DynamicFormBuilder', () => {
       expect(formDictionary.control.validator).toBeNull();
 
       expect(formDictionary.children).toBeTruthy();
-      expect(formDictionary.fields.length).toBe(2);
-      expect(formDictionary.fields[0].key).toBe('value1');
-      expect(formDictionary.fields[0].index).toBeUndefined();
-      expect(formDictionary.fields[0].componentType).toBe('control');
-      expect(formDictionary.fields[1].key).toBe('value2');
-      expect(formDictionary.fields[1].index).toBeUndefined();
-      expect(formDictionary.fields[1].componentType).toBe('control');
+      expect(formDictionary.children.length).toBe(2);
+      expect(formDictionary.children[0].key).toBe('value1');
+      expect(formDictionary.children[0].index).toBeUndefined();
+      expect(formDictionary.children[0].componentType).toBe('control');
+      expect(formDictionary.children[1].key).toBe('value2');
+      expect(formDictionary.children[1].index).toBeUndefined();
+      expect(formDictionary.children[1].componentType).toBe('control');
     })
   );
 

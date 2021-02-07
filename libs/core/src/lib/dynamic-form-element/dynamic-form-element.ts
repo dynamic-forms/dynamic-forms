@@ -10,17 +10,20 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 export class DynamicFormElement<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
+  Child extends DynamicFormElement<DynamicFormElementTemplate, DynamicFormElementDefinition, any> =
+    DynamicFormElement<DynamicFormElementTemplate, DynamicFormElementDefinition, any>,
   ExpressionData extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
-  Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>
+  Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>,
 > {
 
   protected _definition: Definition;
-  protected _children: DynamicFormElement[] = [];
 
   protected _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
   protected _expressionChanges: Observable<DynamicFormExpressionChange>;
   protected _expressionData: ExpressionData;
   protected _expressions: Expressions;
+
+  protected _children: Child[] = [];
 
   constructor(definition: Definition) {
     this._definition = definition;
@@ -43,7 +46,7 @@ export class DynamicFormElement<
   get expressionChanges(): Observable<DynamicFormExpressionChange> { return this._expressionChanges; }
   get expressionChangesSubject(): Subject<DynamicFormExpressionChange> { return this._expressionChangesSubject; }
 
-  get children(): DynamicFormElement[] { return this._children; }
+  get children(): Child[] { return this._children; }
 
   initId(id: string): void {
     this._definition.id = id;
@@ -56,7 +59,7 @@ export class DynamicFormElement<
     }
   }
 
-  initChildren(children: DynamicFormElement[]): void {
+  initChildren(children: Child[]): void {
     this._children = children || [];
   }
 

@@ -10,8 +10,8 @@ export function dynamicFormItemsFactory(
 ): DynamicFormItems {
   const items = new DynamicFormItems(definition);
   items.initExpressions(builder.createElementExpressions(items));
-  items.initChildren(items.definition.items.map((itemDefinitionBase, index) => {
-    const itemDefinition = { ...builder.getDefinition(itemDefinitionBase, root), index };
+  items.initChildren(items.definition.children.map((childDefinition, index) => {
+    const itemDefinition = { ...builder.getDefinition(childDefinition, root), index };
     const item = new DynamicFormItem(itemDefinition);
     item.initExpressions(builder.createElementExpressions(item));
     item.initChildren(builder.createFormElements(root, parent, itemDefinition.children));

@@ -1,5 +1,4 @@
 import { FormControl } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -33,7 +32,6 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.control).toBeTruthy();
 
     expect(formDictionary.children).toEqual([]);
-    expect(formDictionary.fields).toEqual([]);
     expect(formDictionary.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: {} });
@@ -80,11 +78,7 @@ describe('DynamicFormDictionary', () => {
     formDictionary.initChildren(fields);
 
     expect(formDictionary.length).toBe(2);
-    expect(formDictionary.children).toBe(fields as DynamicFormElement[]);
-    expect(formDictionary.children).toBe(formDictionary.fields as DynamicFormElement[]);
-    expect(formDictionary.fields).toEqual(fields);
-    expect(formDictionary.fields[0]).toBe(fields[0]);
-    expect(formDictionary.fields[1]).toBe(fields[1]);
+    expect(formDictionary.children).toBe(fields);
   });
 
   it('inits children and fields with empty array', () => {
@@ -96,7 +90,6 @@ describe('DynamicFormDictionary', () => {
 
     expect(formDictionary.length).toBe(0);
     expect(formDictionary.children).toEqual([]);
-    expect(formDictionary.fields).toEqual([]);
   });
 
   it('registers field by pushing field', () => {
@@ -116,11 +109,10 @@ describe('DynamicFormDictionary', () => {
     formDictionary.registerField(field);
 
     expect(formDictionary.length).toBe(3);
-    expect(formDictionary.children).toBe(formDictionary.fields as DynamicFormElement[]);
-    expect(formDictionary.fields.length).toEqual(3);
-    expect(formDictionary.fields[0]).toBe(fields[0]);
-    expect(formDictionary.fields[1]).toBe(fields[1]);
-    expect(formDictionary.fields[2]).toBe(field);
+    expect(formDictionary.children.length).toEqual(3);
+    expect(formDictionary.children[0]).toBe(fields[0]);
+    expect(formDictionary.children[1]).toBe(fields[1]);
+    expect(formDictionary.children[2]).toBe(field);
     expect(formDictionary.control.registerControl).toHaveBeenCalledWith('item3', field.control);
     expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
   });
@@ -143,11 +135,10 @@ describe('DynamicFormDictionary', () => {
     formDictionary.registerField(field);
 
     expect(formDictionary.length).toBe(3);
-    expect(formDictionary.children).toBe(formDictionary.fields as DynamicFormElement[]);
-    expect(formDictionary.fields.length).toEqual(3);
-    expect(formDictionary.fields[0]).toBe(fields[0]);
-    expect(formDictionary.fields[1]).toBe(field);
-    expect(formDictionary.fields[2]).toBe(fields[2]);
+    expect(formDictionary.children.length).toEqual(3);
+    expect(formDictionary.children[0]).toBe(fields[0]);
+    expect(formDictionary.children[1]).toBe(field);
+    expect(formDictionary.children[2]).toBe(fields[2]);
     expect(formDictionary.control.registerControl).toHaveBeenCalledWith('item2', field.control);
     expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
   });
@@ -174,11 +165,10 @@ describe('DynamicFormDictionary', () => {
     formDictionary.removeField('key-2');
 
     expect(formDictionary.length).toBe(3);
-    expect(formDictionary.children).toBe(formDictionary.fields as DynamicFormElement[]);
-    expect(formDictionary.fields.length).toBe(3);
-    expect(formDictionary.fields[0]).toBe(fields[0]);
-    expect(formDictionary.fields[1]).toBe(fields[2]);
-    expect(formDictionary.fields[2]).toBe(fields[3]);
+    expect(formDictionary.children.length).toBe(3);
+    expect(formDictionary.children[0]).toBe(fields[0]);
+    expect(formDictionary.children[1]).toBe(fields[2]);
+    expect(formDictionary.children[2]).toBe(fields[3]);
     expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-2');
     expect(formDictionary.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).not.toHaveBeenCalled();
@@ -192,13 +182,13 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(form, form, definition);
 
-    spyOn(formDictionary.fields, 'splice');
+    spyOn(formDictionary.children, 'splice');
     spyOn(formDictionary.control, 'removeControl');
     spyOn(formDictionary.control, 'markAsTouched');
 
     formDictionary.removeField('key');
 
-    expect(formDictionary.fields.splice).not.toHaveBeenCalled();
+    expect(formDictionary.children.splice).not.toHaveBeenCalled();
     expect(formDictionary.control.removeControl).not.toHaveBeenCalled();
     expect(formDictionary.control.markAsTouched).not.toHaveBeenCalled();
   });
@@ -221,8 +211,7 @@ describe('DynamicFormDictionary', () => {
     formDictionary.clearFields();
 
     expect(formDictionary.length).toBe(0);
-    expect(formDictionary.children).toBe(formDictionary.fields as DynamicFormElement[]);
-    expect(formDictionary.fields).toEqual([]);
+    expect(formDictionary.children).toEqual([]);
     expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-1');
     expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key-2');
     expect(formDictionary.control.markAsTouched).toHaveBeenCalled();

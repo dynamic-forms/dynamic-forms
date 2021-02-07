@@ -540,10 +540,10 @@
       ]
     }
   },
-  "children":[
+  "children": [
     {
       "type": "tabs",
-      "items": [
+      "children": [
         {
           "template": {
             "label": "General"

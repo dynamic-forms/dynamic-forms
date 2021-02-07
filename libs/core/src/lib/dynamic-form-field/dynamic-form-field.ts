@@ -18,9 +18,8 @@ export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
-  ExpressionData extends DynamicFormFieldExpressionData = DynamicFormFieldExpressionData,
-  Expressions extends DynamicFormFieldExpressions<ExpressionData> = DynamicFormFieldExpressions<ExpressionData>
-> extends DynamicFormElement<Template, Definition, ExpressionData, Expressions> {
+  Child extends DynamicFormElement = DynamicFormElement
+> extends DynamicFormElement<Template, Definition, Child, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
 
   protected _root: DynamicForm;
   protected _parent: DynamicFormField;
@@ -79,7 +78,7 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
-  initExpressions(expressions: Expressions): void {
+  initExpressions(expressions: DynamicFormFieldExpressions): void {
     super.initExpressions(expressions);
     this.afterInitExpressions();
   }
@@ -127,8 +126,8 @@ export abstract class DynamicFormField<
     return cloneObject(obj);
   }
 
-  protected createExpressionData(): ExpressionData {
-    const expressionData = {} as ExpressionData;
+  protected createExpressionData(): DynamicFormFieldExpressionData {
+    const expressionData = {} as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
       id: () => this.id,
       key: () => this.key,

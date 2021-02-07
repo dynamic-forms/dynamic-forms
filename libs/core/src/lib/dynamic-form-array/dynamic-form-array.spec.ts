@@ -1,5 +1,4 @@
 import { FormControl } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -31,7 +30,6 @@ describe('DynamicFormArray', () => {
     expect(formArray.control).toBeTruthy();
 
     expect(formArray.children).toEqual([]);
-    expect(formArray.fields).toEqual([]);
     expect(formArray.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: [] });
@@ -78,11 +76,7 @@ describe('DynamicFormArray', () => {
     formArray.initChildren(fields);
 
     expect(formArray.length).toBe(2);
-    expect(formArray.children).toBe(fields as DynamicFormElement[]);
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual(fields);
-    expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[1]).toBe(fields[1]);
+    expect(formArray.children).toBe(fields);
   });
 
   it('inits children and fields with empty array', () => {
@@ -94,7 +88,6 @@ describe('DynamicFormArray', () => {
 
     expect(formArray.length).toBe(0);
     expect(formArray.children).toEqual([]);
-    expect(formArray.fields).toEqual([]);
   });
 
   it('pushes field', () => {
@@ -113,11 +106,10 @@ describe('DynamicFormArray', () => {
     formArray.pushField(field);
 
     expect(formArray.length).toBe(3);
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields.length).toBe(3);
-    expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[1]).toBe(fields[1]);
-    expect(formArray.fields[2]).toBe(field);
+    expect(formArray.children.length).toBe(3);
+    expect(formArray.children[0]).toBe(fields[0]);
+    expect(formArray.children[1]).toBe(fields[1]);
+    expect(formArray.children[2]).toBe(field);
     expect(formArray.control.push).toHaveBeenCalledWith(field.control);
   });
 
@@ -139,9 +131,8 @@ describe('DynamicFormArray', () => {
     formArray.popField();
 
     expect(formArray.length).toBe(1);
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields.length).toBe(1);
-    expect(formArray.fields[0]).toBe(fields[0]);
+    expect(formArray.children.length).toBe(1);
+    expect(formArray.children[0]).toBe(fields[0]);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).not.toHaveBeenCalled();
@@ -153,14 +144,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    spyOn(formArray.fields, 'pop');
+    spyOn(formArray.children, 'pop');
     spyOn(formArray.model, 'pop');
     spyOn(formArray.control, 'removeAt');
     spyOn(formArray.control, 'markAsTouched');
 
     formArray.popField();
 
-    expect(formArray.fields.pop).not.toHaveBeenCalled();
+    expect(formArray.children.pop).not.toHaveBeenCalled();
     expect(formArray.model.pop).not.toHaveBeenCalled();
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
@@ -188,14 +179,13 @@ describe('DynamicFormArray', () => {
     formArray.removeField(1);
 
     expect(formArray.length).toBe(3);
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields.length).toBe(3);
-    expect(formArray.fields[0]).toBe(fields[0]);
-    expect(formArray.fields[0].definition.index).toBe(0);
-    expect(formArray.fields[1]).toBe(fields[2]);
-    expect(formArray.fields[1].definition.index).toBe(1);
-    expect(formArray.fields[2]).toBe(fields[3]);
-    expect(formArray.fields[2].definition.index).toBe(2);
+    expect(formArray.children.length).toBe(3);
+    expect(formArray.children[0]).toBe(fields[0]);
+    expect(formArray.children[0].definition.index).toBe(0);
+    expect(formArray.children[1]).toBe(fields[2]);
+    expect(formArray.children[1].definition.index).toBe(1);
+    expect(formArray.children[2]).toBe(fields[3]);
+    expect(formArray.children[2].definition.index).toBe(2);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).not.toHaveBeenCalled();
@@ -209,14 +199,14 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(form, form, definition);
 
-    spyOn(formArray.fields, 'splice');
+    spyOn(formArray.children, 'splice');
     spyOn(formArray.model, 'splice');
     spyOn(formArray.control, 'removeAt');
     spyOn(formArray.control, 'markAsTouched');
 
     formArray.removeField(1);
 
-    expect(formArray.fields.splice).not.toHaveBeenCalled();
+    expect(formArray.children.splice).not.toHaveBeenCalled();
     expect(formArray.model.splice).not.toHaveBeenCalled();
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
@@ -240,8 +230,7 @@ describe('DynamicFormArray', () => {
     formArray.clearFields();
 
     expect(formArray.length).toBe(0);
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([]);
+    expect(formArray.children).toEqual([]);
     expect(formArray.control.clear).toHaveBeenCalled();
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
     expect(fields[0].destroy).toHaveBeenCalled();
@@ -279,10 +268,9 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldDown(0);
 
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
-    expect(formArray.fields[0].definition.index).toBe(0);
-    expect(formArray.fields[1].definition.index).toBe(1);
+    expect(formArray.children).toEqual([ fields[1], fields[0] ]);
+    expect(formArray.children[0].definition.index).toBe(0);
+    expect(formArray.children[1].definition.index).toBe(1);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(0);
     expect(formArray.control.insert).toHaveBeenCalledWith(1, fields[0].control);
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
@@ -304,8 +292,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldDown(0);
 
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([ fields[0] ]);
+    expect(formArray.children).toEqual([ fields[0] ]);
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.insert).not.toHaveBeenCalled();
     expect(formArray.control.markAsTouched).not.toHaveBeenCalled();
@@ -328,8 +315,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldUp(1);
 
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([ fields[1], fields[0] ]);
+    expect(formArray.children).toEqual([ fields[1], fields[0] ]);
     expect(formArray.control.removeAt).toHaveBeenCalledWith(1);
     expect(formArray.control.insert).toHaveBeenCalledWith(0, fields[1].control);
     expect(formArray.control.markAsTouched).toHaveBeenCalled();
@@ -351,8 +337,7 @@ describe('DynamicFormArray', () => {
 
     formArray.moveFieldUp(0);
 
-    expect(formArray.children).toBe(formArray.fields as DynamicFormElement[]);
-    expect(formArray.fields).toEqual([ fields[0] ]);
+    expect(formArray.children).toEqual([ fields[0] ]);
     expect(formArray.control.removeAt).not.toHaveBeenCalled();
     expect(formArray.control.insert).not.toHaveBeenCalled();
     expect(formArray.control.markAsTouched).not.toHaveBeenCalled();

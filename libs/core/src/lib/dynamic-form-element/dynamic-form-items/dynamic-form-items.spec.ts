@@ -13,7 +13,6 @@ describe('DynamicFormItems', () => {
     expect(formItems.definition).toBe(definition);
     expect(formItems.template).toBe(definition.template);
     expect(formItems.children).toEqual([]);
-    expect(formItems.items).toEqual([]);
     expect(formItems.selectedIndex).toBeUndefined();
     expect(formItems.selectedItem).toBeUndefined();
   });
@@ -28,7 +27,6 @@ describe('DynamicFormItems', () => {
 
     formItems.initChildren(items);
 
-    expect(formItems.items).toBe(items);
     expect(formItems.children).toBe(items);
     expect(formItems.selectedIndex).toBe(0);
     expect(formItems.selectedItem).toBe(items[0]);
@@ -40,7 +38,6 @@ describe('DynamicFormItems', () => {
 
     formItems.initChildren(null);
 
-    expect(formItems.items).toEqual([]);
     expect(formItems.children).toEqual([]);
     expect(formItems.selectedIndex).toBeUndefined();
     expect(formItems.selectedItem).toBeUndefined();
@@ -56,7 +53,6 @@ describe('DynamicFormItems', () => {
 
     formItems.initChildren(items);
 
-    expect(formItems.items).toBe(items);
     expect(formItems.children).toBe(items);
     expect(formItems.selectedIndex).toBe(1);
     expect(formItems.selectedItem).toBe(items[1]);

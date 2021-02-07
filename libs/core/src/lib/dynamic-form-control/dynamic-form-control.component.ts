@@ -5,7 +5,6 @@ import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-compon
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlBase } from './dynamic-form-control-base';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { DynamicFormControlHints } from './dynamic-form-control-hints';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
@@ -31,15 +30,6 @@ export class DynamicFormControlComponent<
   ) {
     super(validationService);
   }
-
-  get hidden(): boolean { return this.field.hidden; }
-  get readonly(): boolean { return this.field.readonly; }
-
-  get input(): Input { return this.field.input; }
-  get inputId(): string { return this.field.inputId; }
-  get inputType(): string { return this.field.inputType; }
-
-  get hints(): DynamicFormControlHints { return this.template.hints; }
 
   ngOnInit(): void {
     this.initContainer();

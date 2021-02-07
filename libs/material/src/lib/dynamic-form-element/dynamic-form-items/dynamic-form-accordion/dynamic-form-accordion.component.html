@@ -1,13 +1,13 @@
 <mat-accordion class="dynamic-form-accordion" [ngClass]="template?.className">
-   <mat-expansion-panel *ngFor="let item of element.items; let index = index" 
-    [ngClass]="item.template?.className" [expanded]="index === selectedIndex" 
-    [disabled]="item.disabled"
+   <mat-expansion-panel *ngFor="let child of element.children; let index = index" 
+    [ngClass]="child.template?.className" [expanded]="index === selectedIndex" 
+    [disabled]="child.disabled"
     (opened)="openItem(index)" (closed)="closeItem(index)">
     <mat-expansion-panel-header>
-      <mat-panel-title>{{item.label}}</mat-panel-title>
+      <mat-panel-title>{{child.label}}</mat-panel-title>
     </mat-expansion-panel-header>
-    <dynamic-form-element *ngFor="let child of item.children" 
-      [element]="child"
+    <dynamic-form-element *ngFor="let childChild of child.children" 
+      [element]="childChild"
     ></dynamic-form-element>
    </mat-expansion-panel>
 </mat-accordion>
