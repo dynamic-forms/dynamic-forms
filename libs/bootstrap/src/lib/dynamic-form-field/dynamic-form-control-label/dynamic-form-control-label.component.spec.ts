@@ -47,7 +47,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ inputId: 'inputId', template: { label: 'label' } };
+    component.field = { inputId: 'inputId', template: { label: 'label' } } as any;
 
     const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
@@ -62,7 +62,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
   it('renders component template', () => {
     const labelDebugElement = fixture.debugElement.query(By.css('label'));
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(labelElement).toBeTruthy();
     expect(labelElement.htmlFor).toBe('inputId');

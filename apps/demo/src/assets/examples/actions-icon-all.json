@@ -1,5 +1,8 @@
 {
-  "footerActions": [ 
+  "template": {
+    "label": "Login"
+  },
+  "headerActions": [ 
     {
       "id": "action-submit",
       "type": "icon",
@@ -42,60 +45,51 @@
       }
     }
   ],
-  "elements": [
+  "children":[
     {
-      "key": "login",
-      "type": "group",
+      "key": "email",
+      "type": "control",
       "template": {
-        "label": "Login"
-      },
-      "elements": [
-        {
-          "key": "email",
-          "type": "control",
-          "template": {
-            "label": "Email",
-            "input": {
-              "type": "textbox",
-              "inputType": "email",
-              "placeholder": "Enter your email",
-              "defaultValue": "user01@mail.com"
-            },
-            "validation": {
-              "required": true,
-              "email": true
-            }
-          }
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter your email",
+          "defaultValue": "user01@mail.com"
         },
-        {
-          "key": "password",
-          "type": "control",
-          "template": {
-            "label": "Password",
-            "input": {
-              "type": "textbox",
-              "inputType": "password",
-              "placeholder": "Enter your password",
-              "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
-            },
-            "validation": {
-              "required": true,
-              "pattern": true
-            }
-          }
-        },
-        {
-          "key": "remember",
-          "type": "control",
-          "template": {
-            "label": "Remember login",
-            "input": {
-              "type": "checkbox",
-              "defaultValue": true
-            }
-          }
+        "validation": {
+          "required": true,
+          "email": true
         }
-      ]
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      }
+    },
+    {
+      "key": "remember",
+      "type": "control",
+      "template": {
+        "label": "Remember login",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": true
+        }
+      }
     }
   ]
 }

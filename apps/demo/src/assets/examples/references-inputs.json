@@ -23,7 +23,7 @@
       }
     }
   },
-  "elements": [
+  "children":[
     {
       "key": "textbox1",
       "reference": "textboxMinMaxLength",

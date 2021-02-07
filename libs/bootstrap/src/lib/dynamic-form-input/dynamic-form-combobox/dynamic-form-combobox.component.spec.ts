@@ -30,8 +30,8 @@ describe('BsDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         label: 'label',
@@ -43,7 +43,7 @@ describe('BsDynamicFormComboboxComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormCombobox>;
     formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
 
     component.field = formControl;
@@ -63,9 +63,9 @@ describe('BsDynamicFormComboboxComponent', () => {
     const inputListDebugElement = fixture.debugElement.query(By.css('datalist'));
     const inputListItemDebugElements = inputListDebugElement.queryAll(By.css('option'));
 
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const inputListElement = <HTMLDataListElement>inputListDebugElement.nativeElement;
-    const inputListItemElements = <HTMLOptionElement[]>inputListItemDebugElements.map(elem => elem.nativeElement);
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const inputListElement = inputListDebugElement.nativeElement as HTMLDataListElement;
+    const inputListItemElements = inputListItemDebugElements.map(elem => elem.nativeElement) as HTMLOptionElement[];
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
@@ -83,7 +83,7 @@ describe('BsDynamicFormComboboxComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

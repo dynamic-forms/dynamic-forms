@@ -32,8 +32,8 @@ describe('MatDynamicFormTextareaComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormTextarea>>{ key: 'key', template: { label: 'label', input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormTextarea>;
     formControl = new DynamicFormControl<DynamicFormTextarea>(form, form, definition);
 
     component.field = formControl;
@@ -52,9 +52,9 @@ describe('MatDynamicFormTextareaComponent', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(fieldElement).toBeTruthy();
     expect(textareaElement.id).toBe(component.inputId);
@@ -65,7 +65,7 @@ describe('MatDynamicFormTextareaComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
-    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
+    const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
 
     expect(textareaElement.readOnly).not.toBe(true);
 

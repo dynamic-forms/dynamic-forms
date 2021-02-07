@@ -11,28 +11,28 @@ describe('DynamicFormArrayValidatorType', () => {
 
   it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormArrayRequiredValidatorFactory();
-    const formArray = <FormArray>{ value: [ {} ] };
+    const formArray = { value: [ {} ] } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is undefined' , () => {
     const validatorFn = dynamicFormArrayRequiredValidatorFactory();
-    const formArray = <FormArray>{ value: undefined };
+    const formArray = { value: undefined } as FormArray;
 
     expect(validatorFn(formArray)).toEqual({ requiredArray: true });
   });
 
   it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is null' , () => {
     const validatorFn = dynamicFormArrayRequiredValidatorFactory();
-    const formArray = <FormArray>{ value: null };
+    const formArray = { value: null } as FormArray;
 
     expect(validatorFn(formArray)).toEqual({ requiredArray: true });
   });
 
   it('validatorFn of dynamicFormArrayRequiredValidatorFactory returns error if value is empty' , () => {
     const validatorFn = dynamicFormArrayRequiredValidatorFactory();
-    const formArray = <FormArray>{ value: [] };
+    const formArray = { value: [] } as FormArray;
 
     expect(validatorFn(formArray)).toEqual({ requiredArray: true });
   });
@@ -51,28 +51,28 @@ describe('DynamicFormArrayValidatorType', () => {
 
   it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
-    const formArray = <FormArray>{ value: [ {} ] };
+    const formArray = { value: [ {} ] } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error if value is undefined' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
-    const formArray = <FormArray>{ value: undefined };
+    const formArray = { value: undefined } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns no error if value is null' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
-    const formArray = <FormArray>{ value: null };
+    const formArray = { value: null } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMinLengthValidatorFactory returns error' , () => {
     const validatorFn = dynamicFormArrayMinLengthValidatorFactory(1);
-    const formArray = <FormArray>{ value: [] };
+    const formArray = { value: [] } as FormArray;
 
     expect(validatorFn(formArray)).toEqual({ minlengthArray: { requiredLength: 1, actualLength: 0 } });
   });
@@ -91,21 +91,21 @@ describe('DynamicFormArrayValidatorType', () => {
 
   it('validatorFn of dynamicFormArrayMaxLengthValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormArrayMaxLengthValidatorFactory(2);
-    const formArray = <FormArray>{ value: [ {}, {} ] };
+    const formArray = { value: [ {}, {} ] } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMaxLengthValidatorFactory returns no error if value is not defined' , () => {
     const validatorFn = dynamicFormArrayMaxLengthValidatorFactory(2);
-    const formArray = <FormArray>{ value: null };
+    const formArray = { value: null } as FormArray;
 
     expect(validatorFn(formArray)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMaxLengthValidatorFactory returns error' , () => {
     const validatorFn = dynamicFormArrayMaxLengthValidatorFactory(2);
-    const formArray = <FormArray>{ value: [ {}, {}, {} ] };
+    const formArray = { value: [ {}, {}, {} ] } as FormArray;
 
     expect(validatorFn(formArray)).toEqual({ maxlengthArray: { requiredLength: 2, actualLength: 3 } });
   });

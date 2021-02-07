@@ -31,8 +31,8 @@ describe('MatDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormToggle>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -43,7 +43,7 @@ describe('MatDynamicFormToggleComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormToggle>;
     formControl = new DynamicFormControl<DynamicFormToggle>(form, form, definition);
 
     component.field = formControl;
@@ -61,7 +61,7 @@ describe('MatDynamicFormToggleComponent', () => {
   it('renders component template', () => {
     const toggleGroupDebugElement = fixture.debugElement.query(By.css('mat-button-toggle-group'));
     const toggleDebugElements = toggleGroupDebugElement.queryAll(By.css('mat-button-toggle'));
-    const toggleComponents = toggleDebugElements.map(elem => <MatButtonToggle>elem.componentInstance);
+    const toggleComponents = toggleDebugElements.map(elem => elem.componentInstance as MatButtonToggle);
     const toggleElements = toggleDebugElements.map(elem => elem.nativeElement);
 
     expect(toggleComponents.length).toBe(3);

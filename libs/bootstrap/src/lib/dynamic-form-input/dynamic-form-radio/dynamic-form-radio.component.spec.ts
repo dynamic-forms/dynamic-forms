@@ -30,8 +30,8 @@ describe('BsDynamicFormRadioComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormRadioComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormRadio>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -42,7 +42,7 @@ describe('BsDynamicFormRadioComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormRadio>;
     formControl = new DynamicFormControl<DynamicFormRadio>(form, form, definition);
 
     component.field = formControl;
@@ -61,8 +61,8 @@ describe('BsDynamicFormRadioComponent', () => {
     const checkDebugElements = fixture.debugElement.queryAll(By.css('div.custom-control.custom-radio'));
     const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.custom-control-input')));
     const labelDebugElements = checkDebugElements.map(elem => elem.query(By.css('label.custom-control-label')));
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
-    const labelElements = <HTMLLabelElement[]>labelDebugElements.map(elem => elem.nativeElement);
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
+    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLLabelElement[];
 
     expect(inputElements.length).toBe(3);
     expect(labelElements.length).toBe(3);
@@ -83,7 +83,7 @@ describe('BsDynamicFormRadioComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const checkDebugElements = fixture.debugElement.queryAll(By.css('div.custom-control.custom-radio'));
     const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.custom-control-input')));
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
 
     expect(inputElements[0].readOnly).not.toBe(true);
     expect(inputElements[1].readOnly).not.toBe(true);

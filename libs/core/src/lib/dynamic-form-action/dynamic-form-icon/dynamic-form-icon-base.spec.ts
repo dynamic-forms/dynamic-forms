@@ -49,10 +49,10 @@ describe('DynamicFormIconBase', () => {
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicForm>{};
-    const parent = <DynamicFormField>{};
-    const template = <DynamicFormIconTemplate>{ label: 'label' };
-    const definition = <DynamicFormIconDefinition>{ type: 'element', template };
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormField;
+    const template = { label: 'label' } as DynamicFormIconTemplate;
+    const definition = { type: 'element', template } as DynamicFormIconDefinition;
     element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
     component.element = element;
 
@@ -66,7 +66,7 @@ describe('DynamicFormIconBase', () => {
 
   it('renders component template', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
@@ -75,7 +75,7 @@ describe('DynamicFormIconBase', () => {
 
   it('sets dynamic form icon to hidden', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon');
 
@@ -87,7 +87,7 @@ describe('DynamicFormIconBase', () => {
 
   it('sets class name of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon');
 
@@ -104,7 +104,7 @@ describe('DynamicFormIconBase', () => {
 
   it('sets type of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.type).toBe('button');
 

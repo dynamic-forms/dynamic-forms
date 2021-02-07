@@ -13,24 +13,24 @@ describe('DynamicFormItemsBase', () => {
   });
 
   it('returns properties of element', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const element = new DynamicFormItems(definition);
-    const items = [ <DynamicFormItem>{} ];
+    const items = [ {} as DynamicFormItem ];
 
-    element.initElements(items);
+    element.initChildren(items);
     component.element = element;
 
     expect(component.id).toBe(element.id);
     expect(component.element).toBe(element);
     expect(component.definition).toBe(element.definition);
     expect(component.template).toBe(element.template);
-    expect(component.items).toBe(items);
+    expect(component.children).toBe(items);
     expect(component.selectedItem).toBe(items[0]);
     expect(component.selectedIndex).toBe(0);
   });
 
   it('calls selectItem of element', () => {
-    const definition = <DynamicFormItemsDefinition>{ id: 'id', type: 'element', template: {} };
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const element = new DynamicFormItems(definition);
 
     spyOn(element, 'selectItem');

@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children":[
     {
       "key": "items",
       "type": "dictionary",
@@ -44,7 +44,7 @@
         "template": {
           "className": "row"
         },
-        "elements": [
+        "children":[
           {
             "key": "id",
             "type": "control",
@@ -125,7 +125,7 @@
               "template": {
                 "className": "row"
               },
-              "elements": [
+              "children":[
                 {
                   "key": "parentId",
                   "type": "control",
