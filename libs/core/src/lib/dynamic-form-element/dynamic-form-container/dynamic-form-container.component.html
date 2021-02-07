@@ -1,5 +1,5 @@
-<div class="dynamic-form-container" [ngClass]="template?.className" 
-  [class.row]="template?.orientation === 'row' || template?.className?.includes('row')">
+<div class="dynamic-form-container" [ngClass]="template.className" 
+  [class.row]="template.orientation === 'row' || template.className?.includes('row')">
   <ng-container *ngFor="let child of children">
     <dynamic-form-element [element]="child"></dynamic-form-element>      
   </ng-container>

@@ -1,16 +1,16 @@
-<div class="dynamic-form-array" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template?.className">
-  <div class="dynamic-form-array-header" *ngIf="!template?.labelHidden && template?.label || headerActions?.length" 
-    [ngClass]="template?.classNameHeader">
-    <div class="dynamic-form-array-label" [ngClass]="template?.classNameLabel">{{ template?.label }}</div>
+<div class="dynamic-form-array" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template.className">
+  <div class="dynamic-form-array-header" *ngIf="!template.labelHidden && template.label || headerActions?.length" 
+    [ngClass]="template.classNameHeader">
+    <div class="dynamic-form-array-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
     <div class="dynamic-form-array-toolbar" *ngIf="headerActions?.length" >
       <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
     </div>
   </div>
-  <div class="dynamic-form-array-children" *ngIf="children?.length" [ngClass]="template?.classNameChildren">
+  <div class="dynamic-form-array-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
     <dynamic-form-element *ngFor="let child of children" [element]="child"></dynamic-form-element>
   </div>
   <div class="dynamic-form-array-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
-  <div class="dynamic-form-array-footer" *ngIf="footerActions?.length" [ngClass]="template?.classNameFooter">
+  <div class="dynamic-form-array-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
     <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>
   </div>
 </div>

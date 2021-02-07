@@ -63,6 +63,7 @@ describe('DynamicFormInputBase', () => {
     expect(component.control).toBe(field.control);
     expect(component.input).toBe(field.input);
     expect(component.inputId).toBe('id');
+    expect(component.inputType).toBe('input');
     expect(component.hints).toBe(field.template.hints);
     expect(component.validation).toBe(field.template.validation);
 

@@ -2,6 +2,6 @@ import { DynamicFormElementTemplate } from '../dynamic-form-element-template';
 
 export interface DynamicFormItemTemplate extends DynamicFormElementTemplate {
   label: string;
-  index: number;
+  index?: number;
   disabled?: boolean;
 }

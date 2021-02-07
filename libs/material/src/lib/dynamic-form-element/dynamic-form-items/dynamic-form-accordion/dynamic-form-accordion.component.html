@@ -1,6 +1,6 @@
-<mat-accordion class="dynamic-form-accordion" [ngClass]="template?.className">
+<mat-accordion class="dynamic-form-accordion" [ngClass]="template.className">
    <mat-expansion-panel *ngFor="let child of element.children; let index = index" 
-    [ngClass]="child.template?.className" [expanded]="index === selectedIndex" 
+    [ngClass]="child.template.className" [expanded]="index === selectedIndex" 
     [disabled]="child.disabled"
     (opened)="openItem(index)" (closed)="closeItem(index)">
     <mat-expansion-panel-header>

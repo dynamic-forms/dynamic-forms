@@ -1,4 +1,4 @@
-<div class="dynamic-form-accordion" [ngClass]="template?.className">
+<div class="dynamic-form-accordion" [ngClass]="template.className">
   <div class="card" *ngFor="let child of element.children; let index = index">
     <div class="card-header" [class.disabled]="child.disabled" (click)="toggleItem(index)">{{child.label}}</div>
     <div class="card-body" *ngIf="index === selectedIndex">
