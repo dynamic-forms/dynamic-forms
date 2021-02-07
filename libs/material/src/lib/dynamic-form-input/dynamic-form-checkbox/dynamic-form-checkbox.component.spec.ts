@@ -30,8 +30,8 @@ describe('MatDynamicFormCheckboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCheckbox>>{ key: 'key', template: { label: 'label' } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormCheckbox>;
     formControl = new DynamicFormControl<DynamicFormCheckbox>(form, form, definition);
 
     component.field = formControl;
@@ -50,8 +50,8 @@ describe('MatDynamicFormCheckboxComponent', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-checkbox-input'));
     const labelDebugElement = checkDebugElement.query(By.css('span.mat-checkbox-label'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLSpanElement;
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');

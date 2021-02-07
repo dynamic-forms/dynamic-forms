@@ -30,8 +30,8 @@ describe('BsDynamicFormTextareaComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormTextarea>>{ key: 'key', template: { input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition<DynamicFormTextarea>;
     formControl = new DynamicFormControl<DynamicFormTextarea>(form, form, definition);
 
     component.field = formControl;
@@ -48,7 +48,7 @@ describe('BsDynamicFormTextareaComponent', () => {
 
   it('renders component template', () => {
     const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
-    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
+    const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
 
     expect(textareaElement).toBeTruthy();
     expect(textareaElement.id).toBe(component.inputId);
@@ -56,7 +56,7 @@ describe('BsDynamicFormTextareaComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const textareaDebugElement = fixture.debugElement.query(By.css('textarea.form-control'));
-    const textareaElement = <HTMLTextAreaElement>textareaDebugElement.nativeElement;
+    const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
 
     expect(textareaElement.readOnly).not.toBe(true);
 

@@ -16,7 +16,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
 
   @Input() isOpen$: Observable<boolean>;
 
-  @Input() elements: DynamicFormElement[];
+  @Input() children: DynamicFormElement[];
   @Input() headerActions: DynamicFormAction[];
   @Input() footerActions: DynamicFormAction[];
 
@@ -29,7 +29,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
 
   @Input() classNameForm: string;
   @Input() classNameModal: string;
-  @Input() classNameElements: string;
+  @Input() classNameChildren: string;
   @Input() classNameHeader: string;
   @Input() classNameFooter: string;
 

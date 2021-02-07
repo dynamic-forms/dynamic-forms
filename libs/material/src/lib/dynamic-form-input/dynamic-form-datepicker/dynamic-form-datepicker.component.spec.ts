@@ -32,8 +32,8 @@ describe('MatDynamicFormDatepickerComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormDatepicker>>{ key: 'key', template: { label: 'label', input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormDatepicker>;
     formControl = new DynamicFormControl<DynamicFormDatepicker>(form, form, definition);
 
     component.field = formControl;
@@ -52,9 +52,9 @@ describe('MatDynamicFormDatepickerComponent', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
@@ -65,7 +65,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

@@ -31,8 +31,8 @@ describe('DynamicFormMarkdownComponent', () => {
     fixture = TestBed.createComponent(DynamicFormMarkdownComponent);
     component = fixture.componentInstance;
 
-    const template = <DynamicFormMarkdownTemplate>{};
-    const definition = <DynamicFormMarkdownDefinition>{ type: 'element', template };
+    const template = {} as DynamicFormMarkdownTemplate;
+    const definition = { type: 'element', template } as DynamicFormMarkdownDefinition;
     element = new DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>(definition);
     component.element = element;
 
@@ -47,7 +47,7 @@ describe('DynamicFormMarkdownComponent', () => {
     service.compile.and.returnValue(undefined);
 
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
-    const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
+    const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('');
@@ -62,7 +62,7 @@ describe('DynamicFormMarkdownComponent', () => {
     fixture.detectChanges();
 
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
-    const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
+    const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
@@ -77,7 +77,7 @@ describe('DynamicFormMarkdownComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
-      const formMarkdownElement = <HTMLElement>formMarkdownDebugElement.nativeElement;
+      const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
 
       expect(formMarkdownElement).toBeTruthy();
       expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');

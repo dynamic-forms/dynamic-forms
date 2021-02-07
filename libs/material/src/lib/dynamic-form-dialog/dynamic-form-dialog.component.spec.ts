@@ -126,7 +126,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerText).toBe('Title');
       });
@@ -139,7 +139,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerHTML).toBe('<b>Title</b>');
       });
@@ -147,7 +147,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders header actions', async(() => {
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -162,7 +162,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders footer actions', async(() => {
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -178,15 +178,15 @@ describe('MatDynamicFormDialogComponent', () => {
       component.theme = 'theme';
       component.title = 'Title';
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';
-      component.classNameElements = 'class-elements';
+      component.classNameChildren = 'class-children';
       component.classNameHeader = 'class-header';
       component.classNameFooter = 'class-footer';
       component.classNameTitle = 'class-title';
@@ -197,7 +197,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const formElement = formWrapperElement.querySelector('.dynamic-form.class-form');
         const modalElement = formElement.querySelector('.dynamic-form-modal.class-modal');
 
-        const bodyElement = modalElement.querySelector('.modal-body.class-elements');
+        const bodyElement = modalElement.querySelector('.modal-body.class-children');
         const headerElement = modalElement.querySelector('.modal-header.class-header');
         const footerElement = modalElement.querySelector('.modal-footer.class-footer');
 

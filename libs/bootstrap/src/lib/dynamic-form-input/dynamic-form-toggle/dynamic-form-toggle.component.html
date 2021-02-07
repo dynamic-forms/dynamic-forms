@@ -2,7 +2,7 @@
   <ng-container *ngFor="let option of input.options; let i = index">
     <label class="btn btn-light" [class.disabled]="control.disabled || option.disabled" [class.active]="control.value === option.value">
       <input type="radio" [id]="inputId + '-' + i" [name]="inputId"  
-        [formControl]="control" [value]="option.value" [disabled]="option.disabled" [readonly]="field.readonly" 
+        [formControl]="control" [value]="option.value" [disabled]="option.disabled" [readonly]="readonly" 
         autocomplete="off" />
       <span>{{ option.label }}</span>
     </label>

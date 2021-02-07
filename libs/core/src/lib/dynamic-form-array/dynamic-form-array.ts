@@ -1,5 +1,4 @@
 import { FormArray } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -9,9 +8,7 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 export class DynamicFormArray<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<FormArray, Template, Definition> {
-
-  protected _fields: DynamicFormField[] = [];
+> extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
 
   constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
     super(root, parent, definition);
@@ -22,21 +19,17 @@ export class DynamicFormArray<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'array'; }
 
-  get elements(): DynamicFormElement[] { return this._elements; }
-  get fields(): DynamicFormField[] { return this._fields; }
+  get length(): number { return this._children.length; }
 
-  get length(): number { return this._fields.length; }
-
-  initElements(elements: DynamicFormField[]): void {
-    this._fields = elements || [];
-    this._fields.forEach((field, index) => {
+  initChildren(children: DynamicFormField[]): void {
+    this._children = children || [];
+    this._children.forEach((field, index) => {
       this._control.insert(index, field.control);
     });
-    this._elements = this._fields;
   }
 
   pushField(element: DynamicFormField): void {
-    this._fields.push(element);
+    this._children.push(element);
     this._control.push(element.control);
     this._control.markAsTouched();
   }
@@ -44,7 +37,7 @@ export class DynamicFormArray<
   popField(): void {
     const length = this.length;
     if (length > 0) {
-      this._fields.pop().destroy();
+      this._children.pop().destroy();
       this._model.pop();
       this._control.removeAt(length - 1);
       this._control.markAsTouched();
@@ -53,8 +46,8 @@ export class DynamicFormArray<
 
   removeField(index: number): void {
     if (index >= 0 && index < this.length) {
-      this._fields.splice(index, 1).forEach(field => field.destroy());
-      this._fields.forEach((field, idx) => {
+      this._children.splice(index, 1).forEach(field => field.destroy());
+      this._children.forEach((field, idx) => {
         field.definition.key = `${idx}`;
         field.definition.index = idx;
       });
@@ -67,10 +60,9 @@ export class DynamicFormArray<
   clearFields(): void {
     const length = this.length;
     if (length > 0) {
-      this._fields.forEach(field => field.destroy());
+      this._children.forEach(field => field.destroy());
       this._control.clear();
-      this._fields = [];
-      this._elements = this._fields;
+      this._children = [];
       this._model = [];
       this._parent.model[this.key] = this._model;
       this._control.markAsTouched();
@@ -79,10 +71,10 @@ export class DynamicFormArray<
 
   moveFieldDown(index: number): void {
     if (index >= 0 && index < this.length - 1) {
-      const field = this._fields.splice(index, 1)[0];
-      this._fields.splice(index + 1, 0, field);
-      this._fields[index].definition.index = index;
-      this._fields[index + 1].definition.index = index + 1;
+      const field = this._children.splice(index, 1)[0];
+      this._children.splice(index + 1, 0, field);
+      this._children[index].definition.index = index;
+      this._children[index + 1].definition.index = index + 1;
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index + 1, 0, value);
       this._control.removeAt(index);
@@ -93,10 +85,10 @@ export class DynamicFormArray<
 
   moveFieldUp(index: number): void {
     if (index >= 1 && index < this.length) {
-      const field = this._fields.splice(index, 1)[0];
-      this._fields.splice(index - 1, 0, field);
-      this._fields[index - 1].definition.index = index - 1;
-      this._fields[index].definition.index = index;
+      const field = this._children.splice(index, 1)[0];
+      this._children.splice(index - 1, 0, field);
+      this._children[index - 1].definition.index = index - 1;
+      this._children[index].definition.index = index;
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index - 1, 0, value);
       this._control.removeAt(index);
@@ -108,15 +100,15 @@ export class DynamicFormArray<
   check(): void {
     this.checkControl();
     this.checkValidators();
-    this.fields.forEach(field => field.check());
+    this._children.forEach(field => field.check());
   }
 
   destroy(): void {
-    this.fields.forEach(field => field.destroy());
+    this._children.forEach(field => field.destroy());
   }
 
   reset(): void {
-    this.fields.forEach(field => field.reset());
+    this._children.forEach(field => field.reset());
   }
 
   resetDefault(): void {
@@ -124,12 +116,12 @@ export class DynamicFormArray<
       const defaultModel = this.cloneObject(this.definition.defaultValue);
       this._control.patchValue(defaultModel);
     } else {
-      this.fields.forEach(field => field.resetDefault());
+      this._children.forEach(field => field.resetDefault());
     }
   }
 
   validate(): void {
-    this.fields.forEach(field => field.validate());
+    this._children.forEach(field => field.validate());
     this._control.markAsTouched();
   }
 

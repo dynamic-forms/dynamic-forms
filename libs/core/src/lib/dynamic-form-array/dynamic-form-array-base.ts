@@ -1,4 +1,6 @@
 import { FormArray } from '@angular/forms';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormArray } from './dynamic-form-array';
@@ -14,4 +16,8 @@ export abstract class DynamicFormArrayBase<
   constructor(protected validationService: DynamicFormValidationService) {
     super(validationService);
   }
+
+  get children(): DynamicFormField[] { return this.field.children; }
+  get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
+  get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
 }

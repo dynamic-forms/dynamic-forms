@@ -32,8 +32,8 @@ describe('MatDynamicFormTextboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormTextboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormTextbox>>{ key: 'key', template: { label: 'label', input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormTextbox>;
     formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, definition);
 
     component.field = formControl;
@@ -52,9 +52,9 @@ describe('MatDynamicFormTextboxComponent', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(fieldElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
@@ -65,7 +65,7 @@ describe('MatDynamicFormTextboxComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

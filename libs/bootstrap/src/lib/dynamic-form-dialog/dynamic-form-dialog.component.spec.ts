@@ -115,7 +115,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const contentDebugElement = fixture.debugElement.query(By.css('.modal-content'));
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header'));
       const titleDebugElement = headerDebugElement.query(By.css('.modal-title'));
-      const titleElement = <HTMLElement>titleDebugElement.nativeElement;
+      const titleElement = titleDebugElement.nativeElement as HTMLElement;
 
       expect(titleDebugElement).toBeTruthy();
       expect(titleElement.innerText).toBe('Title');
@@ -129,7 +129,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const contentDebugElement = fixture.debugElement.query(By.css('.modal-content'));
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header'));
       const titleDebugElement = headerDebugElement.query(By.css('.modal-title'));
-      const titleElement = <HTMLElement>titleDebugElement.nativeElement;
+      const titleElement = titleDebugElement.nativeElement as HTMLElement;
 
       expect(titleDebugElement).toBeTruthy();
       expect(titleElement.innerHTML).toBe('<b>Title</b>');
@@ -137,7 +137,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
     it('renders header actions', () => {
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -151,7 +151,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
     it('renders footer actions', () => {
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -165,15 +165,15 @@ describe('BsDynamicFormDialogComponent', () => {
     it('renders class names', () => {
       component.title = 'Title';
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';
-      component.classNameElements = 'class-elements';
+      component.classNameChildren = 'class-children';
       component.classNameHeader = 'class-header';
       component.classNameFooter = 'class-footer';
       component.classNameTitle = 'class-title';
@@ -184,7 +184,7 @@ describe('BsDynamicFormDialogComponent', () => {
       const dialogDebugElement = debugElement.query(By.css('.modal-dialog.modal-dialog-centered.modal-dialog-scrollable.class-modal'));
       const contentDebugElement = dialogDebugElement.query(By.css('.modal-content'));
 
-      const bodyDebugElement = contentDebugElement.query(By.css('.modal-body.class-elements'));
+      const bodyDebugElement = contentDebugElement.query(By.css('.modal-body.class-children'));
       const headerDebugElement = contentDebugElement.query(By.css('.modal-header.class-header'));
       const footerDebugElement = contentDebugElement.query(By.css('.modal-footer.class-footer'));
 

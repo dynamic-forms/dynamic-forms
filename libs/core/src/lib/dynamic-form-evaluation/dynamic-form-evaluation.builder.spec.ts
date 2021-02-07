@@ -26,7 +26,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators being empty',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const control = <DynamicFormControl>{ definition: {} };
+        const control = { definition: {} } as DynamicFormControl;
         const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators).toEqual([]);
@@ -37,7 +37,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'textbox' } };
         const evaluations = [ { key: 'select' }];
-        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const control = { definition: { template, evaluations } } as DynamicFormControl;
         const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators).toEqual([]);
@@ -48,7 +48,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'select' } };
         const evaluations = [ { key: 'select' }];
-        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const control = { definition: { template, evaluations } } as DynamicFormControl;
         const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators.length).toBe(1);
@@ -60,7 +60,7 @@ describe('DynamicFormEvaluationBuilder', () => {
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         const template = { input: { type: 'select' } };
         const evaluations = [ { func: _field => {} }];
-        const control = <DynamicFormControl>{ definition: { template, evaluations } };
+        const control = { definition: { template, evaluations } } as DynamicFormControl;
         const evaluators = service.createControlEvaluators(control);
 
         expect(evaluators.length).toBe(1);

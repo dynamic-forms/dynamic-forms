@@ -30,8 +30,8 @@ describe('MatDynamicFormRadioComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormRadioComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormRadio>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -42,7 +42,7 @@ describe('MatDynamicFormRadioComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormRadio>;
     formControl = new DynamicFormControl<DynamicFormRadio>(form, form, definition);
 
     component.field = formControl;
@@ -61,9 +61,9 @@ describe('MatDynamicFormRadioComponent', () => {
     const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
     const inputDebugElements = radioDebugElement.queryAll(By.css('input.mat-radio-input'));
     const labelDebugElements = radioDebugElement.queryAll(By.css('div.mat-radio-label-content'));
-    const radioElement = <HTMLElement>radioDebugElement.nativeElement;
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
-    const labelElements = <HTMLDivElement[]>labelDebugElements.map(elem => elem.nativeElement);
+    const radioElement = radioDebugElement.nativeElement as HTMLElement;
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
+    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLDivElement[];
 
     expect(radioElement).toBeTruthy();
     expect(inputElements.length).toBe(3);

@@ -2,7 +2,7 @@
   "template": {
     "label": "Textbox variations"
   },
-  "elements": [
+  "children":[
     {
       "key": "textbox",
       "type": "control",

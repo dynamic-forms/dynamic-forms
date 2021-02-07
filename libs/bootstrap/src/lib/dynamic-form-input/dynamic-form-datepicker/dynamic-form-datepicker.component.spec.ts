@@ -30,8 +30,8 @@ describe('BsDynamicFormDatepickerComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormDatepicker>>{ key: 'key', template: { label: 'label', input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormDatepicker>;
     formControl = new DynamicFormControl<DynamicFormDatepicker>(form, form, definition);
 
     component.field = formControl;
@@ -48,7 +48,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
 
   it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
@@ -57,7 +57,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 
