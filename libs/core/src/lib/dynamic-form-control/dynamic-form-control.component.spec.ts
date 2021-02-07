@@ -106,6 +106,7 @@ describe('DynamicFormControlComponent', () => {
     expect(component.template).toBeTruthy();
     expect(component.control).toBeTruthy();
     expect(component.input).toBeTruthy();
+    expect(component.inputId).toBe('id');
     expect(component.inputType).toBe('input-1');
     expect(component.hints).toBeTruthy();
   });
