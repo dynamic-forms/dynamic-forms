@@ -47,7 +47,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ errors: { required: { message: 'This field is required.' } }, showErrors: true };
+    component.field = { errors: { required: { message: 'This field is required.' } }, showErrors: true } as any;
 
     const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
@@ -62,7 +62,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
 
   it('renders component template', () => {
     const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
-    const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
+    const errorsElement = errorsDebugElement.nativeElement as HTMLLabelElement;
 
     expect(errorsElement).toBeTruthy();
     expect(errorsElement.innerText).toBe('This field is required.');

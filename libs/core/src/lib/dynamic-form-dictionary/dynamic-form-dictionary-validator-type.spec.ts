@@ -11,28 +11,28 @@ describe('DynamicFormDictionaryValidatorType', () => {
 
   it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
-    const formGroup = <FormGroup>{ value: { key: undefined } };
+    const formGroup = { value: { key: undefined } } as FormGroup;
 
     expect(validatorFn(formGroup)).toBeNull();
   });
 
   it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is undefined' , () => {
     const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
-    const formGroup = <FormGroup>{ value: undefined };
+    const formGroup = { value: undefined } as FormGroup;
 
     expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
   });
 
   it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is null' , () => {
     const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
-    const formGroup = <FormGroup>{ value: null };
+    const formGroup = { value: null } as FormGroup;
 
     expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
   });
 
   it('validatorFn of dynamicFormDictionaryRequiredValidatorFactory returns error if value is empty' , () => {
     const validatorFn = dynamicFormDictionaryRequiredValidatorFactory();
-    const formGroup = <FormGroup>{ value: {} };
+    const formGroup = { value: {} } as FormGroup;
 
     expect(validatorFn(formGroup)).toEqual({ requiredDictionary: true });
   });
@@ -51,21 +51,21 @@ describe('DynamicFormDictionaryValidatorType', () => {
 
   it('validatorFn of dynamicFormDictionaryMinLengthValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormDictionaryMinLengthValidatorFactory(1);
-    const formGroup = <FormGroup>{ value: { value1: undefined } };
+    const formGroup = { value: { value1: undefined } } as FormGroup;
 
     expect(validatorFn(formGroup)).toBeNull();
   });
 
   it('validatorFn of dynamicFormDictionaryMinLengthValidatorFactory returns no error if value is not defined' , () => {
     const validatorFn = dynamicFormDictionaryMinLengthValidatorFactory(1);
-    const formGroup = <FormGroup>{ value: null };
+    const formGroup = { value: null } as FormGroup;
 
     expect(validatorFn(formGroup)).toBeNull();
   });
 
   it('validatorFn of dynamicFormDictionaryMinLengthValidatorFactory returns error' , () => {
     const validatorFn = dynamicFormDictionaryMinLengthValidatorFactory(1);
-    const formGroup = <FormGroup>{ value: {} };
+    const formGroup = { value: {} } as FormGroup;
 
     expect(validatorFn(formGroup)).toEqual({ minlengthDictionary: { requiredLength: 1, actualLength: 0 } });
   });
@@ -84,21 +84,21 @@ describe('DynamicFormDictionaryValidatorType', () => {
 
   it('validatorFn of dynamicFormDictionaryMaxLengthValidatorFactory returns no error' , () => {
     const validatorFn = dynamicFormDictionaryMaxLengthValidatorFactory(2);
-    const formGroup = <FormGroup>{ value: { value1: undefined, value2: undefined } };
+    const formGroup = { value: { value1: undefined, value2: undefined } } as FormGroup;
 
     expect(validatorFn(formGroup)).toBeNull();
   });
 
   it('validatorFn of dynamicFormDictionaryMaxLengthValidatorFactory returns no error if value is not defined' , () => {
     const validatorFn = dynamicFormDictionaryMaxLengthValidatorFactory(2);
-    const formGroup = <FormGroup>{ value: null };
+    const formGroup = { value: null } as FormGroup;
 
     expect(validatorFn(formGroup)).toBeNull();
   });
 
   it('validatorFn of dynamicFormArrayMaxLengthValidatorFactory returns error' , () => {
     const validatorFn = dynamicFormDictionaryMaxLengthValidatorFactory(2);
-    const formGroup = <FormGroup>{ value: { value1: undefined, value2: undefined, value3: undefined } };
+    const formGroup = { value: { value1: undefined, value2: undefined, value3: undefined } } as FormGroup;
 
     expect(validatorFn(formGroup)).toEqual({ maxlengthDictionary: { requiredLength: 2, actualLength: 3 } });
   });

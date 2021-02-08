@@ -2,7 +2,7 @@
   "template": {
     "label": "Inputs with hints"
   },
-  "elements": [
+  "children":[
     {
       "key": "combobox",
       "type": "control",

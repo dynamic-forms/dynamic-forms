@@ -23,7 +23,7 @@ describe('MatDynamicFormAccordionComponent', () => {
 
     fixture = TestBed.createComponent(MatDynamicFormAccordionComponent);
     component = fixture.componentInstance;
-    component.element = new DynamicFormItems({ template: {}, items: [] });
+    component.element = new DynamicFormItems({ template: {}, children: [] });
 
     fixture.detectChanges();
   });

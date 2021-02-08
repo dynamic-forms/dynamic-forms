@@ -14,7 +14,9 @@ export abstract class DynamicFormAccordionBase<
   }
 
   openItem(index: number): void {
-    this.selectItem(index);
+    if (this.selectedIndex !== index) {
+      this.selectItem(index);
+    }
   }
 
   closeItem(index: number): void {

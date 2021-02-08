@@ -9,7 +9,13 @@ export class DynamicFormItem<
 
   constructor(definition: Definition) {
     super(definition);
+    this.extendExpressionData({
+      index: () => this.index
+    });
   }
 
+  get index(): number { return this.definition.index; }
+
   get label(): string { return this.template.label; }
+  get disabled(): boolean { return this.template.disabled; }
 }

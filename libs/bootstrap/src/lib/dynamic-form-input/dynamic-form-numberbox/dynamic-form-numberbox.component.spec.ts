@@ -30,8 +30,8 @@ describe('BsDynamicFormNumberboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormNumberboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormNumberbox>>{ key: 'key', template: { input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition<DynamicFormNumberbox>;
     formControl = new DynamicFormControl<DynamicFormNumberbox>(form, form, definition);
 
     component.field = formControl;
@@ -48,7 +48,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
 
   it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
@@ -57,7 +57,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

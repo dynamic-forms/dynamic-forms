@@ -1,6 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
+import { DynamicFormActionExpressions } from '../dynamic-form-action/dynamic-form-action-expressions';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
 import { DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
@@ -14,13 +15,12 @@ import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dyna
 import { DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
+import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
-import { DynamicFormActionExpressions } from '../dynamic-form-expression/dynamic-form-action-expressions';
-import { DynamicFormElementExpressions } from '../dynamic-form-expression/dynamic-form-element-expressions';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
-import { DynamicFormFieldExpressions } from '../dynamic-form-expression/dynamic-form-field-expressions';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
+import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
@@ -50,7 +50,7 @@ export class DynamicFormBuilder {
   createForm(definition: DynamicFormDefinition, model: any): DynamicForm {
     const field = new DynamicForm(definition, model);
     field.initExpressions(this.createFieldExpressions(field));
-    field.initElements(this.createFormElements(field, field, field.definition.elements));
+    field.initChildren(this.createFormElements(field, field, field.definition.children));
     field.initValidators(this.createGroupValidators(field));
     field.initHeaderActions(this.createFormActions(field, field, field.definition.headerActions));
     field.initFooterActions(this.createFormActions(field, field, field.definition.footerActions));
@@ -61,7 +61,7 @@ export class DynamicFormBuilder {
     this.requireElementType(definition.type);
     const element = new DynamicFormElement(definition);
     element.initExpressions(this.createElementExpressions(element));
-    element.initElements(this.createFormElements(root, parent, element.definition.elements));
+    element.initChildren(this.createFormElements(root, parent, element.definition.children));
     return element;
   }
 
@@ -80,7 +80,7 @@ export class DynamicFormBuilder {
     const field = new DynamicFormGroup(root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
-    field.initElements(this.createFormElements(root, field, field.definition.elements));
+    field.initChildren(this.createFormElements(root, field, field.definition.children));
     field.initValidators(this.createGroupValidators(field));
     field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
     field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
@@ -92,7 +92,7 @@ export class DynamicFormBuilder {
     const field = new DynamicFormArray(root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
-    field.initElements(this.createFormArrayElements(field));
+    field.initChildren(this.createFormArrayElements(field));
     field.initValidators(this.createArrayValidators(field));
     field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
     field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
@@ -101,9 +101,7 @@ export class DynamicFormBuilder {
 
   createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
-    const definitionBase = definitionTemplate.reference
-      ? this.mergeDefinition(definitionTemplate, field.root)
-      : cloneObject(definitionTemplate);
+    const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key: `${index}`, index  };
     return this.createFormFieldForFactory(field.root, field, definition);
   }
@@ -113,7 +111,7 @@ export class DynamicFormBuilder {
     const field = new DynamicFormDictionary(root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
-    field.initElements(this.createFormDictionaryElements(field));
+    field.initChildren(this.createFormDictionaryElements(field));
     field.initValidators(this.createDictionaryValidators(field));
     field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
     field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
@@ -122,9 +120,7 @@ export class DynamicFormBuilder {
 
   createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField {
     const definitionTemplate = field.definition.definitionTemplate;
-    const definitionBase = definitionTemplate.reference
-      ? this.mergeDefinition(definitionTemplate, field.root)
-      : cloneObject(definitionTemplate);
+    const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key };
     return this.createFormFieldForFactory(field.root, field, definition);
   }
@@ -139,7 +135,7 @@ export class DynamicFormBuilder {
     if (action.dialogDefinition) {
       const dialog = new DynamicForm(action.dialogDefinition, {});
       dialog.initExpressions(this.createFieldExpressions(dialog));
-      dialog.initElements(this.createFormElements(dialog, dialog, dialog.definition.elements));
+      dialog.initChildren(this.createFormElements(dialog, dialog, dialog.definition.children));
       dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
       dialog.initFooterActions(this.createFormActions(root, action, dialog.definition.footerActions));
       action.initDialog(dialog);
@@ -216,6 +212,10 @@ export class DynamicFormBuilder {
 
   getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
     return definition.reference ? this.mergeDefinition(definition, root) : definition;
+  }
+
+  getDefinitionClone<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
+    return definition.reference ? this.mergeDefinition(definition, root) : cloneObject(definition);
   }
 
   createId(): string {

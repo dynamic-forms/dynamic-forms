@@ -89,8 +89,8 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls pushField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'pushArrayField');
-      const field = <DynamicFormArray>{ pushField(_elem: DynamicFormField): void {}, length: 0 };
-      const element = <DynamicFormField>{};
+      const field = { pushField(_elem: DynamicFormField): void {}, length: 0 } as DynamicFormArray;
+      const element = {} as DynamicFormField;
 
       formBuilder.createFormArrayField.and.returnValue(element);
 
@@ -106,7 +106,7 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls popField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'popArrayField');
-      const field = <DynamicFormArray>{ popField(): void {} };
+      const field = { popField(): void {} } as DynamicFormArray;
 
       spyOn(field, 'popField');
 
@@ -119,9 +119,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler returns array parent of action',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeArrayField');
-      const field = <DynamicFormField>{ fieldClassType: 'array' };
-      const parent = <DynamicFormField>{ parent: field };
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { fieldClassType: 'array' } as DynamicFormField;
+      const parent = { parent: field } as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       const result = handler.elementFunc(action);
 
@@ -132,9 +132,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler returns undefined as array parent of action',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeArrayField');
-      const field = <DynamicFormField>{ fieldClassType: 'group' };
-      const parent = <DynamicFormField>{ parent: field };
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { fieldClassType: 'group' } as DynamicFormField;
+      const parent = { parent: field } as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       const result = handler.elementFunc(action);
 
@@ -145,9 +145,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls removeField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeArrayField');
-      const field = <DynamicFormArray>{ removeField(_index: number): void {} };
-      const parent = <DynamicFormField>{ index: 1 };
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { removeField(_index: number): void {} } as DynamicFormArray;
+      const parent = { index: 1 } as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'removeField');
 
@@ -160,9 +160,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler does not call removeField of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeArrayField');
-      const field = <DynamicFormArray>{ removeField(_index: number): void {} };
-      const parent = <DynamicFormField>{};
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { removeField(_index: number): void {} } as DynamicFormArray;
+      const parent = {} as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'removeField');
 
@@ -175,7 +175,7 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls clearFields of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'clearArrayFields');
-      const field = <DynamicFormArray>{ clearFields(): void {} };
+      const field = { clearFields(): void {} } as DynamicFormArray;
 
       spyOn(field, 'clearFields');
 
@@ -188,9 +188,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls moveFieldDown of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'moveArrayFieldDown');
-      const field = <DynamicFormArray>{ moveFieldDown(_index: number): void {} };
-      const parent = <DynamicFormField>{ index: 1 };
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { moveFieldDown(_index: number): void {} } as DynamicFormArray;
+      const parent = { index: 1 } as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'moveFieldDown');
 
@@ -203,9 +203,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler does not call moveFieldDown of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'moveArrayFieldDown');
-      const field = <DynamicFormArray>{ moveFieldDown(_index: number): void {} };
-      const parent = <DynamicFormField>{};
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { moveFieldDown(_index: number): void {} } as DynamicFormArray;
+      const parent = {} as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'moveFieldDown');
 
@@ -218,9 +218,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler calls moveFieldUp of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'moveArrayFieldUp');
-      const field = <DynamicFormArray>{ moveFieldUp(_index: number): void {} };
-      const parent = <DynamicFormField>{ index: 1 };
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { moveFieldUp(_index: number): void {} } as DynamicFormArray;
+      const parent = { index: 1 } as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'moveFieldUp');
 
@@ -233,9 +233,9 @@ describe('DynamicFormArrayModule', () => {
   it('handler does not call moveFieldDown of array field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'moveArrayFieldUp');
-      const field = <DynamicFormArray>{ moveFieldUp(_index: number): void {} };
-      const parent = <DynamicFormField>{};
-      const action = <DynamicFormAction>{ parent: parent };
+      const field = { moveFieldUp(_index: number): void {} } as DynamicFormArray;
+      const parent = {} as DynamicFormField;
+      const action = { parent: parent } as DynamicFormAction;
 
       spyOn(field, 'moveFieldUp');
 

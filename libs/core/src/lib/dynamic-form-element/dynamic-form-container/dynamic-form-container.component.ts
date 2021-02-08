@@ -17,5 +17,5 @@ export class DynamicFormContainerComponent<
     super();
   }
 
-  get elements(): DynamicFormElement[] { return this.element.elements; }
+  get children(): DynamicFormElement[] { return this.element.children; }
 }

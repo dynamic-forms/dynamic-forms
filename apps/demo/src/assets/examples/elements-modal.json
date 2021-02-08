@@ -2,13 +2,13 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children":[
     {
       "type": "modal",
       "template": {
         "title": "Modal",
         "classNameTitle": "modal-title-bg",
-        "classNameElements": "row",
+        "classNameChildren": "row",
         "width": "600px",
         "maxWidth": "calc(100% - 1rem)"
       },
@@ -23,19 +23,19 @@
           "disabled": "data.parent.isOpen"
         }
       },
-      "elements": [
+      "children":[
         {
           "type": "content",
           "template": {
             "className": "col",
-            "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+            "content": "<h3>Heading 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
           }
         },
         {
           "type": "content",
           "template": {
             "className": "col",
-            "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+            "content": "<h3>Heading 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
           }
         }
       ],

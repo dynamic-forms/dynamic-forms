@@ -1,5 +1,5 @@
 {
-  "elements": [
+  "children":[
     {
       "key": "login",
       "type": "group",
@@ -18,7 +18,7 @@
           "message": "Confirm password needs to equal password"
         }
       },
-      "elements": [
+      "children":[
         {
           "key": "email",
           "type": "control",
@@ -80,7 +80,7 @@
           "allRequired": true
         }
       },
-      "elements": [
+      "children":[
         {
           "key": "read",
           "type": "control",

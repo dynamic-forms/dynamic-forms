@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormExpressionChange } from './dynamic-form-expression-change';
-import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
+import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
+import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
+import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
 const getCurrencyOptions = (data, memo) => {
@@ -30,7 +30,7 @@ describe('DynamicFormFieldExpression', () => {
   it('get value updates memo and returns current value', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
-    const field = <DynamicFormField>{
+    const field = {
       expressionData: {
         model: {},
         parent: { model: { currencyPair: 'EUR/USD' } },
@@ -38,7 +38,7 @@ describe('DynamicFormFieldExpression', () => {
       },
       expressionChangesSubject,
       expressionChanges
-    };
+    } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
@@ -113,7 +113,7 @@ describe('DynamicFormFieldExpression', () => {
   it('get value does not throw exception', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
-    const field = <DynamicFormField>{
+    const field = {
       expressionData: {
         model: null,
         parent: { model: { currencyPair: 'EUR/USD' } },
@@ -121,7 +121,7 @@ describe('DynamicFormFieldExpression', () => {
       },
       expressionChangesSubject,
       expressionChanges
-    };
+    } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
@@ -131,7 +131,7 @@ describe('DynamicFormFieldExpression', () => {
   it('get value throws exception', () => {
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
-    const field = <DynamicFormField>{
+    const field = {
       expressionData: {
         model: null,
         parent: null,
@@ -139,7 +139,7 @@ describe('DynamicFormFieldExpression', () => {
       },
       expressionChangesSubject,
       expressionChanges
-    };
+    } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 

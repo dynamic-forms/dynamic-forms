@@ -6,7 +6,7 @@ import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 describe('DynamicFormGroupValidator', () => {
   it('creates instance', () => {
-    const group = <DynamicFormGroup>{ definition: {}, template: { validation: { required: true } } };
+    const group = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('required', group, factory);
 
@@ -23,16 +23,16 @@ describe('DynamicFormGroupValidator', () => {
   });
 
   it('creates instance for validator definition', () => {
-    const equal = <DynamicFormFieldValidatorDefinition> {
+    const equal = {
       type: 'equal',
       parameters: {
         keys: []
       },
       message: 'message'
-    };
-    const validators = <{ [key: string]: DynamicFormFieldValidatorDefinition }>{ equal };
-    const validation = <DynamicFormGroupValidation>{ equal: true };
-    const group = <DynamicFormGroup>{ definition: { validators }, template: { validation } };
+    } as DynamicFormFieldValidatorDefinition;
+    const validators = { equal } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validation = { equal: true } as DynamicFormGroupValidation;
+    const group = { definition: { validators }, template: { validation } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('equal', group, factory);
 
@@ -49,27 +49,27 @@ describe('DynamicFormGroupValidator', () => {
   });
 
   it('creating instance throws exception if definition not valid', () => {
-    const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
+    const group = { template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
 
     expect(() => new DynamicFormGroupValidator('required', group, factory)).toThrowError();
   });
 
   it('creating instance throws exception if validation not valid', () => {
-    const group = <DynamicFormGroup>{ definition: {}, template: { validation: null } };
+    const group = { definition: {}, template: { validation: null } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
 
     expect(() => new DynamicFormGroupValidator('required', group, factory)).toThrowError();
   });
 
   it('creating instance throws exception if factory not valid', () => {
-    const group = <DynamicFormGroup>{ template: { validation: { required: true } } };
+    const group = { template: { validation: { required: true } } } as DynamicFormGroup;
 
     expect(() => new DynamicFormGroupValidator('required', group, null)).toThrowError();
   });
 
   it('checkChanges returns false', () => {
-    const group = <DynamicFormGroup>{ definition: {}, template: { validation: { required: true } } };
+    const group = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('required', group, factory);
 
@@ -79,7 +79,7 @@ describe('DynamicFormGroupValidator', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
-    const control = <DynamicFormGroup>{ definition: {}, template: { validation: { required: true } } };
+    const control = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('required', control, factory);
 

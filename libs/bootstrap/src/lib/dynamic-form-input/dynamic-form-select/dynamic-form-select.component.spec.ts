@@ -30,8 +30,8 @@ describe('BsDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -60,7 +60,7 @@ describe('BsDynamicFormSelectComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormSelect>;
     formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
     component.field = formControl;
@@ -80,12 +80,12 @@ describe('BsDynamicFormSelectComponent', () => {
     const optionDebugElements = selectDebugElement.queryAll(By.css('option'));
     const optionGroupDebugElements = selectDebugElement.queryAll(By.css('optgroup'));
 
-    const selectElement = <HTMLSelectElement>selectDebugElement.nativeElement;
-    const optionElements = <HTMLOptionElement[]>optionDebugElements.map(elem => elem.nativeElement);
+    const selectElement = selectDebugElement.nativeElement as HTMLSelectElement;
+    const optionElements = optionDebugElements.map(elem => elem.nativeElement) as HTMLOptionElement[];
     const optionGroups = optionGroupDebugElements.map(elem => {
       return {
-        groupElement: <HTMLOptGroupElement>elem.nativeElement,
-        optionElements: <HTMLOptionElement[]>elem.queryAll(By.css('option')).map(e => e.nativeElement)
+        groupElement: elem.nativeElement as HTMLOptGroupElement,
+        optionElements: elem.queryAll(By.css('option')).map(e => e.nativeElement) as HTMLOptionElement[]
       };
     });
 

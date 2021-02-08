@@ -2,7 +2,7 @@
   "template": {
     "label": "Validation of inputs with hints"
   },
-  "elements": [
+  "children":[
     {
       "key": "combobox",
       "type": "control",
