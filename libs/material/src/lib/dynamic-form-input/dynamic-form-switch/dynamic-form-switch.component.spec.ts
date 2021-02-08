@@ -30,8 +30,8 @@ describe('MatDynamicFormSwitchComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSwitchComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormSwitch>>{ key: 'key', template: { label: 'label' } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormSwitch>;
     formControl = new DynamicFormControl<DynamicFormSwitch>(form, form, definition);
 
     component.field = formControl;
@@ -50,8 +50,8 @@ describe('MatDynamicFormSwitchComponent', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLSpanElement;
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');

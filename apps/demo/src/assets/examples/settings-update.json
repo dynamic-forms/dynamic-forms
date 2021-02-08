@@ -2,7 +2,7 @@
   "template": {
     "label": "Update strategy"
   },
-  "elements": [
+  "children":[
     {
       "key": "name",
       "type": "control",

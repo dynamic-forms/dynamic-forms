@@ -1,48 +1,69 @@
 {
-  "elements": [
-    {
-      "type": "tabs",
-      "items": [
+  "references": {
+    "item": {
+      "template": {
+        "label": "Item 1"
+      },
+      "expressions": {
+        "label": "'Item ' + (data.index + 1)"
+      }
+    },
+    "items": {
+      "children": [
         {
-          "template": {
-            "label": "Item 1"
-          },
-          "elements": [
+          "reference": "item",
+          "children":[
             {
               "type": "content",
               "template": {
-                "content": "<h3>Header 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+                "content": "<h3>Heading 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
               }
             }
           ]
         },
         {
-          "template": {
-            "label": "Item 2"
-          },
-          "elements": [
+          "reference": "item",
+          "children":[
             {
               "type": "content",
               "template": {
-                "content": "<h3>Header 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+                "content": "<h3>Heading 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
               }
             }
           ]
         },
         {
-          "template": {
-            "label": "Item 3"
-          },
-          "elements": [
+          "reference": "item",
+          "children":[
             {
               "type": "content",
               "template": {
-                "content": "<h3>Header 3</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+                "content": "<h3>Heading 3</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "reference": "item",
+          "template": {
+            "disabled": true
+          },
+          "children":[
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 4</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
               }
             }
           ]
         }
       ]
+    }
+  },
+  "children":[
+    {
+      "reference": "items",
+      "type": "tabs"
     }
   ]
 }

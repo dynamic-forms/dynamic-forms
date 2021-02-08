@@ -65,6 +65,7 @@
       }
     ],
     "no-arg": true,
+    "no-angle-bracket-type-assertion": true,
     "no-bitwise": true,
     "no-console": [
       true,

@@ -14,7 +14,7 @@ describe('DynamicFormIconService', () => {
   it('', () => {
     service.getIcon.and.returnValue('icon');
 
-    const template = <DynamicFormIconTemplate>{};
+    const template = {} as DynamicFormIconTemplate;
     const icon = pipe.transform(template);
 
     expect(icon).toBe('icon');

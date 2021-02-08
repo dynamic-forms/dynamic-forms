@@ -1,6 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { BsDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -25,13 +25,13 @@ describe('BsDynamicFormModalComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormModalComponent);
     component = fixture.componentInstance;
 
-    const template = <DynamicFormModalTemplate>{
-      title: 'Title',
-      minWidth: '600px',
-      maxWidth: '100%'
-    };
-    const root = <DynamicForm>{};
-    modal = new DynamicFormModal(root, <DynamicFormModalDefinition>{ template });
+    modal = new DynamicFormModal({ template: {} } as DynamicForm, {
+      template: {
+        title: 'Title',
+        minWidth: '600px',
+        maxWidth: '100%'
+      }
+    } as DynamicFormModalDefinition);
     component.element = modal;
 
     fixture.detectChanges();
@@ -58,10 +58,10 @@ describe('BsDynamicFormModalComponent', () => {
       const modalDialogDebugElement = modalDebugElement.query(By.css('div.modal-dialog'));
       const modalHeaderDebugElement = modalDialogDebugElement.query(By.css('div.modal-header'));
       const modalBodyDebugElement = modalDialogDebugElement.query(By.css('div.modal-body'));
-      const modalElement = <HTMLDivElement>modalDebugElement.nativeElement;
-      const modalDialogElement = <HTMLDivElement>modalDialogDebugElement.nativeElement;
-      const modalHeaderElement = <HTMLDivElement>modalHeaderDebugElement.nativeElement;
-      const modalBodyElement = <HTMLDivElement>modalBodyDebugElement.nativeElement;
+      const modalElement = modalDebugElement.nativeElement as HTMLDivElement;
+      const modalDialogElement = modalDialogDebugElement.nativeElement as HTMLDivElement;
+      const modalHeaderElement = modalHeaderDebugElement.nativeElement as HTMLDivElement;
+      const modalBodyElement = modalBodyDebugElement.nativeElement as HTMLDivElement;
 
       expect(component.isOpen).toBeTrue();
       expect(modalElement).toBeTruthy();

@@ -1,6 +1,6 @@
 <div class="custom-control custom-switch">
   <input [id]="inputId" class="custom-control-input" type="checkbox" 
-    [readonly]="field.readonly" [required]="validation?.required" [formControl]="control" />
+    [readonly]="readonly" [required]="validation?.required" [formControl]="control" />
   <label [for]="inputId" class="custom-control-label">{{ template.label }}<span *ngIf="validation?.required"> *</span></label>  
 </div>
 

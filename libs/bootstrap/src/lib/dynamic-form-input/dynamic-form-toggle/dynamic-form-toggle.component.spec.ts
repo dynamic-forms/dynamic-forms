@@ -30,8 +30,8 @@ describe('BsDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormToggle>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -42,7 +42,7 @@ describe('BsDynamicFormToggleComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormToggle>;
     formControl = new DynamicFormControl<DynamicFormToggle>(form, form, definition);
 
     component.field = formControl;
@@ -61,8 +61,8 @@ describe('BsDynamicFormToggleComponent', () => {
     const wrapperDebugElement = fixture.debugElement.query(By.css('div.btn-group.btn-group-toggle'));
     const labelDebugElements = wrapperDebugElement.queryAll(By.css('label.btn.btn-light'));
     const inputDebugElements = labelDebugElements.map(elem => elem.query(By.css('input')));
-    const labelElements = <HTMLLabelElement[]>labelDebugElements.map(elem => elem.nativeElement);
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
+    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLLabelElement[];
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
 
     expect(inputElements.length).toBe(3);
     expect(labelElements.length).toBe(3);
@@ -80,7 +80,7 @@ describe('BsDynamicFormToggleComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const wrapperDebugElement = fixture.debugElement.query(By.css('div.btn-group.btn-group-toggle'));
     const inputDebugElements = wrapperDebugElement.queryAll(By.css('input'));
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
 
     expect(inputElements[0].readOnly).not.toBe(true);
     expect(inputElements[1].readOnly).not.toBe(true);

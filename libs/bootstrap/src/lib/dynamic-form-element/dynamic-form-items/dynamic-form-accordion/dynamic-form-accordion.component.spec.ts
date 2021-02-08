@@ -23,7 +23,7 @@ describe('BsDynamicFormAccordionComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormAccordionComponent);
     component = fixture.componentInstance;
-    component.element = new DynamicFormItems({ template: {}, items: [] });
+    component.element = new DynamicFormItems({ template: {}, children: [] });
 
     fixture.detectChanges();
   });

@@ -6,7 +6,7 @@ import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControlValidator', () => {
   it('creates instance', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
+    const control = { definition: {}, template: { input: {}, validation: { required: true } } } as DynamicFormControl;
     const factory = _ => Validators.required;
     const validator = new DynamicFormControlValidator('required', control, factory);
 
@@ -20,17 +20,17 @@ describe('DynamicFormControlValidator', () => {
   });
 
   it('creates instance for validator definition', () => {
-    const minMaxLength = <DynamicFormFieldValidatorDefinition> {
+    const minMaxLength = {
       type: 'minMaxLength',
       parameters: {
         minLength: 3,
         maxLength: 5
       },
       message: 'message'
-    };
-    const validators = <{ [key: string]: DynamicFormFieldValidatorDefinition }>{ minMaxLength };
-    const validation = <DynamicFormControlValidation>{ minMaxLength: true };
-    const control = <DynamicFormControl>{ definition: { validators }, template: { input: {}, validation } };
+    } as DynamicFormFieldValidatorDefinition;
+    const validators = { minMaxLength } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validation = { minMaxLength: true } as DynamicFormControlValidation;
+    const control = { definition: { validators }, template: { input: {}, validation } } as DynamicFormControl;
     const factory = (parameters: { minLength?: number, maxLength?: number }) => {
       return Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
         ? (formControl: FormControl) => formControl.value
@@ -55,34 +55,34 @@ describe('DynamicFormControlValidator', () => {
   });
 
   it('creating instance throws exception if definition not valid', () => {
-    const control = <DynamicFormControl>{ template: { input: {}, validation: { required: true } } };
+    const control = { template: { input: {}, validation: { required: true } } } as DynamicFormControl;
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
   it('creating instance throws exception if input not valid', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: null, validation: { required: true } } };
+    const control = { definition: {}, template: { input: null, validation: { required: true } } } as DynamicFormControl;
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
   it('creating instance throws exception if validation not valid', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: null } };
+    const control = { definition: {}, template: { input: {}, validation: null } } as DynamicFormControl;
     const factory = _ => Validators.required;
 
     expect(() => new DynamicFormControlValidator('required', control, factory)).toThrowError();
   });
 
   it('creating instance throws exception if factory not valid', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
+    const control = { definition: {}, template: { input: {}, validation: { required: true } } } as DynamicFormControl;
 
     expect(() => new DynamicFormControlValidator('required', control, null)).toThrowError();
   });
 
   it('checkChanges returns false', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
+    const control = { definition: {}, template: { input: {}, validation: { required: true } } } as DynamicFormControl;
     const factory = _ => Validators.required;
     const validator = new DynamicFormControlValidator('required', control, factory);
 
@@ -92,7 +92,7 @@ describe('DynamicFormControlValidator', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: {}, validation: { required: true } } };
+    const control = { definition: {}, template: { input: {}, validation: { required: true } } } as DynamicFormControl;
     const factory = _ => Validators.required;
     const validator = new DynamicFormControlValidator('required', control, factory);
 
@@ -108,7 +108,7 @@ describe('DynamicFormControlValidator', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if parameters changes', () => {
-    const control = <DynamicFormControl>{ definition: {}, template: { input: { min: 0 }, validation: { min: true } } };
+    const control = { definition: {}, template: { input: { min: 0 }, validation: { min: true } } } as DynamicFormControl;
     const factory = (min: number) => Number.isFinite(min) ? Validators.min(min) : undefined;
     const validator = new DynamicFormControlValidator('min', control, factory);
 

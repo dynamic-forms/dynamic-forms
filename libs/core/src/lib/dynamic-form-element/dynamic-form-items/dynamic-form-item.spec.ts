@@ -4,7 +4,8 @@ import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 
 describe('DynamicFormItem', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormItemDefinition>{ id: 'id', type: 'type', template: { label: 'label' }, elements: [] };
+    const template = { label: 'label', disabled: true };
+    const definition = { id: 'id', type: 'type', index: 1, template, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
 
     expect(formItem.id).toBe('id');
@@ -12,28 +13,37 @@ describe('DynamicFormItem', () => {
     expect(formItem.componentType).toBe('type');
     expect(formItem.definition).toBe(definition);
     expect(formItem.template).toBe(definition.template);
-    expect(formItem.elements).toEqual([]);
+    expect(formItem.children).toEqual([]);
+    expect(formItem.index).toBe(1);
     expect(formItem.label).toBe('label');
+    expect(formItem.disabled).toBe(true);
   });
 
-  it('inits elements', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
-    const elements = [
-      <DynamicFormElement>{ classType: 'element', definition: {} }
+    const children = [
+      { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
-    formItem.initElements(elements);
+    formItem.initChildren(children);
 
-    expect(formItem.elements).toEqual(elements);
+    expect(formItem.children).toEqual(children);
   });
 
-  it('inits elements with empty array', () => {
-    const definition = <DynamicFormItemDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children with empty array', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(definition);
 
-    formItem.initElements(null);
+    formItem.initChildren(null);
 
-    expect(formItem.elements).toEqual([]);
+    expect(formItem.children).toEqual([]);
+  });
+
+  it('returns expression data with index', () => {
+    const definition = { id: 'id', type: 'type', index: 1 } as DynamicFormItemDefinition;
+    const formItem = new DynamicFormItem(definition);
+
+    expect(formItem.expressionData.index).toBe(1);
   });
 });

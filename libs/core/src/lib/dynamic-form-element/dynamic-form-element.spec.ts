@@ -3,7 +3,7 @@ import { DynamicFormElementDefinition } from './dynamic-form-element-definition'
 
 describe('DynamicFormElement', () => {
   it('creates instance', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'type', template: {}, elements: [] };
+    const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
 
     expect(formElement.id).toBe('id');
@@ -11,27 +11,27 @@ describe('DynamicFormElement', () => {
     expect(formElement.componentType).toBe('type');
     expect(formElement.definition).toBe(definition);
     expect(formElement.template).toBe(definition.template);
-    expect(formElement.elements).toEqual([]);
+    expect(formElement.children).toEqual([]);
   });
 
-  it('inits elements', () => {
-    const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
-    const elements = [
-      <DynamicFormElement>{ classType: 'element', definition: {} }
+    const children = [
+      { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
-    formElement.initElements(elements);
+    formElement.initChildren(children);
 
-    expect(formElement.elements).toBe(elements);
+    expect(formElement.children).toBe(children);
   });
 
-  it('inits elements with empty array', () => {
-    const definition = <DynamicFormElementDefinition>{ type: 'type', template: {}, elements: [] };
+  it('inits children with empty array', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(definition);
 
-    formElement.initElements(null);
+    formElement.initChildren(null);
 
-    expect(formElement.elements).toEqual([]);
+    expect(formElement.children).toEqual([]);
   });
 });

@@ -423,14 +423,25 @@ $dynamic-form-material-red: #f44336;
     .dynamic-form-accordion {
       .card-header {
         cursor: pointer;
+        
+        &.disabled {
+          cursor: default;
+          pointer-events: none;
+          opacity: 0.5;
+        }
       }
     }
-
+    
     .dynamic-form-tabs {
       .card-header {
         .card-header-tabs {
-          .nav-item {
+          .nav-link {
             cursor: pointer;
+
+            &.disabled {
+              cursor: default;
+              pointer-events: none;
+            }    
           }
         }  
       }
