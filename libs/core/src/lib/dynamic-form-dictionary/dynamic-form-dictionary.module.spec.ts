@@ -2,6 +2,7 @@ import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -82,7 +83,7 @@ describe('DynamicFormDictionaryModule', () => {
       const field = { registerField(_elem: DynamicFormField): void {}, length: 0 } as DynamicFormDictionary;
       const dialog = { model: { key: 'key' } } as DynamicForm;
       const parent = { dialog, closeDialog(): void {} } as DynamicFormAction;
-      const action = { parent } as DynamicFormAction;
+      const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
       const element = {} as DynamicFormField;
 
       formBuilder.createFormDictionaryField.and.returnValue(element);
@@ -102,7 +103,7 @@ describe('DynamicFormDictionaryModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
       const field = { fieldClassType: 'dictionary' } as DynamicFormField;
-      const action = { parent: field } as DynamicFormAction;
+      const action = { parent: field as DynamicFormElement } as DynamicFormAction;
 
       const result = handler.elementFunc(action);
 
@@ -114,8 +115,8 @@ describe('DynamicFormDictionaryModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
       const field = { fieldClassType: 'dictionary' } as DynamicFormField;
-      const parent = { parent: field } as DynamicFormField;
-      const action = { parent: parent } as DynamicFormAction;
+      const parent = { parent: field as DynamicFormElement } as DynamicFormField;
+      const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
       const result = handler.elementFunc(action);
 
@@ -127,8 +128,8 @@ describe('DynamicFormDictionaryModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
       const field = { fieldClassType: 'group' } as DynamicFormField;
-      const parent = { parent: field } as DynamicFormField;
-      const action = { parent: parent } as DynamicFormAction;
+      const parent = { parent: field as DynamicFormElement } as DynamicFormField;
+      const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
       const result = handler.elementFunc(action);
 
@@ -141,7 +142,7 @@ describe('DynamicFormDictionaryModule', () => {
       const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
       const field = { removeField(_key: string): void {} } as DynamicFormDictionary;
       const parent = { key: 'key' } as DynamicFormField;
-      const action = { parent: parent } as DynamicFormAction;
+      const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
       spyOn(field, 'removeField');
 
@@ -156,7 +157,7 @@ describe('DynamicFormDictionaryModule', () => {
       const handler = service.handlers.find(h => h.type === 'removeDictionaryField');
       const field = { removeField(_key: string): void {} } as DynamicFormDictionary;
       const parent = {} as DynamicFormField;
-      const action = { parent: parent } as DynamicFormAction;
+      const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
       spyOn(field, 'removeField');
 

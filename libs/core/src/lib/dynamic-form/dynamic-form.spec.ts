@@ -9,10 +9,13 @@ describe('DynamicForm', () => {
 
       expect(form.root).toBe(form);
       expect(form.parent).toBeNull();
+      expect(form.parentField).toBeNull();
+
       expect(form.definition).toBe(definition);
+      expect(form.template).toBe(definition.template);
+
       expect(form.model).toBe(model);
       expect(form.control).toBeTruthy();
-      expect(form.template).toBe(definition.template);
       expect(form.fields).toBeTruthy();
   });
 

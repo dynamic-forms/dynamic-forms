@@ -1,13 +1,13 @@
-import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 export function dynamicFormModalFactory(
-  builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormField, definition: DynamicFormModalDefinition
+  builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormModalDefinition
 ): DynamicFormModal {
-  const modal = new DynamicFormModal(root, definition);
+  const modal = new DynamicFormModal(root, parent, definition);
   modal.initExpressions(builder.createElementExpressions(modal));
   modal.initTrigger(builder.createFormAction(root, modal, modal.definition.trigger));
   modal.initChildren(builder.createFormElements(root, parent, modal.definition.children));

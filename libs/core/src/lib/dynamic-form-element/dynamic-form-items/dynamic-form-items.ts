@@ -1,3 +1,4 @@
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
@@ -12,8 +13,8 @@ export class DynamicFormItems<
   protected _selectedIndex: number;
   protected _selectedItem: Item;
 
-  constructor(definition: Definition) {
-    super(definition);
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(root, parent, definition);
   }
 
   get selectedIndex(): number { return this._selectedIndex; }

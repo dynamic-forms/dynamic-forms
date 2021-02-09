@@ -1,3 +1,5 @@
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsBase } from './dynamic-form-items-base';
@@ -13,8 +15,10 @@ describe('DynamicFormItemsBase', () => {
   });
 
   it('returns properties of element', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
-    const element = new DynamicFormItems(definition);
+    const element = new DynamicFormItems(root, parent, definition);
     const items = [ {} as DynamicFormItem ];
 
     element.initChildren(items);
@@ -30,8 +34,10 @@ describe('DynamicFormItemsBase', () => {
   });
 
   it('calls selectItem of element', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
-    const element = new DynamicFormItems(definition);
+    const element = new DynamicFormItems(root, parent, definition);
 
     spyOn(element, 'selectItem');
 
