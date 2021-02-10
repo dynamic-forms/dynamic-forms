@@ -1,3 +1,5 @@
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
@@ -28,14 +30,15 @@ class DynamicFormTestField extends DynamicFormField {
 
 describe('DynamicFormField', () => {
   it('creates instance', () => {
-    const root = null;
-    const parent = null;
+    const root = { classType: 'field', depth: 0 } as DynamicForm;
+    const parentField = { classType: 'field', depth: 1 } as DynamicFormField;
+    const parent = { parent: parentField as DynamicFormElement } as DynamicFormElement;
     const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(root, parent, definition);
 
     expect(field.root).toBe(root);
     expect(field.parent).toBe(parent);
-    expect(field.parentField).toBe(parent);
+    expect(field.parentField).toBe(parentField);
 
     expect(field.definition).toBe(definition);
     expect(field.template).toBe(definition.template);
@@ -195,7 +198,7 @@ describe('DynamicFormField', () => {
     expect(field.expressionData.status).toBe('VALID');
   });
 
-  it('returns expression data with expression data of root and parent being undefined', () => {
+  it('returns expression data with expression data of root, parent and parent field being undefined', () => {
     const definition = { key: 'key', template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(null, null, definition);
 
@@ -205,18 +208,20 @@ describe('DynamicFormField', () => {
     expect(field.expressionData.parentField).toBeUndefined();
   });
 
-  it('returns expression data with expression data of root and parent being defined', () => {
+  it('returns expression data with expression data of root, parent and parent field being defined', () => {
     const rootExpressionData = {} as DynamicFormFieldExpressionData;
-    const parentExpressionData = {} as DynamicFormFieldExpressionData;
+    const parentFieldExpressionData = {} as DynamicFormFieldExpressionData;
+    const parentExpressionData = {} as DynamicFormElementExpressionData;
     const root = { classType: 'field', depth: 0, expressionData: rootExpressionData } as DynamicForm;
-    const parent = { classType: 'field', depth: 1, expressionData: parentExpressionData } as DynamicFormField;
+    const parentField = { classType: 'field', depth: 1, expressionData: parentFieldExpressionData } as DynamicFormField;
+    const parent = { parent: parentField as DynamicFormElement, expressionData: parentExpressionData } as DynamicFormElement;
     const definition = { key: 'key', template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(root, parent, definition);
 
     expect(field.expressionData.depth).toBe(2);
-    expect(field.expressionData.root).toEqual(rootExpressionData);
-    expect(field.expressionData.parent).toEqual(parentExpressionData);
-    expect(field.expressionData.parentField).toEqual(parentExpressionData);
+    expect(field.expressionData.root).toBe(rootExpressionData);
+    expect(field.expressionData.parent).toBe(parentExpressionData);
+    expect(field.expressionData.parentField).toBe(parentFieldExpressionData);
   });
 
   it('inits expressions', () => {
