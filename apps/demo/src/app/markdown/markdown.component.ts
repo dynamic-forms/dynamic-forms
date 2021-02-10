@@ -1,25 +1,23 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { DynamicFormElement, DynamicFormMarkdownTemplate } from '@dynamic-forms/core';
+import { MarkdownElement } from './markdown.element';
 
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
 })
 export class MarkdownComponent implements OnInit, OnChanges {
-  element: DynamicFormElement< DynamicFormMarkdownTemplate>;
+  element: MarkdownElement;
 
   @Input()
   source: string;
 
   ngOnInit(): void {
-    this.element = new DynamicFormElement<DynamicFormMarkdownTemplate>({
-      template: { source: this.source }
-    });
+    this.element = new MarkdownElement(this.source);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.source.firstChange && this.source !== this.element.template.source) {
-      this.element.template.source = this.source;
+    if (!changes.source.firstChange && this.source !== this.element.source) {
+      this.element.source = this.source;
     }
   }
 }
