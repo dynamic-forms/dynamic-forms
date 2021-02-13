@@ -1,6 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
@@ -28,12 +29,14 @@ describe('DynamicFormMarkdownComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(DynamicFormMarkdownComponent);
-    component = fixture.componentInstance;
-
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const template = {} as DynamicFormMarkdownTemplate;
     const definition = { type: 'element', template } as DynamicFormMarkdownDefinition;
-    element = new DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>(definition);
+    element = new DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>(root, parent, definition);
+
+    fixture = TestBed.createComponent(DynamicFormMarkdownComponent);
+    component = fixture.componentInstance;
     component.element = element;
 
     fixture.detectChanges();

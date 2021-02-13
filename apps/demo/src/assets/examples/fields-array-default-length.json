@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "children":[
+  "children": [
     {
       "key": "users",
       "type": "array",
@@ -19,7 +19,7 @@
         "expressions": {
           "label": "(data.index + 1) + '. User'"
         },
-        "children":[
+        "children": [
           {
             "key": "name",
             "type": "control",

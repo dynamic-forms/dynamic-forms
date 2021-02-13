@@ -2,6 +2,8 @@ import { Observable, Subject } from 'rxjs';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { assignExpressions, assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
 import { DynamicFormElementExpressions } from './dynamic-form-element-expressions';
@@ -16,6 +18,10 @@ export class DynamicFormElement<
   Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>,
 > {
 
+  protected _root: DynamicForm;
+  protected _parent: DynamicFormElement;
+  protected _parentField: DynamicFormField;
+
   protected _definition: Definition;
 
   protected _expressionChangesSubject: Subject<DynamicFormExpressionChange>;
@@ -25,7 +31,10 @@ export class DynamicFormElement<
 
   protected _children: Child[] = [];
 
-  constructor(definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    this._root = root;
+    this._parent = parent;
+    this._parentField = this.getParentField(root, parent);
     this._definition = definition;
     this._definition.template = definition.template || {} as Template;
     this._expressionChangesSubject = new Subject();
@@ -37,6 +46,10 @@ export class DynamicFormElement<
   get id(): string { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
   get componentType(): string { return this.definition.type; }
+
+  get root(): DynamicForm { return this._root; }
+  get parent(): DynamicFormElement { return this._parent; }
+  get parentField(): DynamicFormField { return this._parentField; }
 
   get definition(): Definition { return this._definition; }
   get template(): Template { return this.definition.template; }
@@ -63,9 +76,25 @@ export class DynamicFormElement<
     this._children = children || [];
   }
 
+  protected getParentField(root: DynamicForm, parent: DynamicFormElement): DynamicFormField {
+    if (!parent) {
+      return root;
+    }
+    switch (parent.classType) {
+      case 'field':
+        return parent as any as DynamicFormField;
+      default:
+        return this.getParentField(root, parent.parent);
+    }
+  }
+
   protected createExpressionData(): ExpressionData {
     const expressionData = {} as ExpressionData;
-    assignExpressionData(expressionData, {});
+    assignExpressionData(expressionData, {
+      root: () => this.root ? this.root.expressionData : undefined,
+      parent: () => this.parent ? this.parent.expressionData : undefined,
+      parentField: () => this.parentField ? this.parentField.expressionData : undefined,
+    });
     return expressionData;
   }
 

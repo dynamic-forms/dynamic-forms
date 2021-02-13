@@ -1,6 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormElement, DynamicFormLibraryService, DynamicFormModal,
+  DynamicFormModalDefinition } from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { BsDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -22,16 +23,16 @@ describe('BsDynamicFormModalComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(BsDynamicFormModalComponent);
-    component = fixture.componentInstance;
-
-    modal = new DynamicFormModal({ template: {} } as DynamicForm, {
+    modal = new DynamicFormModal({ template: {} } as DynamicForm, {} as DynamicFormElement, {
       template: {
         title: 'Title',
         minWidth: '600px',
         maxWidth: '100%'
       }
     } as DynamicFormModalDefinition);
+
+    fixture = TestBed.createComponent(BsDynamicFormModalComponent);
+    component = fixture.componentInstance;
     component.element = modal;
 
     fixture.detectChanges();
