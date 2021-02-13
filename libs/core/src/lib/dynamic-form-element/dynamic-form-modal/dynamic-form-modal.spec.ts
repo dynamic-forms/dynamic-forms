@@ -7,18 +7,21 @@ import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 describe('DynamicFormModal', () => {
   it('creates instance', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
 
-    expect(element.classType).toBe('element');
-    expect(element.componentType).toBe('type');
+    expect(element.root).toBe(root);
+    expect(element.parent).toBe(parent);
+
     expect(element.definition).toBe(definition);
     expect(element.template).toBe(definition.template);
 
+    expect(element.classType).toBe('element');
+    expect(element.componentType).toBe('type');
+
     expect(element.expressionData).toBeTruthy();
     expect(element.expressionData.isOpen).toBeFalse();
-
-    expect(element.root).toBe(root);
 
     expect(element.isOpen).toBeFalse();
     expect(element.isOpenChanges).toBeTruthy();
@@ -31,8 +34,9 @@ describe('DynamicFormModal', () => {
 
   it('inits trigger', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
     const trigger = { classType: 'action', definition: {} } as DynamicFormAction;
 
     element.initTrigger(trigger);
@@ -42,8 +46,9 @@ describe('DynamicFormModal', () => {
 
   it('inits children', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
     const children = [
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
@@ -55,8 +60,9 @@ describe('DynamicFormModal', () => {
 
   it('inits children with empty array', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
 
     element.initChildren(null);
 
@@ -65,8 +71,9 @@ describe('DynamicFormModal', () => {
 
   it('inits header and footer actions', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
     const headerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
     const footerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
 
@@ -79,8 +86,9 @@ describe('DynamicFormModal', () => {
 
   it('inits header and footer actions with empty arrays', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
 
     element.initHeaderActions(null);
     element.initFooterActions(null);
@@ -91,8 +99,9 @@ describe('DynamicFormModal', () => {
 
   it('open, close and toggle sets isOpen', () => {
     const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, definition);
+    const element = new DynamicFormModal(root, parent, definition);
 
     element.open();
 

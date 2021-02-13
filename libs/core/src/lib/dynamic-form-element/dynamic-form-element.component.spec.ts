@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
@@ -53,11 +54,14 @@ describe('DynamicFormElementComponent', () => {
       ]
     });
 
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
+
+    element = new DynamicFormElement(root, parent, definition);
+
     fixture = TestBed.createComponent(DynamicFormElementComponent);
     component = fixture.componentInstance;
-
-    const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
-    element = new DynamicFormElement(definition);
     component.element = element;
 
     fixture.detectChanges();

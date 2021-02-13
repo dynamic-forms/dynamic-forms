@@ -2,7 +2,7 @@
   "template": {
     "label": "Inputs with placeholder"
   },
-  "children":[
+  "children": [
     {
       "key": "combobox",
       "type": "control",

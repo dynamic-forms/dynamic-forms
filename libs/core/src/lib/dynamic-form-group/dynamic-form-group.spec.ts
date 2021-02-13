@@ -14,10 +14,12 @@ describe('DynamicFormGroup', () => {
 
     expect(formGroup.root).toBe(form);
     expect(formGroup.parent).toBe(form);
-    expect(formGroup.settings).toBeTruthy();
+    expect(formGroup.parentField).toBe(form);
 
     expect(formGroup.definition).toBe(definition);
     expect(formGroup.template).toBe(definition.template);
+
+    expect(formGroup.settings).toBeTruthy();
 
     expect(formGroup.key).toBe('key');
     expect(formGroup.index).toBe(1);
