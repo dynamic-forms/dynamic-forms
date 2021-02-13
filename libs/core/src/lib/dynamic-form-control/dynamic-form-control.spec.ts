@@ -1,6 +1,7 @@
 import { Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-field-expression';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
@@ -19,6 +20,8 @@ describe('DynamicFormControl', () => {
 
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
+    expect(formControl.parentField).toBe(root);
+
     expect(formControl.definition).toBe(definition);
     expect(formControl.template).toBe(definition.template);
 
@@ -82,7 +85,7 @@ describe('DynamicFormControl', () => {
     formControl.control.setValue('value');
 
     expect(formControl.model).toBe('value');
-    expect(formControl.parent.model.key).toBe('value');
+    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
   });
 
   it('creating instance subscribes valueChanges of control object', () => {
@@ -94,7 +97,7 @@ describe('DynamicFormControl', () => {
     formControl.control.setValue(obj);
 
     expect(formControl.model).toBe(obj);
-    expect(formControl.parent.model.key).toBe(obj);
+    expect((formControl.parent as DynamicFormField).model.key).toBe(obj);
   });
 
   it('creating instance subscribes debounced valueChanges of control value', (done) => {
@@ -108,18 +111,18 @@ describe('DynamicFormControl', () => {
 
     expect(formControl.value).toBe('value');
     expect(formControl.model).toBeNull();
-    expect(formControl.parent.model.key).toBeNull();
+    expect((formControl.parent as DynamicFormField).model.key).toBeNull();
 
     of({}).pipe(delay(150)).subscribe(() => {
       expect(formControl.value).toBe('value');
       expect(formControl.model).toBeNull();
-      expect(formControl.parent.model.key).toBeNull();
+      expect((formControl.parent as DynamicFormField).model.key).toBeNull();
     });
 
     of({}).pipe(delay(300)).subscribe(() => {
       expect(formControl.value).toBe('value');
       expect(formControl.model).toBe('value');
-      expect(formControl.parent.model.key).toBe('value');
+      expect((formControl.parent as DynamicFormField).model.key).toBe('value');
       done();
     });
   });
@@ -289,12 +292,12 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
 
     expect(formControl.model).toBe('value');
-    expect(formControl.parent.model.key).toBe('value');
+    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
 
     formControl.reset();
 
     expect(formControl.model).toBe(null);
-    expect(formControl.parent.model.key).toBe(null);
+    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
 
   });
 
@@ -304,13 +307,13 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(root, root, definition);
 
     expect(formControl.model).toBe(null);
-    expect(formControl.parent.model.key).toBe(null);
+    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
 
     formControl.definition.template.input.defaultValue = 'value';
     formControl.resetDefault();
 
     expect(formControl.model).toBe('value');
-    expect(formControl.parent.model.key).toBe('value');
+    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
   });
 
   it('validate calls markAsTouched of control', () => {

@@ -2,10 +2,14 @@
   "references": {
     "item": {
       "expressions": {
-        "label": "'Item ' + (data.index + 1)"
+        "label": "'Item ' + (data.index + 1)",
+        "disabled": "(data.root.model.disabledItems|| []).indexOf(data.index + 1) >= 0"
       }
     },
     "items": {
+      "template": {
+        "selectionStrategy": "first"
+      },
       "children": [
         {
           "reference": "item",
@@ -55,6 +59,33 @@
     }
   },
   "children": [
+    {
+      "key": "disabledItems",
+      "type": "control",
+      "template": {
+        "label": "Disabled items",
+        "input": {
+          "type": "select",
+          "placeholder": "Disable an item",
+          "multiple": true,
+          "defaultValue": [ 3, 4 ],
+          "options": [
+            {
+              "value": 2,
+              "label": "Item 2"
+            },
+            {
+              "value": 3,
+              "label": "Item 3"
+            },
+            {
+              "value": 4,
+              "label": "Item 4"
+            }
+          ]
+        }
+      }
+    },
     {
       "reference": "items",
       "type": "accordion"
