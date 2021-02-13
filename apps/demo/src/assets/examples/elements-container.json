@@ -2,13 +2,13 @@
   "template": {
     "className": "grid"
   },
-  "children":[
+  "children": [
     {
       "type": "container",
       "template": {
         "orientation": "row"
       },
-      "children":[
+      "children": [
         {
           "type": "content",
           "template": {
