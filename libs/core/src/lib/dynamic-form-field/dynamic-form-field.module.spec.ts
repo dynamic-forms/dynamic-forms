@@ -101,7 +101,7 @@ describe('DynamicFormFieldModule', () => {
       const handler = service.handlers.find(h => h.type === 'submit');
       const form = { submit(): void {} } as DynamicForm;
       const field = {} as DynamicFormField;
-      const action = { root: form, parent: field } as DynamicFormAction;
+      const action = { root: form, parent: field as DynamicFormElement } as DynamicFormAction;
 
       spyOn(form, 'submit');
 

@@ -41,7 +41,7 @@
       }
     }
   ],
-  "children":[
+  "children": [
     {
       "key": "email",
       "type": "control",

@@ -2,7 +2,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
@@ -21,12 +20,8 @@ export class DynamicFormAction<
 
   protected _dialog: DynamicForm;
 
-  constructor(
-    readonly root: DynamicForm,
-    readonly parent: DynamicFormElement | DynamicFormAction | DynamicFormField,
-    definition: Definition
-  ) {
-    super(definition);
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(root, parent, definition);
     this._dialogOpenSubject = new BehaviorSubject(false);
     this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
   }
@@ -61,10 +56,8 @@ export class DynamicFormAction<
   }
 
   protected createExpressionData(): DynamicFormActionExpressionData {
-    const expressionData = {} as DynamicFormActionExpressionData;
+    const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
-      root: () => this.root ? this.root.expressionData : undefined,
-      parent: () => this.parent ? this.parent.expressionData : undefined,
       dialog: () => this.dialog ? this.dialog.expressionData : undefined
     });
     return expressionData;

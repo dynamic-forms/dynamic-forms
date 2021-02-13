@@ -1,3 +1,4 @@
+import { DoCheck } from '@angular/core';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItems } from './dynamic-form-items';
@@ -8,7 +9,7 @@ export abstract class DynamicFormItemsBase<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
   Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>
-> extends DynamicFormElementBase<Template, Definition, Items> {
+> extends DynamicFormElementBase<Template, Definition, Items> implements DoCheck {
 
   constructor() {
     super();
@@ -18,6 +19,10 @@ export abstract class DynamicFormItemsBase<
 
   get selectedIndex(): number { return this.element.selectedIndex; }
   get selectedItem(): DynamicFormItem { return this.element.selectedItem; }
+
+  ngDoCheck(): void {
+    this.element.check();
+  }
 
   selectItem(index: number): void {
     this.element.selectItem(index);

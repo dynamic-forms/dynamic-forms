@@ -13,6 +13,8 @@ describe('DynamicFormArray', () => {
 
     expect(formArray.root).toBe(form);
     expect(formArray.parent).toBe(form);
+    expect(formArray.parentField).toBe(form);
+
     expect(formArray.definition).toBe(definition);
     expect(formArray.template).toBe(definition.template);
 
@@ -30,6 +32,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.control).toBeTruthy();
 
     expect(formArray.children).toEqual([]);
+    expect(formArray.headerActions).toEqual([]);
     expect(formArray.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: [] });
