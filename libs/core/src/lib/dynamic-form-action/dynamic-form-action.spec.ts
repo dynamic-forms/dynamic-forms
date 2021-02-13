@@ -9,19 +9,20 @@ import { DynamicFormActionExpressions } from './dynamic-form-action-expressions'
 
 describe('DynamicFormAction', () => {
   it('creates instance', () => {
-    const root = {} as DynamicForm;
-    const parent = {} as DynamicFormField;
+    const root = { classType: 'field' } as DynamicForm;
+    const parent = { classType: 'field' } as DynamicFormField;
     const definition = { id: 'id', type: 'componentType', template: {}, children: [] } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(root, parent, definition);
+
+    expect(action.root).toBe(root);
+    expect(action.parent).toBe(parent);
+    expect(action.parentField).toBe(parent);
 
     expect(action.id).toBe('id');
     expect(action.classType).toBe('action');
     expect(action.componentType).toBe('componentType');
     expect(action.definition).toBe(definition);
     expect(action.template).toBe(definition.template);
-
-    expect(action.root).toBe(root);
-    expect(action.parent).toBe(parent);
 
     expect(action.children).toEqual([]);
 

@@ -19,7 +19,7 @@ const getCurrencyOptions = (data, memo) => {
       ];
     }
     return [];
-  })(data.parent.model.currencyPair);
+  })(data.parentField.model.currencyPair);
 };
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
@@ -32,9 +32,10 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = {
       expressionData: {
-        model: {},
-        parent: { model: { currencyPair: 'EUR/USD' } },
         root: {},
+        parent: {},
+        parentField: { model: { currencyPair: 'EUR/USD' } },
+        model: {}
       },
       expressionChangesSubject,
       expressionChanges
@@ -73,7 +74,7 @@ describe('DynamicFormFieldExpression', () => {
     });
     expect(expressionValue2).toBe(expressionValue1);
 
-    field.expressionData.parent.model.currencyPair = 'EUR/GBP';
+    field.expressionData.parentField.model.currencyPair = 'EUR/GBP';
 
     const expressionValue3 = expression.value;
 
@@ -87,7 +88,7 @@ describe('DynamicFormFieldExpression', () => {
       { value: 'GBP', label: 'GBP' }
     ]);
 
-    field.expressionData.parent.model.currencyPair = null;
+    field.expressionData.parentField.model.currencyPair = null;
 
     const expressionValue4 = expression.value;
 
@@ -115,9 +116,10 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = {
       expressionData: {
-        model: null,
-        parent: { model: { currencyPair: 'EUR/USD' } },
-        root: null
+        root: null,
+        parent: null,
+        parentField: { model: { currencyPair: 'EUR/USD' } },
+        model: null
       },
       expressionChangesSubject,
       expressionChanges
@@ -133,9 +135,10 @@ describe('DynamicFormFieldExpression', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const field = {
       expressionData: {
-        model: null,
+        root: null,
         parent: null,
-        root: null
+        parentField: null,
+        model: null
       },
       expressionChangesSubject,
       expressionChanges

@@ -13,10 +13,12 @@ describe('DynamicFormDictionary', () => {
 
     expect(formDictionary.root).toBe(form);
     expect(formDictionary.parent).toBe(form);
-    expect(formDictionary.settings).toBeTruthy();
+    expect(formDictionary.parentField).toBe(form);
 
     expect(formDictionary.definition).toBe(definition);
     expect(formDictionary.template).toBe(definition.template);
+
+    expect(formDictionary.settings).toBeTruthy();
 
     expect(formDictionary.id).toBe('id');
     expect(formDictionary.key).toBe('key');
@@ -32,6 +34,7 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.control).toBeTruthy();
 
     expect(formDictionary.children).toEqual([]);
+    expect(formDictionary.headerActions).toEqual([]);
     expect(formDictionary.footerActions).toEqual([]);
 
     expect(form.model).toEqual({ key: {} });
