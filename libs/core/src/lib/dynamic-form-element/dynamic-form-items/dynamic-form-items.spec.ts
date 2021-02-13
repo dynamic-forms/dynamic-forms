@@ -56,20 +56,66 @@ describe('DynamicFormItems', () => {
     expect(formItems.selectedItem).toBeUndefined();
   });
 
-  it('selects first item being not disabled', () => {
+  it('selects first item', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(root, parent, definition);
     const items = [
-      { classType: 'element', definition: {}, disabled: true } as DynamicFormItem,
-      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem
+      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
+      { classType: 'element', definition: {}, disabled: true } as DynamicFormItem
     ];
 
     formItems.initChildren(items);
 
     expect(formItems.children).toBe(items);
+    expect(formItems.selectedIndex).toBe(0);
+    expect(formItems.selectedItem).toBe(items[0]);
+  });
+
+  it('does not select item being disabled', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
+    const formItems = new DynamicFormItems(root, parent, definition);
+    const items = [
+      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
+      { classType: 'element', definition: {}, disabled: true } as DynamicFormItem
+    ];
+
+    formItems.initChildren(items);
+    formItems.selectItem(1);
+
+    expect(formItems.selectedIndex).toBe(0);
+    expect(formItems.selectedItem).toBe(items[0]);
+  });
+
+  it('check selects first item if selected item gets disabled', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
+    const formItems = new DynamicFormItems(root, parent, definition);
+    const items = [
+      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
+      { classType: 'element', definition: {}, disabled: false } as DynamicFormItem
+    ];
+
+    formItems.initChildren(items);
+    formItems.selectItem(1);
+
     expect(formItems.selectedIndex).toBe(1);
     expect(formItems.selectedItem).toBe(items[1]);
+
+    formItems.check();
+
+    expect(formItems.selectedIndex).toBe(1);
+    expect(formItems.selectedItem).toBe(items[1]);
+
+    (formItems.selectedItem as any).disabled = true;
+
+    formItems.check();
+
+    expect(formItems.selectedIndex).toBe(0);
+    expect(formItems.selectedItem).toBe(items[0]);
   });
 });

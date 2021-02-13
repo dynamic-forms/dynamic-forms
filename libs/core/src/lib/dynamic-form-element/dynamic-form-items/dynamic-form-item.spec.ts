@@ -28,10 +28,8 @@ describe('DynamicFormItem', () => {
   });
 
   it('inits children', () => {
-    const root = {} as DynamicForm;
-    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
-    const formItem = new DynamicFormItem(root, parent, definition);
+    const formItem = new DynamicFormItem({} as DynamicForm, {} as DynamicFormElement, definition);
     const children = [
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
@@ -42,10 +40,8 @@ describe('DynamicFormItem', () => {
   });
 
   it('inits children with empty array', () => {
-    const root = {} as DynamicForm;
-    const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
-    const formItem = new DynamicFormItem(root, parent, definition);
+    const formItem = new DynamicFormItem({} as DynamicForm, {} as DynamicFormElement, definition);
 
     formItem.initChildren(null);
 
@@ -53,11 +49,23 @@ describe('DynamicFormItem', () => {
   });
 
   it('returns expression data with index', () => {
-    const root = {} as DynamicForm;
-    const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', index: 1 } as DynamicFormItemDefinition;
-    const formItem = new DynamicFormItem(root, parent, definition);
+    const formItem = new DynamicFormItem({} as DynamicForm, {} as DynamicFormElement, definition);
 
     expect(formItem.expressionData.index).toBe(1);
+  });
+
+  it('disabled returns true if disabled of template is true', () => {
+    const definition = { id: 'id', type: 'type', index: 1, template: { disabled: true } } as DynamicFormItemDefinition;
+    const formItem = new DynamicFormItem({} as DynamicForm, {} as DynamicFormElement, definition);
+
+    expect(formItem.disabled).toBeTruthy();
+  });
+
+  it('disabled returns false for index being 0 even if disabled of template is true', () => {
+    const definition = { id: 'id', type: 'type', index: 0, template: { disabled: true } } as DynamicFormItemDefinition;
+    const formItem = new DynamicFormItem({} as DynamicForm, {} as DynamicFormElement, definition);
+
+    expect(formItem.disabled).toBeFalsy();
   });
 });

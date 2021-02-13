@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "children":[
+  "children": [
     {
       "key": "items",
       "type": "dictionary",
@@ -28,7 +28,7 @@
             "dialogTitle": "Register item"
           },
           "dialogDefinition": {
-            "children":[
+            "children": [
               {
                 "key": "key",
                 "type": "control",
@@ -83,7 +83,7 @@
         "template": {
           "className": "row"
         },
-        "children":[
+        "children": [
           {
             "key": "id",
             "type": "control",
@@ -148,7 +148,7 @@
                   "dialogTitle": "Register child item"
                 },
                 "dialogDefinition": {
-                  "children":[
+                  "children": [
                     {
                       "key": "key",
                       "type": "control",
@@ -203,7 +203,7 @@
               "template": {
                 "className": "row"
               },
-              "children":[
+              "children": [
                 {
                   "key": "parentId",
                   "type": "control",

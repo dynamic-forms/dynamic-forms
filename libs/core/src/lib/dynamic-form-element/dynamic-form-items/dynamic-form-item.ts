@@ -18,5 +18,5 @@ export class DynamicFormItem<
   get index(): number { return this.definition.index; }
 
   get label(): string { return this.template.label; }
-  get disabled(): boolean { return this.template.disabled; }
+  get disabled(): boolean { return this.index > 0 && this.template.disabled; }
 }

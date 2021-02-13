@@ -22,21 +22,19 @@ export class DynamicFormItems<
 
   initChildren(children: Item[]): void {
     this._children = children || [];
-    this.selectFirstItem();
+    this.selectItem(0);
   }
 
-  selectItem(index?: number): void {
-    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
-      this._selectedIndex = index;
-      this._selectedItem = this._children[index];
-    } else {
-      this._selectedIndex = undefined;
-      this._selectedItem = undefined;
+  check(): void {
+    if (this._selectedItem && this._selectedItem.disabled) {
+      this.selectItem(0);
     }
   }
 
-  selectFirstItem(): void {
-    const itemIndex = this._children.findIndex(item => !item.disabled);
-    this.selectItem(itemIndex);
+  selectItem(index: number): void {
+    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
+      this._selectedIndex = index;
+      this._selectedItem = this._children[index];
+    }
   }
 }

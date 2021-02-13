@@ -48,7 +48,7 @@ describe('DynamicFormField', () => {
     expect(field.id).toBe('id');
     expect(field.key).toBe('key');
     expect(field.index).toBe(1);
-    expect(field.depth).toBe(0);
+    expect(field.depth).toBe(2);
     expect(field.classType).toBe('field');
     expect(field.componentType).toBe('componentType');
 

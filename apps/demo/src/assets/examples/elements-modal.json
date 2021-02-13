@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "children":[
+  "children": [
     {
       "type": "modal",
       "template": {
@@ -23,7 +23,7 @@
           "disabled": "data.parent.isOpen"
         }
       },
-      "children":[
+      "children": [
         {
           "type": "content",
           "template": {
