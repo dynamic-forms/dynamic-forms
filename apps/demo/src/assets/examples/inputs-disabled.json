@@ -2,14 +2,14 @@
   "template": {
     "label": "Inputs disabled / enabled"
   },
-  "children":[
+  "children": [
     {
       "key": "enabled",
       "type": "group",
       "template": {
         "label": "Enabled"
       },
-      "children":[
+      "children": [
         {
           "key": "textbox",
           "type": "control",
@@ -30,7 +30,7 @@
         "label": "Disabled",
         "disabled": true
       },
-      "children":[
+      "children": [
         {
           "key": "checkbox",
           "type": "control",

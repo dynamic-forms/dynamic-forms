@@ -1,12 +1,12 @@
 {
-  "children":[
+  "children": [
     {
       "key": "underlying",
       "type": "group",
       "expressions": {
         "label": "data.model.currencyPair ? `Underlying for ${ data.model.currencyPair }` : 'Underlying'"
       },
-      "children":[
+      "children": [
         {
           "key": "currencyPair",
           "type": "control",

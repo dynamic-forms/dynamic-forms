@@ -1,5 +1,5 @@
 {
-  "children":[
+  "children": [
     {
       "id": "input-hidden",
       "key": "hidden",
@@ -25,7 +25,7 @@
       "expressions": {
         "hidden": "data.root.model.hidden"
       },
-      "children":[
+      "children": [
         {
           "id": "input-disabled",
           "key": "disabled",
@@ -71,7 +71,7 @@
         "disabled": "data.root.model.options.disabled",
         "readonly": "data.root.model.options.readonly"
       },
-      "children":[
+      "children": [
         {
           "key": "email",
           "type": "control",

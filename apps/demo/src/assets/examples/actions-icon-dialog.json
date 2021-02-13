@@ -19,7 +19,7 @@
         "disabled": "data.root.status !== 'VALID'"
       },
       "dialogDefinition": {
-        "children":[
+        "children": [
           {
             "type": "content",
             "template": {
@@ -61,7 +61,7 @@
       }
     }
   ],
-  "children":[
+  "children": [
     {
       "key": "email",
       "type": "control",

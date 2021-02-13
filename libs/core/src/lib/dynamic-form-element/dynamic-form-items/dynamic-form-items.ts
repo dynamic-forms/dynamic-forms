@@ -1,3 +1,4 @@
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
@@ -12,8 +13,8 @@ export class DynamicFormItems<
   protected _selectedIndex: number;
   protected _selectedItem: Item;
 
-  constructor(definition: Definition) {
-    super(definition);
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(root, parent, definition);
   }
 
   get selectedIndex(): number { return this._selectedIndex; }
@@ -21,21 +22,19 @@ export class DynamicFormItems<
 
   initChildren(children: Item[]): void {
     this._children = children || [];
-    this.selectFirstItem();
+    this.selectItem(0);
   }
 
-  selectItem(index?: number): void {
-    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
-      this._selectedIndex = index;
-      this._selectedItem = this._children[index];
-    } else {
-      this._selectedIndex = undefined;
-      this._selectedItem = undefined;
+  check(): void {
+    if (this._selectedItem && this._selectedItem.disabled) {
+      this.selectItem(0);
     }
   }
 
-  selectFirstItem(): void {
-    const itemIndex = this._children.findIndex(item => !item.disabled);
-    this.selectItem(itemIndex);
+  selectItem(index: number): void {
+    if (index >= 0 && index < this._children.length && !this._children[index].disabled) {
+      this._selectedIndex = index;
+      this._selectedItem = this._children[index];
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormItems, DynamicFormLibraryService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormElement, DynamicFormItems, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 import { BsDynamicFormAccordionModule } from './dynamic-form-accordion.module';
 
@@ -21,9 +21,13 @@ describe('BsDynamicFormAccordionComponent', () => {
       ]
     });
 
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const element = new DynamicFormItems(root, parent, { template: {}, children: [] });
+
     fixture = TestBed.createComponent(BsDynamicFormAccordionComponent);
     component = fixture.componentInstance;
-    component.element = new DynamicFormItems({ template: {}, children: [] });
+    component.element = element;
 
     fixture.detectChanges();
   });

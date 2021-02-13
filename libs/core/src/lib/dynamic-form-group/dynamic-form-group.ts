@@ -13,10 +13,10 @@ export class DynamicFormGroup<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition, model: any = null) {
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition, model: any = null) {
     super(root, parent, definition);
     this._control = new FormGroup({});
-    this._model = model || this.getModel(parent, definition);
+    this._model = model || this.getModel(definition);
     this._parameters = {};
   }
 
@@ -61,9 +61,9 @@ export class DynamicFormGroup<
     this._fields.forEach(field => field.validate());
   }
 
-  private getModel(parent: DynamicFormField, definition: DynamicFormGroupDefinition): any {
-    parent.model[definition.key] = parent.model[definition.key] || this.getDefaultModel(definition);
-    return parent.model[definition.key];
+  private getModel(definition: DynamicFormGroupDefinition): any {
+    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
+    return this.parentField.model[definition.key];
   }
 
   private getDefaultModel(definition: DynamicFormGroupDefinition): any {

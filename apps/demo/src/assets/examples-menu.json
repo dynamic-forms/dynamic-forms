@@ -170,6 +170,19 @@
             {
               "id": "elements-items-tabs",
               "label": "Tabs"
+            },
+            {
+              "label": "Disabled",
+              "items": [
+                {
+                  "id": "elements-items-disabled-accordion",
+                  "label": "Accordion"
+                },
+                {
+                  "id": "elements-items-disabled-tabs",
+                  "label": "Tabs"
+                }    
+              ]
             }
           ]
         }

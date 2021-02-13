@@ -1,4 +1,5 @@
 import { FormArray } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -10,9 +11,9 @@ export class DynamicFormArray<
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
 > extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
 
-  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(root, parent, definition);
-    this._model = this.getModel(parent, definition);
+    this._model = this.getModel(definition);
     this._control = new FormArray([]);
     this.extendExpressionData({ length: () => this.length });
   }
@@ -64,7 +65,7 @@ export class DynamicFormArray<
       this._control.clear();
       this._children = [];
       this._model = [];
-      this._parent.model[this.key] = this._model;
+      this.parentField.model[this.key] = this._model;
       this._control.markAsTouched();
     }
   }
@@ -125,9 +126,9 @@ export class DynamicFormArray<
     this._control.markAsTouched();
   }
 
-  private getModel(parent: DynamicFormField, definition: DynamicFormArrayDefinition): any {
-    parent.model[definition.key] = parent.model[definition.key] || this.getDefaultModel(definition);
-    return parent.model[definition.key];
+  private getModel(definition: DynamicFormArrayDefinition): any {
+    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
+    return this.parentField.model[definition.key];
   }
 
   private getDefaultModel(definition: DynamicFormArrayDefinition): any {

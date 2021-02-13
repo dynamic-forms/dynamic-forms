@@ -12,7 +12,7 @@
       "expressions": {
         "label": "'Item - Level ' + ((data.depth) / 2)"
       },
-      "children":[
+      "children": [
         {
           "key": "id",
           "type": "control",
@@ -102,7 +102,7 @@
       }
     }
   },
-  "children":[
+  "children": [
     {
       "key": "items",
       "reference": "items"

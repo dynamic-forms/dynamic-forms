@@ -5,7 +5,7 @@ import { DynamicFormElementExpressionData } from './dynamic-form-element-express
 describe('DynamicFormElementExpression', () => {
   it('get value returns value', () => {
     const values = [];
-    const expressionData = { values } as DynamicFormElementExpressionData;
+    const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
     const element = { expressionData } as DynamicFormElement;
     const expression = new DynamicFormElementExpression('key', element, data => {
       return data.values && data.values.length > 0;
