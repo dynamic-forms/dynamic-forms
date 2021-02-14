@@ -15,7 +15,9 @@ export function getExamples(items: ExamplesMenuItem[], namePrefix?: string): Exa
 
 describe('dynamic-forms demo examples', () => {
   const themes = [ 'bootstrap', 'material' ];
-  const examples = getExamples((examplesConfig as ExamplesMenu).items);
+  const examples = getExamples((examplesConfig as ExamplesMenu).items).filter(item => {
+    return item.id === 'elements-modal';
+  });
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
@@ -48,16 +50,28 @@ describe('dynamic-forms demo examples', () => {
             expect(await page.findForm().isPresent()).toBe(true);
             expect(await page.findElements().count()).toBeGreaterThan(0);
 
-            const controls = page.findControls();
-            const actions = page.findActions();
+            let controls = page.findControls();
+            let controlsCount = await controls.count();
 
-            if (await controls.count() === 0) {
-              expect(await page.findActionsWrapper().isPresent()).toBe(false);
-              expect(await actions.count()).toBe(0);
+            const actions = page.findActions();
+            const actionsCount = await actions.count();
+
+            if (controlsCount === 0 && actionsCount !== 0) {
+              const addFieldButton = page.findAddFieldButton();
+              if (await addFieldButton.isPresent()) {
+                await addFieldButton.click();
+                controls = page.findControls();
+                controlsCount = await controls.count();
+              }
+            }
+
+            if (controlsCount === 0) {
+              expect(await page.findActionWrappers().isPresent()).toBe(false);
+              expect(actionsCount).toBe(0);
             } else {
               const actionButtons = page.findActionButtons();
 
-              expect(await page.findActionsWrapper().isPresent()).toBe(true);
+              expect(await page.findActionWrappers().isPresent()).toBe(true);
               expect(await actions.count()).toBeGreaterThan(0);
               expect(await actionButtons.count()).toBeGreaterThan(0);
 

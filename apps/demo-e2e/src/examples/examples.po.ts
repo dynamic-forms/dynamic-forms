@@ -41,39 +41,44 @@ export class ExamplesPage extends Page {
     return form.all(By.css('div.dynamic-form-control'));
   }
 
-  findActionsWrapper(): ElementFinder {
+  findActionWrappers(): ElementArrayFinder {
     const formElement = this.findForm();
-    return formElement.element(By.css('.dynamic-form-footer'));
+    return formElement.all(By.css('.dynamic-form-header,.dynamic-form-footer'));
   }
 
   findActions(): ElementArrayFinder {
-    const actions = this.findActionsWrapper();
-    return actions.all(By.css('dynamic-form-element'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('dynamic-form-element'));
   }
 
   findActionButtons(): ElementArrayFinder {
-    const actionsWrapper = this.findActionsWrapper();
-    return actionsWrapper.all(By.css('button'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('button'));
   }
 
   findValidateButton(): ElementFinder {
-    const actionsWrapper = this.findActionsWrapper();
-    return actionsWrapper.element(By.css('button[id="action-validate"]'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('button[id="action-validate"]')).first();
   }
 
   findSubmitButton(): ElementFinder {
-    const actionsWrapper = this.findActionsWrapper();
-    return actionsWrapper.element(By.css('button[id="action-submit"]'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('button[id="action-submit"]')).first();
   }
 
   findResetButton(): ElementFinder {
-    const actionsWrapper = this.findActionsWrapper();
-    return actionsWrapper.element(By.css('button[id="action-reset"]'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('button[id="action-reset"]')).first();
   }
 
   findResetDefaultButton(): ElementFinder {
-    const actionsWrapper = this.findActionsWrapper();
-    return actionsWrapper.element(By.css('button[id="action-reset-default"]'));
+    const actionWrappers = this.findActionWrappers();
+    return actionWrappers.all(By.css('button[id="action-reset-default"]')).first();
+  }
+
+  findAddFieldButton(): ElementFinder {
+    const form = this.findForm();
+    return form.element(By.css('button[id*="pushArrayField"],button[id*="registerDictionaryField"]'));
   }
 
   async pressEscape(): Promise<void> {
