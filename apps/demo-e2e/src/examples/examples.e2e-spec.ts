@@ -43,27 +43,42 @@ describe('dynamic-forms demo examples', () => {
 
             expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
 
-            expect(await page.findRoot().isPresent()).toBe(true);
-            expect(await page.findWrapper().isPresent()).toBe(true);
+            expect(await page.findFormRoot().isPresent()).toBe(true);
+            expect(await page.findFormWrapper().isPresent()).toBe(true);
             expect(await page.findForm().isPresent()).toBe(true);
-            expect(await page.findElements().count()).toBeGreaterThan(0);
+            expect(await page.findFormElements().count()).toBeGreaterThan(0);
 
-            const controls = page.findControls();
-            const actions = page.findActions();
+            const actions = page.findFormActions();
+            const actionsCount = await actions.count();
 
-            if (await controls.count() === 0) {
-              expect(await page.findActionsWrapper().isPresent()).toBe(false);
-              expect(await actions.count()).toBe(0);
+            const modalOpenButton = page.findFormModalOpenButton();
+            const modalOpenButtonPresent = await modalOpenButton.isPresent();
+
+            let controls = page.findFormControls();
+            let controlsCount = await controls.count();
+
+            if (actionsCount !== 0 && controlsCount === 0) {
+              const fieldAddButton = page.findFormFieldAddButton();
+              if (await fieldAddButton.isPresent()) {
+                await fieldAddButton.click();
+                controls = page.findFormControls();
+                controlsCount = await controls.count();
+              }
+            }
+
+            if (controlsCount === 0) {
+              expect(await page.findFormActionWrappers().isPresent()).toBe(false);
+              expect(actionsCount).toBe(0);
+
+              if (modalOpenButtonPresent) {
+                await modalOpenButton.click();
+
+                expect(await page.findFormModal().isPresent()).toBe(true);
+              }
             } else {
-              const actionButtons = page.findActionButtons();
-
-              expect(await page.findActionsWrapper().isPresent()).toBe(true);
-              expect(await actions.count()).toBeGreaterThan(0);
-              expect(await actionButtons.count()).toBeGreaterThan(0);
-
-              const validateButton = page.findValidateButton();
-              const resetButton = page.findResetButton();
-              const resetDefaultButton = page.findResetDefaultButton();
+              const validateButton = page.findFormValidateButton();
+              const resetButton = page.findFormResetButton();
+              const resetDefaultButton = page.findFormResetDefaultButton();
 
               if (await validateButton.isPresent()) {
                 await validateButton.click();
@@ -83,6 +98,14 @@ describe('dynamic-forms demo examples', () => {
 
               if (await validateButton.isPresent()) {
                 await validateButton.click();
+              }
+
+              if (modalOpenButtonPresent) {
+                await modalOpenButton.click();
+
+                expect(await page.findFormModal().isPresent()).toBe(true);
+
+                controls = page.findFormModalControls();
               }
 
               const controlCount = await controls.count();
@@ -107,7 +130,14 @@ describe('dynamic-forms demo examples', () => {
                 }
               }
 
-              const submitButton = page.findSubmitButton();
+              if (modalOpenButtonPresent) {
+                const modalCloseButton = page.findFormModalCloseButton();
+                if (await modalCloseButton.isPresent()) {
+                  await modalCloseButton.click();
+                }
+              }
+
+              const submitButton = page.findFormSubmitButton();
               if (await submitButton.isPresent() && await submitButton.isEnabled()) {
                 await submitButton.click();
               }
