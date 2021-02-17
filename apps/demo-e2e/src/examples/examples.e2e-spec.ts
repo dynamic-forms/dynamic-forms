@@ -76,12 +76,6 @@ describe('dynamic-forms demo examples', () => {
                 expect(await page.findFormModal().isPresent()).toBe(true);
               }
             } else {
-              const actionButtons = page.findFormActionButtons();
-
-              expect(await page.findFormActionWrappers().isPresent()).toBe(true);
-              expect(await actions.count()).toBeGreaterThan(0);
-              expect(await actionButtons.count()).toBeGreaterThan(0);
-
               const validateButton = page.findFormValidateButton();
               const resetButton = page.findFormResetButton();
               const resetDefaultButton = page.findFormResetDefaultButton();
