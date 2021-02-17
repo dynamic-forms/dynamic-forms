@@ -273,7 +273,7 @@
             "azure": {
               "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
             },
-            "azure:production": {
+            "azure-production": {
               "devServerTarget": "dynamic-forms-demo:serve:production",
               "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
             }
