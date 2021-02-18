@@ -38,7 +38,7 @@ describe('dynamic-forms demo examples', () => {
           : `for example "${example.name}" with id "${example.id}"`;
 
         describe(description, () => {
-          it('has url, title and form', async (done) => {
+          it('has url, title and form', async () => {
             await page.navigateToExample(example);
 
             expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
@@ -50,9 +50,6 @@ describe('dynamic-forms demo examples', () => {
 
             const actions = page.findFormActions();
             const actionsCount = await actions.count();
-
-            const modalOpenButton = page.findFormModalOpenButton();
-            const modalOpenButtonPresent = await modalOpenButton.isPresent();
 
             let controls = page.findFormControls();
             let controlsCount = await controls.count();
@@ -70,6 +67,8 @@ describe('dynamic-forms demo examples', () => {
               expect(await page.findFormActionWrappers().isPresent()).toBe(false);
               expect(actionsCount).toBe(0);
 
+              const modalOpenButton = page.findFormModalOpenButton();
+              const modalOpenButtonPresent = await modalOpenButton.isPresent();
               if (modalOpenButtonPresent) {
                 await modalOpenButton.click();
 
@@ -100,6 +99,8 @@ describe('dynamic-forms demo examples', () => {
                 await validateButton.click();
               }
 
+              const modalOpenButton = page.findFormModalOpenButton();
+              const modalOpenButtonPresent = await modalOpenButton.isPresent();
               if (modalOpenButtonPresent) {
                 await modalOpenButton.click();
 
@@ -123,7 +124,6 @@ describe('dynamic-forms demo examples', () => {
                 if (isEditable) {
                   if (!await input.getInputValue() || await input.isInputForFalse()) {
                     await input.editInputValue();
-                    await page.pressEscape();
                   }
 
                   expect(await input.checkInputValue()).toBe(true);
@@ -142,9 +142,7 @@ describe('dynamic-forms demo examples', () => {
                 await submitButton.click();
               }
             }
-
-            done();
-          }, 60000);
+          });
         });
       });
     });
