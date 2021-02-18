@@ -136,7 +136,7 @@ export class Input {
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
-        return value ? this.inputElement.sendKeys(value, KEY.ESCAPE) : Promise.resolve();
+        return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
     }
   }
 
