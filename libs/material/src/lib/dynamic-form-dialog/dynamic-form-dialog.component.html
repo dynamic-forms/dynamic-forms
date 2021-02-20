@@ -10,14 +10,14 @@
             <div class="modal-title" [ngClass]="classNameTitle">{{title}}</div>
           </ng-template>
           <div class="modal-toolbar" *ngIf="headerActions?.length">
-            <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>      
+            <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>     
           </div> 
         </div>
         <div class="modal-body" [ngClass]="classNameChildren" mat-dialog-content>
-          <dynamic-form-element *ngFor="let child of children" [element]="child"></dynamic-form-element>      
+          <dynamic-form-elements [elements]="children"></dynamic-form-elements>      
         </div>
         <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="classNameFooter" mat-dialog-actions>
-          <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>      
+          <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>    
         </div>    
       </div>  
     </div>

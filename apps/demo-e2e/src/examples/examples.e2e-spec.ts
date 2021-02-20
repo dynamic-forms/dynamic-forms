@@ -68,12 +68,34 @@ describe('dynamic-forms demo examples', () => {
 
             const controls = formModalTestResult.modalControls || formTestResult.controls;
             const controlTestResults = await page.getFormControlTestResults(controls);
-            for (let index = 0; index < controlTestResults.length; index++) {
-              expect(controlTestResults[index].type).toBeTruthy();
-              expect(controlTestResults[index].present).toBe(true);
-              expect(controlTestResults[index].inputPresent).toBe(true);
-              if (controlTestResults[index].inputEditable) {
-                expect(controlTestResults[index].inputValuePassed).toBe(true);
+            for (let controlIndex = 0; controlIndex < controlTestResults.length; controlIndex++) {
+              expect(controlTestResults[controlIndex].type).toBeTruthy();
+              expect(controlTestResults[controlIndex].present).toBe(true);
+              expect(controlTestResults[controlIndex].inputPresent).toBe(true);
+              if (controlTestResults[controlIndex].inputEditable) {
+                expect(controlTestResults[controlIndex].inputValuePassed).toBe(true);
+              }
+            }
+
+            const formItemsTestResult = await page.getFormItemsTestResult();
+            for (let index = 1; index < formItemsTestResult.itemHeaderCount; index++) {
+              const itemHeader = formItemsTestResult.itemHeaders.get(index);
+              const itemHeaderClassName = await itemHeader.getAttribute('class');
+              const itemHeaderPresent = await itemHeader.isPresent();
+              const itemHeaderDisabled = itemHeaderClassName.includes('disabled');
+              if (itemHeaderPresent && !itemHeaderDisabled) {
+                await itemHeader.click();
+              }
+
+              const itemControls = page.getFormControls(formItemsTestResult.items);
+              const itemControlTestResults = await page.getFormControlTestResults(itemControls);
+              for (let itemControlIndex = 0; itemControlIndex < itemControlTestResults.length; itemControlIndex++) {
+                expect(itemControlTestResults[itemControlIndex].type).toBeTruthy();
+                expect(itemControlTestResults[itemControlIndex].present).toBe(true);
+                expect(itemControlTestResults[itemControlIndex].inputPresent).toBe(true);
+                if (itemControlTestResults[itemControlIndex].inputEditable) {
+                  expect(itemControlTestResults[itemControlIndex].inputValuePassed).toBe(true);
+                }
               }
             }
 

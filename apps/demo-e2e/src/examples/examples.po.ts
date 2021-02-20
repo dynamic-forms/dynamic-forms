@@ -32,6 +32,13 @@ export interface FormActionTestResult {
   buttonCount: number;
 }
 
+export interface FormItemsTestResult {
+  items: ElementFinder;
+  itemsPresent: boolean;
+  itemHeaders?: ElementArrayFinder;
+  itemHeaderCount?: number;
+}
+
 export interface FormControlTestResult {
   type: string;
   present: boolean;
@@ -59,7 +66,7 @@ export class ExamplesPage extends Page {
     const formPresent = await form.isPresent();
     const actions = form.all(By.css('.dynamic-form-header,.dynamic-form-footer')).all(By.css('dynamic-form-element'));
     const actionCount = await actions.count();
-    const controls = form.all(By.css('div.dynamic-form-control'));
+    const controls = this.getFormControls(form);
     const controlCount = await controls.count();
     return { rootPresent, wrapperPresent, formPresent, actions, actionCount, controls, controlCount };
   }
@@ -111,10 +118,23 @@ export class ExamplesPage extends Page {
 
     const modal = element(By.css('.dynamic-form-modal'));
     const modalPresent = await modal.isPresent();
-    const modalControls = modalPresent ? modal.all(By.css('div.dynamic-form-control')) : undefined;
+    const modalControls = modalPresent ? this.getFormControls(modal) : undefined;
     const modalCloseButton = modal.all(By.css('button[id*="closeModal"]')).first();
     const modalCloseButtonPresent =  await modalCloseButton.isPresent();
     return { modalPresent, modalControls, modalOpenButton, modalOpenButtonPresent, modalCloseButton, modalCloseButtonPresent };
+  }
+
+  async getFormItemsTestResult(): Promise<FormItemsTestResult> {
+    const form = element(By.css('form.dynamic-form'));
+    const items = form.element(By.css('.dynamic-form-items'));
+    const itemsPresent = await items.isPresent();
+    if (!itemsPresent) {
+      return { items, itemsPresent };
+    }
+
+    const itemHeaders = items.all(By.css('.dynamic-form-item-header'));
+    const itemHeaderCount = await itemHeaders.count();
+    return { items, itemsPresent, itemHeaders, itemHeaderCount };
   }
 
   async getFormControlTestResults(controls: ElementArrayFinder): Promise<FormControlTestResult[]> {
@@ -143,6 +163,10 @@ export class ExamplesPage extends Page {
       return { ...result, inputValuePassed: await input.checkInputValue() };
     }
     return result;
+  }
+
+  getFormControls(formElement: ElementFinder): ElementArrayFinder {
+    return formElement.all(By.css('div.dynamic-form-control'));
   }
 
   findFormFieldAddButton(): ElementFinder {
