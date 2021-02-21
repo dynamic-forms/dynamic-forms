@@ -13,10 +13,8 @@ export function getExamples(items: ExamplesMenuItem[], namePrefix?: string): Exa
 }
 
 describe('dynamic-forms demo examples', () => {
-  const themes = [ 'bootstrap', 'material' ].slice(1);
-  const examples = getExamples((examplesConfig as ExamplesMenu).items).filter(item => {
-    return item.id === 'definition-control-accordion' || item.id === 'definition-control-tabs';
-  });
+  const themes = [ 'bootstrap', 'material' ];
+  const examples = getExamples((examplesConfig as ExamplesMenu).items);
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
