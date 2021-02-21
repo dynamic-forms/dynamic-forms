@@ -33,7 +33,7 @@ export interface FormActionTestResult {
 }
 
 export interface FormItemsTestResult {
-  items: ElementFinder;
+  items?: ElementFinder;
   itemsPresent: boolean;
   itemHeaders?: ElementArrayFinder;
   itemHeaderCount?: number;
@@ -163,6 +163,10 @@ export class ExamplesPage extends Page {
       return { ...result, inputValuePassed: await input.checkInputValue() };
     }
     return result;
+  }
+
+  getFormItemLast(formItems: ElementFinder): ElementFinder {
+    return formItems.all(By.css('.dynamic-form-item')).last();
   }
 
   getFormControls(formElement: ElementFinder): ElementArrayFinder {

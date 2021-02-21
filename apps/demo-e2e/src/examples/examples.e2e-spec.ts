@@ -13,8 +13,10 @@ export function getExamples(items: ExamplesMenuItem[], namePrefix?: string): Exa
 }
 
 describe('dynamic-forms demo examples', () => {
-  const themes = [ 'bootstrap', 'material' ];
-  const examples = getExamples((examplesConfig as ExamplesMenu).items);
+  const themes = [ 'bootstrap', 'material' ].slice(1);
+  const examples = getExamples((examplesConfig as ExamplesMenu).items).filter(item => {
+    return item.id === 'definition-control-accordion' || item.id === 'definition-control-tabs';
+  });
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
@@ -78,8 +80,8 @@ describe('dynamic-forms demo examples', () => {
             }
 
             const formItemsTestResult = await page.getFormItemsTestResult();
-            for (let index = 1; index < formItemsTestResult.itemHeaderCount; index++) {
-              const itemHeader = formItemsTestResult.itemHeaders.get(index);
+            for (let headerIndex = 1; headerIndex < formItemsTestResult.itemHeaderCount; headerIndex++) {
+              const itemHeader = formItemsTestResult.itemHeaders.get(headerIndex);
               const itemHeaderClassName = await itemHeader.getAttribute('class');
               const itemHeaderPresent = await itemHeader.isPresent();
               const itemHeaderDisabled = itemHeaderClassName.includes('disabled');
@@ -87,7 +89,8 @@ describe('dynamic-forms demo examples', () => {
                 await itemHeader.click();
               }
 
-              const itemControls = page.getFormControls(formItemsTestResult.items);
+              const item = page.getFormItemLast(formItemsTestResult.items);
+              const itemControls = page.getFormControls(item);
               const itemControlTestResults = await page.getFormControlTestResults(itemControls);
               for (let itemControlIndex = 0; itemControlIndex < itemControlTestResults.length; itemControlIndex++) {
                 expect(itemControlTestResults[itemControlIndex].type).toBeTruthy();
