@@ -3,15 +3,15 @@
     <div class="dynamic-form-header" *ngIf="template.label || headerActions?.length" [ngClass]="template.classNameHeader">
       <div class="dynamic-form-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
       <div class="dynamic-form-toolbar" *ngIf="headerActions?.length" >
-        <dynamic-form-element *ngFor="let action of headerActions" [element]="action"></dynamic-form-element>
+        <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
       </div>
     </div>
     <div class="dynamic-form-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
-      <dynamic-form-element *ngFor="let child of children" [element]="child"></dynamic-form-element>
+      <dynamic-form-elements [elements]="children"></dynamic-form-elements>
     </div>
     <div class="dynamic-form-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
     <div class="dynamic-form-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
-      <dynamic-form-element *ngFor="let action of footerActions" [element]="action"></dynamic-form-element>
+      <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
     </div>
   </form>
 </div>
