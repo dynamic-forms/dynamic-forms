@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
-import { DynamicFormElementComponent } from '../dynamic-form-element.component';
 import { DynamicFormContainerDefinition } from './dynamic-form-container-definition';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 import { DynamicFormContainerComponent } from './dynamic-form-container.component';
+import { DynamicFormContainerModule } from './dynamic-form-container.module';
 
 describe('DynamicFormContainerComponent', () => {
   let fixture: ComponentFixture<DynamicFormContainerComponent>;
@@ -14,10 +14,7 @@ describe('DynamicFormContainerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormElementComponent,
-        DynamicFormContainerComponent
-      ]
+      imports: [ DynamicFormContainerModule ]
     });
 
     const root = {} as DynamicForm;

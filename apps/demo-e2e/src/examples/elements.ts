@@ -129,14 +129,14 @@ export class Input {
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'select':
         const keys = this.control.theme !== 'material'
-          ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER ]
-          : [ KEY.ARROW_DOWN, KEY.ENTER ];
+          ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ]
+          : [ KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ];
         await this.inputElement.click();
         return this.inputElement.sendKeys(...keys);
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);
-        return value ? this.inputElement.sendKeys(value) : Promise.resolve();
+        return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
     }
   }
 
