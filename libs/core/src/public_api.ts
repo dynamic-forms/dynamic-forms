@@ -95,6 +95,7 @@ export * from './lib/dynamic-form-element/dynamic-form-element-template';
 export * from './lib/dynamic-form-element/dynamic-form-element-type';
 export * from './lib/dynamic-form-element/dynamic-form-element-type-config';
 export * from './lib/dynamic-form-element/dynamic-form-element.component';
+export * from './lib/dynamic-form-element/dynamic-form-elements.component';
 export * from './lib/dynamic-form-element/dynamic-form-element.module';
 export * from './lib/dynamic-form-element/dynamic-form-container/dynamic-form-container-definition';
 export * from './lib/dynamic-form-element/dynamic-form-container/dynamic-form-container-template';
