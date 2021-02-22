@@ -1,5 +1,4 @@
 import { ExamplesMenu, ExamplesMenuItem } from 'apps/demo/src/app/layout/header/examples-menu/examples-menu';
-import { Control } from './elements';
 import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
@@ -38,113 +37,78 @@ describe('dynamic-forms demo examples', () => {
           : `for example "${example.name}" with id "${example.id}"`;
 
         describe(description, () => {
-          it('has url, title and form', async (done) => {
+          it('has url, title and form', async () => {
             await page.navigateToExample(example);
 
-            expect(await page.getUrl()).toContain(`/examples/${theme}/${example.id}`);
+            const url = await page.getUrl();
 
-            expect(await page.findFormRoot().isPresent()).toBe(true);
-            expect(await page.findFormWrapper().isPresent()).toBe(true);
-            expect(await page.findForm().isPresent()).toBe(true);
-            expect(await page.findFormElements().count()).toBeGreaterThan(0);
+            expect(url).toContain(`/examples/${theme}/${example.id}`);
 
-            const actions = page.findFormActions();
-            const actionsCount = await actions.count();
+            const formTestResult = await page.getFormTestResult();
+            expect(formTestResult.rootPresent).toBe(true);
+            expect(formTestResult.wrapperPresent).toBe(true);
+            expect(formTestResult.formPresent).toBe(true);
 
-            const modalOpenButton = page.findFormModalOpenButton();
-            const modalOpenButtonPresent = await modalOpenButton.isPresent();
-
-            let controls = page.findFormControls();
-            let controlsCount = await controls.count();
-
-            if (actionsCount !== 0 && controlsCount === 0) {
-              const fieldAddButton = page.findFormFieldAddButton();
-              if (await fieldAddButton.isPresent()) {
-                await fieldAddButton.click();
-                controls = page.findFormControls();
-                controlsCount = await controls.count();
+            if (formTestResult.actionCount !== 0 && formTestResult.controlCount === 0) {
+              const formFieldAddButton = page.findFormFieldAddButton();
+              if (await formFieldAddButton.isPresent()) {
+                await formFieldAddButton.click();
               }
             }
 
-            if (controlsCount === 0) {
-              expect(await page.findFormActionWrappers().isPresent()).toBe(false);
-              expect(actionsCount).toBe(0);
+            const formActionTestResult = await page.getFormActionTestResult();
+            expect(formActionTestResult.actionCount).toBe(formTestResult.actionCount);
+            expect(formActionTestResult.buttonCount).toBe(formTestResult.actionCount);
 
-              if (modalOpenButtonPresent) {
-                await modalOpenButton.click();
+            const formModalTestResult = await page.getFormModalTestResults();
+            if (formModalTestResult.modalOpenButtonPresent) {
+              expect(formModalTestResult.modalPresent).toBe(true);
+              expect(formModalTestResult.modalCloseButtonPresent).toBe(true);
+            }
 
-                expect(await page.findFormModal().isPresent()).toBe(true);
-              }
-            } else {
-              const validateButton = page.findFormValidateButton();
-              const resetButton = page.findFormResetButton();
-              const resetDefaultButton = page.findFormResetDefaultButton();
-
-              if (await validateButton.isPresent()) {
-                await validateButton.click();
-              }
-
-              if (await resetButton.isPresent() && await resetButton.isEnabled()) {
-                await resetButton.click();
-              }
-
-              if (await validateButton.isPresent()) {
-                await validateButton.click();
-              }
-
-              if (await resetDefaultButton.isPresent() && await resetDefaultButton.isEnabled()) {
-                await resetDefaultButton.click();
-              }
-
-              if (await validateButton.isPresent()) {
-                await validateButton.click();
-              }
-
-              if (modalOpenButtonPresent) {
-                await modalOpenButton.click();
-
-                expect(await page.findFormModal().isPresent()).toBe(true);
-
-                controls = page.findFormModalControls();
-              }
-
-              const controlCount = await controls.count();
-              for (let index = 0; index < controlCount; index++) {
-                const control = new Control(controls.get(index), theme);
-
-                expect(await control.isPresent()).toBe(true);
-                expect(await control.getControlType()).toBeTruthy();
-
-                const input = await control.getInput();
-
-                expect(await input.isPresent()).toBe(true);
-
-                const isEditable = await input.isEditable();
-                if (isEditable) {
-                  if (!await input.getInputValue() || await input.isInputForFalse()) {
-                    await input.editInputValue();
-                    await page.pressEscape();
-                  }
-
-                  expect(await input.checkInputValue()).toBe(true);
-                }
-              }
-
-              if (modalOpenButtonPresent) {
-                const modalCloseButton = page.findFormModalCloseButton();
-                if (await modalCloseButton.isPresent()) {
-                  await modalCloseButton.click();
-                }
-              }
-
-              const submitButton = page.findFormSubmitButton();
-              if (await submitButton.isPresent() && await submitButton.isEnabled()) {
-                await submitButton.click();
+            const controls = formModalTestResult.modalControls || formTestResult.controls;
+            const controlTestResults = await page.getFormControlTestResults(controls);
+            for (let controlIndex = 0; controlIndex < controlTestResults.length; controlIndex++) {
+              expect(controlTestResults[controlIndex].type).toBeTruthy();
+              expect(controlTestResults[controlIndex].present).toBe(true);
+              expect(controlTestResults[controlIndex].inputPresent).toBe(true);
+              if (controlTestResults[controlIndex].inputEditable) {
+                expect(controlTestResults[controlIndex].inputValuePassed).toBe(true);
               }
             }
 
-            done();
-          }, 60000);
+            const formItemsTestResult = await page.getFormItemsTestResult();
+            for (let headerIndex = 1; headerIndex < formItemsTestResult.itemHeaderCount; headerIndex++) {
+              const itemHeader = formItemsTestResult.itemHeaders.get(headerIndex);
+              const itemHeaderClassName = await itemHeader.getAttribute('class');
+              const itemHeaderPresent = await itemHeader.isPresent();
+              const itemHeaderDisabled = itemHeaderClassName.includes('disabled');
+              if (itemHeaderPresent && !itemHeaderDisabled) {
+                await itemHeader.click();
+              }
+
+              const item = page.getFormItemLast(formItemsTestResult.items);
+              const itemControls = page.getFormControls(item);
+              const itemControlTestResults = await page.getFormControlTestResults(itemControls);
+              for (let itemControlIndex = 0; itemControlIndex < itemControlTestResults.length; itemControlIndex++) {
+                expect(itemControlTestResults[itemControlIndex].type).toBeTruthy();
+                expect(itemControlTestResults[itemControlIndex].present).toBe(true);
+                expect(itemControlTestResults[itemControlIndex].inputPresent).toBe(true);
+                if (itemControlTestResults[itemControlIndex].inputEditable) {
+                  expect(itemControlTestResults[itemControlIndex].inputValuePassed).toBe(true);
+                }
+              }
+            }
+
+            if (formTestResult.controlCount !== 0 && formModalTestResult.modalCloseButtonPresent) {
+              await formModalTestResult.modalCloseButton.click();
+            }
+
+            const submitButton = page.findFormSubmitButton();
+            if (await submitButton.isPresent() && await submitButton.isEnabled()) {
+              await submitButton.click();
+            }
+          });
         });
       });
     });
