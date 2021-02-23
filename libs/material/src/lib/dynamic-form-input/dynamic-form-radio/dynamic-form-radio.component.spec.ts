@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormRadio, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('MatDynamicFormRadioComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormRadio>;
   let formControl: DynamicFormControl<DynamicFormRadio>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormRadioModule
@@ -30,8 +30,8 @@ describe('MatDynamicFormRadioComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormRadioComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormRadio>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -42,30 +42,30 @@ describe('MatDynamicFormRadioComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormRadio>;
     formControl = new DynamicFormControl<DynamicFormRadio>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const radioDebugElement = fixture.debugElement.query(By.css('mat-radio-group'));
     const inputDebugElements = radioDebugElement.queryAll(By.css('input.mat-radio-input'));
     const labelDebugElements = radioDebugElement.queryAll(By.css('span.mat-radio-label-content'));
-    const radioElement = <HTMLElement>radioDebugElement.nativeElement;
-    const inputElements = <HTMLInputElement[]>inputDebugElements.map(elem => elem.nativeElement);
-    const labelElements = <HTMLDivElement[]>labelDebugElements.map(elem => elem.nativeElement);
+    const radioElement = radioDebugElement.nativeElement as HTMLElement;
+    const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
+    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLDivElement[];
 
-    expect(radioElement).toBeDefined();
+    expect(radioElement).toBeTruthy();
     expect(inputElements.length).toBe(3);
     expect(inputElements[0].id).toBe(`key-0-input`);
     expect(inputElements[0].type).toBe('radio');

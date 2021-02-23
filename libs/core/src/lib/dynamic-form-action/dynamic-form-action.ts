@@ -1,32 +1,27 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormClassType } from '../dynamic-form-config/dynamic-form-class-type';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormActionExpressionData } from '../dynamic-form-expression/dynamic-form-action-expression-data';
-import { DynamicFormActionExpressions } from '../dynamic-form-expression/dynamic-form-action-expressions';
 import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
+import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
+import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 
 export class DynamicFormAction<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>
-> extends DynamicFormElement<Template, Definition, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
+> extends DynamicFormElement<Template, Definition, undefined, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
 
   private _dialogOpenSubject: BehaviorSubject<boolean>;
   private _dialogOpenChanges: Observable<boolean>;
 
   protected _dialog: DynamicForm;
 
-  constructor(
-    readonly root: DynamicForm,
-    readonly parent: DynamicFormElement | DynamicFormAction | DynamicFormField,
-    definition: Definition
-  ) {
-    super(definition);
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(root, parent, definition);
     this._dialogOpenSubject = new BehaviorSubject(false);
     this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
   }
@@ -40,7 +35,7 @@ export class DynamicFormAction<
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
   get dialog(): DynamicForm { return this._dialog; }
-  get dialogElements(): DynamicFormElement[] { return this._dialog.elements; }
+  get dialogChildren(): DynamicFormElement[] { return this._dialog.children; }
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
@@ -61,10 +56,8 @@ export class DynamicFormAction<
   }
 
   protected createExpressionData(): DynamicFormActionExpressionData {
-    const expressionData = {} as DynamicFormActionExpressionData;
+    const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
-      root: () => this.root ? this.root.expressionData : undefined,
-      parent: () => this.parent ? this.parent.expressionData : undefined,
       dialog: () => this.dialog ? this.dialog.expressionData : undefined
     });
     return expressionData;

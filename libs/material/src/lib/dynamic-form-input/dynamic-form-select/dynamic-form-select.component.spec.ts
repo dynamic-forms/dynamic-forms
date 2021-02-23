@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSelect } from '@angular/material/select';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,7 @@ describe('MatDynamicFormSelectComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSelect>;
   let formControl: DynamicFormControl<DynamicFormSelect>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSelectModule,
@@ -33,8 +33,8 @@ describe('MatDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormSelect>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         label: 'label',
@@ -64,33 +64,33 @@ describe('MatDynamicFormSelectComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormSelect>;
     formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const selectDebugElement = fieldDebugElement.query(By.css('mat-select'));
-    const selectComponent = <MatSelect>selectDebugElement.componentInstance;
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const selectElement = <HTMLElement>selectDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+    const selectComponent = selectDebugElement.componentInstance as MatSelect;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const selectElement = selectDebugElement.nativeElement as HTMLElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
     const optionElements = selectComponent.options.toArray();
     const optionGroupElements = selectComponent.optionGroups.toArray();
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(selectElement.id).toBe(component.inputId);
     expect(optionElements.length).toBe(9);

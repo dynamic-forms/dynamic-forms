@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -15,7 +15,7 @@ describe('DynamicFormGroupComponent', () => {
   let form: DynamicForm;
   let formGroup: DynamicFormGroup;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormGroupModule
@@ -32,40 +32,40 @@ describe('DynamicFormGroupComponent', () => {
     fixture = TestBed.createComponent(DynamicFormGroupComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    formGroup = new DynamicFormGroup(form, form, <DynamicFormGroupDefinition>{
+    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    formGroup = new DynamicFormGroup(form, form, {
       id: 'id',
       key: 'key',
       index: 1,
       template: {
         label: 'label'
       },
-      elements: []
-    });
+      children: []
+    } as DynamicFormGroupDefinition);
     component.field = formGroup;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBe('id');
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.template).toBeDefined();
-    expect(component.control).toBeDefined();
-    expect(component.elements).toEqual([]);
+    expect(component.template).toBeTruthy();
+    expect(component.control).toBeTruthy();
+    expect(component.children).toEqual([]);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
-    const formGroupLabelElement = <HTMLElement>formGroupLabelDebugElement.nativeElement;
+    const formGroupElement = formGroupDebugElement.nativeElement as HTMLElement;
+    const formGroupLabelElement = formGroupLabelDebugElement.nativeElement as HTMLElement;
 
-    expect(formGroupElement).toBeDefined();
-    expect(formGroupLabelElement).toBeDefined();
+    expect(formGroupElement).toBeTruthy();
+    expect(formGroupLabelElement).toBeTruthy();
   });
 
   it('hides dynamic form group label if not defined', () => {
@@ -95,12 +95,12 @@ describe('DynamicFormGroupComponent', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupLabelDebugElement = formGroupDebugElement.query(By.css('div.dynamic-form-group-label.class-name-label'));
 
-    expect(formGroupLabelDebugElement).toBeDefined();
+    expect(formGroupLabelDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form group to hidden', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+    const formGroupElement = formGroupDebugElement.nativeElement as HTMLElement;
 
     expect(formGroupElement.className).toBe('dynamic-form-group');
 
@@ -112,7 +112,7 @@ describe('DynamicFormGroupComponent', () => {
 
   it('sets dynamic form group to readonly', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+    const formGroupElement = formGroupDebugElement.nativeElement as HTMLElement;
 
     expect(formGroupElement.className).toBe('dynamic-form-group');
 
@@ -124,7 +124,7 @@ describe('DynamicFormGroupComponent', () => {
 
   it('sets class name of dynamic form group', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
-    const formGroupElement = <HTMLElement>formGroupDebugElement.nativeElement;
+    const formGroupElement = formGroupDebugElement.nativeElement as HTMLElement;
 
     expect(formGroupElement.className).toBe('dynamic-form-group');
 

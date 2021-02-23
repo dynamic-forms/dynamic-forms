@@ -2,14 +2,14 @@
   "template": {
     "label": "Inputs readonly / editable"
   },
-  "elements": [
+  "children": [
     {
       "key": "editable",
       "type": "group",
       "template": {
         "label": "Editable"
       },
-      "elements": [
+      "children": [
         {
           "key": "textbox",
           "type": "control",
@@ -30,7 +30,7 @@
         "label": "Readonly",
         "readonly": true
       },
-      "elements": [
+      "children": [
         {
           "key": "checkbox",
           "type": "control",

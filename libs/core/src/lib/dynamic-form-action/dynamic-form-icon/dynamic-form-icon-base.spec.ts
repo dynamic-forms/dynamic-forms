@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
@@ -32,7 +32,7 @@ describe('DynamicFormIconBase', () => {
   let component: DynamicFormIconTestComponent;
   let element: DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormIconTestComponent
@@ -49,33 +49,33 @@ describe('DynamicFormIconBase', () => {
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
-    const root = <DynamicForm>{};
-    const parent = <DynamicFormField>{};
-    const template = <DynamicFormIconTemplate>{ label: 'label' };
-    const definition = <DynamicFormIconDefinition>{ type: 'element', template };
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormField;
+    const template = { label: 'label' } as DynamicFormIconTemplate;
+    const definition = { type: 'element', template } as DynamicFormIconDefinition;
     element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
     expect(component.template.label).toBe('label');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement).toBeDefined();
+    expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
     expect(formButtonElement.innerHTML).toBe('label');
   });
 
   it('sets dynamic form icon to hidden', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon');
 
@@ -87,7 +87,7 @@ describe('DynamicFormIconBase', () => {
 
   it('sets class name of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe('dynamic-form-icon');
 
@@ -104,7 +104,7 @@ describe('DynamicFormIconBase', () => {
 
   it('sets type of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = <HTMLButtonElement>formButtonDebugElement.nativeElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.type).toBe('button');
 

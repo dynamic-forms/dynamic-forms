@@ -23,6 +23,7 @@ $dynamic-form-grid-row-margin-bottom: 10px;
       margin-bottom: $dynamic-form-grid-row-margin-bottom;
         
       dynamic-form-element, 
+      dynamic-form-elements,
       dynamic-form-content,
       dynamic-form-container,
       dynamic-form-markdown,
@@ -30,10 +31,10 @@ $dynamic-form-grid-row-margin-bottom: 10px;
       dynamic-form-control,
       dynamic-form-array, 
       dynamic-form-dictionary, 
-      .dynamic-form-elements,
-      .dynamic-form-group-elements,
-      .dynamic-form-array-elements,
-      .dynamic-form-dictionary-elements {
+      .dynamic-form-children,
+      .dynamic-form-group-children,
+      .dynamic-form-array-children,
+      .dynamic-form-dictionary-children {
         display: contents;
       }
   

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('MatDynamicFormSwitchComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
   let formControl: DynamicFormControl<DynamicFormSwitch>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSwitchModule
@@ -30,30 +30,30 @@ describe('MatDynamicFormSwitchComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSwitchComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormSwitch>>{ key: 'key', template: { label: 'label' } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormSwitch>;
     formControl = new DynamicFormControl<DynamicFormSwitch>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
     const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
     const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const labelElement = <HTMLSpanElement>labelDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLSpanElement;
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');
     expect(inputElement.type).toBe('checkbox');
     expect(labelElement.innerText).toBe('label');

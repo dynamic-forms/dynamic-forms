@@ -1,4 +1,4 @@
-<div class="dynamic-form-control" [ngClass]="template?.className ? [ field.inputComponentType, template.className ] : field.inputComponentType" 
-  [class.hidden]="field.hidden" [class.readonly]="field.readonly">
+<div class="dynamic-form-control" [ngClass]="template.className ? [ inputType, template.className ] : inputType" 
+  [class.hidden]="hidden" [class.readonly]="readonly">
   <ng-template #container></ng-template>
 </div>
