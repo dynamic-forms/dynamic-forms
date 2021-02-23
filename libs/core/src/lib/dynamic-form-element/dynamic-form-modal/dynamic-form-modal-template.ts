@@ -7,7 +7,7 @@ export interface DynamicFormModalTemplate extends DynamicFormElementTemplate {
   minWidth?: string;
   maxWidth?: string;
   classNameTitle?: string;
-  classNameElements?: string;
+  classNameChildren?: string;
   classNameHeader?: string;
   classNameFooter?: string;
 }

@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -38,7 +38,7 @@ describe('BsDynamicFormControlLabelComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlLabelComponent>;
   let component: BsDynamicFormControlLabelComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -47,24 +47,24 @@ describe('BsDynamicFormControlLabelComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ inputId: 'inputId', template: { label: 'label' } };
+    component.field = { inputId: 'inputId', template: { label: 'label' } } as any;
 
     const resolver = TestBed.inject(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
-
-  it('creates component', () => {
-    expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
-    const labelDebugElement = fixture.debugElement.query(By.css('label'));
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
+  it('creates component', () => {
+    expect(component).toBeTruthy();
+  });
 
-    expect(labelElement).toBeDefined();
+  it('renders component template', () => {
+    const labelDebugElement = fixture.debugElement.query(By.css('label'));
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
+
+    expect(labelElement).toBeTruthy();
     expect(labelElement.htmlFor).toBe('inputId');
     expect(labelElement.innerText).toBe('label');
   });

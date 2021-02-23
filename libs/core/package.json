@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "9.0.0-next.4",
+  "version": "9.0.0-rc.1",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -16,8 +16,8 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
-    "bootstrap": "^4.5.3",
-    "marked": "^1.2.5",
+    "bootstrap": "^4.6.0",
+    "marked": "^2.0.0",
     "rxjs":  "~6.6.3" 
   },
   "publishConfig": {

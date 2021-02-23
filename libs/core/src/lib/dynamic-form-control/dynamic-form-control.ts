@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
@@ -20,18 +21,19 @@ export class DynamicFormControl<
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormField, definition: Definition) {
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
+    this.extendExpressionData({ input: () => this.input });
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return 'control'; }
 
   get input(): Input { return this.template.input; }
   get inputId(): string { return this.id || this.path; }
-  get inputComponentType(): string { return this.input.type; }
+  get inputType(): string { return this.input.type; }
 
   get evaluators(): DynamicFormControlEvaluator<Input>[] { return this._evaluators; }
 
@@ -70,10 +72,10 @@ export class DynamicFormControl<
   }
 
   private createModel(): any {
-    if (this.parent.model[this.key] === undefined) {
-      this.parent.model[this.key] = this.getDefaultValue();
+    if (this.parentField.model[this.key] === undefined) {
+      this.parentField.model[this.key] = this.getDefaultValue();
     }
-    return this.parent.model[this.key];
+    return this.parentField.model[this.key];
   }
 
   private createControl(): FormControl {
@@ -108,8 +110,8 @@ export class DynamicFormControl<
   }
 
   private setModel(value: any): void {
-    this.parent.model[this.key] = value;
-    this._model = this.parent.model[this.key];
+    this.parentField.model[this.key] = value;
+    this._model = this.parentField.model[this.key];
   }
 
   private setValue(value: any, markAsTouched: boolean): void {
@@ -130,7 +132,7 @@ export class DynamicFormControl<
       return;
     }
 
-    const value = this.parent.model[this.key];
+    const value = this.parentField.model[this.key];
     if (this._control.value !== value || this._model !== value) {
       this.setModel(value);
       this.setValue(value, true);

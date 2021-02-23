@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "types": [],
+    "paths": {
+      "@dynamic-forms/core": [
+        "dist/v9/@dynamic-forms/core"
+      ],
+      "@dynamic-forms/core/*": [
+        "dist/v9/@dynamic-forms/core/*"
+      ],
+      "@dynamic-forms/bootstrap": [
+        "dist/v9/@dynamic-forms/bootstrap"
+      ],
+      "@dynamic-forms/bootstrap/*": [
+        "dist/v9/@dynamic-forms/bootstrap/*"
+      ],
+      "@dynamic-forms/material": [
+        "dist/v9/@dynamic-forms/material"
+      ],
+      "@dynamic-forms/material/*": [
+        "dist/v9/@dynamic-forms/material/*"
+      ]
+    }
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ]
+}

@@ -1,8 +1,9 @@
 import { Component, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
@@ -46,22 +47,25 @@ describe('DynamicFormElementComponent', () => {
   let component: DynamicFormElementComponent;
   let element: DynamicFormElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormElementComponentTestModule
       ]
     });
 
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
+
+    element = new DynamicFormElement(root, parent, definition);
+
     fixture = TestBed.createComponent(DynamicFormElementComponent);
     component = fixture.componentInstance;
-
-    const definition = <DynamicFormElementDefinition>{ type: 'element', template: {} };
-    element = new DynamicFormElement(definition);
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
@@ -69,10 +73,10 @@ describe('DynamicFormElementComponent', () => {
     expect(component.template).toBe(element.template);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formElementDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-element'));
-    const formElementElement = <HTMLElement>formElementDebugElement.nativeElement;
+    const formElementElement = formElementDebugElement.nativeElement as HTMLElement;
 
-    expect(formElementElement).toBeDefined();
+    expect(formElementElement).toBeTruthy();
   });
 });

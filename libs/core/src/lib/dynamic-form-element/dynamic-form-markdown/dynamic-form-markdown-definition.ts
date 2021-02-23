@@ -6,4 +6,5 @@ export interface DynamicFormMarkdownDefinition<
   Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate
 > extends DynamicFormElementDefinition<Template> {
   options?: DynamicFormMarkdownOptions;
+  children?: undefined;
 }

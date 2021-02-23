@@ -1,19 +1,22 @@
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 
-class DynamicFormElementBaseTest extends DynamicFormElementBase {}
+class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 describe('DynamicFormElementBase', () => {
-  let component: DynamicFormElementBaseTest;
+  let component: DynamicFormElementTestComponent;
 
   beforeEach(() => {
-    component = new DynamicFormElementBaseTest();
+    component = new DynamicFormElementTestComponent();
   });
 
   it('returns properties of element', () => {
-    const definition = <DynamicFormElementDefinition>{ id: 'id', type: 'element', template: {} };
-    const element = new DynamicFormElement(definition);
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormElementDefinition;
+    const element = new DynamicFormElement(root, parent, definition);
 
     component.element = element;
 

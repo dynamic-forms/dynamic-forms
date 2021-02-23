@@ -30,7 +30,7 @@ export abstract class DynamicFormActionBase<
   get dialogTemplate(): DynamicFormTemplate { return this.action.dialogTemplate; }
 
   get dialog(): DynamicForm { return this.action.dialog; }
-  get dialogElements(): DynamicFormElement[] { return this.action.dialogElements; }
+  get dialogChildren(): DynamicFormElement[] { return this.action.dialogChildren; }
   get dialogHeaderActions(): DynamicFormAction[] { return this.action.dialogHeaderActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this.action.dialogFooterActions; }
 

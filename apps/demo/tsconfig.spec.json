@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.spec.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/spec",
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "paths": {
+      "@dynamic-forms/core": [
+        "dist/v9/@dynamic-forms/core"
+      ],
+      "@dynamic-forms/core/*": [
+        "dist/v9/@dynamic-forms/core/*"
+      ],
+      "@dynamic-forms/bootstrap": [
+        "dist/v9/@dynamic-forms/bootstrap"
+      ],
+      "@dynamic-forms/bootstrap/*": [
+        "dist/v9/@dynamic-forms/bootstrap/*"
+      ],
+      "@dynamic-forms/material": [
+        "dist/v9/@dynamic-forms/material"
+      ],
+      "@dynamic-forms/material/*": [
+        "dist/v9/@dynamic-forms/material/*"
+      ]
+    }
+  },
+  "files": [
+    "src/test.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

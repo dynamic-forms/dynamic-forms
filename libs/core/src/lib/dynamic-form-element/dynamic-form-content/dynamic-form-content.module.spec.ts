@@ -1,11 +1,11 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService } from '../../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormContentType, DynamicFormContentModule } from './dynamic-form-content.module';
 
 describe('DynamicFormContentModule', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormContentModule
@@ -17,7 +17,7 @@ describe('DynamicFormContentModule', () => {
         }
       ]
     });
-  }));
+  });
 
   it('provides DYNAMIC_FORM_ELEMENT_TYPES',
     inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {

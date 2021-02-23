@@ -1,49 +1,51 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormContentDefinition } from './dynamic-form-content-definition';
 import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 import { DynamicFormContentComponent } from './dynamic-form-content.component';
+import { DynamicFormContentModule } from './dynamic-form-content.module';
 
 describe('DynamicFormContentComponent', () => {
   let fixture: ComponentFixture<DynamicFormContentComponent>;
   let component: DynamicFormContentComponent;
   let element: DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormContentComponent
-      ]
+      imports: [ DynamicFormContentModule ]
     });
+
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const template = { content: '<span>Content</span>' } as DynamicFormContentTemplate;
+    const definition = { type: 'element', template } as DynamicFormContentDefinition;
+    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>(root, parent, definition);
 
     fixture = TestBed.createComponent(DynamicFormContentComponent);
     component = fixture.componentInstance;
-
-    const template = <DynamicFormContentTemplate>{ content: '<span>Content</span>' };
-    const definition = <DynamicFormContentDefinition>{ type: 'element', template };
-    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>(definition);
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
     expect(component.content).toBe('<span>Content</span>');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
-    const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
+    const formContentElement = formContentDebugElement.nativeElement as HTMLElement;
 
-    expect(formContentElement).toBeDefined();
+    expect(formContentElement).toBeTruthy();
     expect(formContentElement.innerHTML).toBe('<span>Content</span>');
   });
 
   it('sets class name of dynamic form content', () => {
     const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
-    const formContentElement = <HTMLElement>formContentDebugElement.nativeElement;
+    const formContentElement = formContentDebugElement.nativeElement as HTMLElement;
 
     expect(formContentElement.className).toBe('dynamic-form-content');
 
