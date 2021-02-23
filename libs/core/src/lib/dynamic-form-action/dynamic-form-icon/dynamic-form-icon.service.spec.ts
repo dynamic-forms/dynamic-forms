@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormIconConfig, DynamicFormIconConfigs,
   DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
@@ -7,7 +7,7 @@ import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconService', () => {
   describe('without inco config', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -17,7 +17,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config being empty',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
@@ -30,7 +30,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'required' };
+        const template = { icon: 'required' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('required');
@@ -46,7 +46,7 @@ describe('DynamicFormIconService', () => {
       libraryName: 'test'
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -60,7 +60,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
@@ -70,7 +70,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon being undefined',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{};
+        const template = {} as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBeUndefined();
@@ -79,7 +79,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon not being mapped',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'pattern' };
+        const template = { icon: 'pattern' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('pattern');
@@ -88,7 +88,7 @@ describe('DynamicFormIconService', () => {
 
     it('returns icon being mapped from config',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        const template = <DynamicFormIconTemplate>{ icon: 'required' };
+        const template = { icon: 'required' } as DynamicFormIconTemplate;
         const icon = service.getIcon(template);
 
         expect(icon).toBe('icon-required');
@@ -122,7 +122,7 @@ describe('DynamicFormIconService', () => {
       }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -139,7 +139,7 @@ describe('DynamicFormIconService', () => {
           DynamicFormIconService
         ]
       });
-    }));
+    });
 
     it('returns icon config being empty',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {

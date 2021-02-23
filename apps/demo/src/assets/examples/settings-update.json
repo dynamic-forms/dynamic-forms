@@ -2,7 +2,7 @@
   "template": {
     "label": "Update strategy"
   },
-  "elements": [
+  "children": [
     {
       "key": "name",
       "type": "control",
@@ -22,7 +22,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Max \" + (data.model || \"\").length + \"\/20\""
+        "hints.hintEnd": "'Max ' + (data.model || '').length + '/20'"
       },
       "settings": {
         "updateType": "change"
@@ -47,7 +47,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Length \" + (data.model || \"\").length"
+        "hints.hintEnd": "'Length ' + (data.model || '').length"
       },
       "settings": {
         "updateType": "debounce"
@@ -73,7 +73,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+        "hints.hintEnd": "(function() { var length = (data.model || '').length; return 'Min ' + length + '/6, Max ' + length + '/20'; })()"
       },
       "settings": {
         "updateType": "debounce",
@@ -100,7 +100,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "(function() { var length = (data.model || \"\").length; return \"Min \" + length + \"\/6, Max \" + length + \"\/20\"; })()"
+        "hints.hintEnd": "(function() { var length = (data.model || '').length; return 'Min ' + length + '/6, Max ' + length + '/20'; })()"
       },
       "settings": {
         "updateType": "blur"
@@ -120,7 +120,7 @@
         }
       },
       "expressions": {
-        "hints.hintEnd": "\"Length \" + (data.model || \"\").length"
+        "hints.hintEnd": "'Length ' + (data.model || '').length"
       },
       "settings": {
         "updateType": "submit"

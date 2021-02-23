@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
+import { DynamicFormActionExpression } from '../dynamic-form-action/dynamic-form-action-expression';
+import { DynamicFormActionExpressionFunc } from '../dynamic-form-action/dynamic-form-action-expression-func';
+import { DynamicFormActionExpressions } from '../dynamic-form-action/dynamic-form-action-expressions';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
-import { DynamicFormActionExpression, DynamicFormActionExpressionFunc } from './dynamic-form-action-expression';
-import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
-import { DynamicFormElementExpression, DynamicFormElementExpressionFunc } from './dynamic-form-element-expression';
-import { DynamicFormElementExpressions } from './dynamic-form-element-expressions';
+import { DynamicFormElementExpression } from '../dynamic-form-element/dynamic-form-element-expression';
+import { DynamicFormElementExpressionFunc } from '../dynamic-form-element/dynamic-form-element-expression-func';
+import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-field-expression';
+import { DynamicFormFieldExpressionFunc } from '../dynamic-form-field/dynamic-form-field-expression-func';
+import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { dynamicFormExpressionArgs } from './dynamic-form-expression';
-import { DynamicFormFieldExpression, DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression';
-import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 
 @Injectable()
 export class DynamicFormExpressionBuilder {
@@ -67,6 +70,6 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createExpressionFunction<Func extends Function>(expression: string): Func {
-    return <Func>new Function(...dynamicFormExpressionArgs, `return ${ expression };`);
+    return new Function(...dynamicFormExpressionArgs, `return ${ expression };`) as Func;
   }
 }

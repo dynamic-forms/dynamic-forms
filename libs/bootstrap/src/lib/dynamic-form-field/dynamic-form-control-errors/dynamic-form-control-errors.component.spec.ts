@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -41,7 +41,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlErrorsComponent>;
   let component: BsDynamicFormControlErrorsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormControlLabelTestModule
@@ -50,25 +50,24 @@ describe('BsDynamicFormControlErrorsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ control: { errors: { required: { message: 'This field is required.' } }, touched: true } };
+    component.field = { errors: { required: { message: 'This field is required.' } }, showErrors: true } as any;
 
-    // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
-
-  it('creates component', () => {
-    expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
-    const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
-    const errorsElement = <HTMLLabelElement>errorsDebugElement.nativeElement;
+  it('creates component', () => {
+    expect(component).toBeTruthy();
+  });
 
-    expect(errorsElement).toBeDefined();
+  it('renders component template', () => {
+    const errorsDebugElement = fixture.debugElement.query(By.css('div.invalid-feedback'));
+    const errorsElement = errorsDebugElement.nativeElement as HTMLLabelElement;
+
+    expect(errorsElement).toBeTruthy();
     expect(errorsElement.innerText).toBe('This field is required.');
   });
 });

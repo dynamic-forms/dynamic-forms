@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormDatepicker>;
   let formControl: DynamicFormControl<DynamicFormDatepicker>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormDatepickerModule,
@@ -32,31 +32,31 @@ describe('MatDynamicFormDatepickerComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormDatepicker>>{ key: 'key', template: { label: 'label', input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormDatepicker>;
     formControl = new DynamicFormControl<DynamicFormDatepicker>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const fieldElement = <HTMLElement>fieldDebugElement.nativeElement;
-    const labelElement = <HTMLLabelElement>labelDebugElement.nativeElement;
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
-    expect(fieldElement).toBeDefined();
+    expect(fieldElement).toBeTruthy();
     expect(labelElement.innerText).toBe('label');
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
@@ -65,7 +65,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
     const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

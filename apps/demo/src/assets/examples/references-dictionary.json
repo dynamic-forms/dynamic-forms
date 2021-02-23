@@ -1,0 +1,150 @@
+{
+  "template": {
+    "className": "grid"
+  },
+  "references": {
+    "item": {
+      "type": "group",
+      "template": {
+        "className": "row",
+        "classNameHeader": "col-12"
+      },
+      "expressions": {
+        "label": "'Item - Level ' + ((data.depth) / 2)"
+      },
+      "children": [
+        {
+          "key": "id",
+          "type": "control",
+          "template": {
+            "className": "col-11",
+            "label": "Id",
+            "input": {
+              "type": "textbox"
+            },
+            "validation": {
+              "required": true
+            },
+            "readonly": true
+          },
+          "expressions": {
+            "input.defaultValue": "data.parent.key"
+          }
+        },
+        {
+          "type": "icon",
+          "template": {
+            "classNameWrapper": "col-1",
+            "label": "Remove item",
+            "icon": "remove",
+            "action": "removeDictionaryField"
+          }
+        },
+        {
+          "key": "name",
+          "type": "control",
+          "template": {
+            "className": "col-11",
+            "label": "Name",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter a name"
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        },
+        {
+          "reference": "items",
+          "key": "items",
+          "template": {
+            "className": "col-12",
+            "classNameLabel": "bold"
+          },
+          "expressions": {
+            "label": "'Items - Level ' + ((data.depth - 1) / 2 + 1)"
+          }
+        }
+      ]
+    },
+    "items":{
+      "type": "dictionary",
+      "template": {
+        "label": "Items - Level 1",
+        "classNameLabel": "bold"
+      },
+      "headerActions": [ 
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "icon": "register",
+            "label": "Register item",
+            "action": "registerDictionaryField"
+          }
+        },
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "icon": "clear",
+            "label": "Clear items",
+            "action": "clearDictionaryFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        }
+      ],
+      "definitionTemplate": {
+        "reference": "item"
+      }
+    }
+  },
+  "children": [
+    {
+      "key": "items",
+      "reference": "items"
+    }
+  ],
+  "footerActions": [ 
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

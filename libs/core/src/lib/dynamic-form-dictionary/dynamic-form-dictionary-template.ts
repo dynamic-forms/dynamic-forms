@@ -7,6 +7,6 @@ export interface DynamicFormDictionaryTemplate extends DynamicFormFieldTemplate<
   maxLength?: number;
   classNameLabel?: string;
   classNameHeader?: string;
-  classNameElements?: string;
+  classNameChildren?: string;
   classNameFooter?: string;
 }

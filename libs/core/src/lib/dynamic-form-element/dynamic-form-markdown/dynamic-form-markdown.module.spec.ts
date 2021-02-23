@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
@@ -9,7 +9,7 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownModule', () => {
   describe('without providers', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           DynamicFormMarkdownModule
@@ -21,7 +21,7 @@ describe('DynamicFormMarkdownModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DYNAMIC_FORM_ELEMENT_TYPES',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
@@ -39,7 +39,7 @@ describe('DynamicFormMarkdownModule', () => {
   });
 
   describe('with providers of BrowserModule and HttpClientModule', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           BrowserModule,
@@ -53,11 +53,11 @@ describe('DynamicFormMarkdownModule', () => {
           }
         ]
       });
-    }));
+    });
 
     it('provides DynamicFormMarkdownService',
       inject([DynamicFormMarkdownService], (service: DynamicFormMarkdownService) => {
-        expect(service).toBeDefined();
+        expect(service).toBeTruthy();
       })
     );
 

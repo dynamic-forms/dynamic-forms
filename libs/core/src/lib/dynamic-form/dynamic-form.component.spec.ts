@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -18,7 +18,7 @@ describe('DynamicFormComponent', () => {
   let definition: DynamicFormDefinition;
   let model: any;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormModule
@@ -47,22 +47,22 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = <DynamicFormDefinition>{ elements: [] };
+    definition = { children: [] } as DynamicFormDefinition;
     model = {};
 
     component.definition = definition;
     component.model = model;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.form.definition).toBe(definition);
     expect(component.form.model).toBe(model);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
     const formComponent = formDebugElement.componentInstance;
@@ -70,9 +70,23 @@ describe('DynamicFormComponent', () => {
     expect(formComponent.formGroup).toBe(component.formGroup);
   });
 
+  it('renders component template with errors', () => {
+    component.formGroup.setErrors({});
+    component.formGroup.markAsTouched();
+
+    expect(component.hasErrors).toBe(true);
+    expect(component.showErrors).toBe(true);
+
+    fixture.detectChanges();
+
+    const formErrorsDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-errors'));
+
+    expect(formErrorsDebugElement).toBeTruthy();
+  });
+
   it('sets class name of dynamic form wrapper', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
-    const formWrapperElement = <HTMLElement>formWrapperDebugElement.nativeElement;
+    const formWrapperElement = formWrapperDebugElement.nativeElement as HTMLElement;
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
 
@@ -90,7 +104,7 @@ describe('DynamicFormComponent', () => {
   it('sets class name of dynamic form', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formDebugElement = formWrapperDebugElement.query(By.css('form.dynamic-form'));
-    const formElement = <HTMLElement>formDebugElement.nativeElement;
+    const formElement = formDebugElement.nativeElement as HTMLElement;
 
     expect(formElement.className).toBe('dynamic-form ng-untouched ng-pristine ng-valid');
 
@@ -113,30 +127,80 @@ describe('DynamicFormComponent', () => {
     expect(component.form.definition).toBe(definition);
   });
 
-  it('ngOnChanges creates form field with updated model', () => {
-    const modelUpdated = {};
+  it('ngOnChanges creates form with changed model', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+    const modelChanged = {};
 
-    component.model = modelUpdated;
-    component.ngOnChanges({ model: new SimpleChange(model, modelUpdated, false) });
+    component.model = modelChanged;
+    component.ngOnChanges({ model: new SimpleChange(model, modelChanged, false) });
 
-    expect(component.form.model).toBe(modelUpdated);
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
+    expect(component.form.model).toBe(modelChanged);
     expect(component.form.definition).toBe(definition);
   });
 
-  it('ngOnChanges creates form field with updated definition', () => {
-    const definitionUpdated = <DynamicFormDefinition>{ elements: [] };
+  it('ngOnChanges creates form with changed definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+    const definitionUpdated = { children: [] } as DynamicFormDefinition;
 
     component.definition = definitionUpdated;
     component.ngOnChanges({ definition: new SimpleChange(definition, definitionUpdated, false) });
 
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
     expect(component.form.model).toBe(model);
     expect(component.form.definition).toBe(definitionUpdated);
+  });
+
+  it('ngOnChanges creates form with changed model and definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+    const modelChanged = {};
+    const definitionChanged = { children: [] } as DynamicFormDefinition;
+
+    component.model = modelChanged;
+    component.definition = definitionChanged;
+    component.ngOnChanges({
+      model: new SimpleChange(model, modelChanged, false),
+      definition: new SimpleChange(definition, definitionChanged, false)
+    });
+
+    expect(component.form).not.toBe(form);
+    expect(component.formGroup).not.toBe(formGroup);
+    expect(component.form.model).toBe(modelChanged);
+    expect(component.form.definition).toBe(definitionChanged);
+  });
+
+  it('ngOnChanges does not create form with unchanged model and definition', () => {
+    const form = component.form;
+    const formGroup = component.formGroup;
+
+    component.ngOnChanges({});
+
+    expect(component.form).toBe(form);
+    expect(component.formGroup).toBe(formGroup);
+    expect(component.form.model).toBe(model);
+    expect(component.form.definition).toBe(definition);
   });
 
   it('ngOnSubmit emits form submit', () => {
     spyOn(component.formSubmit, 'emit');
 
     component.submit();
+
+    expect(component.formSubmit.emit).toHaveBeenCalledWith({
+      value: component.formGroup.value,
+      model: component.model
+    });
+  });
+
+  it('form submit emits form submit', () => {
+    spyOn(component.formSubmit, 'emit');
+
+    component.form.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,

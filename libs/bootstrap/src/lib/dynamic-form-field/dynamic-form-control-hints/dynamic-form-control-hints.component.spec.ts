@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
@@ -41,7 +41,7 @@ describe('BsDynamicFormControlHintsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormControlHintsComponent>;
   let component: BsDynamicFormControlHintsComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormWrapperTestModule
@@ -50,38 +50,37 @@ describe('BsDynamicFormControlHintsComponent', () => {
 
     fixture = TestBed.createComponent(BsDynamicFormControlHintsComponent);
     component = fixture.componentInstance;
-    component.field = <any>{ template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} };
+    component.field = { template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} } as any;
 
-    // tslint:disable-next-line: deprecation
     const resolver = TestBed.get(ComponentFactoryResolver);
     const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
     component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
 
     fixture.detectChanges();
-  }));
-
-  it('creates component', () => {
-    expect(component).toBeDefined();
   });
 
-  it('creates component template', () => {
+  it('creates component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('renders component template', () => {
     const smallDebugElement = fixture.debugElement.query(By.css('small'));
     const hintStartDebugElement = smallDebugElement.query(By.css('span.hint-start'));
     const hintSpacerDebugElement = smallDebugElement.query(By.css('span.hint-spacer'));
     const hintEndDebugElement = smallDebugElement.query(By.css('span.hint-end'));
 
-    const smallElement = <HTMLElement>smallDebugElement.nativeElement;
-    const hintStartElement = <HTMLSpanElement>hintStartDebugElement.nativeElement;
-    const hintSpacerElement = <HTMLSpanElement>hintSpacerDebugElement.nativeElement;
-    const hintEndElement = <HTMLSpanElement>hintEndDebugElement.nativeElement;
+    const smallElement = smallDebugElement.nativeElement as HTMLElement;
+    const hintStartElement = hintStartDebugElement.nativeElement as HTMLSpanElement;
+    const hintSpacerElement = hintSpacerDebugElement.nativeElement as HTMLSpanElement;
+    const hintEndElement = hintEndDebugElement.nativeElement as HTMLSpanElement;
 
-    expect(smallElement).toBeDefined();
+    expect(smallElement).toBeTruthy();
     expect(smallElement.className).toBe('dynamic-form-field-hints form-text text-muted');
-    expect(hintStartElement).toBeDefined();
+    expect(hintStartElement).toBeTruthy();
     expect(hintStartElement.innerText).toBe('HintStart');
-    expect(hintSpacerElement).toBeDefined();
+    expect(hintSpacerElement).toBeTruthy();
     expect(hintSpacerElement.innerText).toBe('');
-    expect(hintEndElement).toBeDefined();
+    expect(hintEndElement).toBeTruthy();
     expect(hintEndElement.innerText).toBe('HintEnd');
 
     component.field.template.hints.hintEnd = null;

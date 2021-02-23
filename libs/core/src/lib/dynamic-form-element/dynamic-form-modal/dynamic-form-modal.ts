@@ -13,24 +13,19 @@ export class DynamicFormModal<
   private _isOpenSubject: BehaviorSubject<boolean>;
   private _isOpenChanges: Observable<boolean>;
 
-  protected _root: DynamicForm;
-
   protected _trigger: DynamicFormAction;
 
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(root: DynamicForm, definition: Definition) {
-    super(definition);
-    this._root = root;
+  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(root, parent, definition);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
       isOpen: () => this.isOpen
     });
   }
-
-  get root(): DynamicForm { return this._root; }
 
   get trigger(): DynamicFormAction { return this._trigger; }
 

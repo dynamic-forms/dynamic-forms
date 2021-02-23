@@ -2,13 +2,13 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children": [
     {
       "type": "container",
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "firstName",
           "type": "control",
@@ -46,7 +46,7 @@
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "email",
           "type": "control",
@@ -87,7 +87,7 @@
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "street",
           "type": "control",

@@ -50,7 +50,7 @@ describe('MatDynamicFormDialogComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormDialogComponent>;
   let component: MatDynamicFormDialogComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -61,19 +61,19 @@ describe('MatDynamicFormDialogComponent', () => {
 
     fixture = TestBed.createComponent(MatDynamicFormDialogComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   describe('closed', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(false);
       fixture.detectChanges();
-    }));
-
-    it('creates component', () => {
-      expect(component).toBeDefined();
     });
 
-    xit('creates component template', () => {
+    it('creates component', () => {
+      expect(component).toBeTruthy();
+    });
+
+    xit('renders component template', () => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
 
       expect(formWrapperElement).toBeNull();
@@ -81,16 +81,16 @@ describe('MatDynamicFormDialogComponent', () => {
   });
 
   describe('opened', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       component.isOpen$ = of(true);
       fixture.detectChanges();
-    }));
-
-    it('creates component', () => {
-      expect(component).toBeDefined();
     });
 
-    it('creates component template', () => {
+    it('creates component', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('renders component template', () => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
       const formElement = formWrapperElement.querySelector('.dynamic-form');
       const modalElement = formElement.querySelector('.dynamic-form-modal');
@@ -99,11 +99,11 @@ describe('MatDynamicFormDialogComponent', () => {
       const headerElement = modalElement.querySelector('.modal-header');
       const footerElement = modalElement.querySelector('.modal-footer');
 
-      expect(formWrapperElement).toBeDefined();
-      expect(formElement).toBeDefined();
-      expect(modalElement).toBeDefined();
+      expect(formWrapperElement).toBeTruthy();
+      expect(formElement).toBeTruthy();
+      expect(modalElement).toBeTruthy();
 
-      expect(bodyElement).toBeDefined();
+      expect(bodyElement).toBeTruthy();
       expect(headerElement).toBeNull();
       expect(footerElement).toBeNull();
     });
@@ -115,7 +115,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.theme');
 
-        expect(formWrapperElement).toBeDefined();
+        expect(formWrapperElement).toBeTruthy();
       });
     }));
 
@@ -126,7 +126,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerText).toBe('Title');
       });
@@ -139,7 +139,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = <HTMLElement>headerElement.querySelector('.modal-title');
+        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
 
         expect(titleElement.innerHTML).toBe('<b>Title</b>');
       });
@@ -147,7 +147,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders header actions', async(() => {
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -156,13 +156,13 @@ describe('MatDynamicFormDialogComponent', () => {
         const headerElement = modalElement.querySelector('.modal-header');
         const toolbarDebugElement = headerElement.querySelector('.modal-toolbar');
 
-        expect(toolbarDebugElement).toBeDefined();
+        expect(toolbarDebugElement).toBeTruthy();
       });
     }));
 
     it('renders footer actions', async(() => {
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       fixture.detectChanges();
@@ -170,7 +170,7 @@ describe('MatDynamicFormDialogComponent', () => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const footerElement = modalElement.querySelector('.modal-footer');
 
-        expect(footerElement).toBeDefined();
+        expect(footerElement).toBeTruthy();
       });
     }));
 
@@ -178,15 +178,15 @@ describe('MatDynamicFormDialogComponent', () => {
       component.theme = 'theme';
       component.title = 'Title';
       component.headerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
       component.footerActions = [
-        <DynamicFormAction>{ classType: 'action', componentType: 'action' }
+        { classType: 'action', componentType: 'action' } as DynamicFormAction
       ];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';
-      component.classNameElements = 'class-elements';
+      component.classNameChildren = 'class-children';
       component.classNameHeader = 'class-header';
       component.classNameFooter = 'class-footer';
       component.classNameTitle = 'class-title';
@@ -197,23 +197,23 @@ describe('MatDynamicFormDialogComponent', () => {
         const formElement = formWrapperElement.querySelector('.dynamic-form.class-form');
         const modalElement = formElement.querySelector('.dynamic-form-modal.class-modal');
 
-        const bodyElement = modalElement.querySelector('.modal-body.class-elements');
+        const bodyElement = modalElement.querySelector('.modal-body.class-children');
         const headerElement = modalElement.querySelector('.modal-header.class-header');
         const footerElement = modalElement.querySelector('.modal-footer.class-footer');
 
-        const titleElement = headerElement.querySelector('.modal-header.class-title');
+        const titleElement = headerElement.querySelector('.modal-title.class-title');
         const toolbarElement = headerElement.querySelector('.modal-toolbar');
 
-        expect(formWrapperElement).toBeDefined();
-        expect(formElement).toBeDefined();
-        expect(modalElement).toBeDefined();
+        expect(formWrapperElement).toBeTruthy();
+        expect(formElement).toBeTruthy();
+        expect(modalElement).toBeTruthy();
 
-        expect(bodyElement).toBeDefined();
-        expect(headerElement).toBeDefined();
-        expect(footerElement).toBeDefined();
+        expect(bodyElement).toBeTruthy();
+        expect(headerElement).toBeTruthy();
+        expect(footerElement).toBeTruthy();
 
-        expect(titleElement).toBeDefined();
-        expect(toolbarElement).toBeDefined();
+        expect(titleElement).toBeTruthy();
+        expect(toolbarElement).toBeTruthy();
       });
     }));
   });

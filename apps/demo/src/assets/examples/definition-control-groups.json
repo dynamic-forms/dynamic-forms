@@ -2,51 +2,11 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
-    {
-      "key": "id",
-      "type": "control",
-      "template": {
-        "label": "Id",
-        "input": {
-          "type": "textbox",
-          "placeholder": "Enter an id"
-        }
-      }
-    },
-    {
-      "key": "key",
-      "type": "control",
-      "template": {
-        "label": "Key",
-        "input": {
-          "type": "textbox",
-          "placeholder": "Enter a key"
-        }
-      }
-    },
-    {
-      "key": "type",
-      "type": "control",
-      "template": {
-        "label": "Type",
-        "input": {
-          "type": "select",
-          "defaultValue": "control",
-          "options": [
-            {
-              "value": "control",
-              "label": "Control"
-            }
-          ]  
-        },
-        "readonly": true
-      }
-    },
-    {
+  "references": {
+    "template":     {
       "key": "template",
       "type": "group",
-      "elements": [
+      "children": [
         {
           "key": "label",
           "type": "control",
@@ -74,7 +34,7 @@
           "template": {
             "orientation": "row"
           },
-          "elements": [
+          "children": [
             {
               "key": "hidden",
               "type": "control",
@@ -111,300 +71,339 @@
           ]
         },
         {
-          "key": "input",
-          "type": "group",
-          "template": {
-            "label": "Input"
-          },
-          "elements": [
-            {
-              "key": "type",
-              "type": "control",
-              "template": {
-                "label": "Type",
-                "input": {
-                  "type": "select",
-                  "options": [
-                    {
-                      "value": "checkbox",
-                      "label": "Checkbox"
-                    },
-                    {
-                      "value": "combobox",
-                      "label": "Combobox"
-                    },
-                    {
-                      "value": "datepicker",
-                      "label": "Datepicker"
-                    },
-                    {
-                      "value": "numberbox",
-                      "label": "Numberbox"
-                    },
-                    {
-                      "value": "radio",
-                      "label": "Radio"
-                    },
-                    {
-                      "value": "select",
-                      "label": "Select"
-                    },
-                    {
-                      "value": "switch",
-                      "label": "Switch"
-                    },
-                    {
-                      "value": "textarea",
-                      "label": "Textarea"
-                    },
-                    {
-                      "value": "textbox",
-                      "label": "Textbox"
-                    },
-                    {
-                      "value": "toggle",
-                      "label": "Toggle"
-                    }
-                  ]  
-                }
-              },
-              "readonly": true
-            },
-            {
-              "key": "placeholder",
-              "type": "control",
-              "template": {
-                "label": "Placeholder",
-                "input": {
-                  "type": "textbox",
-                  "placeholder": "Enter a placeholder"
-                }
-              },
-              "expressions": {
-                "disabled": "(function(template) { return !template || !template.input || !template.input.type; })(data.root.model.template)"
-              } 
-            },
-            {
-              "key": "options",
-              "type": "array",
-              "template": {
-                "label": "Options"
-              },
-              "footerActions": [ 
-                {
-                  "type": "button",
-                  "template": {
-                    "type": "button",
-                    "label": "Clear options",
-                    "action": "clearArrayFields"
-                  }
-                },
-                {
-                  "type": "button",
-                  "template": {
-                    "type": "button",
-                    "label": "Pop option",
-                    "action": "popArrayField"
-                  },
-                  "expressions": {
-                    "disabled": "!data.parent.length"
-                  }
-                },
-                {
-                  "type": "button",
-                  "template": {
-                    "type": "button",
-                    "label": "Push option",
-                    "action": "pushArrayField"
-                  }
-                }
-              ],
-              "definitionTemplate": {
-                "type": "group",
-                "template": {
-                  "className": "row",
-                  "classNameLabel": "col-12"
-                },
-                "expressions": {
-                  "label": "(data.index + 1) + '. Option / Option Group'"
-                },                
-                "elements": [
-                  {
-                    "key": "isOption",
-                    "type": "control",
-                    "template": {
-                      "label": "Option",
-                      "className": "col-2 align-self-center",
-                      "input": {
-                        "type": "switch",
-                        "defaultValue": true
-                      }
-                    },
-                    "unregistered": true
-                  },
-                  {
-                    "key": "label",
-                    "type": "control",
-                    "template": {
-                      "label": "Label",
-                      "className": "col-6",
-                      "input": {
-                        "type": "textbox",
-                        "placeholder": "Enter a label"
-                      },
-                      "validation": {
-                        "required": true
-                      }
-                    },
-                    "expressions": {
-                      "className": "data.parent.model.isOption ? 'col-5' : 'col-9'"
-                    }
-                  },
-                  {
-                    "key": "value",
-                    "type": "control",
-                    "template": {
-                      "label": "Value",
-                      "className": "col-4",
-                      "input": {
-                        "type": "textbox",
-                        "placeholder": "Enter a value"
-                      },
-                      "validation": {
-                        "required": true
-                      }
-                    },
-                    "expressions": {
-                      "hidden": "!data.parent.model.isOption",
-                      "disabled": "!data.parent.model.isOption"
-                    }
-                  },
-                  {
-                    "type": "icon",
-                    "template": {
-                      "classNameWrapper": "col-1",
-                      "label": "Remove option",
-                      "icon": "remove",
-                      "action": "removeArrayField"
-                    }
-                  },
-                  {
-                    "key": "items",
-                    "type": "array",
-                    "template": {
-                      "label": "Options of group",
-                      "className": "col-12"
-                    },
-                    "footerActions": [ 
-                      {
-                        "type": "button",
-                        "template": {
-                          "type": "button",
-                          "label": "Clear options",
-                          "action": "clearArrayFields"
-                        }
-                      },
-                      {
-                        "type": "button",
-                        "template": {
-                          "type": "button",
-                          "label": "Pop option",
-                          "action": "popArrayField"
-                        },
-                        "expressions": {
-                          "disabled": "!data.parent.length"
-                        }
-                      },
-                      {
-                        "type": "button",
-                        "template": {
-                          "type": "button",
-                          "label": "Push option",
-                          "action": "pushArrayField"
-                        }
-                      }
-                    ],
-                    "definitionTemplate": {
-                      "type": "group",
-                      "template": {
-                        "className": "row",
-                        "classNameLabel": "col-12"
-                      },
-                      "expressions": {
-                        "label": "(data.parent.parent.index + 1) + '.' + (data.index + 1) + '. Option'"
-                      },
-                      "elements": [
-                        {
-                          "key": "label",
-                          "type": "control",
-                          "template": {
-                            "label": "Label",
-                            "className": "col-6",
-                            "input": {
-                              "type": "textbox",
-                              "placeholder": "Enter a label"
-                            },
-                            "validation": {
-                              "required": true
-                            }
-                          }
-                        },
-                        {
-                          "key": "value",
-                          "type": "control",
-                          "template": {
-                            "label": "Value",
-                            "className": "col-5",
-                            "input": {
-                              "type": "textbox",
-                              "placeholder": "Enter a value"
-                            },
-                            "validation": {
-                              "required": true
-                            }
-                          }
-                        },
-                        {
-                          "type": "icon",
-                          "template": {
-                            "classNameWrapper": "col-1",
-                            "label": "Remove option",
-                            "icon": "remove",
-                            "action": "removeArrayField"
-                          }
-                        }
-                      ]
-                    },
-                    "expressions": {
-                      "hidden": "data.parent.model.isOption",
-                      "disabled": "data.parent.model.isOption"
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "key": "defaultValue",
-              "type": "control",
-              "template": {
-                "label": "Default value",
-                "input": {
-                  "type": "textbox",
-                  "placeholder": "Enter a default value" 
-                }
-              }
-            }
-          ]
+          "reference": "input"
+        },
+        {
+          "reference": "validation"
         }
       ]
     },
-    {
+    "input": {
+      "key": "input",
+      "type": "group",
+      "template": {
+        "label": "Input"
+      },
+      "children": [
+        {
+          "key": "type",
+          "type": "control",
+          "template": {
+            "label": "Type",
+            "input": {
+              "type": "select",
+              "placeholder": "Enter a type",
+              "options": [
+                {
+                  "value": "checkbox",
+                  "label": "Checkbox"
+                },
+                {
+                  "value": "combobox",
+                  "label": "Combobox"
+                },
+                {
+                  "value": "datepicker",
+                  "label": "Datepicker"
+                },
+                {
+                  "value": "numberbox",
+                  "label": "Numberbox"
+                },
+                {
+                  "value": "radio",
+                  "label": "Radio"
+                },
+                {
+                  "value": "select",
+                  "label": "Select"
+                },
+                {
+                  "value": "switch",
+                  "label": "Switch"
+                },
+                {
+                  "value": "textarea",
+                  "label": "Textarea"
+                },
+                {
+                  "value": "textbox",
+                  "label": "Textbox"
+                },
+                {
+                  "value": "toggle",
+                  "label": "Toggle"
+                }
+              ]  
+            },
+            "validation": {
+              "required": true
+            }
+          },
+          "readonly": true
+        },
+        {
+          "key": "placeholder",
+          "type": "control",
+          "template": {
+            "label": "Placeholder",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter a placeholder"
+            }
+          },
+          "expressions": {
+            "disabled": "(function(template) { return !template || !template.input || !template.input.type; })(data.root.model.template)"
+          } 
+        },
+        {
+          "reference": "options"
+        },
+        {
+          "key": "defaultValue",
+          "type": "control",
+          "template": {
+            "label": "Default value",
+            "input": {
+              "type": "textbox",
+              "placeholder": "Enter a default value" 
+            }
+          },
+          "expressions": {
+            "input.type": "data.parent.model.type || 'textbox'",
+            "input.options": "data.parent.value.options"
+          }
+        }
+      ]
+    },
+    "options": {
+      "key": "options",
+      "type": "array",
+      "template": {
+        "label": "Options"
+      },
+      "defaultValue": [
+        {
+          "value": "option1",
+          "label": "Option1"
+        }
+      ],
+      "expressions": {
+        "hidden": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'",
+        "disabled": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'"
+      },
+      "headerActions": [ 
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "icon": "push",
+            "label": "Push option",
+            "action": "pushArrayField"
+          }
+        },
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "icon": "pop",
+            "label": "Pop option",
+            "action": "popArrayField"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        },
+        {
+          "type": "icon",
+          "template": {
+            "type": "button",
+            "icon": "remove",
+            "label": "Clear options",
+            "action": "clearArrayFields"
+          },
+          "expressions": {
+            "disabled": "!data.parent.length"
+          }
+        }
+      ],
+      "definitionTemplate": {
+        "type": "group",
+        "template": {
+          "className": "row",
+          "classNameLabel": "col-12"
+        },
+        "expressions": {
+          "label": "(data.index + 1) + '. Option / Option Group'"
+        },                
+        "children": [
+          {
+            "key": "isOption",
+            "type": "control",
+            "template": {
+              "label": "Option",
+              "className": "col-2 align-self-center",
+              "input": {
+                "type": "switch",
+                "defaultValue": true
+              }
+            },
+            "unregistered": true
+          },
+          {
+            "key": "label",
+            "type": "control",
+            "template": {
+              "label": "Label",
+              "className": "col-6",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter a label"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            "expressions": {
+              "className": "data.parent.model.isOption ? 'col-5' : 'col-9'"
+            }
+          },
+          {
+            "key": "value",
+            "type": "control",
+            "template": {
+              "label": "Value",
+              "className": "col-4",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter a value"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            "expressions": {
+              "hidden": "!data.parent.model.isOption",
+              "disabled": "!data.parent.model.isOption"
+            }
+          },
+          {
+            "type": "icon",
+            "template": {
+              "classNameWrapper": "col-1",
+              "label": "Remove option",
+              "icon": "remove",
+              "action": "removeArrayField"
+            }
+          },
+          {
+            "key": "items",
+            "type": "array",
+            "template": {
+              "label": "Options of group",
+              "className": "col-12"
+            },
+            "headerActions": [ 
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
+                  "icon": "push",
+                  "label": "Push option",
+                  "action": "pushArrayField"
+                }
+              },
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
+                  "icon": "pop",
+                  "label": "Pop option",
+                  "action": "popArrayField"
+                },
+                "expressions": {
+                  "disabled": "!data.parent.length"
+                }
+              },
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
+                  "icon": "remove",
+                  "label": "Clear options",
+                  "action": "clearArrayFields"
+                },
+                "expressions": {
+                  "disabled": "!data.parent.length"
+                }
+              }
+            ],
+            "definitionTemplate": {
+              "type": "group",
+              "template": {
+                "className": "row",
+                "classNameLabel": "col-12"
+              },
+              "expressions": {
+                "label": "(data.parent.parent.index + 1) + '.' + (data.index + 1) + '. Option'"
+              },
+              "children": [
+                {
+                  "key": "label",
+                  "type": "control",
+                  "template": {
+                    "label": "Label",
+                    "className": "col-6",
+                    "input": {
+                      "type": "textbox",
+                      "placeholder": "Enter a label"
+                    },
+                    "validation": {
+                      "required": true
+                    }
+                  }
+                },
+                {
+                  "key": "value",
+                  "type": "control",
+                  "template": {
+                    "label": "Value",
+                    "className": "col-5",
+                    "input": {
+                      "type": "textbox",
+                      "placeholder": "Enter a value"
+                    },
+                    "validation": {
+                      "required": true
+                    }
+                  }
+                },
+                {
+                  "type": "icon",
+                  "template": {
+                    "classNameWrapper": "col-1",
+                    "label": "Remove option",
+                    "icon": "remove",
+                    "action": "removeArrayField"
+                  }
+                }
+              ]
+            },
+            "expressions": {
+              "hidden": "data.parent.model.isOption",
+              "disabled": "data.parent.model.isOption"
+            }
+          }
+        ]
+      }
+    },
+    "validation":     {
       "key": "validation",
       "type": "group",
       "template": {
         "label": "Validation"
       },
-      "elements": [
+      "children": [
         {
           "key": "required",
           "type": "control",
@@ -482,13 +481,13 @@
         }
       ]
     },
-    {
+    "settings": {
       "key": "settings",
       "type": "group",
       "template": {
         "label": "Settings"
       },
-      "elements": [
+      "children": [
         {
           "key": "autoGeneratedId",
           "type": "control",
@@ -543,6 +542,54 @@
         }
       ]
     }
+  },
+  "children": [
+    {
+      "key": "id",
+      "type": "control",
+      "template": {
+        "label": "Id",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter an id"
+        }
+      }
+    },
+    {
+      "key": "key",
+      "type": "control",
+      "template": {
+        "label": "Key",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter a key"
+        }
+      }
+    },
+    {
+      "key": "type",
+      "type": "control",
+      "template": {
+        "label": "Type",
+        "input": {
+          "type": "select",
+          "defaultValue": "control",
+          "options": [
+            {
+              "value": "control",
+              "label": "Control"
+            }
+          ]  
+        },
+        "readonly": true
+      }
+    },
+    {
+      "reference": "template"
+    },
+    {
+      "reference": "settings"
+    }
   ],
   "footerActions": [ 
     {
@@ -554,6 +601,15 @@
       },
       "expressions": {
         "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
       }
     }
   ]

@@ -1,49 +1,49 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
-import { DynamicFormElementComponent } from '../dynamic-form-element.component';
 import { DynamicFormContainerDefinition } from './dynamic-form-container-definition';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 import { DynamicFormContainerComponent } from './dynamic-form-container.component';
+import { DynamicFormContainerModule } from './dynamic-form-container.module';
 
 describe('DynamicFormContainerComponent', () => {
   let fixture: ComponentFixture<DynamicFormContainerComponent>;
   let component: DynamicFormContainerComponent;
   let element: DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormElementComponent,
-        DynamicFormContainerComponent
-      ]
+      imports: [ DynamicFormContainerModule ]
     });
+
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const template = {} as DynamicFormContainerTemplate;
+    const definition = { type: 'element', template } as DynamicFormContainerDefinition;
+    element = new DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>(root, parent, definition);
 
     fixture = TestBed.createComponent(DynamicFormContainerComponent);
     component = fixture.componentInstance;
-
-    const template = <DynamicFormContainerTemplate>{};
-    const definition = <DynamicFormContainerDefinition>{ type: 'element', template };
-    element = new DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>(definition);
     component.element = element;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.element).toBe(element);
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
+    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
 
-    expect(formContainerElement).toBeDefined();
+    expect(formContainerElement).toBeTruthy();
   });
 
   it('sets class name of dynamic form container', () => {
     const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = <HTMLElement>formContainerDebugElement.nativeElement;
+    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
 
     expect(formContainerElement.className).toBe('dynamic-form-container');
 
