@@ -126,6 +126,10 @@
               "label": "Actions in header"
             },
             {
+              "id": "fields-dictionary-validation",
+              "label": "Validation"
+            },
+            {
               "id": "fields-dictionary-modal",
               "label": "Modal"
             },
@@ -155,6 +159,32 @@
         { 
           "id": "elements-modal", 
           "label": "Modal" 
+        },
+        {
+          "label": "Items",
+          "items": [
+            {
+              "id": "elements-items-accordion",
+              "label": "Accordion"
+            },
+            {
+              "id": "elements-items-tabs",
+              "label": "Tabs"
+            },
+            {
+              "label": "Disabled",
+              "items": [
+                {
+                  "id": "elements-items-disabled-accordion",
+                  "label": "Accordion"
+                },
+                {
+                  "id": "elements-items-disabled-tabs",
+                  "label": "Tabs"
+                }    
+              ]
+            }
+          ]
         }
       ]
     },
@@ -202,6 +232,23 @@
               "label": "Dialog"
             }
           ] 
+        }
+      ]
+    },
+    {
+      "label": "References",
+      "items": [
+        {
+          "id": "references-inputs",
+          "label": "Inputs"
+        },
+        {
+          "id": "references-array",
+          "label": "Array"
+        },
+        {
+          "id": "references-dictionary",
+          "label": "Dictionary"
         }
       ]
     },
@@ -301,6 +348,14 @@
             {
               "id": "definition-control-groups",
               "label": "Groups"
+            },
+            {
+              "id": "definition-control-accordion",
+              "label": "Accordion"
+            },
+            {
+              "id": "definition-control-tabs",
+              "label": "Tabs"
             }
           ]
         }

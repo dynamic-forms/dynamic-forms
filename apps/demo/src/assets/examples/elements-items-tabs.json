@@ -1,0 +1,66 @@
+{
+  "references": {
+    "item": {
+      "template": {
+        "label": "Item 1"
+      },
+      "expressions": {
+        "label": "'Item ' + (data.index + 1)"
+      }
+    },
+    "items": {
+      "children": [
+        {
+          "reference": "item",
+          "children": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 1</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "reference": "item",
+          "children": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 2</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "reference": "item",
+          "children": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 3</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        },
+        {
+          "reference": "item",
+          "children": [
+            {
+              "type": "content",
+              "template": {
+                "content": "<h3>Heading 4</h3><p>Paragraph 1</p><p>Paragraph 2</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "children": [
+    {
+      "reference": "items",
+      "type": "tabs"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "template": {
     "className": "grid"
   },
-  "elements": [
+  "children": [
     {
       "key": "users",
       "type": "array",
@@ -62,7 +62,7 @@
         "expressions": {
           "label": "(data.index + 1) + '. User'"
         },
-        "elements": [
+        "children": [
           {
             "key": "name",
             "type": "control",
@@ -122,13 +122,13 @@
                 "action": "openModal"
               }
             },
-            "elements": [
+            "children": [
               {
                 "type": "container",
                 "template": {
                   "orientation": "row"
                 },
-                "elements": [
+                "children": [
                   {
                     "key": "name",
                     "type": "control",

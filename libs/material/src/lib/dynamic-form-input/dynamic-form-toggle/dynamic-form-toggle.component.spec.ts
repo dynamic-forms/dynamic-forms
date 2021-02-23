@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
@@ -13,7 +13,7 @@ describe('MatDynamicFormToggleComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormToggle>;
   let formControl: DynamicFormControl<DynamicFormToggle>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormToggleModule
@@ -31,8 +31,8 @@ describe('MatDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormToggle>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         input: {
@@ -43,25 +43,25 @@ describe('MatDynamicFormToggleComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormToggle>;
     formControl = new DynamicFormControl<DynamicFormToggle>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const toggleGroupDebugElement = fixture.debugElement.query(By.css('mat-button-toggle-group'));
     const toggleDebugElements = toggleGroupDebugElement.queryAll(By.css('mat-button-toggle'));
-    const toggleComponents = toggleDebugElements.map(elem => <MatButtonToggle>elem.componentInstance);
+    const toggleComponents = toggleDebugElements.map(elem => elem.componentInstance as MatButtonToggle);
     const toggleElements = toggleDebugElements.map(elem => elem.nativeElement);
 
     expect(toggleComponents.length).toBe(3);

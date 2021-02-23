@@ -35,22 +35,14 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   get formGroup(): FormGroup { return this._form.control; }
 
   get template(): DynamicFormTemplate { return this._form.template; }
-  get elements(): DynamicFormElement[] { return this._form.elements; }
 
+  get children(): DynamicFormElement[] { return this._form.children; }
   get headerActions(): DynamicFormAction[] { return this._form.headerActions; }
   get footerActions(): DynamicFormAction[] { return this._form.footerActions; }
 
-  get errors(): DynamicFormValidationErrors {
-    return this.formGroup.errors;
-  }
-
-  get hasErrors(): boolean {
-    return (this.errors || false) && true;
-  }
-
-  get showErrors(): boolean {
-    return this.hasErrors && this.formGroup.touched;
-  }
+  get errors(): DynamicFormValidationErrors { return this.form.errors; }
+  get hasErrors(): boolean { return this.form.hasErrors; }
+  get showErrors(): boolean { return this.form.showErrors; }
 
   get errorMessage(): string {
     return this.validationService.getErrorMessage(this.errors);

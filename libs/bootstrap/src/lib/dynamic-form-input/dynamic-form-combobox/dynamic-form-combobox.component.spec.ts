@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormCombobox, DynamicFormConfigService, DynamicFormControl,
   DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('BsDynamicFormComboboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
   let formControl: DynamicFormControl<DynamicFormCombobox>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormComboboxModule
@@ -30,8 +30,8 @@ describe('BsDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormCombobox>>{
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = {
       key: 'key',
       template: {
         label: 'label',
@@ -43,31 +43,31 @@ describe('BsDynamicFormComboboxComponent', () => {
           ]
         }
       }
-    };
+    } as DynamicFormControlDefinition<DynamicFormCombobox>;
     formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
     const inputListDebugElement = fixture.debugElement.query(By.css('datalist'));
     const inputListItemDebugElements = inputListDebugElement.queryAll(By.css('option'));
 
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
-    const inputListElement = <HTMLDataListElement>inputListDebugElement.nativeElement;
-    const inputListItemElements = <HTMLOptionElement[]>inputListItemDebugElements.map(elem => elem.nativeElement);
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
+    const inputListElement = inputListDebugElement.nativeElement as HTMLDataListElement;
+    const inputListItemElements = inputListItemDebugElements.map(elem => elem.nativeElement) as HTMLOptionElement[];
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
     expect(inputElement.list).toBe(inputListElement);
@@ -83,7 +83,7 @@ describe('BsDynamicFormComboboxComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

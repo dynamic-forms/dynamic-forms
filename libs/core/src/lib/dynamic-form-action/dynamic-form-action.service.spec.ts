@@ -1,4 +1,5 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
@@ -8,7 +9,7 @@ import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionService', () => {
   describe('without DYNAMIC_FORM_ACTIONS_HANDLER_CONFIG', () => {
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -18,7 +19,7 @@ describe('DynamicFormActionService', () => {
           DynamicFormActionService
         ]
       });
-    }));
+    });
 
     it('returns handlers being empty',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -36,9 +37,9 @@ describe('DynamicFormActionService', () => {
 
     it('does not call func of handler and stop event propagation',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const field = <DynamicFormField>{};
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const field = {} as DynamicFormField;
+        const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(event, 'stopPropagation');
@@ -65,13 +66,13 @@ describe('DynamicFormActionService', () => {
       },
       {
         type: 'type-field-func',
-        elementFunc: (action) => (<DynamicFormField>action.parent).parent,
+        elementFunc: (action) => (action.parent as DynamicFormField).parent,
         func: () => {},
         libraryName: 'test'
       }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           {
@@ -85,7 +86,7 @@ describe('DynamicFormActionService', () => {
           DynamicFormActionService
         ]
       });
-    }));
+    });
 
     it('returns handlers',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -111,9 +112,9 @@ describe('DynamicFormActionService', () => {
 
     it('calls func of handler and stops propagation of event',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const field = <DynamicFormField>{};
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const field = {} as DynamicFormField;
+        const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[0], 'func');
@@ -129,10 +130,10 @@ describe('DynamicFormActionService', () => {
 
     it('calls elementFunc and func of handler and stops propagation of event',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-        const parent = <DynamicFormField>{};
-        const field = <DynamicFormField>{ parent: parent };
-        const action = <DynamicFormAction>{ parent: field, template: { action: 'type-field-func' } };
-        const event = <Event>{ stopPropagation(): void {} };
+        const parent = {} as DynamicFormField;
+        const field = { parent: parent as DynamicFormElement } as DynamicFormField;
+        const action = { parent: field as DynamicFormElement, template: { action: 'type-field-func' } } as DynamicFormAction;
+        const event = { stopPropagation(): void {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[1], 'elementFunc').and.callThrough();

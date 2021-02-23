@@ -3,17 +3,20 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 
 describe('DynamicForm', () => {
   it('creates instance', () => {
-      const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+      const definition = { template: {}, children: [] } as DynamicFormDefinition;
       const model = {};
       const form = new DynamicForm(definition, model);
 
       expect(form.root).toBe(form);
       expect(form.parent).toBeNull();
+      expect(form.parentField).toBeNull();
+
       expect(form.definition).toBe(definition);
-      expect(form.model).toBe(model);
-      expect(form.control).toBeDefined();
       expect(form.template).toBe(definition.template);
-      expect(form.fields).toBeDefined();
+
+      expect(form.model).toBe(model);
+      expect(form.control).toBeTruthy();
+      expect(form.fields).toBeTruthy();
   });
 
   it('create instance throws if no template provided', () => {
@@ -23,41 +26,41 @@ describe('DynamicForm', () => {
   });
 
   it('create instance throws if no model provided', () => {
-    const definition = <DynamicFormDefinition>{ elements: [] };
+    const definition = { children: [] } as DynamicFormDefinition;
 
     expect(() => new DynamicForm(definition, null)).toThrowError();
   });
 
   it('returns readonly being false', () => {
-    const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+    const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(definition, {});
 
     expect(form.readonly).toBe(false);
   });
 
   it('returns readonly being true if template is readonly', () => {
-    const definition = <DynamicFormDefinition>{ template: { readonly: true }, elements: [] };
+    const definition = { template: { readonly: true }, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(definition, {});
 
     expect(form.readonly).toBe(true);
   });
 
   it('returns hidden being false', () => {
-    const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+    const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(definition, {});
 
     expect(form.hidden).toBe(false);
   });
 
   it('returns hidden being true if template is hidden', () => {
-    const definition = <DynamicFormDefinition>{ template: { hidden: true }, elements: [] };
+    const definition = { template: { hidden: true }, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(definition, {});
 
     expect(form.hidden).toBe(true);
   });
 
   it('submits', (done) => {
-    const definition = <DynamicFormDefinition>{ template: {}, elements: [] };
+    const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(definition, {});
 
     form.submit$.subscribe((submit) => {

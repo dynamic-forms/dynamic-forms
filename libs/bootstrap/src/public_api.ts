@@ -9,6 +9,11 @@ export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button
 export * from './lib/dynamic-form-dialog/dynamic-form-dialog.component';
 export * from './lib/dynamic-form-dialog/dynamic-form-dialog.module';
 export * from './lib/dynamic-form-element/dynamic-form-element.module';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items.module';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion.component';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion.module';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-tabs/dynamic-form-tabs.component';
+export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-tabs/dynamic-form-tabs.module';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.component';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.module';
 export * from './lib/dynamic-form-field/dynamic-form-field-wrapper.module';

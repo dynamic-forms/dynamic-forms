@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -17,7 +17,7 @@ describe('DynamicFormDictionaryComponent', () => {
   let form: DynamicForm;
   let formDictionary: DynamicFormDictionary;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormDictionaryModule
@@ -39,39 +39,39 @@ describe('DynamicFormDictionaryComponent', () => {
     fixture = TestBed.createComponent(DynamicFormDictionaryComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{ elements: [] } , {});
-    formDictionary = new DynamicFormDictionary(form, form, <DynamicFormDictionaryDefinition>{
+    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    formDictionary = new DynamicFormDictionary(form, form, {
       id: 'id',
       key: 'key',
       index: 1,
       template: {
         label: 'label'
       },
-      elements: []
-    });
+      children: []
+    } as DynamicFormDictionaryDefinition);
     component.field = formDictionary;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
     expect(component.id).toBe('id');
     expect(component.key).toBe('key');
     expect(component.index).toBe(1);
     expect(component.path).toBe('key');
-    expect(component.control).toBeDefined();
-    expect(component.elements).toEqual([]);
-    expect(component.template).toBeDefined();
+    expect(component.control).toBeTruthy();
+    expect(component.children).toEqual([]);
+    expect(component.template).toBeTruthy();
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-dictionary-label'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
-    const formArrayLabelElement = <HTMLElement>formArrayLabelDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
+    const formArrayLabelElement = formArrayLabelDebugElement.nativeElement as HTMLElement;
 
-    expect(formArrayElement).toBeDefined();
-    expect(formArrayLabelElement).toBeDefined();
+    expect(formArrayElement).toBeTruthy();
+    expect(formArrayLabelElement).toBeTruthy();
   });
 
   it('hides dynamic form dictionary label if not defined', () => {
@@ -101,12 +101,12 @@ describe('DynamicFormDictionaryComponent', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayLabelDebugElement = formArrayDebugElement.query(By.css('div.dynamic-form-dictionary-label.class-name-label'));
 
-    expect(formArrayLabelDebugElement).toBeDefined();
+    expect(formArrayLabelDebugElement).toBeTruthy();
   });
 
   it('sets dynamic form dictionary to hidden', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 
@@ -118,7 +118,7 @@ describe('DynamicFormDictionaryComponent', () => {
 
   it('sets dynamic form dictionary to readonly', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 
@@ -130,7 +130,7 @@ describe('DynamicFormDictionaryComponent', () => {
 
   it('sets class name of dynamic form dictionary', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
-    const formArrayElement = <HTMLElement>formArrayDebugElement.nativeElement;
+    const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
     expect(formArrayElement.className).toBe('dynamic-form-dictionary');
 
