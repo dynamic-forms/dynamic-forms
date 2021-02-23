@@ -2,7 +2,7 @@
   "template": {
     "label": "Select variations"
   },
-  "elements": [
+  "children": [
     {
       "type": "content",
       "template": {

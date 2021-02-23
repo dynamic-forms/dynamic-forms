@@ -4,6 +4,6 @@ export interface DynamicFormTemplate extends DynamicFormFieldTemplate {
   classNameWrapper?: undefined;
   classNameLabel?: string;
   classNameHeader?: string;
-  classNameElements?: string;
+  classNameChildren?: string;
   classNameFooter?: string;
 }

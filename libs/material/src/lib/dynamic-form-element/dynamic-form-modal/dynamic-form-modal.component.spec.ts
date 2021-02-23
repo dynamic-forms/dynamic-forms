@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormLibraryService, DynamicFormModal, DynamicFormModalDefinition, DynamicFormModalTemplate } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormElement, DynamicFormLibraryService, DynamicFormModal,
+  DynamicFormModalDefinition } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -9,7 +10,7 @@ describe('MatDynamicFormModalComponent', () => {
   let component: MatDynamicFormModalComponent;
   let modal: DynamicFormModal;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -23,79 +24,74 @@ describe('MatDynamicFormModalComponent', () => {
       ]
     });
 
+    modal = new DynamicFormModal({ template: {} } as DynamicForm, {} as DynamicFormElement, {
+      template: {
+        title: 'Title',
+        width: '800px',
+        minWidth: '800px',
+        maxWidth: '100%'
+      }
+    } as DynamicFormModalDefinition);
+
     fixture = TestBed.createComponent(MatDynamicFormModalComponent);
     component = fixture.componentInstance;
-
-    const template = <DynamicFormModalTemplate>{
-      title: 'Title',
-      width: '800px',
-      minWidth: '800px',
-      maxWidth: '100%'
-    };
-    const root = <DynamicForm>{};
-    modal = new DynamicFormModal(root, <DynamicFormModalDefinition>{ template });
     component.element = modal;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.isOpen).toBeFalse();
   });
 
-  it('opens modal', async(() => {
+  it('opens modal', waitForAsync(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
-      const formElement = <HTMLDivElement>formWrapperElement.querySelector('div.dynamic-form');
-      const modalElement = <HTMLDivElement>formElement.querySelector('div.dynamic-form-modal');
-      const modalHeaderElement = <HTMLDivElement>modalElement.querySelector('div.modal-header');
-      const modalBodyElement = <HTMLDivElement>modalElement.querySelector('div.modal-body');
+      const formElement = formWrapperElement.querySelector('div.dynamic-form') as HTMLDivElement;
+      const modalElement = formElement.querySelector('div.dynamic-form-modal') as HTMLDivElement;
+      const modalHeaderElement = modalElement.querySelector('div.modal-header') as HTMLDivElement;
+      const modalBodyElement = modalElement.querySelector('div.modal-body') as HTMLDivElement;
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();
-      expect(modalElement).toBeDefined();
-      expect(modalHeaderElement).toBeDefined();
+      expect(modalElement).toBeTruthy();
+      expect(modalHeaderElement).toBeTruthy();
       expect(modalHeaderElement.innerText).toBe('Title');
-      expect(modalBodyElement).toBeDefined();
+      expect(modalBodyElement).toBeTruthy();
     });
   }));
 
-  it('closes modal', async(() => {
+  it('closes modal', waitForAsync(() => {
     modal.open();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });
   }));
 
-  it('toggles modal', async(() => {
+  it('toggles modal', waitForAsync(() => {
     modal.toggle();
 
+    fixture.detectChanges();
     fixture.whenStable().then(() => {
-      fixture.detectChanges();
-
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        fixture.detectChanges();
-
         expect(component.isOpen).toBeFalse();
       });
     });

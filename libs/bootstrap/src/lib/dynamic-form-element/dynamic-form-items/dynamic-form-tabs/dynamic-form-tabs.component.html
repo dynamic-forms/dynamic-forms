@@ -1,0 +1,15 @@
+<div class="dynamic-form-items dynamic-form-tabs card" [ngClass]="template.className">
+  <div class="card-header">
+    <nav class="nav nav-tabs card-header-tabs">
+      <a *ngFor="let child of element.children; let index = index" 
+        class="dynamic-form-item-header nav-item nav-link" 
+        [class.active]="index === selectedIndex" 
+        [class.disabled]="child.disabled"
+        (click)="selectItem(index)"
+      >{{child.label}}</a>
+    </nav>  
+  </div>
+  <div class="dynamic-form-item card-body" *ngIf="selectedItem">
+    <dynamic-form-elements [elements]="selectedItem.children" ></dynamic-form-elements>
+  </div>
+</div>

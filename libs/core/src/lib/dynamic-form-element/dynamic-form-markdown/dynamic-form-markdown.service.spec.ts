@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SecurityContext } from '@angular/core';
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DynamicFormMarkdownModule } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
@@ -9,7 +9,7 @@ describe('DynamicFormMarkdownService', () => {
   let domSanitizer: jasmine.SpyObj<DomSanitizer>;
   let httpTestingController: HttpTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     domSanitizer = jasmine.createSpyObj<DomSanitizer>('domSanitizer', [ 'sanitize' ]);
     domSanitizer.sanitize.and.callFake((_context, value) => value as string);
 
@@ -27,7 +27,7 @@ describe('DynamicFormMarkdownService', () => {
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
-  }));
+  });
 
   it('returns compiled markdown',
     inject([DynamicFormMarkdownService], (service: DynamicFormMarkdownService) => {

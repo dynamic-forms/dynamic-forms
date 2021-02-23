@@ -2,7 +2,7 @@
   "expressions": {
     "className": "data.root.model && data.root.model.gridEnabled ? 'grid' : null"
   },
-  "elements": [
+  "children": [
     {
       "key": "gridEnabled",
       "type": "control",
@@ -19,7 +19,7 @@
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "firstName",
           "type": "control",
@@ -57,7 +57,7 @@
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "email",
           "type": "control",
@@ -98,7 +98,7 @@
       "template": {
         "className": "row"
       },
-      "elements": [
+      "children": [
         {
           "key": "street",
           "type": "control",

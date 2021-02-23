@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
   DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextbox, DynamicFormValidationService} from '@dynamic-forms/core';
@@ -12,7 +12,7 @@ describe('DynamicFormTextboxComponent', () => {
   let definition: DynamicFormControlDefinition<DynamicFormTextbox>;
   let formControl: DynamicFormControl<DynamicFormTextbox>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BsDynamicFormTextboxModule
@@ -30,34 +30,34 @@ describe('DynamicFormTextboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormTextboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(<DynamicFormDefinition>{}, {});
-    definition = <DynamicFormControlDefinition<DynamicFormTextbox>>{ key: 'key', template: { input: {} } };
+    form = new DynamicForm({} as DynamicFormDefinition, {});
+    definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition<DynamicFormTextbox>;
     formControl = new DynamicFormControl<DynamicFormTextbox>(form, form, definition);
 
     component.field = formControl;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('creates component', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
     expect(component.id).toBeUndefined();
     expect(component.path).toBe('key');
     expect(component.inputId).toBe('key');
   });
 
-  it('creates component template', () => {
+  it('renders component template', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
-    expect(inputElement).toBeDefined();
+    expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe(component.inputId);
     expect(inputElement.type).toBe('text');
   });
 
   it('sets dynamic form control to readonly', () => {
     const inputDebugElement = fixture.debugElement.query(By.css('input.form-control'));
-    const inputElement = <HTMLInputElement>inputDebugElement.nativeElement;
+    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
 

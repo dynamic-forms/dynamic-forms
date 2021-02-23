@@ -9,8 +9,8 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
       require('karma-junit-reporter'),
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -21,9 +21,14 @@ module.exports = function (config) {
       outputFile: 'dynamic-forms-bootstrap.junit.xml',
       useBrowserName: false
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: require('path').join(__dirname, '../../apps/demo/src/assets/coverage/bootstrap'),
-      reports: ['html', 'lcovonly', 'cobertura'],
+      subdir: '.',
+      reporters: [ 
+        { type: 'html' }, 
+        { type: 'lcovonly' },
+        { type: 'cobertura' }
+      ],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml', 'junit'],

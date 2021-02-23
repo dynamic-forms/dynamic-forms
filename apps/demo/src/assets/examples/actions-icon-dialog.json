@@ -5,7 +5,63 @@
       "equalPassword": true
     }
   },
-  "elements": [
+  "headerActions": [ 
+    {
+      "id": "action-submit",
+      "type": "icon",
+      "template": {
+        "type": "button",
+        "label": "Delete",
+        "icon": "remove",
+        "title": "Delete account"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      },
+      "dialogDefinition": {
+        "children": [
+          {
+            "type": "content",
+            "template": {
+              "content": "<p>You are going to delete your account. Please confirm.</p>"
+            }
+          },
+          {
+            "key": "confirm",
+            "type": "control",
+            "template": {
+              "label": "Yes, I want to delete my account.",
+              "input": {
+                "type": "checkbox"
+              }
+            }
+          }
+        ],
+        "footerActions": [ 
+          {
+            "type": "button",
+            "template": {
+              "type": "button",
+              "label": "Cancel",
+              "action": "closeDialog"
+            }  
+          },
+          {
+            "type": "button",
+            "template": {
+              "type": "button",
+              "label": "Delete",
+              "action": "submit"
+            },
+            "expressions": {
+              "disabled": "!data.parent.dialog.model.confirm"
+            }  
+          }
+        ]
+      }
+    }
+  ],
+  "children": [
     {
       "key": "email",
       "type": "control",
@@ -65,61 +121,5 @@
       },
       "message": "The password does not fit the confirm password"
     }
-  },
-  "footerActions": [ 
-    {
-      "id": "action-submit",
-      "type": "icon",
-      "template": {
-        "type": "button",
-        "label": "Delete",
-        "icon": "remove",
-        "title": "Delete account"
-      },
-      "expressions": {
-        "disabled": "data.root.status !== 'VALID'"
-      },
-      "dialogDefinition": {
-        "elements": [
-          {
-            "type": "content",
-            "template": {
-              "content": "<p>You are going to delete your account. Please confirm.</p>"
-            }
-          },
-          {
-            "key": "confirm",
-            "type": "control",
-            "template": {
-              "label": "Yes, I want to delete my account.",
-              "input": {
-                "type": "checkbox"
-              }
-            }
-          }
-        ],
-        "footerActions": [ 
-          {
-            "type": "button",
-            "template": {
-              "type": "button",
-              "label": "Cancel",
-              "action": "closeDialog"
-            }  
-          },
-          {
-            "type": "button",
-            "template": {
-              "type": "button",
-              "label": "Delete",
-              "action": "submit"
-            },
-            "expressions": {
-              "disabled": "!data.parent.dialog.model.confirm"
-            }  
-          }
-        ]
-      }
-    }
-  ]
+  }
 }
