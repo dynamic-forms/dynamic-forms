@@ -125,7 +125,11 @@ export class Input {
         }
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'radio':
+        return this.inputElement.sendKeys(KEY.SPACE);
       case 'toggle':
+        if (this.control.theme === 'material') {
+          return this.inputElement.click();
+        }
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'select':
         const keys = this.control.theme !== 'material'
