@@ -18,7 +18,7 @@ $dynamic-form-material-red: #f44336;
     @import '~bootstrap/scss/card';
     @import '~bootstrap/scss/modal';
         
-    margin: 0 10px;
+    margin: 10px;
 
     &.grid {
       .row {
@@ -51,8 +51,8 @@ $dynamic-form-material-red: #f44336;
       flex-direction: row;
       align-items: center;
       width: 100%;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
 
       .dynamic-form-label {
         font-size: 18px;
@@ -76,6 +76,10 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+
+        dynamic-form-elements {
+          display: contents;
+        }
 
         button {
           margin-left: 10px;
@@ -120,8 +124,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
 
         .dynamic-form-group-label {
           font-weight: 600;
@@ -144,6 +148,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -188,8 +196,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
 
         .dynamic-form-array-label {
           font-weight: 600;
@@ -212,6 +220,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -256,8 +268,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
 
         .dynamic-form-dictionary-label {
           font-weight: 600;
@@ -280,6 +292,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -400,6 +416,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
         }
       }
 

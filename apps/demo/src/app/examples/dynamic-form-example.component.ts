@@ -7,11 +7,15 @@ import { DynamicFormData } from './dynamic-form-data';
 import { DynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
 export abstract class DynamicFormExampleComponent {
-  data$: Observable<DynamicFormData>;
+  readonly data$: Observable<DynamicFormData>;
+  readonly doc$: Observable<string>;
 
   constructor(protected route: ActivatedRoute, protected dialog: MatDialog) {
     this.data$ = this.route.data.pipe(
       map(data => this.mapData(data))
+    );
+    this.doc$ = this.data$.pipe(
+      map(data => this.getDoc(data))
     );
   }
 
@@ -20,8 +24,19 @@ export abstract class DynamicFormExampleComponent {
   }
 
   private mapData(data: Data): DynamicFormData {
+    const example = data.example;
     const definition = data.definition;
     const model = data.model || {};
-    return { definition, model };
+    return { example, definition, model };
+  }
+
+  private getDoc(data: Data): string {
+    const example = data.example;
+    if (example.docId) {
+      return example.path
+        ? `/assets/examples/${example.path}/${example.docId}.md`
+        : `/assets/examples/${example.docId}.md`;
+    }
+    return undefined;
   }
 }

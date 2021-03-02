@@ -3,7 +3,7 @@
     {
       "type": "markdown",
       "template": {
-        "markdown": "## Markdown from definition\n\n### Header\n\nParagraph\n\nParagraph"
+        "markdown": "# Markdown from definition\n\n## Header\n\nParagraph\n\nParagraph"
       }
     },
     {

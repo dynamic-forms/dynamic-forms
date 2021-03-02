@@ -3,6 +3,8 @@ import { NgxsModule } from '@ngxs/store';
 import { environment } from './../environments/environment';
 import { ConfigService } from './state/config/config.service';
 import { ConfigState } from './state/config/config.state';
+import { ExamplesService } from './state/examples/examples.service';
+import { ExamplesState } from './state/examples/examples.state';
 import { LayoutState } from './state/layout/layout.state';
 import { NotificationsService } from './state/notifications/notifications.service';
 import { NotificationsState } from './state/notifications/notifications.state';
@@ -14,6 +16,7 @@ import { RoutingHandler } from './state/routing/routing.handler';
   imports: [
     NgxsModule.forRoot([
       ConfigState,
+      ExamplesState,
       LayoutState,
       NotificationsState,
       ProgressState
@@ -23,6 +26,7 @@ import { RoutingHandler } from './state/routing/routing.handler';
   ],
   providers: [
     ConfigService,
+    ExamplesService,
     ProgressService,
     NotificationsService,
     RoutingHandler

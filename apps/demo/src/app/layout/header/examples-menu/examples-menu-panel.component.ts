@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatMenu } from '@angular/material';
-import { ExamplesMenuItem } from './examples-menu';
+import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({
   selector: 'app-examples-menu-panel',
@@ -15,5 +15,5 @@ export class ExamplesMenuPanelComponent {
   baseUrl: string;
 
   @Input()
-  items: ExamplesMenuItem[];
+  items: ExampleMenuItem[];
 }

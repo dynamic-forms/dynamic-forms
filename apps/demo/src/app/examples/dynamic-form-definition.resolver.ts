@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
+import { Example } from '../state/examples/examples.model';
 import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
@@ -14,11 +15,12 @@ export class DynamicFormDefinitionResolver implements Resolve<Observable<Dynamic
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<DynamicFormDefinition> {
-    const definitionId = route.params.definitionId;
-    const request = this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ definitionId }.json`);
+    const example = route.parent.data.example as Example;
+    const file = example.path ? `${ example.path}/${ example.id }.json` : `${ example.id }.json`;
+    const request = this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ file }`);
     const messages = this.getNotificationMessages();
     return this.notificationsService.pipe(request, messages);
-  }
+}
 
   private getNotificationMessages(): NotificationMessages {
     const info = this.notificationsService.getInfoMessage(`Loading definition started`);
