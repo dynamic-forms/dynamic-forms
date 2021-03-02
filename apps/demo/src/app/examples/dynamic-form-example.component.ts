@@ -34,8 +34,8 @@ export abstract class DynamicFormExampleComponent {
     const example = data.example;
     if (example.docId) {
       return example.path
-        ? `/assets/examples/${example.path}/${example.docId}.md`
-        : `/assets/examples/${example.docId}.md`;
+        ? `./assets/examples/${example.path}/${example.docId}.md`
+        : `./assets/examples/${example.docId}.md`;
     }
     return undefined;
   }
