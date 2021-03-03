@@ -67,6 +67,14 @@
               "label": "Default value"
             },
             {
+              "id": "fields-group-actions-footer",
+              "label": "Actions in footer"
+            },
+            {
+              "id": "fields-group-actions-header",
+              "label": "Actions in header"
+            },
+            {
               "id": "fields-group-validation",
               "label": "Validation"
             }
@@ -155,10 +163,24 @@
         { 
           "id": "elements-content", 
           "label": "Content" 
-        },        
-        { 
-          "id": "elements-container", 
-          "label": "Container" 
+        }, 
+        {
+          "groupId": "container",
+          "label": "Container",
+          "items": [
+            { 
+              "id": "elements-row-container", 
+              "label": "Row" 
+            },
+            { 
+              "id": "elements-column-container", 
+              "label": "Column" 
+            },
+            { 
+              "id": "elements-row-column-container", 
+              "label": "Row & Column" 
+            }
+          ]
         },       
         { 
           "id": "elements-markdown", 

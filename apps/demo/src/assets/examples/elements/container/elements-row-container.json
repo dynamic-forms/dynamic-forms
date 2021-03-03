@@ -4,24 +4,9 @@
   },
   "children": [
     {
-      "type": "modal",
+      "type": "container",
       "template": {
-        "title": "Modal",
-        "classNameTitle": "modal-title-bg",
-        "classNameChildren": "row",
-        "width": "600px",
-        "maxWidth": "calc(100% - 1rem)"
-      },
-      "trigger": {
-        "type": "button",
-        "template": {
-          "type": "button",
-          "label": "Open Modal",
-          "action": "openModal"
-        },
-        "expressions": {
-          "disabled": "data.parent.isOpen"
-        }
+        "orientation": "row"
       },
       "children": [
         {
@@ -36,27 +21,6 @@
           "template": {
             "className": "col",
             "content": "<h3>Heading 2</h3><p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p><p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>"
-          }
-        }
-      ],
-      "headerActions": [ 
-        {
-          "type": "icon",
-          "template": {
-            "type": "button",
-            "label": "Close Modal",
-            "icon": "clear",
-            "action": "closeModal"
-          }
-        }
-      ],
-      "footerActions": [ 
-        {
-          "type": "button",
-          "template": {
-            "type": "button",
-            "label": "Close Modal",
-            "action": "closeModal"
           }
         }
       ]

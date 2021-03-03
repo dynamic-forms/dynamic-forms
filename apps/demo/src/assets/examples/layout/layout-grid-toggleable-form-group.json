@@ -12,7 +12,8 @@
           "type": "checkbox",
           "defaultValue": true
         }  
-      }
+      },
+      "unregistered": true
     },
     {
       "key": "name",

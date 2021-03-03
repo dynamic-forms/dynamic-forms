@@ -230,8 +230,9 @@ export class DynamicFormBuilder {
     if (action.id) {
       return action.id;
     }
-    const parentId = action.parent.id || this.createId();
-    return `${parentId}-${action.template.action}`;
+    return action.parent.id
+      ? `${action.parent.id}-${action.template.action}`
+      : `${action.template.action}-${this.createId()}`;
   }
 
   createElementExpressions(element: DynamicFormElement): DynamicFormElementExpressions {
