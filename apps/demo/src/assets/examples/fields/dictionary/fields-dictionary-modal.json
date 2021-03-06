@@ -213,7 +213,18 @@
                 }
               }
             ],
-            "footerActions": [ 
+            "headerActions": [
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
+                  "label": "Close",
+                  "icon": "close",
+                  "action": "closeModal"
+                }
+              }
+            ],
+            "footerActions": [
               {
                 "type": "button",
                 "template": {

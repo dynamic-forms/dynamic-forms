@@ -364,7 +364,8 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         align-items: center;
         width: 100%;
-
+        margin-bottom: 12px;
+        
         .modal-title {
           &.modal-title-bg {
             font-size: 24px;
@@ -395,6 +396,8 @@ $dynamic-form-material-red: #f44336;
       }
 
       .modal-footer {
+        margin-top: 12px;
+        
         &.content-end {
           justify-content: flex-end;
   

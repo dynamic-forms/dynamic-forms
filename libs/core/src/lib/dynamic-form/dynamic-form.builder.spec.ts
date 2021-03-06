@@ -888,15 +888,6 @@ describe('DynamicFormBuilder', () => {
     })
   );
 
-  it('getActionId returns id from parent',
-    inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
-      const action = { parent: { id: 'parent-id' }, template: { action: 'action' } } as DynamicFormAction;
-      const id = builder.getActionId(action);
-
-      expect(id).toBe('parent-id-action');
-    })
-  );
-
   it('getActionId returns id from action',
     inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
       const action = { id: 'dynamic-form-action-id' } as DynamicFormAction;
