@@ -1,7 +1,7 @@
 <ng-template #dialogTemplateRef>
-  <div class="dynamic-form-wrapper" [ngClass]="theme">
+  <div class="dynamic-form-wrapper" [ngClass]="theme" [class.maximized]="maximized">
     <div class="dynamic-form" [ngClass]="classNameForm">
-      <div class="dynamic-form-modal" [ngClass]="classNameModal">
+      <div class="dynamic-form-modal" [ngClass]="classNameModal" [class.maximized]="maximized">
         <div class="modal-header" *ngIf="title || titleHtml || headerActions?.length" [ngClass]="classNameHeader">
           <div class="modal-title" *ngIf="titleHtml; else titlePlain" 
             [ngClass]="classNameTitle" [innerHTML]="titleHtml"

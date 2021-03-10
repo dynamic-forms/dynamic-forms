@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Optional, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output,
+  SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
 import { Observable, Subscription } from 'rxjs';
@@ -7,7 +8,7 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'mat-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html'
 })
-export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
+export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
   private _dialog: { reference: MatDialogRef<any>, subscription: Subscription };
   private _dialogOpenSubscription: Subscription;
 
@@ -48,6 +49,14 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
     this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => {
       return isOpen ? this.openDialog() : this.closeDialog();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.maximized && this._dialog) {
+      const width = this.maximized ? this.maxWidth || '100%' : this.width;
+      const height = this.maximized ?  this.maxHeight || '100%' : this.height;
+      this._dialog.reference.updateSize(width, height);
+    }
   }
 
   ngOnDestroy(): void {

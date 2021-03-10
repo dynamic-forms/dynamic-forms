@@ -457,5 +457,13 @@ $dynamic-form-material-red: #f44336;
         }
       }
     }
+
+    .dynamic-form-modal {
+      &.maximized {
+        .mat-dialog-content {
+          max-height: 80vh;
+        }
+      }
+    }
   }
 }

@@ -69,7 +69,9 @@
               "title": "Edit item",
               "classNameTitle": "modal-title-md",
               "width": "800px",
-              "maxWidth": "calc(100% - 1rem)"
+              "height": "425px",
+              "maxWidth": "calc(100% - 1rem)",
+              "maxHeight": "calc(100% - 1rem)"
             },
             "trigger": {
               "type": "icon",
