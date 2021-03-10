@@ -30,7 +30,9 @@ export function dynamicFormIdBuilder(): string {
         clear: 'clear',
         moveDown: 'arrow_downward',
         moveUp: 'arrow_upward',
-        register: 'add'
+        register: 'add',
+        maximizeModal: 'fullscreen',
+        minimizeModal: 'fullscreen_exit'
       },
       libraryName: 'bootstrap'
     }),

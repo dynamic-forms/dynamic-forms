@@ -354,9 +354,19 @@ $dynamic-form-material-red: #f44336;
       }
     }
 
+    .dynamic-form-button {
+      &.hidden {
+        display: none;
+      }
+    }
+
     .dynamic-form-icon {
       width: 40px;
-      height: 40px; 
+      height: 40px;
+      
+      &.hidden {
+        display: none;
+      }
     }
     
     .dynamic-form-modal {

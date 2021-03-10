@@ -21,8 +21,12 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
   @Input() footerActions: DynamicFormAction[];
 
   @Input() width: string;
+  @Input() height: string;
   @Input() minWidth: string;
+  @Input() minHeight: string;
   @Input() maxWidth: string;
+  @Input() maxHeight: string;
+  @Input() maximized: boolean;
 
   @Input() title: string;
   @Input() titleHtml: string;
@@ -72,8 +76,11 @@ export class MatDynamicFormDialogComponent implements OnInit, OnDestroy {
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
     Object.defineProperty(config, 'width', { get: () => this.width });
+    Object.defineProperty(config, 'height', { get: () => this.height });
     Object.defineProperty(config, 'minWidth', { get: () => this.minWidth });
+    Object.defineProperty(config, 'minHeight', { get: () => this.minHeight });
     Object.defineProperty(config, 'maxWidth', { get: () => this.maxWidth });
+    Object.defineProperty(config, 'maxHeight', { get: () => this.maxHeight });
     return config;
   }
 }

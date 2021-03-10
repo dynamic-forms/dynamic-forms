@@ -1,7 +1,20 @@
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" [ngClass]="classNameModal"
-    [style.width]="width" [style.min-width]="minWidth" [style.max-width]="maxWidth">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
+    [ngClass]="classNameModal" [class.maximized]="maximized"
+    [ngStyle]="{ 
+      'width': maximized ? maxWidth || '100%' : width,
+      'min-width': maximized ? maxWidth || '100%' : minWidth, 
+      'max-width': maximized ? maxWidth || '100%' : maxWidth,
+      'min-height': maximized ? '100%' : undefined,
+      'max-height': maximized ? '100%' : undefined,
+      'margin': maximized ? '0px auto' : undefined
+    }">
+    <div class="modal-content" 
+      [ngStyle]="{ 
+        'height': maximized ? maxHeight || '100%' : height,
+        'min-height': maximized ? maxHeight || '100%' : minHeight, 
+        'max-height': maximized ? maxHeight || '100%' : maxHeight 
+      }">
       <div class="modal-header" *ngIf="title || titleHtml || headerActions?.length" [ngClass]="classNameHeader">
         <div class="modal-title" *ngIf="titleHtml; else titlePlain" 
           [ngClass]="classNameTitle" [innerHTML]="titleHtml"

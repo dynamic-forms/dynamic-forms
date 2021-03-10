@@ -377,9 +377,19 @@ $dynamic-form-material-red: #f44336;
       }
     }
   
+    .dynamic-form-button {
+      &.hidden {
+        display: none;
+      }
+    }
+
     .dynamic-form-icon {
       height: 38px;
-      padding: 0.375rem; 
+      padding: 0.375rem;
+      
+      &.hidden {
+        display: none;
+      }
     }
 
     .dynamic-form-modal {
@@ -419,6 +429,11 @@ $dynamic-form-material-red: #f44336;
 
           dynamic-form-elements {
             display: contents;
+          }
+
+          button {
+            margin-left: 10px;
+            margin-right: 0px;
           }
         }
       }

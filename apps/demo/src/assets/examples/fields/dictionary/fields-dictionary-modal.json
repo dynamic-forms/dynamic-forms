@@ -218,6 +218,30 @@
                 "type": "icon",
                 "template": {
                   "type": "button",
+                  "label": "Minimize Modal",
+                  "icon": "minimizeModal",
+                  "action": "minimizeModal"
+                },
+                "expressions": {
+                  "hidden": "!data.parent.maximized"
+                }
+              },
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
+                  "label": "Maximize Modal",
+                  "icon": "maximizeModal",
+                  "action": "maximizeModal"
+                },
+                "expressions": {
+                  "hidden": "data.parent.maximized"
+                }
+              },
+              {
+                "type": "icon",
+                "template": {
+                  "type": "button",
                   "label": "Close",
                   "icon": "close",
                   "action": "closeModal"

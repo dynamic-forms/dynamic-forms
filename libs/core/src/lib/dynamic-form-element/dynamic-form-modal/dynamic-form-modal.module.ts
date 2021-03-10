@@ -34,12 +34,34 @@ export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicForm
   libraryName: dynamicFormLibrary.name
 };
 
+export function dynamicFormModalMaximize(modal: DynamicFormModal): void {
+  modal.maximize();
+}
+
+export const dynamicFormModalMaximizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
+  type: 'maximizeModal',
+  func: dynamicFormModalMaximize,
+  libraryName: dynamicFormLibrary.name
+};
+
+export function dynamicFormModalMinimize(modal: DynamicFormModal): void {
+  modal.minimize();
+}
+
+export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
+  type: 'minimizeModal',
+  func: dynamicFormModalMinimize,
+  libraryName: dynamicFormLibrary.name
+};
+
 @NgModule({
   imports: [
     DynamicFormActionModule.withHandlers([
       dynamicFormModalOpenHandler,
       dynamicFormModalCloseHandler,
-      dynamicFormModalToggleHandler
+      dynamicFormModalToggleHandler,
+      dynamicFormModalMaximizeHandler,
+      dynamicFormModalMinimizeHandler
     ])
   ]
 })

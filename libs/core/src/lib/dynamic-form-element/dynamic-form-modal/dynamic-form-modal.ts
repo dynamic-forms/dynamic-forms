@@ -23,7 +23,8 @@ export class DynamicFormModal<
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
-      isOpen: () => this.isOpen
+      isOpen: () => this.isOpen,
+      maximized: () => this.template.maximized
     });
   }
 
@@ -57,5 +58,17 @@ export class DynamicFormModal<
 
   toggle(): void {
     this._isOpenSubject.next(!this.isOpen);
+  }
+
+  maximize(): void {
+    if (!this.template.maximized) {
+      this.template.maximized = true;
+    }
+  }
+
+  minimize(): void {
+    if (this.template.maximized) {
+      this.template.maximized = false;
+    }
   }
 }
