@@ -54,6 +54,16 @@ export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFo
   libraryName: dynamicFormLibrary.name
 };
 
+export function dynamicFormModalToggleSize(modal: DynamicFormModal): void {
+  modal.toggleSize();
+}
+
+export const dynamicFormModalToggleSizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
+  type: 'toggleSizeModal',
+  func: dynamicFormModalToggleSize,
+  libraryName: dynamicFormLibrary.name
+};
+
 @NgModule({
   imports: [
     DynamicFormActionModule.withHandlers([
@@ -61,7 +71,8 @@ export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFo
       dynamicFormModalCloseHandler,
       dynamicFormModalToggleHandler,
       dynamicFormModalMaximizeHandler,
-      dynamicFormModalMinimizeHandler
+      dynamicFormModalMinimizeHandler,
+      dynamicFormModalToggleSizeHandler,
     ])
   ]
 })

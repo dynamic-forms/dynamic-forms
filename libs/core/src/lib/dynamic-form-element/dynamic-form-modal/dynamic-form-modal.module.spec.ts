@@ -3,8 +3,11 @@ import { DynamicFormActionService } from '../../dynamic-form-action/dynamic-form
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormModal } from './dynamic-form-modal';
-import { dynamicFormModalCloseHandler, dynamicFormModalOpenHandler, dynamicFormModalToggleHandler,
-  DynamicFormModalModule } from './dynamic-form-modal.module';
+import { dynamicFormModalCloseHandler, dynamicFormModalMaximizeHandler, dynamicFormModalMinimizeHandler,
+  dynamicFormModalOpenHandler,
+  dynamicFormModalToggleHandler,
+  dynamicFormModalToggleSizeHandler,
+  DynamicFormModalModule} from './dynamic-form-modal.module';
 
 describe('DynamicFormModalModule', () => {
   beforeEach(() => {
@@ -25,7 +28,7 @@ describe('DynamicFormModalModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(6);
+      expect(handlers.length).toBe(9);
       expect(handlers[3]).toEqual(dynamicFormModalOpenHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
@@ -35,6 +38,15 @@ describe('DynamicFormModalModule', () => {
       expect(handlers[5]).toEqual(dynamicFormModalToggleHandler);
       expect(handlers[5].func).toEqual(jasmine.any(Function));
       expect(handlers[5].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[6]).toEqual(dynamicFormModalMaximizeHandler);
+      expect(handlers[6].func).toEqual(jasmine.any(Function));
+      expect(handlers[6].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[7]).toEqual(dynamicFormModalMinimizeHandler);
+      expect(handlers[7].func).toEqual(jasmine.any(Function));
+      expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[8]).toEqual(dynamicFormModalToggleSizeHandler);
+      expect(handlers[8].func).toEqual(jasmine.any(Function));
+      expect(handlers[8].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 
@@ -74,6 +86,45 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.toggle).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls maximize of modal',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'maximizeModal');
+      const modal = { maximize(): void {} } as DynamicFormModal;
+
+      spyOn(modal, 'maximize');
+
+      handler.func(modal, null);
+
+      expect(modal.maximize).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls minimize of modal',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'minimizeModal');
+      const modal = { minimize(): void {} } as DynamicFormModal;
+
+      spyOn(modal, 'minimize');
+
+      handler.func(modal, null);
+
+      expect(modal.minimize).toHaveBeenCalled();
+    })
+  );
+
+  it('handler calls toggleSize of modal',
+    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+      const handler = service.handlers.find(h => h.type === 'toggleSizeModal');
+      const modal = { toggleSize(): void {} } as DynamicFormModal;
+
+      spyOn(modal, 'toggleSize');
+
+      handler.func(modal, null);
+
+      expect(modal.toggleSize).toHaveBeenCalled();
     })
   );
 });

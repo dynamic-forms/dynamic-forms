@@ -49,11 +49,11 @@ export class DynamicFormModal<
   }
 
   open(): void {
-    return !this.isOpen && this._isOpenSubject.next(true);
+    return !this.isOpen && this.toggle();
   }
 
   close(): void {
-    return this.isOpen && this._isOpenSubject.next(false);
+    return this.isOpen && this.toggle();
   }
 
   toggle(): void {
@@ -61,14 +61,17 @@ export class DynamicFormModal<
   }
 
   maximize(): void {
-    if (!this.template.maximized) {
-      this.template.maximized = true;
-    }
+    return !this.template.maximized && this.toggleSize();
   }
 
   minimize(): void {
-    if (this.template.maximized) {
-      this.template.maximized = false;
+    return this.template.maximized && this.toggleSize();
+  }
+
+  toggleSize(): void {
+    const descriptor = Object.getOwnPropertyDescriptor(this.template, 'maximized');
+    if (!descriptor || descriptor.writable) {
+      this.template.maximized = !this.template.maximized;
     }
   }
 }
