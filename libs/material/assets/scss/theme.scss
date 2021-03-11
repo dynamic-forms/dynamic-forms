@@ -405,9 +405,7 @@ $dynamic-form-material-red: #f44336;
         }
       }
 
-      .modal-footer {
-        margin-top: 12px;
-        
+      .modal-footer {        
         &.content-end {
           justify-content: flex-end;
   
@@ -444,24 +442,28 @@ $dynamic-form-material-red: #f44336;
 
 .mat-dialog-container {
   .dynamic-form-wrapper.material {
+    height: 100%;
+
     .dynamic-form {
+      height: 100%;
       margin: 0px;
 
       &.grid {
         margin: 0px;
 
+        .dynamic-form-modal {
+          height: 100%;
+
+          .mat-dialog-content {
+            height: calc(100% - 92px);
+            max-height: calc(100% - 92px);
+          }
+        }
+
         .row {
           &.mat-dialog-content {
             padding: 0px;
           }
-        }
-      }
-    }
-
-    .dynamic-form-modal {
-      &.maximized {
-        .mat-dialog-content {
-          max-height: 80vh;
         }
       }
     }

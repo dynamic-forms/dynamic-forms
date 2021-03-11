@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './dynamic-form-dialog.component.html'
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
-  private _dialog: { reference: MatDialogRef<any>, subscription: Subscription };
+  private _dialog: { config: MatDialogConfig, reference: MatDialogRef<any>, subscription: Subscription };
   private _dialogOpenSubscription: Subscription;
 
   @ViewChild('dialogTemplateRef', { static: true })
@@ -52,10 +52,8 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.maximized && this._dialog) {
-      const width = this.maximized ? this.maxWidth || '100%' : this.width;
-      const height = this.maximized ?  this.maxHeight || '100%' : this.height;
-      this._dialog.reference.updateSize(width, height);
+    if (this._dialog && changes.maximized) {
+      this._dialog.reference.updateSize(this._dialog.config.width, this._dialog.config.height);
     }
   }
 
@@ -71,7 +69,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
     const subscription = reference.beforeClosed().subscribe(_ => {
       return this.escaped.emit();
     });
-    this._dialog = { reference, subscription };
+    this._dialog = { config, reference, subscription };
   }
 
   private closeDialog(): void {
@@ -84,12 +82,12 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
-    Object.defineProperty(config, 'width', { get: () => this.width });
-    Object.defineProperty(config, 'height', { get: () => this.height });
-    Object.defineProperty(config, 'minWidth', { get: () => this.minWidth });
-    Object.defineProperty(config, 'minHeight', { get: () => this.minHeight });
-    Object.defineProperty(config, 'maxWidth', { get: () => this.maxWidth });
-    Object.defineProperty(config, 'maxHeight', { get: () => this.maxHeight });
+    Object.defineProperty(config, 'width', { get: () => this.maximized ? this.maxWidth || '100%' : this.width });
+    Object.defineProperty(config, 'height', { get: () => this.maximized ? this.maxHeight || '100%' : this.height });
+    Object.defineProperty(config, 'minWidth', { get: () => this.maximized ? this.maxWidth || '100%' : this.minWidth });
+    Object.defineProperty(config, 'minHeight', { get: () => this.maximized ? this.maxHeight || '100%' : this.minHeight });
+    Object.defineProperty(config, 'maxWidth', { get: () => this.maximized ? this.maxWidth || '100%' : this.maxWidth });
+    Object.defineProperty(config, 'maxHeight', { get: () => this.maximized ? this.maxHeight || '100%' : this.maxHeight });
     return config;
   }
 }
