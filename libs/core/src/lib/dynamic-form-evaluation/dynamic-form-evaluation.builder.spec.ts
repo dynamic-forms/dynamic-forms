@@ -37,7 +37,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators being empty if evaluator type not found',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
+        const definition = { evaluators: { options: { type: 'selectValue' } } } as DynamicFormControlDefinition;
         const control = { definition, inputType: 'select' } as DynamicFormControl;
         const controlEvaluators = service.createControlEvaluators(control);
 
@@ -47,7 +47,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators not being enabled',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = { evaluators: { options: { type: 'selectOptions' } } } as DynamicFormControlDefinition;
+        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
         const control = { definition, inputType: 'textbox' } as DynamicFormControl;
         const controlEvaluators = service.createControlEvaluators(control);
 
@@ -58,7 +58,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators being enabled',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = { evaluators: { options: { type: 'selectOptions' } } } as DynamicFormControlDefinition;
+        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
         const control = { definition, inputType: 'select' } as DynamicFormControl;
         const controlEvaluators = service.createControlEvaluators(control);
 

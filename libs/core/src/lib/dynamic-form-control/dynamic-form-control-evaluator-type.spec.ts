@@ -3,49 +3,104 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { dynamicFormSelectOptionsEvaluatorFn } from './dynamic-form-control-evaluator-type';
+import { dynamicFormControlEvaluatorTypes, dynamicFormSelectEvaluatorFn,
+  dynamicFormSelectEvaluatorType } from './dynamic-form-control-evaluator-type';
 
 describe('DynamicFormControlEvaluatorType', () => {
-  it('evaluates control value of select', () => {
-    const definition = {
-      key: 'key',
-      template: {
-        input: {
-          type: 'select',
-          options: [
-            { value: 'option1', label: 'Option1' },
-            { value: 'option2', label: 'Option2' },
-            {
-              label: 'Option Group',
-              items: [
-                { value: 'option3', label: 'Option3' },
-                { value: 'option4', label: 'Option4' }
-              ]
-            }
-          ]
-        }
-      }
-    } as DynamicFormControlDefinition<DynamicFormSelect>;
-    const form = new DynamicForm({ children: [] } as DynamicFormDefinition, {
-      'key': 'option1'
+  describe('dynamicFormControlEvaluatorTypes', () => {
+    it('provides evaluator types', () => {
+      expect(dynamicFormControlEvaluatorTypes.length).toBe(1);
+      expect(dynamicFormControlEvaluatorTypes[0]).toBe(dynamicFormSelectEvaluatorType);
     });
-    const formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
-    formControl.template.input.options = [
-      { value: 'option1', label: 'Option1' },
-      { value: 'option2', label: 'Option2' }
-    ];
+  });
 
-    dynamicFormSelectOptionsEvaluatorFn(formControl);
+  describe('dynamicFormSelectEvaluatorType', () => {
+    it('provides evaluator type property', () => {
+      expect(dynamicFormSelectEvaluatorType.type).toBe('select');
+      expect(dynamicFormSelectEvaluatorType.inputType).toBe('select');
+      expect(dynamicFormSelectEvaluatorType.func).toBe(dynamicFormSelectEvaluatorFn);
+    });
 
-    expect(formControl.control.value).toBe('option1');
+    it('func evaluates control model', () => {
+      const definition = {
+        key: 'key',
+        template: {
+          input: {
+            type: 'select',
+            options: [
+              { value: 'option1', label: 'Option1' },
+              { value: 'option2', label: 'Option2' },
+              {
+                label: 'Option Group 1',
+                items: [
+                  { value: 'option3', label: 'Option3' },
+                  { value: 'option4', label: 'Option4' }
+                ]
+              },
+              {
+                label: 'Option Group 2',
+                items: [
+                  { value: 'option5', label: 'Option5' },
+                  { value: 'option6', label: 'Option6' }
+                ]
+              }
+            ]
+          }
+        }
+      } as DynamicFormControlDefinition<DynamicFormSelect>;
+      const form = new DynamicForm({ children: [] } as DynamicFormDefinition, { 'key': null });
+      const formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
 
-    formControl.template.input.options = [
-      { value: 'option2', label: 'Option2' },
-      { value: 'option3', label: 'Option3' }
-    ] as any[];
+      dynamicFormSelectEvaluatorType.func(formControl);
 
-    dynamicFormSelectOptionsEvaluatorFn(formControl);
+      expect(formControl.model).toBeNull();
+      expect(formControl.value).toBeNull();
 
-    expect(formControl.control.value).toBeNull();
+      formControl.patchModel('option1');
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toBe('option1');
+      expect(formControl.value).toBe('option1');
+
+      formControl.template.input.multiple = true;
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toEqual([ 'option1' ]);
+      expect(formControl.value).toEqual([ 'option1' ]);
+
+      formControl.patchModel([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toEqual([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
+      expect(formControl.value).toEqual([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
+
+      formControl.template.input.options[2].items[1].disabled = true;
+      formControl.template.input.options[3].disabled = true;
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toEqual([ 'option1', 'option2' ]);
+      expect(formControl.value).toEqual([ 'option1', 'option2' ]);
+
+      formControl.template.input.options = [
+        { value: 'option1', label: 'Option1', disabled: true },
+        { value: 'option2', label: 'Option2', disabled: true },
+      ];
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toEqual([]);
+      expect(formControl.value).toEqual([]);
+
+      formControl.template.input.multiple = false;
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toBeNull();
+      expect(formControl.value).toBeNull();
+    });
   });
 });

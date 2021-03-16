@@ -9,7 +9,7 @@ export interface DynamicFormControlEvaluatorType<
   inputType?: string;
 }
 
-export function dynamicFormSelectOptionsEvaluatorFn(control: DynamicFormControl): void {
+export function dynamicFormSelectEvaluatorFn(control: DynamicFormControl): void {
   if (!control.model) {
     return;
   }
@@ -17,7 +17,11 @@ export function dynamicFormSelectOptionsEvaluatorFn(control: DynamicFormControl)
   const multiple = control.template.input.multiple;
   const someOption = (value) => {
     return options.some(option => {
-      return option.items ? option.items.some(item => item.value === value) : option.value === value;
+      return !option.disabled
+        ? option.items
+          ? option.items.filter(i => !i.disabled).some(i => i.value === value)
+          : option.value === value
+        : false;
     });
   };
   if (control.model instanceof Array) {
@@ -35,13 +39,13 @@ export function dynamicFormSelectOptionsEvaluatorFn(control: DynamicFormControl)
   }
 }
 
-export const dynamicFormSelectOptionsEvaluatorType: DynamicFormControlEvaluatorType = {
-  type: 'selectOptions',
+export const dynamicFormSelectEvaluatorType: DynamicFormControlEvaluatorType = {
+  type: 'select',
   inputType: 'select',
-  func: dynamicFormSelectOptionsEvaluatorFn,
+  func: dynamicFormSelectEvaluatorFn,
   libraryName: dynamicFormLibrary.name
 };
 
 export const dynamicFormControlEvaluatorTypes: DynamicFormControlEvaluatorType[] = [
-  dynamicFormSelectOptionsEvaluatorType
+  dynamicFormSelectEvaluatorType
 ];
