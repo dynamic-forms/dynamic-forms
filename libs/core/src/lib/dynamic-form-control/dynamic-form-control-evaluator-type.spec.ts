@@ -3,7 +3,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-type';
+import { dynamicFormSelectOptionsEvaluatorFn } from './dynamic-form-control-evaluator-type';
 
 describe('DynamicFormControlEvaluatorType', () => {
   it('evaluates control value of select', () => {
@@ -35,7 +35,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       { value: 'option2', label: 'Option2' }
     ];
 
-    dynamicFormSelectEvaluatorFn(formControl);
+    dynamicFormSelectOptionsEvaluatorFn(formControl);
 
     expect(formControl.control.value).toBe('option1');
 
@@ -44,7 +44,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       { value: 'option3', label: 'Option3' }
     ] as any[];
 
-    dynamicFormSelectEvaluatorFn(formControl);
+    dynamicFormSelectOptionsEvaluatorFn(formControl);
 
     expect(formControl.control.value).toBeNull();
   });

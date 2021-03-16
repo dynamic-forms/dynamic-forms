@@ -157,6 +157,9 @@
           } 
         },
         {
+          "reference": "multiple"
+        },
+        {
           "reference": "options"
         },
         {
@@ -171,10 +174,27 @@
           },
           "expressions": {
             "input.type": "data.parent.model.type || 'textbox'",
+            "input.multiple": "data.parent.value.multiple",
             "input.options": "data.parent.value.options"
+          },
+          "evaluators": {
+            "options": { "type": "selectOptions" }
           }
         }
       ]
+    },
+    "multiple": {
+      "key": "multiple",
+      "type": "control",
+      "template": {
+        "label": "Multiple",
+        "input": {
+          "type": "switch"
+        }
+      },
+      "expressions": {
+        "hidden": "data.parent.model.type !== 'select'"
+      }
     },
     "options": {
       "key": "options",

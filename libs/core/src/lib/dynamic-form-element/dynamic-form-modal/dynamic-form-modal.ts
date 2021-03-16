@@ -10,8 +10,8 @@ export class DynamicFormModal<
   Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
 
-  private _isOpenSubject: BehaviorSubject<boolean>;
-  private _isOpenChanges: Observable<boolean>;
+  private readonly _isOpenSubject: BehaviorSubject<boolean>;
+  private readonly _isOpenChanges: Observable<boolean>;
 
   protected _trigger: DynamicFormAction;
 

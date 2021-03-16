@@ -72,12 +72,6 @@ describe('MatDynamicFormDialogComponent', () => {
     it('creates component', () => {
       expect(component).toBeTruthy();
     });
-
-    xit('renders component template', () => {
-      const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
-
-      expect(formWrapperElement).toBeNull();
-    });
   });
 
   describe('opened', () => {
@@ -216,5 +210,17 @@ describe('MatDynamicFormDialogComponent', () => {
         expect(toolbarElement).toBeTruthy();
       });
     }));
+  });
+
+  describe('opened maximized', () => {
+    beforeEach(() => {
+      component.isOpen$ = of(true);
+      component.maximized = true;
+      fixture.detectChanges();
+    });
+
+    it('creates component', () => {
+      expect(component).toBeTruthy();
+    });
   });
 });
