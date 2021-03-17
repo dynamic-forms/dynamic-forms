@@ -178,7 +178,7 @@
             "input.options": "data.parent.value.options"
           },
           "evaluators": {
-            "options": { "type": "selectOptions" }
+            "select": { "type": "select" }
           }
         }
       ]

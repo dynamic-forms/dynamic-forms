@@ -85,10 +85,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       expect(formControl.model).toEqual([ 'option1', 'option2' ]);
       expect(formControl.value).toEqual([ 'option1', 'option2' ]);
 
-      formControl.template.input.options = [
-        { value: 'option1', label: 'Option1', disabled: true },
-        { value: 'option2', label: 'Option2', disabled: true },
-      ];
+      formControl.template.input.options = null;
 
       dynamicFormSelectEvaluatorType.func(formControl);
 
@@ -101,6 +98,24 @@ describe('DynamicFormControlEvaluatorType', () => {
 
       expect(formControl.model).toBeNull();
       expect(formControl.value).toBeNull();
+
+      formControl.template.input.options = [
+        { value: 'option1', label: 'Option1' }
+      ];
+      formControl.patchModel('option1');
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toBe('option1');
+      expect(formControl.value).toBe('option1');
+
+      formControl.template.input.multiple = true;
+      formControl.template.input.options[0].disabled = true;
+
+      dynamicFormSelectEvaluatorType.func(formControl);
+
+      expect(formControl.model).toEqual([]);
+      expect(formControl.value).toEqual([]);
     });
   });
 });
