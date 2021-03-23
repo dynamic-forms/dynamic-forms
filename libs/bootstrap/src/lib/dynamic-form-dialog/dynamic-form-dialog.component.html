@@ -1,4 +1,4 @@
-<div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm">
+<div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm" [class.maximized]="maximized">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
     [ngClass]="classNameModal" [class.maximized]="maximized"
     [ngStyle]="{ 

@@ -15,7 +15,7 @@ describe('DynamicFormFieldValidator', () => {
   it('creates instance', () => {
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: {}, template: { validation } } as DynamicFormField;
-    const factory = _ => _ => null;
+    const factory = _ => __ => null;
     const validator = new TestDynamicFormFieldValidator('valid', field, factory);
 
     expect(validator.key).toBe('valid');
@@ -35,7 +35,7 @@ describe('DynamicFormFieldValidator', () => {
     const validators = { valid } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: { validators }, template: { validation } } as DynamicFormField;
-    const factory = _ => _ => null;
+    const factory = _ => __ => null;
     const validator = new TestDynamicFormFieldValidator('valid', field, factory);
 
     expect(validator.key).toBe('valid');
@@ -54,12 +54,12 @@ describe('DynamicFormFieldValidator', () => {
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { template: { validation } } as DynamicFormField;
 
-    expect(() => new TestDynamicFormFieldValidator('valid', field, _ => _ => null)).toThrowError();
+    expect(() => new TestDynamicFormFieldValidator('valid', field, _ => __ => null)).toThrowError();
   });
 
   it('creating instance throws exception if validation not valid', () => {
     const field = { definition: {}, template: { validation: null } } as DynamicFormField;
-    const factory = _ => _ => null;
+    const factory = _ => __ => null;
 
     expect(() => new TestDynamicFormFieldValidator('valid', field, factory)).toThrowError();
   });
@@ -74,7 +74,7 @@ describe('DynamicFormFieldValidator', () => {
   it('checkChanges returns false', () => {
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: {}, template: { validation } } as DynamicFormField;
-    const validator = new TestDynamicFormFieldValidator('valid', field, _ => _ => null);
+    const validator = new TestDynamicFormFieldValidator('valid', field, _ => __ => null);
 
     const changes = validator.checkChanges();
 
@@ -84,7 +84,7 @@ describe('DynamicFormFieldValidator', () => {
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: {}, template: { validation } } as DynamicFormField;
-    const validator = new TestDynamicFormFieldValidator('valid', field, _ => _ => null);
+    const validator = new TestDynamicFormFieldValidator('valid', field, _ => __ => null);
 
     expect(validator.enabled).toBe(true);
     expect(validator.validatorFn).toBeTruthy();
