@@ -620,6 +620,9 @@
                 "input": {
                   "type": "textbox",
                   "placeholder": "Enter a key"
+                },
+                "validation": {
+                  "required": true
                 }
               }
             },
