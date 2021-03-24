@@ -3,7 +3,7 @@
     "className": "grid"
   },
   "references": {
-    "template":     {
+    "template": {
       "key": "template",
       "type": "group",
       "children": [
@@ -134,11 +134,11 @@
                   "value": "toggle",
                   "label": "Toggle"
                 }
-              ]  
+              ] 
             },
             "validation": {
               "required": true
-            }
+            } 
           },
           "readonly": true
         },
@@ -189,7 +189,7 @@
       "template": {
         "label": "Multiple",
         "input": {
-          "type": "switch"
+          "type": "checkbox"
         }
       },
       "expressions": {
@@ -264,36 +264,18 @@
               "label": "Option",
               "className": "col-2 align-self-center",
               "input": {
-                "type": "switch",
+                "type": "checkbox",
                 "defaultValue": true
               }
             },
             "unregistered": true
           },
           {
-            "key": "label",
-            "type": "control",
-            "template": {
-              "label": "Label",
-              "className": "col-6",
-              "input": {
-                "type": "textbox",
-                "placeholder": "Enter a label"
-              },
-              "validation": {
-                "required": true
-              }
-            },
-            "expressions": {
-              "className": "data.parent.model.isOption ? 'col-5' : 'col-9'"
-            }
-          },
-          {
             "key": "value",
             "type": "control",
             "template": {
               "label": "Value",
-              "className": "col-4",
+              "className": "col-3",
               "input": {
                 "type": "textbox",
                 "placeholder": "Enter a value"
@@ -305,6 +287,36 @@
             "expressions": {
               "hidden": "!data.parent.model.isOption",
               "disabled": "!data.parent.model.isOption"
+            }
+          },
+          {
+            "key": "label",
+            "type": "control",
+            "template": {
+              "label": "Label",
+              "className": "col-4",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter a label"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            "expressions": {
+              "className": "data.parent.model.isOption ? 'col-4' : 'col-7'"
+            }
+          },
+          {
+            "key": "disabled",
+            "type": "control",
+            "template": {
+              "label": "Disabled",
+              "className": "col-2 align-self-center",
+              "input": {
+                "type": "checkbox",
+                "defaultValue": false
+              }
             }
           },
           {
@@ -369,11 +381,26 @@
               },
               "children": [
                 {
+                  "key": "value",
+                  "type": "control",
+                  "template": {
+                    "label": "Value",
+                    "className": "col-4",
+                    "input": {
+                      "type": "textbox",
+                      "placeholder": "Enter a value"
+                    },
+                    "validation": {
+                      "required": true
+                    }
+                  }
+                },
+                {
                   "key": "label",
                   "type": "control",
                   "template": {
                     "label": "Label",
-                    "className": "col-6",
+                    "className": "col-4",
                     "input": {
                       "type": "textbox",
                       "placeholder": "Enter a label"
@@ -384,17 +411,14 @@
                   }
                 },
                 {
-                  "key": "value",
+                  "key": "disabled",
                   "type": "control",
                   "template": {
-                    "label": "Value",
-                    "className": "col-5",
+                    "label": "Disabled",
+                    "className": "col-3 align-self-center",
                     "input": {
-                      "type": "textbox",
-                      "placeholder": "Enter a value"
-                    },
-                    "validation": {
-                      "required": true
+                      "type": "checkbox",
+                      "defaultValue": false
                     }
                   }
                 },
@@ -421,7 +445,9 @@
       "key": "validation",
       "type": "group",
       "template": {
-        "label": "Validation"
+        "label": "Validation",
+        "className": "row",
+        "classNameLabel": "col-12"
       },
       "children": [
         {
@@ -429,6 +455,7 @@
           "type": "control",
           "template": {
             "label": "Required",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -439,6 +466,7 @@
           "type": "control",
           "template": {
             "label": "Pattern",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -452,6 +480,7 @@
           "type": "control",
           "template": {
             "label": "Min length",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -465,6 +494,7 @@
           "type": "control",
           "template": {
             "label": "Max length",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -478,6 +508,7 @@
           "type": "control",
           "template": {
             "label": "Min",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -491,6 +522,7 @@
           "type": "control",
           "template": {
             "label": "Max",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
