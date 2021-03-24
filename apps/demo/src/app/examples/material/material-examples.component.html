@@ -21,5 +21,10 @@
         <pre>{{ dynamicForm.formGroup.value | json }}</pre>
       </ng-template>
     </mat-tab>
+    <mat-tab label="Documentation" [disabled]="!data.example.docId">
+      <ng-template matTabContent>
+        <app-markdown [source]="doc$ | async"></app-markdown>
+      </ng-template>
+    </mat-tab>
   </mat-tab-group>
 </ng-container>

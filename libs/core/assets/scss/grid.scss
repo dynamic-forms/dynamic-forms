@@ -1,27 +1,20 @@
 $dynamic-form-grid-gutter-width: 20px;
-$dynamic-form-grid-row-margin-top: 10px;
-$dynamic-form-grid-row-margin-bottom: 10px;
 
 .dynamic-form-wrapper {
   .dynamic-form.grid {
-    $grid-gutter-width: $dynamic-form-grid-gutter-width;
+    $grid-gutter-width: 20px;
 
     @import '~bootstrap/scss/functions';
     @import '~bootstrap/scss/variables';
     @import '~bootstrap/scss/mixins';
     @import '~bootstrap/scss/grid';
     @import '~bootstrap/scss/utilities/flex';
-
-    margin: 0 $dynamic-form-grid-gutter-width / 2 + 10px;
   
     *, *::before, *::after {
       box-sizing: border-box;
     }
     
     .row {
-      margin-top: $dynamic-form-grid-row-margin-top;
-      margin-bottom: $dynamic-form-grid-row-margin-bottom;
-        
       dynamic-form-element, 
       dynamic-form-elements,
       dynamic-form-content,
