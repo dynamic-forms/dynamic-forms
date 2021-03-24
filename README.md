@@ -75,18 +75,20 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 
 ### **@dynamic-forms/core**
 
-- Library includes **extensible** interfaces, classes, components, factories, services and **modules**
+- Library includes **extendable** interfaces, classes, components, factories, services and **modules**
   - Dynamic form config module for registration of components
   - Dynamic form module includes
     - Builder to create form controls, groups, arrays and dictionaries
     - Component factory to resolve registered components
     - Component to render elements, fields and actions
   - Dynamic form control module includes
-    - Component to render input
+    - Component to render an input
   - Dynamic form group module includes
-    - Component to render controls
+    - Component to render controls, groups and arrays
   - Dynamic form array module includes
-    - Component to render groups and controls
+    - Component to render either controls, groups or arrays of same structure
+  - Dynamic form dictionary module includes
+    - Component to render either controls, groups or arrays of same structure
   - Dynamic form validation module for registration of validators and messages
     - Builder to create validators
     - Service to resolve validation messages

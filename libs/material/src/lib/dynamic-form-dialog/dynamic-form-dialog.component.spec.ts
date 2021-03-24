@@ -72,12 +72,6 @@ describe('MatDynamicFormDialogComponent', () => {
     it('creates component', () => {
       expect(component).toBeTruthy();
     });
-
-    xit('renders component template', () => {
-      const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
-
-      expect(formWrapperElement).toBeNull();
-    });
   });
 
   describe('opened', () => {
@@ -216,5 +210,200 @@ describe('MatDynamicFormDialogComponent', () => {
         expect(toolbarElement).toBeTruthy();
       });
     }));
+  });
+
+  describe('opened maximized', () => {
+    beforeEach(() => {
+      component.isOpen$ = of(true);
+      component.maximized = true;
+      fixture.detectChanges();
+    });
+
+    it('renders maximized class names', async(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const formWrapperElement = document.querySelector('.dynamic-form-wrapper.maximized');
+        const formElement = formWrapperElement.querySelector('.dynamic-form.maximized');
+        const modalElement = formElement.querySelector('.dynamic-form-modal.maximized');
+
+        const bodyElement = modalElement.querySelector('.modal-body.maximized');
+
+        expect(formWrapperElement).toBeTruthy();
+        expect(formElement).toBeTruthy();
+        expect(modalElement).toBeTruthy();
+
+        expect(bodyElement).toBeTruthy();
+      });
+    }));
+
+    it('updates size', () => {
+      const overlayElement = document.querySelector<HTMLElement>('.cdk-overlay-pane');
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = false;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('');
+      expect(overlayElement.style.height).toBe('');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = true;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+    });
+  });
+
+  describe('opened maximized with size', () => {
+    beforeEach(() => {
+      component.isOpen$ = of(true);
+      component.width = '600px';
+      component.height = '400px';
+      component.maximized = true;
+      fixture.detectChanges();
+    });
+
+    it('updates size', () => {
+      const overlayElement = document.querySelector<HTMLElement>('.cdk-overlay-pane');
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = false;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('600px');
+      expect(overlayElement.style.height).toBe('400px');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = true;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+    });
+  });
+
+  describe('opened maximized with min size', () => {
+    beforeEach(() => {
+      component.isOpen$ = of(true);
+      component.minWidth = '600px';
+      component.minHeight = '400px';
+      component.maximized = true;
+      fixture.detectChanges();
+    });
+
+    it('updates size', () => {
+      const overlayElement = document.querySelector<HTMLElement>('.cdk-overlay-pane');
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = false;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('');
+      expect(overlayElement.style.height).toBe('');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = true;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('100%');
+      expect(overlayElement.style.height).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxHeight).toBe('');
+    });
+  });
+
+  describe('opened maximized with max size', () => {
+    beforeEach(() => {
+      component.isOpen$ = of(true);
+      component.maxWidth = 'calc(100% - 20px)';
+      component.maxHeight = 'calc(100% - 20px)';
+      component.maximized = true;
+      fixture.detectChanges();
+    });
+
+    it('updates size', () => {
+      const overlayElement = document.querySelector<HTMLElement>('.cdk-overlay-pane');
+
+      expect(overlayElement.style.width).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.height).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = false;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('');
+      expect(overlayElement.style.height).toBe('');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.maxHeight).toBe('');
+
+      component.maximized = true;
+      component.ngOnChanges({ maximized: {} as any });
+
+      fixture.detectChanges();
+
+      expect(overlayElement.style.width).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.height).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.minWidth).toBe('');
+      expect(overlayElement.style.minHeight).toBe('');
+      expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
+      expect(overlayElement.style.maxHeight).toBe('');
+    });
   });
 });

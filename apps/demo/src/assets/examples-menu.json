@@ -1,15 +1,17 @@
 {
-  "label": "Definition of control",
   "items": [
     {
+      "groupId": "inputs",
       "label": "Inputs",      
       "items": [
         { 
-          "id": "inputs-plain", 
+          "id": "inputs-plain",
+          "docId": "inputs",
           "label": "Plain" 
         },
         { 
-          "id": "inputs-label", 
+          "id": "inputs-label",
+          "docId": "inputs",
           "label": "Label" 
         },
         { 
@@ -33,6 +35,7 @@
           "label": "Disabled"
         },
         {
+          "groupId": "variations",
           "label": "Variations",
           "items": [
             {
@@ -52,14 +55,24 @@
       ]
     },
     {
+      "groupId": "fields",
       "label": "Fields",      
       "items": [
         {
+          "groupId": "group",
           "label": "Group",
           "items": [
             {
               "id": "fields-group-default-value",
               "label": "Default value"
+            },
+            {
+              "id": "fields-group-actions-footer",
+              "label": "Actions in footer"
+            },
+            {
+              "id": "fields-group-actions-header",
+              "label": "Actions in header"
             },
             {
               "id": "fields-group-validation",
@@ -68,6 +81,7 @@
           ]
         },
         { 
+          "groupId": "array",
           "label": "Array",
           "items": [
             {
@@ -107,6 +121,7 @@
           ]
         },
         {
+          "groupId": "dictionary",
           "label": "Dictionary",
           "items": [
             {
@@ -142,15 +157,30 @@
       ]
     },
     {
+      "groupId": "elements",
       "label": "Elements",      
       "items": [
         { 
           "id": "elements-content", 
           "label": "Content" 
-        },        
-        { 
-          "id": "elements-container", 
-          "label": "Container" 
+        }, 
+        {
+          "groupId": "container",
+          "label": "Container",
+          "items": [
+            { 
+              "id": "elements-row-container", 
+              "label": "Row" 
+            },
+            { 
+              "id": "elements-column-container", 
+              "label": "Column" 
+            },
+            { 
+              "id": "elements-row-column-container", 
+              "label": "Row & Column" 
+            }
+          ]
         },       
         { 
           "id": "elements-markdown", 
@@ -189,6 +219,7 @@
       ]
     },
     {
+      "groupId": "actions",
       "label": "Actions",      
       "items": [
         { 
@@ -236,6 +267,7 @@
       ]
     },
     {
+      "groupId": "references",
       "label": "References",
       "items": [
         {
@@ -253,6 +285,7 @@
       ]
     },
     {
+      "groupId": "validation",
       "label": "Validation",
       "items": [
         { 
@@ -270,6 +303,7 @@
       ]
     },
     {
+      "groupId": "expressions",
       "label": "Expressions",
       "items": [
         {
@@ -287,6 +321,7 @@
       ]
     },
     {
+      "groupId": "settings",
       "label": "Settings",
       "items": [
         {
@@ -296,6 +331,7 @@
       ]
     },
     {
+      "groupId": "layout",
       "label": "Layout",
       "items": [
         {
@@ -340,21 +376,22 @@
       ]
     },
     {
-      "label": "Definitions",
+      "groupId": "configurator",
+      "label": "Configurator",
       "items": [
         {
           "label": "Control",
           "items": [
             {
-              "id": "definition-control-groups",
+              "id": "configurator-control-groups",
               "label": "Groups"
             },
             {
-              "id": "definition-control-accordion",
+              "id": "configurator-control-accordion",
               "label": "Accordion"
             },
             {
-              "id": "definition-control-tabs",
+              "id": "configurator-control-tabs",
               "label": "Tabs"
             }
           ]

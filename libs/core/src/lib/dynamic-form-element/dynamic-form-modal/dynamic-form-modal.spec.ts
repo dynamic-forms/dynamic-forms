@@ -1,6 +1,7 @@
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormElement } from '../dynamic-form-element';
+import { DynamicFormElementExpression } from '../dynamic-form-element-expression';
 import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
@@ -122,5 +123,70 @@ describe('DynamicFormModal', () => {
 
     expect(element.isOpen).toBeFalse();
     expect(element.expressionData.isOpen).toBeFalse();
+  });
+
+  it('maximize, minimize and toggleSize sets maximized of template', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
+    const element = new DynamicFormModal(root, parent, definition);
+
+    element.maximize();
+
+    expect(element.template.maximized).toBeTrue();
+    expect(element.expressionData.maximized).toBeTrue();
+
+    element.minimize();
+
+    expect(element.template.maximized).toBeFalse();
+    expect(element.expressionData.maximized).toBeFalse();
+
+    element.toggleSize();
+
+    expect(element.template.maximized).toBeTrue();
+    expect(element.expressionData.maximized).toBeTrue();
+
+    element.toggleSize();
+
+    expect(element.template.maximized).toBeFalse();
+    expect(element.expressionData.maximized).toBeFalse();
+  });
+
+  it('maximize, minimize and toggleSize does not set maximized of template if readonly expressions', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
+    const element = new DynamicFormModal(root, parent, definition);
+    const maximized = { value: false } as DynamicFormElementExpression;
+
+    element.initExpressions({ maximized });
+
+    expect(element.template.maximized).toBeFalse();
+    expect(element.expressionData.maximized).toBeFalse();
+
+    element.maximize();
+
+    expect(element.template.maximized).toBeFalse();
+    expect(element.expressionData.maximized).toBeFalse();
+
+    element.toggleSize();
+
+    expect(element.template.maximized).toBeFalse();
+    expect(element.expressionData.maximized).toBeFalse();
+
+    (maximized as any).value = true;
+
+    expect(element.template.maximized).toBeTrue();
+    expect(element.expressionData.maximized).toBeTrue();
+
+    element.minimize();
+
+    expect(element.template.maximized).toBeTrue();
+    expect(element.expressionData.maximized).toBeTrue();
+
+    element.toggleSize();
+
+    expect(element.template.maximized).toBeTrue();
+    expect(element.expressionData.maximized).toBeTrue();
   });
 });

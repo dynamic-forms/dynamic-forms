@@ -25,8 +25,8 @@ export const dynamicFormControlType: DynamicFormFieldType = {
     ReactiveFormsModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormControlType),
-    DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes),
-    DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes)
+    DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes),
+    DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes)
   ],
   declarations: [
     DynamicFormControlComponent
