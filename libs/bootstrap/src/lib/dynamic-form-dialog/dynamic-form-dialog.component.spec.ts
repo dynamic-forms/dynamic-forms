@@ -233,6 +233,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -247,6 +248,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('');
       expect(dialogElement.style.maxWidth).toBe('');
       expect(dialogElement.style.maxHeight).toBe('');
+      expect(dialogElement.style.margin).toBe('');
       expect(contentElement.style.height).toBe('');
       expect(contentElement.style.minHeight).toBe('');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -261,6 +263,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -290,6 +293,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -304,6 +308,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('');
       expect(dialogElement.style.maxWidth).toBe('');
       expect(dialogElement.style.maxHeight).toBe('');
+      expect(dialogElement.style.margin).toBe('');
       expect(contentElement.style.height).toBe('400px');
       expect(contentElement.style.minHeight).toBe('');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -318,6 +323,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -347,6 +353,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -361,6 +368,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('');
       expect(dialogElement.style.maxWidth).toBe('');
       expect(dialogElement.style.maxHeight).toBe('');
+      expect(dialogElement.style.margin).toBe('');
       expect(contentElement.style.height).toBe('');
       expect(contentElement.style.minHeight).toBe('400px');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -375,6 +383,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('100%');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('100%');
       expect(contentElement.style.minHeight).toBe('100%');
       expect(contentElement.style.maxHeight).toBe('100%');
@@ -404,6 +413,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('calc(100% - 20px)');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('calc(100% - 20px)');
       expect(contentElement.style.minHeight).toBe('calc(100% - 20px)');
       expect(contentElement.style.maxHeight).toBe('calc(100% - 20px)');
@@ -418,6 +428,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('');
       expect(dialogElement.style.maxWidth).toBe('calc(100% - 20px)');
       expect(dialogElement.style.maxHeight).toBe('');
+      expect(dialogElement.style.margin).toBe('');
       expect(contentElement.style.height).toBe('');
       expect(contentElement.style.minHeight).toBe('');
       expect(contentElement.style.maxHeight).toBe('calc(100% - 20px)');
@@ -432,6 +443,7 @@ describe('BsDynamicFormDialogComponent', () => {
       expect(dialogElement.style.minHeight).toBe('100%');
       expect(dialogElement.style.maxWidth).toBe('calc(100% - 20px)');
       expect(dialogElement.style.maxHeight).toBe('100%');
+      expect(dialogElement.style.margin).toBe('0px auto');
       expect(contentElement.style.height).toBe('calc(100% - 20px)');
       expect(contentElement.style.minHeight).toBe('calc(100% - 20px)');
       expect(contentElement.style.maxHeight).toBe('calc(100% - 20px)');
