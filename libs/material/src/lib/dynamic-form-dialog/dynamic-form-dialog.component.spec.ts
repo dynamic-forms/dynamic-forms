@@ -216,7 +216,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.detectChanges();
     });
 
-    it('renders maximized class names', async(() => {
+    it('renders maximized class names', waitForAsync(() => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.maximized');
