@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Example } from '../state/examples/examples.model';
 import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
@@ -14,7 +15,9 @@ export class DynamicFormModelResolver implements Resolve<Observable<any>> {
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<any> {
     const modelId = route.params.modelId;
-    const request = this.httpClient.get(`./assets/examples/models/${ modelId }.json`);
+    const example = route.parent.data.example as Example;
+    const file = example.path ? `${ example.path}/models/${ modelId }.json` : `models/${ modelId }.json`;
+    const request = this.httpClient.get(`./assets/examples/${ file }`);
     const messages = this.getNotificationMessages();
     return this.notificationsService.pipe(request, messages);
   }

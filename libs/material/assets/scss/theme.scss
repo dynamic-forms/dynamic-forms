@@ -5,7 +5,7 @@ $dynamic-form-material-red: #f44336;
   .dynamic-form {
     display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    margin: 10px 12px;
 
     &.grid {
       .row {
@@ -24,8 +24,8 @@ $dynamic-form-material-red: #f44336;
       flex-direction: row;
       align-items: center;
       width: 100%;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
 
       .dynamic-form-label {
         font-size: 18px;
@@ -49,6 +49,10 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+
+        dynamic-form-elements {
+          display: contents;
+        }
 
         button {
           margin-left: 10px;
@@ -94,8 +98,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
 
         .dynamic-form-group-label {
           font-weight: 600;
@@ -118,6 +122,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -162,8 +170,8 @@ $dynamic-form-material-red: #f44336;
         flex-direction: row;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
 
         .dynamic-form-array-label {
           font-weight: 600;
@@ -186,6 +194,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -229,8 +241,8 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
         
         .dynamic-form-dictionary-label {
           font-weight: 600;
@@ -253,6 +265,10 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
 
           button {
             margin-left: 10px;
@@ -338,9 +354,19 @@ $dynamic-form-material-red: #f44336;
       }
     }
 
+    .dynamic-form-button {
+      &.hidden {
+        display: none;
+      }
+    }
+
     .dynamic-form-icon {
       width: 40px;
-      height: 40px; 
+      height: 40px;
+      
+      &.hidden {
+        display: none;
+      }
     }
     
     .dynamic-form-modal {
@@ -348,7 +374,8 @@ $dynamic-form-material-red: #f44336;
         display: flex;
         align-items: center;
         width: 100%;
-
+        margin-bottom: 12px;
+        
         .modal-title {
           &.modal-title-bg {
             font-size: 24px;
@@ -371,10 +398,14 @@ $dynamic-form-material-red: #f44336;
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+
+          dynamic-form-elements {
+            display: contents;
+          }
         }
       }
 
-      .modal-footer {
+      .modal-footer {        
         &.content-end {
           justify-content: flex-end;
   
@@ -411,11 +442,23 @@ $dynamic-form-material-red: #f44336;
 
 .mat-dialog-container {
   .dynamic-form-wrapper.material {
+    height: 100%;
+
     .dynamic-form {
+      height: 100%;
       margin: 0px;
 
       &.grid {
         margin: 0px;
+
+        .dynamic-form-modal {
+          height: 100%;
+
+          .mat-dialog-content {
+            height: calc(100% - 92px);
+            max-height: calc(100% - 92px);
+          }
+        }
 
         .row {
           &.mat-dialog-content {

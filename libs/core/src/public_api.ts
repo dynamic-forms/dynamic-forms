@@ -126,7 +126,6 @@ export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal'
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-factory';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-template';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.module';
-export * from './lib/dynamic-form-evaluation/dynamic-form-evaluator';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluation.builder';
 export * from './lib/dynamic-form-evaluation/dynamic-form-evaluation.module';
 export * from './lib/dynamic-form-expression/dynamic-form-expression-data';
@@ -144,6 +143,8 @@ export * from './lib/dynamic-form-field/dynamic-form-field-class-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-control';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';
+export * from './lib/dynamic-form-field/dynamic-form-field-evaluator-definition';
+export * from './lib/dynamic-form-field/dynamic-form-field-evaluator-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-expression-data';
 export * from './lib/dynamic-form-field/dynamic-form-field-expression-func';
 export * from './lib/dynamic-form-field/dynamic-form-field-expression';
