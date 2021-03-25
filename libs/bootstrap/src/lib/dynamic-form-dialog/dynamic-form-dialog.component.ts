@@ -14,8 +14,12 @@ export class BsDynamicFormDialogComponent {
   @Input() footerActions: DynamicFormAction[];
 
   @Input() width: string;
+  @Input() height: string;
   @Input() minWidth: string;
+  @Input() minHeight: string;
   @Input() maxWidth: string;
+  @Input() maxHeight: string;
+  @Input() maximized: boolean;
 
   @Input() title: string;
   @Input() titleHtml: string;

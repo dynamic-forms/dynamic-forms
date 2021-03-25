@@ -9,6 +9,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-type';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
@@ -149,11 +150,11 @@ describe('DynamicFormControl', () => {
     const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(root, root, definition);
-    const evaluators = [ { func: (_) => {} } ];
+    const formControlEvaluators = [ {} ] as DynamicFormControlEvaluator[];
 
-    formControl.initEvaluators(evaluators);
+    formControl.initEvaluators(formControlEvaluators);
 
-    expect(formControl.evaluators).toEqual(evaluators);
+    expect(formControl.evaluators).toBe(formControlEvaluators);
   });
 
   it('inits validators to empty', () => {
@@ -176,7 +177,7 @@ describe('DynamicFormControl', () => {
 
     formControl.initValidators(formControlValidators);
 
-    expect(formControl.validators).toEqual(formControlValidators);
+    expect(formControl.validators).toBe(formControlValidators);
   });
 
   it('sets control validator to null', () => {
@@ -411,9 +412,11 @@ describe('DynamicFormControl', () => {
         }
       } as DynamicFormControlDefinition<DynamicFormSelect>;
       const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
-      formControl.initEvaluators([
-        { func: dynamicFormSelectEvaluatorFn }
-      ]);
+      const formControlEvaluators = [
+        { enabled: true, func: dynamicFormSelectEvaluatorFn }
+      ] as DynamicFormControlEvaluator[];
+
+      formControl.initEvaluators(formControlEvaluators);
 
       expect(formControl.model).toBe('option1');
       expect(formControl.control.value).toBe('option1');
