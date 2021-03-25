@@ -3,7 +3,7 @@
     "className": "grid"
   },
   "references": {
-    "template":     {
+    "template": {
       "key": "template",
       "type": "group",
       "children": [
@@ -157,6 +157,9 @@
           } 
         },
         {
+          "reference": "multiple"
+        },
+        {
           "reference": "options"
         },
         {
@@ -171,10 +174,27 @@
           },
           "expressions": {
             "input.type": "data.parent.model.type || 'textbox'",
+            "input.multiple": "data.parent.value.multiple",
             "input.options": "data.parent.value.options"
+          },
+          "evaluators": {
+            "select": { "type": "select" }
           }
         }
       ]
+    },
+    "multiple": {
+      "key": "multiple",
+      "type": "control",
+      "template": {
+        "label": "Multiple",
+        "input": {
+          "type": "checkbox"
+        }
+      },
+      "expressions": {
+        "hidden": "data.parent.model.type !== 'select'"
+      }
     },
     "options": {
       "key": "options",
@@ -244,36 +264,18 @@
               "label": "Option",
               "className": "col-2 align-self-center",
               "input": {
-                "type": "switch",
+                "type": "checkbox",
                 "defaultValue": true
               }
             },
             "unregistered": true
           },
           {
-            "key": "label",
-            "type": "control",
-            "template": {
-              "label": "Label",
-              "className": "col-6",
-              "input": {
-                "type": "textbox",
-                "placeholder": "Enter a label"
-              },
-              "validation": {
-                "required": true
-              }
-            },
-            "expressions": {
-              "className": "data.parent.model.isOption ? 'col-5' : 'col-9'"
-            }
-          },
-          {
             "key": "value",
             "type": "control",
             "template": {
               "label": "Value",
-              "className": "col-4",
+              "className": "col-3",
               "input": {
                 "type": "textbox",
                 "placeholder": "Enter a value"
@@ -285,6 +287,36 @@
             "expressions": {
               "hidden": "!data.parent.model.isOption",
               "disabled": "!data.parent.model.isOption"
+            }
+          },
+          {
+            "key": "label",
+            "type": "control",
+            "template": {
+              "label": "Label",
+              "className": "col-4",
+              "input": {
+                "type": "textbox",
+                "placeholder": "Enter a label"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            "expressions": {
+              "className": "data.parent.model.isOption ? 'col-4' : 'col-7'"
+            }
+          },
+          {
+            "key": "disabled",
+            "type": "control",
+            "template": {
+              "label": "Disabled",
+              "className": "col-2 align-self-center",
+              "input": {
+                "type": "checkbox",
+                "defaultValue": false
+              }
             }
           },
           {
@@ -349,11 +381,26 @@
               },
               "children": [
                 {
+                  "key": "value",
+                  "type": "control",
+                  "template": {
+                    "label": "Value",
+                    "className": "col-4",
+                    "input": {
+                      "type": "textbox",
+                      "placeholder": "Enter a value"
+                    },
+                    "validation": {
+                      "required": true
+                    }
+                  }
+                },
+                {
                   "key": "label",
                   "type": "control",
                   "template": {
                     "label": "Label",
-                    "className": "col-6",
+                    "className": "col-4",
                     "input": {
                       "type": "textbox",
                       "placeholder": "Enter a label"
@@ -364,17 +411,14 @@
                   }
                 },
                 {
-                  "key": "value",
+                  "key": "disabled",
                   "type": "control",
                   "template": {
-                    "label": "Value",
-                    "className": "col-5",
+                    "label": "Disabled",
+                    "className": "col-3 align-self-center",
                     "input": {
-                      "type": "textbox",
-                      "placeholder": "Enter a value"
-                    },
-                    "validation": {
-                      "required": true
+                      "type": "checkbox",
+                      "defaultValue": false
                     }
                   }
                 },
@@ -401,7 +445,9 @@
       "key": "validation",
       "type": "group",
       "template": {
-        "label": "Validation"
+        "label": "Validation",
+        "className": "row",
+        "classNameLabel": "col-12"
       },
       "children": [
         {
@@ -409,6 +455,7 @@
           "type": "control",
           "template": {
             "label": "Required",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -419,6 +466,7 @@
           "type": "control",
           "template": {
             "label": "Pattern",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -432,6 +480,7 @@
           "type": "control",
           "template": {
             "label": "Min length",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -445,6 +494,7 @@
           "type": "control",
           "template": {
             "label": "Max length",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -458,6 +508,7 @@
           "type": "control",
           "template": {
             "label": "Min",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -471,6 +522,7 @@
           "type": "control",
           "template": {
             "label": "Max",
+            "className": "col-6",
             "input": {
               "type": "checkbox"
             }  
@@ -484,6 +536,9 @@
     "settings": {
       "key": "settings",
       "type": "group",
+      "template": {
+        "label": "Settings"
+      },
       "children": [
         {
           "key": "autoGeneratedId",
@@ -542,76 +597,53 @@
   },
   "children": [
     {
-      "type": "tabs",
-      "children": [
-        {
-          "template": {
-            "label": "General"
-          },
-          "children": [
-            {
-              "key": "id",
-              "type": "control",
-              "template": {
-                "label": "Id",
-                "input": {
-                  "type": "textbox",
-                  "placeholder": "Enter an id"
-                }
-              }
-            },
-            {
-              "key": "key",
-              "type": "control",
-              "template": {
-                "label": "Key",
-                "input": {
-                  "type": "textbox",
-                  "placeholder": "Enter a key"
-                }
-              }
-            },
-            {
-              "key": "type",
-              "type": "control",
-              "template": {
-                "label": "Type",
-                "input": {
-                  "type": "select",
-                  "defaultValue": "control",
-                  "options": [
-                    {
-                      "value": "control",
-                      "label": "Control"
-                    }
-                  ]  
-                },
-                "readonly": true
-              }
-            }
-          ]
-        },
-        {
-          "template": {
-            "label": "Template"
-          },
-          "children": [
-            {
-              "reference": "template"
-            }
-          ]
-        },
-        {
-          "template": {
-            "label": "Settings"
-          },
-          "children": [
-            {
-              "reference": "settings"
-            }
-          ]
+      "key": "id",
+      "type": "control",
+      "template": {
+        "label": "Id",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter an id"
         }
-      ]
+      }
+    },
+    {
+      "key": "key",
+      "type": "control",
+      "template": {
+        "label": "Key",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter a key"
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    },
+    {
+      "key": "type",
+      "type": "control",
+      "template": {
+        "label": "Type",
+        "input": {
+          "type": "select",
+          "defaultValue": "control",
+          "options": [
+            {
+              "value": "control",
+              "label": "Control"
+            }
+          ]  
+        },
+        "readonly": true
+      }
+    },
+    {
+      "reference": "template"
+    },
+    {
+      "reference": "settings"
     }
   ],
   "footerActions": [ 

@@ -1,5 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
 import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
@@ -26,45 +27,43 @@ describe('DynamicFormEvaluationBuilder', () => {
 
     it('returns control validators being empty',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const control = { definition: {} } as DynamicFormControl;
-        const evaluators = service.createControlEvaluators(control);
+        const definition = {} as DynamicFormControlDefinition;
+        const control = { definition } as DynamicFormControl;
+        const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(evaluators).toEqual([]);
+        expect(controlEvaluators).toEqual([]);
       })
     );
 
-    it('returns control validators being empty if input type does not fit evaluator type',
+    it('returns control validators being empty if evaluator type not found',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const template = { input: { type: 'textbox' } };
-        const evaluations = [ { key: 'select' }];
-        const control = { definition: { template, evaluations } } as DynamicFormControl;
-        const evaluators = service.createControlEvaluators(control);
+        const definition = { evaluators: { options: { type: 'selectValue' } } } as DynamicFormControlDefinition;
+        const control = { definition, inputType: 'select' } as DynamicFormControl;
+        const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(evaluators).toEqual([]);
+        expect(controlEvaluators).toEqual([]);
       })
     );
 
-    it('returns control validators being predefined',
+    it('returns control validators not being enabled',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const template = { input: { type: 'select' } };
-        const evaluations = [ { key: 'select' }];
-        const control = { definition: { template, evaluations } } as DynamicFormControl;
-        const evaluators = service.createControlEvaluators(control);
+        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
+        const control = { definition, inputType: 'textbox' } as DynamicFormControl;
+        const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(evaluators.length).toBe(1);
-        expect(evaluators[0]).toBeTruthy();
+        expect(controlEvaluators.length).toBe(1);
+        expect(controlEvaluators[0].enabled).toBeFalsy();
       })
     );
 
-    it('returns control validators from definition',
+    it('returns control validators being enabled',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const template = { input: { type: 'select' } };
-        const evaluations = [ { func: _field => {} }];
-        const control = { definition: { template, evaluations } } as DynamicFormControl;
-        const evaluators = service.createControlEvaluators(control);
+        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
+        const control = { definition, inputType: 'select' } as DynamicFormControl;
+        const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(evaluators.length).toBe(1);
-        expect(evaluators[0]).toBeTruthy();
+        expect(controlEvaluators.length).toBe(1);
+        expect(controlEvaluators[0].enabled).toBeTruthy();
       })
     );
   });
