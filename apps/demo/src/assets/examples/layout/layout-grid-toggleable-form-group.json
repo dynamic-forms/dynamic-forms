@@ -12,10 +12,12 @@
           "type": "checkbox",
           "defaultValue": true
         }  
-      }
+      },
+      "unregistered": true
     },
     {
-      "type": "container",
+      "key": "name",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "type": "container",
+      "key": "login",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -94,7 +97,8 @@
       ]    
     },
     {
-      "type": "container",
+      "key": "address",
+      "type": "group",
       "template": {
         "className": "row"
       },
@@ -144,7 +148,7 @@
             }
           }
         }
-      ]
+      ]    
     }
   ],
   "footerActions": [ 
