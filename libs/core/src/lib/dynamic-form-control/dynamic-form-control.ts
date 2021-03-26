@@ -19,7 +19,7 @@ export class DynamicFormControl<
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
-  protected _evaluators: DynamicFormControlEvaluator<Input>[] = [];
+  protected _evaluators: DynamicFormControlEvaluator[] = [];
 
   constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(root, parent, definition);
@@ -35,7 +35,7 @@ export class DynamicFormControl<
   get inputId(): string { return this.id || this.path; }
   get inputType(): string { return this.input.type; }
 
-  get evaluators(): DynamicFormControlEvaluator<Input>[] { return this._evaluators; }
+  get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
   initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
     this._evaluators = evaluators || [];
@@ -62,6 +62,11 @@ export class DynamicFormControl<
 
   validate(): void {
     this._control.markAsTouched();
+  }
+
+  patchModel(model: any): void {
+    this.setModel(model);
+    this.setValue(model, false);
   }
 
   protected afterInitExpressions(): void {
@@ -137,6 +142,6 @@ export class DynamicFormControl<
       this.setModel(value);
       this.setValue(value, true);
     }
-    this._evaluators.forEach(evaluator => evaluator.func(this));
+    this._evaluators.filter(e => !!e.enabled).forEach(e => e.func(this));
   }
 }

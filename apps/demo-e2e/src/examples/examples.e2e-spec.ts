@@ -1,14 +1,20 @@
-import { ExamplesMenu, ExamplesMenuItem } from 'apps/demo/src/app/layout/header/examples-menu/examples-menu';
+import { ExamplesMenu, ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
 import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
 
-export function getExamples(items: ExamplesMenuItem[], namePrefix?: string): Example[] {
+export function getExamples(items: ExampleMenuItem[], namePrefix?: string): Example[] {
   return items.reduce((result, item) => {
     const name = namePrefix ? `${namePrefix} - ${item.label}` : item.label;
-    return item.items && item.items.length
-      ? result.concat(getExamples(item.items, name))
-      : result.concat({ id: item.id, modelId: item.modelId, name });
+    const group = item as ExampleMenuGroup;
+    if (group.items && group.items.length) {
+      return result.concat(getExamples(group.items, name));
+    }
+    const example = item as ExampleMenu;
+    if (example.id) {
+      return result.concat({ id: example.id, modelId: example.modelId, name });
+    }
+    return result;
   }, []);
 }
 

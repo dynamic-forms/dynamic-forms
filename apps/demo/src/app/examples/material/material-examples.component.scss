@@ -3,9 +3,12 @@
 
 .dynamic-form-wrapper.material {
   width: 100%;
-  max-width: 800px;
 
-  &.small {
-    max-width: 600px;
+  &:not(.maximized) {
+    max-width: 800px;
+
+    &.small {
+      max-width: 600px;
+    }
   }
 }
