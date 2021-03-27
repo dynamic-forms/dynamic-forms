@@ -1,12 +1,6 @@
 @import "@dynamic-forms/core/assets/scss/grid";
 @import "@dynamic-forms/material/assets/scss/theme";
 
-:host {
-  .mat-tab-header-pagination {
-    z-index: auto
-  }
-}
-
 .dynamic-form-wrapper.material {
   width: 100%;
 
@@ -17,4 +11,10 @@
       max-width: 600px;
     }
   }
+}
+
+.dynamic-form-example {
+  .mat-tab-header-pagination {
+    z-index: auto
+  }  
 }
