@@ -23,10 +23,17 @@ export class DynamicFormEvaluationBuilder {
   }
 
   createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {
-    const evaluators = (control.definition.evaluations || []).map(evaluation => {
-      const type = this.getControlEvaluatorType(control.definition.template.input.type);
-      return type ? { key: evaluation.key, func: type.func } : null;
-    });
-    return evaluators.filter(evaluator => !!evaluator);
+    return Object.keys(control.definition.evaluators || {}).reduce((result, key) => {
+      const evaluatorDefinition = control.definition.evaluators[key];
+      const evaluatorType = this.getControlEvaluatorType(evaluatorDefinition.type);
+      if (evaluatorType) {
+        const type = evaluatorType.type;
+        const inputType = evaluatorType.inputType;
+        const func = evaluatorType.func;
+        const evaluator = new DynamicFormControlEvaluator(key, type, inputType, control, func);
+        return result.concat(evaluator);
+      }
+      return result;
+    }, []);
   }
 }

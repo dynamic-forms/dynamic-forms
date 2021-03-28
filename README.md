@@ -47,46 +47,48 @@
 
 Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:registry=https://npm.pkg.github.com` to the registry file `.npmrc`.
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0-rc.1)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0-rc.2)
 
-- `npm install @dynamic-forms/core@v11.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@v11.0.0-rc.1`
-- `npm install @dynamic-forms/material@v11.0.0-rc.1`
+- `npm install @dynamic-forms/core@v11.0.0-rc.2`
+- `npm install @dynamic-forms/bootstrap@v11.0.0-rc.2`
+- `npm install @dynamic-forms/material@v11.0.0-rc.2`
 
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-rc.1)
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-rc.2)
 
-- `npm install @dynamic-forms/core@v10.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@v10.0.0-rc.1`
-- `npm install @dynamic-forms/material@v10.0.0-rc.1`
+- `npm install @dynamic-forms/core@v10.0.0-rc.2`
+- `npm install @dynamic-forms/bootstrap@v10.0.0-rc.2`
+- `npm install @dynamic-forms/material@v10.0.0-rc.2`
 
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0-rc.1)
+### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0-rc.2)
 
-- `npm install @dynamic-forms/core@v9.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@v9.0.0-rc.1`
-- `npm install @dynamic-forms/material@v9.0.0-rc.1`
+- `npm install @dynamic-forms/core@v9.0.0-rc.2`
+- `npm install @dynamic-forms/bootstrap@v9.0.0-rc.2`
+- `npm install @dynamic-forms/material@v9.0.0-rc.2`
 
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/v8.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/v8.0.0-rc.1)
+### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/v8.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/v8.0.0-rc.2)
 
-- `npm install @dynamic-forms/core@v8.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@v8.0.0-rc.1`
-- `npm install @dynamic-forms/material@v8.0.0-rc.1`
+- `npm install @dynamic-forms/core@v8.0.0-rc.2`
+- `npm install @dynamic-forms/bootstrap@v8.0.0-rc.2`
+- `npm install @dynamic-forms/material@v8.0.0-rc.2`
 
 ## **Libraries**
 
 ### **@dynamic-forms/core**
 
-- Library includes **extensible** interfaces, classes, components, factories, services and **modules**
+- Library includes **extendable** interfaces, classes, components, factories, services and **modules**
   - Dynamic form config module for registration of components
   - Dynamic form module includes
     - Builder to create form controls, groups, arrays and dictionaries
     - Component factory to resolve registered components
     - Component to render elements, fields and actions
   - Dynamic form control module includes
-    - Component to render input
+    - Component to render an input
   - Dynamic form group module includes
-    - Component to render controls
+    - Component to render controls, groups and arrays
   - Dynamic form array module includes
-    - Component to render groups and controls
+    - Component to render either controls, groups or arrays of same structure
+  - Dynamic form dictionary module includes
+    - Component to render either controls, groups or arrays of same structure
   - Dynamic form validation module for registration of validators and messages
     - Builder to create validators
     - Service to resolve validation messages
