@@ -28,8 +28,11 @@ describe('MatDynamicFormModalComponent', () => {
       template: {
         title: 'Title',
         width: '800px',
+        height: '500px',
         minWidth: '800px',
-        maxWidth: '100%'
+        minHeight: '500px',
+        maxWidth: '100%',
+        maxHeight: '100%'
       }
     } as DynamicFormModalDefinition);
 
@@ -54,7 +57,7 @@ describe('MatDynamicFormModalComponent', () => {
       const formElement = formWrapperElement.querySelector('div.dynamic-form') as HTMLDivElement;
       const modalElement = formElement.querySelector('div.dynamic-form-modal') as HTMLDivElement;
       const modalHeaderElement = modalElement.querySelector('div.modal-header') as HTMLDivElement;
-      const modalBodyElement = modalElement.querySelector('div.modal-body') as HTMLDivElement;
+      const modalBodyElement = modalElement.querySelector('.modal-body') as HTMLDivElement;
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();

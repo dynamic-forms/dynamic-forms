@@ -3,9 +3,18 @@
 
 .dynamic-form-wrapper.material {
   width: 100%;
-  max-width: 800px;
 
-  &.small {
-    max-width: 600px;
+  &:not(.maximized) {
+    max-width: 800px;
+
+    &.small {
+      max-width: 600px;
+    }
   }
+}
+
+.dynamic-form-example {
+  .mat-tab-header-pagination {
+    z-index: auto
+  }  
 }

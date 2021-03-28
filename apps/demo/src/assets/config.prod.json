@@ -15,20 +15,20 @@
   },
   "versions": [
     {
-      "name": "8.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v8"
-    },
-    {
-      "name": "9.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v9"
+      "name": "11.0.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v11"
     },
     {
       "name": "10.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v10"
     },
     {
-      "name": "11.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v11"
+      "name": "9.0.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v9"
+    },
+    {
+      "name": "8.0.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v8"
     }
   ]
 }

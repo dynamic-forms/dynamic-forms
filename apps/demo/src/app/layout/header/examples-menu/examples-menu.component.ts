@@ -1,23 +1,15 @@
 import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ExamplesMenuItem } from './examples-menu';
-import { ExamplesMenuService } from './examples-menu.service';
+import { ExampleMenuItem } from '../../../state/examples/examples.model';
+import { ExamplesState } from '../../../state/examples/examples.state';
 
 @Component({
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
-  styleUrls: ['./examples-menu.component.scss'],
-  providers: [
-    ExamplesMenuService
-  ]
+  styleUrls: ['./examples-menu.component.scss']
 })
 export class ExamplesMenuComponent {
-  items$: Observable<ExamplesMenuItem[]>;
-
-  constructor(private examplesMenuService: ExamplesMenuService) {
-    this.items$ = this.examplesMenuService.getMenu().pipe(
-      map(menu => menu.items)
-    );
-  }
+  @Select(ExamplesState.menuItems)
+  items$: Observable<ExampleMenuItem[]>;
 }
