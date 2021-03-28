@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "8.0.0-rc.1",
+  "version": "8.0.0-rc.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
     "bootstrap": "^4.6.0",
-    "marked": "^2.0.0",
-    "rxjs": "~6.6.3"
+    "marked": "^2.0.1",
+    "rxjs": "~6.6.6"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
