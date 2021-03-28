@@ -1,7 +1,6 @@
-<mat-form-field appearance="standard" color="primary">
+<mat-form-field *ngIf="!input.multiple; else multiSelect" appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <mat-select [id]="inputId" [placeholder]="input.placeholder" 
-    [multiple]="input.multiple" [required]="validation?.required" [formControl]="control">
+  <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control">
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
         <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>      
@@ -19,4 +18,25 @@
   <mat-hint [align]="'end'">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
-  
+<ng-template #multiSelect>
+  <mat-form-field appearance="standard" color="primary">
+    <mat-label>{{ template.label }}</mat-label>
+    <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control" multiple>
+      <ng-container *ngFor="let option of input.options">
+        <ng-container *ngIf="!option.items; else optionGroup">
+          <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>      
+        </ng-container>
+        <ng-template #optionGroup>
+          <mat-optgroup [label]="option.label" [disabled]="option.disabled">
+            <ng-container *ngFor="let optionItem of option.items" >
+              <mat-option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</mat-option>
+            </ng-container>
+          </mat-optgroup>      
+        </ng-template>
+      </ng-container>
+    </mat-select>
+    <mat-hint [align]="'start'">{{ hints?.hintStart}}</mat-hint>
+    <mat-hint [align]="'end'">{{ hints?.hintEnd }}</mat-hint>
+    <mat-error>{{ errorMessage }}</mat-error>
+  </mat-form-field>
+</ng-template>
