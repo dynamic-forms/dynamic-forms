@@ -1,9 +1,9 @@
 {
   "version": "12.0.0",
   "build": "187",
-  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=18&_a=summary",
+  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=22&_a=summary",
   "release": "17",
-  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=4&_a=releases",
+  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=5&_a=releases",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
