@@ -5,22 +5,22 @@
     "types": [],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v11/@dynamic-forms/core"
+        "dist/v12/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v11/@dynamic-forms/core/*"
+        "dist/v12/@dynamic-forms/core/*"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/v11/@dynamic-forms/bootstrap"
+        "dist/v12/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/bootstrap/*": [
-        "dist/v11/@dynamic-forms/bootstrap/*"
+        "dist/v12/@dynamic-forms/bootstrap/*"
       ],
       "@dynamic-forms/material": [
-        "dist/v11/@dynamic-forms/material"
+        "dist/v12/@dynamic-forms/material"
       ],
       "@dynamic-forms/material/*": [
-        "dist/v11/@dynamic-forms/material/*"
+        "dist/v12/@dynamic-forms/material/*"
       ]
     }
   },

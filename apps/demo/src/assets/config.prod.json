@@ -9,14 +9,14 @@
   },
   "repository": {
     "url": "https://github.com/dynamic-forms/dynamic-forms",
-    "branch": "release/v11",
+    "branch": "release/v12",
     "branchPath": "tree/{{branch}}",
     "libraryPath": "libs/{{library}}"
   },
   "versions": [
     {
       "name": "11.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v11"
+      "url": "https://dynamic-forms.azurewebsites.net/v12"
     },
     {
       "name": "10.0.0",
