@@ -3,8 +3,10 @@ import { RouterModule } from '@angular/router';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { v4 } from 'uuid';
+import { MarkdownModule } from '../../markdown/markdown.module';
 import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
+import { DynamicFormExampleResolver } from '../dynamic-form-example.resolver';
 import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
@@ -14,6 +16,7 @@ export function dynamicFormIdBuilder(): string {
 
 @NgModule({
   imports: [
+    MarkdownModule,
     DynamicFormExampleModule,
     DynamicFormIconModule.withIcons({
       icons: {
@@ -27,7 +30,9 @@ export function dynamicFormIdBuilder(): string {
         clear: 'clear',
         moveDown: 'arrow_downward',
         moveUp: 'arrow_upward',
-        register: 'add'
+        register: 'add',
+        maximizeModal: 'fullscreen',
+        minimizeModal: 'fullscreen_exit'
       },
       libraryName: 'bootstrap'
     }),
@@ -38,18 +43,26 @@ export function dynamicFormIdBuilder(): string {
     RouterModule.forChild([
       {
         path: ':definitionId',
-        component: BootstrapExamplesComponent,
         resolve: {
-          definition: DynamicFormDefinitionResolver
+          example: DynamicFormExampleResolver
+        },
+        children: [
+          {
+            path: '',
+            component: BootstrapExamplesComponent,
+            resolve: {
+              definition: DynamicFormDefinitionResolver
+            }
+          },
+          {
+            path: 'models/:modelId',
+            component: BootstrapExamplesComponent,
+            resolve: {
+              definition: DynamicFormDefinitionResolver,
+              model: DynamicFormModelResolver
+            }
         }
-      },
-      {
-        path: ':definitionId/models/:modelId',
-        component: BootstrapExamplesComponent,
-        resolve: {
-          definition: DynamicFormDefinitionResolver,
-          model: DynamicFormModelResolver
-        }
+        ]
       }
     ])
   ],

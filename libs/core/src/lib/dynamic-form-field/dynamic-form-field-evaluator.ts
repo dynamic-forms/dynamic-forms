@@ -1,14 +1,26 @@
-import { DynamicFormEvaluator } from '../dynamic-form-evaluation/dynamic-form-evaluator';
-import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormField } from './dynamic-form-field';
+import { DynamicFormFieldEvaluatorFn } from './dynamic-form-field-evaluator-type';
 
-export type DynamicFormFieldEvaluatorFn<Field extends DynamicFormField =
-  DynamicFormField> = (field: Field) => void;
+export abstract class DynamicFormFieldEvaluator<
+  Field extends DynamicFormField = DynamicFormField,
+  EvaluatorFn extends DynamicFormFieldEvaluatorFn<Field> = DynamicFormFieldEvaluatorFn<Field>
+> {
+  private _key: string;
+  private _type: string;
+  private _field: Field;
+  private _func: EvaluatorFn;
 
-export interface DynamicFormFieldEvaluator<Field extends DynamicFormField = DynamicFormField>
-  extends DynamicFormEvaluator<DynamicFormFieldEvaluatorFn<Field>> {}
+  constructor(key: string, type: string, field: Field, func: EvaluatorFn) {
+    this._key = key;
+    this._type = type;
+    this._field = field;
+    this._func = func;
+  }
 
-export interface DynamicFormFieldEvaluatorType<Field extends DynamicFormField = DynamicFormField> extends DynamicFormFieldEvaluator<Field> {
-  type: string;
-  libraryName: DynamicFormLibraryName;
+  get key(): string { return this._key; }
+  get type(): string { return this._type; }
+  get field(): Field { return this._field; }
+  get func(): EvaluatorFn { return this._func; }
+
+  abstract get enabled(): boolean;
 }

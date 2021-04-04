@@ -10,8 +10,8 @@ export class DynamicFormModal<
   Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
 
-  private _isOpenSubject: BehaviorSubject<boolean>;
-  private _isOpenChanges: Observable<boolean>;
+  private readonly _isOpenSubject: BehaviorSubject<boolean>;
+  private readonly _isOpenChanges: Observable<boolean>;
 
   protected _trigger: DynamicFormAction;
 
@@ -23,7 +23,8 @@ export class DynamicFormModal<
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
-      isOpen: () => this.isOpen
+      isOpen: () => this.isOpen,
+      maximized: () => this.template.maximized
     });
   }
 
@@ -48,14 +49,29 @@ export class DynamicFormModal<
   }
 
   open(): void {
-    return !this.isOpen && this._isOpenSubject.next(true);
+    return !this.isOpen && this.toggle();
   }
 
   close(): void {
-    return this.isOpen && this._isOpenSubject.next(false);
+    return this.isOpen && this.toggle();
   }
 
   toggle(): void {
     this._isOpenSubject.next(!this.isOpen);
+  }
+
+  maximize(): void {
+    return !this.template.maximized && this.toggleSize();
+  }
+
+  minimize(): void {
+    return this.template.maximized && this.toggleSize();
+  }
+
+  toggleSize(): void {
+    const descriptor = Object.getOwnPropertyDescriptor(this.template, 'maximized');
+    if (!descriptor || descriptor.writable) {
+      this.template.maximized = !this.template.maximized;
+    }
   }
 }
