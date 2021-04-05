@@ -19,7 +19,7 @@
     "@angular/material": "^8.0.0",
     "@dynamic-forms/core": "8.0.0-rc.2",
     "bootstrap": "^4.6.0",
-    "rxjs": "~6.6.3"
+    "rxjs": "~6.6.7"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
