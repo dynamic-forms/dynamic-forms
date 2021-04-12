@@ -53,7 +53,8 @@ export class SidebarMenuComponent {
       { label: 'Code Coverage', route: `/docs/${library}/coverage` }
     ] as SidebarMenuItem[];
     if (repository) {
-      children.splice(0, 0, { label: 'Code', href: this.codeUrlPipe.transform(repository, library) })
+      const href = this.codeUrlPipe.transform(repository, library);
+      children.splice(0, 0, { label: 'Code', href });
     }
     return { label: this.getLibraryName(library), children };
   }
