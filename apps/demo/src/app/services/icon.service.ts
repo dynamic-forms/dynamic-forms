@@ -4,9 +4,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class IconService {
+  private readonly _svgs: { [svg: string ]: string } = {
+    'github': 'assets/images/github.svg',
+    'azure-devops': 'assets/images/azure-devops.svg'
+  };
+
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {}
 
   register(): void {
-    this.iconRegistry.addSvgIcon('github', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/github.svg'));
+    Object.keys(this._svgs).forEach(svg => {
+      const svgPath = this._svgs[svg];
+      const svgUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(svgPath);
+      this.iconRegistry.addSvgIcon(svg, svgUrl);
+    });
   }
 }
