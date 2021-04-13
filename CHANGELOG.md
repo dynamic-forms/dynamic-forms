@@ -3,7 +3,7 @@
 ## Features
 
 * **core:** release of library using angular 8
-* **core:** dynamic form based on JSON definition for elements, fields and actions
+* **core:** dynamic form based on reactive forms and JSON definition for elements, fields and actions
 * **core:** dynamic form element for content elements (like HTML, markdown, etc.)
 * **core:** dynamic form fields (control, group, array and dictionary) for form inputs
 * **core:** dynamic form action for triggering events handled by dynamic form fields
