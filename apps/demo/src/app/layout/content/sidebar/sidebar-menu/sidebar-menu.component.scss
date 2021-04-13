@@ -3,13 +3,44 @@
     margin-top: 0;
     margin-bottom: 0;
     list-style-type: none;
+
+    .sidebar-menu-link {
+      width: 100%;
+      text-align: left;
+      padding-left: 40px;
+    }
+
+    .sidebar-menu-button {
+      width: 100%;
+      height: 36px;
+      text-align: left;
+      padding-left: 16px;
+    }
+  }
+
+  li.mat-tree-node {
+    &.expanded {
+      flex-direction: column;
+
+      .sidebar-menu-button {
+
+        margin-top: 6px;
+        margin-bottom: 6px;
+      }
+
+      ul.mat-tree-children {
+        width: 100%;
+      }    
+    }
+
+    &:not(.expanded) {
+      ul.mat-tree-children {
+        display: none;
+      }  
+    }
   }
 
   ul {
     padding-inline-start: 10px;
-
-    &.invisible {
-      display: none;
-    }
   }
 }
