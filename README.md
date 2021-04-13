@@ -1,6 +1,6 @@
 # **Project**
 
-- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository with [released libraries](https://github.com/dynamic-forms/dynamic-forms/releases) and [packages](https://github.com/dynamic-forms/dynamic-forms/packages)
+- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [released libraries](https://github.com/dynamic-forms/dynamic-forms/releases) and [packages](https://github.com/dynamic-forms/dynamic-forms/packages)
 - [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
 - [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps
 
