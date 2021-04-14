@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Repository } from '../../../state/config/config.model';
 
-
 @Pipe({ name: 'appCodeUrl' })
 export class CodeUrlPipe implements PipeTransform {
   transform(repo: Repository, library?: string): string {
