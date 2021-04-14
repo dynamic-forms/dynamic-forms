@@ -10,12 +10,12 @@ import { Layout, LAYOUT } from '../../state/layout/layout.model';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent {
+  readonly mobileQuery: MediaQueryList;
+
   @Select(LAYOUT)
   layout$: Observable<Layout>;
 
-  mobileQuery: MediaQueryList;
-
   constructor(private media: MediaMatcher) {
-    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = this.media.matchMedia('(max-width: 850px)');
   }
 }
