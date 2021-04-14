@@ -1,6 +1,6 @@
-The MIT License (MIT)
+MIT License
 
-Copyright (c) 2019-2020 dynamic-forms
+Copyright (c) 2019-2021 dynamic-forms
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

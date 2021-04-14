@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "10.0.0-rc.2",
+  "version": "10.0.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "license": "MIT",
@@ -17,9 +17,9 @@
     "@angular/core": "^10.0.0",
     "@angular/forms": "^10.0.0",
     "@angular/material": "^10.0.0",
-    "@dynamic-forms/core": "^10.0.0-rc.2",
+    "@dynamic-forms/core": "10.0.0",
     "bootstrap": "^4.6.0",
-    "rxjs": "~6.6.3" 
+    "rxjs": "~6.6.7" 
   },
   "sideEffects": false,
   "publishConfig": {
