@@ -16,7 +16,7 @@
   "versions": [
     {
       "name": "12.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v12/dev"
+      "url": "https://dynamic-forms.azurewebsites.net/v12"
     },
     {
       "name": "11.0.0",
