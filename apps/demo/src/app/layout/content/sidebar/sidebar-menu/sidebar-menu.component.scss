@@ -29,7 +29,8 @@
       }
 
       ul.mat-tree-children {
-        width: 100%;
+        width: calc(100% - 10px);
+        padding-inline-start: 10px;
       }    
     }
 
@@ -38,9 +39,5 @@
         display: none;
       }  
     }
-  }
-
-  ul {
-    padding-inline-start: 10px;
   }
 }
