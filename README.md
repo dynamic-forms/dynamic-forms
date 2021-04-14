@@ -1,10 +1,15 @@
 # **Project**
 
-- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository with [released libraries](https://github.com/dynamic-forms/dynamic-forms/releases) and [packages](https://github.com/dynamic-forms/dynamic-forms/packages)
+- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [released libraries](https://github.com/dynamic-forms/dynamic-forms/releases) and [packages](https://github.com/dynamic-forms/dynamic-forms/packages)
 - [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
 - [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps
 
 ## **Demo**
+
+### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=develop%2Fv12)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=develop%2Fv12) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=release%2Fv12)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=release%2Fv12)
+
+- Built with [Angular 12](https://v12.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
 
 ### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=develop%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=develop%2Fv11) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=release%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=release%2Fv11)
 
@@ -47,29 +52,35 @@
 
 Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:registry=https://npm.pkg.github.com` to the registry file `.npmrc`.
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0-rc.2)
+### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v12/dynamic-forms-v12-publish?branchName=refs/tags/v12.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=24&branchName=refs/tags/v12.0.0-next.0)
 
-- `npm install @dynamic-forms/core@v11.0.0-rc.2`
-- `npm install @dynamic-forms/bootstrap@v11.0.0-rc.2`
-- `npm install @dynamic-forms/material@v11.0.0-rc.2`
+- `npm install @dynamic-forms/core@v12.0.0-next.0`
+- `npm install @dynamic-forms/bootstrap@v12.0.0-next.0`
+- `npm install @dynamic-forms/material@v12.0.0-next.0`
 
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0-rc.2)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0)
 
-- `npm install @dynamic-forms/core@v10.0.0-rc.2`
-- `npm install @dynamic-forms/bootstrap@v10.0.0-rc.2`
-- `npm install @dynamic-forms/material@v10.0.0-rc.2`
+- `npm install @dynamic-forms/core@v11.0.0`
+- `npm install @dynamic-forms/bootstrap@v11.0.0`
+- `npm install @dynamic-forms/material@v11.0.0`
 
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0-rc.2)
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0)
 
-- `npm install @dynamic-forms/core@v9.0.0-rc.2`
-- `npm install @dynamic-forms/bootstrap@v9.0.0-rc.2`
-- `npm install @dynamic-forms/material@v9.0.0-rc.2`
+- `npm install @dynamic-forms/core@v10.0.0`
+- `npm install @dynamic-forms/bootstrap@v10.0.0`
+- `npm install @dynamic-forms/material@v10.0.0`
 
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/v8.0.0-rc.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/v8.0.0-rc.2)
+### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/v9.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/v9.0.0)
 
-- `npm install @dynamic-forms/core@v8.0.0-rc.2`
-- `npm install @dynamic-forms/bootstrap@v8.0.0-rc.2`
-- `npm install @dynamic-forms/material@v8.0.0-rc.2`
+- `npm install @dynamic-forms/core@v9.0.0`
+- `npm install @dynamic-forms/bootstrap@v9.0.0`
+- `npm install @dynamic-forms/material@v9.0.0`
+
+### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/v8.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/v8.0.0)
+
+- `npm install @dynamic-forms/core@v8.0.0`
+- `npm install @dynamic-forms/bootstrap@v8.0.0`
+- `npm install @dynamic-forms/material@v8.0.0`
 
 ## **Libraries**
 
