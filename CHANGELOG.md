@@ -1,30 +1,32 @@
-# 11.0.0 (2021-04-14)
+# Changelog
 
-## Features
+## 11.0.0 (2021-04-14)
+
+### Features
 
 * **core:** release of library using angular 11
 * **bootstrap:** release of library using angular 11
 * **material:** release of library using angular material 11
 
-# 10.0.0 (2021-04-14)
+## 10.0.0 (2021-04-14)
 
-## Features
+### Features
 
 * **core:** release of library using angular 10
 * **bootstrap:** release of library using angular 10
 * **material:** release of library using angular material 10
 
-# 9.0.0 (2021-04-14)
+## 9.0.0 (2021-04-14)
 
-## Features
+### Features
 
 * **core:** release of library using angular 9
 * **bootstrap:** release of library using angular 9
 * **material:** release of library using angular material 9
 
-# 8.0.0 (2021-04-14)
+## 8.0.0 (2021-04-14)
 
-## Features
+### Features
 
 * **core:** release of library using angular 8
 * **core:** dynamic form based on reactive forms and JSON definition for elements, fields and actions

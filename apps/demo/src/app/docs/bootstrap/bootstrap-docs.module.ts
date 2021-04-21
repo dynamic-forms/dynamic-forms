@@ -6,16 +6,16 @@ import { BootstrapDocComponent } from './doc/bootstrap-doc.component';
 
 const routes: Routes = [
   {
-    path: 'docs/bootstrap',
-    redirectTo: 'docs/bootstrap/doc',
+    path: '',
+    redirectTo: 'doc',
     pathMatch: 'full'
   },
   {
-    path: 'docs/bootstrap/doc',
+    path: 'doc',
     component: BootstrapDocComponent
   },
   {
-    path: 'docs/bootstrap/coverage',
+    path: 'coverage',
     component: BootstrapCoverageComponent
   }
 ];

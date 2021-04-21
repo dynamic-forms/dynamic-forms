@@ -7,7 +7,7 @@ export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidator
 
 export function dynamicFormGroupRequiredValidatorFactory(): DynamicFormGroupValidatorFn {
   return (group: FormGroup) => {
-    return !group.value || Object.keys(group.value).length === 0 ? { requiredGroup: true } : null;
+    return group.value != null || Object.keys(group.value).length === 0 ? { requiredGroup: true } : null;
   };
 }
 

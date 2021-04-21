@@ -1,13 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DocsComponent } from './docs.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: 'docs',
-        component: DocsComponent
+        path: '',
+        redirectTo: 'core',
+        pathMatch: 'full'
+      },
+      {
+        path: 'core',
+        loadChildren: () => import('./core/core-docs.module').then(m => m.CoreDocsModule)
+      },
+      {
+        path: 'bootstrap',
+        loadChildren: () => import('./bootstrap/bootstrap-docs.module').then(m => m.BootstrapDocsModule)
+      },
+      {
+        path: 'material',
+        loadChildren: () => import('./material/material-docs.module').then(m => m.MaterialDocsModule)
+      },
+      {
+        path: 'changelog',
+        loadChildren: () => import('./changelog/changelog.module').then(m => m.ChangelogModule)
       }
     ])
   ],
