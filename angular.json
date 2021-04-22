@@ -182,6 +182,16 @@
                 "glob": "README.md",
                 "input": "./",
                 "output": "assets/markdown/home"
+              },
+              {
+                "glob": "LICENSE.md",
+                "input": "./",
+                "output": "assets/markdown/license"
+              },
+              {
+                "glob": "CHANGELOG.md",
+                "input": "./",
+                "output": "assets/markdown/docs"
               }
             ],
             "stylePreprocessorOptions": {
