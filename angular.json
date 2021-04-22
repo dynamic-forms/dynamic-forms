@@ -169,7 +169,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/v12/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
@@ -194,7 +193,13 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -207,9 +212,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
