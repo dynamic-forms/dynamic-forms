@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.0.0-next.0 (2021-04-14)
+
+### Features
+
+* **core:** next version of library using angular 12 (next)
+* **bootstrap:** next version of library using angular 12 (next)
+* **material:** next version of library using angular material 12 (next)
+
 ## 11.0.0 (2021-04-14)
 
 ### Features
