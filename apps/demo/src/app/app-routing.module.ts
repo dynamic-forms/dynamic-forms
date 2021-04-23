@@ -9,7 +9,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'docs',
-    loadChildren: () => import("./docs/docs.module").then(m => m.DocsModule)
+    loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
   },
   {
     path: 'examples/bootstrap',
@@ -21,7 +21,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'license',
-    loadChildren: () => import("./license/license.module").then(m => m.LicenseModule)
+    loadChildren: () => import('./license/license.module').then(m => m.LicenseModule)
   }
 ];
 
