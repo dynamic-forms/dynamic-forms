@@ -8,12 +8,20 @@ export const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'docs',
+    loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
+  },
+  {
     path: 'examples/bootstrap',
     loadChildren: () => import('./examples/bootstrap/bootstrap-examples.module').then(m => m.BootstrapExamplesModule)
   },
   {
     path: 'examples/material',
     loadChildren: () => import('./examples/material/material-examples.module').then(m => m.MaterialExamplesModule)
+  },
+  {
+    path: 'license',
+    loadChildren: () => import('./license/license.module').then(m => m.LicenseModule)
   }
 ];
 
