@@ -52,11 +52,11 @@
 
 Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:registry=https://npm.pkg.github.com` to the registry file `.npmrc`.
 
-### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v12/dynamic-forms-v12-publish?branchName=refs/tags/v12.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=24&branchName=refs/tags/v12.0.0-next.0)
+### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v12/dynamic-forms-v12-publish?branchName=refs/tags/v12.0.0-rc.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=24&branchName=refs/tags/v12.0.0-rc.0)
 
-- `npm install @dynamic-forms/core@v12.0.0-next.0`
-- `npm install @dynamic-forms/bootstrap@v12.0.0-next.0`
-- `npm install @dynamic-forms/material@v12.0.0-next.0`
+- `npm install @dynamic-forms/core@v12.0.0-rc.0`
+- `npm install @dynamic-forms/bootstrap@v12.0.0-rc.0`
+- `npm install @dynamic-forms/material@v12.0.0-rc.0`
 
 ### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0)
 
