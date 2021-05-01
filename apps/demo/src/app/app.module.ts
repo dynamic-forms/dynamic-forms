@@ -14,9 +14,6 @@ import { HttpRequestInterceptor } from './services/http-request.interceptor';
 import { IconService } from './services/icon.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -27,6 +24,9 @@ import { IconService } from './services/icon.service';
     LayoutModule,
     HomeModule,
     DocsModule
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [
     AppService,

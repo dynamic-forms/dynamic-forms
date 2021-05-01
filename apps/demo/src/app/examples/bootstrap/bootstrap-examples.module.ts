@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { v4 } from 'uuid';
 import { MarkdownModule } from '../../markdown/markdown.module';
-import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
-import { DynamicFormExampleResolver } from '../dynamic-form-example.resolver';
-import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
+import { BootstrapExamplesRoutingModule } from './bootstrap-examples-routing.module';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
 export function dynamicFormIdBuilder(): string {
@@ -40,37 +37,10 @@ export function dynamicFormIdBuilder(): string {
       theme: 'bootstrap',
       idBuilder: dynamicFormIdBuilder
     }),
-    RouterModule.forChild([
-      {
-        path: ':definitionId',
-        resolve: {
-          example: DynamicFormExampleResolver
-        },
-        children: [
-          {
-            path: '',
-            component: BootstrapExamplesComponent,
-            resolve: {
-              definition: DynamicFormDefinitionResolver
-            }
-          },
-          {
-            path: 'models/:modelId',
-            component: BootstrapExamplesComponent,
-            resolve: {
-              definition: DynamicFormDefinitionResolver,
-              model: DynamicFormModelResolver
-            }
-        }
-        ]
-      }
-    ])
+    BootstrapExamplesRoutingModule
   ],
   declarations: [
     BootstrapExamplesComponent
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class BootstrapExamplesModule {}
