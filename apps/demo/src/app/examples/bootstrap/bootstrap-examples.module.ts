@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { v4 } from 'uuid';
-import { MarkdownModule } from '../../markdown/markdown.module';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { BootstrapExamplesRoutingModule } from './bootstrap-examples-routing.module';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
@@ -13,7 +13,7 @@ export function dynamicFormIdBuilder(): string {
 
 @NgModule({
   imports: [
-    MarkdownModule,
+    CommonModule,
     DynamicFormExampleModule,
     DynamicFormIconModule.withIcons({
       icons: {

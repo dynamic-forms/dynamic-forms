@@ -1,0 +1,25 @@
+<mat-tab-group class="dynamic-form-example">
+  <mat-tab label="Form">
+    <ng-content select="[dynamicForm]"></ng-content>
+  </mat-tab>
+  <mat-tab label="Definition"> 
+    <ng-template matTabContent>
+      <ng-content select="[dynamicFormDefinition]"></ng-content>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Model">
+    <ng-template matTabContent>
+      <ng-content select="[dynamicFormModel]"></ng-content>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Value">
+    <ng-template matTabContent>
+      <ng-content select="[dynamicFormValue]"></ng-content>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Documentation" [disabled]="!docEnabled">
+    <ng-template matTabContent>
+      <app-markdown [source]="doc"></app-markdown>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

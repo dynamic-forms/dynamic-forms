@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
-import { MarkdownModule } from '../../markdown/markdown.module';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { MaterialExamplesRoutingModule } from './material-examples-routing.module';
 import { MaterialExamplesComponent } from './material-examples.component';
@@ -13,7 +13,7 @@ export function dynamicFormIdBuilder(): string {
 
 @NgModule({
   imports: [
-    MarkdownModule,
+    CommonModule,
     DynamicFormExampleModule,
     DynamicFormIconModule.withIcons({
       icons: {

@@ -1,28 +1,16 @@
-<mat-tab-group *ngIf="data$ | async as data" class="dynamic-form-example">
-  <mat-tab label="Form">
-    <dynamic-form #dynamicForm 
-      [definition]="data.definition" [model]="data.model" 
-      (formSubmit)="onFormSubmit($event)">
-    </dynamic-form>
-  </mat-tab>
-  <mat-tab label="Definition"> 
-    <ng-template matTabContent>
+<ng-container *ngIf="data$ | async as data" >
+  <app-dynamic-form-example [docEnabled]="data.example.docId" [doc]="doc$ | async">
+    <dynamic-form dynamicForm [definition]="data.definition" [model]="data.model" 
+      (formSubmit)="onFormSubmit($event)"
+    ></dynamic-form>
+    <div dynamicFormDefinition>
       <pre>{{ data.definition | json }}</pre>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Model">
-    <ng-template matTabContent>
+    </div>
+    <div dynamicFormModel>
       <pre>{{ data.model | json }}</pre>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Value">
-    <ng-template matTabContent>
-      <pre>{{ dynamicForm.formGroup.value | json }}</pre>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Documentation" [disabled]="!data.example.docId">
-    <ng-template matTabContent>
-      <app-markdown [source]="doc$ | async"></app-markdown>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+    </div>
+    <div dynamicFormValue>
+      <pre>{{ dynamicForm?.form.value | json }}</pre>
+    </div>
+  </app-dynamic-form-example>
+</ng-container>
