@@ -37,8 +37,9 @@ export class SidebarMenuComponent {
     const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
     treeDataSource.data = [
       { label: 'Home', route: '/home' },
-      { label: 'Docs', children: docsChildren },
-      { label: 'Examples', children: examplesChildren }
+      { label: 'Docs', children: [ ...docsChildren, { label: 'Changelog', route: '/docs/changelog' } ] },
+      { label: 'Examples', children: examplesChildren },
+      { label: 'License', route: '/license' }
     ];
     return treeDataSource;
   }

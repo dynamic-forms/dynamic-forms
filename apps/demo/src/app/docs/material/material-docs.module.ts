@@ -6,16 +6,16 @@ import { MaterialDocComponent } from './doc/material-doc.component';
 
 const routes: Routes = [
   {
-    path: 'docs/material',
-    redirectTo: 'docs/material/doc',
+    path: '',
+    redirectTo: 'doc',
     pathMatch: 'full'
   },
   {
-    path: 'docs/material/doc',
+    path: 'doc',
     component: MaterialDocComponent
   },
   {
-    path: 'docs/material/coverage',
+    path: 'coverage',
     component: MaterialCoverageComponent
   }
 ];

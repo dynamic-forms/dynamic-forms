@@ -169,8 +169,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
-            "outputPath": "dist/v11/@dynamic-forms/demo",
+            "outputPath": "dist/v12/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -183,18 +182,34 @@
                 "glob": "README.md",
                 "input": "./",
                 "output": "assets/markdown/home"
+              },
+              {
+                "glob": "LICENSE.md",
+                "input": "./",
+                "output": "assets/markdown/license"
+              },
+              {
+                "glob": "CHANGELOG.md",
+                "input": "./",
+                "output": "assets/markdown/docs"
               }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v11"
+                "dist/v12"
               ]
             },
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -207,9 +222,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
