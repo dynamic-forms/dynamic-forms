@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 })
 export class DynamicFormExampleComponent {
   @Input() docEnabled: boolean;
-  @Input() doc: string;
+  @Input() docSource: string;
 }
