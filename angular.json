@@ -205,11 +205,10 @@
             ],
             "scripts": [],
             "vendorChunk": true,
-            "extractLicenses": true,
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": false
+            "aot": false
           },
           "configurations": {
             "production": {
