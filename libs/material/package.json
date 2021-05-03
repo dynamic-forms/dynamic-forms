@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "12.0.0-rc.0",
+  "version": "12.0.0-rc.1",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "license": "MIT",
@@ -13,11 +13,11 @@
     "tslib": "^2.1.0"
   },
   "peerDependencies": {
-    "@angular/common": "~12.0.0-next.7",
-    "@angular/core": "~12.0.0-next.7",
-    "@angular/forms": "~12.0.0-next.7",
-    "@angular/material": "~12.0.0-next.5",
-    "@dynamic-forms/core": "12.0.0-rc.0",
+    "@angular/common": "~12.0.0-rc.1",
+    "@angular/core": "~12.0.0-rc.1",
+    "@angular/forms": "~12.0.0-rc.1",
+    "@angular/material": "~12.0.0-rc.1",
+    "@dynamic-forms/core": "12.0.0-rc.1",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.7" 
   },
