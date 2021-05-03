@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.0.0-rc.1 (2021-04-23)
+
+### Features
+
+* **core:** release candidate of library using angular 12 (release candidate 1)
+* **bootstrap:** release candidate of library using angular 12 (release candidate 1)
+* **material:** release candidate of library using angular material 12 (release candidate 1)
+
 ## 12.0.0-rc.0 (2021-04-23)
 
 ### Features
