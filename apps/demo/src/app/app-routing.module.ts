@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-export const appRoutes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'home',
@@ -12,12 +12,8 @@ export const appRoutes: Routes = [
     loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
   },
   {
-    path: 'examples/bootstrap',
-    loadChildren: () => import('./examples/bootstrap/bootstrap-examples.module').then(m => m.BootstrapExamplesModule)
-  },
-  {
-    path: 'examples/material',
-    loadChildren: () => import('./examples/material/material-examples.module').then(m => m.MaterialExamplesModule)
+    path: 'examples',
+    loadChildren: () => import('./examples/examples.module').then(m => m.ExamplesModule)
   },
   {
     path: 'license',
