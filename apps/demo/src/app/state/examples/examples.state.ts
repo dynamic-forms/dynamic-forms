@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { createSelector, Action, Selector, State, StateContext } from '@ngxs/store';
 import { ExamplesInit } from './examples.actions';
 import { Example, Examples, ExamplesMenu, ExampleMenuGroup, ExampleMenuItem, EXAMPLES } from './examples.model';
@@ -6,6 +7,7 @@ import { Example, Examples, ExamplesMenu, ExampleMenuGroup, ExampleMenuItem, EXA
   name: EXAMPLES,
   defaults: null
 })
+@Injectable()
 export class ExamplesState {
   @Selector()
   static menu(state: Examples): ExamplesMenu {
