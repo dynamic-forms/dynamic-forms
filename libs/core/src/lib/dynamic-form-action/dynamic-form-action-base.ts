@@ -1,4 +1,4 @@
-import { DoCheck } from '@angular/core';
+import { Directive, DoCheck } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
@@ -10,6 +10,8 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
+@Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class DynamicFormActionBase<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
