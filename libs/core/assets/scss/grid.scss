@@ -9,20 +9,26 @@ $dynamic-form-grid-gutter-width: 20px;
     @import '~bootstrap/scss/functions';
     @import '~bootstrap/scss/variables';
     @import '~bootstrap/scss/mixins';
-    @import '~bootstrap/scss/grid';
     @import '~bootstrap/scss/utilities';
-  
+    @import '~bootstrap/scss/utilities/api';
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
     
     .row {
+      @include make-row();
+
       *[class*=' col'], *[class^='col'] {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
         padding-right: calc(var(--bs-gutter-x) / 2);
         padding-left: calc(var(--bs-gutter-x) / 2);
-        margin-top: var(--bs-gutter-y);
       }
       
+      @include make-grid-columns();
+
       dynamic-form-element, 
       dynamic-form-elements,
       dynamic-form-content,
