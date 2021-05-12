@@ -219,6 +219,7 @@
                 }
               ],
               "optimization": true,
+              "aot": true,
               "outputHashing": "all",
               "sourceMap": false,
               "vendorChunk": false,
