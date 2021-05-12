@@ -6,27 +6,27 @@
 
 ## **Demo**
 
-### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=develop%2Fv12)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=develop%2Fv12) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=release%2Fv12)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=release%2Fv12)
+### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=12.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=12.0.x)
 
 - Built with [Angular 12](https://v12.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=develop%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=develop%2Fv11) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=release%2Fv11)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=release%2Fv11)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.0.x)
 
 - Built with [Angular 11](https://v11.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
 
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=develop%2Fv10)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=develop%2Fv10) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=release%2Fv10)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=release%2Fv10)
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=10.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=10.0.x)
 
 - Built with [Angular 10](https://v10.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v10/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v10/)
 
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=develop%2Fv9)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=develop%2Fv9) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=release%2Fv9)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=release%2Fv9)
+### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=9.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=9.0.x)
 
 - Built with [Angular 9](https://v9.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v9/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v9/)
 
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=develop%2Fv8)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=develop%2Fv8) [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=release%2Fv8)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=release%2Fv8)
+### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=8.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=8.0.x)
 
 - Built with [Angular 8](https://v8.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v8/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v8/)
