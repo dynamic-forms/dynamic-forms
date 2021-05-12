@@ -1,14 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { NotificationItemPush } from '../notifications/notifications.actions';
 import { NotificationItem, NotificationType } from '../notifications/notifications.model';
 import { ProgressItemPop, ProgressItemPush } from '../progress/progress.actions';
 
 @Injectable()
-export class RoutingHandler {
+export class RoutingHandler implements OnDestroy {
+  private readonly _routeSubscription: Subscription;
+
   constructor(private store: Store, private router: Router) {
-    this.router.events.subscribe(event => this.handle(event));
+    this._routeSubscription = this.router.events.subscribe({
+      next: event => this.handle(event)
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._routeSubscription.unsubscribe();
   }
 
   private handle(event: Event): void {

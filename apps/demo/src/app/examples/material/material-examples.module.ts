@@ -1,13 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
-import { MarkdownModule } from '../../markdown/markdown.module';
-import { DynamicFormDefinitionResolver } from '../dynamic-form-definition.resolver';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
-import { DynamicFormExampleResolver } from '../dynamic-form-example.resolver';
-import { DynamicFormModelResolver } from '../dynamic-form-model.resolver';
+import { MaterialExamplesRoutingModule } from './material-examples-routing.module';
 import { MaterialExamplesComponent } from './material-examples.component';
 
 export function dynamicFormIdBuilder(): string {
@@ -16,7 +13,7 @@ export function dynamicFormIdBuilder(): string {
 
 @NgModule({
   imports: [
-    MarkdownModule,
+    CommonModule,
     DynamicFormExampleModule,
     DynamicFormIconModule.withIcons({
       icons: {
@@ -40,37 +37,10 @@ export function dynamicFormIdBuilder(): string {
       theme: 'material',
       idBuilder: dynamicFormIdBuilder
     }),
-    RouterModule.forChild([
-      {
-        path: ':definitionId',
-        resolve: {
-          example: DynamicFormExampleResolver
-        },
-        children: [
-          {
-            path: '',
-            component: MaterialExamplesComponent,
-            resolve: {
-              definition: DynamicFormDefinitionResolver
-            }
-          },
-          {
-            path: 'models/:modelId',
-            component: MaterialExamplesComponent,
-            resolve: {
-              definition: DynamicFormDefinitionResolver,
-              model: DynamicFormModelResolver
-            }
-        }
-        ]
-      }
-    ])
+    MaterialExamplesRoutingModule
   ],
   declarations: [
     MaterialExamplesComponent
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class MaterialExamplesModule {}
