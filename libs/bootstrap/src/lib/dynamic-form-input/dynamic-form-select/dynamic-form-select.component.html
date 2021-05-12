@@ -1,5 +1,5 @@
 <ng-container *ngIf="!input.multiple; else optionsMultiple">
-  <select class="custom-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
+  <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
     <option [value]="null" hidden>{{ input.placeholder }}</option>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
@@ -15,7 +15,7 @@
 </ng-container>
 
 <ng-template #optionsMultiple>
-  <select class="custom-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
+  <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
         <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>      

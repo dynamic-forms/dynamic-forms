@@ -58,9 +58,9 @@ describe('BsDynamicFormRadioComponent', () => {
   });
 
   it('renders component template', () => {
-    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.custom-control.custom-radio'));
-    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.custom-control-input')));
-    const labelDebugElements = checkDebugElements.map(elem => elem.query(By.css('label.custom-control-label')));
+    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
+    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
+    const labelDebugElements = checkDebugElements.map(elem => elem.query(By.css('label.form-check-label')));
     const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
     const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLLabelElement[];
 
@@ -81,8 +81,8 @@ describe('BsDynamicFormRadioComponent', () => {
   });
 
   it('sets dynamic form control to readonly', () => {
-    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.custom-control.custom-radio'));
-    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.custom-control-input')));
+    const checkDebugElements = fixture.debugElement.queryAll(By.css('div.form-check'));
+    const inputDebugElements = checkDebugElements.map(elem => elem.query(By.css('input.form-check-input')));
     const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
 
     expect(inputElements[0].readOnly).not.toBe(true);
