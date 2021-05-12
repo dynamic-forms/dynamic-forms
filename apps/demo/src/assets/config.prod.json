@@ -11,7 +11,8 @@
     "url": "https://github.com/dynamic-forms/dynamic-forms",
     "branch": "11.1.x",
     "branchPath": "tree/{{branch}}",
-    "libraryPath": "libs/{{library}}"
+    "libraryPath": "libs/{{library}}",
+    "commit": null
   },
   "versions": [
     {
