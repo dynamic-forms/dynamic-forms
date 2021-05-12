@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MarkdownModule } from '../markdown/markdown.module';
 import { DynamicFormDefinitionResolver } from './dynamic-form-definition.resolver';
 import { DynamicFormDialogComponent } from './dynamic-form-dialog.component';
+import { DynamicFormExampleComponent } from './dynamic-form-example.component';
 import { DynamicFormExampleResolver } from './dynamic-form-example.resolver';
 import { DynamicFormModelResolver } from './dynamic-form-model.resolver';
 
@@ -15,9 +17,11 @@ import { DynamicFormModelResolver } from './dynamic-form-model.resolver';
     HttpClientModule,
     MatDialogModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    MarkdownModule
   ],
   declarations: [
+    DynamicFormExampleComponent,
     DynamicFormDialogComponent
   ],
   exports: [
@@ -25,7 +29,8 @@ import { DynamicFormModelResolver } from './dynamic-form-model.resolver';
     HttpClientModule,
     MatDialogModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    DynamicFormExampleComponent
   ],
   providers: [
     DynamicFormExampleResolver,
