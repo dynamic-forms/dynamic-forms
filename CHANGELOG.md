@@ -1,5 +1,12 @@
 # Changelog
 
+## 11.1.0 (2021-05-13)
+
+### Features
+
+* **core:** use boostrap 5
+* **bootstrap:** use boostrap 5
+
 ## 12.0.0 (2021-05-12)
 
 ### Features

@@ -11,7 +11,7 @@
 - Built with [Angular 12](https://v12.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.0.x)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.1.x)
 
 - Built with [Angular 11](https://v11.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
@@ -58,11 +58,11 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - `npm install @dynamic-forms/bootstrap@v12.0.0`
 - `npm install @dynamic-forms/material@v12.0.0`
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.1.0)
 
-- `npm install @dynamic-forms/core@v11.0.0`
-- `npm install @dynamic-forms/bootstrap@v11.0.0`
-- `npm install @dynamic-forms/material@v11.0.0`
+- `npm install @dynamic-forms/core@v11.1.0`
+- `npm install @dynamic-forms/bootstrap@v11.1.0`
+- `npm install @dynamic-forms/material@v11.1.0`
 
 ### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.0)
 

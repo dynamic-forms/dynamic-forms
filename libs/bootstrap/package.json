@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "11.1.0-next.0",
+  "version": "11.1.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "@angular/common": "^11.0.0",
     "@angular/core": "^11.0.0",
     "@angular/forms": "^11.0.0",
-    "@dynamic-forms/core": "11.1.0-next.0",
+    "@dynamic-forms/core": "11.1.0",
     "bootstrap": "5.0.0",
     "rxjs":  "~6.6.7" 
   },
