@@ -1,10 +1,12 @@
-import { DoCheck } from '@angular/core';
+import { Directive, DoCheck } from '@angular/core';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
+@Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class DynamicFormItemsBase<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,

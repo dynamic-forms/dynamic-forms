@@ -6,16 +6,16 @@ import { CoreDocComponent } from './doc/core-doc.component';
 
 const routes: Routes = [
   {
-    path: 'docs/core',
-    redirectTo: 'docs/core/doc',
+    path: '',
+    redirectTo: 'doc',
     pathMatch: 'full'
   },
   {
-    path: 'docs/core/doc',
+    path: 'doc',
     component: CoreDocComponent
   },
   {
-    path: 'docs/core/coverage',
+    path: 'coverage',
     component: CoreCoverageComponent
   }
 ];

@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "11.0.0",
+  "version": "11.1.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "@angular/common": "^11.0.0",
     "@angular/core": "^11.0.0",
     "@angular/forms": "^11.0.0",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.0.0",
     "marked": "^2.0.3",
     "rxjs": "~6.6.7"
   },
