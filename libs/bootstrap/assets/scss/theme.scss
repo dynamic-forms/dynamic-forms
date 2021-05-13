@@ -494,17 +494,8 @@ $dynamic-form-material-red: #f44336;
     }
     
     .dynamic-form-tabs {
-      .card-header {
-        .card-header-tabs {
-          .nav-link {
-            cursor: pointer;
-
-            &.disabled {
-              cursor: default;
-              pointer-events: none;
-            }    
-          }
-        }  
+      .tab-pane {
+        padding: 0 10px;
       }
     }
   }
