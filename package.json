@@ -33,7 +33,7 @@
     "build:material": "ng build dynamic-forms-material --prod",
     "build:libs": "npm run build:core && npm run build:bootstrap && npm run build:material",
     "build:demo": "ng build dynamic-forms-demo",
-    "build:demo:prod": "ng build dynamic-forms-demo --prod --aot",
+    "build:demo:prod": "ng build dynamic-forms-demo --prod",
     "test:libs": "ng test dynamic-forms-libs --browsers=ChromeHeadless --watch=false --code-coverage",
     "test:demo": "ng test dynamic-forms-demo --browsers=ChromeHeadless --watch=false",
     "cover:core": "ng test dynamic-forms-core --browsers=ChromeHeadless --watch=false --code-coverage",
