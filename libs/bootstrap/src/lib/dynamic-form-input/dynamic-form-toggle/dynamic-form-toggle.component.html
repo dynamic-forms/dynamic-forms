@@ -1,10 +1,14 @@
 <div class="btn-group btn-group-toggle">
   <ng-container *ngFor="let option of input.options; let i = index">
-    <label class="btn btn-light" [class.disabled]="control.disabled || option.disabled" [class.active]="control.value === option.value">
-      <input type="radio" [id]="inputId + '-' + i" [name]="inputId"  
-        [formControl]="control" [value]="option.value" [disabled]="option.disabled" [readonly]="readonly" 
-        autocomplete="off" />
-      <span>{{ option.label }}</span>
-    </label>
+    <input class="btn-check" type="radio" 
+      [id]="inputId + '-' + i" [name]="inputId"  
+      [formControl]="control" [value]="option.value" 
+      [disabled]="option.disabled" [readonly]="readonly" 
+      autocomplete="off" />
+    <label class="btn btn-outline-light" 
+      [for]="inputId + '-' + i" 
+      [class.disabled]="control.disabled || option.disabled"
+      [class.active]="control.value === option.value"
+    >{{ option.label }}</label>
   </ng-container>
 </div>

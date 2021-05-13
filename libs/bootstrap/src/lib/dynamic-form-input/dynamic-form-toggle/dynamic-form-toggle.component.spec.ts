@@ -59,27 +59,30 @@ describe('BsDynamicFormToggleComponent', () => {
 
   it('renders component template', () => {
     const wrapperDebugElement = fixture.debugElement.query(By.css('div.btn-group.btn-group-toggle'));
-    const labelDebugElements = wrapperDebugElement.queryAll(By.css('label.btn.btn-light'));
-    const inputDebugElements = labelDebugElements.map(elem => elem.query(By.css('input')));
-    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLLabelElement[];
+    const inputDebugElements = wrapperDebugElement.queryAll(By.css('input.btn-check'));
+    const labelDebugElements = wrapperDebugElement.queryAll(By.css('label.btn'));
     const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
+    const labelElements = labelDebugElements.map(elem => elem.nativeElement) as HTMLLabelElement[];
 
     expect(inputElements.length).toBe(3);
     expect(labelElements.length).toBe(3);
     expect(inputElements[0].id).toBe(`key-0`);
     expect(inputElements[0].type).toBe('radio');
+    expect(labelElements[0].htmlFor).toBe('key-0');
     expect(labelElements[0].innerText).toBe('label1');
     expect(inputElements[1].id).toBe('key-1');
     expect(inputElements[1].type).toBe('radio');
+    expect(labelElements[1].htmlFor).toBe('key-1');
     expect(labelElements[1].innerText).toBe('label2');
     expect(inputElements[2].id).toBe('key-2');
     expect(inputElements[2].type).toBe('radio');
+    expect(labelElements[2].htmlFor).toBe('key-2');
     expect(labelElements[2].innerText).toBe('label3');
   });
 
   it('sets dynamic form control to readonly', () => {
     const wrapperDebugElement = fixture.debugElement.query(By.css('div.btn-group.btn-group-toggle'));
-    const inputDebugElements = wrapperDebugElement.queryAll(By.css('input'));
+    const inputDebugElements = wrapperDebugElement.queryAll(By.css('input.btn-check'));
     const inputElements = inputDebugElements.map(elem => elem.nativeElement) as HTMLInputElement[];
 
     expect(inputElements[0].readOnly).not.toBe(true);

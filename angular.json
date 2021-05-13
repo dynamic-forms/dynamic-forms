@@ -208,7 +208,9 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "extractLicenses": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -219,6 +221,7 @@
                 }
               ],
               "optimization": true,
+              "aot": true,
               "outputHashing": "all",
               "sourceMap": false,
               "vendorChunk": false,

@@ -1,5 +1,27 @@
 # Changelog
 
+## 12.1.0 (2021-05-13)
+
+### Features
+
+* **core:** use boostrap 5
+* **bootstrap:** use boostrap 5
+
+## 11.1.0 (2021-05-13)
+
+### Features
+
+* **core:** use boostrap 5
+* **bootstrap:** use boostrap 5
+
+## 12.0.0 (2021-05-12)
+
+### Features
+
+* **core:** release candidate of library using angular 12
+* **bootstrap:** release candidate of library using angular 12
+* **material:** release candidate of library using angular material 12
+
 ## 12.0.0-rc.1 (2021-05-03)
 
 ### Features
