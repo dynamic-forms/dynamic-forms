@@ -5,15 +5,24 @@ $dynamic-form-material-red: #f44336;
   .dynamic-form {
     $blue: $dynamic-form-material-blue;
     $red: $dynamic-form-material-red;
-        
+
+    $enable-rfs: false;
+
+    $h1-font-size: 24px;
+    $h2-font-size: 22px;
+    $h3-font-size: 20px;
+
+    $headings-font-weight: revert;
+    $headings-line-height: revert;
+
     @import '~bootstrap/scss/functions';
     @import '~bootstrap/scss/variables';
     @import '~bootstrap/scss/mixins';
     @import '~bootstrap/scss/reboot';
+    @import '~bootstrap/scss/accordion';
     @import '~bootstrap/scss/forms';
     @import '~bootstrap/scss/buttons';
     @import '~bootstrap/scss/button-group';
-    @import '~bootstrap/scss/custom-forms';
     @import '~bootstrap/scss/nav';
     @import '~bootstrap/scss/card';
     @import '~bootstrap/scss/modal';
@@ -348,13 +357,13 @@ $dynamic-form-material-red: #f44336;
           background-color: $gray-200;
         }
 
-        .custom-control {
+        .form-check {
           label:before {
             pointer-events: none;
           }
           
-          &.custom-switch {
-            .custom-control-input {
+          &.form-switch {
+            .form-check-input {
               visibility: hidden;
             }
           }
@@ -364,13 +373,30 @@ $dynamic-form-material-red: #f44336;
       .btn-group.btn-group-toggle {
         display: block;
 
-        .btn.btn-light {
+        .btn {
           &.disabled {
             pointer-events: none;
-            
+          }
+
+          &.btn-outline-light {
+            color: rgba(0, 0, 0);
+            background-color: rgb(239, 240, 241);
+            border-color: rgb(239, 240, 241);
+
+            &:hover {
+              background-color: rgb(229, 230, 231);
+              border-color: rgb(229, 230, 231);  
+            }
+
+            &.disabled {
+              color: rgba(0, 0, 0, 0.5);
+              background-color: rgb(249, 250, 251);
+              border-color: rgb(249, 250, 251);  
+            }
+
             &.active {
-              background-color: #dae0e5;
-              border-color: #d3d9df;    
+              background-color: rgb(219, 220, 221);
+              border-color: rgb(219, 220, 221);  
             }
           }
         }
@@ -456,7 +482,7 @@ $dynamic-form-material-red: #f44336;
     }
 
     .dynamic-form-accordion {
-      .card-header {
+      .accordion-header {
         cursor: pointer;
         
         &.disabled {
@@ -468,17 +494,8 @@ $dynamic-form-material-red: #f44336;
     }
     
     .dynamic-form-tabs {
-      .card-header {
-        .card-header-tabs {
-          .nav-link {
-            cursor: pointer;
-
-            &.disabled {
-              cursor: default;
-              pointer-events: none;
-            }    
-          }
-        }  
+      .tab-pane {
+        padding: 0 10px;
       }
     }
   }
