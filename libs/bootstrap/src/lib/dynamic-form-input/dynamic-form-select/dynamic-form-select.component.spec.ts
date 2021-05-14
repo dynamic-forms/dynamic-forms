@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSelect, DynamicFormValidationService} from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormSelect, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 import { BsDynamicFormSelectModule } from './dynamic-form-select.module';
 
 describe('BsDynamicFormSelectComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormSelectComponent>;
   let component: BsDynamicFormSelectComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormSelect>;
   let formControl: DynamicFormControl<DynamicFormSelect>;
@@ -30,7 +32,9 @@ describe('BsDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {
       key: 'key',
       template: {
@@ -61,7 +65,7 @@ describe('BsDynamicFormSelectComponent', () => {
         }
       }
     } as DynamicFormControlDefinition<DynamicFormSelect>;
-    formControl = new DynamicFormControl<DynamicFormSelect>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormSelect>(builder, form, form, definition);
 
     component.field = formControl;
 

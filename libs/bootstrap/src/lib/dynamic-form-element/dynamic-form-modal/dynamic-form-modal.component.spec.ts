@@ -1,13 +1,14 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormElement, DynamicFormLibraryService, DynamicFormModal,
-  DynamicFormModalDefinition } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormLibraryService,
+  DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { BsDynamicFormModalModule } from './dynamic-form-modal.module';
 
 describe('BsDynamicFormModalComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormModalComponent>;
   let component: BsDynamicFormModalComponent;
+  let builder: DynamicFormBuilder;
   let modal: DynamicFormModal;
 
   beforeEach(() => {
@@ -23,7 +24,9 @@ describe('BsDynamicFormModalComponent', () => {
       ]
     });
 
-    modal = new DynamicFormModal({ template: {} } as DynamicForm, {} as DynamicFormElement, {
+    builder = {} as any;
+
+    modal = new DynamicFormModal(builder, { template: {} } as DynamicForm, {} as DynamicFormElement, {
       template: {
         title: 'Title',
         minWidth: '600px',
