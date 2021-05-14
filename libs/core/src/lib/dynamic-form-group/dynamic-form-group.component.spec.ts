@@ -4,6 +4,7 @@ import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
@@ -14,6 +15,7 @@ describe('DynamicFormGroupComponent', () => {
   let component: DynamicFormGroupComponent;
   let form: DynamicForm;
   let formGroup: DynamicFormGroup;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,8 +34,9 @@ describe('DynamicFormGroupComponent', () => {
     fixture = TestBed.createComponent(DynamicFormGroupComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
-    formGroup = new DynamicFormGroup(form, form, {
+    builder = {} as any;
+    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    formGroup = new DynamicFormGroup(builder, form, form, {
       id: 'id',
       key: 'key',
       index: 1,

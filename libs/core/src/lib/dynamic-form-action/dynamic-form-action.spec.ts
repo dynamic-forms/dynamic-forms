@@ -2,17 +2,24 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpression } from './dynamic-form-action-expression';
 import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
 
 describe('DynamicFormAction', () => {
+  let builder: DynamicFormBuilder;
+
+  beforeEach(() => {
+    builder = {} as any;
+  });
+
   it('creates instance', () => {
     const root = { classType: 'field' } as DynamicForm;
     const parent = { classType: 'field' } as DynamicFormField;
     const definition = { id: 'id', type: 'componentType', template: {}, children: [] } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(root, parent, definition);
+    const action = new DynamicFormAction(builder, root, parent, definition);
 
     expect(action.root).toBe(root);
     expect(action.parent).toBe(parent);
@@ -43,7 +50,7 @@ describe('DynamicFormAction', () => {
 
   it('returns expression data with expression data of parent, root and dialog being undefined', () => {
     const definition = { template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
+    const action = new DynamicFormAction(builder, null, null, definition);
 
     expect(action.expressionData.parent).toBeUndefined();
     expect(action.expressionData.root).toBeUndefined();
@@ -58,7 +65,7 @@ describe('DynamicFormAction', () => {
     const parent = { expressionData: parentExpressionData } as DynamicFormField;
     const dialog = { expressionData: dialogExpressionData } as DynamicForm;
     const definition = { template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(root, parent, definition);
+    const action = new DynamicFormAction(builder, root, parent, definition);
     action.initDialog(dialog);
 
     expect(action.expressionData.parent).toEqual(parentExpressionData);
@@ -68,7 +75,7 @@ describe('DynamicFormAction', () => {
 
   it('inits expressions', () => {
     const definition = { template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
+    const action = new DynamicFormAction(builder, null, null, definition);
     const actionExpressions = {
       'hidden': { value: true } as DynamicFormActionExpression,
       'disabled': { value: false } as DynamicFormActionExpression
@@ -84,8 +91,8 @@ describe('DynamicFormAction', () => {
   it('inits dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, null, null, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     action.initDialog(dialog);
 
@@ -107,7 +114,7 @@ describe('DynamicFormAction', () => {
   it('open, close and toggle dialog do not throw if no dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
+    const action = new DynamicFormAction(builder, null, null, definition);
 
     expect(() => action.openDialog()).not.toThrow();
     expect(() => action.closeDialog()).not.toThrow();
@@ -117,8 +124,8 @@ describe('DynamicFormAction', () => {
   it('opens, closes and toggles dialog', (done) => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, null, null, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe(open => {
@@ -146,8 +153,8 @@ describe('DynamicFormAction', () => {
   it('dialogOpenChange ', (done) => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, null, null, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe(open => {
@@ -171,7 +178,7 @@ describe('DynamicFormAction', () => {
   it('does not open, close or toggle dialog', (done) => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
+    const action = new DynamicFormAction(builder, null, null, definition);
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe(open => {

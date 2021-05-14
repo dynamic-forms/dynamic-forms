@@ -5,6 +5,7 @@ import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-ex
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormTemplate } from '../dynamic-form/dynamic-form-template';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
@@ -20,8 +21,8 @@ export class DynamicFormAction<
 
   protected _dialog: DynamicForm;
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._dialogOpenSubject = new BehaviorSubject(false);
     this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
   }

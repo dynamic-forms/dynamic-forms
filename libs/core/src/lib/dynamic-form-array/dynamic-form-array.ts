@@ -3,6 +3,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
@@ -11,8 +12,8 @@ export class DynamicFormArray<
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
 > extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._model = this.getModel(definition);
     this._control = new FormArray([]);
     this.extendExpressionData({ length: () => this.length });

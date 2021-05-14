@@ -9,6 +9,7 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
@@ -66,6 +67,7 @@ describe('DynamicFormControlComponent', () => {
   let component: DynamicFormControlComponent;
   let form: DynamicForm;
   let formControl: DynamicFormControl;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -77,8 +79,9 @@ describe('DynamicFormControlComponent', () => {
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
-    formControl = new DynamicFormControl(form, form, {
+    builder = {} as any;
+    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    formControl = new DynamicFormControl(builder, form, form, {
       id: 'id',
       key: 'key',
       index: 1,

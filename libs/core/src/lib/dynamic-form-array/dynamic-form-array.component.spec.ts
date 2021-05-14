@@ -16,8 +16,11 @@ describe('DynamicFormArrayComponent', () => {
   let component: DynamicFormArrayComponent;
   let form: DynamicForm;
   let formArray: DynamicFormArray;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
+    builder = {} as any;
+
     TestBed.configureTestingModule({
       imports: [
         DynamicFormArrayModule
@@ -30,7 +33,7 @@ describe('DynamicFormArrayComponent', () => {
         DynamicFormConfigService,
         {
           provide: DynamicFormBuilder,
-          useValue: {}
+          useValue: builder
         },
         DynamicFormValidationService
       ]
@@ -39,8 +42,9 @@ describe('DynamicFormArrayComponent', () => {
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
-    formArray = new DynamicFormArray(form, form, {
+
+    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    formArray = new DynamicFormArray(builder, form, form, {
       id: 'id',
       key: 'key',
       index: 1,

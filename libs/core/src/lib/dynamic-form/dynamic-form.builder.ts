@@ -48,7 +48,7 @@ export class DynamicFormBuilder {
   }
 
   createForm(definition: DynamicFormDefinition, model: any): DynamicForm {
-    const field = new DynamicForm(definition, model);
+    const field = new DynamicForm(this, definition, model);
     field.initExpressions(this.createFieldExpressions(field));
     field.initChildren(this.createFormElements(field, field, field.definition.children));
     field.initValidators(this.createGroupValidators(field));
@@ -59,7 +59,7 @@ export class DynamicFormBuilder {
 
   createFormElement(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition): DynamicFormElement {
     this.requireElementType(definition.type);
-    const element = new DynamicFormElement(root, parent, definition);
+    const element = new DynamicFormElement(this, root, parent, definition);
     element.initExpressions(this.createElementExpressions(element));
     element.initChildren(this.createFormElements(root, element, element.definition.children));
     return element;
@@ -67,7 +67,7 @@ export class DynamicFormBuilder {
 
   createFormControl(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormControlDefinition): DynamicFormControl {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormControl(root, parent, definition);
+    const field = new DynamicFormControl(this, root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initEvaluators(this.createControlEvaluators(field));
@@ -77,7 +77,7 @@ export class DynamicFormBuilder {
 
   createFormGroup(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormGroup(root, parent, definition);
+    const field = new DynamicFormGroup(this, root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initChildren(this.createFormElements(root, field, field.definition.children));
@@ -89,7 +89,7 @@ export class DynamicFormBuilder {
 
   createFormArray(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormArray(root, parent, definition);
+    const field = new DynamicFormArray(this, root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initChildren(this.createFormArrayElements(field));
@@ -108,7 +108,7 @@ export class DynamicFormBuilder {
 
   createFormDictionary(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormDictionaryDefinition): DynamicFormDictionary {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormDictionary(root, parent, definition);
+    const field = new DynamicFormDictionary(this, root, parent, definition);
     field.initId(this.getFieldId(field));
     field.initExpressions(this.createFieldExpressions(field));
     field.initChildren(this.createFormDictionaryElements(field));
@@ -129,11 +129,11 @@ export class DynamicFormBuilder {
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
-    const action = new DynamicFormAction(root, parent, definition);
+    const action = new DynamicFormAction(this, root, parent, definition);
     action.initId(this.getActionId(action));
     action.initExpressions(this.createActionExpressions(action));
     if (action.dialogDefinition) {
-      const dialog = new DynamicForm(action.dialogDefinition, {});
+      const dialog = new DynamicForm(this, action.dialogDefinition, {});
       dialog.initExpressions(this.createFieldExpressions(dialog));
       dialog.initChildren(this.createFormElements(dialog, dialog, dialog.definition.children));
       dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));

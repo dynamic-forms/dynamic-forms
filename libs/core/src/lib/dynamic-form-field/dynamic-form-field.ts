@@ -5,6 +5,7 @@ import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-ex
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -34,8 +35,8 @@ export abstract class DynamicFormField<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._depth = this.getDepth();
     this._settings = this.createSettings();
   }

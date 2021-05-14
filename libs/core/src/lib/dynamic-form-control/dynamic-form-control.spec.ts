@@ -7,6 +7,7 @@ import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
@@ -14,10 +15,16 @@ import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-t
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
+  let builder: DynamicFormBuilder;
+
+  beforeEach(() => {
+    builder = {} as any;
+  });
+
   it('creates instance', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     expect(formControl.root).toBe(root);
     expect(formControl.parent).toBe(root);
@@ -50,9 +57,9 @@ describe('DynamicFormControl', () => {
   const defaultValues = [ 'default', 0, false, '' ];
   defaultValues.forEach(defaultValue =>
     it(`creating instance sets model to default value '${defaultValue}'`, () => {
-      const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+      const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: { input: { defaultValue } } } as DynamicFormControlDefinition;
-      const formControl = new DynamicFormControl(root, root, definition);
+      const formControl = new DynamicFormControl(builder, root, root, definition);
 
       expect(formControl.model).toBe(defaultValue);
 
@@ -70,18 +77,18 @@ describe('DynamicFormControl', () => {
   ];
   items.forEach(item =>
     it(`creating instance sets update option '${item.settings}'`, () => {
-      const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+      const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: {}, settings: item.settings } as DynamicFormControlDefinition;
-      const formControl = new DynamicFormControl(root, root, definition);
+      const formControl = new DynamicFormControl(builder, root, root, definition);
 
       expect(formControl.control.updateOn).toEqual(item.updateOn);
     })
   );
 
   it('creating instance subscribes valueChanges of control value', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.control.setValue('value');
 
@@ -90,9 +97,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('creating instance subscribes valueChanges of control object', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const obj = { value: 'value' };
 
     formControl.control.setValue(obj);
@@ -102,10 +109,10 @@ describe('DynamicFormControl', () => {
   });
 
   it('creating instance subscribes debounced valueChanges of control value', (done) => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const settings = { updateType: 'debounce', updateDebounce: 200 };
     const definition = { key: 'key', template: {}, settings } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.control.setValue('value');
     formControl.check();
@@ -129,17 +136,17 @@ describe('DynamicFormControl', () => {
   });
 
   it('returns expression data with input', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', index: 1, type: 'componentType', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     expect(formControl.expressionData.input).toBe(definition.template.input);
   });
 
   it('inits evaluators to empty', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.initEvaluators(null);
 
@@ -147,9 +154,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits evaluators', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlEvaluators = [ {} ] as DynamicFormControlEvaluator[];
 
     formControl.initEvaluators(formControlEvaluators);
@@ -158,9 +165,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits validators to empty', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.initValidators(null);
 
@@ -168,9 +175,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits validators', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
       { key: 'required', validatorFn: Validators.required }
     ] as DynamicFormControlValidator[];
@@ -181,9 +188,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('sets control validator to null', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.initValidators(null);
     formControl.control.updateValueAndValidity();
@@ -193,9 +200,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('sets control validator', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
       { key: 'required', validatorFn: Validators.required }
     ] as DynamicFormControlValidator[];
@@ -208,9 +215,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('check updates control value', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     spyOn(formControl.control, 'setValue').and.callThrough();
     spyOn(formControl.control, 'markAsTouched');
@@ -225,9 +232,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('check updates control disabled', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     expect(formControl.control.disabled).toBe(false);
 
@@ -243,7 +250,7 @@ describe('DynamicFormControl', () => {
   });
 
   it('check updates control validators', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = {
       key: 'key',
       type: 'control',
@@ -252,7 +259,7 @@ describe('DynamicFormControl', () => {
         validation: { required: true }
       }
     } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
       new DynamicFormControlValidator('required', formControl, _ => Validators.required)
     ] as DynamicFormControlValidator[];
@@ -278,9 +285,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('destroy unsubscribes valueChanges of control', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     formControl.destroy();
 
@@ -288,9 +295,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('reset sets model to null', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, { key: 'value' });
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: 'value' });
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     expect(formControl.model).toBe('value');
     expect((formControl.parent as DynamicFormField).model.key).toBe('value');
@@ -303,9 +310,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('resetDefault sets model to default value', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     expect(formControl.model).toBe(null);
     expect((formControl.parent as DynamicFormField).model.key).toBe(null);
@@ -318,9 +325,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('validate calls markAsTouched of control', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
     spyOn(formControl.control, 'markAsTouched');
 
@@ -330,9 +337,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits expressions', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
       'required': { value: true } as DynamicFormFieldExpression,
       'input.readonly': { value: false } as DynamicFormFieldExpression
@@ -346,9 +353,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits expressions, sets model and control value to default value', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
       'input.defaultValue': { value: 'value' } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
@@ -367,9 +374,9 @@ describe('DynamicFormControl', () => {
   });
 
   it('inits expressions, but does not set model and control value to default value', () => {
-    const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {});
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(root, root, definition);
+    const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
       'input.defaultValue': { value: undefined } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
@@ -389,7 +396,7 @@ describe('DynamicFormControl', () => {
 
   describe('DynamicFormSelect', () => {
     it('check updates model for select options', () => {
-      const root = new DynamicForm({ children: [] } as DynamicFormDefinition, {
+      const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {
         'key': 'option1'
       });
       const definition = {
@@ -411,7 +418,7 @@ describe('DynamicFormControl', () => {
           }
         }
       } as DynamicFormControlDefinition<DynamicFormSelect>;
-      const formControl = new DynamicFormControl<DynamicFormSelect>(root, root, definition);
+      const formControl = new DynamicFormControl<DynamicFormSelect>(builder, root, root, definition);
       const formControlEvaluators = [
         { enabled: true, func: dynamicFormSelectEvaluatorFn }
       ] as DynamicFormControlEvaluator[];

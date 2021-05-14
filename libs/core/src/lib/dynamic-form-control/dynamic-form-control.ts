@@ -7,6 +7,7 @@ import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-fi
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
@@ -21,8 +22,8 @@ export class DynamicFormControl<
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();

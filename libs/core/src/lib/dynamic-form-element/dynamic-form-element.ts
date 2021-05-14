@@ -4,6 +4,7 @@ import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-
 import { assignExpressions, assignExpressionData } from '../dynamic-form-expression/dynamic-form-expression-helpers';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
 import { DynamicFormElementExpressions } from './dynamic-form-element-expressions';
@@ -18,6 +19,8 @@ export class DynamicFormElement<
   Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>,
 > {
 
+  protected readonly _builder: DynamicFormBuilder;
+
   protected _root: DynamicForm;
   protected _parent: DynamicFormElement;
   protected _parentField: DynamicFormField;
@@ -31,7 +34,8 @@ export class DynamicFormElement<
 
   protected _children: Child[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    this._builder = builder;
     this._root = root;
     this._parent = parent;
     this._parentField = this.getParentField(root, parent);
@@ -74,6 +78,10 @@ export class DynamicFormElement<
 
   initChildren(children: Child[]): void {
     this._children = children || [];
+  }
+
+  protected get builder(): DynamicFormBuilder {
+    return this._builder;
   }
 
   protected getParentField(root: DynamicForm, parent: DynamicFormElement): DynamicFormField {

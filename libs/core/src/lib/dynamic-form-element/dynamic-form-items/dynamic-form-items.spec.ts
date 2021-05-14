@@ -1,15 +1,22 @@
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
 describe('DynamicFormItems', () => {
+  let builder: DynamicFormBuilder;
+
+  beforeEach(() => {
+    builder = {} as any;
+  });
+
   it('creates instance', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
 
     expect(formItems.root).toBe(root);
     expect(formItems.parent).toBe(parent);
@@ -30,7 +37,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
     const items = [
       { classType: 'element', definition: {} } as DynamicFormItem,
       { classType: 'element', definition: {} } as DynamicFormItem
@@ -47,7 +54,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
 
     formItems.initChildren(null);
 
@@ -60,7 +67,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
     const items = [
       { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
       { classType: 'element', definition: {}, disabled: true } as DynamicFormItem
@@ -77,7 +84,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
     const items = [
       { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
       { classType: 'element', definition: {}, disabled: true } as DynamicFormItem
@@ -94,7 +101,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {} } as DynamicFormItemsDefinition;
-    const formItems = new DynamicFormItems(root, parent, definition);
+    const formItems = new DynamicFormItems(builder, root, parent, definition);
     const items = [
       { classType: 'element', definition: {}, disabled: false } as DynamicFormItem,
       { classType: 'element', definition: {}, disabled: false } as DynamicFormItem

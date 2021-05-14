@@ -3,6 +3,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
@@ -13,8 +14,8 @@ export class DynamicFormGroup<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition, model: any = null) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, model: any = null) {
+    super(builder, root, parent, definition);
     this._control = new FormGroup({});
     this._model = model || this.getModel(definition);
     this._parameters = {};

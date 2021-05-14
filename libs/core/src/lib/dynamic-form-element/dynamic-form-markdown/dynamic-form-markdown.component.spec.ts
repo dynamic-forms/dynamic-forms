@@ -2,6 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
@@ -10,12 +11,14 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownComponent', () => {
   let service: jasmine.SpyObj<DynamicFormMarkdownService>;
+  let builder: DynamicFormBuilder;
   let fixture: ComponentFixture<DynamicFormMarkdownComponent>;
   let component: DynamicFormMarkdownComponent;
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
   beforeEach(() => {
     service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
+    builder = {} as any;
 
     TestBed.configureTestingModule({
       declarations: [
@@ -33,7 +36,7 @@ describe('DynamicFormMarkdownComponent', () => {
     const parent = {} as DynamicFormElement;
     const template = {} as DynamicFormMarkdownTemplate;
     const definition = { type: 'element', template } as DynamicFormMarkdownDefinition;
-    element = new DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>(root, parent, definition);
+    element = new DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>(builder, root, parent, definition);
 
     fixture = TestBed.createComponent(DynamicFormMarkdownComponent);
     component = fixture.componentInstance;

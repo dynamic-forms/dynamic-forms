@@ -1,16 +1,23 @@
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementExpression } from '../dynamic-form-element-expression';
 import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
+  let builder: DynamicFormBuilder;
+
+  beforeEach(() => {
+    builder = {} as any;
+  });
+
   it('creates instance', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     expect(element.root).toBe(root);
     expect(element.parent).toBe(parent);
@@ -37,7 +44,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
     const trigger = { classType: 'action', definition: {} } as DynamicFormAction;
 
     element.initTrigger(trigger);
@@ -49,7 +56,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
     const children = [
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
@@ -63,7 +70,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     element.initChildren(null);
 
@@ -74,7 +81,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
     const headerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
     const footerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
 
@@ -89,7 +96,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     element.initHeaderActions(null);
     element.initFooterActions(null);
@@ -102,7 +109,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     element.open();
 
@@ -129,7 +136,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     element.maximize();
 
@@ -156,7 +163,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
     const maximized = { value: false } as DynamicFormElementExpression;
 
     element.initExpressions({ maximized });

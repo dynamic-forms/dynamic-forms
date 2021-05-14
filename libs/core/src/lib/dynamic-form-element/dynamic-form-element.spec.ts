@@ -1,14 +1,21 @@
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
 
 describe('DynamicFormElement', () => {
+  let builder: DynamicFormBuilder;
+
+  beforeEach(() => {
+    builder = {} as any;
+  });
+
   it('creates instance', () => {
     const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
-    const formElement = new DynamicFormElement(null, null, definition);
+    const formElement = new DynamicFormElement(builder, null, null, definition);
 
     expect(formElement.root).toBeNull();
     expect(formElement.parent).toBeNull();
@@ -26,7 +33,7 @@ describe('DynamicFormElement', () => {
 
   it('creates instance with root', () => {
     const root = { classType: 'field' } as DynamicForm;
-    const formElement = new DynamicFormElement(root, null, {} as DynamicFormElementDefinition);
+    const formElement = new DynamicFormElement(builder, root, null, {} as DynamicFormElementDefinition);
 
     expect(formElement.root).toBe(root);
     expect(formElement.parent).toBeNull();
@@ -36,7 +43,7 @@ describe('DynamicFormElement', () => {
   it('creates instance with root and parent', () => {
     const root = { classType: 'field' } as DynamicForm;
     const parent = { classType: 'element' } as DynamicFormElement;
-    const formElement = new DynamicFormElement(root, parent, {} as DynamicFormElementDefinition);
+    const formElement = new DynamicFormElement(builder, root, parent, {} as DynamicFormElementDefinition);
 
     expect(formElement.root).toBe(root);
     expect(formElement.parent).toBe(parent);
@@ -47,7 +54,7 @@ describe('DynamicFormElement', () => {
     const root = { classType: 'field' } as DynamicForm;
     const parentField = { classType: 'field' } as DynamicFormField;
     const parent = { classType: 'element', parent: parentField as DynamicFormElement } as DynamicFormElement;
-    const formElement = new DynamicFormElement(root, parent, {} as DynamicFormElementDefinition);
+    const formElement = new DynamicFormElement(builder, root, parent, {} as DynamicFormElementDefinition);
 
     expect(formElement.root).toBe(root);
     expect(formElement.parent).toBe(parent);
@@ -55,7 +62,7 @@ describe('DynamicFormElement', () => {
   });
 
   it('returns expression data with expression data of root, parent and parent field being undefined', () => {
-    const formElement = new DynamicFormElement(null, null, {} as DynamicFormElementDefinition);
+    const formElement = new DynamicFormElement(builder, null, null, {} as DynamicFormElementDefinition);
 
     expect(formElement.expressionData.root).toBeUndefined();
     expect(formElement.expressionData.parent).toBeUndefined();
@@ -70,7 +77,7 @@ describe('DynamicFormElement', () => {
     const root = { classType: 'field', expressionData: rootExpressionData } as DynamicForm;
     const parentField = { classType: 'field', expressionData: parentFieldExpressionData } as DynamicFormField;
     const parent = { parent: parentField  as DynamicFormElement, expressionData: parentExpressionData } as DynamicFormElement;
-    const formElement = new DynamicFormElement(root, parent, {} as DynamicFormElementDefinition);
+    const formElement = new DynamicFormElement(builder, root, parent, {} as DynamicFormElementDefinition);
 
     expect(formElement.expressionData.root).toBe(rootExpressionData);
     expect(formElement.expressionData.parent).toBe(parentExpressionData);
@@ -81,7 +88,7 @@ describe('DynamicFormElement', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
-    const formElement = new DynamicFormElement(root, parent, definition);
+    const formElement = new DynamicFormElement(builder, root, parent, definition);
     const children = [
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
@@ -95,7 +102,7 @@ describe('DynamicFormElement', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
-    const formElement = new DynamicFormElement(root, parent, definition);
+    const formElement = new DynamicFormElement(builder, root, parent, definition);
 
     formElement.initChildren(null);
 

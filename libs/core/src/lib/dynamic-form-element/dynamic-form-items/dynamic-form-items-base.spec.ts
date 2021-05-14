@@ -1,4 +1,5 @@
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItems } from './dynamic-form-items';
@@ -8,9 +9,11 @@ import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 class DynamicFormItemsTestComponent extends DynamicFormItemsBase {}
 
 describe('DynamicFormItemsBase', () => {
+  let builder: DynamicFormBuilder;
   let component: DynamicFormItemsTestComponent;
 
   beforeEach(() => {
+    builder = {} as any;
     component = new DynamicFormItemsTestComponent();
   });
 
@@ -18,7 +21,7 @@ describe('DynamicFormItemsBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
-    const element = new DynamicFormItems(root, parent, definition);
+    const element = new DynamicFormItems(builder, root, parent, definition);
     const items = [ {} as DynamicFormItem ];
 
     element.initChildren(items);
@@ -37,7 +40,7 @@ describe('DynamicFormItemsBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
-    const element = new DynamicFormItems(root, parent, definition);
+    const element = new DynamicFormItems(builder, root, parent, definition);
 
     spyOn(element, 'check');
 
@@ -51,7 +54,7 @@ describe('DynamicFormItemsBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
-    const element = new DynamicFormItems(root, parent, definition);
+    const element = new DynamicFormItems(builder, root, parent, definition);
 
     spyOn(element, 'selectItem');
 

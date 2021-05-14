@@ -7,7 +7,7 @@ import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 export function dynamicFormModalFactory(
   builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormModalDefinition
 ): DynamicFormModal {
-  const modal = new DynamicFormModal(root, parent, definition);
+  const modal = new DynamicFormModal(builder, root, parent, definition);
   modal.initExpressions(builder.createElementExpressions(modal));
   modal.initTrigger(builder.createFormAction(root, modal, modal.definition.trigger));
   modal.initChildren(builder.createFormElements(root, parent, modal.definition.children));

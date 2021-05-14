@@ -1,4 +1,5 @@
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModal} from './dynamic-form-modal';
 import { DynamicFormModalBase } from './dynamic-form-modal-base';
@@ -7,9 +8,11 @@ import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 class DynamicFormModalTestComponent extends DynamicFormModalBase {}
 
 describe('DynamicFormModalBase', () => {
+  let builder: DynamicFormBuilder;
   let component: DynamicFormModalTestComponent;
 
   beforeEach(() => {
+    builder = {} as any;
     component = new DynamicFormModalTestComponent();
   });
 
@@ -17,7 +20,7 @@ describe('DynamicFormModalBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     component.element = element;
 
@@ -36,7 +39,7 @@ describe('DynamicFormModalBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     spyOn(element, 'open').and.callThrough();
 
@@ -51,7 +54,7 @@ describe('DynamicFormModalBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     spyOn(element, 'close').and.callThrough();
 
@@ -66,7 +69,7 @@ describe('DynamicFormModalBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
-    const element = new DynamicFormModal(root, parent, definition);
+    const element = new DynamicFormModal(builder, root, parent, definition);
 
     spyOn(element, 'toggle').and.callThrough();
 

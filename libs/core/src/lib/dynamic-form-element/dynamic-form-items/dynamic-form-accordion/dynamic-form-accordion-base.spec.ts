@@ -1,4 +1,5 @@
 import { DynamicForm } from '../../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../../dynamic-form-element';
 import { DynamicFormItem } from '../dynamic-form-item';
 import { DynamicFormItems } from '../dynamic-form-items';
@@ -8,6 +9,7 @@ import { DynamicFormAccordionBase } from './dynamic-form-accordion-base';
 class DynamicFormAccordionTestComponent extends DynamicFormAccordionBase {}
 
 describe('DynamicFormAccordionBase', () => {
+  let builder: DynamicFormBuilder;
   let component: DynamicFormAccordionTestComponent;
 
   beforeEach(() => {
@@ -15,8 +17,9 @@ describe('DynamicFormAccordionBase', () => {
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
 
+    builder = {} as any;
     component = new DynamicFormAccordionTestComponent();
-    component.element = new DynamicFormItems(root, parent, definition);
+    component.element = new DynamicFormItems(builder, root, parent, definition);
     component.element.initChildren([ {} as DynamicFormItem ]) ;
   });
 

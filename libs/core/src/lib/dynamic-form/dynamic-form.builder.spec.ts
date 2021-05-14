@@ -58,7 +58,7 @@ describe('DynamicFormBuilder', () => {
 
   const getForm = (model: any, references?: { [key: string]: DynamicFormElementDefinition }) => {
     const definition = { children: [], references } as DynamicFormDefinition;
-    return new DynamicForm(definition, model);
+    return new DynamicForm({} as any, definition, model);
   };
 
   const validatorTypes = [

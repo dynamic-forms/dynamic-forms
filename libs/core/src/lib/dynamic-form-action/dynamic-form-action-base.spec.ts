@@ -1,6 +1,7 @@
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionBase } from './dynamic-form-action-base';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
@@ -13,19 +14,21 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 describe('DynamicFormActionBase', () => {
+  let builder: DynamicFormBuilder;
   let actionService: DynamicFormActionService;
   let component: DynamicFormActionTestComponent;
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService({ name: 'test' });
 
+    builder = {} as any;
     actionService = new DynamicFormActionService(libraryService, []);
     component = new DynamicFormActionTestComponent(actionService);
   });
 
   it('creates instance', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
 
     component.action = action;
 
@@ -50,8 +53,8 @@ describe('DynamicFormActionBase', () => {
   it('creates instance with dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     action.initDialog(dialog);
 
@@ -77,7 +80,7 @@ describe('DynamicFormActionBase', () => {
 
   it('open, close, and toggle dialog throws if no dialog', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
 
     component.action = action;
 
@@ -89,8 +92,8 @@ describe('DynamicFormActionBase', () => {
   it('opens, closes and toggles dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(null, null, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, null, null, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     action.initDialog(dialog);
     component.action = action;
@@ -111,8 +114,8 @@ describe('DynamicFormActionBase', () => {
   it('checks dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     action.initDialog(dialog);
     action.openDialog();
@@ -128,8 +131,8 @@ describe('DynamicFormActionBase', () => {
   it('does not check dialog if not open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     action.initDialog(dialog);
 
@@ -143,7 +146,7 @@ describe('DynamicFormActionBase', () => {
 
   it('handles event by calling handle of action service', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
     const event = {} as Event;
 
     spyOn(actionService, 'handle');
@@ -157,8 +160,8 @@ describe('DynamicFormActionBase', () => {
   it('handles event by calling handle of action service if dialog and dialog is open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
     const event = {} as Event;
 
     action.initDialog(dialog);
@@ -177,8 +180,8 @@ describe('DynamicFormActionBase', () => {
   it('handles event by calling openDialog of action if dialog but dialog not open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction({} as any, {} as any, definition);
-    const dialog = new DynamicForm(dialogDefinition, {});
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const dialog = new DynamicForm(builder, dialogDefinition, {});
     const event = {} as Event;
 
     action.initDialog(dialog);
