@@ -42,8 +42,7 @@ export class DynamicFormAction<
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
   init(): void {
-    this.initId(this._builder.getActionId(this));
-    this.initExpressions(this._builder.createActionExpressions(this));
+    super.init();
     this.initDialog();
   }
 
@@ -59,12 +58,16 @@ export class DynamicFormAction<
     return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
   }
 
-  protected createExpressionData(): DynamicFormActionExpressionData {
-    const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
-    assignExpressionData(expressionData, {
-      dialog: () => this.dialog ? this.dialog.expressionData : undefined
-    });
-    return expressionData;
+  protected initId(): void {
+    this.definition.id = this._builder.getActionId(this);
+  }
+
+  protected getExpressions(): DynamicFormActionExpressions {
+    return this._builder.createActionExpressions(this);
+  }
+
+  protected getChildren(): any[] {
+    return undefined;
   }
 
   protected initDialog(): void {
@@ -72,5 +75,13 @@ export class DynamicFormAction<
       this._dialog = new DynamicFormDialog(this._builder, this, this.dialogDefinition, {});
       this._dialog.init();
     }
+  }
+
+  protected createExpressionData(): DynamicFormActionExpressionData {
+    const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
+    assignExpressionData(expressionData, {
+      dialog: () => this.dialog ? this.dialog.expressionData : undefined
+    });
+    return expressionData;
   }
 }

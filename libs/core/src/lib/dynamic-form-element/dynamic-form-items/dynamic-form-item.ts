@@ -21,8 +21,7 @@ export class DynamicFormItem<
   get label(): string { return this.template.label; }
   get disabled(): boolean { return this.index > 0 && this.template.disabled; }
 
-  init(): void {
-    this.initExpressions(this._builder.createElementExpressions(this));
-    this.initChildren(this._builder.createFormElements(this.root, this.parent, this.definition.children));
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this.parent, this.definition.children);
   }
 }

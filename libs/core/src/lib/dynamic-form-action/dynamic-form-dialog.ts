@@ -1,3 +1,4 @@
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -13,11 +14,15 @@ export class DynamicFormDialog extends DynamicForm {
 
   get action(): DynamicFormAction { return this._action; }
 
-  init(): void {
-    this.initExpressions(this._builder.createFieldExpressions(this));
-    this.initChildren(this._builder.createFormElements(this.root, this, this.definition.children));
-    this.initValidators(this._builder.createGroupValidators(this));
-    this.initHeaderActions(this._builder.createFormActions(this.root, this.action, this.definition.headerActions));
-    this.initFooterActions(this._builder.createFormActions(this.root, this.action, this.definition.footerActions));
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this, this.definition.children);
+  }
+
+  protected getHeaderActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this.action, this.definition.headerActions);
+  }
+
+  protected getFooterActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this.action, this.definition.footerActions);
   }
 }

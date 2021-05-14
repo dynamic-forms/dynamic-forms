@@ -6,6 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
+import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
@@ -22,15 +23,6 @@ export class DynamicFormDictionary<
   get fieldClassType(): DynamicFormFieldClassType { return 'dictionary'; }
 
   get length(): number { return this._children.length; }
-
-  init(): void {
-    this.initId(this._builder.getFieldId(this));
-    this.initExpressions(this._builder.createFieldExpressions(this));
-    this.initChildren(this._builder.createFormDictionaryElements(this));
-    this.initValidators(this._builder.createDictionaryValidators(this));
-    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
-    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
-  }
 
   registerField(field: DynamicFormField): void {
     const index = this._children.findIndex(f => f.key === field.key);
@@ -95,11 +87,19 @@ export class DynamicFormDictionary<
     this._control.markAsTouched();
   }
 
-  protected initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
+  protected getChildren(): DynamicFormField[] {
+    return this._builder.createFormDictionaryElements(this);
+  }
+
+  protected initChildren(): void {
+    super.initChildren();
     this._children.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
     });
+  }
+
+  protected getValidators(): DynamicFormDictionaryValidator[] {
+    return this._builder.createDictionaryValidators(this);
   }
 
   private getModel(definition: DynamicFormDictionaryDefinition): any {

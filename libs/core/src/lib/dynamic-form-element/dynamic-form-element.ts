@@ -66,23 +66,28 @@ export class DynamicFormElement<
   get children(): Child[] { return this._children; }
 
   init(): void {
-    this.initExpressions(this._builder.createElementExpressions(this) as Expressions);
-    this.initChildren(this._builder.createFormElements(this.root, this, this.definition.children) as Child[]);
+    this.initId();
+    this.initExpressions();
+    this.initChildren();
   }
 
-  protected initId(id: string): void {
-    this._definition.id = id;
+  protected initId(): void {}
+
+  protected initExpressions(): void {
+    this._expressions = this.getExpressions() || {} as Expressions;
+    assignExpressions(this.template, this._expressions);
   }
 
-  protected initExpressions(expressions: Expressions): void {
-    if (expressions) {
-      this._expressions = expressions;
-      assignExpressions(this.template, this._expressions);
-    }
+  protected getExpressions(): Expressions {
+    return this._builder.createElementExpressions(this) as Expressions;
   }
 
-  protected initChildren(children: Child[]): void {
-    this._children = children || [];
+  protected initChildren(): void {
+    this._children = this.getChildren() || [];
+  }
+
+  protected getChildren(): Child[] {
+    return this._builder.createFormElements(this.root, this, this.definition.children) as Child[];
   }
 
   protected get builder(): DynamicFormBuilder {

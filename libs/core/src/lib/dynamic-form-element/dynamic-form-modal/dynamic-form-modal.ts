@@ -38,11 +38,10 @@ export class DynamicFormModal<
   get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
   init(): void {
-    this.initExpressions(this._builder.createElementExpressions(this));
-    this.initTrigger(this._builder.createFormAction(this.root, this, this.definition.trigger));
-    this.initChildren(this._builder.createFormElements(this.root, this.parent, this.definition.children));
-    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
-    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
+    super.init();
+    this.initTrigger();
+    this.initHeaderActions();
+    this.initFooterActions();
   }
 
   open(): void {
@@ -72,15 +71,19 @@ export class DynamicFormModal<
     }
   }
 
-  protected initTrigger(trigger: DynamicFormAction): void {
-    this._trigger = trigger;
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this.parent, this.definition.children);
   }
 
-  protected initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions || [];
+  protected initTrigger(): void {
+    this._trigger = this._builder.createFormAction(this.root, this, this.definition.trigger);
   }
 
-  protected initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions || [];
+  protected initHeaderActions(): void {
+    this._headerActions = this._builder.createFormActions(this.root, this, this.definition.headerActions) || [];
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this._builder.createFormActions(this.root, this, this.definition.footerActions) || [];
   }
 }

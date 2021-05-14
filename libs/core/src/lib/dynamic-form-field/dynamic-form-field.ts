@@ -73,7 +73,12 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
-  abstract init(): void;
+  init(): void {
+    super.init();
+    this.initValidators();
+    this.initHeaderActions();
+    this.initFooterActions();
+  }
 
   abstract get fieldClassType(): DynamicFormFieldClassType;
 
@@ -84,24 +89,44 @@ export abstract class DynamicFormField<
   abstract resetDefault(): void;
   abstract validate(): void;
 
-  protected initExpressions(expressions: DynamicFormFieldExpressions): void {
-    super.initExpressions(expressions);
+  protected initId(): void {
+    this.definition.id = this._builder.getFieldId(this);
+  }
+
+  protected initExpressions(): void {
+    super.initExpressions();
     this.afterInitExpressions();
+  }
+
+  protected getExpressions(): DynamicFormFieldExpressions {
+    return this._builder.createFieldExpressions(this);
   }
 
   protected afterInitExpressions(): void {}
 
-  protected initValidators(validators: DynamicFormFieldValidator[]): void {
-    this._validators = validators || [];
+  protected abstract getChildren(): Child[];
+
+  protected initValidators(): void {
+    this._validators = this.getValidators() || [];
     this._control.setValidators(this.getValidatorFunctions());
   }
 
-  protected initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions;
+  protected abstract getValidators(): DynamicFormFieldValidator[];
+
+  protected initHeaderActions(): void {
+    this._headerActions = this.getHeaderActions() || [];
   }
 
-  protected initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions;
+  protected getHeaderActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this, this.definition.headerActions);
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this.getFooterActions() || [];
+  }
+
+  protected getFooterActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this, this.definition.footerActions);
   }
 
   protected checkControl(): void {

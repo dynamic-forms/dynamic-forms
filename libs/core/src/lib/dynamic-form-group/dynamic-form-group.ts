@@ -6,6 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
+import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
@@ -25,15 +26,6 @@ export class DynamicFormGroup<
 
   get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
-
-  init(): void {
-    this.initId(this._builder.getFieldId(this));
-    this.initExpressions(this._builder.createFieldExpressions(this));
-    this.initChildren(this._builder.createFormElements(this.root, this, this.definition.children));
-    this.initValidators(this._builder.createGroupValidators(this));
-    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
-    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
-  }
 
   check(): void {
     this.checkControl();
@@ -63,8 +55,16 @@ export class DynamicFormGroup<
     this._fields.forEach(field => field.validate());
   }
 
-  protected initChildren(children: DynamicFormElement[]): void {
-    this._children = children || [];
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this, this.definition.children);
+  }
+
+  protected getValidators(): DynamicFormGroupValidator[] {
+    return this._builder.createGroupValidators(this);
+  }
+
+  protected initChildren(): void {
+    super.initChildren();
     this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);
