@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormCheckbox, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormCheckbox, DynamicFormConfigService,
+  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
 
 describe('MatDynamicFormCheckboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormCheckboxComponent>;
   let component: MatDynamicFormCheckboxComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormCheckbox>;
   let formControl: DynamicFormControl<DynamicFormCheckbox>;
@@ -30,9 +32,11 @@ describe('MatDynamicFormCheckboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormCheckbox>;
-    formControl = new DynamicFormControl<DynamicFormCheckbox>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormCheckbox>(builder, form, form, definition);
 
     component.field = formControl;
 

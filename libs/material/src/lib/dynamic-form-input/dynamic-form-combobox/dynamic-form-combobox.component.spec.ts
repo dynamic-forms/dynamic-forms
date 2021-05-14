@@ -2,14 +2,16 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormCombobox, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormCombobox, DynamicFormConfigService,
+  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { MatDynamicFormComboboxModule } from './dynamic-form-combobox.module';
 
 describe('MatDynamicFormComboboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormComboboxComponent>;
   let component: MatDynamicFormComboboxComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
   let formControl: DynamicFormControl<DynamicFormCombobox>;
@@ -33,7 +35,9 @@ describe('MatDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {
       key: 'key',
       template: {
@@ -47,7 +51,7 @@ describe('MatDynamicFormComboboxComponent', () => {
         }
       }
     } as DynamicFormControlDefinition<DynamicFormCombobox>;
-    formControl = new DynamicFormControl<DynamicFormCombobox>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormCombobox>(builder, form, form, definition);
 
     component.field = formControl;
 

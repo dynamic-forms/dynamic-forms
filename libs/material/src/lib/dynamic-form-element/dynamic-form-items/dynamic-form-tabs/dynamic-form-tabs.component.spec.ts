@@ -1,12 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormElement, DynamicFormItems, DynamicFormLibraryService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormElement,
+  DynamicFormItems, DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 import { MatDynamicFormTabsModule } from './dynamic-form-tabs.module';
 
 describe('MatDynamicFormTabsComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormTabsComponent>;
   let component: MatDynamicFormTabsComponent;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,9 +23,11 @@ describe('MatDynamicFormTabsComponent', () => {
       ]
     });
 
+    builder = {} as any;
+
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
-    const element = new DynamicFormItems(root, parent, { template: {}, children: [] });
+    const element = new DynamicFormItems(builder, root, parent, { template: {}, children: [] });
 
     fixture = TestBed.createComponent(MatDynamicFormTabsComponent);
     component = fixture.componentInstance;
