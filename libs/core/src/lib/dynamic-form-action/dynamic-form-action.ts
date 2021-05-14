@@ -10,6 +10,7 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
+import { DynamicFormDialog } from './dynamic-form-dialog';
 
 export class DynamicFormAction<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
@@ -19,7 +20,7 @@ export class DynamicFormAction<
   private _dialogOpenSubject: BehaviorSubject<boolean>;
   private _dialogOpenChanges: Observable<boolean>;
 
-  protected _dialog: DynamicForm;
+  protected _dialog: DynamicFormDialog;
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition);
@@ -35,7 +36,7 @@ export class DynamicFormAction<
   get dialogDefinition(): DynamicFormDefinition { return this.definition.dialogDefinition; }
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
-  get dialog(): DynamicForm { return this._dialog; }
+  get dialog(): DynamicFormDialog { return this._dialog; }
   get dialogChildren(): DynamicFormElement[] { return this._dialog.children; }
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
@@ -43,10 +44,7 @@ export class DynamicFormAction<
   init(): void {
     this.initId(this._builder.getActionId(this));
     this.initExpressions(this._builder.createActionExpressions(this));
-  }
-
-  initDialog(dialog: DynamicForm): void {
-    this._dialog = dialog;
+    this.initDialog();
   }
 
   openDialog(): void {
@@ -67,5 +65,12 @@ export class DynamicFormAction<
       dialog: () => this.dialog ? this.dialog.expressionData : undefined
     });
     return expressionData;
+  }
+
+  protected initDialog(): void {
+    if (this.dialogDefinition) {
+      this._dialog = new DynamicFormDialog(this._builder, this, this.dialogDefinition, {});
+      this._dialog.init();
+    }
   }
 }

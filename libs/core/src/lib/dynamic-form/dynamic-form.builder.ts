@@ -108,18 +108,6 @@ export class DynamicFormBuilder {
     this.requireActionType(definition.type);
     const action = new DynamicFormAction(this, root, parent, definition);
     action.init();
-    if (action.dialogDefinition) {
-      const dialog = new DynamicForm(this, action.dialogDefinition, {});
-      dialog.init();
-      /*
-      TODO: parent of action is action
-      dialog.initExpressions(this.createFieldExpressions(dialog));
-      dialog.initChildren(this.createFormElements(dialog, dialog, dialog.definition.children));
-      dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
-      dialog.initFooterActions(this.createFormActions(root, action, dialog.definition.footerActions));
-      */
-      action.initDialog(dialog);
-    }
     return action;
   }
 
