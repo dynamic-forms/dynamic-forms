@@ -37,16 +37,12 @@ export class DynamicFormModal<
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
-  initTrigger(trigger: DynamicFormAction): void {
-    this._trigger = trigger;
-  }
-
-  initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions || [];
-  }
-
-  initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions || [];
+  init(): void {
+    this.initExpressions(this._builder.createElementExpressions(this));
+    this.initTrigger(this._builder.createFormAction(this.root, this, this.definition.trigger));
+    this.initChildren(this._builder.createFormElements(this.root, this.parent, this.definition.children));
+    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
+    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
   }
 
   open(): void {
@@ -74,5 +70,17 @@ export class DynamicFormModal<
     if (!descriptor || descriptor.writable) {
       this.template.maximized = !this.template.maximized;
     }
+  }
+
+  protected initTrigger(trigger: DynamicFormAction): void {
+    this._trigger = trigger;
+  }
+
+  protected initHeaderActions(actions: DynamicFormAction[]): void {
+    this._headerActions = actions || [];
+  }
+
+  protected initFooterActions(actions: DynamicFormAction[]): void {
+    this._footerActions = actions || [];
   }
 }

@@ -23,11 +23,13 @@ export class DynamicFormArray<
 
   get length(): number { return this._children.length; }
 
-  initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
-    this._children.forEach((field, index) => {
-      this._control.insert(index, field.control);
-    });
+  init(): void {
+    this.initId(this._builder.getFieldId(this));
+    this.initExpressions(this._builder.createFieldExpressions(this));
+    this.initChildren(this._builder.createFormArrayElements(this));
+    this.initValidators(this._builder.createArrayValidators(this));
+    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
+    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
   }
 
   pushField(element: DynamicFormField): void {
@@ -125,6 +127,13 @@ export class DynamicFormArray<
   validate(): void {
     this._children.forEach(field => field.validate());
     this._control.markAsTouched();
+  }
+
+  protected initChildren(children: DynamicFormField[]): void {
+    this._children = children || [];
+    this._children.forEach((field, index) => {
+      this._control.insert(index, field.control);
+    });
   }
 
   private getModel(definition: DynamicFormArrayDefinition): any {

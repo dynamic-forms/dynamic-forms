@@ -20,6 +20,14 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
 
   get submit$(): Observable<boolean> { return this._submit$; }
 
+  init(): void {
+    this.initExpressions(this._builder.createFieldExpressions(this));
+    this.initChildren(this._builder.createFormElements(this.root, this, this.definition.children));
+    this.initValidators(this._builder.createGroupValidators(this));
+    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
+    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
+  }
+
   submit(): void {
     this._submit.next(true);
   }

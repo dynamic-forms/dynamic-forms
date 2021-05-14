@@ -19,6 +19,7 @@ class DynamicFormTestField extends DynamicFormField {
   resetDefault(): void {}
   validate(): void {}
 
+  init(): void { }
   initModel(model: any): void { this._model = model; }
   initControl(control: any): void { this._control = control; }
 

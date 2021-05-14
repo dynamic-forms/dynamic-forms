@@ -38,8 +38,11 @@ export class DynamicFormControl<
 
   get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
-  initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
-    this._evaluators = evaluators || [];
+  init(): void {
+    this.initId(this._builder.getFieldId(this));
+    this.initExpressions(this._builder.createFieldExpressions(this));
+    this.initEvaluators(this._builder.createControlEvaluators(this));
+    this.initValidators(this._builder.createControlValidators(this));
   }
 
   check(): void {
@@ -68,6 +71,10 @@ export class DynamicFormControl<
   patchModel(model: any): void {
     this.setModel(model);
     this.setValue(model, false);
+  }
+
+  protected initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
+    this._evaluators = evaluators || [];
   }
 
   protected afterInitExpressions(): void {

@@ -23,11 +23,13 @@ export class DynamicFormDictionary<
 
   get length(): number { return this._children.length; }
 
-  initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
-    this._children.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
-    });
+  init(): void {
+    this.initId(this._builder.getFieldId(this));
+    this.initExpressions(this._builder.createFieldExpressions(this));
+    this.initChildren(this._builder.createFormDictionaryElements(this));
+    this.initValidators(this._builder.createDictionaryValidators(this));
+    this.initHeaderActions(this._builder.createFormActions(this.root, this, this.definition.headerActions));
+    this.initFooterActions(this._builder.createFormActions(this.root, this, this.definition.footerActions));
   }
 
   registerField(field: DynamicFormField): void {
@@ -91,6 +93,13 @@ export class DynamicFormDictionary<
   validate(): void {
     this._children.forEach(field => field.validate());
     this._control.markAsTouched();
+  }
+
+  protected initChildren(children: DynamicFormField[]): void {
+    this._children = children || [];
+    this._children.filter(field => !field.unregistered).forEach(field => {
+      this._control.registerControl(field.definition.key, field.control);
+    });
   }
 
   private getModel(definition: DynamicFormDictionaryDefinition): any {

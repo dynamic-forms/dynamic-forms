@@ -40,6 +40,11 @@ export class DynamicFormAction<
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
+  init(): void {
+    this.initId(this._builder.getActionId(this));
+    this.initExpressions(this._builder.createActionExpressions(this));
+  }
+
   initDialog(dialog: DynamicForm): void {
     this._dialog = dialog;
   }

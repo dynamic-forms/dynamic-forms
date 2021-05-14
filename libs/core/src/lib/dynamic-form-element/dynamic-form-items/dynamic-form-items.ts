@@ -21,9 +21,14 @@ export class DynamicFormItems<
   get selectedIndex(): number { return this._selectedIndex; }
   get selectedItem(): Item { return this._selectedItem; }
 
-  initChildren(children: Item[]): void {
-    this._children = children || [];
-    this.selectItem(0);
+  init(): void {
+    this.initExpressions(this._builder.createElementExpressions(this));
+    this.initChildren(this.definition.children.map((childDefinition, index) => {
+      const itemDefinition = { ...this._builder.getDefinition(childDefinition, this.root), index };
+      const item = new DynamicFormItem(this._builder, this.root, this, itemDefinition);
+      item.init();
+      return item as Item;
+    }));
   }
 
   check(): void {
@@ -37,5 +42,10 @@ export class DynamicFormItems<
       this._selectedIndex = index;
       this._selectedItem = this._children[index];
     }
+  }
+
+  protected initChildren(children: Item[]): void {
+    this._children = children || [];
+    this.selectItem(0);
   }
 }
