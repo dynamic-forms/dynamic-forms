@@ -70,9 +70,11 @@ describe('DynamicForm', () => {
     const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(builder, definition, {});
 
-    form.submit$.subscribe((submit) => {
-      expect(submit).toBe(true);
-      done();
+    form.submit$.subscribe({
+      next: (submit) => {
+        expect(submit).toBe(true);
+        done();
+      }
     });
 
     form.submit();

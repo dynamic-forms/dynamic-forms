@@ -128,8 +128,8 @@ describe('DynamicFormAction', () => {
     const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     const dialogOpenChanges = [];
-    action.dialogOpenChanges.subscribe(open => {
-      dialogOpenChanges.push(open);
+    action.dialogOpenChanges.subscribe({
+      next: (open) => dialogOpenChanges.push(open)
     });
 
     action.initDialog(dialog);
@@ -157,8 +157,8 @@ describe('DynamicFormAction', () => {
     const dialog = new DynamicForm(builder, dialogDefinition, {});
 
     const dialogOpenChanges = [];
-    action.dialogOpenChanges.subscribe(open => {
-      dialogOpenChanges.push(open);
+    action.dialogOpenChanges.subscribe({
+      next: (open) => dialogOpenChanges.push(open)
     });
 
     action.initDialog(dialog);
@@ -181,8 +181,8 @@ describe('DynamicFormAction', () => {
     const action = new DynamicFormAction(builder, null, null, definition);
 
     const dialogOpenChanges = [];
-    action.dialogOpenChanges.subscribe(open => {
-      dialogOpenChanges.push(open);
+    action.dialogOpenChanges.subscribe({
+      next: (open) => dialogOpenChanges.push(open)
     });
 
     action.openDialog();

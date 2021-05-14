@@ -12,7 +12,7 @@ export class RoutingHandler implements OnDestroy {
 
   constructor(private store: Store, private router: Router) {
     this._routeSubscription = this.router.events.subscribe({
-      next: event => this.handle(event)
+      next: (event) => this.handle(event)
     });
   }
 

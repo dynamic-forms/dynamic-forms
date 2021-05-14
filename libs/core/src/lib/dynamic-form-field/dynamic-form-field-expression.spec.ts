@@ -44,8 +44,8 @@ describe('DynamicFormFieldExpression', () => {
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
     const fieldExpressionChanges = [];
-    field.expressionChanges.subscribe(change => {
-      fieldExpressionChanges.push(change);
+    field.expressionChanges.subscribe({
+      next: (change) => fieldExpressionChanges.push(change)
     });
 
     expect(expression.memo).toEqual({
