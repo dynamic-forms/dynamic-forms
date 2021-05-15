@@ -2,6 +2,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -19,11 +20,13 @@ class DynamicFormTestField extends DynamicFormField {
   resetDefault(): void {}
   validate(): void {}
 
-  init(): void { }
   initModel(model: any): void { this._model = model; }
   initControl(control: any): void { this._control = control; }
 
   checkExpressions(): void {}
+
+  getChildren(): any[] { return undefined; }
+  getValidators(): any[] { return undefined; }
 
   protected afterInitExpressions(): void {
     this.checkExpressions();
@@ -31,10 +34,11 @@ class DynamicFormTestField extends DynamicFormField {
 }
 
 describe('DynamicFormField', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
+    builder.getFieldId.and.returnValue('fieldId');
   });
 
   it('creates instance', () => {
@@ -242,7 +246,10 @@ describe('DynamicFormField', () => {
 
     spyOn(field, 'checkExpressions');
 
-    field.initExpressions(fieldExpressions);
+    builder.createFieldExpressions.and.returnValue(fieldExpressions);
+
+    field.initControl({ setValidators: () => {} });
+    field.init();
 
     expect(field.expressions).toBe(fieldExpressions);
     expect(field.template['required']).toBe(true);

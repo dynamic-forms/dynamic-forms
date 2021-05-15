@@ -1,14 +1,15 @@
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 
 describe('DynamicFormItem', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
   });
 
   it('creates instance', () => {
@@ -41,7 +42,9 @@ describe('DynamicFormItem', () => {
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
-    formItem.initChildren(children);
+    builder.createFormElements.and.returnValue(children);
+
+    formItem.init();
 
     expect(formItem.children).toEqual(children);
   });
@@ -50,7 +53,9 @@ describe('DynamicFormItem', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(builder, {} as DynamicForm, {} as DynamicFormElement, definition);
 
-    formItem.initChildren(null);
+    builder.createFormElements.and.returnValue(null);
+
+    formItem.init();
 
     expect(formItem.children).toEqual([]);
   });

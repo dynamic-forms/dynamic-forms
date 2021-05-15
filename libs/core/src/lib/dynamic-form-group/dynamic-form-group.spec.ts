@@ -4,14 +4,16 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 
 describe('DynamicFormGroup', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
+    builder.getFieldId.and.returnValue('fieldId');
   });
 
   it('creates instance', () => {
@@ -85,7 +87,9 @@ describe('DynamicFormGroup', () => {
       children[2].children[3]
     ] as DynamicFormField[];
 
-    formGroup.initChildren(children);
+    builder.createFormElements.and.returnValue(children);
+
+    formGroup.init();
 
     expect(formGroup.children).toBe(children);
     expect(formGroup.fields).toEqual(fields);
@@ -96,7 +100,9 @@ describe('DynamicFormGroup', () => {
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const formGroup = new DynamicFormGroup(builder, form, form, definition);
 
-    formGroup.initChildren(null);
+    builder.createFormElements.and.returnValue(null);
+
+    formGroup.init();
 
     expect(formGroup.children).toEqual([]);
     expect(formGroup.fields).toEqual([]);
@@ -114,7 +120,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -150,7 +158,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -169,7 +179,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -189,7 +201,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -208,7 +222,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -227,7 +243,9 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formGroup.initChildren(fields);
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
     formGroup.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

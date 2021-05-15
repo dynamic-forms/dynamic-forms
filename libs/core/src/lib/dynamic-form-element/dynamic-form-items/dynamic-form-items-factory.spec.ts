@@ -1,19 +1,16 @@
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 import { dynamicFormItemsFactory } from './dynamic-form-items-factory';
 
 describe('dynamicFormItemsFactory', () => {
-  let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', [
-      'createElementExpressions',
-      'createFormElements',
-      'getDefinition'
-    ]);
+    builder = createDynamicFormBuilderSpy();
   });
 
   it('returns DynamicFormItems', () => {
@@ -24,11 +21,11 @@ describe('dynamicFormItemsFactory', () => {
     const expressions = [ {}, {} ];
     const children = [];
 
-    formBuilder.getDefinition.and.returnValue(itemDefinition);
-    formBuilder.createElementExpressions.and.returnValues(...expressions);
-    formBuilder.createFormElements.and.returnValue(children);
+    builder.getDefinition.and.returnValue(itemDefinition);
+    builder.createElementExpressions.and.returnValues(...expressions);
+    builder.createFormElements.and.returnValue(children);
 
-    const formItems = dynamicFormItemsFactory(formBuilder, root, parent, itemsDefinition);
+    const formItems = dynamicFormItemsFactory(builder, root, parent, itemsDefinition);
 
     expect(formItems).toBeTruthy();
     expect(formItems.definition).toBe(itemsDefinition);
@@ -38,9 +35,9 @@ describe('dynamicFormItemsFactory', () => {
     expect(formItems.children[0].expressions).toBe(expressions[1]);
     expect(formItems.children[0].children).toBe(children);
 
-    expect(formBuilder.getDefinition).toHaveBeenCalledWith(itemDefinition, root);
-    expect(formBuilder.createElementExpressions).toHaveBeenCalledWith(formItems);
-    expect(formBuilder.createElementExpressions).toHaveBeenCalledWith(formItems.children[0]);
-    expect(formBuilder.createFormElements).toHaveBeenCalledWith(root, parent, itemDefinition.children);
+    expect(builder.getDefinition).toHaveBeenCalledWith(itemDefinition, root);
+    expect(builder.createElementExpressions).toHaveBeenCalledWith(formItems);
+    expect(builder.createElementExpressions).toHaveBeenCalledWith(formItems.children[0]);
+    expect(builder.createFormElements).toHaveBeenCalledWith(root, parent, itemDefinition.children);
   });
 });

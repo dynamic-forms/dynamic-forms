@@ -3,14 +3,16 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
 describe('DynamicFormArray', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
+    builder.getFieldId.and.returnValue('fieldId');
   });
 
   it('creates instance', () => {
@@ -83,7 +85,9 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
     ];
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
 
     expect(formArray.length).toBe(2);
     expect(formArray.children).toBe(fields);
@@ -94,7 +98,9 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
 
-    formArray.initChildren(null);
+    builder.createFormArrayElements.and.returnValue(null);
+
+    formArray.init();
 
     expect(formArray.length).toBe(0);
     expect(formArray.children).toEqual([]);
@@ -112,7 +118,9 @@ describe('DynamicFormArray', () => {
 
     spyOn(formArray.control, 'push');
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
     formArray.pushField(field);
 
     expect(formArray.length).toBe(3);
@@ -137,7 +145,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
     formArray.popField();
 
     expect(formArray.length).toBe(1);
@@ -185,7 +195,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
     formArray.removeField(1);
 
     expect(formArray.length).toBe(3);
@@ -236,7 +248,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
     formArray.clearFields();
 
     expect(formArray.length).toBe(0);
@@ -270,7 +284,9 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() } as DynamicFormField
     ];
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -294,7 +310,9 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
     ];
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -317,7 +335,9 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() } as DynamicFormField
     ];
 
-    formArray.initChildren([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+
+    formArray.init();
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -339,7 +359,9 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 0 }, control: new FormControl() } as DynamicFormField,
     ];
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
 
     spyOn(formArray.control, 'removeAt').and.callThrough();
     spyOn(formArray.control, 'insert').and.callThrough();
@@ -365,7 +387,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -384,7 +408,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -403,7 +429,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -422,7 +450,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -442,7 +472,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -461,7 +493,9 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formArray.initChildren(fields);
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
     formArray.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

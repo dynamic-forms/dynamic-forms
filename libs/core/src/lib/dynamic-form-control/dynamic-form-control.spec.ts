@@ -8,6 +8,7 @@ import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dyn
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
@@ -15,10 +16,11 @@ import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-t
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
+    builder.getFieldId.and.returnValue('fieldId');
   });
 
   it('creates instance', () => {
@@ -152,7 +154,9 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
 
-    formControl.initEvaluators(null);
+    builder.createControlEvaluators.and.returnValue(null);
+
+    formControl.init();
 
     expect(formControl.evaluators).toEqual([]);
   });
@@ -163,7 +167,9 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlEvaluators = [ {} ] as DynamicFormControlEvaluator[];
 
-    formControl.initEvaluators(formControlEvaluators);
+    builder.createControlEvaluators.and.returnValue(formControlEvaluators);
+
+    formControl.init();
 
     expect(formControl.evaluators).toBe(formControlEvaluators);
   });
@@ -173,7 +179,9 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
 
-    formControl.initValidators(null);
+    builder.createControlValidators.and.returnValue(null);
+
+    formControl.init();
 
     expect(formControl.validators).toEqual([]);
   });
@@ -186,7 +194,9 @@ describe('DynamicFormControl', () => {
       { key: 'required', validatorFn: Validators.required }
     ] as DynamicFormControlValidator[];
 
-    formControl.initValidators(formControlValidators);
+    builder.createControlValidators.and.returnValue(formControlValidators);
+
+    formControl.init();
 
     expect(formControl.validators).toBe(formControlValidators);
   });
@@ -196,7 +206,9 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
 
-    formControl.initValidators(null);
+    builder.createControlValidators.and.returnValue(null);
+
+    formControl.init();
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).toBeNull();
@@ -211,7 +223,9 @@ describe('DynamicFormControl', () => {
       { key: 'required', validatorFn: Validators.required }
     ] as DynamicFormControlValidator[];
 
-    formControl.initValidators(formControlValidators);
+    builder.createControlValidators.and.returnValue(formControlValidators);
+
+    formControl.init();
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.validator).not.toBeNull();
@@ -268,7 +282,9 @@ describe('DynamicFormControl', () => {
       new DynamicFormControlValidator('required', formControl, _ => Validators.required)
     ] as DynamicFormControlValidator[];
 
-    formControl.initValidators(formControlValidators);
+    builder.createControlValidators.and.returnValue(formControlValidators);
+
+    formControl.init();
     formControl.control.updateValueAndValidity();
 
     expect(formControl.control.valid).toBe(false);
@@ -349,7 +365,9 @@ describe('DynamicFormControl', () => {
       'input.readonly': { value: false } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
 
-    formControl.initExpressions(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+
+    formControl.init();
 
     expect(formControl.expressions).toBe(formControlExpressions);
     expect(formControl.template['required']).toBe(true);
@@ -367,7 +385,9 @@ describe('DynamicFormControl', () => {
     spyOn(formControl.control, 'setValue').and.callThrough();
     spyOn(formControl.control, 'markAsTouched');
 
-    formControl.initExpressions(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+
+    formControl.init();
 
     expect(formControl.expressions).toBe(formControlExpressions);
     expect(formControl.template['input']['defaultValue']).toBe('value');
@@ -388,7 +408,9 @@ describe('DynamicFormControl', () => {
     spyOn(formControl.control, 'setValue').and.callThrough();
     spyOn(formControl.control, 'markAsTouched');
 
-    formControl.initExpressions(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+
+    formControl.init();
 
     expect(formControl.expressions).toBe(formControlExpressions);
     expect(formControl.template['input']['defaultValue']).toBeUndefined();
@@ -427,7 +449,9 @@ describe('DynamicFormControl', () => {
         { enabled: true, func: dynamicFormSelectEvaluatorFn }
       ] as DynamicFormControlEvaluator[];
 
-      formControl.initEvaluators(formControlEvaluators);
+      builder.createControlEvaluators.and.returnValue(formControlEvaluators);
+
+      formControl.init();
 
       expect(formControl.model).toBe('option1');
       expect(formControl.control.value).toBe('option1');
