@@ -1,5 +1,5 @@
 {
-  "version": "10.0.1",
+  "version": "10.0.2",
   "build": "187",
   "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=8&_a=summary",
   "release": "17",
@@ -16,15 +16,15 @@
   },
   "versions": [
     {
-      "name": "12.0.0",
+      "name": "12.0.1",
       "url": "https://dynamic-forms.azurewebsites.net/v12/dev"
     },
     {
-      "name": "11.0.0",
+      "name": "11.0.1",
       "url": "https://dynamic-forms.azurewebsites.net/v11/dev"
     },
     {
-      "name": "10.0.1",
+      "name": "10.0.2",
       "url": "https://dynamic-forms.azurewebsites.net/v10/dev"
     },
     {
