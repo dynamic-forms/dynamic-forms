@@ -1,5 +1,11 @@
 # Changelog
 
+## 11.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
 ## 10.0.1 (2021-05-16)
 
 ### Bug Fixes

@@ -58,11 +58,11 @@ Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:r
 - `npm install @dynamic-forms/bootstrap@v12.0.0`
 - `npm install @dynamic-forms/material@v12.0.0`
 
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.0)
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/v11.0.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/v11.0.1)
 
-- `npm install @dynamic-forms/core@v11.0.0`
-- `npm install @dynamic-forms/bootstrap@v11.0.0`
-- `npm install @dynamic-forms/material@v11.0.0`
+- `npm install @dynamic-forms/core@v11.0.1`
+- `npm install @dynamic-forms/bootstrap@v11.0.1`
+- `npm install @dynamic-forms/material@v11.0.1`
 
 ### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/v10.0.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/v10.0.1)
 
