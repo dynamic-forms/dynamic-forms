@@ -1,5 +1,54 @@
 # Changelog
 
+## 11.1.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 10.0.2 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed package version
+
+## 12.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 11.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 10.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 9.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 8.0.1 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed template of dynamic form dialog
+
+## 12.1.0 (2021-05-13)
+
+### Features
+
+* **core:** use boostrap 5
+* **bootstrap:** use boostrap 5
+
 ## 11.1.0 (2021-05-13)
 
 ### Features
