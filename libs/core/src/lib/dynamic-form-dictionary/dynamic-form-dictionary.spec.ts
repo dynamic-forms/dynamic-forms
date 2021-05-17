@@ -3,14 +3,16 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 
 describe('DynamicFormDictionary', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
+    builder.getFieldId.and.returnValue('fieldId');
   });
 
   it('creates instance', () => {
@@ -85,7 +87,9 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
     ];
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
 
     expect(formDictionary.length).toBe(2);
     expect(formDictionary.children).toBe(fields);
@@ -96,7 +100,9 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
 
-    formDictionary.initChildren(null);
+    builder.createFormDictionaryElements.and.returnValue(null);
+
+    formDictionary.init();
 
     expect(formDictionary.length).toBe(0);
     expect(formDictionary.children).toEqual([]);
@@ -115,7 +121,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(formDictionary.control, 'registerControl');
     spyOn(formDictionary.control, 'markAsTouched');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.registerField(field);
 
     expect(formDictionary.length).toBe(3);
@@ -141,7 +149,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(formDictionary.control, 'registerControl');
     spyOn(formDictionary.control, 'markAsTouched');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.registerField(field);
 
     expect(formDictionary.length).toBe(3);
@@ -171,7 +181,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    formDictionary.initChildren([ ...fields ]);
+    builder.createFormDictionaryElements.and.returnValue([ ...fields ]);
+
+    formDictionary.init();
     formDictionary.removeField('key-2');
 
     expect(formDictionary.length).toBe(3);
@@ -217,7 +229,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.clearFields();
 
     expect(formDictionary.length).toBe(0);
@@ -255,7 +269,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.check();
 
     expect(fields[0].check).toHaveBeenCalledTimes(1);
@@ -274,7 +290,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.destroy();
 
     expect(fields[0].destroy).toHaveBeenCalledTimes(1);
@@ -293,7 +311,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.reset();
 
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
@@ -312,7 +332,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
@@ -332,7 +354,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.resetDefault();
 
     expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
@@ -351,7 +375,9 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    formDictionary.initChildren(fields);
+    builder.createFormDictionaryElements.and.returnValue(fields);
+
+    formDictionary.init();
     formDictionary.validate();
 
     expect(fields[0].validate).toHaveBeenCalledTimes(1);

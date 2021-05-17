@@ -23,4 +23,6 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
   submit(): void {
     this._submit.next(true);
   }
+
+  protected initId(): void {}
 }

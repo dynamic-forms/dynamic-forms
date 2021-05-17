@@ -11,6 +11,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
+import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,
@@ -38,8 +39,9 @@ export class DynamicFormControl<
 
   get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
-  initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
-    this._evaluators = evaluators || [];
+  init(): void {
+    super.init();
+    this.initEvaluators();
   }
 
   check(): void {
@@ -76,6 +78,21 @@ export class DynamicFormControl<
       this.checkDefaultValue();
     }
   }
+
+  protected getChildren(): DynamicFormElement[] {
+    return undefined;
+  }
+
+  protected getValidators(): DynamicFormControlValidator[] {
+    return this._builder.createControlValidators(this);
+  }
+
+  protected initEvaluators(): void {
+    this._evaluators = this._builder.createControlEvaluators(this) || [];
+  }
+
+  protected initHeaderActions(): void {}
+  protected initFooterActions(): void {}
 
   private createModel(): any {
     if (this.parentField.model[this.key] === undefined) {

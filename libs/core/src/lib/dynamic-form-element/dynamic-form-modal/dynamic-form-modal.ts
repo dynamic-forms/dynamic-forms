@@ -37,16 +37,11 @@ export class DynamicFormModal<
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
-  initTrigger(trigger: DynamicFormAction): void {
-    this._trigger = trigger;
-  }
-
-  initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions || [];
-  }
-
-  initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions || [];
+  init(): void {
+    super.init();
+    this.initTrigger();
+    this.initHeaderActions();
+    this.initFooterActions();
   }
 
   open(): void {
@@ -74,5 +69,21 @@ export class DynamicFormModal<
     if (!descriptor || descriptor.writable) {
       this.template.maximized = !this.template.maximized;
     }
+  }
+
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this.parent, this.definition.children);
+  }
+
+  protected initTrigger(): void {
+    this._trigger = this._builder.createFormAction(this.root, this, this.definition.trigger);
+  }
+
+  protected initHeaderActions(): void {
+    this._headerActions = this._builder.createFormActions(this.root, this, this.definition.headerActions) || [];
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this._builder.createFormActions(this.root, this, this.definition.footerActions) || [];
   }
 }

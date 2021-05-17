@@ -6,6 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
+import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
@@ -22,13 +23,6 @@ export class DynamicFormArray<
   get fieldClassType(): DynamicFormFieldClassType { return 'array'; }
 
   get length(): number { return this._children.length; }
-
-  initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
-    this._children.forEach((field, index) => {
-      this._control.insert(index, field.control);
-    });
-  }
 
   pushField(element: DynamicFormField): void {
     this._children.push(element);
@@ -125,6 +119,21 @@ export class DynamicFormArray<
   validate(): void {
     this._children.forEach(field => field.validate());
     this._control.markAsTouched();
+  }
+
+  protected getChildren(): DynamicFormField[] {
+    return this._builder.createFormArrayElements(this);
+  }
+
+  protected initChildren(): void {
+    super.initChildren();
+    this._children.forEach((field, index) => {
+      this._control.insert(index, field.control);
+    });
+  }
+
+  protected getValidators(): DynamicFormArrayValidator[] {
+    return this._builder.createArrayValidators(this);
   }
 
   private getModel(definition: DynamicFormArrayDefinition): any {

@@ -6,6 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
+import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
@@ -22,13 +23,6 @@ export class DynamicFormDictionary<
   get fieldClassType(): DynamicFormFieldClassType { return 'dictionary'; }
 
   get length(): number { return this._children.length; }
-
-  initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
-    this._children.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
-    });
-  }
 
   registerField(field: DynamicFormField): void {
     const index = this._children.findIndex(f => f.key === field.key);
@@ -91,6 +85,21 @@ export class DynamicFormDictionary<
   validate(): void {
     this._children.forEach(field => field.validate());
     this._control.markAsTouched();
+  }
+
+  protected getChildren(): DynamicFormField[] {
+    return this._builder.createFormDictionaryElements(this);
+  }
+
+  protected initChildren(): void {
+    super.initChildren();
+    this._children.filter(field => !field.unregistered).forEach(field => {
+      this._control.registerControl(field.definition.key, field.control);
+    });
+  }
+
+  protected getValidators(): DynamicFormDictionaryValidator[] {
+    return this._builder.createDictionaryValidators(this);
   }
 
   private getModel(definition: DynamicFormDictionaryDefinition): any {

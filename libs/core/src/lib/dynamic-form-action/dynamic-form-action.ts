@@ -10,6 +10,7 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
+import { DynamicFormDialog } from './dynamic-form-dialog';
 
 export class DynamicFormAction<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
@@ -19,7 +20,7 @@ export class DynamicFormAction<
   private _dialogOpenSubject: BehaviorSubject<boolean>;
   private _dialogOpenChanges: Observable<boolean>;
 
-  protected _dialog: DynamicForm;
+  protected _dialog: DynamicFormDialog;
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition);
@@ -35,13 +36,14 @@ export class DynamicFormAction<
   get dialogDefinition(): DynamicFormDefinition { return this.definition.dialogDefinition; }
   get dialogTemplate(): DynamicFormTemplate { return this.dialogDefinition.template; }
 
-  get dialog(): DynamicForm { return this._dialog; }
+  get dialog(): DynamicFormDialog { return this._dialog; }
   get dialogChildren(): DynamicFormElement[] { return this._dialog.children; }
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
-  initDialog(dialog: DynamicForm): void {
-    this._dialog = dialog;
+  init(): void {
+    super.init();
+    this.initDialog();
   }
 
   openDialog(): void {
@@ -54,6 +56,25 @@ export class DynamicFormAction<
 
   toggleDialog(): void {
     return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
+  }
+
+  protected initId(): void {
+    this.definition.id = this._builder.getActionId(this);
+  }
+
+  protected getExpressions(): DynamicFormActionExpressions {
+    return this._builder.createActionExpressions(this);
+  }
+
+  protected getChildren(): any[] {
+    return undefined;
+  }
+
+  protected initDialog(): void {
+    if (this.dialogDefinition) {
+      this._dialog = new DynamicFormDialog(this._builder, this, this.dialogDefinition, {});
+      this._dialog.init();
+    }
   }
 
   protected createExpressionData(): DynamicFormActionExpressionData {

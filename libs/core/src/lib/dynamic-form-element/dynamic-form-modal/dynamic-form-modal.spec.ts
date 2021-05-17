@@ -1,16 +1,17 @@
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementExpression } from '../dynamic-form-element-expression';
 import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
-  let builder: DynamicFormBuilder;
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = createDynamicFormBuilderSpy();
   });
 
   it('creates instance', () => {
@@ -47,7 +48,9 @@ describe('DynamicFormModal', () => {
     const element = new DynamicFormModal(builder, root, parent, definition);
     const trigger = { classType: 'action', definition: {} } as DynamicFormAction;
 
-    element.initTrigger(trigger);
+    builder.createFormAction.and.returnValues(trigger);
+
+    element.init();
 
     expect(element.trigger).toEqual(trigger);
   });
@@ -61,7 +64,9 @@ describe('DynamicFormModal', () => {
       { classType: 'element', definition: {} } as DynamicFormElement
     ];
 
-    element.initChildren(children);
+    builder.createFormElements.and.returnValue(children);
+
+    element.init();
 
     expect(element.children).toEqual(children);
   });
@@ -72,7 +77,9 @@ describe('DynamicFormModal', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(builder, root, parent, definition);
 
-    element.initChildren(null);
+    builder.createFormElements.and.returnValue(null);
+
+    element.init();
 
     expect(element.children).toEqual([]);
   });
@@ -85,8 +92,9 @@ describe('DynamicFormModal', () => {
     const headerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
     const footerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
 
-    element.initHeaderActions(headerActions);
-    element.initFooterActions(footerActions);
+    builder.createFormActions.and.returnValues(headerActions, footerActions);
+
+    element.init();
 
     expect(element.headerActions).toEqual(headerActions);
     expect(element.footerActions).toEqual(footerActions);
@@ -98,8 +106,9 @@ describe('DynamicFormModal', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(builder, root, parent, definition);
 
-    element.initHeaderActions(null);
-    element.initFooterActions(null);
+    builder.createFormActions.and.returnValues(null, null);
+
+    element.init();
 
     expect(element.headerActions).toEqual([]);
     expect(element.footerActions).toEqual([]);
@@ -166,7 +175,8 @@ describe('DynamicFormModal', () => {
     const element = new DynamicFormModal(builder, root, parent, definition);
     const maximized = { value: false } as DynamicFormElementExpression;
 
-    element.initExpressions({ maximized });
+    builder.createElementExpressions.and.returnValue({ maximized });
+    element.init();
 
     expect(element.template.maximized).toBeFalse();
     expect(element.expressionData.maximized).toBeFalse();
