@@ -5,7 +5,9 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
+import { DynamicFormElementExpression } from './dynamic-form-element-expression';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
+import { DynamicFormElementExpressions } from './dynamic-form-element-expressions';
 
 describe('DynamicFormElement', () => {
   let builder: jasmine.SpyObj<DynamicFormBuilder>;
@@ -85,6 +87,55 @@ describe('DynamicFormElement', () => {
     expect(formElement.expressionData.parentField).toBe(parentFieldExpressionData);
   });
 
+  it('init calls initId, initExpressions and initChildren', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
+    const formElement = new DynamicFormElement(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formElement as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(formElement as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formElement as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formElement as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formElement as any, 'getChildren').and.callThrough();
+
+    formElement.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createElementExpressions).toHaveBeenCalledOnceWith(formElement);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormElements).toHaveBeenCalledOnceWith(root, formElement, definition.children);
+  });
+
+  it('inits expressions', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
+    const formElement = new DynamicFormElement(builder, null, null, definition);
+    const expressions = {
+      'className': { value: 'class-name' } as DynamicFormElementExpression
+    } as DynamicFormElementExpressions;
+
+    builder.createElementExpressions.and.returnValue(expressions);
+
+    formElement.init();
+
+    expect(formElement.expressions).toBe(expressions);
+    expect(formElement.template.className).toBe('class-name');
+  });
+
+  it('inits expressions with empty object', () => {
+    const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
+    const formElement = new DynamicFormElement(builder, null, null, definition);
+
+    builder.createElementExpressions.and.returnValue(null);
+
+    formElement.init();
+
+    expect(formElement.expressions).toEqual({});
+  });
+
   it('inits children', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
@@ -110,6 +161,7 @@ describe('DynamicFormElement', () => {
     builder.createFormElements.and.returnValue(null);
 
     formElement.init();
+
     expect(formElement.children).toEqual([]);
   });
 });

@@ -93,25 +93,24 @@ export abstract class DynamicFormField<
     this.definition.id = this._builder.getFieldId(this);
   }
 
+  protected getExpressions(): DynamicFormFieldExpressions {
+    return this._builder.createFieldExpressions(this);
+  }
+
   protected initExpressions(): void {
     super.initExpressions();
     this.afterInitExpressions();
   }
 
-  protected getExpressions(): DynamicFormFieldExpressions {
-    return this._builder.createFieldExpressions(this);
-  }
-
   protected afterInitExpressions(): void {}
 
   protected abstract getChildren(): Child[];
+  protected abstract getValidators(): DynamicFormFieldValidator[];
 
   protected initValidators(): void {
     this._validators = this.getValidators() || [];
     this._control.setValidators(this.getValidatorFunctions());
   }
-
-  protected abstract getValidators(): DynamicFormFieldValidator[];
 
   protected initHeaderActions(): void {
     this._headerActions = this.getHeaderActions() || [];

@@ -362,7 +362,8 @@ describe('DynamicFormControl', () => {
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
       'required': { value: true } as DynamicFormFieldExpression,
-      'input.readonly': { value: false } as DynamicFormFieldExpression
+      'readonly': { value: false } as DynamicFormFieldExpression,
+      'input.inputType': { value: 'text' } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
 
     builder.createFieldExpressions.and.returnValue(formControlExpressions);
@@ -370,8 +371,9 @@ describe('DynamicFormControl', () => {
     formControl.init();
 
     expect(formControl.expressions).toBe(formControlExpressions);
-    expect(formControl.template['required']).toBe(true);
-    expect(formControl.template['input']['readonly']).toBe(false);
+    expect(formControl.template.required).toBe(true);
+    expect(formControl.template.readonly).toBe(false);
+    expect(formControl.template.input.inputType).toBe('text');
   });
 
   it('inits expressions, sets model and control value to default value', () => {
@@ -390,7 +392,7 @@ describe('DynamicFormControl', () => {
     formControl.init();
 
     expect(formControl.expressions).toBe(formControlExpressions);
-    expect(formControl.template['input']['defaultValue']).toBe('value');
+    expect(formControl.template.input.defaultValue).toBe('value');
     expect(formControl.model).toBe('value');
     expect(formControl.control.value).toBe('value');
     expect(formControl.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });

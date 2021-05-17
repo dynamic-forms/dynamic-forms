@@ -11,6 +11,11 @@ import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-
 import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 
 class DynamicFormTestField extends DynamicFormField {
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormFieldDefinition) {
+    super(builder, root, parent, definition);
+    this._control = { setValidators: () => {} } as any;
+  }
+
   get fieldClassType(): DynamicFormFieldClassType { return null; }
 
   check(): void {}
@@ -25,8 +30,8 @@ class DynamicFormTestField extends DynamicFormField {
 
   checkExpressions(): void {}
 
-  getChildren(): any[] { return undefined; }
-  getValidators(): any[] { return undefined; }
+  protected getChildren(): any[] { return undefined; }
+  protected getValidators(): any[] { return undefined; }
 
   protected afterInitExpressions(): void {
     this.checkExpressions();
@@ -65,10 +70,10 @@ describe('DynamicFormField', () => {
     expect(field.componentType).toBe('componentType');
 
     expect(field.model).toBeUndefined();
-    expect(() => field.value).toThrowError();
-    expect(() => field.valid).toThrowError();
-    expect(() => field.status).toThrowError();
-    expect(field.control).toBeUndefined();
+    expect(field.value).toBeUndefined();
+    expect(field.valid).toBeUndefined();
+    expect(field.status).toBeUndefined();
+    expect(field.control).toBeTruthy();
 
     expect(field.children).toEqual([]);
     expect(field.footerActions).toEqual([]);
@@ -236,24 +241,70 @@ describe('DynamicFormField', () => {
     expect(field.expressionData.parentField).toBe(parentFieldExpressionData);
   });
 
+  it('init calls calls initId, initExpressions, initChildren, initValidators, initHeaderActions and initFooterActions', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { key: 'key', template: {}, headerActions: [], footerActions: [] } as DynamicFormFieldDefinition;
+    const field = new DynamicFormTestField(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(field as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(field as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(field as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(field as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(field as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(field as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(field as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(field as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(field as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(field as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(field as any, 'getFooterActions').and.callThrough();
+
+    field.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(field);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.headerActions);
+    expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.footerActions);
+  });
+
+  it('inits id', () => {
+    const definition = { key: 'key', template: {} } as DynamicFormFieldDefinition;
+    const field = new DynamicFormTestField(builder, null, null, definition);
+
+    builder.getFieldId.and.returnValue('fieldId');
+
+    field.init();
+
+    expect(field.id).toBe('fieldId');
+  });
+
   it('inits expressions', () => {
     const definition = { key: 'key', template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
     const fieldExpressions = {
       'required': { value: true } as DynamicFormFieldExpression,
-      'input.readonly': { value: false } as DynamicFormFieldExpression
+      'readonly': { value: false } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
 
     spyOn(field, 'checkExpressions');
 
     builder.createFieldExpressions.and.returnValue(fieldExpressions);
 
-    field.initControl({ setValidators: () => {} });
     field.init();
 
     expect(field.expressions).toBe(fieldExpressions);
-    expect(field.template['required']).toBe(true);
-    expect(field.template['input']['readonly']).toBe(false);
+    expect(field.template.required).toBe(true);
+    expect(field.template.readonly).toBe(false);
     expect(field.checkExpressions).toHaveBeenCalled();
   });
 

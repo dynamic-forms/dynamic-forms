@@ -73,25 +73,21 @@ export class DynamicFormElement<
 
   protected initId(): void {}
 
-  protected initExpressions(): void {
-    this._expressions = this.getExpressions() || {} as Expressions;
-    assignExpressions(this.template, this._expressions);
-  }
-
   protected getExpressions(): Expressions {
     return this._builder.createElementExpressions(this) as Expressions;
   }
 
-  protected initChildren(): void {
-    this._children = this.getChildren() || [];
+  protected initExpressions(): void {
+    this._expressions = this.getExpressions() || {} as Expressions;
+    assignExpressions(this.template, this._expressions);
   }
 
   protected getChildren(): Child[] {
     return this._builder.createFormElements(this.root, this, this.definition.children) as Child[];
   }
 
-  protected get builder(): DynamicFormBuilder {
-    return this._builder;
+  protected initChildren(): void {
+    this._children = this.getChildren() || [];
   }
 
   protected getParentField(root: DynamicForm, parent: DynamicFormElement): DynamicFormField {
