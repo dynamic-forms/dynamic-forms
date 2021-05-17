@@ -20,19 +20,19 @@
       "url": "https://dynamic-forms.azurewebsites.net/v12/dev"
     },
     {
-      "name": "11.1.0",
+      "name": "11.1.1",
       "url": "https://dynamic-forms.azurewebsites.net/v11/dev"
     },
     {
-      "name": "10.0.0",
+      "name": "10.0.2",
       "url": "https://dynamic-forms.azurewebsites.net/v10/dev"
     },
     {
-      "name": "9.0.0",
+      "name": "9.0.1",
       "url": "https://dynamic-forms.azurewebsites.net/v9/dev"
     },
     {
-      "name": "8.0.0",
+      "name": "8.0.1",
       "url": "https://dynamic-forms.azurewebsites.net/v8/dev"
     }
   ]
