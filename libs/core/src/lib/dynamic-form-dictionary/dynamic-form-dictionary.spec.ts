@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -76,6 +77,45 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.expressionData.index).toBe(1);
     expect(formDictionary.expressionData.model).toEqual({});
     expect(formDictionary.expressionData.length).toEqual(0);
+  });
+
+  it('init calls calls initId, initExpressions, initChildren, initValidators, initHeaderActions and initFooterActions', () => {
+    const root = { classType: 'field', model: {} } as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormDictionaryDefinition;
+    const formDictionary = new DynamicFormDictionary(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formDictionary as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(formDictionary as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formDictionary as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formDictionary as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formDictionary as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(formDictionary as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(formDictionary as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(formDictionary as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(formDictionary as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(formDictionary as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(formDictionary as any, 'getFooterActions').and.callThrough();
+
+    formDictionary.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(formDictionary);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(formDictionary);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormDictionaryElements).toHaveBeenCalledOnceWith(formDictionary);
+    expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createDictionaryValidators).toHaveBeenCalledOnceWith(formDictionary);
+    expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formDictionary, definition.headerActions);
+    expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formDictionary, definition.footerActions);
   });
 
   it('inits children and fields', () => {

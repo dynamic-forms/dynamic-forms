@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -83,16 +84,25 @@ export class DynamicFormControl<
     return undefined;
   }
 
+  protected getHeaderActions(): DynamicFormAction[] {
+    return undefined;
+  }
+
+  protected getFooterActions(): DynamicFormAction[] {
+    return undefined;
+  }
+
   protected getValidators(): DynamicFormControlValidator[] {
     return this._builder.createControlValidators(this);
   }
 
-  protected initEvaluators(): void {
-    this._evaluators = this._builder.createControlEvaluators(this) || [];
+  protected getEvaluators(): DynamicFormControlEvaluator[] {
+    return this._builder.createControlEvaluators(this);
   }
 
-  protected initHeaderActions(): void {}
-  protected initFooterActions(): void {}
+  protected initEvaluators(): void {
+    this._evaluators = this.getEvaluators() || [];
+  }
 
   private createModel(): any {
     if (this.parentField.model[this.key] === undefined) {

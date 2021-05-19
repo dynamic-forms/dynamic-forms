@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -74,6 +75,45 @@ describe('DynamicFormArray', () => {
     expect(formArray.expressionData.index).toBe(1);
     expect(formArray.expressionData.model).toEqual([]);
     expect(formArray.expressionData.length).toEqual(0);
+  });
+
+  it('init calls calls initId, initExpressions, initChildren, initValidators, initHeaderActions and initFooterActions', () => {
+    const root = { classType: 'field', model: {} } as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormArrayDefinition;
+    const formArray = new DynamicFormArray(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formArray as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(formArray as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formArray as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formArray as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formArray as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(formArray as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(formArray as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(formArray as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(formArray as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(formArray as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(formArray as any, 'getFooterActions').and.callThrough();
+
+    formArray.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(formArray);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(formArray);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormArrayElements).toHaveBeenCalledOnceWith(formArray);
+    expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createArrayValidators).toHaveBeenCalledOnceWith(formArray);
+    expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formArray, definition.headerActions);
+    expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formArray, definition.footerActions);
   });
 
   it('inits children and fields', () => {

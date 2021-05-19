@@ -58,8 +58,12 @@ export class DynamicFormAction<
     return this.dialog && this._dialogOpenSubject.next(!this.dialogOpen);
   }
 
+  protected getId(): string {
+    return this._builder.getActionId(this);
+  }
+
   protected initId(): void {
-    this.definition.id = this._builder.getActionId(this);
+    this.definition.id = this.getId();
   }
 
   protected getExpressions(): DynamicFormActionExpressions {

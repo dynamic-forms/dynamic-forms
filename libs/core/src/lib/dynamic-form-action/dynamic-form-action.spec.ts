@@ -1,3 +1,4 @@
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -62,6 +63,7 @@ describe('DynamicFormAction', () => {
   it('returns expression data with expression data of parent, root and dialog being defined', () => {
     const rootExpressionData = {} as DynamicFormFieldExpressionData;
     const parentExpressionData = {} as DynamicFormFieldExpressionData;
+    const dailogExpressionData = {} as DynamicFormFieldExpressionData;
     const root = { expressionData: rootExpressionData } as DynamicForm;
     const parent = { expressionData: parentExpressionData } as DynamicFormField;
     const definition = {
@@ -70,11 +72,38 @@ describe('DynamicFormAction', () => {
     } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition);
 
+    builder.createFieldExpressions.and.returnValue(dailogExpressionData);
+
     action.init();
 
     expect(action.expressionData.parent).toEqual(parentExpressionData);
     expect(action.expressionData.root).toEqual(rootExpressionData);
-    // expect(action.expressionData.dialog).toEqual(dialogExpressionData);
+    expect(action.expressionData.dialog).toEqual(dailogExpressionData);
+  });
+
+  it('init calls initId, initExpressions and initChildren', () => {
+    const root = {} as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { type: 'type', template: {} } as DynamicFormActionDefinition;
+    const formAction = new DynamicFormAction(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formAction as any, 'initId').and.callThrough();
+    const getIdSpy = spyOn(formAction as any, 'getId').and.callThrough();
+    const initExpressionsSpy = spyOn(formAction as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formAction as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formAction as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formAction as any, 'getChildren').and.callThrough();
+
+    formAction.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(getIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getActionId).toHaveBeenCalledOnceWith(formAction);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createActionExpressions).toHaveBeenCalledOnceWith(formAction);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
   });
 
   it('inits expressions', () => {

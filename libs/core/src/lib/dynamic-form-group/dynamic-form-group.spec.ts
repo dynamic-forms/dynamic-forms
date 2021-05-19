@@ -59,6 +59,45 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.model).toEqual(defaultValue);
   });
 
+  it('init calls calls initId, initExpressions, initChildren, initValidators, initHeaderActions and initFooterActions', () => {
+    const root = { classType: 'field', model: {} } as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormGroupDefinition;
+    const formGroup = new DynamicFormGroup(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formGroup as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(formGroup as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formGroup as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formGroup as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formGroup as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(formGroup as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(formGroup as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(formGroup as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(formGroup as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(formGroup as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(formGroup as any, 'getFooterActions').and.callThrough();
+
+    formGroup.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(formGroup);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(formGroup);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormElements).toHaveBeenCalledOnceWith(root, formGroup, definition.children);
+    expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createGroupValidators).toHaveBeenCalledOnceWith(formGroup);
+    expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formGroup, definition.headerActions);
+    expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).toHaveBeenCalledWith(root, formGroup, definition.footerActions);
+  });
+
   it('inits children and fields', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;

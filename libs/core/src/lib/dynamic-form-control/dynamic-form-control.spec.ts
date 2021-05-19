@@ -1,6 +1,7 @@
 import { Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-field-expression';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
@@ -354,6 +355,48 @@ describe('DynamicFormControl', () => {
     formControl.validate();
 
     expect(formControl.control.markAsTouched).toHaveBeenCalled();
+  });
+
+  it('init calls calls initId, initExpressions, initValidators and initEvaluators', () => {
+    const root = { classType: 'field', model: {} } as DynamicForm;
+    const parent = {} as DynamicFormElement;
+    const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
+    const formControl = new DynamicFormControl(builder, root, parent, definition);
+
+    const initIdSpy = spyOn(formControl as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(formControl as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(formControl as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(formControl as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(formControl as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(formControl as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(formControl as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(formControl as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(formControl as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(formControl as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(formControl as any, 'getFooterActions').and.callThrough();
+    const initEvaluatorsSpy = spyOn(formControl as any, 'initEvaluators').and.callThrough();
+    const getEvaluatorsSpy = spyOn(formControl as any, 'getEvaluators').and.callThrough();
+
+    formControl.init();
+
+    expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(formControl);
+    expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(formControl);
+    expect(initChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(getChildrenSpy).toHaveBeenCalledTimes(1);
+    expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createControlValidators).toHaveBeenCalledOnceWith(formControl);
+    expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
+    expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFormActions).not.toHaveBeenCalled();
+    expect(initEvaluatorsSpy).toHaveBeenCalledTimes(1);
+    expect(getEvaluatorsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createControlEvaluators).toHaveBeenCalledOnceWith(formControl);
   });
 
   it('inits expressions', () => {

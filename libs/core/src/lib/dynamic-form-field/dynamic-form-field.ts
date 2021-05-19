@@ -89,8 +89,12 @@ export abstract class DynamicFormField<
   abstract resetDefault(): void;
   abstract validate(): void;
 
+  protected getId(): string {
+    return this._builder.getFieldId(this);
+  }
+
   protected initId(): void {
-    this.definition.id = this._builder.getFieldId(this);
+    this.definition.id = this.getId();
   }
 
   protected getExpressions(): DynamicFormFieldExpressions {
@@ -112,20 +116,20 @@ export abstract class DynamicFormField<
     this._control.setValidators(this.getValidatorFunctions());
   }
 
-  protected initHeaderActions(): void {
-    this._headerActions = this.getHeaderActions() || [];
-  }
-
   protected getHeaderActions(): DynamicFormAction[] {
     return this._builder.createFormActions(this.root, this, this.definition.headerActions);
   }
 
-  protected initFooterActions(): void {
-    this._footerActions = this.getFooterActions() || [];
+  protected initHeaderActions(): void {
+    this._headerActions = this.getHeaderActions() || [];
   }
 
   protected getFooterActions(): DynamicFormAction[] {
     return this._builder.createFormActions(this.root, this, this.definition.footerActions);
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this.getFooterActions() || [];
   }
 
   protected checkControl(): void {

@@ -248,6 +248,7 @@ describe('DynamicFormField', () => {
     const field = new DynamicFormTestField(builder, root, parent, definition);
 
     const initIdSpy = spyOn(field as any, 'initId').and.callThrough();
+    const getIdSpy = spyOn(field as any, 'getId').and.callThrough();
     const initExpressionsSpy = spyOn(field as any, 'initExpressions').and.callThrough();
     const getExpressionsSpy = spyOn(field as any, 'getExpressions').and.callThrough();
     const initChildrenSpy = spyOn(field as any, 'initChildren').and.callThrough();
@@ -262,9 +263,11 @@ describe('DynamicFormField', () => {
     field.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
+    expect(getIdSpy).toHaveBeenCalledTimes(1);
     expect(builder.getFieldId).toHaveBeenCalledOnceWith(field);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(field);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
