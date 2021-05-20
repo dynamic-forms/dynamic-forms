@@ -76,6 +76,7 @@ describe('DynamicFormField', () => {
     expect(field.control).toBeTruthy();
 
     expect(field.children).toEqual([]);
+    expect(field.headerActions).toEqual([]);
     expect(field.footerActions).toEqual([]);
 
     expect(field.expressions).toEqual({});

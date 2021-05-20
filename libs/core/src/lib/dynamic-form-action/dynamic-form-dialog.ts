@@ -5,7 +5,6 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from './dynamic-form-action';
 
 export class DynamicFormDialog extends DynamicForm {
-  protected _
   protected _action: DynamicFormAction;
 
   constructor(builder: DynamicFormBuilder, action: DynamicFormAction, definition: DynamicFormDefinition, model: any) {
