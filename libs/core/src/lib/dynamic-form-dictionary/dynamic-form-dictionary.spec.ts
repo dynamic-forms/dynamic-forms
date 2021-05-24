@@ -7,6 +7,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
+import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 describe('DynamicFormDictionary', () => {
   let builder: jasmine.SpyObj<DynamicFormBuilder>;
@@ -146,6 +147,19 @@ describe('DynamicFormDictionary', () => {
 
     expect(formDictionary.length).toBe(0);
     expect(formDictionary.children).toEqual([]);
+  });
+
+  it('inits validators', () => {
+    const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
+    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
+    const validators = [{}] as DynamicFormDictionaryValidator[];
+
+    builder.createDictionaryValidators.and.returnValue(validators);
+
+    formDictionary.init();
+
+    expect(formDictionary.validators).toBe(validators);
   });
 
   it('registers field by pushing field', () => {

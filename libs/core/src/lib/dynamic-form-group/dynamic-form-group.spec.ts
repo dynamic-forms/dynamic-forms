@@ -7,6 +7,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
+import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 describe('DynamicFormGroup', () => {
   let builder: jasmine.SpyObj<DynamicFormBuilder>;
@@ -145,6 +146,19 @@ describe('DynamicFormGroup', () => {
 
     expect(formGroup.children).toEqual([]);
     expect(formGroup.fields).toEqual([]);
+  });
+
+  it('inits validators', () => {
+    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
+    const formGroup = new DynamicFormGroup(builder, form, form, definition);
+    const validators = [{}] as DynamicFormGroupValidator[];
+
+    builder.createGroupValidators.and.returnValue(validators);
+
+    formGroup.init();
+
+    expect(formGroup.validators).toBe(validators);
   });
 
   it('check calls check of all fields', () => {

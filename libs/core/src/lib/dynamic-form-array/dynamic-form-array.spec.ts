@@ -7,6 +7,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
+import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 describe('DynamicFormArray', () => {
   let builder: jasmine.SpyObj<DynamicFormBuilder>;
@@ -144,6 +145,19 @@ describe('DynamicFormArray', () => {
 
     expect(formArray.length).toBe(0);
     expect(formArray.children).toEqual([]);
+  });
+
+  it('inits validators', () => {
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const formArray = new DynamicFormArray(builder, form, form, definition);
+    const validators = [{}] as DynamicFormArrayValidator[];
+
+    builder.createArrayValidators.and.returnValue(validators);
+
+    formArray.init();
+
+    expect(formArray.validators).toBe(validators);
   });
 
   it('pushes field', () => {

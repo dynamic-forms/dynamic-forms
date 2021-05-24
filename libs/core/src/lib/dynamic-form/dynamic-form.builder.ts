@@ -187,7 +187,7 @@ export class DynamicFormBuilder {
   }
 
   createId(): string {
-    return this.idBuilder ? this.idBuilder() : Date.now().toString();
+    return this.idBuilder ? this.idBuilder() : `${Date.now()}${Math.random().toString().slice(2)}`;
   }
 
   getFieldId(field: DynamicFormField): string {

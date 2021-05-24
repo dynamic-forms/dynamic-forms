@@ -465,6 +465,32 @@ describe('DynamicFormControl', () => {
     expect(formControl.control.markAsTouched).not.toHaveBeenCalled();
   });
 
+  it('inits validators', () => {
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
+    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const validators = [{}] as DynamicFormControlValidator[];
+
+    builder.createControlValidators.and.returnValue(validators);
+
+    formControl.init();
+
+    expect(formControl.validators).toBe(validators);
+  });
+
+  it('inits evaluators', () => {
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
+    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const evaluators = [{}] as DynamicFormControlEvaluator[];
+
+    builder.createControlEvaluators.and.returnValue(evaluators);
+
+    formControl.init();
+
+    expect(formControl.evaluators).toBe(evaluators);
+  });
+
   describe('DynamicFormSelect', () => {
     it('check updates model for select options', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {
