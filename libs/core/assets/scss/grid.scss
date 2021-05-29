@@ -3,14 +3,14 @@ $dynamic-form-grid-gutter-width: 20px;
 
 .dynamic-form-wrapper {
   .dynamic-form.grid {
-    $grid-columns: $dynamic-form-grid-columns;
-    $grid-gutter-width: $dynamic-form-grid-gutter-width;
-
     @import '~bootstrap/scss/functions';
     @import '~bootstrap/scss/variables';
     @import '~bootstrap/scss/mixins';
     @import '~bootstrap/scss/utilities';
     @import '~bootstrap/scss/utilities/api';
+
+    $grid-columns: $dynamic-form-grid-columns;
+    $grid-gutter-width: $dynamic-form-grid-gutter-width;
 
     *, *::before, *::after {
       box-sizing: border-box;
