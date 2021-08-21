@@ -242,17 +242,7 @@ $dynamic-form-errors-margin-top: null !default;
       &.hidden {
         display: none;
       }
-    }
 
-    .dynamic-form-button {
-      &.hidden {
-        display: none;
-      }
-
-      &.hidden {
-        display: none;
-      }
-      
       &.readonly {
         label {
           pointer-events: none;
@@ -273,10 +263,6 @@ $dynamic-form-errors-margin-top: null !default;
               visibility: hidden;
             }
           }
-        }
-
-        &.hidden {
-          display: none;
         }
       }
 
@@ -312,7 +298,7 @@ $dynamic-form-errors-margin-top: null !default;
         }
       }
     }
-    
+
     .dynamic-form-button {
       &.hidden {
         display: none;
