@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "12.2.0-next.0",
+  "version": "13.0.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "@angular/core": "^12.2.0",
     "@angular/forms": "^12.2.0",
     "@angular/material": "^12.2.0",
-    "@dynamic-forms/core": "12.2.0-next.0",
+    "@dynamic-forms/core": "13.0.0-next.0",
     "bootstrap": "^5.1.0",
     "rxjs": "~6.6.7"
   },
