@@ -220,25 +220,25 @@ describe('DynamicFormGroup', () => {
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
 
-  it('reset calls reset of all fields', () => {
+  it('resetEmpty calls reset of all fields', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const formGroup = new DynamicFormGroup(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), reset: () => {} } as DynamicFormField,
-      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), reset: () => {} } as DynamicFormField
+      { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), resetEmpty: () => {} } as DynamicFormField,
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), resetEmpty: () => {} } as DynamicFormField
     ];
 
-    spyOn(fields[0], 'reset');
-    spyOn(fields[1], 'reset');
+    spyOn(fields[0], 'resetEmpty');
+    spyOn(fields[1], 'resetEmpty');
 
     builder.createFormElements.and.returnValue(fields);
 
     formGroup.init();
-    formGroup.reset();
+    formGroup.resetEmpty();
 
-    expect(fields[0].reset).toHaveBeenCalledTimes(1);
-    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+    expect(fields[0].resetEmpty).toHaveBeenCalledTimes(1);
+    expect(fields[1].resetEmpty).toHaveBeenCalledTimes(1);
   });
 
   it('resetDefault calls patchValue of field if default value', () => {

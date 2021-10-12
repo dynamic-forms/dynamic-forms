@@ -1,7 +1,7 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
+import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler,
   dynamicFormFieldValidateHandler, dynamicFormSubmitHandler} from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -56,7 +56,7 @@ describe('DynamicFormControlModule', () => {
       const handlers = service.handlers;
 
       expect(handlers.length).toBe(7);
-      expect(handlers[3]).toEqual(dynamicFormFieldResetHandler);
+      expect(handlers[3]).toEqual(dynamicFormFieldResetEmptyHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
       expect(handlers[4]).toEqual(dynamicFormFieldResetDefaultHandler);

@@ -2,46 +2,14 @@
   "template": {
     "label": "Login"
   },
-  "headerActions": [ 
+  "footerActions": [ 
     {
-      "id": "action-submit",
-      "type": "icon",
-      "template": {
-        "type": "submit",
-        "icon": "submit",
-        "label": "Submit"
-      },
-      "expressions": {
-        "disabled": "data.root.status !== 'VALID'"
-      }
-    },
-    {
-      "id": "action-validate",
-      "type": "icon",
+      "id": "action-reset-empty",
+      "type": "button",
       "template": {
         "type": "button",
-        "icon": "validate",
-        "label": "Validate",
-        "action": "validate"
-      }
-    },
-    {
-      "id": "action-reset-form",
-      "type": "icon",
-      "template": {
-        "type": "reset",
-        "icon": "reset",
-        "label": "Reset"
-      }
-    },
-    {
-      "id": "action-reset-default",
-      "type": "icon",
-      "template": {
-        "type": "button",
-        "icon": "resetDefault",
-        "label": "Reset default",
-        "action": "resetDefault"
+        "label": "Reset empty",
+        "action": "resetEmpty"
       }
     }
   ],
@@ -54,8 +22,7 @@
         "input": {
           "type": "textbox",
           "inputType": "email",
-          "placeholder": "Enter your email",
-          "defaultValue": "user01@mail.com"
+          "placeholder": "Enter your email"
         },
         "validation": {
           "required": true,
@@ -86,8 +53,7 @@
       "template": {
         "label": "Remember login",
         "input": {
-          "type": "checkbox",
-          "defaultValue": true
+          "type": "checkbox"
         }
       }
     }

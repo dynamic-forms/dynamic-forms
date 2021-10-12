@@ -6,7 +6,7 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
+import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler,
   dynamicFormFieldValidateHandler, dynamicFormSubmitHandler,
   DynamicFormFieldModule } from './dynamic-form-field.module';
 
@@ -30,7 +30,7 @@ describe('DynamicFormFieldModule', () => {
       const handlers = service.handlers;
 
       expect(handlers.length).toBe(7);
-      expect(handlers[3]).toEqual(dynamicFormFieldResetHandler);
+      expect(handlers[3]).toEqual(dynamicFormFieldResetEmptyHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
       expect(handlers[4]).toEqual(dynamicFormFieldResetDefaultHandler);
@@ -45,16 +45,16 @@ describe('DynamicFormFieldModule', () => {
     })
   );
 
-  it('handler calls reset of field',
+  it('handler calls resetEmpty of field',
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handler = service.handlers.find(h => h.type === 'reset');
-      const field = { reset(): void {} } as DynamicFormField;
+      const handler = service.handlers.find(h => h.type === 'resetEmpty');
+      const field = { resetEmpty(): void {} } as DynamicFormField;
 
-      spyOn(field, 'reset');
+      spyOn(field, 'resetEmpty');
 
       handler.func(field, null);
 
-      expect(field.reset).toHaveBeenCalled();
+      expect(field.resetEmpty).toHaveBeenCalled();
     })
   );
 

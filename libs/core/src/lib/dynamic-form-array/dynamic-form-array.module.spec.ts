@@ -4,7 +4,7 @@ import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-ac
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
+import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler,
   dynamicFormFieldValidateHandler, dynamicFormSubmitHandler } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -61,7 +61,7 @@ describe('DynamicFormArrayModule', () => {
       const handlers = service.handlers;
 
       expect(handlers.length).toBe(13);
-      expect(handlers[3]).toEqual(dynamicFormFieldResetHandler);
+      expect(handlers[3]).toEqual(dynamicFormFieldResetEmptyHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
       expect(handlers[4]).toEqual(dynamicFormFieldResetDefaultHandler);

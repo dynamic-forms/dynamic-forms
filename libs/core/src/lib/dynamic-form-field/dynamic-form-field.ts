@@ -35,8 +35,9 @@ export abstract class DynamicFormField<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, control?: Control) {
     super(builder, root, parent, definition);
+    this._control = control;
     this._depth = this.getDepth();
     this._settings = this.createSettings();
   }
@@ -85,7 +86,7 @@ export abstract class DynamicFormField<
   abstract check(): void;
   abstract destroy(): void;
 
-  abstract reset(): void;
+  abstract resetEmpty(): void;
   abstract resetDefault(): void;
   abstract validate(): void;
 

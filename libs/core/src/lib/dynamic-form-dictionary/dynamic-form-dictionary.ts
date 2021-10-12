@@ -14,9 +14,8 @@ export class DynamicFormDictionary<
 > extends DynamicFormField<FormGroup, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
-    this._model = this.getModel(definition);
-    this._control = new FormGroup({});
+    super(builder, root, parent, definition, new FormGroup({}));
+    this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
 
@@ -69,17 +68,22 @@ export class DynamicFormDictionary<
     this._children.forEach(field => field.destroy());
   }
 
-  reset(): void {
-    this._children.forEach(field => field.reset());
+  resetEmpty(): void {
+    this._children.forEach(field => field.destroy());
+    Object.keys(this._control.controls).forEach((key) => {
+      this._control.removeControl(key);
+    });
+    this.initModel({});
+    this._children = [];
   }
 
   resetDefault(): void {
-    if (this.definition.defaultValue) {
-      const defaultModel = this.cloneObject(this.definition.defaultValue);
-      this._control.patchValue(defaultModel);
-    } else {
-      this._children.forEach(field => field.resetDefault());
-    }
+    this._children.forEach((field) => field.destroy());
+    Object.keys(this._control.controls).forEach((key) => {
+      this._control.removeControl(key);
+    });
+    this.initModel(this.getDefaultModel());
+    this.initChildren();
   }
 
   validate(): void {
@@ -102,16 +106,20 @@ export class DynamicFormDictionary<
     return this._builder.createDictionaryValidators(this);
   }
 
-  private getModel(definition: DynamicFormDictionaryDefinition): any {
-    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
-    return this.parentField.model[definition.key];
+  private initModel(model: any): void {
+    this.parentField.model[this.definition.key] = model;
+    this._model = this.parentField.model[this.definition.key];
   }
 
-  private getDefaultModel(definition: DynamicFormDictionaryDefinition): any {
-    if (definition.defaultValue) {
-      return this.cloneObject(definition.defaultValue);
+  private getModel(): any {
+    return this.parentField.model[this.definition.key] || this.getDefaultModel();
+  }
+
+  private getDefaultModel(): any {
+    if (this.definition.defaultValue) {
+      return this.cloneObject(this.definition.defaultValue);
     }
-    return (definition.defaultKeys || []).reduce((result, key) => {
+    return (this.definition.defaultKeys || []).reduce((result, key) => {
       result[key] = undefined;
       return result;
     }, {});

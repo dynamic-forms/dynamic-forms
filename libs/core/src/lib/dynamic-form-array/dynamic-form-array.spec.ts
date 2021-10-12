@@ -471,68 +471,51 @@ describe('DynamicFormArray', () => {
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
 
-  it('reset calls reset of all fields', () => {
+  it('resetEmpty calls destroy of all fields and clear of form array', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
-    spyOn(fields[0], 'reset');
-    spyOn(fields[1], 'reset');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(formArray.control, 'clear');
 
     builder.createFormArrayElements.and.returnValue(fields);
 
     formArray.init();
-    formArray.reset();
+    formArray.resetEmpty();
 
-    expect(fields[0].reset).toHaveBeenCalledTimes(1);
-    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
+    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(formArray.control.clear).toHaveBeenCalledTimes(1);
+    expect(formArray.children).toEqual([]);
   });
 
-  it('resetDefault calls resetDefault of all fields', () => {
+  it('resetDefault calls destroy of all fields and clear of form array', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(formArray.control, 'clear');
 
     builder.createFormArrayElements.and.returnValue(fields);
 
     formArray.init();
     formArray.resetDefault();
 
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
-  });
-
-  it('resetDefault calls patchValue of field if default value', () => {
-    const defaultValue = [ { value: 0 }, { value: 1 } ];
-    const definition = { key: 'key', template: {}, defaultValue } as DynamicFormArrayDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    const formArray = new DynamicFormArray(builder, form, form, definition);
-    const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
-    ];
-
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
-
-    builder.createFormArrayElements.and.returnValue(fields);
-
-    formArray.init();
-    formArray.resetDefault();
-
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(0);
+    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
+    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(formArray.control.clear).toHaveBeenCalledTimes(1);
   });
 
   it('validate calls validate of all fields', () => {

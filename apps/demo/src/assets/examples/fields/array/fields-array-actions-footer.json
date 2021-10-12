@@ -161,6 +161,15 @@
       }
     },
     {
+      "id": "action-reset-empty",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset empty",
+        "action": "resetEmpty"
+      }
+    },
+    {
       "id": "action-reset-default",
       "type": "button",
       "template": {
