@@ -103,6 +103,10 @@ export class DynamicFormArray<
     this._children.forEach(field => field.destroy());
   }
 
+  reset(): void {
+    this._children.forEach(field => field.reset());
+  }
+  
   resetEmpty(): void {
     this._children.forEach(field => field.destroy());
     this._children = [];

@@ -471,6 +471,27 @@ describe('DynamicFormArray', () => {
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
 
+  it('reset calls reset of all fields', () => {
+    const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
+    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const formArray = new DynamicFormArray(builder, form, form, definition);
+    const fields = [
+      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField
+    ];
+
+    spyOn(fields[0], 'reset');
+    spyOn(fields[1], 'reset');
+
+    builder.createFormArrayElements.and.returnValue(fields);
+
+    formArray.init();
+    formArray.reset();
+
+    expect(fields[0].reset).toHaveBeenCalledTimes(1);
+    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+  });
+  
   it('resetEmpty calls destroy of all fields and clear of form array', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});

@@ -37,6 +37,10 @@ export class DynamicFormGroup<
     this._fields.forEach(field => field.destroy());
   }
 
+  reset(): void {
+    this._fields.forEach(field => field.reset());
+  }
+  
   resetEmpty(): void {
     this._fields.forEach(field => field.resetEmpty());
   }

@@ -55,6 +55,10 @@ export class DynamicFormControl<
     this._valueSubscription.unsubscribe();
   }
 
+  reset(): void {
+    this._control.reset(null);
+  }
+
   resetEmpty(): void {
     this._control.reset(null);
   }
