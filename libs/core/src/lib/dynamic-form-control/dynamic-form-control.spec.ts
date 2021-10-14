@@ -327,7 +327,20 @@ describe('DynamicFormControl', () => {
 
     expect(formControl.model).toBe(null);
     expect((formControl.parent as DynamicFormField).model.key).toBe(null);
+  });
+  
+  it('resetEmpty sets model to null', () => {
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: 'value' });
+    const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
+    const formControl = new DynamicFormControl(builder, root, root, definition);
 
+    expect(formControl.model).toBe('value');
+    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+
+    formControl.resetEmpty();
+
+    expect(formControl.model).toBe(null);
+    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
   });
 
   it('resetDefault sets model to default value', () => {

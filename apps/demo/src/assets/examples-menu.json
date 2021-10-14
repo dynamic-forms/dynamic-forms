@@ -238,6 +238,10 @@
               "label": "Reset"
             },
             {
+              "id": "actions-button-reset-empty",
+              "label": "Reset empty"
+            },
+            {
               "id": "actions-button-reset-default",
               "label": "Reset default"
             },

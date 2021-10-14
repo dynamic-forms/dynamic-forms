@@ -23,6 +23,7 @@ class DynamicFormTestField extends DynamicFormField {
   destroy(): void {}
 
   reset(): void {}
+  resetEmpty(): void {}
   resetDefault(): void {}
   validate(): void {}
 

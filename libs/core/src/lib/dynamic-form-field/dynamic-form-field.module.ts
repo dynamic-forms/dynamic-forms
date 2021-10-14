@@ -17,6 +17,16 @@ export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
+export function dynamicFormFieldResetEmpty(field: DynamicFormField): void {
+  field.resetEmpty();
+}
+
+export const dynamicFormFieldResetEmptyHandler: DynamicFormActionHandler = {
+  type: 'resetEmpty',
+  func: dynamicFormFieldResetEmpty,
+  libraryName: dynamicFormLibrary.name
+};
+
 export function dynamicFormFieldResetDefault(field: DynamicFormField): void {
   field.resetDefault();
 }
@@ -61,6 +71,7 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
     DynamicFormValidationModule,
     DynamicFormActionModule.withHandlers([
       dynamicFormFieldResetHandler,
+      dynamicFormFieldResetEmptyHandler,
       dynamicFormFieldResetDefaultHandler,
       dynamicFormFieldValidateHandler,
       dynamicFormSubmitHandler

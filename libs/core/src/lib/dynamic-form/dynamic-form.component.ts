@@ -81,6 +81,10 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   reset(): void {
     this._form.reset();
   }
+  
+  resetEmpty(): void {
+    this._form.resetEmpty();
+  }
 
   resetDefault(): void {
     this._form.resetDefault();

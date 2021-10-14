@@ -35,7 +35,7 @@
           }
         },
         {
-          "id": "action-reset",
+          "id": "action-reset-form",
           "type": "icon",
           "template": {
             "type": "reset",

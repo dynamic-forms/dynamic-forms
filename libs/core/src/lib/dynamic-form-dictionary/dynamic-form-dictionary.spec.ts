@@ -373,48 +373,54 @@ describe('DynamicFormDictionary', () => {
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
     expect(fields[1].reset).toHaveBeenCalledTimes(1);
   });
-
-  it('resetDefault calls resetDefault of all fields', () => {
+  
+  it('resetEmpty calls destroy of all fields and removeControl for all form group controls', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
+      { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(formDictionary.control, 'removeControl');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    builder.createFormDictionaryElements.and.returnValues(fields);
 
     formDictionary.init();
-    formDictionary.resetDefault();
+    formDictionary.resetEmpty();
 
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
+    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
+    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key1');
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key2');
+    expect(formDictionary.children).toEqual([]);
   });
 
-  it('resetDefault calls patchValue of field if default value', () => {
-    const defaultValue = [ { value: 0 }, { value: 1 } ];
-    const definition = { key: 'key', template: {}, defaultValue } as DynamicFormDictionaryDefinition;
+  it('resetDefault calls destroy of all fields and removeControl for all form group controls', () => {
+    const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), resetDefault: () => {} } as DynamicFormField
+      { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
+    spyOn(fields[0], 'destroy');
+    spyOn(fields[1], 'destroy');
+    spyOn(formDictionary.control, 'removeControl');
 
     builder.createFormDictionaryElements.and.returnValue(fields);
 
     formDictionary.init();
     formDictionary.resetDefault();
 
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(0);
+    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
+    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key1');
+    expect(formDictionary.control.removeControl).toHaveBeenCalledWith('key2');
   });
 
   it('validate calls validate of all fields', () => {

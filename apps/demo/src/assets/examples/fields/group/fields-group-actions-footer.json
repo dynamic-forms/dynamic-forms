@@ -33,7 +33,7 @@
           }
         },
         {
-          "id": "action-reset",
+          "id": "action-reset-form",
           "type": "button",
           "template": {
             "type": "reset",
