@@ -2,10 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/v13/@dynamic-forms/material",
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "umdModuleIds": {
-      "@dynamic-forms/core": "dynamicFormsCore"
-    }
+    "entryFile": "src/public_api.ts"
   },
   "assets": [
     "assets"
