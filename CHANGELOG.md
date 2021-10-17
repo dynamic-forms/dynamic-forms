@@ -1,5 +1,22 @@
 # Changelog
 
+## 13.0.0-next.0
+
+### Breaking changes
+
+* **core:** constructor of ```DynamicFormElement``` (and its derived classes like ```DynamicFormAction``` and ```DynamicFormField```) has new parameter for ```DynamicFormBuilder``` to support updates of expressions, children, actions, validators, etc. from within the classes (especially in new method ```init()```)
+* **core:** improved ```DynamicFormBuilder``` by using the method ```init()``` of ```DynamicFormElement``` for initialization
+
+### Bug Fixes
+
+* **core:** improved method ```resetDefault()``` of class ```DynamicFormArray``` to reflect the length of children that result from either the default length or the length of the default value
+* **core:** improved method ```resetDefault()``` of class ```DynamicFormDictionary``` to reflect the length of children that result from either the length of default keys or the length of keys from the default value
+
+### Feature
+
+* **core:** method ```resetEmpty()``` of ```DynamicFormArray``` clears children and sets model / value to an empty array
+* **core:** method ```resetEmpty()``` of ```DynamicFormDictionary``` clears children and sets model / value to an empty object
+
 ## 12.1.1 (2021-05-16)
 
 ### Bug Fixes

@@ -5,7 +5,7 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "target": "es2015",
+    "target": "es2017",
     "module": "es2020",
     "moduleResolution": "node",
     "experimentalDecorators": true,
@@ -16,7 +16,7 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2018",
+      "es2020",
       "dom"
     ],
     "paths": {
@@ -39,6 +39,13 @@
         "dist/v13/@dynamic-forms/material/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
   },
   "exclude": [
     "node_modules/**/*"
