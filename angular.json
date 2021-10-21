@@ -33,14 +33,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "libs/core/tsconfig.lib.json",
-              "libs/core/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "libs/core/**/*.ts",
+              "libs/core/**/*.html"
             ]
           }
         }
@@ -76,14 +73,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "libs/bootstrap/tsconfig.lib.json",
-              "libs/bootstrap/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "libs/bootstrap/**/*.ts",
+              "libs/bootstrap/**/*.html"
             ]
           }
         }
@@ -119,14 +113,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "libs/material/tsconfig.lib.json",
-              "libs/material/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "libs/material/**/*.ts",
+              "libs/material/**/*.html"
             ]
           }
         }
@@ -156,7 +147,7 @@
       }
     },
     "dynamic-forms-demo": {
-      "root": "",
+      "root": "apps/demo",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
@@ -270,7 +261,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v8"
+                "dist/v13"
               ]
             },
             "styles": [
@@ -281,15 +272,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "apps/demo/tsconfig.app.json",
-              "apps/demo/tsconfig.spec.json",
-              "apps/demo-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "apps/demo/src/**/*.ts",
+              "apps/demo/src/**/*.html"
             ]
           }
         },
@@ -317,6 +304,7 @@
   },
   "defaultProject": "dynamic-forms-demo",
   "cli": {
-    "analytics": false
+    "analytics": true,
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

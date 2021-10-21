@@ -328,7 +328,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.model).toBe(null);
     expect((formControl.parent as DynamicFormField).model.key).toBe(null);
   });
-  
+
   it('resetEmpty sets model to null', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: 'value' });
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
@@ -417,8 +417,8 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
-      'required': { value: true } as DynamicFormFieldExpression,
-      'readonly': { value: false } as DynamicFormFieldExpression,
+      required: { value: true } as DynamicFormFieldExpression,
+      readonly: { value: false } as DynamicFormFieldExpression,
       'input.inputType': { value: 'text' } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
 
@@ -507,7 +507,7 @@ describe('DynamicFormControl', () => {
   describe('DynamicFormSelect', () => {
     it('check updates model for select options', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {
-        'key': 'option1'
+        key: 'option1'
       });
       const definition = {
         key: 'key',

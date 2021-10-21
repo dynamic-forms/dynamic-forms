@@ -202,7 +202,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'element-1', component: null, libraryName: otherLibraryName },
       { type: 'element-2', component: null, libraryName: otherLibraryName },
       { type: 'element-3', component: null, libraryName: otherLibraryName },
-      { type: 'element-1', component: null, libraryName: libraryName }
+      { type: 'element-1', component: null, libraryName }
     ];
     const fieldTypes: DynamicFormFieldType[] = [
       { type: 'field-1', factory: null, component: null, libraryName: coreLibraryName },
@@ -210,7 +210,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'field-1', factory: null, component: null, libraryName: otherLibraryName },
       { type: 'field-2', factory: null, component: null, libraryName: otherLibraryName },
       { type: 'field-3', factory: null, component: null, libraryName: otherLibraryName },
-      { type: 'field-1', factory: null, component: null, libraryName: libraryName },
+      { type: 'field-1', factory: null, component: null, libraryName },
     ];
     const actionTypes: DynamicFormActionType[] = [
       { type: 'action-1', component: null, libraryName: coreLibraryName },
@@ -218,7 +218,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'action-1', component: null, libraryName: otherLibraryName },
       { type: 'action-2', component: null, libraryName: otherLibraryName },
       { type: 'action-3', component: null, libraryName: otherLibraryName },
-      { type: 'action-1', component: null, libraryName: libraryName },
+      { type: 'action-1', component: null, libraryName },
     ];
     const inputTypes: DynamicFormInputType[] = [
       { type: 'input-1', component: null, libraryName: coreLibraryName },
@@ -226,7 +226,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'input-1', component: null, libraryName: otherLibraryName },
       { type: 'input-2', component: null, libraryName: otherLibraryName },
       { type: 'input-3', component: null, libraryName: otherLibraryName },
-      { type: 'input-1', component: null, libraryName: libraryName },
+      { type: 'input-1', component: null, libraryName },
     ];
     const fieldWrapperTypes: DynamicFormFieldWrapperType[] = [
       { type: 'field-wrapper-1', component: null, libraryName: coreLibraryName },
@@ -234,7 +234,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'field-wrapper-1', component: null, libraryName: otherLibraryName },
       { type: 'field-wrapper-2', component: null, libraryName: otherLibraryName },
       { type: 'field-wrapper-3', component: null, libraryName: otherLibraryName },
-      { type: 'field-wrapper-1', component: null, libraryName: libraryName },
+      { type: 'field-wrapper-1', component: null, libraryName },
     ];
 
     beforeEach(() => {
@@ -257,23 +257,23 @@ describe('DynamicFormConfigService', () => {
     it('returns provided types being filtered and merged',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.elementTypes).toEqual([
-          { type: 'element-1', component: null, libraryName: libraryName },
+          { type: 'element-1', component: null, libraryName},
           { type: 'element-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.fieldTypes).toEqual([
-          { type: 'field-1', factory: null, component: null, libraryName: libraryName },
+          { type: 'field-1', factory: null, component: null, libraryName },
           { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName }
         ]);
         expect(service.actionTypes).toEqual([
-          { type: 'action-1', component: null, libraryName: libraryName },
+          { type: 'action-1', component: null, libraryName },
           { type: 'action-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.inputTypes).toEqual([
-          { type: 'input-1', component: null, libraryName: libraryName },
+          { type: 'input-1', component: null, libraryName },
           { type: 'input-2', component: null, libraryName: coreLibraryName }
         ]);
         expect(service.fieldWrapperTypes).toEqual([
-          { type: 'field-wrapper-1', component: null, libraryName: libraryName },
+          { type: 'field-wrapper-1', component: null, libraryName },
           { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName }
         ]);
       })

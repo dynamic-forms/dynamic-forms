@@ -31,15 +31,14 @@ describe('DynamicFormControlValidator', () => {
     const validators = { minMaxLength } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { minMaxLength: true } as DynamicFormControlValidation;
     const control = { definition: { validators }, template: { input: {}, validation } } as DynamicFormControl;
-    const factory = (parameters: { minLength?: number, maxLength?: number }) => {
-      return Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
+    const factory = (parameters: { minLength?: number; maxLength?: number }) =>
+      Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
         ? (formControl: FormControl) => formControl.value
             ? formControl.value.length < parameters.minLength || formControl.value.length > parameters.maxLength
               ? { error: true }
               : null
             : null
         : undefined;
-    };
     const validator = new DynamicFormControlValidator('minMaxLength', control, factory);
 
     expect(validator.key).toBe('minMaxLength');

@@ -32,7 +32,7 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
   ]
 })
 export class MatDynamicFormsModule {
-  static forRoot(config?: { theme?: string, idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
+  static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
     return {
       ngModule: MatDynamicFormsModule,
       providers: [

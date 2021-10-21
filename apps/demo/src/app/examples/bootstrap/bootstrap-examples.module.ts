@@ -7,9 +7,7 @@ import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { BootstrapExamplesRoutingModule } from './bootstrap-examples-routing.module';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
-export function dynamicFormIdBuilder(): string {
-  return v4();
-}
+export const dynamicFormIdBuilder = (): string => v4();
 
 @NgModule({
   imports: [

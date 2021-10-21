@@ -222,10 +222,10 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
-      { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { key: 'key-3', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
+      { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { key: 'key-3', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(formDictionary.control, 'removeControl');
@@ -274,8 +274,8 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
-      { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
+      { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(formDictionary.control, 'removeControl');
@@ -373,7 +373,7 @@ describe('DynamicFormDictionary', () => {
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
     expect(fields[1].reset).toHaveBeenCalledTimes(1);
   });
-  
+
   it('resetEmpty calls destroy of all fields and removeControl for all form group controls', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});

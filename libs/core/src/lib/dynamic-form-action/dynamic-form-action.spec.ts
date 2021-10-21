@@ -110,8 +110,8 @@ describe('DynamicFormAction', () => {
     const definition = { template: {} } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, null, null, definition);
     const actionExpressions = {
-      'hidden': { value: true } as DynamicFormActionExpression,
-      'disabled': { value: false } as DynamicFormActionExpression
+      hidden: { value: true } as DynamicFormActionExpression,
+      disabled: { value: false } as DynamicFormActionExpression
     } as DynamicFormActionExpressions;
 
     builder.createActionExpressions.and.returnValue(actionExpressions);

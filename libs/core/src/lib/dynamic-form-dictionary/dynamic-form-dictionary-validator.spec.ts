@@ -7,11 +7,10 @@ import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-valida
 describe('DynamicFormDictionaryValidator', () => {
   it('creates instance', () => {
     const dictionary = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
     const validator = new DynamicFormDictionaryValidator('minLength', dictionary, factory);
 
     expect(validator.key).toBe('minLength');
@@ -38,15 +37,14 @@ describe('DynamicFormDictionaryValidator', () => {
     const validators = { minMaxLength } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { minMaxLength: true } as DynamicFormDictionaryValidation;
     const dictionary = { definition: { validators }, template: { validation } } as DynamicFormDictionary;
-    const factory = (parameters: { minLength?: number, maxLength?: number }) => {
-      return Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
+    const factory = (parameters: { minLength?: number; maxLength?: number }) =>
+      Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
         ? (formGroup: FormGroup) => formGroup.value
             ? Object.keys(formGroup.value).length < parameters.minLength || Object.keys(formGroup.value).length > parameters.maxLength
               ? { error: true }
               : null
             : null
         : undefined;
-    };
     const validator = new DynamicFormDictionaryValidator('minMaxLength', dictionary, factory);
 
     expect(validator.key).toBe('minMaxLength');
@@ -63,22 +61,20 @@ describe('DynamicFormDictionaryValidator', () => {
 
   it('creating instance throws exception if definition not valid', () => {
     const dictionary = { template: { minLength: 3, validation: { minLength: true } } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
 
     expect(() => new DynamicFormDictionaryValidator('minLength', dictionary, factory)).toThrowError();
   });
 
   it('creating instance throws exception if validation not valid', () => {
     const dictionary = { definition: {}, template: { minLength: 3, validation: null } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
 
     expect(() => new DynamicFormDictionaryValidator('minLength', dictionary, factory)).toThrowError();
   });
@@ -91,11 +87,10 @@ describe('DynamicFormDictionaryValidator', () => {
 
   it('checkChanges returns false', () => {
     const dictionary = { definition: {}, template: { validation: { minLength: true } } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
     const validator = new DynamicFormDictionaryValidator('minLength', dictionary, factory);
 
     const changes = validator.checkChanges();
@@ -105,11 +100,11 @@ describe('DynamicFormDictionaryValidator', () => {
 
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
     const array = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
+    ;
     const validator = new DynamicFormDictionaryValidator('minLength', array, factory);
 
     expect(validator.enabled).toBe(true);
@@ -125,11 +120,10 @@ describe('DynamicFormDictionaryValidator', () => {
 
   it('checkChanges updates validatorFn and returns true if parameters changes', () => {
     const array = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormDictionary;
-    const factory = (minLength: number) => {
-      return Number.isFinite(minLength)
+    const factory = (minLength: number) =>
+      Number.isFinite(minLength)
         ? (formGroup: FormGroup) => formGroup.value && Object.keys(formGroup.value).length < minLength && { error: true } || null
         : undefined;
-    };
     const validator = new DynamicFormDictionaryValidator('minLength', array, factory);
 
     expect(validator.parameters).toBe(3);

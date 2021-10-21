@@ -121,7 +121,7 @@ export class DynamicFormComponentFactory {
       parentComponent.component = component;
       component.field = field;
       return [ ...result, component ];
-    }, [ { ref: ref } ] as DynamicFormFieldWrapperBase[]);
+    }, [ { ref } ] as DynamicFormFieldWrapperBase[]);
     return wrappers.slice(1);
   }
 
@@ -129,8 +129,6 @@ export class DynamicFormComponentFactory {
     field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType
   ): DynamicFormFieldWrapperType[] {
     const wrappers = (field.wrappers || []).concat(type.wrappers || []);
-    return wrappers.map(wrapper => {
-      return this.configService.getFieldWrapperType(wrapper);
-    });
+    return wrappers.map(wrapper => this.configService.getFieldWrapperType(wrapper));
   }
 }

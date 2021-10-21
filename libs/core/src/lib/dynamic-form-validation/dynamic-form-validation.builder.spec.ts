@@ -6,7 +6,9 @@ import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
-import { dynamicFormControlValidatorTypes, DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
+import {
+  dynamicFormControlValidatorTypes, DynamicFormControlValidatorType
+} from '../dynamic-form-control/dynamic-form-control-validator-type';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
 import { DynamicFormDictionaryValidation } from '../dynamic-form-dictionary/dynamic-form-dictionary-validation';
@@ -696,7 +698,7 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'control-validator-1', factory: null, libraryName: otherLibraryName },
       { type: 'control-validator-2', factory: null, libraryName: otherLibraryName },
       { type: 'control-validator-3', factory: null, libraryName: otherLibraryName },
-      { type: 'control-validator-1', factory: null, libraryName: libraryName }
+      { type: 'control-validator-1', factory: null, libraryName }
     ];
     const groupValidatorTypes: DynamicFormGroupValidatorType[] = [
       { type: 'group-validator-1', factory: null, libraryName: coreLibraryName },
@@ -704,7 +706,7 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'group-validator-1', factory: null, libraryName: otherLibraryName },
       { type: 'group-validator-2', factory: null, libraryName: otherLibraryName },
       { type: 'group-validator-3', factory: null, libraryName: otherLibraryName },
-      { type: 'group-validator-1', factory: null, libraryName: libraryName }
+      { type: 'group-validator-1', factory: null, libraryName }
     ];
     const arrayValidatorTypes: DynamicFormArrayValidatorType[] = [
       { type: 'array-validator-1', factory: null, libraryName: coreLibraryName },
@@ -712,7 +714,7 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'array-validator-1', factory: null, libraryName: otherLibraryName },
       { type: 'array-validator-2', factory: null, libraryName: otherLibraryName },
       { type: 'array-validator-3', factory: null, libraryName: otherLibraryName },
-      { type: 'array-validator-1', factory: null, libraryName: libraryName }
+      { type: 'array-validator-1', factory: null, libraryName }
     ];
     const dictionaryValidatorTypes: DynamicFormArrayValidatorType[] = [
       { type: 'dictionary-validator-1', factory: null, libraryName: coreLibraryName },
@@ -720,7 +722,7 @@ describe('DynamicFormValidationBuilder', () => {
       { type: 'dictionary-validator-1', factory: null, libraryName: otherLibraryName },
       { type: 'dictionary-validator-2', factory: null, libraryName: otherLibraryName },
       { type: 'dictionary-validator-3', factory: null, libraryName: otherLibraryName },
-      { type: 'dictionary-validator-1', factory: null, libraryName: libraryName }
+      { type: 'dictionary-validator-1', factory: null, libraryName }
     ];
 
     beforeEach(() => {
@@ -754,19 +756,19 @@ describe('DynamicFormValidationBuilder', () => {
     it('returns provided types being filtered and merged',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service.controlValidatorTypes).toEqual([
-          { type: 'control-validator-1', factory: null, libraryName: libraryName },
+          { type: 'control-validator-1', factory: null, libraryName },
           { type: 'control-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
         expect(service.groupValidatorTypes).toEqual([
-          { type: 'group-validator-1', factory: null, libraryName: libraryName },
+          { type: 'group-validator-1', factory: null, libraryName },
           { type: 'group-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
         expect(service.arrayValidatorTypes).toEqual([
-          { type: 'array-validator-1', factory: null, libraryName: libraryName },
+          { type: 'array-validator-1', factory: null, libraryName },
           { type: 'array-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
         expect(service.dictionaryValidatorTypes).toEqual([
-          { type: 'dictionary-validator-1', factory: null, libraryName: libraryName },
+          { type: 'dictionary-validator-1', factory: null, libraryName },
           { type: 'dictionary-validator-2', factory: null, libraryName: coreLibraryName }
         ]);
       })

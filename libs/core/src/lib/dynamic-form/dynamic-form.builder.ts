@@ -247,7 +247,9 @@ export class DynamicFormBuilder {
     if (children instanceof Array) {
       return children;
     }
-    return Object.keys(children || {}).map(key => ({ ...children[key], key }));
+    return Object.keys(children || {}).map(key => {
+      return { ...children[key], key };
+    });
   }
 
   private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {

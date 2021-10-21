@@ -1,14 +1,20 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler, dynamicFormFieldResetHandler,
-  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler} from '../dynamic-form-field/dynamic-form-field.module';
+import {
+  dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler, dynamicFormFieldResetHandler,
+  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler
+} from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
-import { DynamicFormControlEvaluatorTypeConfig, DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from './dynamic-form-control-evaluator-type-config';
+import {
+  DynamicFormControlEvaluatorTypeConfig, DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG
+} from './dynamic-form-control-evaluator-type-config';
 import { dynamicFormControlValidatorTypes } from './dynamic-form-control-validator-type';
-import { DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from './dynamic-form-control-validator-type-config';
+import {
+  DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG
+} from './dynamic-form-control-validator-type-config';
 import { dynamicFormControlType, DynamicFormControlModule } from './dynamic-form-control.module';
 
 describe('DynamicFormControlModule', () => {

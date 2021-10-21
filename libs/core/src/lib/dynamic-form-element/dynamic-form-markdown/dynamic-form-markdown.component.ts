@@ -15,7 +15,7 @@ export class DynamicFormMarkdownComponent<
   Definition extends DynamicFormMarkdownDefinition<Template> = DynamicFormMarkdownDefinition<Template>
 > extends DynamicFormElementBase<Template, Definition> implements OnInit, DoCheck {
 
-  private _markdownSubject: BehaviorSubject<{ source: string, markdown: string }>;
+  private _markdownSubject: BehaviorSubject<{ source: string; markdown: string }>;
 
   markdown$: Observable<string>;
 
@@ -29,11 +29,10 @@ export class DynamicFormMarkdownComponent<
       markdown: this.template.markdown
     });
     this.markdown$ = this._markdownSubject.asObservable().pipe(
-      switchMap(value => {
-        return value.source
-          ? this.markdownService.compileFromSource(value.source, this.definition.options)
-          : of(this.markdownService.compile(value.markdown, this.definition.options));
-      })
+      switchMap(value => value.source
+        ? this.markdownService.compileFromSource(value.source, this.definition.options)
+        : of(this.markdownService.compile(value.markdown, this.definition.options))
+      )
     );
   }
 

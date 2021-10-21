@@ -298,8 +298,8 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
     const fieldExpressions = {
-      'required': { value: true } as DynamicFormFieldExpression,
-      'readonly': { value: false } as DynamicFormFieldExpression
+      required: { value: true } as DynamicFormFieldExpression,
+      readonly: { value: false } as DynamicFormFieldExpression
     } as DynamicFormFieldExpressions;
 
     spyOn(field, 'checkExpressions');

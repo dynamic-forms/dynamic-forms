@@ -59,28 +59,38 @@ describe('MatDynamicFormIconComponent', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+    );
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary hidden');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary hidden'
+    );
   });
 
   it('sets class name of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+    );
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary className1 className2');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary className1 className2'
+    );
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+    );
   });
 });

@@ -190,8 +190,8 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'removeAt');
@@ -236,10 +236,10 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'removeAt');
@@ -293,8 +293,8 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formArray = new DynamicFormArray(builder, form, form, definition);
     const fields = [
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy(): void {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
     ];
 
     spyOn(formArray.control, 'clear');
@@ -491,7 +491,7 @@ describe('DynamicFormArray', () => {
     expect(fields[0].reset).toHaveBeenCalledTimes(1);
     expect(fields[1].reset).toHaveBeenCalledTimes(1);
   });
-  
+
   it('resetEmpty calls destroy of all fields and clear of form array', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});

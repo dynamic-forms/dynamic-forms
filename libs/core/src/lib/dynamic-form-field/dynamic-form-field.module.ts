@@ -7,9 +7,7 @@ import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 
-export function dynamicFormFieldReset(field: DynamicFormField): void {
-  field.reset();
-}
+export const dynamicFormFieldReset = (field: DynamicFormField): void => field.reset();
 
 export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   type: 'reset',
@@ -17,9 +15,7 @@ export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldResetEmpty(field: DynamicFormField): void {
-  field.resetEmpty();
-}
+export const dynamicFormFieldResetEmpty = (field: DynamicFormField): void => field.resetEmpty();
 
 export const dynamicFormFieldResetEmptyHandler: DynamicFormActionHandler = {
   type: 'resetEmpty',
@@ -27,9 +23,7 @@ export const dynamicFormFieldResetEmptyHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldResetDefault(field: DynamicFormField): void {
-  field.resetDefault();
-}
+export const dynamicFormFieldResetDefault = (field: DynamicFormField): void => field.resetDefault();
 
 export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   type: 'resetDefault',
@@ -37,9 +31,7 @@ export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormFieldValidate(field: DynamicFormField): void {
-  field.validate();
-}
+export const dynamicFormFieldValidate = (field: DynamicFormField): void => field.validate();
 
 export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   type: 'validate',
@@ -47,17 +39,15 @@ export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormSubmit(form: DynamicForm, action: DynamicFormAction): void {
+export const dynamicFormSubmit = (form: DynamicForm, action: DynamicFormAction): void => {
   const parent = action.parent as DynamicFormAction;
   if (parent.dialog && parent.dialogOpen) {
     parent.closeDialog();
   }
   form.submit();
-}
+};
 
-export function getDynamicForm(action: DynamicFormAction): DynamicForm {
-  return action.root;
-}
+export const getDynamicForm = (action: DynamicFormAction): DynamicForm => action.root;
 
 export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
   type: 'submit',

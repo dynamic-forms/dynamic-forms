@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './dynamic-form-dialog.component.html'
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
-  private _dialog: { config: MatDialogConfig, reference: MatDialogRef<any>, subscription: Subscription };
+  private _dialog: { config: MatDialogConfig; reference: MatDialogRef<any>; subscription: Subscription };
   private _dialogOpenSubscription: Subscription;
 
   @ViewChild('dialogTemplateRef', { static: true })
@@ -40,15 +40,13 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   @Input() classNameTitle: string;
 
-  // tslint:disable-next-line: typedef
+  // eslint-disable-next-line
   @Output() escaped = new EventEmitter();
 
   constructor(private dialog: MatDialog, @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string) {}
 
   ngOnInit(): void {
-    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => {
-      return isOpen ? this.openDialog() : this.closeDialog();
-    });
+    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => isOpen ? this.openDialog() : this.closeDialog());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -66,9 +64,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
     this.closeDialog();
     const config = this.getDialogConfig();
     const reference = this.dialog.open(this.dialogTemplateRef, config);
-    const subscription = reference.beforeClosed().subscribe(_ => {
-      return this.escaped.emit();
-    });
+    const subscription = reference.beforeClosed().subscribe(_ => this.escaped.emit());
     this._dialog = { config, reference, subscription };
   }
 

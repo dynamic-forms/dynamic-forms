@@ -71,7 +71,7 @@ export class DynamicFormDictionary<
   reset(): void {
     this._children.forEach(field => field.reset());
   }
-  
+
   resetEmpty(): void {
     this._children.forEach(field => field.destroy());
     Object.keys(this._control.controls).forEach((key) => {

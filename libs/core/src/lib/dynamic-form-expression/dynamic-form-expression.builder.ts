@@ -69,6 +69,7 @@ export class DynamicFormExpressionBuilder {
     return new DynamicFormActionExpression(key, action, expression);
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private createExpressionFunction<Func extends Function>(expression: string): Func {
     return new Function(...dynamicFormExpressionArgs, `return ${ expression };`) as Func;
   }

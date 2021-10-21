@@ -1,0 +1,91 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "apps/**/*",
+    "libs/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "no-public"
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "private-static-field",
+              "protected-static-field",
+              "public-static-field",
+              "private-instance-field",
+              "protected-instance-field",
+              "public-instance-field",
+              "private-constructor",
+              "protected-constructor",
+              "public-constructor",
+              "public-static-method",
+              "public-instance-method",
+              "protected-static-method",
+              "protected-instance-method",
+              "private-static-method",
+              "private-instance-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": ["enumMember"],
+            "format": ["PascalCase"]
+          }
+        ],
+        "@typescript-eslint/no-empty-interface": [
+          "error",
+          {
+            "allowSingleExtends": true
+          }
+        ],
+        "arrow-body-style": [
+          "error", 
+          "as-needed", 
+          { 
+            "requireReturnForObjectLiteral": true 
+          }
+        ],
+        "brace-style": [
+          "error",
+          "1tbs", 
+          { 
+            "allowSingleLine": true 
+          }
+        ],
+        "id-blacklist": "off",
+        "id-match": "off",
+        "import/order": "error",
+        "no-underscore-dangle": "off"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

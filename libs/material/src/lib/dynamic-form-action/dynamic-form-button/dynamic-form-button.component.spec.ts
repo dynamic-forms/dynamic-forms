@@ -77,7 +77,9 @@ describe('MatDynamicFormButtonComponent', () => {
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2'
+    );
 
     component.template.className = null;
     fixture.detectChanges();

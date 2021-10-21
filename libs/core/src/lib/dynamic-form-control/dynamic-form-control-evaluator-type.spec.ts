@@ -51,7 +51,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       } as DynamicFormControlDefinition<DynamicFormSelect>;
 
       const builder: DynamicFormBuilder = {} as any;
-      const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { 'key': null });
+      const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: null });
       const formControl = new DynamicFormControl<DynamicFormSelect>(builder, form, form, definition);
 
       dynamicFormSelectEvaluatorType.func(formControl);

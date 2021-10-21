@@ -30,8 +30,8 @@ export class DynamicFormFieldExpression<
   }
 
   private get previousValue(): any { return this._memo.previousValue; }
-  private get currentValue(): any { return this._memo.currentValue; }
-
   private set previousValue(value: any) { this._memo.previousValue = value; }
+
+  private get currentValue(): any { return this._memo.currentValue; }
   private set currentValue(value: any) { this._memo.currentValue = value; }
 }

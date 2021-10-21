@@ -4,10 +4,10 @@ import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
-export function dynamicFormItemsFactory(
+export const dynamicFormItemsFactory = (
   builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormItemsDefinition
-): DynamicFormItems {
+): DynamicFormItems => {
   const items = new DynamicFormItems(builder, root, parent, definition);
   items.init();
   return items;
-}
+};

@@ -24,9 +24,9 @@ export const dynamicFormDictionaryType: DynamicFormFieldType = {
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDictionaryRegisterFieldHandlerFactory(
+export const dynamicFormDictionaryRegisterFieldHandlerFactory = (
   formBuilder: DynamicFormBuilder
-): DynamicFormActionHandler<DynamicFormDictionary> {
+): DynamicFormActionHandler<DynamicFormDictionary> => {
   const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
     const parent = action.parent as DynamicFormAction;
     const key = parent.dialog ? parent.dialog.model.key : formBuilder.createId();
@@ -39,12 +39,12 @@ export function dynamicFormDictionaryRegisterFieldHandlerFactory(
   return {
     type: 'registerDictionaryField',
     elementFunc: getDynamicFormDictionary,
-    func: func,
+    func,
     libraryName: dynamicFormLibrary.name
   };
-}
+};
 
-export function getDynamicFormDictionary(action: DynamicFormAction): DynamicFormDictionary {
+export const getDynamicFormDictionary = (action: DynamicFormAction): DynamicFormDictionary => {
   const field = action.parent as DynamicFormField;
   if (field.fieldClassType === 'dictionary') {
     return field as DynamicFormDictionary;
@@ -54,14 +54,14 @@ export function getDynamicFormDictionary(action: DynamicFormAction): DynamicForm
   return parentField && parentField.fieldClassType === 'dictionary'
     ? parentField as DynamicFormDictionary
     : undefined;
-}
+};
 
-export function dynamicFormDictionaryRemoveField(field: DynamicFormDictionary, action: DynamicFormAction): void {
+export const dynamicFormDictionaryRemoveField = (field: DynamicFormDictionary, action: DynamicFormAction): void => {
   const childField = action.parent as DynamicFormField;
   if (field && childField && childField.key) {
     field.removeField(childField.key);
   }
-}
+};
 
 export const dynamicFormDictionaryRemoveFieldHandler: DynamicFormActionHandler<DynamicFormDictionary> = {
   type: 'removeDictionaryField',
@@ -70,9 +70,7 @@ export const dynamicFormDictionaryRemoveFieldHandler: DynamicFormActionHandler<D
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDictionaryClearFields(field: DynamicFormDictionary): void {
-  field.clearFields();
-}
+export const dynamicFormDictionaryClearFields = (field: DynamicFormDictionary): void => field.clearFields();
 
 export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<DynamicFormDictionary> = {
   type: 'clearDictionaryFields',

@@ -4,9 +4,7 @@ import { DynamicFormActionModule } from '../../dynamic-form-action/dynamic-form-
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormModal } from './dynamic-form-modal';
 
-export function dynamicFormModalOpen(modal: DynamicFormModal): void {
-  modal.open();
-}
+export const dynamicFormModalOpen = (modal: DynamicFormModal): void => modal.open();
 
 export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'openModal',
@@ -14,9 +12,7 @@ export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormMo
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalClose(modal: DynamicFormModal): void {
-  modal.close();
-}
+export const dynamicFormModalClose = (modal: DynamicFormModal): void => modal.close();
 
 export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'closeModal',
@@ -24,9 +20,7 @@ export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormM
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalToggle(modal: DynamicFormModal): void {
-  modal.toggle();
-}
+export const dynamicFormModalToggle = (modal: DynamicFormModal): void => modal.toggle();
 
 export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleModal',
@@ -34,9 +28,7 @@ export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicForm
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalMaximize(modal: DynamicFormModal): void {
-  modal.maximize();
-}
+export const dynamicFormModalMaximize = (modal: DynamicFormModal): void => modal.maximize();
 
 export const dynamicFormModalMaximizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'maximizeModal',
@@ -44,9 +36,7 @@ export const dynamicFormModalMaximizeHandler: DynamicFormActionHandler<DynamicFo
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalMinimize(modal: DynamicFormModal): void {
-  modal.minimize();
-}
+export const dynamicFormModalMinimize = (modal: DynamicFormModal): void => modal.minimize();
 
 export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'minimizeModal',
@@ -54,9 +44,7 @@ export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFo
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormModalToggleSize(modal: DynamicFormModal): void {
-  modal.toggleSize();
-}
+export const dynamicFormModalToggleSize = (modal: DynamicFormModal): void => modal.toggleSize();
 
 export const dynamicFormModalToggleSizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleSizeModal',
