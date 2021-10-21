@@ -1,4 +1,7 @@
-import { Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges } from '@angular/core';
+/* eslint-disable @angular-eslint/no-conflicting-lifecycle */
+import {
+  Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
@@ -80,6 +83,10 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
 
   reset(): void {
     this._form.reset();
+  }
+
+  resetEmpty(): void {
+    this._form.resetEmpty();
   }
 
   resetDefault(): void {

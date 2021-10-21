@@ -1,6 +1,7 @@
 import { DynamicForm } from '../../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../../dynamic-form/dynamic-form.builder';
+import { createDynamicFormBuilderSpy } from '../../../testing';
 import { DynamicFormElement } from '../../dynamic-form-element';
-import { DynamicFormItem } from '../dynamic-form-item';
 import { DynamicFormItems } from '../dynamic-form-items';
 import { DynamicFormItemsDefinition } from '../dynamic-form-items-definition';
 import { DynamicFormAccordionBase } from './dynamic-form-accordion-base';
@@ -8,16 +9,27 @@ import { DynamicFormAccordionBase } from './dynamic-form-accordion-base';
 class DynamicFormAccordionTestComponent extends DynamicFormAccordionBase {}
 
 describe('DynamicFormAccordionBase', () => {
+  let builder: jasmine.SpyObj<DynamicFormBuilder>;
   let component: DynamicFormAccordionTestComponent;
 
   beforeEach(() => {
+    builder = createDynamicFormBuilderSpy();
+
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
-    const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
+    const definition = {
+      id: 'id',
+      type: 'element',
+      template: {},
+      children: [
+        { template: {} }
+      ]
+    } as DynamicFormItemsDefinition;
 
     component = new DynamicFormAccordionTestComponent();
-    component.element = new DynamicFormItems(root, parent, definition);
-    component.element.initChildren([ {} as DynamicFormItem ]) ;
+    component.element = new DynamicFormItems(builder, root, parent, definition);
+    component.element.init();
+    // component.element.initChildren([ {} as DynamicFormItem ]);
   });
 
   it('openItem calls selectItem of element', () => {

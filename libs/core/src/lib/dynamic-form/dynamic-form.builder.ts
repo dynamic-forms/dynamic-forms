@@ -14,7 +14,7 @@ import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-d
 import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
+import { DynamicFormElementChildren, DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -48,54 +48,36 @@ export class DynamicFormBuilder {
   }
 
   createForm(definition: DynamicFormDefinition, model: any): DynamicForm {
-    const field = new DynamicForm(definition, model);
-    field.initExpressions(this.createFieldExpressions(field));
-    field.initChildren(this.createFormElements(field, field, field.definition.children));
-    field.initValidators(this.createGroupValidators(field));
-    field.initHeaderActions(this.createFormActions(field, field, field.definition.headerActions));
-    field.initFooterActions(this.createFormActions(field, field, field.definition.footerActions));
+    const field = new DynamicForm(this, definition, model);
+    field.init();
     return field;
   }
 
   createFormElement(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition): DynamicFormElement {
     this.requireElementType(definition.type);
-    const element = new DynamicFormElement(root, parent, definition);
-    element.initExpressions(this.createElementExpressions(element));
-    element.initChildren(this.createFormElements(root, element, element.definition.children));
+    const element = new DynamicFormElement(this, root, parent, definition);
+    element.init();
     return element;
   }
 
   createFormControl(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormControlDefinition): DynamicFormControl {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormControl(root, parent, definition);
-    field.initId(this.getFieldId(field));
-    field.initExpressions(this.createFieldExpressions(field));
-    field.initEvaluators(this.createControlEvaluators(field));
-    field.initValidators(this.createControlValidators(field));
+    const field = new DynamicFormControl(this, root, parent, definition);
+    field.init();
     return field;
   }
 
   createFormGroup(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormGroup(root, parent, definition);
-    field.initId(this.getFieldId(field));
-    field.initExpressions(this.createFieldExpressions(field));
-    field.initChildren(this.createFormElements(root, field, field.definition.children));
-    field.initValidators(this.createGroupValidators(field));
-    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
-    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
+    const field = new DynamicFormGroup(this, root, parent, definition);
+    field.init();
     return field;
   }
 
   createFormArray(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormArray(root, parent, definition);
-    field.initId(this.getFieldId(field));
-    field.initExpressions(this.createFieldExpressions(field));
-    field.initChildren(this.createFormArrayElements(field));
-    field.initValidators(this.createArrayValidators(field));
-    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
-    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
+    const field = new DynamicFormArray(this, root, parent, definition);
+    field.init();
     return field;
   }
 
@@ -108,13 +90,8 @@ export class DynamicFormBuilder {
 
   createFormDictionary(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormDictionaryDefinition): DynamicFormDictionary {
     this.requireFieldType(definition.type);
-    const field = new DynamicFormDictionary(root, parent, definition);
-    field.initId(this.getFieldId(field));
-    field.initExpressions(this.createFieldExpressions(field));
-    field.initChildren(this.createFormDictionaryElements(field));
-    field.initValidators(this.createDictionaryValidators(field));
-    field.initHeaderActions(this.createFormActions(root, field, field.definition.headerActions));
-    field.initFooterActions(this.createFormActions(root, field, field.definition.footerActions));
+    const field = new DynamicFormDictionary(this, root, parent, definition);
+    field.init();
     return field;
   }
 
@@ -129,17 +106,8 @@ export class DynamicFormBuilder {
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition
   ): DynamicFormAction {
     this.requireActionType(definition.type);
-    const action = new DynamicFormAction(root, parent, definition);
-    action.initId(this.getActionId(action));
-    action.initExpressions(this.createActionExpressions(action));
-    if (action.dialogDefinition) {
-      const dialog = new DynamicForm(action.dialogDefinition, {});
-      dialog.initExpressions(this.createFieldExpressions(dialog));
-      dialog.initChildren(this.createFormElements(dialog, dialog, dialog.definition.children));
-      dialog.initHeaderActions(this.createFormActions(root, action, dialog.definition.headerActions));
-      dialog.initFooterActions(this.createFormActions(root, action, dialog.definition.footerActions));
-      action.initDialog(dialog);
-    }
+    const action = new DynamicFormAction(this, root, parent, definition);
+    action.init();
     return action;
   }
 
@@ -183,9 +151,9 @@ export class DynamicFormBuilder {
   }
 
   createFormElements(
-    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementDefinition[]
+    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementChildren
   ): DynamicFormElement[] {
-    return (definitions || []).map(definition => {
+    return this.getDefinitions(definitions).map((definition) => {
       const elementDefintion = this.getDefinition(definition, root);
       const classType = this.configService.getClassType(elementDefintion.type);
       switch (classType) {
@@ -200,6 +168,8 @@ export class DynamicFormBuilder {
       }
     });
   }
+
+
 
   createFormActions(
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
@@ -219,7 +189,7 @@ export class DynamicFormBuilder {
   }
 
   createId(): string {
-    return this.idBuilder ? this.idBuilder() : Date.now().toString();
+    return this.idBuilder ? this.idBuilder() : `${Date.now()}${Math.random().toString().slice(2)}`;
   }
 
   getFieldId(field: DynamicFormField): string {
@@ -242,6 +212,44 @@ export class DynamicFormBuilder {
 
   createActionExpressions(action: DynamicFormAction): DynamicFormActionExpressions {
     return this.expressionBuilder.createActionExpressions(action);
+  }
+
+  createFormArrayElements(array: DynamicFormArray): DynamicFormField[] {
+    const model = array.model as any[];
+    return model.map((_item, index) => this.createFormArrayField(array , index));
+  }
+
+  createFormDictionaryElements(dictionary: DynamicFormDictionary): DynamicFormField[] {
+    return Object.keys(dictionary.model).map((key, _index) => this.createFormDictionaryField(dictionary, key));
+  }
+
+  createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {
+    return this.evaluationBuilder.createControlEvaluators(control);
+  }
+
+  createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
+    return this.validationBuilder.createControlValidators(control);
+  }
+
+  createGroupValidators(group: DynamicFormGroup): DynamicFormGroupValidator[] {
+    return this.validationBuilder.createGroupValidators(group);
+  }
+
+  createArrayValidators(array: DynamicFormArray): DynamicFormArrayValidator[] {
+    return this.validationBuilder.createArrayValidators(array);
+  }
+
+  createDictionaryValidators(dictionary: DynamicFormDictionary): DynamicFormDictionaryValidator[] {
+    return this.validationBuilder.createDictionaryValidators(dictionary);
+  }
+
+  private getDefinitions(children: DynamicFormElementChildren): DynamicFormElementDefinition[] {
+    if (children instanceof Array) {
+      return children;
+    }
+    return Object.keys(children || {}).map(key => {
+      return { ...children[key], key };
+    });
   }
 
   private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
@@ -268,34 +276,5 @@ export class DynamicFormBuilder {
     if (this.configService.getClassType(type) !== 'action') {
       throw Error(`Action type ${ type } is not defined`);
     }
-  }
-
-  private createFormArrayElements(array: DynamicFormArray): DynamicFormField[] {
-    const model = array.model as any[];
-    return model.map((_item, index) => this.createFormArrayField(array , index));
-  }
-
-  private createFormDictionaryElements(dictionary: DynamicFormDictionary): DynamicFormField[] {
-    return Object.keys(dictionary.model).map((key, _index) => this.createFormDictionaryField(dictionary, key));
-  }
-
-  private createControlEvaluators(control: DynamicFormControl): DynamicFormControlEvaluator[] {
-    return this.evaluationBuilder.createControlEvaluators(control);
-  }
-
-  private createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
-    return this.validationBuilder.createControlValidators(control);
-  }
-
-  private createGroupValidators(group: DynamicFormGroup): DynamicFormGroupValidator[] {
-    return this.validationBuilder.createGroupValidators(group);
-  }
-
-  private createArrayValidators(array: DynamicFormArray): DynamicFormArrayValidator[] {
-    return this.validationBuilder.createArrayValidators(array);
-  }
-
-  private createDictionaryValidators(dictionary: DynamicFormDictionary): DynamicFormDictionaryValidator[] {
-    return this.validationBuilder.createDictionaryValidators(dictionary);
   }
 }

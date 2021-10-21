@@ -1,13 +1,14 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormElement, DynamicFormLibraryService, DynamicFormModal,
-  DynamicFormModalDefinition } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormLibraryService,
+  DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
 describe('MatDynamicFormModalComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormModalComponent>;
   let component: MatDynamicFormModalComponent;
+  let builder: DynamicFormBuilder;
   let modal: DynamicFormModal;
 
   beforeEach(() => {
@@ -24,7 +25,9 @@ describe('MatDynamicFormModalComponent', () => {
       ]
     });
 
-    modal = new DynamicFormModal({ template: {} } as DynamicForm, {} as DynamicFormElement, {
+    builder = {} as any;
+
+    modal = new DynamicFormModal(builder, { template: {} } as DynamicForm, {} as DynamicFormElement, {
       template: {
         title: 'Title',
         width: '800px',

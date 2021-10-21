@@ -14,7 +14,7 @@ export class DynamicFormLibraryService {
     this.libraryNamesReverse = [ ...this.libraryNames ].reverse();
   }
 
-  filterTypes<Type extends  { type: string, libraryName: DynamicFormLibraryName }>(types: (Type | Type[])[]): Type[] {
+  filterTypes<Type extends  { type: string; libraryName: DynamicFormLibraryName }>(types: (Type | Type[])[]): Type[] {
     if (!types || !types.length) {
       return [];
     }
@@ -25,7 +25,7 @@ export class DynamicFormLibraryService {
     }, []);
   }
 
-  private getLibraryTypes<Type extends { type: string, libraryName: DynamicFormLibraryName }>(
+  private getLibraryTypes<Type extends { type: string; libraryName: DynamicFormLibraryName }>(
     name: DynamicFormLibraryName, types: (Type | Type[])[], excludeTypes: Type[]): Type[] {
     const typesFlattened = this.getTypesFlattened(types);
     if (excludeTypes && excludeTypes.length) {
@@ -36,9 +36,7 @@ export class DynamicFormLibraryService {
   }
 
   private getTypesFlattened<Type>(types: (Type | Type[])[]): Type[] {
-    return types.reduce<Type[]>((result, type) => {
-      return result.concat(type);
-    }, []);
+    return types.reduce<Type[]>((result, type) => result.concat(type), []);
   }
 
   private getLibraryNames(): DynamicFormLibraryName[] {

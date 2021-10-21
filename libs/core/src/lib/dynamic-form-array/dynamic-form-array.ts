@@ -3,18 +3,19 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
+import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
 > extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
-    this._model = this.getModel(definition);
-    this._control = new FormArray([]);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition, new FormArray([]));
+    this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
 
@@ -22,17 +23,11 @@ export class DynamicFormArray<
 
   get length(): number { return this._children.length; }
 
-  initChildren(children: DynamicFormField[]): void {
-    this._children = children || [];
-    this._children.forEach((field, index) => {
-      this._control.insert(index, field.control);
-    });
-  }
-
   pushField(element: DynamicFormField): void {
     this._children.push(element);
     this._control.push(element.control);
     this._control.markAsTouched();
+    console.log(this._model);
   }
 
   popField(): void {
@@ -112,13 +107,18 @@ export class DynamicFormArray<
     this._children.forEach(field => field.reset());
   }
 
+  resetEmpty(): void {
+    this._children.forEach(field => field.destroy());
+    this._children = [];
+    this._control.clear();
+    this.initModel([]);
+  }
+
   resetDefault(): void {
-    if (this.definition.defaultValue) {
-      const defaultModel = this.cloneObject(this.definition.defaultValue);
-      this._control.patchValue(defaultModel);
-    } else {
-      this._children.forEach(field => field.resetDefault());
-    }
+    this._children.forEach((field) => field.destroy());
+    this._control.clear();
+    this.initModel(this.getDefaultModel());
+    this.initChildren();
   }
 
   validate(): void {
@@ -126,15 +126,34 @@ export class DynamicFormArray<
     this._control.markAsTouched();
   }
 
-  private getModel(definition: DynamicFormArrayDefinition): any {
-    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
-    return this.parentField.model[definition.key];
+  protected getChildren(): DynamicFormField[] {
+    return this._builder.createFormArrayElements(this);
   }
 
-  private getDefaultModel(definition: DynamicFormArrayDefinition): any {
-    if (definition.defaultValue) {
-      return this.cloneObject(definition.defaultValue);
+  protected initChildren(): void {
+    super.initChildren();
+    this._children.forEach((field, index) => {
+      this._control.insert(index, field.control);
+    });
+  }
+
+  protected getValidators(): DynamicFormArrayValidator[] {
+    return this._builder.createArrayValidators(this);
+  }
+
+  private initModel(model: any): void {
+    this.parentField.model[this.definition.key] = model;
+    this._model = this.parentField.model[this.definition.key];
+  }
+
+  private getModel(): any {
+    return this.parentField.model[this.definition.key] || this.getDefaultModel();
+  }
+
+  private getDefaultModel(): any {
+    if (this.definition.defaultValue) {
+      return this.cloneObject(this.definition.defaultValue);
     }
-    return Array.from({ length: definition.defaultLength || 0 });
+    return Array.from({ length: this.definition.defaultLength || 0 });
   }
 }

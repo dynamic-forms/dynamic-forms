@@ -9,9 +9,9 @@ describe('DynamicFormActionExpression', () => {
     const parentField = { status: 'VALID' };
     const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
     const action = { expressionData } as DynamicFormAction;
-    const expression = new DynamicFormActionExpression('key', action, data => {
-      return data.root.status === 'VALID' && data.parentField.status === 'VALID';
-    });
+    const expression = new DynamicFormActionExpression('key', action,
+      data => data.root.status === 'VALID' && data.parentField.status === 'VALID'
+    );
 
     expect(expression.value).toBe(false);
 

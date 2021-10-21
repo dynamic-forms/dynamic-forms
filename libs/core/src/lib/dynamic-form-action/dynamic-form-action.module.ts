@@ -6,9 +6,7 @@ import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
-export function dynamicFormDialogOpen(action: DynamicFormAction): void {
-  action.openDialog();
-}
+export const dynamicFormDialogOpen = (action: DynamicFormAction) => action.openDialog();
 
 export const dynamicFormDialogOpenHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'openDialog',
@@ -16,9 +14,7 @@ export const dynamicFormDialogOpenHandler: DynamicFormActionHandler<DynamicFormA
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDialogClose(action: DynamicFormAction): void {
-  action.closeDialog();
-}
+export const dynamicFormDialogClose = (action: DynamicFormAction) => action.closeDialog();
 
 export const dynamicFormDialogCloseHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'closeDialog',
@@ -26,9 +22,9 @@ export const dynamicFormDialogCloseHandler: DynamicFormActionHandler<DynamicForm
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDialogToggle(action: DynamicFormAction): void {
+export const dynamicFormDialogToggle = (action: DynamicFormAction) => {
   action.toggleDialog();
-}
+};
 
 export const dynamicFormDialogToggleHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'toggleDialog',
@@ -84,7 +80,7 @@ export class DynamicFormActionModule {
   }
 
   static withHandlerFactory<Element extends DynamicFormElement = DynamicFormElement>(
-    handlerFactory: (...deps: any[]) => DynamicFormActionHandler<Element>, deps?: any[]
+    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>, deps?: any[]
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -92,7 +88,7 @@ export class DynamicFormActionModule {
         {
           provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useFactory: handlerFactory,
-          deps: deps,
+          deps,
           multi: true
         }
       ]

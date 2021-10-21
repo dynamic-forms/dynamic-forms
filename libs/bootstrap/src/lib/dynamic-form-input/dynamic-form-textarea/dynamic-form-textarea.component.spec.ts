@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormTextarea, DynamicFormValidationService} from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { BsDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
 describe('BsDynamicFormTextareaComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormTextareaComponent>;
   let component: BsDynamicFormTextareaComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
   let formControl: DynamicFormControl<DynamicFormTextarea>;
@@ -30,9 +32,11 @@ describe('BsDynamicFormTextareaComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition<DynamicFormTextarea>;
-    formControl = new DynamicFormControl<DynamicFormTextarea>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormTextarea>(builder, form, form, definition);
 
     component.field = formControl;
 

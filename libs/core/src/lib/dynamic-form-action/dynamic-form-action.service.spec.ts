@@ -39,7 +39,7 @@ describe('DynamicFormActionService', () => {
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const field = {} as DynamicFormField;
         const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
-        const event = { stopPropagation(): void {} } as Event;
+        const event = { stopPropagation: () => {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(event, 'stopPropagation');
@@ -114,7 +114,7 @@ describe('DynamicFormActionService', () => {
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const field = {} as DynamicFormField;
         const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
-        const event = { stopPropagation(): void {} } as Event;
+        const event = { stopPropagation: () => {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[0], 'func');
@@ -133,7 +133,7 @@ describe('DynamicFormActionService', () => {
         const parent = {} as DynamicFormField;
         const field = { parent: parent as DynamicFormElement } as DynamicFormField;
         const action = { parent: field as DynamicFormElement, template: { action: 'type-field-func' } } as DynamicFormAction;
-        const event = { stopPropagation(): void {} } as Event;
+        const event = { stopPropagation: () => {} } as Event;
 
         spyOn(service, 'getHandler').and.callThrough();
         spyOn(service.handlers[1], 'elementFunc').and.callThrough();

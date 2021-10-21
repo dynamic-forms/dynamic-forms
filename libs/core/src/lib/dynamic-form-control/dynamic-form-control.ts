@@ -1,15 +1,18 @@
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
+import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
+import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,
@@ -21,8 +24,8 @@ export class DynamicFormControl<
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
@@ -37,8 +40,9 @@ export class DynamicFormControl<
 
   get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
-  initEvaluators(evaluators: DynamicFormControlEvaluator[]): void {
-    this._evaluators = evaluators || [];
+  init(): void {
+    super.init();
+    this.initEvaluators();
   }
 
   check(): void {
@@ -52,6 +56,10 @@ export class DynamicFormControl<
   }
 
   reset(): void {
+    this._control.reset(null);
+  }
+
+  resetEmpty(): void {
     this._control.reset(null);
   }
 
@@ -74,6 +82,30 @@ export class DynamicFormControl<
     if (keys.includes('input.defaultValue')) {
       this.checkDefaultValue();
     }
+  }
+
+  protected getChildren(): DynamicFormElement[] {
+    return undefined;
+  }
+
+  protected getHeaderActions(): DynamicFormAction[] {
+    return undefined;
+  }
+
+  protected getFooterActions(): DynamicFormAction[] {
+    return undefined;
+  }
+
+  protected getValidators(): DynamicFormControlValidator[] {
+    return this._builder.createControlValidators(this);
+  }
+
+  protected getEvaluators(): DynamicFormControlEvaluator[] {
+    return this._builder.createControlEvaluators(this);
+  }
+
+  protected initEvaluators(): void {
+    this._evaluators = this.getEvaluators() || [];
   }
 
   private createModel(): any {

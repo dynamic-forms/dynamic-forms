@@ -2,36 +2,21 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
-    "declarationMap": true,
-    "target": "es2015",
     "declaration": true,
-    "sourceMap": true,
+    "declarationMap": true,
     "inlineSources": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
     "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ],
     "paths": {
       "@angular/*": [
         "./node_modules/@angular/*"
       ],
       "@dynamic-forms/core": [
-        "dist/v12/@dynamic-forms/core"
+        "dist/v13/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v12/@dynamic-forms/core/*"
+        "dist/v13/@dynamic-forms/core/*"
       ]
     }
-  },
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
-    "enableResourceInlining": true
   },
   "exclude": [
     "src/test.ts",

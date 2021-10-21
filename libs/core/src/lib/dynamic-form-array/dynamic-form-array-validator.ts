@@ -1,5 +1,7 @@
 import { FormArray } from '@angular/forms';
-import { DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn } from '../dynamic-form-field/dynamic-form-field-validator';
+import {
+  DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn
+} from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormArray } from './dynamic-form-array';
 
 export type DynamicFormArrayValidatorFn = DynamicFormFieldValidatorFn<FormArray>;

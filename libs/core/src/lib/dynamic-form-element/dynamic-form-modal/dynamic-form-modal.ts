@@ -1,6 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
@@ -18,8 +19,8 @@ export class DynamicFormModal<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
+    super(builder, root, parent, definition);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
@@ -36,16 +37,11 @@ export class DynamicFormModal<
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
-  initTrigger(trigger: DynamicFormAction): void {
-    this._trigger = trigger;
-  }
-
-  initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions || [];
-  }
-
-  initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions || [];
+  init(): void {
+    super.init();
+    this.initTrigger();
+    this.initHeaderActions();
+    this.initFooterActions();
   }
 
   open(): void {
@@ -73,5 +69,21 @@ export class DynamicFormModal<
     if (!descriptor || descriptor.writable) {
       this.template.maximized = !this.template.maximized;
     }
+  }
+
+  protected getChildren(): DynamicFormElement[] {
+    return this._builder.createFormElements(this.root, this.parent, this.definition.children);
+  }
+
+  protected initTrigger(): void {
+    this._trigger = this._builder.createFormAction(this.root, this, this.definition.trigger);
+  }
+
+  protected initHeaderActions(): void {
+    this._headerActions = this._builder.createFormActions(this.root, this, this.definition.headerActions) || [];
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this._builder.createFormActions(this.root, this, this.definition.footerActions) || [];
   }
 }

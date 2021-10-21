@@ -38,7 +38,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
       const expressions = {
-        'disabled': 'data.values && data.values.length > 0'
+        disabled: 'data.values && data.values.length > 0'
       } as { [key: string]: string };
       const definition = { expressions } as DynamicFormElementDefinition;
       const element = { definition, expressionData } as DynamicFormElement;
@@ -62,9 +62,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
       const expressions = {
-        'disabled': (data) => {
-          return data.values && data.values.length > 0;
-        }
+        disabled: (data) => data.values && data.values.length > 0
       } as { [key: string]: DynamicFormElementExpressionFunc };
       const definition = { expressions } as DynamicFormElementDefinition;
       const element = { definition, expressionData } as DynamicFormElement;
@@ -100,7 +98,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = {
-        'readonly': 'data.root.model.readonly || data.parentField.model.readonly'
+        readonly: 'data.root.model.readonly || data.parentField.model.readonly'
       } as { [key: string]: string };
       const expressionData = {
         root: { model: root.model },
@@ -136,7 +134,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = {
-        'readonly': func
+        readonly: func
       } as { [key: string]: DynamicFormFieldExpressionFunc };
       const expressionData = {
         model: model.child.child,
@@ -177,7 +175,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const parentField = { status: 'VALID' };
       const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
       const expressions = {
-        'disabled': 'data.parentField.status === "VALID" && data.root.status === "VALID"'
+        disabled: 'data.parentField.status === "VALID" && data.root.status === "VALID"'
       } as { [key: string]: string };
       const definition = { expressions } as DynamicFormActionDefinition;
       const action = { definition, expressionData } as DynamicFormAction;
@@ -202,9 +200,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const parentField = { status: 'VALID' };
       const expressionData = { root, parentField } as DynamicFormActionExpressionData;
       const expressions = {
-        'disabled': (data) => {
-          return data.parentField.status === 'VALID' && data.root.status === 'VALID';
-        }
+        disabled: (data) => data.parentField.status === 'VALID' && data.root.status === 'VALID'
       } as { [key: string]: DynamicFormActionExpressionFunc };
       const definition = { expressions } as DynamicFormActionDefinition;
       const action = { definition, expressionData } as DynamicFormAction;

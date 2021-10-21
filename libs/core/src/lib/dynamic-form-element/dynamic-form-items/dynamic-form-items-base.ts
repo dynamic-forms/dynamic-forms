@@ -6,7 +6,7 @@ import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
 @Directive()
-// tslint:disable-next-line: directive-class-suffix
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export abstract class DynamicFormItemsBase<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,

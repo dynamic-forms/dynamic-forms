@@ -63,9 +63,9 @@ export class DynamicFormValidationBuilder {
   }
 
   createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
-    return control.template.validation ? Object.keys(control.template.validation).map(key => {
-      return this.createControlValidator(control, key);
-    }).filter(validator => !!validator) : [];
+    return control.template.validation
+      ? Object.keys(control.template.validation).map(key => this.createControlValidator(control, key)).filter(validator => !!validator)
+      : [];
   }
 
   createControlValidator(control: DynamicFormControl, key: string): DynamicFormControlValidator {
@@ -79,9 +79,8 @@ export class DynamicFormValidationBuilder {
   }
 
   createGroupValidators(group: DynamicFormGroup): DynamicFormGroupValidator[] {
-    return group.template.validation ? Object.keys(group.template.validation).map(key => {
-      return this.createGroupValidator(group, key);
-    }).filter(validator => !!validator) : [];
+    const keys = Object.keys(group.template.validation || {});
+    return keys.map(key => this.createGroupValidator(group, key)).filter(validator => !!validator);
   }
 
   createGroupValidator(group: DynamicFormGroup, key: string): DynamicFormGroupValidator {
@@ -95,9 +94,8 @@ export class DynamicFormValidationBuilder {
   }
 
   createArrayValidators(array: DynamicFormArray): DynamicFormArrayValidator[] {
-    return array.template.validation ? Object.keys(array.template.validation).map(key => {
-      return this.createArrayValidator(array, key);
-    }).filter(validator => !!validator) : [];
+    const keys = Object.keys(array.template.validation || {});
+    return keys.map(key => this.createArrayValidator(array, key)).filter(validator => !!validator);
   }
 
   createArrayValidator(array: DynamicFormArray, key: string): DynamicFormArrayValidator {
@@ -111,9 +109,8 @@ export class DynamicFormValidationBuilder {
   }
 
   createDictionaryValidators(dictionary: DynamicFormDictionary): DynamicFormDictionaryValidator[] {
-    return dictionary.template.validation ? Object.keys(dictionary.template.validation).map(key => {
-      return this.createDictionaryValidator(dictionary, key);
-    }).filter(validator => !!validator) : [];
+    const keys = Object.keys(dictionary.template.validation || {});
+    return keys.map(key => this.createDictionaryValidator(dictionary, key)).filter(validator => !!validator);
   }
 
   createDictionaryValidator(dictionary: DynamicFormDictionary, key: string): DynamicFormDictionaryValidator {

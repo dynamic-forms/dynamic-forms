@@ -9,21 +9,19 @@ export interface DynamicFormControlEvaluatorType<
   inputType?: string;
 }
 
-export function dynamicFormSelectEvaluatorFn(control: DynamicFormControl): void {
+export const dynamicFormSelectEvaluatorFn = (control: DynamicFormControl): void => {
   if (!control.model) {
     return;
   }
   const options = control.template.input.options || [];
   const multiple = control.template.input.multiple;
-  const someOption = (value) => {
-    return options.some(option => {
-      return !option.disabled
-        ? option.items
-          ? option.items.filter(i => !i.disabled).some(i => i.value === value)
-          : option.value === value
-        : false;
-    });
-  };
+  const someOption = (value) => options.some(option => !option.disabled
+    ? option.items
+      ? option.items.filter(i => !i.disabled).some(i => i.value === value)
+      : option.value === value
+    : false
+  );
+
   if (control.model instanceof Array) {
     const validOptions = multiple ? control.model.filter(model => someOption(model)) : null;
     const valid = multiple ? control.model.length === validOptions.length : false;
@@ -37,7 +35,7 @@ export function dynamicFormSelectEvaluatorFn(control: DynamicFormControl): void 
       control.patchModel(model);
     }
   }
-}
+};
 
 export const dynamicFormSelectEvaluatorType: DynamicFormControlEvaluatorType = {
   type: 'select',

@@ -32,6 +32,8 @@ import { DYNAMIC_FORM_ID_BUILDER } from './dynamic-form-id.builder';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 describe('DynamicFormBuilder', () => {
+  let idBuilder: { createId: () => string };
+
   const elementFactory: DynamicFormElementFactory =
     (builder, root, parent, definition) => builder.createFormElement(root, parent, definition);
 
@@ -58,7 +60,7 @@ describe('DynamicFormBuilder', () => {
 
   const getForm = (model: any, references?: { [key: string]: DynamicFormElementDefinition }) => {
     const definition = { children: [], references } as DynamicFormDefinition;
-    return new DynamicForm(definition, model);
+    return new DynamicForm({} as any, definition, model);
   };
 
   const validatorTypes = [
@@ -70,6 +72,8 @@ describe('DynamicFormBuilder', () => {
   ];
 
   beforeEach(() => {
+    idBuilder = { createId: () => 'dynamic-form-id' };
+
     TestBed.configureTestingModule({
       providers: [
         {
@@ -90,7 +94,7 @@ describe('DynamicFormBuilder', () => {
         },
         {
           provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: () => 'dynamic-form-id'
+          useFactory: () => idBuilder.createId
         },
         {
           provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
@@ -896,4 +900,21 @@ describe('DynamicFormBuilder', () => {
       expect(id).toBe('dynamic-form-action-id');
     })
   );
+
+  describe('without DYNAMIC_FORM_ID_BUILDER', () => {
+    beforeEach(() => {
+      idBuilder = { createId: null };
+    });
+
+    it('creates ids', inject([DynamicFormBuilder], (builder: DynamicFormBuilder) => {
+      const ids = [ builder.createId(), builder.createId(), builder.createId() ];
+
+      expect(ids[0]).toBeTruthy();
+      expect(ids[1]).toBeTruthy();
+      expect(ids[2]).toBeTruthy();
+
+      expect(ids[0]).not.toEqual(ids[1]);
+      expect(ids[1]).not.toEqual(ids[2]);
+    }));
+  });
 });

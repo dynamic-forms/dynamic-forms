@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Injectable()
 export class IconService {
   private readonly _svgs: { [svg: string ]: string } = {
-    'github': 'assets/images/github.svg',
+    github: 'assets/images/github.svg',
     'azure-devops': 'assets/images/azure-devops.svg'
   };
 

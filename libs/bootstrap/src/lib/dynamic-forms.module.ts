@@ -34,7 +34,7 @@ import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-librar
   ]
 })
 export class BsDynamicFormsModule {
-  static forRoot(config?: { theme?: string, idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<BsDynamicFormsModule> {
+  static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<BsDynamicFormsModule> {
     return {
       ngModule: BsDynamicFormsModule,
       providers: [

@@ -4,9 +4,6 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 
-export function dynamicFormControlFactory(
+export const dynamicFormControlFactory = (
   builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormField, definition: DynamicFormControlDefinition
-): DynamicFormControl {
-  return builder.createFormControl(root, parent, definition);
-}
-
+): DynamicFormControl => builder.createFormControl(root, parent, definition);

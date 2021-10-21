@@ -5,6 +5,7 @@ import { assignExpressionData } from '../dynamic-form-expression/dynamic-form-ex
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { cloneObject } from '../dynamic-form/dynamic-form-helpers';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
@@ -34,8 +35,9 @@ export abstract class DynamicFormField<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, control?: Control) {
+    super(builder, root, parent, definition);
+    this._control = control;
     this._depth = this.getDepth();
     this._settings = this.createSettings();
   }
@@ -72,22 +74,11 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
-  initExpressions(expressions: DynamicFormFieldExpressions): void {
-    super.initExpressions(expressions);
-    this.afterInitExpressions();
-  }
-
-  initValidators(validators: DynamicFormFieldValidator[]): void {
-    this._validators = validators || [];
-    this._control.setValidators(this.getValidatorFunctions());
-  }
-
-  initHeaderActions(actions: DynamicFormAction[]): void {
-    this._headerActions = actions;
-  }
-
-  initFooterActions(actions: DynamicFormAction[]): void {
-    this._footerActions = actions;
+  init(): void {
+    super.init();
+    this.initValidators();
+    this.initHeaderActions();
+    this.initFooterActions();
   }
 
   abstract get fieldClassType(): DynamicFormFieldClassType;
@@ -96,10 +87,52 @@ export abstract class DynamicFormField<
   abstract destroy(): void;
 
   abstract reset(): void;
+  abstract resetEmpty(): void;
   abstract resetDefault(): void;
   abstract validate(): void;
 
+  protected getId(): string {
+    return this._builder.getFieldId(this);
+  }
+
+  protected initId(): void {
+    this.definition.id = this.getId();
+  }
+
+  protected getExpressions(): DynamicFormFieldExpressions {
+    return this._builder.createFieldExpressions(this);
+  }
+
+  protected initExpressions(): void {
+    super.initExpressions();
+    this.afterInitExpressions();
+  }
+
   protected afterInitExpressions(): void {}
+
+  protected abstract getChildren(): Child[];
+  protected abstract getValidators(): DynamicFormFieldValidator[];
+
+  protected initValidators(): void {
+    this._validators = this.getValidators() || [];
+    this._control.setValidators(this.getValidatorFunctions());
+  }
+
+  protected getHeaderActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this, this.definition.headerActions);
+  }
+
+  protected initHeaderActions(): void {
+    this._headerActions = this.getHeaderActions() || [];
+  }
+
+  protected getFooterActions(): DynamicFormAction[] {
+    return this._builder.createFormActions(this.root, this, this.definition.footerActions);
+  }
+
+  protected initFooterActions(): void {
+    this._footerActions = this.getFooterActions() || [];
+  }
 
   protected checkControl(): void {
     const disabled = (this.parentField && this.parentField.control.disabled) || this.template.disabled || false;

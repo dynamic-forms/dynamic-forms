@@ -5,11 +5,8 @@ import { DynamicFormGroupValidatorFactory, DynamicFormGroupValidatorFn } from '.
 
 export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidatorType<DynamicFormGroupValidatorFactory> {}
 
-export function dynamicFormGroupRequiredValidatorFactory(): DynamicFormGroupValidatorFn {
-  return (group: FormGroup) => {
-    return !group.value || Object.keys(group.value).length === 0 ? { requiredGroup: true } : null;
-  };
-}
+export const dynamicFormGroupRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: FormGroup) =>
+  !group.value || Object.keys(group.value).length === 0 ? { requiredGroup: true } : null;
 
 export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorType = {
   type: 'required',
@@ -17,12 +14,10 @@ export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorTyp
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormGroupAllRequiredValidatorFactory(): DynamicFormGroupValidatorFn {
-  return (group: FormGroup) => {
-    const keys = Object.keys(group.value || {});
-    return keys.some(key => !group.value[key]) ? { allRequiredGroup: true } : null;
-  };
-}
+export const dynamicFormGroupAllRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: FormGroup) => {
+  const keys = Object.keys(group.value || {});
+  return keys.some(key => !group.value[key]) ? { allRequiredGroup: true } : null;
+};
 
 export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidatorType = {
   type: 'allRequired',
@@ -30,26 +25,24 @@ export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidator
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormGroupEqualValidatorFactory(
+export const dynamicFormGroupEqualValidatorFactory = (
   parameters?: { keys: string[] }, message?: string, key?: string
-): DynamicFormGroupValidatorFn {
-  return (group: FormGroup) => {
-    const keys = parameters && parameters.keys;
-    if (group.value && keys && keys.length > 1) {
-      for (let i = 1; i < keys.length; i++) {
-        if (group.value[keys[i - 1]] !== group.value[keys[i]]) {
-          if (key) {
-            const error = {};
-            error[key] = { message };
-            return error;
-          }
-          return { equal: { message } };
+): DynamicFormGroupValidatorFn => (group: FormGroup) => {
+  const keys = parameters && parameters.keys;
+  if (group.value && keys && keys.length > 1) {
+    for (let i = 1; i < keys.length; i++) {
+      if (group.value[keys[i - 1]] !== group.value[keys[i]]) {
+        if (key) {
+          const error = {};
+          error[key] = { message };
+          return error;
         }
+        return { equal: { message } };
       }
     }
-    return null;
-  };
-}
+  }
+  return null;
+};
 
 export const dynamicFormGroupEqualValidatorType: DynamicFormGroupValidatorType = {
   type: 'equal',

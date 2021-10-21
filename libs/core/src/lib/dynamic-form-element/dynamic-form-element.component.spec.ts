@@ -5,6 +5,7 @@ import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-co
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
@@ -46,6 +47,7 @@ describe('DynamicFormElementComponent', () => {
   let fixture: ComponentFixture<DynamicFormElementComponent>;
   let component: DynamicFormElementComponent;
   let element: DynamicFormElement;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -58,7 +60,8 @@ describe('DynamicFormElementComponent', () => {
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
 
-    element = new DynamicFormElement(root, parent, definition);
+    builder = {} as any;
+    element = new DynamicFormElement(builder, root, parent, definition);
 
     fixture = TestBed.createComponent(DynamicFormElementComponent);
     component = fixture.componentInstance;

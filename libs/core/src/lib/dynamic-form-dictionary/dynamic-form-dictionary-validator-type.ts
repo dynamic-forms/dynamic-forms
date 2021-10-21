@@ -5,11 +5,8 @@ import { DynamicFormDictionaryValidatorFactory, DynamicFormDictionaryValidatorFn
 
 export interface DynamicFormDictionaryValidatorType extends DynamicFormFieldValidatorType<DynamicFormDictionaryValidatorFactory> {}
 
-export function dynamicFormDictionaryRequiredValidatorFactory(): DynamicFormDictionaryValidatorFn {
-  return (group: FormGroup) => {
-    return !group.value || Object.keys(group.value).length === 0 ? { requiredDictionary: true } : null;
-  };
-}
+export const dynamicFormDictionaryRequiredValidatorFactory = (): DynamicFormDictionaryValidatorFn => (group: FormGroup) =>
+  !group.value || Object.keys(group.value).length === 0 ? { requiredDictionary: true } : null;
 
 export const dynamicFormDictionaryRequiredValidatorType: DynamicFormDictionaryValidatorType = {
   type: 'required',
@@ -17,7 +14,7 @@ export const dynamicFormDictionaryRequiredValidatorType: DynamicFormDictionaryVa
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDictionaryMinLengthValidatorFactory(minLength?: number): DynamicFormDictionaryValidatorFn {
+export const dynamicFormDictionaryMinLengthValidatorFactory = (minLength?: number): DynamicFormDictionaryValidatorFn => {
   if (!Number.isFinite(minLength)) {
     return undefined;
   }
@@ -30,7 +27,7 @@ export function dynamicFormDictionaryMinLengthValidatorFactory(minLength?: numbe
     const actualLength = Object.keys(group.value).length;
     return actualLength < minLength ? { minlengthDictionary: { requiredLength: minLength, actualLength } } : null;
   };
-}
+};
 
 export const dynamicFormDictionaryMinLengthValidatorType: DynamicFormDictionaryValidatorType = {
   type: 'minLength',
@@ -38,7 +35,7 @@ export const dynamicFormDictionaryMinLengthValidatorType: DynamicFormDictionaryV
   libraryName: dynamicFormLibrary.name
 };
 
-export function dynamicFormDictionaryMaxLengthValidatorFactory(maxLength?: number): DynamicFormDictionaryValidatorFn {
+export const dynamicFormDictionaryMaxLengthValidatorFactory = (maxLength?: number): DynamicFormDictionaryValidatorFn => {
   if (!Number.isFinite(maxLength)) {
     return undefined;
   }
@@ -51,7 +48,7 @@ export function dynamicFormDictionaryMaxLengthValidatorFactory(maxLength?: numbe
     const actualLength = Object.keys(group.value).length;
     return actualLength > maxLength ? { maxlengthDictionary: { requiredLength: maxLength, actualLength } } : null;
   };
-}
+};
 
 export const dynamicFormDictionaryMaxLengthValidatorType: DynamicFormDictionaryValidatorType = {
   type: 'maxLength',

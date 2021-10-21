@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDatepicker, DynamicFormDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDatepicker, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
 
 describe('MatDynamicFormDatepickerComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormDatepickerComponent>;
   let component: MatDynamicFormDatepickerComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormDatepicker>;
   let formControl: DynamicFormControl<DynamicFormDatepicker>;
@@ -32,9 +34,11 @@ describe('MatDynamicFormDatepickerComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormDatepicker>;
-    formControl = new DynamicFormControl<DynamicFormDatepicker>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormDatepicker>(builder, form, form, definition);
 
     component.field = formControl;
 

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormButtonDefinition,
-  DynamicFormButtonTemplate, DynamicFormField, DynamicFormLibraryService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormBuilder,
+  DynamicFormButtonDefinition, DynamicFormButtonTemplate, DynamicFormField,
+  DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 import { MatDynamicFormButtonModule } from './dynamic-form-button.module';
 
@@ -9,6 +10,7 @@ describe('MatDynamicFormButtonComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormButtonComponent>;
   let component: MatDynamicFormButtonComponent;
   let element: DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,11 +29,13 @@ describe('MatDynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormButtonComponent);
     component = fixture.componentInstance;
 
+    builder = {} as any;
+
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
     const template = { label: 'label' } as DynamicFormButtonTemplate;
     const definition = { id: 'id', type: 'element', template } as DynamicFormButtonDefinition;
-    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(root, parent, definition);
+    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(builder, root, parent, definition);
     component.element = element;
 
     fixture.detectChanges();
@@ -73,7 +77,9 @@ describe('MatDynamicFormButtonComponent', () => {
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2');
+    expect(formButtonElement.className).toBe(
+      'mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2'
+    );
 
     component.template.className = null;
     fixture.detectChanges();

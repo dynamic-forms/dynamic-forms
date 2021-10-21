@@ -1,5 +1,7 @@
 import { FormGroup } from '@angular/forms';
-import { DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn } from '../dynamic-form-field/dynamic-form-field-validator';
+import {
+  DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn
+} from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 
 export type DynamicFormDictionaryValidatorFn = DynamicFormFieldValidatorFn<FormGroup>;

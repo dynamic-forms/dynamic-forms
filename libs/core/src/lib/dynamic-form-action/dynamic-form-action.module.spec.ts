@@ -3,7 +3,7 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
-import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG} from './dynamic-form-action-handler-config';
+import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
 import { dynamicFormDialogHandlers, DynamicFormActionModule } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
@@ -53,7 +53,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls openDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'openDialog');
-        const action = { openDialog(): void {} } as DynamicFormAction;
+        const action = { openDialog: () => {} } as DynamicFormAction;
 
         spyOn(action, 'openDialog');
 
@@ -66,7 +66,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls closeDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'closeDialog');
-        const action = { closeDialog(): void {} } as DynamicFormAction;
+        const action = { closeDialog: () => {} } as DynamicFormAction;
 
         spyOn(action, 'closeDialog');
 
@@ -79,7 +79,7 @@ describe('DynamicFormActionModule', () => {
     it('handler calls toggleDialog of action',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const handler = service.handlers.find(h => h.type === 'toggleDialog');
-        const action = { toggleDialog(): void {} } as DynamicFormAction;
+        const action = { toggleDialog: () => {}} as DynamicFormAction;
 
         spyOn(action, 'toggleDialog');
 

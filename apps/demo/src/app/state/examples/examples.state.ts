@@ -25,9 +25,7 @@ export class ExamplesState {
   }
 
   static example(id: string): (state: Examples) => Example  {
-    return createSelector([ ExamplesState ], (state: Examples) => {
-      return state && state.examples ? state.examples[id] : undefined;
-    });
+    return createSelector([ ExamplesState ], (state: Examples) => state && state.examples ? state.examples[id] : undefined);
   }
 
 

@@ -4,8 +4,6 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 
-export function dynamicFormArrayFactory(
+export const dynamicFormArrayFactory = (
   builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition
-): DynamicFormArray {
-  return builder.createFormArray(root, parent, definition);
-}
+): DynamicFormArray => builder.createFormArray(root, parent, definition);

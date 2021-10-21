@@ -7,6 +7,7 @@ import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 
 @Component({
   selector: 'dynamic-input-test',
@@ -19,7 +20,11 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 describe('DynamicFormInputBase', () => {
+  let builder: DynamicFormBuilder;
+
   beforeEach(() => {
+    builder = {} as any;
+
     TestBed.configureTestingModule({
       declarations: [
         DynamicFormInputTestComponent
@@ -35,8 +40,8 @@ describe('DynamicFormInputBase', () => {
   });
 
   it('creates component', () => {
-    const form = new DynamicForm({ key: 'root', children: [] } as DynamicFormDefinition, {});
-    const field = new DynamicFormControl(form, form, {
+    const form = new DynamicForm(builder, { key: 'root', children: [] } as DynamicFormDefinition, {});
+    const field = new DynamicFormControl(builder, form, form, {
       id: 'id',
       key: 'key',
       index: 1,

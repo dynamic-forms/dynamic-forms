@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormSwitch, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 import { MatDynamicFormSwitchModule } from './dynamic-form-switch.module';
 
 describe('MatDynamicFormSwitchComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormSwitchComponent>;
   let component: MatDynamicFormSwitchComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormSwitch>;
   let formControl: DynamicFormControl<DynamicFormSwitch>;
@@ -30,9 +32,11 @@ describe('MatDynamicFormSwitchComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSwitchComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormControlDefinition<DynamicFormSwitch>;
-    formControl = new DynamicFormControl<DynamicFormSwitch>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormSwitch>(builder, form, form, definition);
 
     component.field = formControl;
 

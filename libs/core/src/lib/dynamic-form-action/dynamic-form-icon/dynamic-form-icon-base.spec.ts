@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormIconBase } from './dynamic-form-icon-base';
@@ -26,11 +27,11 @@ class DynamicFormIconTestComponent extends DynamicFormIconBase {
   }
 }
 
-
 describe('DynamicFormIconBase', () => {
   let fixture: ComponentFixture<DynamicFormIconTestComponent>;
   let component: DynamicFormIconTestComponent;
   let element: DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -49,11 +50,13 @@ describe('DynamicFormIconBase', () => {
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
+    builder = {} as any;
+
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
     const template = { label: 'label' } as DynamicFormIconTemplate;
     const definition = { type: 'element', template } as DynamicFormIconDefinition;
-    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(root, parent, definition);
+    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(builder, root, parent, definition);
     component.element = element;
 
     fixture.detectChanges();

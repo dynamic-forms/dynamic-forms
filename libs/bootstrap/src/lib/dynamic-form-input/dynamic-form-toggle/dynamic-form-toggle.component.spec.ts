@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormConfigService, DynamicFormControl, DynamicFormControlDefinition,
-  DynamicFormDefinition, DynamicFormLibraryService, DynamicFormToggle, DynamicFormValidationService} from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
+  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormToggle, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 import { BsDynamicFormToggleModule } from './dynamic-form-toggle.module';
 
 describe('BsDynamicFormToggleComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormToggleComponent>;
   let component: BsDynamicFormToggleComponent;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormControlDefinition<DynamicFormToggle>;
   let formControl: DynamicFormControl<DynamicFormToggle>;
@@ -30,7 +32,9 @@ describe('BsDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm({} as DynamicFormDefinition, {});
+    builder = {} as any;
+
+    form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {
       key: 'key',
       template: {
@@ -43,7 +47,7 @@ describe('BsDynamicFormToggleComponent', () => {
         }
       }
     } as DynamicFormControlDefinition<DynamicFormToggle>;
-    formControl = new DynamicFormControl<DynamicFormToggle>(form, form, definition);
+    formControl = new DynamicFormControl<DynamicFormToggle>(builder, form, form, definition);
 
     component.field = formControl;
 

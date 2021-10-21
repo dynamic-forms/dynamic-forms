@@ -1,14 +1,20 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler,
-  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler} from '../dynamic-form-field/dynamic-form-field.module';
+import {
+  dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler, dynamicFormFieldResetHandler,
+  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler
+} from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
-import { DynamicFormControlEvaluatorTypeConfig, DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from './dynamic-form-control-evaluator-type-config';
+import {
+  DynamicFormControlEvaluatorTypeConfig, DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG
+} from './dynamic-form-control-evaluator-type-config';
 import { dynamicFormControlValidatorTypes } from './dynamic-form-control-validator-type';
-import { DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from './dynamic-form-control-validator-type-config';
+import {
+  DynamicFormControlValidatorTypeConfig, DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG
+} from './dynamic-form-control-validator-type-config';
 import { dynamicFormControlType, DynamicFormControlModule } from './dynamic-form-control.module';
 
 describe('DynamicFormControlModule', () => {
@@ -55,19 +61,22 @@ describe('DynamicFormControlModule', () => {
     inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(7);
+      expect(handlers.length).toBe(8);
       expect(handlers[3]).toEqual(dynamicFormFieldResetHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[4]).toEqual(dynamicFormFieldResetDefaultHandler);
+      expect(handlers[4]).toEqual(dynamicFormFieldResetEmptyHandler);
       expect(handlers[4].func).toEqual(jasmine.any(Function));
       expect(handlers[4].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[5]).toEqual(dynamicFormFieldValidateHandler);
+      expect(handlers[5]).toEqual(dynamicFormFieldResetDefaultHandler);
       expect(handlers[5].func).toEqual(jasmine.any(Function));
       expect(handlers[5].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[6]).toEqual(dynamicFormSubmitHandler);
+      expect(handlers[6]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[6].func).toEqual(jasmine.any(Function));
       expect(handlers[6].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[7]).toEqual(dynamicFormSubmitHandler);
+      expect(handlers[7].func).toEqual(jasmine.any(Function));
+      expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
     })
   );
 });

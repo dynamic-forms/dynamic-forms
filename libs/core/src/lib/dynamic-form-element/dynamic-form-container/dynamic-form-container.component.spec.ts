@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormContainerDefinition } from './dynamic-form-container-definition';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
@@ -8,6 +9,7 @@ import { DynamicFormContainerComponent } from './dynamic-form-container.componen
 import { DynamicFormContainerModule } from './dynamic-form-container.module';
 
 describe('DynamicFormContainerComponent', () => {
+  let builder: DynamicFormBuilder;
   let fixture: ComponentFixture<DynamicFormContainerComponent>;
   let component: DynamicFormContainerComponent;
   let element: DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>;
@@ -17,11 +19,13 @@ describe('DynamicFormContainerComponent', () => {
       imports: [ DynamicFormContainerModule ]
     });
 
+    builder = {} as any;
+
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const template = {} as DynamicFormContainerTemplate;
     const definition = { type: 'element', template } as DynamicFormContainerDefinition;
-    element = new DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>(root, parent, definition);
+    element = new DynamicFormElement<DynamicFormContainerTemplate, DynamicFormContainerDefinition>(builder, root, parent, definition);
 
     fixture = TestBed.createComponent(DynamicFormContainerComponent);
     component = fixture.componentInstance;

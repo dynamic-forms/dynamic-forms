@@ -1,10 +1,14 @@
-$dynamic-form-material-blue: #3f51b5;
-$dynamic-form-material-red: #f44336;
+@import "@dynamic-forms/core/assets/scss/variables";
+@import "@dynamic-forms/core/assets/scss/mixins";
+
+$dynamic-form-errors-margin-top: null !default;
 
 .dynamic-form-wrapper.bootstrap {
   .dynamic-form {
-    $blue: $dynamic-form-material-blue;
-    $red: $dynamic-form-material-red;
+    margin: $dynamic-form-margin;
+
+    $blue: $dynamic-form-blue;
+    $red: $dynamic-form-red;
 
     $enable-rfs: false;
 
@@ -26,9 +30,7 @@ $dynamic-form-material-red: #f44336;
     @import '~bootstrap/scss/nav';
     @import '~bootstrap/scss/card';
     @import '~bootstrap/scss/modal';
-        
-    margin: 10px 12px;
-
+            
     &.grid {
       .row {
         bs-dynamic-form-button,
@@ -54,73 +56,45 @@ $dynamic-form-material-red: #f44336;
         flex: 1 0 1em;
       }
     }
-    
+  
     .dynamic-form-header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 0.5rem;
+      @include dynamic-form-flex-container(
+        $width: 100%,
+        $margin-top: $dynamic-form-header-margin-top,
+        $margin-bottom: $dynamic-form-header-margin-bottom
+      );
 
       .dynamic-form-label {
-        font-size: 18px;
-        font-weight: 600;
-
-        &.bold {
-          font-weight: 700;
-        }
-
-        &.uppercase {
-          text-transform: uppercase;
-        }
-
-        &.capitalize {
-          text-transform: capitalize;
-        }
+        @include dynamic-form-label(
+          $font-size: $dynamic-form-label-font-size, 
+          $font-weight: $dynamic-form-label-font-weight,
+          $font-weight-bold: $dynamic-form-label-font-weight-bold
+        );
       }
 
       .dynamic-form-toolbar {
-        flex: 1 1 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-
-        dynamic-form-elements {
-          display: contents;
-        }
-
-        button {
-          margin-left: 10px;
-        }
+        @include dynamic-form-toolbar(
+          $flex: 1 1 0,
+          $button-space: $dynamic-form-button-space
+        );
       }
     }
 
     .dynamic-form-errors {
-      color: $red;
-      font-size: 14px;
-    }  
+      @include dynamic-form-errors(
+        $color: $dynamic-form-errors-color,
+        $font-size: $dynamic-form-errors-font-size,
+        $margin-top: $dynamic-form-errors-margin-top, 
+        $margin-bottom: $dynamic-form-errors-margin-bottom
+      );
+    }
 
     .dynamic-form-footer {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-top: 10px;
-      margin-bottom: 10px;
-
-      &.content-end {
-        justify-content: flex-end;
-
-        button {
-          margin-left: 10px;
-          margin-right: 0px;
-        }
-      }
-
-      button {
-        margin-left: 0px;
-        margin-right: 10px;
-      }
+      @include dynamic-form-footer(
+        $margin-top: $dynamic-form-footer-margin-top,
+        $margin-bottom: $dynamic-form-footer-margin-bottom,
+        $button-space: $dynamic-form-button-space,
+      );
     }
 
     .dynamic-form-group {
@@ -129,141 +103,89 @@ $dynamic-form-material-red: #f44336;
       }
 
       .dynamic-form-group-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: 0.5rem;
+        @include dynamic-form-flex-container(
+          $width: 100%,
+          $margin-top: 0, 
+          $margin-bottom: 0.5rem,
+          $align-items: center
+        );
 
         .dynamic-form-group-label {
-          font-weight: 600;
-  
-          &.bold {
-            font-weight: 700;
-          }
-  
-          &.uppercase {
-            text-transform: uppercase;
-          }
-  
-          &.capitalize {
-            text-transform: capitalize;
-          }
+          @include dynamic-form-label(
+            $font-weight: $dynamic-form-label-font-weight,
+            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          );
         }
         
         .dynamic-form-group-toolbar {
-          flex: 1 1 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-
-          dynamic-form-elements {
-            display: contents;
-          }
-
-          button {
-            margin-left: 10px;
-          }
+          @include dynamic-form-toolbar(
+            $flex: 1 1 0,
+            $button-space: $dynamic-form-button-space
+          );
         }
       }
 
       .dynamic-form-group-errors {
-        color: $red;
-        font-size: 14px;
-      }  
+        @include dynamic-form-errors(
+          $color: $dynamic-form-errors-color,
+          $font-size: $dynamic-form-errors-font-size,
+          $margin-top: $dynamic-form-errors-margin-top,  
+          $margin-bottom: $dynamic-form-errors-margin-bottom
+        );
+      }
 
       .dynamic-form-group-footer {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-        margin-bottom: 10px;
-
-        &.content-end {
-          justify-content: flex-end;
-
-          button {
-            margin-left: 10px;
-            margin-right: 0px;
-          }
-        }
-        
-        button {
-          margin-left: 0px;
-          margin-right: 10px;
-        }
+        @include dynamic-form-footer(
+          $margin-top: $dynamic-form-footer-margin-top,
+          $margin-bottom: $dynamic-form-footer-margin-bottom,
+          $button-space: $dynamic-form-button-space,
+        );
       }
     }
-  
+
     .dynamic-form-array {
       &.hidden {
         display: none;
       }
 
       .dynamic-form-array-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: 0.5rem;
+        @include dynamic-form-flex-container(
+          $width: 100%,
+          $margin-top: 0, 
+          $margin-bottom: 0.5rem,
+          $align-items: center
+        );
 
         .dynamic-form-array-label {
-          font-weight: 600;
-  
-          &.bold {
-            font-weight: 700;
-          }
-  
-          &.uppercase {
-            text-transform: uppercase;
-          }
-  
-          &.capitalize {
-            text-transform: capitalize;
-          }
-        }
-
-        .dynamic-form-array-toolbar {
-          flex: 1 1 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-
-          dynamic-form-elements {
-            display: contents;
-          }
-
-          button {
-            margin-left: 10px;
-          }
-        }
-      }
-
-      .dynamic-form-array-errors {
-        color: $red;
-        font-size: 14px;
-      }  
-
-      .dynamic-form-array-footer {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-        margin-bottom: 10px;
-
-        &.content-end {
-          justify-content: flex-end;
-
-          button {
-            margin-left: 10px;
-            margin-right: 0px;
-          }
+          @include dynamic-form-label(
+            $font-weight: $dynamic-form-label-font-weight,
+            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          );
         }
         
-        button {
-          margin-left: 0px;
-          margin-right: 10px;
+        .dynamic-form-array-toolbar {
+          @include dynamic-form-toolbar(
+            $flex: 1 1 0,
+            $button-space: $dynamic-form-button-space
+          );
         }
+      }
+      
+      .dynamic-form-array-errors {
+        @include dynamic-form-errors(
+          $color: $dynamic-form-errors-color,
+          $font-size: $dynamic-form-errors-font-size, 
+          $margin-top: $dynamic-form-errors-margin-top, 
+          $margin-bottom: $dynamic-form-errors-margin-bottom
+        );
+      }
+
+      .dynamic-form-array-footer {
+        @include dynamic-form-footer(
+          $margin-top: $dynamic-form-footer-margin-top,
+          $margin-bottom: $dynamic-form-footer-margin-bottom,
+          $button-space: $dynamic-form-button-space,
+        );
       }
     }
 
@@ -273,72 +195,46 @@ $dynamic-form-material-red: #f44336;
       }
 
       .dynamic-form-dictionary-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: 0.5rem;
+        @include dynamic-form-flex-container(
+          $width: 100%,
+          $margin-top: 0, 
+          $margin-bottom: 0.5rem,
+          $align-items: center
+        );
 
         .dynamic-form-dictionary-label {
-          font-weight: 600;
-  
-          &.bold {
-            font-weight: 700;
-          }
-  
-          &.uppercase {
-            text-transform: uppercase;
-          }
-  
-          &.capitalize {
-            text-transform: capitalize;
-          }
+          @include dynamic-form-label(
+            $font-weight: $dynamic-form-label-font-weight,
+            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          );
         }
         
         .dynamic-form-dictionary-toolbar {
-          flex: 1 1 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-
-          dynamic-form-elements {
-            display: contents;
-          }
-
-          button {
-            margin-left: 10px;
-          }
+          @include dynamic-form-toolbar(
+            $flex: 1 1 0,
+            $button-space: $dynamic-form-button-space
+          );
         }
       }
-
+      
       .dynamic-form-dictionary-errors {
-        color: $red;
-        font-size: 14px;
-      }  
+        @include dynamic-form-errors(
+          $color: $dynamic-form-errors-color,
+          $font-size: $dynamic-form-errors-font-size,
+          $margin-top: $dynamic-form-errors-margin-top,  
+          $margin-bottom: $dynamic-form-errors-margin-bottom
+        );
+      }
 
       .dynamic-form-dictionary-footer {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-        margin-bottom: 10px;
-
-        &.content-end {
-          justify-content: flex-end;
-
-          button {
-            margin-left: 10px;
-            margin-right: 0px;
-          }
-        }
-        
-        button {
-          margin-left: 0px;
-          margin-right: 10px;
-        }
+        @include dynamic-form-footer(
+          $margin-top: $dynamic-form-footer-margin-top,
+          $margin-bottom: $dynamic-form-footer-margin-bottom,
+          $button-space: $dynamic-form-button-space,
+        );
       }
     }
-  
+
     .dynamic-form-control {
       margin-top: 10px;
       margin-bottom: 10px;
@@ -346,7 +242,7 @@ $dynamic-form-material-red: #f44336;
       &.hidden {
         display: none;
       }
-      
+
       &.readonly {
         label {
           pointer-events: none;
@@ -402,7 +298,7 @@ $dynamic-form-material-red: #f44336;
         }
       }
     }
-  
+
     .dynamic-form-button {
       &.hidden {
         display: none;
@@ -412,7 +308,7 @@ $dynamic-form-material-red: #f44336;
     .dynamic-form-icon {
       height: 38px;
       padding: 0.375rem;
-      
+
       &.hidden {
         display: none;
       }

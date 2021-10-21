@@ -7,9 +7,7 @@ import { DynamicFormExampleModule } from '../dynamic-form-example.module';
 import { MaterialExamplesRoutingModule } from './material-examples-routing.module';
 import { MaterialExamplesComponent } from './material-examples.component';
 
-export function dynamicFormIdBuilder(): string {
-  return v4();
-}
+export const dynamicFormIdBuilder = (): string => v4();
 
 @NgModule({
   imports: [
