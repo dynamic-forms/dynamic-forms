@@ -3,7 +3,6 @@ import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormBuilder,
   DynamicFormField, DynamicFormIconDefinition, DynamicFormIconTemplate,
   DynamicFormLibraryService } from '@dynamic-forms/core';
-import {  } from '@dynamic-forms/core/public_api';
 import { BsDynamicFormIconComponent } from './dynamic-form-icon.component';
 import { BsDynamicFormIconModule } from './dynamic-form-icon.module';
 
