@@ -23,29 +23,20 @@
       "@dynamic-forms/core": [
         "dist/v13/@dynamic-forms/core"
       ],
-      "@dynamic-forms/core/*": [
-        "dist/v13/@dynamic-forms/core/*"
-      ],
       "@dynamic-forms/bootstrap": [
         "dist/v13/@dynamic-forms/bootstrap"
       ],
-      "@dynamic-forms/bootstrap/*": [
-        "dist/v13/@dynamic-forms/bootstrap/*"
-      ],
       "@dynamic-forms/material": [
         "dist/v13/@dynamic-forms/material"
-      ],
-      "@dynamic-forms/material/*": [
-        "dist/v13/@dynamic-forms/material/*"
       ]
     }
   },
   "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
     "fullTemplateTypeCheck": true,
+    "skipTemplateCodegen": true,
     "strictInjectionParameters": true,
-    "enableResourceInlining": true
+    "strictMetadataEmit": true
   },
   "exclude": [
     "node_modules/**/*"

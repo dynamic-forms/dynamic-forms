@@ -1,6 +1,6 @@
 # Changelog
 
-## 13.0.0-next.0
+## 13.0.0-next.0 (2021-11-07)
 
 ### Breaking changes
 
