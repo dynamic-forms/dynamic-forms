@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.0.0-next.1
+
+* **general:** update of peer dependencies: tslib (2.3.0), rxjs (7.4.0) and marked (4.0.0)
+
 ## 13.0.0-next.0 (2021-11-07)
 
 ### Breaking changes
