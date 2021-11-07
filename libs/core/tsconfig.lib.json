@@ -5,12 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": [],
-    "paths": {
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ]
-    }
+    "types": []
   },
   "exclude": [
     "src/test.ts",
