@@ -1,9 +1,13 @@
 import { FormArray } from '@angular/forms';
-import { DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
+import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn } from './dynamic-form-array-validator';
+import {
+  DynamicFormArrayAsyncValidatorFactory, DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn
+} from './dynamic-form-array-validator';
 
 export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<DynamicFormArrayValidatorFactory> {}
+
+export interface DynamicFormArrayAsyncValidatorType extends DynamicFormFieldAsyncValidatorType<DynamicFormArrayAsyncValidatorFactory> {}
 
 export const dynamicFormArrayRequiredValidatorFactory = (): DynamicFormArrayValidatorFn => (array: FormArray) =>
   !array.value || array.value.length === 0 ? { requiredArray: true } : null;

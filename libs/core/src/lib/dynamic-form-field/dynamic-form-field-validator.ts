@@ -1,25 +1,56 @@
 import { ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
+export type DynamicFormValidatorResult = ValidationErrors | null;
+
+export type DynamicFormAsyncValidatorResult = Observable<ValidationErrors | null>;
+
+export type DynamicFormFieldValidatorBaseFn<
+  Control extends DynamicFormFieldControl,
+  ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
+> = (control: Control) => ValidatorResult;
+
 export type DynamicFormFieldValidatorFn<
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl
+> = DynamicFormFieldValidatorBaseFn<Control, DynamicFormValidatorResult>;
+
+export type DynamicFormFieldAsyncValidatorFn<
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl
+> = DynamicFormFieldValidatorBaseFn<Control, DynamicFormAsyncValidatorResult>;
+
+export type DynamicFormFieldValidatorBaseFactory<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-> = (control: Control) => ValidationErrors | null;
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult
+    = DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
+  ValidatorFn extends DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
+    = DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
+> = (parameters?: any, message?: string, key?: string, field?: Field) => ValidatorFn;
 
 export type DynamicFormFieldValidatorFactory<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Field extends DynamicFormField<Control> = DynamicFormField<Control>,
   ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>
-> = (parameters?: any, message?: string, key?: string, field?: Field) => ValidatorFn;
+> = DynamicFormFieldValidatorBaseFactory<Control, Field, DynamicFormValidatorResult, ValidatorFn>;
 
-export abstract class DynamicFormFieldValidator<
+export type DynamicFormFieldAsyncValidatorFactory<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
   Field extends DynamicFormField<Control> = DynamicFormField<Control>,
-  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>,
-  ValidatorFactory extends
-    DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
-      = DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
+  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<Control> = DynamicFormFieldAsyncValidatorFn<Control>
+> = DynamicFormFieldValidatorBaseFactory<Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn>;
+
+export abstract class DynamicFormFieldValidatorBase<
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult
+    = DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
+  ValidatorFn extends DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
+    = DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>,
+  ValidatorFactory extends DynamicFormFieldValidatorBaseFactory<Control, Field, ValidatorResult, ValidatorFn>
+    = DynamicFormFieldValidatorBaseFactory<Control, Field, ValidatorResult, ValidatorFn>
 > {
   private _key: string;
   private _field: Field;
@@ -40,6 +71,8 @@ export abstract class DynamicFormFieldValidator<
     this._message = this._definition && this._definition.message;
     this.init();
   }
+
+  abstract get async(): boolean;
 
   get key(): string { return this._key; }
   get field(): Field { return this._field; }
@@ -79,4 +112,34 @@ export abstract class DynamicFormFieldValidator<
   private getValidatorFn(): ValidatorFn {
     return this._enabled ? this._factory(this._parameters, this._message, this._key, this._field) : undefined;
   }
+}
+
+export abstract class DynamicFormFieldValidator<
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>,
+  ValidatorFactory extends DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
+    = DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
+> extends DynamicFormFieldValidatorBase<Control, Field, DynamicFormValidatorResult, ValidatorFn, ValidatorFactory> {
+
+  constructor(key: string, field: Field, factory: ValidatorFactory) {
+    super(key, field, factory);
+  }
+
+  get async(): boolean { return false; }
+}
+
+export abstract class DynamicFormFieldAsyncValidator<
+  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<Control> = DynamicFormFieldAsyncValidatorFn<Control>,
+  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory<Control, Field, ValidatorFn>
+    = DynamicFormFieldAsyncValidatorFactory<Control, Field, ValidatorFn>
+> extends DynamicFormFieldValidatorBase<Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn, ValidatorFactory> {
+
+  constructor(key: string, field: Field, factory: ValidatorFactory) {
+    super(key, field, factory);
+  }
+
+  get async(): boolean { return true; }
 }

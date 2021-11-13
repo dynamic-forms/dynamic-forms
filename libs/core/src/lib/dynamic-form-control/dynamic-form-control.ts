@@ -12,7 +12,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
-import { DynamicFormControlValidator } from './dynamic-form-control-validator';
+import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,
@@ -96,7 +96,7 @@ export class DynamicFormControl<
     return undefined;
   }
 
-  protected getValidators(): DynamicFormControlValidator[] {
+  protected getValidators(): (DynamicFormControlValidator | DynamicFormControlAsyncValidator)[] {
     return this._builder.createControlValidators(this);
   }
 
