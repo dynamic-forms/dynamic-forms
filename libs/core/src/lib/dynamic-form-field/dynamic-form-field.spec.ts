@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
@@ -15,14 +16,19 @@ class DynamicFormTestField extends DynamicFormField {
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormFieldDefinition) {
     super(builder, root, parent, definition);
     this._control = {
+      disabled: false,
       setValidators: () => {},
-      setAsyncValidators: () => {}
+      setAsyncValidators: () => {},
+      updateValueAndValidity: () => {}
     } as any;
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return null; }
 
-  check(): void {}
+  check(): void {
+    this.checkControl();
+    this.checkValidators();
+  }
   destroy(): void {}
 
   reset(): void {}
@@ -30,8 +36,9 @@ class DynamicFormTestField extends DynamicFormField {
   resetDefault(): void {}
   validate(): void {}
 
-  initModel(model: any): void { this._model = model; }
-  initControl(control: any): void { this._control = control; }
+  setModel(model: any): void { this._model = model; }
+  setControl(control: any): void { this._control = control; }
+  setValidators(validators: any[]): void { this._validators = validators; }
 
   checkExpressions(): void {}
 
@@ -208,8 +215,8 @@ describe('DynamicFormField', () => {
     const definition = { id: 'id', key: 'key', index: 1, template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initModel({ value: 'VALUE' });
-    field.initControl({ status: 'VALID'});
+    field.setModel({ value: 'VALUE' });
+    field.setControl({ status: 'VALID'});
 
     expect(field.expressionData.id).toBe('id');
     expect(field.expressionData.key).toBe('key');
@@ -340,7 +347,7 @@ describe('DynamicFormField', () => {
     const field = new DynamicFormTestField(builder, null, null, definition);
 
     const errors = {};
-    field.initControl({ errors });
+    field.setControl({ errors });
 
     expect(field.errors).toBe(errors);
   });
@@ -349,7 +356,7 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initControl({ errors: {} });
+    field.setControl({ errors: {} });
 
     expect(field.hasErrors).toBe(true);
   });
@@ -358,7 +365,7 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initControl({ errors: null });
+    field.setControl({ errors: null });
 
     expect(field.hasErrors).toBe(false);
   });
@@ -367,7 +374,7 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initControl({ errors: null, touched: true });
+    field.setControl({ errors: null, touched: true });
 
     expect(field.showErrors).toBe(false);
   });
@@ -376,7 +383,7 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initControl({ errors: {}, touched: false });
+    field.setControl({ errors: {}, touched: false });
 
     expect(field.showErrors).toBe(false);
   });
@@ -385,8 +392,28 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition);
 
-    field.initControl({ errors: {}, touched: true });
+    field.setControl({ errors: {}, touched: true });
 
     expect(field.showErrors).toBe(true);
+  });
+
+  it('check set validators that changed and updates value and validity of control', () => {
+    const definition = { template: {} } as DynamicFormFieldDefinition;
+    const field = new DynamicFormTestField(builder, null, null, definition);
+    const validators = [
+      { checkChanges: () => true, validatorFn: () => null },
+      { checkChanges: () => true, async: true, validatorFn: () => of(null) }
+    ];
+
+    spyOn(field.control, 'setValidators');
+    spyOn(field.control, 'setAsyncValidators');
+    spyOn(field.control, 'updateValueAndValidity');
+
+    field.setValidators(validators);
+    field.check();
+
+    expect(field.control.setValidators).toHaveBeenCalledWith([ validators[0].validatorFn ]);
+    expect(field.control.setAsyncValidators).toHaveBeenCalledWith([ validators[1].validatorFn ]);
+    expect(field.control.updateValueAndValidity).toHaveBeenCalled();
   });
 });
