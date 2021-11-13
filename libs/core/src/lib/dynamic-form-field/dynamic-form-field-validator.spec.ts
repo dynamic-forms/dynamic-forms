@@ -136,11 +136,11 @@ describe('DynamicFormFieldValidator', () => {
     const factory = _ => __ => null;
     const validator = new TestDynamicFormFieldValidator('valid', field, factory);
 
+    expect(validator.async).toBeFalse();
+
     expect(validator.key).toBe('valid');
     expect(validator.field).toBe(field);
     expect(validator.factory).toBe(factory);
-
-    expect(validator.async).toBeFalse();
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(field.template);
@@ -163,11 +163,11 @@ describe('DynamicFormFieldAsyncValidator', () => {
     const factory = _ => __ => of(null);
     const validator = new TestDynamicFormFieldAsyncValidator('valid', field, factory);
 
+    expect(validator.async).toBeTrue();
+
     expect(validator.key).toBe('valid');
     expect(validator.field).toBe(field);
     expect(validator.factory).toBe(factory);
-
-    expect(validator.async).toBeTrue();
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBe(field.template);

@@ -1,8 +1,9 @@
 import { FormArray } from '@angular/forms';
+import { of } from 'rxjs';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayValidation } from './dynamic-form-array-validation';
-import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
+import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 describe('DynamicFormArrayValidator', () => {
   it('creates instance', () => {
@@ -12,6 +13,8 @@ describe('DynamicFormArrayValidator', () => {
         ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const validator = new DynamicFormArrayValidator('minLength', array, factory);
+
+    expect(validator.async).toBeFalse();
 
     expect(validator.key).toBe('minLength');
     expect(validator.field).toBe(array);
@@ -25,7 +28,7 @@ describe('DynamicFormArrayValidator', () => {
     expect(validator.validatorFn).toBeTruthy();
   });
 
-  it('creates  instance for validator definition', () => {
+  it('creates instance for validator definition', () => {
     const minMaxLength = {
       type: 'minMaxLength',
       parameters: {
@@ -134,5 +137,55 @@ describe('DynamicFormArrayValidator', () => {
     expect(changes).toBe(true);
     expect(validator.parameters).toBe(null);
     expect(validator.validatorFn).toBeUndefined();
+  });
+});
+
+describe('DynamicFormArrayAsyncValidator', () => {
+  it('creates instance', () => {
+    const validation = { uniqueItems: true } as DynamicFormArrayValidation;
+    const array = { definition: {}, template: { validation } } as DynamicFormArray;
+    const factory = _ => __ => of({ error: true });
+    const validator = new DynamicFormArrayAsyncValidator('uniqueItems', array, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('uniqueItems');
+    expect(validator.field).toBe(array);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBeUndefined();
+    expect(validator.message).toBeUndefined();
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBeUndefined();
+    expect(validator.validatorFn).toBeTruthy();
+  });
+
+  it('create instance for validator defintion', () => {
+    const uniqueItems = {
+      type: 'uniqueItems',
+      parameters: {
+        properties: [ 'id', 'name']
+      },
+      message: 'message'
+    } as DynamicFormFieldValidatorDefinition;
+    const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validation = { uniqueItems: true } as DynamicFormArrayValidation;
+    const array = { definition: { validators }, template: { validation } } as DynamicFormArray;
+    const factory = _ => __ => of({ error: true });
+    const validator = new DynamicFormArrayAsyncValidator('uniqueItems', array, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('uniqueItems');
+    expect(validator.field).toBe(array);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBe(uniqueItems);
+    expect(validator.message).toBe('message');
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBe(uniqueItems.parameters);
+    expect(validator.validatorFn).toBeTruthy();
   });
 });

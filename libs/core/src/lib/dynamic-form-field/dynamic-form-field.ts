@@ -13,8 +13,8 @@ import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-
 import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
-import { DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn,
-  DynamicFormFieldValidatorFn
+import {
+  DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorFn
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<

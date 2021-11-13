@@ -1,8 +1,9 @@
 import { FormControl, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlValidation } from './dynamic-form-control-validation';
-import { DynamicFormControlValidator } from './dynamic-form-control-validator';
+import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControlValidator', () => {
   it('creates instance', () => {
@@ -10,9 +11,14 @@ describe('DynamicFormControlValidator', () => {
     const factory = _ => Validators.required;
     const validator = new DynamicFormControlValidator('required', control, factory);
 
+    expect(validator.async).toBeFalse();
+
     expect(validator.key).toBe('required');
     expect(validator.field).toBe(control);
     expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBeUndefined();
+    expect(validator.message).toBeUndefined();
 
     expect(validator.enabled).toBe(true);
     expect(validator.parameters).toBeUndefined();
@@ -120,5 +126,52 @@ describe('DynamicFormControlValidator', () => {
     expect(changes).toBe(true);
     expect(validator.parameters).toBe(null);
     expect(validator.validatorFn).toBeUndefined();
+  });
+});
+
+describe('DynamicFormControlAsyncValidator', () => {
+  it('creates instance', () => {
+    const validation = { unique: true } as DynamicFormControlValidation;
+    const control = { definition: {}, template: { input: {}, validation } } as DynamicFormControl;
+    const factory = __ => _ => of({ error: true });
+    const validator = new DynamicFormControlAsyncValidator('unique', control, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('unique');
+    expect(validator.field).toBe(control);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBeUndefined();
+    expect(validator.validatorFn).toBeTruthy();
+  });
+
+  it('creates instance for validator defintion', () => {
+    const unique = {
+      type: 'unique',
+      parameters: {
+        properties: [ 'id', 'name']
+      },
+      message: 'message'
+    } as DynamicFormFieldValidatorDefinition;
+    const validators = { unique } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validation = { unique: true } as DynamicFormControlValidation;
+    const control = { definition: { validators }, template: { input: {}, validation } } as DynamicFormControl;
+    const factory = __ => _ => of({ error: true });
+    const validator = new DynamicFormControlAsyncValidator('unique', control, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('unique');
+    expect(validator.field).toBe(control);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBe(unique);
+    expect(validator.message).toBe('message');
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBe(unique.parameters);
+    expect(validator.validatorFn).toBeTruthy();
   });
 });

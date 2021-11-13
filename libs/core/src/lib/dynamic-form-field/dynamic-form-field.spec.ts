@@ -14,7 +14,10 @@ import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 class DynamicFormTestField extends DynamicFormField {
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormFieldDefinition) {
     super(builder, root, parent, definition);
-    this._control = { setValidators: () => {}, setAsyncValidators: () => {} } as any;
+    this._control = {
+      setValidators: () => {},
+      setAsyncValidators: () => {}
+    } as any;
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return null; }

@@ -1,14 +1,17 @@
 import { FormGroup } from '@angular/forms';
+import { of } from 'rxjs';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupValidation } from './dynamic-form-group-validation';
-import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
+import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 describe('DynamicFormGroupValidator', () => {
   it('creates instance', () => {
     const group = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
     const validator = new DynamicFormGroupValidator('required', group, factory);
+
+    expect(validator.async).toBeFalse();
 
     expect(validator.key).toBe('required');
     expect(validator.field).toBe(group);
@@ -79,18 +82,68 @@ describe('DynamicFormGroupValidator', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
-    const control = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
+    const group = { definition: {}, template: { validation: { required: true } } } as DynamicFormGroup;
     const factory = (_: any) => (formGroup: FormGroup) => formGroup.value ? null : { error: true };
-    const validator = new DynamicFormGroupValidator('required', control, factory);
+    const validator = new DynamicFormGroupValidator('required', group, factory);
 
     expect(validator.enabled).toBe(true);
     expect(validator.validatorFn).toBeTruthy();
 
-    control.template.validation.required = false;
+    group.template.validation.required = false;
     const changes = validator.checkChanges();
 
     expect(changes).toBe(true);
     expect(validator.enabled).toBe(false);
     expect(validator.validatorFn).toBeUndefined();
+  });
+});
+
+describe('DynamicFormGroupAsyncValidator', () => {
+  it('creates instance', () => {
+    const validation = { uniqueItems: true } as DynamicFormGroupValidation;
+    const group = { definition: {}, template: { validation } } as DynamicFormGroup;
+    const factory = _ => __ => of({ error: true });
+    const validator = new DynamicFormGroupAsyncValidator('uniqueItems', group, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('uniqueItems');
+    expect(validator.field).toBe(group);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBeUndefined();
+    expect(validator.message).toBeUndefined();
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBeUndefined();
+    expect(validator.validatorFn).toBeTruthy();
+  });
+
+  it('creates instance for validator definition', () => {
+    const uniqueItems = {
+      type: 'uniqueItems',
+      parameters: {
+        properties: [ 'id', 'name']
+      },
+      message: 'message'
+    } as DynamicFormFieldValidatorDefinition;
+    const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validation = { uniqueItems: true } as DynamicFormGroupValidation;
+    const group = { definition: { validators }, template: { validation } } as DynamicFormGroup;
+    const factory = _ => __ => of({ error: true });
+    const validator = new DynamicFormGroupAsyncValidator('uniqueItems', group, factory);
+
+    expect(validator.async).toBeTrue();
+
+    expect(validator.key).toBe('uniqueItems');
+    expect(validator.field).toBe(group);
+    expect(validator.factory).toBe(factory);
+
+    expect(validator.definition).toBe(uniqueItems);
+    expect(validator.message).toBe('message');
+
+    expect(validator.enabled).toBe(true);
+    expect(validator.parameters).toBe(uniqueItems.parameters);
+    expect(validator.validatorFn).toBeTruthy();
   });
 });
