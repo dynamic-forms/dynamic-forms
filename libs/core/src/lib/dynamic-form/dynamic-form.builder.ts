@@ -12,10 +12,11 @@ import { DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-for
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dynamic-form-dictionary-definition';
-import { DynamicFormDictionaryAsyncValidator,
-  DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
+import {
+  DynamicFormDictionaryAsyncValidator,DynamicFormDictionaryValidator
+} from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormElementChildren, DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
+import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -152,9 +153,9 @@ export class DynamicFormBuilder {
   }
 
   createFormElements(
-    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementChildren
+    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementDefinition[]
   ): DynamicFormElement[] {
-    return this.getDefinitions(definitions).map((definition) => {
+    return (definitions || []).map((definition) => {
       const elementDefintion = this.getDefinition(definition, root);
       const classType = this.configService.getClassType(elementDefintion.type);
       switch (classType) {
@@ -242,15 +243,6 @@ export class DynamicFormBuilder {
 
   createDictionaryValidators(dictionary: DynamicFormDictionary): (DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator)[] {
     return this.validationBuilder.createDictionaryValidators(dictionary);
-  }
-
-  private getDefinitions(children: DynamicFormElementChildren): DynamicFormElementDefinition[] {
-    if (children instanceof Array) {
-      return children;
-    }
-    return Object.keys(children || {}).map(key => {
-      return { ...children[key], key };
-    });
   }
 
   private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
