@@ -14,8 +14,8 @@ export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<
 export type DynamicFormGroupAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormGroup, DynamicFormGroup>;
 
 export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGroup, DynamicFormGroup> {
-  constructor(key: string, field: DynamicFormGroup, factory: DynamicFormGroupValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormGroupValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {
@@ -24,8 +24,8 @@ export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGro
 }
 
 export class DynamicFormGroupAsyncValidator extends DynamicFormFieldAsyncValidator<FormGroup, DynamicFormGroup> {
-  constructor(key: string, field: DynamicFormGroup, factory: DynamicFormGroupAsyncValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormGroupAsyncValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {

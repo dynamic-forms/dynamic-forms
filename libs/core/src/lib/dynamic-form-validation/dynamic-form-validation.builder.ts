@@ -80,8 +80,8 @@ export class DynamicFormValidationBuilder {
     const validatorType = this.getControlValidatorType(type);
     return validatorType
       ? validatorType.async
-        ? new DynamicFormControlAsyncValidator(key, control, validatorType.factory)
-        : new DynamicFormControlValidator(key, control, validatorType.factory)
+        ? new DynamicFormControlAsyncValidator(validatorType.factory, key, control, validatorType.deps)
+        : new DynamicFormControlValidator(validatorType.factory, key, control, validatorType.deps)
       : undefined;
   }
 
@@ -99,8 +99,8 @@ export class DynamicFormValidationBuilder {
     const validatorType = this.getGroupValidatorType(type);
     return validatorType
       ? validatorType.async
-        ? new DynamicFormGroupAsyncValidator(key, group, validatorType.factory)
-        : new DynamicFormGroupValidator(key, group, validatorType.factory)
+        ? new DynamicFormGroupAsyncValidator(validatorType.factory, key, group, validatorType.deps)
+        : new DynamicFormGroupValidator(validatorType.factory, key, group, validatorType.deps)
       : undefined;
   }
 
@@ -118,8 +118,8 @@ export class DynamicFormValidationBuilder {
     const validatorType = this.getArrayValidatorType(type);
     return validatorType
       ? validatorType.async
-        ? new DynamicFormArrayAsyncValidator(key, array, validatorType.factory)
-        : new DynamicFormArrayValidator(key, array, validatorType.factory)
+        ? new DynamicFormArrayAsyncValidator(validatorType.factory, key, array, validatorType.deps)
+        : new DynamicFormArrayValidator(validatorType.factory, key, array, validatorType.deps)
       : undefined;
   }
 
@@ -141,8 +141,8 @@ export class DynamicFormValidationBuilder {
     const validatorType = this.getDictionaryValidatorType(type);
     return validatorType
       ? validatorType.async
-        ? new DynamicFormDictionaryAsyncValidator(key, dictionary, validatorType.factory)
-        : new DynamicFormDictionaryValidator(key, dictionary, validatorType.factory)
+        ? new DynamicFormDictionaryAsyncValidator(validatorType.factory, key, dictionary, validatorType.deps)
+        : new DynamicFormDictionaryValidator(validatorType.factory, key, dictionary, validatorType.deps)
       : undefined;
   }
 

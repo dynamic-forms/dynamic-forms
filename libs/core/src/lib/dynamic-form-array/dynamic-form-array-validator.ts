@@ -7,7 +7,7 @@ import { DynamicFormArray } from './dynamic-form-array';
 
 export type DynamicFormArrayValidatorFn = DynamicFormFieldValidatorFn<FormArray>;
 
-export type DynamicFormArrayValidatorAsyncFn = DynamicFormFieldAsyncValidatorFn<FormArray>;
+export type DynamicFormArrayAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormArray>;
 
 export type DynamicFormArrayValidatorFactory = DynamicFormFieldValidatorFactory<FormArray, DynamicFormArray>;
 
@@ -15,8 +15,8 @@ export type DynamicFormArrayAsyncValidatorFactory = DynamicFormFieldAsyncValidat
 
 export class DynamicFormArrayValidator extends DynamicFormFieldValidator<FormArray, DynamicFormArray> {
 
-  constructor(key: string, field: DynamicFormArray, factory: DynamicFormArrayValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormArrayValidatorFactory, key: string, field: DynamicFormArray, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {
@@ -26,8 +26,8 @@ export class DynamicFormArrayValidator extends DynamicFormFieldValidator<FormArr
 
 export class DynamicFormArrayAsyncValidator extends DynamicFormFieldAsyncValidator<FormArray, DynamicFormArray> {
 
-  constructor(key: string, field: DynamicFormArray, factory: DynamicFormArrayAsyncValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormArrayAsyncValidatorFactory, key: string, field: DynamicFormArray, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {

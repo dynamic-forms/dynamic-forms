@@ -6,6 +6,7 @@ export interface DynamicFormFieldValidatorType<
 > {
   type: string;
   async?: false;
+  deps?: any[];
   factory: ValidatorFactory;
   libraryName: DynamicFormLibraryName;
 }
@@ -15,6 +16,7 @@ export interface DynamicFormFieldAsyncValidatorType<
 > {
   type: string;
   async: true;
+  deps?: any[];
   factory: ValidatorFactory;
   libraryName: DynamicFormLibraryName;
 }

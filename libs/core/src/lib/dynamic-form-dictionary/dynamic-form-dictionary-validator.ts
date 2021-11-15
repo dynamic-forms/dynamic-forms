@@ -7,15 +7,15 @@ import { DynamicFormDictionary } from './dynamic-form-dictionary';
 
 export type DynamicFormDictionaryValidatorFn = DynamicFormFieldValidatorFn<FormGroup>;
 
-export type DynamicFormDictionaryValidatorAsyncFn = DynamicFormFieldAsyncValidatorFn<FormGroup>;
+export type DynamicFormDictionaryAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormGroup>;
 
 export type DynamicFormDictionaryValidatorFactory = DynamicFormFieldValidatorFactory<FormGroup, DynamicFormDictionary>;
 
 export type DynamicFormDictionaryAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormGroup, DynamicFormDictionary>;
 
 export class DynamicFormDictionaryValidator extends DynamicFormFieldValidator<FormGroup, DynamicFormDictionary> {
-  constructor(key: string, field: DynamicFormDictionary, factory: DynamicFormDictionaryValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormDictionaryValidatorFactory, key: string, field: DynamicFormDictionary, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {
@@ -24,8 +24,8 @@ export class DynamicFormDictionaryValidator extends DynamicFormFieldValidator<Fo
 }
 
 export class DynamicFormDictionaryAsyncValidator extends DynamicFormFieldAsyncValidator<FormGroup, DynamicFormDictionary> {
-  constructor(key: string, field: DynamicFormDictionary, factory: DynamicFormDictionaryAsyncValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormDictionaryAsyncValidatorFactory, key: string, field: DynamicFormDictionary, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {

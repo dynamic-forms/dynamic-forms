@@ -280,7 +280,7 @@ describe('DynamicFormControl', () => {
     } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
-      new DynamicFormControlValidator('required', formControl, _ => Validators.required)
+      new DynamicFormControlValidator(_ => Validators.required, 'required', formControl)
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(formControlValidators);

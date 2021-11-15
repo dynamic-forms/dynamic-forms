@@ -7,15 +7,15 @@ import { DynamicFormControl } from './dynamic-form-control';
 
 export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<FormControl>;
 
-export type DynamicFormControlValidatorAsyncFn = DynamicFormFieldAsyncValidatorFn<FormControl>;
+export type DynamicFormControlAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormControl>;
 
 export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<FormControl, DynamicFormControl>;
 
 export type DynamicFormControlAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormControl, DynamicFormControl>;
 
 export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormControl, DynamicFormControl> {
-  constructor(key: string, field: DynamicFormControl, factory: DynamicFormControlValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormControlValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {
@@ -24,8 +24,8 @@ export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormC
 }
 
 export class DynamicFormControlAsyncValidator extends DynamicFormFieldAsyncValidator<FormControl, DynamicFormControl> {
-  constructor(key: string, field: DynamicFormControl, factory: DynamicFormControlAsyncValidatorFactory) {
-    super(key, field, factory);
+  constructor(factory: DynamicFormControlAsyncValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
+    super(factory, key, field, deps);
   }
 
   protected getParameters(): any {
