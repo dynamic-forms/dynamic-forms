@@ -171,8 +171,6 @@ export class DynamicFormBuilder {
     });
   }
 
-
-
   createFormActions(
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
   ): DynamicFormAction[] {

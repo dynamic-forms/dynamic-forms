@@ -38,4 +38,4 @@ export const dynamicFormControlUniqueUsernameValidatorTypeFactory = (httpClient:
         DynamicFormValidationModule
     ]
 })
-export class DynamicFormControlUniqueUsernameValidationModule {}
+export class DynamicFormExtensionsModule {}
