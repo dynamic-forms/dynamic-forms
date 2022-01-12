@@ -27,7 +27,8 @@ module.exports = function (config) {
       reporters: [ 
         { type: 'html' }, 
         { type: 'lcovonly' },
-        { type: 'cobertura' }
+        { type: 'cobertura' },
+        { type: 'json-summary' }
       ],
       fixWebpackSourcePaths: true
     },

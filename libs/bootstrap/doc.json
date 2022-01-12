@@ -9,5 +9,7 @@
   "disableGraph": true,
   "disablePrivate": true,
   "disableRoutesGraph": true,
-  "hideGenerator": true
+  "hideGenerator": false,
+  "hideDarkModeToggle": true,
+  "unitTestCoverage": "./../../apps/demo/src/assets/coverage/bootstrap/coverage-summary.json"
 }
