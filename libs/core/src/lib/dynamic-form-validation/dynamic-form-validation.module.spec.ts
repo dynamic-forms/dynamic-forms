@@ -18,6 +18,8 @@ import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder'
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
+class Dependency {}
+
 describe('DynamicFormValidationModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
@@ -122,6 +124,48 @@ describe('DynamicFormValidationModule', () => {
     );
   });
 
+  describe('withControlValidatorFactory', () => {
+    const dependency = {} as Dependency;
+    const controlValidatorTypeFactory: (d: Dependency) => DynamicFormControlValidatorType = (d: Dependency) => {
+      return {
+        type: 'validator',
+        factory: null,
+        deps: [ d ],
+        libraryName: 'test'
+      };
+    };
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withControlValidatorFactory(controlValidatorTypeFactory, [ Dependency ])
+        ],
+        providers: [
+          {
+            provide: Dependency,
+            useValue: dependency
+          },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    });
+
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual({
+          type: 'validator',
+          factory: null,
+          deps: [ dependency ],
+          libraryName: 'test'
+        });
+      })
+    );
+  });
+
   describe('withGroupValidator', () => {
     const groupValidatorType: DynamicFormGroupValidatorType = {
       type: 'validator',
@@ -175,6 +219,48 @@ describe('DynamicFormValidationModule', () => {
       inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(groupValidatorTypes);
+      })
+    );
+  });
+
+  describe('withGroupValidatorFactory', () => {
+    const dependency = {} as Dependency;
+    const groupValidatorTypeFactory: (d: Dependency) => DynamicFormGroupValidatorType = (d: Dependency) => {
+      return {
+        type: 'validator',
+        factory: null,
+        deps: [ d ],
+        libraryName: 'test'
+      };
+    };
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withGroupValidatorFactory(groupValidatorTypeFactory, [ Dependency ])
+        ],
+        providers: [
+          {
+            provide: Dependency,
+            useValue: dependency
+          },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    });
+
+    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual({
+          type: 'validator',
+          factory: null,
+          deps: [ dependency ],
+          libraryName: 'test'
+        });
       })
     );
   });
@@ -236,6 +322,48 @@ describe('DynamicFormValidationModule', () => {
     );
   });
 
+  describe('withArrayValidatorFactory', () => {
+    const dependency = {} as Dependency;
+    const arrayValidatorTypeFactory: (d: Dependency) => DynamicFormArrayValidatorType = (d: Dependency) => {
+      return {
+        type: 'validator',
+        factory: null,
+        deps: [ d ],
+        libraryName: 'test'
+      };
+    };
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withArrayValidatorFactory(arrayValidatorTypeFactory, [ Dependency ])
+        ],
+        providers: [
+          {
+            provide: Dependency,
+            useValue: dependency
+          },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    });
+
+    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual({
+          type: 'validator',
+          factory: null,
+          deps: [ dependency ],
+          libraryName: 'test'
+        });
+      })
+    );
+  });
+
   describe('withDictionaryValidator', () => {
     const dictionaryValidatorType: DynamicFormDictionaryValidatorType = {
       type: 'validator',
@@ -289,6 +417,48 @@ describe('DynamicFormValidationModule', () => {
       inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormDictionaryValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(dictionaryValidatorTypes);
+      })
+    );
+  });
+
+  describe('withDictionaryValidatorFactory', () => {
+    const dependency = {} as Dependency;
+    const dictionaryValidatorTypeFactory: (d: Dependency) => DynamicFormDictionaryValidatorType = (d: Dependency) => {
+      return {
+        type: 'validator',
+        factory: null,
+        deps: [ d ],
+        libraryName: 'test'
+      };
+    };
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          DynamicFormValidationModule.withDictionaryValidatorFactory(dictionaryValidatorTypeFactory, [ Dependency ])
+        ],
+        providers: [
+          {
+            provide: Dependency,
+            useValue: dependency
+          },
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' })
+          }
+        ]
+      });
+    });
+
+    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG',
+      inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual({
+          type: 'validator',
+          factory: null,
+          deps: [ dependency ],
+          libraryName: 'test'
+        });
       })
     );
   });

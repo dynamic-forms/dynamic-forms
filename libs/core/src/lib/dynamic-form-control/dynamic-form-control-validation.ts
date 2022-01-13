@@ -8,4 +8,5 @@ export interface DynamicFormControlValidation extends DynamicFormFieldValidation
   max?: boolean;
   minLength?: boolean;
   maxLength?: boolean;
+  [key: string]: boolean;
 }

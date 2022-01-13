@@ -1,0 +1,82 @@
+{
+  "template": {
+    "label": "Validation of inputs (async)"
+  },
+  "children": [
+    {
+      "key": "username01",
+      "type": "control",
+      "template": {
+        "label": "Username (onChange)",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "username01"
+        },
+        "validation": {
+          "required": true,
+          "uniqueUsername": true
+        }
+      },
+      "settings": {
+        "updateType": "change"
+      }
+    },
+    {
+      "key": "username02",
+      "type": "control",
+      "template": {
+        "label": "Username (onBlur)",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "username02"
+        },
+        "validation": {
+          "required": true,
+          "uniqueUsername": true
+        }
+      },
+      "settings": {
+        "updateType": "blur"
+      }
+    }
+  ],
+  "footerActions": [ 
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Validate",
+        "action": "validate"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}

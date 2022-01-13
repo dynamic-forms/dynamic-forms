@@ -303,6 +303,10 @@
         { 
           "id": "validation-inputs-hints", 
           "label": "Inputs with hints" 
+        },
+        { 
+          "id": "validation-inputs-async", 
+          "label": "Inputs (async)" 
         }
       ]
     },

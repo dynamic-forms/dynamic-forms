@@ -6,7 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
-import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
+import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
@@ -63,7 +63,7 @@ export class DynamicFormGroup<
     return this._builder.createFormElements(this.root, this, this.definition.children);
   }
 
-  protected getValidators(): DynamicFormGroupValidator[] {
+  protected getValidators(): (DynamicFormGroupValidator | DynamicFormGroupAsyncValidator)[] {
     return this._builder.createGroupValidators(this);
   }
 

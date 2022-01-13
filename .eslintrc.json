@@ -1,9 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "apps/**/*",
-    "libs/**/*"
-  ],
   "overrides": [
     {
       "files": [

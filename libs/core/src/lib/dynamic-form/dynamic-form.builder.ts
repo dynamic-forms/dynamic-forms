@@ -4,17 +4,19 @@ import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form
 import { DynamicFormActionExpressions } from '../dynamic-form-action/dynamic-form-action-expressions';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-array-definition';
-import { DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
+import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control-evaluator';
-import { DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
+import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dynamic-form-dictionary-definition';
-import { DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
+import {
+  DynamicFormDictionaryAsyncValidator,DynamicFormDictionaryValidator
+} from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormElementChildren, DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
+import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -23,7 +25,7 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
-import { DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
+import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
@@ -151,9 +153,9 @@ export class DynamicFormBuilder {
   }
 
   createFormElements(
-    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementChildren
+    root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementDefinition[]
   ): DynamicFormElement[] {
-    return this.getDefinitions(definitions).map((definition) => {
+    return (definitions || []).map((definition) => {
       const elementDefintion = this.getDefinition(definition, root);
       const classType = this.configService.getClassType(elementDefintion.type);
       switch (classType) {
@@ -168,8 +170,6 @@ export class DynamicFormBuilder {
       }
     });
   }
-
-
 
   createFormActions(
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[]
@@ -227,29 +227,20 @@ export class DynamicFormBuilder {
     return this.evaluationBuilder.createControlEvaluators(control);
   }
 
-  createControlValidators(control: DynamicFormControl): DynamicFormControlValidator[] {
+  createControlValidators(control: DynamicFormControl): (DynamicFormControlValidator | DynamicFormControlAsyncValidator)[] {
     return this.validationBuilder.createControlValidators(control);
   }
 
-  createGroupValidators(group: DynamicFormGroup): DynamicFormGroupValidator[] {
+  createGroupValidators(group: DynamicFormGroup): (DynamicFormGroupValidator | DynamicFormGroupAsyncValidator)[] {
     return this.validationBuilder.createGroupValidators(group);
   }
 
-  createArrayValidators(array: DynamicFormArray): DynamicFormArrayValidator[] {
+  createArrayValidators(array: DynamicFormArray): (DynamicFormArrayValidator | DynamicFormArrayAsyncValidator)[] {
     return this.validationBuilder.createArrayValidators(array);
   }
 
-  createDictionaryValidators(dictionary: DynamicFormDictionary): DynamicFormDictionaryValidator[] {
+  createDictionaryValidators(dictionary: DynamicFormDictionary): (DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator)[] {
     return this.validationBuilder.createDictionaryValidators(dictionary);
-  }
-
-  private getDefinitions(children: DynamicFormElementChildren): DynamicFormElementDefinition[] {
-    if (children instanceof Array) {
-      return children;
-    }
-    return Object.keys(children || {}).map(key => {
-      return { ...children[key], key };
-    });
   }
 
   private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {

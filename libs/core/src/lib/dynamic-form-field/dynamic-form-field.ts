@@ -13,7 +13,9 @@ import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-
 import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
-import { DynamicFormFieldValidator, DynamicFormFieldValidatorFn } from './dynamic-form-field-validator';
+import {
+  DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorFn
+} from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl = DynamicFormFieldControl,
@@ -30,7 +32,7 @@ export abstract class DynamicFormField<
 
   protected _control: Control;
 
-  protected _validators: DynamicFormFieldValidator[] = [];
+  protected _validators: DynamicFormFieldValidatorBase[] = [];
 
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
@@ -65,7 +67,7 @@ export abstract class DynamicFormField<
   get wrappers(): string[] { return this.definition.wrappers; }
   get unregistered(): boolean { return this.definition.unregistered; }
 
-  get validators(): DynamicFormFieldValidator[] { return this._validators; }
+  get validators(): DynamicFormFieldValidatorBase[] { return this._validators; }
 
   get errors(): DynamicFormValidationErrors { return this.control.errors; }
   get hasErrors(): boolean { return (this.errors || false) && true; }
@@ -111,11 +113,12 @@ export abstract class DynamicFormField<
   protected afterInitExpressions(): void {}
 
   protected abstract getChildren(): Child[];
-  protected abstract getValidators(): DynamicFormFieldValidator[];
+  protected abstract getValidators(): DynamicFormFieldValidatorBase[];
 
   protected initValidators(): void {
     this._validators = this.getValidators() || [];
     this._control.setValidators(this.getValidatorFunctions());
+    this._control.setAsyncValidators(this.getAsyncValidatorFunctions());
   }
 
   protected getHeaderActions(): DynamicFormAction[] {
@@ -144,8 +147,9 @@ export abstract class DynamicFormField<
   protected checkValidators(): void {
     const validatorsChanged = this.validatorsChanged();
     if (validatorsChanged) {
-      this.control.setValidators(this.getValidatorFunctions());
-      this.control.updateValueAndValidity();
+      this._control.setValidators(this.getValidatorFunctions());
+      this._control.setAsyncValidators(this.getAsyncValidatorFunctions());
+      this._control.updateValueAndValidity();
     }
   }
 
@@ -170,8 +174,14 @@ export abstract class DynamicFormField<
 
   private getValidatorFunctions(): DynamicFormFieldValidatorFn[] {
     return this._validators
-      .filter(validator => !!validator.validatorFn)
-      .map(validator => validator.validatorFn);
+      .filter(validator => !!validator.validatorFn && !validator.async)
+      .map(validator => validator.validatorFn as DynamicFormFieldValidatorFn);
+  }
+
+  private getAsyncValidatorFunctions(): DynamicFormFieldAsyncValidatorFn[] {
+    return this._validators
+      .filter(validator => !!validator.validatorFn && validator.async)
+      .map(validator => validator.validatorFn as DynamicFormFieldAsyncValidatorFn);
   }
 
   private validatorsChanged(): boolean {
