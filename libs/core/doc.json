@@ -10,6 +10,5 @@
   "disablePrivate": true,
   "disableRoutesGraph": true,
   "hideGenerator": false,
-  "hideDarkModeToggle": true,
-  "unitTestCoverage": "./../../apps/demo/src/assets/coverage/core/coverage-summary.json"
+  "hideDarkModeToggle": true
 }
