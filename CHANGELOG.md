@@ -1,11 +1,14 @@
 # Changelog
 
-## 13.0.0-next.1
+## 13.0.0-next.1 (2022-01-14)
+
+### General
+
+* update of peer dependencies: angular (13.1.2) to include compiler-cli fix [#44587](https://github.com/angular/angular/pull/44587)
+* update of peer dependencies: tslib (2.3.0), rxjs (7.4.0) and marked (4.0.0)
 
 ### Breaking changes
 
-* **general:** update of peer dependencies: angular (13.1.2) to include compiler-cli fix [#44587](https://github.com/angular/angular/pull/44587)
-* **general:** update of peer dependencies: tslib (2.3.0), rxjs (7.4.0) and marked (4.0.0)
 * **core:** constructor of ```DynamicFormFieldValidatorBase``` (and its derived classes ```DynamicFormFieldValidator``` and ```DynamicFormFieldAsyncValidator```) has new sequence for parameters (parameter for factory was moved from last to first place)
 * **core:** constructor of ```DynamicFormFieldValidatorBase``` (and its derived classes ```DynamicFormFieldValidator``` and ```DynamicFormFieldAsyncValidator```) has new parameter ```deps``` to support dependencies (like ```HttpClient```) which can be provided in the registration of validator types within ```DynamicFormValidationModule``` (see basic interfaces ```DynamicFormFieldValidatorType``` and ```DynamicFormFieldAsyncValidatorType```)
 
