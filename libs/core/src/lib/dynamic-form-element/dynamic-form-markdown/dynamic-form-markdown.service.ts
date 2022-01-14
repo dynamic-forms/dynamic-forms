@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as marked from 'marked';
+import { marked } from 'marked';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DynamicFormMarkdownOptions } from './dynamic-form-markdown-options';

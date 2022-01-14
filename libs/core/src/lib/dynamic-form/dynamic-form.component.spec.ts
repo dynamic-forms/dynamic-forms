@@ -208,7 +208,15 @@ describe('DynamicFormComponent', () => {
     });
   });
 
-  it('resetEmpty calls reset of form field', () => {
+  it('reset calls reset of form field', () => {
+    spyOn(component.form, 'reset');
+
+    component.reset();
+
+    expect(component.form.reset).toHaveBeenCalled();
+  });
+
+  it('resetEmpty calls resetEmpty of form field', () => {
     spyOn(component.form, 'resetEmpty');
 
     component.resetEmpty();

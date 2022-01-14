@@ -4,6 +4,7 @@ import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { v4 } from 'uuid';
 import { DynamicFormExampleModule } from '../dynamic-form-example.module';
+import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
 import { BootstrapExamplesRoutingModule } from './bootstrap-examples-routing.module';
 import { BootstrapExamplesComponent } from './bootstrap-examples.component';
 
@@ -31,6 +32,7 @@ export const dynamicFormIdBuilder = (): string => v4();
       },
       libraryName: 'bootstrap'
     }),
+    DynamicFormExtensionsModule,
     BsDynamicFormsModule.forRoot({
       theme: 'bootstrap',
       idBuilder: dynamicFormIdBuilder

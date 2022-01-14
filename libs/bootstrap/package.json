@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0-next.1",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "license": "MIT",
@@ -10,15 +10,15 @@
     "directory": "libs/bootstrap"
   },
   "dependencies": {
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^13.0.0-next.0",
-    "@angular/core": "^13.0.0-next.0",
-    "@angular/forms": "^13.0.0-next.0",
-    "@dynamic-forms/core": "13.0.0-next.0",
+    "@angular/common": "^13.1.2",
+    "@angular/core": "^13.1.2",
+    "@angular/forms": "^13.1.2",
+    "@dynamic-forms/core": "13.0.0-next.1",
     "bootstrap": "^5.1.0",
-    "rxjs": "~6.6.7"
+    "rxjs": "~7.4.0"
   },
   "sideEffects": false,
   "publishConfig": {

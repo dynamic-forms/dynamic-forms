@@ -220,6 +220,27 @@ describe('DynamicFormGroup', () => {
     expect(fields[1].destroy).toHaveBeenCalledTimes(1);
   });
 
+  it('reset calls reset of form field', () => {
+    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
+    const formGroup = new DynamicFormGroup(builder, form, form, definition);
+    const fields = [
+      { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), reset: () => {} } as DynamicFormField,
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), reset: () => {} } as DynamicFormField
+    ];
+
+    spyOn(fields[0], 'reset');
+    spyOn(fields[1], 'reset');
+
+    builder.createFormElements.and.returnValue(fields);
+
+    formGroup.init();
+    formGroup.reset();
+
+    expect(fields[0].reset).toHaveBeenCalledTimes(1);
+    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+  });
+
   it('resetEmpty calls reset of all fields', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;

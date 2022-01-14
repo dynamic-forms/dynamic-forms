@@ -9,9 +9,6 @@
     "paths": {
       "@dynamic-forms/core": [
         "dist/v13/@dynamic-forms/core"
-      ],
-      "@dynamic-forms/core/*": [
-        "dist/v13/@dynamic-forms/core/*"
       ]
     }
   },

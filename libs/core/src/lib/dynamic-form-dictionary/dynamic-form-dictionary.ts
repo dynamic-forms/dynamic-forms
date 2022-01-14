@@ -6,7 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
-import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
+import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
@@ -106,7 +106,7 @@ export class DynamicFormDictionary<
     });
   }
 
-  protected getValidators(): DynamicFormDictionaryValidator[] {
+  protected getValidators(): (DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator)[] {
     return this._builder.createDictionaryValidators(this);
   }
 

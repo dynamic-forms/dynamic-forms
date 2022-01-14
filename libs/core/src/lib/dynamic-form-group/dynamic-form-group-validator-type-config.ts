@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
-import { DynamicFormGroupValidatorType } from './dynamic-form-group-validator-type';
+import { DynamicFormGroupAsyncValidatorType, DynamicFormGroupValidatorType } from './dynamic-form-group-validator-type';
 
-export type DynamicFormGroupValidatorTypeConfig = (DynamicFormGroupValidatorType | DynamicFormGroupValidatorType[])[];
+export type DynamicFormGroupValidatorTypeConfig = (
+  DynamicFormGroupValidatorType | DynamicFormGroupAsyncValidatorType |
+  (DynamicFormGroupValidatorType | DynamicFormGroupAsyncValidatorType)[]
+)[];
 
 export const DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG =
   new InjectionToken<DynamicFormGroupValidatorTypeConfig>('DynamicFormGroupValidatorTypeConfig');

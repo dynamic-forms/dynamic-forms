@@ -9,5 +9,6 @@
   "disableGraph": true,
   "disablePrivate": true,
   "disableRoutesGraph": true,
-  "hideGenerator": true
+  "hideGenerator": false,
+  "hideDarkModeToggle": true
 }

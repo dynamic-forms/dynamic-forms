@@ -6,7 +6,7 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
-import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
+import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
@@ -27,7 +27,6 @@ export class DynamicFormArray<
     this._children.push(element);
     this._control.push(element.control);
     this._control.markAsTouched();
-    console.log(this._model);
   }
 
   popField(): void {
@@ -137,7 +136,7 @@ export class DynamicFormArray<
     });
   }
 
-  protected getValidators(): DynamicFormArrayValidator[] {
+  protected getValidators(): (DynamicFormArrayValidator | DynamicFormArrayAsyncValidator)[] {
     return this._builder.createArrayValidators(this);
   }
 
