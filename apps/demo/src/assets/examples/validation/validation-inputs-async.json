@@ -38,6 +38,36 @@
       "settings": {
         "updateType": "blur"
       }
+    },
+    {
+      "key": "username03",
+      "type": "control",
+      "template": {
+        "label": "Username (onSubmit)",
+        "input": {
+          "type": "textbox",
+          "defaultValue": "username03"
+        },
+        "validation": {
+          "required": true,
+          "uniqueUsername": true
+        }
+      },
+      "settings": {
+        "updateType": "submit"
+      }
+    },
+    {
+      "key": "submitEnabled",
+      "type": "control",
+      "template": {
+        "label": "Submit enabled for invalid form",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": false
+        }
+      },
+      "unregistered": true
     }
   ],
   "footerActions": [ 
@@ -49,7 +79,7 @@
         "label": "Submit"
       },
       "expressions": {
-        "disabled": "data.root.status !== 'VALID'"
+        "disabled": "data.root.status !== 'VALID' && !data.root.model.submitEnabled"
       }
     },
     {
