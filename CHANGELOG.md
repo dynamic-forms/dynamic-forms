@@ -1,6 +1,20 @@
 # Changelog
 
+## 13.0.0-rc.0 (2022-01-15)
+
+### Features
+
+* **core:** release candidate of library using angular 13
+* **bootstrap:** release candidate of library using angular 13
+* **material:** release candidate of library using angular material 13
+
 ## 13.0.0-next.1 (2022-01-14)
+
+### Features
+
+* **core:** next version of library using angular 13
+* **bootstrap:** next version of library using angular 13
+* **material:** release candidate of library using angular material 13
 
 ### General
 
@@ -17,6 +31,12 @@
 * **core:** support of async validators
 
 ## 13.0.0-next.0 (2021-11-07)
+
+### Features
+
+* **core:** next version of library using angular 13 (next)
+* **bootstrap:** next version of library using angular 13 (next)
+* **material:** release candidate of library using angular material 13 (next)
 
 ### Breaking changes
 
