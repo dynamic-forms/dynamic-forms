@@ -1,5 +1,11 @@
 # Changelog
 
+## 13.0.0 (2022-01-16)
+
+### Features
+
+* **core:** update of marked (4.0.10) to fix vulnerability
+
 ## 13.0.0-rc.0 (2022-01-15)
 
 ### Features
