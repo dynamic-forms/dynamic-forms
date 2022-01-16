@@ -12,7 +12,7 @@ export const dynamicFormControlUniqueUsernameValidatorFactory =
         if (!control.value) {
             return of(null);
         }
-        return httpClient.get('/assets/data/usernames.json').pipe(
+        return httpClient.get('./assets/data/usernames.json').pipe(
             map((usernames: string[]) => {
                 const valueLower = control.value.toLowerCase();
                 return usernames.includes(valueLower) ? { error: true } : null;
