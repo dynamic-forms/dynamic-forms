@@ -26,7 +26,6 @@
     "e2e:prod": "ng e2e --no-webdriver-update --configuration=production",
     "e2e:azure": "ng e2e --no-webdriver-update --configuration=azure",
     "e2e:azure:prod": "ng e2e --no-webdriver-update --configuration=azure-production",
-    "e2e:watch": "watch \"npm run e2e -- --dev-server-target=\" apps/demo/src apps/demo-e2e/src --wait=1",
     "build:ivy": "ngcc",
     "build:core": "ng build dynamic-forms-core --configuration=production",
     "build:bootstrap": "ng build dynamic-forms-bootstrap --configuration=production",
@@ -87,15 +86,15 @@
     "@angular/cli": "~13.2.4",
     "@angular/compiler-cli": "~13.2.3",
     "@angular/language-service": "~13.2.3",
-    "@compodoc/compodoc": "^1.1.18",
+    "@compodoc/compodoc": "^1.1.19",
     "@types/jasmine": "~3.10.3",
     "@types/jasminewd2": "~2.0.10",
     "@types/marked": "^4.0.2",
-    "@types/node": "~17.0.19",
+    "@types/node": "~17.0.21",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsdoc": "latest",
     "eslint-plugin-prefer-arrow": "latest",
@@ -111,7 +110,6 @@
     "protractor": "~7.0.0",
     "protractor-beautiful-reporter": "^1.3.6",
     "ts-node": "~10.5.0",
-    "typescript": "~4.5.4",
-    "watch": "^1.0.2"
+    "typescript": "~4.5.4"
   }
 }
