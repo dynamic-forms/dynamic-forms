@@ -71,6 +71,7 @@
     "@ngxs/store": "^3.7.3",
     "bootstrap": "^5.1.0",
     "marked": "^4.0.10",
+    "monaco-editor": "^0.32.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.1",
     "uuid": "^8.3.2",

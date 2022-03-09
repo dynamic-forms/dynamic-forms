@@ -12,6 +12,10 @@ const appRoutes: Routes = [
     loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule)
   },
   {
+    path: 'editor',
+    loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule)
+  },
+  {
     path: 'examples',
     loadChildren: () => import('./examples/examples.module').then(m => m.ExamplesModule)
   },

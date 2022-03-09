@@ -12,6 +12,7 @@ import { Config, CONFIG } from '../../state/config/config.model';
 export class HeaderComponent {
   readonly docsQuery: MediaQueryList;
   readonly examplesQuery: MediaQueryList;
+  readonly editorsQuery: MediaQueryList;
   readonly versionsQuery: MediaQueryList;
 
   @Select(CONFIG)
@@ -20,6 +21,7 @@ export class HeaderComponent {
   constructor(private media: MediaMatcher) {
     this.docsQuery = this.media.matchMedia('(max-width: 725px)');
     this.examplesQuery = this.media.matchMedia('(max-width: 450px)');
+    this.editorsQuery = this.media.matchMedia('(max-width: 450px)');
     this.versionsQuery = this.media.matchMedia('(max-width: 600px)');
   }
 }
