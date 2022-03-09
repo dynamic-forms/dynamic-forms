@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const examplesRoutes: Routes = [
+const editorsRoutes: Routes = [
   {
     path: 'bootstrap',
     loadChildren: () => import('./bootstrap/bootstrap-editor.module').then(m => m.BootstrapEditorModule)
@@ -14,7 +14,7 @@ const examplesRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(examplesRoutes)
+    RouterModule.forChild(editorsRoutes)
   ],
   exports: [
     RouterModule

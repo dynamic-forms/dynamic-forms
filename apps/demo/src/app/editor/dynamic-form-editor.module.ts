@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormEditorComponent } from './dynamic-form-editor.component';
+import { MonacoEditorComponent } from './monaco-editor.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { DynamicFormEditorComponent } from './dynamic-form-editor.component';
     MatButtonModule
   ],
   declarations: [
+    MonacoEditorComponent,
     DynamicFormEditorComponent
   ],
   exports: [
