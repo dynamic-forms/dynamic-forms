@@ -1,5 +1,6 @@
-import { Component, DoCheck, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { DynamicFormComponent, DynamicFormDefinition, DynamicFormSubmit } from '@dynamic-forms/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBase } from '../form-base';
 
 @Component({
   selector: 'app-material-form',
@@ -7,18 +8,8 @@ import { DynamicFormComponent, DynamicFormDefinition, DynamicFormSubmit } from '
   styleUrls: ['./material-form.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MaterialFormComponent implements DoCheck {
-  @Input() definition: DynamicFormDefinition;
-  @Input() model: any;
-  @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
-
-  @ViewChild(DynamicFormComponent)
-  dynamicForm: DynamicFormComponent;
-  dynamicFormValue: any;
-
-  ngDoCheck(): void {
-    if (this.dynamicFormValue !== this.dynamicForm?.form.value) {
-      this.dynamicFormValue = this.dynamicForm?.form.value;
-    }
+export class MaterialFormComponent extends FormBase {
+  constructor(protected dialog: MatDialog) {
+    super(dialog);
   }
 }

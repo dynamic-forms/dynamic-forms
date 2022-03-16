@@ -1,8 +1,6 @@
 import { DynamicFormDefinition } from '@dynamic-forms/core';
-import { Example } from '../state/examples/examples.model';
 
-export interface DynamicFormData {
-  example: Example;
+export interface FormData {
   definition: DynamicFormDefinition;
   model: any;
 }

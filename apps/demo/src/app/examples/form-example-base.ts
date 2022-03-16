@@ -1,16 +1,16 @@
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data } from '@angular/router';
-import { DynamicFormSubmit } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DynamicFormData } from './dynamic-form-data';
-import { DynamicFormDialogComponent } from './dynamic-form-dialog.component';
+import { FormSubmitBase } from '../form/form-submit-base';
+import { FormExampleData } from './form-example-data';
 
-export abstract class DynamicFormExampleBase {
-  readonly data$: Observable<DynamicFormData>;
+export abstract class FormExampleBase extends FormSubmitBase {
+  readonly data$: Observable<FormExampleData>;
   readonly doc$: Observable<string>;
 
   constructor(protected route: ActivatedRoute, protected dialog: MatDialog) {
+    super(dialog);
     this.data$ = this.route.data.pipe(
       map(data => this.mapData(data))
     );
@@ -19,11 +19,7 @@ export abstract class DynamicFormExampleBase {
     );
   }
 
-  onFormSubmit(data: DynamicFormSubmit): void {
-    this.dialog.open(DynamicFormDialogComponent, { data });
-  }
-
-  private mapData(data: Data): DynamicFormData {
+  private mapData(data: Data): FormExampleData {
     const example = data.example;
     const definition = data.definition;
     const model = data.model || {};

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
+import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
 import { MaterialFormComponent } from './material-form.component';
 
@@ -11,6 +12,7 @@ export const dynamicFormIdBuilder = (): string => v4();
 @NgModule({
   imports: [
     CommonModule,
+    FormSubmitDialogModule,
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',

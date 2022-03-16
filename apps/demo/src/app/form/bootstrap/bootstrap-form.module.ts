@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { DynamicFormIconModule } from '@dynamic-forms/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { v4 } from 'uuid';
+import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
 import { BootstrapFormComponent } from './bootstrap-form.component';
 
@@ -11,6 +12,7 @@ export const dynamicFormIdBuilder = (): string => v4();
 @NgModule({
   imports: [
     CommonModule,
+    FormSubmitDialogModule,
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',
@@ -33,7 +35,7 @@ export const dynamicFormIdBuilder = (): string => v4();
     BsDynamicFormsModule.forRoot({
       theme: 'bootstrap',
       idBuilder: dynamicFormIdBuilder
-    }),
+    })
   ],
   declarations: [
     BootstrapFormComponent

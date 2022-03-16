@@ -1,25 +1,26 @@
-<mat-tab-group class="dynamic-form-editor">
+<mat-tab-group #tabGroup class="dynamic-form-editor">
     <mat-tab label="Editor">
-      <app-monaco-editor></app-monaco-editor>
+      <app-monaco-editor
+        [language]="'json'"
+        [(value)]="value"
+      ></app-monaco-editor>
     </mat-tab>
     <mat-tab label="Form">
-      <ng-template matTabContent>
-        <ng-content select="[dynamic-form]"></ng-content>
-      </ng-template>
+      <ng-content></ng-content>
     </mat-tab>
     <mat-tab label="Definition">
       <ng-template matTabContent>
-        <ng-content select="[dynamic-form-definition]"></ng-content>
+        <pre>{{ form?.formDefinition | json }}</pre>
       </ng-template>
     </mat-tab>
     <mat-tab label="Model">
       <ng-template matTabContent>
-        <ng-content select="[dynamic-form-model]"></ng-content>
+        <pre>{{ form?.formModel | json }}</pre>
       </ng-template>
     </mat-tab>
     <mat-tab label="Value">
       <ng-template matTabContent>
-        <ng-content select="[dynamic-form-value]"></ng-content>
+        <pre>{{ form?.formModel | json }}</pre>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
