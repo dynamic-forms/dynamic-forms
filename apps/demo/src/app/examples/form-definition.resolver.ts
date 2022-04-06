@@ -20,7 +20,7 @@ export class FormDefinitionResolver implements Resolve<Observable<DynamicFormDef
     const request = this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ file }`);
     const messages = this.getNotificationMessages();
     return this.notificationsService.pipe(request, messages);
-}
+  }
 
   private getNotificationMessages(): NotificationMessages {
     const info = this.notificationsService.getInfoMessage(`Loading definition started`);

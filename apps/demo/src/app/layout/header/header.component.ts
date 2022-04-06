@@ -19,9 +19,9 @@ export class HeaderComponent {
   config$: Observable<Config>;
 
   constructor(private media: MediaMatcher) {
-    this.docsQuery = this.media.matchMedia('(max-width: 725px)');
+    this.docsQuery = this.media.matchMedia('(max-width: 825px)');
     this.examplesQuery = this.media.matchMedia('(max-width: 450px)');
-    this.editorsQuery = this.media.matchMedia('(max-width: 450px)');
-    this.versionsQuery = this.media.matchMedia('(max-width: 600px)');
+    this.editorsQuery = this.media.matchMedia('(max-width: 550px)');
+    this.versionsQuery = this.media.matchMedia('(max-width: 675px)');
   }
 }

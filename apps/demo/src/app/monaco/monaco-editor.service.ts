@@ -6,20 +6,23 @@ export class MonacoEditorService {
   private readonly _window = window as { require?: any; monaco?: any };
   private readonly _baseUrl = './assets/monaco-editor/min/vs';
 
-  readonly isLoading = new BehaviorSubject(false);
-  readonly isLoaded = new BehaviorSubject(false);
+  private readonly _loading = new BehaviorSubject(false);
+  private readonly _loaded = new BehaviorSubject(false);
+
+  readonly loading$ = this._loading.asObservable();
+  readonly loaded$ = this._loaded.asObservable();
 
   load(): void {
     if (typeof this._window.monaco === 'object') {
-      this.isLoaded .next(true);
+      this._loaded.next(true);
       return;
     }
 
-    if(this.isLoading.value) {
+    if(this._loading.value) {
       return;
     }
 
-    this.isLoading.next(true);
+    this._loading.next(true);
 
     if (this._window.require) {
       this.loadMonaco();
@@ -31,8 +34,8 @@ export class MonacoEditorService {
   private loadMonaco(): void {
     this._window.require.config({ paths: { vs: `${this._baseUrl}` } });
     this._window.require([`vs/editor/editor.main`], () => {
-      this.isLoading.next(false);
-      this.isLoaded.next(true);
+      this._loading.next(false);
+      this._loaded.next(true);
     });
   }
 

@@ -31,7 +31,6 @@ export class FormEditorComponent {
       const definition = JSON.parse(value);
       const model = {};
       this._data = { definition, model };
-      console.log('data changed', this._data);
     } catch (error) {
       console.log(error);
     }

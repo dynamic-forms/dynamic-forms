@@ -1,8 +1,9 @@
 <mat-tab-group #tabGroup class="dynamic-form-editor">
     <mat-tab label="Editor">
       <app-monaco-editor
-        [language]="'json'"
         [(value)]="value"
+        [language]="'json'"
+        [updateType]="'blur'"
       ></app-monaco-editor>
     </mat-tab>
     <mat-tab label="Form">
