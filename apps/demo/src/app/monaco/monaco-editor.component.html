@@ -12,6 +12,8 @@
     </mat-menu>
   </div>
   <div class="monaco-editor-container" #container></div>
+  <!-- TODO: change detection does not work
   <div class="monaco-editor-loading" *ngIf="loading$ | async">Loading ...</div>
+  -->
   <div class="monaco-editor-loading" *ngIf="fileLoading$ | async">Loading file ...</div>
 </div>
