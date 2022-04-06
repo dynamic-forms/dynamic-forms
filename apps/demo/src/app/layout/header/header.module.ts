@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { DocsMenuModule } from './docs-menu/docs-menu.module';
+import { EditorMenuModule } from './editor-menu/editor-menu.module';
 import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { HeaderComponent } from './header.component';
 import { NotificationsToggleModule } from './notifications-toggle/notifications-toggle.module';
@@ -21,6 +22,7 @@ import { VersionsMenuModule } from './versions-menu/versions-menu.module';
     MatToolbarModule,
     DocsMenuModule,
     HeaderPipesModule,
+    EditorMenuModule,
     ExamplesMenuModule,
     NotificationsToggleModule,
     SidebarToggleModule,

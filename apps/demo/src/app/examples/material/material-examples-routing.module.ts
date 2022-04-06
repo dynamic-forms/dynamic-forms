@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { getDynamicFormExampleRoutes } from '../dynamic-form-example-routes';
+import { getFormExampleRoutes } from '../form-example-routes';
 import { MaterialExamplesComponent } from './material-examples.component';
 
-const materialExamplesRoutes: Routes = getDynamicFormExampleRoutes(MaterialExamplesComponent);
+const materialExamplesRoutes: Routes = getFormExampleRoutes(MaterialExamplesComponent);
 
 @NgModule({
   imports: [

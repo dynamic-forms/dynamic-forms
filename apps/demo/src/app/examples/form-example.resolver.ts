@@ -7,7 +7,7 @@ import { ExampleMenu } from '../state/examples/examples.model';
 import { ExamplesState } from '../state/examples/examples.state';
 
 @Injectable()
-export class DynamicFormExampleResolver implements Resolve<Observable<ExampleMenu>> {
+export class FormExampleResolver implements Resolve<Observable<ExampleMenu>> {
   constructor(private store: Store) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<ExampleMenu> {

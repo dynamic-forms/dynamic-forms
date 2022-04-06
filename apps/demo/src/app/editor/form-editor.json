@@ -1,0 +1,27 @@
+{
+  "template": {
+    "label": "Dynamic Form"
+  },
+  "children": [
+    {
+      "key": "checkbox",
+      "type": "control",
+      "template": {
+        "label": "Checkbox",
+        "input": {
+          "type": "checkbox"
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      }
+    }
+  ]
+}

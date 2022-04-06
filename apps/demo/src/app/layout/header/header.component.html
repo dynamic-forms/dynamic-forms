@@ -2,7 +2,8 @@
   <app-sidebar-toggle></app-sidebar-toggle>
   <a mat-button routerLink="/home">dynamic-forms</a>
   <app-docs-menu *ngIf="!docsQuery.matches"></app-docs-menu>
-  <app-examples-menu *ngIf="!examplesQuery.matches"></app-examples-menu>  
+  <app-examples-menu *ngIf="!examplesQuery.matches"></app-examples-menu>
+  <app-editor-menu *ngIf="!editorsQuery.matches"></app-editor-menu>  
   <div class="header-spacer"></div>
   <app-notifications-toggle></app-notifications-toggle>
   <app-versions-menu *ngIf="!versionsQuery.matches"></app-versions-menu>
