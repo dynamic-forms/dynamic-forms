@@ -1,16 +1,5 @@
 <ng-container *ngIf="data$ | async as data" >
-  <app-dynamic-form-example [docEnabled]="data.example.docId" [docSource]="doc$ | async">
-    <dynamic-form dynamic-form [definition]="data.definition" [model]="data.model" 
-      (formSubmit)="onFormSubmit($event)"
-    ></dynamic-form>
-    <div dynamic-form-definition>
-      <pre>{{ data.definition | json }}</pre>
-    </div>
-    <div dynamic-form-model>
-      <pre>{{ data.model | json }}</pre>
-    </div>
-    <div dynamic-form-value>  
-      <pre>{{ dynamicFormValue | json }}</pre>
-    </div>
-  </app-dynamic-form-example>
+  <app-form-example [docEnabled]="data.example.docId" [docSource]="doc$ | async">
+    <app-material-form #form [data]="data"></app-material-form>
+  </app-form-example>
 </ng-container>

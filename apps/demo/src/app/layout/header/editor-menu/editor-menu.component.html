@@ -1,0 +1,9 @@
+<button mat-button [matMenuTriggerFor]="editor">
+  Editor
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #editor="matMenu">
+  <a mat-menu-item [routerLink]="[ 'editor', 'bootstrap' ]">Bootstrap</a>
+  <a mat-menu-item [routerLink]="[ 'editor', 'material' ]">Material</a>
+</mat-menu>

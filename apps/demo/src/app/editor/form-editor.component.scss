@@ -1,0 +1,9 @@
+:host {
+  app-monaco-editor {
+    &::ng-deep {
+      .monaco-editor {
+        height: calc(100vh - 116px - 49px);
+      }
+    }
+  }
+}
