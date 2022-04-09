@@ -9,14 +9,14 @@ const BeautifulReporter = require('protractor-beautiful-reporter');
 const chromeDriverFileName = os.type() === 'Windows_NT' ? 'chromedriver.exe' : 'chromedriver';
 const chromeDriver = process.env.CHROMEWEBDRIVER ? path.join(process.env.CHROMEWEBDRIVER, chromeDriverFileName) : null;
 
-const specReporter = new SpecReporter({ 
-  spec: { 
-    displayStacktrace: true 
-  } 
+const specReporter = new SpecReporter({
+  spec: {
+    displayStacktrace: true
+  }
 });
 
 const beautifulReporter = new BeautifulReporter({
-  baseDirectory: 'dist/v13/e2e',
+  baseDirectory: 'dist/v14/e2e',
   screenshotsSubfolder: 'screenshots',
   jsonsSubfolder: 'jsons',
   takeScreenShotsOnlyForFailedSpecs: false,
