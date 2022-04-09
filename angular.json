@@ -308,7 +308,7 @@
     }
   },
   "cli": {
-    "analytics": true,
+    "analytics": "f7040ac1-fb35-4f19-91f3-7f68cab59b47",
     "schematicCollections": [
       "@angular-eslint/schematics"
     ]
