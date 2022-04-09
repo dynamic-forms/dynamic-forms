@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "13.0.0",
+  "version": "14.0.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -49,11 +49,11 @@
     "serve:doc:core": "cd libs/core && npx compodoc -c doc.json --serve --watch",
     "serve:doc:bootstrap": "cd libs/bootstrap && npx compodoc -c doc.json --serve --watch",
     "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch",
-    "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v13/",
-    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v13/",
-    "publish:core": "cd dist/v13/@dynamic-forms/core && npm publish",
-    "publish:bootstrap": "cd dist/v13/@dynamic-forms/bootstrap && npm publish",
-    "publish:material": "cd dist/v13/@dynamic-forms/material && npm publish",
+    "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v14/",
+    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v14/",
+    "publish:core": "cd dist/v14/@dynamic-forms/core && npm publish",
+    "publish:bootstrap": "cd dist/v14/@dynamic-forms/bootstrap && npm publish",
+    "publish:material": "cd dist/v14/@dynamic-forms/material && npm publish",
     "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material"
   },
   "private": true,

@@ -4,14 +4,14 @@
 const { SpecReporter } = require('jasmine-spec-reporter');
 const BeautifulReporter = require('protractor-beautiful-reporter');
 
-const specReporter = new SpecReporter({ 
-  spec: { 
-    displayStacktrace: true 
-  } 
+const specReporter = new SpecReporter({
+  spec: {
+    displayStacktrace: true
+  }
 });
 
 const beautifulReporter = new BeautifulReporter({
-  baseDirectory: 'dist/v13/e2e',
+  baseDirectory: 'dist/v14/e2e',
   screenshotsSubfolder: 'screenshots',
   jsonsSubfolder: 'jsons',
   takeScreenShotsOnlyForFailedSpecs: false,
