@@ -62,7 +62,7 @@
 
 Packages are hosted by GitHub. Therefore, it's required to add `@dynamic-forms:registry=https://npm.pkg.github.com` to the registry file `.npmrc`.
 
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/v14.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/v14.0.0)
+### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/v14.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/v14.0.0-next.0)
 
 - `npm install @dynamic-forms/core@v14.0.0-next.0`
 - `npm install @dynamic-forms/bootstrap@v14.0.0-next.0`
