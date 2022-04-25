@@ -26,7 +26,6 @@ export class SidebarMenuComponent {
     this.treeDataSource$ = combineLatest([this.store.select(ConfigState.repository), this.store.select(ExamplesState.menuItems)]).pipe(
       map(([repository, examples]) => this.getTreeDataSource(repository, examples))
     );
-
   }
 
   hasChildren = (_: number, menuItem: any) => menuItem.children;
@@ -34,11 +33,13 @@ export class SidebarMenuComponent {
   private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): MatTreeNestedDataSource<SidebarMenuItem> {
     const docsChildren = [ 'core', 'bootstrap', 'material'].map(library => this.getMenuItemForDocs(library, repository));
     const examplesChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
+    const editorChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
     const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
     treeDataSource.data = [
       { label: 'Home', route: '/home' },
       { label: 'Docs', children: [ ...docsChildren, { label: 'Changelog', route: '/docs/changelog' } ] },
       { label: 'Examples', children: examplesChildren },
+      { label: 'Editor', children: editorChildren },
       { label: 'License', route: '/license' }
     ];
     return treeDataSource;
@@ -78,5 +79,12 @@ export class SidebarMenuComponent {
       ? `/examples/${library}/${exampleMenu.id}/models/${exampleMenu.modelId}`
       : `/examples/${library}/${exampleMenu.id}`;
     return { label: example.label, route };
+  }
+
+  private getMenuItemForEditors(library: string): SidebarMenuItem {
+    return {
+      label: this.getLibraryName(library),
+      route: `/editor/${library}`
+    };
   }
 }
