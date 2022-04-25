@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormIconModule } from '@dynamic-forms/core';
+import { DynamicFormIconModule, DynamicFormMarkdownModule } from '@dynamic-forms/core';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
 import { FormSubmitDialogModule } from '../form-submit-dialog.module';
@@ -32,6 +32,7 @@ export const dynamicFormIdBuilder = (): string => v4();
       libraryName: 'material'
     }),
     DynamicFormExtensionsModule,
+    DynamicFormMarkdownModule,
     MatDynamicFormsModule.forRoot({
       theme: 'material',
       idBuilder: dynamicFormIdBuilder

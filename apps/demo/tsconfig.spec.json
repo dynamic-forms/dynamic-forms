@@ -8,22 +8,22 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v13/@dynamic-forms/core"
+        "dist/v14/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/*": [
-        "dist/v13/@dynamic-forms/core/*"
+        "dist/v14/@dynamic-forms/core/*"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/v13/@dynamic-forms/bootstrap"
+        "dist/v14/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/bootstrap/*": [
-        "dist/v13/@dynamic-forms/bootstrap/*"
+        "dist/v14/@dynamic-forms/bootstrap/*"
       ],
       "@dynamic-forms/material": [
-        "dist/v13/@dynamic-forms/material"
+        "dist/v14/@dynamic-forms/material"
       ],
       "@dynamic-forms/material/*": [
-        "dist/v13/@dynamic-forms/material/*"
+        "dist/v14/@dynamic-forms/material/*"
       ]
     }
   },

@@ -1,5 +1,5 @@
 {
-  "version": "13.0.0",
+  "version": "14.0.0-next.0",
   "build": "187",
   "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=26&_a=summary",
   "release": "17",
@@ -9,15 +9,19 @@
   },
   "repository": {
     "url": "https://github.com/dynamic-forms/dynamic-forms",
-    "branch": "13.0.x",
+    "branch": "14.0.x",
     "branchPath": "tree/{{branch}}",
     "libraryPath": "libs/{{library}}",
     "commit": null
   },
   "versions": [
     {
+      "name": "14.0.0-next.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v14"
+    },
+    {
       "name": "13.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v13/dev"
+      "url": "https://dynamic-forms.azurewebsites.net/v13"
     },
     {
       "name": "12.1.1",
