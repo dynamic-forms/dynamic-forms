@@ -1,5 +1,13 @@
 # Changelog
 
+## 14.0.0-next.1 (2022-04-26)
+
+### Bug Fixes
+
+* **core:** next version of library using angular 14
+* **bootstrap:** next version of library using angular 14
+* **material:** release candidate of library using angular material 14
+
 ## 14.0.0-next.0 (2022-04-25)
 
 ### Features
