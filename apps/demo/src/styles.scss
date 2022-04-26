@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { 
-  height: 100%; 
+html, body {
+  height: 100%;
 }
 
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 
-  h1 { 
-    font-size: 24px; 
+  h1 {
+    font-size: 24px;
   }
-  
-  h2 { 
-    font-size: 22px; 
+
+  h2 {
+    font-size: 22px;
   }
 
   h3 {
@@ -28,5 +28,30 @@ body {
   p {
     margin-top: 0;
     margin-bottom: 1rem;
+  }
+
+  .router-link-active {
+    background: rgba(63,81,181,.15);
+    color: #3f51b5;
+  }
+
+  .dynamic-form-markdown {
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+
+    a {
+      color: #3f51b5;
+    }
+
+    code {
+      margin: 0;
+      padding: 2px 4px;
+      font-size: 14px;
+      background-color: #e0e0e0;
+      // background-color: #0000000a;
+      // background-color: #0000001f;
+      border-radius: 4px;
+    }
   }
 }
