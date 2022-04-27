@@ -9,7 +9,7 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
   private _submit$: Observable<boolean>;
 
   constructor(builder: DynamicFormBuilder, definition: DynamicFormDefinition, model: any) {
-    super(builder, null, null, definition, model);
+    super(builder, definition, model);
     this._root = this;
     this._submit = new Subject();
     this._submit$ = this._submit.asObservable();
