@@ -24,7 +24,7 @@ export class DynamicFormGroup<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'group'; }
 
-  get children(): DynamicFormElement[] { return this._children; }
+  override get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
 
   check(): void {
@@ -67,7 +67,7 @@ export class DynamicFormGroup<
     return this._builder.createGroupValidators(this);
   }
 
-  protected initChildren(): void {
+  protected override initChildren(): void {
     super.initChildren();
     this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {

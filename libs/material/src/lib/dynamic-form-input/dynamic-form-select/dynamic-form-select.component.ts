@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormSelect, DynamicFormValidationService }
   templateUrl: './dynamic-form-select.component.html'
 })
 export class MatDynamicFormSelectComponent extends DynamicFormInputBase<DynamicFormSelect> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

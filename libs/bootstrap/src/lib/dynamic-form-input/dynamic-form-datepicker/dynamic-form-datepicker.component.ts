@@ -6,7 +6,7 @@ import { DynamicFormDatepicker, DynamicFormInputBase, DynamicFormValidationServi
   templateUrl: './dynamic-form-datepicker.component.html'
 })
 export class BsDynamicFormDatepickerComponent extends DynamicFormInputBase<DynamicFormDatepicker> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

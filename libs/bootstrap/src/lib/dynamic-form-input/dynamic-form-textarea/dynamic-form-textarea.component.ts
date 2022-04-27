@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormTextarea, DynamicFormValidationService
   templateUrl: './dynamic-form-textarea.component.html'
 })
 export class BsDynamicFormTextareaComponent extends DynamicFormInputBase<DynamicFormTextarea> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

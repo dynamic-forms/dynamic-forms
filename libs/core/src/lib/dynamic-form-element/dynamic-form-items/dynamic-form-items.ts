@@ -21,7 +21,7 @@ export class DynamicFormItems<
   get selectedIndex(): number { return this._selectedIndex; }
   get selectedItem(): Item { return this._selectedItem; }
 
-  init(): void {
+  override init(): void {
     super.init();
     this.selectItem(0);
   }
@@ -39,7 +39,7 @@ export class DynamicFormItems<
     }
   }
 
-  protected getChildren(): Item[] {
+  protected override getChildren(): Item[] {
     return (this.definition.children || []).map((childDefinition, index) => {
       const itemDefinition = { ...this._builder.getDefinition(childDefinition, this.root), index };
       const item = new DynamicFormItem(this._builder, this.root, this.parent, itemDefinition);

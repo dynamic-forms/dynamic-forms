@@ -8,7 +8,7 @@ import { FormExampleBase } from '../form-example-base';
   templateUrl: './material-examples.component.html'
 })
 export class MaterialExamplesComponent extends FormExampleBase {
-  constructor(protected route: ActivatedRoute, protected dialog: MatDialog) {
+  constructor(protected override route: ActivatedRoute, protected override dialog: MatDialog) {
     super(route, dialog);
   }
 }

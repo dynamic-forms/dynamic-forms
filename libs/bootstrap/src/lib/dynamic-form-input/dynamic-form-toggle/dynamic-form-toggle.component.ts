@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService }
   templateUrl: './dynamic-form-toggle.component.html'
 })
 export class BsDynamicFormToggleComponent extends DynamicFormInputBase<DynamicFormToggle> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

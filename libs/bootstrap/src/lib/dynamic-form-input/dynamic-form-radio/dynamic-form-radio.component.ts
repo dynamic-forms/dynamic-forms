@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } 
   templateUrl: './dynamic-form-radio.component.html'
 })
 export class BsDynamicFormRadioComponent extends DynamicFormInputBase<DynamicFormRadio> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

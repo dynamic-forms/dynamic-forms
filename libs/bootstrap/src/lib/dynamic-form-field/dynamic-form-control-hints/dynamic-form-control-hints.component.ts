@@ -7,8 +7,8 @@ import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormVali
 })
 export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrapperBase {
   constructor(
-    protected containerRef: ViewContainerRef,
-    protected validationService: DynamicFormValidationService
+    protected override containerRef: ViewContainerRef,
+    protected override validationService: DynamicFormValidationService
   ) {
     super(containerRef, validationService);
   }

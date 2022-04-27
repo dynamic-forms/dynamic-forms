@@ -14,7 +14,7 @@ export abstract class DynamicFormControlBase<
   Control extends DynamicFormControl<Input, Template, Definition> = DynamicFormControl<Input, Template, Definition>
 > extends DynamicFormFieldBase<FormControl, Template, Definition, Control> {
 
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 

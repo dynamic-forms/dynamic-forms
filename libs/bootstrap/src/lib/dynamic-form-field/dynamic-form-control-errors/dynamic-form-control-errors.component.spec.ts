@@ -11,7 +11,7 @@ import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.
   template: `<div>Dynamic Input</div>`
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

@@ -22,7 +22,7 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
   `
 })
 class DynamicFormIconTestComponent extends DynamicFormIconBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

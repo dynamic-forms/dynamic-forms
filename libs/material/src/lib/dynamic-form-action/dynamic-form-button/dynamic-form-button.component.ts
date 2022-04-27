@@ -6,7 +6,7 @@ import { DynamicFormActionService, DynamicFormButtonBase } from '@dynamic-forms/
   templateUrl: './dynamic-form-button.component.html'
 })
 export class MatDynamicFormButtonComponent extends DynamicFormButtonBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

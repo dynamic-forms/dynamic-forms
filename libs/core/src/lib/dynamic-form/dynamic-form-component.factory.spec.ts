@@ -41,7 +41,7 @@ class DynamicFormElementTestComponent extends DynamicFormElementBase {}
   template: `<div>Dynamic Form Field</div>`
 })
 class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }
@@ -51,7 +51,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   template: `<div>Dynamic Form Action</div>`
 })
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }
@@ -61,7 +61,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
   template: `<div>Dynamic Input</div>`
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }
@@ -72,8 +72,8 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
-    protected containerRef: ViewContainerRef,
-    protected validationService: DynamicFormValidationService
+    protected override containerRef: ViewContainerRef,
+    protected override validationService: DynamicFormValidationService
   ) {
     super(containerRef, validationService);
   }

@@ -9,7 +9,7 @@ export abstract class FormExampleBase extends FormSubmitBase {
   readonly data$: Observable<FormExampleData>;
   readonly doc$: Observable<string>;
 
-  constructor(protected route: ActivatedRoute, protected dialog: MatDialog) {
+  constructor(protected route: ActivatedRoute, protected override dialog: MatDialog) {
     super(dialog);
     this.data$ = this.route.data.pipe(
       map(data => this.mapData(data))

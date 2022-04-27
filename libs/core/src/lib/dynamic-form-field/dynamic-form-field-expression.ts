@@ -11,12 +11,12 @@ export class DynamicFormFieldExpression<
 
   protected _memo: DynamicFormExpressionMemoization;
 
-  constructor(readonly key: string, readonly field: DynamicFormField, readonly func: Func) {
+  constructor(override readonly key: string, readonly field: DynamicFormField, override readonly func: Func) {
     super(key, field, func);
     this._memo = { previousValue: null, currentValue: null };
   }
 
-  get value(): any {
+  override get value(): any {
     this.previousValue = this.currentValue;
     this.currentValue = this.func(this.field.expressionData as Data, this._memo);
     if (this.previousValue !== this.currentValue) {

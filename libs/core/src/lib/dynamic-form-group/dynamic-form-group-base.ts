@@ -13,7 +13,7 @@ export abstract class DynamicFormGroupBase<
   Group extends DynamicFormGroup<Template, Definition> = DynamicFormGroup<Template, Definition>
 > extends DynamicFormFieldBase<FormGroup, Template, Definition, Group> {
 
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 

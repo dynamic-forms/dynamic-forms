@@ -9,7 +9,7 @@ import { FormBase } from '../form-base';
   encapsulation: ViewEncapsulation.None
 })
 export class BootstrapFormComponent extends FormBase {
-  constructor(protected dialog: MatDialog) {
+  constructor(protected override dialog: MatDialog) {
     super(dialog);
   }
 }

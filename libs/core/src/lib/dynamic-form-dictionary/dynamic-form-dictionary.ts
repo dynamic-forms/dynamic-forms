@@ -99,7 +99,7 @@ export class DynamicFormDictionary<
     return this._builder.createFormDictionaryElements(this);
   }
 
-  protected initChildren(): void {
+  protected override initChildren(): void {
     super.initChildren();
     this._children.filter(field => !field.unregistered).forEach(field => {
       this._control.registerControl(field.definition.key, field.control);

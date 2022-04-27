@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormNumberbox, DynamicFormValidationServic
   templateUrl: './dynamic-form-numberbox.component.html'
 })
 export class BsDynamicFormNumberboxComponent extends DynamicFormInputBase<DynamicFormNumberbox> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

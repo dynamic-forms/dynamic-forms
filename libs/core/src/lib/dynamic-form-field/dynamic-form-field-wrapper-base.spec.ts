@@ -11,8 +11,8 @@ import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
-    protected containerRef: ViewContainerRef,
-    protected validationService: DynamicFormValidationService
+    protected override containerRef: ViewContainerRef,
+    protected override validationService: DynamicFormValidationService
   ) {
     super(containerRef, validationService);
   }
@@ -23,7 +23,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   template: `<div>Dynamic Input</div>`
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }
