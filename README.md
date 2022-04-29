@@ -63,7 +63,6 @@
 Packages are hosted by GitHub. Therefore, the following lines
 
 ```
-//npm.pkg.github.com/:_authToken=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
 @dynamic-forms:registry=https://npm.pkg.github.com
 ```
 
