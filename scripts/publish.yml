@@ -1,0 +1,72 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+variables:
+  branch: 8.*.x
+  version: v8
+  tag: v8.*
+
+trigger:
+  branches:
+    include:
+    - refs/tags/$(tag)
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: $(branch)
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run lint
+    npm run test:libs
+    npm run build:libs
+  displayName: 'npm install, lint, test and build'
+
+- task: PublishTestResults@2
+  displayName: Publish test results
+  continueOnError: True
+  inputs:
+    testResultsFiles: dist/$(version)/tests/dynamic-forms-libs.junit.xml
+
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: dist/$(version)/tests/cobertura-coverage.xml
+
+- task: Npm@1
+  displayName: npm publish core
+  inputs:
+    command: 'publish'
+    workingDir: dist/$(version)/@dynamic-forms/core
+    publishRegistry: 'useFeed'
+    publishFeed: 'd16fde74-c22b-4f1a-af40-daf0a96e6125'
+
+- task: Npm@1
+  displayName: npm publish bootstrap
+  inputs:
+    command: 'publish'
+    workingDir: dist/$(version)/@dynamic-forms/bootstrap
+    publishRegistry: 'useFeed'
+    publishFeed: 'd16fde74-c22b-4f1a-af40-daf0a96e6125'
+
+- task: Npm@1
+  displayName: npm publish material
+  inputs:
+    command: 'publish'
+    workingDir: dist/$(version)/@dynamic-forms/material
+    publishRegistry: 'useFeed'
+    publishFeed: 'd16fde74-c22b-4f1a-af40-daf0a96e6125'
