@@ -76,11 +76,11 @@ Packages are hosted by Azure DevOps. Therefore, it's required to add `@dynamic-f
 - `npm install @dynamic-forms/bootstrap@9.0.1`
 - `npm install @dynamic-forms/material@9.0.1`
 
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/8.0.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/8.0.1)
+### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/8.0.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/8.0.2)
 
-- `npm install @dynamic-forms/core@8.0.1`
-- `npm install @dynamic-forms/bootstrap@8.0.1`
-- `npm install @dynamic-forms/material@8.0.1`
+- `npm install @dynamic-forms/core@8.0.2`
+- `npm install @dynamic-forms/bootstrap@8.0.2`
+- `npm install @dynamic-forms/material@8.0.2`
 
 ## **Libraries**
 
