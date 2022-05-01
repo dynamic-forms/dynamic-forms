@@ -21,7 +21,7 @@
     "rxjs": "~6.6.7"
   },
   "publishConfig": {
-    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry",
+    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/",
     "tag": "v8"
   }
 }
