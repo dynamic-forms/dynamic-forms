@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "8.0.1",
+  "version": "8.0.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "license": "MIT",
@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "tslib": "^1.14.1"
-  },  
+  },
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
-    "@dynamic-forms/core": "8.0.1",
+    "@dynamic-forms/core": "8.0.0",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.7"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
+    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry//",
     "tag": "v8"
   }
 }
