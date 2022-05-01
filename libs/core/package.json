@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "8.0.1",
+  "version": "8.0.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/dynamic-forms/dynamic-forms.git",
     "directory": "libs/core"
-  },  
+  },
   "dependencies": {
     "tslib": "^1.14.1"
   },
@@ -21,7 +21,7 @@
     "rxjs": "~6.6.7"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
+    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry//",
     "tag": "v8"
   }
 }
