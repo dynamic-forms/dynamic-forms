@@ -50,7 +50,7 @@
 
 ## **Packages**
 
-Packages are hosted by Azure DevOps. Therefore, it's required to add `@dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/` to the registry file `.npmrc`.
+Packages are hosted by Azure DevOps. Therefore, it's required to add `@dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry` to the registry file `.npmrc`.
 
 ### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v12/dynamic-forms-v12-publish?branchName=refs/tags/12.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=24&branchName=refs/tags/12.0.0)
 
