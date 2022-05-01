@@ -15,7 +15,7 @@
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.1",
+    "@angular/forms": "^8.0.0",
     "bootstrap": "^4.6.0",
     "marked": "^2.0.3",
     "rxjs": "~6.6.7"
