@@ -1,0 +1,40 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+variables:
+  branch: 8.*.x
+  version: v8
+
+trigger:
+  branches:
+    include:
+    - $(branch)
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: $(branch)
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build:libs
+    npm run e2e:azure:prod
+  displayName: 'npm install, build and e2e'
+
+- task: PublishProtractorReport@1
+  displayName: publish e2e report
+  continueOnError: True
+  inputs:
+    cwd: $(System.DefaultWorkingDirectory)/dist/$(version)/e2e
