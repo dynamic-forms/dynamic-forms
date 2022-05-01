@@ -1,5 +1,5 @@
 {
-  "version": "8.0.0",
+  "version": "8.0.1",
   "build": "187",
   "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=1&_a=summary",
   "release": "17",
@@ -32,7 +32,7 @@
       "url": "https://dynamic-forms.azurewebsites.net/v9/dev"
     },
     {
-      "name": "8.0.0",
+      "name": "8.0.1",
       "url": "https://dynamic-forms.azurewebsites.net/v8/dev"
     }
   ]
