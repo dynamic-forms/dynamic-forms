@@ -6,7 +6,7 @@
 variables:
   branch: 8.*.x
   version: v8
-  tag: v8.*
+  tag: 8.*
 
 trigger:
   branches:

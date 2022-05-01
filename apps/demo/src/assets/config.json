@@ -1,9 +1,9 @@
 {
-  "version": "8.0.1",
+  "version": "8.0.0",
   "build": "187",
-  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=1&_a=summary",
+  "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=34&_a=summary",
   "release": "17",
-  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=1&_a=releases",
+  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=34&_a=releases",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
@@ -32,7 +32,7 @@
       "url": "https://dynamic-forms.azurewebsites.net/v9/dev"
     },
     {
-      "name": "8.0.1",
+      "name": "8.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v8/dev"
     }
   ]

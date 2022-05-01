@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "8.0.1",
+  "version": "8.0.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "rxjs": "~6.6.7"
   },
   "publishConfig": {
-    "registry": "https://pkgs.dev.azure.com/dynamic-forms/_packaging/dynamic-forms/npm/registry//",
+    "registry": "https://pkgs.dev.azure.com/dynamic-forms/_packaging/dynamic-forms/npm/registry/",
     "tag": "v8"
   }
 }
