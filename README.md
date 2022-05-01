@@ -56,7 +56,7 @@ Packages are hosted by Azure DevOps. Therefore, it's required to add `@dynamic-f
 
 - `npm install @dynamic-forms/core@12.1.1`
 - `npm install @dynamic-forms/bootstrap@12.1.1`
-- `npm install @dynamic-forms/material@12.1.10`
+- `npm install @dynamic-forms/material@12.1.1`
 
 ### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/11.1.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/11.1.1)
 
