@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.2 (2021-05-16)
+
+### Bug Fixes
+
+* **material:** fixed package version
+
 ## 12.0.1 (2021-05-16)
 
 ### Bug Fixes
