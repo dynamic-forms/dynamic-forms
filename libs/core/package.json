@@ -22,7 +22,6 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/",
-    "tag": "v11"
+    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/"
   }
 }
