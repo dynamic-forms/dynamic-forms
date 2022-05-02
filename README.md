@@ -60,7 +60,7 @@
 
 ## **Packages**
 
-Packages are hosted by GitHub. Therefore, the following lines
+Packages are hosted by Azure DevOps. Therefore, the following lines
 
 ```
 @dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
