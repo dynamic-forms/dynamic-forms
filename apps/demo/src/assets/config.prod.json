@@ -16,7 +16,7 @@
   },
   "versions": [
     {
-      "name": "12.0.0",
+      "name": "12.1.1",
       "url": "https://dynamic-forms.azurewebsites.net/v12"
     },
     {
@@ -24,7 +24,7 @@
       "url": "https://dynamic-forms.azurewebsites.net/v11"
     },
     {
-      "name": "10.0.1",
+      "name": "10.0.2",
       "url": "https://dynamic-forms.azurewebsites.net/v10"
     },
     {
@@ -32,7 +32,7 @@
       "url": "https://dynamic-forms.azurewebsites.net/v9"
     },
     {
-      "name": "8.0.1",
+      "name": "8.0.2",
       "url": "https://dynamic-forms.azurewebsites.net/v8"
     }
   ]
