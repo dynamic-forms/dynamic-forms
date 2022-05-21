@@ -1,4 +1,4 @@
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -11,10 +11,10 @@ import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dyn
 export class DynamicFormArray<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<UntypedFormArray, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormArray([]));
+    super(builder, root, parent, definition, new UntypedFormArray([]));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }

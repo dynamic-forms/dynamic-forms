@@ -1,19 +1,19 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import {
   DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldAsyncValidatorFn,
   DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormGroup } from './dynamic-form-group';
 
-export type DynamicFormGroupValidatorFn = DynamicFormFieldValidatorFn<FormGroup>;
+export type DynamicFormGroupValidatorFn = DynamicFormFieldValidatorFn<UntypedFormGroup>;
 
-export type DynamicFormGroupAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormGroup>;
+export type DynamicFormGroupAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<UntypedFormGroup>;
 
-export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<FormGroup, DynamicFormGroup>;
+export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<UntypedFormGroup, DynamicFormGroup>;
 
-export type DynamicFormGroupAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormGroup, DynamicFormGroup>;
+export type DynamicFormGroupAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<UntypedFormGroup, DynamicFormGroup>;
 
-export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGroup, DynamicFormGroup> {
+export class DynamicFormGroupValidator extends DynamicFormFieldValidator<UntypedFormGroup, DynamicFormGroup> {
   constructor(factory: DynamicFormGroupValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
     super(factory, key, field, deps);
   }
@@ -23,7 +23,7 @@ export class DynamicFormGroupValidator extends DynamicFormFieldValidator<FormGro
   }
 }
 
-export class DynamicFormGroupAsyncValidator extends DynamicFormFieldAsyncValidator<FormGroup, DynamicFormGroup> {
+export class DynamicFormGroupAsyncValidator extends DynamicFormFieldAsyncValidator<UntypedFormGroup, DynamicFormGroup> {
   constructor(factory: DynamicFormGroupAsyncValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
     super(factory, key, field, deps);
   }

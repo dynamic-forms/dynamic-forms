@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
@@ -11,7 +11,7 @@ export abstract class DynamicFormDictionaryBase<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>,
   Dictionary extends DynamicFormDictionary<Template, Definition> = DynamicFormDictionary<Template, Definition>
-> extends DynamicFormFieldBase<FormGroup, Template, Definition, Dictionary> {
+> extends DynamicFormFieldBase<UntypedFormGroup, Template, Definition, Dictionary> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

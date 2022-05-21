@@ -1,4 +1,4 @@
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormControl } from './dynamic-form-control';
@@ -28,7 +28,7 @@ describe('DynamicFormControlValidator', () => {
   it('creates instance for validator definition', () => {
     const factory = (parameters: { minLength?: number; maxLength?: number }) =>
     Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
-      ? (formControl: FormControl) => formControl.value
+      ? (formControl: UntypedFormControl) => formControl.value
           ? formControl.value.length < parameters.minLength || formControl.value.length > parameters.maxLength
             ? { error: true }
             : null

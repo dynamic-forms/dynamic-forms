@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -11,7 +11,7 @@ import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dyn
 export class DynamicFormGroup<
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
-> extends DynamicFormField<FormGroup, Template, Definition> {
+> extends DynamicFormField<UntypedFormGroup, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
@@ -23,7 +23,7 @@ export class DynamicFormGroup<
       ? { root: params[0], parent: params[1], definition: params[2], model: null }
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
-    this._control = new FormGroup({});
+    this._control = new UntypedFormGroup({});
     this._model = model || this.getModel(definition);
     this._parameters = {};
   }

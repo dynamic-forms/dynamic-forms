@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -12,7 +12,7 @@ export abstract class DynamicFormControlBase<
   Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
   Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>,
   Control extends DynamicFormControl<Input, Template, Definition> = DynamicFormControl<Input, Template, Definition>
-> extends DynamicFormFieldBase<FormControl, Template, Definition, Control> {
+> extends DynamicFormFieldBase<UntypedFormControl, Template, Definition, Control> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

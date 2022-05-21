@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
@@ -9,7 +9,7 @@ export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidator
 
 export interface DynamicFormGroupAsyncValidatorType extends DynamicFormFieldAsyncValidatorType<DynamicFormGroupAsyncValidatorFactory> {}
 
-export const dynamicFormGroupRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: FormGroup) =>
+export const dynamicFormGroupRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: UntypedFormGroup) =>
   !group.value || Object.keys(group.value).length === 0 ? { requiredGroup: true } : null;
 
 export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorType = {
@@ -18,7 +18,7 @@ export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorTyp
   libraryName: dynamicFormLibrary.name
 };
 
-export const dynamicFormGroupAllRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: FormGroup) => {
+export const dynamicFormGroupAllRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: UntypedFormGroup) => {
   const keys = Object.keys(group.value || {});
   return keys.some(key => !group.value[key]) ? { allRequiredGroup: true } : null;
 };
@@ -31,7 +31,7 @@ export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidator
 
 export const dynamicFormGroupEqualValidatorFactory = (
   parameters?: { keys: string[] }, message?: string, key?: string
-): DynamicFormGroupValidatorFn => (group: FormGroup) => {
+): DynamicFormGroupValidatorFn => (group: UntypedFormGroup) => {
   const keys = parameters && parameters.keys;
   if (group.value && keys && keys.length > 1) {
     for (let i = 1; i < keys.length; i++) {
