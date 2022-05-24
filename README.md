@@ -1,7 +1,7 @@
 # **Project**
 
-- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [released libraries](https://github.com/dynamic-forms/dynamic-forms/releases) and [packages](https://github.com/dynamic-forms/dynamic-forms/packages)
-- [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
+- [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [releases](https://github.com/dynamic-forms/dynamic-forms/releases)
+- [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build), [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493) and [packages](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms) for [releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@96db2eda-0952-490c-bacf-3737543f73a0) and [pre-releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@a73fb5f7-2221-462a-8b8e-2a989c29ff59)
 - [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps
 
 ## **Demo**
@@ -68,11 +68,11 @@ Packages are hosted by Azure DevOps. Therefore, the following lines
 
 need to be part of the npm config file `.nmprc`.
 
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0-rc.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0-rc.0)
+### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0-rc.1)
 
-- `npm install @dynamic-forms/core@14.0.0-rc.0`
-- `npm install @dynamic-forms/bootstrap@14.0.0-rc.0`
-- `npm install @dynamic-forms/material@14.0.0-rc.0`
+- `npm install @dynamic-forms/core@14.0.0-rc.1`
+- `npm install @dynamic-forms/bootstrap@14.0.0-rc.1`
+- `npm install @dynamic-forms/material@14.0.0-rc.1`
 
 ### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v13/dynamic-forms-v13-publish?branchName=refs/tags/13.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=27&branchName=refs/tags/13.0.0)
 
@@ -112,7 +112,7 @@ need to be part of the npm config file `.nmprc`.
 
 ## **Libraries**
 
-### **@dynamic-forms/core**
+### **@dynamic-forms/core** [![@dynamic-forms/core package in dynamic-forms@Release feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms@Release/Packages/baa63772-0de2-4882-8366-a2603b7ef9b7/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@Release/Npm/@dynamic-forms%2Fcore/13.0.0)
 
 - Library includes **extendable** interfaces, classes, components, factories, services and **modules**
   - Dynamic form config module for registration of components
@@ -134,10 +134,10 @@ need to be part of the npm config file `.nmprc`.
   - Dynamic form action module for registration of action handlers
     - Service to resolve action handlers
 
-### **@dynamic-forms/bootstrap**
+### **@dynamic-forms/bootstrap** [![@dynamic-forms/bootstrap package in dynamic-forms feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms/Packages/78b43853-3969-4d78-87d9-cd3ae19556dc/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms/Npm/@dynamic-forms%2Fbootstrap/13.0.0)
 
 - Library for components based on [**bootstrap**](https://getbootstrap.com/) and **HTML5**
 
-### **@dynamic-forms/material**
+### **@dynamic-forms/material** [![@dynamic-forms/material package in dynamic-forms feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms/Packages/815623c3-b13c-4e6b-8a3f-3a45daeadca7/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms/Npm/@dynamic-forms%2Fmaterial/13.0.0)
 
 - Library for components based on [**@angular/material**](https://material.angular.io/)
