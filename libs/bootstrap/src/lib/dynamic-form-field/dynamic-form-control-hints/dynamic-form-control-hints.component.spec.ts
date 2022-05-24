@@ -11,7 +11,7 @@ import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.mo
   template: `<div>Dynamic Input</div>`
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

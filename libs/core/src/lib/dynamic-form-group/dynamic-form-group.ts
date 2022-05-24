@@ -15,7 +15,13 @@ export class DynamicFormGroup<
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, model: any = null) {
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition);
+  /** @internal */
+  constructor(builder: DynamicFormBuilder, definition: Definition, model: any);
+  constructor(builder: DynamicFormBuilder, ...params: any[]) {
+    const { root, parent, definition, model } = params.length === 3
+      ? { root: params[0], parent: params[1], definition: params[2], model: null }
+      : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
     this._control = new FormGroup({});
     this._model = model || this.getModel(definition);
@@ -24,7 +30,7 @@ export class DynamicFormGroup<
 
   get fieldClassType(): DynamicFormFieldClassType { return 'group'; }
 
-  get children(): DynamicFormElement[] { return this._children; }
+  override get children(): DynamicFormElement[] { return this._children; }
   get fields(): DynamicFormField[] { return this._fields; }
 
   check(): void {
@@ -67,7 +73,7 @@ export class DynamicFormGroup<
     return this._builder.createGroupValidators(this);
   }
 
-  protected initChildren(): void {
+  protected override initChildren(): void {
     super.initChildren();
     this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {

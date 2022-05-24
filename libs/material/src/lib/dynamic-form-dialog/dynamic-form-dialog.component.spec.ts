@@ -13,7 +13,7 @@ import { MatDynamicFormDialogModule } from './dynamic-form-dialog.module';
   template: `<div>Dynamic Form Action</div>`
 })
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

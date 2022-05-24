@@ -15,7 +15,7 @@ export class DynamicFormArrayComponent<
   Array extends DynamicFormArray<Template, Definition> = DynamicFormArray<Template, Definition>
 > extends DynamicFormArrayBase<Template, Definition, Array> {
 
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

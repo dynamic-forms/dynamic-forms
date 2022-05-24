@@ -8,9 +8,9 @@ export class DynamicFormActionExpression<
   Func extends DynamicFormActionExpressionFunc<Data> = DynamicFormActionExpressionFunc<Data>
 > extends DynamicFormElementExpression {
 
-  constructor(readonly key: string, readonly action: DynamicFormAction, readonly func: Func) {
+  constructor(override readonly key: string, readonly action: DynamicFormAction, override readonly func: Func) {
     super(key, action, func);
   }
 
-  get value(): any { return this.func(this.action.expressionData as Data); }
+  override get value(): any { return this.func(this.action.expressionData as Data); }
 }

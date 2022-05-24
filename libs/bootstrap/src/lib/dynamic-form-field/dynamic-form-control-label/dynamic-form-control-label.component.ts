@@ -7,8 +7,8 @@ import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFor
 })
 export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrapperBase {
   constructor(
-    protected containerRef: ViewContainerRef,
-    protected validationService: DynamicFormValidationService
+    protected override containerRef: ViewContainerRef,
+    protected override validationService: DynamicFormValidationService
   ) {
     super(containerRef, validationService);
   }

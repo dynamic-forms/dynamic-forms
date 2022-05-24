@@ -40,7 +40,7 @@ export class DynamicFormControl<
 
   get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
-  init(): void {
+  override init(): void {
     super.init();
     this.initEvaluators();
   }
@@ -77,7 +77,7 @@ export class DynamicFormControl<
     this.setValue(model, false);
   }
 
-  protected afterInitExpressions(): void {
+  protected override afterInitExpressions(): void {
     const keys = Object.keys(this._expressions);
     if (keys.includes('input.defaultValue')) {
       this.checkDefaultValue();
@@ -88,11 +88,11 @@ export class DynamicFormControl<
     return undefined;
   }
 
-  protected getHeaderActions(): DynamicFormAction[] {
+  protected override getHeaderActions(): DynamicFormAction[] {
     return undefined;
   }
 
-  protected getFooterActions(): DynamicFormAction[] {
+  protected override getFooterActions(): DynamicFormAction[] {
     return undefined;
   }
 

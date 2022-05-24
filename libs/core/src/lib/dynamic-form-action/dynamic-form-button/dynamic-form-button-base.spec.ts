@@ -22,7 +22,7 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
   `
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

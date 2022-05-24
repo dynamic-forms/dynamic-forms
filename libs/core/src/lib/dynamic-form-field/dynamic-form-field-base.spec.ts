@@ -5,7 +5,7 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormFieldBase } from './dynamic-form-field-base';
 
 class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

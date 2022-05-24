@@ -6,7 +6,7 @@ import { DynamicFormCombobox, DynamicFormInputBase, DynamicFormValidationService
   templateUrl: './dynamic-form-combobox.component.html'
 })
 export class BsDynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

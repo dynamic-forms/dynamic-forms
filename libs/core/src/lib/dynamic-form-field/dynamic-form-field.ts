@@ -53,7 +53,7 @@ export abstract class DynamicFormField<
     const parentPath = this.parentField && this.parentField.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
   }
-  get classType(): DynamicFormClassType { return 'field'; }
+  override get classType(): DynamicFormClassType { return 'field'; }
 
   get model(): any { return this._model; }
   get value(): any { return this._control.value; }
@@ -76,7 +76,7 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] { return this._headerActions; }
   get footerActions(): DynamicFormAction[] { return this._footerActions; }
 
-  init(): void {
+  override init(): void {
     super.init();
     this.initValidators();
     this.initHeaderActions();
@@ -97,22 +97,22 @@ export abstract class DynamicFormField<
     return this._builder.getFieldId(this);
   }
 
-  protected initId(): void {
+  protected override initId(): void {
     this.definition.id = this.getId();
   }
 
-  protected getExpressions(): DynamicFormFieldExpressions {
+  protected override getExpressions(): DynamicFormFieldExpressions {
     return this._builder.createFieldExpressions(this);
   }
 
-  protected initExpressions(): void {
+  protected override initExpressions(): void {
     super.initExpressions();
     this.afterInitExpressions();
   }
 
   protected afterInitExpressions(): void {}
 
-  protected abstract getChildren(): Child[];
+  protected abstract override getChildren(): Child[];
   protected abstract getValidators(): DynamicFormFieldValidatorBase[];
 
   protected initValidators(): void {
@@ -157,7 +157,7 @@ export abstract class DynamicFormField<
     return cloneObject(obj);
   }
 
-  protected createExpressionData(): DynamicFormFieldExpressionData {
+  protected override createExpressionData(): DynamicFormFieldExpressionData {
     const expressionData = super.createExpressionData() as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
       id: () => this.id,

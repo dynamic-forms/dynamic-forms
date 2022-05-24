@@ -15,7 +15,7 @@ export class DynamicFormDictionaryComponent<
   Dictionary extends DynamicFormDictionary<Template, Definition> = DynamicFormDictionary<Template, Definition>
 > extends DynamicFormDictionaryBase<Template, Definition, Dictionary> {
 
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

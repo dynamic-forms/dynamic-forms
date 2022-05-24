@@ -129,7 +129,7 @@ export class DynamicFormArray<
     return this._builder.createFormArrayElements(this);
   }
 
-  protected initChildren(): void {
+  protected override initChildren(): void {
     super.initChildren();
     this._children.forEach((field, index) => {
       this._control.insert(index, field.control);

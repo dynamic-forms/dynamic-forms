@@ -1,12 +1,20 @@
 # Changelog
 
+## 14.0.0-rc.0 (2022-05-24)
+
+### Features
+
+* **core:** release candidate of library using angular 14
+* **bootstrap:** release candidate of library using angular 14
+* **material:** release candidate of library using angular material 14
+
 ## 14.0.0-next.1 (2022-04-26)
 
-### Bug Fixes
+### Features
 
 * **core:** next version of library using angular 14
 * **bootstrap:** next version of library using angular 14
-* **material:** release candidate of library using angular material 14
+* **material:** next version of library using angular material 14
 
 ## 14.0.0-next.0 (2022-04-25)
 
@@ -14,7 +22,7 @@
 
 * **core:** next version of library using angular 14
 * **bootstrap:** next version of library using angular 14
-* **material:** release candidate of library using angular material 14
+* **material:** next version of library using angular material 14
 
 ### Breaking Changes
 
@@ -41,7 +49,7 @@
 
 * **core:** next version of library using angular 13
 * **bootstrap:** next version of library using angular 13
-* **material:** release candidate of library using angular material 13
+* **material:** next version of library using angular material 13
 
 ### General
 
@@ -63,7 +71,7 @@
 
 * **core:** next version of library using angular 13 (next)
 * **bootstrap:** next version of library using angular 13 (next)
-* **material:** release candidate of library using angular material 13 (next)
+* **material:** next version of library using angular material 13 (next)
 
 ### Breaking Changes
 

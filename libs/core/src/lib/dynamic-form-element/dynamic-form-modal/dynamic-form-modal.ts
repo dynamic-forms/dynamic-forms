@@ -37,7 +37,7 @@ export class DynamicFormModal<
   get isOpen(): boolean { return this._isOpenSubject.value; }
   get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
 
-  init(): void {
+  override init(): void {
     super.init();
     this.initTrigger();
     this.initHeaderActions();
@@ -71,7 +71,7 @@ export class DynamicFormModal<
     }
   }
 
-  protected getChildren(): DynamicFormElement[] {
+  protected override getChildren(): DynamicFormElement[] {
     return this._builder.createFormElements(this.root, this.parent, this.definition.children);
   }
 

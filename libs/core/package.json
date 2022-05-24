@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "14.0.0-next.1",
+  "version": "14.0.0-rc.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -13,12 +13,12 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0-next.14",
-    "@angular/core": "^14.0.0-next.14",
-    "@angular/forms": "^14.0.0-next.14",
+    "@angular/common": "^14.0.0-rc.1",
+    "@angular/core": "^14.0.0-rc.1",
+    "@angular/forms": "^14.0.0-rc.1",
     "bootstrap": "^5.1.0",
-    "marked": "^4.0.10",
-    "rxjs": "~7.4.0"
+    "marked": "^4.0.16",
+    "rxjs": "^7.4.0"
   },
   "sideEffects": false,
   "publishConfig": {

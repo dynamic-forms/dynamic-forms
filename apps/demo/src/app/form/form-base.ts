@@ -15,7 +15,7 @@ export abstract class FormBase extends FormSubmitBase implements DoCheck {
   formModel: any;
   formValue: any;
 
-  constructor(protected dialog: MatDialog) {
+  constructor(protected override dialog: MatDialog) {
     super(dialog);
   }
 
