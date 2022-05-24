@@ -20,7 +20,7 @@ import { DynamicFormControlModule } from './dynamic-form-control.module';
   template: `<div class="dynamic-form-input-1"></div>`
 })
 class DynamicFormInputOneComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }
@@ -30,7 +30,7 @@ class DynamicFormInputOneComponent extends DynamicFormInputBase {
   template: `<div class="dynamic-form-input-2"></div>`
 })
 class DynamicFormInputTwoComponent extends DynamicFormInputBase {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

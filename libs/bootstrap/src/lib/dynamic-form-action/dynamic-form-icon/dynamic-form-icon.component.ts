@@ -6,7 +6,7 @@ import { DynamicFormActionService, DynamicFormIconBase } from '@dynamic-forms/co
   templateUrl: './dynamic-form-icon.component.html'
 })
 export class BsDynamicFormIconComponent extends DynamicFormIconBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

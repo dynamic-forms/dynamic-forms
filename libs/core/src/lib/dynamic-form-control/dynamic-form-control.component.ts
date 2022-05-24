@@ -26,7 +26,7 @@ export class DynamicFormControlComponent<
 
   constructor(
     protected componentFactory: DynamicFormComponentFactory,
-    protected validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService
   ) {
     super(validationService);
   }

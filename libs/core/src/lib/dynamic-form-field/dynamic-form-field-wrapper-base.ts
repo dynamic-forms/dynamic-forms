@@ -22,7 +22,7 @@ export abstract class DynamicFormFieldWrapperBase<
 
   constructor(
     protected containerRef: ViewContainerRef,
-    protected validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService
   ) {
     super(validationService);
   }

@@ -9,14 +9,14 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
   private _submit$: Observable<boolean>;
 
   constructor(builder: DynamicFormBuilder, definition: DynamicFormDefinition, model: any) {
-    super(builder, null, null, definition, model);
+    super(builder, definition, model);
     this._root = this;
     this._submit = new Subject();
     this._submit$ = this._submit.asObservable();
   }
 
-  get hidden(): boolean { return this.template.hidden || false; }
-  get readonly(): boolean { return this.template.readonly || false; }
+  override get hidden(): boolean { return this.template.hidden || false; }
+  override get readonly(): boolean { return this.template.readonly || false; }
 
   get submit$(): Observable<boolean> { return this._submit$; }
 
@@ -24,5 +24,5 @@ export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFo
     this._submit.next(true);
   }
 
-  protected initId(): void {}
+  protected override initId(): void {}
 }

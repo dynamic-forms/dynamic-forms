@@ -14,15 +14,15 @@ export class DynamicFormDialog extends DynamicForm {
 
   get action(): DynamicFormAction { return this._action; }
 
-  protected getChildren(): DynamicFormElement[] {
+  protected override getChildren(): DynamicFormElement[] {
     return this._builder.createFormElements(this, this, this.definition.children);
   }
 
-  protected getHeaderActions(): DynamicFormAction[] {
+  protected override getHeaderActions(): DynamicFormAction[] {
     return this._builder.createFormActions(this.action.root, this.action, this.definition.headerActions);
   }
 
-  protected getFooterActions(): DynamicFormAction[] {
+  protected override getFooterActions(): DynamicFormAction[] {
     return this._builder.createFormActions(this.action.root, this.action, this.definition.footerActions);
   }
 }

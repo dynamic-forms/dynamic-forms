@@ -6,7 +6,7 @@ import { DynamicFormInputBase, DynamicFormSwitch, DynamicFormValidationService }
   templateUrl: './dynamic-form-switch.component.html'
 })
 export class MatDynamicFormSwitchComponent extends DynamicFormInputBase<DynamicFormSwitch> {
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 }

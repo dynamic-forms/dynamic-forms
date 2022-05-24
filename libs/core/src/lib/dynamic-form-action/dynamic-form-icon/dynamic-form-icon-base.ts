@@ -10,7 +10,7 @@ export abstract class DynamicFormIconBase<
   Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>
 > extends DynamicFormActionBase<Template, Definition, Action> {
 
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 

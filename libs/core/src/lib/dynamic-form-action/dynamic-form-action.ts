@@ -28,7 +28,7 @@ export class DynamicFormAction<
     this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
   }
 
-  get classType(): DynamicFormClassType { return 'action'; }
+  override get classType(): DynamicFormClassType { return 'action'; }
 
   get dialogOpen(): boolean { return this._dialogOpenSubject.value; }
   get dialogOpenChanges(): Observable<boolean> { return this._dialogOpenChanges; }
@@ -41,7 +41,7 @@ export class DynamicFormAction<
   get dialogHeaderActions(): DynamicFormAction[] { return this._dialog.headerActions; }
   get dialogFooterActions(): DynamicFormAction[] { return this._dialog.footerActions; }
 
-  init(): void {
+  override init(): void {
     super.init();
     this.initDialog();
   }
@@ -62,15 +62,15 @@ export class DynamicFormAction<
     return this._builder.getActionId(this);
   }
 
-  protected initId(): void {
+  protected override initId(): void {
     this.definition.id = this.getId();
   }
 
-  protected getExpressions(): DynamicFormActionExpressions {
+  protected override getExpressions(): DynamicFormActionExpressions {
     return this._builder.createActionExpressions(this);
   }
 
-  protected getChildren(): any[] {
+  protected override getChildren(): any[] {
     return undefined;
   }
 
@@ -81,7 +81,7 @@ export class DynamicFormAction<
     }
   }
 
-  protected createExpressionData(): DynamicFormActionExpressionData {
+  protected override createExpressionData(): DynamicFormActionExpressionData {
     const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
       dialog: () => this.dialog ? this.dialog.expressionData : undefined

@@ -8,7 +8,7 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
-  constructor(protected actionService: DynamicFormActionService) {
+  constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }
 }

@@ -45,7 +45,7 @@ class DynamicFormTestField extends DynamicFormField {
   protected getChildren(): any[] { return undefined; }
   protected getValidators(): any[] { return undefined; }
 
-  protected afterInitExpressions(): void {
+  protected override afterInitExpressions(): void {
     this.checkExpressions();
   }
 }

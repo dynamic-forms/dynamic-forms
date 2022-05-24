@@ -13,7 +13,7 @@ export abstract class DynamicFormArrayBase<
   Array extends DynamicFormArray<Template, Definition> = DynamicFormArray<Template, Definition>
 > extends DynamicFormFieldBase<FormArray, Template, Definition, Array> {
 
-  constructor(protected validationService: DynamicFormValidationService) {
+  constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 
