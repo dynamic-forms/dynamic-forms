@@ -1,19 +1,19 @@
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import {
   DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldAsyncValidatorFn,
   DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormControl } from './dynamic-form-control';
 
-export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<UntypedFormControl>;
+export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<FormControl>;
 
-export type DynamicFormControlAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<UntypedFormControl>;
+export type DynamicFormControlAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormControl>;
 
-export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<UntypedFormControl, DynamicFormControl>;
+export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<FormControl, DynamicFormControl>;
 
-export type DynamicFormControlAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<UntypedFormControl, DynamicFormControl>;
+export type DynamicFormControlAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormControl, DynamicFormControl>;
 
-export class DynamicFormControlValidator extends DynamicFormFieldValidator<UntypedFormControl, DynamicFormControl> {
+export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormControl, DynamicFormControl> {
   constructor(factory: DynamicFormControlValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);
   }
@@ -23,7 +23,7 @@ export class DynamicFormControlValidator extends DynamicFormFieldValidator<Untyp
   }
 }
 
-export class DynamicFormControlAsyncValidator extends DynamicFormFieldAsyncValidator<UntypedFormControl, DynamicFormControl> {
+export class DynamicFormControlAsyncValidator extends DynamicFormFieldAsyncValidator<FormControl, DynamicFormControl> {
   constructor(factory: DynamicFormControlAsyncValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);
   }

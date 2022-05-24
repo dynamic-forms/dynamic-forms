@@ -1,4 +1,4 @@
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
@@ -10,7 +10,7 @@ export interface DynamicFormDictionaryValidatorType extends DynamicFormFieldVali
 export interface DynamicFormDictionaryAsyncValidatorType extends
   DynamicFormFieldAsyncValidatorType<DynamicFormDictionaryAsyncValidatorFactory> {}
 
-export const dynamicFormDictionaryRequiredValidatorFactory = (): DynamicFormDictionaryValidatorFn => (group: UntypedFormGroup) =>
+export const dynamicFormDictionaryRequiredValidatorFactory = (): DynamicFormDictionaryValidatorFn => (group: FormGroup) =>
   !group.value || Object.keys(group.value).length === 0 ? { requiredDictionary: true } : null;
 
 export const dynamicFormDictionaryRequiredValidatorType: DynamicFormDictionaryValidatorType = {
@@ -24,7 +24,7 @@ export const dynamicFormDictionaryMinLengthValidatorFactory = (minLength?: numbe
     return undefined;
   }
 
-  return (group: UntypedFormGroup) => {
+  return (group: FormGroup) => {
     if (!group.value) {
       return null;
     }
@@ -45,7 +45,7 @@ export const dynamicFormDictionaryMaxLengthValidatorFactory = (maxLength?: numbe
     return undefined;
   }
 
-  return (group: UntypedFormGroup) => {
+  return (group: FormGroup) => {
     if (!group.value) {
       return null;
     }

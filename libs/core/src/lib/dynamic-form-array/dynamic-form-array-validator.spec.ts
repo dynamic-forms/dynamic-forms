@@ -1,4 +1,4 @@
-import { UntypedFormArray } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import { of } from 'rxjs';
 import { DynamicFormFieldValidatorDefinition } from '../dynamic-form-field/dynamic-form-field-validator-definition';
 import { DynamicFormArray } from './dynamic-form-array';
@@ -9,7 +9,7 @@ describe('DynamicFormArrayValidator', () => {
   it('creates instance', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormArray;
     const validator = new DynamicFormArrayValidator(factory, 'minLength', array);
@@ -31,7 +31,7 @@ describe('DynamicFormArrayValidator', () => {
   it('creates instance for validator definition', () => {
     const factory = (parameters: { minLength?: number; maxLength?: number }) =>
       Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
-        ? (formArray: UntypedFormArray) => formArray.value
+        ? (formArray: FormArray) => formArray.value
             ? formArray.value.length < parameters.minLength || formArray.value.length > parameters.maxLength
               ? { error: true }
               : null
@@ -66,7 +66,7 @@ describe('DynamicFormArrayValidator', () => {
   it('creating instance throws exception if definition not valid', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { template: { minLength: 3, validation: { minLength: true } } } as DynamicFormArray;
 
@@ -76,7 +76,7 @@ describe('DynamicFormArrayValidator', () => {
   it('creating instance throws exception if validation not valid', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { definition: {}, template: { minLength: 3, validation: null } } as DynamicFormArray;
 
@@ -92,7 +92,7 @@ describe('DynamicFormArrayValidator', () => {
   it('checkChanges returns false', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { definition: {}, template: { validation: { minLength: true } } } as DynamicFormArray;
     const validator = new DynamicFormArrayValidator(factory, 'minLength', array);
@@ -105,7 +105,7 @@ describe('DynamicFormArrayValidator', () => {
   it('checkChanges updates validatorFn and returns true if enabled changes', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormArray;
     const validator = new DynamicFormArrayValidator(factory, 'minLength', array);
@@ -124,7 +124,7 @@ describe('DynamicFormArrayValidator', () => {
   it('checkChanges updates validatorFn and returns true if parameters changes', () => {
     const factory = (minLength: number) =>
       Number.isFinite(minLength)
-        ? (formArray: UntypedFormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
+        ? (formArray: FormArray) => formArray.value && formArray.value.length < minLength && { error: true } || null
         : undefined;
     const array = { definition: {}, template: { minLength: 3, validation: { minLength: true } } } as DynamicFormArray;
     const validator = new DynamicFormArrayValidator(factory, 'minLength', array);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import {
     DynamicFormControlAsyncValidatorFn, DynamicFormControlAsyncValidatorType,
     dynamicFormLibrary, DynamicFormValidationModule
@@ -8,7 +8,7 @@ import {
 import { map, of } from 'rxjs';
 
 export const dynamicFormControlUniqueUsernameValidatorFactory =
-    (_, __, ___, ____, [ httpClient ]: [ HttpClient ]): DynamicFormControlAsyncValidatorFn => (control: UntypedFormControl) => {
+    (_, __, ___, ____, [ httpClient ]: [ HttpClient ]): DynamicFormControlAsyncValidatorFn => (control: FormControl) => {
         if (!control.value) {
             return of(null);
         }

@@ -1,3 +1,3 @@
-import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
-export type DynamicFormFieldControl = AbstractControl | UntypedFormGroup | UntypedFormArray | UntypedFormControl;
+export type DynamicFormFieldControl = AbstractControl | FormGroup | FormArray | FormControl;

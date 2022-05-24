@@ -1,4 +1,4 @@
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
@@ -18,7 +18,7 @@ export class DynamicFormControl<
   Input extends DynamicFormInput = DynamicFormInput,
   Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
   Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
-> extends DynamicFormField<UntypedFormControl, Template, Definition> {
+> extends DynamicFormField<FormControl, Template, Definition> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
@@ -115,9 +115,9 @@ export class DynamicFormControl<
     return this.parentField.model[this.key];
   }
 
-  private createControl(): UntypedFormControl {
+  private createControl(): FormControl {
     const options = { updateOn: this.getUpdateOn() };
-    return new UntypedFormControl(this._model, options);
+    return new FormControl(this._model, options);
   }
 
   private createValueSubscription(): Subscription {

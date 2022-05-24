@@ -1,19 +1,19 @@
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import {
   DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldAsyncValidatorFn,
   DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 
-export type DynamicFormDictionaryValidatorFn = DynamicFormFieldValidatorFn<UntypedFormGroup>;
+export type DynamicFormDictionaryValidatorFn = DynamicFormFieldValidatorFn<FormGroup>;
 
-export type DynamicFormDictionaryAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<UntypedFormGroup>;
+export type DynamicFormDictionaryAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormGroup>;
 
-export type DynamicFormDictionaryValidatorFactory = DynamicFormFieldValidatorFactory<UntypedFormGroup, DynamicFormDictionary>;
+export type DynamicFormDictionaryValidatorFactory = DynamicFormFieldValidatorFactory<FormGroup, DynamicFormDictionary>;
 
-export type DynamicFormDictionaryAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<UntypedFormGroup, DynamicFormDictionary>;
+export type DynamicFormDictionaryAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormGroup, DynamicFormDictionary>;
 
-export class DynamicFormDictionaryValidator extends DynamicFormFieldValidator<UntypedFormGroup, DynamicFormDictionary> {
+export class DynamicFormDictionaryValidator extends DynamicFormFieldValidator<FormGroup, DynamicFormDictionary> {
   constructor(factory: DynamicFormDictionaryValidatorFactory, key: string, field: DynamicFormDictionary, deps?: any[]) {
     super(factory, key, field, deps);
   }
@@ -23,7 +23,7 @@ export class DynamicFormDictionaryValidator extends DynamicFormFieldValidator<Un
   }
 }
 
-export class DynamicFormDictionaryAsyncValidator extends DynamicFormFieldAsyncValidator<UntypedFormGroup, DynamicFormDictionary> {
+export class DynamicFormDictionaryAsyncValidator extends DynamicFormFieldAsyncValidator<FormGroup, DynamicFormDictionary> {
   constructor(factory: DynamicFormDictionaryAsyncValidatorFactory, key: string, field: DynamicFormDictionary, deps?: any[]) {
     super(factory, key, field, deps);
   }

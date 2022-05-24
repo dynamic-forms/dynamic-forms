@@ -2,7 +2,7 @@
 import {
   Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges
 } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
@@ -35,7 +35,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   ) {}
 
   get form(): DynamicForm { return this._form; }
-  get formGroup(): UntypedFormGroup { return this._form.control; }
+  get formGroup(): FormGroup { return this._form.control; }
 
   get template(): DynamicFormTemplate { return this._form.template; }
 

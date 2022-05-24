@@ -1,4 +1,4 @@
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -11,10 +11,10 @@ import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } f
 export class DynamicFormDictionary<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<UntypedFormGroup, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<FormGroup, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new UntypedFormGroup({}));
+    super(builder, root, parent, definition, new FormGroup({}));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
