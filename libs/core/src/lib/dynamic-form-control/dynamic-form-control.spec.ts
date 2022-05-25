@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
@@ -47,7 +47,7 @@ describe('DynamicFormControl', () => {
     expect(formControl.value).toBeNull();
     expect(formControl.valid).toBeTrue();
     expect(formControl.status).toBe('VALID');
-    expect(formControl.control).toBeTruthy();
+    expect(formControl.control).toBeInstanceOf(FormControl);
 
     expect(formControl.children).toEqual([]);
     expect(formControl.footerActions).toEqual([]);

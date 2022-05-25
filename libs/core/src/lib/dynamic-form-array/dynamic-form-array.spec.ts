@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -40,7 +40,7 @@ describe('DynamicFormArray', () => {
     expect(formArray.value).toEqual([]);
     expect(formArray.valid).toBeTrue();
     expect(formArray.status).toBe('VALID');
-    expect(formArray.control).toBeTruthy();
+    expect(formArray.control).toBeInstanceOf(FormArray);
 
     expect(formArray.children).toEqual([]);
     expect(formArray.headerActions).toEqual([]);

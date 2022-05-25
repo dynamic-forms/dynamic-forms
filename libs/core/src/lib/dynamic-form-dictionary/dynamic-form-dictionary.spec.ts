@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormRecord } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -42,7 +42,7 @@ describe('DynamicFormDictionary', () => {
     expect(formDictionary.value).toEqual({});
     expect(formDictionary.valid).toBeTrue();
     expect(formDictionary.status).toBe('VALID');
-    expect(formDictionary.control).toBeTruthy();
+    expect(formDictionary.control).toBeInstanceOf(FormRecord);
 
     expect(formDictionary.children).toEqual([]);
     expect(formDictionary.headerActions).toEqual([]);

@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -42,7 +42,7 @@ describe('DynamicFormGroup', () => {
     expect(formGroup.value).toEqual({});
     expect(formGroup.valid).toBeTrue();
     expect(formGroup.status).toBe('VALID');
-    expect(formGroup.control).toBeTruthy();
+    expect(formGroup.control).toBeInstanceOf(FormGroup);
 
     expect(formGroup.children).toEqual([]);
     expect(formGroup.fields).toEqual([]);
