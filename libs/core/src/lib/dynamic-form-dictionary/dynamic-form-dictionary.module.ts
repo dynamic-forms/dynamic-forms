@@ -21,11 +21,11 @@ export const dynamicFormDictionaryType: DynamicFormFieldType = {
   type: 'dictionary',
   factory: dynamicFormDictionaryFactory,
   component: DynamicFormDictionaryComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormDictionaryRegisterFieldHandlerFactory = (
-  formBuilder: DynamicFormBuilder
+  formBuilder: DynamicFormBuilder,
 ): DynamicFormActionHandler<DynamicFormDictionary> => {
   const func = (field: DynamicFormDictionary, action: DynamicFormAction) => {
     const parent = action.parent as DynamicFormAction;
@@ -40,7 +40,7 @@ export const dynamicFormDictionaryRegisterFieldHandlerFactory = (
     type: 'registerDictionaryField',
     elementFunc: getDynamicFormDictionary,
     func,
-    libraryName: dynamicFormLibrary.name
+    libraryName: dynamicFormLibrary.name,
   };
 };
 
@@ -67,7 +67,7 @@ export const dynamicFormDictionaryRemoveFieldHandler: DynamicFormActionHandler<D
   type: 'removeDictionaryField',
   elementFunc: getDynamicFormDictionary,
   func: dynamicFormDictionaryRemoveField,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormDictionaryClearFields = (field: DynamicFormDictionary): void => field.clearFields();
@@ -75,7 +75,7 @@ export const dynamicFormDictionaryClearFields = (field: DynamicFormDictionary): 
 export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<DynamicFormDictionary> = {
   type: 'clearDictionaryFields',
   func: dynamicFormDictionaryClearFields,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -88,19 +88,19 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
     DynamicFormValidationModule.withDictionaryValidators(dynamicFormDictionaryValidatorTypes),
     DynamicFormActionModule.withHandlers([
       dynamicFormDictionaryRemoveFieldHandler,
-      dynamicFormDictionaryClearFieldsHandler
+      dynamicFormDictionaryClearFieldsHandler,
     ]),
     DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [
-      DynamicFormBuilder
-    ])
+      DynamicFormBuilder,
+    ]),
   ],
   declarations: [
-    DynamicFormDictionaryComponent
+    DynamicFormDictionaryComponent,
   ],
   exports: [
     DynamicFormConfigModule,
     DynamicFormActionModule,
-    DynamicFormDictionaryComponent
-  ]
+    DynamicFormDictionaryComponent,
+  ],
 })
 export class DynamicFormDictionaryModule {}

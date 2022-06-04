@@ -6,8 +6,8 @@ describe('BsDynamicFormSwitchModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormSwitchModule
-      ]
+        BsDynamicFormSwitchModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormSwitchModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormSwitchType);
-    })
+    }),
   );
 });

@@ -5,7 +5,7 @@ import { EditorRoutingModule } from './editor-routing.module';
 @NgModule({
   imports: [
     MonacoEditorModule,
-    EditorRoutingModule
-  ]
+    EditorRoutingModule,
+  ],
 })
 export class EditorModule {}

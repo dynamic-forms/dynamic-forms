@@ -11,7 +11,7 @@ export const dynamicFormDialogOpen = (action: DynamicFormAction) => action.openD
 export const dynamicFormDialogOpenHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'openDialog',
   func: dynamicFormDialogOpen,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormDialogClose = (action: DynamicFormAction) => action.closeDialog();
@@ -19,7 +19,7 @@ export const dynamicFormDialogClose = (action: DynamicFormAction) => action.clos
 export const dynamicFormDialogCloseHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'closeDialog',
   func: dynamicFormDialogClose,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormDialogToggle = (action: DynamicFormAction) => {
@@ -29,13 +29,13 @@ export const dynamicFormDialogToggle = (action: DynamicFormAction) => {
 export const dynamicFormDialogToggleHandler: DynamicFormActionHandler<DynamicFormAction> = {
   type: 'toggleDialog',
   func: dynamicFormDialogToggle,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormDialogHandlers: DynamicFormActionHandler<DynamicFormAction>[] = [
   dynamicFormDialogOpenHandler,
   dynamicFormDialogCloseHandler,
-  dynamicFormDialogToggleHandler
+  dynamicFormDialogToggleHandler,
 ];
 
 @NgModule({
@@ -43,14 +43,14 @@ export const dynamicFormDialogHandlers: DynamicFormActionHandler<DynamicFormActi
     {
       provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
       useValue: dynamicFormDialogHandlers,
-      multi: true
+      multi: true,
     },
-    DynamicFormActionService
-  ]
+    DynamicFormActionService,
+  ],
 })
 export class DynamicFormActionModule {
   static withHandler<Element extends DynamicFormElement = DynamicFormElement>(
-    handler: DynamicFormActionHandler<Element>
+    handler: DynamicFormActionHandler<Element>,
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -58,14 +58,14 @@ export class DynamicFormActionModule {
         {
           provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useValue: handler,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
   static withHandlers<Element extends DynamicFormElement = DynamicFormElement>(
-    handlers: DynamicFormActionHandler<Element>[]
+    handlers: DynamicFormActionHandler<Element>[],
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -73,14 +73,14 @@ export class DynamicFormActionModule {
         {
           provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useValue: handlers,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
   static withHandlerFactory<Element extends DynamicFormElement = DynamicFormElement>(
-    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>, deps?: any[]
+    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>, deps?: any[],
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,
@@ -89,9 +89,9 @@ export class DynamicFormActionModule {
           provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
           useFactory: handlerFactory,
           deps,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 }

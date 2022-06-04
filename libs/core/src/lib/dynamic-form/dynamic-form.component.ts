@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-conflicting-lifecycle */
 import {
-  Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges
+  Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
   selector: 'dynamic-form',
-  templateUrl: './dynamic-form.component.html'
+  templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
 
@@ -31,7 +31,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   constructor(
     protected formBuilder: DynamicFormBuilder,
     protected validationService: DynamicFormValidationService,
-    @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string
+    @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
 
   get form(): DynamicForm { return this._form; }

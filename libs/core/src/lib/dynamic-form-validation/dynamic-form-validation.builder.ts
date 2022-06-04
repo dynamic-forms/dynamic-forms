@@ -41,7 +41,7 @@ export class DynamicFormValidationBuilder {
     @Optional() @Inject(DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG)
     private arrayValidatorTypeConfig: DynamicFormArrayValidatorTypeConfig,
     @Optional() @Inject(DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG)
-    private dictionaryValidatorTypeConfig: DynamicFormDictionaryValidatorTypeConfig
+    private dictionaryValidatorTypeConfig: DynamicFormDictionaryValidatorTypeConfig,
   ) {
     this.controlValidatorTypes = this.libraryService.filterTypes(this.controlValidatorTypeConfig);
     this.groupValidatorTypes = this.libraryService.filterTypes(this.groupValidatorTypeConfig);
@@ -124,14 +124,14 @@ export class DynamicFormValidationBuilder {
   }
 
   createDictionaryValidators(
-    dictionary: DynamicFormDictionary
+    dictionary: DynamicFormDictionary,
   ): (DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator)[] {
     const keys = Object.keys(dictionary.template.validation || {});
     return keys.map(key => this.createDictionaryValidator(dictionary, key)).filter(validator => !!validator);
   }
 
   createDictionaryValidator(
-    dictionary: DynamicFormDictionary, key: string
+    dictionary: DynamicFormDictionary, key: string,
   ): DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator {
     if (!(dictionary.template && typeof dictionary.template.validation[key] === 'boolean')) {
       return undefined;

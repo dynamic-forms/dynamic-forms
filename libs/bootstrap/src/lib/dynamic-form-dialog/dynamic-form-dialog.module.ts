@@ -6,13 +6,13 @@ import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormElementModule
+    DynamicFormElementModule,
   ],
   declarations: [
-    BsDynamicFormDialogComponent
+    BsDynamicFormDialogComponent,
   ],
   exports: [
-    BsDynamicFormDialogComponent
-  ]
+    BsDynamicFormDialogComponent,
+  ],
 })
 export class BsDynamicFormDialogModule {}

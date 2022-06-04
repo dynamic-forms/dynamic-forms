@@ -9,7 +9,7 @@ export const bsDynamicFormAccordionType: DynamicFormElementType = {
   type: 'accordion',
   factory: dynamicFormItemsFactory,
   component: BsDynamicFormAccordionComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -17,14 +17,14 @@ export const bsDynamicFormAccordionType: DynamicFormElementType = {
     CommonModule,
     DynamicFormElementModule,
     DynamicFormModalModule,
-    DynamicFormConfigModule.withElement(bsDynamicFormAccordionType)
+    DynamicFormConfigModule.withElement(bsDynamicFormAccordionType),
   ],
   declarations: [
-    BsDynamicFormAccordionComponent
+    BsDynamicFormAccordionComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormAccordionComponent
-  ]
+    BsDynamicFormAccordionComponent,
+  ],
 })
 export class BsDynamicFormAccordionModule {}

@@ -84,7 +84,7 @@ export class DynamicFormAction<
   protected override createExpressionData(): DynamicFormActionExpressionData {
     const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
-      dialog: () => this.dialog ? this.dialog.expressionData : undefined
+      dialog: () => this.dialog ? this.dialog.expressionData : undefined,
     });
     return expressionData;
   }

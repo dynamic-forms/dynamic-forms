@@ -6,8 +6,8 @@ describe('MatDynamicFormToggleModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormToggleModule
-      ]
+        MatDynamicFormToggleModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormToggleModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(matDynamicFormToggleType);
-    })
+    }),
   );
 });

@@ -12,7 +12,7 @@ export class DynamicFormItem<
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition);
     this.extendExpressionData({
-      index: () => this.index
+      index: () => this.index,
     });
   }
 

@@ -19,7 +19,7 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
       [type]="template?.type || 'button'" [disabled]="template?.disabled"
       (click)="onClick($event)"
     >{{ template?.label }}</button>
-  `
+  `,
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -36,15 +36,15 @@ describe('DynamicFormButtonBase', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormButtonTestComponent
+        DynamicFormButtonTestComponent,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormButtonTestComponent);
@@ -140,6 +140,6 @@ describe('DynamicFormButtonBase', () => {
       component.onClick(event);
 
       expect(service.handle).toHaveBeenCalledWith(component.element, event);
-    })
+    }),
   );
 });

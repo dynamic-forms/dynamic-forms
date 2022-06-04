@@ -6,8 +6,8 @@ import { Progress, PROGRESS } from './progress.model';
 @State<Progress>({
   name: PROGRESS,
   defaults: {
-    items: []
-  }
+    items: [],
+  },
 })
 @Injectable()
 export class ProgressState {
@@ -15,7 +15,7 @@ export class ProgressState {
   push(context: StateContext<Progress>, action: ProgressItemPush): void {
     const state = context.getState();
     context.patchState({
-      items: [ ...state.items, action.item ]
+      items: [ ...state.items, action.item ],
     });
   }
 
@@ -23,7 +23,7 @@ export class ProgressState {
   pop(context: StateContext<Progress>, action: ProgressItemPop): void {
     const state = context.getState();
     context.patchState({
-      items: state.items.filter(item => item.id !== action.item.id)
+      items: state.items.filter(item => item.id !== action.item.id),
     });
   }
 }

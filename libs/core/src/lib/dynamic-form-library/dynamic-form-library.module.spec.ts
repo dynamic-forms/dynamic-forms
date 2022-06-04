@@ -8,8 +8,8 @@ describe('DynamicFormLibraryModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormLibraryModule
-        ]
+          DynamicFormLibraryModule,
+        ],
       });
     });
 
@@ -25,28 +25,28 @@ describe('DynamicFormLibraryModule', () => {
   describe('with providers', () => {
     const testLibrary: DynamicFormLibrary = {
       name: 'test',
-      references: [ 'test-core', 'test-core-extended' ]
+      references: [ 'test-core', 'test-core-extended' ],
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormLibraryModule.forLibrary(testLibrary)
-        ]
+          DynamicFormLibraryModule.forLibrary(testLibrary),
+        ],
       });
     });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toEqual(testLibrary);
-      })
+      }),
     );
 
     it('provides DynamicFormLibraryService',
       inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
         expect(service).toBeTruthy();
         expect(service.library).toEqual(testLibrary);
-      })
+      }),
     );
   });
 });

@@ -14,7 +14,7 @@ import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 import {
-  DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorFn
+  DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorFn,
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
@@ -167,7 +167,7 @@ export abstract class DynamicFormField<
       model: () => this.model,
       value: () => this.value,
       valid: () => this.valid,
-      status: () => this.status
+      status: () => this.status,
     });
     return expressionData;
   }

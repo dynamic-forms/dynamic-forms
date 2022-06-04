@@ -12,8 +12,8 @@ describe('MatDynamicFormsModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          MatDynamicFormsModule
-        ]
+          MatDynamicFormsModule,
+        ],
       });
     });
 
@@ -40,7 +40,7 @@ describe('MatDynamicFormsModule', () => {
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
         expect(service).toBeDefined();
-      })
+      }),
     );
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
@@ -64,27 +64,27 @@ describe('MatDynamicFormsModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          MatDynamicFormsModule.forRoot()
-        ]
+          MatDynamicFormsModule.forRoot(),
+        ],
       });
     });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toEqual(matDynamicFormLibrary);
-      })
+      }),
     );
 
     it('provides DYNAMIC_FORM_THEME being undefined',
       inject([DYNAMIC_FORM_THEME], (theme: string) => {
         expect(theme).toBeUndefined();
-      })
+      }),
     );
 
     it('provides DYNAMIC_FORM_ID_BUILDER being undefined',
       inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
         expect(service).toBeUndefined();
-      })
+      }),
     );
 
     it('provides DynamicFormLibraryService',
@@ -92,43 +92,43 @@ describe('MatDynamicFormsModule', () => {
         expect(service).toBeTruthy();
         expect(service.library).toEqual(matDynamicFormLibrary);
         expect(service.libraryNames).toEqual([ 'material', 'core' ]);
-      })
+      }),
     );
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormBuilder',
       inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
   });
 
@@ -138,22 +138,22 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot({
             theme: 'theme',
-            idBuilder: () => 'dynamic-form-id'
-          })
-        ]
+            idBuilder: () => 'dynamic-form-id',
+          }),
+        ],
       });
     });
 
     it('provides DYNAMIC_FORM_THEME',
       inject([DYNAMIC_FORM_THEME], (theme: string) => {
         expect(theme).toBe('theme');
-      })
+      }),
     );
 
     it('provides DYNAMIC_FORM_ID_BUILDER being undefined',
       inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
   });
 });

@@ -23,20 +23,20 @@ describe('DynamicFormDictionaryComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDictionaryModule
+        DynamicFormDictionaryModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
         {
           provide: DynamicFormBuilder,
-          useValue: builder
+          useValue: builder,
         },
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormDictionaryComponent);
@@ -48,9 +48,9 @@ describe('DynamicFormDictionaryComponent', () => {
       key: 'key',
       index: 1,
       template: {
-        label: 'label'
+        label: 'label',
       },
-      children: []
+      children: [],
     } as DynamicFormDictionaryDefinition);
     component.field = formDictionary;
 

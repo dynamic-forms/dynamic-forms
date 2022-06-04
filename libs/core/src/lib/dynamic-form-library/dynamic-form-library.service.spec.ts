@@ -11,10 +11,10 @@ describe('DynamicFormLibraryService', () => {
         providers: [
           {
             provide: DYNAMIC_FORM_LIBRARY,
-            useValue: library
+            useValue: library,
           },
-          DynamicFormLibraryService
-        ]
+          DynamicFormLibraryService,
+        ],
       });
     });
 
@@ -23,7 +23,7 @@ describe('DynamicFormLibraryService', () => {
         expect(service.library).toEqual(library);
         expect(service.libraryNames).toEqual([ 'test' ]);
         expect(service.libraryNamesReverse).toEqual([ 'test' ]);
-      })
+      }),
     );
 
     it('returns filtered types',
@@ -32,7 +32,7 @@ describe('DynamicFormLibraryService', () => {
         const types2 = [
           { type: 'type2', libraryName: 'test' },
           { type: 'type3', libraryName: 'test' },
-          { type: 'type4', libraryName: 'other' }
+          { type: 'type4', libraryName: 'other' },
         ];
         const type3 = { type: 'type3', libraryName: 'other' };
         const type4 = { type: 'type4', libraryName: 'test' };
@@ -40,14 +40,14 @@ describe('DynamicFormLibraryService', () => {
         const filteredTypes = service.filterTypes([ type1, types2, type3, type4 ]);
 
         expect(filteredTypes).toEqual([ type1, types2[0], types2[1], type4 ]);
-      })
+      }),
     );
   });
 
   describe('with DYNAMIC_FORM_LIBRARY including library references', () => {
     const library: DynamicFormLibrary = {
       name: 'test',
-      references: [ 'test-core', 'test-core-extension' ]
+      references: [ 'test-core', 'test-core-extension' ],
     };
 
     beforeEach(() => {
@@ -55,10 +55,10 @@ describe('DynamicFormLibraryService', () => {
         providers: [
           {
             provide: DYNAMIC_FORM_LIBRARY,
-            useValue: library
+            useValue: library,
           },
-          DynamicFormLibraryService
-        ]
+          DynamicFormLibraryService,
+        ],
       });
     });
 
@@ -67,7 +67,7 @@ describe('DynamicFormLibraryService', () => {
         expect(service.library).toEqual(library);
         expect(service.libraryNames).toEqual([ 'test', 'test-core-extension', 'test-core' ]);
         expect(service.libraryNamesReverse).toEqual([ 'test-core', 'test-core-extension', 'test' ]);
-      })
+      }),
     );
   });
 
@@ -77,10 +77,10 @@ describe('DynamicFormLibraryService', () => {
         providers: [
           {
             provide: DYNAMIC_FORM_LIBRARY,
-            useValue: dynamicFormLibrary
+            useValue: dynamicFormLibrary,
           },
-          DynamicFormLibraryService
-        ]
+          DynamicFormLibraryService,
+        ],
       });
     });
 
@@ -89,7 +89,7 @@ describe('DynamicFormLibraryService', () => {
         expect(service.library).toEqual( dynamicFormLibrary);
         expect(service.libraryNames).toEqual([ 'core' ]);
         expect(service.libraryNamesReverse).toEqual([ 'core' ]);
-      })
+      }),
     );
   });
 });

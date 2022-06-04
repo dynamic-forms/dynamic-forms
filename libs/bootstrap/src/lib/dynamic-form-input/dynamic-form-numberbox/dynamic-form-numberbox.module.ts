@@ -9,21 +9,21 @@ export const bsDynamicFormNumberboxType: DynamicFormInputType = {
   type: 'numberbox',
   component: BsDynamicFormNumberboxComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormNumberboxType)
+    DynamicFormConfigModule.withInput(bsDynamicFormNumberboxType),
   ],
   declarations: [
-    BsDynamicFormNumberboxComponent
+    BsDynamicFormNumberboxComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormNumberboxComponent
-  ]
+    BsDynamicFormNumberboxComponent,
+  ],
 })
 export class BsDynamicFormNumberboxModule {}

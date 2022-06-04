@@ -5,8 +5,8 @@ import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation.builder'
 
 @NgModule({
   providers: [
-    DynamicFormEvaluationBuilder
-  ]
+    DynamicFormEvaluationBuilder,
+  ],
 })
 export class DynamicFormEvaluationModule {
   static withControlEvaluator(controlEvaluatorType: DynamicFormControlEvaluatorType): ModuleWithProviders<DynamicFormEvaluationModule> {
@@ -16,9 +16,9 @@ export class DynamicFormEvaluationModule {
         {
           provide: DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
           useValue: controlEvaluatorType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -29,9 +29,9 @@ export class DynamicFormEvaluationModule {
         {
           provide: DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
           useValue: controlEvaluatorTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 }

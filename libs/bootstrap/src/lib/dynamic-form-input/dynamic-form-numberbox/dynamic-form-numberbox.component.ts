@@ -3,7 +3,7 @@ import { DynamicFormInputBase, DynamicFormNumberbox, DynamicFormValidationServic
 
 @Component({
   selector: 'bs-dynamic-form-numberbox',
-  templateUrl: './dynamic-form-numberbox.component.html'
+  templateUrl: './dynamic-form-numberbox.component.html',
 })
 export class BsDynamicFormNumberboxComponent extends DynamicFormInputBase<DynamicFormNumberbox> {
   constructor(protected override validationService: DynamicFormValidationService) {

@@ -8,13 +8,13 @@ import { FooterComponent } from './footer.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   declarations: [
-    FooterComponent
+    FooterComponent,
   ],
   exports: [
-    FooterComponent
-  ]
+    FooterComponent,
+  ],
 })
 export class FooterModule {}

@@ -1,11 +1,8 @@
 <div class="mat-form-field-simple" [ngClass]="{ 'mat-form-field-simple-invalid': control.touched && control.errors }">
-  <mat-slide-toggle [id]="inputId" color="primary" [required]="validation?.required" 
-    [disabled]="control.disabled" [formControl]="control">
-    {{ template.label }}<span *ngIf="validation?.required"> *</span>
-  </mat-slide-toggle>
+  <mat-slide-toggle [id]="inputId" color="primary" [required]="validation?.required" [disabled]="control.disabled" [formControl]="control"
+    >{{ template.label }}<span *ngIf="validation?.required"> *</span></mat-slide-toggle
+  >
   <div class="mat-form-field-simple-info">
     <div *ngIf="control.touched && control.errors" class="mat-error">{{ errorMessage }}</div>
   </div>
 </div>
-
-

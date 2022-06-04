@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mat-dynamic-form-dialog',
-  templateUrl: './dynamic-form-dialog.component.html'
+  templateUrl: './dynamic-form-dialog.component.html',
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
   private _dialog: { config: MatDialogConfig; reference: MatDialogRef<any>; subscription: Subscription };

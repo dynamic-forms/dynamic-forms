@@ -3,7 +3,7 @@ import { ExamplesRoutingModule } from './examples-routing.module';
 
 @NgModule({
   imports: [
-    ExamplesRoutingModule
-  ]
+    ExamplesRoutingModule,
+  ],
 })
 export class ExamplesModule {}

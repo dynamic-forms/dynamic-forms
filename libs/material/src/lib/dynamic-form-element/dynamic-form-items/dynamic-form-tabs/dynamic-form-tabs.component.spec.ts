@@ -13,14 +13,14 @@ describe('MatDynamicFormTabsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormTabsModule
+        MatDynamicFormTabsModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
-        }
-      ]
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
+        },
+      ],
     });
 
     builder = {} as any;

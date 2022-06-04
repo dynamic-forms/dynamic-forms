@@ -7,12 +7,12 @@ import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 
 @Component({
   selector: 'dynamic-form-field-wrapper-test',
-  template: `<ng-template #container></ng-template>`
+  template: `<ng-template #container></ng-template>`,
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }
@@ -20,7 +20,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
 
 @Component({
   selector: 'dynamic-form-input-test',
-  template: `<div>Dynamic Input</div>`
+  template: `<div>Dynamic Input</div>`,
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -31,15 +31,15 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 @NgModule({
   declarations: [
     DynamicFormFieldWrapperTestComponent,
-    DynamicFormInputTestComponent
+    DynamicFormInputTestComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
-    DynamicFormValidationService
-  ]
+    DynamicFormValidationService,
+  ],
 })
 class DynamicFormFieldWrapperTestModule {}
 
@@ -47,8 +47,8 @@ describe('DynamicFormFieldWrapper', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormFieldWrapperTestModule
-      ]
+        DynamicFormFieldWrapperTestModule,
+      ],
     });
   });
 
@@ -62,6 +62,6 @@ describe('DynamicFormFieldWrapper', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-    })
+    }),
   );
 });

@@ -23,10 +23,10 @@ import { IconService } from './services/icon.service';
     AppStateModule,
     LayoutModule,
     HomeModule,
-    DocsModule
+    DocsModule,
   ],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   providers: [
     AppService,
@@ -35,16 +35,16 @@ import { IconService } from './services/icon.service';
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       deps: [AppService],
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [
-    AppComponent
-  ]
+    AppComponent,
+  ],
 })
 export class AppModule {}

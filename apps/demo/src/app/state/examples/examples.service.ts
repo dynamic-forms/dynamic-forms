@@ -10,7 +10,7 @@ export class ExamplesService {
 
   load(): void {
     this.httpClient.get<ExamplesMenu>(`./assets/examples-menu.json`).subscribe({
-      next: (menu) => this.store.dispatch(new ExamplesInit(menu))
+      next: (menu) => this.store.dispatch(new ExamplesInit(menu)),
     });
   }
 }

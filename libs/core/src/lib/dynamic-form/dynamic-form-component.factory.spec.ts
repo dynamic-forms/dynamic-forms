@@ -23,7 +23,7 @@ import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
 
 @Component({
   selector: 'dynamic-form-test',
-  template: `<ng-template #container></ng-template>`
+  template: `<ng-template #container></ng-template>`,
 })
 class DynamicFormTestComponent {
   @ViewChild('container', { read: ViewContainerRef, static: true })
@@ -32,13 +32,13 @@ class DynamicFormTestComponent {
 
 @Component({
   selector: 'dynamic-form-element-test',
-  template: `<div>Dynamic Form Element</div>`
+  template: `<div>Dynamic Form Element</div>`,
 })
 class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 @Component({
   selector: 'dynamic-form-field-test',
-  template: `<div>Dynamic Form Field</div>`
+  template: `<div>Dynamic Form Field</div>`,
 })
 class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -48,7 +48,7 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
 
 @Component({
   selector: 'dynamic-form-action-test',
-  template: `<div>Dynamic Form Action</div>`
+  template: `<div>Dynamic Form Action</div>`,
 })
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -58,7 +58,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 
 @Component({
   selector: 'dynamic-form-input-test',
-  template: `<div>Dynamic Input</div>`
+  template: `<div>Dynamic Input</div>`,
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -68,12 +68,12 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @Component({
   selector: 'dynamic-form-wrapper-test',
-  template: `<ng-template #container></ng-template>`
+  template: `<ng-template #container></ng-template>`,
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }
@@ -87,53 +87,53 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
     DynamicFormFieldTestComponent,
     DynamicFormActionTestComponent,
     DynamicFormInputTestComponent,
-    DynamicFormFieldWrapperTestComponent
+    DynamicFormFieldWrapperTestComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     {
       provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'element', component: DynamicFormElementTestComponent }
-      ]
+        { libraryName: 'test', type: 'element', component: DynamicFormElementTestComponent },
+      ],
     },
     {
       provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'field', component: DynamicFormFieldTestComponent },
-        { libraryName: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] }
-      ]
+        { libraryName: 'test', type: 'field-wrapped', component: DynamicFormFieldTestComponent, wrappers: ['wrapper'] },
+      ],
     },
     {
       provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }
-      ]
+        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent },
+      ],
     },
     {
       provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'input', component: DynamicFormInputTestComponent },
-        { libraryName: 'test', type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] }
-      ]
+        { libraryName: 'test', type: 'input-wrapped', component: DynamicFormInputTestComponent, wrappers: ['wrapper'] },
+      ],
     },
     {
       provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'wrapper', component: DynamicFormFieldWrapperTestComponent },
-      ]
+      ],
     },
     DynamicFormConfigService,
     DynamicFormValidationService,
     {
       provide: DynamicFormActionService,
-      useValue: {}
+      useValue: {},
     },
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 class DynamicFormComponentFactoryTestModule {}
 
@@ -144,8 +144,8 @@ describe('DynamicFormComponentFactory', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormComponentFactoryTestModule
-      ]
+        DynamicFormComponentFactoryTestModule,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormTestComponent);
@@ -159,7 +159,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(() => factory.createComponent(component.container, element))
         .toThrowError('Creating component of class type undefined is not supported');
-    })
+    }),
   );
 
   it('creates element component for element',
@@ -169,7 +169,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
       expect(elementComponent.element).toBeTruthy();
-    })
+    }),
   );
 
   it('creates field component for field',
@@ -179,7 +179,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
       expect(elementComponent.element).toBeTruthy();
-    })
+    }),
   );
 
   it('creates action component for action',
@@ -189,7 +189,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormActionTestComponent));
       expect(elementComponent.element).toBeTruthy();
-    })
+    }),
   );
 
   it('creates element component',
@@ -199,7 +199,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(elementComponent).toEqual(jasmine.any(DynamicFormElementTestComponent));
       expect(elementComponent.element).toBeTruthy();
-    })
+    }),
   );
 
   it('creates field component',
@@ -209,7 +209,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 
   it('creates field component wrapped',
@@ -223,7 +223,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 
   it('creates field component wrapped multiple',
@@ -241,7 +241,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormFieldTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 
   it('creates action component',
@@ -251,7 +251,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(actionComponent).toEqual(jasmine.any(DynamicFormActionTestComponent));
       expect(actionComponent.action).toBeTruthy();
-    })
+    }),
   );
 
   it('creates input component',
@@ -261,7 +261,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 
   it('creates input component wrapped',
@@ -275,7 +275,7 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 
   it('creates input component wrapped multiple',
@@ -293,6 +293,6 @@ describe('DynamicFormComponentFactory', () => {
 
       expect(fieldComponent).toEqual(jasmine.any(DynamicFormInputTestComponent));
       expect(fieldComponent.field).toBeTruthy();
-    })
+    }),
   );
 });

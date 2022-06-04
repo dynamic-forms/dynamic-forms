@@ -6,8 +6,8 @@ describe('MatDynamicFormRadioModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormRadioModule
-      ]
+        MatDynamicFormRadioModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormRadioModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(matDynamicFormRadioType);
-    })
+    }),
   );
 });

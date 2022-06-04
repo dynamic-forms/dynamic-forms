@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormGroupAsyncValidatorFactory, DynamicFormGroupValidatorFactory, DynamicFormGroupValidatorFn
+  DynamicFormGroupAsyncValidatorFactory, DynamicFormGroupValidatorFactory, DynamicFormGroupValidatorFn,
 } from './dynamic-form-group-validator';
 
 export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidatorType<DynamicFormGroupValidatorFactory> {}
@@ -15,7 +15,7 @@ export const dynamicFormGroupRequiredValidatorFactory = (): DynamicFormGroupVali
 export const dynamicFormGroupRequiredValidatorType: DynamicFormGroupValidatorType = {
   type: 'required',
   factory: dynamicFormGroupRequiredValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormGroupAllRequiredValidatorFactory = (): DynamicFormGroupValidatorFn => (group: FormGroup) => {
@@ -26,11 +26,11 @@ export const dynamicFormGroupAllRequiredValidatorFactory = (): DynamicFormGroupV
 export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidatorType = {
   type: 'allRequired',
   factory: dynamicFormGroupAllRequiredValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormGroupEqualValidatorFactory = (
-  parameters?: { keys: string[] }, message?: string, key?: string
+  parameters?: { keys: string[] }, message?: string, key?: string,
 ): DynamicFormGroupValidatorFn => (group: FormGroup) => {
   const keys = parameters && parameters.keys;
   if (group.value && keys && keys.length > 1) {
@@ -51,11 +51,11 @@ export const dynamicFormGroupEqualValidatorFactory = (
 export const dynamicFormGroupEqualValidatorType: DynamicFormGroupValidatorType = {
   type: 'equal',
   factory: dynamicFormGroupEqualValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormGroupValidatorTypes: DynamicFormGroupValidatorType[] = [
   dynamicFormGroupRequiredValidatorType,
   dynamicFormGroupAllRequiredValidatorType,
-  dynamicFormGroupEqualValidatorType
+  dynamicFormGroupEqualValidatorType,
 ];

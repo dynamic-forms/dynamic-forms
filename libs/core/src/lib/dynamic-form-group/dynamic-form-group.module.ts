@@ -15,7 +15,7 @@ export const dynamicFormGroupType: DynamicFormFieldType = {
   type: 'group',
   factory: dynamicFormGroupFactory,
   component: DynamicFormGroupComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -25,14 +25,14 @@ export const dynamicFormGroupType: DynamicFormFieldType = {
     DynamicFormElementModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormGroupType),
-    DynamicFormValidationModule.withGroupValidators(dynamicFormGroupValidatorTypes)
+    DynamicFormValidationModule.withGroupValidators(dynamicFormGroupValidatorTypes),
   ],
   declarations: [
-    DynamicFormGroupComponent
+    DynamicFormGroupComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormGroupComponent
-  ]
+    DynamicFormGroupComponent,
+  ],
 })
 export class DynamicFormGroupModule {}

@@ -55,18 +55,22 @@
           }
         ],
         "arrow-body-style": [
-          "error", 
-          "as-needed", 
-          { 
-            "requireReturnForObjectLiteral": true 
+          "error",
+          "as-needed",
+          {
+            "requireReturnForObjectLiteral": true
           }
         ],
         "brace-style": [
           "error",
-          "1tbs", 
-          { 
-            "allowSingleLine": true 
+          "1tbs",
+          {
+            "allowSingleLine": true
           }
+        ],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
         ],
         "id-blacklist": "off",
         "id-match": "off",
@@ -82,6 +86,39 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular",
+            "endOfLine": "auto",
+            "printWidth": 140,
+            "tabWidth": 2,
+            "useTabs": false,
+            "htmlWhitespaceSensitivity": "strict"
+          }
+        ]
+      }
     }
   ]
 }

@@ -8,7 +8,7 @@ import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
 export const bsDynamicFormButtonType: DynamicFormActionType = {
   type: 'button',
   component: BsDynamicFormButtonComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -16,14 +16,14 @@ export const bsDynamicFormButtonType: DynamicFormActionType = {
     CommonModule,
     DynamicFormActionModule,
     DynamicFormConfigModule.withAction(bsDynamicFormButtonType),
-    BsDynamicFormDialogModule
+    BsDynamicFormDialogModule,
   ],
   declarations: [
-    BsDynamicFormButtonComponent
+    BsDynamicFormButtonComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormButtonComponent
-  ]
+    BsDynamicFormButtonComponent,
+  ],
 })
 export class BsDynamicFormButtonModule {}

@@ -23,20 +23,20 @@ describe('DynamicFormArrayComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormArrayModule
+        DynamicFormArrayModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
         {
           provide: DynamicFormBuilder,
-          useValue: builder
+          useValue: builder,
         },
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
@@ -49,9 +49,9 @@ describe('DynamicFormArrayComponent', () => {
       key: 'key',
       index: 1,
       template: {
-        label: 'label'
+        label: 'label',
       },
-      children: []
+      children: [],
     } as DynamicFormArrayDefinition);
     component.field = formArray;
 

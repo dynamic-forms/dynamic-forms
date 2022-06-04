@@ -11,14 +11,14 @@ import { ProgressModule } from './progress/progress.module';
     ContentModule,
     FooterModule,
     NotificationsModule,
-    ProgressModule
+    ProgressModule,
   ],
   exports: [
     HeaderModule,
     ContentModule,
     FooterModule,
     NotificationsModule,
-    ProgressModule
-  ]
+    ProgressModule,
+  ],
 })
 export class LayoutModule {}

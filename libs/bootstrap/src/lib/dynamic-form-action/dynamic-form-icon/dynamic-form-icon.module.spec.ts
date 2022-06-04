@@ -6,8 +6,8 @@ describe('BsDynamicFormIconModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormIconModule
-      ]
+        BsDynamicFormIconModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormIconModule', () => {
     inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormIconType);
-    })
+    }),
   );
 });

@@ -5,15 +5,15 @@ import { DynamicFormElementsComponent } from './dynamic-form-elements.component'
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     DynamicFormElementComponent,
-    DynamicFormElementsComponent
+    DynamicFormElementsComponent,
   ],
   exports: [
     DynamicFormElementComponent,
-    DynamicFormElementsComponent
-  ]
+    DynamicFormElementsComponent,
+  ],
 })
 export class DynamicFormElementModule {}

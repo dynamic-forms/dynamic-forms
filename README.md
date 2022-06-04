@@ -60,19 +60,11 @@
 
 ## **Packages**
 
-Packages are hosted by Azure DevOps. Therefore, the following lines
+### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0-rc.4)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0-rc.4)
 
-```
-@dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
-```
-
-need to be part of the npm config file `.nmprc`.
-
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0-rc.1)
-
-- `npm install @dynamic-forms/core@14.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@14.0.0-rc.1`
-- `npm install @dynamic-forms/material@14.0.0-rc.1`
+- `npm install @dynamic-forms/core@14.0.0-rc.4`
+- `npm install @dynamic-forms/bootstrap@14.0.0-rc.4`
+- `npm install @dynamic-forms/material@14.0.0-rc.4`
 
 ### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v13/dynamic-forms-v13-publish?branchName=refs/tags/13.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=27&branchName=refs/tags/13.0.0)
 
@@ -109,6 +101,14 @@ need to be part of the npm config file `.nmprc`.
 - `npm install @dynamic-forms/core@8.0.2`
 - `npm install @dynamic-forms/bootstrap@8.0.2`
 - `npm install @dynamic-forms/material@8.0.2`
+
+Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the following lines
+
+```
+@dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
+```
+
+needed to be part of the npm config file `.nmprc`.
 
 ## **Libraries**
 

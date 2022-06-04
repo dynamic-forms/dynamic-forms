@@ -12,7 +12,7 @@ export class DynamicFormMarkdownService {
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
     marked.setOptions({
       renderer: this.createRenderer(),
-      headerIds: false
+      headerIds: false,
     });
   }
 
@@ -23,7 +23,7 @@ export class DynamicFormMarkdownService {
 
   compileFromSource(source: string, options?: DynamicFormMarkdownOptions): Observable<string> {
     return this.httpClient.get(source, { responseType: 'text' }).pipe(
-      map(markdown => this.compile(markdown, options))
+      map(markdown => this.compile(markdown, options)),
     );
   }
 

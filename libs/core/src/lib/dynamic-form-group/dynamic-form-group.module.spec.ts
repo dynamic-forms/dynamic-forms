@@ -13,14 +13,14 @@ describe('DynamicFormGroupModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormGroupModule
+        DynamicFormGroupModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-        }
-      ]
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+        },
+      ],
     });
   });
 
@@ -32,14 +32,14 @@ describe('DynamicFormGroupModule', () => {
       expect(types[0]).toEqual(dynamicFormGroupType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
     inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(dynamicFormGroupValidatorTypes);
-    })
+    }),
   );
 
   it('provides DYNAMIC_FORM_ACTION_HANDLERS',
@@ -62,6 +62,6 @@ describe('DynamicFormGroupModule', () => {
       expect(handlers[7]).toEqual(dynamicFormSubmitHandler);
       expect(handlers[7].func).toEqual(jasmine.any(Function));
       expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 });

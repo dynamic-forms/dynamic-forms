@@ -22,14 +22,14 @@ describe('DynamicFormMarkdownComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormMarkdownComponent
+        DynamicFormMarkdownComponent,
       ],
       providers: [
         {
           provide: DynamicFormMarkdownService,
-          useValue: service
-        }
-      ]
+          useValue: service,
+        },
+      ],
     });
 
     const root = {} as DynamicForm;

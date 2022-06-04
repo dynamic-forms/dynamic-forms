@@ -16,9 +16,7 @@ import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-t
 
 @Injectable()
 export class DynamicFormComponentFactory {
-  constructor(
-    private configService: DynamicFormConfigService
-  ) {}
+  constructor(private configService: DynamicFormConfigService) {}
 
   createComponent(ref: ViewContainerRef, element: DynamicFormElement): DynamicFormElementBase {
     switch (element.classType) {
@@ -54,7 +52,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createElementComponentForType(
-    ref: ViewContainerRef, element: DynamicFormElement, type: DynamicFormElementType
+    ref: ViewContainerRef, element: DynamicFormElement, type: DynamicFormElementType,
   ): DynamicFormElementBase {
     const component = ref.createComponent(type.component).instance;
     component.element = element;
@@ -62,7 +60,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createFieldComponentForType(
-    ref: ViewContainerRef, field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType
+    ref: ViewContainerRef, field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType,
   ): DynamicFormFieldBase {
     const wrapperTypes = this.getWrapperTypes(field, type);
     if (wrapperTypes.length > 0) {
@@ -78,7 +76,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createActionComponentForType(
-    ref: ViewContainerRef, action: DynamicFormAction, type: DynamicFormActionType
+    ref: ViewContainerRef, action: DynamicFormAction, type: DynamicFormActionType,
   ): DynamicFormActionBase {
     const component = ref.createComponent(type.component).instance;
     component.action = action;
@@ -86,7 +84,7 @@ export class DynamicFormComponentFactory {
   }
 
   private createWrapperComponents(
-    ref: ViewContainerRef, field: DynamicFormField, types: DynamicFormFieldWrapperType[]
+    ref: ViewContainerRef, field: DynamicFormField, types: DynamicFormFieldWrapperType[],
   ): DynamicFormFieldWrapperBase[] {
     const wrappers = types.reduce((result, type) => {
       const parentComponent = result[result.length - 1];
@@ -99,7 +97,7 @@ export class DynamicFormComponentFactory {
   }
 
   private getWrapperTypes(
-    field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType
+    field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType,
   ): DynamicFormFieldWrapperType[] {
     const wrappers = (field.wrappers || []).concat(type.wrappers || []);
     return wrappers.map(wrapper => this.configService.getFieldWrapperType(wrapper));

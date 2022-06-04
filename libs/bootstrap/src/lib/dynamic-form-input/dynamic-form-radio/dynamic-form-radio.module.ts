@@ -9,21 +9,21 @@ export const bsDynamicFormRadioType: DynamicFormInputType = {
   type: 'radio',
   component: BsDynamicFormRadioComponent,
   wrappers: [ 'label', 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormRadioType)
+    DynamicFormConfigModule.withInput(bsDynamicFormRadioType),
   ],
   declarations: [
-    BsDynamicFormRadioComponent
+    BsDynamicFormRadioComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormRadioComponent
-  ]
+    BsDynamicFormRadioComponent,
+  ],
 })
 export class BsDynamicFormRadioModule {}

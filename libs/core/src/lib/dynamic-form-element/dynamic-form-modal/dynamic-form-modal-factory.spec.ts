@@ -15,7 +15,7 @@ describe('dynamicFormModalFactory', () => {
       'createElementExpressions',
       'createFormElements',
       'createFormActions',
-      'createFormAction'
+      'createFormAction',
     ]);
     builder.createElementExpressions.and.returnValue(expressions);
     builder.createFormElements.and.returnValue(children);
@@ -30,7 +30,7 @@ describe('dynamicFormModalFactory', () => {
       template: {},
       children: [],
       footerActions: [],
-      trigger: {}
+      trigger: {},
     } as DynamicFormModalDefinition;
 
     const modal = dynamicFormModalFactory(builder, root, parent, definition);

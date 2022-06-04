@@ -2,7 +2,7 @@ import { FormArray } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormArrayAsyncValidatorFactory, DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn
+  DynamicFormArrayAsyncValidatorFactory, DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn,
 } from './dynamic-form-array-validator';
 
 export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<DynamicFormArrayValidatorFactory> {}
@@ -15,7 +15,7 @@ export const dynamicFormArrayRequiredValidatorFactory = (): DynamicFormArrayVali
 export const dynamicFormArrayRequiredValidatorType: DynamicFormArrayValidatorType = {
   type: 'required',
   factory: dynamicFormArrayRequiredValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayMinLengthValidatorFactory = (minLength?: number): DynamicFormArrayValidatorFn => {
@@ -29,7 +29,7 @@ export const dynamicFormArrayMinLengthValidatorFactory = (minLength?: number): D
 export const dynamicFormArrayMinLengthValidatorType: DynamicFormArrayValidatorType = {
   type: 'minLength',
   factory: dynamicFormArrayMinLengthValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayMaxLengthValidatorFactory = (maxLength?: number): DynamicFormArrayValidatorFn => {
@@ -43,11 +43,11 @@ export const dynamicFormArrayMaxLengthValidatorFactory = (maxLength?: number): D
 export const dynamicFormArrayMaxLengthValidatorType: DynamicFormArrayValidatorType = {
   type: 'maxLength',
   factory: dynamicFormArrayMaxLengthValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayValidatorTypes: DynamicFormArrayValidatorType[] = [
   dynamicFormArrayRequiredValidatorType,
   dynamicFormArrayMinLengthValidatorType,
-  dynamicFormArrayMaxLengthValidatorType
+  dynamicFormArrayMaxLengthValidatorType,
 ];

@@ -7,20 +7,20 @@ import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-erro
 export const bsDynamicFormControlErrorsType: DynamicFormFieldWrapperType = {
   type: 'errors',
   component: BsDynamicFormControlErrorsComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlErrorsType)
+    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlErrorsType),
   ],
   declarations: [
-    BsDynamicFormControlErrorsComponent
+    BsDynamicFormControlErrorsComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormControlErrorsComponent
-  ]
+    BsDynamicFormControlErrorsComponent,
+  ],
 })
 export class BsDynamicFormControlErrorsModule {}

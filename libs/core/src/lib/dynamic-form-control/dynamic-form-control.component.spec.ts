@@ -17,7 +17,7 @@ import { DynamicFormControlModule } from './dynamic-form-control.module';
 
 @Component({
   selector: 'dynamic-form-input-1',
-  template: `<div class="dynamic-form-input-1"></div>`
+  template: `<div class="dynamic-form-input-1"></div>`,
 })
 class DynamicFormInputOneComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -27,7 +27,7 @@ class DynamicFormInputOneComponent extends DynamicFormInputBase {
 
 @Component({
   selector: 'dynamic-form-input-2',
-  template: `<div class="dynamic-form-input-2"></div>`
+  template: `<div class="dynamic-form-input-2"></div>`,
 })
 class DynamicFormInputTwoComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -37,28 +37,28 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [
-    DynamicFormControlModule
+    DynamicFormControlModule,
   ],
   declarations: [
     DynamicFormInputOneComponent,
-    DynamicFormInputTwoComponent
+    DynamicFormInputTwoComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     {
       provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
       useValue: [
         { libraryName: 'test', type: 'input-1', component: DynamicFormInputOneComponent },
-        { libraryName: 'test', type: 'input-2', component: DynamicFormInputTwoComponent }
-      ]
+        { libraryName: 'test', type: 'input-2', component: DynamicFormInputTwoComponent },
+      ],
     },
     DynamicFormConfigService,
     DynamicFormValidationService,
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 class DynamicFormControlComponentTestModule {}
 
@@ -72,8 +72,8 @@ describe('DynamicFormControlComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormControlComponentTestModule
-      ]
+        DynamicFormControlComponentTestModule,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormControlComponent);
@@ -87,10 +87,10 @@ describe('DynamicFormControlComponent', () => {
       index: 1,
       template: {
         input: {
-          type: 'input-1'
+          type: 'input-1',
         },
-        hints: {}
-      }
+        hints: {},
+      },
     } as DynamicFormControlDefinition);
     component.field = formControl;
 

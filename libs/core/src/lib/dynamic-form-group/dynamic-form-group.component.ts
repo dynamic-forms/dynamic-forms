@@ -7,7 +7,7 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 @Component({
   selector: 'dynamic-form-group',
-  templateUrl: './dynamic-form-group.component.html'
+  templateUrl: './dynamic-form-group.component.html',
 })
 export class DynamicFormGroupComponent<
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,

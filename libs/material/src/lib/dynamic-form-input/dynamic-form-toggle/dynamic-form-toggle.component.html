@@ -1,10 +1,12 @@
-<mat-dynamic-form-input-wrapper [label]="template.label" [required]="validation?.required" 
-  [invalid]="control.touched && control.errors" [errorMessage]="control.touched && control.errors ? errorMessage : null">
+<mat-dynamic-form-input-wrapper
+  [label]="template.label"
+  [required]="validation?.required"
+  [invalid]="control.touched && control.errors"
+  [errorMessage]="control.touched && control.errors ? errorMessage : null"
+>
   <mat-button-toggle-group [formControl]="control">
-    <ng-container  *ngFor="let option of input.options; let i = index">
-      <mat-button-toggle [id]="inputId + '-' + i" [value]="option.value" [disabled]="option.disabled">
-        {{ option.label }}
-      </mat-button-toggle>
+    <ng-container *ngFor="let option of input.options; let i = index">
+      <mat-button-toggle [id]="inputId + '-' + i" [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-button-toggle>
     </ng-container>
   </mat-button-toggle-group>
 </mat-dynamic-form-input-wrapper>

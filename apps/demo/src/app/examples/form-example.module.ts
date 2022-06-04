@@ -13,21 +13,21 @@ import { FormModelResolver } from './form-model.resolver';
     CommonModule,
     HttpClientModule,
     MatTabsModule,
-    MarkdownModule
+    MarkdownModule,
   ],
   declarations: [
-    FormExampleComponent
+    FormExampleComponent,
   ],
   exports: [
     CommonModule,
     HttpClientModule,
     MatTabsModule,
-    FormExampleComponent
+    FormExampleComponent,
   ],
   providers: [
     FormExampleResolver,
     FormDefinitionResolver,
-    FormModelResolver
-  ]
+    FormModelResolver,
+  ],
 })
 export class FormExampleModule {}

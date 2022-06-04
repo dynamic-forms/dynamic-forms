@@ -10,5 +10,5 @@ export interface DynamicFormLibrary {
 export const DYNAMIC_FORM_LIBRARY = new InjectionToken<DynamicFormLibrary>('DynamicFormLibrary');
 
 export const dynamicFormLibrary: DynamicFormLibrary = {
-  name: 'core'
+  name: 'core',
 };

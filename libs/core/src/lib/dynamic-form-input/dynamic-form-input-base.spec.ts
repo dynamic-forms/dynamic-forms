@@ -11,7 +11,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 
 @Component({
   selector: 'dynamic-input-test',
-  template: `<div>Dynamic Input</div>`
+  template: `<div>Dynamic Input</div>`,
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -27,15 +27,15 @@ describe('DynamicFormInputBase', () => {
 
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormInputTestComponent
+        DynamicFormInputTestComponent,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
   });
 
@@ -47,11 +47,11 @@ describe('DynamicFormInputBase', () => {
       index: 1,
       template: {
         input: {
-          type: 'input'
+          type: 'input',
         },
         hints: {},
-        validation: {}
-      }
+        validation: {},
+      },
     } as DynamicFormControlDefinition);
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);

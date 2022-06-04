@@ -7,7 +7,7 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
 @Component({
   selector: 'dynamic-form-element',
-  templateUrl: './dynamic-form-element.component.html'
+  templateUrl: './dynamic-form-element.component.html',
 })
 export class DynamicFormElementComponent<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,

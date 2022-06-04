@@ -5,7 +5,7 @@ import { MatDynamicFormIconModule } from './dynamic-form-icon/dynamic-form-icon.
 @NgModule({
   imports: [
     MatDynamicFormButtonModule,
-    MatDynamicFormIconModule
-  ]
+    MatDynamicFormIconModule,
+  ],
 })
 export class MatDynamicFormActionModule {}

@@ -3,7 +3,7 @@ import { FormBase } from '../form/form-base';
 
 @Component({
   selector: 'app-form-example',
-  templateUrl: './form-example.component.html'
+  templateUrl: './form-example.component.html',
 })
 export class FormExampleComponent {
   @ContentChild('form')

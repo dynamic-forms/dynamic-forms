@@ -1,8 +1,16 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "14.0.0-rc.1",
+  "version": "14.0.0-rc.4",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
+  "keywords": [
+    "angular",
+    "forms",
+    "reactive forms",
+    "json",
+    "json forms",
+    "dynamic-forms"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,16 +21,16 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0-rc.1",
-    "@angular/core": "^14.0.0-rc.1",
-    "@angular/forms": "^14.0.0-rc.1",
-    "@angular/material": "^14.0.0-rc.0",
-    "@dynamic-forms/core": "14.0.0-rc.1",
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/forms": "^14.0.0",
+    "@angular/material": "^14.0.0",
+    "@dynamic-forms/core": "14.0.0-rc.4",
     "bootstrap": "^5.1.0",
     "rxjs": "^7.4.0"
   },
-  "sideEffects": false,
   "publishConfig": {
-    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/"
-  }
+    "registry": "https://registry.npmjs.org"
+  },
+  "sideEffects": false
 }

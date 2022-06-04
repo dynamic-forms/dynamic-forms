@@ -10,10 +10,10 @@ import { MaterialExamplesComponent } from './material-examples.component';
     CommonModule,
     FormExampleModule,
     MaterialFormModule,
-    MaterialExamplesRoutingModule
+    MaterialExamplesRoutingModule,
   ],
   declarations: [
-    MaterialExamplesComponent
-  ]
+    MaterialExamplesComponent,
+  ],
 })
 export class MaterialExamplesModule {}

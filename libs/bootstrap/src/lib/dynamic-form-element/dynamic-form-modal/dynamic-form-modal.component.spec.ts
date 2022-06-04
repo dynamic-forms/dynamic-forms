@@ -14,14 +14,14 @@ describe('BsDynamicFormModalComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormModalModule
+        BsDynamicFormModalModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
-        }
-      ]
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
+        },
+      ],
     });
 
     builder = {} as any;
@@ -30,8 +30,8 @@ describe('BsDynamicFormModalComponent', () => {
       template: {
         title: 'Title',
         minWidth: '600px',
-        maxWidth: '100%'
-      }
+        maxWidth: '100%',
+      },
     } as DynamicFormModalDefinition);
 
     fixture = TestBed.createComponent(BsDynamicFormModalComponent);

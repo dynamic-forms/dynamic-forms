@@ -9,7 +9,7 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
   selector: 'dynamic-form-control',
-  templateUrl: './dynamic-form-control.component.html'
+  templateUrl: './dynamic-form-control.component.html',
 })
 export class DynamicFormControlComponent<
   Input extends DynamicFormInput = DynamicFormInput,
@@ -26,7 +26,7 @@ export class DynamicFormControlComponent<
 
   constructor(
     protected componentFactory: DynamicFormComponentFactory,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(validationService);
   }

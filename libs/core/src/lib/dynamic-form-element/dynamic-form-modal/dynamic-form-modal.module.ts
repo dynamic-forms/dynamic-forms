@@ -9,7 +9,7 @@ export const dynamicFormModalOpen = (modal: DynamicFormModal): void => modal.ope
 export const dynamicFormModalOpenHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'openModal',
   func: dynamicFormModalOpen,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormModalClose = (modal: DynamicFormModal): void => modal.close();
@@ -17,7 +17,7 @@ export const dynamicFormModalClose = (modal: DynamicFormModal): void => modal.cl
 export const dynamicFormModalCloseHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'closeModal',
   func: dynamicFormModalClose,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormModalToggle = (modal: DynamicFormModal): void => modal.toggle();
@@ -25,7 +25,7 @@ export const dynamicFormModalToggle = (modal: DynamicFormModal): void => modal.t
 export const dynamicFormModalToggleHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleModal',
   func: dynamicFormModalToggle,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormModalMaximize = (modal: DynamicFormModal): void => modal.maximize();
@@ -33,7 +33,7 @@ export const dynamicFormModalMaximize = (modal: DynamicFormModal): void => modal
 export const dynamicFormModalMaximizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'maximizeModal',
   func: dynamicFormModalMaximize,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormModalMinimize = (modal: DynamicFormModal): void => modal.minimize();
@@ -41,7 +41,7 @@ export const dynamicFormModalMinimize = (modal: DynamicFormModal): void => modal
 export const dynamicFormModalMinimizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'minimizeModal',
   func: dynamicFormModalMinimize,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormModalToggleSize = (modal: DynamicFormModal): void => modal.toggleSize();
@@ -49,7 +49,7 @@ export const dynamicFormModalToggleSize = (modal: DynamicFormModal): void => mod
 export const dynamicFormModalToggleSizeHandler: DynamicFormActionHandler<DynamicFormModal> = {
   type: 'toggleSizeModal',
   func: dynamicFormModalToggleSize,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -61,7 +61,7 @@ export const dynamicFormModalToggleSizeHandler: DynamicFormActionHandler<Dynamic
       dynamicFormModalMaximizeHandler,
       dynamicFormModalMinimizeHandler,
       dynamicFormModalToggleSizeHandler,
-    ])
-  ]
+    ]),
+  ],
 })
 export class DynamicFormModalModule {}

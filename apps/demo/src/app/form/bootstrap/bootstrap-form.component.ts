@@ -6,7 +6,7 @@ import { FormBase } from '../form-base';
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
   styleUrls: ['./bootstrap-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class BootstrapFormComponent extends FormBase {
   constructor(protected override dialog: MatDialog) {

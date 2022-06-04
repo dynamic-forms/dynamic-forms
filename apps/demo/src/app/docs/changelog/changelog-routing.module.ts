@@ -7,12 +7,12 @@ import { ChangelogComponent } from './changelog.component';
     RouterModule.forChild([
       {
         path: '',
-        component: ChangelogComponent
-      }
-    ])
+        component: ChangelogComponent,
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class ChangelogRoutingModule {}

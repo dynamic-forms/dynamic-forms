@@ -5,21 +5,21 @@ import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-fo
 import { DynamicFormModal } from './dynamic-form-modal';
 import {
   dynamicFormModalCloseHandler, dynamicFormModalMaximizeHandler, dynamicFormModalMinimizeHandler, dynamicFormModalOpenHandler,
-  dynamicFormModalToggleHandler, dynamicFormModalToggleSizeHandler, DynamicFormModalModule
+  dynamicFormModalToggleHandler, dynamicFormModalToggleSizeHandler, DynamicFormModalModule,
 } from './dynamic-form-modal.module';
 
 describe('DynamicFormModalModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormModalModule
+        DynamicFormModalModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-        }
-      ]
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+        },
+      ],
     });
   });
 
@@ -46,7 +46,7 @@ describe('DynamicFormModalModule', () => {
       expect(handlers[8]).toEqual(dynamicFormModalToggleSizeHandler);
       expect(handlers[8].func).toEqual(jasmine.any(Function));
       expect(handlers[8].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('handler calls open of modal',
@@ -59,7 +59,7 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.open).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls close of modal',
@@ -72,7 +72,7 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.close).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls toggle of modal',
@@ -85,7 +85,7 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.toggle).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls maximize of modal',
@@ -98,7 +98,7 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.maximize).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls minimize of modal',
@@ -111,7 +111,7 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.minimize).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls toggleSize of modal',
@@ -124,6 +124,6 @@ describe('DynamicFormModalModule', () => {
       handler.func(modal, null);
 
       expect(modal.toggleSize).toHaveBeenCalled();
-    })
+    }),
   );
 });

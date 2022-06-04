@@ -9,21 +9,21 @@ export const bsDynamicFormToggleType: DynamicFormInputType = {
   type: 'toggle',
   component: BsDynamicFormToggleComponent,
   wrappers: [ 'label', 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormToggleType)
+    DynamicFormConfigModule.withInput(bsDynamicFormToggleType),
   ],
   declarations: [
-    BsDynamicFormToggleComponent
+    BsDynamicFormToggleComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormToggleComponent
-  ]
+    BsDynamicFormToggleComponent,
+  ],
 })
 export class BsDynamicFormToggleModule {}

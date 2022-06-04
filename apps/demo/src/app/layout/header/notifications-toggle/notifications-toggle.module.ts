@@ -8,13 +8,13 @@ import { NotificationsToggleComponent } from './notifications-toggle.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [
-    NotificationsToggleComponent
+    NotificationsToggleComponent,
   ],
   exports: [
-    NotificationsToggleComponent
-  ]
+    NotificationsToggleComponent,
+  ],
 })
 export class NotificationsToggleModule {}

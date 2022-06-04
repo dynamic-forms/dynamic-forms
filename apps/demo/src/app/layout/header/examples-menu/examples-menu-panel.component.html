@@ -2,15 +2,16 @@
   <ng-container *ngFor="let item of items">
     <ng-container *ngIf="item.items">
       <button mat-menu-item [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
-      <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl" [items]="item.items">
-      </app-examples-menu-panel>
+      <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl" [items]="item.items"> </app-examples-menu-panel>
     </ng-container>
     <ng-container *ngIf="item.id">
       <ng-container *ngIf="!item.modelId; else exampleWithModel">
-        <a mat-menu-item [routerLink]="[ baseUrl, item.id ]" routerLinkActive="router-link-active">{{ item.label }}</a>
+        <a mat-menu-item [routerLink]="[baseUrl, item.id]" routerLinkActive="router-link-active">{{ item.label }}</a>
       </ng-container>
       <ng-template #exampleWithModel>
-        <a mat-menu-item [routerLink]="[ baseUrl, item.id, 'models', item.modelId ]" routerLinkActive="router-link-active">{{ item.label }}</a>
+        <a mat-menu-item [routerLink]="[baseUrl, item.id, 'models', item.modelId]" routerLinkActive="router-link-active">{{
+          item.label
+        }}</a>
       </ng-template>
     </ng-container>
   </ng-container>

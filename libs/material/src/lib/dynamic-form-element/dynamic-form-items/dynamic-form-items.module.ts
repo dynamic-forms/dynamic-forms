@@ -5,7 +5,7 @@ import { MatDynamicFormTabsModule } from './dynamic-form-tabs/dynamic-form-tabs.
 @NgModule({
   imports: [
     MatDynamicFormAccordionModule,
-    MatDynamicFormTabsModule
-  ]
+    MatDynamicFormTabsModule,
+  ],
 })
 export class MatDynamicFormItemsModule {}

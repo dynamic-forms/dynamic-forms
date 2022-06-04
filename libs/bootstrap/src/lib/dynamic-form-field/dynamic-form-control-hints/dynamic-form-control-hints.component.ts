@@ -3,12 +3,12 @@ import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormVali
 
 @Component({
   selector: 'bs-dynamic-form-control-hints',
-  templateUrl: './dynamic-form-control-hints.component.html'
+  templateUrl: './dynamic-form-control-hints.component.html',
 })
 export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrapperBase {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }

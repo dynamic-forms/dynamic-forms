@@ -25,11 +25,11 @@ import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-librar
     BsDynamicFormElementModule,
     BsDynamicFormActionModule,
     BsDynamicFormInputModule,
-    BsDynamicFormFieldWrapperModule
+    BsDynamicFormFieldWrapperModule,
   ],
   exports: [
-    DynamicFormsModule
-  ]
+    DynamicFormsModule,
+  ],
 })
 export class BsDynamicFormsModule {
   static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<BsDynamicFormsModule> {
@@ -38,17 +38,17 @@ export class BsDynamicFormsModule {
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: bsDynamicFormLibrary
+          useValue: bsDynamicFormLibrary,
         },
         {
           provide: DYNAMIC_FORM_THEME,
-          useValue: config && config.theme
+          useValue: config && config.theme,
         },
         {
           provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: config && config.idBuilder
-        }
-      ]
+          useValue: config && config.idBuilder,
+        },
+      ],
     };
   }
 }

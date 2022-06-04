@@ -15,31 +15,31 @@ import { DynamicFormElementModule } from './dynamic-form-element.module';
 
 @Component({
   selector: 'dynamic-element-test',
-  template: `<div class="dynamic-form-element"></div>`
+  template: `<div class="dynamic-form-element"></div>`,
 })
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
   imports: [
-    DynamicFormElementModule
+    DynamicFormElementModule,
   ],
   declarations: [
-    DynamicFormElementBaseComponent
+    DynamicFormElementBaseComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     {
       provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent }
-      ]
+        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent },
+      ],
     },
     DynamicFormConfigService,
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 class DynamicFormElementComponentTestModule {}
 
@@ -52,8 +52,8 @@ describe('DynamicFormElementComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormElementComponentTestModule
-      ]
+        DynamicFormElementComponentTestModule,
+      ],
     });
 
     const root = {} as DynamicForm;

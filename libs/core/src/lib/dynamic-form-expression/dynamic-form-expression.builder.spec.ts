@@ -19,8 +19,8 @@ describe('DynamicFormExpressionBuilder', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DynamicFormExpressionBuilder
-      ]
+        DynamicFormExpressionBuilder,
+      ],
     });
   });
 
@@ -30,7 +30,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const elementExpressions = service.createElementExpressions(element);
 
       expect(elementExpressions).toBeNull();
-    })
+    }),
   );
 
   it('returns element expressions',
@@ -38,7 +38,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
       const expressions = {
-        disabled: 'data.values && data.values.length > 0'
+        disabled: 'data.values && data.values.length > 0',
       } as { [key: string]: string };
       const definition = { expressions } as DynamicFormElementDefinition;
       const element = { definition, expressionData } as DynamicFormElement;
@@ -54,7 +54,7 @@ describe('DynamicFormExpressionBuilder', () => {
       values.push('value');
 
       expect(elementExpression.value).toBe(true);
-    })
+    }),
   );
 
   it('returns element expressions from function',
@@ -62,7 +62,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
       const expressions = {
-        disabled: (data) => data.values && data.values.length > 0
+        disabled: (data) => data.values && data.values.length > 0,
       } as { [key: string]: DynamicFormElementExpressionFunc };
       const definition = { expressions } as DynamicFormElementDefinition;
       const element = { definition, expressionData } as DynamicFormElement;
@@ -78,7 +78,7 @@ describe('DynamicFormExpressionBuilder', () => {
       values.push('value');
 
       expect(elementExpression.value).toBe(true);
-    })
+    }),
   );
 
   it('returns field expressions being null',
@@ -87,7 +87,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const fieldExpressions = service.createFieldExpressions(field);
 
       expect(fieldExpressions).toBeNull();
-    })
+    }),
   );
 
   it('returns field expressions',
@@ -98,7 +98,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = {
-        readonly: 'data.root.model.readonly || data.parentField.model.readonly'
+        readonly: 'data.root.model.readonly || data.parentField.model.readonly',
       } as { [key: string]: string };
       const expressionData = {
         root: { model: root.model },
@@ -121,7 +121,7 @@ describe('DynamicFormExpressionBuilder', () => {
       model.readonly = true;
 
       expect(fieldExpression.value).toBe(true);
-    })
+    }),
   );
 
   it('returns field expressions from function',
@@ -134,13 +134,13 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChangesSubject = new Subject();
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = {
-        readonly: func
+        readonly: func,
       } as { [key: string]: DynamicFormFieldExpressionFunc };
       const expressionData = {
         model: model.child.child,
         parent: {},
         parentField: { model: parent.model },
-        root: { model: root.model }
+        root: { model: root.model },
       } as DynamicFormFieldExpressionData;
       const definition = { expressions } as DynamicFormFieldDefinition;
       const field = { definition, expressionData, expressionChangesSubject, expressionChanges } as DynamicFormField;
@@ -156,7 +156,7 @@ describe('DynamicFormExpressionBuilder', () => {
       model.readonly = true;
 
       expect(fieldExpression.value).toBe(true);
-    })
+    }),
   );
 
   it('returns action expressions being null',
@@ -165,7 +165,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const actionExpressions = service.createActionExpressions(action);
 
       expect(actionExpressions).toBeNull();
-    })
+    }),
   );
 
   it('returns action expressions',
@@ -175,7 +175,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const parentField = { status: 'VALID' };
       const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
       const expressions = {
-        disabled: 'data.parentField.status === "VALID" && data.root.status === "VALID"'
+        disabled: 'data.parentField.status === "VALID" && data.root.status === "VALID"',
       } as { [key: string]: string };
       const definition = { expressions } as DynamicFormActionDefinition;
       const action = { definition, expressionData } as DynamicFormAction;
@@ -191,7 +191,7 @@ describe('DynamicFormExpressionBuilder', () => {
       root.status = 'VALID';
 
       expect(actionExpression.value).toBe(true);
-    })
+    }),
   );
 
   it('returns action expressions from function',
@@ -200,7 +200,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const parentField = { status: 'VALID' };
       const expressionData = { root, parentField } as DynamicFormActionExpressionData;
       const expressions = {
-        disabled: (data) => data.parentField.status === 'VALID' && data.root.status === 'VALID'
+        disabled: (data) => data.parentField.status === 'VALID' && data.root.status === 'VALID',
       } as { [key: string]: DynamicFormActionExpressionFunc };
       const definition = { expressions } as DynamicFormActionDefinition;
       const action = { definition, expressionData } as DynamicFormAction;
@@ -216,6 +216,6 @@ describe('DynamicFormExpressionBuilder', () => {
       root.status = 'VALID';
 
       expect(actionExpression.value).toBe(true);
-    })
+    }),
   );
 });

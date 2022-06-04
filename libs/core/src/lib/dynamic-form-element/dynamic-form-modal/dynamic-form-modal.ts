@@ -25,7 +25,7 @@ export class DynamicFormModal<
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({
       isOpen: () => this.isOpen,
-      maximized: () => this.template.maximized
+      maximized: () => this.template.maximized,
     });
   }
 

@@ -3,7 +3,7 @@ import { DynamicFormActionService, DynamicFormIconBase } from '@dynamic-forms/co
 
 @Component({
   selector: 'bs-dynamic-form-icon',
-  templateUrl: './dynamic-form-icon.component.html'
+  templateUrl: './dynamic-form-icon.component.html',
 })
 export class BsDynamicFormIconComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {

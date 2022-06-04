@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IconService {
   private readonly _svgs: { [svg: string ]: string } = {
     github: 'assets/images/github.svg',
-    'azure-devops': 'assets/images/azure-devops.svg'
+    'azure-devops': 'assets/images/azure-devops.svg',
   };
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {}

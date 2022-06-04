@@ -3,7 +3,7 @@ import { DynamicFormTabsBase } from '@dynamic-forms/core';
 
 @Component({
   selector: 'mat-dynamic-form-tabs',
-  templateUrl: './dynamic-form-tabs.component.html'
+  templateUrl: './dynamic-form-tabs.component.html',
 })
 export class MatDynamicFormTabsComponent extends DynamicFormTabsBase {
   constructor() {

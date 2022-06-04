@@ -6,8 +6,8 @@ describe('BsDynamicFormControlLabelModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormControlLabelModule
-      ]
+        BsDynamicFormControlLabelModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormControlLabelModule', () => {
     inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormControlLabelType);
-    })
+    }),
   );
 });
