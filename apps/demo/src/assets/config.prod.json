@@ -1,5 +1,5 @@
 {
-  "version": "14.0.0-rc.3",
+  "version": "14.0.0-rc.4",
   "build": "187",
   "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=26&_a=summary",
   "release": "17",
@@ -16,7 +16,7 @@
   },
   "versions": [
     {
-      "name": "14.0.0-rc.3",
+      "name": "14.0.0-rc.4",
       "url": "https://dynamic-forms.azurewebsites.net/v14"
     },
     {
