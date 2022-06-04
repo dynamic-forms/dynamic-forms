@@ -4,7 +4,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 - [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [releases](https://github.com/dynamic-forms/dynamic-forms/releases)
 - [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
-- [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps as demo
+- [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps with demos
 
 ## **Features**
 
