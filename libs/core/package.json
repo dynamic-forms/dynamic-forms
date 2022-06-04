@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "14.0.0-rc.1",
+  "version": "14.0.0-rc.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "marked": "^4.0.16",
     "rxjs": "^7.4.0"
   },
-  "sideEffects": false,
   "publishConfig": {
-    "registry": "https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/"
-  }
+    "registry": "https://registry.npmjs.org"
+  },
+  "sideEffects": false
 }
