@@ -102,7 +102,7 @@
 - `npm install @dynamic-forms/bootstrap@8.0.2`
 - `npm install @dynamic-forms/material@8.0.2`
 
-Packages until version 14.0.0-rc.1 were hosted by Azure DevOps. Therefore, the following lines
+Packages up version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the following lines
 
 ```
 @dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
