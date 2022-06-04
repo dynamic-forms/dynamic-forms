@@ -14,7 +14,7 @@ const getCurrencyOptions = (data, memo) => ((currencyPair: string): any[] => {
     const accounting = currencyPair.substring(4, 7);
     return [
       { value: underlying, label: underlying },
-      { value: accounting, label: accounting }
+      { value: accounting, label: accounting },
     ];
   }
   return [];
@@ -33,22 +33,22 @@ describe('DynamicFormFieldExpression', () => {
         root: {},
         parent: {},
         parentField: { model: { currencyPair: 'EUR/USD' } },
-        model: {}
+        model: {},
       },
       expressionChangesSubject,
-      expressionChanges
+      expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
 
     const fieldExpressionChanges = [];
     field.expressionChanges.subscribe({
-      next: (change) => fieldExpressionChanges.push(change)
+      next: (change) => fieldExpressionChanges.push(change),
     });
 
     expect(expression.memo).toEqual({
       previousValue: null,
-      currentValue: null
+      currentValue: null,
     });
 
     const expressionValue1 = expression.value;
@@ -56,11 +56,11 @@ describe('DynamicFormFieldExpression', () => {
     expect(expression.memo).toEqual({
       previousValue: null,
       currentValue: expressionValue1,
-      currencyPair: 'EUR/USD'
+      currencyPair: 'EUR/USD',
     });
     expect(expressionValue1).toEqual([
       { value: 'EUR', label: 'EUR' },
-      { value: 'USD', label: 'USD' }
+      { value: 'USD', label: 'USD' },
     ]);
 
     const expressionValue2 = expression.value;
@@ -68,7 +68,7 @@ describe('DynamicFormFieldExpression', () => {
     expect(expression.memo).toEqual({
       previousValue: expressionValue1,
       currentValue: expressionValue2,
-      currencyPair: 'EUR/USD'
+      currencyPair: 'EUR/USD',
     });
     expect(expressionValue2).toBe(expressionValue1);
 
@@ -79,11 +79,11 @@ describe('DynamicFormFieldExpression', () => {
     expect(expression.memo).toEqual({
       previousValue: expressionValue2,
       currentValue: expressionValue3,
-      currencyPair: 'EUR/GBP'
+      currencyPair: 'EUR/GBP',
     });
     expect(expressionValue3).toEqual([
       { value: 'EUR', label: 'EUR' },
-      { value: 'GBP', label: 'GBP' }
+      { value: 'GBP', label: 'GBP' },
     ]);
 
     field.expressionData.parentField.model.currencyPair = null;
@@ -93,7 +93,7 @@ describe('DynamicFormFieldExpression', () => {
     expect(expression.memo).toEqual({
       previousValue: expressionValue3,
       currentValue: expressionValue4,
-      currencyPair: null
+      currencyPair: null,
     });
     expect(expressionValue4).toEqual([]);
 
@@ -117,10 +117,10 @@ describe('DynamicFormFieldExpression', () => {
         root: null,
         parent: null,
         parentField: { model: { currencyPair: 'EUR/USD' } },
-        model: null
+        model: null,
       },
       expressionChangesSubject,
-      expressionChanges
+      expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);
@@ -136,10 +136,10 @@ describe('DynamicFormFieldExpression', () => {
         root: null,
         parent: null,
         parentField: null,
-        model: null
+        model: null,
       },
       expressionChangesSubject,
-      expressionChanges
+      expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
     const expression = new DynamicFormFieldExpressionTesting('key', field, func);

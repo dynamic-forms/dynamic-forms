@@ -9,21 +9,21 @@ export const bsDynamicFormSelectType: DynamicFormInputType = {
   type: 'select',
   component: BsDynamicFormSelectComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormSelectType)
+    DynamicFormConfigModule.withInput(bsDynamicFormSelectType),
   ],
   declarations: [
-    BsDynamicFormSelectComponent
+    BsDynamicFormSelectComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormSelectComponent
-  ]
+    BsDynamicFormSelectComponent,
+  ],
 })
 export class BsDynamicFormSelectModule {}

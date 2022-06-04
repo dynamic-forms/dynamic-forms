@@ -6,7 +6,7 @@ import { DynamicFormContainerTemplate } from './dynamic-form-container-template'
 
 @Component({
   selector: 'dynamic-form-container',
-  templateUrl: './dynamic-form-container.component.html'
+  templateUrl: './dynamic-form-container.component.html',
 })
 export class DynamicFormContainerComponent<
   Template extends DynamicFormContainerTemplate = DynamicFormContainerTemplate,

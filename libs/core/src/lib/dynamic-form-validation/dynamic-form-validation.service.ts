@@ -11,7 +11,7 @@ export class DynamicFormValidationService {
   constructor(
     protected libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS)
-    private validationConfigs: DynamicFormValidationConfigs
+    private validationConfigs: DynamicFormValidationConfigs,
   ) {
     this.validationConfig = this.mergeValidationConfigs(this.validationConfigs);
   }
@@ -52,7 +52,7 @@ export class DynamicFormValidationService {
       return {
         ...result, ...config,
         messages: { ...result.messages, ...config.messages },
-        libraryName
+        libraryName,
       };
     }, defaultConfig);
   }

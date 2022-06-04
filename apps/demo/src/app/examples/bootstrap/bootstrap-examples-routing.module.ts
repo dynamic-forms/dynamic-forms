@@ -7,10 +7,10 @@ const bootstrapExamplesRoutes: Routes = getFormExampleRoutes(BootstrapExamplesCo
 
 @NgModule({
   imports: [
-    RouterModule.forChild(bootstrapExamplesRoutes)
+    RouterModule.forChild(bootstrapExamplesRoutes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class BootstrapExamplesRoutingModule {}

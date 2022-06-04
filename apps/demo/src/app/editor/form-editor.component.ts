@@ -7,7 +7,7 @@ import formDefinition from './form-editor.json';
 @Component({
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
-  styleUrls: ['./form-editor.component.scss']
+  styleUrls: ['./form-editor.component.scss'],
 })
 export class FormEditorComponent {
   private _data: FormData;

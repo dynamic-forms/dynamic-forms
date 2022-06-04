@@ -8,7 +8,7 @@ import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label.mo
 
 @Component({
   selector: 'bs-dynamic-form-input-test',
-  template: `<div>Dynamic Input</div>`
+  template: `<div>Dynamic Input</div>`,
 })
 class DynamicFormInputTestComponent extends DynamicFormInputBase {
   constructor(protected override validationService: DynamicFormValidationService) {
@@ -18,19 +18,19 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [
-    BsDynamicFormControlLabelModule
+    BsDynamicFormControlLabelModule,
   ],
   declarations: [
-    DynamicFormInputTestComponent
+    DynamicFormInputTestComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     DynamicFormConfigService,
-    DynamicFormValidationService
-  ]
+    DynamicFormValidationService,
+  ],
 })
 class BsDynamicFormControlLabelTestModule {}
 
@@ -41,8 +41,8 @@ describe('BsDynamicFormControlLabelComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormControlLabelTestModule
-      ]
+        BsDynamicFormControlLabelTestModule,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormControlLabelComponent);

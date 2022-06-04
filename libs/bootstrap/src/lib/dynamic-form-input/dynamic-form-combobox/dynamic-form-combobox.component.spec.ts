@@ -17,16 +17,16 @@ describe('BsDynamicFormComboboxComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormComboboxModule
+        BsDynamicFormComboboxModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormComboboxComponent);
@@ -43,10 +43,10 @@ describe('BsDynamicFormComboboxComponent', () => {
           options: [
             'Value1',
             'Value2',
-            'Value3'
-          ]
-        }
-      }
+            'Value3',
+          ],
+        },
+      },
     } as DynamicFormControlDefinition<DynamicFormCombobox>;
     formControl = new DynamicFormControl<DynamicFormCombobox>(builder, form, form, definition);
 

@@ -13,8 +13,8 @@ import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({
   providers: [
-    DynamicFormConfigService
-  ]
+    DynamicFormConfigService,
+  ],
 })
 export class DynamicFormConfigModule {
   static withElement(elementType: DynamicFormElementType): ModuleWithProviders<DynamicFormConfigModule> {
@@ -24,9 +24,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
           useValue: elementType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -37,9 +37,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
           useValue: elementTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -50,9 +50,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
           useValue: fieldType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -63,9 +63,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG,
           useValue: fieldTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -76,9 +76,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
           useValue: actionType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -89,9 +89,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
           useValue: actionTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -102,9 +102,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
           useValue: inputType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -115,9 +115,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG,
           useValue: inputTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -128,9 +128,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
           useValue: fieldWrapperType,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -141,9 +141,9 @@ export class DynamicFormConfigModule {
         {
           provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
           useValue: fieldWrapperTypes,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 }

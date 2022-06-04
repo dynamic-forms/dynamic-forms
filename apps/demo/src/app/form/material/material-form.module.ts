@@ -27,22 +27,22 @@ export const dynamicFormIdBuilder = (): string => v4();
         moveUp: 'arrow_upward',
         register: 'add',
         maximizeModal: 'fullscreen',
-        minimizeModal: 'fullscreen_exit'
+        minimizeModal: 'fullscreen_exit',
       },
-      libraryName: 'material'
+      libraryName: 'material',
     }),
     DynamicFormExtensionsModule,
     DynamicFormMarkdownModule,
     MatDynamicFormsModule.forRoot({
       theme: 'material',
-      idBuilder: dynamicFormIdBuilder
-    })
+      idBuilder: dynamicFormIdBuilder,
+    }),
   ],
   declarations: [
-    MaterialFormComponent
+    MaterialFormComponent,
   ],
   exports: [
-    MaterialFormComponent
-  ]
+    MaterialFormComponent,
+  ],
 })
 export class MaterialFormModule {}

@@ -1,9 +1,15 @@
 <ng-container *ngFor="let option of input.options; let i = index">
   <div class="form-check">
-    <input class="form-check-input" type="radio" [id]="inputId + '-' + i" [name]="inputId"  
-      [formControl]="control" [value]="option.value" [attr.disabled]="control.disabled || option.disabled" [readonly]="readonly" />
+    <input
+      class="form-check-input"
+      type="radio"
+      [id]="inputId + '-' + i"
+      [name]="inputId"
+      [formControl]="control"
+      [value]="option.value"
+      [attr.disabled]="control.disabled || option.disabled"
+      [readonly]="readonly"
+    />
     <label class="form-check-label" [for]="inputId + '-' + i">{{ option.label }}</label>
   </div>
 </ng-container>
-
-  

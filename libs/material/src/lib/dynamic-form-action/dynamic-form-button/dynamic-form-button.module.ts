@@ -9,7 +9,7 @@ import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 export const matDynamicFormButtonType: DynamicFormActionType = {
   type: 'button',
   component: MatDynamicFormButtonComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -18,15 +18,15 @@ export const matDynamicFormButtonType: DynamicFormActionType = {
     MatButtonModule,
     DynamicFormActionModule,
     DynamicFormConfigModule.withAction(matDynamicFormButtonType),
-    MatDynamicFormDialogModule
+    MatDynamicFormDialogModule,
   ],
   declarations: [
-    MatDynamicFormButtonComponent
+    MatDynamicFormButtonComponent,
   ],
   exports: [
     DynamicFormConfigModule,
     DynamicFormActionModule,
-    MatDynamicFormButtonComponent
-  ]
+    MatDynamicFormButtonComponent,
+  ],
 })
 export class MatDynamicFormButtonModule {}

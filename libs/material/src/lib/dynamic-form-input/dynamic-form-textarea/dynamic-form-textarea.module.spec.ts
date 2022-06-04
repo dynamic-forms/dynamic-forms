@@ -6,8 +6,8 @@ describe('MatDynamicFormTextareaModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormTextareaModule
-      ]
+        MatDynamicFormTextareaModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormTextareaModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(matDynamicFormTextareaType);
-    })
+    }),
   );
 });

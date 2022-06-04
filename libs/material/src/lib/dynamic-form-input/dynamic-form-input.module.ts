@@ -23,13 +23,13 @@ import { MatDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-t
     MatDynamicFormSwitchModule,
     MatDynamicFormTextareaModule,
     MatDynamicFormTextboxModule,
-    MatDynamicFormToggleModule
+    MatDynamicFormToggleModule,
   ],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { floatLabel: 'always' }
-    }
-  ]
+      useValue: { floatLabel: 'always' },
+    },
+  ],
 })
 export class MatDynamicFormInputModule {}

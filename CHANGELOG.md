@@ -1,5 +1,13 @@
 # Changelog
 
+## 14.0.0 (2022-06-04)
+
+### Features
+
+* **core:** release of library using angular 14
+* **bootstrap:** release of library using angular 14
+* **material:** release of library using angular material 14
+
 ## 14.0.0-rc.1 (2022-05-24)
 
 ### Features

@@ -15,15 +15,15 @@ describe('MatDynamicFormIconComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormIconModule
+        MatDynamicFormIconModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormIconComponent);
@@ -60,14 +60,14 @@ describe('MatDynamicFormIconComponent', () => {
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary',
     );
 
     component.template.hidden = true;
     fixture.detectChanges();
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary hidden'
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary hidden',
     );
   });
 
@@ -76,21 +76,21 @@ describe('MatDynamicFormIconComponent', () => {
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary',
     );
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary className1 className2'
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary className1 className2',
     );
 
     component.template.className = null;
     fixture.detectChanges();
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary'
+      'mat-focus-indicator mat-tooltip-trigger dynamic-form-icon mat-icon-button mat-button-base mat-primary',
     );
   });
 });

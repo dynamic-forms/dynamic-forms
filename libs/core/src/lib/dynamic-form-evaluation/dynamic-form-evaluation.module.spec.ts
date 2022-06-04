@@ -11,8 +11,8 @@ describe('DynamicFormEvaluationModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormEvaluationModule
-        ]
+          DynamicFormEvaluationModule,
+        ],
       });
     });
 
@@ -25,21 +25,21 @@ describe('DynamicFormEvaluationModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormEvaluationModule
+          DynamicFormEvaluationModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
     it('provides DynamicFormEvaluationBuilder',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
   });
 
@@ -47,20 +47,20 @@ describe('DynamicFormEvaluationModule', () => {
     const controlEvaluatorType: DynamicFormControlEvaluatorType = {
       type: 'evaluator',
       func: null,
-      libraryName: 'test'
+      libraryName: 'test',
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormEvaluationModule.withControlEvaluator(controlEvaluatorType)
+          DynamicFormEvaluationModule.withControlEvaluator(controlEvaluatorType),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -68,7 +68,7 @@ describe('DynamicFormEvaluationModule', () => {
       inject([DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG], (config: DynamicFormControlEvaluatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(controlEvaluatorType);
-      })
+      }),
     );
   });
 
@@ -81,14 +81,14 @@ describe('DynamicFormEvaluationModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormEvaluationModule.withControlEvaluators(controlEvaluatorTypes)
+          DynamicFormEvaluationModule.withControlEvaluators(controlEvaluatorTypes),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -96,7 +96,7 @@ describe('DynamicFormEvaluationModule', () => {
       inject([DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG], (config: DynamicFormControlEvaluatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(controlEvaluatorTypes);
-      })
+      }),
     );
   });
 });

@@ -10,17 +10,17 @@ import { SidebarComponent } from './sidebar.component';
 @NgModule({
   declarations: [
     SidebarComponent,
-    SidebarMenuComponent
+    SidebarMenuComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatTreeModule
+    MatTreeModule,
   ],
   exports: [
-    SidebarComponent
-  ]
+    SidebarComponent,
+  ],
 })
 export class SidebarModule {}

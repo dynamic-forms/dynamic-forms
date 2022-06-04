@@ -13,14 +13,14 @@ describe('MatDynamicFormAccordionComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormAccordionModule
+        MatDynamicFormAccordionModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
-        }
-      ]
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
+        },
+      ],
     });
 
     builder = {} as any;

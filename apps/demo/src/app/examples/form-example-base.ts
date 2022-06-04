@@ -12,10 +12,10 @@ export abstract class FormExampleBase extends FormSubmitBase {
   constructor(protected route: ActivatedRoute, protected override dialog: MatDialog) {
     super(dialog);
     this.data$ = this.route.data.pipe(
-      map(data => this.mapData(data))
+      map(data => this.mapData(data)),
     );
     this.doc$ = this.data$.pipe(
-      map(data => this.getDoc(data))
+      map(data => this.getDoc(data)),
     );
   }
 

@@ -14,17 +14,17 @@ describe('DynamicFormActionService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService( { name: 'test' })
+            useValue: new DynamicFormLibraryService( { name: 'test' }),
           },
-          DynamicFormActionService
-        ]
+          DynamicFormActionService,
+        ],
       });
     });
 
     it('returns handlers being empty',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service.handlers).toEqual([]);
-      })
+      }),
     );
 
     it('returns handler being undefined',
@@ -32,7 +32,7 @@ describe('DynamicFormActionService', () => {
         const handler = service.getHandler('type');
 
         expect(handler).toBeUndefined();
-      })
+      }),
     );
 
     it('does not call func of handler and stop event propagation',
@@ -48,7 +48,7 @@ describe('DynamicFormActionService', () => {
 
         expect(service.getHandler).toHaveBeenCalledWith('type');
         expect(event.stopPropagation).not.toHaveBeenCalled();
-      })
+      }),
     );
   });
 
@@ -57,19 +57,19 @@ describe('DynamicFormActionService', () => {
       {
         type: 'type',
         func: () => {},
-        libraryName: 'test1'
+        libraryName: 'test1',
       },
       {
         type: 'type',
         func: () => {},
-        libraryName: 'test'
+        libraryName: 'test',
       },
       {
         type: 'type-field-func',
         elementFunc: (action) => (action.parent as DynamicFormField).parent,
         func: () => {},
-        libraryName: 'test'
-      }
+        libraryName: 'test',
+      },
     ];
 
     beforeEach(() => {
@@ -77,21 +77,21 @@ describe('DynamicFormActionService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService( { name: 'test' })
+            useValue: new DynamicFormLibraryService( { name: 'test' }),
           },
           {
             provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
-            useValue: handlers
+            useValue: handlers,
           },
-          DynamicFormActionService
-        ]
+          DynamicFormActionService,
+        ],
       });
     });
 
     it('returns handlers',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service.handlers).toEqual([ handlers[1], handlers[2] ]);
-      })
+      }),
     );
 
     it('returns handler',
@@ -99,7 +99,7 @@ describe('DynamicFormActionService', () => {
         const handler = service.getHandler('type');
 
         expect(handler).toEqual(service.handlers[0]);
-      })
+      }),
     );
 
     it('returns handler being undefined if not found',
@@ -107,7 +107,7 @@ describe('DynamicFormActionService', () => {
         const handler = service.getHandler('type1');
 
         expect(handler).toBeUndefined();
-      })
+      }),
     );
 
     it('calls func of handler and stops propagation of event',
@@ -125,7 +125,7 @@ describe('DynamicFormActionService', () => {
         expect(service.getHandler).toHaveBeenCalledWith('type');
         expect(service.handlers[0].func).toHaveBeenCalledWith(field, action);
         expect(event.stopPropagation).toHaveBeenCalled();
-      })
+      }),
     );
 
     it('calls elementFunc and func of handler and stops propagation of event',
@@ -146,7 +146,7 @@ describe('DynamicFormActionService', () => {
         expect(service.handlers[1].elementFunc).toHaveBeenCalledWith(action);
         expect(service.handlers[1].func).toHaveBeenCalledWith(parent, action);
         expect(event.stopPropagation).toHaveBeenCalled();
-      })
+      }),
     );
   });
 });

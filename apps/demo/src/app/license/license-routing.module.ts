@@ -7,12 +7,12 @@ import { LicenseComponent } from './license.component';
     RouterModule.forChild([
       {
         path: '',
-        component: LicenseComponent
-      }
-    ])
+        component: LicenseComponent,
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class LicenseRoutingModule {}

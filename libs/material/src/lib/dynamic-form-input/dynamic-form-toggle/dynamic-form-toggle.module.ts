@@ -10,7 +10,7 @@ import { MatDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 export const matDynamicFormToggleType: DynamicFormInputType = {
   type: 'toggle',
   component: MatDynamicFormToggleComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const matDynamicFormToggleType: DynamicFormInputType = {
     ReactiveFormsModule,
     MatButtonToggleModule,
     MatDynamicFormInputWrapperModule,
-    DynamicFormConfigModule.withInput(matDynamicFormToggleType)
+    DynamicFormConfigModule.withInput(matDynamicFormToggleType),
   ],
   declarations: [
-    MatDynamicFormToggleComponent
+    MatDynamicFormToggleComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormToggleComponent
-  ]
+    MatDynamicFormToggleComponent,
+  ],
 })
 export class MatDynamicFormToggleModule {}

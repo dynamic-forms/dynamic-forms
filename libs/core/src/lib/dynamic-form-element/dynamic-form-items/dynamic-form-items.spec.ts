@@ -43,8 +43,8 @@ describe('DynamicFormItems', () => {
       template: {},
       children: [
         { template: {} },
-        { template: {} }
-      ]
+        { template: {} },
+      ],
     } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(builder, root, parent, definition);
 
@@ -77,8 +77,8 @@ describe('DynamicFormItems', () => {
       template: {},
       children: [
         { template: { disabled: false } },
-        { template: { disabled: true } }
-      ]
+        { template: { disabled: true } },
+      ],
     } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(builder, root, parent, definition);
 
@@ -98,8 +98,8 @@ describe('DynamicFormItems', () => {
       template: {},
       children: [
         { template: { disabled: false } },
-        { template: { disabled: true } }
-      ]
+        { template: { disabled: true } },
+      ],
     } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(builder, root, parent, definition);
 
@@ -119,8 +119,8 @@ describe('DynamicFormItems', () => {
       template: {},
       children: [
         { template: { disabled: false } },
-        { template: { disabled: false } }
-      ]
+        { template: { disabled: false } },
+      ],
     } as DynamicFormItemsDefinition;
     const formItems = new DynamicFormItems(builder, root, parent, definition);
 

@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
@@ -22,7 +23,7 @@ describe('DynamicForm', () => {
       expect(form.template).toBe(definition.template);
 
       expect(form.model).toBe(model);
-      expect(form.control).toBeTruthy();
+      expect(form.control).toBeInstanceOf(FormGroup);
       expect(form.fields).toBeTruthy();
   });
 
@@ -74,7 +75,7 @@ describe('DynamicForm', () => {
       next: (submit) => {
         expect(submit).toBe(true);
         done();
-      }
+      },
     });
 
     form.submit();

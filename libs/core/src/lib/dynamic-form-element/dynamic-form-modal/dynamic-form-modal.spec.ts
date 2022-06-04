@@ -61,7 +61,7 @@ describe('DynamicFormModal', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const element = new DynamicFormModal(builder, root, parent, definition);
     const children = [
-      { classType: 'element', definition: {} } as DynamicFormElement
+      { classType: 'element', definition: {} } as DynamicFormElement,
     ];
 
     builder.createFormElements.and.returnValue(children);

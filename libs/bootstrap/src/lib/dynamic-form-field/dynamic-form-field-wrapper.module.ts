@@ -9,7 +9,7 @@ import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label/dy
     CommonModule,
     BsDynamicFormControlErrorsModule,
     BsDynamicFormControlLabelModule,
-    BsDynamicFormControlHintsModule
-  ]
+    BsDynamicFormControlHintsModule,
+  ],
 })
 export class BsDynamicFormFieldWrapperModule {}

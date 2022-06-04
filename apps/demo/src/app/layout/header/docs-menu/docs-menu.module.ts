@@ -15,14 +15,14 @@ import { DocsMenuComponent } from './docs-menu.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    HeaderPipesModule
+    HeaderPipesModule,
   ],
   declarations: [
     DocsMenuItemsComponent,
-    DocsMenuComponent
+    DocsMenuComponent,
   ],
   exports: [
-    DocsMenuComponent
-  ]
+    DocsMenuComponent,
+  ],
 })
 export class DocsMenuModule {}

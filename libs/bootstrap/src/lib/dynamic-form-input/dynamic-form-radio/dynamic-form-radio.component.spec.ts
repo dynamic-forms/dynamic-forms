@@ -17,16 +17,16 @@ describe('BsDynamicFormRadioComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormRadioModule
+        BsDynamicFormRadioModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormRadioComponent);
@@ -42,10 +42,10 @@ describe('BsDynamicFormRadioComponent', () => {
           options: [
             { value: 'value1', label: 'label1' },
             { value: 'value2', label: 'label2' },
-            { value: 'value3', label: 'label3', disabled: true}
-          ]
-        }
-      }
+            { value: 'value3', label: 'label3', disabled: true},
+          ],
+        },
+      },
     } as DynamicFormControlDefinition<DynamicFormRadio>;
     formControl = new DynamicFormControl<DynamicFormRadio>(builder, form, form, definition);
 

@@ -3,12 +3,12 @@ import { DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dy
 
 @Component({
   selector: 'bs-dynamic-form-control-errors',
-  templateUrl: './dynamic-form-control-errors.component.html'
+  templateUrl: './dynamic-form-control-errors.component.html',
 })
 export class BsDynamicFormControlErrorsComponent extends DynamicFormControlWrapperBase {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }

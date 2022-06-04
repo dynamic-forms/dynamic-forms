@@ -12,13 +12,13 @@ import { VersionsMenuComponent } from './versions-menu.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   declarations: [
-    VersionsMenuComponent
+    VersionsMenuComponent,
   ],
   exports: [
-    VersionsMenuComponent
-  ]
+    VersionsMenuComponent,
+  ],
 })
 export class VersionsMenuModule {}

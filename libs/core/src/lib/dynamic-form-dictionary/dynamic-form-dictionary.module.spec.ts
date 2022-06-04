@@ -11,7 +11,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
 import {
-  DynamicFormDictionaryValidatorTypeConfig, DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG
+  DynamicFormDictionaryValidatorTypeConfig, DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
 } from './dynamic-form-dictionary-validator-type-config';
 import { dynamicFormDictionaryType, DynamicFormDictionaryModule } from './dynamic-form-dictionary.module';
 
@@ -21,23 +21,23 @@ describe('DynamicFormDictionaryModule', () => {
   beforeEach(() => {
     formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', [
       'createFormDictionaryField',
-      'createId'
+      'createId',
     ]);
 
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormDictionaryModule
+        DynamicFormDictionaryModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
         },
         {
           provide: DynamicFormBuilder,
-          useValue: formBuilder
-        }
-      ]
+          useValue: formBuilder,
+        },
+      ],
     });
   });
 
@@ -49,14 +49,14 @@ describe('DynamicFormDictionaryModule', () => {
       expect(types[0]).toEqual(dynamicFormDictionaryType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG',
     inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormDictionaryValidatorTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(dynamicFormDictionaryValidatorTypes);
-    })
+    }),
   );
 
   it('handler calls registerField of dictionary field with generated key',
@@ -76,7 +76,7 @@ describe('DynamicFormDictionaryModule', () => {
 
       expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
       expect(field.registerField).toHaveBeenCalledWith(element);
-    })
+    }),
   );
 
   it('handler calls registerField of dictionary field with key from dialog',
@@ -98,7 +98,7 @@ describe('DynamicFormDictionaryModule', () => {
       expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
       expect(field.registerField).toHaveBeenCalledWith(element);
       expect(parent.closeDialog).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler returns dictionary of action',
@@ -110,7 +110,7 @@ describe('DynamicFormDictionaryModule', () => {
       const result = handler.elementFunc(action);
 
       expect(result).toEqual(field);
-    })
+    }),
   );
 
   it('handler returns dictionary parent of action',
@@ -123,7 +123,7 @@ describe('DynamicFormDictionaryModule', () => {
       const result = handler.elementFunc(action);
 
       expect(result).toEqual(field);
-    })
+    }),
   );
 
   it('handler returns undefined as dictionary parent of action',
@@ -136,7 +136,7 @@ describe('DynamicFormDictionaryModule', () => {
       const result = handler.elementFunc(action);
 
       expect(result).toBeUndefined();
-    })
+    }),
   );
 
   it('handler calls removeField of dictionary field',
@@ -151,7 +151,7 @@ describe('DynamicFormDictionaryModule', () => {
       handler.func(field, action);
 
       expect(field.removeField).toHaveBeenCalledWith('key');
-    })
+    }),
   );
 
   it('handler does not call removeField of dictionary field',
@@ -166,7 +166,7 @@ describe('DynamicFormDictionaryModule', () => {
       handler.func(field, action);
 
       expect(field.removeField).not.toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls clearFields of dictionary field',
@@ -179,6 +179,6 @@ describe('DynamicFormDictionaryModule', () => {
       handler.func(field, null);
 
       expect(field.clearFields).toHaveBeenCalled();
-    })
+    }),
   );
 });

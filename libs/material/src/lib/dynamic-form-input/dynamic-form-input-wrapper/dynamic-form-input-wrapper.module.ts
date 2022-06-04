@@ -4,13 +4,13 @@ import { MatDynamicFormInputWrapperComponent } from './dynamic-form-input-wrappe
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    MatDynamicFormInputWrapperComponent
+    MatDynamicFormInputWrapperComponent,
   ],
   exports: [
-    MatDynamicFormInputWrapperComponent
-  ]
+    MatDynamicFormInputWrapperComponent,
+  ],
 })
 export class MatDynamicFormInputWrapperModule {}

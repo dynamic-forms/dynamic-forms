@@ -26,13 +26,13 @@ import { VersionsMenuModule } from './versions-menu/versions-menu.module';
     ExamplesMenuModule,
     NotificationsToggleModule,
     SidebarToggleModule,
-    VersionsMenuModule
+    VersionsMenuModule,
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
   ],
   exports: [
-    HeaderComponent
-  ]
+    HeaderComponent,
+  ],
 })
 export class HeaderModule {}

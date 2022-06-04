@@ -15,15 +15,15 @@ describe('BsDynamicFormIconComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormIconModule
+        BsDynamicFormIconModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormIconComponent);

@@ -8,21 +8,21 @@ import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 import {
   dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldResetEmptyHandler,
-  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler, DynamicFormFieldModule
+  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler, DynamicFormFieldModule,
 } from './dynamic-form-field.module';
 
 describe('DynamicFormFieldModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormFieldModule
+        DynamicFormFieldModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-        }
-      ]
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+        },
+      ],
     });
   });
 
@@ -46,7 +46,7 @@ describe('DynamicFormFieldModule', () => {
       expect(handlers[7]).toEqual(dynamicFormSubmitHandler);
       expect(handlers[7].func).toEqual(jasmine.any(Function));
       expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('handler calls reset of field',
@@ -59,7 +59,7 @@ describe('DynamicFormFieldModule', () => {
       handler.func(field, null);
 
       expect(field.reset).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls resetEmpty of field',
@@ -72,7 +72,7 @@ describe('DynamicFormFieldModule', () => {
       handler.func(field, null);
 
       expect(field.resetEmpty).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls resetDefault of field',
@@ -85,7 +85,7 @@ describe('DynamicFormFieldModule', () => {
       handler.func(field, null);
 
       expect(field.resetDefault).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls validate of field',
@@ -98,7 +98,7 @@ describe('DynamicFormFieldModule', () => {
       handler.func(field, null);
 
       expect(field.validate).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler returns root form',
@@ -110,7 +110,7 @@ describe('DynamicFormFieldModule', () => {
       const form = handler.elementFunc(action);
 
       expect(form).toBe(root);
-    })
+    }),
   );
 
   it('handler calls submit of form',
@@ -125,7 +125,7 @@ describe('DynamicFormFieldModule', () => {
       handler.func(form, action);
 
       expect(form.submit).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls closeDialog of parent action and submit of form',
@@ -143,6 +143,6 @@ describe('DynamicFormFieldModule', () => {
 
       expect(form.submit).toHaveBeenCalled();
       expect(dialogAction.closeDialog).toHaveBeenCalled();
-    })
+    }),
   );
 });

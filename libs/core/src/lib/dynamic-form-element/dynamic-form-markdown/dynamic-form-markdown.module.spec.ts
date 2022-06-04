@@ -12,14 +12,14 @@ describe('DynamicFormMarkdownModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormMarkdownModule
+          DynamicFormMarkdownModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-          }
-        ]
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+          },
+        ],
       });
     });
 
@@ -30,7 +30,7 @@ describe('DynamicFormMarkdownModule', () => {
         expect(types.length).toBe(1);
         expect(types[0]).toEqual(dynamicFormMarkdownType);
         expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-      })
+      }),
     );
 
     it('does not provide DynamicFormMarkdownService', () => {
@@ -44,21 +44,21 @@ describe('DynamicFormMarkdownModule', () => {
         imports: [
           BrowserModule,
           HttpClientModule,
-          DynamicFormMarkdownModule
+          DynamicFormMarkdownModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-          }
-        ]
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+          },
+        ],
       });
     });
 
     it('provides DynamicFormMarkdownService',
       inject([DynamicFormMarkdownService], (service: DynamicFormMarkdownService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
   });

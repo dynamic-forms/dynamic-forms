@@ -3,12 +3,12 @@ import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFor
 
 @Component({
   selector: 'bs-dynamic-form-control-label',
-  templateUrl: './dynamic-form-control-label.component.html'
+  templateUrl: './dynamic-form-control-label.component.html',
 })
 export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrapperBase {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }

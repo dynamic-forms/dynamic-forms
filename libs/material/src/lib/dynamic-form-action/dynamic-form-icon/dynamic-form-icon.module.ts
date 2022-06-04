@@ -12,7 +12,7 @@ import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
 export const matDynamicFormIconType: DynamicFormActionType = {
   type: 'icon',
   component: MatDynamicFormIconComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -24,14 +24,14 @@ export const matDynamicFormIconType: DynamicFormActionType = {
     DynamicFormIconModule,
     DynamicFormActionModule,
     DynamicFormConfigModule.withAction(matDynamicFormIconType),
-    MatDynamicFormDialogModule
+    MatDynamicFormDialogModule,
   ],
   declarations: [
-    MatDynamicFormIconComponent
+    MatDynamicFormIconComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormIconComponent
-  ]
+    MatDynamicFormIconComponent,
+  ],
 })
 export class MatDynamicFormIconModule {}

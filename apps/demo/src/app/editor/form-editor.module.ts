@@ -12,17 +12,17 @@ import { FormEditorComponent } from './form-editor.component';
     MatDialogModule,
     MatTabsModule,
     MatButtonModule,
-    MonacoEditorModule
+    MonacoEditorModule,
   ],
   declarations: [
-    FormEditorComponent
+    FormEditorComponent,
   ],
   exports: [
     CommonModule,
     MatDialogModule,
     MatTabsModule,
     MatButtonModule,
-    FormEditorComponent
-  ]
+    FormEditorComponent,
+  ],
 })
 export class FormEditorModule {}

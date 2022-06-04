@@ -6,7 +6,7 @@ import { Progress, PROGRESS } from '../../state/progress/progress.model';
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
-  styleUrls: ['./progress.component.scss']
+  styleUrls: ['./progress.component.scss'],
 })
 export class ProgressComponent {
   @Select(PROGRESS)

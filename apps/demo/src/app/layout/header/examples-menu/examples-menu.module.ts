@@ -13,14 +13,14 @@ import { ExamplesMenuComponent } from './examples-menu.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   declarations: [
     ExamplesMenuComponent,
-    ExamplesMenuPanelComponent
+    ExamplesMenuPanelComponent,
   ],
   exports: [
-    ExamplesMenuComponent
-  ]
+    ExamplesMenuComponent,
+  ],
 })
 export class ExamplesMenuModule {}

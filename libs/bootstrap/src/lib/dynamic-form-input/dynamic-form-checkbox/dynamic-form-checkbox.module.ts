@@ -9,21 +9,21 @@ export const bsDynamicFormCheckboxType: DynamicFormInputType = {
   type: 'checkbox',
   component: BsDynamicFormCheckboxComponent,
   wrappers: [ 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormCheckboxType)
+    DynamicFormConfigModule.withInput(bsDynamicFormCheckboxType),
   ],
   declarations: [
-    BsDynamicFormCheckboxComponent
+    BsDynamicFormCheckboxComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormCheckboxComponent
-  ]
+    BsDynamicFormCheckboxComponent,
+  ],
 })
 export class BsDynamicFormCheckboxModule {}

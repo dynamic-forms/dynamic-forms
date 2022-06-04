@@ -5,11 +5,11 @@ import { LicenseComponent } from './license.component';
 
 @NgModule({
   declarations: [
-    LicenseComponent
+    LicenseComponent,
   ],
   imports: [
     LicenseRoutingModule,
-    MarkdownModule
-  ]
+    MarkdownModule,
+  ],
 })
 export class LicenseModule {}

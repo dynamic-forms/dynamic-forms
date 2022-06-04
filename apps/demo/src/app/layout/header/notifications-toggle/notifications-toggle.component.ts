@@ -7,7 +7,7 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
 @Component({
   selector: 'app-notifications-toggle',
   templateUrl: './notifications-toggle.component.html',
-  styleUrls: ['./notifications-toggle.component.scss']
+  styleUrls: ['./notifications-toggle.component.scss'],
 })
 export class NotificationsToggleComponent {
   @Select(NotificationsState.enabled)

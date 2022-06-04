@@ -5,7 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'mat-dynamic-form-combobox',
-  templateUrl: './dynamic-form-combobox.component.html'
+  templateUrl: './dynamic-form-combobox.component.html',
 })
 export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> implements OnInit {
   filteredOptions: Observable<string[]>;
@@ -17,7 +17,7 @@ export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<Dynami
   ngOnInit(): void {
     this.filteredOptions = this.control.valueChanges.pipe(
       startWith(''),
-      map(value => this.getFilteredOptions(value))
+      map(value => this.getFilteredOptions(value)),
     );
   }
 

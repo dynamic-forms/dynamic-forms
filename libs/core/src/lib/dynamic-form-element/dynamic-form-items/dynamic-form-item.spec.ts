@@ -39,7 +39,7 @@ describe('DynamicFormItem', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const formItem = new DynamicFormItem(builder, {} as DynamicForm, {} as DynamicFormElement, definition);
     const children = [
-      { classType: 'element', definition: {} } as DynamicFormElement
+      { classType: 'element', definition: {} } as DynamicFormElement,
     ];
 
     builder.createFormElements.and.returnValue(children);

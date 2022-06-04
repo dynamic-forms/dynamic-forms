@@ -20,15 +20,15 @@ describe('DynamicFormGroupComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormGroupModule
+        DynamicFormGroupModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormGroupComponent);
@@ -41,9 +41,9 @@ describe('DynamicFormGroupComponent', () => {
       key: 'key',
       index: 1,
       template: {
-        label: 'label'
+        label: 'label',
       },
-      children: []
+      children: [],
     } as DynamicFormGroupDefinition);
     component.field = formGroup;
 

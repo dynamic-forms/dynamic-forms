@@ -6,29 +6,29 @@ import { FormExampleResolver } from './form-example.resolver';
 import { FormModelResolver } from './form-model.resolver';
 
 export const getFormExampleRoutes = <TExampleComponent extends FormExampleBase>(
-  exampleComponent: Type<TExampleComponent>
+  exampleComponent: Type<TExampleComponent>,
 ): Routes => [
   {
     path: ':definitionId',
     resolve: {
-      example: FormExampleResolver
+      example: FormExampleResolver,
     },
     children: [
       {
         path: '',
         component: exampleComponent,
         resolve: {
-          definition: FormDefinitionResolver
-        }
+          definition: FormDefinitionResolver,
+        },
       },
       {
         path: 'models/:modelId',
         component: exampleComponent,
         resolve: {
           definition: FormDefinitionResolver,
-          model: FormModelResolver
-        }
-      }
-    ]
-  }
+          model: FormModelResolver,
+        },
+      },
+    ],
+  },
 ];

@@ -13,7 +13,7 @@ export class DynamicFormEvaluationBuilder {
   constructor(
     private libraryService: DynamicFormLibraryService,
     @Optional() @Inject(DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG)
-    private controlEvaluatorConfig: DynamicFormControlEvaluatorTypeConfig
+    private controlEvaluatorConfig: DynamicFormControlEvaluatorTypeConfig,
   ) {
     this.controlEvaluatorTypes = this.libraryService.filterTypes(this.controlEvaluatorConfig);
   }

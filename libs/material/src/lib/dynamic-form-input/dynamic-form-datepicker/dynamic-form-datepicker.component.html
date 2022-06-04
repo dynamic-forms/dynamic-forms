@@ -1,10 +1,17 @@
 <mat-form-field appearance="standard" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="inputId" [placeholder]="input.placeholder" [matDatepicker]="datepicker"
-    [readonly]="readonly" [required]="validation?.required" [formControl]="control" />
+  <input
+    matInput
+    [id]="inputId"
+    [placeholder]="input.placeholder"
+    [matDatepicker]="datepicker"
+    [readonly]="readonly"
+    [required]="validation?.required"
+    [formControl]="control"
+  />
   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
   <mat-datepicker #datepicker [disabled]="control.disabled"></mat-datepicker>
-  <mat-hint align="start">{{ hints?.hintStart}}</mat-hint>
+  <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

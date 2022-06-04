@@ -16,5 +16,5 @@ export const createDynamicFormBuilderSpy = (): jasmine.SpyObj<DynamicFormBuilder
   'createDictionaryValidators',
   'getDefinition',
   'getFieldId',
-  'getActionId'
+  'getActionId',
 ]);

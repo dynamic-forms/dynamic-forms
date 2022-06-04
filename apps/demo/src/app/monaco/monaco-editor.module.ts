@@ -10,16 +10,16 @@ import { MonacoEditorService } from './monaco-editor.service';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   declarations: [
-    MonacoEditorComponent
+    MonacoEditorComponent,
   ],
   exports: [
-    MonacoEditorComponent
+    MonacoEditorComponent,
   ],
   providers: [
-    MonacoEditorService
-  ]
+    MonacoEditorService,
+  ],
 })
 export class MonacoEditorModule {}

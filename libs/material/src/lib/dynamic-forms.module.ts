@@ -23,11 +23,11 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
     DynamicFormContentModule,
     MatDynamicFormElementModule,
     MatDynamicFormActionModule,
-    MatDynamicFormInputModule
+    MatDynamicFormInputModule,
   ],
   exports: [
-    DynamicFormsModule
-  ]
+    DynamicFormsModule,
+  ],
 })
 export class MatDynamicFormsModule {
   static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
@@ -36,17 +36,17 @@ export class MatDynamicFormsModule {
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: matDynamicFormLibrary
+          useValue: matDynamicFormLibrary,
         },
         {
           provide: DYNAMIC_FORM_THEME,
-          useValue: config && config.theme
+          useValue: config && config.theme,
         },
         {
           provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: config && config.idBuilder
-        }
-      ]
+          useValue: config && config.idBuilder,
+        },
+      ],
     };
   }
 }

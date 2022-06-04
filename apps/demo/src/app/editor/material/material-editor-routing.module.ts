@@ -8,11 +8,11 @@ import { MaterialEditorComponent } from './material-editor.component';
       {
         path: '',
         component: MaterialEditorComponent,
-      }
-    ])
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class MaterialEditorRoutingModule {}

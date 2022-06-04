@@ -9,21 +9,21 @@ export const bsDynamicFormDatepickerType: DynamicFormInputType = {
   type: 'datepicker',
   component: BsDynamicFormDatepickerComponent,
   wrappers: [ 'label', 'hints', 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormDatepickerType)
+    DynamicFormConfigModule.withInput(bsDynamicFormDatepickerType),
   ],
   declarations: [
-    BsDynamicFormDatepickerComponent
+    BsDynamicFormDatepickerComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormDatepickerComponent
-  ]
+    BsDynamicFormDatepickerComponent,
+  ],
 })
 export class BsDynamicFormDatepickerModule {}

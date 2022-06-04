@@ -10,14 +10,14 @@ describe('DynamicFormValidationService', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormValidationModule
+          DynamicFormValidationModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -26,9 +26,9 @@ describe('DynamicFormValidationService', () => {
         expect(service.validationConfig).toEqual({
           defaultMessage: undefined,
           messages: {},
-          libraryName: 'test'
+          libraryName: 'test',
         });
-      })
+      }),
     );
 
     it('returns error message being undefined',
@@ -36,7 +36,7 @@ describe('DynamicFormValidationService', () => {
         const message = service.getErrorMessage({});
 
         expect(message).toBeUndefined();
-      })
+      }),
     );
   });
 
@@ -44,9 +44,9 @@ describe('DynamicFormValidationService', () => {
     const validationConfig: DynamicFormValidationConfig = {
       defaultMessage: 'The field is invalid',
       messages: {
-        required: 'The field is required'
+        required: 'The field is required',
       },
-      libraryName: 'test'
+      libraryName: 'test',
     };
 
     beforeEach(() => {
@@ -54,21 +54,21 @@ describe('DynamicFormValidationService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
           {
             provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-            useValue: [ validationConfig ]
+            useValue: [ validationConfig ],
           },
-          DynamicFormValidationService
-        ]
+          DynamicFormValidationService,
+        ],
       });
     });
 
     it('returns validation config',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service.validationConfig).toEqual(validationConfig);
-      })
+      }),
     );
 
     it('returns message being null',
@@ -76,7 +76,7 @@ describe('DynamicFormValidationService', () => {
         const message = service.getErrorMessage(null);
 
         expect(message).toBeNull();
-      })
+      }),
     );
 
     it('returns message from error',
@@ -84,7 +84,7 @@ describe('DynamicFormValidationService', () => {
         const message = service.getErrorMessage({ email: { message: 'The field is not a valid email' } });
 
         expect(message).toEqual( 'The field is not a valid email');
-      })
+      }),
     );
 
     it('returns message from config',
@@ -92,7 +92,7 @@ describe('DynamicFormValidationService', () => {
         const message = service.getErrorMessage({ required: {} });
 
         expect(message).toEqual(validationConfig.messages.required);
-      })
+      }),
     );
 
     it('returns default message from config',
@@ -100,7 +100,7 @@ describe('DynamicFormValidationService', () => {
         const message = service.getErrorMessage({});
 
         expect(message).toEqual(validationConfig.defaultMessage);
-      })
+      }),
     );
   });
 
@@ -110,27 +110,27 @@ describe('DynamicFormValidationService', () => {
         defaultMessage: 'messageCore',
         messages: {
           required: 'requiredCore',
-          pattern: 'patternCore'
+          pattern: 'patternCore',
         },
-        libraryName: 'core'
+        libraryName: 'core',
       },
       {
         defaultMessage: 'messageTest',
         messages: {
           required: 'requiredTest',
-          maxLength: 'maxLengthTest'
+          maxLength: 'maxLengthTest',
         },
-        libraryName: 'test'
+        libraryName: 'test',
       },
       {
         defaultMessage: 'messageTestExtended',
         messages: {
           required: 'requiredTestExtended',
           maxLength: 'maxLengthTestExtended',
-          minLength: 'minLengthTestExtended'
+          minLength: 'minLengthTestExtended',
         },
-        libraryName: 'test-extended'
-      }
+        libraryName: 'test-extended',
+      },
     ];
 
     beforeEach(() => {
@@ -140,15 +140,15 @@ describe('DynamicFormValidationService', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({
               name: 'test',
-              references: [ 'core' ]
-            })
+              references: [ 'core' ],
+            }),
           },
           {
             provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-            useValue: validationConfigs
+            useValue: validationConfigs,
           },
-          DynamicFormValidationService
-        ]
+          DynamicFormValidationService,
+        ],
       });
     });
 
@@ -159,11 +159,11 @@ describe('DynamicFormValidationService', () => {
           messages: {
             required: 'requiredTest',
             pattern: 'patternCore',
-            maxLength: 'maxLengthTest'
+            maxLength: 'maxLengthTest',
           },
-          libraryName: 'test'
+          libraryName: 'test',
         });
-      })
+      }),
     );
   });
 });

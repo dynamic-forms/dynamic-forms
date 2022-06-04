@@ -1,45 +1,11 @@
-# **Project**
+# **dynamic-forms**
+
+This is an [**Angular**](https://angular.io) project for dynamic forms based on JSON:
 
 - [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [releases](https://github.com/dynamic-forms/dynamic-forms/releases)
-- [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build), [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493) and [packages](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms) for [releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@96db2eda-0952-490c-bacf-3737543f73a0) and [pre-releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@a73fb5f7-2221-462a-8b8e-2a989c29ff59)
-- [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps
-
-## **Demo**
-
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v14-cd?branchName=14.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=30&branchName=14.0.x)
-
-- Built with [Angular 14](https://v14.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v14/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v14/)
-
-### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v13-cd?branchName=13.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=26&branchName=13.0.x)
-
-- Built with [Angular 13](https://v13.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v13/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v13/)
-
-### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=12.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=12.1.x)
-
-- Built with [Angular 12](https://v12.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
-
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.1.x)
-
-- Built with [Angular 11](https://v11.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
-
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=10.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=10.0.x)
-
-- Built with [Angular 10](https://v10.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v10/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v10/)
-
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=9.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=9.0.x)
-
-- Built with [Angular 9](https://v9.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v9/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v9/)
-
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=8.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=8.0.x)
-
-- Built with [Angular 8](https://v8.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v8/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v8/)
+- [**npm packages**](https://www.npmjs.com/org/dynamic-forms) for libraries
+- [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build), [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493) and [npm packages](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms) for [releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@96db2eda-0952-490c-bacf-3737543f73a0) and [pre-releases](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@a73fb5f7-2221-462a-8b8e-2a989c29ff59) up to version `14.0.0-rc.1`
+- [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps with demos
 
 ## **Features**
 
@@ -58,21 +24,53 @@
   - Dynamic form input validation
   - Dynamic form input hints
 
+## **Libraries**
+
+### **@dynamic-forms/core** [![npm version](https://badge.fury.io/js/@dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/@dynamic-forms%2Fcore)
+
+- Library includes **extendable** interfaces, classes, components, factories, services and **modules**
+  - Dynamic form config module for registration of components
+  - Dynamic form module includes
+    - Builder to create form controls, groups, arrays and dictionaries
+    - Component factory to resolve registered components
+    - Component to render elements, fields and actions
+  - Dynamic form control module includes
+    - Component to render an input
+  - Dynamic form group module includes
+    - Component to render controls, groups and arrays
+  - Dynamic form array module includes
+    - Component to render either controls, groups or arrays of same structure
+  - Dynamic form dictionary module includes
+    - Component to render either controls, groups or arrays of same structure
+  - Dynamic form validation module for registration of validators and messages
+    - Builder to create validators
+    - Service to resolve validation messages
+  - Dynamic form action module for registration of action handlers
+    - Service to resolve action handlers
+
+### **@dynamic-forms/bootstrap** [![npm version](https://badge.fury.io/js/@dynamic-forms%2Fbootstrap.svg)](https://badge.fury.io/js/@dynamic-forms%2Fbootstrap)
+
+- Library for components based on [**bootstrap**](https://getbootstrap.com/) and **HTML5**
+
+### **@dynamic-forms/material** [![npm version](https://badge.fury.io/js/@dynamic-forms%2Fmaterial.svg)](https://badge.fury.io/js/@dynamic-forms%2Fmaterial)
+
+- Library for components based on [**@angular/material**](https://material.angular.io/)
+
 ## **Packages**
 
-Packages are hosted by Azure DevOps. Therefore, the following lines
+Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the following lines
 
 ```
 @dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
 ```
 
-need to be part of the npm config file `.nmprc`.
+needed to be part of the npm config file `.nmprc`.
 
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0-rc.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0-rc.1)
+### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.0.0)
 
-- `npm install @dynamic-forms/core@14.0.0-rc.1`
-- `npm install @dynamic-forms/bootstrap@14.0.0-rc.1`
-- `npm install @dynamic-forms/material@14.0.0-rc.1`
+- `npm install @dynamic-forms/core@14.0.0`
+- `npm install @dynamic-forms/bootstrap@14.0.0`
+- `npm install @dynamic-forms/material@14.0.0`
 
 ### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v13/dynamic-forms-v13-publish?branchName=refs/tags/13.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=27&branchName=refs/tags/13.0.0)
 
@@ -110,34 +108,39 @@ need to be part of the npm config file `.nmprc`.
 - `npm install @dynamic-forms/bootstrap@8.0.2`
 - `npm install @dynamic-forms/material@8.0.2`
 
-## **Libraries**
+## **Demos**
 
-### **@dynamic-forms/core** [![@dynamic-forms/core package in dynamic-forms@Release feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms@Release/Packages/baa63772-0de2-4882-8366-a2603b7ef9b7/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms@Release/Npm/@dynamic-forms%2Fcore/13.0.0)
+### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v14-cd?branchName=14.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=30&branchName=14.0.x)
 
-- Library includes **extendable** interfaces, classes, components, factories, services and **modules**
-  - Dynamic form config module for registration of components
-  - Dynamic form module includes
-    - Builder to create form controls, groups, arrays and dictionaries
-    - Component factory to resolve registered components
-    - Component to render elements, fields and actions
-  - Dynamic form control module includes
-    - Component to render an input
-  - Dynamic form group module includes
-    - Component to render controls, groups and arrays
-  - Dynamic form array module includes
-    - Component to render either controls, groups or arrays of same structure
-  - Dynamic form dictionary module includes
-    - Component to render either controls, groups or arrays of same structure
-  - Dynamic form validation module for registration of validators and messages
-    - Builder to create validators
-    - Service to resolve validation messages
-  - Dynamic form action module for registration of action handlers
-    - Service to resolve action handlers
+- Built with [Angular 14](https://v14.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v14/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v14/)
 
-### **@dynamic-forms/bootstrap** [![@dynamic-forms/bootstrap package in dynamic-forms feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms/Packages/78b43853-3969-4d78-87d9-cd3ae19556dc/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms/Npm/@dynamic-forms%2Fbootstrap/13.0.0)
+### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v13-cd?branchName=13.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=26&branchName=13.0.x)
 
-- Library for components based on [**bootstrap**](https://getbootstrap.com/) and **HTML5**
+- Built with [Angular 13](https://v13.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v13/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v13/)
 
-### **@dynamic-forms/material** [![@dynamic-forms/material package in dynamic-forms feed in Azure Artifacts](https://feeds.dev.azure.com/alexandergebuhr/aac3a6af-86df-4215-b005-bd4c3db79e96/_apis/public/Packaging/Feeds/dynamic-forms/Packages/815623c3-b13c-4e6b-8a3f-3a45daeadca7/Badge)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_artifacts/feed/dynamic-forms/Npm/@dynamic-forms%2Fmaterial/13.0.0)
+### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=12.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=12.1.x)
 
-- Library for components based on [**@angular/material**](https://material.angular.io/)
+- Built with [Angular 12](https://v12.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
+
+### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.1.x)
+
+- Built with [Angular 11](https://v11.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
+
+### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=10.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=10.0.x)
+
+- Built with [Angular 10](https://v10.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v10/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v10/)
+
+### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=9.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=9.0.x)
+
+- Built with [Angular 9](https://v9.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v9/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v9/)
+
+### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=8.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=8.0.x)
+
+- Built with [Angular 8](https://v8.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v8/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v8/)

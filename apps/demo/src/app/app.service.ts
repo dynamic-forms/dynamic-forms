@@ -10,7 +10,7 @@ export class AppService {
     protected configService: ConfigService,
     protected examplesService: ExamplesService,
     protected iconService: IconService,
-    protected routingHandler: RoutingHandler
+    protected routingHandler: RoutingHandler,
   ) {}
 
   init(): void {

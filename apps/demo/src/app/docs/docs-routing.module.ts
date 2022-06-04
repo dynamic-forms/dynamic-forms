@@ -7,28 +7,28 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         redirectTo: 'core',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'core',
-        loadChildren: () => import('./core/core-docs.module').then(m => m.CoreDocsModule)
+        loadChildren: () => import('./core/core-docs.module').then(m => m.CoreDocsModule),
       },
       {
         path: 'bootstrap',
-        loadChildren: () => import('./bootstrap/bootstrap-docs.module').then(m => m.BootstrapDocsModule)
+        loadChildren: () => import('./bootstrap/bootstrap-docs.module').then(m => m.BootstrapDocsModule),
       },
       {
         path: 'material',
-        loadChildren: () => import('./material/material-docs.module').then(m => m.MaterialDocsModule)
+        loadChildren: () => import('./material/material-docs.module').then(m => m.MaterialDocsModule),
       },
       {
         path: 'changelog',
-        loadChildren: () => import('./changelog/changelog.module').then(m => m.ChangelogModule)
-      }
-    ])
+        loadChildren: () => import('./changelog/changelog.module').then(m => m.ChangelogModule),
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class DocsRoutingModule {}

@@ -7,20 +7,20 @@ import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints
 export const bsDynamicFormControlHintsType: DynamicFormFieldWrapperType = {
   type: 'hints',
   component: BsDynamicFormControlHintsComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlHintsType)
+    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlHintsType),
   ],
   declarations: [
-    BsDynamicFormControlHintsComponent
+    BsDynamicFormControlHintsComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormControlHintsComponent
-  ]
+    BsDynamicFormControlHintsComponent,
+  ],
 })
 export class BsDynamicFormControlHintsModule {}

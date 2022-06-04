@@ -6,8 +6,8 @@ describe('BsDynamicFormAccordionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormAccordionModule
-      ]
+        BsDynamicFormAccordionModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormAccordionModule', () => {
     inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormAccordionType);
-    })
+    }),
   );
 });

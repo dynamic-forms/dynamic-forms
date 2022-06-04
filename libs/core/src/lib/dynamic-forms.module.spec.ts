@@ -20,8 +20,8 @@ describe('DynamicFormsModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsModule
-        ]
+          DynamicFormsModule,
+        ],
       });
     });
 
@@ -64,7 +64,7 @@ describe('DynamicFormsModule', () => {
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
@@ -88,21 +88,21 @@ describe('DynamicFormsModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormsModule
+          DynamicFormsModule,
         ],
         providers: [
           {
             provide: DYNAMIC_FORM_LIBRARY,
-            useValue: dynamicFormLibrary
-          }
-        ]
+            useValue: dynamicFormLibrary,
+          },
+        ],
       });
     });
 
     it('provides DYNAMIC_FORM_LIBRARY',
       inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
         expect(library).toEqual(dynamicFormLibrary);
-      })
+      }),
     );
 
     it('provides DynamicFormLibraryService',
@@ -110,7 +110,7 @@ describe('DynamicFormsModule', () => {
         expect(service).toBeTruthy();
         expect(service.library).toEqual(dynamicFormLibrary);
         expect(service.libraryNames).toEqual([ 'core' ]);
-      })
+      }),
     );
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', () => {
@@ -136,43 +136,43 @@ describe('DynamicFormsModule', () => {
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormBuilder',
       inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormExpressionBuilder',
       inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormEvaluationBuilder',
       inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormValidationBuilder',
       inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormValidationService',
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('provides DynamicFormComponentFactory',
       inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
   });
 });

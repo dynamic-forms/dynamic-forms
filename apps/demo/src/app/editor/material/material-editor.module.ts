@@ -10,10 +10,10 @@ import { MaterialEditorComponent } from './material-editor.component';
     CommonModule,
     FormEditorModule,
     MaterialFormModule,
-    MaterialEditorRoutingModule
+    MaterialEditorRoutingModule,
   ],
   declarations: [
-    MaterialEditorComponent
-  ]
+    MaterialEditorComponent,
+  ],
 })
 export class MaterialEditorModule {}

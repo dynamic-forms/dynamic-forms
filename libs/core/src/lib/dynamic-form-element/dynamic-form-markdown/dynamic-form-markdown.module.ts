@@ -9,23 +9,23 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 export const dynamicFormMarkdownType: DynamicFormElementType = {
   type: 'markdown',
   component: DynamicFormMarkdownComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormConfigModule.withElement(dynamicFormMarkdownType)
+    DynamicFormConfigModule.withElement(dynamicFormMarkdownType),
   ],
   declarations: [
-    DynamicFormMarkdownComponent
+    DynamicFormMarkdownComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormMarkdownComponent
+    DynamicFormMarkdownComponent,
   ],
   providers: [
-    DynamicFormMarkdownService
-  ]
+    DynamicFormMarkdownService,
+  ],
 })
 export class DynamicFormMarkdownModule {}

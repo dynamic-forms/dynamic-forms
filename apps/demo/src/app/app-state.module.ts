@@ -19,17 +19,17 @@ import { RoutingHandler } from './state/routing/routing.handler';
       ExamplesState,
       LayoutState,
       NotificationsState,
-      ProgressState
+      ProgressState,
     ], {
-      developmentMode: !environment.production
-    })
+      developmentMode: !environment.production,
+    }),
   ],
   providers: [
     ConfigService,
     ExamplesService,
     ProgressService,
     NotificationsService,
-    RoutingHandler
-  ]
+    RoutingHandler,
+  ],
 })
 export class AppStateModule {}

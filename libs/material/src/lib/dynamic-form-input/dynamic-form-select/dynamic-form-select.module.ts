@@ -10,7 +10,7 @@ import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 export const matDynamicFormSelectType: DynamicFormInputType = {
   type: 'select',
   component: MatDynamicFormSelectComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const matDynamicFormSelectType: DynamicFormInputType = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    DynamicFormConfigModule.withInput(matDynamicFormSelectType)
+    DynamicFormConfigModule.withInput(matDynamicFormSelectType),
   ],
   declarations: [
-    MatDynamicFormSelectComponent
+    MatDynamicFormSelectComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormSelectComponent
-  ]
+    MatDynamicFormSelectComponent,
+  ],
 })
 export class MatDynamicFormSelectModule {}

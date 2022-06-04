@@ -1,4 +1,4 @@
-<ng-container *ngIf="data$ | async as data" >
+<ng-container *ngIf="data$ | async as data">
   <app-form-example [docEnabled]="data.example.docId" [docSource]="doc$ | async">
     <app-material-form #form [data]="data"></app-material-form>
   </app-form-example>

@@ -114,7 +114,7 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(builder, null, null, definition);
     const expressions = {
-      className: { value: 'class-name' } as DynamicFormElementExpression
+      className: { value: 'class-name' } as DynamicFormElementExpression,
     } as DynamicFormElementExpressions;
 
     builder.createElementExpressions.and.returnValue(expressions);
@@ -142,7 +142,7 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const formElement = new DynamicFormElement(builder, root, parent, definition);
     const children = [
-      { classType: 'element', definition: {} } as DynamicFormElement
+      { classType: 'element', definition: {} } as DynamicFormElement,
     ];
 
     builder.createFormElements.and.returnValue(children);

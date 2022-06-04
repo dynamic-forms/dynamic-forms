@@ -6,15 +6,15 @@ import { NotificationsComponent } from './notifications.component';
 
 @NgModule({
   declarations: [
-    NotificationsComponent
+    NotificationsComponent,
   ],
   imports: [
     CommonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
-    NotificationsComponent
-  ]
+    NotificationsComponent,
+  ],
 })
 export class NotificationsModule {}

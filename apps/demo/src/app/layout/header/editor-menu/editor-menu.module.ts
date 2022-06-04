@@ -12,13 +12,13 @@ import { EditorMenuComponent } from './editor-menu.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   declarations: [
-    EditorMenuComponent
+    EditorMenuComponent,
   ],
   exports: [
-    EditorMenuComponent
-  ]
+    EditorMenuComponent,
+  ],
 })
 export class EditorMenuModule {}

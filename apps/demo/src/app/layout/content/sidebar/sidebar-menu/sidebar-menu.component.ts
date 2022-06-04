@@ -15,7 +15,7 @@ import { SidebarMenuItem } from './sidebar-menu.model';
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
-  providers: [CodeUrlPipe]
+  providers: [CodeUrlPipe],
 })
 export class SidebarMenuComponent {
   readonly treeControl: NestedTreeControl<SidebarMenuItem>;
@@ -24,7 +24,7 @@ export class SidebarMenuComponent {
   constructor(private store: Store, private codeUrlPipe: CodeUrlPipe) {
     this.treeControl = new NestedTreeControl<SidebarMenuItem>((menuItem: any) => menuItem.children);
     this.treeDataSource$ = combineLatest([this.store.select(ConfigState.repository), this.store.select(ExamplesState.menuItems)]).pipe(
-      map(([repository, examples]) => this.getTreeDataSource(repository, examples))
+      map(([repository, examples]) => this.getTreeDataSource(repository, examples)),
     );
   }
 
@@ -40,7 +40,7 @@ export class SidebarMenuComponent {
       { label: 'Docs', children: [ ...docsChildren, { label: 'Changelog', route: '/docs/changelog' } ] },
       { label: 'Examples', children: examplesChildren },
       { label: 'Editor', children: editorChildren },
-      { label: 'License', route: '/license' }
+      { label: 'License', route: '/license' },
     ];
     return treeDataSource;
   }
@@ -52,7 +52,7 @@ export class SidebarMenuComponent {
   private getMenuItemForDocs(library: string, repository: Repository): SidebarMenuItem {
     const children = [
       { label: 'Code Doc', route: `/docs/${library}/doc` },
-      { label: 'Code Coverage', route: `/docs/${library}/coverage` }
+      { label: 'Code Coverage', route: `/docs/${library}/coverage` },
     ] as SidebarMenuItem[];
     if (repository) {
       const href = this.codeUrlPipe.transform(repository, library);
@@ -64,7 +64,7 @@ export class SidebarMenuComponent {
   private getMenuItemForExamples(library: string, examples: ExampleMenuItem[]): SidebarMenuItem {
     return {
       label: this.getLibraryName(library),
-      children: (examples || []).map(example => this.getMenuItemForExample(library, example))
+      children: (examples || []).map(example => this.getMenuItemForExample(library, example)),
     };
   }
 
@@ -84,7 +84,7 @@ export class SidebarMenuComponent {
   private getMenuItemForEditors(library: string): SidebarMenuItem {
     return {
       label: this.getLibraryName(library),
-      route: `/editor/${library}`
+      route: `/editor/${library}`,
     };
   }
 }

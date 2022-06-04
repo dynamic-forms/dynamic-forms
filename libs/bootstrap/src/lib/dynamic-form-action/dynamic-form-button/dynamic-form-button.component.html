@@ -1,24 +1,29 @@
-<button [id]="id" class="dynamic-form-button btn btn-primary" 
-  [class.hidden]="template.hidden" [ngClass]="template.className"
-  [type]="template.type || 'button'" [disabled]="template.disabled" 
+<button
+  [id]="id"
+  class="dynamic-form-button btn btn-primary"
+  [class.hidden]="template.hidden"
+  [ngClass]="template.className"
+  [type]="template.type || 'button'"
+  [disabled]="template.disabled"
   (click)="onClick($event)"
->{{ template.label }}</button>
+  >{{ template.label }}</button
+>
 
 <bs-dynamic-form-dialog
-  *ngIf="dialog" 
+  *ngIf="dialog"
   [isOpen$]="dialogOpen$"
-  [children]="dialogChildren" 
-  [headerActions]="dialogHeaderActions" 
+  [children]="dialogChildren"
+  [headerActions]="dialogHeaderActions"
   [footerActions]="dialogFooterActions"
-  [width]="template.dialogWidth" 
-  [minWidth]="template.dialogMinWidth" 
+  [width]="template.dialogWidth"
+  [minWidth]="template.dialogMinWidth"
   [maxWidth]="template.dialogMaxWidth"
-  [title]="template.dialogTitle" 
+  [title]="template.dialogTitle"
   [titleHtml]="template.dialogTitleHtml"
-  [classNameForm]="element.root.template.className" 
+  [classNameForm]="element.root.template.className"
   [classNameModal]="template.className"
-  [classNameTitle]="template.classNameDialogTitle" 
+  [classNameTitle]="template.classNameDialogTitle"
   [classNameChildren]="dialogTemplate?.classNameChildren"
-  [classNameHeader]="dialogTemplate?.classNameHeader" 
+  [classNameHeader]="dialogTemplate?.classNameHeader"
   [classNameFooter]="dialogTemplate?.classNameFooter"
 ></bs-dynamic-form-dialog>

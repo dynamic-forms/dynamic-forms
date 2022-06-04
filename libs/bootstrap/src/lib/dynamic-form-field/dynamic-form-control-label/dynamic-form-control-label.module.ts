@@ -7,20 +7,20 @@ import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label
 export const bsDynamicFormControlLabelType: DynamicFormFieldWrapperType = {
   type: 'label',
   component: BsDynamicFormControlLabelComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType)
+    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType),
   ],
   declarations: [
-    BsDynamicFormControlLabelComponent
+    BsDynamicFormControlLabelComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormControlLabelComponent
-  ]
+    BsDynamicFormControlLabelComponent,
+  ],
 })
 export class BsDynamicFormControlLabelModule {}

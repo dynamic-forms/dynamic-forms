@@ -7,12 +7,12 @@ import { HomeComponent } from './home.component';
     RouterModule.forChild([
       {
         path: 'home',
-        component: HomeComponent
-      }
-    ])
+        component: HomeComponent,
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class HomeRoutingModule {}

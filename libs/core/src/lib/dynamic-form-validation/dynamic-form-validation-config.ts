@@ -30,5 +30,5 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     minlengthDictionary: 'The dictionary does not fit the min length.',
     maxlengthDictionary: 'The dictionary does not fit the max length.',
   },
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };

@@ -10,7 +10,7 @@ export const matDynamicFormTabsType: DynamicFormElementType = {
   type: 'tabs',
   factory: dynamicFormItemsFactory,
   component: MatDynamicFormTabsComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const matDynamicFormTabsType: DynamicFormElementType = {
     MatTabsModule,
     DynamicFormElementModule,
     DynamicFormModalModule,
-    DynamicFormConfigModule.withElement(matDynamicFormTabsType)
+    DynamicFormConfigModule.withElement(matDynamicFormTabsType),
   ],
   declarations: [
-    MatDynamicFormTabsComponent
+    MatDynamicFormTabsComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormTabsComponent
-  ]
+    MatDynamicFormTabsComponent,
+  ],
 })
 export class MatDynamicFormTabsModule {}

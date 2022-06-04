@@ -6,13 +6,13 @@ import { MarkdownComponent } from './markdown.component';
 @NgModule({
   imports: [
     CommonModule,
-    DynamicFormMarkdownModule
+    DynamicFormMarkdownModule,
   ],
   declarations: [
-    MarkdownComponent
+    MarkdownComponent,
   ],
   exports: [
-    MarkdownComponent
-  ]
+    MarkdownComponent,
+  ],
 })
 export class MarkdownModule {}

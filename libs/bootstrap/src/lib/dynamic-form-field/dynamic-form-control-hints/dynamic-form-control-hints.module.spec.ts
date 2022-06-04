@@ -6,8 +6,8 @@ describe('BsDynamicFormControlHintsModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormControlHintsModule
-      ]
+        BsDynamicFormControlHintsModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormControlHintsModule', () => {
     inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormControlHintsType);
-    })
+    }),
   );
 });

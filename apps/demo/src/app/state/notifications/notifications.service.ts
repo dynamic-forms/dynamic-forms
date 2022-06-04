@@ -27,7 +27,7 @@ export class NotificationsService {
       catchError(error => {
         this.pushNotification(messages.error, infoItem);
         return throwError(error);
-      })
+      }),
     );
   }
 

@@ -8,7 +8,7 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 @Component({
   selector: 'dynamic-form-markdown',
-  templateUrl: './dynamic-form-markdown.component.html'
+  templateUrl: './dynamic-form-markdown.component.html',
 })
 export class DynamicFormMarkdownComponent<
   Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
@@ -26,13 +26,13 @@ export class DynamicFormMarkdownComponent<
   ngOnInit(): void {
     this._markdownSubject = new BehaviorSubject({
       source: this.template.source,
-      markdown: this.template.markdown
+      markdown: this.template.markdown,
     });
     this.markdown$ = this._markdownSubject.asObservable().pipe(
       switchMap(value => value.source
         ? this.markdownService.compileFromSource(value.source, this.definition.options)
-        : of(this.markdownService.compile(value.markdown, this.definition.options))
-      )
+        : of(this.markdownService.compile(value.markdown, this.definition.options)),
+      ),
     );
   }
 

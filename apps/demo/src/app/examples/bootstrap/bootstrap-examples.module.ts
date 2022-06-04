@@ -10,10 +10,10 @@ import { BootstrapExamplesComponent } from './bootstrap-examples.component';
     CommonModule,
     FormExampleModule,
     BootstrapFormModule,
-    BootstrapExamplesRoutingModule
+    BootstrapExamplesRoutingModule,
   ],
   declarations: [
-    BootstrapExamplesComponent
-  ]
+    BootstrapExamplesComponent,
+  ],
 })
 export class BootstrapExamplesModule {}

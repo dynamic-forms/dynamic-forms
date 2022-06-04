@@ -6,7 +6,7 @@ import { FormBase } from '../form-base';
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
   styleUrls: ['./material-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MaterialFormComponent extends FormBase {
   constructor(protected override dialog: MatDialog) {

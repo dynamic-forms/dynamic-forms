@@ -3,7 +3,7 @@ import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } 
 
 @Component({
   selector: 'mat-dynamic-form-radio',
-  templateUrl: './dynamic-form-radio.component.html'
+  templateUrl: './dynamic-form-radio.component.html',
 })
 export class MatDynamicFormRadioComponent extends DynamicFormInputBase<DynamicFormRadio> {
   constructor(protected override validationService: DynamicFormValidationService) {

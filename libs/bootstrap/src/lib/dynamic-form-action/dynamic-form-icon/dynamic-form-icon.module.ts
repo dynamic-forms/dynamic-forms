@@ -9,7 +9,7 @@ import { BsDynamicFormIconComponent } from './dynamic-form-icon.component';
 export const bsDynamicFormIconType: DynamicFormActionType = {
   type: 'icon',
   component: BsDynamicFormIconComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -18,14 +18,14 @@ export const bsDynamicFormIconType: DynamicFormActionType = {
     DynamicFormIconModule,
     DynamicFormActionModule,
     DynamicFormConfigModule.withAction(bsDynamicFormIconType),
-    BsDynamicFormDialogModule
+    BsDynamicFormDialogModule,
   ],
   declarations: [
-    BsDynamicFormIconComponent
+    BsDynamicFormIconComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormIconComponent
-  ]
+    BsDynamicFormIconComponent,
+  ],
 })
 export class BsDynamicFormIconModule {}

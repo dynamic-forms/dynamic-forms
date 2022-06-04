@@ -12,7 +12,7 @@ export class RoutingHandler implements OnDestroy {
 
   constructor(private store: Store, private router: Router) {
     this._routeSubscription = this.router.events.subscribe({
-      next: (event) => this.handle(event)
+      next: (event) => this.handle(event),
     });
   }
 
@@ -27,11 +27,11 @@ export class RoutingHandler implements OnDestroy {
       const notificationItem = this.getNotificationItem(event);
       this.store.dispatch([
         new ProgressItemPop({ id: event.id }),
-        new NotificationItemPush(notificationItem)
+        new NotificationItemPush(notificationItem),
       ]);
     } else if (event instanceof NavigationEnd) {
       this.store.dispatch([
-        new ProgressItemPop({ id: event.id })
+        new ProgressItemPop({ id: event.id }),
       ]);
     }
   }
@@ -42,7 +42,7 @@ export class RoutingHandler implements OnDestroy {
       type: NotificationType.Error,
       title: 'Navigation error',
       message: `Navigation to ${ event.url } canceled.`,
-      duration: 3000
+      duration: 3000,
     };
   }
 }

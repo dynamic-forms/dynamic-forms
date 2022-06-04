@@ -35,19 +35,19 @@ describe('DynamicFormControlEvaluatorType', () => {
                 label: 'Option Group 1',
                 items: [
                   { value: 'option3', label: 'Option3' },
-                  { value: 'option4', label: 'Option4' }
-                ]
+                  { value: 'option4', label: 'Option4' },
+                ],
               },
               {
                 label: 'Option Group 2',
                 items: [
                   { value: 'option5', label: 'Option5' },
-                  { value: 'option6', label: 'Option6' }
-                ]
-              }
-            ]
-          }
-        }
+                  { value: 'option6', label: 'Option6' },
+                ],
+              },
+            ],
+          },
+        },
       } as DynamicFormControlDefinition<DynamicFormSelect>;
 
       const builder: DynamicFormBuilder = {} as any;
@@ -103,7 +103,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       expect(formControl.value).toBeNull();
 
       formControl.template.input.options = [
-        { value: 'option1', label: 'Option1' }
+        { value: 'option1', label: 'Option1' },
       ];
       formControl.patchModel('option1');
 

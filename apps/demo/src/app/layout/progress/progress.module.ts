@@ -6,13 +6,13 @@ import { ProgressComponent } from './progress.component';
 @NgModule({
   imports: [
     CommonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   declarations: [
-    ProgressComponent
+    ProgressComponent,
   ],
   exports: [
-    ProgressComponent
-  ]
+    ProgressComponent,
+  ],
 })
 export class ProgressModule {}

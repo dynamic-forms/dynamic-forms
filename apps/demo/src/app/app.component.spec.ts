@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppModule
+        AppModule,
       ],
       providers: [
         { provide: ConfigService, useValue: { load: () => {} } },
         { provide: IconService, useValue: { register: () => {} } },
-        { provide: RoutingHandler, useValue: {} }
-      ]
+        { provide: RoutingHandler, useValue: {} },
+      ],
     })
     .overrideTemplate(HeaderComponent, '')
     .overrideTemplate(ContentComponent, '')

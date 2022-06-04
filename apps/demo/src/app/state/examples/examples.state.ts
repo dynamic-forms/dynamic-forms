@@ -5,7 +5,7 @@ import { Example, Examples, ExamplesMenu, ExampleMenuGroup, ExampleMenuItem, EXA
 
 @State<Examples>({
   name: EXAMPLES,
-  defaults: null
+  defaults: null,
 })
 @Injectable()
 export class ExamplesState {

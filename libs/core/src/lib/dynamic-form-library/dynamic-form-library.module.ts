@@ -4,8 +4,8 @@ import { DynamicFormLibraryService } from './dynamic-form-library.service';
 
 @NgModule({
   providers: [
-    DynamicFormLibraryService
-  ]
+    DynamicFormLibraryService,
+  ],
 })
 export class DynamicFormLibraryModule {
   static forLibrary(library: DynamicFormLibrary): ModuleWithProviders<DynamicFormLibraryModule> {
@@ -14,9 +14,9 @@ export class DynamicFormLibraryModule {
       providers: [
         {
           provide: DYNAMIC_FORM_LIBRARY,
-          useValue: library
-        }
-      ]
+          useValue: library,
+        },
+      ],
     };
   }
 }

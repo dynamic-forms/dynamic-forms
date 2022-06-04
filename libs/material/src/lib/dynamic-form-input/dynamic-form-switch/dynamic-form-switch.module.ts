@@ -9,7 +9,7 @@ import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 export const matDynamicFormSwitchType: DynamicFormInputType = {
   type: 'switch',
   component: MatDynamicFormSwitchComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -17,14 +17,14 @@ export const matDynamicFormSwitchType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    DynamicFormConfigModule.withInput(matDynamicFormSwitchType)
+    DynamicFormConfigModule.withInput(matDynamicFormSwitchType),
   ],
   declarations: [
-    MatDynamicFormSwitchComponent
+    MatDynamicFormSwitchComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormSwitchComponent
-  ]
+    MatDynamicFormSwitchComponent,
+  ],
 })
 export class MatDynamicFormSwitchModule {}

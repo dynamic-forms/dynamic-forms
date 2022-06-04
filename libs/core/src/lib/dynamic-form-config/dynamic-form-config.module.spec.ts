@@ -7,7 +7,7 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-t
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import {
-  DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG
+  DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
 } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
@@ -20,8 +20,8 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule
-        ]
+          DynamicFormConfigModule,
+        ],
       });
     });
 
@@ -34,21 +34,21 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule
+          DynamicFormConfigModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
   });
 
@@ -59,14 +59,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withElement(type)
+          DynamicFormConfigModule.withElement(type),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -74,7 +74,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      })
+      }),
     );
   });
 
@@ -88,14 +88,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withElements(types)
+          DynamicFormConfigModule.withElements(types),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -103,7 +103,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      })
+      }),
     );
   });
 
@@ -114,14 +114,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withField(type)
+          DynamicFormConfigModule.withField(type),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -129,7 +129,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      })
+      }),
     );
   });
 
@@ -137,20 +137,20 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const types: DynamicFormFieldType[] = [
       { type: 'fieldType1', factory: null, component: null, libraryName },
-      { type: 'fieldType2', factory: null, component: null, libraryName }
+      { type: 'fieldType2', factory: null, component: null, libraryName },
     ];
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withFields(types)
+          DynamicFormConfigModule.withFields(types),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -158,7 +158,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      })
+      }),
     );
   });
 
@@ -169,14 +169,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withAction(type)
+          DynamicFormConfigModule.withAction(type),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -184,7 +184,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      })
+      }),
     );
   });
 
@@ -192,20 +192,20 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const types: DynamicFormActionType[] = [
       { type: 'actionType1', component: null, libraryName },
-      { type: 'actionType2', component: null, libraryName }
+      { type: 'actionType2', component: null, libraryName },
     ];
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withActions(types)
+          DynamicFormConfigModule.withActions(types),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -213,7 +213,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      })
+      }),
     );
   });
 
@@ -224,14 +224,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withInput(type)
+          DynamicFormConfigModule.withInput(type),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -239,7 +239,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      })
+      }),
     );
   });
 
@@ -247,20 +247,20 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const types: DynamicFormInputType[] = [
       { type: 'inputType', component: null, libraryName },
-      { type: 'inputType', component: null, libraryName }
+      { type: 'inputType', component: null, libraryName },
     ];
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withInputs(types)
+          DynamicFormConfigModule.withInputs(types),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -268,7 +268,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      })
+      }),
     );
   });
 
@@ -279,14 +279,14 @@ describe('DynamicFormConfigModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withFieldWrapper(type)
+          DynamicFormConfigModule.withFieldWrapper(type),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -294,7 +294,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      })
+      }),
     );
   });
 
@@ -302,20 +302,20 @@ describe('DynamicFormConfigModule', () => {
     const libraryName = 'test';
     const types: DynamicFormFieldWrapperType[] = [
       { type: 'fieldWrapperType', component: null, libraryName },
-      { type: 'fieldWrapperType', component: null, libraryName }
+      { type: 'fieldWrapperType', component: null, libraryName },
     ];
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormConfigModule.withFieldWrappers(types)
+          DynamicFormConfigModule.withFieldWrappers(types),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -323,7 +323,7 @@ describe('DynamicFormConfigModule', () => {
       inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      })
+      }),
     );
   });
 });

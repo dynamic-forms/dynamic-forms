@@ -8,29 +8,29 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'doc',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'doc',
-    component: MaterialDocComponent
+    component: MaterialDocComponent,
   },
   {
     path: 'coverage',
-    component: MaterialCoverageComponent
-  }
+    component: MaterialCoverageComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   declarations: [
     MaterialCoverageComponent,
-    MaterialDocComponent
+    MaterialDocComponent,
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class MaterialDocsModule {}

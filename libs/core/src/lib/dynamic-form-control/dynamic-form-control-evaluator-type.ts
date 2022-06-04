@@ -19,7 +19,7 @@ export const dynamicFormSelectEvaluatorFn = (control: DynamicFormControl): void 
     ? option.items
       ? option.items.filter(i => !i.disabled).some(i => i.value === value)
       : option.value === value
-    : false
+    : false,
   );
 
   if (control.model instanceof Array) {
@@ -41,9 +41,9 @@ export const dynamicFormSelectEvaluatorType: DynamicFormControlEvaluatorType = {
   type: 'select',
   inputType: 'select',
   func: dynamicFormSelectEvaluatorFn,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlEvaluatorTypes: DynamicFormControlEvaluatorType[] = [
-  dynamicFormSelectEvaluatorType
+  dynamicFormSelectEvaluatorType,
 ];

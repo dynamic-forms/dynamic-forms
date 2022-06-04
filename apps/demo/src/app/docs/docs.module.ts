@@ -3,7 +3,7 @@ import { DocsRoutingModule } from './docs-routing.module';
 
 @NgModule({
   imports: [
-    DocsRoutingModule
-  ]
+    DocsRoutingModule,
+  ],
 })
 export class DocsModule {}

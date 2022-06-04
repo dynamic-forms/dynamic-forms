@@ -1,9 +1,8 @@
 <ng-container *ngIf="layout$ | async as layout">
   <mat-sidenav-container class="container">
-    <mat-sidenav class="sidebar" [mode]="mobileQuery.matches ? 'over' : 'side'" 
-        [opened]="layout.sidebar.opened">
+    <mat-sidenav class="sidebar" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="layout.sidebar.opened">
       <app-sidebar></app-sidebar>
-    </mat-sidenav>  
+    </mat-sidenav>
     <mat-sidenav-content class="content">
       <mat-card class="card">
         <router-outlet></router-outlet>

@@ -14,14 +14,14 @@ describe('DynamicFormEvaluationBuilder', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary),
           },
           {
             provide: DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
-            useValue: dynamicFormControlEvaluatorTypes
+            useValue: dynamicFormControlEvaluatorTypes,
           },
-          DynamicFormEvaluationBuilder
-        ]
+          DynamicFormEvaluationBuilder,
+        ],
       });
     });
 
@@ -32,7 +32,7 @@ describe('DynamicFormEvaluationBuilder', () => {
         const controlEvaluators = service.createControlEvaluators(control);
 
         expect(controlEvaluators).toEqual([]);
-      })
+      }),
     );
 
     it('returns control validators being empty if evaluator type not found',
@@ -42,7 +42,7 @@ describe('DynamicFormEvaluationBuilder', () => {
         const controlEvaluators = service.createControlEvaluators(control);
 
         expect(controlEvaluators).toEqual([]);
-      })
+      }),
     );
 
     it('returns control validators not being enabled',
@@ -53,7 +53,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
         expect(controlEvaluators.length).toBe(1);
         expect(controlEvaluators[0].enabled).toBeFalsy();
-      })
+      }),
     );
 
     it('returns control validators being enabled',
@@ -64,7 +64,7 @@ describe('DynamicFormEvaluationBuilder', () => {
 
         expect(controlEvaluators.length).toBe(1);
         expect(controlEvaluators[0].enabled).toBeTruthy();
-      })
+      }),
     );
   });
 });

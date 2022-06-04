@@ -1,15 +1,18 @@
 <div class="dynamic-form-array" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template.className">
-  <div class="dynamic-form-array-header" *ngIf="!template.labelHidden && template.label || headerActions?.length" 
-    [ngClass]="template.classNameHeader">
+  <div
+    class="dynamic-form-array-header"
+    *ngIf="(!template.labelHidden && template.label) || headerActions?.length"
+    [ngClass]="template.classNameHeader"
+  >
     <div class="dynamic-form-array-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-    <div class="dynamic-form-array-toolbar" *ngIf="headerActions?.length" >
+    <div class="dynamic-form-array-toolbar" *ngIf="headerActions?.length">
       <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
     </div>
   </div>
   <div class="dynamic-form-array-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
     <dynamic-form-elements [elements]="children"></dynamic-form-elements>
   </div>
-  <div class="dynamic-form-array-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
+  <div class="dynamic-form-array-errors" *ngIf="showErrors">{{ errorMessage }}</div>
   <div class="dynamic-form-array-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
     <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
   </div>
