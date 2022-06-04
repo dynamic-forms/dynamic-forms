@@ -6,8 +6,8 @@ describe('BsDynamicFormToggleModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormToggleModule
-      ]
+        BsDynamicFormToggleModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormToggleModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormToggleType);
-    })
+    }),
   );
 });

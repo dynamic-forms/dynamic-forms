@@ -75,7 +75,7 @@ describe('DynamicForm', () => {
       next: (submit) => {
         expect(submit).toBe(true);
         done();
-      }
+      },
     });
 
     form.submit();

@@ -10,7 +10,7 @@ import { NotificationsService } from '../state/notifications/notifications.servi
 export class FormModelResolver implements Resolve<Observable<any>> {
   constructor(
     private httpClient: HttpClient,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<any> {

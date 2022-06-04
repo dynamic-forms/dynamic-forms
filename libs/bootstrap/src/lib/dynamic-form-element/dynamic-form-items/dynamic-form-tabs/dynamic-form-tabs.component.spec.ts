@@ -13,14 +13,14 @@ describe('BsDynamicFormTabsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormTabsModule
+        BsDynamicFormTabsModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
-        }
-      ]
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
+        },
+      ],
     });
 
     builder = {} as any;

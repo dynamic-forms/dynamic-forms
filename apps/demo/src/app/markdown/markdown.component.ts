@@ -4,7 +4,7 @@ import { MarkdownElement } from './markdown.element';
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: [ './markdown.component.scss' ]
+  styleUrls: [ './markdown.component.scss' ],
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;

@@ -9,7 +9,7 @@ export const bsDynamicFormTabsType: DynamicFormElementType = {
   type: 'tabs',
   factory: dynamicFormItemsFactory,
   component: BsDynamicFormTabsComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -17,14 +17,14 @@ export const bsDynamicFormTabsType: DynamicFormElementType = {
     CommonModule,
     DynamicFormElementModule,
     DynamicFormModalModule,
-    DynamicFormConfigModule.withElement(bsDynamicFormTabsType)
+    DynamicFormConfigModule.withElement(bsDynamicFormTabsType),
   ],
   declarations: [
-    BsDynamicFormTabsComponent
+    BsDynamicFormTabsComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormTabsComponent
-  ]
+    BsDynamicFormTabsComponent,
+  ],
 })
 export class BsDynamicFormTabsModule {}

@@ -8,11 +8,11 @@ import { BootstrapEditorComponent } from './bootstrap-editor.component';
       {
         path: '',
         component: BootstrapEditorComponent,
-      }
-    ])
+      },
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class BootstrapEditorRoutingModule {}

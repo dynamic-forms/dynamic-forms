@@ -10,10 +10,10 @@ import { BootstrapEditorComponent } from './bootstrap-editor.component';
     CommonModule,
     FormEditorModule,
     BootstrapFormModule,
-    BootstrapEditorRoutingModule
+    BootstrapEditorRoutingModule,
   ],
   declarations: [
-    BootstrapEditorComponent
-  ]
+    BootstrapEditorComponent,
+  ],
 })
 export class BootstrapEditorModule {}

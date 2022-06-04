@@ -8,13 +8,13 @@ import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
   imports: [
     CommonModule,
     MatDialogModule,
-    DynamicFormElementModule
+    DynamicFormElementModule,
   ],
   declarations: [
-    MatDynamicFormDialogComponent
+    MatDynamicFormDialogComponent,
   ],
   exports: [
-    MatDynamicFormDialogComponent
-  ]
+    MatDynamicFormDialogComponent,
+  ],
 })
 export class MatDynamicFormDialogModule {}

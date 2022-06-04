@@ -13,31 +13,31 @@ import { DynamicFormElementsComponent } from './dynamic-form-elements.component'
 
 @Component({
   selector: 'dynamic-element-test',
-  template: `<div class="dynamic-form-element"></div>`
+  template: `<div class="dynamic-form-element"></div>`,
 })
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
   imports: [
-    DynamicFormElementModule
+    DynamicFormElementModule,
   ],
   declarations: [
-    DynamicFormElementBaseComponent
+    DynamicFormElementBaseComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     {
       provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent }
-      ]
+        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent },
+      ],
     },
     DynamicFormConfigService,
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 class DynamicFormElementComponentTestModule {}
 
@@ -47,7 +47,7 @@ describe('DynamicFormElementsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ DynamicFormElementComponentTestModule ]
+      imports: [ DynamicFormElementComponentTestModule ],
     });
 
     fixture = TestBed.createComponent(DynamicFormElementsComponent);
@@ -61,7 +61,7 @@ describe('DynamicFormElementsComponent', () => {
   it('renders component template', () => {
     const elements = [
       { classType: 'element', componentType: 'element' },
-      { classType: 'element', componentType: 'element' }
+      { classType: 'element', componentType: 'element' },
     ] as DynamicFormElement[];
     component.elements = elements;
 

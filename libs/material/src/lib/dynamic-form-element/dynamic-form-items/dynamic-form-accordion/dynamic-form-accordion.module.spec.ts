@@ -6,8 +6,8 @@ describe('MatDynamicFormAccordionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormAccordionModule
-      ]
+        MatDynamicFormAccordionModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormAccordionModule', () => {
     inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(matDynamicFormAccordionType);
-    })
+    }),
   );
 });

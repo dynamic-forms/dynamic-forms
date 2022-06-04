@@ -67,12 +67,12 @@ describe('DynamicFormControl', () => {
       expect(formControl.model).toBe(defaultValue);
 
       expect(root.model).toEqual({ key: defaultValue });
-    })
+    }),
   );
 
   const items = [
     { settings: { updateType: undefined }, updateOn: 'change' },
-    { settings: { updateType: 'change', }, updateOn: 'change' },
+    { settings: { updateType: 'change' }, updateOn: 'change' },
     { settings: { updateType: 'debounce' }, updateOn: 'change' },
     { settings: { updateType: 'debounce', updateDebounce: 0 }, updateOn: 'change' },
     { settings: { updateType: 'debounce', updateDebounce: 200 }, updateOn: 'change' },
@@ -85,7 +85,7 @@ describe('DynamicFormControl', () => {
       const formControl = new DynamicFormControl(builder, root, root, definition);
 
       expect(formControl.control.updateOn).toEqual(item.updateOn);
-    })
+    }),
   );
 
   it('creating instance subscribes valueChanges of control value', () => {
@@ -129,7 +129,7 @@ describe('DynamicFormControl', () => {
         expect(formControl.value).toBe('value');
         expect(formControl.model).toBeNull();
         expect((formControl.parent as DynamicFormField).model.key).toBeNull();
-      }
+      },
     });
 
     of({}).pipe(delay(300)).subscribe({
@@ -138,7 +138,7 @@ describe('DynamicFormControl', () => {
         expect(formControl.model).toBe('value');
         expect((formControl.parent as DynamicFormField).model.key).toBe('value');
         done();
-      }
+      },
     });
   });
 
@@ -192,7 +192,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
-      { key: 'required', validatorFn: Validators.required }
+      { key: 'required', validatorFn: Validators.required },
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(formControlValidators);
@@ -221,7 +221,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
-      { key: 'required', validatorFn: Validators.required }
+      { key: 'required', validatorFn: Validators.required },
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(formControlValidators);
@@ -275,12 +275,12 @@ describe('DynamicFormControl', () => {
       type: 'control',
       template: {
         input: { type: 'input' },
-        validation: { required: true }
-      }
+        validation: { required: true },
+      },
     } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlValidators = [
-      new DynamicFormControlValidator(_ => Validators.required, 'required', formControl)
+      new DynamicFormControlValidator(_ => Validators.required, 'required', formControl),
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(formControlValidators);
@@ -419,7 +419,7 @@ describe('DynamicFormControl', () => {
     const formControlExpressions = {
       required: { value: true } as DynamicFormFieldExpression,
       readonly: { value: false } as DynamicFormFieldExpression,
-      'input.inputType': { value: 'text' } as DynamicFormFieldExpression
+      'input.inputType': { value: 'text' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
     builder.createFieldExpressions.and.returnValue(formControlExpressions);
@@ -437,7 +437,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
-      'input.defaultValue': { value: 'value' } as DynamicFormFieldExpression
+      'input.defaultValue': { value: 'value' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
     spyOn(formControl.control, 'setValue').and.callThrough();
@@ -460,7 +460,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const formControl = new DynamicFormControl(builder, root, root, definition);
     const formControlExpressions = {
-      'input.defaultValue': { value: undefined } as DynamicFormFieldExpression
+      'input.defaultValue': { value: undefined } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
     spyOn(formControl.control, 'setValue').and.callThrough();
@@ -507,7 +507,7 @@ describe('DynamicFormControl', () => {
   describe('DynamicFormSelect', () => {
     it('check updates model for select options', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {
-        key: 'option1'
+        key: 'option1',
       });
       const definition = {
         key: 'key',
@@ -521,16 +521,16 @@ describe('DynamicFormControl', () => {
                 label: 'Option Group',
                 items: [
                   { value: 'option3', label: 'Option3' },
-                  { value: 'option4', label: 'Option4' }
-                ]
-              }
-            ]
-          }
-        }
+                  { value: 'option4', label: 'Option4' },
+                ],
+              },
+            ],
+          },
+        },
       } as DynamicFormControlDefinition<DynamicFormSelect>;
       const formControl = new DynamicFormControl<DynamicFormSelect>(builder, root, root, definition);
       const formControlEvaluators = [
-        { enabled: true, func: dynamicFormSelectEvaluatorFn }
+        { enabled: true, func: dynamicFormSelectEvaluatorFn },
       ] as DynamicFormControlEvaluator[];
 
       builder.createControlEvaluators.and.returnValue(formControlEvaluators);
@@ -548,7 +548,7 @@ describe('DynamicFormControl', () => {
 
       formControl.template.input.options = [
         { value: 'option1', label: 'Option1' },
-        { value: 'option2', label: 'Option2' }
+        { value: 'option2', label: 'Option2' },
       ];
       formControl.check();
 

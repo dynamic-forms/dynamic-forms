@@ -15,14 +15,14 @@ describe('MatDynamicFormModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        MatDynamicFormModalModule
+        MatDynamicFormModalModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
-        }
-      ]
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
+        },
+      ],
     });
 
     builder = {} as any;
@@ -35,8 +35,8 @@ describe('MatDynamicFormModalComponent', () => {
         minWidth: '800px',
         minHeight: '500px',
         maxWidth: '100%',
-        maxHeight: '100%'
-      }
+        maxHeight: '100%',
+      },
     } as DynamicFormModalDefinition);
 
     fixture = TestBed.createComponent(MatDynamicFormModalComponent);

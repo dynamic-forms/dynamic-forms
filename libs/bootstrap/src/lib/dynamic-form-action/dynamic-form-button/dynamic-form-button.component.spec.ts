@@ -15,15 +15,15 @@ describe('BsDynamicFormButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormButtonModule
+        BsDynamicFormButtonModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormButtonComponent);

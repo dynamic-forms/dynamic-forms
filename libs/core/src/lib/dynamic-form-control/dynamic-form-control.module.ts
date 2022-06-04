@@ -16,7 +16,7 @@ export const dynamicFormControlType: DynamicFormFieldType = {
   type: 'control',
   factory: dynamicFormControlFactory,
   component: DynamicFormControlComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -26,14 +26,14 @@ export const dynamicFormControlType: DynamicFormFieldType = {
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormControlType),
     DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes),
-    DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes)
+    DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes),
   ],
   declarations: [
-    DynamicFormControlComponent
+    DynamicFormControlComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormControlComponent
-  ]
+    DynamicFormControlComponent,
+  ],
 })
 export class DynamicFormControlModule {}

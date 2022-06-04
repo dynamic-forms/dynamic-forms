@@ -7,8 +7,8 @@ import { Notifications, NOTIFICATIONS } from './notifications.model';
   name: NOTIFICATIONS,
   defaults: {
     enabled: true,
-    items: []
-  }
+    items: [],
+  },
 })
 @Injectable()
 export class NotificationsState {
@@ -21,7 +21,7 @@ export class NotificationsState {
   toggle(context: StateContext<Notifications>, _action: NotificationsToggle): void {
     const state = context.getState();
     context.patchState({
-      enabled: !state.enabled
+      enabled: !state.enabled,
     });
   }
 
@@ -30,7 +30,7 @@ export class NotificationsState {
     const state = context.getState();
     const item = action.item;
     context.patchState({
-      items: [ item, ...state.items ]
+      items: [ item, ...state.items ],
     });
     if (item.duration) {
       setTimeout(() => context.dispatch(new NotificationItemPop(item)), item.duration);
@@ -41,7 +41,7 @@ export class NotificationsState {
   pop(context: StateContext<Notifications>, action: NotificationItemPop): void {
     const state = context.getState();
     context.patchState({
-      items: state.items.filter(item => item.id !== action.item.id)
+      items: state.items.filter(item => item.id !== action.item.id),
     });
   }
 }

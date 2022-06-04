@@ -21,28 +21,28 @@ describe('DynamicFormComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormModule
+        DynamicFormModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
         {
           provide: DynamicFormEvaluationBuilder,
-          useValue: {}
+          useValue: {},
         },
         {
           provide: DynamicFormValidationBuilder,
           useValue: {
-            createGroupValidators: () => []
-          }
+            createGroupValidators: () => [],
+          },
         },
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormComponent);
@@ -165,7 +165,7 @@ describe('DynamicFormComponent', () => {
     component.definition = definitionChanged;
     component.ngOnChanges({
       model: new SimpleChange(model, modelChanged, false),
-      definition: new SimpleChange(definition, definitionChanged, false)
+      definition: new SimpleChange(definition, definitionChanged, false),
     });
 
     expect(component.form).not.toBe(form);
@@ -193,7 +193,7 @@ describe('DynamicFormComponent', () => {
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,
-      model: component.model
+      model: component.model,
     });
   });
 
@@ -204,7 +204,7 @@ describe('DynamicFormComponent', () => {
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.formGroup.value,
-      model: component.model
+      model: component.model,
     });
   });
 

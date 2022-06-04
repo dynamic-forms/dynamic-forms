@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormControlAsyncValidatorFactory, DynamicFormControlValidatorFactory, DynamicFormControlValidatorFn
+  DynamicFormControlAsyncValidatorFactory, DynamicFormControlValidatorFactory, DynamicFormControlValidatorFn,
 } from './dynamic-form-control-validator';
 
 export interface DynamicFormControlValidatorType extends DynamicFormFieldValidatorType<DynamicFormControlValidatorFactory> {}
@@ -14,7 +14,7 @@ export const dynamicFormControlRequiredValidatorFactory = (): DynamicFormControl
 export const dynamicFormControlRequiredValidatorType: DynamicFormControlValidatorType = {
   type: 'required',
   factory: dynamicFormControlRequiredValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlEmailValidatorFactory = (): DynamicFormControlValidatorFn => Validators.email;
@@ -22,7 +22,7 @@ export const dynamicFormControlEmailValidatorFactory = (): DynamicFormControlVal
 export const dynamicFormControlEmailValidatorType: DynamicFormControlValidatorType = {
   type: 'email',
   factory: dynamicFormControlEmailValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlPatternValidatorFactory = (pattern?: string | RegExp): DynamicFormControlValidatorFn =>
@@ -31,7 +31,7 @@ export const dynamicFormControlPatternValidatorFactory = (pattern?: string | Reg
 export const dynamicFormControlPatternValidatorType: DynamicFormControlValidatorType = {
   type: 'pattern',
   factory: dynamicFormControlPatternValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlMinValidatorFactory = (min?: number): DynamicFormControlValidatorFn =>
@@ -40,7 +40,7 @@ export const dynamicFormControlMinValidatorFactory = (min?: number): DynamicForm
 export const dynamicFormControlMinValidatorType: DynamicFormControlValidatorType = {
   type: 'min',
   factory: dynamicFormControlMinValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlMaxValidatorFactory = (max?: number): DynamicFormControlValidatorFn =>
@@ -49,7 +49,7 @@ export const dynamicFormControlMaxValidatorFactory = (max?: number): DynamicForm
 export const dynamicFormControlMaxValidatorType: DynamicFormControlValidatorType = {
   type: 'max',
   factory: dynamicFormControlMaxValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlMinLengthValidatorFactory = (minLength?: number): DynamicFormControlValidatorFn =>
@@ -58,7 +58,7 @@ export const dynamicFormControlMinLengthValidatorFactory = (minLength?: number):
 export const dynamicFormControlMinLengthValidatorType: DynamicFormControlValidatorType = {
   type: 'minLength',
   factory: dynamicFormControlMinLengthValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlMaxLengthValidatorFactory = (maxLength?: number): DynamicFormControlValidatorFn =>
@@ -67,7 +67,7 @@ export const dynamicFormControlMaxLengthValidatorFactory = (maxLength?: number):
 export const dynamicFormControlMaxLengthValidatorType: DynamicFormControlValidatorType = {
   type: 'maxLength',
   factory: dynamicFormControlMaxLengthValidatorFactory,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorType[] = [
@@ -77,5 +77,5 @@ export const dynamicFormControlValidatorTypes: DynamicFormControlValidatorType[]
   dynamicFormControlMinValidatorType,
   dynamicFormControlMaxValidatorType,
   dynamicFormControlMinLengthValidatorType,
-  dynamicFormControlMaxLengthValidatorType
+  dynamicFormControlMaxLengthValidatorType,
 ];

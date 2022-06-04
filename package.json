@@ -55,12 +55,6 @@
     "publish:bootstrap": "cd dist/v14/@dynamic-forms/bootstrap && npm publish",
     "publish:material": "cd dist/v14/@dynamic-forms/material && npm publish",
     "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material",
-    "prettier": "prettier",
-    "prettier:core": "prettier --config .prettierrc --write ./libs/core",
-    "prettier:bootstrap": "prettier --config .prettierrc --write ./libs/bootstrap",
-    "prettier:material": "prettier --config .prettierrc --write ./libs/material",
-    "prettier:libs": "prettier --config .prettierrc --write ./libs",
-    "prettier:demo": "prettier --config .prettierrc --write ./apps/demo",
     "browserslist:update": "npx browserslist --update-db"
   },
   "private": true,

@@ -8,13 +8,13 @@ import { SidebarToggleComponent } from './sidebar-toggle.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [
-    SidebarToggleComponent
+    SidebarToggleComponent,
   ],
   exports: [
-    SidebarToggleComponent
-  ]
+    SidebarToggleComponent,
+  ],
 })
 export class SidebarToggleModule {}

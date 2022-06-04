@@ -7,7 +7,7 @@ import { Config, CONFIG } from '../../state/config/config.model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   readonly docsQuery: MediaQueryList;

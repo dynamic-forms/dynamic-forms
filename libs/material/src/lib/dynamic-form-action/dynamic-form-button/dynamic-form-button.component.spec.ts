@@ -15,15 +15,15 @@ describe('MatDynamicFormButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormButtonModule
+        MatDynamicFormButtonModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormButtonComponent);
@@ -78,7 +78,7 @@ describe('MatDynamicFormButtonComponent', () => {
     fixture.detectChanges();
 
     expect(formButtonElement.className).toBe(
-      'mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2'
+      'mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2',
     );
 
     component.template.className = null;

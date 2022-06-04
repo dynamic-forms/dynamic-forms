@@ -9,21 +9,21 @@ export const bsDynamicFormSwitchType: DynamicFormInputType = {
   type: 'switch',
   component: BsDynamicFormSwitchComponent,
   wrappers: [ 'errors' ],
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormConfigModule.withInput(bsDynamicFormSwitchType)
+    DynamicFormConfigModule.withInput(bsDynamicFormSwitchType),
   ],
   declarations: [
-    BsDynamicFormSwitchComponent
+    BsDynamicFormSwitchComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormSwitchComponent
-  ]
+    BsDynamicFormSwitchComponent,
+  ],
 })
 export class BsDynamicFormSwitchModule {}

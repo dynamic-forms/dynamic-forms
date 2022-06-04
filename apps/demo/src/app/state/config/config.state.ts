@@ -5,7 +5,7 @@ import { Config, CONFIG, Repository, Version } from './config.model';
 
 @State<Config>({
   name: CONFIG,
-  defaults: null
+  defaults: null,
 })
 @Injectable()
 export class ConfigState {

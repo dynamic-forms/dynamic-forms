@@ -18,16 +18,16 @@ describe('MatDynamicFormToggleComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormToggleModule
+        MatDynamicFormToggleModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormToggleComponent);
@@ -43,10 +43,10 @@ describe('MatDynamicFormToggleComponent', () => {
           options: [
             { value: 'value1', label: 'label1' },
             { value: 'value2', label: 'label2' },
-            { value: 'value3', label: 'label3', disabled: true }
-          ]
-        }
-      }
+            { value: 'value3', label: 'label3', disabled: true },
+          ],
+        },
+      },
     } as DynamicFormControlDefinition<DynamicFormToggle>;
     formControl = new DynamicFormControl<DynamicFormToggle>(builder, form, form, definition);
 

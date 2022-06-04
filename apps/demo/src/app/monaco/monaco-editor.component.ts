@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild
+  Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, first, tap } from 'rxjs';
 import { MonacoModule, MonacoEditor, MonacoEditorOptions, MonacoEditorUpdateType, MonacoEditorDisposable } from './monaco-editor';
@@ -10,7 +10,7 @@ declare let monaco: MonacoModule;
 @Component({
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
-  styleUrls: [ './monaco-editor.component.scss']
+  styleUrls: [ './monaco-editor.component.scss'],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private readonly _fileLoading  = new BehaviorSubject<boolean>(false);
@@ -43,7 +43,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   ngOnInit(): void {
     this.monacoEditorService.loaded$.pipe(
       first(loaded => !!loaded),
-      tap(_ => this.initEditor())
+      tap(_ => this.initEditor()),
     ).subscribe();
   }
 
@@ -91,7 +91,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
       value: this.value,
       language: this.language,
       automaticLayout: true,
-	    scrollBeyondLastLine: false
+	    scrollBeyondLastLine: false,
     };
   }
 

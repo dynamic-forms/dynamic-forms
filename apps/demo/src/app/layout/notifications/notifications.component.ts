@@ -7,7 +7,7 @@ import { Notifications, NotificationItem, NOTIFICATIONS } from '../../state/noti
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  styleUrls: ['./notifications.component.scss'],
 })
 export class NotificationsComponent {
   @Select(NOTIFICATIONS)

@@ -5,7 +5,7 @@ import { MatDynamicFormModalModule } from './dynamic-form-modal/dynamic-form-mod
 @NgModule({
   imports: [
     MatDynamicFormItemsModule,
-    MatDynamicFormModalModule
-  ]
+    MatDynamicFormModalModule,
+  ],
 })
 export class MatDynamicFormElementModule {}

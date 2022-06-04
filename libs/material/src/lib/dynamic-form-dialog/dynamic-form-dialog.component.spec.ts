@@ -10,7 +10,7 @@ import { MatDynamicFormDialogModule } from './dynamic-form-dialog.module';
 
 @Component({
   selector: 'mat-dynamic-form-action-test',
-  template: `<div>Dynamic Form Action</div>`
+  template: `<div>Dynamic Form Action</div>`,
 })
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -20,26 +20,26 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 
 @NgModule({
   declarations: [
-    DynamicFormActionTestComponent
+    DynamicFormActionTestComponent,
   ],
   providers: [
     {
       provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' })
+      useValue: new DynamicFormLibraryService({ name: 'test' }),
     },
     {
       provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
       useValue: [
-        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }
-      ]
+        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent },
+      ],
     },
     DynamicFormConfigService,
     {
       provide: DynamicFormActionService,
-      useValue: {}
+      useValue: {},
     },
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 class DynamicFormActionComponentTestModule {}
 
@@ -52,8 +52,8 @@ describe('MatDynamicFormDialogComponent', () => {
       imports: [
         NoopAnimationsModule,
         DynamicFormActionComponentTestModule,
-        MatDynamicFormDialogModule
-      ]
+        MatDynamicFormDialogModule,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormDialogComponent);
@@ -138,7 +138,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders header actions', waitForAsync(() => {
       component.headerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction
+        { classType: 'action', componentType: 'action' } as DynamicFormAction,
       ];
 
       fixture.detectChanges();
@@ -153,7 +153,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders footer actions', waitForAsync(() => {
       component.footerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction
+        { classType: 'action', componentType: 'action' } as DynamicFormAction,
       ];
 
       fixture.detectChanges();
@@ -169,10 +169,10 @@ describe('MatDynamicFormDialogComponent', () => {
       component.theme = 'theme';
       component.title = 'Title';
       component.headerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction
+        { classType: 'action', componentType: 'action' } as DynamicFormAction,
       ];
       component.footerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction
+        { classType: 'action', componentType: 'action' } as DynamicFormAction,
       ];
 
       component.classNameForm = 'class-form';

@@ -3,7 +3,7 @@ import { DynamicFormInputBase, DynamicFormTextarea, DynamicFormValidationService
 
 @Component({
   selector: 'bs-dynamic-form-textarea',
-  templateUrl: './dynamic-form-textarea.component.html'
+  templateUrl: './dynamic-form-textarea.component.html',
 })
 export class BsDynamicFormTextareaComponent extends DynamicFormInputBase<DynamicFormTextarea> {
   constructor(protected override validationService: DynamicFormValidationService) {

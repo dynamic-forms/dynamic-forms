@@ -23,7 +23,7 @@ export class DynamicFormFieldExpression<
       this.field.expressionChangesSubject.next({
         key: this.key,
         previousValue: this.previousValue,
-        currentValue: this.currentValue
+        currentValue: this.currentValue,
       });
     }
     return this.currentValue;

@@ -19,16 +19,16 @@ describe('MatDynamicFormNumberboxComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormNumberboxModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormNumberboxComponent);

@@ -20,7 +20,7 @@ export const dynamicFormArrayType: DynamicFormFieldType = {
   type: 'array',
   factory: dynamicFormArrayFactory,
   component: DynamicFormArrayComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayPushFieldHandlerFactory = (formBuilder: DynamicFormBuilder): DynamicFormActionHandler<DynamicFormArray> => {
@@ -31,7 +31,7 @@ export const dynamicFormArrayPushFieldHandlerFactory = (formBuilder: DynamicForm
   return {
     type: 'pushArrayField',
     func,
-    libraryName: dynamicFormLibrary.name
+    libraryName: dynamicFormLibrary.name,
   };
 };
 
@@ -40,7 +40,7 @@ export const dynamicFormArrayPopField = (field: DynamicFormArray): void => field
 export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'popArrayField',
   func: dynamicFormArrayPopField,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const getDynamicFormArray = (action: DynamicFormAction): DynamicFormArray => {
@@ -58,7 +58,7 @@ export const dynamicFormArrayRemoveFieldHandler: DynamicFormActionHandler<Dynami
   type: 'removeArrayField',
   elementFunc: getDynamicFormArray,
   func: dynamicFormArrayRemoveField,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayClearFields = (field: DynamicFormArray): void => field.clearFields();
@@ -66,7 +66,7 @@ export const dynamicFormArrayClearFields = (field: DynamicFormArray): void => fi
 export const dynamicFormArrayClearFieldsHandler: DynamicFormActionHandler<DynamicFormArray> = {
   type: 'clearArrayFields',
   func: dynamicFormArrayClearFields,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayMoveFieldDown = (field: DynamicFormArray, action: DynamicFormAction): void => {
@@ -79,7 +79,7 @@ export const dynamicFormArrayMoveFieldDownHandler: DynamicFormActionHandler<Dyna
   type: 'moveArrayFieldDown',
   elementFunc: getDynamicFormArray,
   func: dynamicFormArrayMoveFieldDown,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormArrayMoveFieldUp = (field: DynamicFormArray, action: DynamicFormAction): void => {
@@ -92,7 +92,7 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
   type: 'moveArrayFieldUp',
   elementFunc: getDynamicFormArray,
   func: dynamicFormArrayMoveFieldUp,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -109,16 +109,16 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
       dynamicFormArrayRemoveFieldHandler,
       dynamicFormArrayClearFieldsHandler,
       dynamicFormArrayMoveFieldDownHandler,
-      dynamicFormArrayMoveFieldUpHandler
-    ])
+      dynamicFormArrayMoveFieldUpHandler,
+    ]),
   ],
   declarations: [
-    DynamicFormArrayComponent
+    DynamicFormArrayComponent,
   ],
   exports: [
     DynamicFormConfigModule,
     DynamicFormActionModule,
-    DynamicFormArrayComponent
-  ]
+    DynamicFormArrayComponent,
+  ],
 })
 export class DynamicFormArrayModule {}

@@ -3,7 +3,7 @@ import { DynamicFormActionService, DynamicFormIconBase } from '@dynamic-forms/co
 
 @Component({
   selector: 'mat-dynamic-form-icon',
-  templateUrl: './dynamic-form-icon.component.html'
+  templateUrl: './dynamic-form-icon.component.html',
 })
 export class MatDynamicFormIconComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {

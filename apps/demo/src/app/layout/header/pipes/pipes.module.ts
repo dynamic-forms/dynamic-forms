@@ -3,10 +3,10 @@ import { CodeUrlPipe } from './code-url.pipe';
 
 @NgModule({
   declarations: [
-    CodeUrlPipe
+    CodeUrlPipe,
   ],
   exports: [
-    CodeUrlPipe
-  ]
+    CodeUrlPipe,
+  ],
 })
 export class HeaderPipesModule {}

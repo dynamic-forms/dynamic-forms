@@ -125,7 +125,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
     ];
 
     builder.createFormDictionaryElements.and.returnValue(fields);
@@ -168,7 +168,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { key: 'item1', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
-      { key: 'item2', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
+      { key: 'item2', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
     ];
     const field = { key: 'item3',  classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField;
 
@@ -196,7 +196,7 @@ describe('DynamicFormDictionary', () => {
     const fields = [
       { key: 'item1', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
       { key: 'item2', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
-      { key: 'item3', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField
+      { key: 'item3', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField,
     ];
     const field = { key: 'item2', classType: 'field', definition: {}, control: new FormControl() } as DynamicFormField;
 
@@ -225,7 +225,7 @@ describe('DynamicFormDictionary', () => {
       { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
       { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
       { key: 'key-3', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
-      { key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
+      { key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
     ];
 
     spyOn(formDictionary.control, 'removeControl');
@@ -275,7 +275,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
-      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
+      { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
     ];
 
     spyOn(formDictionary.control, 'removeControl');
@@ -317,7 +317,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), check: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), check: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), check: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'check');
@@ -338,7 +338,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'destroy');
@@ -359,7 +359,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'reset');
@@ -380,7 +380,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
-      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'destroy');
@@ -405,7 +405,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
-      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField
+      { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'destroy');
@@ -429,7 +429,7 @@ describe('DynamicFormDictionary', () => {
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} } as DynamicFormField,
-      { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} } as DynamicFormField
+      { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} } as DynamicFormField,
     ];
 
     spyOn(fields[0], 'validate');

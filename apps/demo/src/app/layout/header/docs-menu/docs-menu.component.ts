@@ -7,7 +7,7 @@ import { ConfigState } from '../../../state/config/config.state';
 @Component({
   selector: 'app-docs-menu',
   templateUrl: './docs-menu.component.html',
-  styleUrls: ['./docs-menu.component.scss']
+  styleUrls: ['./docs-menu.component.scss'],
 })
 export class DocsMenuComponent {
   @Select(ConfigState.repository)

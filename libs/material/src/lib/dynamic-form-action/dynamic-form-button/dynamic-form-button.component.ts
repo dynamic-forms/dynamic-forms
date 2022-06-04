@@ -3,7 +3,7 @@ import { DynamicFormActionService, DynamicFormButtonBase } from '@dynamic-forms/
 
 @Component({
   selector: 'mat-dynamic-form-button',
-  templateUrl: './dynamic-form-button.component.html'
+  templateUrl: './dynamic-form-button.component.html',
 })
 export class MatDynamicFormButtonComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {

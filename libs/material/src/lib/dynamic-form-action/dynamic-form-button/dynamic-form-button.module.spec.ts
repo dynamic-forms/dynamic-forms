@@ -6,8 +6,8 @@ describe('MatDynamicFormButtonModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormButtonModule
-      ]
+        MatDynamicFormButtonModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormButtonModule', () => {
     inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (types: DynamicFormActionTypeConfig) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormButtonType);
-    })
+    }),
   );
 });

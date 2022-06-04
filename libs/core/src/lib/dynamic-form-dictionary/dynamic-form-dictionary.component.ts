@@ -7,7 +7,7 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 
 @Component({
   selector: 'dynamic-form-array',
-  templateUrl: './dynamic-form-dictionary.component.html'
+  templateUrl: './dynamic-form-dictionary.component.html',
 })
 export class DynamicFormDictionaryComponent<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,

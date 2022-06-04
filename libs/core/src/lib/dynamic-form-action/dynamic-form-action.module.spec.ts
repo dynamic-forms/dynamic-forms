@@ -12,8 +12,8 @@ describe('DynamicFormActionModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormActionModule
-        ]
+          DynamicFormActionModule,
+        ],
       });
     });
 
@@ -25,7 +25,7 @@ describe('DynamicFormActionModule', () => {
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(dynamicFormDialogHandlers);
-      })
+      }),
     );
   });
 
@@ -33,21 +33,21 @@ describe('DynamicFormActionModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormActionModule
+          DynamicFormActionModule,
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-          }
-        ]
+            useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+          },
+        ],
       });
     });
 
     it('provides DynamicFormActionService',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service).toBeTruthy();
-      })
+      }),
     );
 
     it('handler calls openDialog of action',
@@ -60,7 +60,7 @@ describe('DynamicFormActionModule', () => {
         handler.func(action, null);
 
         expect(action.openDialog).toHaveBeenCalled();
-      })
+      }),
     );
 
     it('handler calls closeDialog of action',
@@ -73,7 +73,7 @@ describe('DynamicFormActionModule', () => {
         handler.func(action, null);
 
         expect(action.closeDialog).toHaveBeenCalled();
-      })
+      }),
     );
 
     it('handler calls toggleDialog of action',
@@ -86,7 +86,7 @@ describe('DynamicFormActionModule', () => {
         handler.func(action, null);
 
         expect(action.toggleDialog).toHaveBeenCalled();
-      })
+      }),
     );
   });
 
@@ -97,14 +97,14 @@ describe('DynamicFormActionModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormActionModule.withHandler(handler)
+          DynamicFormActionModule.withHandler(handler),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -112,7 +112,7 @@ describe('DynamicFormActionModule', () => {
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
         expect(config.length).toBe(2);
         expect(config[1]).toEqual(handler);
-      })
+      }),
     );
   });
 
@@ -120,20 +120,20 @@ describe('DynamicFormActionModule', () => {
     const libraryName = 'test';
     const handlers: DynamicFormActionHandler[] = [
       { type: 'handlerType1', func: null, libraryName },
-      { type: 'handlerType2', func: null, libraryName }
+      { type: 'handlerType2', func: null, libraryName },
     ];
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          DynamicFormActionModule.withHandlers(handlers)
+          DynamicFormActionModule.withHandlers(handlers),
         ],
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
-          }
-        ]
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
       });
     });
 
@@ -141,7 +141,7 @@ describe('DynamicFormActionModule', () => {
       inject([DYNAMIC_FORM_ACTION_HANDLER_CONFIG], (config: DynamicFormActionHandlerConfig) => {
         expect(config.length).toBe(2);
         expect(config[1]).toEqual(handlers);
-      })
+      }),
     );
   });
 });

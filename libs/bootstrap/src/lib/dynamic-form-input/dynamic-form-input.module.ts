@@ -21,7 +21,7 @@ import { BsDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-to
     BsDynamicFormSwitchModule,
     BsDynamicFormTextareaModule,
     BsDynamicFormTextboxModule,
-    BsDynamicFormToggleModule
-  ]
+    BsDynamicFormToggleModule,
+  ],
 })
 export class BsDynamicFormInputModule {}

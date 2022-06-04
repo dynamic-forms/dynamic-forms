@@ -19,7 +19,7 @@ class DynamicFormTestField extends DynamicFormField {
       disabled: false,
       setValidators: () => {},
       setAsyncValidators: () => {},
-      updateValueAndValidity: () => {}
+      updateValueAndValidity: () => {},
     } as any;
   }
 
@@ -309,7 +309,7 @@ describe('DynamicFormField', () => {
     const field = new DynamicFormTestField(builder, null, null, definition);
     const fieldExpressions = {
       required: { value: true } as DynamicFormFieldExpression,
-      readonly: { value: false } as DynamicFormFieldExpression
+      readonly: { value: false } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
     spyOn(field, 'checkExpressions');
@@ -402,7 +402,7 @@ describe('DynamicFormField', () => {
     const field = new DynamicFormTestField(builder, null, null, definition);
     const validators = [
       { checkChanges: () => true, validatorFn: () => null },
-      { checkChanges: () => true, async: true, validatorFn: () => of(null) }
+      { checkChanges: () => true, async: true, validatorFn: () => of(null) },
     ];
 
     spyOn(field.control, 'setValidators');

@@ -8,14 +8,14 @@ describe('DynamicFormContentModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormContentModule
+        DynamicFormContentModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
-        }
-      ]
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
+        },
+      ],
     });
   });
 
@@ -26,6 +26,6 @@ describe('DynamicFormContentModule', () => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(dynamicFormContentType);
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 });

@@ -16,14 +16,14 @@ describe('DynamicFormMarkdownService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        DynamicFormMarkdownModule
+        DynamicFormMarkdownModule,
       ],
       providers: [
         {
           provide: DomSanitizer,
-          useValue: domSanitizer
-        }
-      ]
+          useValue: domSanitizer,
+        },
+      ],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -36,7 +36,7 @@ describe('DynamicFormMarkdownService', () => {
 
       expect(markdownCompiled).toBe('<h1>Title</h1>\n');
       expect(domSanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.HTML, '<h1>Title</h1>\n');
-    })
+    }),
   );
 
   it('returns compiled markdown with link having blank target',
@@ -45,7 +45,7 @@ describe('DynamicFormMarkdownService', () => {
       const markdownCompiled = service.compile(markdown);
 
       expect(markdownCompiled).toBe('<p><a target="_blank" href="https://github.com/dynamic-forms/dynamic-forms">dynamic-forms</a></p>\n');
-    })
+    }),
   );
 
   it('returns compiled markdown without sanitization',
@@ -55,7 +55,7 @@ describe('DynamicFormMarkdownService', () => {
 
       expect(markdownCompiled).toBe('<h1>Title</h1>\n');
       expect(domSanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.NONE, '<h1>Title</h1>\n');
-    })
+    }),
   );
 
   it('returns compiled markdown from source',
@@ -66,7 +66,7 @@ describe('DynamicFormMarkdownService', () => {
         next: (markdownCompiled) => {
           expect(markdownCompiled).toBe('<h1>Title</h1>\n');
           expect(domSanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.HTML, '<h1>Title</h1>\n');
-        }
+        },
       });
 
       const req = httpTestingController.expectOne('/assets/README.md');
@@ -77,7 +77,7 @@ describe('DynamicFormMarkdownService', () => {
       req.flush(markdown);
 
       httpTestingController.verify();
-    })
+    }),
   );
 
   it('returns compiled markdown from source without sanitization',
@@ -88,7 +88,7 @@ describe('DynamicFormMarkdownService', () => {
         next: (markdownCompiled) => {
           expect(markdownCompiled).toBe('<h1>Title</h1>\n');
           expect(domSanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.NONE, '<h1>Title</h1>\n');
-        }
+        },
       });
 
       const req = httpTestingController.expectOne('assets/README.md');
@@ -99,6 +99,6 @@ describe('DynamicFormMarkdownService', () => {
       req.flush(markdown);
 
       httpTestingController.verify();
-    })
+    }),
   );
 });

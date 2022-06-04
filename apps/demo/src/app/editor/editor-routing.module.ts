@@ -4,20 +4,20 @@ import { RouterModule, Routes } from '@angular/router';
 const editorsRoutes: Routes = [
   {
     path: 'bootstrap',
-    loadChildren: () => import('./bootstrap/bootstrap-editor.module').then(m => m.BootstrapEditorModule)
+    loadChildren: () => import('./bootstrap/bootstrap-editor.module').then(m => m.BootstrapEditorModule),
   },
   {
     path: 'material',
-    loadChildren: () => import('./material/material-editor.module').then(m => m.MaterialEditorModule)
-  }
+    loadChildren: () => import('./material/material-editor.module').then(m => m.MaterialEditorModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(editorsRoutes)
+    RouterModule.forChild(editorsRoutes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class EditorRoutingModule {}

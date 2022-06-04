@@ -10,13 +10,13 @@ import { DynamicFormComponent } from './dynamic-form.component';
     CommonModule,
     ReactiveFormsModule,
     DynamicFormElementModule,
-    DynamicFormFieldModule
+    DynamicFormFieldModule,
   ],
   declarations: [
-    DynamicFormComponent
+    DynamicFormComponent,
   ],
   exports: [
-    DynamicFormComponent
-  ]
+    DynamicFormComponent,
+  ],
 })
 export class DynamicFormModule {}

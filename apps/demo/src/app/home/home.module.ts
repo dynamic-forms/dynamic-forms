@@ -5,11 +5,11 @@ import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     HomeRoutingModule,
-    MarkdownModule
-  ]
+    MarkdownModule,
+  ],
 })
 export class HomeModule {}

@@ -10,17 +10,17 @@ import { FormSubmitDialogComponent } from './form-submit-dialog.component';
     CommonModule,
     MatButtonModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   declarations: [
-    FormSubmitDialogComponent
+    FormSubmitDialogComponent,
   ],
   exports: [
     CommonModule,
     MatButtonModule,
     MatDialogModule,
     MatTabsModule,
-    FormSubmitDialogComponent
-  ]
+    FormSubmitDialogComponent,
+  ],
 })
 export class FormSubmitDialogModule {}

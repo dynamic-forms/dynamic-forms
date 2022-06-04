@@ -5,7 +5,7 @@ import { FormExampleBase } from '../form-example-base';
 
 @Component({
   selector: 'app-material-examples',
-  templateUrl: './material-examples.component.html'
+  templateUrl: './material-examples.component.html',
 })
 export class MaterialExamplesComponent extends FormExampleBase {
   constructor(protected override route: ActivatedRoute, protected override dialog: MatDialog) {

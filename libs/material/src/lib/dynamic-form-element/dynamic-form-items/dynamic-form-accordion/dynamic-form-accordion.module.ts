@@ -10,7 +10,7 @@ export const matDynamicFormAccordionType: DynamicFormElementType = {
   type: 'accordion',
   factory: dynamicFormItemsFactory,
   component: MatDynamicFormAccordionComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const matDynamicFormAccordionType: DynamicFormElementType = {
     MatExpansionModule,
     DynamicFormElementModule,
     DynamicFormModalModule,
-    DynamicFormConfigModule.withElement(matDynamicFormAccordionType)
+    DynamicFormConfigModule.withElement(matDynamicFormAccordionType),
   ],
   declarations: [
-    MatDynamicFormAccordionComponent
+    MatDynamicFormAccordionComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormAccordionComponent
-  ]
+    MatDynamicFormAccordionComponent,
+  ],
 })
 export class MatDynamicFormAccordionModule {}

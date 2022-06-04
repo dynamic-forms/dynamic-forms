@@ -7,10 +7,10 @@ const materialExamplesRoutes: Routes = getFormExampleRoutes(MaterialExamplesComp
 
 @NgModule({
   imports: [
-    RouterModule.forChild(materialExamplesRoutes)
+    RouterModule.forChild(materialExamplesRoutes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class MaterialExamplesRoutingModule {}

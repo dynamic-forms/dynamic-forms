@@ -8,29 +8,29 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'doc',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'doc',
-    component: BootstrapDocComponent
+    component: BootstrapDocComponent,
   },
   {
     path: 'coverage',
-    component: BootstrapCoverageComponent
-  }
+    component: BootstrapCoverageComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   declarations: [
     BootstrapCoverageComponent,
-    BootstrapDocComponent
+    BootstrapDocComponent,
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class BootstrapDocsModule {}

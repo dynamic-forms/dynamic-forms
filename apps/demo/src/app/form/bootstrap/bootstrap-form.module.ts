@@ -27,22 +27,22 @@ export const dynamicFormIdBuilder = (): string => v4();
         moveUp: 'arrow_upward',
         register: 'add',
         maximizeModal: 'fullscreen',
-        minimizeModal: 'fullscreen_exit'
+        minimizeModal: 'fullscreen_exit',
       },
-      libraryName: 'bootstrap'
+      libraryName: 'bootstrap',
     }),
     DynamicFormExtensionsModule,
     DynamicFormMarkdownModule,
     BsDynamicFormsModule.forRoot({
       theme: 'bootstrap',
-      idBuilder: dynamicFormIdBuilder
-    })
+      idBuilder: dynamicFormIdBuilder,
+    }),
   ],
   declarations: [
-    BootstrapFormComponent
+    BootstrapFormComponent,
   ],
   exports: [
-    BootstrapFormComponent
-  ]
+    BootstrapFormComponent,
+  ],
 })
 export class BootstrapFormModule {}

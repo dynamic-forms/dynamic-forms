@@ -12,7 +12,7 @@ export const dynamicFormFieldReset = (field: DynamicFormField): void => field.re
 export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
   type: 'reset',
   func: dynamicFormFieldReset,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormFieldResetEmpty = (field: DynamicFormField): void => field.resetEmpty();
@@ -20,7 +20,7 @@ export const dynamicFormFieldResetEmpty = (field: DynamicFormField): void => fie
 export const dynamicFormFieldResetEmptyHandler: DynamicFormActionHandler = {
   type: 'resetEmpty',
   func: dynamicFormFieldResetEmpty,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormFieldResetDefault = (field: DynamicFormField): void => field.resetDefault();
@@ -28,7 +28,7 @@ export const dynamicFormFieldResetDefault = (field: DynamicFormField): void => f
 export const dynamicFormFieldResetDefaultHandler: DynamicFormActionHandler = {
   type: 'resetDefault',
   func: dynamicFormFieldResetDefault,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormFieldValidate = (field: DynamicFormField): void => field.validate();
@@ -36,7 +36,7 @@ export const dynamicFormFieldValidate = (field: DynamicFormField): void => field
 export const dynamicFormFieldValidateHandler: DynamicFormActionHandler = {
   type: 'validate',
   func: dynamicFormFieldValidate,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 export const dynamicFormSubmit = (form: DynamicForm, action: DynamicFormAction): void => {
@@ -53,7 +53,7 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
   type: 'submit',
   elementFunc: getDynamicForm,
   func: dynamicFormSubmit,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -64,12 +64,12 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
       dynamicFormFieldResetEmptyHandler,
       dynamicFormFieldResetDefaultHandler,
       dynamicFormFieldValidateHandler,
-      dynamicFormSubmitHandler
-    ])
+      dynamicFormSubmitHandler,
+    ]),
   ],
   exports: [
     DynamicFormValidationModule,
-    DynamicFormActionModule
-  ]
+    DynamicFormActionModule,
+  ],
 })
 export class DynamicFormFieldModule {}

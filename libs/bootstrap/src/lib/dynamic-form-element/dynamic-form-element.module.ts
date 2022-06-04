@@ -5,7 +5,7 @@ import { BsDynamicFormModalModule } from './dynamic-form-modal/dynamic-form-moda
 @NgModule({
   imports: [
     BsDynamicFormItemsModule,
-    BsDynamicFormModalModule
-  ]
+    BsDynamicFormModalModule,
+  ],
 })
 export class BsDynamicFormElementModule {}

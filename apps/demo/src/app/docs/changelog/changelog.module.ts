@@ -5,11 +5,11 @@ import { ChangelogComponent } from './changelog.component';
 
 @NgModule({
   declarations: [
-    ChangelogComponent
+    ChangelogComponent,
   ],
   imports: [
     ChangelogRoutingModule,
-    MarkdownModule
-  ]
+    MarkdownModule,
+  ],
 })
 export class ChangelogModule {}

@@ -9,7 +9,7 @@ import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.compone
 export const matDynamicFormCheckboxType: DynamicFormInputType = {
   type: 'checkbox',
   component: MatDynamicFormCheckboxComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -17,14 +17,14 @@ export const matDynamicFormCheckboxType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    DynamicFormConfigModule.withInput(matDynamicFormCheckboxType)
+    DynamicFormConfigModule.withInput(matDynamicFormCheckboxType),
   ],
   declarations: [
-    MatDynamicFormCheckboxComponent
+    MatDynamicFormCheckboxComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormCheckboxComponent
-  ]
+    MatDynamicFormCheckboxComponent,
+  ],
 })
 export class MatDynamicFormCheckboxModule {}

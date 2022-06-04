@@ -6,7 +6,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import {
   dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetEmptyHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler,
-  dynamicFormSubmitHandler
+  dynamicFormSubmitHandler,
 } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -16,7 +16,7 @@ import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-t
 import { DynamicFormArrayValidatorTypeConfig, DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from './dynamic-form-array-validator-type-config';
 import {
   dynamicFormArrayClearFieldsHandler, dynamicFormArrayPopFieldHandler, dynamicFormArrayRemoveFieldHandler, dynamicFormArrayType,
-  DynamicFormArrayModule, dynamicFormArrayMoveFieldDownHandler, dynamicFormArrayMoveFieldUpHandler
+  DynamicFormArrayModule, dynamicFormArrayMoveFieldDownHandler, dynamicFormArrayMoveFieldUpHandler,
 } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
@@ -27,18 +27,18 @@ describe('DynamicFormArrayModule', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormArrayModule
+        DynamicFormArrayModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService(dynamicFormLibrary)
+          useValue: new DynamicFormLibraryService(dynamicFormLibrary),
         },
         {
           provide: DynamicFormBuilder,
-          useValue: formBuilder
-        }
-      ]
+          useValue: formBuilder,
+        },
+      ],
     });
   });
 
@@ -50,14 +50,14 @@ describe('DynamicFormArrayModule', () => {
       expect(types[0]).toEqual(dynamicFormArrayType);
       expect(types[0].factory).toEqual(jasmine.any(Function));
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
     inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(dynamicFormArrayValidatorTypes);
-    })
+    }),
   );
 
   it('provides DYNAMIC_FORM_ACTION_HANDLERS',
@@ -97,7 +97,7 @@ describe('DynamicFormArrayModule', () => {
       expect(handlers[13]).toEqual(dynamicFormArrayMoveFieldUpHandler);
       expect(handlers[13].func).toEqual(jasmine.any(Function));
       expect(handlers[13].libraryName).toEqual(dynamicFormLibrary.name);
-    })
+    }),
   );
 
   it('handler calls pushField of array field',
@@ -114,7 +114,7 @@ describe('DynamicFormArrayModule', () => {
 
       expect(formBuilder.createFormArrayField).toHaveBeenCalledWith(field, 0);
       expect(field.pushField).toHaveBeenCalledWith(element);
-    })
+    }),
   );
 
   it('handler calls popField of array field',
@@ -127,7 +127,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, null);
 
       expect(field.popField).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler returns array parent of action',
@@ -140,7 +140,7 @@ describe('DynamicFormArrayModule', () => {
       const result = handler.elementFunc(action);
 
       expect(result).toEqual(field);
-    })
+    }),
   );
 
   it('handler returns undefined as array parent of action',
@@ -153,7 +153,7 @@ describe('DynamicFormArrayModule', () => {
       const result = handler.elementFunc(action);
 
       expect(result).toBeUndefined();
-    })
+    }),
   );
 
   it('handler calls removeField of array field',
@@ -168,7 +168,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.removeField).toHaveBeenCalledWith(1);
-    })
+    }),
   );
 
   it('handler does not call removeField of array field',
@@ -183,7 +183,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.removeField).not.toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls clearFields of array field',
@@ -196,7 +196,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, null);
 
       expect(field.clearFields).toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls moveFieldDown of array field',
@@ -211,7 +211,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.moveFieldDown).toHaveBeenCalledWith(1);
-    })
+    }),
   );
 
   it('handler does not call moveFieldDown of array field',
@@ -226,7 +226,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.moveFieldDown).not.toHaveBeenCalled();
-    })
+    }),
   );
 
   it('handler calls moveFieldUp of array field',
@@ -241,7 +241,7 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.moveFieldUp).toHaveBeenCalledWith(1);
-    })
+    }),
   );
 
   it('handler does not call moveFieldDown of array field',
@@ -256,6 +256,6 @@ describe('DynamicFormArrayModule', () => {
       handler.func(field, action);
 
       expect(field.moveFieldUp).not.toHaveBeenCalled();
-    })
+    }),
   );
 });

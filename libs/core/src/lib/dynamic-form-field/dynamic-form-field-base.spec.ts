@@ -16,9 +16,9 @@ describe('DynamicFormFieldBase', () => {
   const validationConfig: DynamicFormValidationConfig = {
     defaultMessage: 'The field is invalid',
     messages: {
-      required: 'The field is required'
+      required: 'The field is required',
     },
-    libraryName
+    libraryName,
   };
   let component: DynamicFormFieldTestComponent;
 

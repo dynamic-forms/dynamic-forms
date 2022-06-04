@@ -23,10 +23,10 @@ describe('DynamicFormConfigService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(library)
+            useValue: new DynamicFormLibraryService(library),
           },
-          DynamicFormConfigService
-        ]
+          DynamicFormConfigService,
+        ],
       });
     });
 
@@ -37,7 +37,7 @@ describe('DynamicFormConfigService', () => {
         expect(service.fieldTypes).toEqual([]);
         expect(service.inputTypes).toEqual([]);
         expect(service.fieldWrapperTypes).toEqual([]);
-      })
+      }),
     );
 
     it('returns DynamicFormClassType',
@@ -53,7 +53,7 @@ describe('DynamicFormConfigService', () => {
         expect(classType3).toBeUndefined();
         expect(classType4).toBeUndefined();
         expect(classType5).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormElementType being undefined',
@@ -61,7 +61,7 @@ describe('DynamicFormConfigService', () => {
         const elementType = service.getElementType('element');
 
         expect(elementType).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormFieldType being undefined',
@@ -69,7 +69,7 @@ describe('DynamicFormConfigService', () => {
         const fieldType = service.getFieldType('field');
 
         expect(fieldType).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormActionType being undefined',
@@ -77,7 +77,7 @@ describe('DynamicFormConfigService', () => {
         const actionType = service.getActionType('action');
 
         expect(actionType).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormInputType being undefined',
@@ -85,7 +85,7 @@ describe('DynamicFormConfigService', () => {
         const inputType = service.getInputType('input');
 
         expect(inputType).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormFieldWrapperType being undefined',
@@ -93,7 +93,7 @@ describe('DynamicFormConfigService', () => {
         const fieldWrapperType = service.getFieldWrapperType('field-wrapper');
 
         expect(fieldWrapperType).toBeUndefined();
-      })
+      }),
     );
   });
 
@@ -111,15 +111,15 @@ describe('DynamicFormConfigService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(library)
+            useValue: new DynamicFormLibraryService(library),
           },
           { provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, useValue: fieldWrapperTypes },
-          DynamicFormConfigService
-        ]
+          DynamicFormConfigService,
+        ],
       });
     });
 
@@ -130,7 +130,7 @@ describe('DynamicFormConfigService', () => {
         expect(service.actionTypes).toEqual(actionTypes);
         expect(service.inputTypes).toEqual(inputTypes);
         expect(service.fieldWrapperTypes).toEqual(fieldWrapperTypes);
-      })
+      }),
     );
 
     it('returns DynamicFormClassType',
@@ -146,7 +146,7 @@ describe('DynamicFormConfigService', () => {
         expect(classType3).toBe('action');
         expect(classType4).toBeUndefined();
         expect(classType5).toBeUndefined();
-      })
+      }),
     );
 
     it('returns DynamicFormElementType',
@@ -154,7 +154,7 @@ describe('DynamicFormConfigService', () => {
         const elementType = service.getElementType('element');
 
         expect(elementType).toEqual(elementTypes[0]);
-      })
+      }),
     );
 
     it('returns DynamicFormFieldType',
@@ -162,7 +162,7 @@ describe('DynamicFormConfigService', () => {
         const fieldType = service.getFieldType('field');
 
         expect(fieldType).toEqual(fieldTypes[0]);
-      })
+      }),
     );
 
     it('returns DynamicFormActionType',
@@ -170,7 +170,7 @@ describe('DynamicFormConfigService', () => {
         const actionType = service.getActionType('action');
 
         expect(actionType).toEqual(actionTypes[0]);
-      })
+      }),
     );
 
     it('returns DynamicFormInputType',
@@ -178,7 +178,7 @@ describe('DynamicFormConfigService', () => {
         const inputType = service.getInputType('input');
 
         expect(inputType).toEqual(inputTypes[0]);
-      })
+      }),
     );
 
     it('returns DynamicFormFieldWrapperType',
@@ -186,7 +186,7 @@ describe('DynamicFormConfigService', () => {
         const fieldWrapperType = service.getFieldWrapperType('field-wrapper');
 
         expect(fieldWrapperType).toEqual(fieldWrapperTypes[0]);
-      })
+      }),
     );
   });
 
@@ -202,7 +202,7 @@ describe('DynamicFormConfigService', () => {
       { type: 'element-1', component: null, libraryName: otherLibraryName },
       { type: 'element-2', component: null, libraryName: otherLibraryName },
       { type: 'element-3', component: null, libraryName: otherLibraryName },
-      { type: 'element-1', component: null, libraryName }
+      { type: 'element-1', component: null, libraryName },
     ];
     const fieldTypes: DynamicFormFieldType[] = [
       { type: 'field-1', factory: null, component: null, libraryName: coreLibraryName },
@@ -242,15 +242,15 @@ describe('DynamicFormConfigService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService(library)
+            useValue: new DynamicFormLibraryService(library),
           },
           { provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, useValue: elementTypes },
           { provide: DYNAMIC_FORM_FIELD_TYPE_CONFIG, useValue: fieldTypes },
           { provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG, useValue: actionTypes },
           { provide: DYNAMIC_FORM_INPUT_TYPE_CONFIG, useValue: inputTypes },
           { provide: DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, useValue: fieldWrapperTypes },
-          DynamicFormConfigService
-        ]
+          DynamicFormConfigService,
+        ],
       });
     });
 
@@ -258,25 +258,25 @@ describe('DynamicFormConfigService', () => {
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
         expect(service.elementTypes).toEqual([
           { type: 'element-1', component: null, libraryName},
-          { type: 'element-2', component: null, libraryName: coreLibraryName }
+          { type: 'element-2', component: null, libraryName: coreLibraryName },
         ]);
         expect(service.fieldTypes).toEqual([
           { type: 'field-1', factory: null, component: null, libraryName },
-          { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName }
+          { type: 'field-2', factory: null, component: null, libraryName: coreLibraryName },
         ]);
         expect(service.actionTypes).toEqual([
           { type: 'action-1', component: null, libraryName },
-          { type: 'action-2', component: null, libraryName: coreLibraryName }
+          { type: 'action-2', component: null, libraryName: coreLibraryName },
         ]);
         expect(service.inputTypes).toEqual([
           { type: 'input-1', component: null, libraryName },
-          { type: 'input-2', component: null, libraryName: coreLibraryName }
+          { type: 'input-2', component: null, libraryName: coreLibraryName },
         ]);
         expect(service.fieldWrapperTypes).toEqual([
           { type: 'field-wrapper-1', component: null, libraryName },
-          { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName }
+          { type: 'field-wrapper-2', component: null, libraryName: coreLibraryName },
         ]);
-      })
+      }),
     );
   });
 });

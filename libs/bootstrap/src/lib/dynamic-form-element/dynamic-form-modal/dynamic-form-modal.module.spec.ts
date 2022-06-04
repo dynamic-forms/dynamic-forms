@@ -6,8 +6,8 @@ describe('BsDynamicFormModalModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormModalModule
-      ]
+        BsDynamicFormModalModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormModalModule', () => {
     inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormModalType);
-    })
+    }),
   );
 });

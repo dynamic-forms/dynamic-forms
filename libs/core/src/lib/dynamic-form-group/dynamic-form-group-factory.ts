@@ -5,5 +5,5 @@ import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 
 export const dynamicFormGroupFactory = (
-  builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition
+  builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition,
 ): DynamicFormGroup => builder.createFormGroup(root, parent, definition);

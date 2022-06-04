@@ -5,7 +5,7 @@ import { BsDynamicFormTabsModule } from './dynamic-form-tabs/dynamic-form-tabs.m
 @NgModule({
   imports: [
     BsDynamicFormAccordionModule,
-    BsDynamicFormTabsModule
-  ]
+    BsDynamicFormTabsModule,
+  ],
 })
 export class BsDynamicFormItemsModule {}

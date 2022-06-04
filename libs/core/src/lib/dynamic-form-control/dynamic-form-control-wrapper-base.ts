@@ -11,7 +11,7 @@ export abstract class DynamicFormControlWrapperBase extends DynamicFormFieldWrap
 > {
   constructor(
     protected override containerRef: ViewContainerRef,
-    protected override validationService: DynamicFormValidationService
+    protected override validationService: DynamicFormValidationService,
   ) {
     super(containerRef, validationService);
   }

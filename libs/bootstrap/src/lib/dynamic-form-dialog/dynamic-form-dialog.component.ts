@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bs-dynamic-form-dialog',
-  templateUrl: './dynamic-form-dialog.component.html'
+  templateUrl: './dynamic-form-dialog.component.html',
 })
 export class BsDynamicFormDialogComponent {
   @Input() isOpen$: Observable<boolean>;

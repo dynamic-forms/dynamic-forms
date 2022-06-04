@@ -12,10 +12,10 @@ describe('DynamicFormIconService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
-          DynamicFormIconService
-        ]
+          DynamicFormIconService,
+        ],
       });
     });
 
@@ -23,9 +23,9 @@ describe('DynamicFormIconService', () => {
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
         expect(service.iconConfig).toEqual({
           icons: {},
-          libraryName: 'test'
+          libraryName: 'test',
         });
-      })
+      }),
     );
 
     it('returns icon',
@@ -34,16 +34,16 @@ describe('DynamicFormIconService', () => {
         const icon = service.getIcon(template);
 
         expect(icon).toBe('required');
-      })
+      }),
     );
   });
 
   describe('with icon config', () => {
     const iconConfig: DynamicFormIconConfig = {
       icons: {
-        required: 'icon-required'
+        required: 'icon-required',
       },
-      libraryName: 'test'
+      libraryName: 'test',
     };
 
     beforeEach(() => {
@@ -51,21 +51,21 @@ describe('DynamicFormIconService', () => {
         providers: [
           {
             provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' })
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
           {
             provide: DYNAMIC_FORM_ICON_CONFIGS,
-            useValue: [ iconConfig ]
+            useValue: [ iconConfig ],
           },
-          DynamicFormIconService
-        ]
+          DynamicFormIconService,
+        ],
       });
     });
 
     it('returns icon config',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
         expect(service.iconConfig).toEqual(iconConfig);
-      })
+      }),
     );
 
     it('returns icon being undefined',
@@ -74,7 +74,7 @@ describe('DynamicFormIconService', () => {
         const icon = service.getIcon(template);
 
         expect(icon).toBeUndefined();
-      })
+      }),
     );
 
     it('returns icon not being mapped',
@@ -83,7 +83,7 @@ describe('DynamicFormIconService', () => {
         const icon = service.getIcon(template);
 
         expect(icon).toBe('pattern');
-      })
+      }),
     );
 
     it('returns icon being mapped from config',
@@ -92,7 +92,7 @@ describe('DynamicFormIconService', () => {
         const icon = service.getIcon(template);
 
         expect(icon).toBe('icon-required');
-      })
+      }),
     );
   });
 
@@ -101,25 +101,25 @@ describe('DynamicFormIconService', () => {
       {
         icons: {
           required: 'icon-required-core',
-          pattern: 'icon-pattern-core'
+          pattern: 'icon-pattern-core',
         },
-        libraryName: 'core'
+        libraryName: 'core',
       },
       {
         icons: {
           required: 'icon-required-test',
-          maxLength: 'icon-max-length-test'
+          maxLength: 'icon-max-length-test',
         },
-        libraryName: 'test'
+        libraryName: 'test',
       },
       {
         icons: {
           required: 'icon-required-test-extended',
           maxLength: 'icon-max-length-test-extended',
-          minLength: 'icon-min-length-test-extended'
+          minLength: 'icon-min-length-test-extended',
         },
-        libraryName: 'test-extended'
-      }
+        libraryName: 'test-extended',
+      },
     ];
 
     beforeEach(() => {
@@ -129,15 +129,15 @@ describe('DynamicFormIconService', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({
               name: 'test',
-              references: [ 'core' ]
-            })
+              references: [ 'core' ],
+            }),
           },
           {
             provide: DYNAMIC_FORM_ICON_CONFIGS,
-            useValue: iconConfigs
+            useValue: iconConfigs,
           },
-          DynamicFormIconService
-        ]
+          DynamicFormIconService,
+        ],
       });
     });
 
@@ -147,11 +147,11 @@ describe('DynamicFormIconService', () => {
           icons: {
             required: 'icon-required-test',
             pattern: 'icon-pattern-core',
-            maxLength: 'icon-max-length-test'
+            maxLength: 'icon-max-length-test',
           },
-          libraryName: 'test'
+          libraryName: 'test',
         });
-      })
+      }),
     );
   });
 });

@@ -6,8 +6,8 @@ describe('BsDynamicFormCheckboxModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormCheckboxModule
-      ]
+        BsDynamicFormCheckboxModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('BsDynamicFormCheckboxModule', () => {
     inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormCheckboxType);
-    })
+    }),
   );
 });

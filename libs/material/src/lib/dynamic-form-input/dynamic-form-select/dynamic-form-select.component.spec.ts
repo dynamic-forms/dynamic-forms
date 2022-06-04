@@ -20,16 +20,16 @@ describe('MatDynamicFormSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormSelectModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormSelectComponent);
@@ -53,8 +53,8 @@ describe('MatDynamicFormSelectComponent', () => {
               items: [
                 { value: 'value4', label: 'label4' },
                 { value: 'value5', label: 'label5' },
-                { value: 'value6', label: 'label6', disabled: true }
-              ]
+                { value: 'value6', label: 'label6', disabled: true },
+              ],
             },
             {
               label: 'group2',
@@ -63,11 +63,11 @@ describe('MatDynamicFormSelectComponent', () => {
                 { value: 'value8', label: 'label8' },
                 { value: 'value9', label: 'label9', disabled: true },
               ],
-              disabled: true
-            }
-          ]
-        }
-      }
+              disabled: true,
+            },
+          ],
+        },
+      },
     } as DynamicFormControlDefinition<DynamicFormSelect>;
     formControl = new DynamicFormControl<DynamicFormSelect>(builder, form, form, definition);
 

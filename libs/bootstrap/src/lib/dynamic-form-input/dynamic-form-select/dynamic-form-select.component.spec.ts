@@ -17,16 +17,16 @@ describe('BsDynamicFormSelectComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormSelectModule
+        BsDynamicFormSelectModule,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormValidationService
-      ]
+        DynamicFormValidationService,
+      ],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormSelectComponent);
@@ -49,8 +49,8 @@ describe('BsDynamicFormSelectComponent', () => {
               items: [
                 { value: 'value4', label: 'label4' },
                 { value: 'value5', label: 'label5' },
-                { value: 'value6', label: 'label6', disabled: true }
-              ]
+                { value: 'value6', label: 'label6', disabled: true },
+              ],
             },
             {
               label: 'group2',
@@ -59,11 +59,11 @@ describe('BsDynamicFormSelectComponent', () => {
                 { value: 'value8', label: 'label8' },
                 { value: 'value9', label: 'label9', disabled: true },
               ],
-              disabled: true
-            }
-          ]
-        }
-      }
+              disabled: true,
+            },
+          ],
+        },
+      },
     } as DynamicFormControlDefinition<DynamicFormSelect>;
     formControl = new DynamicFormControl<DynamicFormSelect>(builder, form, form, definition);
 
@@ -89,7 +89,7 @@ describe('BsDynamicFormSelectComponent', () => {
     const optionGroups = optionGroupDebugElements.map(elem => {
       return {
         groupElement: elem.nativeElement as HTMLOptGroupElement,
-        optionElements: elem.queryAll(By.css('option')).map(e => e.nativeElement) as HTMLOptionElement[]
+        optionElements: elem.queryAll(By.css('option')).map(e => e.nativeElement) as HTMLOptionElement[],
       };
     });
 

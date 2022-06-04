@@ -9,21 +9,21 @@ import { DynamicFormContainerComponent } from './dynamic-form-container.componen
 export const dynamicFormContainerType: DynamicFormElementType = {
   type: 'container',
   component: DynamicFormContainerComponent,
-  libraryName: dynamicFormLibrary.name
+  libraryName: dynamicFormLibrary.name,
 };
 
 @NgModule({
   imports: [
     CommonModule,
     DynamicFormElementModule,
-    DynamicFormConfigModule.withElement(dynamicFormContainerType)
+    DynamicFormConfigModule.withElement(dynamicFormContainerType),
   ],
   declarations: [
-    DynamicFormContainerComponent
+    DynamicFormContainerComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormContainerComponent
-  ]
+    DynamicFormContainerComponent,
+  ],
 })
 export class DynamicFormContainerModule {}

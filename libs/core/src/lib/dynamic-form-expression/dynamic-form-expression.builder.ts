@@ -40,7 +40,7 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createElementExpression(
-    key: string, element: DynamicFormElement, expression: string | DynamicFormElementExpressionFunc
+    key: string, element: DynamicFormElement, expression: string | DynamicFormElementExpressionFunc,
   ): DynamicFormElementExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormElementExpressionFunc>(expression);
@@ -50,7 +50,7 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createFieldExpression(
-    key: string, field: DynamicFormField, expression: string | DynamicFormFieldExpressionFunc
+    key: string, field: DynamicFormField, expression: string | DynamicFormFieldExpressionFunc,
   ): DynamicFormFieldExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormFieldExpressionFunc>(expression);
@@ -60,7 +60,7 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createActionExpression(
-    key: string, action: DynamicFormAction, expression: string | DynamicFormActionExpressionFunc
+    key: string, action: DynamicFormAction, expression: string | DynamicFormActionExpressionFunc,
   ): DynamicFormActionExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormActionExpressionFunc>(expression);

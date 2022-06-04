@@ -41,9 +41,9 @@ describe('DynamicFormArrayValidator', () => {
       type: 'minMaxLength',
       parameters: {
         minLength: 3,
-        maxLength: 5
+        maxLength: 5,
       },
-      message: 'message'
+      message: 'message',
     } as DynamicFormFieldValidatorDefinition;
     const validators = { minMaxLength } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { minMaxLength: true } as DynamicFormArrayValidation;
@@ -167,9 +167,9 @@ describe('DynamicFormArrayAsyncValidator', () => {
     const uniqueItems = {
       type: 'uniqueItems',
       parameters: {
-        properties: [ 'id', 'name']
+        properties: [ 'id', 'name'],
       },
-      message: 'message'
+      message: 'message',
     } as DynamicFormFieldValidatorDefinition;
     const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { uniqueItems: true } as DynamicFormArrayValidation;

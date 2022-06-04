@@ -10,7 +10,7 @@ import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component
 export const matDynamicFormTextboxType: DynamicFormInputType = {
   type: 'textbox',
   component: MatDynamicFormTextboxComponent,
-  libraryName: matDynamicFormLibrary.name
+  libraryName: matDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const matDynamicFormTextboxType: DynamicFormInputType = {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    DynamicFormConfigModule.withInput(matDynamicFormTextboxType)
+    DynamicFormConfigModule.withInput(matDynamicFormTextboxType),
   ],
   declarations: [
-    MatDynamicFormTextboxComponent
+    MatDynamicFormTextboxComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    MatDynamicFormTextboxComponent
-  ]
+    MatDynamicFormTextboxComponent,
+  ],
 })
 export class MatDynamicFormTextboxModule {}

@@ -10,7 +10,7 @@ export const bsDynamicFormModalType: DynamicFormElementType = {
   type: 'modal',
   factory: dynamicFormModalFactory,
   component: BsDynamicFormModalComponent,
-  libraryName: bsDynamicFormLibrary.name
+  libraryName: bsDynamicFormLibrary.name,
 };
 
 @NgModule({
@@ -19,14 +19,14 @@ export const bsDynamicFormModalType: DynamicFormElementType = {
     DynamicFormElementModule,
     DynamicFormModalModule,
     DynamicFormConfigModule.withElement(bsDynamicFormModalType),
-    BsDynamicFormDialogModule
+    BsDynamicFormDialogModule,
   ],
   declarations: [
-    BsDynamicFormModalComponent
+    BsDynamicFormModalComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormModalComponent
-  ]
+    BsDynamicFormModalComponent,
+  ],
 })
 export class BsDynamicFormModalModule {}

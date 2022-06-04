@@ -19,7 +19,7 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
       [type]="template?.type || 'button'" [disabled]="template?.disabled"
       (click)="onClick($event)"
     >{{ template?.label }}</button>
-  `
+  `,
 })
 class DynamicFormIconTestComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -36,15 +36,15 @@ describe('DynamicFormIconBase', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DynamicFormIconTestComponent
+        DynamicFormIconTestComponent,
       ],
       providers: [
         {
           provide: DynamicFormLibraryService,
-          useValue: new DynamicFormLibraryService({ name: 'test' })
+          useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
-        DynamicFormActionService
-      ]
+        DynamicFormActionService,
+      ],
     });
 
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
@@ -140,6 +140,6 @@ describe('DynamicFormIconBase', () => {
       component.onClick(event);
 
       expect(service.handle).toHaveBeenCalledWith(component.element, event);
-    })
+    }),
   );
 });

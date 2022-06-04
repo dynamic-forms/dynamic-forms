@@ -7,7 +7,7 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 @Component({
   selector: 'dynamic-form-array',
-  templateUrl: './dynamic-form-array.component.html'
+  templateUrl: './dynamic-form-array.component.html',
 })
 export class DynamicFormArrayComponent<
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,

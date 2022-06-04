@@ -6,8 +6,8 @@ describe('MatDynamicFormIconModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormIconModule
-      ]
+        MatDynamicFormIconModule,
+      ],
     });
   });
 
@@ -15,6 +15,6 @@ describe('MatDynamicFormIconModule', () => {
     inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (types: DynamicFormActionTypeConfig) => {
       expect(types.length).toBe(1);
       expect(types[0]).toEqual(matDynamicFormIconType);
-    })
+    }),
   );
 });

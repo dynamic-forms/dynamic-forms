@@ -16,7 +16,7 @@ describe('DynamicFormContainerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ DynamicFormContainerModule ]
+      imports: [ DynamicFormContainerModule ],
     });
 
     builder = {} as any;

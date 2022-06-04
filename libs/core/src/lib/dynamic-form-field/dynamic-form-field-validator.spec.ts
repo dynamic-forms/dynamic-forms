@@ -3,7 +3,7 @@ import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldValidation } from './dynamic-form-field-validation';
 import {
   DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory,
-  DynamicFormFieldValidator, DynamicFormFieldValidatorBase, DynamicFormFieldValidatorFactory
+  DynamicFormFieldValidator, DynamicFormFieldValidatorBase, DynamicFormFieldValidatorFactory,
 } from './dynamic-form-field-validator';
 import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
@@ -37,7 +37,7 @@ describe('DynamicFormFieldValidatorBase', () => {
     const factory = _ => __ => null;
     const valid = {
       type: 'valid',
-      message: 'message'
+      message: 'message',
     } as DynamicFormFieldValidatorDefinition;
     const validators = { valid } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { valid: true } as DynamicFormFieldValidation;
@@ -107,7 +107,7 @@ describe('DynamicFormFieldValidatorBase', () => {
     const factory = (hidden: boolean) => hidden ? undefined :  _ => null;
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: {}, template: { validation } } as DynamicFormField;
-    const validator = new TestDynamicFormFieldValidatorBase(factory,'valid', field, );
+    const validator = new TestDynamicFormFieldValidatorBase(factory,'valid', field );
 
     expect(validator.parameters).toBeUndefined();
     expect(validator.validatorFn).toBeTruthy();
@@ -149,7 +149,7 @@ describe('DynamicFormFieldValidator', () => {
 });
 
 class TestDynamicFormFieldAsyncValidator extends DynamicFormFieldAsyncValidator {
-  constructor(factory: DynamicFormFieldAsyncValidatorFactory, key: string, field: DynamicFormField,) {
+  constructor(factory: DynamicFormFieldAsyncValidatorFactory, key: string, field: DynamicFormField) {
     super(factory, key, field);
   }
 

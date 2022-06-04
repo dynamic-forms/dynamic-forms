@@ -18,19 +18,19 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
     DynamicFormConfigModule,
     DynamicFormEvaluationModule,
     DynamicFormValidationModule,
-    DynamicFormModule
+    DynamicFormModule,
   ],
   exports: [
     DynamicFormLibraryModule,
     DynamicFormConfigModule,
     DynamicFormEvaluationModule,
     DynamicFormValidationModule,
-    DynamicFormModule
+    DynamicFormModule,
   ],
   providers: [
     DynamicFormBuilder,
     DynamicFormExpressionBuilder,
-    DynamicFormComponentFactory
-  ]
+    DynamicFormComponentFactory,
+  ],
 })
 export class DynamicFormsModule {}

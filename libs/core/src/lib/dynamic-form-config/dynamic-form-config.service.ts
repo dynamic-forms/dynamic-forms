@@ -7,7 +7,7 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-t
 import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import {
-  DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG
+  DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
 } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
@@ -33,7 +33,7 @@ export class DynamicFormConfigService {
     @Optional() @Inject(DYNAMIC_FORM_INPUT_TYPE_CONFIG)
     private inputTypeConfig: DynamicFormInputTypeConfig,
     @Optional() @Inject(DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG)
-    private fieldWrapperTypeConfig: DynamicFormFieldWrapperTypeConfig
+    private fieldWrapperTypeConfig: DynamicFormFieldWrapperTypeConfig,
   ) {
     this.elementTypes = this.libraryService.filterTypes(this.elementTypeConfig);
     this.fieldTypes = this.libraryService.filterTypes(this.fieldTypeConfig);

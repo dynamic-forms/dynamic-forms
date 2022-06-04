@@ -30,9 +30,9 @@ describe('DynamicFormGroupValidator', () => {
     const equal = {
       type: 'equal',
       parameters: {
-        keys: []
+        keys: [],
       },
-      message: 'message'
+      message: 'message',
     } as DynamicFormFieldValidatorDefinition;
     const validators = { equal } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { equal: true } as DynamicFormGroupValidation;
@@ -124,9 +124,9 @@ describe('DynamicFormGroupAsyncValidator', () => {
     const uniqueItems = {
       type: 'uniqueItems',
       parameters: {
-        properties: [ 'id', 'name']
+        properties: [ 'id', 'name'],
       },
-      message: 'message'
+      message: 'message',
     } as DynamicFormFieldValidatorDefinition;
     const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
     const validation = { uniqueItems: true } as DynamicFormGroupValidation;

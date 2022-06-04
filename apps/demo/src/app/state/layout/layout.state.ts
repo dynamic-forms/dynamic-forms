@@ -7,9 +7,9 @@ import { Layout, LAYOUT } from './layout.model';
   name: LAYOUT,
   defaults: {
     sidebar: {
-      opened: false
-    }
-  }
+      opened: false,
+    },
+  },
 })
 @Injectable()
 export class LayoutState {
@@ -18,8 +18,8 @@ export class LayoutState {
     const state = context.getState();
     context.patchState({
       sidebar: {
-        opened: !state.sidebar.opened
-      }
+        opened: !state.sidebar.opened,
+      },
     });
   }
 }

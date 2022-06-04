@@ -68,7 +68,7 @@ describe('DynamicFormAction', () => {
     const parent = { expressionData: parentExpressionData } as DynamicFormField;
     const definition = {
       template: {},
-      dialogDefinition: { template: {} }
+      dialogDefinition: { template: {} },
     } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition);
 
@@ -111,7 +111,7 @@ describe('DynamicFormAction', () => {
     const action = new DynamicFormAction(builder, null, null, definition);
     const actionExpressions = {
       hidden: { value: true } as DynamicFormActionExpression,
-      disabled: { value: false } as DynamicFormActionExpression
+      disabled: { value: false } as DynamicFormActionExpression,
     } as DynamicFormActionExpressions;
 
     builder.createActionExpressions.and.returnValue(actionExpressions);
@@ -162,7 +162,7 @@ describe('DynamicFormAction', () => {
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe({
-      next: (open) => dialogOpenChanges.push(open)
+      next: (open) => dialogOpenChanges.push(open),
     });
 
     action.init();
@@ -190,7 +190,7 @@ describe('DynamicFormAction', () => {
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe({
-      next: (open) => dialogOpenChanges.push(open)
+      next: (open) => dialogOpenChanges.push(open),
     });
 
     action.init();
@@ -214,7 +214,7 @@ describe('DynamicFormAction', () => {
 
     const dialogOpenChanges = [];
     action.dialogOpenChanges.subscribe({
-      next: (open) => dialogOpenChanges.push(open)
+      next: (open) => dialogOpenChanges.push(open),
     });
 
     action.openDialog();

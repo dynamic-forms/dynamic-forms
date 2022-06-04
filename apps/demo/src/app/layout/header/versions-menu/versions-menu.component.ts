@@ -7,7 +7,7 @@ import { ConfigState } from '../../../state/config/config.state';
 @Component({
   selector: 'app-versions-menu',
   templateUrl: './versions-menu.component.html',
-  styleUrls: ['./versions-menu.component.scss']
+  styleUrls: ['./versions-menu.component.scss'],
 })
 export class VersionsMenuComponent {
   @Select(ConfigState.versions)
