@@ -13,9 +13,9 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0-rc.1",
-    "@angular/core": "^14.0.0-rc.1",
-    "@angular/forms": "^14.0.0-rc.1",
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/forms": "^14.0.0",
     "bootstrap": "^5.1.0",
     "marked": "^4.0.16",
     "rxjs": "^7.4.0"
