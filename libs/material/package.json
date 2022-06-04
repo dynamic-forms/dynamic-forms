@@ -3,6 +3,14 @@
   "version": "14.0.0-rc.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
+  "keywords": [
+    "angular",
+    "forms",
+    "reactive forms",
+    "json",
+    "json forms",
+    "dynamic-forms"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
