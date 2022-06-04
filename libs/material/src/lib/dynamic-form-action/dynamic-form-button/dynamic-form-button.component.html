@@ -8,9 +8,8 @@
   [type]="template.type || 'button'"
   [disabled]="template.disabled"
   (click)="onClick($event)"
+  >{{ template.label }}</button
 >
-  {{ template.label }}
-</button>
 
 <mat-dynamic-form-dialog
   *ngIf="dialog"

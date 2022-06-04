@@ -5,9 +5,8 @@
     [indeterminate]="input?.indeterminate"
     [required]="validation?.required"
     [formControl]="control"
+    >{{ template.label }}<span *ngIf="validation?.required"> *</span></mat-checkbox
   >
-    {{ template.label }}<span *ngIf="validation?.required"> *</span>
-  </mat-checkbox>
   <div class="mat-form-field-simple-info">
     <div *ngIf="showErrors" class="mat-error">{{ errorMessage }}</div>
   </div>

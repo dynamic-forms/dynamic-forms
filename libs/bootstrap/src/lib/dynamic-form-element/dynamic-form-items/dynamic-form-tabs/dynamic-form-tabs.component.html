@@ -7,9 +7,8 @@
         [class.active]="index === selectedIndex"
         [class.disabled]="child.disabled"
         (click)="selectItem(index)"
+        >{{ child.label }}</button
       >
-        {{ child.label }}
-      </button>
     </li>
   </ul>
   <div class="tab-content">

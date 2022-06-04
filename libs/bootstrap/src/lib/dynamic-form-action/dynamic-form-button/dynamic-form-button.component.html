@@ -6,9 +6,8 @@
   [type]="template.type || 'button'"
   [disabled]="template.disabled"
   (click)="onClick($event)"
+  >{{ template.label }}</button
 >
-  {{ template.label }}
-</button>
 
 <bs-dynamic-form-dialog
   *ngIf="dialog"
