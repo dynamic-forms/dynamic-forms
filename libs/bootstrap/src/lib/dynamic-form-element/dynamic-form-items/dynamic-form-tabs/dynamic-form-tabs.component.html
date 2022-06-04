@@ -2,18 +2,19 @@
   <ul class="nav nav-tabs">
     <li class="nav-item" *ngFor="let child of element.children; let index = index">
       <button
-        type="button"  
-        class="dynamic-form-item-header nav-link" 
-        [class.active]="index === selectedIndex" 
+        type="button"
+        class="dynamic-form-item-header nav-link"
+        [class.active]="index === selectedIndex"
         [class.disabled]="child.disabled"
         (click)="selectItem(index)"
-      >{{child.label}}</button>
+      >
+        {{ child.label }}
+      </button>
     </li>
-  </ul> 
+  </ul>
   <div class="tab-content">
     <div class="dynamic-form-item tab-pane active" *ngIf="selectedItem">
-      <dynamic-form-elements [elements]="selectedItem.children" ></dynamic-form-elements>
+      <dynamic-form-elements [elements]="selectedItem.children"></dynamic-form-elements>
     </div>
   </div>
 </div>
-

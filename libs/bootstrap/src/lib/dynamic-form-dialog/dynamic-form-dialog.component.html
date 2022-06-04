@@ -1,37 +1,40 @@
 <div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm" [class.maximized]="maximized">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" 
-    [ngClass]="classNameModal" [class.maximized]="maximized"
-    [ngStyle]="{ 
-      'width': maximized ? maxWidth || '100%' : width,
-      'min-width': maximized ? maxWidth || '100%' : minWidth, 
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    [ngClass]="classNameModal"
+    [class.maximized]="maximized"
+    [ngStyle]="{
+      width: maximized ? maxWidth || '100%' : width,
+      'min-width': maximized ? maxWidth || '100%' : minWidth,
       'max-width': maximized ? maxWidth || '100%' : maxWidth,
       'min-height': maximized ? '100%' : undefined,
       'max-height': maximized ? '100%' : undefined,
-      'margin': maximized ? '0px auto' : undefined
-    }">
-    <div class="modal-content" 
-      [ngStyle]="{ 
-        'height': maximized ? maxHeight || '100%' : height,
-        'min-height': maximized ? maxHeight || '100%' : minHeight, 
+      margin: maximized ? '0px auto' : undefined
+    }"
+  >
+    <div
+      class="modal-content"
+      [ngStyle]="{
+        height: maximized ? maxHeight || '100%' : height,
+        'min-height': maximized ? maxHeight || '100%' : minHeight,
         'max-height': maxHeight || '100%'
-      }">
+      }"
+    >
       <div class="modal-header" *ngIf="title || titleHtml || headerActions?.length" [ngClass]="classNameHeader">
-        <div class="modal-title" *ngIf="titleHtml; else titlePlain" 
-          [ngClass]="classNameTitle" [innerHTML]="titleHtml"
-        ></div>
+        <div class="modal-title" *ngIf="titleHtml; else titlePlain" [ngClass]="classNameTitle" [innerHTML]="titleHtml"></div>
         <ng-template #titlePlain>
-          <div class="modal-title" [ngClass]="classNameTitle">{{title}}</div>
+          <div class="modal-title" [ngClass]="classNameTitle">{{ title }}</div>
         </ng-template>
         <div class="modal-toolbar" *ngIf="headerActions?.length">
-          <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>     
-        </div> 
+          <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
+        </div>
       </div>
       <div class="modal-body" [ngClass]="classNameChildren">
-        <dynamic-form-elements [elements]="children"></dynamic-form-elements>     
+        <dynamic-form-elements [elements]="children"></dynamic-form-elements>
       </div>
       <div class="modal-footer" *ngIf="footerActions?.length" [ngClass]="classNameFooter">
-        <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>     
-      </div> 
+        <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
+      </div>
     </div>
-  </div>  
+  </div>
 </div>

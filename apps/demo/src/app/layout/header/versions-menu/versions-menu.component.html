@@ -4,11 +4,11 @@
       Versions
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
-  
+
     <mat-menu #menu="matMenu">
       <ng-container *ngFor="let version of versions">
         <a mat-menu-item [href]="version.url" target="_blank">{{ version.name }}</a>
       </ng-container>
-    </mat-menu>  
+    </mat-menu>
   </ng-container>
 </ng-container>

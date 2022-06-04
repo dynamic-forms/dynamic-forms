@@ -1,16 +1,19 @@
 <div class="dynamic-form-group" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template.className">
-  <div class="dynamic-form-group-header" *ngIf="!template.labelHidden && template.label || headerActions?.length" 
-    [ngClass]="template.classNameHeader">
+  <div
+    class="dynamic-form-group-header"
+    *ngIf="(!template.labelHidden && template.label) || headerActions?.length"
+    [ngClass]="template.classNameHeader"
+  >
     <div class="dynamic-form-group-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-    <div class="dynamic-form-group-toolbar" *ngIf="headerActions?.length" >
+    <div class="dynamic-form-group-toolbar" *ngIf="headerActions?.length">
       <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
     </div>
   </div>
   <div class="dynamic-form-group-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
     <dynamic-form-elements [elements]="children"></dynamic-form-elements>
   </div>
-  <div class="dynamic-form-group-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
+  <div class="dynamic-form-group-errors" *ngIf="showErrors">{{ errorMessage }}</div>
   <div class="dynamic-form-group-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
     <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
-  </div>  
+  </div>
 </div>

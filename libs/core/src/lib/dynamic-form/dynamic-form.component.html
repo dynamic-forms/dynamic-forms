@@ -2,14 +2,14 @@
   <form class="dynamic-form" [ngClass]="template.className" [formGroup]="formGroup" (ngSubmit)="submit()">
     <div class="dynamic-form-header" *ngIf="template.label || headerActions?.length" [ngClass]="template.classNameHeader">
       <div class="dynamic-form-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-      <div class="dynamic-form-toolbar" *ngIf="headerActions?.length" >
+      <div class="dynamic-form-toolbar" *ngIf="headerActions?.length">
         <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
       </div>
     </div>
     <div class="dynamic-form-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
       <dynamic-form-elements [elements]="children"></dynamic-form-elements>
     </div>
-    <div class="dynamic-form-errors" *ngIf="showErrors">{{ errorMessage }}</div> 
+    <div class="dynamic-form-errors" *ngIf="showErrors">{{ errorMessage }}</div>
     <div class="dynamic-form-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
       <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
     </div>

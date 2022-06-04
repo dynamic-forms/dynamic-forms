@@ -3,12 +3,14 @@
     <option [value]="null" hidden>{{ input.placeholder }}</option>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>      
+        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
       </ng-container>
       <ng-template #optionGroup>
         <optgroup [label]="option.label" [disabled]="option.disabled">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
-        </optgroup>      
+          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">
+            {{ optionItem.label }}
+          </option>
+        </optgroup>
       </ng-template>
     </ng-container>
   </select>
@@ -18,12 +20,14 @@
   <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
     <ng-container *ngFor="let option of input.options">
       <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>      
+        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
       </ng-container>
       <ng-template #optionGroup>
         <optgroup [label]="option.label" [disabled]="option.disabled">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
-        </optgroup>      
+          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">
+            {{ optionItem.label }}
+          </option>
+        </optgroup>
       </ng-template>
     </ng-container>
   </select>
