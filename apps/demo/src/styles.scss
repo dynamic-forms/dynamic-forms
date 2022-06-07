@@ -1,5 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "@dynamic-forms/core/assets/scss/grid";
+@import "@dynamic-forms/core/assets/scss/markdown";
+@import "@dynamic-forms/bootstrap/assets/scss/theme";
+@import "@dynamic-forms/material/assets/scss/theme.scss";
+
+.dynamic-form-wrapper {
+  width: 100%;
+
+  .dynamic-form {
+    &:not(.maximized) {
+      max-width: 800px;
+
+      &.small {
+        max-width: 600px;
+      }
+    }
+  }
+}
+
+.dynamic-form-example {
+  .mat-tab-header-pagination {
+    z-index: auto
+  }
+}
+
 html, body {
   height: 100%;
 }
@@ -33,49 +58,5 @@ body {
   .router-link-active {
     background: rgba(63,81,181,.15);
     color: #3f51b5;
-  }
-
-  .dynamic-form-markdown {
-    font-size: 16px;
-    line-height: 1.5;
-    word-wrap: break-word;
-
-    a {
-      color: #3f51b5;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 16px;
-      margin-bottom: 12px;
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 12px;
-    }
-
-    pre {
-      margin-top: 0;
-      margin-bottom: 12px;
-      padding: 12px;
-      font-size: 14px;
-      background-color: #e0e0e0;
-      border-radius: 4px;
-
-      code {
-        display: inline;
-        padding: 0;
-        word-wrap: normal;
-        background-color: transparent;
-      }
-    }
-
-    code {
-      margin: 0;
-      padding: 2px 4px;
-      font-size: 14px;
-      background-color: #e0e0e0;
-      border-radius: 4px;
-    }
   }
 }
