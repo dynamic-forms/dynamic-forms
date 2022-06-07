@@ -1,0 +1,46 @@
+@import "@dynamic-forms/core/assets/scss/variables";
+
+.dynamic-form-markdown {
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+
+  a {
+    color: $dynamic-form-markdown-link-color;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding: 12px;
+    font-size: 14px;
+    background-color: $dynamic-form-markdown-code-background-color;
+    border-radius: 4px;
+    overflow: auto;
+
+    code {
+      display: inline;
+      padding: 0;
+      word-wrap: normal;
+      background-color: transparent;
+    }
+  }
+
+  code {
+    margin: 0;
+    padding: 2px 4px;
+    font-size: 14px;
+    background-color: $dynamic-form-markdown-code-background-color;
+    border-radius: 4px;
+  }
+}

@@ -1,5 +1,6 @@
-$dynamic-form-blue: #3f51b5 !default;
-$dynamic-form-red: #f44336 !default;
+$dynamic-form-color-primary: #3f51b5 !default;
+$dynamic-form-color-blue: $dynamic-form-color-primary !default;
+$dynamic-form-color-red: #f44336 !default;
 
 $dynamic-form-margin: 10px 12px !default;
 
@@ -15,7 +16,10 @@ $dynamic-form-label-font-size: 18px !default;
 $dynamic-form-label-font-weight: 600 !default;
 $dynamic-form-label-font-weight-bold: 700 !default;
 
-$dynamic-form-errors-color: $dynamic-form-red !default;
+$dynamic-form-errors-color: $dynamic-form-color-red !default;
 $dynamic-form-errors-font-size: 14px !default;
 $dynamic-form-errors-margin-top: 10px !default;
 $dynamic-form-errors-margin-bottom: 10px !default;
+
+$dynamic-form-markdown-link-color: $dynamic-form-color-primary !default;
+$dynamic-form-markdown-code-background-color: #e0e0e0 !default;
