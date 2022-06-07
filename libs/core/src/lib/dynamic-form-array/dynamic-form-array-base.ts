@@ -1,4 +1,4 @@
-import { FormArray } from '@angular/forms';
+import { AbstractControl, FormArray } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
@@ -8,10 +8,11 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 export abstract class DynamicFormArrayBase<
+  TValue = any,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
-  Array extends DynamicFormArray<Template, Definition> = DynamicFormArray<Template, Definition>
-> extends DynamicFormFieldBase<FormArray, Template, Definition, Array> {
+  Array extends DynamicFormArray<TValue, Template, Definition> = DynamicFormArray<TValue, Template, Definition>
+> extends DynamicFormFieldBase<TValue, FormArray<AbstractControl<TValue>>, Template, Definition, Array> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

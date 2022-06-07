@@ -5,15 +5,15 @@ import {
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormControl } from './dynamic-form-control';
 
-export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<FormControl>;
+export type DynamicFormControlValidatorFn = DynamicFormFieldValidatorFn<any, FormControl>;
 
-export type DynamicFormControlAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<FormControl>;
+export type DynamicFormControlAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<any, FormControl>;
 
-export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<FormControl, DynamicFormControl>;
+export type DynamicFormControlValidatorFactory = DynamicFormFieldValidatorFactory<any, FormControl, DynamicFormControl>;
 
-export type DynamicFormControlAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<FormControl, DynamicFormControl>;
+export type DynamicFormControlAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<any, FormControl, DynamicFormControl>;
 
-export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormControl, DynamicFormControl> {
+export class DynamicFormControlValidator extends DynamicFormFieldValidator<any, FormControl, DynamicFormControl> {
   constructor(factory: DynamicFormControlValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);
   }
@@ -23,7 +23,7 @@ export class DynamicFormControlValidator extends DynamicFormFieldValidator<FormC
   }
 }
 
-export class DynamicFormControlAsyncValidator extends DynamicFormFieldAsyncValidator<FormControl, DynamicFormControl> {
+export class DynamicFormControlAsyncValidator extends DynamicFormFieldAsyncValidator<any, FormControl, DynamicFormControl> {
   constructor(factory: DynamicFormControlAsyncValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);
   }

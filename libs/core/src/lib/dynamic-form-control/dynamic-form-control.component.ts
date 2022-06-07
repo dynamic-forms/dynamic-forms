@@ -12,11 +12,12 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
   templateUrl: './dynamic-form-control.component.html',
 })
 export class DynamicFormControlComponent<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
-  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>,
-  Control extends DynamicFormControl<Input, Template, Definition> = DynamicFormControl<Input, Template, Definition>
-> extends DynamicFormControlBase<Input, Template, Definition, Control> implements OnInit, DoCheck {
+  TValue = any,
+  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
+  Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
+  Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>,
+  Control extends DynamicFormControl<TValue, Input, Template, Definition> = DynamicFormControl<TValue, Input, Template, Definition>
+> extends DynamicFormControlBase<TValue, Input, Template, Definition, Control> implements OnInit, DoCheck {
 
   private _initialized: boolean;
   private _inputType: string;

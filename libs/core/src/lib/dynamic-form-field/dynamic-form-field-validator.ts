@@ -9,48 +9,55 @@ export type DynamicFormValidatorResult = ValidationErrors | null;
 export type DynamicFormAsyncValidatorResult = Observable<ValidationErrors | null>;
 
 export type DynamicFormFieldValidatorBaseFn<
-  Control extends DynamicFormFieldControl,
+  TValue,
+  Control extends DynamicFormFieldControl<TValue>,
   ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
 > = (control: Control) => ValidatorResult;
 
 export type DynamicFormFieldValidatorFn<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl
-> = DynamicFormFieldValidatorBaseFn<Control, DynamicFormValidatorResult>;
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>
+> = DynamicFormFieldValidatorBaseFn<TValue, Control, DynamicFormValidatorResult>;
 
 export type DynamicFormFieldAsyncValidatorFn<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl
-> = DynamicFormFieldValidatorBaseFn<Control, DynamicFormAsyncValidatorResult>;
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>
+> = DynamicFormFieldValidatorBaseFn<TValue, Control, DynamicFormAsyncValidatorResult>;
 
 export type DynamicFormFieldValidatorBaseFactory<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
   ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult
     = DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
-  ValidatorFn extends DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
-    = DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
+  ValidatorFn extends DynamicFormFieldValidatorBaseFn<TValue, Control, ValidatorResult>
+    = DynamicFormFieldValidatorBaseFn<TValue, Control, ValidatorResult>
 > = (parameters?: any, message?: string, key?: string, field?: Field, deps?: any[]) => ValidatorFn;
 
 export type DynamicFormFieldValidatorFactory<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
-  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>
-> = DynamicFormFieldValidatorBaseFactory<Control, Field, DynamicFormValidatorResult, ValidatorFn>;
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
+  ValidatorFn extends DynamicFormFieldValidatorFn<TValue, Control> = DynamicFormFieldValidatorFn<TValue, Control>
+> = DynamicFormFieldValidatorBaseFactory<TValue, Control, Field, DynamicFormValidatorResult, ValidatorFn>;
 
 export type DynamicFormFieldAsyncValidatorFactory<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
-  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<Control> = DynamicFormFieldAsyncValidatorFn<Control>
-> = DynamicFormFieldValidatorBaseFactory<Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn>;
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
+  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<TValue, Control> = DynamicFormFieldAsyncValidatorFn<TValue, Control>
+> = DynamicFormFieldValidatorBaseFactory<TValue, Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn>;
 
 export abstract class DynamicFormFieldValidatorBase<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
   ValidatorResult extends DynamicFormValidatorResult | DynamicFormAsyncValidatorResult
     = DynamicFormValidatorResult | DynamicFormAsyncValidatorResult,
-  ValidatorFn extends DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>
-    = DynamicFormFieldValidatorBaseFn<Control, ValidatorResult>,
-  ValidatorFactory extends DynamicFormFieldValidatorBaseFactory<Control, Field, ValidatorResult, ValidatorFn>
-    = DynamicFormFieldValidatorBaseFactory<Control, Field, ValidatorResult, ValidatorFn>
+  ValidatorFn extends DynamicFormFieldValidatorBaseFn<TValue, Control, ValidatorResult>
+    = DynamicFormFieldValidatorBaseFn<TValue, Control, ValidatorResult>,
+  ValidatorFactory extends DynamicFormFieldValidatorBaseFactory<TValue, Control, Field, ValidatorResult, ValidatorFn>
+    = DynamicFormFieldValidatorBaseFactory<TValue, Control, Field, ValidatorResult, ValidatorFn>
 > {
   private _factory: ValidatorFactory;
   private _key: string;
@@ -117,12 +124,13 @@ export abstract class DynamicFormFieldValidatorBase<
 }
 
 export abstract class DynamicFormFieldValidator<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
-  ValidatorFn extends DynamicFormFieldValidatorFn<Control> = DynamicFormFieldValidatorFn<Control>,
-  ValidatorFactory extends DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
-    = DynamicFormFieldValidatorFactory<Control, Field, ValidatorFn>
-> extends DynamicFormFieldValidatorBase<Control, Field, DynamicFormValidatorResult, ValidatorFn, ValidatorFactory> {
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
+  ValidatorFn extends DynamicFormFieldValidatorFn<TValue, Control> = DynamicFormFieldValidatorFn<TValue, Control>,
+  ValidatorFactory extends DynamicFormFieldValidatorFactory<TValue, Control, Field, ValidatorFn>
+    = DynamicFormFieldValidatorFactory<TValue, Control, Field, ValidatorFn>
+> extends DynamicFormFieldValidatorBase<TValue, Control, Field, DynamicFormValidatorResult, ValidatorFn, ValidatorFactory> {
 
   constructor(factory: ValidatorFactory, key: string, field: Field, deps?: any[]) {
     super(factory, key, field, deps);
@@ -132,12 +140,13 @@ export abstract class DynamicFormFieldValidator<
 }
 
 export abstract class DynamicFormFieldAsyncValidator<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
-  Field extends DynamicFormField<Control> = DynamicFormField<Control>,
-  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<Control> = DynamicFormFieldAsyncValidatorFn<Control>,
-  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory<Control, Field, ValidatorFn>
-    = DynamicFormFieldAsyncValidatorFactory<Control, Field, ValidatorFn>
-> extends DynamicFormFieldValidatorBase<Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn, ValidatorFactory> {
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Field extends DynamicFormField<TValue, Control> = DynamicFormField<TValue, Control>,
+  ValidatorFn extends DynamicFormFieldAsyncValidatorFn<TValue, Control> = DynamicFormFieldAsyncValidatorFn<TValue, Control>,
+  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory<TValue, Control, Field, ValidatorFn>
+    = DynamicFormFieldAsyncValidatorFactory<TValue, Control, Field, ValidatorFn>
+> extends DynamicFormFieldValidatorBase<TValue, Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn, ValidatorFactory> {
 
   constructor(factory: ValidatorFactory, key: string, field: Field, deps?: any[]) {
     super(factory, key, field, deps);

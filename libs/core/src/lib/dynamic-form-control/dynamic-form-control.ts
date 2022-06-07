@@ -15,10 +15,11 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
-  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
-> extends DynamicFormField<FormControl, Template, Definition> {
+  TValue = any,
+  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
+  Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
+  Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>
+> extends DynamicFormField<TValue, FormControl, Template, Definition> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;

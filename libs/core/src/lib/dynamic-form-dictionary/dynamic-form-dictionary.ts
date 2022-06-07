@@ -1,4 +1,4 @@
-import { FormRecord } from '@angular/forms';
+import { AbstractControl, FormRecord } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -9,9 +9,10 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
+  TValue = any,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<FormRecord, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<TValue, FormRecord<AbstractControl<TValue>>, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition, new FormRecord({}));
@@ -23,14 +24,14 @@ export class DynamicFormDictionary<
 
   get length(): number { return this._children.length; }
 
-  registerField(field: DynamicFormField): void {
+  registerField(field: DynamicFormField<TValue>): void {
     const index = this._children.findIndex(f => f.key === field.key);
     if (index >= 0) {
       this._children[index] = field;
     } else {
       this._children.push(field);
     }
-    this._control.registerControl(field.key, field.control);
+    this._control.registerControl(field.key as any, field.control as any);
     this._control.markAsTouched();
   }
 
@@ -102,7 +103,7 @@ export class DynamicFormDictionary<
   protected override initChildren(): void {
     super.initChildren();
     this._children.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
+      this._control.registerControl(field.definition.key, field.control as any);
     });
   }
 

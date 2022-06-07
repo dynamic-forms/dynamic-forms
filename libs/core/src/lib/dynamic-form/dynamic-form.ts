@@ -4,7 +4,7 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
-export class DynamicForm extends DynamicFormGroup<DynamicFormTemplate, DynamicFormDefinition> {
+export class DynamicForm<TValue = any> extends DynamicFormGroup<TValue, DynamicFormTemplate, DynamicFormDefinition> {
   private _submit: Subject<boolean>;
   private _submit$: Observable<boolean>;
 

@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormRecord } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
@@ -8,10 +8,11 @@ import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-defin
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
 
 export abstract class DynamicFormDictionaryBase<
+  TValue = any,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>,
-  Dictionary extends DynamicFormDictionary<Template, Definition> = DynamicFormDictionary<Template, Definition>
-> extends DynamicFormFieldBase<FormGroup, Template, Definition, Dictionary> {
+  Dictionary extends DynamicFormDictionary<TValue, Template, Definition> = DynamicFormDictionary<TValue, Template, Definition>
+> extends DynamicFormFieldBase<TValue, FormRecord<AbstractControl<TValue>>, Template, Definition, Dictionary> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

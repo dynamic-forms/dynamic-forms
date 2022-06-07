@@ -7,10 +7,11 @@ import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
 export abstract class DynamicFormFieldBase<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
-  Field extends DynamicFormField<Control, Template, Definition> = DynamicFormField<Control, Template, Definition>
+  Field extends DynamicFormField<TValue, Control, Template, Definition> = DynamicFormField<TValue, Control, Template, Definition>
 > extends DynamicFormElementBase<Template, Definition, Field> {
 
   constructor(protected validationService: DynamicFormValidationService) {

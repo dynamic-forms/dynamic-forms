@@ -4,7 +4,8 @@ import { DynamicFormControlHints } from './dynamic-form-control-hints';
 import { DynamicFormControlValidation } from './dynamic-form-control-validation';
 
 export interface DynamicFormControlTemplate<
-  FormInput extends DynamicFormInput = DynamicFormInput
+  TValue = any,
+  FormInput extends DynamicFormInput<TValue> = DynamicFormInput<TValue>
 > extends DynamicFormFieldTemplate<DynamicFormControlValidation> {
   input: FormInput;
   hints?: DynamicFormControlHints;

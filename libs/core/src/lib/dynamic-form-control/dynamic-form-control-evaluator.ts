@@ -4,14 +4,16 @@ import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControl } from './dynamic-form-control';
 
 export type DynamicFormControlEvaluatorFn<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Field extends DynamicFormControl<Input> = DynamicFormControl<Input>
+  TValue = any,
+  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
+  Field extends DynamicFormControl<TValue, Input> = DynamicFormControl<TValue, Input>
 > = DynamicFormFieldEvaluatorFn<Field>;
 
 export class DynamicFormControlEvaluator<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Field extends DynamicFormControl<Input> = DynamicFormControl<Input>,
-  EvaluatorFn extends DynamicFormControlEvaluatorFn<Input, Field> = DynamicFormControlEvaluatorFn<Input, Field>
+  TValue = any,
+  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
+  Field extends DynamicFormControl<TValue, Input> = DynamicFormControl<TValue, Input>,
+  EvaluatorFn extends DynamicFormControlEvaluatorFn<TValue, Input, Field> = DynamicFormControlEvaluatorFn<TValue, Input, Field>
 > extends DynamicFormFieldEvaluator<Field, EvaluatorFn> {
 
   private _inputType: string;

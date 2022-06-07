@@ -1,4 +1,4 @@
-import { FormArray } from '@angular/forms';
+import { AbstractControl, FormArray } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -9,9 +9,10 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
+  TValue = any,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<FormArray, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<TValue, FormArray<AbstractControl<TValue>>, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition, new FormArray([]));
@@ -23,9 +24,9 @@ export class DynamicFormArray<
 
   get length(): number { return this._children.length; }
 
-  pushField(element: DynamicFormField): void {
+  pushField(element: DynamicFormField<TValue>): void {
     this._children.push(element);
-    this._control.push(element.control);
+    this._control.push(element.control as any);
     this._control.markAsTouched();
   }
 
@@ -73,7 +74,7 @@ export class DynamicFormArray<
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index + 1, 0, value);
       this._control.removeAt(index);
-      this._control.insert(index + 1, field.control);
+      this._control.insert(index + 1, field.control as any);
       this._control.markAsTouched();
     }
   }
@@ -87,7 +88,7 @@ export class DynamicFormArray<
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index - 1, 0, value);
       this._control.removeAt(index);
-      this._control.insert(index - 1, field.control);
+      this._control.insert(index - 1, field.control as any);
       this._control.markAsTouched();
     }
   }
@@ -132,7 +133,7 @@ export class DynamicFormArray<
   protected override initChildren(): void {
     super.initChildren();
     this._children.forEach((field, index) => {
-      this._control.insert(index, field.control);
+      this._control.insert(index, field.control as any);
     });
   }
 

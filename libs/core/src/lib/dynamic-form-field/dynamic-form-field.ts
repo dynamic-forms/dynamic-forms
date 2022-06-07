@@ -18,7 +18,8 @@ import {
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  TValue = any,
+  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
   Child extends DynamicFormElement = DynamicFormElement

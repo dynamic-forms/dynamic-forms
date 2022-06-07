@@ -1,8 +1,8 @@
 import { DynamicFormInputOptionItem } from './dynamic-form-input-option-item';
 
-export interface DynamicFormInput {
+export interface DynamicFormInput<TValue = any> {
   type: string;
-  defaultValue?: any;
+  defaultValue?: TValue;
   placeholder?: string;
   inputType?: string;
   options?: string[] | DynamicFormInputOptionItem[];

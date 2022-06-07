@@ -8,11 +8,12 @@ import { DynamicFormControlHints } from './dynamic-form-control-hints';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 export abstract class DynamicFormControlBase<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
-  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>,
-  Control extends DynamicFormControl<Input, Template, Definition> = DynamicFormControl<Input, Template, Definition>
-> extends DynamicFormFieldBase<FormControl, Template, Definition, Control> {
+  TValue = any,
+  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
+  Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
+  Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>,
+  Control extends DynamicFormControl<TValue, Input, Template, Definition> = DynamicFormControl<TValue, Input, Template, Definition>
+> extends DynamicFormFieldBase<TValue, FormControl, Template, Definition, Control> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
@@ -9,9 +9,10 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
+  TValue = any,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
-> extends DynamicFormField<FormGroup, Template, Definition> {
+> extends DynamicFormField<TValue, FormGroup<{ [Key in keyof TValue ]: AbstractControl<TValue[Key]> }>, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
@@ -23,7 +24,7 @@ export class DynamicFormGroup<
       ? { root: params[0], parent: params[1], definition: params[2], model: null }
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
-    this._control = new FormGroup({});
+    this._control = new FormGroup<{ [Key in keyof TValue ]: AbstractControl<TValue[Key]> }>({} as any);
     this._model = model || this.getModel(definition);
     this._parameters = {};
   }
@@ -77,7 +78,7 @@ export class DynamicFormGroup<
     super.initChildren();
     this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
+      this._control.registerControl(field.definition.key as any, field.control as any);
     });
   }
 

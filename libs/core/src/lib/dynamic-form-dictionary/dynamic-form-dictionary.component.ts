@@ -10,10 +10,11 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
   templateUrl: './dynamic-form-dictionary.component.html',
 })
 export class DynamicFormDictionaryComponent<
+  TValue = any,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>,
-  Dictionary extends DynamicFormDictionary<Template, Definition> = DynamicFormDictionary<Template, Definition>
-> extends DynamicFormDictionaryBase<Template, Definition, Dictionary> {
+  Dictionary extends DynamicFormDictionary<TValue, Template, Definition> = DynamicFormDictionary<TValue, Template, Definition>
+> extends DynamicFormDictionaryBase<TValue, Template, Definition, Dictionary> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
