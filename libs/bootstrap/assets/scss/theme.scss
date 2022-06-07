@@ -7,8 +7,8 @@ $dynamic-form-errors-margin-top: null !default;
   .dynamic-form {
     margin: $dynamic-form-margin;
 
-    $blue: $dynamic-form-blue;
-    $red: $dynamic-form-red;
+    $blue: $dynamic-form-color-blue;
+    $red: $dynamic-form-color-red;
 
     $enable-rfs: false;
 
@@ -30,7 +30,7 @@ $dynamic-form-errors-margin-top: null !default;
     @import '~bootstrap/scss/nav';
     @import '~bootstrap/scss/card';
     @import '~bootstrap/scss/modal';
-            
+
     &.grid {
       .row {
         bs-dynamic-form-button,
@@ -51,12 +51,12 @@ $dynamic-form-errors-margin-top: null !default;
 
     .dynamic-form-field-hints.form-text {
       display: flex;
-    
+
       .hint-spacer {
         flex: 1 0 1em;
       }
     }
-  
+
     .dynamic-form-header {
       @include dynamic-form-flex-container(
         $width: 100%,
@@ -66,7 +66,7 @@ $dynamic-form-errors-margin-top: null !default;
 
       .dynamic-form-label {
         @include dynamic-form-label(
-          $font-size: $dynamic-form-label-font-size, 
+          $font-size: $dynamic-form-label-font-size,
           $font-weight: $dynamic-form-label-font-weight,
           $font-weight-bold: $dynamic-form-label-font-weight-bold
         );
@@ -84,7 +84,7 @@ $dynamic-form-errors-margin-top: null !default;
       @include dynamic-form-errors(
         $color: $dynamic-form-errors-color,
         $font-size: $dynamic-form-errors-font-size,
-        $margin-top: $dynamic-form-errors-margin-top, 
+        $margin-top: $dynamic-form-errors-margin-top,
         $margin-bottom: $dynamic-form-errors-margin-bottom
       );
     }
@@ -105,7 +105,7 @@ $dynamic-form-errors-margin-top: null !default;
       .dynamic-form-group-header {
         @include dynamic-form-flex-container(
           $width: 100%,
-          $margin-top: 0, 
+          $margin-top: 0,
           $margin-bottom: 0.5rem,
           $align-items: center
         );
@@ -116,7 +116,7 @@ $dynamic-form-errors-margin-top: null !default;
             $font-weight-bold: $dynamic-form-label-font-weight-bold
           );
         }
-        
+
         .dynamic-form-group-toolbar {
           @include dynamic-form-toolbar(
             $flex: 1 1 0,
@@ -129,7 +129,7 @@ $dynamic-form-errors-margin-top: null !default;
         @include dynamic-form-errors(
           $color: $dynamic-form-errors-color,
           $font-size: $dynamic-form-errors-font-size,
-          $margin-top: $dynamic-form-errors-margin-top,  
+          $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
         );
       }
@@ -151,7 +151,7 @@ $dynamic-form-errors-margin-top: null !default;
       .dynamic-form-array-header {
         @include dynamic-form-flex-container(
           $width: 100%,
-          $margin-top: 0, 
+          $margin-top: 0,
           $margin-bottom: 0.5rem,
           $align-items: center
         );
@@ -162,7 +162,7 @@ $dynamic-form-errors-margin-top: null !default;
             $font-weight-bold: $dynamic-form-label-font-weight-bold
           );
         }
-        
+
         .dynamic-form-array-toolbar {
           @include dynamic-form-toolbar(
             $flex: 1 1 0,
@@ -170,12 +170,12 @@ $dynamic-form-errors-margin-top: null !default;
           );
         }
       }
-      
+
       .dynamic-form-array-errors {
         @include dynamic-form-errors(
           $color: $dynamic-form-errors-color,
-          $font-size: $dynamic-form-errors-font-size, 
-          $margin-top: $dynamic-form-errors-margin-top, 
+          $font-size: $dynamic-form-errors-font-size,
+          $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
         );
       }
@@ -197,7 +197,7 @@ $dynamic-form-errors-margin-top: null !default;
       .dynamic-form-dictionary-header {
         @include dynamic-form-flex-container(
           $width: 100%,
-          $margin-top: 0, 
+          $margin-top: 0,
           $margin-bottom: 0.5rem,
           $align-items: center
         );
@@ -208,7 +208,7 @@ $dynamic-form-errors-margin-top: null !default;
             $font-weight-bold: $dynamic-form-label-font-weight-bold
           );
         }
-        
+
         .dynamic-form-dictionary-toolbar {
           @include dynamic-form-toolbar(
             $flex: 1 1 0,
@@ -216,12 +216,12 @@ $dynamic-form-errors-margin-top: null !default;
           );
         }
       }
-      
+
       .dynamic-form-dictionary-errors {
         @include dynamic-form-errors(
           $color: $dynamic-form-errors-color,
           $font-size: $dynamic-form-errors-font-size,
-          $margin-top: $dynamic-form-errors-margin-top,  
+          $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
         );
       }
@@ -257,7 +257,7 @@ $dynamic-form-errors-margin-top: null !default;
           label:before {
             pointer-events: none;
           }
-          
+
           &.form-switch {
             .form-check-input {
               visibility: hidden;
@@ -281,18 +281,18 @@ $dynamic-form-errors-margin-top: null !default;
 
             &:hover {
               background-color: rgb(229, 230, 231);
-              border-color: rgb(229, 230, 231);  
+              border-color: rgb(229, 230, 231);
             }
 
             &.disabled {
               color: rgba(0, 0, 0, 0.5);
               background-color: rgb(249, 250, 251);
-              border-color: rgb(249, 250, 251);  
+              border-color: rgb(249, 250, 251);
             }
 
             &.active {
               background-color: rgb(219, 220, 221);
-              border-color: rgb(219, 220, 221);  
+              border-color: rgb(219, 220, 221);
             }
           }
         }
@@ -316,7 +316,7 @@ $dynamic-form-errors-margin-top: null !default;
 
     .dynamic-form-modal {
       background-color: rgba(0, 0, 0, 0.32);
-      
+
       &.modal {
         display: block;
       }
@@ -363,13 +363,13 @@ $dynamic-form-errors-margin-top: null !default;
       .modal-footer {
         &.content-end {
           justify-content: flex-end;
-  
+
           button {
             margin-left: 10px;
             margin-right: 0px;
           }
         }
-  
+
         button {
           margin-left: 0px;
           margin-right: 10px;
@@ -380,7 +380,7 @@ $dynamic-form-errors-margin-top: null !default;
     .dynamic-form-accordion {
       .accordion-header {
         cursor: pointer;
-        
+
         &.disabled {
           cursor: default;
           pointer-events: none;
@@ -388,7 +388,7 @@ $dynamic-form-errors-margin-top: null !default;
         }
       }
     }
-    
+
     .dynamic-form-tabs {
       .tab-pane {
         padding: 0 10px;
