@@ -1,19 +1,24 @@
-import { FormArray } from '@angular/forms';
+import { FormArrayBase } from '../dynamic-form-field/dynamic-form-field-control';
 import {
   DynamicFormFieldAsyncValidatorFn, DynamicFormFieldAsyncValidatorFactory,DynamicFormFieldValidatorFactory,
   DynamicFormFieldValidatorFn, DynamicFormFieldAsyncValidator, DynamicFormFieldValidator,
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormArray } from './dynamic-form-array';
 
-export type DynamicFormArrayValidatorFn = DynamicFormFieldValidatorFn<any, FormArray>;
+export type DynamicFormArrayValidatorFn<TValue = any> =
+  DynamicFormFieldValidatorFn<TValue[], FormArrayBase<TValue>>;
 
-export type DynamicFormArrayAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<any, FormArray>;
+export type DynamicFormArrayAsyncValidatorFn<TValue = any> =
+  DynamicFormFieldAsyncValidatorFn<TValue[], FormArrayBase<TValue>>;
 
-export type DynamicFormArrayValidatorFactory = DynamicFormFieldValidatorFactory<any, FormArray, DynamicFormArray>;
+export type DynamicFormArrayValidatorFactory<TValue = any, TModel extends TValue = TValue> =
+  DynamicFormFieldValidatorFactory<TValue[], TModel[], FormArrayBase<TValue>, DynamicFormArray<TValue, TModel>>;
 
-export type DynamicFormArrayAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<any, FormArray, DynamicFormArray>;
+export type DynamicFormArrayAsyncValidatorFactory<TValue = any, TModel extends TValue = TValue> =
+  DynamicFormFieldAsyncValidatorFactory<TValue[], TModel[], FormArrayBase<TValue>, DynamicFormArray<TValue, TModel>>;
 
-export class DynamicFormArrayValidator extends DynamicFormFieldValidator<any, FormArray, DynamicFormArray> {
+export class DynamicFormArrayValidator<TValue = any, TModel extends TValue = TValue>
+  extends DynamicFormFieldValidator<TValue[], TModel[], FormArrayBase<TValue>, DynamicFormArray<TValue, TModel>> {
 
   constructor(factory: DynamicFormArrayValidatorFactory, key: string, field: DynamicFormArray, deps?: any[]) {
     super(factory, key, field, deps);
@@ -24,7 +29,8 @@ export class DynamicFormArrayValidator extends DynamicFormFieldValidator<any, Fo
   }
 }
 
-export class DynamicFormArrayAsyncValidator extends DynamicFormFieldAsyncValidator<any, FormArray, DynamicFormArray> {
+export class DynamicFormArrayAsyncValidator<TValue = any, TModel extends TValue = TValue>
+  extends DynamicFormFieldAsyncValidator<TValue[], TModel[], FormArrayBase<TValue>, DynamicFormArray<TValue, TModel>> {
 
   constructor(factory: DynamicFormArrayAsyncValidatorFactory, key: string, field: DynamicFormArray, deps?: any[]) {
     super(factory, key, field, deps);

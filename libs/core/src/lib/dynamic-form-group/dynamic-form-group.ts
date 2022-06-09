@@ -1,7 +1,7 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
@@ -9,22 +9,22 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
-  TValue = any,
+  TValue = any, TModel extends TValue = TValue,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
-> extends DynamicFormField<TValue, FormGroup<{ [Key in keyof TValue ]: AbstractControl<TValue[Key]> }>, Template, Definition> {
+> extends DynamicFormField<TValue, TModel, FormGroupBase<TValue>, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition);
   /** @internal */
-  constructor(builder: DynamicFormBuilder, definition: Definition, model: any);
+  constructor(builder: DynamicFormBuilder, definition: Definition, model: TModel);
   constructor(builder: DynamicFormBuilder, ...params: any[]) {
     const { root, parent, definition, model } = params.length === 3
       ? { root: params[0], parent: params[1], definition: params[2], model: null }
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
-    this._control = new FormGroup<{ [Key in keyof TValue ]: AbstractControl<TValue[Key]> }>({} as any);
+    this._control = new FormGroupBase<TValue>({} as any);
     this._model = model || this.getModel(definition);
     this._parameters = {};
   }

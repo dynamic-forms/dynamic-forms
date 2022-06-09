@@ -1,7 +1,7 @@
-import { AbstractControl, FormRecord } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormRecordBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
@@ -9,13 +9,14 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
-  TValue = any,
+  TValue = any, TModel extends TValue = TValue,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<TValue, FormRecord<AbstractControl<TValue>>, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<{ [key: string]: TValue }, { [key: string]: TModel }, FormRecordBase<TValue>,
+    Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormRecord({}));
+    super(builder, root, parent, definition, new FormRecordBase({}));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }

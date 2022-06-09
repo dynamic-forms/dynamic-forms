@@ -18,7 +18,7 @@ import {
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
-  TValue = any,
+  TValue = any, TModel extends TValue = TValue,
   Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
@@ -28,7 +28,7 @@ export abstract class DynamicFormField<
   protected _settings: DynamicFormFieldSettings;
 
   protected _depth: number;
-  protected _model: any;
+  protected _model: TModel;
   protected _parameters: any;
 
   protected _control: Control;

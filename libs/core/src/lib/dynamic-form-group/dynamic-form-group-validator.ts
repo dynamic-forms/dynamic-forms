@@ -1,19 +1,25 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import {
   DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldAsyncValidatorFn,
   DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn,
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormGroup } from './dynamic-form-group';
 
-export type DynamicFormGroupValidatorFn = DynamicFormFieldValidatorFn<any, FormGroup>;
+export type DynamicFormGroupValidatorFn<TValue = any> =
+  DynamicFormFieldValidatorFn<TValue, FormGroupBase<TValue>>;
 
-export type DynamicFormGroupAsyncValidatorFn = DynamicFormFieldAsyncValidatorFn<any, FormGroup>;
+export type DynamicFormGroupAsyncValidatorFn<TValue = any> =
+  DynamicFormFieldAsyncValidatorFn<TValue, FormGroupBase<TValue>>;
 
-export type DynamicFormGroupValidatorFactory = DynamicFormFieldValidatorFactory<any, FormGroup, DynamicFormGroup>;
+export type DynamicFormGroupValidatorFactory<TValue = any, TModel extends TValue = TValue> =
+  DynamicFormFieldValidatorFactory<TValue, TModel, FormGroupBase<TValue>, DynamicFormGroup<TValue, TModel>>;
 
-export type DynamicFormGroupAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory<any, FormGroup, DynamicFormGroup>;
+export type DynamicFormGroupAsyncValidatorFactory<TValue = any, TModel extends TValue = TValue> =
+  DynamicFormFieldAsyncValidatorFactory<TValue, TModel, FormGroupBase<TValue>, DynamicFormGroup<TValue, TModel>>;
 
-export class DynamicFormGroupValidator extends DynamicFormFieldValidator<any, FormGroup, DynamicFormGroup> {
+export class DynamicFormGroupValidator<TValue = any, TModel extends TValue = TValue>
+  extends DynamicFormFieldValidator<TValue, TModel, FormGroupBase<TValue>, DynamicFormGroup<TValue, TModel>> {
+
   constructor(factory: DynamicFormGroupValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
     super(factory, key, field, deps);
   }
@@ -23,7 +29,9 @@ export class DynamicFormGroupValidator extends DynamicFormFieldValidator<any, Fo
   }
 }
 
-export class DynamicFormGroupAsyncValidator extends DynamicFormFieldAsyncValidator<any, FormGroup, DynamicFormGroup> {
+export class DynamicFormGroupAsyncValidator<TValue = any, TModel extends TValue = TValue>
+  extends DynamicFormFieldAsyncValidator<TValue, TModel, FormGroupBase<TValue>, DynamicFormGroup> {
+
   constructor(factory: DynamicFormGroupAsyncValidatorFactory, key: string, field: DynamicFormGroup, deps?: any[]) {
     super(factory, key, field, deps);
   }

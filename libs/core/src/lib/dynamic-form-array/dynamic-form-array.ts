@@ -1,7 +1,7 @@
-import { AbstractControl, FormArray } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormArrayBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
@@ -9,13 +9,13 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
-  TValue = any,
+  TValue = any, TModel extends TValue = TValue,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<TValue, FormArray<AbstractControl<TValue>>, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<TValue[], TModel[], FormArrayBase<TValue>, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormArray([]));
+    super(builder, root, parent, definition, new FormArrayBase<TValue>([]));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }

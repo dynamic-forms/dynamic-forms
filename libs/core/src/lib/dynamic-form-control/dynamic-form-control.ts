@@ -1,10 +1,10 @@
-import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormControlBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -19,7 +19,7 @@ export class DynamicFormControl<
   Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
   Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
   Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>
-> extends DynamicFormField<TValue, FormControl, Template, Definition> {
+> extends DynamicFormField<TValue, TValue, FormControlBase<TValue>, Template, Definition> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
@@ -116,9 +116,9 @@ export class DynamicFormControl<
     return this.parentField.model[this.key];
   }
 
-  private createControl(): FormControl {
+  private createControl(): FormControlBase<TValue> {
     const options = { updateOn: this.getUpdateOn() };
-    return new FormControl(this._model, options);
+    return new FormControlBase<TValue>(this._model, options);
   }
 
   private createValueSubscription(): Subscription {
