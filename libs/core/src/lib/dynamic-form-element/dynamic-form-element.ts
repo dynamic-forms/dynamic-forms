@@ -96,7 +96,7 @@ export class DynamicFormElement<
     }
     switch (parent.classType) {
       case 'field':
-        return parent as any as DynamicFormField;
+        return parent as DynamicFormField;
       default:
         return this.getParentField(root, parent.parent);
     }

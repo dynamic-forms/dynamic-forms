@@ -1,28 +1,20 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, FormRecord } from '@angular/forms';
+import { Observable } from 'rxjs';
 
-export type FormGroupControls<TValue> = { [Key in keyof TValue ]: AbstractControl<TValue[Key]> };
+export type DynamicFormFieldControl<TValue> = AbstractControl<TValue>;
 
-export class FormControlBase<TValue> extends FormControl<TValue> {}
+export class FormControlBase<TValue> extends FormControl<TValue>
+  implements DynamicFormFieldControl<TValue> {}
 
-export class FormGroupBase<TValue extends { [key: string]: any }> extends FormGroup<FormGroupControls<TValue>> {}
+export class FormGroupBase<TValue extends { [key: string]: any }>
+  extends FormGroup<{ [Key in keyof TValue]: AbstractControl<TValue[Key]> }>
+    implements DynamicFormFieldControl<TValue> {
+      override readonly value: TValue;
+      override readonly valueChanges: Observable<TValue>;
+    }
 
-export class FormArrayBase<TValue> extends FormArray<AbstractControl<TValue>> {}
+export class FormArrayBase<TValue> extends FormArray<AbstractControl<TValue>>
+  implements DynamicFormFieldControl<TValue[]> {}
 
-export class FormRecordBase<TValue> extends FormRecord<AbstractControl<TValue>> {}
-
-export type DynamicFormFieldControl<TValue> = AbstractControl<TValue> |
-  FormControlBase<TValue> | FormGroupBase<TValue> | FormArrayBase<TValue> | FormRecordBase<TValue>;
-
-/*
-export const createFormControl: <TValue>(value: TValue, options: FormControlOptions) => FormControlBase<TValue> =
-  <TValue>(value: TValue, options: FormControlOptions) => new FormControl<TValue>(value, options);
-
-export const createFormGroup: <TValue>() => FormGroupBase<TValue> = <TValue>() =>
-  new FormGroup<FormGroupControls<TValue>>({} as any);
-
-export const createFormArray: <TValue>() => FormArrayBase<TValue> = <TValue>() =>
-  new FormArray<AbstractControl<TValue>>([]);
-
-export const createFormRecord: <TValue>() => FormRecordBase<TValue> = <TValue>() =>
-  new FormRecord<AbstractControl<TValue>>({});
-*/
+export class FormRecordBase<TValue> extends FormRecord<AbstractControl<TValue>>
+  implements DynamicFormFieldControl<{ [key: string]: TValue }> {}

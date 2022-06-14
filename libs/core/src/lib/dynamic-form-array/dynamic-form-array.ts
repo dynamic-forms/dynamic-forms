@@ -24,9 +24,9 @@ export class DynamicFormArray<
 
   get length(): number { return this._children.length; }
 
-  pushField(element: DynamicFormField<TValue>): void {
+  pushField(element: DynamicFormField<TValue, TModel>): void {
     this._children.push(element);
-    this._control.push(element.control as any);
+    this._control.push(element.control);
     this._control.markAsTouched();
   }
 
@@ -74,7 +74,7 @@ export class DynamicFormArray<
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index + 1, 0, value);
       this._control.removeAt(index);
-      this._control.insert(index + 1, field.control as any);
+      this._control.insert(index + 1, field.control);
       this._control.markAsTouched();
     }
   }
@@ -88,7 +88,7 @@ export class DynamicFormArray<
       const value = this._model.splice(index, 1)[0];
       this._model.splice(index - 1, 0, value);
       this._control.removeAt(index);
-      this._control.insert(index - 1, field.control as any);
+      this._control.insert(index - 1, field.control);
       this._control.markAsTouched();
     }
   }
@@ -133,7 +133,7 @@ export class DynamicFormArray<
   protected override initChildren(): void {
     super.initChildren();
     this._children.forEach((field, index) => {
-      this._control.insert(index, field.control as any);
+      this._control.insert(index, field.control);
     });
   }
 

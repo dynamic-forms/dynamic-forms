@@ -9,7 +9,7 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
-  TValue = any, TModel extends TValue = TValue,
+  TValue extends { [key: string]: any } = any, TModel extends TValue = TValue,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
 > extends DynamicFormField<TValue, TModel, FormGroupBase<TValue>, Template, Definition> {
@@ -78,7 +78,7 @@ export class DynamicFormGroup<
     super.initChildren();
     this._fields = this.filterFields(this._children);
     this._fields.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key as any, field.control as any);
+      this._control.registerControl(field.definition.key, field.control);
     });
   }
 

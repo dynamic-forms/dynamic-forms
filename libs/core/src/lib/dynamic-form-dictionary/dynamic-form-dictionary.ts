@@ -25,14 +25,14 @@ export class DynamicFormDictionary<
 
   get length(): number { return this._children.length; }
 
-  registerField(field: DynamicFormField<TValue>): void {
+  registerField(field: DynamicFormField<TValue, TModel>): void {
     const index = this._children.findIndex(f => f.key === field.key);
     if (index >= 0) {
       this._children[index] = field;
     } else {
       this._children.push(field);
     }
-    this._control.registerControl(field.key as any, field.control as any);
+    this._control.registerControl(field.key, field.control);
     this._control.markAsTouched();
   }
 
@@ -104,7 +104,7 @@ export class DynamicFormDictionary<
   protected override initChildren(): void {
     super.initChildren();
     this._children.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control as any);
+      this._control.registerControl(field.definition.key, field.control);
     });
   }
 
