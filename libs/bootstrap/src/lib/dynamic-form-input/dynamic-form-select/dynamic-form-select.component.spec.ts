@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
-  DynamicFormSelect, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 import { BsDynamicFormSelectModule } from './dynamic-form-select.module';
 
@@ -11,8 +11,8 @@ describe('BsDynamicFormSelectComponent', () => {
   let component: BsDynamicFormSelectComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormSelect>;
-  let formControl: DynamicFormControl<DynamicFormSelect>;
+  let definition: DynamicFormSelectDefinition;
+  let formControl: DynamicFormSelectControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -64,8 +64,8 @@ describe('BsDynamicFormSelectComponent', () => {
           ],
         },
       },
-    } as DynamicFormControlDefinition<DynamicFormSelect>;
-    formControl = new DynamicFormControl<DynamicFormSelect>(builder, form, form, definition);
+    } as DynamicFormSelectDefinition;
+    formControl = new DynamicFormSelectControl(builder, form, form, definition);
 
     component.field = formControl;
 

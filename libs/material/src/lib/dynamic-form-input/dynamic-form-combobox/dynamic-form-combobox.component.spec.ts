@@ -2,9 +2,9 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormCombobox, DynamicFormConfigService,
-  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFormComboboxDefinition,
+  DynamicFormConfigService, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { MatDynamicFormComboboxModule } from './dynamic-form-combobox.module';
 
@@ -13,8 +13,8 @@ describe('MatDynamicFormComboboxComponent', () => {
   let component: MatDynamicFormComboboxComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
-  let formControl: DynamicFormControl<DynamicFormCombobox>;
+  let definition: DynamicFormComboboxDefinition;
+  let formControl: DynamicFormComboboxControl;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -50,8 +50,8 @@ describe('MatDynamicFormComboboxComponent', () => {
           ],
         },
       },
-    } as DynamicFormControlDefinition<DynamicFormCombobox>;
-    formControl = new DynamicFormControl<DynamicFormCombobox>(builder, form, form, definition);
+    } as DynamicFormComboboxDefinition;
+    formControl = new DynamicFormComboboxControl(builder, form, form, definition);
 
     component.field = formControl;
 

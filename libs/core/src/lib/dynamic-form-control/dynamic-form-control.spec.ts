@@ -527,8 +527,8 @@ describe('DynamicFormControl', () => {
             ],
           },
         },
-      } as DynamicFormControlDefinition<string, DynamicFormSelect>;
-      const formControl = new DynamicFormControl<string, DynamicFormSelect>(builder, root, root, definition);
+      } as DynamicFormControlDefinition<string | string[], DynamicFormSelect<string>>;
+      const formControl = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, root, root, definition);
       const formControlEvaluators = [
         { enabled: true, func: dynamicFormSelectEvaluatorFn },
       ] as DynamicFormControlEvaluator[];

@@ -6,9 +6,9 @@ import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-fo
 import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-base';
 import { FormControlBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormInput } from './dynamic-form-input';
+import { DynamicFormInput, DynamicFormInputValue } from './dynamic-form-input';
 
-export abstract class DynamicFormInputBase<
+export abstract class DynamicFormInputBaseImpl<
   TValue = any,
   Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
   Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
@@ -26,4 +26,15 @@ export abstract class DynamicFormInputBase<
 
   get hints(): DynamicFormControlHints { return this.template.hints; }
   get validation(): DynamicFormControlValidation { return this.template.validation; }
+}
+
+
+
+export abstract class DynamicFormInputBase<
+  Input extends DynamicFormInput = DynamicFormInput
+> extends DynamicFormInputBaseImpl<DynamicFormInputValue<Input>, Input> {
+
+  constructor(protected override validationService: DynamicFormValidationService) {
+    super(validationService);
+  }
 }
