@@ -8,12 +8,12 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 export abstract class DynamicFormControlWrapperBase<
-  TValue = any,
-  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
-  Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
-  Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>,
-  Control extends DynamicFormControl<TValue, Input, Template, Definition> = DynamicFormControl<TValue, Input, Template, Definition>
-> extends DynamicFormFieldWrapperBase<TValue, TValue, FormControlBase<TValue>, Template, Definition, Control> {
+  Value = any,
+  Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
+  Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
+  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
+  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>
+> extends DynamicFormFieldWrapperBase<Value, Value, FormControlBase<Value>, Template, Definition, Control> {
 
   constructor(
     protected override containerRef: ViewContainerRef,

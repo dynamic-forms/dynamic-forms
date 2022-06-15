@@ -5,20 +5,20 @@ import {
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormControl } from './dynamic-form-control';
 
-export type DynamicFormControlValidatorFn<TValue = any> =
-  DynamicFormFieldValidatorFn<TValue, FormControlBase<TValue>>;
+export type DynamicFormControlValidatorFn<Value = any> =
+  DynamicFormFieldValidatorFn<Value, FormControlBase<Value>>;
 
-export type DynamicFormControlAsyncValidatorFn<TValue = any> =
-  DynamicFormFieldAsyncValidatorFn<TValue, FormControlBase<TValue>>;
+export type DynamicFormControlAsyncValidatorFn<Value = any> =
+  DynamicFormFieldAsyncValidatorFn<Value, FormControlBase<Value>>;
 
-export type DynamicFormControlValidatorFactory<TValue = any> =
-  DynamicFormFieldValidatorFactory<TValue, TValue, FormControlBase<TValue>, DynamicFormControl<TValue>>;
+export type DynamicFormControlValidatorFactory<Value = any> =
+  DynamicFormFieldValidatorFactory<Value, Value, FormControlBase<Value>, DynamicFormControl<Value>>;
 
-export type DynamicFormControlAsyncValidatorFactory<TValue = any> =
-  DynamicFormFieldAsyncValidatorFactory<TValue, TValue, FormControlBase<TValue>, DynamicFormControl<TValue>>;
+export type DynamicFormControlAsyncValidatorFactory<Value = any> =
+  DynamicFormFieldAsyncValidatorFactory<Value, Value, FormControlBase<Value>, DynamicFormControl<Value>>;
 
-export class DynamicFormControlValidator<TValue = any>
-  extends DynamicFormFieldValidator<TValue, TValue, FormControlBase<TValue>, DynamicFormControl<TValue>> {
+export class DynamicFormControlValidator<Value = any>
+  extends DynamicFormFieldValidator<Value, Value, FormControlBase<Value>, DynamicFormControl<Value>> {
 
   constructor(factory: DynamicFormControlValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);
@@ -29,8 +29,8 @@ export class DynamicFormControlValidator<TValue = any>
   }
 }
 
-export class DynamicFormControlAsyncValidator<TValue = any>
-  extends DynamicFormFieldAsyncValidator<TValue, TValue, FormControlBase<TValue>, DynamicFormControl<TValue>> {
+export class DynamicFormControlAsyncValidator<Value = any>
+  extends DynamicFormFieldAsyncValidator<Value, Value, FormControlBase<Value>, DynamicFormControl<Value>> {
 
   constructor(factory: DynamicFormControlAsyncValidatorFactory, key: string, field: DynamicFormControl, deps?: any[]) {
     super(factory, key, field, deps);

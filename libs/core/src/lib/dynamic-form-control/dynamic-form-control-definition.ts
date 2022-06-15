@@ -3,9 +3,9 @@ import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 export interface DynamicFormControlDefinition<
-  TValue = any,
-  FormInput extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
-  Template extends DynamicFormControlTemplate<TValue, FormInput> = DynamicFormControlTemplate<TValue, FormInput>
+  Value = any,
+  FormInput extends DynamicFormInput<Value> = DynamicFormInput<Value>,
+  Template extends DynamicFormControlTemplate<Value, FormInput> = DynamicFormControlTemplate<Value, FormInput>
 > extends DynamicFormFieldDefinition<Template> {
   children?: undefined;
   headerActions?: undefined;

@@ -9,15 +9,15 @@ import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 @Directive()
 // eslint-disable-next-line @angular-eslint/directive-class-suffix
 export abstract class DynamicFormFieldWrapperBase<
-  TValue = any, TModel extends TValue = TValue,
-  Control extends DynamicFormFieldControl<TValue> = DynamicFormFieldControl<TValue>,
+  Value = any, Model extends Value = Value,
+  Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
-  Field extends DynamicFormField<TValue, TModel, Control, Template, Definition> =
-    DynamicFormField<TValue, TModel, Control, Template, Definition>
-> extends DynamicFormFieldBase<TValue, TModel, Control, Template, Definition, Field> implements AfterViewInit {
+  Field extends DynamicFormField<Value, Model, Control, Template, Definition> =
+    DynamicFormField<Value, Model, Control, Template, Definition>
+> extends DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field> implements AfterViewInit {
 
-  component: DynamicFormFieldBase<TValue, TModel, Control, Template, Definition, Field>;
+  component: DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field>;
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;

@@ -10,11 +10,11 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
   templateUrl: './dynamic-form-array.component.html',
 })
 export class DynamicFormArrayComponent<
-  TValue = any, TModel extends TValue = TValue,
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
-  Array extends DynamicFormArray<TValue, TModel, Template, Definition> = DynamicFormArray<TValue, TModel, Template, Definition>
-> extends DynamicFormArrayBase<TValue, TModel, Template, Definition, Array> {
+  Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>
+> extends DynamicFormArrayBase<Value, Model, Template, Definition, Array> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

@@ -10,11 +10,11 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
   templateUrl: './dynamic-form-group.component.html',
 })
 export class DynamicFormGroupComponent<
-  TValue = any, TModel extends TValue = TValue,
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>,
-  Group extends DynamicFormGroup<TValue, TModel, Template, Definition> = DynamicFormGroup<TValue, TModel, Template, Definition>
-> extends DynamicFormGroupBase<TValue, TModel, Template, Definition, Group> {
+  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
+> extends DynamicFormGroupBase<Value, Model, Template, Definition, Group> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

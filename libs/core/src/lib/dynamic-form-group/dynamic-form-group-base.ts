@@ -8,11 +8,11 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 export abstract class DynamicFormGroupBase<
-  TValue extends { [key: string]: any } = any, TModel extends TValue = TValue,
+  Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>,
-  Group extends DynamicFormGroup<TValue, TModel, Template, Definition> = DynamicFormGroup<TValue, TModel, Template, Definition>
-> extends DynamicFormFieldBase<TValue, TModel, FormGroupBase<TValue>, Template, Definition, Group> {
+  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
+> extends DynamicFormFieldBase<Value, Model, FormGroupBase<Value>, Template, Definition, Group> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);

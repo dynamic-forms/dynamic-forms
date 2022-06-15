@@ -9,22 +9,22 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
-  TValue extends { [key: string]: any } = any, TModel extends TValue = TValue,
+  Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
-> extends DynamicFormField<TValue, TModel, FormGroupBase<TValue>, Template, Definition> {
+> extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition);
   /** @internal */
-  constructor(builder: DynamicFormBuilder, definition: Definition, model: TModel);
+  constructor(builder: DynamicFormBuilder, definition: Definition, model: Model);
   constructor(builder: DynamicFormBuilder, ...params: any[]) {
     const { root, parent, definition, model } = params.length === 3
       ? { root: params[0], parent: params[1], definition: params[2], model: null }
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
-    this._control = new FormGroupBase<TValue>({} as any);
+    this._control = new FormGroupBase<Value>({} as any);
     this._model = model || this.getModel(definition);
     this._parameters = {};
   }

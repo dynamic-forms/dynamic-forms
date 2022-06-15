@@ -15,11 +15,11 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
-  TValue = any,
-  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>,
-  Template extends DynamicFormControlTemplate<TValue, Input> = DynamicFormControlTemplate<TValue, Input>,
-  Definition extends DynamicFormControlDefinition<TValue, Input, Template> = DynamicFormControlDefinition<TValue, Input, Template>
-> extends DynamicFormField<TValue, TValue, FormControlBase<TValue>, Template, Definition> {
+  Value = any,
+  Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
+  Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
+  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>
+> extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
@@ -116,9 +116,9 @@ export class DynamicFormControl<
     return this.parentField.model[this.key];
   }
 
-  private createControl(): FormControlBase<TValue> {
+  private createControl(): FormControlBase<Value> {
     const options = { updateOn: this.getUpdateOn() };
-    return new FormControlBase<TValue>(this._model, options);
+    return new FormControlBase<Value>(this._model, options);
   }
 
   private createValueSubscription(): Subscription {

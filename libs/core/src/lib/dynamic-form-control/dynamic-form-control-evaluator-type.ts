@@ -4,9 +4,9 @@ import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library
 import { DynamicFormControl } from './dynamic-form-control';
 
 export interface DynamicFormControlEvaluatorType<
-  TValue = any,
-  Input extends DynamicFormInput<TValue> = DynamicFormInput<TValue>
-> extends DynamicFormFieldEvaluatorType<DynamicFormControl<TValue, Input>> {
+  Value = any,
+  Input extends DynamicFormInput<Value> = DynamicFormInput<Value>
+> extends DynamicFormFieldEvaluatorType<DynamicFormControl<Value, Input>> {
   inputType?: string;
 }
 

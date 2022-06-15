@@ -1,5 +1,9 @@
 # Changelog
 
+## 14.1.0-next.0
+
+* **core:** make use of typed reactive forms
+
 ## 14.0.1 (2022-06-07)
 
 ### Features

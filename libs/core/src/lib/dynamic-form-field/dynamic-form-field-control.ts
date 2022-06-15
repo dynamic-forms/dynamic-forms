@@ -1,20 +1,20 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, FormRecord } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-export type DynamicFormFieldControl<TValue> = AbstractControl<TValue>;
+export type DynamicFormFieldControl<Value> = AbstractControl<Value>;
 
-export class FormControlBase<TValue> extends FormControl<TValue>
-  implements DynamicFormFieldControl<TValue> {}
+export class FormControlBase<Value> extends FormControl<Value>
+  implements DynamicFormFieldControl<Value> {}
 
-export class FormGroupBase<TValue extends { [key: string]: any }>
-  extends FormGroup<{ [Key in keyof TValue]: AbstractControl<TValue[Key]> }>
-    implements DynamicFormFieldControl<TValue> {
-      override readonly value: TValue;
-      override readonly valueChanges: Observable<TValue>;
+export class FormGroupBase<Value extends { [key: string]: any }>
+  extends FormGroup<{ [Key in keyof Value]: AbstractControl<Value[Key]> }>
+    implements DynamicFormFieldControl<Value> {
+      override readonly value: Value;
+      override readonly valueChanges: Observable<Value>;
     }
 
-export class FormArrayBase<TValue> extends FormArray<AbstractControl<TValue>>
-  implements DynamicFormFieldControl<TValue[]> {}
+export class FormArrayBase<Value> extends FormArray<AbstractControl<Value>>
+  implements DynamicFormFieldControl<Value[]> {}
 
-export class FormRecordBase<TValue> extends FormRecord<AbstractControl<TValue>>
-  implements DynamicFormFieldControl<{ [key: string]: TValue }> {}
+export class FormRecordBase<Value> extends FormRecord<AbstractControl<Value>>
+  implements DynamicFormFieldControl<{ [key: string]: Value }> {}

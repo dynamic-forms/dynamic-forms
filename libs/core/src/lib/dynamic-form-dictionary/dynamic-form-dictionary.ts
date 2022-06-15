@@ -9,10 +9,10 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
-  TValue = any, TModel extends TValue = TValue,
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<{ [key: string]: TValue }, { [key: string]: TModel }, FormRecordBase<TValue>,
+> extends DynamicFormField<{ [key: string]: Value }, { [key: string]: Model }, FormRecordBase<Value>,
     Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
@@ -25,7 +25,7 @@ export class DynamicFormDictionary<
 
   get length(): number { return this._children.length; }
 
-  registerField(field: DynamicFormField<TValue, TModel>): void {
+  registerField(field: DynamicFormField<Value, Model>): void {
     const index = this._children.findIndex(f => f.key === field.key);
     if (index >= 0) {
       this._children[index] = field;

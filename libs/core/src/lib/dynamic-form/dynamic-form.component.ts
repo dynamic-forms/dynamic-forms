@@ -19,13 +19,13 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
 })
-export class DynamicFormComponent<TValue = any, TModel extends TValue = TValue> implements OnInit, OnChanges, OnDestroy, DoCheck {
+export class DynamicFormComponent<Value = any, Model extends Value = Value> implements OnInit, OnChanges, OnDestroy, DoCheck {
 
-  private _form: DynamicForm<TValue, TModel>;
+  private _form: DynamicForm<Value, Model>;
   private _formSubmit: Subscription;
 
   @Input() definition: DynamicFormDefinition;
-  @Input() model: TModel;
+  @Input() model: Model;
   @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
 
   constructor(
@@ -34,8 +34,8 @@ export class DynamicFormComponent<TValue = any, TModel extends TValue = TValue> 
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
 
-  get form(): DynamicForm<TValue, TModel> { return this._form; }
-  get formGroup(): FormGroupBase<TValue> { return this._form.control; }
+  get form(): DynamicForm<Value, Model> { return this._form; }
+  get formGroup(): FormGroupBase<Value> { return this._form.control; }
 
   get template(): DynamicFormTemplate { return this._form.template; }
 
@@ -94,7 +94,7 @@ export class DynamicFormComponent<TValue = any, TModel extends TValue = TValue> 
   }
 
   private initForm(): void {
-    this.model = this.model || {} as TModel;
+    this.model = this.model || {} as Model;
     this._form = this.formBuilder.initForm(this.definition, this.model);
     this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
   }

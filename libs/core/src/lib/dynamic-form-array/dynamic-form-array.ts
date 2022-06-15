@@ -9,13 +9,13 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 export class DynamicFormArray<
-  TValue = any, TModel extends TValue = TValue,
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<TValue[], TModel[], FormArrayBase<TValue>, Template, Definition, DynamicFormField> {
+> extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, DynamicFormField> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormArrayBase<TValue>([]));
+    super(builder, root, parent, definition, new FormArrayBase<Value>([]));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
@@ -24,7 +24,7 @@ export class DynamicFormArray<
 
   get length(): number { return this._children.length; }
 
-  pushField(element: DynamicFormField<TValue, TModel>): void {
+  pushField(element: DynamicFormField<Value, Model>): void {
     this._children.push(element);
     this._control.push(element.control);
     this._control.markAsTouched();

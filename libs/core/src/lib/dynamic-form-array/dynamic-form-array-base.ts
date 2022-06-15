@@ -8,11 +8,11 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 export abstract class DynamicFormArrayBase<
-  TValue = any, TModel extends TValue = TValue,
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
-  Array extends DynamicFormArray<TValue, TModel, Template, Definition> = DynamicFormArray<TValue, TModel, Template, Definition>
-> extends DynamicFormFieldBase<TValue[], TModel[], FormArrayBase<TValue>, Template, Definition, Array> {
+  Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>
+> extends DynamicFormFieldBase<Value[], Model[], FormArrayBase<Value>, Template, Definition, Array> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
