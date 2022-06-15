@@ -43,14 +43,18 @@ export class DynamicFormBuilder {
     private idBuilder: DynamicFormIdBuilder,
   ) {}
 
-  initForm(definition: DynamicFormDefinition, model: any): DynamicForm {
-    const field = this.createForm(definition, model);
+  initForm<Value extends { [key: string]: any } = any, Model extends Value = Value>(
+    definition: DynamicFormDefinition, model: Model,
+  ): DynamicForm<Value, Model> {
+    const field = this.createForm<Value, Model>(definition, model);
     field.check();
     return field;
   }
 
-  createForm(definition: DynamicFormDefinition, model: any): DynamicForm {
-    const field = new DynamicForm(this, definition, model);
+  createForm<Value extends { [key: string]: any } = any, Model extends Value = Value>(
+    definition: DynamicFormDefinition, model: Model,
+  ): DynamicForm<Value, Model> {
+    const field = new DynamicForm<Value, Model>(this, definition, model);
     field.init();
     return field;
   }

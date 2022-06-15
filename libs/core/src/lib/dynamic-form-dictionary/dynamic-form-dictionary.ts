@@ -11,9 +11,9 @@ import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } f
 export class DynamicFormDictionary<
   Value = any, Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
-  Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
+  Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>
 > extends DynamicFormField<{ [key: string]: Value }, { [key: string]: Model }, FormRecordBase<Value>,
-    Template, Definition, DynamicFormField> {
+    Template, Definition, DynamicFormField<Value, Model>> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition, new FormRecordBase({}));
@@ -97,7 +97,7 @@ export class DynamicFormDictionary<
     this._control.markAsTouched();
   }
 
-  protected getChildren(): DynamicFormField[] {
+  protected getChildren(): DynamicFormField<Value, Model>[] {
     return this._builder.createFormDictionaryElements(this);
   }
 

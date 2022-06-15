@@ -10,7 +10,7 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 export abstract class DynamicFormArrayBase<
   Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
-  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>,
+  Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>,
   Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>
 > extends DynamicFormFieldBase<Value[], Model[], FormArrayBase<Value>, Template, Definition, Array> {
 

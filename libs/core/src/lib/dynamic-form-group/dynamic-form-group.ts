@@ -11,7 +11,7 @@ import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dyn
 export class DynamicFormGroup<
   Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
-  Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
+  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>
 > extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
@@ -25,7 +25,7 @@ export class DynamicFormGroup<
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
     this._control = new FormGroupBase<Value>({} as any);
-    this._model = model || this.getModel(definition);
+    this._model = model || this.getModel();
     this._parameters = {};
   }
 
@@ -53,8 +53,8 @@ export class DynamicFormGroup<
   }
 
   resetDefault(): void {
-    if (this.definition.defaultValue) {
-      const defaultModel = this.cloneObject(this.definition.defaultValue);
+    if (this.defaultValue) {
+      const defaultModel = this.cloneObject(this.defaultValue);
       this._control.patchValue(defaultModel);
     } else {
       this._fields.forEach(field => field.resetDefault());
@@ -82,16 +82,16 @@ export class DynamicFormGroup<
     });
   }
 
-  private getModel(definition: DynamicFormGroupDefinition): any {
-    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
-    return this.parentField.model[definition.key];
+  private getModel(): Model {
+    this.parentField.model[this.key] = this.parentField.model[this.key] || this.getDefaultModel();
+    return this.parentField.model[this.key];
   }
 
-  private getDefaultModel(definition: DynamicFormGroupDefinition): any {
-    if (definition.defaultValue) {
-      return this.cloneObject(definition.defaultValue);
+  private getDefaultModel(): Model {
+    if (this.defaultValue) {
+      return this.cloneObject<Model>(this.defaultValue as Model);
     }
-    return {};
+    return {} as Model;
   }
 
   private filterFields(elements: DynamicFormElement[]): DynamicFormField[] {

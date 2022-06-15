@@ -52,7 +52,7 @@ describe('DynamicFormDictionary', () => {
   });
 
   it('sets model to default value', () => {
-    const defaultValue = { value1: 0, value2: 1 };
+    const defaultValue = { value1: 0, value2: 1 } as any;
     const definition = { key: 'key', template: {}, defaultValue } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const formDictionary = new DynamicFormDictionary(builder, form, form, definition);

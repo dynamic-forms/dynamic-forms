@@ -10,7 +10,7 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 export abstract class DynamicFormDictionaryBase<
   Value = any, Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
-  Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>,
+  Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
   Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> =
     DynamicFormDictionary<Value, Model, Template, Definition>
 > extends DynamicFormFieldBase<{ [key: string]: Value }, { [key: string]: Model },

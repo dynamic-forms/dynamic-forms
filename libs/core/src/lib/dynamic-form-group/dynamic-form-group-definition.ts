@@ -4,9 +4,9 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupValidation } from './dynamic-form-group-validation';
 
 export interface DynamicFormGroupDefinition<
+  Value extends { [key: string]: any } = any,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate
-> extends DynamicFormFieldDefinition<Template> {
-  defaultValue?: any;
+> extends DynamicFormFieldDefinition<Value, Template> {
   validation?: DynamicFormGroupValidation;
   children: DynamicFormElementDefinition[];
 }

@@ -10,9 +10,9 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
   templateUrl: './dynamic-form-group.component.html',
 })
 export class DynamicFormGroupComponent<
-  Value = any, Model extends Value = Value,
+  Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
-  Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>,
+  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
   Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
 > extends DynamicFormGroupBase<Value, Model, Template, Definition, Group> {
 

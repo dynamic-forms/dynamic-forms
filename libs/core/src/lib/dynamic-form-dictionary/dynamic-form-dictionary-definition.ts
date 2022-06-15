@@ -3,11 +3,11 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
 
 export interface DynamicFormDictionaryDefinition<
+  Value = any,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate
-> extends DynamicFormFieldDefinition<Template> {
+> extends DynamicFormFieldDefinition<{ [key: string]: Value }, Template> {
   definitionTemplate: DynamicFormFieldDefinition;
   defaultKeys?: string[];
-  defaultValue?: any;
   children?: undefined;
   footerActions?: DynamicFormActionDefinition[];
 }

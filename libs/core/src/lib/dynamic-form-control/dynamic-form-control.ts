@@ -65,7 +65,7 @@ export class DynamicFormControl<
   }
 
   resetDefault(): void {
-    const defaultValue = this.getDefaultValue();
+    const defaultValue = this.defaultValue;
     this._control.reset(defaultValue);
   }
 
@@ -111,7 +111,7 @@ export class DynamicFormControl<
 
   private createModel(): any {
     if (this.parentField.model[this.key] === undefined) {
-      this.parentField.model[this.key] = this.getDefaultValue();
+      this.parentField.model[this.key] = this.defaultValue;
     }
     return this.parentField.model[this.key];
   }
@@ -135,9 +135,8 @@ export class DynamicFormControl<
     return valueChanges.subscribe(observer);
   }
 
-  private getDefaultValue(): any {
-    const input = this.definition.template.input;
-    return input && input.defaultValue !== undefined ? input.defaultValue : null;
+  protected override get defaultValue(): any {
+    return this.input?.defaultValue !== undefined ? this.input.defaultValue : super.defaultValue || null;
   }
 
   private getUpdateOn(): 'change' | 'blur' | 'submit' {
@@ -158,10 +157,9 @@ export class DynamicFormControl<
   }
 
   private checkDefaultValue(): void {
-    const defaultValue = this.getDefaultValue();
-    if (this.model !== defaultValue) {
-      this.setModel(defaultValue);
-      this.setValue(defaultValue, false);
+    if (this.model !== this.defaultValue) {
+      this.setModel(this.defaultValue);
+      this.setValue(this.defaultValue, false);
     }
   }
 

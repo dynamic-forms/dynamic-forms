@@ -19,7 +19,9 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
 })
-export class DynamicFormComponent<Value = any, Model extends Value = Value> implements OnInit, OnChanges, OnDestroy, DoCheck {
+export class DynamicFormComponent<
+  Value extends { [key: string]: any } = any, Model extends Value = Value
+> implements OnInit, OnChanges, OnDestroy, DoCheck {
 
   private _form: DynamicForm<Value, Model>;
   private _formSubmit: Subscription;
@@ -95,7 +97,7 @@ export class DynamicFormComponent<Value = any, Model extends Value = Value> impl
 
   private initForm(): void {
     this.model = this.model || {} as Model;
-    this._form = this.formBuilder.initForm(this.definition, this.model);
+    this._form = this.formBuilder.initForm<Value, Model>(this.definition, this.model);
     this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
   }
 

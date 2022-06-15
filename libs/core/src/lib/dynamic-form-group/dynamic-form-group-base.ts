@@ -10,7 +10,7 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 export abstract class DynamicFormGroupBase<
   Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
-  Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>,
+  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
   Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
 > extends DynamicFormFieldBase<Value, Model, FormGroupBase<Value>, Template, Definition, Group> {
 

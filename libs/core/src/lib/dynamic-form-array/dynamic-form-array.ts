@@ -11,8 +11,8 @@ import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dyn
 export class DynamicFormArray<
   Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
-  Definition extends DynamicFormArrayDefinition<Template> = DynamicFormArrayDefinition<Template>
-> extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, DynamicFormField> {
+  Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>
+> extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, DynamicFormField<Value, Model>> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
     super(builder, root, parent, definition, new FormArrayBase<Value>([]));
@@ -126,7 +126,7 @@ export class DynamicFormArray<
     this._control.markAsTouched();
   }
 
-  protected getChildren(): DynamicFormField[] {
+  protected getChildren(): DynamicFormField<Value, Model>[] {
     return this._builder.createFormArrayElements(this);
   }
 
@@ -142,17 +142,17 @@ export class DynamicFormArray<
   }
 
   private initModel(model: any): void {
-    this.parentField.model[this.definition.key] = model;
-    this._model = this.parentField.model[this.definition.key];
+    this.parentField.model[this.key] = model;
+    this._model = this.parentField.model[this.key];
   }
 
   private getModel(): any {
-    return this.parentField.model[this.definition.key] || this.getDefaultModel();
+    return this.parentField.model[this.key] || this.getDefaultModel();
   }
 
   private getDefaultModel(): any {
-    if (this.definition.defaultValue) {
-      return this.cloneObject(this.definition.defaultValue);
+    if (this.defaultValue) {
+      return this.cloneObject(this.defaultValue);
     }
     return Array.from({ length: this.definition.defaultLength || 0 });
   }

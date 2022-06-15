@@ -4,8 +4,9 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
-export class DynamicForm<Value extends { [key: string]: any } = any, Model extends Value = Value>
-  extends DynamicFormGroup<Value, Model, DynamicFormTemplate, DynamicFormDefinition> {
+export class DynamicForm<
+  Value extends { [key: string]: any } = any, Model extends Value = Value,
+> extends DynamicFormGroup<Value, Model, DynamicFormTemplate, DynamicFormDefinition> {
 
   private _submit: Subject<boolean>;
   private _submit$: Observable<boolean>;

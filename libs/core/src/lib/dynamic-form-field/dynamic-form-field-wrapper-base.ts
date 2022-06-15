@@ -12,7 +12,7 @@ export abstract class DynamicFormFieldWrapperBase<
   Value = any, Model extends Value = Value,
   Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
-  Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
+  Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
   Field extends DynamicFormField<Value, Model, Control, Template, Definition> =
     DynamicFormField<Value, Model, Control, Template, Definition>
 > extends DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field> implements AfterViewInit {
