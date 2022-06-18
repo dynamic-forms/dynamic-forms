@@ -2,8 +2,13 @@
 
 ## 14.1.0-next.0
 
-* **core:** removed markdown module and peer dependency to marked
+### Features
+
 * **markdown:** created library by extracting markdown module from core
+
+### Breaking Changes
+
+* **core:** removed markdown module and peer dependency to marked
 
 ## 14.0.1 (2022-06-07)
 
