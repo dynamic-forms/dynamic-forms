@@ -57,6 +57,10 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 - Library for components based on [**@angular/material**](https://material.angular.io/)
 
+### **@dynamic-forms/markdown** [![npm version](https://badge.fury.io/js/@dynamic-forms%2Fmarkdown.svg)](https://badge.fury.io/js/@dynamic-forms%2Fmarkdown)
+
+- Extension library for markdown based on [**marked**](https://github.com/markedjs/marked)
+
 ## **Packages**
 
 Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the following lines
@@ -72,6 +76,7 @@ needed to be part of the npm config file `.nmprc`.
 - `npm install @dynamic-forms/core@14.0.1`
 - `npm install @dynamic-forms/bootstrap@14.0.1`
 - `npm install @dynamic-forms/material@14.0.1`
+- `npm install @dynamic-forms/markdown@14.0.1`
 
 ### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v13/dynamic-forms-v13-publish?branchName=refs/tags/13.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=27&branchName=refs/tags/13.0.0)
 

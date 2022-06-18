@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormMarkdownModule } from '@dynamic-forms/core';
+import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { MarkdownComponent } from './markdown.component';
 
 @NgModule({

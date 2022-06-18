@@ -1,8 +1,8 @@
 {
-  "name": "@dynamic-forms/core",
+  "name": "@dynamic-forms/markdown",
   "version": "14.0.1",
   "author": "dynamic-forms",
-  "description": "dynamic-forms - core library",
+  "description": "dynamic-forms - markdown library",
   "keywords": [
     "angular",
     "forms",
@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/dynamic-forms/dynamic-forms.git",
-    "directory": "libs/core"
+    "directory": "libs/markdown"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -23,8 +23,8 @@
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
-    "@angular/forms": "^14.0.0",
-    "bootstrap": "^5.1.0",
+    "@dynamic-forms/core" : "14.0.1",
+    "marked": "^4.0.16",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {

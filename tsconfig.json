@@ -31,6 +31,9 @@
       ],
       "@dynamic-forms/material": [
         "dist/v14/@dynamic-forms/material"
+      ],
+      "@dynamic-forms/markdown": [
+        "dist/v14/@dynamic-forms/markdown"
       ]
     }
   },
