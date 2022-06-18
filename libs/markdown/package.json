@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/markdown",
-  "version": "14.0.1",
+  "version": "14.1.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - markdown library",
   "keywords": [
@@ -23,7 +23,7 @@
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
-    "@dynamic-forms/core" : "14.0.1",
+    "@dynamic-forms/core" : "14.1.0-next.0",
     "marked": "^4.0.16",
     "rxjs": "^7.4.0"
   },
