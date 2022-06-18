@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { DynamicFormElementBase } from '@dynamic-forms/core';
 import { of, BehaviorSubject, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';

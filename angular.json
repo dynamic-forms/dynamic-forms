@@ -123,6 +123,46 @@
         }
       }
     },
+    "dynamic-forms-markdown": {
+      "root": "libs/markdown",
+      "sourceRoot": "libs/markdown/src",
+      "projectType": "library",
+      "prefix": "markdown",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/markdown/tsconfig.lib.json",
+            "project": "libs/markdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/markdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/markdown/src/test.ts",
+            "tsConfig": "libs/markdown/tsconfig.spec.json",
+            "karmaConfig": "libs/markdown/karma.conf.js",
+            "codeCoverageExclude": [
+              "libs/markdown/src/test.ts"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/markdown/**/*.ts",
+              "libs/markdown/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "dynamic-forms-libs": {
       "root": "libs",
       "projectType": "library",
@@ -140,7 +180,9 @@
               "libs/bootstrap/src/public_api.ts",
               "libs/bootstrap/src/test.ts",
               "libs/material/src/public_api.ts",
-              "libs/material/src/test.ts"
+              "libs/material/src/test.ts",
+              "libs/markdown/src/public_api.ts",
+              "libs/markdown/src/test.ts"
             ]
           }
         }

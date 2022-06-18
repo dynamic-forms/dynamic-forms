@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "14.0.1",
+  "version": "14.1.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "keywords": [
@@ -25,11 +25,11 @@
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
     "bootstrap": "^5.1.0",
-    "marked": "^4.0.16",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "tag": "next"
   },
   "sideEffects": false
 }

@@ -19,6 +19,12 @@
       ],
       "@dynamic-forms/material/*": [
         "libs/material/src/lib/*"
+      ],
+      "@dynamic-forms/markdown": [
+        "libs/markdown/src/public_api"
+      ],
+      "@dynamic-forms/markdown/*": [
+        "libs/markdown/src/lib/*"
       ]
     }
   },

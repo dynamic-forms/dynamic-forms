@@ -1,4 +1,4 @@
-import { DynamicFormElementTemplate } from '../dynamic-form-element-template';
+import { DynamicFormElementTemplate } from '@dynamic-forms/core';
 
 export interface DynamicFormMarkdownTemplate extends DynamicFormElementTemplate {
   source?: string;
