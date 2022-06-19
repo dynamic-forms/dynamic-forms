@@ -1,4 +1,4 @@
-import { DynamicFormElementDefinition } from '../dynamic-form-element-definition';
+import { DynamicFormElementDefinition } from '@dynamic-forms/core';
 import { DynamicFormMarkdownOptions } from './dynamic-form-markdown-options';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 

@@ -1,9 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm, DynamicFormBuilder, DynamicFormElement } from '@dynamic-forms/core';
 import { of } from 'rxjs';
-import { DynamicForm } from '../../dynamic-form/dynamic-form';
-import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
-import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 import { DynamicFormMarkdownComponent } from './dynamic-form-markdown.component';

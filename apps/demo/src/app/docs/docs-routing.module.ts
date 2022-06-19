@@ -22,6 +22,10 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./material/material-docs.module').then(m => m.MaterialDocsModule),
       },
       {
+        path: 'markdown',
+        loadChildren: () => import('./markdown/markdown-docs.module').then(m => m.MarkdownDocsModule),
+      },
+      {
         path: 'changelog',
         loadChildren: () => import('./changelog/changelog.module').then(m => m.ChangelogModule),
       },

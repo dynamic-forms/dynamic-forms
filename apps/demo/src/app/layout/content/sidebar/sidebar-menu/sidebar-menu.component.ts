@@ -31,7 +31,7 @@ export class SidebarMenuComponent {
   hasChildren = (_: number, menuItem: any) => menuItem.children;
 
   private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): MatTreeNestedDataSource<SidebarMenuItem> {
-    const docsChildren = [ 'core', 'bootstrap', 'material'].map(library => this.getMenuItemForDocs(library, repository));
+    const docsChildren = [ 'core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForDocs(library, repository));
     const examplesChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
     const editorChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
     const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
