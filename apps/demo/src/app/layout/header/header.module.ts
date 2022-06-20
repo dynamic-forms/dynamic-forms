@@ -10,6 +10,7 @@ import { ExamplesMenuModule } from './examples-menu/examples-menu.module';
 import { HeaderComponent } from './header.component';
 import { NotificationsToggleModule } from './notifications-toggle/notifications-toggle.module';
 import { HeaderPipesModule } from './pipes/pipes.module';
+import { PreferencesMenuModule } from './preferences-menu/preferences-menu.module';
 import { SidebarToggleModule } from './sidebar-toggle/sidebar-toggle.module';
 import { VersionsMenuModule } from './versions-menu/versions-menu.module';
 
@@ -24,6 +25,7 @@ import { VersionsMenuModule } from './versions-menu/versions-menu.module';
     HeaderPipesModule,
     EditorMenuModule,
     ExamplesMenuModule,
+    PreferencesMenuModule,
     NotificationsToggleModule,
     SidebarToggleModule,
     VersionsMenuModule,
