@@ -1,9 +1,35 @@
 :host {
-  app-monaco-editor {
-    &::ng-deep {
-      .monaco-editor {
-        height: calc(100vh - 116px - 49px);
+  .dynamic-form-editor {
+    app-monaco-editor {
+      &::ng-deep {
+        .monaco-editor {
+          height: calc(100vh - 116px - 49px);
+        }
+      }
+    }
+
+    &.split-view {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 10px minmax(0, 1fr);
+
+      app-monaco-editor {
+        grid-column-start: 1;
+        grid-column-end: 1;
+
+        &::ng-deep {
+          .monaco-editor {
+            height: calc(100vh - 116px);
+          }
+        }
+      }
+
+      mat-tab-group {
+        grid-column-start: 3;
+        grid-column-end: 3;
+
       }
     }
   }
+
+
 }
