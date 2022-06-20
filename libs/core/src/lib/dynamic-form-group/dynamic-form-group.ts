@@ -1,7 +1,7 @@
-import { FormGroup } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
@@ -9,22 +9,23 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
+  Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
-  Definition extends DynamicFormGroupDefinition<Template> = DynamicFormGroupDefinition<Template>
-> extends DynamicFormField<FormGroup, Template, Definition> {
+  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>
+> extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition> {
 
   protected _fields: DynamicFormField[] = [];
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition);
   /** @internal */
-  constructor(builder: DynamicFormBuilder, definition: Definition, model: any);
+  constructor(builder: DynamicFormBuilder, definition: Definition, model: Model);
   constructor(builder: DynamicFormBuilder, ...params: any[]) {
     const { root, parent, definition, model } = params.length === 3
       ? { root: params[0], parent: params[1], definition: params[2], model: null }
       : { root: null, parent: null, definition: params[0], model: params[1] };
     super(builder, root, parent, definition);
-    this._control = new FormGroup({});
-    this._model = model || this.getModel(definition);
+    this._control = new FormGroupBase<Value>({} as any);
+    this._model = model || this.getModel();
     this._parameters = {};
   }
 
@@ -52,8 +53,8 @@ export class DynamicFormGroup<
   }
 
   resetDefault(): void {
-    if (this.definition.defaultValue) {
-      const defaultModel = this.cloneObject(this.definition.defaultValue);
+    if (this.defaultValue) {
+      const defaultModel = this.cloneObject(this.defaultValue);
       this._control.patchValue(defaultModel);
     } else {
       this._fields.forEach(field => field.resetDefault());
@@ -81,16 +82,16 @@ export class DynamicFormGroup<
     });
   }
 
-  private getModel(definition: DynamicFormGroupDefinition): any {
-    this.parentField.model[definition.key] = this.parentField.model[definition.key] || this.getDefaultModel(definition);
-    return this.parentField.model[definition.key];
+  private getModel(): Model {
+    this.parentField.model[this.key] = this.parentField.model[this.key] || this.getDefaultModel();
+    return this.parentField.model[this.key];
   }
 
-  private getDefaultModel(definition: DynamicFormGroupDefinition): any {
-    if (definition.defaultValue) {
-      return this.cloneObject(definition.defaultValue);
+  private getDefaultModel(): Model {
+    if (this.defaultValue) {
+      return this.cloneObject<Model>(this.defaultValue as Model);
     }
-    return {};
+    return {} as Model;
   }
 
   private filterFields(elements: DynamicFormElement[]): DynamicFormField[] {

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
-  DynamicFormToggle, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormToggleControl, DynamicFormToggleDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 import { MatDynamicFormToggleModule } from './dynamic-form-toggle.module';
 
@@ -12,8 +12,8 @@ describe('MatDynamicFormToggleComponent', () => {
   let component: MatDynamicFormToggleComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormToggle>;
-  let formControl: DynamicFormControl<DynamicFormToggle>;
+  let definition: DynamicFormToggleDefinition;
+  let formControl: DynamicFormToggleControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -47,8 +47,8 @@ describe('MatDynamicFormToggleComponent', () => {
           ],
         },
       },
-    } as DynamicFormControlDefinition<DynamicFormToggle>;
-    formControl = new DynamicFormControl<DynamicFormToggle>(builder, form, form, definition);
+    } as DynamicFormToggleDefinition;
+    formControl = new DynamicFormToggleControl(builder, form, form, definition);
 
     component.field = formControl;
 

@@ -2,10 +2,10 @@
 import {
   Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from './dynamic-form';
@@ -19,13 +19,15 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
 })
-export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
+export class DynamicFormComponent<
+  Value extends { [key: string]: any } = any, Model extends Value = Value
+> implements OnInit, OnChanges, OnDestroy, DoCheck {
 
-  private _form: DynamicForm;
+  private _form: DynamicForm<Value, Model>;
   private _formSubmit: Subscription;
 
   @Input() definition: DynamicFormDefinition;
-  @Input() model: any;
+  @Input() model: Model;
   @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
 
   constructor(
@@ -34,8 +36,8 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
 
-  get form(): DynamicForm { return this._form; }
-  get formGroup(): FormGroup { return this._form.control; }
+  get form(): DynamicForm<Value, Model> { return this._form; }
+  get formGroup(): FormGroupBase<Value> { return this._form.control; }
 
   get template(): DynamicFormTemplate { return this._form.template; }
 
@@ -94,8 +96,8 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   }
 
   private initForm(): void {
-    this.model = this.model || {};
-    this._form = this.formBuilder.initForm(this.definition, this.model);
+    this.model = this.model || {} as Model;
+    this._form = this.formBuilder.initForm<Value, Model>(this.definition, this.model);
     this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
   }
 

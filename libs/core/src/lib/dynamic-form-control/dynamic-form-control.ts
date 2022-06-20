@@ -1,10 +1,10 @@
-import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormControlBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -15,10 +15,11 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 export class DynamicFormControl<
-  Input extends DynamicFormInput = DynamicFormInput,
-  Template extends DynamicFormControlTemplate<Input> = DynamicFormControlTemplate<Input>,
-  Definition extends DynamicFormControlDefinition<Input, Template> = DynamicFormControlDefinition<Input, Template>
-> extends DynamicFormField<FormControl, Template, Definition> {
+  Value = any,
+  Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
+  Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
+  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>
+> extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
@@ -64,7 +65,7 @@ export class DynamicFormControl<
   }
 
   resetDefault(): void {
-    const defaultValue = this.getDefaultValue();
+    const defaultValue = this.defaultValue;
     this._control.reset(defaultValue);
   }
 
@@ -110,14 +111,14 @@ export class DynamicFormControl<
 
   private createModel(): any {
     if (this.parentField.model[this.key] === undefined) {
-      this.parentField.model[this.key] = this.getDefaultValue();
+      this.parentField.model[this.key] = this.defaultValue;
     }
     return this.parentField.model[this.key];
   }
 
-  private createControl(): FormControl {
+  private createControl(): FormControlBase<Value> {
     const options = { updateOn: this.getUpdateOn() };
-    return new FormControl(this._model, options);
+    return new FormControlBase<Value>(this._model, options);
   }
 
   private createValueSubscription(): Subscription {
@@ -134,9 +135,8 @@ export class DynamicFormControl<
     return valueChanges.subscribe(observer);
   }
 
-  private getDefaultValue(): any {
-    const input = this.definition.template.input;
-    return input && input.defaultValue !== undefined ? input.defaultValue : null;
+  protected override get defaultValue(): any {
+    return this.input?.defaultValue !== undefined ? this.input.defaultValue : super.defaultValue || null;
   }
 
   private getUpdateOn(): 'change' | 'blur' | 'submit' {
@@ -157,10 +157,9 @@ export class DynamicFormControl<
   }
 
   private checkDefaultValue(): void {
-    const defaultValue = this.getDefaultValue();
-    if (this.model !== defaultValue) {
-      this.setModel(defaultValue);
-      this.setValue(defaultValue, false);
+    if (this.model !== this.defaultValue) {
+      this.setModel(this.defaultValue);
+      this.setValue(this.defaultValue, false);
     }
   }
 

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
-  DynamicFormTextbox, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormTextboxControl, DynamicFormTextboxDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { MatDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
@@ -12,8 +12,8 @@ describe('MatDynamicFormTextboxComponent', () => {
   let component: MatDynamicFormTextboxComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormTextbox>;
-  let formControl: DynamicFormControl<DynamicFormTextbox>;
+  let definition: DynamicFormTextboxDefinition;
+  let formControl: DynamicFormTextboxControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,8 +37,8 @@ describe('MatDynamicFormTextboxComponent', () => {
     builder = {} as any;
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
-    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormTextbox>;
-    formControl = new DynamicFormControl<DynamicFormTextbox>(builder, form, form, definition);
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextboxDefinition;
+    formControl = new DynamicFormTextboxControl(builder, form, form, definition);
 
     component.field = formControl;
 

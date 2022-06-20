@@ -1,7 +1,7 @@
-import { FormRecord } from '@angular/forms';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
+import { FormRecordBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
@@ -9,12 +9,14 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
+  Value = any, Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
-  Definition extends DynamicFormDictionaryDefinition<Template> = DynamicFormDictionaryDefinition<Template>
-> extends DynamicFormField<FormRecord, Template, Definition, DynamicFormField> {
+  Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>
+> extends DynamicFormField<{ [key: string]: Value }, { [key: string]: Model }, FormRecordBase<Value>,
+    Template, Definition, DynamicFormField<Value, Model>> {
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormRecord({}));
+    super(builder, root, parent, definition, new FormRecordBase({}));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
@@ -23,7 +25,7 @@ export class DynamicFormDictionary<
 
   get length(): number { return this._children.length; }
 
-  registerField(field: DynamicFormField): void {
+  registerField(field: DynamicFormField<Value, Model>): void {
     const index = this._children.findIndex(f => f.key === field.key);
     if (index >= 0) {
       this._children[index] = field;
@@ -95,7 +97,7 @@ export class DynamicFormDictionary<
     this._control.markAsTouched();
   }
 
-  protected getChildren(): DynamicFormField[] {
+  protected getChildren(): DynamicFormField<Value, Model>[] {
     return this._builder.createFormDictionaryElements(this);
   }
 
