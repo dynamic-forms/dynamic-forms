@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormCombobox, DynamicFormConfigService,
-  DynamicFormControl, DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFormComboboxDefinition,
+  DynamicFormConfigService, DynamicFormDefinition, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { BsDynamicFormComboboxModule } from './dynamic-form-combobox.module';
@@ -11,8 +11,8 @@ describe('BsDynamicFormComboboxComponent', () => {
   let component: BsDynamicFormComboboxComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormCombobox>;
-  let formControl: DynamicFormControl<DynamicFormCombobox>;
+  let definition: DynamicFormComboboxDefinition;
+  let formControl: DynamicFormComboboxControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -47,8 +47,8 @@ describe('BsDynamicFormComboboxComponent', () => {
           ],
         },
       },
-    } as DynamicFormControlDefinition<DynamicFormCombobox>;
-    formControl = new DynamicFormControl<DynamicFormCombobox>(builder, form, form, definition);
+    } as DynamicFormComboboxDefinition;
+    formControl = new DynamicFormComboboxControl(builder, form, form, definition);
 
     component.field = formControl;
 

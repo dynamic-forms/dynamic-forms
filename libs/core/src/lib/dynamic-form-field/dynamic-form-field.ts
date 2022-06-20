@@ -18,16 +18,17 @@ import {
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
-  Control extends DynamicFormFieldControl = DynamicFormFieldControl,
+  Value = any, Model extends Value = Value,
+  Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
-  Definition extends DynamicFormFieldDefinition<Template> = DynamicFormFieldDefinition<Template>,
+  Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
   Child extends DynamicFormElement = DynamicFormElement
 > extends DynamicFormElement<Template, Definition, Child, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
 
   protected _settings: DynamicFormFieldSettings;
 
   protected _depth: number;
-  protected _model: any;
+  protected _model: Model;
   protected _parameters: any;
 
   protected _control: Control;
@@ -55,8 +56,8 @@ export abstract class DynamicFormField<
   }
   override get classType(): DynamicFormClassType { return 'field'; }
 
-  get model(): any { return this._model; }
-  get value(): any { return this._control.value; }
+  get model(): Model { return this._model; }
+  get value(): Value { return this._control.value; }
   get valid(): boolean { return this._control.valid; }
   get status(): string { return this._control.status; }
   get control(): Control { return this._control; }
@@ -97,8 +98,13 @@ export abstract class DynamicFormField<
     return this._builder.getFieldId(this);
   }
 
+
   protected override initId(): void {
     this.definition.id = this.getId();
+  }
+
+  protected get defaultValue(): Value {
+    return this._definition.defaultValue;
   }
 
   protected override getExpressions(): DynamicFormFieldExpressions {

@@ -1,10 +1,17 @@
-import { DynamicFormInput } from '../dynamic-form-input';
+import { DynamicFormInput, DynamicFormInputControl, DynamicFormInputDefinition } from '../dynamic-form-input';
 import { DynamicFormInputOption, DynamicFormInputOptionGroup } from '../dynamic-form-input-option-item';
 
-export type DynamicFormSelectOption = DynamicFormInputOption | DynamicFormInputOptionGroup;
+export type DynamicFormSelectOption<Value extends string | number = string | number> =
+  DynamicFormInputOption<Value> | DynamicFormInputOptionGroup<Value>;
 
-export interface DynamicFormSelect extends DynamicFormInput {
+export interface DynamicFormSelect<Value extends string | number = string | number> extends DynamicFormInput<Value | Value[]> {
   type: 'select';
-  options: DynamicFormSelectOption[];
+  options: DynamicFormSelectOption<Value>[];
   multiple: boolean;
 }
+
+export type DynamicFormSelectDefinition<Value extends string | number = string | number> =
+  DynamicFormInputDefinition<DynamicFormSelect<Value>>;
+
+export class DynamicFormSelectControl<Value extends string | number = string | number>
+  extends DynamicFormInputControl<DynamicFormSelect<Value>> {}

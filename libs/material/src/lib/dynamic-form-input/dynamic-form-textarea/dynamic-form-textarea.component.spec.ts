@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
-  DynamicFormTextarea, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormTextareaControl, DynamicFormTextareaDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 import { MatDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
@@ -12,8 +12,8 @@ describe('MatDynamicFormTextareaComponent', () => {
   let component: MatDynamicFormTextareaComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormTextarea>;
-  let formControl: DynamicFormControl<DynamicFormTextarea>;
+  let definition: DynamicFormTextareaDefinition;
+  let formControl: DynamicFormTextareaControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,8 +37,8 @@ describe('MatDynamicFormTextareaComponent', () => {
     builder = {} as any;
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
-    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormControlDefinition<DynamicFormTextarea>;
-    formControl = new DynamicFormControl<DynamicFormTextarea>(builder, form, form, definition);
+    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextareaDefinition;
+    formControl = new DynamicFormTextareaControl(builder, form, form, definition);
 
     component.field = formControl;
 

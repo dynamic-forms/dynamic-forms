@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormControl,
-  DynamicFormControlDefinition, DynamicFormDefinition, DynamicFormLibraryService,
-  DynamicFormRadio, DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
+  DynamicFormLibraryService, DynamicFormRadioControl, DynamicFormRadioDefinition,
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 import { MatDynamicFormRadioModule } from './dynamic-form-radio.module';
 
@@ -11,8 +11,8 @@ describe('MatDynamicFormRadioComponent', () => {
   let component: MatDynamicFormRadioComponent;
   let builder: DynamicFormBuilder;
   let form: DynamicForm;
-  let definition: DynamicFormControlDefinition<DynamicFormRadio>;
-  let formControl: DynamicFormControl<DynamicFormRadio>;
+  let definition: DynamicFormRadioDefinition;
+  let formControl: DynamicFormRadioControl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,8 +46,8 @@ describe('MatDynamicFormRadioComponent', () => {
           ],
         },
       },
-    } as DynamicFormControlDefinition<DynamicFormRadio>;
-    formControl = new DynamicFormControl<DynamicFormRadio>(builder, form, form, definition);
+    } as DynamicFormRadioDefinition;
+    formControl = new DynamicFormRadioControl(builder, form, form, definition);
 
     component.field = formControl;
 

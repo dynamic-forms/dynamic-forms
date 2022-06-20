@@ -1,5 +1,21 @@
 # Changelog
 
+## 14.1.0-next.1 (2022-06-20)
+
+### Breaking Changes
+
+* **core:** made use of [typed reactive forms](https://angular.io/guide/typed-forms) by adding generic parameters ```Value = any, Model extends Value = Value``` to abstract classes ```DynamicFormField```, ```DynamicFormFieldBase```, ```DynamicFormFieldWrapperBase``` and its derived classes / components for form controls / inputs, groups, arrays and dictionarys
+
+## 14.1.0-next.0 (2022-06-19)
+
+### Features
+
+* **markdown:** created library by extracting markdown module from core
+
+### Breaking Changes
+
+* **core:** removed markdown module and peer dependency to marked (import ```DynamicFormMarkdownModule``` from ```@dynamic-forms/markdown``` instead of ```@dynamic-forms/core```)
+
 ## 14.0.1 (2022-06-07)
 
 ### Features

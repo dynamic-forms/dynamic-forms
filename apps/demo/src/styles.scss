@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "@dynamic-forms/core/assets/scss/grid";
-@import "@dynamic-forms/core/assets/scss/markdown";
 @import "@dynamic-forms/bootstrap/assets/scss/theme";
-@import "@dynamic-forms/material/assets/scss/theme.scss";
+@import "@dynamic-forms/material/assets/scss/theme";
+@import "@dynamic-forms/markdown/assets/scss/markdown";
 
 .dynamic-form-wrapper {
   width: 100%;

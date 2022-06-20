@@ -1,16 +1,16 @@
-export interface DynamicFormInputOptionItem {
+export interface DynamicFormInputOptionItem<Value extends string | number = string | number> {
   label: string;
-  value?: string | number;
-  items?: DynamicFormInputOptionItem[];
+  value?: Value;
+  items?: DynamicFormInputOptionItem<Value>[];
   disabled?: boolean;
 }
 
-export interface DynamicFormInputOption extends DynamicFormInputOptionItem {
-  value: string | number;
+export interface DynamicFormInputOption<Value extends string | number = string | number> extends DynamicFormInputOptionItem<Value> {
+  value: Value;
   items?: undefined;
 }
 
-export interface DynamicFormInputOptionGroup extends DynamicFormInputOptionItem {
+export interface DynamicFormInputOptionGroup<Value extends string | number = string | number> extends DynamicFormInputOptionItem<Value> {
   value?: undefined;
-  items: DynamicFormInputOption[];
+  items: DynamicFormInputOption<Value>[];
 }

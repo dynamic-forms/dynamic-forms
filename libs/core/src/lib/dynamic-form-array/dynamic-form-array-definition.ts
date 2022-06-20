@@ -3,11 +3,11 @@ import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 export interface DynamicFormArrayDefinition<
+  Value = any,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate
-> extends DynamicFormFieldDefinition<Template> {
+> extends DynamicFormFieldDefinition<Value[], Template> {
   definitionTemplate: DynamicFormFieldDefinition;
   defaultLength?: number;
-  defaultValue?: any;
   children?: undefined;
   footerActions?: DynamicFormActionDefinition[];
 }
