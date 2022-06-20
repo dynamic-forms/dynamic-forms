@@ -1,7 +1,11 @@
 import { Component, ContentChild } from '@angular/core';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
+import { Store } from '@ngxs/store';
+import { map, Observable } from 'rxjs';
 import { FormBase } from '../form/form-base';
 import { FormData } from '../form/form-data';
+import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
+import { PreferencesState } from '../state/preferences/preferences.state';
 import formDefinition from './form-editor.json';
 
 @Component({
@@ -13,10 +17,15 @@ export class FormEditorComponent {
   private _data: FormData;
   private _value;
 
+  readonly splitView$: Observable<boolean>;
+
   @ContentChild('form')
   form: FormBase;
 
-  constructor() {
+  constructor(private store: Store) {
+    this.splitView$ = this.store.select(PreferencesState.formEditor).pipe(
+      map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView),
+    );
     this.setDefinition(formDefinition as any);
   }
 

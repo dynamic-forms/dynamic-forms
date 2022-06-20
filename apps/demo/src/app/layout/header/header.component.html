@@ -6,6 +6,7 @@
   <app-editor-menu *ngIf="!editorsQuery.matches"></app-editor-menu>
   <div class="header-spacer"></div>
   <app-notifications-toggle></app-notifications-toggle>
+  <app-preferences-menu></app-preferences-menu>
   <app-versions-menu *ngIf="!versionsQuery.matches"></app-versions-menu>
   <ng-container *ngIf="config$ | async as config">
     <a mat-button mat-icon-button [href]="config.repository | appCodeUrl" target="_blank">
