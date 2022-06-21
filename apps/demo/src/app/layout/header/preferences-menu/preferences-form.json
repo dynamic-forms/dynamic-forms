@@ -1,0 +1,33 @@
+{
+  "children": [
+    {
+      "key": "formEditor",
+      "type": "group",
+      "template": {
+        "label": "Form Editor"
+      },
+      "children": [
+        {
+          "key": "previewMode",
+          "type": "control",
+          "template": {
+            "label": "Preview Mode",
+            "input": {
+              "type": "toggle",
+              "options": [
+                {
+                  "label": "Tab View",
+                  "value": 0
+                },
+                {
+                  "label": "Split View",
+                  "value": 1
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
