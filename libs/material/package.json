@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "keywords": [
@@ -25,12 +25,13 @@
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
     "@angular/material": "^14.0.0",
-    "@dynamic-forms/core": "14.0.1",
+    "@dynamic-forms/core": "14.0.2",
     "bootstrap": "^5.1.0",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "sideEffects": false
 }
