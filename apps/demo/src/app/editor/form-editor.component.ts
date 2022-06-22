@@ -6,7 +6,7 @@ import { FormBase } from '../form/form-base';
 import { FormData } from '../form/form-data';
 import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
-import * as formDefinition from './form-editor.json';
+import formDefinition from './form-editor.json';
 
 @Component({
   selector: 'app-form-editor',
