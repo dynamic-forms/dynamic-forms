@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { SetPreferences } from '../../../state/preferences/preferences.actions';
 import { Preferences } from '../../../state/preferences/preferences.model';
 import { PreferencesState } from '../../../state/preferences/preferences.state';
-import preferencesDefinition from './preferences-form.json';
+import * as preferencesDefinition from './preferences-form.json';
 
 @Component({
   selector: 'app-preferences-menu',
