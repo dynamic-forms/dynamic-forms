@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
@@ -228,13 +228,13 @@ describe('DynamicFormComponent', () => {
     expect(component.form.reset).toHaveBeenCalled();
   });
 
-  it('resetEmpty calls resetEmpty of form field', fakeAsync(() => {
+  it('resetEmpty calls resetEmpty of form field', () => {
     spyOn(component.form, 'resetEmpty');
 
     component.resetEmpty();
 
     expect(component.form.resetEmpty).toHaveBeenCalled();
-  }));
+  });
 
   it('resetDefault calls resetDefault of form field', () => {
     spyOn(component.form, 'resetDefault');
