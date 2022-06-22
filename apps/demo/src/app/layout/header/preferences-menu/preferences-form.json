@@ -4,7 +4,7 @@
       "key": "formEditor",
       "type": "group",
       "template": {
-        "label": "Form Editor"
+        "label": "Editor"
       },
       "children": [
         {

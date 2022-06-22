@@ -20,19 +20,22 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
-
   private _form: DynamicForm;
   private _formSubmit: Subscription;
+  private _formValueChanges: Subscription;
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: any;
-  @Output() formSubmit: EventEmitter<DynamicFormSubmit> = new EventEmitter<DynamicFormSubmit>();
+  @Output() valueChange = new EventEmitter<any>();
+  @Output() formSubmit = new EventEmitter<DynamicFormSubmit>();
 
   constructor(
     protected formBuilder: DynamicFormBuilder,
     protected validationService: DynamicFormValidationService,
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
+
+  get value(): any { return this._form.value; }
 
   get form(): DynamicForm { return this._form; }
   get formGroup(): FormGroup { return this._form.control; }
@@ -71,10 +74,11 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   ngOnDestroy(): void {
     this._form.destroy();
     this._formSubmit.unsubscribe();
+    this._formValueChanges.unsubscribe();
   }
 
   submit(): void {
-    this.formSubmit.emit({ value: this.formGroup.value, model: this.model });
+    this.formSubmit.emit({ value: this.value, model: this.model });
   }
 
   validate(): void {
@@ -96,11 +100,13 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy, DoChe
   private initForm(): void {
     this.model = this.model || {};
     this._form = this.formBuilder.initForm(this.definition, this.model);
-    this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
+    this._formSubmit = this._form.submit$.subscribe(() => this.submit());
+    this._formValueChanges = this.formGroup.valueChanges.subscribe((value: any) => this.valueChange.emit(value));
   }
 
   private destroyForm(): void {
     this._form.destroy();
     this._formSubmit.unsubscribe();
+    this._formValueChanges.unsubscribe();
   }
 }
