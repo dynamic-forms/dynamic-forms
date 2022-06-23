@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SetPreferences } from './preferences.actions';
-import { FormEditorPreferences, FormEditorPreviewMode, Preferences, PREFERENCES } from './preferences.model';
+import { defaultPreferences, FormEditorPreferences, Preferences, PREFERENCES } from './preferences.model';
 
 @State<Preferences>({
   name: PREFERENCES,
-  defaults: {
-    formEditor: {
-      previewMode: FormEditorPreviewMode.TabView,
-    },
-  },
+  defaults: defaultPreferences,
 })
 @Injectable()
 export class PreferencesState {
