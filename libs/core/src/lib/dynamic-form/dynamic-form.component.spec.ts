@@ -58,8 +58,12 @@ describe('DynamicFormComponent', () => {
 
   it('creates component', () => {
     expect(component).toBeTruthy();
+    expect(component.value).toBe(component.form.value);
     expect(component.form.definition).toBe(definition);
     expect(component.form.model).toBe(model);
+    expect(component.formGroup).toBe(component.form.control);
+    expect(component.template).toEqual({});
+    expect(component.template).toBe(definition.template);
   });
 
   it('renders component template', () => {
@@ -192,7 +196,7 @@ describe('DynamicFormComponent', () => {
     component.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
-      value: component.formGroup.value,
+      value: component.value,
       model: component.model,
     });
   });
@@ -203,9 +207,17 @@ describe('DynamicFormComponent', () => {
     component.form.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
-      value: component.formGroup.value,
+      value: component.value,
       model: component.model,
     });
+  });
+
+  it('form group value changes emits value change', () => {
+    spyOn(component.valueChange, 'emit');
+
+    component.formGroup.patchValue({});
+
+    expect(component.valueChange.emit).toHaveBeenCalledWith({});
   });
 
   it('reset calls reset of form field', () => {
