@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/core",
-  "version": "14.1.0-rc.1",
+  "version": "14.1.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - core library",
   "keywords": [
@@ -29,8 +29,7 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "sideEffects": false
 }
