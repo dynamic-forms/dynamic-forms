@@ -2,5 +2,5 @@
   <mat-icon>settings</mat-icon>
 </button>
 <mat-menu #preferencesMenu="matMenu">
-  <dynamic-form [definition]="definition" [model]="model$ | async"></dynamic-form>
+  <dynamic-form [definition]="definition" [model]="model$ | async" (valueChange)="setPreferences($event)"></dynamic-form>
 </mat-menu>

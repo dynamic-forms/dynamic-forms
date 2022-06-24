@@ -1,5 +1,17 @@
 # Changelog
 
+## 14.1.0-rc.1 (2022-06-24)
+
+### Features
+
+* **core:** added ```valueChange``` emitter to ```DynamicFormComponent```
+
+## 14.0.2 (2022-06-23)
+
+### Features
+
+* **core:** added ```valueChange``` emitter to ```DynamicFormComponent```
+
 ## 14.1.0-next.1 (2022-06-20)
 
 ### Breaking Changes
