@@ -1,5 +1,9 @@
 # Changelog
 
+## 14.1.0 (2022-06-24)
+
+* **markdown:** release of library using angular 14 and marked
+
 ## 14.1.0-rc.1 (2022-06-24)
 
 ### Features
