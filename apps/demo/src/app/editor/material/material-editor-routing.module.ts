@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { getFormEditorRoutes } from '../form-editor-routes';
 import { MaterialEditorComponent } from './material-editor.component';
+
+const materialEditorRoutes: Routes = getFormEditorRoutes(MaterialEditorComponent);
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        component: MaterialEditorComponent,
-      },
-    ]),
+    RouterModule.forChild(materialEditorRoutes),
   ],
   exports: [
     RouterModule,
