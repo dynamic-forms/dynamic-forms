@@ -3,14 +3,15 @@ import { MatMenu } from '@angular/material/menu';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({
-  selector: 'app-examples-menu-panel',
-  templateUrl: './examples-menu-panel.component.html',
-  styleUrls: ['./examples-menu-panel.component.scss'],
+  selector: 'app-editor-menu-panel',
+  templateUrl: './editor-menu-panel.component.html',
+  styleUrls: ['./editor-menu-panel.component.scss'],
 })
-export class ExamplesMenuPanelComponent {
+export class EditorMenuPanelComponent {
   @ViewChild('menu', { static: true })
   menu: MatMenu;
 
+  @Input() level: number;
   @Input() baseUrl: string;
   @Input() items: ExampleMenuItem[];
 }

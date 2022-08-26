@@ -1,0 +1,21 @@
+<mat-menu #menu>
+  <ng-container *ngIf="level === 0">
+    <a mat-menu-item [routerLink]="[baseUrl]" routerLinkActive="router-link-active">Default</a>
+  </ng-container>
+  <ng-container *ngFor="let item of items">
+    <ng-container *ngIf="item.items">
+      <button mat-menu-item [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
+      <app-editor-menu-panel #menuPanel [baseUrl]="baseUrl" [level]="level + 1" [items]="item.items"> </app-editor-menu-panel>
+    </ng-container>
+    <ng-container *ngIf="item.id">
+      <ng-container *ngIf="!item.modelId; else exampleWithModel">
+        <a mat-menu-item [routerLink]="[baseUrl, item.id]" routerLinkActive="router-link-active">{{ item.label }}</a>
+      </ng-container>
+      <ng-template #exampleWithModel>
+        <a mat-menu-item [routerLink]="[baseUrl, item.id, 'models', item.modelId]" routerLinkActive="router-link-active">{{
+          item.label
+        }}</a>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</mat-menu>

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { EditorMenuPanelComponent } from './editor-menu-panel.component';
 import { EditorMenuComponent } from './editor-menu.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { EditorMenuComponent } from './editor-menu.component';
   ],
   declarations: [
     EditorMenuComponent,
+    EditorMenuPanelComponent,
   ],
   exports: [
     EditorMenuComponent,
