@@ -1,11 +1,13 @@
 import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { DynamicFormLog, DynamicFormLogLevel, DynamicFormLogType } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
 import { map, Observable, Subscription } from 'rxjs';
+import { bufferTime } from 'rxjs/operators';
 import { FormBase } from '../form/form-base';
 import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
 import { FormEditorData } from './form-editor-data';
-import { FormEditorLog, FormEditorLogger } from './form-editor-logger';
+import { FormEditorLogger } from './form-editor-logger';
 
 @Component({
   selector: 'app-form-editor',
@@ -15,7 +17,7 @@ import { FormEditorLog, FormEditorLogger } from './form-editor-logger';
 export class FormEditorComponent {
   private readonly _subscriptions = new Subscription();
 
-  private _logs: FormEditorLog[] = [];
+  private _logs: DynamicFormLog[] = [];
   private _data: FormEditorData;
   private _value: string;
 
@@ -39,15 +41,15 @@ export class FormEditorComponent {
     this.splitView$ = this.store.select(PreferencesState.formEditor).pipe(
       map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView),
     );
-    this._subscriptions.add(this.logger.log$.subscribe((log) => {
-      this._logs = [ log, ...this._logs ];
+    this._subscriptions.add(this.logger.log$.pipe(bufferTime(1000)).subscribe((logs) => {
+      this._logs = [ ...logs.reverse(), ...this._logs ];
     }));
   }
 
   get value(): string { return this._value; }
   set value(value: string) { this.setValue(value); }
 
-  get logs(): FormEditorLog[] { return this._logs; }
+  get logs(): DynamicFormLog[] { return this._logs; }
 
   private setValue(value: string) {
     this._value = value;
@@ -56,7 +58,14 @@ export class FormEditorComponent {
       this._logs = [];
       this.dataChange.emit(this._data);
     } catch (error) {
-      console.log(error);
+      const log = {
+        timestamp: new Date(),
+        type: DynamicFormLogType.Unspecified,
+        level: DynamicFormLogLevel.Error,
+        message: 'Error while parsing JSON',
+        data: [ error ],
+      };
+      this.logger.log(log);
     }
   }
 }

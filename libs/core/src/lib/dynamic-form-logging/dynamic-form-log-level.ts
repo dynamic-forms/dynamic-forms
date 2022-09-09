@@ -1,6 +1,6 @@
 export enum DynamicFormLogLevel {
   Error = 1,
-  Warn = 2,
-  Info = 3,
+  Warning = 2,
+  Information = 3,
   Debug = 4
 }

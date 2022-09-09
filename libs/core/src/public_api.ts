@@ -188,6 +188,8 @@ export * from './lib/dynamic-form-library/dynamic-form-library.module';
 export * from './lib/dynamic-form-library/dynamic-form-library.service';
 export * from './lib/dynamic-form-logging/dynamic-form-console.logger';
 export * from './lib/dynamic-form-logging/dynamic-form-log-level';
+export * from './lib/dynamic-form-logging/dynamic-form-log-type';
+export * from './lib/dynamic-form-logging/dynamic-form-log';
 export * from './lib/dynamic-form-logging/dynamic-form-logger-settings';
 export * from './lib/dynamic-form-logging/dynamic-form-logger-type';
 export * from './lib/dynamic-form-logging/dynamic-form-logger-type-config';

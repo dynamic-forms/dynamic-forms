@@ -1,0 +1,26 @@
+:host {
+  mat-row.hidden {
+    display: none;
+  }
+
+  .mat-column-timestamp {
+    flex: 0 1 170px;
+  }
+
+  .mat-column-type {
+    flex: 0 1 140px;
+  }
+
+  .mat-column-level {
+    flex: 0 1 100px;
+  }
+
+  .mat-column-detailed {
+    flex: 0 0 40px;
+  }
+
+  .detail {
+    padding: 12px 0;
+    line-height: 1.5;
+  }
+}

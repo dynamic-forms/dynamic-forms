@@ -1,7 +1,7 @@
 import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormLogLevel } from './dynamic-form-log-level';
+import { DynamicFormLog } from './dynamic-form-log';
 
-export type DynamicFormLogFunc = (logLevel: DynamicFormLogLevel, message?: any, ...data: any[]) => void;
+export type DynamicFormLogFunc = (log: DynamicFormLog) => void;
 
 export interface DynamicFormLoggerType {
   type: string;

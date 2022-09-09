@@ -7,16 +7,17 @@ export const dynamicFormConsoleLogger: DynamicFormLoggerType = {
   type: 'dynamic-form-console-logger',
   libraryName: dynamicFormLibrary.name,
   enabled: true,
-  log: (logLevel: DynamicFormLogLevel, message?: any, ...data: any[]) => {
-    switch(logLevel) {
+  log: (log) => {
+    const message = `${log.type} error: ${log.message}:\n`;
+    switch(log.level) {
       case DynamicFormLogLevel.Error:
-        return console.error(message, ...data);
-      case DynamicFormLogLevel.Warn:
-        return console.warn(message, ...data);
-      case DynamicFormLogLevel.Info:
-        return console.info(message, ...data);
+        return console.error(message, ...log.data);
+      case DynamicFormLogLevel.Warning:
+        return console.warn(message, ...log.data);
+      case DynamicFormLogLevel.Information:
+        return console.info(message, ...log.data);
       case DynamicFormLogLevel.Debug:
-        return console.debug(message, ...data);
+        return console.debug(message, ...log.data);
     }
   },
 };
