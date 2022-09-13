@@ -53,7 +53,7 @@ export class DynamicFormExpressionBuilder {
     if (typeof expression === 'function') {
       return new DynamicFormElementExpression(key, element, expression, this.logger);
     }
-    return null;
+    return undefined;
   }
 
   private createFieldExpression(
@@ -66,7 +66,7 @@ export class DynamicFormExpressionBuilder {
     if (typeof expression === 'function') {
       return new DynamicFormFieldExpression(key, field, expression, this.logger);
     }
-    return null;
+    return undefined;
   }
 
   private createActionExpression(
@@ -79,7 +79,7 @@ export class DynamicFormExpressionBuilder {
     if (typeof expression === 'function') {
       return new DynamicFormActionExpression(key, action, expression, this.logger);
     }
-    return null;
+    return undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types

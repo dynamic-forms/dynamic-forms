@@ -19,7 +19,7 @@ export class DynamicFormFieldExpression<
     protected override logger: DynamicFormLogger,
   ) {
     super(key, field, func, logger);
-    this._memo = { previousValue: null, currentValue: null };
+    this._memo = { previousValue: undefined, currentValue: undefined };
   }
 
   override get value(): any {

@@ -12,6 +12,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressionFunc } from '../dynamic-form-field/dynamic-form-field-expression-func';
+import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 
@@ -19,6 +20,10 @@ describe('DynamicFormExpressionBuilder', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        {
+          provide: DynamicFormLogger,
+          useValue: { error: () => {} },
+        },
         DynamicFormExpressionBuilder,
       ],
     });
@@ -26,14 +31,14 @@ describe('DynamicFormExpressionBuilder', () => {
 
   it('returns element expressions being null',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-      const element = { definition: {} } as DynamicFormField;
+      const element = { definition: {} } as DynamicFormElement;
       const elementExpressions = service.createElementExpressions(element);
 
       expect(elementExpressions).toBeNull();
     }),
   );
 
-  it('returns element expressions',
+  it('returns element expression for string',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
@@ -57,7 +62,30 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
-  it('returns element expressions from function',
+  it('returns element expression for string being invalid javascript',
+    inject([DynamicFormExpressionBuilder, DynamicFormLogger], (service: DynamicFormExpressionBuilder, logger: DynamicFormLogger) => {
+      spyOn(logger, 'error');
+
+      const values = [];
+      const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
+      const expressions = {
+        disabled: 'invalid javascript',
+      } as { [key: string]: string };
+      const definition = { expressions } as DynamicFormElementDefinition;
+      const element = { definition, expressionData } as DynamicFormElement;
+      const elementExpressions = service.createElementExpressions(element);
+      const elementExpression = elementExpressions['disabled'];
+
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(elementExpressions).toBeTruthy();
+      expect(elementExpression).toBeTruthy();
+      expect(elementExpression.element).toBe(element);
+      expect(elementExpression.func).toEqual(jasmine.any(Function));
+      expect(elementExpression.value).toBeUndefined();
+    }),
+  );
+
+  it('returns element expression for function',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const values = [];
       const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
@@ -81,6 +109,16 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
+  it('returns element expression being undefined for type not being string or function',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const expressions = { label: 2 } as any;
+      const element = { definition: { expressions } } as DynamicFormElement;
+      const elementExpressions = service.createElementExpressions(element);
+
+      expect(elementExpressions).toEqual({ label: undefined });
+    }),
+  );
+
   it('returns field expressions being null',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const field = { definition: {} } as DynamicFormField;
@@ -90,7 +128,7 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
-  it('returns field expressions',
+  it('returns field expression for string',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const model = { readonly: false, child: { readonly: false, child: {} } };
       const root = { model } as DynamicFormField;
@@ -124,7 +162,40 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
-  it('returns field expressions from function',
+  it('returns field expression for string being invalid javascript',
+    inject([DynamicFormExpressionBuilder, DynamicFormLogger], (service: DynamicFormExpressionBuilder, logger: DynamicFormLogger) => {
+      spyOn(logger, 'error');
+
+      const model = { readonly: false, child: { readonly: false, child: {} } };
+      const root = { model } as DynamicFormField;
+      const parent = { model: model.child } as DynamicFormField;
+      const expressionChangesSubject = new Subject();
+      const expressionChanges = expressionChangesSubject.asObservable();
+      const expressions = {
+        readonly: 'invalid javascript',
+      } as { [key: string]: string };
+      const expressionData = {
+        root: { model: root.model },
+        parent: {},
+        parentField: { model: parent.model },
+        model: model.child.child,
+
+      } as DynamicFormFieldExpressionData;
+      const definition = { expressions } as DynamicFormFieldDefinition;
+      const field = { definition, expressionData, expressionChangesSubject, expressionChanges } as DynamicFormField;
+      const fieldExpressions = service.createFieldExpressions(field);
+      const fieldExpression = fieldExpressions['readonly'];
+
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(fieldExpressions).toBeTruthy();
+      expect(fieldExpression).toBeTruthy();
+      expect(fieldExpression.field).toBe(field);
+      expect(fieldExpression.func).toEqual(jasmine.any(Function));
+      expect(fieldExpression.value).toBeUndefined();
+    }),
+  );
+
+  it('returns field expression for function',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const model = { readonly: false, child: { readonly: false, child: {} } };
       const root = { model } as DynamicFormField;
@@ -159,6 +230,16 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
+  it('returns field expression being undefined for type not being string or function',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const expressions = { label: 2 } as any;
+      const field = { definition: { expressions } } as DynamicFormField;
+      const fieldExpressions = service.createFieldExpressions(field);
+
+      expect(fieldExpressions).toEqual({ label: undefined });
+    }),
+  );
+
   it('returns action expressions being null',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const action = { definition: {} } as DynamicFormAction;
@@ -168,7 +249,7 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
-  it('returns action expressions',
+  it('returns action expression for string',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parent = {};
@@ -194,7 +275,32 @@ describe('DynamicFormExpressionBuilder', () => {
     }),
   );
 
-  it('returns action expressions from function',
+  it('returns action expression for string being invalid javascript',
+    inject([DynamicFormExpressionBuilder, DynamicFormLogger], (service: DynamicFormExpressionBuilder, logger: DynamicFormLogger) => {
+      spyOn(logger, 'error');
+
+      const root = { status: 'INVALID' };
+      const parent = {};
+      const parentField = { status: 'VALID' };
+      const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
+      const expressions = {
+        disabled: 'invalid javascript',
+      } as { [key: string]: string };
+      const definition = { expressions } as DynamicFormActionDefinition;
+      const action = { definition, expressionData } as DynamicFormAction;
+      const actionExpressions = service.createActionExpressions(action);
+      const actionExpression = actionExpressions['disabled'];
+
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(actionExpressions).toBeTruthy();
+      expect(actionExpression).toBeTruthy();
+      expect(actionExpression.action).toBe(action);
+      expect(actionExpression.func).toEqual(jasmine.any(Function));
+      expect(actionExpression.value).toBeUndefined();
+    }),
+  );
+
+  it('returns action expression for function',
     inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
       const root = { status: 'INVALID' };
       const parentField = { status: 'VALID' };
@@ -216,6 +322,16 @@ describe('DynamicFormExpressionBuilder', () => {
       root.status = 'VALID';
 
       expect(actionExpression.value).toBe(true);
+    }),
+  );
+
+  it('returns action expression being undefined for type not being string or function',
+    inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      const expressions = { label: 2 } as any;
+      const action = { definition: { expressions } } as DynamicFormAction;
+      const actionExpressions = service.createActionExpressions(action);
+
+      expect(actionExpressions).toEqual({ label: undefined });
     }),
   );
 });

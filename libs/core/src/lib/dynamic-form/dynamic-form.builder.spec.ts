@@ -25,6 +25,7 @@ import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-g
 import { dynamicFormGroupFactory } from '../dynamic-form-group/dynamic-form-group-factory';
 import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
@@ -111,6 +112,7 @@ describe('DynamicFormBuilder', () => {
           useValue: validatorTypes,
         },
         DynamicFormConfigService,
+        DynamicFormLogger,
         DynamicFormBuilder,
         DynamicFormExpressionBuilder,
         DynamicFormEvaluationBuilder,
