@@ -8,7 +8,7 @@
     "types": [],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v14/@dynamic-forms/core"
+        "dist/v15/@dynamic-forms/core"
       ]
     }
   },
