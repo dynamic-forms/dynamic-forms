@@ -8,6 +8,16 @@
       width: 100%;
       text-align: left;
       padding-left: 40px;
+
+      &.mat-mdc-button {
+        border-radius: 0;
+
+        &::ng-deep {
+          .mdc-button__label {
+            width: 100%;
+          }
+        }
+      }
     }
 
     .sidebar-menu-button {
@@ -15,6 +25,16 @@
       height: 36px;
       text-align: left;
       padding-left: 16px;
+
+      &.mat-mdc-button {
+        border-radius: 0;
+
+        &::ng-deep {
+          .mdc-button__label {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 
@@ -31,13 +51,13 @@
       ul.mat-tree-children {
         width: calc(100% - 10px);
         padding-inline-start: 10px;
-      }    
+      }
     }
 
     &:not(.expanded) {
       ul.mat-tree-children {
         display: none;
-      }  
+      }
     }
   }
 }

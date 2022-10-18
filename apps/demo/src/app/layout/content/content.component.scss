@@ -9,8 +9,9 @@
     min-height: calc(100vh - 64px);
 
     .card {
-      min-height: calc(100vh - 116px);
+      min-height: calc(100vh - 84px);
       margin: 10px;
-    }  
+      padding: 16px;
+    }
   }
 }

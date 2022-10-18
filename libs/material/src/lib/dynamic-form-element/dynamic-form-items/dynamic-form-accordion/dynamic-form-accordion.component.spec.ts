@@ -51,7 +51,7 @@ describe('MatDynamicFormAccordionComponent', () => {
 
     fixture.detectChanges();
 
-    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-accordion'));
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-accordion.class-name'));
     const element = debugElement.nativeElement;
 
     expect(element).toBeTruthy();

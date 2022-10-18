@@ -6,15 +6,15 @@
   margin: 4px;
   z-index: 99998;
 
-  mat-chip-list {
+  mat-chip-listbox {
     &::ng-deep {
-      .mat-chip-list-wrapper {
+      .mdc-evolution-chip-set__chips {
         justify-content: flex-end;
-      }  
+      }
     }
   }
 
-  mat-chip {
-    text-overflow: ellipsis; 
+  mat-chip-option {
+    text-overflow: ellipsis;
   }
 }

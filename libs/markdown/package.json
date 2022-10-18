@@ -24,7 +24,7 @@
     "@angular/common": "^15.0.0-next.5",
     "@angular/core": "^15.0.0-next.5",
     "@dynamic-forms/core" : "15.0.0-next.0",
-    "marked": "^4.0.16",
+    "marked": "^4.1.1",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {

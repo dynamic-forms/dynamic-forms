@@ -1,6 +1,5 @@
-<button mat-button [matMenuTriggerFor]="editor">
-  Editor
-  <mat-icon>arrow_drop_down</mat-icon>
+<button mat-flat-button color="primary" [matMenuTriggerFor]="editor">
+  <div class="button-content">Editor <mat-icon>arrow_drop_down</mat-icon></div>
 </button>
 
 <mat-menu #editor="matMenu">
