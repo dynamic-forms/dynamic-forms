@@ -1,9 +1,13 @@
-<div class="mat-form-field-simple" [ngClass]="{ 'mat-form-field-simple-invalid': invalid }">
-  <div class="mat-form-field-simple-wrapper">
-    <label class="mat-form-field-simple-label">{{ label }}<span *ngIf="required"> *</span></label>
+<div class="mat-mdc-form-field mat-mdc-form-field-wrapper" [ngClass]="{ 'mdc-text-field--invalid': invalid }">
+  <div class="mat-mdc-form-field-input-wrapper">
+    <label *ngIf="label" class="mat-mdc-form-field-input-label mat-mdc-floating-label mdc-floating-label"
+      >{{ label }}<span *ngIf="required">*</span></label
+    >
     <ng-content></ng-content>
   </div>
-  <div class="mat-form-field-simple-info">
-    <div *ngIf="invalid" class="mat-error">{{ errorMessage }}</div>
+  <div class="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align">
+    <div *ngIf="invalid" class="mat-mdc-form-field-error-wrapper">
+      <div class="mat-mdc-form-field-error mat-mdc-form-field-bottom-align">{{ errorMessage }}</div>
+    </div>
   </div>
 </div>
