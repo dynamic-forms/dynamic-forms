@@ -85,7 +85,7 @@ describe('MatDynamicFormSelectComponent', () => {
 
   it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label'));
     const selectDebugElement = fieldDebugElement.query(By.css('mat-select'));
     const selectComponent = selectDebugElement.componentInstance as MatSelect;
     const fieldElement = fieldDebugElement.nativeElement as HTMLElement;

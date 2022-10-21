@@ -52,10 +52,10 @@ describe('MatDynamicFormCheckboxComponent', () => {
 
   it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
-    const inputDebugElement = checkDebugElement.query(By.css('input.mat-checkbox-input'));
-    const labelDebugElement = checkDebugElement.query(By.css('span.mat-checkbox-label'));
+    const inputDebugElement = checkDebugElement.query(By.css('input'));
+    const labelDebugElement = checkDebugElement.query(By.css('label'));
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
-    const labelElement = labelDebugElement.nativeElement as HTMLSpanElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
     expect(inputElement).toBeTruthy();
     expect(inputElement.id).toBe('key-input');

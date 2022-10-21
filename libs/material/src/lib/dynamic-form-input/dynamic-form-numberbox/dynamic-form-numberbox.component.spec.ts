@@ -54,8 +54,8 @@ describe('MatDynamicFormNumberboxComponent', () => {
 
   it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label'));
     const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
     const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
@@ -68,7 +68,7 @@ describe('MatDynamicFormNumberboxComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
