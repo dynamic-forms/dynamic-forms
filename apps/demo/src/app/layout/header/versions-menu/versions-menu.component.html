@@ -1,8 +1,7 @@
 <ng-container *ngIf="versions$ | async as versions">
   <ng-container *ngIf="versions.length">
-    <button mat-button [matMenuTriggerFor]="menu">
-      Versions
-      <mat-icon>arrow_drop_down</mat-icon>
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      <div class="button-content">Versions <mat-icon>arrow_drop_down</mat-icon></div>
     </button>
 
     <mat-menu #menu="matMenu">

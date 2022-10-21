@@ -9,4 +9,10 @@
   .header-spacer {
     flex: 1 1 auto;
   }
+
+  &::ng-deep {
+    .mat-mdc-button.mat-unthemed {
+      color: #FFF;
+    }
+  }
 }

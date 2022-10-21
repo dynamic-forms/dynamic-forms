@@ -1,7 +1,6 @@
 <ng-container *ngIf="repository$ | async as repository">
-  <button mat-button [matMenuTriggerFor]="docs">
-    Documentation
-    <mat-icon>arrow_drop_down</mat-icon>
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="docs">
+    <div class="button-content">Documentation <mat-icon>arrow_drop_down</mat-icon></div>
   </button>
 
   <mat-menu #docs="matMenu">

@@ -60,30 +60,28 @@ describe('MatDynamicFormButtonComponent', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary');
+    expect(formButtonElement.className).not.toContain('hidden');
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary hidden');
+    expect(formButtonElement.className).toContain('hidden');
   });
 
   it('sets class name of dynamic form button', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary');
+    expect(formButtonElement.className).not.toContain('className1 className2');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe(
-      'mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary className1 className2',
-    );
+    expect(formButtonElement.className).toContain('className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('mat-focus-indicator dynamic-form-button mat-flat-button mat-button-base mat-primary');
+    expect(formButtonElement.className).not.toContain('className1 className2');
   });
 });

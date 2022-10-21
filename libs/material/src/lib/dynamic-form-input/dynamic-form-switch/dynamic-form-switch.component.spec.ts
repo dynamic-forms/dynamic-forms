@@ -52,14 +52,14 @@ describe('MatDynamicFormSwitchComponent', () => {
 
   it('renders component template', () => {
     const checkDebugElement = fixture.debugElement.query(By.css('mat-slide-toggle'));
-    const inputDebugElement = checkDebugElement.query(By.css('input.mat-slide-toggle-input'));
-    const labelDebugElement = checkDebugElement.query(By.css('label.mat-slide-toggle-label'));
-    const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
-    const labelElement = labelDebugElement.nativeElement as HTMLSpanElement;
+    const buttonDebugElement = checkDebugElement.query(By.css('button'));
+    const labelDebugElement = checkDebugElement.query(By.css('label'));
+    const buttonElement = buttonDebugElement.nativeElement as HTMLButtonElement;
+    const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
 
-    expect(inputElement).toBeTruthy();
-    expect(inputElement.id).toBe('key-input');
-    expect(inputElement.type).toBe('checkbox');
+    expect(buttonElement).toBeTruthy();
+    expect(buttonElement.id).toBe('key-button');
+    expect(buttonElement.type).toBe('button');
     expect(labelElement.innerText).toBe('label');
   });
 });

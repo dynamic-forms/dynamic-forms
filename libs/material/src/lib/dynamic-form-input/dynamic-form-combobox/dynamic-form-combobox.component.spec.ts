@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +16,7 @@ describe('MatDynamicFormComboboxComponent', () => {
   let definition: DynamicFormComboboxDefinition;
   let formControl: DynamicFormComboboxControl;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         MatDynamicFormComboboxModule,
@@ -56,10 +56,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     component.field = formControl;
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-    });
-  }));
+  });
 
   it('creates component', () => {
     expect(component).toBeTruthy();
@@ -70,8 +67,8 @@ describe('MatDynamicFormComboboxComponent', () => {
 
   it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
-    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label'));
     const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
     const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
@@ -84,9 +81,9 @@ describe('MatDynamicFormComboboxComponent', () => {
     expect(autocompleteDebugElement).toBeTruthy();
   });
 
-  it('sets dynamic form control to readonly', waitForAsync(() => {
+  it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     expect(inputElement.readOnly).not.toBe(true);
@@ -94,54 +91,48 @@ describe('MatDynamicFormComboboxComponent', () => {
     component.template.readonly = true;
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(inputElement.readOnly).toBe(true);
-    });
-  }));
+    expect(inputElement.readOnly).toBe(true);
+  });
 
-  it('inits value and options for autocomplete', waitForAsync(() => {
+  it('inits value and options for autocomplete', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     inputElement.value = '';
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
-      const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
-      const optionElements = autocompleteComponent.options.toArray();
+    const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
+    const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
+    const optionElements = autocompleteComponent.options.toArray();
 
-      expect(inputElement.value).toBe('');
-      expect(optionElements.length).toBe(3);
-      expect(optionElements[0].value).toBe('Value1');
-      expect(optionElements[0].viewValue).toBe('Value1');
-      expect(optionElements[1].value).toBe('Value2');
-      expect(optionElements[1].viewValue).toBe('Value2');
-      expect(optionElements[2].value).toBe('Value3');
-      expect(optionElements[2].viewValue).toBe('Value3');
-    });
-  }));
+    expect(inputElement.value).toBe('');
+    expect(optionElements.length).toBe(3);
+    expect(optionElements[0].value).toBe('Value1');
+    expect(optionElements[0].viewValue).toBe('Value1');
+    expect(optionElements[1].value).toBe('Value2');
+    expect(optionElements[1].viewValue).toBe('Value2');
+    expect(optionElements[2].value).toBe('Value3');
+    expect(optionElements[2].viewValue).toBe('Value3');
+  });
 
-  it('inits value and filtered options for autocomplete', waitForAsync(() => {
+  it('inits value and filtered options for autocomplete', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const inputDebugElement = fieldDebugElement.query(By.css('input.mat-input-element'));
+    const inputDebugElement = fieldDebugElement.query(By.css('input'));
     const inputElement = inputDebugElement.nativeElement as HTMLInputElement;
 
     inputElement.value = 'Value1';
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
-      const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
-      const optionElements = autocompleteComponent.options.toArray();
+    const autocompleteDebugElement = fieldDebugElement.query(By.css('mat-autocomplete'));
+    const autocompleteComponent = autocompleteDebugElement.componentInstance as MatAutocomplete;
+    const optionElements = autocompleteComponent.options.toArray();
 
-      expect(inputElement.value).toBe('Value1');
-      expect(optionElements.length).toBe(1);
-      expect(optionElements[0].value).toBe('Value1');
-      expect(optionElements[0].viewValue).toBe('Value1');
-    });
-  }));
+    expect(inputElement.value).toBe('Value1');
+    expect(optionElements.length).toBe(1);
+    expect(optionElements[0].value).toBe('Value1');
+    expect(optionElements[0].viewValue).toBe('Value1');
+  });
 });

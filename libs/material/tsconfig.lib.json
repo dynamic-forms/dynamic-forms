@@ -5,12 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": [],
-    "paths": {
-      "@dynamic-forms/core": [
-        "dist/v14/@dynamic-forms/core"
-      ]
-    }
+    "types": []
   },
   "exclude": [
     "src/test.ts",

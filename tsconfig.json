@@ -5,7 +5,7 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -26,18 +26,19 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v14/@dynamic-forms/core"
+        "dist/v15/@dynamic-forms/core"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/v14/@dynamic-forms/bootstrap"
+        "dist/v15/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/material": [
-        "dist/v14/@dynamic-forms/material"
+        "dist/v15/@dynamic-forms/material"
       ],
       "@dynamic-forms/markdown": [
-        "dist/v14/@dynamic-forms/markdown"
+        "dist/v15/@dynamic-forms/markdown"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableResourceInlining": true,

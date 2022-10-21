@@ -54,8 +54,8 @@ describe('MatDynamicFormTextareaComponent', () => {
 
   it('renders component template', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
-    const labelDebugElement = fieldDebugElement.query(By.css('label.mat-form-field-label'));
+    const textareaDebugElement = fieldDebugElement.query(By.css('textarea'));
+    const labelDebugElement = fieldDebugElement.query(By.css('label'));
     const fieldElement = fieldDebugElement.nativeElement as HTMLElement;
     const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
     const labelElement = labelDebugElement.nativeElement as HTMLLabelElement;
@@ -68,7 +68,7 @@ describe('MatDynamicFormTextareaComponent', () => {
 
   it('sets dynamic form control to readonly', () => {
     const fieldDebugElement = fixture.debugElement.query(By.css('mat-form-field'));
-    const textareaDebugElement = fieldDebugElement.query(By.css('textarea.mat-input-element'));
+    const textareaDebugElement = fieldDebugElement.query(By.css('textarea'));
     const textareaElement = textareaDebugElement.nativeElement as HTMLTextAreaElement;
 
     expect(textareaElement.readOnly).not.toBe(true);

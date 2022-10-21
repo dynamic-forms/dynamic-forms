@@ -1,7 +1,7 @@
 <mat-toolbar class="footer" color="primary">
   <ng-container *ngIf="config$ | async as config">
     <ng-container *ngIf="config.buildUrl; else noBuildUrl">
-      <a mat-button [href]="config.buildUrl" target="blank">
+      <a mat-flat-button color="primary" [href]="config.buildUrl" target="blank">
         <span>Version </span>
         <span>{{ config.version }}</span>
         <span>-build.</span>
@@ -15,7 +15,7 @@
       <span>{{ config.build }}</span>
     </ng-template>
     <ng-container *ngIf="config.releaseUrl; else noReleaseUrl">
-      <a mat-button [href]="config.releaseUrl" target="blank">
+      <a mat-flat-button color="primary" [href]="config.releaseUrl" target="blank">
         <span>Release </span>
         <span>{{ config.release }}</span>
       </a>

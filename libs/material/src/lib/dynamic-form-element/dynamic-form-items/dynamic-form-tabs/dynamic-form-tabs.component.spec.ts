@@ -51,7 +51,7 @@ describe('MatDynamicFormTabsComponent', () => {
 
     fixture.detectChanges();
 
-    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-tabs'));
+    const debugElement = fixture.debugElement.query(By.css('.dynamic-form-tabs.class-name'));
     const element = debugElement.nativeElement;
 
     expect(element).toBeTruthy();
