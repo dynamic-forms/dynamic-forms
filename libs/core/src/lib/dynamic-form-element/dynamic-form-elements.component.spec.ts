@@ -2,11 +2,9 @@ import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
-import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element-type-config';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 import { DynamicFormElementsComponent } from './dynamic-form-elements.component';
@@ -26,16 +24,9 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
   ],
   providers: [
     {
-      provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' }),
+      provide: DynamicFormConfigService,
+      useValue: {},
     },
-    {
-      provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
-      useValue: [
-        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent },
-      ],
-    },
-    DynamicFormConfigService,
     DynamicFormComponentFactory,
   ],
 })
@@ -59,10 +50,8 @@ describe('DynamicFormElementsComponent', () => {
   });
 
   it('renders component template', () => {
-    const elements = [
-      { classType: 'element', componentType: 'element' },
-      { classType: 'element', componentType: 'element' },
-    ] as DynamicFormElement[];
+    const type = { type: 'element', component: DynamicFormElementBaseComponent };
+    const elements = [ { classType: 'element', type }, { classType: 'element', type } ] as DynamicFormElement[];
     component.elements = elements;
 
     fixture.detectChanges();

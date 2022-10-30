@@ -138,7 +138,7 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot({
             theme: 'theme',
-            idBuilder: () => 'dynamic-form-id',
+            idBuilder: { createId: () => 'dynamic-form-id' },
           }),
         ],
       });

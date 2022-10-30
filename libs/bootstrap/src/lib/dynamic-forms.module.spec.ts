@@ -134,7 +134,7 @@ describe('BsDynamicFormsModule', () => {
         imports: [
           BsDynamicFormsModule.forRoot({
             theme: 'theme',
-            idBuilder: () => 'dynamic-form-id',
+            idBuilder: { createId: () => 'dynamic-form-id' },
           }),
         ],
       });

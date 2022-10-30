@@ -7,8 +7,6 @@ import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
 import { PreferencesMenuComponent } from './preferences-menu.component';
 
-export const dynamicFormIdBuilder = (): string => v4();
-
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +15,7 @@ export const dynamicFormIdBuilder = (): string => v4();
     MatMenuModule,
     MatDynamicFormsModule.forRoot({
       theme: 'material',
-      idBuilder: dynamicFormIdBuilder,
+      idBuilder: { createId: () => v4() },
     }),
   ],
   declarations: [

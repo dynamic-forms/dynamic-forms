@@ -1,6 +1,7 @@
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
+import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 import { DynamicFormItemTemplate } from './dynamic-form-item-template';
 
@@ -9,8 +10,14 @@ export class DynamicFormItem<
   Definition extends DynamicFormItemDefinition<Template> = DynamicFormItemDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
+  constructor(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: Definition,
+    type: DynamicFormElementType,
+  ) {
+    super(builder, root, parent, definition, type);
     this.extendExpressionData({
       index: () => this.index,
     });

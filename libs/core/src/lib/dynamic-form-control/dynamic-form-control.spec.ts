@@ -5,6 +5,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-field-expression';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -27,32 +28,33 @@ describe('DynamicFormControl', () => {
   it('creates instance', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const type = {} as DynamicFormFieldType;
+    const control = new DynamicFormControl(builder, root, root, definition, type);
 
-    expect(formControl.root).toBe(root);
-    expect(formControl.parent).toBe(root);
-    expect(formControl.parentField).toBe(root);
+    expect(control.root).toBe(root);
+    expect(control.parent).toBe(root);
+    expect(control.parentField).toBe(root);
 
-    expect(formControl.definition).toBe(definition);
-    expect(formControl.template).toBe(definition.template);
+    expect(control.definition).toBe(definition);
+    expect(control.template).toBe(definition.template);
 
-    expect(formControl.key).toBe('key');
-    expect(formControl.index).toBe(1);
-    expect(formControl.path).toBe('key');
-    expect(formControl.classType).toBe('field');
-    expect(formControl.fieldClassType).toBe('control');
-    expect(formControl.componentType).toBe('componentType');
+    expect(control.key).toBe('key');
+    expect(control.index).toBe(1);
+    expect(control.path).toBe('key');
+    expect(control.classType).toBe('field');
+    expect(control.fieldClassType).toBe('control');
+    expect(control.componentType).toBe('componentType');
 
-    expect(formControl.model).toBeNull();
-    expect(formControl.value).toBeNull();
-    expect(formControl.valid).toBeTrue();
-    expect(formControl.status).toBe('VALID');
-    expect(formControl.control).toBeInstanceOf(FormControl);
+    expect(control.model).toBeNull();
+    expect(control.value).toBeNull();
+    expect(control.valid).toBeTrue();
+    expect(control.status).toBe('VALID');
+    expect(control.control).toBeInstanceOf(FormControl);
 
-    expect(formControl.children).toEqual([]);
-    expect(formControl.footerActions).toEqual([]);
-    expect(formControl.evaluators).toEqual([]);
-    expect(formControl.validators).toEqual([]);
+    expect(control.children).toEqual([]);
+    expect(control.footerActions).toEqual([]);
+    expect(control.evaluators).toEqual([]);
+    expect(control.validators).toEqual([]);
 
     expect(root.model).toEqual({ key: null });
   });
@@ -62,9 +64,9 @@ describe('DynamicFormControl', () => {
     it(`creating instance sets model to default value '${defaultValue}'`, () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: { input: { defaultValue } } } as DynamicFormControlDefinition;
-      const formControl = new DynamicFormControl(builder, root, root, definition);
+      const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-      expect(formControl.model).toBe(defaultValue);
+      expect(control.model).toBe(defaultValue);
 
       expect(root.model).toEqual({ key: defaultValue });
     }),
@@ -82,61 +84,61 @@ describe('DynamicFormControl', () => {
     it(`creating instance sets update option '${item.settings}'`, () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: {}, settings: item.settings } as DynamicFormControlDefinition;
-      const formControl = new DynamicFormControl(builder, root, root, definition);
+      const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-      expect(formControl.control.updateOn).toEqual(item.updateOn);
+      expect(control.control.updateOn).toEqual(item.updateOn);
     }),
   );
 
   it('creating instance subscribes valueChanges of control value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    formControl.control.setValue('value');
+    control.control.setValue('value');
 
-    expect(formControl.model).toBe('value');
-    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+    expect(control.model).toBe('value');
+    expect((control.parent as DynamicFormField).model.key).toBe('value');
   });
 
   it('creating instance subscribes valueChanges of control object', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const obj = { value: 'value' };
 
-    formControl.control.setValue(obj);
+    control.control.setValue(obj);
 
-    expect(formControl.model).toBe(obj);
-    expect((formControl.parent as DynamicFormField).model.key).toBe(obj);
+    expect(control.model).toBe(obj);
+    expect((control.parent as DynamicFormField).model.key).toBe(obj);
   });
 
   it('creating instance subscribes debounced valueChanges of control value', (done) => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const settings = { updateType: 'debounce', updateDebounce: 200 };
     const definition = { key: 'key', template: {}, settings } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    formControl.control.setValue('value');
-    formControl.check();
+    control.control.setValue('value');
+    control.check();
 
-    expect(formControl.value).toBe('value');
-    expect(formControl.model).toBeNull();
-    expect((formControl.parent as DynamicFormField).model.key).toBeNull();
+    expect(control.value).toBe('value');
+    expect(control.model).toBeNull();
+    expect((control.parent as DynamicFormField).model.key).toBeNull();
 
     of({}).pipe(delay(150)).subscribe({
       next: () => {
-        expect(formControl.value).toBe('value');
-        expect(formControl.model).toBeNull();
-        expect((formControl.parent as DynamicFormField).model.key).toBeNull();
+        expect(control.value).toBe('value');
+        expect(control.model).toBeNull();
+        expect((control.parent as DynamicFormField).model.key).toBeNull();
       },
     });
 
     of({}).pipe(delay(300)).subscribe({
       next: () => {
-        expect(formControl.value).toBe('value');
-        expect(formControl.model).toBe('value');
-        expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+        expect(control.value).toBe('value');
+        expect(control.model).toBe('value');
+        expect((control.parent as DynamicFormField).model.key).toBe('value');
         done();
       },
     });
@@ -145,127 +147,127 @@ describe('DynamicFormControl', () => {
   it('returns expression data with input', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', index: 1, type: 'componentType', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    expect(formControl.expressionData.input).toBe(definition.template.input);
+    expect(control.expressionData.input).toBe(definition.template.input);
   });
 
   it('inits evaluators to empty', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
     builder.createControlEvaluators.and.returnValue(null);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.evaluators).toEqual([]);
+    expect(control.evaluators).toEqual([]);
   });
 
   it('inits evaluators', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlEvaluators = [ {} ] as DynamicFormControlEvaluator[];
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const evaluators = [ {} ] as DynamicFormControlEvaluator[];
 
-    builder.createControlEvaluators.and.returnValue(formControlEvaluators);
+    builder.createControlEvaluators.and.returnValue(evaluators);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.evaluators).toBe(formControlEvaluators);
+    expect(control.evaluators).toBe(evaluators);
   });
 
   it('inits validators to empty', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
     builder.createControlValidators.and.returnValue(null);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.validators).toEqual([]);
+    expect(control.validators).toEqual([]);
   });
 
   it('inits validators', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlValidators = [
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const validators = [
       { key: 'required', validatorFn: Validators.required },
     ] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(formControlValidators);
+    builder.createControlValidators.and.returnValue(validators);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.validators).toBe(formControlValidators);
+    expect(control.validators).toBe(validators);
   });
 
   it('sets control validator to null', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
     builder.createControlValidators.and.returnValue(null);
 
-    formControl.init();
-    formControl.control.updateValueAndValidity();
+    control.init();
+    control.control.updateValueAndValidity();
 
-    expect(formControl.control.validator).toBeNull();
-    expect(formControl.control.valid).toBe(true);
+    expect(control.control.validator).toBeNull();
+    expect(control.control.valid).toBe(true);
   });
 
   it('sets control validator', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlValidators = [
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const validators = [
       { key: 'required', validatorFn: Validators.required },
     ] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(formControlValidators);
+    builder.createControlValidators.and.returnValue(validators);
 
-    formControl.init();
-    formControl.control.updateValueAndValidity();
+    control.init();
+    control.control.updateValueAndValidity();
 
-    expect(formControl.control.validator).not.toBeNull();
-    expect(formControl.control.valid).toBe(false);
+    expect(control.control.validator).not.toBeNull();
+    expect(control.control.valid).toBe(false);
   });
 
   it('check updates control value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    spyOn(formControl.control, 'setValue').and.callThrough();
-    spyOn(formControl.control, 'markAsTouched');
+    spyOn(control.control, 'setValue').and.callThrough();
+    spyOn(control.control, 'markAsTouched');
 
     root.model['key'] = 'value';
-    formControl.check();
+    control.check();
 
-    expect(formControl.model).toBe('value');
-    expect(formControl.value).toBe('value');
-    expect(formControl.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
-    expect(formControl.control.markAsTouched).toHaveBeenCalled();
+    expect(control.model).toBe('value');
+    expect(control.value).toBe('value');
+    expect(control.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
+    expect(control.control.markAsTouched).toHaveBeenCalled();
   });
 
   it('check updates control disabled', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    expect(formControl.control.disabled).toBe(false);
+    expect(control.control.disabled).toBe(false);
 
-    formControl.template.disabled = true;
-    formControl.check();
+    control.template.disabled = true;
+    control.check();
 
-    expect(formControl.control.disabled).toBe(true);
+    expect(control.control.disabled).toBe(true);
 
-    formControl.template.disabled = false;
-    formControl.check();
+    control.template.disabled = false;
+    control.check();
 
-    expect(formControl.control.disabled).toBe(false);
+    expect(control.control.disabled).toBe(false);
   });
 
   it('check updates control validators', () => {
@@ -278,130 +280,130 @@ describe('DynamicFormControl', () => {
         validation: { required: true },
       },
     } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlValidators = [
-      new DynamicFormControlValidator(_ => Validators.required, 'required', formControl),
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const validators = [
+      new DynamicFormControlValidator(_ => Validators.required, 'required', control),
     ] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(formControlValidators);
+    builder.createControlValidators.and.returnValue(validators);
 
-    formControl.init();
-    formControl.control.updateValueAndValidity();
+    control.init();
+    control.control.updateValueAndValidity();
 
-    expect(formControl.control.valid).toBe(false);
+    expect(control.control.valid).toBe(false);
 
     definition.template.validation.required = false;
-    formControl.check();
+    control.check();
 
-    expect(formControl.control.valid).toBe(true);
+    expect(control.control.valid).toBe(true);
 
-    formControl.check();
+    control.check();
 
-    expect(formControl.control.valid).toBe(true);
+    expect(control.control.valid).toBe(true);
 
     definition.template.validation.required = true;
-    formControl.check();
+    control.check();
 
-    expect(formControl.control.valid).toBe(false);
+    expect(control.control.valid).toBe(false);
   });
 
   it('destroy unsubscribes valueChanges of control', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    formControl.destroy();
+    control.destroy();
 
-    expect(formControl).toBeTruthy();
+    expect(control).toBeTruthy();
   });
 
   it('reset sets model to null', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: 'value' });
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    expect(formControl.model).toBe('value');
-    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+    expect(control.model).toBe('value');
+    expect((control.parent as DynamicFormField).model.key).toBe('value');
 
-    formControl.reset();
+    control.reset();
 
-    expect(formControl.model).toBe(null);
-    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
+    expect(control.model).toBe(null);
+    expect((control.parent as DynamicFormField).model.key).toBe(null);
   });
 
   it('resetEmpty sets model to null', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: 'value' });
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    expect(formControl.model).toBe('value');
-    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+    expect(control.model).toBe('value');
+    expect((control.parent as DynamicFormField).model.key).toBe('value');
 
-    formControl.resetEmpty();
+    control.resetEmpty();
 
-    expect(formControl.model).toBe(null);
-    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
+    expect(control.model).toBe(null);
+    expect((control.parent as DynamicFormField).model.key).toBe(null);
   });
 
   it('resetDefault sets model to default value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    expect(formControl.model).toBe(null);
-    expect((formControl.parent as DynamicFormField).model.key).toBe(null);
+    expect(control.model).toBe(null);
+    expect((control.parent as DynamicFormField).model.key).toBe(null);
 
-    formControl.definition.template.input.defaultValue = 'value';
-    formControl.resetDefault();
+    control.definition.template.input.defaultValue = 'value';
+    control.resetDefault();
 
-    expect(formControl.model).toBe('value');
-    expect((formControl.parent as DynamicFormField).model.key).toBe('value');
+    expect(control.model).toBe('value');
+    expect((control.parent as DynamicFormField).model.key).toBe('value');
   });
 
   it('validate calls markAsTouched of control', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    spyOn(formControl.control, 'markAsTouched');
+    spyOn(control.control, 'markAsTouched');
 
-    formControl.validate();
+    control.validate();
 
-    expect(formControl.control.markAsTouched).toHaveBeenCalled();
+    expect(control.control.markAsTouched).toHaveBeenCalled();
   });
 
   it('init calls calls initId, initExpressions, initValidators and initEvaluators', () => {
     const root = { classType: 'field', model: {} } as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, parent, definition);
+    const control = new DynamicFormControl(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    const initIdSpy = spyOn(formControl as any, 'initId').and.callThrough();
-    const initExpressionsSpy = spyOn(formControl as any, 'initExpressions').and.callThrough();
-    const getExpressionsSpy = spyOn(formControl as any, 'getExpressions').and.callThrough();
-    const initChildrenSpy = spyOn(formControl as any, 'initChildren').and.callThrough();
-    const getChildrenSpy = spyOn(formControl as any, 'getChildren').and.callThrough();
-    const initValidatorsSpy = spyOn(formControl as any, 'initValidators').and.callThrough();
-    const getValidatorsSpy = spyOn(formControl as any, 'getValidators').and.callThrough();
-    const initHeaderActionsSpy = spyOn(formControl as any, 'initHeaderActions').and.callThrough();
-    const getHeaderActionsSpy = spyOn(formControl as any, 'getHeaderActions').and.callThrough();
-    const initFooterActionsSpy = spyOn(formControl as any, 'initFooterActions').and.callThrough();
-    const getFooterActionsSpy = spyOn(formControl as any, 'getFooterActions').and.callThrough();
-    const initEvaluatorsSpy = spyOn(formControl as any, 'initEvaluators').and.callThrough();
-    const getEvaluatorsSpy = spyOn(formControl as any, 'getEvaluators').and.callThrough();
+    const initIdSpy = spyOn(control as any, 'initId').and.callThrough();
+    const initExpressionsSpy = spyOn(control as any, 'initExpressions').and.callThrough();
+    const getExpressionsSpy = spyOn(control as any, 'getExpressions').and.callThrough();
+    const initChildrenSpy = spyOn(control as any, 'initChildren').and.callThrough();
+    const getChildrenSpy = spyOn(control as any, 'getChildren').and.callThrough();
+    const initValidatorsSpy = spyOn(control as any, 'initValidators').and.callThrough();
+    const getValidatorsSpy = spyOn(control as any, 'getValidators').and.callThrough();
+    const initHeaderActionsSpy = spyOn(control as any, 'initHeaderActions').and.callThrough();
+    const getHeaderActionsSpy = spyOn(control as any, 'getHeaderActions').and.callThrough();
+    const initFooterActionsSpy = spyOn(control as any, 'initFooterActions').and.callThrough();
+    const getFooterActionsSpy = spyOn(control as any, 'getFooterActions').and.callThrough();
+    const initEvaluatorsSpy = spyOn(control as any, 'initEvaluators').and.callThrough();
+    const getEvaluatorsSpy = spyOn(control as any, 'getEvaluators').and.callThrough();
 
-    formControl.init();
+    control.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(formControl);
+    expect(builder.getFieldId).toHaveBeenCalledOnceWith(control);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(formControl);
+    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(control);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createControlValidators).toHaveBeenCalledOnceWith(formControl);
+    expect(builder.createControlValidators).toHaveBeenCalledOnceWith(control);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
@@ -409,99 +411,100 @@ describe('DynamicFormControl', () => {
     expect(builder.createFormActions).not.toHaveBeenCalled();
     expect(initEvaluatorsSpy).toHaveBeenCalledTimes(1);
     expect(getEvaluatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createControlEvaluators).toHaveBeenCalledOnceWith(formControl);
+    expect(builder.createControlEvaluators).toHaveBeenCalledOnceWith(control);
   });
 
   it('inits expressions', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlExpressions = {
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const expressions = {
       required: { value: true } as DynamicFormFieldExpression,
       readonly: { value: false } as DynamicFormFieldExpression,
       'input.inputType': { value: 'text' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(expressions);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.expressions).toBe(formControlExpressions);
-    expect(formControl.template.required).toBe(true);
-    expect(formControl.template.readonly).toBe(false);
-    expect(formControl.template.input.inputType).toBe('text');
+    expect(control.expressions).toBe(expressions);
+    expect(control.template.required).toBe(true);
+    expect(control.template.readonly).toBe(false);
+    expect(control.template.input.inputType).toBe('text');
   });
 
   it('inits expressions, sets model and control value to default value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlExpressions = {
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const expressions = {
       'input.defaultValue': { value: 'value' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    spyOn(formControl.control, 'setValue').and.callThrough();
-    spyOn(formControl.control, 'markAsTouched');
+    spyOn(control.control, 'setValue').and.callThrough();
+    spyOn(control.control, 'markAsTouched');
 
-    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(expressions);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.expressions).toBe(formControlExpressions);
-    expect(formControl.template.input.defaultValue).toBe('value');
-    expect(formControl.model).toBe('value');
-    expect(formControl.control.value).toBe('value');
-    expect(formControl.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
-    expect(formControl.control.markAsTouched).not.toHaveBeenCalled();
+    expect(control.expressions).toBe(expressions);
+    expect(control.template.input.defaultValue).toBe('value');
+    expect(control.model).toBe('value');
+    expect(control.control.value).toBe('value');
+    expect(control.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
+    expect(control.control.markAsTouched).not.toHaveBeenCalled();
   });
 
   it('inits expressions, but does not set model and control value to default value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
-    const formControlExpressions = {
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const expressions = {
       'input.defaultValue': { value: undefined } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    spyOn(formControl.control, 'setValue').and.callThrough();
-    spyOn(formControl.control, 'markAsTouched');
+    spyOn(control.control, 'setValue').and.callThrough();
+    spyOn(control.control, 'markAsTouched');
 
-    builder.createFieldExpressions.and.returnValue(formControlExpressions);
+    builder.createFieldExpressions.and.returnValue(expressions);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.expressions).toBe(formControlExpressions);
-    expect(formControl.template['input']['defaultValue']).toBeUndefined();
-    expect(formControl.model).toBeNull();
-    expect(formControl.control.value).toBeNull();
-    expect(formControl.control.setValue).not.toHaveBeenCalled();
-    expect(formControl.control.markAsTouched).not.toHaveBeenCalled();
+    expect(control.expressions).toBe(expressions);
+    expect(control.template['input']['defaultValue']).toBeUndefined();
+    expect(control.model).toBeNull();
+    expect(control.control.value).toBeNull();
+    expect(control.control.setValue).not.toHaveBeenCalled();
+    expect(control.control.markAsTouched).not.toHaveBeenCalled();
   });
 
   it('inits validators', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(validators);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.validators).toBe(validators);
+    expect(control.validators).toBe(validators);
   });
 
   it('inits evaluators', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
-    const formControl = new DynamicFormControl(builder, root, root, definition);
+    const type = {} as DynamicFormFieldType;
+    const control = new DynamicFormControl(builder, root, root, definition, type);
     const evaluators = [{}] as DynamicFormControlEvaluator[];
 
     builder.createControlEvaluators.and.returnValue(evaluators);
 
-    formControl.init();
+    control.init();
 
-    expect(formControl.evaluators).toBe(evaluators);
+    expect(control.evaluators).toBe(evaluators);
   });
 
   describe('DynamicFormSelect', () => {
@@ -528,32 +531,33 @@ describe('DynamicFormControl', () => {
           },
         },
       } as DynamicFormControlDefinition<string | string[], DynamicFormSelect<string>>;
-      const formControl = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, root, root, definition);
-      const formControlEvaluators = [
+      const type = {} as DynamicFormFieldType;
+      const control = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, root, root, definition, type);
+      const evaluators = [
         { enabled: true, func: dynamicFormSelectEvaluatorFn },
       ] as DynamicFormControlEvaluator[];
 
-      builder.createControlEvaluators.and.returnValue(formControlEvaluators);
+      builder.createControlEvaluators.and.returnValue(evaluators);
 
-      formControl.init();
+      control.init();
 
-      expect(formControl.model).toBe('option1');
-      expect(formControl.control.value).toBe('option1');
+      expect(control.model).toBe('option1');
+      expect(control.control.value).toBe('option1');
 
-      formControl.control.setValue('option3');
-      formControl.check();
+      control.control.setValue('option3');
+      control.check();
 
-      expect(formControl.model).toBe('option3');
-      expect(formControl.control.value).toBe('option3');
+      expect(control.model).toBe('option3');
+      expect(control.control.value).toBe('option3');
 
-      formControl.template.input.options = [
+      control.template.input.options = [
         { value: 'option1', label: 'Option1' },
         { value: 'option2', label: 'Option2' },
       ];
-      formControl.check();
+      control.check();
 
-      expect(formControl.model).toBeNull();
-      expect(formControl.control.value).toBeNull();
+      expect(control.model).toBeNull();
+      expect(control.control.value).toBeNull();
     });
   });
 });

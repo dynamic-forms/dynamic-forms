@@ -32,18 +32,15 @@ export class DynamicFormComponentFactory {
   }
 
   createElementComponent(ref: ViewContainerRef, element: DynamicFormElement): DynamicFormElementBase {
-    const type = this.configService.getElementType(element.componentType);
-    return this.createElementComponentForType(ref, element, type);
+    return this.createElementComponentForType(ref, element, element.type);
   }
 
   createFieldComponent(ref: ViewContainerRef, field: DynamicFormField): DynamicFormFieldBase {
-    const type = this.configService.getFieldType(field.componentType);
-    return this.createFieldComponentForType(ref, field, type);
+    return this.createFieldComponentForType(ref, field, field.type);
   }
 
   createActionComponent(ref: ViewContainerRef, action: DynamicFormAction): DynamicFormActionBase {
-    const type = this.configService.getActionType(action.componentType);
-    return this.createActionComponentForType(ref, action, type);
+    return this.createActionComponentForType(ref, action, action.type);
   }
 
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl): DynamicFormFieldBase {

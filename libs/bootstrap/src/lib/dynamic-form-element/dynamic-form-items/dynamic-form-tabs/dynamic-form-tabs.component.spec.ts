@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormItems,
+import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType, DynamicFormItems,
   DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 import { BsDynamicFormTabsModule } from './dynamic-form-tabs.module';
@@ -27,11 +27,11 @@ describe('BsDynamicFormTabsComponent', () => {
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
-    const element = new DynamicFormItems(builder, root, parent, { template: {}, children: [] });
+    const items = new DynamicFormItems(builder, root, parent, { template: {}, children: [] }, {} as DynamicFormElementType);
 
     fixture = TestBed.createComponent(BsDynamicFormTabsComponent);
     component = fixture.componentInstance;
-    component.element = element;
+    component.element = items;
 
     fixture.detectChanges();
   });

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormTextboxControl, DynamicFormTextboxDefinition,
+  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormTextboxControl, DynamicFormTextboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 import { MatDynamicFormTextboxModule } from './dynamic-form-textbox.module';
@@ -38,7 +38,7 @@ describe('MatDynamicFormTextboxComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextboxDefinition;
-    formControl = new DynamicFormTextboxControl(builder, form, form, definition);
+    formControl = new DynamicFormTextboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

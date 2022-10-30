@@ -3,6 +3,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
+import { DynamicFormElementType } from './dynamic-form-element-type';
 
 class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
@@ -19,7 +20,8 @@ describe('DynamicFormElementBase', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormElementDefinition;
-    const element = new DynamicFormElement(builder, root, parent, definition);
+    const type = {} as DynamicFormElementType;
+    const element = new DynamicFormElement(builder, root, parent, definition, type);
 
     component.element = element;
 

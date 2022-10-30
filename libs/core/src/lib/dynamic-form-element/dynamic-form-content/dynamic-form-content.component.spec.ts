@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
+import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormContentDefinition } from './dynamic-form-content-definition';
 import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 import { DynamicFormContentComponent } from './dynamic-form-content.component';
@@ -25,7 +26,8 @@ describe('DynamicFormContentComponent', () => {
     const parent = {} as DynamicFormElement;
     const template = { content: '<span>Content</span>' } as DynamicFormContentTemplate;
     const definition = { type: 'element', template } as DynamicFormContentDefinition;
-    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>(builder, root, parent, definition);
+    const type = {} as DynamicFormElementType;
+    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition> (builder, root, parent, definition, type);
 
     fixture = TestBed.createComponent(DynamicFormContentComponent);
     component = fixture.componentInstance;

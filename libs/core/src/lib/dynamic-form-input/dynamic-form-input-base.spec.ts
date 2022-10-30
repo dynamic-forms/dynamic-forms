@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -52,7 +53,7 @@ describe('DynamicFormInputBase', () => {
         hints: {},
         validation: {},
       },
-    } as DynamicFormControlDefinition);
+    } as DynamicFormControlDefinition, {} as DynamicFormFieldType);
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);
     const component = fixture.componentInstance;

@@ -6,6 +6,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { FormControlBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -18,15 +19,16 @@ export class DynamicFormControl<
   Value = any,
   Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
   Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
-  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>
-> extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition> {
+  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
+  Type extends DynamicFormFieldType = DynamicFormFieldType
+> extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition, Type> {
 
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
+    super(builder, root, parent, definition, type);
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
@@ -79,7 +81,7 @@ export class DynamicFormControl<
   }
 
   protected override afterInitExpressions(): void {
-    const keys = Object.keys(this._expressions);
+    const keys = Object.keys(this.expressions);
     if (keys.includes('input.defaultValue')) {
       this.checkDefaultValue();
     }

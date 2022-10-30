@@ -2,6 +2,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
@@ -11,20 +12,20 @@ import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dyn
 export class DynamicFormGroup<
   Value extends { [key: string]: any } = any, Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
-  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>
-> extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition> {
+  Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
+  Type extends DynamicFormFieldType = DynamicFormFieldType
+> extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition, Type> {
 
   protected _fields: DynamicFormField[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition);
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type);
   /** @internal */
   constructor(builder: DynamicFormBuilder, definition: Definition, model: Model);
   constructor(builder: DynamicFormBuilder, ...params: any[]) {
-    const { root, parent, definition, model } = params.length === 3
-      ? { root: params[0], parent: params[1], definition: params[2], model: null }
-      : { root: null, parent: null, definition: params[0], model: params[1] };
-    super(builder, root, parent, definition);
-    this._control = new FormGroupBase<Value>({} as any);
+    const { root, parent, definition, type, model } = params.length === 4
+      ? { root: params[0], parent: params[1], definition: params[2], type: params[3], model: null }
+      : { root: null, parent: null, definition: params[0], type: null, model: params[1] };
+    super(builder, root, parent, definition, type, new FormGroupBase<Value>({} as any));
     this._model = model || this.getModel();
     this._parameters = {};
   }

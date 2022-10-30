@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormBuilder,
+import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
   DynamicFormButtonDefinition, DynamicFormButtonTemplate, DynamicFormField,
   DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
@@ -35,7 +35,8 @@ describe('BsDynamicFormButtonComponent', () => {
     const parent = {} as DynamicFormField;
     const template = { label: 'label' } as DynamicFormButtonTemplate;
     const definition = { id: 'id', type: 'element', template } as DynamicFormButtonDefinition;
-    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(builder, root, parent, definition);
+    const type = {} as DynamicFormActionType;
+    element = new DynamicFormAction<DynamicFormButtonTemplate, DynamicFormButtonDefinition>(builder, root, parent, definition, type);
     component.element = element;
 
     fixture.detectChanges();

@@ -3,7 +3,7 @@ import { MatSelect } from '@angular/material/select';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
+  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 import { MatDynamicFormSelectModule } from './dynamic-form-select.module';
@@ -69,7 +69,7 @@ describe('MatDynamicFormSelectComponent', () => {
         },
       },
     } as DynamicFormSelectDefinition;
-    formControl = new DynamicFormSelectControl(builder, form, form, definition);
+    formControl = new DynamicFormSelectControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

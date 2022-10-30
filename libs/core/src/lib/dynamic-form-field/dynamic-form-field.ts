@@ -13,6 +13,7 @@ import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-
 import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
+import { DynamicFormFieldType } from './dynamic-form-field-type';
 import {
   DynamicFormFieldValidatorBase, DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorFn,
 } from './dynamic-form-field-validator';
@@ -22,8 +23,9 @@ export abstract class DynamicFormField<
   Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
+  Type extends DynamicFormFieldType = DynamicFormFieldType,
   Child extends DynamicFormElement = DynamicFormElement
-> extends DynamicFormElement<Template, Definition, Child, DynamicFormFieldExpressionData, DynamicFormFieldExpressions> {
+> extends DynamicFormElement<Template, Definition, Child, DynamicFormFieldExpressionData, DynamicFormFieldExpressions, Type> {
 
   protected _settings: DynamicFormFieldSettings;
 
@@ -38,8 +40,15 @@ export abstract class DynamicFormField<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, control?: Control) {
-    super(builder, root, parent, definition);
+  constructor(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: Definition,
+    type: Type,
+    control?: Control,
+  ) {
+    super(builder, root, parent, definition, type);
     this._control = control;
     this._depth = this.getDepth();
     this._settings = this.createSettings();
@@ -104,7 +113,7 @@ export abstract class DynamicFormField<
   }
 
   protected get defaultValue(): Value {
-    return this._definition.defaultValue;
+    return this.definition.defaultValue;
   }
 
   protected override getExpressions(): DynamicFormFieldExpressions {

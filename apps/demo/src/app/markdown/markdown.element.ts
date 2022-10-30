@@ -3,7 +3,7 @@ import { DynamicFormMarkdownTemplate } from '@dynamic-forms/markdown';
 
 export class MarkdownElement extends DynamicFormElement<DynamicFormMarkdownTemplate> {
   constructor(source: string) {
-    super(null, null, null, { template: { source } });
+    super(null, null, null, { template: { source } }, null);
   }
 
   get source(): string { return this.template.source; }
