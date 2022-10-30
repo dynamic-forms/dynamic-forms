@@ -18,7 +18,7 @@ describe('DynamicFormItems', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormItemsDefinition;
-    const type = {} as DynamicFormElementType;
+    const type = { type: 'type' } as DynamicFormElementType;
     const items = new DynamicFormItems(builder, root, parent, definition, type);
 
     expect(items.root).toBe(root);
@@ -26,10 +26,10 @@ describe('DynamicFormItems', () => {
 
     expect(items.definition).toBe(definition);
     expect(items.template).toBe(definition.template);
+    expect(items.type).toBe(type);
 
     expect(items.id).toBe('id');
     expect(items.classType).toBe('element');
-    expect(items.componentType).toBe('type');
 
     expect(items.children).toEqual([]);
     expect(items.selectedIndex).toBeUndefined();

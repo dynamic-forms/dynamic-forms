@@ -19,9 +19,9 @@ describe('DynamicFormDictionary', () => {
   });
 
   it('creates instance', () => {
-    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} }  as DynamicFormDictionaryDefinition;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} }  as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    const type = {} as DynamicFormFieldType;
+    const type = { type: 'type' } as DynamicFormFieldType;
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, type);
 
     expect(dictionary.root).toBe(form);
@@ -30,6 +30,7 @@ describe('DynamicFormDictionary', () => {
 
     expect(dictionary.definition).toBe(definition);
     expect(dictionary.template).toBe(definition.template);
+    expect(dictionary.type).toBe(type);
 
     expect(dictionary.settings).toBeTruthy();
 
@@ -38,7 +39,6 @@ describe('DynamicFormDictionary', () => {
     expect(dictionary.index).toBe(1);
     expect(dictionary.classType).toBe('field');
     expect(dictionary.fieldClassType).toBe('dictionary');
-    expect(dictionary.componentType).toBe('componentType');
 
     expect(dictionary.model).toEqual({});
     expect(dictionary.value).toEqual({});

@@ -27,8 +27,8 @@ describe('DynamicFormControl', () => {
 
   it('creates instance', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    const definition = { key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormControlDefinition;
-    const type = {} as DynamicFormFieldType;
+    const definition = { key: 'key', index: 1, type: 'type', template: {} } as DynamicFormControlDefinition;
+    const type = { type: 'type' } as DynamicFormFieldType;
     const control = new DynamicFormControl(builder, root, root, definition, type);
 
     expect(control.root).toBe(root);
@@ -37,13 +37,13 @@ describe('DynamicFormControl', () => {
 
     expect(control.definition).toBe(definition);
     expect(control.template).toBe(definition.template);
+    expect(control.type).toBe(type);
 
     expect(control.key).toBe('key');
     expect(control.index).toBe(1);
     expect(control.path).toBe('key');
     expect(control.classType).toBe('field');
     expect(control.fieldClassType).toBe('control');
-    expect(control.componentType).toBe('componentType');
 
     expect(control.model).toBeNull();
     expect(control.value).toBeNull();

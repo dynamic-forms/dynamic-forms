@@ -20,8 +20,8 @@ describe('DynamicFormGroup', () => {
 
   it('creates instance', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    const definition = { key: 'key', index: 1, type: 'componentType', template: {}, children: [] } as DynamicFormGroupDefinition;
-    const type = {} as DynamicFormFieldType;
+    const definition = { key: 'key', index: 1, type: 'type', template: {}, children: [] } as DynamicFormGroupDefinition;
+    const type = { type: 'type' } as DynamicFormFieldType;
     const group = new DynamicFormGroup(builder, form, form, definition, type);
 
     expect(group.root).toBe(form);
@@ -30,6 +30,7 @@ describe('DynamicFormGroup', () => {
 
     expect(group.definition).toBe(definition);
     expect(group.template).toBe(definition.template);
+    expect(group.type).toBe(type);
 
     expect(group.settings).toBeTruthy();
 
@@ -38,7 +39,6 @@ describe('DynamicFormGroup', () => {
     expect(group.path).toBe('key');
     expect(group.classType).toBe('field');
     expect(group.fieldClassType).toBe('group');
-    expect(group.componentType).toBe('componentType');
 
     expect(group.model).toEqual({});
     expect(group.value).toEqual({});

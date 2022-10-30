@@ -19,9 +19,9 @@ describe('DynamicFormArray', () => {
   });
 
   it('creates instance', () => {
-    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormArrayDefinition;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    const type = {} as DynamicFormFieldType;
+    const type = { type: 'type' } as DynamicFormFieldType;
     const array = new DynamicFormArray(builder, form, form, definition, type);
 
     expect(array.root).toBe(form);
@@ -30,13 +30,13 @@ describe('DynamicFormArray', () => {
 
     expect(array.definition).toBe(definition);
     expect(array.template).toBe(definition.template);
+    expect(array.type).toBe(type);
 
     expect(array.id).toBe('id');
     expect(array.key).toBe('key');
     expect(array.index).toBe(1);
     expect(array.classType).toBe('field');
     expect(array.fieldClassType).toBe('array');
-    expect(array.componentType).toBe('componentType');
 
     expect(array.model).toEqual([]);
     expect(array.value).toEqual([]);

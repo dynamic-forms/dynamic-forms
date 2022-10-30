@@ -49,7 +49,7 @@ export class DynamicFormItems<
   protected override getChildren(): Item[] {
     return (this.definition.children || []).map((childDefinition, index) => {
       const itemDefinition = { ...this._builder.getDefinition(childDefinition, this.root), index };
-      const item = new DynamicFormItem(this._builder, this.root, this.parent, itemDefinition, this.type);
+      const item = new DynamicFormItem(this._builder, this.root, this.parent, itemDefinition);
       item.init();
       return item as Item;
     });

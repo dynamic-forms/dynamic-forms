@@ -19,7 +19,7 @@ describe('DynamicFormModal', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
-    const type = {} as DynamicFormElementType;
+    const type = { type: 'type' } as DynamicFormElementType;
     const modal = new DynamicFormModal(builder, root, parent, definition, type);
 
     expect(modal.root).toBe(root);
@@ -27,9 +27,9 @@ describe('DynamicFormModal', () => {
 
     expect(modal.definition).toBe(definition);
     expect(modal.template).toBe(definition.template);
+    expect(modal.type).toBe(type);
 
     expect(modal.classType).toBe('element');
-    expect(modal.componentType).toBe('type');
 
     expect(modal.expressionData).toBeTruthy();
     expect(modal.expressionData.isOpen).toBeFalse();

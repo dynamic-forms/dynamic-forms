@@ -69,8 +69,8 @@ describe('DynamicFormField', () => {
     const root = { classType: 'field', depth: 0 } as DynamicForm;
     const parentField = { classType: 'field', depth: 1 } as DynamicFormField;
     const parent = { parent: parentField as DynamicFormElement } as DynamicFormElement;
-    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormFieldDefinition;
-    const type = {} as DynamicFormFieldType;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} } as DynamicFormFieldDefinition;
+    const type = { type: 'type' } as DynamicFormFieldType;
     const field = new DynamicFormTestField(builder, root, parent, definition, type);
 
     expect(field.root).toBe(root);
@@ -79,6 +79,7 @@ describe('DynamicFormField', () => {
 
     expect(field.definition).toBe(definition);
     expect(field.template).toBe(definition.template);
+    expect(field.type).toBe(type);
 
     expect(field.settings).toBeTruthy();
 
@@ -87,7 +88,6 @@ describe('DynamicFormField', () => {
     expect(field.index).toBe(1);
     expect(field.depth).toBe(2);
     expect(field.classType).toBe('field');
-    expect(field.componentType).toBe('componentType');
 
     expect(field.model).toBeUndefined();
     expect(field.value).toBeUndefined();

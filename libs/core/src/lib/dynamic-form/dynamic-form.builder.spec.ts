@@ -431,10 +431,8 @@ describe('DynamicFormBuilder', () => {
     expect(formArray.children.length).toBe(2);
     expect(formArray.children[0].key).toBe('0');
     expect(formArray.children[0].index).toBe(0);
-    expect(formArray.children[0].componentType).toBe('control');
     expect(formArray.children[1].key).toBe('1');
     expect(formArray.children[1].index).toBe(1);
-    expect(formArray.children[1].componentType).toBe('control');
   });
 
   it('creates DynamicFormArray with definition template reference', () => {
@@ -456,10 +454,8 @@ describe('DynamicFormBuilder', () => {
     expect(formArray.children.length).toBe(2);
     expect(formArray.children[0].key).toBe('0');
     expect(formArray.children[0].index).toBe(0);
-    expect(formArray.children[0].componentType).toBe('control');
     expect(formArray.children[1].key).toBe('1');
     expect(formArray.children[1].index).toBe(1);
-    expect(formArray.children[1].componentType).toBe('control');
   });
 
   it('creates DynamicFormArray with validator', () => {
@@ -508,10 +504,8 @@ describe('DynamicFormBuilder', () => {
     expect(formDictionary.children.length).toBe(2);
     expect(formDictionary.children[0].key).toBe('value1');
     expect(formDictionary.children[0].index).toBeUndefined();
-    expect(formDictionary.children[0].componentType).toBe('control');
     expect(formDictionary.children[1].key).toBe('value2');
     expect(formDictionary.children[1].index).toBeUndefined();
-    expect(formDictionary.children[1].componentType).toBe('control');
   });
 
   it('creates DynamicFormDictionary with definition template reference', () => {
@@ -533,10 +527,8 @@ describe('DynamicFormBuilder', () => {
     expect(formDictionary.children.length).toBe(2);
     expect(formDictionary.children[0].key).toBe('value1');
     expect(formDictionary.children[0].index).toBeUndefined();
-    expect(formDictionary.children[0].componentType).toBe('control');
     expect(formDictionary.children[1].key).toBe('value2');
     expect(formDictionary.children[1].index).toBeUndefined();
-    expect(formDictionary.children[1].componentType).toBe('control');
   });
 
   it('creates DynamicFormDictionary with validator', () => {
