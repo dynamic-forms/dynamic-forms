@@ -71,6 +71,13 @@ Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the
 
 needed to be part of the npm config file `.nmprc`.
 
+### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.0.0-rc.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.0.0-rc.0)
+
+- `npm install @dynamic-forms/core@15.0.0-rc.0`
+- `npm install @dynamic-forms/bootstrap@15.0.0-rc.0`
+- `npm install @dynamic-forms/material@15.0.0-rc.0`
+- `npm install @dynamic-forms/markdown@15.0.0-rc.0`
+
 ### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.1.0)
 
 - `npm install @dynamic-forms/core@14.1.0`
@@ -84,37 +91,12 @@ needed to be part of the npm config file `.nmprc`.
 - `npm install @dynamic-forms/bootstrap@13.0.0`
 - `npm install @dynamic-forms/material@13.0.0`
 
-### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v12/dynamic-forms-v12-publish?branchName=refs/tags/12.1.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=24&branchName=refs/tags/12.1.1)
-
-- `npm install @dynamic-forms/core@12.1.1`
-- `npm install @dynamic-forms/bootstrap@12.1.1`
-- `npm install @dynamic-forms/material@12.1.1`
-
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v11/dynamic-forms-v11-publish?branchName=refs/tags/11.1.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=20&branchName=refs/tags/11.1.1)
-
-- `npm install @dynamic-forms/core@11.1.1`
-- `npm install @dynamic-forms/bootstrap@11.1.1`
-- `npm install @dynamic-forms/material@11.1.1`
-
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v10/dynamic-forms-v10-publish?branchName=refs/tags/10.0.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=12&branchName=refs/tags/10.0.2)
-
-- `npm install @dynamic-forms/core@10.0.2`
-- `npm install @dynamic-forms/bootstrap@10.0.2`
-- `npm install @dynamic-forms/material@10.0.2`
-
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v9/dynamic-forms-v9-publish?branchName=refs/tags/9.0.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=11&branchName=refs/tags/9.0.1)
-
-- `npm install @dynamic-forms/core@9.0.1`
-- `npm install @dynamic-forms/bootstrap@9.0.1`
-- `npm install @dynamic-forms/material@9.0.1`
-
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v8/dynamic-forms-v8-publish?branchName=refs/tags/8.0.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=10&branchName=refs/tags/8.0.2)
-
-- `npm install @dynamic-forms/core@8.0.2`
-- `npm install @dynamic-forms/bootstrap@8.0.2`
-- `npm install @dynamic-forms/material@8.0.2`
-
 ## **Demos**
+
+### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v15-cd?branchName=15.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=39&branchName=15.0.x)
+
+- Built with [Angular 15](https://v15.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v15/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v15/)
 
 ### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v14-cd?branchName=14.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=30&branchName=14.0.x)
 
@@ -125,28 +107,3 @@ needed to be part of the npm config file `.nmprc`.
 
 - Built with [Angular 13](https://v13.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v13/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v13/)
-
-### **Version 12** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v12-cd?branchName=12.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=22&branchName=12.1.x)
-
-- Built with [Angular 12](https://v12.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v12/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v12/)
-
-### **Version 11** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v11-cd?branchName=11.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=18&branchName=11.1.x)
-
-- Built with [Angular 11](https://v11.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v11/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v11/)
-
-### **Version 10** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v10-cd?branchName=10.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=8&branchName=10.0.x)
-
-- Built with [Angular 10](https://v10.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v10/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v10/)
-
-### **Version 9** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v9-cd?branchName=9.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=4&branchName=9.0.x)
-
-- Built with [Angular 9](https://v9.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v9/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v9/)
-
-### **Version 8** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v8-cd?branchName=8.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=1&branchName=8.0.x)
-
-- Built with [Angular 8](https://v8.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v8/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v8/)
