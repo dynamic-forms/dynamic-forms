@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/prefer-for-of */
 import { ExamplesMenu, ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
 import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
 
-export function getExamples(items: ExampleMenuItem[], namePrefix?: string): Example[] {
-  return items.reduce((result, item) => {
+export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Example[] =>
+  items.reduce((result, item) => {
     const name = namePrefix ? `${namePrefix} - ${item.label}` : item.label;
     const group = item as ExampleMenuGroup;
     if (group.items && group.items.length) {
@@ -16,7 +17,7 @@ export function getExamples(items: ExampleMenuItem[], namePrefix?: string): Exam
     }
     return result;
   }, []);
-}
+
 
 describe('dynamic-forms demo examples', () => {
   const themes = [ 'bootstrap', 'material' ];
@@ -83,7 +84,7 @@ describe('dynamic-forms demo examples', () => {
               }
             }
 
-            const formItemsTestResult = await page.getFormItemsTestResult();
+            const formItemsTestResult = await page.getFormItemsTestResult(theme);
             for (let headerIndex = 1; headerIndex < formItemsTestResult.itemHeaderCount; headerIndex++) {
               const itemHeader = formItemsTestResult.itemHeaders.get(headerIndex);
               const itemHeaderClassName = await itemHeader.getAttribute('class');

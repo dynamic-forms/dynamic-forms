@@ -124,7 +124,7 @@ export class ExamplesPage extends Page {
     return { modalPresent, modalControls, modalOpenButton, modalOpenButtonPresent, modalCloseButton, modalCloseButtonPresent };
   }
 
-  async getFormItemsTestResult(): Promise<FormItemsTestResult> {
+  async getFormItemsTestResult(theme: string): Promise<FormItemsTestResult> {
     const form = element(By.css('form.dynamic-form'));
     const items = form.element(By.css('.dynamic-form-items'));
     const itemsPresent = await items.isPresent();
@@ -132,7 +132,7 @@ export class ExamplesPage extends Page {
       return { items, itemsPresent };
     }
 
-    const itemHeaders = items.all(By.css('.dynamic-form-item-header'));
+    const itemHeaders = items.all(By.css(theme === 'material' ? '.mdc-tab' : '.dynamic-form-item-header'));
     const itemHeaderCount = await itemHeaders.count();
     return { items, itemsPresent, itemHeaders, itemHeaderCount };
   }
@@ -154,7 +154,7 @@ export class ExamplesPage extends Page {
       type: await control.getControlType(),
       present: await control.isPresent(),
       inputPresent: await input.isPresent(),
-      inputEditable: await input.isEditable()
+      inputEditable: await input.isEditable(),
     };
     if (result.inputEditable) {
       if (!await input.getInputValue() || await input.isInputForFalse()) {
