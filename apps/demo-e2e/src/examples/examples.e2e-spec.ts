@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/prefer-for-of */
 import { ExamplesMenu, ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
 import { Example, ExamplesPage } from './examples.po';
 
@@ -75,12 +74,12 @@ describe('dynamic-forms demo examples', () => {
 
             const controls = formModalTestResult.modalControls || formTestResult.controls;
             const controlTestResults = await page.getFormControlTestResults(controls);
-            for (let controlIndex = 0; controlIndex < controlTestResults.length; controlIndex++) {
-              expect(controlTestResults[controlIndex].type).toBeTruthy();
-              expect(controlTestResults[controlIndex].present).toBe(true);
-              expect(controlTestResults[controlIndex].inputPresent).toBe(true);
-              if (controlTestResults[controlIndex].inputEditable) {
-                expect(controlTestResults[controlIndex].inputValuePassed).toBe(true);
+            for (const controlTestResult of controlTestResults.values()) {
+              expect(controlTestResult.type).toBeTruthy();
+              expect(controlTestResult.present).toBe(true);
+              expect(controlTestResult.inputPresent).toBe(true);
+              if (controlTestResult.inputEditable) {
+                expect(controlTestResult.inputValuePassed).toBe(true);
               }
             }
 
@@ -97,12 +96,12 @@ describe('dynamic-forms demo examples', () => {
               const item = page.getFormItemLast(formItemsTestResult.items);
               const itemControls = page.getFormControls(item);
               const itemControlTestResults = await page.getFormControlTestResults(itemControls);
-              for (let itemControlIndex = 0; itemControlIndex < itemControlTestResults.length; itemControlIndex++) {
-                expect(itemControlTestResults[itemControlIndex].type).toBeTruthy();
-                expect(itemControlTestResults[itemControlIndex].present).toBe(true);
-                expect(itemControlTestResults[itemControlIndex].inputPresent).toBe(true);
-                if (itemControlTestResults[itemControlIndex].inputEditable) {
-                  expect(itemControlTestResults[itemControlIndex].inputValuePassed).toBe(true);
+              for (const itemControlTestResult of itemControlTestResults.values()) {
+                expect(itemControlTestResult.type).toBeTruthy();
+                expect(itemControlTestResult.present).toBe(true);
+                expect(itemControlTestResult.inputPresent).toBe(true);
+                if (itemControlTestResult.inputEditable) {
+                  expect(itemControlTestResult.inputValuePassed).toBe(true);
                 }
               }
             }

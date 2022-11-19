@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../out-tsc/app",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "target": "es5",
     "resolveJsonModule": true,
     "types": [
       "jasmine",

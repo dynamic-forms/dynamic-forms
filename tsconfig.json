@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": false,
     "target": "ES2022",
-    "module": "es2020",
+    "module": "ES2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
