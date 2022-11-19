@@ -4,7 +4,7 @@ const KEY = protractor.Key;
 
 export class Control {
   private readonly _types: string[] = [
-    'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle'
+    'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle',
   ];
 
   constructor(public element: ElementFinder, public theme: string) {}
@@ -38,6 +38,8 @@ export class Control {
         return new Input(controlType, this, this.findElements('input[type="radio"]'));
       case 'select':
         return new Input(controlType, this, this.findElement('select,mat-select'));
+      case 'switch':
+        return new Input(controlType, this, this.findElements('input[type="checkbox"],mat-slide-toggle'));
       case 'textarea':
         return new Input(controlType, this, this.findElement('textarea'));
       case 'toggle':
@@ -89,19 +91,21 @@ export class Input {
   async getInputValue(): Promise<string | boolean> {
     switch (this.controlType) {
       case 'checkbox':
-      case 'switch':
         return this.inputElement.getAttribute('checked');
       case 'radio':
         const checkedRadio = this.control.findElement('input[type="radio"]:checked');
         return await checkedRadio.isPresent() ? true : false;
       case 'select':
         if (this.control.theme === 'material') {
-          const selectedValue = this.control.findElement('span.mat-select-value-text');
+          const selectedValue = this.control.findElement('span.mat-mdc-select-value-text');
           return await selectedValue.isPresent() ? selectedValue.getText() : null;
         } else {
           const selectedValue = await this.inputElement.getAttribute('value');
           return selectedValue !== 'null' ? selectedValue : null;
         }
+      case 'switch':
+        const switchToggle = this.control.findElement('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
+        return await switchToggle.isPresent() ? true : false;
       case 'toggle':
         const checkedToggle = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
         return await checkedToggle.isPresent() ? true : false;
@@ -119,17 +123,11 @@ export class Input {
   async editInputValue(): Promise<void> {
     switch (this.controlType) {
       case 'checkbox':
-      case 'switch':
         if (await this.isInputForFalse() && !await this.getInputValue()) {
           await this.inputElement.sendKeys(KEY.SPACE);
         }
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'radio':
-        return this.inputElement.sendKeys(KEY.SPACE);
-      case 'toggle':
-        if (this.control.theme === 'material') {
-          return this.inputElement.click();
-        }
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'select':
         const keys = this.control.theme !== 'material'
@@ -137,6 +135,16 @@ export class Input {
           : [ KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ];
         await this.inputElement.click();
         return this.inputElement.sendKeys(...keys);
+      case 'switch':
+        if (this.control.theme === 'material') {
+          return this.inputElement.click();
+        }
+        return this.inputElement.sendKeys(KEY.SPACE);
+      case 'toggle':
+        if (this.control.theme === 'material') {
+          return this.inputElement.click();
+        }
+        return this.inputElement.sendKeys(KEY.SPACE);
       default:
         const inputType = await this.getInputType();
         const value = await this.getEditInputValue(inputType);

@@ -3,8 +3,8 @@ import { Example, ExamplesPage } from './examples.po';
 
 const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
 
-export function getExamples(items: ExampleMenuItem[], namePrefix?: string): Example[] {
-  return items.reduce((result, item) => {
+export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Example[] =>
+  items.reduce((result, item) => {
     const name = namePrefix ? `${namePrefix} - ${item.label}` : item.label;
     const group = item as ExampleMenuGroup;
     if (group.items && group.items.length) {
@@ -16,7 +16,7 @@ export function getExamples(items: ExampleMenuItem[], namePrefix?: string): Exam
     }
     return result;
   }, []);
-}
+
 
 describe('dynamic-forms demo examples', () => {
   const themes = [ 'bootstrap', 'material' ];
@@ -74,16 +74,16 @@ describe('dynamic-forms demo examples', () => {
 
             const controls = formModalTestResult.modalControls || formTestResult.controls;
             const controlTestResults = await page.getFormControlTestResults(controls);
-            for (let controlIndex = 0; controlIndex < controlTestResults.length; controlIndex++) {
-              expect(controlTestResults[controlIndex].type).toBeTruthy();
-              expect(controlTestResults[controlIndex].present).toBe(true);
-              expect(controlTestResults[controlIndex].inputPresent).toBe(true);
-              if (controlTestResults[controlIndex].inputEditable) {
-                expect(controlTestResults[controlIndex].inputValuePassed).toBe(true);
+            for (const controlTestResult of controlTestResults.values()) {
+              expect(controlTestResult.type).toBeTruthy();
+              expect(controlTestResult.present).toBe(true);
+              expect(controlTestResult.inputPresent).toBe(true);
+              if (controlTestResult.inputEditable) {
+                expect(controlTestResult.inputValuePassed).toBe(true);
               }
             }
 
-            const formItemsTestResult = await page.getFormItemsTestResult();
+            const formItemsTestResult = await page.getFormItemsTestResult(theme);
             for (let headerIndex = 1; headerIndex < formItemsTestResult.itemHeaderCount; headerIndex++) {
               const itemHeader = formItemsTestResult.itemHeaders.get(headerIndex);
               const itemHeaderClassName = await itemHeader.getAttribute('class');
@@ -96,12 +96,12 @@ describe('dynamic-forms demo examples', () => {
               const item = page.getFormItemLast(formItemsTestResult.items);
               const itemControls = page.getFormControls(item);
               const itemControlTestResults = await page.getFormControlTestResults(itemControls);
-              for (let itemControlIndex = 0; itemControlIndex < itemControlTestResults.length; itemControlIndex++) {
-                expect(itemControlTestResults[itemControlIndex].type).toBeTruthy();
-                expect(itemControlTestResults[itemControlIndex].present).toBe(true);
-                expect(itemControlTestResults[itemControlIndex].inputPresent).toBe(true);
-                if (itemControlTestResults[itemControlIndex].inputEditable) {
-                  expect(itemControlTestResults[itemControlIndex].inputValuePassed).toBe(true);
+              for (const itemControlTestResult of itemControlTestResults.values()) {
+                expect(itemControlTestResult.type).toBeTruthy();
+                expect(itemControlTestResult.present).toBe(true);
+                expect(itemControlTestResult.inputPresent).toBe(true);
+                if (itemControlTestResult.inputEditable) {
+                  expect(itemControlTestResult.inputValuePassed).toBe(true);
                 }
               }
             }
