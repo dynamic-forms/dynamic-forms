@@ -1,5 +1,18 @@
 # Changelog
 
+## 15.0.0-next.0 (2022-11-19)
+
+### Features
+
+* **core:** release candidate of library using angular 15
+* **bootstrap:** release candidate of library using angular 15
+* **material:** release candidate of library using angular material 15
+* **markdown:** release candidate of library using angular 15
+
+### General
+
+* update of peer dependencies: bootstrap (5.2.2) and marked (4.2.2)
+
 ## 14.1.0 (2022-06-24)
 
 * **markdown:** release of library using angular 14 and marked
