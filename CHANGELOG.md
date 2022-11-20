@@ -1,5 +1,16 @@
 # Changelog
 
+## 15.0.0-next.1
+
+### Features
+
+* **core:** improvements regarding type of dynamic form elements (dynamic form builder resolves component type information before instantiation)
+
+### Breaking Changes
+
+* **core:** type for ```DynamicFormIdBuilder``` and its token ```DYNAMIC_FORM_ID_BUILDER``` is now an object with method ```createId()``` instead of a function returning an id
+* **core:** ```DynamicFormElement``` (and its derived classes ```DynamicFormField```, ```DynamicFormAction```, etc.) has new generic parameter ```Type extends DynamicFormElementType``` and new constructor parameter ```type: Type``` to improve type information (includes component type)
+
 ## 15.0.0-next.0 (2022-11-19)
 
 ### Features
