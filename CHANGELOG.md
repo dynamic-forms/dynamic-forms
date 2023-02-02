@@ -1,5 +1,12 @@
 # Changelog
 
+## 15.0.0 (2023-02-02)
+
+* **core:** release of library using angular 15
+* **bootstrap:** release of library using angular 15
+* **material:** release of library using angular material 15
+* **markdown:** release of library using angular 15
+
 ## 15.0.0-rc.0 (2023-02-02)
 
 * **core:** release candidate of library using angular 15
