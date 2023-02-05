@@ -1,6 +1,6 @@
 # Changelog
 
-## 15.0.0-next.1
+## 15.1.0-next.0
 
 ### Features
 
@@ -11,14 +11,28 @@
 * **core:** type for ```DynamicFormIdBuilder``` and its token ```DYNAMIC_FORM_ID_BUILDER``` is now an object with method ```createId()``` instead of a function returning an id
 * **core:** ```DynamicFormElement``` (and its derived classes ```DynamicFormField```, ```DynamicFormAction```, etc.) has new generic parameter ```Type extends DynamicFormElementType``` and new constructor parameter ```type: Type``` to improve type information (includes component type)
 
-## 15.0.0-next.0 (2022-11-19)
+## 15.0.0 (2023-02-02)
 
-### Features
+* **core:** release of library using angular 15
+* **bootstrap:** release of library using angular 15
+* **material:** release of library using angular material 15
+* **markdown:** release of library using angular 15
+
+## 15.0.0-rc.0 (2023-02-02)
 
 * **core:** release candidate of library using angular 15
 * **bootstrap:** release candidate of library using angular 15
 * **material:** release candidate of library using angular material 15
 * **markdown:** release candidate of library using angular 15
+
+## 15.0.0-next.0 (2022-11-19)
+
+### Features
+
+* **core:** preview of library using angular 15
+* **bootstrap:** preview of library using angular 15
+* **material:** preview of library using angular material 15
+* **markdown:** preview of library using angular 15
 
 ### General
 
