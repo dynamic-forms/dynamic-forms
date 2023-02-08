@@ -7,7 +7,7 @@
       [name]="inputId"
       [formControl]="control"
       [value]="option.value"
-      [disabled]="option.disabled"
+      [attr.disabled]="control.disabled || option.disabled"
       [readonly]="readonly"
       autocomplete="off"
     />

@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
-import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
@@ -26,10 +26,10 @@ class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
 }
 
 describe('DynamicFormFieldExpression', () => {
-  let logger: DynamicFormLogger;
+  let errorHandler: DynamicFormErrorHandler;
 
   beforeEach(() => {
-    logger = { error: () => {} } as any;
+    errorHandler = { handle: () => {} } as any;
   });
 
   it('get value updates memo and returns current value', () => {
@@ -46,7 +46,7 @@ describe('DynamicFormFieldExpression', () => {
       expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
-    const expression = new DynamicFormFieldExpressionTesting('key', field, func, logger);
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, errorHandler);
 
     const fieldExpressionChanges = [];
     field.expressionChanges.subscribe({
@@ -130,13 +130,13 @@ describe('DynamicFormFieldExpression', () => {
       expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
-    const expression = new DynamicFormFieldExpressionTesting('key', field, func, logger);
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, errorHandler);
 
     expect(() => expression.value).not.toThrow();
   });
 
-  it('get value catches and logs exception', () => {
-    spyOn(logger, 'error');
+  it('get value catches and calls handle of error handler', () => {
+    spyOn(errorHandler, 'handle');
 
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
@@ -151,9 +151,9 @@ describe('DynamicFormFieldExpression', () => {
       expressionChanges,
     } as DynamicFormField;
     const func = getCurrencyOptions;
-    const expression = new DynamicFormFieldExpressionTesting('key', field, func, logger);
+    const expression = new DynamicFormFieldExpressionTesting('key', field, func, errorHandler);
 
     expect(expression.value).toBeUndefined();
-    expect(logger.error).toHaveBeenCalled();
+    expect(errorHandler.handle).toHaveBeenCalled();
   });
 });

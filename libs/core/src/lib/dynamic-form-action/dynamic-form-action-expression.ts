@@ -1,5 +1,5 @@
 import { DynamicFormElementExpression } from '../dynamic-form-element/dynamic-form-element-expression';
-import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormActionExpressionFunc } from './dynamic-form-action-expression-func';
@@ -13,9 +13,9 @@ export class DynamicFormActionExpression<
     override readonly key: string,
     readonly action: DynamicFormAction,
     override readonly func: Func,
-    protected override logger: DynamicFormLogger,
+    protected override errorHandler: DynamicFormErrorHandler,
   ) {
-    super(key, action, func, logger);
+    super(key, action, func, errorHandler);
   }
 
   protected override evaluate(): any {

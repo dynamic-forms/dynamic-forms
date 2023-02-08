@@ -11,13 +11,13 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-field-expression';
 import { DynamicFormFieldExpressionFunc } from '../dynamic-form-field/dynamic-form-field-expression-func';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
-import { DynamicFormLogType } from '../dynamic-form-logging/dynamic-form-log-type';
-import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormError, DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
 import { dynamicFormExpressionArgs } from './dynamic-form-expression';
 
 @Injectable()
 export class DynamicFormExpressionBuilder {
-  constructor(private logger: DynamicFormLogger) {}
+  constructor(private errorHandler: DynamicFormErrorHandler) {}
 
   createElementExpressions(element: DynamicFormElement): DynamicFormElementExpressions {
     const expressions = element.definition.expressions;
@@ -48,10 +48,10 @@ export class DynamicFormExpressionBuilder {
   ): DynamicFormElementExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormElementExpressionFunc>(expression);
-      return new DynamicFormElementExpression(key, element, func, this.logger);
+      return new DynamicFormElementExpression(key, element, func, this.errorHandler);
     }
     if (typeof expression === 'function') {
-      return new DynamicFormElementExpression(key, element, expression, this.logger);
+      return new DynamicFormElementExpression(key, element, expression, this.errorHandler);
     }
     return undefined;
   }
@@ -61,10 +61,10 @@ export class DynamicFormExpressionBuilder {
   ): DynamicFormFieldExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormFieldExpressionFunc>(expression);
-      return new DynamicFormFieldExpression(key, field, func, this.logger);
+      return new DynamicFormFieldExpression(key, field, func, this.errorHandler);
     }
     if (typeof expression === 'function') {
-      return new DynamicFormFieldExpression(key, field, expression, this.logger);
+      return new DynamicFormFieldExpression(key, field, expression, this.errorHandler);
     }
     return undefined;
   }
@@ -74,10 +74,10 @@ export class DynamicFormExpressionBuilder {
   ): DynamicFormActionExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormActionExpressionFunc>(expression);
-      return new DynamicFormActionExpression(key, action, func, this.logger);
+      return new DynamicFormActionExpression(key, action, func, this.errorHandler);
     }
     if (typeof expression === 'function') {
-      return new DynamicFormActionExpression(key, action, expression, this.logger);
+      return new DynamicFormActionExpression(key, action, expression, this.errorHandler);
     }
     return undefined;
   }
@@ -87,7 +87,9 @@ export class DynamicFormExpressionBuilder {
     try {
       return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${ expression };`) as Func;
     } catch (error) {
-      this.logger.error(DynamicFormLogType.Expression, `Expression creation for "${expression}"`, error);
+      const type = DynamicFormErrorType.ExpressionCreation;
+      const message = `Expression creation for "${expression}"`;
+      this.errorHandler.handle(new DynamicFormError(type, message, error));
       return new Function(...dynamicFormExpressionArgs, 'return undefined;') as Func;
     }
   }

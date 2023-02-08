@@ -8,7 +8,7 @@ import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from './dynamic-form-field/dyn
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from './dynamic-form-input/dynamic-form-input-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormLogger } from './dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormLogger } from './dynamic-form-error/dynamic-form.logger';
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';

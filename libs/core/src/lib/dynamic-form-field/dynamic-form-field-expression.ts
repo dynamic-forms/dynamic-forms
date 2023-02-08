@@ -1,6 +1,6 @@
 import { DynamicFormElementExpression } from '../dynamic-form-element/dynamic-form-element-expression';
 import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
-import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression-func';
@@ -16,9 +16,9 @@ export class DynamicFormFieldExpression<
     override readonly key: string,
     readonly field: DynamicFormField,
     override readonly func: Func,
-    protected override logger: DynamicFormLogger,
+    protected override errorHandler: DynamicFormErrorHandler,
   ) {
-    super(key, field, func, logger);
+    super(key, field, func, errorHandler);
     this._memo = { previousValue: undefined, currentValue: undefined };
   }
 

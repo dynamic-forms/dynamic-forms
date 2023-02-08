@@ -20,6 +20,8 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
+import { DynamicFormError, DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -35,6 +37,17 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { cloneObject, mergeObject } from './dynamic-form-helpers';
 import { DynamicFormIdBuilder, DYNAMIC_FORM_ID_BUILDER } from './dynamic-form-id.builder';
 
+export interface DynamicFormFieldConstructor<Field extends DynamicFormField> {
+  // eslint-disable-next-line @typescript-eslint/prefer-function-type
+  new(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: DynamicFormFieldDefinition,
+    type: DynamicFormFieldType
+  ): Field;
+}
+
 @Injectable()
 export class DynamicFormBuilder {
   constructor(
@@ -42,6 +55,7 @@ export class DynamicFormBuilder {
     private expressionBuilder: DynamicFormExpressionBuilder,
     private evaluationBuilder: DynamicFormEvaluationBuilder,
     private validationBuilder: DynamicFormValidationBuilder,
+    private errorHandler: DynamicFormErrorHandler,
     @Optional() @Inject(DYNAMIC_FORM_ID_BUILDER)
     private idBuilder: DynamicFormIdBuilder,
   ) {}
@@ -62,49 +76,59 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createFormElement(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition): DynamicFormElement {
+  createFormElement(
+    root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition,
+  ): DynamicFormElement | undefined {
     const elementType = this.getElementType(definition);
-    const element = new DynamicFormElement(this, root, parent, definition, elementType);
-    element.init();
-    return element;
+    return elementType
+      ? this.createFormElementForType(root, parent, definition, elementType)
+      : undefined;
   }
 
-  createFormControl(root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormControlDefinition): DynamicFormControl {
+  createFormControl(
+    root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormControlDefinition,
+  ): DynamicFormControl | undefined {
     const fieldType = this.getFieldType(definition);
-    const field = new DynamicFormControl(this, root, parent, definition, fieldType);
-    field.init();
-    return field;
+    return fieldType
+      ? this.createFormFieldForType(DynamicFormControl, root, parent, definition, fieldType)
+      : undefined;
   }
 
-  createFormGroup(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup {
+  createFormGroup(
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition,
+  ): DynamicFormGroup | undefined {
     const fieldType = this.getFieldType(definition);
-    const field = new DynamicFormGroup(this, root, parent, definition, fieldType);
-    field.init();
-    return field;
+    return fieldType
+      ? this.createFormFieldForType(DynamicFormGroup, root, parent, definition, fieldType)
+      : undefined;
   }
 
-  createFormArray(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition): DynamicFormArray {
+  createFormArray(
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormArrayDefinition,
+  ): DynamicFormArray | undefined {
     const fieldType = this.getFieldType(definition);
-    const field = new DynamicFormArray(this, root, parent, definition, fieldType);
-    field.init();
-    return field;
+    return fieldType
+      ? this.createFormFieldForType(DynamicFormArray, root, parent, definition, fieldType)
+      : undefined;
   }
 
-  createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField {
+  createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField | undefined {
     const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key: `${index}`, index  };
     return this.createFormFieldForFactory(field.root, field, definition);
   }
 
-  createFormDictionary(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormDictionaryDefinition): DynamicFormDictionary {
+  createFormDictionary(
+    root: DynamicForm, parent: DynamicFormField, definition: DynamicFormDictionaryDefinition,
+  ): DynamicFormDictionary | undefined {
     const fieldType = this.getFieldType(definition);
-    const field = new DynamicFormDictionary(this, root, parent, definition, fieldType);
-    field.init();
-    return field;
+    return fieldType
+      ? this.createFormFieldForType(DynamicFormDictionary, root, parent, definition, fieldType)
+      : undefined;
   }
 
-  createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField {
+  createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField | undefined {
     const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key };
@@ -113,73 +137,111 @@ export class DynamicFormBuilder {
 
   createFormAction(
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definition: DynamicFormActionDefinition,
-  ): DynamicFormAction {
+  ): DynamicFormAction | undefined {
     const actionType = this.getActionType(definition);
-    const action = new DynamicFormAction(this, root, parent, definition, actionType);
+    return actionType
+      ? this.createFormActionForType(root, parent, definition, actionType)
+      : undefined;
+  }
+
+  createFormElementForType(
+    root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition, type: DynamicFormElementType,
+  ): DynamicFormElement {
+    const element = new DynamicFormElement(this, root, parent, definition, type);
+    element.init();
+    return element;
+  }
+
+  createFormFieldForType<Field extends DynamicFormField>(
+    fieldConstructor: DynamicFormFieldConstructor<Field>,
+    root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormFieldDefinition, type: DynamicFormFieldType,
+  ): Field {
+    const field = new fieldConstructor(this, root, parent, definition, type);
+    field.init();
+    return field;
+  }
+
+  createFormActionForType(
+    root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormActionDefinition, type: DynamicFormActionType,
+  ): DynamicFormAction {
+    const action = new DynamicFormAction(this, root, parent, definition, type);
     action.init();
     return action;
   }
 
   createFormElementForFactory(
     root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormElementDefinition,
-  ): DynamicFormElement {
+  ): DynamicFormElement | undefined {
     const elementType = this.getElementType(definition);
-    if (elementType.factory) {
-      return elementType.factory(this, root, parent, definition, elementType);
+    if (!elementType) {
+      return undefined;
     }
 
-    return this.createFormElement(root, parent, definition);
+    return !elementType.factory
+      ? this.createFormElementForType(root, parent, definition, elementType)
+      : elementType.factory(this, root, parent, definition, elementType);
   }
 
   createFormFieldForFactory(
     root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormFieldDefinition,
-  ): DynamicFormField {
+  ): DynamicFormField | undefined {
     const fieldType = this.getFieldType(definition);
+    if (!fieldType) {
+      return undefined;
+    }
+
     if (fieldType.factory) {
       return fieldType.factory(this, root, parent, definition, fieldType);
     }
 
-    throw Error(`Creating field of type ${ definition.type } is not supported`);
+    this.handleError(DynamicFormErrorType.FieldType, `Field type ${ fieldType.type } does not provide a factory`);
+    return undefined;
   }
-
 
   createFormActionForFactory(
     root: DynamicForm, parent: DynamicFormElement, definition: DynamicFormActionDefinition,
-  ): DynamicFormAction {
+  ): DynamicFormAction | undefined {
     const actionType = this.getActionType(definition);
-    if (actionType.factory) {
-      return actionType.factory(this, root, parent, definition, actionType);
+    if (!actionType) {
+      return undefined;
     }
 
-    return this.createFormAction(root, parent, definition);
+    return !actionType.factory
+      ? this.createFormActionForType(root, parent, definition, actionType)
+      : actionType.factory(this, root, parent, definition, actionType);
   }
 
   createFormElements(
     root: DynamicForm, parent: DynamicFormElement, definitions: DynamicFormElementDefinition[],
   ): DynamicFormElement[] {
-    return (definitions || []).map((definition) => {
-      const elementDefintion = this.getDefinition(definition, root);
-      const classType = this.configService.getClassType(elementDefintion.type);
-      switch (classType) {
-        case 'element':
-          return this.createFormElementForFactory(root, parent, elementDefintion);
-        case 'field':
-          return this.createFormFieldForFactory(root, parent, elementDefintion as DynamicFormFieldDefinition);
-        case 'action':
-          return this.createFormActionForFactory(root, parent,  elementDefintion as DynamicFormActionDefinition);
-        default:
-          throw Error(`Class type ${ classType } is not defined`);
-      }
-    });
+    return (definitions || [])
+      .map((definition) => {
+        const elementDefintion = this.getDefinition(definition, root);
+        const classType = this.configService.getClassType(elementDefintion.type);
+        switch (classType) {
+          case 'element':
+            return this.createFormElementForFactory(root, parent, elementDefintion);
+          case 'field':
+            return this.createFormFieldForFactory(root, parent, elementDefintion as DynamicFormFieldDefinition);
+          case 'action':
+            return this.createFormActionForFactory(root, parent,  elementDefintion as DynamicFormActionDefinition);
+          default:
+            this.handleError(DynamicFormErrorType.ClassType, `Class type ${ classType } is not defined`);
+            return undefined;
+        }
+      })
+      .filter(element => !!element);
   }
 
   createFormActions(
     root: DynamicForm, parent: DynamicFormElement | DynamicFormField, definitions: DynamicFormActionDefinition[],
   ): DynamicFormAction[] {
-    return (definitions || []).map(definition => {
-      const actionDefinition = this.getDefinition(definition, root);
-      return this.createFormActionForFactory(root, parent, actionDefinition);
-    });
+    return (definitions || [])
+      .map(definition => {
+        const actionDefinition = this.getDefinition(definition, root);
+        return this.createFormActionForFactory(root, parent, actionDefinition);
+      })
+      .filter(element => !!element);
   }
 
   getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
@@ -246,34 +308,36 @@ export class DynamicFormBuilder {
   }
 
   private mergeDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
-    if (!root.definition.references || !root.definition.references[definition.reference]) {
-      throw Error(`Definition reference ${ definition.reference } is not defined`);
+    if (!root.definition.references?.[definition.reference]) {
+      this.handleError(DynamicFormErrorType.DefinitionReference, `Definition reference ${ definition.reference } is not defined`);
+      return definition;
     }
     const reference = cloneObject(root.definition.references[definition.reference]);
     return mergeObject(reference, definition);
   }
 
-  private getElementType(definition: DynamicFormElementDefinition): DynamicFormElementType {
-    const elementType = definition.type ? this.configService.getElementType(definition.type) : undefined;
-    if (!elementType) {
-      throw Error(`Element type ${ definition.type } is not defined`);
-    }
-    return elementType;
+  private getElementType(definition: DynamicFormElementDefinition): DynamicFormElementType | undefined {
+    const type = definition.type ? this.configService.getElementType(definition.type) : undefined;
+    return this.handleUndefined(type, DynamicFormErrorType.ElementType, () => `Element type ${ definition.type } is not defined`);
   }
 
-  private getFieldType(definition: DynamicFormFieldDefinition): DynamicFormFieldType {
-    const fieldType = definition.type ? this.configService.getFieldType(definition.type) : undefined;
-    if (!fieldType) {
-      throw Error(`Field type ${ definition.type } is not defined`);
-    }
-    return fieldType;
+  private getFieldType(definition: DynamicFormFieldDefinition): DynamicFormFieldType | undefined {
+    const type = definition.type ? this.configService.getFieldType(definition.type) : undefined;
+    return this.handleUndefined(type, DynamicFormErrorType.FieldType, () => `Field type ${ definition.type } is not defined`);
   }
 
-  private getActionType(definition: DynamicFormActionDefinition): DynamicFormActionType {
-    const actionType = definition.type ? this.configService.getActionType(definition.type) : undefined;
-    if (!actionType) {
-      throw Error(`Action type ${ definition.type } is not defined`);
-    }
-    return actionType;
+  private getActionType(definition: DynamicFormActionDefinition): DynamicFormActionType | undefined {
+    const type = definition.type ? this.configService.getActionType(definition.type) : undefined;
+    return this.handleUndefined(type, DynamicFormErrorType.ActionType, () => `Action type ${ definition.type } is not defined`);
+  }
+
+  private handleError<ErrorType extends DynamicFormErrorType = DynamicFormErrorType>(type: ErrorType, message: string): void {
+    this.errorHandler.handle(new DynamicFormError<ErrorType>(type, message));
+  }
+
+  private handleUndefined<Value, ErrorType extends DynamicFormErrorType = DynamicFormErrorType>(
+    value: Value | undefined, type: ErrorType, createMessage: () => string,
+  ): Value | undefined {
+    return this.errorHandler.handleUndefined(value, () => new DynamicFormError<ErrorType>(type, createMessage()));
   }
 }

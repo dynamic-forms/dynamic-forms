@@ -1,7 +1,7 @@
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormExpression } from '../dynamic-form-expression/dynamic-form-expression';
-import { DynamicFormLogType } from '../dynamic-form-logging/dynamic-form-log-type';
-import { DynamicFormLogger } from '../dynamic-form-logging/dynamic-form.logger';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormError, DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
 import { DynamicFormElementExpressionFunc } from './dynamic-form-element-expression-func';
 
@@ -15,7 +15,7 @@ export class DynamicFormElementExpression<
     readonly key: string,
     readonly element: DynamicFormElement,
     readonly func: Func,
-    protected logger: DynamicFormLogger,
+    protected errorHandler: DynamicFormErrorHandler,
   ) {}
 
   get value(): any { return this.tryEvaluate(); }
@@ -31,7 +31,9 @@ export class DynamicFormElementExpression<
       return value;
     } catch (error) {
       if (this._errorMessage !== error.message) {
-        this.logger.error(DynamicFormLogType.Expression, 'Expression evaluation', error);
+        const type = DynamicFormErrorType.ExpressionEvaluation;
+        const message = 'Expression evaluation';
+        this.errorHandler.handle(new DynamicFormError(type, message, error));
       }
       this._errorMessage = error.message;
       return undefined;
