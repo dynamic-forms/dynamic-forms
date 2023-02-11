@@ -1,6 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { DynamicFormError, DynamicFormErrorType } from './dynamic-form-error';
+import { DynamicFormError } from './dynamic-form-error';
 import { DynamicFormErrorSettings, dynamicFormErrorSettingsDefault, DYNAMIC_FORM_ERROR_SETTINGS } from './dynamic-form-error-settings';
+import { DynamicFormErrorType } from './dynamic-form-error-type';
 import { DynamicFormLogger } from './dynamic-form.logger';
 
 @Injectable()

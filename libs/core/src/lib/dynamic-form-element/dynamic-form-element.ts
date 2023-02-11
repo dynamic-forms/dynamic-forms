@@ -90,9 +90,9 @@ export class DynamicFormElement<
   protected createExpressionData(): ExpressionData {
     const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {
-      root: () => this.root ? this.root.expressionData : undefined,
+      root: () => this.root.expressionData,
       parent: () => this.parent ? this.parent.expressionData : undefined,
-      parentField: () => this.parentField ? this.parentField.expressionData : undefined,
+      parentField: () => this.parentField.expressionData,
     });
     return expressionData;
   }

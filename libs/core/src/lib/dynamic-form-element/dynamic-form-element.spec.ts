@@ -73,6 +73,13 @@ describe('DynamicFormElement', () => {
     expect(element.expressionData.parentField).toBe(parentFieldExpressionData);
   });
 
+  it('returns expression data with expression data of parent being undefined', () => {
+    const root = { classType: 'field', expressionData: {} } as DynamicForm;
+    const element = new DynamicFormElement(builder, root, null, {} as DynamicFormElementDefinition, {} as DynamicFormElementType);
+
+    expect(element.expressionData.parent).toBeUndefined();
+  });
+
   it('init calls initId, initExpressions and initChildren', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;

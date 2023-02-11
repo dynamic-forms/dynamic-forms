@@ -1,5 +1,5 @@
 import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
-import { DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
+import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
 import { map, Observable, Subscription } from 'rxjs';
 import { bufferTime } from 'rxjs/operators';
@@ -61,8 +61,8 @@ export class FormEditorComponent {
       const log = {
         timestamp: new Date(),
         level: DynamicFormLogLevel.Error,
-        type: 'Unspecified',
-        message: 'Error while parsing JSON',
+        type: DynamicFormErrorType.Unspecified,
+        message: 'Parsing JSON failed',
         data: [ error ],
       };
       this.logger.log(log);

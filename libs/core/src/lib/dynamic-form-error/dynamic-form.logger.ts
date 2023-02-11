@@ -1,5 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormLogType } from './dynamic-form-log-type';
 import { DynamicFormLogLevel } from './dynamic-form-log-level';
 import { DynamicFormLoggerSettings, dynamicFormLoggerSettingsDefault, DYNAMIC_FORM_LOGGER_SETTINGS } from './dynamic-form-logger-settings';
 import { DynamicFormLoggerType } from './dynamic-form-logger-type';
@@ -20,19 +21,19 @@ export class DynamicFormLogger {
     this.settings = this.settings || dynamicFormLoggerSettingsDefault;
   }
 
-  error(type: string, message?: any, ...data: any[]): void {
+  error<LogType extends DynamicFormLogType = DynamicFormLogType>(type: LogType, message?: string, ...data: any[]): void {
     this.logForLevel(DynamicFormLogLevel.Error, type, message, ...data);
   }
 
-  warning(type: string, message?: any, ...data: any[]): void {
+  warning<LogType extends DynamicFormLogType = DynamicFormLogType>(type: LogType, message?: string, ...data: any[]): void {
     this.logForLevel(DynamicFormLogLevel.Warning, type, message, ...data);
   }
 
-  information(type: string, message?: any, ...data: any[]): void {
+  information<LogType extends DynamicFormLogType = DynamicFormLogType>(type: LogType, message?: string, ...data: any[]): void {
     this.logForLevel(DynamicFormLogLevel.Information, type, message, ...data);
   }
 
-  debug(type: string, message?: any, ...data: any[]): void {
+  debug<LogType extends DynamicFormLogType = DynamicFormLogType>(type: LogType, message?: string, ...data: any[]): void {
     this.logForLevel(DynamicFormLogLevel.Debug, type, message, ...data);
   }
 
@@ -40,7 +41,9 @@ export class DynamicFormLogger {
     return this.settings.logLevel >= level;
   }
 
-  private logForLevel(level: DynamicFormLogLevel, type: string, message?: any, ...data: any[]): void {
+  private logForLevel<LogType extends DynamicFormLogType = DynamicFormLogType>(
+    level: DynamicFormLogLevel, type: LogType, message?: string, ...data: any[]
+  ): void {
     if (this.logEnabled(level)) {
       const log = { timestamp: new Date(), level, type, message, data };
       this.loggerTypes.filter(f => f.enabled).forEach(logger => logger.log(log));

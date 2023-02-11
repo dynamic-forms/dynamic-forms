@@ -4,12 +4,17 @@
 
 ### Features
 
+* **core:** introduction of ```DynamicFormErrorModule``` providing ```DynamicFormErrorHandler``` and ```DynamicFormLogger``` for  ()
 * **core:** improvements regarding type of dynamic form elements (dynamic form builder resolves component type information before instantiation)
 
 ### Breaking Changes
 
 * **core:** type for ```DynamicFormIdBuilder``` and its token ```DYNAMIC_FORM_ID_BUILDER``` is now an object with method ```createId()``` instead of a function returning an id
 * **core:** ```DynamicFormElement``` (and its derived classes ```DynamicFormField```, ```DynamicFormAction```, etc.) has new generic parameter ```Type extends DynamicFormElementType``` and new constructor parameter ```type: Type``` to improve type information (includes component type)
+
+### Bug Fixes
+
+* **demo:** Fixed tab `Value` for examples and editor by using usage form value instead of from model
 
 ## 15.0.0 (2023-02-02)
 

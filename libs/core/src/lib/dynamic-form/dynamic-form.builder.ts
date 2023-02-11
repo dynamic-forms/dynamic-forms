@@ -20,7 +20,8 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressions } from '../dynamic-form-element/dynamic-form-element-expressions';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormError, DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormError } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error-type';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';

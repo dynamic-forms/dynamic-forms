@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormErrorType } from './dynamic-form-error-type';
 import { DynamicFormLog } from './dynamic-form-log';
 import { DynamicFormLogLevel } from './dynamic-form-log-level';
 import { DYNAMIC_FORM_LOGGER_SETTINGS } from './dynamic-form-logger-settings';
@@ -50,11 +51,11 @@ describe('DynamicFormLogger', () => {
     spyOn(loggerTypes[0], 'log');
     spyOn(loggerTypes[1], 'log');
 
-    service.error('type', 'message');
+    service.error(DynamicFormErrorType.Unspecified, 'message');
 
     expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Error,
-        type: 'type',
+        type: DynamicFormErrorType.Unspecified,
         message: 'message',
     }));
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -64,11 +65,11 @@ describe('DynamicFormLogger', () => {
     spyOn(loggerTypes[0], 'log');
     spyOn(loggerTypes[1], 'log');
 
-    service.warning('type', 'message');
+    service.warning('Expression evaluation warning', 'message');
 
     expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Warning,
-        type: 'type',
+        type: 'Expression evaluation warning',
         message: 'message',
     }));
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -80,7 +81,7 @@ describe('DynamicFormLogger', () => {
 
     service.settings.logLevel = DynamicFormLogLevel.Error;
 
-    service.warning('type', 'message');
+    service.warning('Expression evaluation warning', 'message');
 
     expect(loggerTypes[0].log).not.toHaveBeenCalled();
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -90,11 +91,11 @@ describe('DynamicFormLogger', () => {
     spyOn(loggerTypes[0], 'log');
     spyOn(loggerTypes[1], 'log');
 
-    service.information('type', 'message');
+    service.information('Expression evaluation information', 'message');
 
     expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Information,
-        type: 'type',
+        type: 'Expression evaluation information',
         message: 'message',
     }));
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -106,7 +107,7 @@ describe('DynamicFormLogger', () => {
 
     service.settings.logLevel = DynamicFormLogLevel.Warning;
 
-    service.information('type', 'message');
+    service.information('Expression evaluation information', 'message');
 
     expect(loggerTypes[0].log).not.toHaveBeenCalled();
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -116,11 +117,11 @@ describe('DynamicFormLogger', () => {
     spyOn(loggerTypes[0], 'log');
     spyOn(loggerTypes[1], 'log');
 
-    service.debug('type', 'message');
+    service.debug('Expression evaluation debugging', 'message');
 
     expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Debug,
-        type: 'type',
+        type: 'Expression evaluation debugging',
         message: 'message',
     }));
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
@@ -132,7 +133,7 @@ describe('DynamicFormLogger', () => {
 
     service.settings.logLevel = DynamicFormLogLevel.Information;
 
-    service.debug('type', 'message');
+    service.debug('Expression evaluation debugging', 'message');
 
     expect(loggerTypes[0].log).not.toHaveBeenCalled();
     expect(loggerTypes[1].log).not.toHaveBeenCalled();

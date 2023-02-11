@@ -18,7 +18,7 @@ import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-fo
 import { DynamicFormElementFactory } from '../dynamic-form-element/dynamic-form-element-factory';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
-import { DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error-type';
 import { DynamicFormErrorSettings, DYNAMIC_FORM_ERROR_SETTINGS } from '../dynamic-form-error/dynamic-form-error-settings';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormLogger } from '../dynamic-form-error/dynamic-form.logger';
@@ -957,6 +957,16 @@ describe('DynamicFormBuilder', () => {
     const root = { definition: definitionRoot } as DynamicForm;
 
     expect(() => builder.getDefinition(definition, root)).toThrowError('Definition reference ref is not defined');
+  });
+
+  it('getDefinition returns definition even if definition reference is not defined', () => {
+    const definition = { reference: 'ref' } as DynamicFormElementDefinition;
+    const definitionRoot = { references: {}, children: [] } as DynamicFormDefinition;
+    const root = { definition: definitionRoot } as DynamicForm;
+
+    const result = builder.getDefinition(definition, root);
+
+    expect(result).toBe(definition);
   });
 
   it('getDefinitionClone returns merged definition from references', () => {

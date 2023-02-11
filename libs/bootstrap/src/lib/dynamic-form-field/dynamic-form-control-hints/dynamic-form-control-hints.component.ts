@@ -18,9 +18,7 @@ export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrappe
   }
 
   get hasHints(): boolean {
-    return this.hints
-      ? (this.hints.hintStart || this.hints.hintEnd) && true
-      : false;
+    return !!(this.hints?.hintStart || this.hints?.hintEnd);
   }
 
   get showHints(): boolean {

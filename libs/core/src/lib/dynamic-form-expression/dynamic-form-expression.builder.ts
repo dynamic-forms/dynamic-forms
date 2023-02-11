@@ -12,7 +12,8 @@ import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldExpressionFunc } from '../dynamic-form-field/dynamic-form-field-expression-func';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
-import { DynamicFormError, DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormError } from '../dynamic-form-error/dynamic-form-error';
+import { DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error-type';
 import { dynamicFormExpressionArgs } from './dynamic-form-expression';
 
 @Injectable()

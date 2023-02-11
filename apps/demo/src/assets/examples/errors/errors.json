@@ -1,0 +1,39 @@
+{
+	"template": {
+		"label": "Dynamic Form"
+	},
+	"children": [
+		{},
+		{
+			"type": "field"
+		},
+		{
+			"reference": "reference"
+		},
+		{
+			"key": "checkbox",
+			"type": "control",
+			"template": {
+				"label": "Checkbox",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+      "expressions": {
+        "input.defaultValue": "value",
+        "input.indeterminate": "That's not a valid expression"
+      }
+		}
+	],
+	"footerActions": [
+		{},
+		{
+			"id": "action-submit",
+			"type": "button",
+			"template": {
+				"type": "submit",
+				"label": "Submit"
+			}
+		}
+	]
+}
