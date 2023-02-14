@@ -6,6 +6,7 @@ import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-fo
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action';
+import { DynamicFormActionType } from '../dynamic-form-action-type';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
 import { DynamicFormIconBase } from './dynamic-form-icon-base';
 import { DynamicFormIconDefinition } from './dynamic-form-icon-definition';
@@ -56,7 +57,8 @@ describe('DynamicFormIconBase', () => {
     const parent = {} as DynamicFormField;
     const template = { label: 'label' } as DynamicFormIconTemplate;
     const definition = { type: 'element', template } as DynamicFormIconDefinition;
-    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(builder, root, parent, definition);
+    const type = {} as DynamicFormActionType;
+    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(builder, root, parent, definition, type);
     component.element = element;
 
     fixture.detectChanges();

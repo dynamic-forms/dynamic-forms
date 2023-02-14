@@ -2,6 +2,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { FormArrayBase } from '../dynamic-form-field/dynamic-form-field-control';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
@@ -11,11 +12,12 @@ import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from './dyn
 export class DynamicFormArray<
   Value = any, Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
-  Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>
-> extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, DynamicFormField<Value, Model>> {
+  Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>,
+  Type extends DynamicFormFieldType = DynamicFormFieldType
+> extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, Type, DynamicFormField<Value, Model>> {
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition, new FormArrayBase<Value>([]));
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
+    super(builder, root, parent, definition, type, new FormArrayBase<Value>([]));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }

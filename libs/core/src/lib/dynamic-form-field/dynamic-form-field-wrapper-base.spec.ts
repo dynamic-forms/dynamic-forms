@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, NgModule, ViewContainerRef } from '@angular/core';
-import { inject, TestBed } from '@angular/core/testing';
+import { Component, NgModule, ViewContainerRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -52,16 +52,13 @@ describe('DynamicFormFieldWrapper', () => {
     });
   });
 
-  it('creates component',
-    inject([ComponentFactoryResolver], (resolver: ComponentFactoryResolver) => {
-      const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-      const fixture = TestBed.createComponent(DynamicFormFieldWrapperTestComponent);
-      const component = fixture.componentInstance;
+  it('creates component', () => {
+    const fixture = TestBed.createComponent(DynamicFormFieldWrapperTestComponent);
+    const component = fixture.componentInstance;
 
-      component.component = component.ref.createComponent(factory).instance;
-      fixture.detectChanges();
+    component.component = component.ref.createComponent(DynamicFormInputTestComponent).instance;
+    fixture.detectChanges();
 
-      expect(component).toBeTruthy();
-    }),
-  );
+    expect(component).toBeTruthy();
+  });
 });

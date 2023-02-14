@@ -1,23 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
-import { Example } from '../state/examples/examples.model';
 import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
 @Injectable()
-export class FormDefinitionResolver implements Resolve<Observable<DynamicFormDefinition>> {
+export class FormDefinitionLoader {
   constructor(
     private httpClient: HttpClient,
     private notificationsService: NotificationsService,
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<DynamicFormDefinition> {
-    const example = route.parent.data.example as Example;
-    const file = example.path ? `${ example.path}/${ example.id }.json` : `${ example.id }.json`;
-    const request = this.httpClient.get<DynamicFormDefinition>(`./assets/examples/${ file }`);
+  load(fileUrl: string): Observable<DynamicFormDefinition> {
+    const request = this.httpClient.get<DynamicFormDefinition>(fileUrl);
     const messages = this.getNotificationMessages();
     return this.notificationsService.pipe(request, messages);
   }

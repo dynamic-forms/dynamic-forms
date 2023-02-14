@@ -10,22 +10,28 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpressionData } from './dynamic-form-action-expression-data';
 import { DynamicFormActionExpressions } from './dynamic-form-action-expressions';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
+import { DynamicFormActionType } from './dynamic-form-action-type';
 import { DynamicFormDialog } from './dynamic-form-dialog';
 
 export class DynamicFormAction<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
-  Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>
-> extends DynamicFormElement<Template, Definition, undefined, DynamicFormActionExpressionData, DynamicFormActionExpressions> {
+  Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
+  Type extends DynamicFormActionType = DynamicFormActionType
+> extends DynamicFormElement<Template, Definition, undefined, DynamicFormActionExpressionData, DynamicFormActionExpressions, Type> {
 
-  private _dialogOpenSubject: BehaviorSubject<boolean>;
-  private _dialogOpenChanges: Observable<boolean>;
+  private readonly _dialogOpenSubject = new BehaviorSubject(false);
+  private readonly _dialogOpenChanges = this._dialogOpenSubject.asObservable();
 
   protected _dialog: DynamicFormDialog;
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
-    this._dialogOpenSubject = new BehaviorSubject(false);
-    this._dialogOpenChanges = this._dialogOpenSubject.asObservable();
+  constructor(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: Definition,
+    type: Type,
+  ) {
+    super(builder, root, parent, definition, type);
   }
 
   override get classType(): DynamicFormClassType { return 'action'; }

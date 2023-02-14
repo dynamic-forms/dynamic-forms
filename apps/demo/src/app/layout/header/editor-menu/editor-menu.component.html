@@ -1,8 +1,13 @@
-<button mat-flat-button color="primary" [matMenuTriggerFor]="editor">
-  <div class="button-content">Editor <mat-icon>arrow_drop_down</mat-icon></div>
-</button>
+<ng-container *ngIf="(items$ | async) || [] as items">
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="editor">
+    <div class="button-content">Editor <mat-icon>arrow_drop_down</mat-icon></div>
+  </button>
 
-<mat-menu #editor="matMenu">
-  <a mat-menu-item [routerLink]="['editor', 'bootstrap']" routerLinkActive="router-link-active">Bootstrap</a>
-  <a mat-menu-item [routerLink]="['editor', 'material']" routerLinkActive="router-link-active">Material</a>
-</mat-menu>
+  <mat-menu #editor="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="boostrapMenuPanel.menu">Bootstrap</button>
+    <button mat-menu-item [matMenuTriggerFor]="materialMenuPanel.menu">Material</button>
+  </mat-menu>
+
+  <app-editor-menu-panel #boostrapMenuPanel [baseUrl]="'/editor/bootstrap'" [level]="0" [items]="items"></app-editor-menu-panel>
+  <app-editor-menu-panel #materialMenuPanel [baseUrl]="'/editor/material'" [level]="0" [items]="items"></app-editor-menu-panel>
+</ng-container>

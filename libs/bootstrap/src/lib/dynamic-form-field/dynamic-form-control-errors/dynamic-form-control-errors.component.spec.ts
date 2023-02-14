@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
@@ -48,10 +48,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);
     component = fixture.componentInstance;
     component.field = { errors: { required: { message: 'This field is required.' } }, showErrors: true } as any;
-
-    const resolver = TestBed.inject(ComponentFactoryResolver);
-    const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-    component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
+    component.component = component.ref.createComponent(DynamicFormInputTestComponent).instance;
 
     fixture.detectChanges();
   });

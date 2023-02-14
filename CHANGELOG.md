@@ -1,5 +1,22 @@
 # Changelog
 
+## 15.1.0-next.0
+
+### Features
+
+* **core:** improvements regarding type of dynamic form elements (dynamic form builder resolves component type information before instantiation)
+* **core:** introduction of ```DynamicFormErrorModule``` providing ```DynamicFormErrorHandler``` and ```DynamicFormLogger``` to improve error handling / logging of invalid form definition
+
+### Breaking Changes
+
+* **core:** type for ```DynamicFormIdBuilder``` and its token ```DYNAMIC_FORM_ID_BUILDER``` is now an object with method ```createId()``` instead of a function returning an id
+* **core:** ```DynamicFormElement``` (and its derived classes ```DynamicFormField```, ```DynamicFormAction```, etc.) has new generic parameter ```Type extends DynamicFormElementType``` and new constructor parameter ```type: Type``` to improve type information (includes component type)
+
+### Bug Fixes
+
+* **core:** Fixed field wrapper issue by not wrapping input components with wrappers of the field definition which belongs to the input
+* **demo:** Fixed tab `Value` for examples and editor by using usage form value instead of from model
+
 ## 15.0.0 (2023-02-02)
 
 * **core:** release of library using angular 15

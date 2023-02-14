@@ -22,10 +22,9 @@ export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<Dynami
   }
 
   private getFilteredOptions(value: string): string[] {
-    const options = this.input.options || [];
     const valueNormalized = value ? value.toUpperCase() : null;
     return valueNormalized
-      ? options.filter(option => option.toUpperCase().includes(valueNormalized))
-      : options;
+      ? this.input.options?.filter(option => option.toUpperCase().includes(valueNormalized))
+      : this.input.options;
   }
 }

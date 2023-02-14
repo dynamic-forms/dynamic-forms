@@ -1,0 +1,42 @@
+:host {
+  mat-row.hidden {
+    display: none;
+  }
+
+  mat-cell:first-of-type,
+  mat-header-cell:first-of-type,
+  mat-footer-cell:first-of-type {
+    padding-left: 12px;
+  }
+
+  mat-cell:last-of-type,
+  mat-header-cell:last-of-type,
+  mat-footer-cell:last-of-type {
+    padding-right: 12px;
+  }
+
+  .mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 0 8px 0 8px;
+  }
+
+  .mat-column-timestamp {
+    flex: 0 1 170px;
+  }
+
+  .mat-column-type {
+    flex: 0 1 140px;
+  }
+
+  .mat-column-level {
+    flex: 0 1 100px;
+  }
+
+  .mat-column-detailed {
+    flex: 0 0 64px;
+  }
+
+  .detail {
+    padding: 12px 0;
+    line-height: 1.5;
+  }
+}

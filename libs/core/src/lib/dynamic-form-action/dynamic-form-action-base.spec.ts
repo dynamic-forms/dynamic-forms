@@ -5,6 +5,7 @@ import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionBase } from './dynamic-form-action-base';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
+import { DynamicFormActionType } from './dynamic-form-action-type';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 class DynamicFormActionTestComponent extends DynamicFormActionBase {
@@ -29,7 +30,8 @@ describe('DynamicFormActionBase', () => {
 
   it('creates instance', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const type = {} as DynamicFormActionType;
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, type);
 
     component.action = action;
 
@@ -54,7 +56,7 @@ describe('DynamicFormActionBase', () => {
   it('creates instance with dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
 
     action.init();
 
@@ -80,7 +82,7 @@ describe('DynamicFormActionBase', () => {
 
   it('open, close, and toggle dialog throws if no dialog', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
 
     component.action = action;
 
@@ -92,7 +94,7 @@ describe('DynamicFormActionBase', () => {
   it('opens, closes and toggles dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, null, null, definition);
+    const action = new DynamicFormAction(builder, null, null, definition, {} as DynamicFormActionType);
 
     action.init();
     component.action = action;
@@ -113,7 +115,7 @@ describe('DynamicFormActionBase', () => {
   it('checks dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
 
     action.init();
     action.openDialog();
@@ -129,7 +131,7 @@ describe('DynamicFormActionBase', () => {
   it('does not check dialog if not open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
 
     action.init();
 
@@ -143,7 +145,7 @@ describe('DynamicFormActionBase', () => {
 
   it('handles event by calling handle of action service', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
     const event = {} as Event;
 
     spyOn(actionService, 'handle');
@@ -157,7 +159,7 @@ describe('DynamicFormActionBase', () => {
   it('handles event by calling handle of action service if dialog and dialog is open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
     const event = {} as Event;
 
     action.init();
@@ -176,7 +178,7 @@ describe('DynamicFormActionBase', () => {
   it('handles event by calling openDialog of action if dialog but dialog not open', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { id: 'id', type: 'element', template: {}, dialogDefinition } as DynamicFormActionDefinition;
-    const action = new DynamicFormAction(builder, {} as any, {} as any, definition);
+    const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
     const event = {} as Event;
 
     action.init();

@@ -9,8 +9,13 @@ export class DynamicFormItem<
   Definition extends DynamicFormItemDefinition<Template> = DynamicFormItemDefinition<Template>
 > extends DynamicFormElement<Template, Definition> {
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
+  constructor(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: Definition,
+  ) {
+    super(builder, root, parent, definition, null);
     this.extendExpressionData({
       index: () => this.index,
     });

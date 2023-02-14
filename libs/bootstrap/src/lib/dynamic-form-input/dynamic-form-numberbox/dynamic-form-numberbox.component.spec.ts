@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormNumberboxControl, DynamicFormNumberboxDefinition,
+  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormNumberboxControl, DynamicFormNumberboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
@@ -36,7 +36,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormNumberboxDefinition;
-    formControl = new DynamicFormNumberboxControl(builder, form, form, definition);
+    formControl = new DynamicFormNumberboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

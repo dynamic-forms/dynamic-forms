@@ -2,7 +2,7 @@ import {
   Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, first, tap } from 'rxjs';
-import { MonacoModule, MonacoEditor, MonacoEditorOptions, MonacoEditorUpdateType, MonacoEditorDisposable } from './monaco-editor';
+import { MonacoModule, MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType } from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
 
 declare let monaco: MonacoModule;
@@ -95,8 +95,8 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     };
   }
 
-  private updateValue(updateType: MonacoEditorUpdateType): void {
-    if (this.updateType === updateType) {
+  private updateValue(updateType?: MonacoEditorUpdateType): void {
+    if (!updateType || this.updateType === updateType) {
       this.value = this._editor.getValue();
       this.valueChange.emit(this.value);
     }

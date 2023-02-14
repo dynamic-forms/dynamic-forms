@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormRadioControl, DynamicFormRadioDefinition,
+  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormRadioControl, DynamicFormRadioDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
 import { BsDynamicFormRadioModule } from './dynamic-form-radio.module';
@@ -47,7 +47,7 @@ describe('BsDynamicFormRadioComponent', () => {
         },
       },
     } as DynamicFormRadioDefinition;
-    formControl = new DynamicFormRadioControl(builder, form, form, definition);
+    formControl = new DynamicFormRadioControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

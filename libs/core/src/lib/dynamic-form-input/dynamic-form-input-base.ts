@@ -28,8 +28,6 @@ export abstract class DynamicFormInputBaseImpl<
   get validation(): DynamicFormControlValidation { return this.template.validation; }
 }
 
-
-
 export abstract class DynamicFormInputBase<
   Input extends DynamicFormInput = DynamicFormInput
 > extends DynamicFormInputBaseImpl<DynamicFormInputValue<Input>, Input> {

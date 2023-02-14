@@ -2,36 +2,36 @@
   "items": [
     {
       "groupId": "inputs",
-      "label": "Inputs",      
+      "label": "Inputs",
       "items": [
-        { 
+        {
           "id": "inputs-plain",
           "docId": "inputs",
-          "label": "Plain" 
+          "label": "Plain"
         },
-        { 
+        {
           "id": "inputs-label",
           "docId": "inputs",
-          "label": "Label" 
+          "label": "Label"
         },
-        { 
-          "id": "inputs-placeholder", 
-          "label": "Placeholder" 
+        {
+          "id": "inputs-placeholder",
+          "label": "Placeholder"
         },
-        { 
-          "id": "inputs-hints", 
-          "label": "Hints" 
+        {
+          "id": "inputs-hints",
+          "label": "Hints"
         },
-        { 
-          "id": "inputs-default-value", 
-          "label": "Default value" 
+        {
+          "id": "inputs-default-value",
+          "label": "Default value"
         },
-        { 
-          "id": "inputs-readonly", 
-          "label": "Readonly" 
+        {
+          "id": "inputs-readonly",
+          "label": "Readonly"
         },
-        { 
-          "id": "inputs-disabled", 
+        {
+          "id": "inputs-disabled",
           "label": "Disabled"
         },
         {
@@ -51,12 +51,12 @@
               "label": "Textbox"
             }
           ]
-        }  
+        }
       ]
     },
     {
       "groupId": "fields",
-      "label": "Fields",      
+      "label": "Fields",
       "items": [
         {
           "groupId": "group",
@@ -80,17 +80,17 @@
             }
           ]
         },
-        { 
+        {
           "groupId": "array",
           "label": "Array",
           "items": [
             {
               "id": "fields-array-default-length",
-              "label": "Default length" 
+              "label": "Default length"
             },
             {
               "id": "fields-array-default-value",
-              "label": "Default value" 
+              "label": "Default value"
             },
             {
               "id": "fields-array-actions-footer",
@@ -126,7 +126,7 @@
           "items": [
             {
               "id": "fields-dictionary-default-keys",
-              "label": "Default keys" 
+              "label": "Default keys"
             },
             {
               "id": "fields-dictionary-default-value",
@@ -158,39 +158,40 @@
     },
     {
       "groupId": "elements",
-      "label": "Elements",      
+      "label": "Elements",
       "items": [
-        { 
-          "id": "elements-content", 
-          "label": "Content" 
-        }, 
+        {
+          "id": "elements-content",
+          "label": "Content"
+        },
         {
           "groupId": "container",
           "label": "Container",
           "items": [
-            { 
-              "id": "elements-row-container", 
-              "label": "Row" 
+            {
+              "id": "elements-row-container",
+              "label": "Row"
             },
-            { 
-              "id": "elements-column-container", 
-              "label": "Column" 
+            {
+              "id": "elements-column-container",
+              "label": "Column"
             },
-            { 
-              "id": "elements-row-column-container", 
-              "label": "Row & Column" 
+            {
+              "id": "elements-row-column-container",
+              "label": "Row & Column"
             }
           ]
-        },       
-        { 
-          "id": "elements-markdown", 
-          "label": "Markdown" 
-        },       
-        { 
-          "id": "elements-modal", 
-          "label": "Modal" 
         },
         {
+          "id": "elements-markdown",
+          "label": "Markdown"
+        },
+        {
+          "id": "elements-modal",
+          "label": "Modal"
+        },
+        {
+          "groupId": "items",
           "label": "Items",
           "items": [
             {
@@ -211,7 +212,7 @@
                 {
                   "id": "elements-items-disabled-tabs",
                   "label": "Tabs"
-                }    
+                }
               ]
             }
           ]
@@ -220,9 +221,9 @@
     },
     {
       "groupId": "actions",
-      "label": "Actions",      
+      "label": "Actions",
       "items": [
-        { 
+        {
           "label": "Button",
           "items": [
             {
@@ -253,9 +254,9 @@
               "id": "actions-button-dialog",
               "label": "Dialog"
             }
-          ] 
+          ]
         },
-        { 
+        {
           "label": "Icon",
           "items": [
             {
@@ -266,7 +267,7 @@
               "id": "actions-icon-dialog",
               "label": "Dialog"
             }
-          ] 
+          ]
         }
       ]
     },
@@ -292,21 +293,21 @@
       "groupId": "validation",
       "label": "Validation",
       "items": [
-        { 
-          "id": "validation-inputs", 
+        {
+          "id": "validation-inputs",
           "label": "Inputs"
         },
-        { 
-          "id": "validation-inputs-default-value", 
-          "label": "Inputs with default value" 
+        {
+          "id": "validation-inputs-default-value",
+          "label": "Inputs with default value"
         },
-        { 
-          "id": "validation-inputs-hints", 
-          "label": "Inputs with hints" 
+        {
+          "id": "validation-inputs-hints",
+          "label": "Inputs with hints"
         },
-        { 
-          "id": "validation-inputs-async", 
-          "label": "Inputs (async)" 
+        {
+          "id": "validation-inputs-async",
+          "label": "Inputs (async)"
         }
       ]
     },
@@ -318,13 +319,13 @@
           "id": "expressions-login",
           "label": "Login"
         },
-        { 
-          "id": "expressions-register", 
+        {
+          "id": "expressions-register",
           "label": "Register"
         },
-        { 
-          "id": "expressions-finance", 
-          "label": "Finance" 
+        {
+          "id": "expressions-finance",
+          "label": "Finance"
         }
       ]
     },
