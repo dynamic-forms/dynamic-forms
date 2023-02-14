@@ -1,6 +1,6 @@
 <mat-menu #menu>
   <ng-container *ngIf="level === 0">
-    <a mat-menu-item [routerLink]="[baseUrl]" routerLinkActive="router-link-active">Default</a>
+    <a mat-menu-item [routerLink]="[baseUrl]" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }">Default</a>
   </ng-container>
   <ng-container *ngFor="let item of items">
     <ng-container *ngIf="item.items">
