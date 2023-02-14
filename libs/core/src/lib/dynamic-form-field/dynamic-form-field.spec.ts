@@ -69,7 +69,8 @@ describe('DynamicFormField', () => {
     const root = { classType: 'field', depth: 0 } as DynamicForm;
     const parentField = { classType: 'field', depth: 1 } as DynamicFormField;
     const parent = { parent: parentField as DynamicFormElement } as DynamicFormElement;
-    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} } as DynamicFormFieldDefinition;
+    const wrappers = [ 'wrapper-wrapper', 'wrapper' ];
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {}, wrappers } as DynamicFormFieldDefinition;
     const type = { type: 'type' } as DynamicFormFieldType;
     const field = new DynamicFormTestField(builder, root, parent, definition, type);
 
@@ -98,6 +99,8 @@ describe('DynamicFormField', () => {
     expect(field.children).toEqual([]);
     expect(field.headerActions).toEqual([]);
     expect(field.footerActions).toEqual([]);
+
+    expect(field.wrappers).toBe(wrappers);
 
     expect(field.expressions).toEqual({});
     expect(field.expressionData).toBeTruthy();

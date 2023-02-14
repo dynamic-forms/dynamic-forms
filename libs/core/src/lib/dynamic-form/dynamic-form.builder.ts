@@ -114,7 +114,7 @@ export class DynamicFormBuilder {
   }
 
   createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField | undefined {
-    const definitionTemplate = field.definition.definitionTemplate;
+    const definitionTemplate = field.definition.definitionTemplate || {};
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key: `${index}`, index  };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -130,7 +130,7 @@ export class DynamicFormBuilder {
   }
 
   createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField | undefined {
-    const definitionTemplate = field.definition.definitionTemplate;
+    const definitionTemplate = field.definition.definitionTemplate || {};
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -279,12 +279,19 @@ export class DynamicFormBuilder {
     return this.expressionBuilder.createActionExpressions(action);
   }
 
-  createFormArrayElements(array: DynamicFormArray): DynamicFormField[] {
-    const model = array.model as any[];
-    return model.map((_item, index) => this.createFormArrayField(array , index));
+  createFormArrayElements(array: DynamicFormArray): DynamicFormField[] | undefined {
+    const type = this.getFieldType(this.getDefinition(array.definition.definitionTemplate || {}, array.root));
+    if (!type) {
+      return undefined;
+    }
+    return array.model.map((_item, index) => this.createFormArrayField(array , index));
   }
 
   createFormDictionaryElements(dictionary: DynamicFormDictionary): DynamicFormField[] {
+    const type = this.getFieldType(this.getDefinition(dictionary.definition.definitionTemplate || {}, dictionary.root));
+    if (!type) {
+      return undefined;
+    }
     return Object.keys(dictionary.model).map((key, _index) => this.createFormDictionaryField(dictionary, key));
   }
 

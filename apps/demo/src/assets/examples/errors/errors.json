@@ -13,17 +13,65 @@
 		{
 			"key": "checkbox",
 			"type": "control",
+      "template": {
+        "label": "Checkbox"
+      }
+		},
+    {
+			"key": "combobox",
+			"type": "control",
+      "template": {
+        "label": "Combobox",
+        "input": {
+          "type": "combobox"
+        }
+      },
+      "wrappers": [
+        "expansion-panel"
+      ]
+		},
+		{
+			"key": "datepicker",
+			"type": "control",
 			"template": {
-				"label": "Checkbox",
+				"label": "Datepicker",
 				"input": {
-					"type": "checkbox"
+					"type": "datepicker"
 				}
 			},
       "expressions": {
-        "input.defaultValue": "value",
-        "input.indeterminate": "That's not a valid expression"
+        "input.defaultValue": "That's not a valid expression"
       }
-		}
+		},
+		{
+			"key": "numberbox",
+			"type": "control",
+			"template": {
+				"label": "Numberbox",
+				"input": {
+					"type": "numberbox"
+				}
+			},
+      "expressions": {
+        "input.defaultValue": "value"
+      }
+		},
+    {
+      "key": "arrayValues",
+      "type": "array",
+      "template": {
+        "label": "Array Values"
+      },
+      "defaultLength": 1
+    },
+    {
+      "key": "dictionaryValues",
+      "type": "dictionary",
+      "template": {
+        "label": "Dictionary Values"
+      },
+      "defaultKeys": [ "0" ]
+    }
 	],
 	"footerActions": [
 		{},

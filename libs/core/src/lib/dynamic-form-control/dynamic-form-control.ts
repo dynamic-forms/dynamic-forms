@@ -29,6 +29,9 @@ export class DynamicFormControl<
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type);
+    if (!this.template.input) {
+      this.template.input = {} as Input;
+    }
     this._model = this.createModel();
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();

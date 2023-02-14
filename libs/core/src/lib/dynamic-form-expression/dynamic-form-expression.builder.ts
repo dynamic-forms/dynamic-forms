@@ -89,7 +89,7 @@ export class DynamicFormExpressionBuilder {
       return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${ expression };`) as Func;
     } catch (error) {
       const type = DynamicFormErrorType.ExpressionCreation;
-      const message = `Expression creation for "${expression}"`;
+      const message = `Expression creation for "${expression} failed"`;
       this.errorHandler.handle(new DynamicFormError(type, message, error));
       return new Function(...dynamicFormExpressionArgs, 'return undefined;') as Func;
     }

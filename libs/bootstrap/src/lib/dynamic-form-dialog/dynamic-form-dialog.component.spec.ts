@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, DynamicFormActionType,
-  DynamicFormComponentFactory, DynamicFormConfigService } from '@dynamic-forms/core';
+  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler } from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 import { BsDynamicFormDialogModule } from './dynamic-form-dialog.module';
@@ -29,6 +29,10 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
     {
       provide: DynamicFormActionService,
       useValue: {},
+    },
+    {
+      provide: DynamicFormErrorHandler,
+      useValue: { handle: () => {} },
     },
     DynamicFormComponentFactory,
   ],
