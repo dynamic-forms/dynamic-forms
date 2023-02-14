@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormLibraryService, DynamicFormSwitchControl, DynamicFormSwitchDefinition,
+  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSwitchControl, DynamicFormSwitchDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 import { BsDynamicFormSwitchModule } from './dynamic-form-switch.module';
@@ -36,7 +36,7 @@ describe('BsDynamicFormSwitchComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormSwitchDefinition;
-    formControl = new DynamicFormSwitchControl(builder, form, form, definition);
+    formControl = new DynamicFormSwitchControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

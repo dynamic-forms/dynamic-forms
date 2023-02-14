@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormBuilder,
+import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
   DynamicFormField, DynamicFormIconDefinition, DynamicFormIconTemplate,
   DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
@@ -35,7 +35,8 @@ describe('MatDynamicFormIconComponent', () => {
     const parent = {} as DynamicFormField;
     const template = { label: 'label' } as DynamicFormIconTemplate;
     const definition = { id: 'id', type: 'element', template } as DynamicFormIconDefinition;
-    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(builder, root, parent, definition);
+    const type = {} as DynamicFormActionType;
+    element = new DynamicFormAction<DynamicFormIconTemplate, DynamicFormIconDefinition>(builder, root, parent, definition, type);
     component.element = element;
 
     fixture.detectChanges();

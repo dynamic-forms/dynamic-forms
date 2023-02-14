@@ -3,7 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MarkdownModule } from '../markdown/markdown.module';
-import { FormDefinitionResolver } from './form-definition.resolver';
+import { FormDefinitionLoader } from './form-definition.loader';
+import { FormExampleDefinitionResolver } from './form-example-definition.resolver';
 import { FormExampleComponent } from './form-example.component';
 import { FormExampleResolver } from './form-example.resolver';
 import { FormModelResolver } from './form-model.resolver';
@@ -25,8 +26,9 @@ import { FormModelResolver } from './form-model.resolver';
     FormExampleComponent,
   ],
   providers: [
+    FormDefinitionLoader,
     FormExampleResolver,
-    FormDefinitionResolver,
+    FormExampleDefinitionResolver,
     FormModelResolver,
   ],
 })

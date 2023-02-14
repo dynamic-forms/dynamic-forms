@@ -5,7 +5,9 @@
       <app-monaco-editor [(value)]="value" [language]="'json'" [updateType]="'blur'"></app-monaco-editor>
     </mat-tab>
     <mat-tab label="Form">
-      <ng-content></ng-content>
+      <ng-template matTabContent>
+        <ng-content></ng-content>
+      </ng-template>
     </mat-tab>
     <mat-tab label="Definition">
       <ng-template matTabContent>
@@ -19,7 +21,12 @@
     </mat-tab>
     <mat-tab label="Value">
       <ng-template matTabContent>
-        <pre>{{ form?.formModel | json }}</pre>
+        <pre>{{ form?.formValue | json }}</pre>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Logs">
+      <ng-template matTabContent>
+        <app-form-editor-logs [logs]="logs"></app-form-editor-logs>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

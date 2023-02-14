@@ -1,0 +1,87 @@
+{
+	"template": {
+		"label": "Dynamic Form"
+	},
+	"children": [
+		{},
+		{
+			"type": "field"
+		},
+		{
+			"reference": "reference"
+		},
+		{
+			"key": "checkbox",
+			"type": "control",
+      "template": {
+        "label": "Checkbox"
+      }
+		},
+    {
+			"key": "combobox",
+			"type": "control",
+      "template": {
+        "label": "Combobox",
+        "input": {
+          "type": "combobox"
+        }
+      },
+      "wrappers": [
+        "expansion-panel"
+      ]
+		},
+		{
+			"key": "datepicker",
+			"type": "control",
+			"template": {
+				"label": "Datepicker",
+				"input": {
+					"type": "datepicker"
+				}
+			},
+      "expressions": {
+        "input.defaultValue": "That's not a valid expression"
+      }
+		},
+		{
+			"key": "numberbox",
+			"type": "control",
+			"template": {
+				"label": "Numberbox",
+				"input": {
+					"type": "numberbox"
+				}
+			},
+      "expressions": {
+        "input.defaultValue": "value"
+      }
+		},
+    {
+      "key": "arrayValues",
+      "type": "array",
+      "template": {
+        "label": "Array Values"
+      },
+      "defaultLength": 1
+    },
+    {
+      "key": "dictionaryValues",
+      "type": "dictionary",
+      "template": {
+        "label": "Dictionary Values"
+      },
+      "defaultKeys": [ "0" ]
+    }
+	],
+	"footerActions": [
+		{},
+		{
+			"id": "action-submit",
+			"type": "button",
+			"template": {
+				"type": "submit",
+				"label": "Submit"
+			}
+		}
+	]
+}

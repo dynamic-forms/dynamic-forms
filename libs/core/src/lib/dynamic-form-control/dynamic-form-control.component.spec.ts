@@ -2,6 +2,8 @@ import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -57,6 +59,10 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
     },
     DynamicFormConfigService,
     DynamicFormValidationService,
+    {
+      provide: DynamicFormErrorHandler,
+      useValue: { handle: () => {} },
+    },
     DynamicFormComponentFactory,
   ],
 })
@@ -91,7 +97,7 @@ describe('DynamicFormControlComponent', () => {
         },
         hints: {},
       },
-    } as DynamicFormControlDefinition);
+    } as DynamicFormControlDefinition, {} as DynamicFormFieldType);
     component.field = formControl;
 
     fixture.detectChanges();

@@ -3,6 +3,7 @@ import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
+import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
@@ -19,8 +20,14 @@ export class DynamicFormModal<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
-  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition) {
-    super(builder, root, parent, definition);
+  constructor(
+    builder: DynamicFormBuilder,
+    root: DynamicForm,
+    parent: DynamicFormElement,
+    definition: Definition,
+    type: DynamicFormElementType,
+  ) {
+    super(builder, root, parent, definition, type);
     this._isOpenSubject = new BehaviorSubject(false);
     this._isOpenChanges = this._isOpenSubject.asObservable();
     this.extendExpressionData({

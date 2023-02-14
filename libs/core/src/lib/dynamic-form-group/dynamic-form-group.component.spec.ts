@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -44,7 +45,7 @@ describe('DynamicFormGroupComponent', () => {
         label: 'label',
       },
       children: [],
-    } as DynamicFormGroupDefinition);
+    } as DynamicFormGroupDefinition, {} as DynamicFormFieldType);
     component.field = formGroup;
 
     fixture.detectChanges();

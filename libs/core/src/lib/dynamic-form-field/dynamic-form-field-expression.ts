@@ -1,5 +1,6 @@
 import { DynamicFormElementExpression } from '../dynamic-form-element/dynamic-form-element-expression';
 import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression-func';
@@ -11,14 +12,19 @@ export class DynamicFormFieldExpression<
 
   protected _memo: DynamicFormExpressionMemoization;
 
-  constructor(override readonly key: string, readonly field: DynamicFormField, override readonly func: Func) {
-    super(key, field, func);
-    this._memo = { previousValue: null, currentValue: null };
+  constructor(
+    override readonly key: string,
+    readonly field: DynamicFormField,
+    override readonly func: Func,
+    protected override errorHandler: DynamicFormErrorHandler,
+  ) {
+    super(key, field, func, errorHandler);
+    this._memo = { previousValue: undefined, currentValue: undefined };
   }
 
   override get value(): any {
     this.previousValue = this.currentValue;
-    this.currentValue = this.func(this.field.expressionData as Data, this._memo);
+    this.currentValue = this.tryEvaluate();
     if (this.previousValue !== this.currentValue) {
       this.field.expressionChangesSubject.next({
         key: this.key,
@@ -27,6 +33,10 @@ export class DynamicFormFieldExpression<
       });
     }
     return this.currentValue;
+  }
+
+  protected override evaluate(): any {
+    return this.func(this.field.expressionData as Data, this._memo);
   }
 
   private get previousValue(): any { return this._memo.previousValue; }

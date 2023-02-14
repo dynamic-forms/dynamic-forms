@@ -2,14 +2,14 @@ import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
-import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element-type-config';
+import { DynamicFormElementType } from './dynamic-form-element-type';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 
@@ -28,16 +28,13 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
   ],
   providers: [
     {
-      provide: DynamicFormLibraryService,
-      useValue: new DynamicFormLibraryService({ name: 'test' }),
+      provide: DynamicFormConfigService,
+      useValue: {},
     },
     {
-      provide: DYNAMIC_FORM_ELEMENT_TYPE_CONFIG,
-      useValue: [
-        { libraryName: 'test', type: 'element', component: DynamicFormElementBaseComponent },
-      ],
+      provide: DynamicFormErrorHandler,
+      useValue: { handle: () => {} },
     },
-    DynamicFormConfigService,
     DynamicFormComponentFactory,
   ],
 })
@@ -59,9 +56,10 @@ describe('DynamicFormElementComponent', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
     const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
+    const type = { type: 'element', component: DynamicFormElementBaseComponent } as DynamicFormElementType;
 
     builder = {} as any;
-    element = new DynamicFormElement(builder, root, parent, definition);
+    element = new DynamicFormElement(builder, root, parent, definition, type);
 
     fixture = TestBed.createComponent(DynamicFormElementComponent);
     component = fixture.componentInstance;

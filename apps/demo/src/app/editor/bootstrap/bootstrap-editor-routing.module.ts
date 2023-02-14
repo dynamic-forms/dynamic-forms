@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { getFormEditorRoutes } from '../form-editor-routes';
 import { BootstrapEditorComponent } from './bootstrap-editor.component';
+
+const bootstrapEditorRoutes: Routes = getFormEditorRoutes(BootstrapEditorComponent);
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        component: BootstrapEditorComponent,
-      },
-    ]),
+    RouterModule.forChild(bootstrapEditorRoutes),
   ],
   exports: [
     RouterModule,

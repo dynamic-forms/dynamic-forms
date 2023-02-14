@@ -3,7 +3,7 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFormComboboxDefinition,
-  DynamicFormConfigService, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 import { MatDynamicFormComboboxModule } from './dynamic-form-combobox.module';
@@ -51,7 +51,7 @@ describe('MatDynamicFormComboboxComponent', () => {
         },
       },
     } as DynamicFormComboboxDefinition;
-    formControl = new DynamicFormComboboxControl(builder, form, form, definition);
+    formControl = new DynamicFormComboboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

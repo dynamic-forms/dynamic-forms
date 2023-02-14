@@ -42,7 +42,7 @@ export class DynamicFormConfigService {
     this.fieldWrapperTypes = this.libraryService.filterTypes(this.fieldWrapperTypeConfig);
   }
 
-  getClassType(type: string): DynamicFormClassType {
+  getClassType(type: string): DynamicFormClassType | undefined {
     if (this.elementTypes.some(f => f.type === type)) {
       return 'element';
     } else if (this.fieldTypes.some(f => f.type === type)) {
@@ -54,23 +54,23 @@ export class DynamicFormConfigService {
     }
   }
 
-  getElementType(type: string): DynamicFormElementType {
+  getElementType(type: string): DynamicFormElementType | undefined {
     return this.elementTypes.find(f => f.type === type);
   }
 
-  getFieldType(type: string): DynamicFormFieldType {
+  getFieldType(type: string): DynamicFormFieldType | undefined {
     return this.fieldTypes.find(f => f.type === type);
   }
 
-  getActionType(type: string): DynamicFormActionType {
+  getActionType(type: string): DynamicFormActionType | undefined {
     return this.actionTypes.find(f => f.type === type);
   }
 
-  getInputType(type: string): DynamicFormInputType {
+  getInputType(type: string): DynamicFormInputType | undefined {
     return this.inputTypes.find(f => f.type === type);
   }
 
-  getFieldWrapperType(type: string): DynamicFormFieldWrapperType {
+  getFieldWrapperType(type: string | undefined): DynamicFormFieldWrapperType | undefined {
     return this.fieldWrapperTypes.find(f => f.type === type);
   }
 }

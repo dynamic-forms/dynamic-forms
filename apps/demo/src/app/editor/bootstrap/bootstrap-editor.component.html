@@ -1,3 +1,3 @@
-<app-form-editor #formEditor>
-  <app-bootstrap-form #form [data]="formEditor.data"></app-bootstrap-form>
+<app-form-editor [(data)]="data">
+  <app-bootstrap-form #form [data]="data"></app-bootstrap-form>
 </app-form-editor>

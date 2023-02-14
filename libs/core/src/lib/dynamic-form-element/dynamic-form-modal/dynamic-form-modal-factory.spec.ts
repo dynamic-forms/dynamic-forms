@@ -2,6 +2,7 @@ import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 import { dynamicFormModalFactory } from './dynamic-form-modal-factory';
 
@@ -32,8 +33,8 @@ describe('dynamicFormModalFactory', () => {
       footerActions: [],
       trigger: {},
     } as DynamicFormModalDefinition;
-
-    const modal = dynamicFormModalFactory(builder, root, parent, definition);
+    const type = {} as DynamicFormElementType;
+    const modal = dynamicFormModalFactory(builder, root, parent, definition, type);
 
     expect(modal.definition).toBe(definition);
     expect(modal.expressions).toBe(expressions);

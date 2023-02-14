@@ -11,9 +11,6 @@ export class ExamplesMenuPanelComponent {
   @ViewChild('menu', { static: true })
   menu: MatMenu;
 
-  @Input()
-  baseUrl: string;
-
-  @Input()
-  items: ExampleMenuItem[];
+  @Input() baseUrl: string;
+  @Input() items: ExampleMenuItem[];
 }

@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
+  DynamicFormActionType,
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
   DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
 import { of } from 'rxjs';
@@ -137,9 +138,8 @@ describe('MatDynamicFormDialogComponent', () => {
     }));
 
     it('renders header actions', waitForAsync(() => {
-      component.headerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction,
-      ];
+      const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
+      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -152,9 +152,8 @@ describe('MatDynamicFormDialogComponent', () => {
     }));
 
     it('renders footer actions', waitForAsync(() => {
-      component.footerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction,
-      ];
+      const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
+      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -166,14 +165,11 @@ describe('MatDynamicFormDialogComponent', () => {
     }));
 
     it('renders class names', waitForAsync(() => {
+      const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.theme = 'theme';
       component.title = 'Title';
-      component.headerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction,
-      ];
-      component.footerActions = [
-        { classType: 'action', componentType: 'action' } as DynamicFormAction,
-      ];
+      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';

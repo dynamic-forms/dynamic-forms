@@ -37,11 +37,9 @@ describe('MatDynamicFormsModule', () => {
       expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
 
-    it('provides DynamicFormExpressionBuilder',
-      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeDefined();
-      }),
-    );
+    it('does not provide DynamicFormExpressionBuilder', () => {
+      expect(() => TestBed.inject(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
+    });
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
       expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
@@ -138,7 +136,7 @@ describe('MatDynamicFormsModule', () => {
         imports: [
           MatDynamicFormsModule.forRoot({
             theme: 'theme',
-            idBuilder: () => 'dynamic-form-id',
+            idBuilder: { createId: () => 'dynamic-form-id' },
           }),
         ],
       });

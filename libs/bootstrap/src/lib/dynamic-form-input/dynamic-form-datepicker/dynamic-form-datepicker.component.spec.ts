@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDatepickerControl,
-  DynamicFormDatepickerDefinition, DynamicFormDefinition, DynamicFormLibraryService,
+  DynamicFormDatepickerDefinition, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 import { BsDynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
@@ -36,7 +36,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormDatepickerDefinition;
-    formControl = new DynamicFormDatepickerControl(builder, form, form, definition);
+    formControl = new DynamicFormDatepickerControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

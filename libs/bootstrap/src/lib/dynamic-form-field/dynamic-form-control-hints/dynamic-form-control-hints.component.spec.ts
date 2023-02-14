@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
@@ -48,16 +48,15 @@ describe('BsDynamicFormControlHintsComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormControlHintsComponent);
     component = fixture.componentInstance;
     component.field = { template: { hints: { hintStart: 'HintStart', hintEnd: 'HintEnd' } }, control: {} } as any;
-
-    const resolver = TestBed.inject(ComponentFactoryResolver);
-    const factory = resolver.resolveComponentFactory(DynamicFormInputTestComponent);
-    component.component = component.ref.createComponent<DynamicFormInputTestComponent>(factory).instance;
+    component.component = component.ref.createComponent(DynamicFormInputTestComponent).instance;
 
     fixture.detectChanges();
   });
 
   it('creates component', () => {
     expect(component).toBeTruthy();
+    expect(component.hasHints).toBeTrue();
+    expect(component.hints).toBe(component.field.template.hints);
   });
 
   it('renders component template', () => {
@@ -83,18 +82,21 @@ describe('BsDynamicFormControlHintsComponent', () => {
     component.field.template.hints.hintEnd = null;
     fixture.detectChanges();
 
+    expect(component.hasHints).toBeTrue();
     expect(smallDebugElement.query(By.css('span.hint-end'))).toBeNull();
 
     component.field.template.hints.hintStart = null;
     component.field.template.hints.hintEnd = 'HintEnd';
     fixture.detectChanges();
 
+    expect(component.hasHints).toBeTrue();
     expect(smallDebugElement.query(By.css('span.hint-start'))).toBeNull();
 
     component.field.template.hints.hintStart = null;
     component.field.template.hints.hintEnd = null;
     fixture.detectChanges();
 
+    expect(component.hasHints).toBeFalse();
     expect(fixture.debugElement.query(By.css('small'))).toBeNull();
   });
 });

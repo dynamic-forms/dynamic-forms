@@ -8,8 +8,6 @@ import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
 import { BootstrapFormComponent } from './bootstrap-form.component';
 
-export const dynamicFormIdBuilder = (): string => v4();
-
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +34,7 @@ export const dynamicFormIdBuilder = (): string => v4();
     DynamicFormMarkdownModule,
     BsDynamicFormsModule.forRoot({
       theme: 'bootstrap',
-      idBuilder: dynamicFormIdBuilder,
+      idBuilder: { createId: () => v4() },
     }),
   ],
   declarations: [

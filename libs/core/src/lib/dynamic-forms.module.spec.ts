@@ -8,6 +8,7 @@ import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from './dynamic-form-field/dyn
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from './dynamic-form-input/dynamic-form-input-type-config';
 import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormLogger } from './dynamic-form-error/dynamic-form.logger';
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
@@ -57,15 +58,17 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
     });
 
+    it('does not provide DynamicFormLogger', () => {
+      expect(() => TestBed.inject(DynamicFormLogger)).toThrowError(/NullInjectorError/);
+    });
+
     it('does not provide DynamicFormBuilder', () => {
       expect(() => TestBed.inject(DynamicFormBuilder)).toThrowError(/NullInjectorError/);
     });
 
-    it('provides DynamicFormExpressionBuilder',
-      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('does not provide DynamicFormExpressionBuilder', () => {
+      expect(() => TestBed.inject(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
+    });
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
       expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
@@ -135,6 +138,12 @@ describe('DynamicFormsModule', () => {
 
     it('provides DynamicFormConfigService',
       inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+        expect(service).toBeTruthy();
+      }),
+    );
+
+    it('provides DynamicFormLogger',
+      inject([DynamicFormLogger], (service: DynamicFormLogger) => {
         expect(service).toBeTruthy();
       }),
     );

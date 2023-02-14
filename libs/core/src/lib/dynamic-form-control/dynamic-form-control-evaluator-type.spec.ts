@@ -1,3 +1,4 @@
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -52,7 +53,8 @@ describe('DynamicFormControlEvaluatorType', () => {
 
       const builder: DynamicFormBuilder = {} as any;
       const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: null });
-      const formControl = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, form, form, definition);
+      const type = {} as DynamicFormFieldType;
+      const formControl = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, form, form, definition, type);
 
       dynamicFormSelectEvaluatorType.func(formControl);
 

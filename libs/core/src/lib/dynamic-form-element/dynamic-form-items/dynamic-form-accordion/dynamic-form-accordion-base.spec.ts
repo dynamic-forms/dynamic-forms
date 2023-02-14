@@ -2,6 +2,7 @@ import { DynamicForm } from '../../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../../../testing';
 import { DynamicFormElement } from '../../dynamic-form-element';
+import { DynamicFormElementType } from '../../dynamic-form-element-type';
 import { DynamicFormItems } from '../dynamic-form-items';
 import { DynamicFormItemsDefinition } from '../dynamic-form-items-definition';
 import { DynamicFormAccordionBase } from './dynamic-form-accordion-base';
@@ -27,9 +28,8 @@ describe('DynamicFormAccordionBase', () => {
     } as DynamicFormItemsDefinition;
 
     component = new DynamicFormAccordionTestComponent();
-    component.element = new DynamicFormItems(builder, root, parent, definition);
+    component.element = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
     component.element.init();
-    // component.element.initChildren([ {} as DynamicFormItem ]);
   });
 
   it('openItem calls selectItem of element', () => {

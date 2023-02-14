@@ -5,8 +5,10 @@ import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-co
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormLogger } from '../dynamic-form-error/dynamic-form.logger';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form.component';
@@ -29,7 +31,6 @@ describe('DynamicFormComponent', () => {
           useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormConfigService,
-        DynamicFormBuilder,
         DynamicFormExpressionBuilder,
         {
           provide: DynamicFormEvaluationBuilder,
@@ -42,6 +43,9 @@ describe('DynamicFormComponent', () => {
           },
         },
         DynamicFormValidationService,
+        DynamicFormErrorHandler,
+        DynamicFormLogger,
+        DynamicFormBuilder,
       ],
     });
 
