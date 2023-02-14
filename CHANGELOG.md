@@ -4,8 +4,8 @@
 
 ### Features
 
-* **core:** introduction of ```DynamicFormErrorModule``` providing ```DynamicFormErrorHandler``` and ```DynamicFormLogger``` for  ()
 * **core:** improvements regarding type of dynamic form elements (dynamic form builder resolves component type information before instantiation)
+* **core:** introduction of ```DynamicFormErrorModule``` providing ```DynamicFormErrorHandler``` and ```DynamicFormLogger``` to improve error handling / logging of invalid form definition
 
 ### Breaking Changes
 
@@ -14,6 +14,7 @@
 
 ### Bug Fixes
 
+* **core:** Fixed field wrapper issue by not wrapping input components with wrappers of the field definition which belongs to the input
 * **demo:** Fixed tab `Value` for examples and editor by using usage form value instead of from model
 
 ## 15.0.0 (2023-02-02)
