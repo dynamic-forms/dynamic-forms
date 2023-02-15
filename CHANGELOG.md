@@ -1,6 +1,6 @@
 # Changelog
 
-## 15.1.0-next.0
+## 15.1.0-next.0 (2023-02-15)
 
 ### Features
 
