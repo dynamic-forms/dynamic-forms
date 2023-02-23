@@ -30,6 +30,8 @@ export * from './lib/dynamic-form-input/dynamic-form-combobox/dynamic-form-combo
 export * from './lib/dynamic-form-input/dynamic-form-combobox/dynamic-form-combobox.module';
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker.component';
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker.module';
+export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.component';
+export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.module';
 export * from './lib/dynamic-form-input/dynamic-form-numberbox/dynamic-form-numberbox.component';
 export * from './lib/dynamic-form-input/dynamic-form-numberbox/dynamic-form-numberbox.module';
 export * from './lib/dynamic-form-input/dynamic-form-radio/dynamic-form-radio.component';

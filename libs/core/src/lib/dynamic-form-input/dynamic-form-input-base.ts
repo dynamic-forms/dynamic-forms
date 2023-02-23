@@ -29,8 +29,14 @@ export abstract class DynamicFormInputBaseImpl<
 }
 
 export abstract class DynamicFormInputBase<
-  Input extends DynamicFormInput = DynamicFormInput
-> extends DynamicFormInputBaseImpl<DynamicFormInputValue<Input>, Input> {
+  Input extends DynamicFormInput = DynamicFormInput,
+  Template extends DynamicFormControlTemplate<DynamicFormInputValue<Input>, Input> =
+    DynamicFormControlTemplate<DynamicFormInputValue<Input>, Input>,
+  Definition extends DynamicFormControlDefinition<DynamicFormInputValue<Input>, Input, Template> =
+    DynamicFormControlDefinition<DynamicFormInputValue<Input>, Input, Template>,
+  Control extends DynamicFormControl<DynamicFormInputValue<Input>, Input, Template, Definition> =
+    DynamicFormControl<DynamicFormInputValue<Input>, Input, Template, Definition>
+> extends DynamicFormInputBaseImpl<DynamicFormInputValue<Input>, Input, Template, Definition, Control> {
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
