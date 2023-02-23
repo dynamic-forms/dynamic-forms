@@ -4,7 +4,6 @@ import { DynamicFormElementDefinition } from './dynamic-form-element-definition'
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export abstract class DynamicFormElementBase<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,

@@ -7,7 +7,6 @@ import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export abstract class DynamicFormFieldWrapperBase<
   Value = any, Model extends Value = Value,
   Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,

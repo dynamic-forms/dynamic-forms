@@ -11,7 +11,6 @@ import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export abstract class DynamicFormActionBase<
   Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
   Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,

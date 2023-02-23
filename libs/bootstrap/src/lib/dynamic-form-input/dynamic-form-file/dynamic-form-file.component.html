@@ -1,0 +1,18 @@
+<div class="input-group">
+  <input
+    [id]="inputId"
+    class="form-control"
+    type="text"
+    [placeholder]="input.placeholder || ''"
+    [value]="fileDirective.fileNamesAsText || ''"
+    readonly
+  />
+  <input
+    #fileDirective="dynamicFormFile"
+    dynamicFormFile
+    [acceptFiles]="input.accept"
+    [multipleFiles]="input.multiple"
+    [formControl]="control"
+  />
+  <dynamic-form-element matSuffix [element]="uploadAction"></dynamic-form-element>
+</div>

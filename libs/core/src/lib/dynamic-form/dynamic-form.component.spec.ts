@@ -202,6 +202,7 @@ describe('DynamicFormComponent', () => {
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.value,
       model: component.model,
+      files: undefined,
     });
   });
 
@@ -213,6 +214,7 @@ describe('DynamicFormComponent', () => {
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.value,
       model: component.model,
+      files: undefined,
     });
   });
 

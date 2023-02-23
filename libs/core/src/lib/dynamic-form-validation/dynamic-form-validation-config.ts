@@ -1,9 +1,16 @@
 import { InjectionToken } from '@angular/core';
 import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 
+export type DynamicFormErrorMessageTemplate = (error: any) => string;
+
+export const dynamicFormErrorMessageTemplate = (strings, ...keys) => (error) => keys.reduce((result, key, index) => {
+  result.push(error[key], strings[index + 1]);
+  return result;
+}, [strings[0]]).join('');
+
 export interface DynamicFormValidationConfig {
   defaultMessage: string;
-  messages: { [key: string]: string };
+  messages: { [key: string]: string | DynamicFormErrorMessageTemplate };
   libraryName: DynamicFormLibraryName;
 }
 
@@ -29,6 +36,7 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     requiredDictionary: 'The dictionary is required',
     minlengthDictionary: 'The dictionary does not fit the min length.',
     maxlengthDictionary: 'The dictionary does not fit the max length.',
+    maxFileSize: dynamicFormErrorMessageTemplate`The file ${'filenames'} does not fit the max size`,
   },
   libraryName: dynamicFormLibrary.name,
 };

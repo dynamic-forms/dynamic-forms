@@ -43,6 +43,10 @@
               "label": "Checkbox"
             },
             {
+              "id": "inputs-variations-file",
+              "label": "File"
+            },
+            {
               "id": "inputs-variations-select",
               "label": "Select"
             },

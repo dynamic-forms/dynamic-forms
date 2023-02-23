@@ -91,7 +91,7 @@ describe('DynamicFormValidationService', () => {
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         const message = service.getErrorMessage({ required: {} });
 
-        expect(message).toEqual(validationConfig.messages.required);
+        expect(message).toEqual(validationConfig.messages.required as string);
       }),
     );
 

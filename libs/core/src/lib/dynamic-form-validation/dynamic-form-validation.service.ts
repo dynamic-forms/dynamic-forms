@@ -28,11 +28,18 @@ export class DynamicFormValidationService {
 
     const errorKey = keys[0];
     const error = errors[errorKey];
-    return error && error.message ? error.message : this.getErrorMessageFromConfig(errorKey);
+    return error && error.message ? error.message : this.getErrorMessageFromConfig(errorKey, error);
   }
 
-  private getErrorMessageFromConfig(errorKey: string): string {
-    return this.validationConfig.messages[errorKey] || this.validationConfig.defaultMessage;
+  private getErrorMessageFromConfig(errorKey: string, error: any): string {
+    const message = this.validationConfig.messages[errorKey];
+    if (typeof message === 'string') {
+      return message;
+    }
+    if (typeof message === 'function') {
+      return message(error);
+    }
+    return this.validationConfig.defaultMessage;
   }
 
   private getDefaultErrorMessage(): string {

@@ -56,7 +56,7 @@ describe('DynamicFormFieldBase', () => {
   it('errorMessage returns message from config', () => {
     component.field = { errors: { required: {} } } as any;
 
-    expect(component.errorMessage).toEqual(validationConfig.messages.required);
+    expect(component.errorMessage).toEqual(validationConfig.messages.required as string);
   });
 
   it('errorMessage returns default message from config for unknown error', () => {

@@ -1,0 +1,74 @@
+{
+  "template": {
+    "label": "File variations"
+  },
+  "children": [
+    {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file"
+        }
+      }
+    },
+    {
+      "key": "files",
+      "type": "control",
+      "template": {
+        "label": "Files",
+        "input": {
+          "type": "file",
+          "multiple": true
+        }
+      }
+    },
+    {
+      "key": "fileImage",
+      "type": "control",
+      "template": {
+        "label": "Image File",
+        "input": {
+          "type": "file",
+          "accept": "image/*"
+        }
+      }
+    },
+    {
+      "key": "fileImagePdf",
+      "type": "control",
+      "template": {
+        "label": "Image / PDF File",
+        "input": {
+          "type": "file",
+          "accept": "image/*,.pdf"
+        }
+      }
+    },
+    {
+      "key": "fileJsonXml",
+      "type": "control",
+      "template": {
+        "label": "JSON / XML File",
+        "input": {
+          "type": "file",
+          "accept": ".json,.xml"
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    }
+  ]
+}

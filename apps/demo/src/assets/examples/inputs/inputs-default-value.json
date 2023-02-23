@@ -11,7 +11,7 @@
         "input": {
           "type": "checkbox",
           "defaultValue": true
-        }  
+        }
       }
     },
     {
@@ -44,6 +44,17 @@
       }
     },
     {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file",
+          "placeholder": "Upload a file"
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {
@@ -52,7 +63,7 @@
           "type": "numberbox",
           "placeholder": "Enter a number",
           "defaultValue": 0.01
-        }        
+        }
       }
     },
     {
@@ -170,7 +181,7 @@
       }
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",
