@@ -2,7 +2,7 @@
   [id]="id"
   mat-flat-button
   class="dynamic-form-button"
-  color="primary"
+  [color]="template.color | dynamicFormColor : 'primary'"
   [class.hidden]="template.hidden"
   [ngClass]="template.className"
   [type]="template.type || 'button'"

@@ -208,7 +208,8 @@
         mat-radio-group,
         mat-slide-toggle,
         mat-slide-toggle *,
-        mat-button-toggle {
+        mat-button-toggle,
+        mat-datepicker-toggle {
           pointer-events: none;
         }
       }

@@ -15,9 +15,16 @@ export class DynamicFormIconService {
     this.iconConfig = this.mergeIconConfigs(this.iconConfigs);
   }
 
-  getIcon(template: DynamicFormIconTemplate): string {
-    if (template && template.icon) {
-      return this.iconConfig.icons[template.icon] || template.icon;
+  getIcon(icon: string): string;
+  /**
+   * @deprecated The method should not be used
+   */
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
+  getIcon(template: DynamicFormIconTemplate): string;
+  getIcon(iconOrTemplate: string | DynamicFormIconTemplate): string {
+    const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;
+    if (icon) {
+      return this.iconConfig.icons[icon] || icon;
     }
     return undefined;
   }

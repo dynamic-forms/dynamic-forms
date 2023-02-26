@@ -1,6 +1,6 @@
 <button
   [id]="id"
-  class="dynamic-form-button btn btn-primary"
+  class="dynamic-form-button btn btn-{{ template.color | dynamicFormColor : 'primary' }}"
   [class.hidden]="template.hidden"
   [ngClass]="template.className"
   [type]="template.type || 'button'"

@@ -86,6 +86,23 @@ describe('BsDynamicFormButtonComponent', () => {
     expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
   });
 
+  it('sets color of dynamic form button', () => {
+    const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
+
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
+
+    component.template.color = 'secondary';
+    fixture.detectChanges();
+
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-secondary');
+
+    component.template.color = null;
+    fixture.detectChanges();
+
+    expect(formButtonElement.className).toBe('dynamic-form-button btn btn-primary');
+  });
+
   it('sets type of dynamic form button', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;

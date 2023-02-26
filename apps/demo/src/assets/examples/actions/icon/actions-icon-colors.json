@@ -1,0 +1,99 @@
+{
+  "template": {
+    "label": "Login"
+  },
+  "headerActions": [
+    {
+      "id": "action-submit",
+      "type": "icon",
+      "template": {
+        "type": "submit",
+        "icon": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-validate",
+      "type": "icon",
+      "template": {
+        "type": "button",
+        "icon": "validate",
+        "label": "Validate",
+        "action": "validate",
+        "color": "danger"
+      }
+    },
+    {
+      "id": "action-reset-form",
+      "type": "icon",
+      "template": {
+        "type": "reset",
+        "icon": "reset",
+        "label": "Reset",
+        "color": "warning"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "icon",
+      "template": {
+        "type": "button",
+        "icon": "resetDefault",
+        "label": "Reset default",
+        "action": "resetDefault",
+        "color": "secondary"
+      }
+    }
+  ],
+  "children": [
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "textbox",
+          "inputType": "email",
+          "placeholder": "Enter your email",
+          "defaultValue": "user01@mail.com"
+        },
+        "validation": {
+          "required": true,
+          "email": true
+        }
+      }
+    },
+    {
+      "key": "password",
+      "type": "control",
+      "template": {
+        "label": "Password",
+        "input": {
+          "type": "textbox",
+          "inputType": "password",
+          "placeholder": "Enter your password",
+          "defaultValue": "Test1234!",
+          "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
+        },
+        "validation": {
+          "required": true,
+          "pattern": true
+        }
+      }
+    },
+    {
+      "key": "remember",
+      "type": "control",
+      "template": {
+        "label": "Remember login",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": true
+        }
+      }
+    }
+  ]
+}

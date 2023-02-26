@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormIconModule } from '@dynamic-forms/core';
+import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
@@ -28,6 +28,10 @@ import { BootstrapFormComponent } from './bootstrap-form.component';
         maximizeModal: 'fullscreen',
         minimizeModal: 'fullscreen_exit',
       },
+      libraryName: 'bootstrap',
+    }),
+    DynamicFormThemeModule.withColors({
+      colors: {},
       libraryName: 'bootstrap',
     }),
     DynamicFormExtensionsModule,
