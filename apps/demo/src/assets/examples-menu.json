@@ -224,6 +224,7 @@
       "label": "Actions",
       "items": [
         {
+          "groupId": "button",
           "label": "Button",
           "items": [
             {
@@ -253,10 +254,15 @@
             {
               "id": "actions-button-dialog",
               "label": "Dialog"
+            },
+            {
+              "id": "actions-button-colors",
+              "label": "Colors"
             }
           ]
         },
         {
+          "groupId": "icon",
           "label": "Icon",
           "items": [
             {
@@ -266,6 +272,10 @@
             {
               "id": "actions-icon-dialog",
               "label": "Dialog"
+            },
+            {
+              "id": "actions-icon-colors",
+              "label": "Colors"
             }
           ]
         }

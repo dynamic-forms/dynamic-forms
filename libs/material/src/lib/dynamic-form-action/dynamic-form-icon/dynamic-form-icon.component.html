@@ -3,7 +3,7 @@
     [id]="id"
     mat-icon-button
     class="dynamic-form-icon"
-    color="primary"
+    [color]="template.color | dynamicFormColor : 'primary'"
     [class.hidden]="template.hidden"
     [ngClass]="template.className"
     [type]="template.type || 'button'"
@@ -11,7 +11,7 @@
     [matTooltip]="template.label"
     (click)="onClick($event)"
   >
-    <mat-icon>{{ template | dynamicFormIcon }}</mat-icon>
+    <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon>
   </button>
 </div>
 
