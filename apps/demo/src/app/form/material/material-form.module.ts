@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormIconModule } from '@dynamic-forms/core';
+import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
 import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
@@ -27,6 +27,14 @@ import { MaterialFormComponent } from './material-form.component';
         register: 'add',
         maximizeModal: 'fullscreen',
         minimizeModal: 'fullscreen_exit',
+      },
+      libraryName: 'material',
+    }),
+    DynamicFormThemeModule.withColors({
+      colors: {
+        secondary: 'accent',
+        danger: 'warn',
+        warning: 'warn',
       },
       libraryName: 'material',
     }),

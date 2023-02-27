@@ -199,6 +199,10 @@ export * from './lib/dynamic-form-input/dynamic-form-toggle/dynamic-form-toggle'
 export * from './lib/dynamic-form-library/dynamic-form-library';
 export * from './lib/dynamic-form-library/dynamic-form-library.module';
 export * from './lib/dynamic-form-library/dynamic-form-library.service';
+export * from './lib/dynamic-form-theme/dynamic-form-color-config';
+export * from './lib/dynamic-form-theme/dynamic-form-color.pipe';
+export * from './lib/dynamic-form-theme/dynamic-form-color.service';
+export * from './lib/dynamic-form-theme/dynamic-form-theme.module';
 export * from './lib/dynamic-form-validation/dynamic-form-validation-config';
 export * from './lib/dynamic-form-validation/dynamic-form-validation-error';
 export * from './lib/dynamic-form-validation/dynamic-form-validation-errors';

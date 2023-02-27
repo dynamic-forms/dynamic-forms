@@ -1,5 +1,13 @@
 # Changelog
 
+## 15.1.0-next.1 (2023-02-27)
+
+### Features
+
+* **core:** introduction of ```DynamicFormThemeModule``` providing ```DynamicFormColorService``` and ```DynamicFormColorPipe``` to support colors for buttons and icons via template  
+* **bootstrap:** implemenation of button and icon colors using ```DynamicFormColorPipe```
+* **material:** implemenation of button and icon colors using ```DynamicFormColorPipe```
+
 ## 15.1.0-next.0 (2023-02-15)
 
 ### Features
@@ -14,8 +22,8 @@
 
 ### Bug Fixes
 
-* **core:** Fixed field wrapper issue by not wrapping input components with wrappers of the field definition which belongs to the input
-* **demo:** Fixed tab `Value` for examples and editor by using usage form value instead of from model
+* **core:** fixed field wrapper issue by not wrapping input components with wrappers of the field definition which belongs to the input
+* **demo:** fixed tab `Value` for examples and editor by using usage form value instead of from model
 
 ## 15.0.0 (2023-02-02)
 

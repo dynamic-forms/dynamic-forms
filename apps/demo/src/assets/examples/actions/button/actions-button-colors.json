@@ -2,13 +2,12 @@
   "template": {
     "label": "Login"
   },
-  "headerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
-      "type": "icon",
+      "type": "button",
       "template": {
         "type": "submit",
-        "icon": "submit",
         "label": "Submit"
       },
       "expressions": {
@@ -17,31 +16,31 @@
     },
     {
       "id": "action-validate",
-      "type": "icon",
+      "type": "button",
       "template": {
         "type": "button",
-        "icon": "validate",
         "label": "Validate",
-        "action": "validate"
+        "action": "validate",
+        "color": "danger"
       }
     },
     {
-      "id": "action-reset-form",
-      "type": "icon",
+      "id": "action-reset",
+      "type": "button",
       "template": {
         "type": "reset",
-        "icon": "reset",
-        "label": "Reset"
+        "label": "Reset",
+        "color": "warning"
       }
     },
     {
       "id": "action-reset-default",
-      "type": "icon",
+      "type": "button",
       "template": {
         "type": "button",
-        "icon": "resetDefault",
         "label": "Reset default",
-        "action": "resetDefault"
+        "action": "resetDefault",
+        "color": "secondary"
       }
     }
   ],
@@ -72,6 +71,7 @@
           "type": "textbox",
           "inputType": "password",
           "placeholder": "Enter your password",
+          "defaultValue": "Test1234!",
           "pattern": "^(?=.*\\d)(?=.*[a-zA-Z]).{6,20}$"
         },
         "validation": {
