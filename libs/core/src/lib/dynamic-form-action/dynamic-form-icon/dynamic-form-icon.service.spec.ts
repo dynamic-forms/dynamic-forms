@@ -69,12 +69,12 @@ describe('DynamicFormIconService', () => {
     );
 
     it('returns icon being undefined',
-    inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-      const icon = service.getIcon('');
+      inject([DynamicFormIconService], (service: DynamicFormIconService) => {
+        const icon = service.getIcon('');
 
-      expect(icon).toBeUndefined();
-    }),
-  );
+        expect(icon).toBeUndefined();
+      }),
+    );
 
     it('returns icon for template being undefined',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
@@ -86,12 +86,12 @@ describe('DynamicFormIconService', () => {
     );
 
     it('returns icon not being mapped',
-    inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-      const icon = service.getIcon('pattern');
+      inject([DynamicFormIconService], (service: DynamicFormIconService) => {
+        const icon = service.getIcon('pattern');
 
-      expect(icon).toBe('pattern');
-    }),
-  );
+        expect(icon).toBe('pattern');
+      }),
+    );
 
     it('returns icon for template not being mapped',
       inject([DynamicFormIconService], (service: DynamicFormIconService) => {
