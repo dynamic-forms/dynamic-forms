@@ -5,8 +5,8 @@
 ### Features
 
 * **core:** introduction of ```DynamicFormThemeModule``` providing ```DynamicFormColorService``` and ```DynamicFormColorPipe``` to support colors for buttons and icons via template  
-* **bootstrap:** implemenation of button and icon colors using ```DynamicFormColorPipe```
-* **material:** implemenation of button and icon colors using ```DynamicFormColorPipe```
+* **bootstrap:** implementation of button and icon colors using ```DynamicFormColorPipe```
+* **material:** implementation of button and icon colors using ```DynamicFormColorPipe```
 
 ## 15.1.0-next.0 (2023-02-15)
 
