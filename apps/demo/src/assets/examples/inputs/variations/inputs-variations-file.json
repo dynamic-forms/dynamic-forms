@@ -56,6 +56,70 @@
           "accept": ".json,.xml"
         }
       }
+    },
+    {
+      "key": "fileIcon",
+      "type": "control",
+      "template": {
+        "label": "File with Icon",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "template": {
+          "icon": "file_upload"
+        }
+      }
+    },
+    {
+      "key": "fileIconPrimary",
+      "type": "control",
+      "template": {
+        "label": "File with Icon (Primary Color)",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "template": {
+          "icon": "file_upload",
+          "color": "primary"
+        }
+      }
+    },
+    {
+      "key": "fileButton",
+      "type": "control",
+      "template": {
+        "label": "File with Button",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "type": "button",
+        "template": {
+          "label": "Upload"
+        }
+      }
+    },
+    {
+      "key": "fileButtonPrimary",
+      "type": "control",
+      "template": {
+        "label": "File with Button (Primary Color)",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "type": "button",
+        "template": {
+          "label": "Upload",
+          "color": "primary"
+        }
+      }
     }
   ],
   "footerActions": [

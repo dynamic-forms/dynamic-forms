@@ -49,7 +49,6 @@
           "placeholder": "Upload a file"
         },
         "hints": {
-          "hintSize": "Max size: 1MB",
           "hintEnd": "Click to open file explorer"
         }
       }

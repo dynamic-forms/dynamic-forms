@@ -1,6 +1,7 @@
 import { Directive, OnInit, ViewChild } from '@angular/core';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../../dynamic-form-action/dynamic-form-action-definition';
+import { DynamicFormActionTemplate } from '../../dynamic-form-action/dynamic-form-action-template';
 import { DynamicFormIconDefinition } from '../../dynamic-form-action/dynamic-form-icon/dynamic-form-icon-definition';
 import { DynamicFormValidationService } from '../../dynamic-form-validation/dynamic-form-validation.service';
 import { mergeObject } from '../../dynamic-form/dynamic-form-helpers';
@@ -15,16 +16,22 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
 
   private _uploadAction: DynamicFormAction;
 
-  @ViewChild(DynamicFormFileDirective)
-  private _fileInput: DynamicFormFileDirective;
+  @ViewChild(DynamicFormFileDirective, { static: true })
+  protected _fileInput: DynamicFormFileDirective;
 
   readonly defaultUploadActionDefinition: DynamicFormActionDefinition = {
     type: 'icon',
     template: {
       type: 'button',
       icon: 'attach_file',
+      color: 'inputAction',
     },
   } as DynamicFormIconDefinition;
+
+  readonly uploadActionDefinition: Partial<DynamicFormActionDefinition> = {
+    template: { action: () => this._fileInput.openFileExplorer() } as DynamicFormActionTemplate,
+    expressions: { disabled: _ => this.field.control.disabled || this.field.readonly },
+  };
 
   constructor(protected builder: DynamicFormBuilder, protected override validationService: DynamicFormValidationService) {
     super(validationService);
@@ -35,13 +42,15 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
   }
 
   ngOnInit(): void {
-    const root = this.field.root;
-    const parent = this.field;
-    const definitionBase = !!this.definition.uploadAction
-      ? mergeObject(this.defaultUploadActionDefinition, this.definition.uploadAction)
+    const definition = this.getDefinition();
+    this._uploadAction = this.builder.createFormAction(this.field.root, this.field, definition);
+  }
+
+  private getDefinition(): DynamicFormActionDefinition {
+    const definitionBase = this.definition.uploadActionDefinition
+      ? mergeObject(this.defaultUploadActionDefinition, this.definition.uploadActionDefinition)
       : this.defaultUploadActionDefinition;
-    const definition = this.builder.getDefinition(definitionBase, root);
-    definition.template.action = () => this._fileInput.openFileExplorer();
-    this._uploadAction = this.builder.createFormAction(root, parent, definition);
+    const definition = this.builder.getDefinition(definitionBase, this.field.root);
+    return mergeObject(definition, this.uploadActionDefinition);
   }
 }

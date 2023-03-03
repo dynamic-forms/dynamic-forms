@@ -35,6 +35,26 @@ describe('DynamicFormActionService', () => {
       }),
     );
 
+    it('call func of handler and stop event propagation if action of template is function',
+      inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+        const field = {} as DynamicFormField;
+        const template = { action: () => {} };
+        const action = { parent: field as DynamicFormElement, template } as DynamicFormAction;
+        const event = { stopPropagation: () => {} } as Event;
+
+        spyOn(service, 'getHandler').and.callThrough();
+        spyOn(template, 'action');
+        spyOn(event, 'stopPropagation');
+
+        service.handle(action, event);
+
+        expect(service.getHandler).not.toHaveBeenCalledWith('type');
+
+        expect(template.action).toHaveBeenCalled();
+        expect(event.stopPropagation).toHaveBeenCalled();
+      }),
+    );
+
     it('does not call func of handler and stop event propagation',
       inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         const field = {} as DynamicFormField;

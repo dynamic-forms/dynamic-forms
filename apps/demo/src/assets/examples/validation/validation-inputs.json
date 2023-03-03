@@ -63,7 +63,7 @@
         "input": {
           "type": "file",
           "placeholder": "Upload a file",
-          "maxFileSize": 1048576
+          "maxFileSize": 5242880
         },
         "validation": {
           "required": true,

@@ -1,6 +1,7 @@
 import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormControl } from '@angular/forms';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
@@ -9,6 +10,7 @@ import { DynamicFormLogger } from '../dynamic-form-error/dynamic-form.logger';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormFileUpload } from '../dynamic-form-input/dynamic-form-file/dynamic-form-file';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form.component';
@@ -206,15 +208,19 @@ describe('DynamicFormComponent', () => {
     });
   });
 
-  it('form submit emits form submit', () => {
+  it('form submit emits form submit with files', () => {
     spyOn(component.formSubmit, 'emit');
+
+    const file = new File([''], 'file01.txt', { type: 'text/plain' });
+
+    component.formGroup.addControl('fileUpload', new FormControl(new DynamicFormFileUpload(file)));
 
     component.form.submit();
 
     expect(component.formSubmit.emit).toHaveBeenCalledWith({
       value: component.value,
       model: component.model,
-      files: undefined,
+      files: jasmine.any(FormData),
     });
   });
 

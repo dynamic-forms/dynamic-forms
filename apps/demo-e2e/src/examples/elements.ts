@@ -1,10 +1,11 @@
 import { protractor, By, ElementArrayFinder, ElementFinder } from 'protractor';
 
 const KEY = protractor.Key;
+const PATH = require('path');
 
 export class Control {
   private readonly _types: string[] = [
-    'checkbox', 'combobox', 'datepicker', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle',
+    'checkbox', 'combobox', 'datepicker', 'file', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle',
   ];
 
   constructor(public element: ElementFinder, public theme: string) {}
@@ -34,6 +35,8 @@ export class Control {
   async getInput(): Promise<Input> {
     const controlType = await this.getControlType();
     switch (controlType) {
+      case 'file':
+        return new Input(controlType, this, this.findElement('input[type="file"]'));
       case 'radio':
         return new Input(controlType, this, this.findElements('input[type="radio"]'));
       case 'select':
@@ -92,6 +95,10 @@ export class Input {
     switch (this.controlType) {
       case 'checkbox':
         return this.inputElement.getAttribute('checked');
+      case 'file':
+        const element = this.control.findElement('input:not([type="file"])');
+        const files = await element.getAttribute('value');
+        return files ? files.trim() : files;
       case 'radio':
         const checkedRadio = this.control.findElement('input[type="radio"]:checked');
         return await checkedRadio.isPresent() ? true : false;
@@ -127,6 +134,11 @@ export class Input {
           await this.inputElement.sendKeys(KEY.SPACE);
         }
         return this.inputElement.sendKeys(KEY.SPACE);
+      case 'file':
+        const file = PATH.resolve(__dirname, 'file.txt');
+        console.log(__dirname);
+        console.log(file);
+        return this.inputElement.sendKeys(file);
       case 'radio':
         return this.inputElement.sendKeys(KEY.SPACE);
       case 'select':

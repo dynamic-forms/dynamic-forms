@@ -31,6 +31,16 @@ $dynamic-form-errors-margin-top: null !default;
     @import 'bootstrap/scss/card';
     @import 'bootstrap/scss/modal';
 
+    .input-group {
+      >:not(:first-child) {
+        .btn {
+          margin-left: -1px;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
     &.grid {
       .row {
         bs-dynamic-form-button,

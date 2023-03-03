@@ -44,17 +44,6 @@
       }
     },
     {
-      "key": "file",
-      "type": "control",
-      "template": {
-        "label": "File",
-        "input": {
-          "type": "file",
-          "placeholder": "Upload a file"
-        }
-      }
-    },
-    {
       "key": "numberbox",
       "type": "control",
       "template": {

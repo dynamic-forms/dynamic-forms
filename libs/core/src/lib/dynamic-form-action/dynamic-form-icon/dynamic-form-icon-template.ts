@@ -2,4 +2,5 @@ import { DynamicFormButtonTemplate } from '../dynamic-form-button/dynamic-form-b
 
 export interface DynamicFormIconTemplate extends DynamicFormButtonTemplate {
   icon: string;
+  color?: string;
 }

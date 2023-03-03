@@ -107,6 +107,10 @@
                   "label": "Datepicker"
                 },
                 {
+                  "value": "file",
+                  "label": "File"
+                },
+                {
                   "value": "numberbox",
                   "label": "Numberbox"
                 },
@@ -134,11 +138,11 @@
                   "value": "toggle",
                   "label": "Toggle"
                 }
-              ] 
+              ]
             },
             "validation": {
               "required": true
-            } 
+            }
           },
           "readonly": true
         },
@@ -154,7 +158,7 @@
           },
           "expressions": {
             "disabled": "(function(template) { return !template || !template.input || !template.input.type; })(data.root.model.template)"
-          } 
+          }
         },
         {
           "reference": "multiple"
@@ -169,10 +173,11 @@
             "label": "Default value",
             "input": {
               "type": "textbox",
-              "placeholder": "Enter a default value" 
+              "placeholder": "Enter a default value"
             }
           },
           "expressions": {
+            "disabled": "data.parent.model.type === 'file'",
             "input.type": "data.parent.model.type || 'textbox'",
             "input.multiple": "data.parent.value.multiple",
             "input.options": "data.parent.value.options"
@@ -212,7 +217,7 @@
         "hidden": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'",
         "disabled": "data.parent.model.type !== 'select' && data.parent.model.type !== 'radio' && data.parent.model.type !== 'toggle'"
       },
-      "headerActions": [ 
+      "headerActions": [
         {
           "type": "icon",
           "template": {
@@ -255,7 +260,7 @@
         },
         "expressions": {
           "label": "(data.index + 1) + '. Option / Option Group'"
-        },                
+        },
         "children": [
           {
             "key": "isOption",
@@ -335,7 +340,7 @@
               "label": "Options of group",
               "className": "col-12"
             },
-            "headerActions": [ 
+            "headerActions": [
               {
                 "type": "icon",
                 "template": {
@@ -458,8 +463,8 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
-          }    
+            }
+          }
         },
         {
           "key": "pattern",
@@ -469,11 +474,11 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
+            }
           },
           "expressions": {
             "disabled": "(function(inputType) { return inputType !== 'combobox' && inputType !== 'textarea' && inputType !== 'textbox'; })(((data.root.model.template || {}).input || {}).type)"
-          }    
+          }
         },
         {
           "key": "minLength",
@@ -483,11 +488,11 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
+            }
           },
           "expressions": {
             "disabled": "(function(inputType) { return inputType !== 'combobox' && inputType !== 'textarea' && inputType !== 'textbox'; })(((data.root.model.template || {}).input || {}).type)"
-          }    
+          }
         },
         {
           "key": "maxLength",
@@ -497,11 +502,11 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
+            }
           },
           "expressions": {
             "disabled": "(function(inputType) { return inputType !== 'combobox' && inputType !== 'textarea' && inputType !== 'textbox'; })(((data.root.model.template || {}).input || {}).type)"
-          }    
+          }
         },
         {
           "key": "min",
@@ -511,11 +516,11 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
+            }
           },
           "expressions": {
             "disabled": "(function(inputType) { return inputType !== 'numberbox'; })(((data.root.model.template || {}).input || {}).type)"
-          }    
+          }
         },
         {
           "key": "max",
@@ -525,11 +530,25 @@
             "className": "col-6",
             "input": {
               "type": "checkbox"
-            }  
+            }
           },
           "expressions": {
             "disabled": "(function(inputType) { return inputType !== 'numberbox'; })(((data.root.model.template || {}).input || {}).type)"
-          }    
+          }
+        },
+        {
+          "key": "maxFileSize",
+          "type": "control",
+          "template": {
+            "label": "Max File Size",
+            "className": "col-6",
+            "input": {
+              "type": "checkbox"
+            }
+          },
+          "expressions": {
+            "disabled": "(function(inputType) { return inputType !== 'file'; })(((data.root.model.template || {}).input || {}).type)"
+          }
         }
       ]
     },
@@ -547,8 +566,8 @@
             "label": "Auto-generated id",
             "input": {
               "type": "checkbox"
-            }  
-          }    
+            }
+          }
         },
         {
           "key": "update",
@@ -572,8 +591,8 @@
                   "label": "Submit"
                 }
               ]
-            }  
-          }    
+            }
+          }
         },
         {
           "key": "updateDebounce",
@@ -585,7 +604,7 @@
               "defaultValue": 300,
               "min": 100,
               "max": 1000
-            }  
+            }
           },
           "expressions": {
             "hidden": "data.parent.model.update !== 'debounce'",
@@ -634,7 +653,7 @@
               "value": "control",
               "label": "Control"
             }
-          ]  
+          ]
         },
         "readonly": true
       }
@@ -646,7 +665,7 @@
       "reference": "settings"
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

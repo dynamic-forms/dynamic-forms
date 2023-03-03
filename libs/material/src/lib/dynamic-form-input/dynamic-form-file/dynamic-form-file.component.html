@@ -1,7 +1,15 @@
-<mat-form-field #matFormField appearance="fill" color="primary">
+<mat-form-field appearance="fill" color="primary">
   <mat-label>{{ template.label }}</mat-label>
-  <input matInput [id]="inputId" [placeholder]="input.placeholder" [value]="fileDirective.fileNamesAsText || ''" readonly />
   <input
+    matInput
+    [id]="inputId"
+    [placeholder]="input.placeholder"
+    [value]="fileDirective.fileNamesAsText || ''"
+    [disabled]="control.disabled"
+    readonly
+  />
+  <input
+    fileControl
     #fileDirective="dynamicFormFile"
     dynamicFormFile
     [acceptFiles]="input.accept"
@@ -11,5 +19,5 @@
   <dynamic-form-element matSuffix [element]="uploadAction"></dynamic-form-element>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
-  <mat-error *ngIf="showErrors">{{ errorMessage }}</mat-error>
+  <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

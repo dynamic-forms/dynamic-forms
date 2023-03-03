@@ -35,6 +35,7 @@ import { MaterialFormComponent } from './material-form.component';
         secondary: 'accent',
         danger: 'warn',
         warning: 'warn',
+        inputAction: 'none',
       },
       libraryName: 'material',
     }),

@@ -36,7 +36,7 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     requiredDictionary: 'The dictionary is required',
     minlengthDictionary: 'The dictionary does not fit the min length.',
     maxlengthDictionary: 'The dictionary does not fit the max length.',
-    maxFileSize: dynamicFormErrorMessageTemplate`The file ${'filenames'} does not fit the max size`,
+    maxFileSize: dynamicFormErrorMessageTemplate`The files ${'filenames'} do not fit the max size`,
   },
   libraryName: dynamicFormLibrary.name,
 };

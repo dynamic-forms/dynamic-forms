@@ -31,7 +31,9 @@ import { BootstrapFormComponent } from './bootstrap-form.component';
       libraryName: 'bootstrap',
     }),
     DynamicFormThemeModule.withColors({
-      colors: {},
+      colors: {
+        inputAction: 'secondary',
+      },
       libraryName: 'bootstrap',
     }),
     DynamicFormExtensionsModule,

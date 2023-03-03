@@ -24,7 +24,7 @@ export interface DynamicFormFile extends DynamicFormInput<DynamicFormFileValue> 
 export type DynamicFormFileTemplate = DynamicFormControlTemplate<DynamicFormFileValue, DynamicFormFile>;
 
 export interface DynamicFormFileDefinition extends DynamicFormInputDefinition<DynamicFormFile> {
-  uploadAction?: DynamicFormActionDefinition;
+  uploadActionDefinition?: DynamicFormActionDefinition;
 }
 
 export class DynamicFormFileControl extends DynamicFormInputControl<DynamicFormFile> {}

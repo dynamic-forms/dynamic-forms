@@ -5,6 +5,7 @@
     type="text"
     [placeholder]="input.placeholder || ''"
     [value]="fileDirective.fileNamesAsText || ''"
+    [disabled]="control.disabled"
     readonly
   />
   <input
@@ -14,5 +15,5 @@
     [multipleFiles]="input.multiple"
     [formControl]="control"
   />
-  <dynamic-form-element matSuffix [element]="uploadAction"></dynamic-form-element>
+  <dynamic-form-element [element]="uploadAction"></dynamic-form-element>
 </div>
