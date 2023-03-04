@@ -10,6 +10,11 @@
         <pre>{{ data.model | json }}</pre>
       </ng-template>
     </mat-tab>
+    <mat-tab label="Files">
+      <ng-template matTabContent>
+        <pre>{{ data.files | appFormData | json }}</pre>
+      </ng-template>
+    </mat-tab>
   </mat-tab-group>
 </div>
 <div mat-dialog-actions>

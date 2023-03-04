@@ -23,6 +23,11 @@ export class DynamicFormActionService {
   }
 
   handle(action: DynamicFormAction, $event: Event): void {
+    if (typeof action.template.action === 'function') {
+      action.template.action();
+      $event.stopPropagation();
+      return;
+    }
     const handler = this.getHandler(action.template.action);
     if (handler) {
       const element = this.getElement(handler, action);

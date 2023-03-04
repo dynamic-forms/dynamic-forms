@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FormDataPipe } from './form-data.pipe';
 import { FormSubmitDialogComponent } from './form-submit-dialog.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormSubmitDialogComponent } from './form-submit-dialog.component';
     MatTabsModule,
   ],
   declarations: [
+    FormDataPipe,
     FormSubmitDialogComponent,
   ],
   exports: [

@@ -56,6 +56,22 @@
       }
     },
     {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file",
+          "placeholder": "Upload a file",
+          "maxFileSize": 5242880
+        },
+        "validation": {
+          "required": true,
+          "maxFileSize": true
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {
@@ -237,7 +253,7 @@
       }
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

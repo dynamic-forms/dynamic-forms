@@ -1,0 +1,23 @@
+<mat-form-field appearance="fill" color="primary">
+  <mat-label>{{ template.label }}</mat-label>
+  <input
+    matInput
+    [id]="inputId"
+    [placeholder]="input.placeholder"
+    [value]="fileDirective.fileNamesAsText || ''"
+    [disabled]="control.disabled"
+    readonly
+  />
+  <input
+    fileControl
+    #fileDirective="dynamicFormFile"
+    dynamicFormFile
+    [acceptFiles]="input.accept"
+    [multipleFiles]="input.multiple"
+    [formControl]="control"
+  />
+  <dynamic-form-element matSuffix [element]="uploadAction"></dynamic-form-element>
+  <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
+  <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
+  <mat-error>{{ errorMessage }}</mat-error>
+</mat-form-field>

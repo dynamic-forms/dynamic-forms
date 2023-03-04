@@ -81,7 +81,7 @@ export class DynamicFormComponent<
   }
 
   submit(): void {
-    this.formSubmit.emit({ value: this.value, model: this.model });
+    this.formSubmit.emit({ value: this.value, model: this.model, files: this.form.getFiles() });
   }
 
   validate(): void {

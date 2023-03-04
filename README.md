@@ -22,6 +22,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
     - Textbox and textarea
     - Datepicker
     - Numberbox
+    - File(s)
   - Dynamic form input validation
   - Dynamic form input hints
 
@@ -71,12 +72,12 @@ Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the
 
 needed to be part of the npm config file `.nmprc`.
 
-### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.1.0-next.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.1.0-next.1)
+### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.1.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.1.0-next.2)
 
-- `npm install @dynamic-forms/core@15.1.0-next.1`
-- `npm install @dynamic-forms/bootstrap@15.1.0-next.1`
-- `npm install @dynamic-forms/material@15.1.0-next.1`
-- `npm install @dynamic-forms/markdown@15.1.0-next.1`
+- `npm install @dynamic-forms/core@15.1.0-next.2`
+- `npm install @dynamic-forms/bootstrap@15.1.0-next.2`
+- `npm install @dynamic-forms/material@15.1.0-next.2`
+- `npm install @dynamic-forms/markdown@15.1.0-next.2`
 
 ### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.1.0)
 
