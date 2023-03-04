@@ -72,6 +72,13 @@ Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the
 
 needed to be part of the npm config file `.nmprc`.
 
+### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v16/dynamic-forms-v16-publish?branchName=refs/tags/16.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/16.0.0-next.0)
+
+- `npm install @dynamic-forms/core@16.0.0-next.0`
+- `npm install @dynamic-forms/bootstrap@16.0.0-next.0`
+- `npm install @dynamic-forms/material@16.0.0-next.0`
+- `npm install @dynamic-forms/markdown@16.0.0-next.0`
+
 ### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.1.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.1.0-next.2)
 
 - `npm install @dynamic-forms/core@15.1.0-next.2`
