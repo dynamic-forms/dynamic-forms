@@ -28,7 +28,7 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
     },
   } as DynamicFormIconDefinition;
 
-  readonly uploadActionDefinition: Partial<DynamicFormActionDefinition> = {
+  readonly requiredUploadActionDefinition: Partial<DynamicFormActionDefinition> = {
     template: { action: () => this._fileInput.openFileExplorer() } as DynamicFormActionTemplate,
     expressions: { disabled: _ => this.field.control.disabled || this.field.readonly },
   };
@@ -51,6 +51,6 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
       ? mergeObject(this.defaultUploadActionDefinition, this.definition.uploadActionDefinition)
       : this.defaultUploadActionDefinition;
     const definition = this.builder.getDefinition(definitionBase, this.field.root);
-    return mergeObject(definition, this.uploadActionDefinition);
+    return mergeObject(definition, this.requiredUploadActionDefinition);
   }
 }

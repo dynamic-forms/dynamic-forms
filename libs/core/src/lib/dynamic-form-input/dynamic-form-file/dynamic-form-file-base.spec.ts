@@ -36,7 +36,11 @@ describe('DynamicFormFileBase', () => {
     uploadAction = {} as DynamicFormAction;
 
     builder = createDynamicFormBuilderSpy();
-    builder.createFormAction.and.returnValue(uploadAction);
+    builder.getDefinition.and.callFake((definition) => definition);
+    builder.createFormAction.and.callFake((_, __, definition) => {
+      (uploadAction as any).definition = definition;
+      return uploadAction;
+    });
 
     TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule ],
@@ -87,18 +91,82 @@ describe('DynamicFormFileBase', () => {
     expect(component.uploadAction).toBe(uploadAction);
   });
 
+  it('creates upload action with default definition', () => {
+    fixture.detectChanges();
+
+    expect(component.uploadAction.definition.type).toBe('icon');
+    expect(component.uploadAction.definition.template).toEqual({
+      ...component.defaultUploadActionDefinition.template,
+      ...component.requiredUploadActionDefinition.template,
+    });
+    expect(component.uploadAction.definition.expressions).toEqual(component.requiredUploadActionDefinition.expressions);
+  });
+
+  it('creates upload action with merged definition', () => {
+    component.field.definition.uploadActionDefinition = {
+      type: 'button',
+      template: {
+        label: 'Upload',
+        color: 'primary',
+      },
+    } as any;
+    fixture.detectChanges();
+
+    expect(component.uploadAction.definition.type).toBe('button');
+    expect(component.uploadAction.definition.template).toEqual({
+      ...component.defaultUploadActionDefinition.template,
+      ...component.field.definition.uploadActionDefinition.template,
+      ...component.requiredUploadActionDefinition.template,
+    });
+    expect(component.uploadAction.definition.expressions).toEqual(component.requiredUploadActionDefinition.expressions);
+  });
+
   it('action calls openFileExplorer', () => {
     spyOn(component.fileInput, 'openFileExplorer');
 
-    const action = component.uploadActionDefinition.template.action as () => void;
+    fixture.detectChanges();
+
+    const action = uploadAction.definition.template.action as () => void;
     action();
 
     expect(component.fileInput.openFileExplorer).toHaveBeenCalledTimes(1);
   });
 
-  it('disabled expression return false', () => {
-    const expression = component.uploadActionDefinition.expressions.disabled as () => boolean;
+  it('disabled expression for upload action returns false', () => {
+    fixture.detectChanges();
+
+    const expression = uploadAction.definition.expressions.disabled as () => boolean;
 
     expect(expression()).toBeFalse();
+  });
+
+  it('disabled expression for upload action returns true if field control is disabled', () => {
+    fixture.detectChanges();
+
+    const expression = uploadAction.definition.expressions.disabled as () => boolean;
+
+    component.field.control.disable();
+
+    expect(expression()).toBeTrue();
+  });
+
+  it('disabled expression for upload action returns true if field control is disabled', () => {
+    fixture.detectChanges();
+
+    const expression = uploadAction.definition.expressions.disabled as () => boolean;
+
+    component.field.control.disable();
+
+    expect(expression()).toBeTrue();
+  });
+
+  it('disabled expression for upload action returns true if field is readonly', () => {
+    fixture.detectChanges();
+
+    const expression = uploadAction.definition.expressions.disabled as () => boolean;
+
+    component.field.template.readonly = true;
+
+    expect(expression()).toBeTrue();
   });
 });
