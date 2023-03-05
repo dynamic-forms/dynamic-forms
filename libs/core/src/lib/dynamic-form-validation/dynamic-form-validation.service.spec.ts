@@ -1,6 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationConfig, DynamicFormValidationConfigs,
+import { dynamicFormErrorMessageTemplate, DynamicFormValidationConfig, DynamicFormValidationConfigs,
   DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
@@ -45,6 +45,7 @@ describe('DynamicFormValidationService', () => {
       defaultMessage: 'The field is invalid',
       messages: {
         required: 'The field is required',
+        maxFileSize: dynamicFormErrorMessageTemplate`The files ${'filenames'} do not fit the max size`,
       },
       libraryName: 'test',
     };
@@ -83,7 +84,15 @@ describe('DynamicFormValidationService', () => {
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         const message = service.getErrorMessage({ email: { message: 'The field is not a valid email' } });
 
-        expect(message).toEqual( 'The field is not a valid email');
+        expect(message).toEqual('The field is not a valid email');
+      }),
+    );
+
+    it('returns message from error for message template',
+      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+        const message = service.getErrorMessage({ maxFileSize: { filenames: 'file.txt' } });
+
+        expect(message).toEqual('The files file.txt do not fit the max size');
       }),
     );
 
@@ -91,7 +100,7 @@ describe('DynamicFormValidationService', () => {
       inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         const message = service.getErrorMessage({ required: {} });
 
-        expect(message).toEqual(validationConfig.messages.required);
+        expect(message).toEqual(validationConfig.messages.required as string);
       }),
     );
 

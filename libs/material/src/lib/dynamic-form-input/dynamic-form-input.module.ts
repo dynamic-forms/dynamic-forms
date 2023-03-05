@@ -3,6 +3,7 @@ import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/mat
 import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
 import { MatDynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
 import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
+import { MatDynamicFormFileModule } from './dynamic-form-file/dynamic-form-file.module';
 import { MatDynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
 import { MatDynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
 import { MatDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-select.module';
@@ -17,6 +18,7 @@ import { MatDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-t
     MatDynamicFormCheckboxModule,
     MatDynamicFormComboboxModule,
     MatDynamicFormDatepickerModule,
+    MatDynamicFormFileModule,
     MatDynamicFormNumberboxModule,
     MatDynamicFormRadioModule,
     MatDynamicFormSelectModule,

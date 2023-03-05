@@ -1,0 +1,138 @@
+{
+  "template": {
+    "label": "File variations"
+  },
+  "children": [
+    {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file"
+        }
+      }
+    },
+    {
+      "key": "files",
+      "type": "control",
+      "template": {
+        "label": "Files",
+        "input": {
+          "type": "file",
+          "multiple": true
+        }
+      }
+    },
+    {
+      "key": "fileImage",
+      "type": "control",
+      "template": {
+        "label": "Image File",
+        "input": {
+          "type": "file",
+          "accept": "image/*"
+        }
+      }
+    },
+    {
+      "key": "fileImagePdf",
+      "type": "control",
+      "template": {
+        "label": "Image / PDF File",
+        "input": {
+          "type": "file",
+          "accept": "image/*,.pdf"
+        }
+      }
+    },
+    {
+      "key": "fileJsonXml",
+      "type": "control",
+      "template": {
+        "label": "JSON / XML File",
+        "input": {
+          "type": "file",
+          "accept": ".json,.xml"
+        }
+      }
+    },
+    {
+      "key": "fileIcon",
+      "type": "control",
+      "template": {
+        "label": "File with Icon",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "template": {
+          "icon": "file_upload"
+        }
+      }
+    },
+    {
+      "key": "fileIconPrimary",
+      "type": "control",
+      "template": {
+        "label": "File with Icon (Primary Color)",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "template": {
+          "icon": "file_upload",
+          "color": "primary"
+        }
+      }
+    },
+    {
+      "key": "fileButton",
+      "type": "control",
+      "template": {
+        "label": "File with Button",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "type": "button",
+        "template": {
+          "label": "Upload"
+        }
+      }
+    },
+    {
+      "key": "fileButtonPrimary",
+      "type": "control",
+      "template": {
+        "label": "File with Button (Primary Color)",
+        "input": {
+          "type": "file"
+        }
+      },
+      "uploadActionDefinition": {
+        "type": "button",
+        "template": {
+          "label": "Upload",
+          "color": "primary"
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    }
+  ]
+}

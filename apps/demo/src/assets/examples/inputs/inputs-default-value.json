@@ -11,7 +11,7 @@
         "input": {
           "type": "checkbox",
           "defaultValue": true
-        }  
+        }
       }
     },
     {
@@ -52,7 +52,7 @@
           "type": "numberbox",
           "placeholder": "Enter a number",
           "defaultValue": 0.01
-        }        
+        }
       }
     },
     {
@@ -170,7 +170,7 @@
       }
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

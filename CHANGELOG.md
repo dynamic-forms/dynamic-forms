@@ -1,5 +1,11 @@
 # Changelog
 
+## 15.1.0 (2023-03-05)
+
+* **core:** introduction of ```DynamicFormFileModule``` exporting ```DynamicFormFileDirective``` to support reactive file input in combination with base class ```DynamicFormFileBase``` (provides functionality for using ```DynamicFormAction``` to open file explorer)
+* **bootstrap:** implementation of ```BsDynamicFormFileComponent``` exported in ```BsDynamicFormFileModule```
+* **material:** implementation of ```MatDynamicFormFileComponent``` exported in ```MatDynamicFormFileModule```
+
 ## 15.1.0-next.1 (2023-02-27)
 
 ### Features

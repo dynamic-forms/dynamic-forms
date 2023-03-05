@@ -40,6 +40,20 @@
       }
     },
     {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file",
+          "placeholder": "Upload a file"
+        },
+        "hints": {
+          "hintEnd": "Click to open file explorer"
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {
@@ -112,7 +126,7 @@
       }
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",
