@@ -3,17 +3,47 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
-
+variables:
+- name: branch_pattern
+  value: 16.*.x
+- name: major_version_name
+  value: v16
+  
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Npm@1
+  displayName: npm install
+  inputs:
+    command: custom 
+    customCommand: install --legacy-peer-deps
+- task: Npm@1
+  displayName: npm lint
+  inputs:
+    command: custom
+    customCommand: run lint
+- task: Npm@1
+  displayName: npm build libs
+  inputs:
+    command: custom
+    customCommand: run build:libs
+- task: Npm@1
+  displayName: npm test libs
+  inputs:
+    command: custom
+    customCommand: run test:libs
+- task: PublishTestResults@2
+  displayName: Publish test results
+  inputs:
+    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+- task: Npm@1
+  displayName: npm build demo
+  inputs:
+    command: custom
+    customCommand: run build:demo:prod
