@@ -103,8 +103,8 @@ needed to be part of the npm config file `.nmprc`.
 
 ### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=16.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=16.0.x)
 
-- Built with [Angular 15](https://v15.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v15/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v15/)
+- Built with [Angular 16](https://v16.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v16/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v16/)
 
 ### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v15-cd?branchName=15.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=39&branchName=15.0.x)
 
