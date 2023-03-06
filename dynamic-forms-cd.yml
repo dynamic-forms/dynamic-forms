@@ -1,0 +1,66 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: branch_pattern
+  value: 16.*.x
+- name: major_version_name
+  value: v16
+
+steps:
+- task: Npm@1
+  displayName: npm install
+  inputs:
+    command: custom
+    customCommand: install --legacy-peer-deps
+- task: Npm@1
+  displayName: npm lint
+  inputs:
+    command: custom
+    customCommand: run lint
+- task: Npm@1
+  displayName: npm build libs
+  inputs:
+    command: custom
+    customCommand: run build:libs
+- task: Npm@1
+  displayName: npm test libs
+  inputs:
+    command: custom
+    customCommand: run test:libs
+- task: PublishTestResults@2
+  displayName: Publish test results
+  continueOnError: True
+  inputs:
+    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+- task: Npm@1
+  displayName: npm cover libs
+  inputs:
+    command: custom
+    customCommand: run cover:libs
+- task: Npm@1
+  displayName: npm doc libs
+  continueOnError: True
+  inputs:
+    command: custom
+    customCommand: run doc:libs
+- task: Npm@1
+  displayName: npm build demo
+  inputs:
+    command: custom
+    customCommand: run build:demo:prod -- --base-href=/${{ variables.major_version_name }}/dev/
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: dist/${{ variables.major_version_name }}
+    ArtifactName: dynamic-forms-${{ variables.major_version_name }}
