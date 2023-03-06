@@ -64,7 +64,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 ## **Packages**
 
-### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v16/dynamic-forms-v16-publish?branchName=refs/tags/16.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/16.0.0-next.0)
+### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/16.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/16.0.0-next.0)
 
 - `npm install @dynamic-forms/core@16.0.0-next.0`
 - `npm install @dynamic-forms/bootstrap@16.0.0-next.0`
@@ -100,6 +100,11 @@ Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the
 needed to be part of the npm config file `.nmprc`.
 
 ## **Demos**
+
+### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=16.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=16.0.x)
+
+- Built with [Angular 15](https://v15.angular.io/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v15/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v15/)
 
 ### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v15-cd?branchName=15.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=39&branchName=15.0.x)
 

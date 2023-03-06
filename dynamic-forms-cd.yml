@@ -55,12 +55,22 @@ steps:
     command: custom
     customCommand: run doc:libs
 - task: Npm@1
-  displayName: npm build demo
+  displayName: npm build demo (development)
   inputs:
     command: custom
-    customCommand: run build:demo:prod -- --base-href=/${{ variables.major_version_name }}/dev/
+    customCommand: run build:demo -- --base-href=/${{ variables.major_version_name }}/dev/
 - task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
+  displayName: Publish Artifact (Development)
   inputs:
     PathtoPublish: dist/${{ variables.major_version_name }}
-    ArtifactName: dynamic-forms-${{ variables.major_version_name }}
+    ArtifactName: dynamic-forms-${{ variables.major_version_name }}-development
+- task: Npm@1
+  displayName: npm build demo (production)
+  inputs:
+    command: custom
+    customCommand: run build:demo:prod -- --base-href=/${{ variables.major_version_name }}/
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact (Production)
+  inputs:
+    PathtoPublish: dist/${{ variables.major_version_name }}
+    ArtifactName: dynamic-forms-${{ variables.major_version_name }}-production
