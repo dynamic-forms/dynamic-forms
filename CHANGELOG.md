@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.0-next.1 (2023-03-09)
+
+### Bug Fixes
+
+* **material:** fixed peer dependency version for @angular/core which was ^^16.0.0-next.0 instead of ^16.0.0-next.0
+
 ## 16.0.0-next.0 (2023-03-09)
 
 ### Features
