@@ -1,5 +1,18 @@
 # Changelog
 
+## 16.0.0-next.0 (2023-03-09)
+
+### Features
+
+* **core:** update to angular 16 (next version)
+* **bootstrap:** update to angular 16 (next version)
+* **material:** update to angular and angular material 16 (next version)
+* **markdown:** update to angular 16 (next version)
+
+### General
+
+* update of peer dependencies: bootstrap (5.2.3) and marked (4.2.12)
+
 ## 15.1.0 (2023-03-05)
 
 * **core:** introduction of ```DynamicFormFileModule``` exporting ```DynamicFormFileDirective``` to support reactive file input in combination with base class ```DynamicFormFileBase``` (provides functionality for using ```DynamicFormAction``` to open file explorer)
