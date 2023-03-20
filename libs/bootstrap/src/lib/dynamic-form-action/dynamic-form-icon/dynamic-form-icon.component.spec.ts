@@ -63,12 +63,12 @@ describe('BsDynamicFormIconComponent', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon btn btn-outline-primary');
+    expect(formButtonElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('dynamic-form-icon btn btn-outline-primary hidden');
+    expect(formButtonElement.hidden).toBeTrue();
   });
 
   it('sets class name of dynamic form icon', () => {

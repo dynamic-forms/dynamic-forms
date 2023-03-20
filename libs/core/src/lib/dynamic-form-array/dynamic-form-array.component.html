@@ -1,4 +1,4 @@
-<div class="dynamic-form-array" [class.hidden]="hidden" [class.readonly]="readonly" [ngClass]="template.className">
+<div class="dynamic-form-array" [ngClass]="template.className" [class.readonly]="readonly" [hidden]="hidden">
   <div
     class="dynamic-form-array-header"
     *ngIf="(!template.labelHidden && template.label) || headerActions?.length"

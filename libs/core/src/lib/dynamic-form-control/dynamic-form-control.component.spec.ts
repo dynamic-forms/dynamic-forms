@@ -146,12 +146,12 @@ describe('DynamicFormControlComponent', () => {
     const formControlDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-control'));
     const formControlElement = formControlDebugElement.nativeElement as HTMLElement;
 
-    expect(formControlElement.className).toBe('dynamic-form-control input-1');
+    expect(formControlElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formControlElement.className).toBe('dynamic-form-control input-1 hidden');
+    expect(formControlElement.hidden).toBeTrue();
   });
 
   it('sets dynamic form control to readonly', () => {

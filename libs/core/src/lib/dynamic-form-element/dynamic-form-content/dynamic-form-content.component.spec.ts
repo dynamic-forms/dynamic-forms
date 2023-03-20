@@ -42,27 +42,39 @@ describe('DynamicFormContentComponent', () => {
   });
 
   it('renders component template', () => {
-    const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
-    const formContentElement = formContentDebugElement.nativeElement as HTMLElement;
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
 
-    expect(formContentElement).toBeTruthy();
-    expect(formContentElement.innerHTML).toBe('<span>Content</span>');
+    expect(htmlElement).toBeTruthy();
+    expect(htmlElement.innerHTML).toBe('<span>Content</span>');
+  });
+
+  it('sets dynamic form content to hidden', () => {
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
+
+    expect(htmlElement.hidden).toBeFalse();
+
+    component.template.hidden = true;
+    fixture.detectChanges();
+
+    expect(htmlElement.hidden).toBeTrue();
   });
 
   it('sets class name of dynamic form content', () => {
-    const formContentDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
-    const formContentElement = formContentDebugElement.nativeElement as HTMLElement;
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-content'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
 
-    expect(formContentElement.className).toBe('dynamic-form-content');
+    expect(htmlElement.className).toBe('dynamic-form-content');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formContentElement.className).toBe('dynamic-form-content className1 className2');
+    expect(htmlElement.className).toBe('dynamic-form-content className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formContentElement.className).toBe('dynamic-form-content');
+    expect(htmlElement.className).toBe('dynamic-form-content');
   });
 });

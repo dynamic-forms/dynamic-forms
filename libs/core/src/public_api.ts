@@ -121,6 +121,10 @@ export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal'
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-factory';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal-template';
 export * from './lib/dynamic-form-element/dynamic-form-modal/dynamic-form-modal.module';
+export * from './lib/dynamic-form-element/dynamic-form-text/dynamic-form-text-definition';
+export * from './lib/dynamic-form-element/dynamic-form-text/dynamic-form-text-template';
+export * from './lib/dynamic-form-element/dynamic-form-text/dynamic-form-text.component';
+export * from './lib/dynamic-form-element/dynamic-form-text/dynamic-form-text.module';
 export * from './lib/dynamic-form-error/dynamic-form-console.logger';
 export * from './lib/dynamic-form-error/dynamic-form-error';
 export * from './lib/dynamic-form-error/dynamic-form-error-type';

@@ -35,6 +35,14 @@
           "label": "Disabled"
         },
         {
+          "id": "inputs-hidden",
+          "label": "Hidden"
+        },
+        {
+          "id": "inputs-add-ons",
+          "label": "Add-ons"
+        },
+        {
           "groupId": "variations",
           "label": "Variations",
           "items": [
@@ -220,6 +228,14 @@
               ]
             }
           ]
+        },
+        {
+          "id": "elements-text",
+          "label": "Text"
+        },
+        {
+          "id": "elements-all",
+          "label": "All"
         }
       ]
     },

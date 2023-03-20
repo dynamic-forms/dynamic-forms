@@ -1,6 +1,6 @@
-<div class="dynamic-form-items dynamic-form-tabs" [ngClass]="template.className">
+<div class="dynamic-form-items dynamic-form-tabs" [ngClass]="template.className" [hidden]="template.hidden">
   <ul class="nav nav-tabs">
-    <li class="nav-item" *ngFor="let child of element.children; let index = index">
+    <li class="nav-item" [hidden]="template.hidden" *ngFor="let child of element.children; let index = index">
       <button
         type="button"
         class="dynamic-form-item-header nav-link"
@@ -12,7 +12,7 @@
     </li>
   </ul>
   <div class="tab-content">
-    <div class="dynamic-form-item tab-pane active" *ngIf="selectedItem">
+    <div class="dynamic-form-item tab-pane active" [hidden]="template.hidden" *ngIf="selectedItem">
       <dynamic-form-elements [elements]="selectedItem.children"></dynamic-form-elements>
     </div>
   </div>

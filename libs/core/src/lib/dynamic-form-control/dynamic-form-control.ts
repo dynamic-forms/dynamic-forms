@@ -10,7 +10,7 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-t
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
-import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlAddOn, DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from './dynamic-form-control-validator';
@@ -26,6 +26,9 @@ export class DynamicFormControl<
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
+
+  protected _prefixAddOn: DynamicFormControlAddOn;
+  protected _suffixAddOn: DynamicFormControlAddOn;
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type);
@@ -46,9 +49,14 @@ export class DynamicFormControl<
 
   get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
 
+  get prefixAddOn(): DynamicFormControlAddOn { return this._prefixAddOn; }
+  get suffixAddOn(): DynamicFormControlAddOn { return this._suffixAddOn; }
+
   override init(): void {
     super.init();
     this.initEvaluators();
+    this.initPrefixAddOn();
+    this.initSuffixAddOn();
   }
 
   check(): void {
@@ -111,7 +119,23 @@ export class DynamicFormControl<
   }
 
   protected initEvaluators(): void {
-    this._evaluators = this.getEvaluators() || [];
+    this._evaluators = this.getEvaluators();
+  }
+
+  protected getPrefixAddOn(): DynamicFormControlAddOn {
+    return this._builder.createFormControlAddOn(this.root, this, this.definition.prefixAddOn);
+  }
+
+  protected initPrefixAddOn(): void {
+    this._prefixAddOn = this.getPrefixAddOn();
+  }
+
+  protected getSuffixAddOn(): DynamicFormControlAddOn {
+    return this._builder.createFormControlAddOn(this.root, this, this.definition.suffixAddOn);
+  }
+
+  protected initSuffixAddOn(): void {
+    this._suffixAddOn = this.getSuffixAddOn();
   }
 
   private createModel(): any {

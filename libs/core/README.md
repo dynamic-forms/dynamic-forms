@@ -11,7 +11,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 - Dynamic [**reactive forms**](https://angular.io/guide/reactive-forms) based on **JSON** definition
 - Structuring / nesting dynamic forms by
-  - Dynamic form elements (container, accordion, tabs, content, markdown, modal)
+  - Dynamic form elements (container, accordion, tabs, text, content, markdown, modal)
   - Dynamic form fields (control, group, array, dictionary)
   - Dynamic form actions (button, icon)
 - Dynamic form controls / inputs include

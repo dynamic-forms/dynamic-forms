@@ -157,7 +157,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createControlEvaluators.and.returnValue(null);
+    builder.createControlEvaluators.and.returnValue([]);
 
     control.init();
 
@@ -286,6 +286,7 @@ describe('DynamicFormControl', () => {
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(validators);
+    builder.createControlEvaluators.and.returnValue([]);
 
     control.init();
     control.control.updateValueAndValidity();
