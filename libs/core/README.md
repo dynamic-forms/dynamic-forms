@@ -21,5 +21,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
     - Textbox and textarea
     - Datepicker
     - Numberbox
+    - File
   - Dynamic form input validation
   - Dynamic form input hints
+  - Dynamic form input add-ons

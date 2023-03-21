@@ -1,9 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
-  DynamicFormActionType,
-  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormLibraryService,
+import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, DynamicFormActionType,
+  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler, DynamicFormLibraryService,
   DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
@@ -38,6 +37,10 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
     {
       provide: DynamicFormActionService,
       useValue: {},
+    },
+    {
+      provide: DynamicFormErrorHandler,
+      useValue: { handle: () => {} },
     },
     DynamicFormComponentFactory,
   ],

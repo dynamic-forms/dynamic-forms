@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "16.0.0-next.1",
+  "version": "16.0.0-next.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
