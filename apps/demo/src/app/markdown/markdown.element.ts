@@ -6,6 +6,8 @@ export class MarkdownElement extends DynamicFormElement<DynamicFormMarkdownTempl
     super(null, null, null, { template: { source } }, null);
   }
 
+  override get hidden(): boolean { return false; }
+
   get source(): string { return this.template.source; }
   set source(value: string) { this.template.source = value; }
 }
