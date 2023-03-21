@@ -41,26 +41,38 @@ describe('DynamicFormContainerComponent', () => {
   });
 
   it('renders component template', () => {
-    const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
 
-    expect(formContainerElement).toBeTruthy();
+    expect(htmlElement).toBeTruthy();
+  });
+
+  it('sets dynamic form container to hidden', () => {
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
+
+    expect(htmlElement.hidden).toBeFalse();
+
+    component.template.hidden = true;
+    fixture.detectChanges();
+
+    expect(htmlElement.hidden).toBeTrue();
   });
 
   it('sets class name of dynamic form container', () => {
-    const formContainerDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
-    const formContainerElement = formContainerDebugElement.nativeElement as HTMLElement;
+    const debugElement = fixture.debugElement.query(By.css('div.dynamic-form-container'));
+    const htmlElement = debugElement.nativeElement as HTMLElement;
 
-    expect(formContainerElement.className).toBe('dynamic-form-container');
+    expect(htmlElement.className).toBe('dynamic-form-container');
 
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formContainerElement.className).toBe('dynamic-form-container className1 className2');
+    expect(htmlElement.className).toBe('dynamic-form-container className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formContainerElement.className).toBe('dynamic-form-container');
+    expect(htmlElement.className).toBe('dynamic-form-container');
   });
 });

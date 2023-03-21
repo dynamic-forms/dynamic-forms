@@ -56,8 +56,10 @@ export class DynamicFormElement<
     this._expressions = {} as Expressions;
   }
 
-  get id(): string { return this.definition.id; }
   get classType(): DynamicFormClassType { return 'element'; }
+
+  get id(): string { return this.definition.id; }
+  get hidden(): boolean { return this.parentField.hidden || this.template.hidden || false; }
 
   get expressions(): Expressions { return this._expressions; }
   get children(): Child[] { return this._children; }

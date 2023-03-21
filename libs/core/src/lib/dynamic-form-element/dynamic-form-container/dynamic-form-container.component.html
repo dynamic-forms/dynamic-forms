@@ -2,6 +2,7 @@
   class="dynamic-form-container"
   [ngClass]="template.className"
   [class.row]="template.orientation === 'row' || template.className?.includes('row')"
+  [hidden]="hidden"
 >
   <dynamic-form-elements [elements]="children"></dynamic-form-elements>
 </div>

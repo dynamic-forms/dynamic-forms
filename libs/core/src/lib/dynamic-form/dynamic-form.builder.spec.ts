@@ -8,7 +8,7 @@ import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-a
 import { dynamicFormArrayFactory } from '../dynamic-form-array/dynamic-form-array-factory';
 import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControlAddOnDefinition, DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlFactory } from '../dynamic-form-control/dynamic-form-control-factory';
 import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionaryDefinition } from '../dynamic-form-dictionary/dynamic-form-dictionary-definition';
@@ -33,6 +33,8 @@ import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/
 import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
+import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DYNAMIC_FORM_ID_BUILDER, DynamicFormIdBuilder } from './dynamic-form-id.builder';
@@ -894,6 +896,66 @@ describe('DynamicFormBuilder', () => {
 
     expect(action.definition).toBe(definition);
     expect(action.template).toBe(definition.template);
+  });
+
+  it('creates add-on being undefined if definition is undefined', () => {
+    const form = {} as DynamicForm;
+    const control = {} as DynamicFormControl;
+    const addOn = builder.createFormControlAddOn(form, control, undefined);
+
+    expect(addOn).toBeUndefined();
+  });
+
+  it('throws error creating add-on if definition type is not supported ', () => {
+    errorSettings.throw = true;
+
+    const form = {} as DynamicForm;
+    const control = {} as DynamicFormControl;
+    const definition = { type: 'field' } as DynamicFormControlAddOnDefinition;
+
+    expect(() => builder.createFormControlAddOn(form, control, definition))
+      .toThrowError('Class type field is not defined or not supported for add-on');
+  });
+
+  it('creates add-on being undefined if definition type is not supported ', () => {
+    const form = {} as DynamicForm;
+    const control = {} as DynamicFormControl;
+    const definition = { type: 'field' } as DynamicFormControlAddOnDefinition;
+    const addOn = builder.createFormControlAddOn(form, control, definition);
+
+    expect(addOn).toBeUndefined();
+  });
+
+  it('creates add-on being undefined if definition is undefined', () => {
+    const form = {} as DynamicForm;
+    const control = {} as DynamicFormControl;
+    const addOn = builder.createFormControlAddOn(form, control, undefined);
+
+    expect(addOn).toBeUndefined();
+  });
+
+  it('creates DynamicFormElement add-on being undefined if definition is undefined', () => {
+    const element = {} as DynamicFormElement;
+    spyOn(builder, 'createFormElementForFactory').and.returnValue(element);
+
+    const form = {} as DynamicForm;
+    const control = {} as DynamicFormControl;
+    const definition = { type: 'element' } as DynamicFormControlAddOnDefinition;
+    const addOn = builder.createFormControlAddOn(form, control, definition);
+
+    expect(addOn).toBe(element);
+  });
+
+  it('creates DynamicFormAction add-on being undefined if definition is undefined', () => {
+    const action = {} as DynamicFormAction;
+    spyOn(builder, 'createFormActionForFactory').and.returnValue(action);
+
+    const form = {} as DynamicForm;
+    const control = { } as DynamicFormControl;
+    const definition = { type: 'action' } as DynamicFormControlAddOnDefinition;
+    const addOn = builder.createFormControlAddOn(form, control, definition);
+
+    expect(addOn).toBe(action);
   });
 
   it('getDefinition returns definition', () => {

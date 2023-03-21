@@ -1,5 +1,5 @@
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
-import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControlAddOn, DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlHints } from '../dynamic-form-control/dynamic-form-control-hints';
 import { DynamicFormControlTemplate } from '../dynamic-form-control/dynamic-form-control-template';
 import { DynamicFormControlValidation } from '../dynamic-form-control/dynamic-form-control-validation';
@@ -26,6 +26,9 @@ export abstract class DynamicFormInputBaseImpl<
 
   get hints(): DynamicFormControlHints { return this.template.hints; }
   get validation(): DynamicFormControlValidation { return this.template.validation; }
+
+  get prefixAddOn(): DynamicFormControlAddOn { return this.field.prefixAddOn; }
+  get suffixAddOn(): DynamicFormControlAddOn { return this.field.suffixAddOn; }
 }
 
 export abstract class DynamicFormInputBase<

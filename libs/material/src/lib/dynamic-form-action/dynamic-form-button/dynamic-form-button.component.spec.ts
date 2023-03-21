@@ -62,12 +62,12 @@ describe('MatDynamicFormButtonComponent', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).not.toContain('hidden');
+    expect(formButtonElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toContain('hidden');
+    expect(formButtonElement.hidden).toBeTrue();
   });
 
   it('sets class name of dynamic form button', () => {

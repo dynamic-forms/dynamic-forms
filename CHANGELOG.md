@@ -1,5 +1,13 @@
 # Changelog
 
+## 16.0.0-next.2 (2023-03-21)
+
+* **core:** support of ```DynamicFormElement``` or ```DynamicFormAction``` as ```DynamicFormControlAddOn``` for ```DynamicFormControl``` (prefix and / or suffix)
+* **core:** support of hidden ```DynamicFormElement``` and ```DynamicFormElementBase``` and improvements regarding hidden elements, actions and fields by using attribute instead of CSS class
+* **core:** introduction of ```DynamicFormTextModule``` and ```DynamicFormTextComponent``` to render plain text
+* **bootstrap:** implementation of ```DynamicFormControlAddOn``` for combobox, datepicker, file, numberbox, select, textarea and textbox
+* **material:** implementation of ```DynamicFormControlAddOn``` for combobox, datepicker, file, numberbox, select, textarea and textbox
+
 ## 16.0.0-next.1 (2023-03-09)
 
 ### Bug Fixes

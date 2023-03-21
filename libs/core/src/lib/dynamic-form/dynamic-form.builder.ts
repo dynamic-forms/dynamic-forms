@@ -8,7 +8,8 @@ import { DynamicFormArrayDefinition } from '../dynamic-form-array/dynamic-form-a
 import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
-import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormControlAddOn, DynamicFormControlAddOnDefinition,
+  DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control-evaluator';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
@@ -243,6 +244,25 @@ export class DynamicFormBuilder {
         return this.createFormActionForFactory(root, parent, actionDefinition);
       })
       .filter(element => !!element);
+  }
+
+  createFormControlAddOn(
+    root: DynamicForm, parent: DynamicFormControl, definition: DynamicFormControlAddOnDefinition,
+  ): DynamicFormControlAddOn | undefined {
+    if (!definition) {
+      return undefined;
+    }
+    const addOnDefinition = this.getDefinition(definition, root);
+    const classType = this.configService.getClassType(addOnDefinition.type);
+    switch (classType) {
+      case 'element':
+        return this.createFormElementForFactory(root, parent, addOnDefinition);
+      case 'action':
+        return this.createFormActionForFactory(root, parent,  addOnDefinition as DynamicFormActionDefinition);
+      default:
+        this.handleError(DynamicFormErrorType.ClassType, `Class type ${ classType } is not defined or not supported for add-on`);
+        return undefined;
+    }
   }
 
   getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {

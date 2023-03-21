@@ -106,12 +106,12 @@ describe('DynamicFormGroupComponent', () => {
     const formGroupDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-group'));
     const formGroupElement = formGroupDebugElement.nativeElement as HTMLElement;
 
-    expect(formGroupElement.className).toBe('dynamic-form-group');
+    expect(formGroupElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formGroupElement.className).toBe('dynamic-form-group hidden');
+    expect(formGroupElement.hidden).toBeTrue();
   });
 
   it('sets dynamic form group to readonly', () => {

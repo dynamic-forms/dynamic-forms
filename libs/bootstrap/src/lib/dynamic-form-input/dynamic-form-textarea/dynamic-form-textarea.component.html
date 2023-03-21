@@ -1,9 +1,13 @@
-<textarea
-  [id]="inputId"
-  class="form-control"
-  [placeholder]="input.placeholder || ''"
-  [pattern]="input.pattern"
-  [readonly]="readonly"
-  [required]="validation?.required"
-  [formControl]="control"
-></textarea>
+<bs-dynamic-form-add-ons [inputTemplate]="inputTemplate" [prefixAddOn]="prefixAddOn" [suffixAddOn]="suffixAddOn"></bs-dynamic-form-add-ons>
+
+<ng-template #inputTemplate>
+  <textarea
+    [id]="inputId"
+    class="form-control"
+    [placeholder]="input.placeholder || ''"
+    [pattern]="input.pattern"
+    [readonly]="readonly"
+    [required]="validation?.required"
+    [formControl]="control"
+  ></textarea>
+</ng-template>

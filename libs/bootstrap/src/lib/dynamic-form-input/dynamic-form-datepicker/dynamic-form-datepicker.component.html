@@ -1,11 +1,15 @@
-<input
-  [id]="inputId"
-  class="form-control"
-  type="date"
-  [placeholder]="input.placeholder"
-  [min]="input.min"
-  [max]="input.max"
-  [readonly]="readonly"
-  [required]="validation?.required"
-  [formControl]="control"
-/>
+<bs-dynamic-form-add-ons [inputTemplate]="inputTemplate" [prefixAddOn]="prefixAddOn" [suffixAddOn]="suffixAddOn"></bs-dynamic-form-add-ons>
+
+<ng-template #inputTemplate>
+  <input
+    [id]="inputId"
+    class="form-control"
+    type="date"
+    [placeholder]="input.placeholder"
+    [min]="input.min"
+    [max]="input.max"
+    [readonly]="readonly"
+    [required]="validation?.required"
+    [formControl]="control"
+  />
+</ng-template>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormElementModule, DynamicFormFileModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
+import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
 import { BsDynamicFormFileComponent } from './dynamic-form-file.component';
 
 export const bsDynamicFormFileType: DynamicFormInputType = {
@@ -19,6 +20,7 @@ export const bsDynamicFormFileType: DynamicFormInputType = {
     DynamicFormFileModule,
     DynamicFormElementModule,
     DynamicFormConfigModule.withInput(bsDynamicFormFileType),
+    BsDynamicFormAddOnsModule,
   ],
   declarations: [
     BsDynamicFormFileComponent,

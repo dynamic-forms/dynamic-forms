@@ -9,6 +9,7 @@ export const createDynamicFormBuilderSpy = (): jasmine.SpyObj<DynamicFormBuilder
   'createFormAction',
   'createFormArrayElements',
   'createFormDictionaryElements',
+  'createFormControlAddOn',
   'createControlEvaluators',
   'createControlValidators',
   'createGroupValidators',

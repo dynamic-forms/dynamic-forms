@@ -13,6 +13,26 @@
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{ option }}</mat-option>
   </mat-autocomplete>
+  <dynamic-form-element
+    *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matTextPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden"
+    [element]="suffixAddOn"
+    matTextSuffix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
+    [element]="suffixAddOn"
+    matSuffix
+  ></dynamic-form-element>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>

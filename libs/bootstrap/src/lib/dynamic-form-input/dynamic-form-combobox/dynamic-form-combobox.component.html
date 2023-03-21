@@ -1,15 +1,19 @@
-<input
-  [id]="inputId"
-  class="form-control"
-  type="text"
-  list="list"
-  [placeholder]="input.placeholder || ''"
-  [pattern]="input.pattern"
-  [readonly]="readonly"
-  [required]="validation?.required"
-  [formControl]="control"
-  autocomplete="off"
-/>
-<datalist id="list">
-  <option *ngFor="let option of input.options" [value]="option">{{ option }}</option>
-</datalist>
+<bs-dynamic-form-add-ons [inputTemplate]="inputTemplate" [prefixAddOn]="prefixAddOn" [suffixAddOn]="suffixAddOn"></bs-dynamic-form-add-ons>
+
+<ng-template #inputTemplate>
+  <input
+    [id]="inputId"
+    class="form-control"
+    type="text"
+    list="list"
+    [placeholder]="input.placeholder || ''"
+    [pattern]="input.pattern"
+    [readonly]="readonly"
+    [required]="validation?.required"
+    [formControl]="control"
+    autocomplete="off"
+  />
+  <datalist id="list">
+    <option *ngFor="let option of input.options" [value]="option">{{ option }}</option>
+  </datalist>
+</ng-template>

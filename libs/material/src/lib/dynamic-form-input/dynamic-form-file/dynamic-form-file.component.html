@@ -16,7 +16,17 @@
     [multipleFiles]="input.multiple"
     [formControl]="control"
   />
-  <dynamic-form-element matSuffix [element]="uploadAction"></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matTextPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element [element]="uploadAction" matSuffix></dynamic-form-element>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>
