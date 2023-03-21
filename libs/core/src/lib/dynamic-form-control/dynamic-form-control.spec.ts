@@ -12,7 +12,7 @@ import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormControl } from './dynamic-form-control';
-import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
+import { DynamicFormControlAddOn, DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-type';
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
@@ -55,6 +55,9 @@ describe('DynamicFormControl', () => {
     expect(control.footerActions).toEqual([]);
     expect(control.evaluators).toEqual([]);
     expect(control.validators).toEqual([]);
+
+    expect(control.prefixAddOn).toBeUndefined();
+    expect(control.suffixAddOn).toBeUndefined();
 
     expect(root.model).toEqual({ key: null });
   });
@@ -157,7 +160,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createControlEvaluators.and.returnValue(null);
+    builder.createControlEvaluators.and.returnValue([]);
 
     control.init();
 
@@ -235,6 +238,34 @@ describe('DynamicFormControl', () => {
     expect(control.control.valid).toBe(false);
   });
 
+  it('inits prefixAddOn and suffixAddOn to undefined', () => {
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+
+    builder.createFormControlAddOn.and.returnValues(undefined, undefined);
+
+    control.init();
+
+    expect(control.prefixAddOn).toBeUndefined();
+    expect(control.suffixAddOn).toBeUndefined();
+  });
+
+  it('inits prefixAddOn and suffixAddOn', () => {
+    const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
+    const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
+    const prefixAddOn = {} as DynamicFormControlAddOn;
+    const suffixAddOn = {} as DynamicFormControlAddOn;
+
+    builder.createFormControlAddOn.and.returnValues(prefixAddOn, suffixAddOn);
+
+    control.init();
+
+    expect(control.prefixAddOn).toBe(prefixAddOn);
+    expect(control.suffixAddOn).toBe(suffixAddOn);
+  });
+
   it('check updates control value', () => {
     const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
@@ -286,6 +317,7 @@ describe('DynamicFormControl', () => {
     ] as DynamicFormControlValidator[];
 
     builder.createControlValidators.and.returnValue(validators);
+    builder.createControlEvaluators.and.returnValue([]);
 
     control.init();
     control.control.updateValueAndValidity();

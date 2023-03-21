@@ -1,34 +1,38 @@
-<ng-container *ngIf="!input.multiple; else optionsMultiple">
-  <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
-    <option [value]="null" hidden>{{ input.placeholder }}</option>
-    <ng-container *ngFor="let option of input.options">
-      <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
-      </ng-container>
-      <ng-template #optionGroup>
-        <optgroup [label]="option.label" [disabled]="option.disabled">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
-            optionItem.label
-          }}</option>
-        </optgroup>
-      </ng-template>
-    </ng-container>
-  </select>
-</ng-container>
+<bs-dynamic-form-add-ons [inputTemplate]="inputTemplate" [prefixAddOn]="prefixAddOn" [suffixAddOn]="suffixAddOn"></bs-dynamic-form-add-ons>
 
-<ng-template #optionsMultiple>
-  <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
-    <ng-container *ngFor="let option of input.options">
-      <ng-container *ngIf="!option.items; else optionGroup">
-        <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
+<ng-template #inputTemplate>
+  <ng-container *ngIf="!input.multiple; else optionsMultiple">
+    <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
+      <option [value]="null" hidden>{{ input.placeholder }}</option>
+      <ng-container *ngFor="let option of input.options">
+        <ng-container *ngIf="!option.items; else optionGroup">
+          <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
+        </ng-container>
+        <ng-template #optionGroup>
+          <optgroup [label]="option.label" [disabled]="option.disabled">
+            <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
+              optionItem.label
+            }}</option>
+          </optgroup>
+        </ng-template>
       </ng-container>
-      <ng-template #optionGroup>
-        <optgroup [label]="option.label" [disabled]="option.disabled">
-          <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
-            optionItem.label
-          }}</option>
-        </optgroup>
-      </ng-template>
-    </ng-container>
-  </select>
+    </select>
+  </ng-container>
+
+  <ng-template #optionsMultiple>
+    <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control" multiple>
+      <ng-container *ngFor="let option of input.options">
+        <ng-container *ngIf="!option.items; else optionGroup">
+          <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
+        </ng-container>
+        <ng-template #optionGroup>
+          <optgroup [label]="option.label" [disabled]="option.disabled">
+            <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
+              optionItem.label
+            }}</option>
+          </optgroup>
+        </ng-template>
+      </ng-container>
+    </select>
+  </ng-template>
 </ng-template>

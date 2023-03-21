@@ -11,6 +11,16 @@
   />
   <mat-datepicker-toggle matSuffix [for]="datepicker" [disabled]="control.disabled || readonly"></mat-datepicker-toggle>
   <mat-datepicker #datepicker [disabled]="control.disabled"></mat-datepicker>
+  <dynamic-form-element
+    *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matTextPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
+    [element]="prefixAddOn"
+    matPrefix
+  ></dynamic-form-element>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>

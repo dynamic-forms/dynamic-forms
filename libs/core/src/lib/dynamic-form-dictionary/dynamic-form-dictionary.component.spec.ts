@@ -112,12 +112,12 @@ describe('DynamicFormDictionaryComponent', () => {
     const formArrayDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-dictionary'));
     const formArrayElement = formArrayDebugElement.nativeElement as HTMLElement;
 
-    expect(formArrayElement.className).toBe('dynamic-form-dictionary');
+    expect(formArrayElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formArrayElement.className).toBe('dynamic-form-dictionary hidden');
+    expect(formArrayElement.hidden).toBeTrue();
   });
 
   it('sets dynamic form dictionary to readonly', () => {

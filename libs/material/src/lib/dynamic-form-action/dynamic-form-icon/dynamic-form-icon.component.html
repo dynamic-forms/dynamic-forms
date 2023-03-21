@@ -3,11 +3,11 @@
     [id]="id"
     mat-icon-button
     class="dynamic-form-icon"
-    [color]="template.color | dynamicFormColor : 'primary'"
-    [class.hidden]="template.hidden"
     [ngClass]="template.className"
+    [color]="template.color | dynamicFormColor : 'primary'"
     [type]="template.type || 'button'"
     [disabled]="template.disabled"
+    [hidden]="template.hidden"
     [matTooltip]="template.label"
     (click)="onClick($event)"
   >

@@ -16,7 +16,5 @@ export class DynamicFormContentComponent<
     super();
   }
 
-  get content(): string {
-    return this.template && this.template.content;
-  }
+  get content(): string { return this.template?.content; }
 }

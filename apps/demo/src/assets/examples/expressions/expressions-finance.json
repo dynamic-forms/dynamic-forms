@@ -71,6 +71,13 @@
               "min": true,
               "max": true
             }
+          },
+          "suffixAddOn": {
+            "type": "text",
+            "expressions": {
+              "text": "data.root.model.underlying.notionalCurrency",
+              "hidden": "!data.root.model.underlying.notionalCurrency"
+            }
           }
         },
         {
@@ -104,7 +111,7 @@
       ]
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

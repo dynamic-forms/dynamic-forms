@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
+import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 export const bsDynamicFormTextareaType: DynamicFormInputType = {
@@ -17,6 +18,7 @@ export const bsDynamicFormTextareaType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormTextareaType),
+    BsDynamicFormAddOnsModule,
   ],
   declarations: [
     BsDynamicFormTextareaComponent,

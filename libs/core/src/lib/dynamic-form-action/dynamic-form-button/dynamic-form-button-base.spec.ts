@@ -16,8 +16,10 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
   selector: 'dynamic-form-button-test',
   template: `
     <button class="dynamic-form-button"
-      [class.hidden]="template?.hidden" [ngClass]="template?.className"
-      [type]="template?.type || 'button'" [disabled]="template?.disabled"
+      [ngClass]="template.className"
+      [type]="template.type || 'button'"
+      [disabled]="template.disabled"
+      [hidden]="template.hidden"
       (click)="onClick($event)"
     >{{ template?.label }}</button>
   `,
@@ -82,12 +84,12 @@ describe('DynamicFormButtonBase', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-button'));
     const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
-    expect(formButtonElement.className).toBe('dynamic-form-button');
+    expect(formButtonElement.hidden).toBeFalse();
 
     component.template.hidden = true;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toBe('dynamic-form-button hidden');
+    expect(formButtonElement.hidden).toBeTrue();
   });
 
   it('sets class name of dynamic form button', () => {

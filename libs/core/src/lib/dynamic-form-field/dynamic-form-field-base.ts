@@ -26,7 +26,6 @@ export abstract class DynamicFormFieldBase<
   get field(): Field { return this.element; }
   set field(field: Field) { this.element = field; }
 
-  get hidden(): boolean { return this.field.hidden; }
   get readonly(): boolean { return this.field.readonly; }
 
   get control(): Control { return this.field.control; }

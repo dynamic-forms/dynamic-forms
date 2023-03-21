@@ -71,7 +71,6 @@ export abstract class DynamicFormField<
   get status(): string { return this._control.status; }
   get control(): Control { return this._control; }
 
-  get hidden(): boolean { return this.parentField.hidden || this.template.hidden || false; }
   get readonly(): boolean { return this.parentField.readonly || this.template.readonly || false; }
 
   get wrappers(): string[] { return this.definition.wrappers; }

@@ -60,10 +60,6 @@
     }
 
     .dynamic-form-group {
-      &.hidden {
-        display: none;
-      }
-
       .dynamic-form-group-header {
         @include dynamic-form-flex-container(
           $width: 100%,
@@ -106,10 +102,6 @@
     }
 
     .dynamic-form-array {
-      &.hidden {
-        display: none;
-      }
-
       .dynamic-form-array-header {
         @include dynamic-form-flex-container(
           $width: 100%,
@@ -152,10 +144,6 @@
     }
 
     .dynamic-form-dictionary {
-      &.hidden {
-        display: none;
-      }
-
       .dynamic-form-dictionary-header {
         @include dynamic-form-flex-container(
           $width: 100%,
@@ -198,10 +186,6 @@
     }
 
     .dynamic-form-control {
-      &.hidden {
-        display: none;
-      }
-
       &.readonly {
         mat-form-field,
         mat-checkbox,
@@ -256,18 +240,6 @@
             }
           }
         }
-      }
-    }
-
-    .dynamic-form-button {
-      &.hidden {
-        display: none;
-      }
-    }
-
-    .dynamic-form-icon {
-      &.hidden {
-        display: none;
       }
     }
 
