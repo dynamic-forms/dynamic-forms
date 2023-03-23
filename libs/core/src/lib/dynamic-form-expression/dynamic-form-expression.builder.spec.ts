@@ -42,7 +42,14 @@ describe('DynamicFormExpressionBuilder', () => {
 
   it('returns element expression for string', () => {
     const values = [];
-    const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
+    const expressionData = {
+      root: null,
+      parent: null,
+      parentField: null,
+      id: undefined,
+      hidden: false,
+      values,
+    } as DynamicFormElementExpressionData;
     const expressions = {
       disabled: 'data.values && data.values.length > 0',
     } as { [key: string]: string };
@@ -67,7 +74,14 @@ describe('DynamicFormExpressionBuilder', () => {
       spyOn(errorHandler, 'handle');
 
       const values = [];
-      const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
+      const expressionData = {
+        root: null,
+        parent: null,
+        parentField: null,
+        id: undefined,
+        hidden: false,
+        values,
+      } as DynamicFormElementExpressionData;
       const expressions = {
         disabled: 'invalid javascript',
       } as { [key: string]: string };
@@ -87,7 +101,14 @@ describe('DynamicFormExpressionBuilder', () => {
 
   it('returns element expression for function', () => {
     const values = [];
-    const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
+    const expressionData = {
+      root: null,
+      parent: null,
+      parentField: null,
+      id: undefined,
+      hidden: false,
+      values,
+    } as DynamicFormElementExpressionData;
     const expressions = {
       disabled: (data) => data.values && data.values.length > 0,
     } as { [key: string]: DynamicFormElementExpressionFunc };

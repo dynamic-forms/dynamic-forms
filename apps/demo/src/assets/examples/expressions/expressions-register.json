@@ -77,6 +77,19 @@
             "validation": {
               "required": true
             }
+          },
+          "suffixAddOn":     {
+            "type": "icon",
+            "template": {
+              "type": "button",
+              "color": "inputAction",
+              "action": "toggleTextboxAsTextType"
+            },
+            "expressions": {
+              "icon": "data.parent.input.inputTypeForced ? 'visibility' : 'visibility_off'",
+              "label": "data.parent.input.inputTypeForced ? 'Hide password' : 'Show password'",
+              "disabled": "data.parent.disabled"
+            }
           }
         },
         {
@@ -143,7 +156,7 @@
       ]
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

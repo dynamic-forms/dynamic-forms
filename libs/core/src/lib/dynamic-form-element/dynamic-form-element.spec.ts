@@ -19,7 +19,7 @@ describe('DynamicFormElement', () => {
 
   it('creates instance with root', () => {
     const root = {} as DynamicForm;
-    const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
+    const definition = { id: 'id', type: 'type', template: { hidden: true }, children: [] } as DynamicFormElementDefinition;
     const type = { type: 'type' } as DynamicFormElementType;
     const element = new DynamicFormElement(builder, root, root, definition, type);
 
@@ -31,8 +31,10 @@ describe('DynamicFormElement', () => {
     expect(element.template).toBe(definition.template);
     expect(element.type).toBe(type);
 
-    expect(element.id).toBe('id');
     expect(element.classType).toBe('element');
+
+    expect(element.id).toBe('id');
+    expect(element.hidden).toBeTrue();
 
     expect(element.children).toEqual([]);
   });

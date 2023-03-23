@@ -3,5 +3,6 @@ import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-fo
 
 export interface DynamicFormActionExpressionData extends DynamicFormElementExpressionData {
   readonly dialog: DynamicFormFieldExpressionData;
+  readonly disabled: boolean;
   readonly [key: string]: any;
 }

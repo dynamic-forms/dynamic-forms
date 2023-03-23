@@ -4,7 +4,7 @@
   <input
     [id]="inputId"
     class="form-control"
-    [type]="input.inputType"
+    [type]="input.inputTypeForced || input.inputType"
     [placeholder]="input.placeholder || ''"
     [pattern]="input.pattern"
     [readonly]="readonly"

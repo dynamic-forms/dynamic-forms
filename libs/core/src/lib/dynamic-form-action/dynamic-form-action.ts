@@ -36,6 +36,8 @@ export class DynamicFormAction<
 
   override get classType(): DynamicFormClassType { return 'action'; }
 
+  get disabled(): boolean { return this.template.disabled; }
+
   get dialogOpen(): boolean { return this._dialogOpenSubject.value; }
   get dialogOpenChanges(): Observable<boolean> { return this._dialogOpenChanges; }
 
@@ -91,6 +93,7 @@ export class DynamicFormAction<
     const expressionData = super.createExpressionData() as DynamicFormActionExpressionData;
     assignExpressionData(expressionData, {
       dialog: () => this.dialog ? this.dialog.expressionData : undefined,
+      disabled: () => this.disabled,
     });
     return expressionData;
   }

@@ -22,7 +22,7 @@ describe('DynamicFormAction', () => {
   it('creates instance', () => {
     const root = { classType: 'field' } as DynamicForm;
     const parent = { classType: 'field' } as DynamicFormField;
-    const definition = { id: 'id', type: 'type', template: {}, children: [] } as DynamicFormActionDefinition;
+    const definition = { id: 'id', type: 'type', template: { hidden: true, disabled: true }, children: [] } as DynamicFormActionDefinition;
     const type = { type: 'type' } as DynamicFormActionType;
     const action = new DynamicFormAction(builder, root, parent, definition, type);
 
@@ -34,8 +34,11 @@ describe('DynamicFormAction', () => {
     expect(action.template).toBe(definition.template);
     expect(action.type).toBe(type);
 
-    expect(action.id).toBe('id');
     expect(action.classType).toBe('action');
+
+    expect(action.id).toBe('id');
+    expect(action.hidden).toBeTrue();
+    expect(action.disabled).toBeTrue();
 
     expect(action.children).toEqual([]);
 
@@ -61,7 +64,7 @@ describe('DynamicFormAction', () => {
     const root = { expressionData: rootExpressionData } as DynamicForm;
     const parent = { expressionData: parentExpressionData } as DynamicFormField;
     const definition = {
-      template: {},
+      template: { disabled: true },
       dialogDefinition: { template: {} },
     } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition, {} as DynamicFormActionType);
@@ -73,6 +76,7 @@ describe('DynamicFormAction', () => {
     expect(action.expressionData.parent).toEqual(parentExpressionData);
     expect(action.expressionData.root).toEqual(rootExpressionData);
     expect(action.expressionData.dialog).toEqual(dailogExpressionData);
+    expect(action.expressionData.disabled).toBeTrue();
   });
 
   it('init calls initId, initExpressions and initChildren', () => {

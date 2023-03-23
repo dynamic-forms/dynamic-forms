@@ -3,7 +3,7 @@
   <input
     matInput
     [id]="inputId"
-    [type]="input.inputType"
+    [type]="input.inputTypeForced || input.inputType"
     [placeholder]="input.placeholder"
     [readonly]="readonly"
     [required]="validation?.required"
