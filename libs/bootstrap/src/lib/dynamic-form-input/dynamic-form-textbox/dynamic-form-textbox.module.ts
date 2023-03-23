@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormInputType, DynamicFormTextboxModule } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
 import { BsDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
@@ -17,6 +17,7 @@ export const bsDynamicFormTextboxType: DynamicFormInputType = {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    DynamicFormTextboxModule,
     DynamicFormConfigModule.withInput(bsDynamicFormTextboxType),
     BsDynamicFormAddOnsModule,
   ],

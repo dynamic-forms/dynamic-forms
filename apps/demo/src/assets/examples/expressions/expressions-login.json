@@ -1,64 +1,36 @@
 {
   "children": [
     {
-      "id": "input-hidden",
-      "key": "hidden",
+      "id": "input-disabled",
+      "key": "disabled",
       "type": "control",
       "template": {
-        "label": "Hidden",
+        "label": "Disabled",
         "input": {
-          "type": "checkbox",
-          "defaultValue": true
-        },
-        "validation": {
-          "required": false,
-          "email": false
+          "type": "checkbox"
         }
       }
     },
     {
-      "key": "options",
-      "type": "group",
+      "key": "required",
+      "type": "control",
       "template": {
-        "label": "Options"
-      },
-      "expressions": {
-        "hidden": "data.root.model.hidden"
-      },
-      "children": [
-        {
-          "id": "input-disabled",
-          "key": "disabled",
-          "type": "control",
-          "template": {
-            "label": "Disabled",
-            "input": {
-              "type": "checkbox"
-            }
-          }
-        },
-        {
-          "key": "required",
-          "type": "control",
-          "template": {
-            "label": "Required",
-            "input": {
-              "type": "checkbox"
-            }
-          }
-        },
-        {
-          "id": "input-readonly",
-          "key": "readonly",
-          "type": "control",
-          "template": {
-            "label": "Readonly",
-            "input": {
-              "type": "checkbox"
-            }
-          }
+        "label": "Required",
+        "input": {
+          "type": "checkbox"
         }
-      ]
+      }
+    },
+    {
+      "id": "input-readonly",
+      "key": "readonly",
+      "type": "control",
+      "template": {
+        "label": "Readonly",
+        "input": {
+          "type": "checkbox"
+        }
+      }
     },
     {
       "key": "login",
@@ -67,9 +39,8 @@
         "label": "Login"
       },
       "expressions": {
-        "hidden": "data.root.model.hidden",
-        "disabled": "data.root.model.options.disabled",
-        "readonly": "data.root.model.options.readonly"
+        "disabled": "data.root.model.disabled",
+        "readonly": "data.root.model.readonly"
       },
       "children": [
         {
@@ -88,7 +59,7 @@
             }
           },
           "expressions": {
-            "validation.required": "data.root.model.options.required"
+            "validation.required": "data.root.model.required"
           }
         },
         {
@@ -106,13 +77,26 @@
             }
           },
           "expressions": {
-            "validation.required": "data.root.model.options.required"
+            "validation.required": "data.root.model.required"
+          },
+          "suffixAddOn":     {
+            "type": "icon",
+            "template": {
+              "type": "button",
+              "color": "inputAction",
+              "action": "toggleTextboxAsTextType"
+            },
+            "expressions": {
+              "icon": "data.parent.input.inputTypeForced ? 'visibility' : 'visibility_off'",
+              "label": "data.parent.input.inputTypeForced ? 'Hide password' : 'Show password'",
+              "disabled": "data.parent.disabled"
+            }
           }
         }
       ]
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

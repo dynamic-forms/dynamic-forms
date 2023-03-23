@@ -54,7 +54,7 @@ export abstract class DynamicFormField<
     this._settings = this.createSettings();
   }
 
-  get settings(): DynamicFormFieldSettings { return this._settings; }
+  override get classType(): DynamicFormClassType { return 'field'; }
 
   get key(): string { return this.definition.key; }
   get index(): number { return this.definition.index; }
@@ -63,7 +63,7 @@ export abstract class DynamicFormField<
     const parentPath = this.parentField && this.parentField.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
   }
-  override get classType(): DynamicFormClassType { return 'field'; }
+  get settings(): DynamicFormFieldSettings { return this._settings; }
 
   get model(): Model { return this._model; }
   get value(): Value { return this._control.value; }
@@ -71,7 +71,8 @@ export abstract class DynamicFormField<
   get status(): string { return this._control.status; }
   get control(): Control { return this._control; }
 
-  get readonly(): boolean { return this.parentField.readonly || this.template.readonly || false; }
+  get disabled(): boolean { return this.control.disabled; }
+  get readonly(): boolean { return this.template.readonly || this.parentField.readonly || false; }
 
   get wrappers(): string[] { return this.definition.wrappers; }
   get unregistered(): boolean { return this.definition.unregistered; }
@@ -174,10 +175,11 @@ export abstract class DynamicFormField<
   protected override createExpressionData(): DynamicFormFieldExpressionData {
     const expressionData = super.createExpressionData() as DynamicFormFieldExpressionData;
     assignExpressionData(expressionData, {
-      id: () => this.id,
       key: () => this.key,
       index: () => this.index,
       depth: () => this.depth,
+      disabled: () => this.disabled,
+      readonly: () => this.readonly,
       model: () => this.model,
       value: () => this.value,
       valid: () => this.valid,

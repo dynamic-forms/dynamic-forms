@@ -59,7 +59,7 @@ export class DynamicFormElement<
   get classType(): DynamicFormClassType { return 'element'; }
 
   get id(): string { return this.definition.id; }
-  get hidden(): boolean { return this.parentField.hidden || this.template.hidden || false; }
+  get hidden(): boolean { return this.template.hidden || this.parentField.hidden || false; }
 
   get expressions(): Expressions { return this._expressions; }
   get children(): Child[] { return this._children; }
@@ -95,6 +95,8 @@ export class DynamicFormElement<
       root: () => this.root.expressionData,
       parent: () => this.parent ? this.parent.expressionData : undefined,
       parentField: () => this.parentField.expressionData,
+      id: () => this.id,
+      hidden: () => this.hidden,
     });
     return expressionData;
   }
