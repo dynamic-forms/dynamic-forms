@@ -1,5 +1,10 @@
 # Changelog
 
+## 16.0.0-next.3 (2023-03-24)
+
+* **core:** extension of ```DynamicFormElementExpressionData```, ```DynamicFormFieldExpressionData``` and ```DynamicFormActionExpressionData``` with properties ```hidden```, ```disabled``` (only action and field) and ```readonly``` (only field)
+* **core:** introduction of ```DynamicFormTextboxModule``` with action handler ```dynamicFormTextboxToggleAsTextTypeHandler``` to toggle textbox as text type (can be used for textbox add-on to show / hide password in example)
+
 ## 16.0.0-next.2 (2023-03-21)
 
 * **core:** support of ```DynamicFormElement``` or ```DynamicFormAction``` as ```DynamicFormControlAddOn``` for ```DynamicFormControl``` (prefix and / or suffix)

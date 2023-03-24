@@ -12,7 +12,14 @@ describe('DynamicFormElementExpression', () => {
 
   it('get value returns value', () => {
     const values = [];
-    const expressionData = { root: null, parent: null, parentField: null, values } as DynamicFormElementExpressionData;
+    const expressionData = {
+      root: null,
+      parent: null,
+      parentField: null,
+      id: undefined,
+      hidden: false,
+      values,
+    } as DynamicFormElementExpressionData;
     const element = { expressionData } as DynamicFormElement;
     const expression = new DynamicFormElementExpression('key', element, data => data.values && data.values.length > 0, errorHandler);
 

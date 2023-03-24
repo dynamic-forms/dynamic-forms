@@ -72,6 +72,8 @@ describe('DynamicFormInputBase', () => {
     expect(component.inputType).toBe('input');
     expect(component.hints).toBe(field.template.hints);
     expect(component.validation).toBe(field.template.validation);
+    expect(component.prefixAddOn).toBe(field.prefixAddOn);
+    expect(component.suffixAddOn).toBe(field.suffixAddOn);
 
     component.definition.id = null;
 

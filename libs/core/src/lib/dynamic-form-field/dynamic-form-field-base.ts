@@ -26,9 +26,10 @@ export abstract class DynamicFormFieldBase<
   get field(): Field { return this.element; }
   set field(field: Field) { this.element = field; }
 
-  get readonly(): boolean { return this.field.readonly; }
-
   get control(): Control { return this.field.control; }
+
+  get disabled(): boolean { return this.field.disabled; }
+  get readonly(): boolean { return this.field.readonly; }
 
   get errors(): DynamicFormValidationErrors { return this.field.errors; }
   get hasErrors(): boolean { return this.field.hasErrors; }

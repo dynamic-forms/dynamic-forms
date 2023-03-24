@@ -7,6 +7,7 @@ import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
+import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
@@ -21,13 +22,13 @@ class DynamicFormTestField extends DynamicFormField {
     definition: DynamicFormFieldDefinition,
     type: DynamicFormFieldType,
   ) {
-    super(builder, root, parent, definition, type);
-    this._control = {
-      disabled: false,
+    const control = {
+      disabled: definition?.template?.disabled || false,
       setValidators: () => {},
       setAsyncValidators: () => {},
       updateValueAndValidity: () => {},
-    } as any;
+    } as unknown as DynamicFormFieldControl<any>;
+    super(builder, root, parent, definition, type, control);
   }
 
   get fieldClassType(): DynamicFormFieldClassType { return null; }
@@ -69,8 +70,9 @@ describe('DynamicFormField', () => {
     const root = { classType: 'field', depth: 0 } as DynamicForm;
     const parentField = { classType: 'field', depth: 1 } as DynamicFormField;
     const parent = { parent: parentField as DynamicFormElement } as DynamicFormElement;
+    const template = { hidden: true, disabled: true, readonly: true };
     const wrappers = [ 'wrapper-wrapper', 'wrapper' ];
-    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {}, wrappers } as DynamicFormFieldDefinition;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template, wrappers } as DynamicFormFieldDefinition;
     const type = { type: 'type' } as DynamicFormFieldType;
     const field = new DynamicFormTestField(builder, root, parent, definition, type);
 
@@ -82,19 +84,23 @@ describe('DynamicFormField', () => {
     expect(field.template).toBe(definition.template);
     expect(field.type).toBe(type);
 
-    expect(field.settings).toBeTruthy();
+    expect(field.classType).toBe('field');
 
     expect(field.id).toBe('id');
     expect(field.key).toBe('key');
     expect(field.index).toBe(1);
     expect(field.depth).toBe(2);
-    expect(field.classType).toBe('field');
 
     expect(field.model).toBeUndefined();
     expect(field.value).toBeUndefined();
     expect(field.valid).toBeUndefined();
     expect(field.status).toBeUndefined();
     expect(field.control).toBeTruthy();
+    expect(field.settings).toBeTruthy();
+
+    expect(field.hidden).toBeTrue();
+    expect(field.disabled).toBeTrue();
+    expect(field.readonly).toBeTrue();
 
     expect(field.children).toEqual([]);
     expect(field.headerActions).toEqual([]);
@@ -223,16 +229,20 @@ describe('DynamicFormField', () => {
   });
 
   it('returns expression data with id, key, index, depth, model, value, valid and status', () => {
-    const definition = { id: 'id', key: 'key', index: 1, template: {} } as DynamicFormFieldDefinition;
+    const template = { hidden: true, disabled: true, readonly: true };
+    const definition = { id: 'id', key: 'key', index: 1, template } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition, {} as DynamicFormFieldType);
 
     field.setModel({ value: 'VALUE' });
-    field.setControl({ status: 'VALID'});
+    field.setControl({ disabled: true, status: 'VALID'});
 
     expect(field.expressionData.id).toBe('id');
     expect(field.expressionData.key).toBe('key');
     expect(field.expressionData.index).toBe(1);
     expect(field.expressionData.depth).toBe(0);
+    expect(field.expressionData.hidden).toBeTrue();
+    expect(field.expressionData.disabled).toBeTrue();
+    expect(field.expressionData.readonly).toBeTrue();
     expect(field.expressionData.model).toBe(field.model);
     expect(field.expressionData.value).toBe(field.value);
     expect(field.expressionData.valid).toBe(field.valid);

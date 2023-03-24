@@ -30,7 +30,18 @@ describe('DynamicFormFieldBase', () => {
   });
 
   it('returns properties of field', () => {
-    const field = { id: 'id', key: 'key', index: 1, path: 'path', control: {}, errors: {}, hasError: true, showErrors: false } as any;
+    const field = {
+      id: 'id',
+      key: 'key',
+      index: 1,
+      path: 'path',
+      control: {},
+      disabled: false,
+      readonly: true,
+      errors: {},
+      hasError: true,
+      showErrors: false,
+    } as any;
     component.field = field;
 
     expect(component.id).toBe('id');
@@ -40,6 +51,8 @@ describe('DynamicFormFieldBase', () => {
     expect(component.element).toBe(field);
     expect(component.field).toBe(field);
     expect(component.control).toBe(field.control);
+    expect(component.disabled).toBe(field.disabled);
+    expect(component.readonly).toBe(field.readonly);
     expect(component.errors).toBe(field.errors);
     expect(component.hasErrors).toBe(field.hasErrors);
     expect(component.showErrors).toBe(field.showErrors);
