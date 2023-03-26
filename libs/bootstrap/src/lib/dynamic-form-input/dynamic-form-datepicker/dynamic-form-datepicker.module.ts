@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
+import { BsDynamicFormInputWrapperModule } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.module';
 import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 export const bsDynamicFormDatepickerType: DynamicFormInputType = {
   type: 'datepicker',
   component: BsDynamicFormDatepickerComponent,
-  wrappers: [ 'label', 'hints', 'errors' ],
+  wrappers: [ 'hints', 'errors' ],
   libraryName: bsDynamicFormLibrary.name,
 };
 
@@ -18,7 +18,7 @@ export const bsDynamicFormDatepickerType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormDatepickerType),
-    BsDynamicFormAddOnsModule,
+    BsDynamicFormInputWrapperModule,
   ],
   declarations: [
     BsDynamicFormDatepickerComponent,

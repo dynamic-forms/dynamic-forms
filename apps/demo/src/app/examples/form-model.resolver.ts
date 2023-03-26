@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Example } from '../state/examples/examples.model';
 import { NotificationMessages } from '../state/notifications/notifications.model';
 import { NotificationsService } from '../state/notifications/notifications.service';
 
 @Injectable()
-export class FormModelResolver implements Resolve<Observable<any>> {
+export class FormModelResolver {
   constructor(
     private httpClient: HttpClient,
     private notificationsService: NotificationsService,

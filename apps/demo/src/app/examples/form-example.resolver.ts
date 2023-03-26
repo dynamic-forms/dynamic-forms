@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { ExampleMenu } from '../state/examples/examples.model';
 import { ExamplesState } from '../state/examples/examples.state';
 
 @Injectable()
-export class FormExampleResolver implements Resolve<Observable<ExampleMenu>> {
+export class FormExampleResolver {
   constructor(private store: Store) {}
 
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<ExampleMenu> {

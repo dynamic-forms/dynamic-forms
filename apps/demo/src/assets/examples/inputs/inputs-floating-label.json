@@ -1,0 +1,127 @@
+{
+  "template": {
+    "label": "Inputs with floating label"
+  },
+  "children": [
+    {
+      "key": "combobox",
+      "type": "control",
+      "template": {
+        "label": "Combobox",
+        "labelFloating": true,
+        "input": {
+          "type": "combobox",
+          "placeholder": "Enter a text",
+          "options": [
+            "Value1",
+            "Value2",
+            "Value3"
+          ]
+        }
+      }
+    },
+    {
+      "key": "datepicker",
+      "type": "control",
+      "template": {
+        "label": "Datepicker",
+        "labelFloating": true,
+        "input": {
+          "type": "datepicker",
+          "placeholder": "Enter a date"
+        }
+      }
+    },
+    {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "labelFloating": true,
+        "input": {
+          "type": "file",
+          "placeholder": "Upload a file"
+        }
+      }
+    },
+    {
+      "key": "numberbox",
+      "type": "control",
+      "template": {
+        "label": "Numberbox",
+        "labelFloating": true,
+        "input": {
+          "type": "numberbox",
+          "placeholder": "Enter a number"
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "labelFloating": true,
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "textarea",
+      "type": "control",
+      "template": {
+        "label": "Textarea",
+        "labelFloating": true,
+        "input": {
+          "type": "textarea",
+          "placeholder": "Enter a text"
+        }
+      }
+    },
+    {
+      "key": "textbox",
+      "type": "control",
+      "template": {
+        "label": "Textbox",
+        "labelFloating": true,
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter a text"
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ]
+}

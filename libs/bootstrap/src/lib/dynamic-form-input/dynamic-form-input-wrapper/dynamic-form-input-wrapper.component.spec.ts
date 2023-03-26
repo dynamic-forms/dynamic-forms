@@ -2,8 +2,8 @@ import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
-import { BsDynamicFormAddOnsComponent } from './dynamic-form-add-ons.component';
-import { BsDynamicFormAddOnsModule } from './dynamic-form-add-ons.module';
+import { BsDynamicFormInputWrapperComponent } from './dynamic-form-input-wrapper.component';
+import { BsDynamicFormInputWrapperModule } from './dynamic-form-input-wrapper.module';
 
 @Component({
   selector: 'bs-dynamic-form-input-test',
@@ -17,7 +17,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [
-    BsDynamicFormAddOnsModule,
+    BsDynamicFormInputWrapperModule,
   ],
   declarations: [
     DynamicFormInputTestComponent,
@@ -33,9 +33,9 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 })
 class BsDynamicFormControlLabelTestModule {}
 
-describe('BsDynamicFormAddOnsComponent', () => {
-  let fixture: ComponentFixture<BsDynamicFormAddOnsComponent>;
-  let component: BsDynamicFormAddOnsComponent;
+describe('BsDynamicFormInputWrapperComponent', () => {
+  let fixture: ComponentFixture<BsDynamicFormInputWrapperComponent>;
+  let component: BsDynamicFormInputWrapperComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,7 +44,7 @@ describe('BsDynamicFormAddOnsComponent', () => {
       ],
     });
 
-    fixture = TestBed.createComponent(BsDynamicFormAddOnsComponent);
+    fixture = TestBed.createComponent(BsDynamicFormInputWrapperComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
