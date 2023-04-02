@@ -1,0 +1,192 @@
+{
+  "template": {
+    "label": "Inputs with add-ons"
+  },
+  "children": [
+    {
+      "key": "combobox",
+      "type": "control",
+      "template": {
+        "label": "Combobox",
+        "input": {
+          "type": "combobox",
+          "placeholder": "Enter a text",
+          "options": [
+            "Value1",
+            "Value2",
+            "Value3"
+          ]
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      },
+      "suffixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Suffix"
+        }
+      }
+    },
+    {
+      "key": "datepicker",
+      "type": "control",
+      "template": {
+        "label": "Datepicker",
+        "input": {
+          "type": "datepicker",
+          "placeholder": "Enter a date"
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      }
+    },
+    {
+      "key": "file",
+      "type": "control",
+      "template": {
+        "label": "File",
+        "input": {
+          "type": "file",
+          "placeholder": "Upload a file"
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      }
+    },
+    {
+      "key": "numberbox",
+      "type": "control",
+      "template": {
+        "label": "Numberbox",
+        "input": {
+          "type": "numberbox",
+          "placeholder": "Enter a number"
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      },
+      "suffixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Suffix"
+        }
+      }
+    },
+    {
+      "key": "select",
+      "type": "control",
+      "template": {
+        "label": "Select",
+        "input": {
+          "type": "select",
+          "placeholder": "Select an option",
+          "options": [
+            {
+              "value": 1,
+              "label": "Option 1"
+            },
+            {
+              "value": 2,
+              "label": "Option 2"
+            }
+          ]
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      },
+      "suffixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Suffix"
+        }
+      }
+    },
+    {
+      "key": "textarea",
+      "type": "control",
+      "template": {
+        "label": "Textarea",
+        "input": {
+          "type": "textarea",
+          "placeholder": "Enter a text"
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      },
+      "suffixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Suffix"
+        }
+      }
+    },
+    {
+      "key": "textbox",
+      "type": "control",
+      "template": {
+        "label": "Textbox",
+        "input": {
+          "type": "textbox",
+          "placeholder": "Enter a text"
+        }
+      },
+      "prefixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Prefix"
+        }
+      },
+      "suffixAddOn": {
+        "type": "content",
+        "template": {
+          "content": "Suffix"
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ]
+}

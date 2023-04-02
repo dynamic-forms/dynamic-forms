@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.0-next.4
+
+* **core:** support of floating label
+* **bootstrap:** implementation of floating label for combobox, datepicker, file, numberbox, select, textarea and textbox
+* **material:** implementation of floating label for combobox, datepicker, file, numberbox, select, textarea and textbox
+
 ## 16.0.0-next.3 (2023-03-24)
 
 * **core:** extension of ```DynamicFormElementExpressionData```, ```DynamicFormFieldExpressionData``` and ```DynamicFormActionExpressionData``` with properties ```hidden```, ```disabled``` (only action and field) and ```readonly``` (only field)

@@ -1,4 +1,12 @@
-<bs-dynamic-form-add-ons [inputTemplate]="inputTemplate" [prefixAddOn]="prefixAddOn" [suffixAddOn]="suffixAddOn"></bs-dynamic-form-add-ons>
+<bs-dynamic-form-input-wrapper
+  [inputTemplate]="inputTemplate"
+  [inputId]="inputId"
+  [label]="template.label"
+  [labelFloating]="template.labelFloating"
+  [requiredMarker]="validation?.required"
+  [prefixAddOn]="prefixAddOn"
+  [suffixAddOn]="suffixAddOn"
+></bs-dynamic-form-input-wrapper>
 
 <ng-template #inputTemplate>
   <ng-container *ngIf="!input.multiple; else optionsMultiple">
