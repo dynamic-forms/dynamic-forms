@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormElementModule } from '@dynamic-forms/core';
-import { BsDynamicFormAddOnsComponent } from './dynamic-form-add-ons.component';
+import { BsDynamicFormInputWrapperComponent } from './dynamic-form-input-wrapper.component';
 
 @NgModule({
   imports: [
@@ -9,10 +9,10 @@ import { BsDynamicFormAddOnsComponent } from './dynamic-form-add-ons.component';
     DynamicFormElementModule,
   ],
   declarations: [
-    BsDynamicFormAddOnsComponent,
+    BsDynamicFormInputWrapperComponent,
   ],
   exports: [
-    BsDynamicFormAddOnsComponent,
+    BsDynamicFormInputWrapperComponent,
   ],
 })
-export class BsDynamicFormAddOnsModule {}
+export class BsDynamicFormInputWrapperModule {}

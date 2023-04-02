@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="!input.multiple; else multiSelect" appearance="fill" color="primary">
+<mat-form-field *ngIf="!input.multiple; else multiSelect" appearance="fill" color="primary" [floatLabel]="template.labelFloating">
   <mat-label>{{ template.label }}</mat-label>
   <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control">
     <ng-container *ngFor="let option of input.options">
@@ -39,7 +39,7 @@
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
 <ng-template #multiSelect>
-  <mat-form-field appearance="fill" color="primary">
+  <mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating">
     <mat-label>{{ template.label }}</mat-label>
     <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control" multiple>
       <ng-container *ngFor="let option of input.options">

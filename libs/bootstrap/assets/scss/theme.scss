@@ -39,6 +39,26 @@ $dynamic-form-errors-margin-top: null !default;
           border-bottom-left-radius: 0;
         }
       }
+
+      &.floating {
+        .dynamic-form-add-on {
+          .dynamic-form-icon-wrapper {
+            height: 100%;
+
+            .dynamic-form-icon {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              i.material-icons {
+                margin-top: auto;
+                margin-bottom: auto;
+              }
+            }
+          }
+        }
+      }
     }
 
     &.grid {

@@ -39,8 +39,23 @@
           "label": "Hidden"
         },
         {
-          "id": "inputs-add-ons",
-          "label": "Add-ons"
+          "id": "inputs-floating-label",
+          "docId": "inputs",
+          "label": "Floating label"
+        },
+        {
+          "groupId": "add-ons",
+          "label": "Add-ons",
+          "items": [
+            {
+              "id": "inputs-add-ons-text",
+              "label": "Text"
+            },
+            {
+              "id": "inputs-add-ons-floating-label",
+              "label": "Floating label"
+            }
+          ]
         },
         {
           "groupId": "variations",

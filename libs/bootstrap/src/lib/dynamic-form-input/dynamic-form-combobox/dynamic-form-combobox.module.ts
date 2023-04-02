@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
-
+import { BsDynamicFormInputWrapperModule } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.module';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 export const bsDynamicFormComboboxType: DynamicFormInputType = {
   type: 'combobox',
   component: BsDynamicFormComboboxComponent,
-  wrappers: [ 'label', 'hints', 'errors' ],
+  wrappers: [ 'hints', 'errors' ],
   libraryName: bsDynamicFormLibrary.name,
 };
 
@@ -19,7 +18,7 @@ export const bsDynamicFormComboboxType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormComboboxType),
-    BsDynamicFormAddOnsModule,
+    BsDynamicFormInputWrapperModule,
   ],
   declarations: [
     BsDynamicFormComboboxComponent,

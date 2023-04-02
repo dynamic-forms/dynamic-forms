@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormAddOnsModule } from '../dynamic-form-add-ons/dynamic-form-add-ons.module';
+import { BsDynamicFormInputWrapperModule } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.module';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 export const bsDynamicFormNumberboxType: DynamicFormInputType = {
   type: 'numberbox',
   component: BsDynamicFormNumberboxComponent,
-  wrappers: [ 'label', 'hints', 'errors' ],
+  wrappers: [ 'hints', 'errors' ],
   libraryName: bsDynamicFormLibrary.name,
 };
 
@@ -18,7 +18,7 @@ export const bsDynamicFormNumberboxType: DynamicFormInputType = {
     CommonModule,
     ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormNumberboxType),
-    BsDynamicFormAddOnsModule,
+    BsDynamicFormInputWrapperModule,
   ],
   declarations: [
     BsDynamicFormNumberboxComponent,

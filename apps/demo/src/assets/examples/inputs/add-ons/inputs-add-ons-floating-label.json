@@ -1,6 +1,6 @@
 {
   "template": {
-    "label": "Inputs with placeholder"
+    "label": "Inputs with add-ons and floating label"
   },
   "children": [
     {
@@ -8,6 +8,7 @@
       "type": "control",
       "template": {
         "label": "Combobox",
+        "labelFloating": true,
         "input": {
           "type": "combobox",
           "placeholder": "Enter a text",
@@ -36,6 +37,7 @@
       "type": "control",
       "template": {
         "label": "Datepicker",
+        "labelFloating": true,
         "input": {
           "type": "datepicker",
           "placeholder": "Enter a date"
@@ -53,6 +55,7 @@
       "type": "control",
       "template": {
         "label": "File",
+        "labelFloating": true,
         "input": {
           "type": "file",
           "placeholder": "Upload a file"
@@ -70,6 +73,7 @@
       "type": "control",
       "template": {
         "label": "Numberbox",
+        "labelFloating": true,
         "input": {
           "type": "numberbox",
           "placeholder": "Enter a number"
@@ -93,6 +97,7 @@
       "type": "control",
       "template": {
         "label": "Select",
+        "labelFloating": true,
         "input": {
           "type": "select",
           "placeholder": "Select an option",
@@ -126,6 +131,7 @@
       "type": "control",
       "template": {
         "label": "Textarea",
+        "labelFloating": true,
         "input": {
           "type": "textarea",
           "placeholder": "Enter a text"
@@ -149,6 +155,7 @@
       "type": "control",
       "template": {
         "label": "Textbox",
+        "labelFloating": true,
         "input": {
           "type": "textbox",
           "placeholder": "Enter a text"
