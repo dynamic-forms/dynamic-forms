@@ -1,6 +1,6 @@
 # Changelog
 
-## 16.0.0-next.4
+## 16.0.0-next.4 (2023-04-03)
 
 * **core:** support of floating label
 * **bootstrap:** implementation of floating label for combobox, datepicker, file, numberbox, select, textarea and textbox
