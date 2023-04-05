@@ -11,23 +11,24 @@
         "input": {
           "type": "combobox",
           "placeholder": "Enter a text",
+          "defaultValue": "Value1",
           "options": [
             "Value1",
             "Value2",
             "Value3"
           ]
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -38,19 +39,20 @@
         "label": "Datepicker",
         "input": {
           "type": "datepicker",
-          "placeholder": "Enter a date"
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+          "placeholder": "Enter a date",
+          "defaultValue": "2019-01-01"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -62,18 +64,18 @@
         "input": {
           "type": "file",
           "placeholder": "Upload a file"
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -84,19 +86,20 @@
         "label": "Numberbox",
         "input": {
           "type": "numberbox",
-          "placeholder": "Enter a number"
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+          "placeholder": "Enter a number",
+          "defaultValue": 0.01
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -108,6 +111,7 @@
         "input": {
           "type": "select",
           "placeholder": "Select an option",
+          "defaultValue": 1,
           "options": [
             {
               "value": 1,
@@ -118,18 +122,18 @@
               "label": "Option 2"
             }
           ]
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -140,19 +144,20 @@
         "label": "Textarea",
         "input": {
           "type": "textarea",
-          "placeholder": "Enter a text"
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+          "placeholder": "Enter a text",
+          "defaultValue": "Text line 1\nText line 2"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -163,19 +168,20 @@
         "label": "Textbox",
         "input": {
           "type": "textbox",
-          "placeholder": "Enter a text"
-        }
-      },
-      "prefixAddOn": {
-        "type": "text",
-        "template": {
-          "text": "Prefix"
+          "placeholder": "Enter a text",
+          "defaultValue": "Text 1, Text 2"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "text",
+        "type": "button",
         "template": {
-          "text": "Suffix"
+          "type": "button",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     }
@@ -198,6 +204,15 @@
       "template": {
         "type": "reset",
         "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
       }
     }
   ]

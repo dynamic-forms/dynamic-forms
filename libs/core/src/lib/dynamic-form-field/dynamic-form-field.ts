@@ -98,6 +98,11 @@ export abstract class DynamicFormField<
   abstract check(): void;
   abstract destroy(): void;
 
+  clear(): void {
+     this.resetEmpty();
+     this.validate();
+  }
+
   abstract reset(): void;
   abstract resetEmpty(): void;
   abstract resetDefault(): void;

@@ -7,6 +7,14 @@ import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 
+export const dynamicFormFieldClear = (field: DynamicFormField): void => field.clear();
+
+export const dynamicFormFieldClearHandler: DynamicFormActionHandler = {
+  type: 'clear',
+  func: dynamicFormFieldClear,
+  libraryName: dynamicFormLibrary.name,
+};
+
 export const dynamicFormFieldReset = (field: DynamicFormField): void => field.reset();
 
 export const dynamicFormFieldResetHandler: DynamicFormActionHandler = {
@@ -60,6 +68,7 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
   imports: [
     DynamicFormValidationModule,
     DynamicFormActionModule.withHandlers([
+      dynamicFormFieldClearHandler,
       dynamicFormFieldResetHandler,
       dynamicFormFieldResetEmptyHandler,
       dynamicFormFieldResetDefaultHandler,

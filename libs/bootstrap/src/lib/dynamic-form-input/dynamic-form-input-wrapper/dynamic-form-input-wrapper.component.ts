@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef} from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { DynamicFormControlAddOn } from '@dynamic-forms/core';
 
 @Component({
@@ -20,6 +20,9 @@ export class BsDynamicFormInputWrapperComponent {
 
   @Input()
   requiredMarker: boolean;
+
+  @Input()
+  inputAddOn: DynamicFormControlAddOn;
 
   @Input()
   prefixAddOn: DynamicFormControlAddOn;

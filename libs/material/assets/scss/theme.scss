@@ -19,6 +19,23 @@
       }
     }
 
+    mat-form-field {
+      &.suffixes-flex {
+        .mat-mdc-form-field-icon-prefix, .mat-mdc-form-field-icon-suffix {
+          display: flex;
+
+          dynamic-form-element {
+            display: flex;
+
+            mat-dynamic-form-button {
+              margin-top: auto;
+              margin-bottom: auto;
+            }
+          }
+        }
+      }
+    }
+
     .dynamic-form-header {
       @include dynamic-form-flex-container(
         $width: 100%,

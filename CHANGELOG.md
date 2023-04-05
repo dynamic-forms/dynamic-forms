@@ -1,6 +1,18 @@
 # Changelog
 
+## 16.0.0-next.5 (2023-04-10)
+
+* **core:** support of method ```clear()``` for ```DynamicFormField``` 
+* **bootstrap:** implementation of ```DynamicFormControlAddOn``` suffix for datepicker and file
+* **material:** implementation of ```DynamicFormControlAddOn``` suffix for datepicker and file
+
+### Bug Fixes
+
+* **bootstrap:** fixed issue of file input component not opening file dialog
+
 ## 16.0.0-next.4 (2023-04-03)
+
+### Features
 
 * **core:** support of floating label
 * **bootstrap:** implementation of floating label for combobox, datepicker, file, numberbox, select, textarea and textbox
@@ -8,10 +20,14 @@
 
 ## 16.0.0-next.3 (2023-03-24)
 
+### Features
+
 * **core:** extension of ```DynamicFormElementExpressionData```, ```DynamicFormFieldExpressionData``` and ```DynamicFormActionExpressionData``` with properties ```hidden```, ```disabled``` (only action and field) and ```readonly``` (only field)
 * **core:** introduction of ```DynamicFormTextboxModule``` with action handler ```dynamicFormTextboxToggleAsTextTypeHandler``` to toggle textbox as text type (can be used for textbox add-on to show / hide password in example)
 
 ## 16.0.0-next.2 (2023-03-21)
+
+### Features
 
 * **core:** support of ```DynamicFormElement``` or ```DynamicFormAction``` as ```DynamicFormControlAddOn``` for ```DynamicFormControl``` (prefix and / or suffix)
 * **core:** support of hidden ```DynamicFormElement``` and ```DynamicFormElementBase``` and improvements regarding hidden elements, actions and fields by using attribute instead of CSS class

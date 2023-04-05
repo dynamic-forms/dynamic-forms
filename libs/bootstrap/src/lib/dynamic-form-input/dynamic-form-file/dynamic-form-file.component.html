@@ -1,11 +1,13 @@
 <bs-dynamic-form-input-wrapper
+  #wrapper
   [inputTemplate]="inputTemplate"
   [inputId]="inputId"
   [label]="template.label"
   [labelFloating]="template.labelFloating"
   [requiredMarker]="validation?.required"
+  [inputAddOn]="uploadAction"
   [prefixAddOn]="prefixAddOn"
-  [suffixAddOn]="uploadAction"
+  [suffixAddOn]="suffixAddOn"
 ></bs-dynamic-form-input-wrapper>
 
 <ng-template #inputTemplate>
@@ -16,6 +18,7 @@
     [placeholder]="input.placeholder || ''"
     [value]="fileDirective.fileNamesAsText || ''"
     [disabled]="control.disabled"
+    (blur)="control.markAsTouched()"
     readonly
   />
   <input

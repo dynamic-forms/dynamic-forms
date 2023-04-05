@@ -427,4 +427,17 @@ describe('DynamicFormField', () => {
     expect(field.control.setAsyncValidators).toHaveBeenCalledWith([ validators[1].validatorFn ]);
     expect(field.control.updateValueAndValidity).toHaveBeenCalled();
   });
+
+  it('clear calls resetEmpty and validate', () => {
+    const definition = { template: {} } as DynamicFormFieldDefinition;
+    const field = new DynamicFormTestField(builder, null, null, definition, {} as DynamicFormFieldType);
+
+    spyOn(field, 'resetEmpty');
+    spyOn(field, 'validate');
+
+    field.clear();
+
+    expect(field.resetEmpty).toHaveBeenCalled();
+    expect(field.validate).toHaveBeenCalled();
+  });
 });
