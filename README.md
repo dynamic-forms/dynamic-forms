@@ -12,7 +12,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 - Dynamic [**reactive forms**](https://angular.io/guide/reactive-forms) based on **JSON** definition
 - Structuring / nesting dynamic forms by
-  - Dynamic form elements (container, accordion, tabs, content, markdown, modal)
+  - Dynamic form elements (container, accordion, tabs, text, content, markdown, modal)
   - Dynamic form fields (control, group, array, dictionary)
   - Dynamic form actions (button, icon)
 - Dynamic form controls / inputs include
@@ -65,12 +65,12 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 ## **Packages**
 
-### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/16.0.0-next.4)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/16.0.0-next.4)
+### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/16.0.0-next.5)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/16.0.0-next.5)
 
-- `npm install @dynamic-forms/core@16.0.0-next.4`
-- `npm install @dynamic-forms/bootstrap@16.0.0-next.4`
-- `npm install @dynamic-forms/material@16.0.0-next.4`
-- `npm install @dynamic-forms/markdown@16.0.0-next.4`
+- `npm install @dynamic-forms/core@16.0.0-next.5`
+- `npm install @dynamic-forms/bootstrap@16.0.0-next.5`
+- `npm install @dynamic-forms/material@16.0.0-next.5`
+- `npm install @dynamic-forms/markdown@16.0.0-next.5`
 
 ### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.1.0)
 

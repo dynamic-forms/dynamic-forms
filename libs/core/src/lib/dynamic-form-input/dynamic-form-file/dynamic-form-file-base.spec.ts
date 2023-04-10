@@ -81,7 +81,7 @@ describe('DynamicFormFileBase', () => {
 
   it('creates component', () => {
     expect(component).toBeDefined();
-    expect(component.fileInput).toBeDefined();
+    expect(component.fileInput).toBeUndefined();
     expect(component.uploadAction).toBeUndefined();
 
     fixture.detectChanges();
@@ -122,9 +122,9 @@ describe('DynamicFormFileBase', () => {
   });
 
   it('action calls openFileExplorer', () => {
-    spyOn(component.fileInput, 'openFileExplorer');
-
     fixture.detectChanges();
+
+    spyOn(component.fileInput, 'openFileExplorer');
 
     const action = uploadAction.definition.template.action as () => void;
     action();

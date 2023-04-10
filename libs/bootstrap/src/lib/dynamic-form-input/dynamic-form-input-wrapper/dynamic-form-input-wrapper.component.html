@@ -1,5 +1,5 @@
 <ng-container *ngIf="labelFloating; else noLabelFloating">
-  <div class="input-group floating" *ngIf="prefixAddOn || suffixAddOn; else noAddOns">
+  <div class="input-group floating" *ngIf="inputAddOn || prefixAddOn || suffixAddOn; else noAddOns">
     <dynamic-form-element
       *ngIf="prefixAddOn && !prefixAddOn.hidden"
       class="dynamic-form-add-on prefix"
@@ -10,6 +10,12 @@
       <ng-container *ngTemplateOutlet="inputTemplate"></ng-container>
       <label *ngIf="label" class="form-label" [for]="inputId">{{ label }}<span *ngIf="requiredMarker"> *</span></label>
     </div>
+    <dynamic-form-element
+      *ngIf="inputAddOn && !inputAddOn.hidden"
+      class="dynamic-form-add-on suffix"
+      [element]="inputAddOn"
+      [class.input-group-text]="inputAddOn.classType === 'element'"
+    ></dynamic-form-element>
     <dynamic-form-element
       *ngIf="suffixAddOn && !suffixAddOn.hidden"
       class="dynamic-form-add-on suffix"
@@ -27,15 +33,23 @@
 
 <ng-template #noLabelFloating>
   <label *ngIf="label" class="form-label" [for]="inputId">{{ label }}<span *ngIf="requiredMarker"> *</span></label>
-  <div class="input-group" *ngIf="prefixAddOn || suffixAddOn; else noAddOns">
+  <div class="input-group" *ngIf="inputAddOn || prefixAddOn || suffixAddOn; else noAddOns">
     <dynamic-form-element
       *ngIf="prefixAddOn && !prefixAddOn.hidden"
+      class="dynamic-form-add-on prefix"
       [element]="prefixAddOn"
       [class.input-group-text]="prefixAddOn.classType === 'element'"
     ></dynamic-form-element>
     <ng-container *ngTemplateOutlet="inputTemplate"></ng-container>
     <dynamic-form-element
+      *ngIf="inputAddOn && !inputAddOn.hidden"
+      class="dynamic-form-add-on suffix"
+      [element]="inputAddOn"
+      [class.input-group-text]="inputAddOn.classType === 'element'"
+    ></dynamic-form-element>
+    <dynamic-form-element
       *ngIf="suffixAddOn && !suffixAddOn.hidden"
+      class="dynamic-form-add-on suffix"
       [element]="suffixAddOn"
       [class.input-group-text]="suffixAddOn.classType === 'element'"
     ></dynamic-form-element>

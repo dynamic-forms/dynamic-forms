@@ -16,7 +16,7 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
 
   private _uploadAction: DynamicFormAction;
 
-  @ViewChild(DynamicFormFileDirective, { static: true })
+  @ViewChild(DynamicFormFileDirective)
   protected _fileInput: DynamicFormFileDirective;
 
   readonly defaultUploadActionDefinition: DynamicFormActionDefinition = {

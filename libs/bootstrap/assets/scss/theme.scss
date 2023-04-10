@@ -34,27 +34,36 @@ $dynamic-form-errors-margin-top: null !default;
     .input-group {
       >:not(:first-child) {
         .btn {
-          margin-left: -1px;
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
       }
 
-      &.floating {
-        .dynamic-form-add-on {
-          .dynamic-form-icon-wrapper {
+      >:not(:last-child) {
+        .btn {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .dynamic-form-add-on {
+        bs-dynamic-form-button {
+          display: flex;
+          height: 100%;
+        }
+
+        .dynamic-form-icon-wrapper {
+          height: 100%;
+
+          .dynamic-form-icon {
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-            .dynamic-form-icon {
-              height: 100%;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-
-              i.material-icons {
-                margin-top: auto;
-                margin-bottom: auto;
-              }
+            i.material-icons {
+              margin-top: auto;
+              margin-bottom: auto;
             }
           }
         }
