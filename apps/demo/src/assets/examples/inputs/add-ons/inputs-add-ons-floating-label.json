@@ -1,6 +1,6 @@
 {
   "template": {
-    "label": "Inputs with add-ons and floating label"
+    "label": "Inputs with add-ons"
   },
   "children": [
     {
@@ -17,18 +17,19 @@
             "Value2",
             "Value3"
           ]
-        }
-      },
-      "prefixAddOn": {
-        "type": "content",
-        "template": {
-          "content": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "content",
+        "type": "icon",
         "template": {
-          "content": "Suffix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -41,12 +42,19 @@
         "input": {
           "type": "datepicker",
           "placeholder": "Enter a date"
+        },
+        "validation": {
+          "required": true
         }
       },
-      "prefixAddOn": {
-        "type": "content",
+      "suffixAddOn": {
+        "type": "icon",
         "template": {
-          "content": "Prefix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -59,12 +67,19 @@
         "input": {
           "type": "file",
           "placeholder": "Upload a file"
+        },
+        "validation": {
+          "required": true
         }
       },
-      "prefixAddOn": {
-        "type": "content",
+      "suffixAddOn": {
+        "type": "icon",
         "template": {
-          "content": "Prefix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -77,18 +92,19 @@
         "input": {
           "type": "numberbox",
           "placeholder": "Enter a number"
-        }
-      },
-      "prefixAddOn": {
-        "type": "content",
-        "template": {
-          "content": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "content",
+        "type": "icon",
         "template": {
-          "content": "Suffix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -111,18 +127,19 @@
               "label": "Option 2"
             }
           ]
-        }
-      },
-      "prefixAddOn": {
-        "type": "content",
-        "template": {
-          "content": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "content",
+        "type": "icon",
         "template": {
-          "content": "Suffix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -135,18 +152,19 @@
         "input": {
           "type": "textarea",
           "placeholder": "Enter a text"
-        }
-      },
-      "prefixAddOn": {
-        "type": "content",
-        "template": {
-          "content": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "content",
+        "type": "icon",
         "template": {
-          "content": "Suffix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     },
@@ -159,18 +177,19 @@
         "input": {
           "type": "textbox",
           "placeholder": "Enter a text"
-        }
-      },
-      "prefixAddOn": {
-        "type": "content",
-        "template": {
-          "content": "Prefix"
+        },
+        "validation": {
+          "required": true
         }
       },
       "suffixAddOn": {
-        "type": "content",
+        "type": "icon",
         "template": {
-          "content": "Suffix"
+          "type": "button",
+          "icon": "clear",
+          "label": "Clear",
+          "action": "clear",
+          "color": "inputAction"
         }
       }
     }

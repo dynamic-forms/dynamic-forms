@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating">
+<mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating" [class.suffixes-flex]="suffixAddOn">
   <mat-label>{{ template.label }}</mat-label>
   <input
     matInput
@@ -20,6 +20,16 @@
     *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
     [element]="prefixAddOn"
     matPrefix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden"
+    [element]="suffixAddOn"
+    matTextSuffix
+  ></dynamic-form-element>
+  <dynamic-form-element
+    *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
+    [element]="suffixAddOn"
+    matSuffix
   ></dynamic-form-element>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>

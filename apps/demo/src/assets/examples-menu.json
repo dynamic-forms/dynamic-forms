@@ -52,6 +52,14 @@
               "label": "Text"
             },
             {
+              "id": "inputs-add-ons-button",
+              "label": "Button"
+            },
+            {
+              "id": "inputs-add-ons-icon",
+              "label": "Icon"
+            },
+            {
               "id": "inputs-add-ons-floating-label",
               "label": "Floating label"
             }
