@@ -1,6 +1,17 @@
 # Changelog
 
+## 16.0.0-rc.0 (2023-04-14)
+
+### Features
+
+* **core:** update to angular 16 (release candidate)
+* **bootstrap:** update to angular 16 (release candidate)
+* **material:** update to angular and angular material 16 (release candidate)
+* **markdown:** update to angular 16 (release candidate)
+
 ## 16.0.0-next.5 (2023-04-10)
+
+### Features
 
 * **core:** support of method ```clear()``` for ```DynamicFormField``` 
 * **bootstrap:** implementation of ```DynamicFormControlAddOn``` suffix for datepicker and file
