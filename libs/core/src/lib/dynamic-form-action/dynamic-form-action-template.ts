@@ -7,6 +7,7 @@ export interface DynamicFormActionTemplate extends DynamicFormElementTemplate {
   hidden?: boolean;
   disabled?: boolean;
   url?: string;
+  urlTarget?: string;
   action?: string | DynamicFormActionPureFunc;
   dialogTitle?: string;
   dialogTitleHtml?: string;

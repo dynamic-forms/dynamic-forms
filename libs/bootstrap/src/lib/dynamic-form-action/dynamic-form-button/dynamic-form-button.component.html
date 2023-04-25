@@ -1,13 +1,26 @@
-<button
-  [id]="id"
+<a
+  *ngIf="template.url; else button"
   class="dynamic-form-button btn btn-{{ template.color | dynamicFormColor : 'primary' }}"
+  [class.disabled]="template.disabled"
   [ngClass]="template.className"
-  [type]="template.type || 'button'"
-  [disabled]="template.disabled"
   [hidden]="template.hidden"
-  (click)="onClick($event)"
-  >{{ template.label }}</button
+  [href]="template.url"
+  [target]="template.urlTarget || '_blank'"
+  >{{ template.label }}</a
 >
+
+<ng-template #button>
+  <button
+    [id]="id"
+    class="dynamic-form-button btn btn-{{ template.color | dynamicFormColor : 'primary' }}"
+    [ngClass]="template.className"
+    [type]="template.type || 'button'"
+    [disabled]="template.disabled"
+    [hidden]="template.hidden"
+    (click)="onClick($event)"
+    >{{ template.label }}</button
+  >
+</ng-template>
 
 <bs-dynamic-form-dialog
   *ngIf="dialog"

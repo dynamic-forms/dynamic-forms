@@ -271,6 +271,10 @@
           "label": "Button",
           "items": [
             {
+              "id": "actions-button-url",
+              "label": "Url"
+            },
+            {
               "id": "actions-button-submit",
               "label": "Submit"
             },
@@ -308,6 +312,10 @@
           "groupId": "icon",
           "label": "Icon",
           "items": [
+            {
+              "id": "actions-icon-url",
+              "label": "Url"
+            },
             {
               "id": "actions-icon-all",
               "label": "All"

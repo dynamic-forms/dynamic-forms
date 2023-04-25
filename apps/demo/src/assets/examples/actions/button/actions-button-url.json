@@ -1,0 +1,12 @@
+{
+  "footerActions": [
+    {
+      "type": "button",
+      "template": {
+        "label": "Visit dynamic-forms",
+        "url": "https://github.com/dynamic-forms/dynamic-forms"
+      }
+    }
+  ],
+  "children": []
+}
