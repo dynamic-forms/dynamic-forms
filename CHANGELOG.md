@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.0-rc.1 (2023-04-25)
+
+* **core:** support of action link
+* **bootstrap:** implementation of button and icon link
+* **material:** implementation of button and icon link
+
 ## 16.0.0-rc.0 (2023-04-14)
 
 ### Features
