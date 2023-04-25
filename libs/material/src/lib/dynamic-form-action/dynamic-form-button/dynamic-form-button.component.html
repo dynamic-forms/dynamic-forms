@@ -1,15 +1,30 @@
-<button
-  [id]="id"
+<a
+  *ngIf="template.url; else button"
   mat-flat-button
   class="dynamic-form-button"
   [ngClass]="template.className"
   [color]="template.color | dynamicFormColor : 'primary'"
-  [type]="template.type || 'button'"
   [disabled]="template.disabled"
   [hidden]="template.hidden"
-  (click)="onClick($event)"
-  >{{ template.label }}</button
+  [href]="template.url"
+  [target]="template.urlTarget || '_blank'"
+  >{{ template.label }}</a
 >
+
+<ng-template #button>
+  <button
+    [id]="id"
+    mat-flat-button
+    class="dynamic-form-button"
+    [ngClass]="template.className"
+    [color]="template.color | dynamicFormColor : 'primary'"
+    [type]="template.type || 'button'"
+    [disabled]="template.disabled"
+    [hidden]="template.hidden"
+    (click)="onClick($event)"
+    >{{ template.label }}</button
+  >
+</ng-template>
 
 <mat-dynamic-form-dialog
   *ngIf="dialog"

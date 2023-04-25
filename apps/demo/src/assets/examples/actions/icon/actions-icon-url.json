@@ -1,0 +1,13 @@
+{
+  "footerActions": [
+    {
+      "type": "icon",
+      "template": {
+        "label": "Visit dynamic-forms",
+        "icon": "dynamic_form",
+        "url": "https://github.com/dynamic-forms/dynamic-forms"
+      }
+    }
+  ],
+  "children": []
+}

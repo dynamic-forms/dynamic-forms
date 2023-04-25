@@ -1,18 +1,35 @@
 <div class="dynamic-form-icon-wrapper" [ngClass]="template.classNameWrapper">
-  <button
-    [id]="id"
+  <a
+    *ngIf="template.url; else button"
     mat-icon-button
     class="dynamic-form-icon"
     [ngClass]="template.className"
     [color]="template.color | dynamicFormColor : 'primary'"
-    [type]="template.type || 'button'"
     [disabled]="template.disabled"
     [hidden]="template.hidden"
     [matTooltip]="template.label"
-    (click)="onClick($event)"
+    [href]="template.url"
+    [target]="template.urlTarget || '_blank'"
   >
-    <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon>
-  </button>
+    <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon></a
+  >
+
+  <ng-template #button>
+    <button
+      [id]="id"
+      mat-icon-button
+      class="dynamic-form-icon"
+      [ngClass]="template.className"
+      [color]="template.color | dynamicFormColor : 'primary'"
+      [type]="template.type || 'button'"
+      [disabled]="template.disabled"
+      [hidden]="template.hidden"
+      [matTooltip]="template.label"
+      (click)="onClick($event)"
+    >
+      <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon>
+    </button>
+  </ng-template>
 </div>
 
 <mat-dynamic-form-dialog
