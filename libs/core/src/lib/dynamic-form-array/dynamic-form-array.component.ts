@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayBase } from './dynamic-form-array-base';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-array',
   templateUrl: './dynamic-form-array.component.html',
+  imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class DynamicFormArrayComponent<
   Value = any, Model extends Value = Value,

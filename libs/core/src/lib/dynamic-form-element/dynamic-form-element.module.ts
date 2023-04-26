@@ -1,19 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormElementComponent } from './dynamic-form-element.component';
-import { DynamicFormElementsComponent } from './dynamic-form-elements.component';
+import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import { dynamicFormContainerType } from './dynamic-form-container/dynamic-form-container-type';
+import { dynamicFormContentType } from './dynamic-form-content/dynamic-form-content-type';
+import { dynamicFormTextType } from './dynamic-form-text/dynamic-form-text-type';
+
+export const dynamicFormElementTypes = [
+  dynamicFormContainerType,
+  dynamicFormContentType,
+  dynamicFormTextType,
+];
 
 @NgModule({
   imports: [
-    CommonModule,
-  ],
-  declarations: [
-    DynamicFormElementComponent,
-    DynamicFormElementsComponent,
+    DynamicFormConfigModule.withElements(dynamicFormElementTypes),
   ],
   exports: [
-    DynamicFormElementComponent,
-    DynamicFormElementsComponent,
+    DynamicFormConfigModule,
   ],
 })
 export class DynamicFormElementModule {}

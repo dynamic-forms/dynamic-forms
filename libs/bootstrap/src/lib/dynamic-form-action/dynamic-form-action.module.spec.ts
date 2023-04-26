@@ -1,12 +1,12 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormButtonType, BsDynamicFormButtonModule } from './dynamic-form-button.module';
+import { BsDynamicFormActionModule, bsDynamicFormActionTypes } from './dynamic-form-action.module';
 
-describe('BsDynamicFormButtonModule', () => {
+describe('BsDynamicFormActionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormButtonModule,
+        BsDynamicFormActionModule,
       ],
     });
   });
@@ -14,7 +14,7 @@ describe('BsDynamicFormButtonModule', () => {
   it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
     inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
       expect(config.length).toBe(1);
-      expect(config[0]).toEqual(bsDynamicFormButtonType);
+      expect(config[0]).toBe(bsDynamicFormActionTypes);
     }),
   );
 });

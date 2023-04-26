@@ -6,7 +6,6 @@ import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, Dyn
   DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
-import { MatDynamicFormDialogModule } from './dynamic-form-dialog.module';
 
 @Component({
   selector: 'mat-dynamic-form-action-test',
@@ -56,7 +55,7 @@ describe('MatDynamicFormDialogComponent', () => {
       imports: [
         NoopAnimationsModule,
         DynamicFormActionComponentTestModule,
-        MatDynamicFormDialogModule,
+        MatDynamicFormDialogComponent,
       ],
     });
 

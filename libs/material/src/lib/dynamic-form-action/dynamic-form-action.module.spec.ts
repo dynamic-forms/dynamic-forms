@@ -1,12 +1,12 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormIconType, BsDynamicFormIconModule } from './dynamic-form-icon.module';
+import { MatDynamicFormActionModule, matDynamicFormActionTypes } from './dynamic-form-action.module';
 
-describe('BsDynamicFormIconModule', () => {
+describe('MatDynamicFormActionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BsDynamicFormIconModule,
+        MatDynamicFormActionModule,
       ],
     });
   });
@@ -14,7 +14,7 @@ describe('BsDynamicFormIconModule', () => {
   it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
     inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
       expect(config.length).toBe(1);
-      expect(config[0]).toEqual(bsDynamicFormIconType);
+      expect(config[0]).toBe(matDynamicFormActionTypes);
     }),
   );
 });

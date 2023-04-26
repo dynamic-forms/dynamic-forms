@@ -18,12 +18,8 @@ export const bsDynamicFormToggleType: DynamicFormInputType = {
     ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormToggleType),
   ],
-  declarations: [
-    BsDynamicFormToggleComponent,
-  ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormToggleComponent,
   ],
 })
 export class BsDynamicFormToggleModule {}

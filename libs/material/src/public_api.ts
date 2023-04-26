@@ -4,10 +4,11 @@
 
 export * from './lib/dynamic-forms.module';
 export * from './lib/dynamic-form-action/dynamic-form-action.module';
+export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button-type';
 export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.component';
-export * from './lib/dynamic-form-action/dynamic-form-button/dynamic-form-button.module';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-type';
+export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.component';
 export * from './lib/dynamic-form-dialog/dynamic-form-dialog.component';
-export * from './lib/dynamic-form-dialog/dynamic-form-dialog.module';
 export * from './lib/dynamic-form-element/dynamic-form-element.module';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items.module';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion.component';

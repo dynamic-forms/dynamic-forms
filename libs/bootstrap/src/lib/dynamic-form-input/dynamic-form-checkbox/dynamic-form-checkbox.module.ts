@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule, DynamicFormInputType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
@@ -14,16 +12,10 @@ export const bsDynamicFormCheckboxType: DynamicFormInputType = {
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
     DynamicFormConfigModule.withInput(bsDynamicFormCheckboxType),
-  ],
-  declarations: [
-    BsDynamicFormCheckboxComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormCheckboxComponent,
   ],
 })
 export class BsDynamicFormCheckboxModule {}

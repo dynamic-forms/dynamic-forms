@@ -1,11 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DynamicFormCombobox, DynamicFormInputBase, DynamicFormValidationService } from '@dynamic-forms/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DynamicFormCombobox, DynamicFormElementComponent, DynamicFormInputBase, DynamicFormValidationService } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
+  standalone: true,
   selector: 'mat-dynamic-form-combobox',
   templateUrl: './dynamic-form-combobox.component.html',
+  imports: [CommonModule, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
 })
 export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> implements OnInit {
   filteredOptions: Observable<string[]>;

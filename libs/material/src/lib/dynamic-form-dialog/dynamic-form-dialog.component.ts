@@ -1,12 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output,
   SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME, DynamicFormElementsComponent } from '@dynamic-forms/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
+  standalone: true,
   selector: 'mat-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
+  imports: [CommonModule, MatDialogModule, DynamicFormElementsComponent],
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
   private _dialog: { config: MatDialogConfig; reference: MatDialogRef<any>; subscription: Subscription };

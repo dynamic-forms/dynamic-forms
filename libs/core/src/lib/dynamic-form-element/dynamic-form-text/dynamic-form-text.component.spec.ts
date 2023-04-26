@@ -7,7 +7,6 @@ import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormTextDefinition } from './dynamic-form-text-definition';
 import { DynamicFormTextTemplate } from './dynamic-form-text-template';
 import { DynamicFormTextComponent } from './dynamic-form-text.component';
-import { DynamicFormTextModule } from './dynamic-form-text.module';
 
 describe('DynamicFormTextComponent', () => {
   let builder: DynamicFormBuilder;
@@ -17,7 +16,7 @@ describe('DynamicFormTextComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ DynamicFormTextModule ],
+      imports: [DynamicFormTextComponent],
     });
 
     builder = {} as any;

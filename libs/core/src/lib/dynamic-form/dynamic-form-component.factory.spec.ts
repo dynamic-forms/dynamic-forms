@@ -96,9 +96,11 @@ class DynamicFormFieldWrapperWrapperTestComponent extends DynamicFormFieldWrappe
 }
 
 @NgModule({
+  imports: [
+    DynamicFormElementComponent,
+  ],
   declarations: [
     DynamicFormTestComponent,
-    DynamicFormElementComponent,
     DynamicFormElementTestComponent,
     DynamicFormFieldTestComponent,
     DynamicFormActionTestComponent,

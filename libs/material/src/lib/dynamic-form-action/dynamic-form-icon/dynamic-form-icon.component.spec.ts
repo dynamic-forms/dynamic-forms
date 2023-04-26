@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
-  DynamicFormField, DynamicFormIconDefinition, DynamicFormIconTemplate,
+  DynamicFormColorService, DynamicFormField, DynamicFormIconDefinition, DynamicFormIconService, DynamicFormIconTemplate,
   DynamicFormLibraryService } from '@dynamic-forms/core';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
-import { MatDynamicFormIconModule } from './dynamic-form-icon.module';
 
 describe('MatDynamicFormIconComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormIconComponent>;
@@ -14,15 +13,15 @@ describe('MatDynamicFormIconComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormIconModule,
-      ],
+      imports: [MatDynamicFormIconComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormActionService,
+        DynamicFormColorService,
+        DynamicFormIconService,
       ],
     });
 

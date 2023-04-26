@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DynamicFormColorService } from './dynamic-form-color.service';
 
-@Pipe({ name: 'dynamicFormColor' })
+@Pipe({
+  standalone: true,
+  name: 'dynamicFormColor',
+})
 export class DynamicFormColorPipe implements PipeTransform {
   constructor(private colorService: DynamicFormColorService) {}
 

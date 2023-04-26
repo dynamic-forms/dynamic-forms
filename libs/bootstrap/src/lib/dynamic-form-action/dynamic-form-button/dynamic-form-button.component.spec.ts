@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
-  DynamicFormButtonDefinition, DynamicFormButtonTemplate, DynamicFormField,
+  DynamicFormButtonDefinition, DynamicFormButtonTemplate, DynamicFormColorService, DynamicFormField,
   DynamicFormLibraryService } from '@dynamic-forms/core';
 import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
-import { BsDynamicFormButtonModule } from './dynamic-form-button.module';
 
 describe('BsDynamicFormButtonComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormButtonComponent>;
@@ -14,15 +13,14 @@ describe('BsDynamicFormButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormButtonModule,
-      ],
+      imports: [BsDynamicFormButtonComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' }),
         },
         DynamicFormActionService,
+        DynamicFormColorService,
       ],
     });
 
