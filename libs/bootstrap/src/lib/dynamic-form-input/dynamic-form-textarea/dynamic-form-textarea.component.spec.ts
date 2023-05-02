@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormTextareaControl, DynamicFormTextareaDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
-import { BsDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
 describe('BsDynamicFormTextareaComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormTextareaComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormTextareaComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormTextareaModule,
-      ],
+      imports: [BsDynamicFormTextareaComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

@@ -6,7 +6,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormValidationService, DynamicFormAction, DynamicFormComponentFactory } from '@dynamic-forms/core';
 import { createDynamicFormBuilderSpy } from '../../../../../core/src/lib/testing';
 import { MatDynamicFormFileComponent } from './dynamic-form-file.component';
-import { MatDynamicFormFileModule } from './dynamic-form-file.module';
 
 @Component({ template: '' })
 export class TestDynamicFormActionComponent {}
@@ -27,8 +26,8 @@ describe('MatDynamicFormFileComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormFileModule,
         NoopAnimationsModule,
+        MatDynamicFormFileComponent,
       ],
       providers: [
         {

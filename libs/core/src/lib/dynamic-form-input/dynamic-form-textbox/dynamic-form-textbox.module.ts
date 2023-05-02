@@ -17,13 +17,7 @@ export const dynamicFormTextboxToggleAsTextTypeHandler: DynamicFormActionHandler
 };
 
 @NgModule({
-  imports: [
-    DynamicFormActionModule.withHandlers([
-      dynamicFormTextboxToggleAsTextTypeHandler,
-    ]),
-  ],
-  exports: [
-    DynamicFormActionModule,
-  ],
+  imports: [DynamicFormActionModule.withHandler(dynamicFormTextboxToggleAsTextTypeHandler)],
+  exports: [DynamicFormActionModule],
 })
 export class DynamicFormTextboxModule {}

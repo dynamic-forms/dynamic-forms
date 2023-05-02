@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormRadioControl, DynamicFormRadioDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormRadioComponent } from './dynamic-form-radio.component';
-import { BsDynamicFormRadioModule } from './dynamic-form-radio.module';
 
 describe('BsDynamicFormRadioComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormRadioComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormRadioComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormRadioModule,
-      ],
+      imports: [BsDynamicFormRadioComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

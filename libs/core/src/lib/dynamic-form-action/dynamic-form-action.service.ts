@@ -15,6 +15,7 @@ export class DynamicFormActionService {
     @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
     private handlerConfig: DynamicFormActionHandlerConfig,
   ) {
+    console.log(handlerConfig);
     this.handlers = this.libraryService.filterTypes(this.handlerConfig);
   }
 

@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormCheckboxControl, DynamicFor
   DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
-import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox.module';
 
 describe('MatDynamicFormCheckboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormCheckboxComponent>;
@@ -16,9 +15,7 @@ describe('MatDynamicFormCheckboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormCheckboxModule,
-      ],
+      imports: [MatDynamicFormCheckboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

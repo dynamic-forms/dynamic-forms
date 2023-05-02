@@ -5,7 +5,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormTextboxControl, DynamicFormTextboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
-import { MatDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
 describe('MatDynamicFormTextboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormTextboxComponent>;
@@ -18,8 +17,8 @@ describe('MatDynamicFormTextboxComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormTextboxModule,
         NoopAnimationsModule,
+        MatDynamicFormTextboxComponent,
       ],
       providers: [
         {

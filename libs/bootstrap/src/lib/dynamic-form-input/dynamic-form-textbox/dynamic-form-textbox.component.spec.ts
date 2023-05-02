@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormTextboxControl, DynamicFormTextboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
-import { BsDynamicFormTextboxModule } from './dynamic-form-textbox.module';
 
 describe('DynamicFormTextboxComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormTextboxComponent>;
@@ -16,9 +15,7 @@ describe('DynamicFormTextboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormTextboxModule,
-      ],
+      imports: [BsDynamicFormTextboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

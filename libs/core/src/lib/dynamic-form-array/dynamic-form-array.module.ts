@@ -115,6 +115,7 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
   exports: [
     DynamicFormConfigModule,
     DynamicFormActionModule,
+    DynamicFormValidationModule,
   ],
 })
 export class DynamicFormArrayModule {}

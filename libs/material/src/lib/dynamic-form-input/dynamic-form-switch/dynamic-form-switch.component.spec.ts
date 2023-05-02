@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSwitchControl, DynamicFormSwitchDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
-import { MatDynamicFormSwitchModule } from './dynamic-form-switch.module';
 
 describe('MatDynamicFormSwitchComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormSwitchComponent>;
@@ -16,9 +15,7 @@ describe('MatDynamicFormSwitchComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormSwitchModule,
-      ],
+      imports: [MatDynamicFormSwitchComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

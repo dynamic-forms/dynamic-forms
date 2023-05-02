@@ -3,8 +3,7 @@ import { DynamicFormValidationModule } from '../../dynamic-form-validation/dynam
 import { dynamicFormFileMaxSizeValidatorType } from './dynamic-form-file-validators';
 
 @NgModule({
-  imports: [
-    DynamicFormValidationModule.withControlValidator(dynamicFormFileMaxSizeValidatorType),
-  ],
+  imports: [DynamicFormValidationModule.withControlValidator(dynamicFormFileMaxSizeValidatorType)],
+  exports: [DynamicFormValidationModule],
 })
 export class DynamicFormFileModule {}

@@ -5,7 +5,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormTextareaControl, DynamicFormTextareaDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
-import { MatDynamicFormTextareaModule } from './dynamic-form-textarea.module';
 
 describe('MatDynamicFormTextareaComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormTextareaComponent>;
@@ -18,8 +17,8 @@ describe('MatDynamicFormTextareaComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormTextareaModule,
         NoopAnimationsModule,
+        MatDynamicFormTextareaComponent,
       ],
       providers: [
         {
