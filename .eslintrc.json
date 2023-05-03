@@ -44,8 +44,12 @@
         "@typescript-eslint/naming-convention": [
           "error",
           {
-            "selector": ["enumMember"],
-            "format": ["PascalCase"]
+            "selector": [
+              "enumMember"
+            ],
+            "format": [
+              "PascalCase"
+            ]
           }
         ],
         "@typescript-eslint/no-empty-interface": [
