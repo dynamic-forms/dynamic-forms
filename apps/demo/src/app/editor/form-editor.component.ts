@@ -26,7 +26,7 @@ export class FormEditorComponent {
   @Input()
   set data(data: FormEditorData) {
     this._data = data;
-    this._value = JSON.stringify(data.definition, null, '\t');;
+    this._value = JSON.stringify(data.definition, null, '\t');
   }
   get data(): FormEditorData {
     return this._data;
