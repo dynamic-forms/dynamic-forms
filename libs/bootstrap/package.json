@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "16.0.0-rc.1",
+  "version": "16.0.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "keywords": [
@@ -21,17 +21,16 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^16.0.0-rc.0",
-    "@angular/core": "^16.0.0-rc.0",
-    "@angular/forms": "^16.0.0-rc.0",
-    "@dynamic-forms/core": "16.0.0-rc.1",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@angular/forms": "^16.0.0",
+    "@dynamic-forms/core": "16.0.0",
     "bootstrap": "^5.2.3",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "sideEffects": false
 }

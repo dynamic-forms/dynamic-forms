@@ -20,7 +20,6 @@ export const dynamicFormFileMaxFileSizeValidatorFactory = (maxFileSize?: number)
         return null;
       }
     : undefined;
-;
 
 export const dynamicFormFileMaxSizeValidatorType: DynamicFormControlValidatorType = {
   type: 'maxFileSize',
