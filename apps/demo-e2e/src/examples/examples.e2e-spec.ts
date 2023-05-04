@@ -1,7 +1,7 @@
 import { ExamplesMenu, ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
+import examplesConfig from '../../../demo/src/assets/examples-menu.json';
 import { Example, ExamplesPage } from './examples.po';
 
-const examplesConfig = require('../../../demo/src/assets/examples-menu.json');
 
 export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Example[] =>
   items.reduce((result, item) => {
@@ -64,7 +64,7 @@ describe('dynamic-forms demo examples', () => {
 
             const formActionTestResult = await page.getFormActionTestResult();
             expect(formActionTestResult.actionCount).toBe(formTestResult.actionCount);
-            expect(formActionTestResult.buttonCount).toBe(formTestResult.actionCount);
+            expect(formActionTestResult.buttonCount + formActionTestResult.anchorCount).toBe(formTestResult.actionCount);
 
             const formModalTestResult = await page.getFormModalTestResults();
             if (formModalTestResult.modalOpenButtonPresent) {

@@ -1,7 +1,7 @@
+import PATH from 'path';
 import { protractor, By, ElementArrayFinder, ElementFinder } from 'protractor';
 
 const KEY = protractor.Key;
-const PATH = require('path');
 
 export class Control {
   private readonly _types: string[] = [
@@ -23,6 +23,10 @@ export class Control {
   }
 
   async isEditable(): Promise<boolean> {
+    const hidden = await this.element.getAttribute('hidden');
+    if (hidden === 'true') {
+      return false;
+    }
     const className = await this.element.getAttribute('class');
     return !(className.includes('hidden') || className.includes('readonly'));
   }
@@ -92,34 +96,43 @@ export class Input {
   }
 
   async getInputValue(): Promise<string | boolean> {
-    switch (this.controlType) {
-      case 'checkbox':
-        return this.inputElement.getAttribute('checked');
-      case 'file':
-        const element = this.control.findElement('input:not([type="file"])');
-        const files = await element.getAttribute('value');
-        return files ? files.trim() : files;
-      case 'radio':
-        const checkedRadio = this.control.findElement('input[type="radio"]:checked');
-        return await checkedRadio.isPresent() ? true : false;
-      case 'select':
-        if (this.control.theme === 'material') {
-          const selectedValue = this.control.findElement('span.mat-mdc-select-value-text');
-          return await selectedValue.isPresent() ? selectedValue.getText() : null;
-        } else {
-          const selectedValue = await this.inputElement.getAttribute('value');
-          return selectedValue !== 'null' ? selectedValue : null;
-        }
-      case 'switch':
-        const switchToggle = this.control.findElement('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
-        return await switchToggle.isPresent() ? true : false;
-      case 'toggle':
-        const checkedToggle = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
-        return await checkedToggle.isPresent() ? true : false;
-      default:
-        const value = await this.inputElement.getAttribute('value');
-        return value ? value.trim() : value;
+    if (this.controlType === 'checkbox') {
+      return this.inputElement.getAttribute('checked');
     }
+
+    if (this.controlType === 'file') {
+      const element = this.control.findElement('input:not([type="file"])');
+      const files = await element.getAttribute('value');
+      return files ? files.trim() : files;
+    }
+
+    if (this.controlType === 'radio') {
+      const element = this.control.findElement('input[type="radio"]:checked');
+      return await element.isPresent() ? true : false;
+    }
+
+    if (this.controlType === 'select') {
+      if (this.control.theme === 'material') {
+        const element = this.control.findElement('span.mat-mdc-select-value-text');
+        return await element.isPresent() ? element.getText() : null;
+      }
+
+      const element = await this.inputElement.getAttribute('value');
+      return element !== 'null' ? element : null;
+    }
+
+    if (this.controlType === 'switch') {
+      const element = this.control.findElement('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
+      return await element.isPresent() ? true : false;
+    }
+
+    if (this.controlType === 'toggle') {
+      const element = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
+      return await element.isPresent() ? true : false;
+    }
+
+    const element = await this.inputElement.getAttribute('value');
+    return element ? element.trim() : element;
   }
 
   async checkInputValue(): Promise<boolean> {
@@ -128,40 +141,45 @@ export class Input {
   }
 
   async editInputValue(): Promise<void> {
-    switch (this.controlType) {
-      case 'checkbox':
-        if (await this.isInputForFalse() && !await this.getInputValue()) {
-          await this.inputElement.sendKeys(KEY.SPACE);
-        }
-        return this.inputElement.sendKeys(KEY.SPACE);
-      case 'file':
-        const file = PATH.resolve(__dirname, 'file.txt');
-        console.log(__dirname);
-        console.log(file);
-        return this.inputElement.sendKeys(file);
-      case 'radio':
-        return this.inputElement.sendKeys(KEY.SPACE);
-      case 'select':
-        const keys = this.control.theme !== 'material'
-          ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ]
-          : [ KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ];
-        await this.inputElement.click();
-        return this.inputElement.sendKeys(...keys);
-      case 'switch':
-        if (this.control.theme === 'material') {
-          return this.inputElement.click();
-        }
-        return this.inputElement.sendKeys(KEY.SPACE);
-      case 'toggle':
-        if (this.control.theme === 'material') {
-          return this.inputElement.click();
-        }
-        return this.inputElement.sendKeys(KEY.SPACE);
-      default:
-        const inputType = await this.getInputType();
-        const value = await this.getEditInputValue(inputType);
-        return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
+    if (this.controlType === 'checkbox') {
+      if (await this.isInputForFalse() && !await this.getInputValue()) {
+        await this.inputElement.sendKeys(KEY.SPACE);
+      }
+      return this.inputElement.sendKeys(KEY.SPACE);
     }
+
+    if (this.controlType === 'file') {
+      const file = PATH.resolve(__dirname, 'file.txt');
+      return this.inputElement.sendKeys(file);
+    }
+
+    if (this.controlType === 'radio') {
+      return this.inputElement.sendKeys(KEY.SPACE);
+    }
+
+    if (this.controlType === 'select') {
+      const keys = this.control.theme !== 'material'
+        ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ]
+        : [ KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ];
+      await this.inputElement.click();
+      return this.inputElement.sendKeys(...keys);
+    }
+
+    if (this.controlType === 'switch') {
+      return this.control.theme !== 'material'
+        ? this.inputElement.sendKeys(KEY.SPACE)
+        : this.inputElement.click();
+    }
+
+    if (this.controlType === 'toggle') {
+      return  this.control.theme !== 'material'
+        ? this.inputElement.sendKeys(KEY.SPACE)
+        : this.inputElement.click();
+    }
+
+    const inputType = await this.getInputType();
+    const value = await this.getEditInputValue(inputType);
+    return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
   }
 
   private getEditInputValue(type?: string): string | number {
