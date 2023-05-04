@@ -1,8 +1,7 @@
 
 import { browser } from 'protractor';
+import remote from 'selenium-webdriver/remote';
 import { AppPage } from './app.po';
-
-const remote = require('selenium-webdriver/remote');
 
 describe('dynamic-forms demo app', () => {
   let page: AppPage;
