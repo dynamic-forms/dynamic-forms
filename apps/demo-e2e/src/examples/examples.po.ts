@@ -30,6 +30,7 @@ export interface FormModalTestResult {
 export interface FormActionTestResult {
   actionCount: number;
   buttonCount: number;
+  anchorCount: number;
 }
 
 export interface FormItemsTestResult {
@@ -77,9 +78,11 @@ export class ExamplesPage extends Page {
     const actionCount = await actions.count();
     const buttons = actions.all(By.css('button'));
     const buttonCount = await buttons.count();
+    const anchors = actions.all(By.css('a'));
+    const anchorCount = await anchors.count();
 
     if (actionCount === 0) {
-      return { actionCount, buttonCount };
+      return { actionCount, buttonCount, anchorCount };
     }
 
     const validateButton = actions.all(By.css('button[id="action-validate"]')).first();
@@ -102,7 +105,7 @@ export class ExamplesPage extends Page {
       await validateButton.click();
     }
 
-    return { actionCount, buttonCount };
+    return { actionCount, buttonCount, anchorCount };
   }
 
   async getFormModalTestResults(): Promise<FormModalTestResult> {
