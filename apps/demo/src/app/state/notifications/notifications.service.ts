@@ -18,6 +18,13 @@ export class NotificationsService {
     return { type: NotificationType.Error, title, message, duration: 3000 };
   }
 
+  getMessages(infoTitle: string, successTitle: string, errorTitle: string): NotificationMessages {
+    const info = this.getInfoMessage(infoTitle);
+    const success = this.getInfoMessage(successTitle);
+    const error = this.getErrorMessage(errorTitle);
+    return { info, success, error };
+  }
+
   pipe<T>(action: Observable<T>, messages: NotificationMessages): Observable<T> {
     const infoItem = this.pushNotification(messages.info);
     return action.pipe(
