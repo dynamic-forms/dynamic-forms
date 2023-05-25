@@ -1,9 +1,11 @@
-import { Type } from '@angular/core';
-import { Routes } from '@angular/router';
-import { FormExampleDefinitionResolver } from '../examples/form-example-definition.resolver';
-import { FormExampleResolver } from '../examples/form-example.resolver';
+import { Type, inject } from '@angular/core';
+import { ResolveFn, Routes } from '@angular/router';
+import { DynamicFormDefinition } from '@dynamic-forms/core';
+import { resolveFormExample, resolveFormExampleDefinition, resolveFormExampleModel } from '../examples/form-example-routes';
+import { FormExampleLoader } from '../examples/form-example.loader';
 import { FormEditorBase } from './form-editor-base';
-import { FormEditorDefinitionResolver } from './form-editor-definition.resolver';
+
+export const resolveFormEditorDefinitionDefault: ResolveFn<DynamicFormDefinition> = () => inject(FormExampleLoader).loadDefinition(`./assets/editor/default.json`);
 
 export const getFormEditorRoutes = <TEditorComponent extends FormEditorBase>(
   editorComponent: Type<TEditorComponent>,
@@ -12,20 +14,28 @@ export const getFormEditorRoutes = <TEditorComponent extends FormEditorBase>(
     path: '',
     component: editorComponent,
     resolve: {
-      definition: FormEditorDefinitionResolver,
+      definition: resolveFormEditorDefinitionDefault,
     },
   },
   {
     path: ':definitionId',
     resolve: {
-      example: FormExampleResolver,
+      example: resolveFormExample,
     },
     children: [
       {
         path: '',
         component: editorComponent,
         resolve: {
-          definition: FormExampleDefinitionResolver,
+          definition: resolveFormExampleDefinition,
+        },
+      },
+      {
+        path: 'models/:modelId',
+        component: editorComponent,
+        resolve: {
+          definition: resolveFormExampleDefinition,
+          model: resolveFormExampleModel,
         },
       },
     ],
