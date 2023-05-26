@@ -10,10 +10,8 @@ import { DynamicFormMarkdownOptions } from './dynamic-form-markdown-options';
 export class DynamicFormMarkdownService {
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
-    marked.setOptions({
-      renderer: this.createRenderer(),
-      headerIds: false,
-    });
+    marked.use({ mangle: false, headerIds: false });
+    marked.setOptions({ renderer: this.createRenderer() });
   }
 
   compile(markdown: string, options?: DynamicFormMarkdownOptions): string {

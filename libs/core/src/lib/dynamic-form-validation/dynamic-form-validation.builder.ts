@@ -43,7 +43,6 @@ export class DynamicFormValidationBuilder {
     @Optional() @Inject(DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG)
     private dictionaryValidatorTypeConfig: DynamicFormDictionaryValidatorTypeConfig,
   ) {
-    console.log(this.controlValidatorTypeConfig);
     this.controlValidatorTypes = this.libraryService.filterTypes(this.controlValidatorTypeConfig);
     this.groupValidatorTypes = this.libraryService.filterTypes(this.groupValidatorTypeConfig);
     this.arrayValidatorTypes = this.libraryService.filterTypes(this.arrayValidatorTypeConfig);
