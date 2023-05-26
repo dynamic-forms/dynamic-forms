@@ -7,13 +7,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { dynamicFormLibrary, DynamicFormLoggerType, DynamicFormLog, DYNAMIC_FORM_LOGGER_TYPE_CONFIG } from '@dynamic-forms/core';
-import { FormDefinitionLoader } from '../examples/form-definition.loader';
-import { FormExampleDefinitionResolver } from '../examples/form-example-definition.resolver';
-import { FormExampleResolver } from '../examples/form-example.resolver';
+import { FormExampleLoader } from '../examples/form-example.loader';
 import { MonacoEditorModule } from '../monaco/monaco-editor.module';
 import { FormEditorLogger } from './form-editor-logger';
 import { FormEditorComponent } from './form-editor.component';
-import { FormEditorDefinitionResolver } from './form-editor-definition.resolver';
 import { FormEditorLogsComponent } from './form-editor-logs.component';
 import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
 import { FormEditorLogDataPipe } from './form-editor-log-data.pipe';
@@ -48,10 +45,7 @@ export const formEditorLoggerTypeFactory: (logger: FormEditorLogger) => DynamicF
     FormEditorComponent,
   ],
   providers: [
-    FormDefinitionLoader,
-    FormExampleResolver,
-    FormExampleDefinitionResolver,
-    FormEditorDefinitionResolver,
+    FormExampleLoader,
     FormEditorLogger,
     {
       provide: DYNAMIC_FORM_LOGGER_TYPE_CONFIG,
