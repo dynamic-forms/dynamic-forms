@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Repository } from '../../../state/config/config.model';
 
-@Pipe({ name: 'appCodeUrl' })
+@Pipe({ standalone: true, name: 'appCodeUrl' })
 export class CodeUrlPipe implements PipeTransform {
   transform(repo: Repository, library?: string): string {
     const branchPath = this.getBranchPath(repo);

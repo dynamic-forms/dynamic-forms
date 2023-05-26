@@ -76,11 +76,11 @@ describe('MatDynamicFormIconComponent', () => {
     component.template.className = 'className1 className2';
     fixture.detectChanges();
 
-    expect(formButtonElement.className).toContain('className1 className2');;
+    expect(formButtonElement.className).toContain('className1 className2');
 
     component.template.className = null;
     fixture.detectChanges();
 
-    expect(formButtonElement.className).not.toContain('className1 className2');;
+    expect(formButtonElement.className).not.toContain('className1 className2');
   });
 });

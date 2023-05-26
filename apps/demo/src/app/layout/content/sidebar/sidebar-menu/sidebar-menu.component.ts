@@ -1,6 +1,10 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { Store } from '@ngxs/store';
 import { Repository } from 'apps/demo/src/app/state/config/config.model';
 import { ConfigState } from 'apps/demo/src/app/state/config/config.state';
@@ -12,9 +16,11 @@ import { CodeUrlPipe } from '../../../header/pipes/code-url.pipe';
 import { SidebarMenuItem } from './sidebar-menu.model';
 
 @Component({
+  standalone: true,
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatTreeModule],
   providers: [CodeUrlPipe],
 })
 export class SidebarMenuComponent {

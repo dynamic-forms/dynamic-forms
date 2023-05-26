@@ -1,6 +1,17 @@
 # Changelog
 
+## 16.0.0 (2023-05-05)
+
+### Features
+
+* **core:** update to angular 16
+* **bootstrap:** update to angular 16
+* **material:** update to angular and angular material 16
+* **markdown:** update to angular 16
+
 ## 16.0.0-rc.1 (2023-04-25)
+
+### Features
 
 * **core:** support of action link
 * **bootstrap:** implementation of button and icon link

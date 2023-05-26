@@ -2,19 +2,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MarkdownModule } from '../markdown/markdown.module';
-import { FormDefinitionLoader } from './form-definition.loader';
-import { FormExampleDefinitionResolver } from './form-example-definition.resolver';
+import { MarkdownComponent } from '../markdown/markdown.component';
+import { FormExampleLoader } from './form-example.loader';
 import { FormExampleComponent } from './form-example.component';
-import { FormExampleResolver } from './form-example.resolver';
-import { FormModelResolver } from './form-model.resolver';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MatTabsModule,
-    MarkdownModule,
+    MarkdownComponent,
   ],
   declarations: [
     FormExampleComponent,
@@ -26,10 +23,7 @@ import { FormModelResolver } from './form-model.resolver';
     FormExampleComponent,
   ],
   providers: [
-    FormDefinitionLoader,
-    FormExampleResolver,
-    FormExampleDefinitionResolver,
-    FormModelResolver,
+    FormExampleLoader,
   ],
 })
 export class FormExampleModule {}

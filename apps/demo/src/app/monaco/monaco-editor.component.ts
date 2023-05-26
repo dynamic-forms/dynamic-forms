@@ -91,7 +91,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
       value: this.value,
       language: this.language,
       automaticLayout: true,
-	    scrollBeyondLastLine: false,
+      scrollBeyondLastLine: false,
     };
   }
 

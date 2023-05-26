@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
   },
   {
     path: 'docs',
@@ -21,16 +24,6 @@ const appRoutes: Routes = [
   },
   {
     path: 'license',
-    loadChildren: () => import('./license/license.module').then(m => m.LicenseModule),
+    loadComponent: () => import('./license/license.component').then(m => m.LicenseComponent),
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class AppRoutingModule {}
