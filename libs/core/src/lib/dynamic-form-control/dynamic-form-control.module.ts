@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormEvaluationModule } from '../dynamic-form-evaluation/dynamic-form-evaluation.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
@@ -21,19 +19,14 @@ export const dynamicFormControlType: DynamicFormFieldType = {
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormControlType),
     DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes),
     DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes),
   ],
-  declarations: [
-    DynamicFormControlComponent,
-  ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormControlComponent,
+    DynamicFormValidationModule,
   ],
 })
 export class DynamicFormControlModule {}

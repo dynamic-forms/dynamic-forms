@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
@@ -8,8 +9,10 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-control',
   templateUrl: './dynamic-form-control.component.html',
+  imports: [CommonModule],
 })
 export class DynamicFormControlComponent<
   Value = any,

@@ -6,7 +6,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
-import { MatDynamicFormSelectModule } from './dynamic-form-select.module';
 
 describe('MatDynamicFormSelectComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormSelectComponent>;
@@ -19,8 +18,8 @@ describe('MatDynamicFormSelectComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormSelectModule,
         NoopAnimationsModule,
+        MatDynamicFormSelectComponent,
       ],
       providers: [
         {

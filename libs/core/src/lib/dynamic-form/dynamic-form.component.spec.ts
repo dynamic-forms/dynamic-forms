@@ -14,7 +14,6 @@ import { DynamicFormFileUpload } from '../dynamic-form-input/dynamic-form-file/d
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form.component';
-import { DynamicFormModule } from './dynamic-form.module';
 
 describe('DynamicFormComponent', () => {
   let fixture: ComponentFixture<DynamicFormComponent>;
@@ -25,7 +24,7 @@ describe('DynamicFormComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DynamicFormModule,
+        DynamicFormComponent,
       ],
       providers: [
         {

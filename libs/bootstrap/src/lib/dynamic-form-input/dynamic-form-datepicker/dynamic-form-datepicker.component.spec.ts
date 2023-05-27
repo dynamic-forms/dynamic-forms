@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormDatepickerDefinition, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
-import { BsDynamicFormDatepickerModule } from './dynamic-form-datepicker.module';
 
 describe('BsDynamicFormDatepickerComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormDatepickerComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormDatepickerModule,
-      ],
+      imports: [BsDynamicFormDatepickerComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

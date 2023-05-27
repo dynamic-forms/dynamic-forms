@@ -1,31 +1,40 @@
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { MatDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
-import { MatDynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
-import { MatDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
-import { MatDynamicFormFileModule } from './dynamic-form-file/dynamic-form-file.module';
-import { MatDynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
-import { MatDynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
-import { MatDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-select.module';
-import { MatDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
-import { MatDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
-import { MatDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
-import { MatDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-toggle.module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule } from '@dynamic-forms/core';
+import { matDynamicFormCheckboxType } from './dynamic-form-checkbox/dynamic-form-checkbox-type';
+import { matDynamicFormComboboxType } from './dynamic-form-combobox/dynamic-form-combobox-type';
+import { matDynamicFormDatepickerType } from './dynamic-form-datepicker/dynamic-form-datepicker-type';
+import { matDynamicFormFileType } from './dynamic-form-file/dynamic-form-file-type';
+import { matDynamicFormNumberboxType } from './dynamic-form-numberbox/dynamic-form-numberbox-type';
+import { matDynamicFormRadioType } from './dynamic-form-radio/dynamic-form-radio-type';
+import { matDynamicFormSelectType } from './dynamic-form-select/dynamic-form-select-type';
+import { matDynamicFormSwitchType } from './dynamic-form-switch/dynamic-form-switch-type';
+import { matDynamicFormTextareaType } from './dynamic-form-textarea/dynamic-form-textarea-type';
+import { matDynamicFormTextboxType } from './dynamic-form-textbox/dynamic-form-textbox-type';
+import { matDynamicFormToggleType } from './dynamic-form-toggle/dynamic-form-toggle-type';
+
+export const matDynamicFormInputTypes = [
+  matDynamicFormCheckboxType,
+  matDynamicFormComboboxType,
+  matDynamicFormDatepickerType,
+  matDynamicFormFileType,
+  matDynamicFormNumberboxType,
+  matDynamicFormRadioType,
+  matDynamicFormSelectType,
+  matDynamicFormSwitchType,
+  matDynamicFormTextareaType,
+  matDynamicFormTextboxType,
+  matDynamicFormToggleType,
+];
 
 @NgModule({
   imports: [
-    MatFormFieldModule,
-    MatDynamicFormCheckboxModule,
-    MatDynamicFormComboboxModule,
-    MatDynamicFormDatepickerModule,
-    MatDynamicFormFileModule,
-    MatDynamicFormNumberboxModule,
-    MatDynamicFormRadioModule,
-    MatDynamicFormSelectModule,
-    MatDynamicFormSwitchModule,
-    MatDynamicFormTextareaModule,
-    MatDynamicFormTextboxModule,
-    MatDynamicFormToggleModule,
+    DynamicFormFileModule,
+    DynamicFormTextboxModule,
+    DynamicFormConfigModule.withInputs(matDynamicFormInputTypes),
+  ],
+  exports: [
+    DynamicFormConfigModule,
   ],
   providers: [
     {

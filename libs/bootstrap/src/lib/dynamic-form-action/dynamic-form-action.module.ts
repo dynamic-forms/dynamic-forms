@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BsDynamicFormButtonModule } from './dynamic-form-button/dynamic-form-button.module';
-import { BsDynamicFormIconModule } from './dynamic-form-icon/dynamic-form-icon.module';
+import { DynamicFormActionModule, DynamicFormConfigModule } from '@dynamic-forms/core';
+import { bsDynamicFormButtonType } from './dynamic-form-button/dynamic-form-button-type';
+import { bsDynamicFormIconType } from './dynamic-form-icon/dynamic-form-icon-type';
+
+export const bsDynamicFormActionTypes = [
+  bsDynamicFormButtonType,
+  bsDynamicFormIconType,
+];
 
 @NgModule({
   imports: [
-    BsDynamicFormButtonModule,
-    BsDynamicFormIconModule,
+    DynamicFormActionModule,
+    DynamicFormConfigModule.withActions(bsDynamicFormActionTypes),
+  ],
+  exports: [
+    DynamicFormConfigModule,
   ],
 })
 export class BsDynamicFormActionModule {}

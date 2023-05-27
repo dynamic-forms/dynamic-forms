@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DynamicFormFileUpload } from './dynamic-form-file';
 
 @Directive({
+  standalone: true,
   selector: '[dynamicFormFile]',
   exportAs: 'dynamicFormFile',
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: DynamicFormFileDirective, multi: true }],

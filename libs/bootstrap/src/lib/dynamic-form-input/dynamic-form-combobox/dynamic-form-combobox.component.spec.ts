@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFor
   DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
-import { BsDynamicFormComboboxModule } from './dynamic-form-combobox.module';
 
 describe('BsDynamicFormComboboxComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormComboboxComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormComboboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormComboboxModule,
-      ],
+      imports: [BsDynamicFormComboboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
