@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
   DynamicFormButtonDefinition, DynamicFormButtonTemplate, DynamicFormColorService, DynamicFormField,
   DynamicFormLibraryService } from '@dynamic-forms/core';
-import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';;
+import { MatDynamicFormButtonComponent } from './dynamic-form-button.component';
 
 describe('MatDynamicFormButtonComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormButtonComponent>;
