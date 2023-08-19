@@ -17,8 +17,11 @@ export const dynamicFormControlUniqueUsernameValidatorFactory =
         if (!value) {
           return of(null);
         }
-        return httpClient.get<boolean>(`/api/users/name/unique/${value}`).pipe(
-          map(unique => unique ? null : { error: true }),
+        return httpClient.get('./assets/data/usernames.json').pipe(
+          map((usernames: string[]) => {
+            const valueLower = value.toLowerCase();
+            return usernames.includes(valueLower) ? { error: true } : null;
+          }),
         );
       }),
     );
@@ -29,21 +32,21 @@ export const dynamicFormControlUniqueUsernameValidatorFactory =
   };
 
 export const dynamicFormControlUniqueUsernameValidatorTypeFactory = (httpClient: HttpClient): DynamicFormControlAsyncValidatorType => {
-  return {
-    type: 'uniqueUsername',
-    async: true,
-    factory: dynamicFormControlUniqueUsernameValidatorFactory,
-    deps: [ httpClient ],
-    libraryName: dynamicFormLibrary.name,
-  };
+    return {
+        type: 'uniqueUsername',
+        async: true,
+        factory: dynamicFormControlUniqueUsernameValidatorFactory,
+        deps: [ httpClient ],
+        libraryName: dynamicFormLibrary.name,
+    };
 };
 
 @NgModule({
-  imports: [
-    DynamicFormValidationModule.withControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [ HttpClient ]),
-  ],
-  exports: [
-    DynamicFormValidationModule,
-  ],
+    imports: [
+        DynamicFormValidationModule.withControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [ HttpClient ]),
+    ],
+    exports: [
+        DynamicFormValidationModule,
+    ],
 })
 export class DynamicFormExtensionsModule {}
