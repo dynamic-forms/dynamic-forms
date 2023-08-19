@@ -4,6 +4,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
+import { ApiService, apiInitializer } from './api/api.service';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { AppService, appInitializer } from './app/app.service';
@@ -20,8 +21,15 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule, BrowserAnimationsModule, HttpClientModule, AppStateModule),
     provideRouter(appRoutes, withComponentInputBinding()),
+    ApiService,
     AppService,
     IconService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: apiInitializer,
+      deps: [ApiService],
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
