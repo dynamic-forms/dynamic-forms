@@ -208,7 +208,6 @@
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
             "assets": [
-              "apps/demo/src/mockServiceWorker.js",
               "apps/demo/src/web.config",
               "apps/demo/src/favicon.ico",
               "apps/demo/src/assets",
