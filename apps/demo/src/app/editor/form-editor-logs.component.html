@@ -1,7 +1,7 @@
 <mat-table [dataSource]="dataSource" multiTemplateDataRows>
   <ng-container matColumnDef="timestamp">
     <mat-header-cell *matHeaderCellDef>Timestamp</mat-header-cell>
-    <mat-cell *matCellDef="let log">{{ log.timestamp | date : "yyyy-MM-dd hh:mm:ss" }}</mat-cell>
+    <mat-cell *matCellDef="let log">{{ log.timestamp | date: "yyyy-MM-dd hh:mm:ss" }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="level">
     <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
