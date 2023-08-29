@@ -12,7 +12,6 @@ $app-typography: mat.define-typography-config(
   $button: mat.define-typography-level(14px, 36px, 500),
 );
 
-
 $app-theme: mat.define-light-theme((
   color: (
     primary: $app-primary,
@@ -20,7 +19,6 @@ $app-theme: mat.define-light-theme((
   ),
   typography: $app-typography
 ));
-
 
 @include mat.all-component-themes($app-theme);
 @include mat.typography-hierarchy($app-typography);
