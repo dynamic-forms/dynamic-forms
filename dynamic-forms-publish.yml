@@ -8,7 +8,7 @@ pool:
 
 variables:
 - name: branch_pattern
-  value: 16.*.x
+  value: 17.*.x
 - name: major_version_name
   value: v17
 
