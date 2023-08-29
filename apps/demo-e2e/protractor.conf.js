@@ -11,7 +11,7 @@ const specReporter = new SpecReporter({
 });
 
 const beautifulReporter = new BeautifulReporter({
-  baseDirectory: 'dist/v16/e2e',
+  baseDirectory: 'dist/v17/e2e',
   screenshotsSubfolder: 'screenshots',
   jsonsSubfolder: 'jsons',
   takeScreenShotsOnlyForFailedSpecs: false,

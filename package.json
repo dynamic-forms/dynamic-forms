@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "16.1.0-next.0",
+  "version": "17.0.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -54,12 +54,12 @@
     "serve:doc:bootstrap": "cd libs/bootstrap && npx compodoc -c doc.json --serve --watch",
     "serve:doc:material": "cd libs/material && npx compodoc -c doc.json --serve --watch",
     "serve:doc:markdown": "cd libs/markdown && npx compodoc -c doc.json --serve --watch",
-    "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v16/",
-    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v16/",
-    "publish:core": "cd dist/v16/@dynamic-forms/core && npm publish --access public",
-    "publish:bootstrap": "cd dist/v16/@dynamic-forms/bootstrap && npm publish --access public",
-    "publish:material": "cd dist/v16/@dynamic-forms/material && npm publish --access public",
-    "publish:markdown": "cd dist/v16/@dynamic-forms/markdown && npm publish --access public",
+    "build:localhost": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo -- --base-href=/v17/",
+    "build:localhost:prod": "npm run build:libs && npm run cover:libs && npm run doc:libs && npm run build:demo:prod -- --base-href=/v17/",
+    "publish:core": "cd dist/v17/@dynamic-forms/core && npm publish --access public",
+    "publish:bootstrap": "cd dist/v17/@dynamic-forms/bootstrap && npm publish --access public",
+    "publish:material": "cd dist/v17/@dynamic-forms/material && npm publish --access public",
+    "publish:markdown": "cd dist/v17/@dynamic-forms/markdown && npm publish --access public",
     "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material && npm run publish:markdown"
   },
   "private": true,
@@ -122,6 +122,6 @@
     "protractor": "~7.0.0",
     "protractor-beautiful-reporter": "^1.3.6",
     "ts-node": "~10.9.1",
-    "typescript": "~4.9.5"
+    "typescript": "^5.1.3"
   }
 }

@@ -6,12 +6,18 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DynamicFormMarkdownOptions } from './dynamic-form-markdown-options';
 
+export class MarkdownRenderer extends marked.Renderer {
+  override link(href: string, title: string, text: string): string {
+    const link = super.link(href, title, text);
+    return link.replace('<a', '<a target="_blank"');
+  }
+}
+
 @Injectable()
 export class DynamicFormMarkdownService {
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
-    marked.use({ mangle: false, headerIds: false });
-    marked.setOptions({ renderer: this.createRenderer() });
+    marked.setOptions({ mangle: false, headerIds: false, renderer: new MarkdownRenderer() });
   }
 
   compile(markdown: string, options?: DynamicFormMarkdownOptions): string {
@@ -23,15 +29,6 @@ export class DynamicFormMarkdownService {
     return this.httpClient.get(source, { responseType: 'text' }).pipe(
       map(markdown => this.compile(markdown, options)),
     );
-  }
-
-  private createRenderer(): marked.Renderer {
-    const renderer = new marked.Renderer();
-    renderer.link = (href, title, text) => {
-      const link = marked.Renderer.prototype.link.call(renderer, href, title, text);
-      return link.replace('<a', '<a target="_blank"');
-    };
-    return renderer;
   }
 
   private parseMarkdown(markdown: string): string {
