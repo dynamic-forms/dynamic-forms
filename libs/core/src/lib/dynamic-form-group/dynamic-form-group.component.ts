@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupBase } from './dynamic-form-group-base';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-group',
   templateUrl: './dynamic-form-group.component.html',
+  imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class DynamicFormGroupComponent<
   Value extends { [key: string]: any } = any, Model extends Value = Value,

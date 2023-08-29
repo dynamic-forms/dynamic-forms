@@ -10,13 +10,13 @@ variables:
 - name: branch_pattern
   value: 16.*.x
 - name: major_version_name
-  value: v16
+  value: v17
 
 steps:
 - task: Npm@1
   displayName: npm install
   inputs:
-    command: custom 
+    command: custom
     customCommand: install --legacy-peer-deps
 - task: Npm@1
   displayName: npm lint

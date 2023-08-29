@@ -15,12 +15,8 @@ export const bsDynamicFormControlLabelType: DynamicFormFieldWrapperType = {
     CommonModule,
     DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType),
   ],
-  declarations: [
-    BsDynamicFormControlLabelComponent,
-  ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormControlLabelComponent,
   ],
 })
 export class BsDynamicFormControlLabelModule {}

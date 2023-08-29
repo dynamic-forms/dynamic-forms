@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { DynamicFormElementBase } from '@dynamic-forms/core';
 import { of, BehaviorSubject, Observable } from 'rxjs';
@@ -7,8 +8,10 @@ import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-markdown',
   templateUrl: './dynamic-form-markdown.component.html',
+  imports: [CommonModule],
 })
 export class DynamicFormMarkdownComponent<
   Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,

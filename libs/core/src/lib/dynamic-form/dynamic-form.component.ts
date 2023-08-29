@@ -3,11 +3,14 @@ import {
   Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormSubmit } from './dynamic-form-submit';
@@ -16,8 +19,10 @@ import { DYNAMIC_FORM_THEME } from './dynamic-form-theme';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
+  imports: [CommonModule, ReactiveFormsModule, DynamicFormElementsComponent],
 })
 export class DynamicFormComponent<
   Value extends { [key: string]: any } = any, Model extends Value = Value

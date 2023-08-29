@@ -26,16 +26,16 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v16/@dynamic-forms/core"
+        "dist/v17/@dynamic-forms/core"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/v16/@dynamic-forms/bootstrap"
+        "dist/v17/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/material": [
-        "dist/v16/@dynamic-forms/material"
+        "dist/v17/@dynamic-forms/material"
       ],
       "@dynamic-forms/markdown": [
-        "dist/v16/@dynamic-forms/markdown"
+        "dist/v17/@dynamic-forms/markdown"
       ]
     },
     "useDefineForClassFields": false

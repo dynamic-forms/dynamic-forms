@@ -94,13 +94,9 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
       DynamicFormBuilder,
     ]),
   ],
-  declarations: [
-    DynamicFormDictionaryComponent,
-  ],
   exports: [
     DynamicFormConfigModule,
     DynamicFormActionModule,
-    DynamicFormDictionaryComponent,
   ],
 })
 export class DynamicFormDictionaryModule {}

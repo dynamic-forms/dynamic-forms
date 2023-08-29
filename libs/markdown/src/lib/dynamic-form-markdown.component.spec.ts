@@ -19,7 +19,7 @@ describe('DynamicFormMarkdownComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DynamicFormMarkdownComponent,
       ],
       providers: [

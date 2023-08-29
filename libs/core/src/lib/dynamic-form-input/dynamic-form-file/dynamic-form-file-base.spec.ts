@@ -14,7 +14,9 @@ import { DynamicFormFileBase } from './dynamic-form-file-base';
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';
 
 @Component({
+  standalone: true,
   template: `<input dynamicFormFile [acceptFiles]="input.accept" [multipleFiles]="input.multiple" [formControl]="control" />`,
+  imports: [ReactiveFormsModule, DynamicFormFileDirective],
 })
 class DynamicFormFileTestComponent extends DynamicFormFileBase {
   constructor(protected override builder: DynamicFormBuilder, protected override validationService: DynamicFormValidationService) {
@@ -43,11 +45,7 @@ describe('DynamicFormFileBase', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [ ReactiveFormsModule ],
-      declarations: [
-        DynamicFormFileDirective,
-        DynamicFormFileTestComponent,
-      ],
+      imports: [DynamicFormFileTestComponent],
       providers: [
         {
           provide: DynamicFormBuilder,

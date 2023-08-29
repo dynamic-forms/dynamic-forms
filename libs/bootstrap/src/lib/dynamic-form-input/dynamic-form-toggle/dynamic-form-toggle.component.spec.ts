@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormToggleControl, DynamicFormToggleDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormToggleComponent } from './dynamic-form-toggle.component';
-import { BsDynamicFormToggleModule } from './dynamic-form-toggle.module';
 
 describe('BsDynamicFormToggleComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormToggleComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormToggleComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormToggleModule,
-      ],
+      imports: [BsDynamicFormToggleComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

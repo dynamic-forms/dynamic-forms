@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormConfigModule, dynamicFormLibrary, DynamicFormElementType } from '@dynamic-forms/core';
 import { DynamicFormMarkdownComponent } from './dynamic-form-markdown.component';
@@ -12,15 +11,10 @@ export const dynamicFormMarkdownType: DynamicFormElementType = {
 
 @NgModule({
   imports: [
-    CommonModule,
     DynamicFormConfigModule.withElement(dynamicFormMarkdownType),
-  ],
-  declarations: [
-    DynamicFormMarkdownComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    DynamicFormMarkdownComponent,
   ],
   providers: [
     DynamicFormMarkdownService,

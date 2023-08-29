@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-control-hints',
   templateUrl: './dynamic-form-control-hints.component.html',
+  imports: [CommonModule],
 })
 export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrapperBase {
   constructor(

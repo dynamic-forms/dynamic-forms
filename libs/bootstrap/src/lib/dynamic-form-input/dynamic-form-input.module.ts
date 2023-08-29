@@ -1,29 +1,39 @@
 import { NgModule } from '@angular/core';
-import { BsDynamicFormCheckboxModule } from './dynamic-form-checkbox/dynamic-form-checkbox.module';
-import { BsDynamicFormComboboxModule } from './dynamic-form-combobox/dynamic-form-combobox.module';
-import { BsDynamicFormDatepickerModule } from './dynamic-form-datepicker/dynamic-form-datepicker.module';
-import { BsDynamicFormFileModule } from './dynamic-form-file/dynamic-form-file.module';
-import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox/dynamic-form-numberbox.module';
-import { BsDynamicFormRadioModule } from './dynamic-form-radio/dynamic-form-radio.module';
-import { BsDynamicFormSelectModule } from './dynamic-form-select/dynamic-form-select.module';
-import { BsDynamicFormSwitchModule } from './dynamic-form-switch/dynamic-form-switch.module';
-import { BsDynamicFormTextareaModule } from './dynamic-form-textarea/dynamic-form-textarea.module';
-import { BsDynamicFormTextboxModule } from './dynamic-form-textbox/dynamic-form-textbox.module';
-import { BsDynamicFormToggleModule } from './dynamic-form-toggle/dynamic-form-toggle.module';
+import { DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule } from '@dynamic-forms/core';
+import { bsDynamicFormCheckboxType } from './dynamic-form-checkbox/dynamic-form-checkbox-type';
+import { bsDynamicFormComboboxType } from './dynamic-form-combobox/dynamic-form-combobox-type';
+import { bsDynamicFormDatepickerType } from './dynamic-form-datepicker/dynamic-form-datepicker-type';
+import { bsDynamicFormFileType } from './dynamic-form-file/dynamic-form-file-type';
+import { bsDynamicFormNumberboxType } from './dynamic-form-numberbox/dynamic-form-numberbox-type';
+import { bsDynamicFormRadioType } from './dynamic-form-radio/dynamic-form-radio-type';
+import { bsDynamicFormSelectType } from './dynamic-form-select/dynamic-form-select-type';
+import { bsDynamicFormSwitchType } from './dynamic-form-switch/dynamic-form-switch-type';
+import { bsDynamicFormTextareaType } from './dynamic-form-textarea/dynamic-form-textarea-type';
+import { bsDynamicFormTextboxType } from './dynamic-form-textbox/dynamic-form-textbox-type';
+import { bsDynamicFormToggleType } from './dynamic-form-toggle/dynamic-form-toggle-type';
+
+export const bsDynamicFormInputTypes = [
+  bsDynamicFormCheckboxType,
+  bsDynamicFormComboboxType,
+  bsDynamicFormDatepickerType,
+  bsDynamicFormFileType,
+  bsDynamicFormNumberboxType,
+  bsDynamicFormRadioType,
+  bsDynamicFormSelectType,
+  bsDynamicFormSwitchType,
+  bsDynamicFormTextareaType,
+  bsDynamicFormTextboxType,
+  bsDynamicFormToggleType,
+];
 
 @NgModule({
   imports: [
-    BsDynamicFormCheckboxModule,
-    BsDynamicFormComboboxModule,
-    BsDynamicFormDatepickerModule,
-    BsDynamicFormFileModule,
-    BsDynamicFormNumberboxModule,
-    BsDynamicFormRadioModule,
-    BsDynamicFormSelectModule,
-    BsDynamicFormSwitchModule,
-    BsDynamicFormTextareaModule,
-    BsDynamicFormTextboxModule,
-    BsDynamicFormToggleModule,
+    DynamicFormFileModule,
+    DynamicFormTextboxModule,
+    DynamicFormConfigModule.withInputs(bsDynamicFormInputTypes),
+  ],
+  exports: [
+    DynamicFormConfigModule,
   ],
 })
 export class BsDynamicFormInputModule {}

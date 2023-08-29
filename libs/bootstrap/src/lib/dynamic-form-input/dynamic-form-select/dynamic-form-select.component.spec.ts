@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
-import { BsDynamicFormSelectModule } from './dynamic-form-select.module';
 
 describe('BsDynamicFormSelectComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormSelectComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormSelectComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormSelectModule,
-      ],
+      imports: [BsDynamicFormSelectComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
