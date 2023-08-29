@@ -5,7 +5,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormNumberboxControl, DynamicFormNumberboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
-import { MatDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
 describe('MatDynamicFormNumberboxComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormNumberboxComponent>;
@@ -18,8 +17,8 @@ describe('MatDynamicFormNumberboxComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDynamicFormNumberboxModule,
         NoopAnimationsModule,
+        MatDynamicFormNumberboxComponent,
       ],
       providers: [
         {

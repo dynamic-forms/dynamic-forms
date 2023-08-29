@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormRadioControl, DynamicFormRadioDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
-import { MatDynamicFormRadioModule } from './dynamic-form-radio.module';
 
 describe('MatDynamicFormRadioComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormRadioComponent>;
@@ -16,9 +15,7 @@ describe('MatDynamicFormRadioComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormRadioModule,
-      ],
+      imports: [MatDynamicFormRadioComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

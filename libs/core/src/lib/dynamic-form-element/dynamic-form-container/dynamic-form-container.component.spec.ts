@@ -7,7 +7,6 @@ import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormContainerDefinition } from './dynamic-form-container-definition';
 import { DynamicFormContainerTemplate } from './dynamic-form-container-template';
 import { DynamicFormContainerComponent } from './dynamic-form-container.component';
-import { DynamicFormContainerModule } from './dynamic-form-container.module';
 
 describe('DynamicFormContainerComponent', () => {
   let builder: DynamicFormBuilder;
@@ -17,7 +16,7 @@ describe('DynamicFormContainerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ DynamicFormContainerModule ],
+      imports: [DynamicFormContainerComponent ],
     });
 
     builder = {} as any;

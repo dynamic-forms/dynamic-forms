@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormConfigModule, DynamicFormFieldWrapperType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
@@ -12,15 +11,10 @@ export const bsDynamicFormControlHintsType: DynamicFormFieldWrapperType = {
 
 @NgModule({
   imports: [
-    CommonModule,
     DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlHintsType),
-  ],
-  declarations: [
-    BsDynamicFormControlHintsComponent,
   ],
   exports: [
     DynamicFormConfigModule,
-    BsDynamicFormControlHintsComponent,
   ],
 })
 export class BsDynamicFormControlHintsModule {}

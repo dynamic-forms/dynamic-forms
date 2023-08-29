@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { DynamicFormAction, DynamicFormElement } from '@dynamic-forms/core';
+import { DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
+  imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class BsDynamicFormDialogComponent {
   @Input() isOpen$: Observable<boolean>;

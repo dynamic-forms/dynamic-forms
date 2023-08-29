@@ -4,7 +4,6 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormD
   DynamicFormFieldType, DynamicFormLibraryService, DynamicFormNumberboxControl, DynamicFormNumberboxDefinition,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
-import { BsDynamicFormNumberboxModule } from './dynamic-form-numberbox.module';
 
 describe('BsDynamicFormNumberboxComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormNumberboxComponent>;
@@ -16,9 +15,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormNumberboxModule,
-      ],
+      imports: [BsDynamicFormNumberboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

@@ -1,8 +1,9 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/v16/@dynamic-forms/material",
+  "dest": "../../dist/v17/@dynamic-forms/material",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "styleIncludePaths": ["assets"]
   },
   "assets": [
     "assets"

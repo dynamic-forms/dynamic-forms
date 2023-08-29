@@ -5,7 +5,6 @@ import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, Dyn
   DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler } from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
-import { BsDynamicFormDialogModule } from './dynamic-form-dialog.module';
 
 @Component({
   selector: 'bs-dynamic-form-action-test',
@@ -47,7 +46,7 @@ describe('BsDynamicFormDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DynamicFormActionComponentTestModule,
-        BsDynamicFormDialogModule,
+        BsDynamicFormDialogComponent,
       ],
     });
 

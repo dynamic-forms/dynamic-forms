@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
   DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormInputWrapperComponent } from './dynamic-form-input-wrapper.component';
-import { BsDynamicFormInputWrapperModule } from './dynamic-form-input-wrapper.module';
 
 @Component({
   selector: 'bs-dynamic-form-input-test',
@@ -17,7 +16,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [
-    BsDynamicFormInputWrapperModule,
+    BsDynamicFormInputWrapperComponent,
   ],
   declarations: [
     DynamicFormInputTestComponent,
