@@ -1,4 +1,7 @@
-<div class="mat-mdc-form-field mat-mdc-form-field-wrapper" [ngClass]="{ 'mdc-text-field--invalid': invalid }">
+<div
+  class="mat-mdc-form-field mat-mdc-form-field-wrapper"
+  [ngClass]="{ 'mdc-text-field--disabled': disabled, 'mdc-text-field--invalid': invalid }"
+>
   <div class="mat-mdc-form-field-input-wrapper">
     <label *ngIf="label" class="mat-mdc-form-field-input-label mat-mdc-floating-label mdc-floating-label"
       >{{ label }}<span *ngIf="required">*</span></label

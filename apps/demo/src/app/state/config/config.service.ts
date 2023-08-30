@@ -11,9 +11,7 @@ export class ConfigService {
 
   load(): void {
     const url = this.getConfigUrl();
-    this.httpClient.get<Config>(url).subscribe({
-      next: (config) => this.store.dispatch(new ConfigInit(config)),
-    });
+    this.httpClient.get<Config>(url).subscribe(config => this.store.dispatch(new ConfigInit(config)));
   }
 
   private getConfigUrl(): string {

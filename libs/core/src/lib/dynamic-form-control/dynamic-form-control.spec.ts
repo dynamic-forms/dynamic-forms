@@ -129,21 +129,17 @@ describe('DynamicFormControl', () => {
     expect(control.model).toBeNull();
     expect((control.parent as DynamicFormField).model.key).toBeNull();
 
-    of({}).pipe(delay(150)).subscribe({
-      next: () => {
-        expect(control.value).toBe('value');
-        expect(control.model).toBeNull();
-        expect((control.parent as DynamicFormField).model.key).toBeNull();
-      },
+    of({}).pipe(delay(150)).subscribe(() => {
+      expect(control.value).toBe('value');
+      expect(control.model).toBeNull();
+      expect((control.parent as DynamicFormField).model.key).toBeNull();
     });
 
-    of({}).pipe(delay(300)).subscribe({
-      next: () => {
-        expect(control.value).toBe('value');
-        expect(control.model).toBe('value');
-        expect((control.parent as DynamicFormField).model.key).toBe('value');
-        done();
-      },
+    of({}).pipe(delay(300)).subscribe(() => {
+      expect(control.value).toBe('value');
+      expect(control.model).toBe('value');
+      expect((control.parent as DynamicFormField).model.key).toBe('value');
+      done();
     });
   });
 
