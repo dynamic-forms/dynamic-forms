@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SetPreferences } from './preferences.actions';
-import { defaultPreferences, FormEditorPreferences, Preferences, PREFERENCES } from './preferences.model';
+import { defaultPreferences, FormEditorPreferences, Preferences, PREFERENCES, ThemePreferences } from './preferences.model';
 
 @State<Preferences>({
   name: PREFERENCES,
@@ -9,6 +9,11 @@ import { defaultPreferences, FormEditorPreferences, Preferences, PREFERENCES } f
 })
 @Injectable()
 export class PreferencesState {
+  @Selector()
+  static theme(state: Preferences): ThemePreferences {
+    return state?.theme;
+  }
+
   @Selector()
   static formEditor(state: Preferences): FormEditorPreferences {
     return state?.formEditor;

@@ -185,7 +185,7 @@ describe('DynamicFormAction', () => {
     const action = new DynamicFormAction(builder, null, null, definition, {} as DynamicFormActionType);
 
     const dialogOpenChanges = [];
-    action.dialogOpenChanges.subscribe((open) => dialogOpenChanges.push(open));
+    action.dialogOpenChanges.subscribe(open => dialogOpenChanges.push(open));
 
     action.init();
 

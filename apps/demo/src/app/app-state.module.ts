@@ -13,6 +13,7 @@ import { PreferencesState } from './state/preferences/preferences.state';
 import { ProgressService } from './state/progress/progress.service';
 import { ProgressState } from './state/progress/progress.state';
 import { RoutingHandler } from './state/routing/routing.handler';
+import { ThemeService } from './services/theme.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { RoutingHandler } from './state/routing/routing.handler';
     }),
   ],
   providers: [
+    ThemeService,
     ConfigService,
     ExamplesService,
     ProgressService,
