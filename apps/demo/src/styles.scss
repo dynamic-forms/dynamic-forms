@@ -2,9 +2,6 @@
 
 @include mat.core();
 
-$app-primary: mat.define-palette(mat.$indigo-palette);
-$app-accent:  mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
 $app-typography: mat.define-typography-config(
   $subtitle-1: mat.define-typography-level(20px, 24px, 500),
   $body-1: mat.define-typography-level(14px, 24px, 400),
@@ -12,16 +9,30 @@ $app-typography: mat.define-typography-config(
   $button: mat.define-typography-level(14px, 36px, 500),
 );
 
-$app-theme: mat.define-light-theme((
+$app-light-theme: mat.define-light-theme((
   color: (
-    primary: $app-primary,
-    accent: $app-accent
+    primary: mat.define-palette(mat.$indigo-palette),
+    accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+    warn: mat.define-palette(mat.$red-palette),
   ),
   typography: $app-typography
 ));
 
-@include mat.all-component-themes($app-theme);
+$app-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: mat.define-palette(mat.$indigo-palette),
+    accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+    warn: mat.define-palette(mat.$red-palette),
+  ),
+  typography: $app-typography
+));
+
+@include mat.all-component-themes($app-light-theme);
 @include mat.typography-hierarchy($app-typography);
+
+body.dark-mode {
+  @include mat.all-component-colors($app-dark-theme);
+}
 
 html, body {
   height: 100%;
@@ -40,22 +51,6 @@ body {
     color: #3f51b5;
   }
 }
-
-/*
-.mat-mdc-dialog-container {
-  --mdc-dialog-subhead-font: var(--mdc-typography-font-family);
-  --mdc-dialog-subhead-line-height: 32px;
-  --mdc-dialog-subhead-size: 20px;
-  --mdc-dialog-subhead-weight: 500;
-  --mdc-dialog-subhead-tracking: normal;
-  --mdc-dialog-supporting-text-color: black;
-  --mdc-dialog-supporting-text-font: var(--mdc-typography-font-family);
-  --mdc-dialog-supporting-text-size: var(--mdc-typography-body1-font-size);
-  --mdc-dialog-supporting-text-weight: var(--mdc-typography-body1-font-weight);
-  --mdc-dialog-supporting-text-line-height: var(--mdc-typography-body1-line-height);
-  --mdc-dialog-supporting-text-tracking: var(--mdc-typography-button-letter-spacing);
-}
-*/
 
 @import "@dynamic-forms/core/assets/scss/grid";
 @import "@dynamic-forms/bootstrap/assets/scss/theme";
