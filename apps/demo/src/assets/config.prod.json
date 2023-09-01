@@ -30,10 +30,6 @@
     {
       "name": "14.1.0",
       "url": "https://dynamic-forms.azurewebsites.net/v14"
-    },
-    {
-      "name": "13.0.0",
-      "url": "https://dynamic-forms.azurewebsites.net/v13"
     }
   ]
 }

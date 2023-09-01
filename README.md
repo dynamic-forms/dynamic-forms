@@ -93,20 +93,6 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 - `npm install @dynamic-forms/material@14.1.0`
 - `npm install @dynamic-forms/markdown@14.1.0`
 
-### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v13/dynamic-forms-v13-publish?branchName=refs/tags/13.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=27&branchName=refs/tags/13.0.0)
-
-- `npm install @dynamic-forms/core@13.0.0`
-- `npm install @dynamic-forms/bootstrap@13.0.0`
-- `npm install @dynamic-forms/material@13.0.0`
-
-Packages up to version `14.0.0-rc.1` were hosted by Azure DevOps. Therefore, the following lines
-
-```
-@dynamic-forms:registry=https://pkgs.dev.azure.com/alexandergebuhr/dynamic-forms/_packaging/dynamic-forms/npm/registry/
-```
-
-needed to be part of the npm config file `.nmprc`.
-
 ## **Demos**
 
 ### **Version 17** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=17.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=17.0.x)
@@ -128,8 +114,3 @@ needed to be part of the npm config file `.nmprc`.
 
 - Built with [Angular 14](https://v14.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v14/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v14/)
-
-### **Version 13** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v13-cd?branchName=13.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=26&branchName=13.0.x)
-
-- Built with [Angular 13](https://v13.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v13/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v13/)
