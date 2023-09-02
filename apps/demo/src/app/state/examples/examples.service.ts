@@ -9,8 +9,6 @@ export class ExamplesService {
   constructor(private store: Store, private httpClient: HttpClient) {}
 
   load(): void {
-    this.httpClient.get<ExamplesMenu>(`./assets/examples-menu.json`).subscribe({
-      next: (menu) => this.store.dispatch(new ExamplesInit(menu)),
-    });
+    this.httpClient.get<ExamplesMenu>(`./assets/examples-menu.json`).subscribe(menu => this.store.dispatch(new ExamplesInit(menu)));
   }
 }
