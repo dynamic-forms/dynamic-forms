@@ -227,11 +227,18 @@
           &:not(.mdc-text-field--invalid) {
             .mat-mdc-form-field-input-wrapper {
               .mat-mdc-form-field-input-label {
-                color: rgba(0,0,0,.6);
+                color: var(--mdc-filled-text-field-label-text-color);
               }
             }
           }
 
+          &.mdc-text-field--disabled {
+            .mat-mdc-form-field-input-wrapper {
+              .mat-mdc-form-field-input-label {
+                color: var(--mdc-filled-text-field-disabled-label-text-color);
+              }
+            }
+          }
           .mat-mdc-form-field-input-wrapper {
             display: flex;
             flex-direction: column;

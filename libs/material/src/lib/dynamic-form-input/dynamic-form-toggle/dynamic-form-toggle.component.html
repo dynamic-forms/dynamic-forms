@@ -1,6 +1,7 @@
 <mat-dynamic-form-input-wrapper
   [label]="template.label"
   [required]="validation?.required"
+  [disabled]="disabled"
   [invalid]="showErrors"
   [errorMessage]="showErrors ? errorMessage : null"
 >

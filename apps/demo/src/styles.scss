@@ -41,22 +41,6 @@ body {
   }
 }
 
-/*
-.mat-mdc-dialog-container {
-  --mdc-dialog-subhead-font: var(--mdc-typography-font-family);
-  --mdc-dialog-subhead-line-height: 32px;
-  --mdc-dialog-subhead-size: 20px;
-  --mdc-dialog-subhead-weight: 500;
-  --mdc-dialog-subhead-tracking: normal;
-  --mdc-dialog-supporting-text-color: black;
-  --mdc-dialog-supporting-text-font: var(--mdc-typography-font-family);
-  --mdc-dialog-supporting-text-size: var(--mdc-typography-body1-font-size);
-  --mdc-dialog-supporting-text-weight: var(--mdc-typography-body1-font-weight);
-  --mdc-dialog-supporting-text-line-height: var(--mdc-typography-body1-line-height);
-  --mdc-dialog-supporting-text-tracking: var(--mdc-typography-button-letter-spacing);
-}
-*/
-
 @import "@dynamic-forms/core/assets/scss/grid";
 @import "@dynamic-forms/bootstrap/assets/scss/theme";
 @import "@dynamic-forms/material/assets/scss/theme";
