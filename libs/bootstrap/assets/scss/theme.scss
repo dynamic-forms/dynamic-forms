@@ -1,6 +1,11 @@
 @import "@dynamic-forms/core/assets/scss/variables";
 @import "@dynamic-forms/core/assets/scss/mixins";
 
+$dynamic-form-color-primary: #3f51b5 !default;
+$dynamic-form-color-blue: $dynamic-form-color-primary !default;
+$dynamic-form-color-red: #f44336 !default;
+
+$dynamic-form-errors-color: $dynamic-form-color-red !default;
 $dynamic-form-errors-margin-top: null !default;
 
 .dynamic-form-wrapper.bootstrap {

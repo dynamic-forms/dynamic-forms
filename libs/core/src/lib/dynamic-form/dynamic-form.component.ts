@@ -108,7 +108,7 @@ export class DynamicFormComponent<
   private initForm(): void {
     this.model = this.model || {} as Model;
     this._form = this.formBuilder.initForm<Value, Model>(this.definition, this.model);
-    this._formSubmit = this._form.submit$.subscribe({ next: () => this.submit() });
+    this._formSubmit = this._form.submit$.subscribe(() => this.submit());
     this._formValueChanges = this.formGroup.valueChanges.subscribe((value) => this.valueChange.emit(value));
   }
 
