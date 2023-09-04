@@ -17,7 +17,7 @@ export class MarkdownRenderer extends marked.Renderer {
 export class DynamicFormMarkdownService {
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
-    marked.setOptions({ mangle: false, headerIds: false, renderer: new MarkdownRenderer() });
+    marked.setOptions({ renderer: new MarkdownRenderer() });
   }
 
   compile(markdown: string, options?: DynamicFormMarkdownOptions): string {
