@@ -285,18 +285,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dynamic-forms-demo:build"
+            "buildTarget": "dynamic-forms-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dynamic-forms-demo:build:production"
+              "buildTarget": "dynamic-forms-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dynamic-forms-demo:build"
+            "buildTarget": "dynamic-forms-demo:build"
           }
         },
         "test": {
