@@ -1,5 +1,14 @@
 # Changelog
 
+## 17.0.0-next.0
+
+### Features
+
+* **core:** update to angular 17 (release candidate)
+* **bootstrap:** update to angular 17 (release candidate)
+* **material:** update to angular and angular material 17 (release candidate)
+* **markdown:** update to angular 17 (release candidate) and marked 9
+
 ## 16.0.0 (2023-05-05)
 
 ### Features
