@@ -1,6 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormControlHintsType, BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, DynamicFormFieldWrapperTypeConfig } from '@dynamic-forms/core';
+import { BsDynamicFormControlHintsModule, bsDynamicFormControlHintsType } from './dynamic-form-control-hints.module';
 
 describe('BsDynamicFormControlHintsModule', () => {
   beforeEach(() => {

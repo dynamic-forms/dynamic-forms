@@ -1,8 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
-import { DynamicFormConfigService, dynamicFormLibrary, DynamicFormLibraryService } from '@dynamic-forms/core';
-import { dynamicFormMarkdownType, DynamicFormMarkdownModule } from './dynamic-form-markdown.module';
+import { DynamicFormConfigService, DynamicFormLibraryService, dynamicFormLibrary } from '@dynamic-forms/core';
+import { DynamicFormMarkdownModule, dynamicFormMarkdownType } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownModule', () => {

@@ -1,4 +1,5 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -6,13 +7,12 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
-import { DynamicFormArrayValidatorTypeConfig, DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from './dynamic-form-array-validator-type-config';
+import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG, DynamicFormArrayValidatorTypeConfig } from './dynamic-form-array-validator-type-config';
 import {
-  dynamicFormArrayClearFieldsHandler, dynamicFormArrayPopFieldHandler, dynamicFormArrayRemoveFieldHandler, dynamicFormArrayType,
-  DynamicFormArrayModule, dynamicFormArrayMoveFieldDownHandler, dynamicFormArrayMoveFieldUpHandler,
+  DynamicFormArrayModule, dynamicFormArrayClearFieldsHandler, dynamicFormArrayMoveFieldDownHandler, dynamicFormArrayMoveFieldUpHandler,
+  dynamicFormArrayPopFieldHandler, dynamicFormArrayRemoveFieldHandler, dynamicFormArrayType,
 } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {

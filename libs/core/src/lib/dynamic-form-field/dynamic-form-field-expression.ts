@@ -1,6 +1,6 @@
 import { DynamicFormElementExpression } from '../dynamic-form-element/dynamic-form-element-expression';
-import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
 import { DynamicFormField } from './../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from './dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression-func';

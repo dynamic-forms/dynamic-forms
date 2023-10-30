@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { throwError, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { v4 as uuid } from 'uuid';
 import { NotificationItemPop, NotificationItemPush } from './notifications.actions';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ConfigInit } from './config.actions';
-import { Config, CONFIG, Repository, Version } from './config.model';
+import { CONFIG, Config, Repository, Version } from './config.model';
 
 @State<Config>({
   name: CONFIG,

@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';

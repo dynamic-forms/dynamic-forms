@@ -1,9 +1,9 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME,
+  DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
   DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormIdBuilder,
   DynamicFormLibrary, DynamicFormLibraryService, DynamicFormValidationBuilder,
-  DynamicFormValidationService, DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY,
-  DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+  DynamicFormValidationService } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormsModule } from './dynamic-forms.module';
 

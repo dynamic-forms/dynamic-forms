@@ -1,11 +1,11 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionService } from '../../dynamic-form-action/dynamic-form-action.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormModal } from './dynamic-form-modal';
 import {
-  dynamicFormModalCloseHandler, dynamicFormModalMaximizeHandler, dynamicFormModalMinimizeHandler, dynamicFormModalOpenHandler,
-  dynamicFormModalToggleHandler, dynamicFormModalToggleSizeHandler, DynamicFormModalModule,
+  DynamicFormModalModule, dynamicFormModalCloseHandler, dynamicFormModalMaximizeHandler, dynamicFormModalMinimizeHandler,
+  dynamicFormModalOpenHandler, dynamicFormModalToggleHandler, dynamicFormModalToggleSizeHandler,
 } from './dynamic-form-modal.module';
 
 describe('DynamicFormModalModule', () => {

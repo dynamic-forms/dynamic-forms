@@ -1,7 +1,7 @@
 import { FormArrayBase } from '../dynamic-form-field/dynamic-form-field-control';
 import {
-  DynamicFormFieldAsyncValidatorFn, DynamicFormFieldAsyncValidatorFactory,DynamicFormFieldValidatorFactory,
-  DynamicFormFieldValidatorFn, DynamicFormFieldAsyncValidator, DynamicFormFieldValidator,
+  DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldAsyncValidatorFn,
+  DynamicFormFieldValidator, DynamicFormFieldValidatorFactory, DynamicFormFieldValidatorFn,
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormArray } from './dynamic-form-array';
 

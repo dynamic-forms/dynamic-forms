@@ -1,7 +1,7 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormErrorMessageTemplate, DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
+import { DYNAMIC_FORM_VALIDATION_CONFIGS, DynamicFormValidationConfig, DynamicFormValidationConfigs,
+  dynamicFormErrorMessageTemplate } from './dynamic-form-validation-config';
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 

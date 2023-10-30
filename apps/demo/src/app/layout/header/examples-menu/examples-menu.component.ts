@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';

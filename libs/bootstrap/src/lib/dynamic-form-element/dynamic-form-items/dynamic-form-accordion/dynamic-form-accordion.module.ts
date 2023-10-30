@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { dynamicFormItemsFactory, DynamicFormConfigModule, DynamicFormElementType } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormElementType, dynamicFormItemsFactory } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 

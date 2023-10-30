@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { NotificationItemPop } from '../../state/notifications/notifications.actions';
-import { Notifications, NotificationItem, NOTIFICATIONS } from '../../state/notifications/notifications.model';
+import { NOTIFICATIONS, NotificationItem, Notifications } from '../../state/notifications/notifications.model';
 
 @Component({
   standalone: true,

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output,
   SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME, DynamicFormElementsComponent } from '@dynamic-forms/core';
+import { DYNAMIC_FORM_THEME, DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } from '@dynamic-forms/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

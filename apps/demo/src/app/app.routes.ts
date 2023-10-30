@@ -12,15 +12,15 @@ export const appRoutes: Routes = [
   },
   {
     path: 'docs',
-    loadChildren: () => import('./docs/docs.module').then(m => m.DocsModule),
+    loadChildren: () => import('./docs/docs.routes').then(m => m.docsRoutes),
   },
   {
     path: 'editor',
-    loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule),
+    loadChildren: () => import('./editor/editor.routes').then(m => m.editorsRoutes),
   },
   {
     path: 'examples',
-    loadChildren: () => import('./examples/examples.module').then(m => m.ExamplesModule),
+    loadChildren: () => import('./examples/examples.routes').then(m => m.examplesRoutes),
   },
   {
     path: 'license',

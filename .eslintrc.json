@@ -16,6 +16,13 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "./tsconfig.json"
+          }
+        }
+      },
       "rules": {
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
@@ -93,8 +100,34 @@
         ],
         "id-blacklist": "off",
         "id-match": "off",
-        "import/order": "error",
-        "no-underscore-dangle": "off"
+        "import/no-unresolved": "error",
+        "import/order": [
+          "error",
+          {
+            "pathGroups": [
+              {
+                "pattern": "@dynamic-forms/**",
+                "group": "external"
+              }
+            ],
+            "newlines-between": "never",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "no-underscore-dangle": "off",
+        "sort-imports": [
+          "error",
+          {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": true,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "allowSeparatedGroups": false
+          }
+        ]
       }
     },
     {

@@ -1,8 +1,8 @@
-import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlBase } from './dynamic-form-control-base';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';

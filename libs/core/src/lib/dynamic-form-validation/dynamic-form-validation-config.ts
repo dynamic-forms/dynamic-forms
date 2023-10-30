@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryName, dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 
 export type DynamicFormErrorMessageTemplate = (error: any) => string;
 

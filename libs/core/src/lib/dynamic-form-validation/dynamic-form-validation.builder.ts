@@ -2,27 +2,27 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormArray } from '../dynamic-form-array/dynamic-form-array';
 import { DynamicFormArrayAsyncValidator, DynamicFormArrayValidator } from '../dynamic-form-array/dynamic-form-array-validator';
 import { DynamicFormArrayAsyncValidatorType, DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
-import { DynamicFormArrayValidatorTypeConfig,
-  DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
+import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormArrayValidatorTypeConfig } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlAsyncValidator, DynamicFormControlValidator } from '../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormControlAsyncValidatorType,
   DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
-import { DynamicFormControlValidatorTypeConfig,
-  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
+  DynamicFormControlValidatorTypeConfig } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionary } from '../dynamic-form-dictionary/dynamic-form-dictionary';
 import { DynamicFormDictionaryAsyncValidator,
   DynamicFormDictionaryValidator } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator';
 import { DynamicFormDictionaryAsyncValidatorType,
   DynamicFormDictionaryValidatorType } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
-import { DynamicFormDictionaryValidatorTypeConfig,
-  DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
+import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormDictionaryValidatorTypeConfig } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
 import { DynamicFormGroupAsyncValidatorType, DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
-import { DynamicFormGroupValidatorTypeConfig,
-  DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
+import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+  DynamicFormGroupValidatorTypeConfig } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 
 @Injectable()

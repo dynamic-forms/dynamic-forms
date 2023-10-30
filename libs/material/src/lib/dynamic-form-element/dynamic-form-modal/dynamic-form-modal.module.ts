@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { dynamicFormModalFactory, DynamicFormConfigModule, DynamicFormElementType, DynamicFormModalModule } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormElementType, DynamicFormModalModule, dynamicFormModalFactory } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 

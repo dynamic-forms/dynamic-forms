@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormElementsComponent } from '../dynamic-form-elements.component';

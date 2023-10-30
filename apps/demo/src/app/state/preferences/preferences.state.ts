@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SetPreferences } from './preferences.actions';
-import { defaultPreferences, FormEditorPreferences, Preferences, PREFERENCES } from './preferences.model';
+import { FormEditorPreferences, PREFERENCES, Preferences, defaultPreferences } from './preferences.model';
 
 @State<Preferences>({
   name: PREFERENCES,

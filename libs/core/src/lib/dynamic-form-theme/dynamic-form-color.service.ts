@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormColorConfig, DynamicFormColorConfigs, DYNAMIC_FORM_COLOR_CONFIGS } from './dynamic-form-color-config';
+import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig, DynamicFormColorConfigs } from './dynamic-form-color-config';
 
 @Injectable()
 export class DynamicFormColorService {

@@ -1,16 +1,22 @@
+import { CommonModule } from '@angular/common';
 import {
   Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { BehaviorSubject, first, tap } from 'rxjs';
-import { MonacoModule, MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType } from './monaco-editor';
+import { MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType, MonacoModule } from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
 
 declare let monaco: MonacoModule;
 
 @Component({
+  standalone: true,
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
   styleUrls: [ './monaco-editor.component.scss'],
+  imports: [CommonModule, MatButtonModule, MatMenuModule],
+  providers: [MonacoEditorService],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private readonly _fileLoading  = new BehaviorSubject<boolean>(false);

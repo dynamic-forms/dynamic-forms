@@ -1,6 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormAccordionType, BsDynamicFormAccordionModule } from './dynamic-form-accordion.module';
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig } from '@dynamic-forms/core';
+import { BsDynamicFormAccordionModule, bsDynamicFormAccordionType } from './dynamic-form-accordion.module';
 
 describe('BsDynamicFormAccordionModule', () => {
   beforeEach(() => {

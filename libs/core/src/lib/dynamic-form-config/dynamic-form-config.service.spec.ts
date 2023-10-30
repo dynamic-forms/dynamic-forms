@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
@@ -9,7 +9,7 @@ import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-
 import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
-import { dynamicFormLibrary, DynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibrary, DynamicFormLibraryName, dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
+import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
 import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
-import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
+import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { BootstrapFormComponent } from './bootstrap-form.component';
 
 @NgModule({

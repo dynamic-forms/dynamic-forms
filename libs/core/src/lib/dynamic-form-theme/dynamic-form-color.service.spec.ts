@@ -1,6 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormColorConfig, DynamicFormColorConfigs, DYNAMIC_FORM_COLOR_CONFIGS } from './dynamic-form-color-config';
+import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig, DynamicFormColorConfigs } from './dynamic-form-color-config';
 import { DynamicFormColorService } from './dynamic-form-color.service';
 
 describe('DynamicFormColorService', () => {

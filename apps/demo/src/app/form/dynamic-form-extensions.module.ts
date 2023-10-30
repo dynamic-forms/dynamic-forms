@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
     DynamicFormControlAsyncValidatorFn, DynamicFormControlAsyncValidatorType,
-    dynamicFormLibrary, DynamicFormValidationModule,
+    DynamicFormValidationModule, dynamicFormLibrary,
 } from '@dynamic-forms/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, map, of, switchMap, take } from 'rxjs';
 

@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';

@@ -1,19 +1,19 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
-import { DynamicFormArrayValidatorTypeConfig,
-  DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
+import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormArrayValidatorTypeConfig } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
-import { DynamicFormControlValidatorTypeConfig,
-  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
+  DynamicFormControlValidatorTypeConfig } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionaryValidatorType } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
-import { DynamicFormDictionaryValidatorTypeConfig,
-  DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
+import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormDictionaryValidatorTypeConfig } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
-import { DynamicFormGroupValidatorTypeConfig,
-  DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
+import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+  DynamicFormGroupValidatorTypeConfig } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormValidationConfig, DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  DYNAMIC_FORM_VALIDATION_CONFIGS } from '../dynamic-form-validation/dynamic-form-validation-config';
+import { DYNAMIC_FORM_VALIDATION_CONFIGS, DynamicFormValidationConfig, DynamicFormValidationConfigs,
+  dynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';

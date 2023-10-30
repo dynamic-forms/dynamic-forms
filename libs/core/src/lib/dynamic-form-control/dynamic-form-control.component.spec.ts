@@ -1,6 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
@@ -8,10 +12,6 @@ import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-b
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';

@@ -1,9 +1,9 @@
 import { Component, NgModule } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, DynamicFormActionType,
-  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler, DynamicFormLibraryService,
-  DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
+import { DYNAMIC_FORM_ACTION_TYPE_CONFIG, DynamicFormAction, DynamicFormActionBase, DynamicFormActionService,
+  DynamicFormActionType, DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler,
+  DynamicFormLibraryService } from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 

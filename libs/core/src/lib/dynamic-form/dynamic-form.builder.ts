@@ -37,7 +37,7 @@ import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { cloneObject, mergeObject } from './dynamic-form-helpers';
-import { DynamicFormIdBuilder, DYNAMIC_FORM_ID_BUILDER } from './dynamic-form-id.builder';
+import { DYNAMIC_FORM_ID_BUILDER, DynamicFormIdBuilder } from './dynamic-form-id.builder';
 
 export interface DynamicFormFieldConstructor<Field extends DynamicFormField> {
   // eslint-disable-next-line @typescript-eslint/prefer-function-type
