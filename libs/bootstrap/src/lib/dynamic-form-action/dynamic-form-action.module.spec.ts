@@ -5,16 +5,12 @@ import { BsDynamicFormActionModule, bsDynamicFormActionTypes } from './dynamic-f
 describe('BsDynamicFormActionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormActionModule,
-      ],
+      imports: [BsDynamicFormActionModule],
     });
   });
 
-  it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toBe(bsDynamicFormActionTypes);
-    }),
-  );
+  it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
+    expect(config.length).toBe(1);
+    expect(config[0]).toBe(bsDynamicFormActionTypes);
+  }));
 });

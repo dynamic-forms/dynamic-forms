@@ -20,12 +20,8 @@ import { DynamicFormElementModule } from './dynamic-form-element.module';
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
-  imports: [
-    DynamicFormElementModule,
-  ],
-  declarations: [
-    DynamicFormElementBaseComponent,
-  ],
+  imports: [DynamicFormElementModule],
+  declarations: [DynamicFormElementBaseComponent],
   providers: [
     {
       provide: DynamicFormConfigService,
@@ -48,9 +44,7 @@ describe('DynamicFormElementComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormElementComponentTestModule,
-      ],
+      imports: [DynamicFormElementComponentTestModule],
     });
 
     const root = {} as DynamicForm;

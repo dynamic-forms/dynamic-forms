@@ -11,12 +11,7 @@ export const bsDynamicFormControlLabelType: DynamicFormFieldWrapperType = {
 };
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [CommonModule, DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormControlLabelModule {}

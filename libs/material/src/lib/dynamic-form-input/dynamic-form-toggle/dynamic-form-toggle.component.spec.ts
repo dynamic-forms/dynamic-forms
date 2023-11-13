@@ -1,9 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormToggleControl, DynamicFormToggleDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormToggleControl,
+  DynamicFormToggleDefinition,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 
 describe('MatDynamicFormToggleComponent', () => {
@@ -76,6 +84,5 @@ describe('MatDynamicFormToggleComponent', () => {
     expect(toggleElements[0].innerText).toBe('label1');
     expect(toggleElements[1].innerText).toBe('label2');
     expect(toggleElements[2].innerText).toBe('label3');
-
   });
 });

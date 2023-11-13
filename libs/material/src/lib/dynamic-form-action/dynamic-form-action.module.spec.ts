@@ -5,16 +5,12 @@ import { MatDynamicFormActionModule, matDynamicFormActionTypes } from './dynamic
 describe('MatDynamicFormActionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormActionModule,
-      ],
+      imports: [MatDynamicFormActionModule],
     });
   });
 
-  it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toBe(matDynamicFormActionTypes);
-    }),
-  );
+  it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
+    expect(config.length).toBe(1);
+    expect(config[0]).toBe(matDynamicFormActionTypes);
+  }));
 });

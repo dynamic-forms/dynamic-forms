@@ -3,5 +3,6 @@ import { DynamicFormControlEvaluatorType } from './dynamic-form-control-evaluato
 
 export type DynamicFormControlEvaluatorTypeConfig = (DynamicFormControlEvaluatorType | DynamicFormControlEvaluatorType[])[];
 
-export const DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG =
-  new InjectionToken<DynamicFormControlEvaluatorTypeConfig>('DynamicFormControlEvaluatorTypeConfig');
+export const DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG = new InjectionToken<DynamicFormControlEvaluatorTypeConfig>(
+  'DynamicFormControlEvaluatorTypeConfig',
+);

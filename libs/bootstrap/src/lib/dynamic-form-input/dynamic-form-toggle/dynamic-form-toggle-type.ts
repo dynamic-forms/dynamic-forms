@@ -5,6 +5,6 @@ import { BsDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 export const bsDynamicFormToggleType: DynamicFormInputType = {
   type: 'toggle',
   component: BsDynamicFormToggleComponent,
-  wrappers: [ 'label', 'errors' ],
+  wrappers: ['label', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

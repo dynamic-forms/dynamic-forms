@@ -24,9 +24,6 @@ export const dynamicFormControlType: DynamicFormFieldType = {
     DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes),
     DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes),
   ],
-  exports: [
-    DynamicFormConfigModule,
-    DynamicFormValidationModule,
-  ],
+  exports: [DynamicFormConfigModule, DynamicFormValidationModule],
 })
 export class DynamicFormControlModule {}

@@ -26,10 +26,6 @@ import { DynamicFormValidationModule } from './dynamic-form-validation/dynamic-f
     DynamicFormValidationModule,
     DynamicFormComponent,
   ],
-  providers: [
-    DynamicFormBuilder,
-    DynamicFormExpressionBuilder,
-    DynamicFormComponentFactory,
-  ],
+  providers: [DynamicFormBuilder, DynamicFormExpressionBuilder, DynamicFormComponentFactory],
 })
 export class DynamicFormsModule {}

@@ -2,8 +2,11 @@ import { of } from 'rxjs';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldValidation } from './dynamic-form-field-validation';
 import {
-  DynamicFormFieldAsyncValidator, DynamicFormFieldAsyncValidatorFactory,
-  DynamicFormFieldValidator, DynamicFormFieldValidatorBase, DynamicFormFieldValidatorFactory,
+  DynamicFormFieldAsyncValidator,
+  DynamicFormFieldAsyncValidatorFactory,
+  DynamicFormFieldValidator,
+  DynamicFormFieldValidatorBase,
+  DynamicFormFieldValidatorFactory,
 } from './dynamic-form-field-validator';
 import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
@@ -12,9 +15,13 @@ class TestDynamicFormFieldValidatorBase extends DynamicFormFieldValidatorBase {
     super(factory, key, field);
   }
 
-  get async(): boolean { return undefined; }
+  get async(): boolean {
+    return undefined;
+  }
 
-  getParameters(): any { return this.field.template.hidden; }
+  getParameters(): any {
+    return this.field.template.hidden;
+  }
 }
 
 describe('DynamicFormFieldValidatorBase', () => {
@@ -104,10 +111,10 @@ describe('DynamicFormFieldValidatorBase', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if parameters changes', () => {
-    const factory = (hidden: boolean) => hidden ? undefined :  _ => null;
+    const factory = (hidden: boolean) => (hidden ? undefined : _ => null);
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: {}, template: { validation } } as DynamicFormField;
-    const validator = new TestDynamicFormFieldValidatorBase(factory,'valid', field );
+    const validator = new TestDynamicFormFieldValidatorBase(factory, 'valid', field);
 
     expect(validator.parameters).toBeUndefined();
     expect(validator.validatorFn).toBeTruthy();
@@ -126,7 +133,9 @@ class TestDynamicFormFieldValidator extends DynamicFormFieldValidator {
     super(factory, key, field);
   }
 
-  getParameters(): any { return this.field.template; }
+  getParameters(): any {
+    return this.field.template;
+  }
 }
 
 describe('DynamicFormFieldValidator', () => {
@@ -153,7 +162,9 @@ class TestDynamicFormFieldAsyncValidator extends DynamicFormFieldAsyncValidator 
     super(factory, key, field);
   }
 
-  getParameters(): any { return this.field.template; }
+  getParameters(): any {
+    return this.field.template;
+  }
 }
 
 describe('DynamicFormFieldAsyncValidator', () => {

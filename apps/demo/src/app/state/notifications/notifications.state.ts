@@ -30,7 +30,7 @@ export class NotificationsState {
     const state = context.getState();
     const item = action.item;
     context.patchState({
-      items: [ item, ...state.items ],
+      items: [item, ...state.items],
     });
     if (item.duration) {
       setTimeout(() => context.dispatch(new NotificationItemPop(item)), item.duration);

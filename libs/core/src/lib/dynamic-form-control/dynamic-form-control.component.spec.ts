@@ -38,13 +38,8 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  imports: [
-    DynamicFormControlModule,
-  ],
-  declarations: [
-    DynamicFormInputOneComponent,
-    DynamicFormInputTwoComponent,
-  ],
+  imports: [DynamicFormControlModule],
+  declarations: [DynamicFormInputOneComponent, DynamicFormInputTwoComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -77,9 +72,7 @@ describe('DynamicFormControlComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormControlComponentTestModule,
-      ],
+      imports: [DynamicFormControlComponentTestModule],
     });
 
     fixture = TestBed.createComponent(DynamicFormControlComponent);
@@ -87,17 +80,23 @@ describe('DynamicFormControlComponent', () => {
 
     builder = {} as any;
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formControl = new DynamicFormControl(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        input: {
-          type: 'input-1',
+    formControl = new DynamicFormControl(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          input: {
+            type: 'input-1',
+          },
+          hints: {},
         },
-        hints: {},
-      },
-    } as DynamicFormControlDefinition, {} as DynamicFormFieldType);
+      } as DynamicFormControlDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formControl;
 
     fixture.detectChanges();

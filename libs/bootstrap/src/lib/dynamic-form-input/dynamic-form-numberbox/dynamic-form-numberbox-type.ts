@@ -5,6 +5,6 @@ import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.compon
 export const bsDynamicFormNumberboxType: DynamicFormInputType = {
   type: 'numberbox',
   component: BsDynamicFormNumberboxComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

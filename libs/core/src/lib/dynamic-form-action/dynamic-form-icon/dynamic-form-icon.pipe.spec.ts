@@ -7,7 +7,7 @@ describe('DynamicFormIconPipe', () => {
   let pipe: DynamicFormIconPipe;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormIconService>('service', [ 'getIcon' ]);
+    service = jasmine.createSpyObj<DynamicFormIconService>('service', ['getIcon']);
     pipe = new DynamicFormIconPipe(service);
   });
 

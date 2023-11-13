@@ -2,7 +2,9 @@ import { FormArray } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormArrayAsyncValidatorFactory, DynamicFormArrayValidatorFactory, DynamicFormArrayValidatorFn,
+  DynamicFormArrayAsyncValidatorFactory,
+  DynamicFormArrayValidatorFactory,
+  DynamicFormArrayValidatorFn,
 } from './dynamic-form-array-validator';
 
 export interface DynamicFormArrayValidatorType extends DynamicFormFieldValidatorType<DynamicFormArrayValidatorFactory> {}

@@ -7,7 +7,9 @@ class TestDynamicFormFieldEvaluator extends DynamicFormFieldEvaluator {
     super(key, type, field, func);
   }
 
-  get enabled(): boolean { return false; }
+  get enabled(): boolean {
+    return false;
+  }
 }
 
 describe('DynamicFormFieldEvaluator', () => {

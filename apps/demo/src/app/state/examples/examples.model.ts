@@ -16,7 +16,7 @@ export interface ExampleMenuGroup {
 export type ExampleMenuItem = ExampleMenu | ExampleMenuGroup;
 
 export interface ExamplesMenu {
-   items: ExampleMenuItem[];
+  items: ExampleMenuItem[];
 }
 
 export interface Example extends ExampleMenu {
@@ -25,7 +25,7 @@ export interface Example extends ExampleMenu {
 
 export interface Examples {
   menu: ExamplesMenu;
-  examples: { [ key: string ]: Example };
+  examples: { [key: string]: Example };
 }
 
 export const EXAMPLES = new StateToken<Examples>('examples');

@@ -1,8 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfigService, DynamicFormInputBase, DynamicFormLibraryService,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicFormConfigService,
+  DynamicFormInputBase,
+  DynamicFormLibraryService,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
 
@@ -17,12 +21,8 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  imports: [
-    BsDynamicFormControlErrorsModule,
-  ],
-  declarations: [
-    DynamicFormInputTestComponent,
-  ],
+  imports: [BsDynamicFormControlErrorsModule],
+  declarations: [DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -40,9 +40,7 @@ describe('BsDynamicFormControlErrorsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormControlLabelTestModule,
-      ],
+      imports: [BsDynamicFormControlLabelTestModule],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormControlErrorsComponent);

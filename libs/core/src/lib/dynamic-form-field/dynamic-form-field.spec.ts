@@ -31,7 +31,9 @@ class DynamicFormTestField extends DynamicFormField {
     super(builder, root, parent, definition, type, control);
   }
 
-  get fieldClassType(): DynamicFormFieldClassType { return null; }
+  get fieldClassType(): DynamicFormFieldClassType {
+    return null;
+  }
 
   check(): void {
     this.checkControl();
@@ -44,14 +46,24 @@ class DynamicFormTestField extends DynamicFormField {
   resetDefault(): void {}
   validate(): void {}
 
-  setModel(model: any): void { this._model = model; }
-  setControl(control: any): void { this._control = control; }
-  setValidators(validators: any[]): void { this._validators = validators; }
+  setModel(model: any): void {
+    this._model = model;
+  }
+  setControl(control: any): void {
+    this._control = control;
+  }
+  setValidators(validators: any[]): void {
+    this._validators = validators;
+  }
 
   checkExpressions(): void {}
 
-  protected getChildren(): any[] { return undefined; }
-  protected getValidators(): any[] { return undefined; }
+  protected getChildren(): any[] {
+    return undefined;
+  }
+  protected getValidators(): any[] {
+    return undefined;
+  }
 
   protected override afterInitExpressions(): void {
     this.checkExpressions();
@@ -71,7 +83,7 @@ describe('DynamicFormField', () => {
     const parentField = { classType: 'field', depth: 1 } as DynamicFormField;
     const parent = { parent: parentField as DynamicFormElement } as DynamicFormElement;
     const template = { hidden: true, disabled: true, readonly: true };
-    const wrappers = [ 'wrapper-wrapper', 'wrapper' ];
+    const wrappers = ['wrapper-wrapper', 'wrapper'];
     const definition = { id: 'id', key: 'key', index: 1, type: 'type', template, wrappers } as DynamicFormFieldDefinition;
     const type = { type: 'type' } as DynamicFormFieldType;
     const field = new DynamicFormTestField(builder, root, parent, definition, type);
@@ -234,7 +246,7 @@ describe('DynamicFormField', () => {
     const field = new DynamicFormTestField(builder, null, null, definition, {} as DynamicFormFieldType);
 
     field.setModel({ value: 'VALUE' });
-    field.setControl({ disabled: true, status: 'VALID'});
+    field.setControl({ disabled: true, status: 'VALID' });
 
     expect(field.expressionData.id).toBe('id');
     expect(field.expressionData.key).toBe('key');
@@ -338,7 +350,7 @@ describe('DynamicFormField', () => {
   it('inits header and footer actions', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
-    const definition = { template: {}, headerActions: [ {} ], footerActions: [ {} ] } as DynamicFormFieldDefinition;
+    const definition = { template: {}, headerActions: [{}], footerActions: [{}] } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, root, parent, definition, {} as DynamicFormFieldType);
     const headerActions = [{}] as DynamicFormAction[];
     const footerActions = [{}] as DynamicFormAction[];
@@ -423,8 +435,8 @@ describe('DynamicFormField', () => {
     field.setValidators(validators);
     field.check();
 
-    expect(field.control.setValidators).toHaveBeenCalledWith([ validators[0].validatorFn ]);
-    expect(field.control.setAsyncValidators).toHaveBeenCalledWith([ validators[1].validatorFn ]);
+    expect(field.control.setValidators).toHaveBeenCalledWith([validators[0].validatorFn]);
+    expect(field.control.setAsyncValidators).toHaveBeenCalledWith([validators[1].validatorFn]);
     expect(field.control.updateValueAndValidity).toHaveBeenCalled();
   });
 

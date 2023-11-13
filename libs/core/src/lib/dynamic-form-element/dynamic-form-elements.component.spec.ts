@@ -17,12 +17,8 @@ import { DynamicFormElementsComponent } from './dynamic-form-elements.component'
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
-  imports: [
-    DynamicFormElementModule,
-  ],
-  declarations: [
-    DynamicFormElementBaseComponent,
-  ],
+  imports: [DynamicFormElementModule],
+  declarations: [DynamicFormElementBaseComponent],
   providers: [
     {
       provide: DynamicFormConfigService,
@@ -43,7 +39,7 @@ describe('DynamicFormElementsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ DynamicFormElementComponentTestModule ],
+      imports: [DynamicFormElementComponentTestModule],
     });
 
     fixture = TestBed.createComponent(DynamicFormElementsComponent);
@@ -56,7 +52,10 @@ describe('DynamicFormElementsComponent', () => {
 
   it('renders component template', () => {
     const type = { type: 'element', component: DynamicFormElementBaseComponent };
-    const elements = [ { classType: 'element', type }, { classType: 'element', type } ] as DynamicFormElement[];
+    const elements = [
+      { classType: 'element', type },
+      { classType: 'element', type },
+    ] as DynamicFormElement[];
     component.elements = elements;
 
     fixture.detectChanges();

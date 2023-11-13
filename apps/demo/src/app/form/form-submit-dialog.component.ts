@@ -9,5 +9,6 @@ import { DynamicFormSubmit } from '@dynamic-forms/core';
 export class FormSubmitDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<FormSubmitDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DynamicFormSubmit) {}
+    @Inject(MAT_DIALOG_DATA) public data: DynamicFormSubmit,
+  ) {}
 }

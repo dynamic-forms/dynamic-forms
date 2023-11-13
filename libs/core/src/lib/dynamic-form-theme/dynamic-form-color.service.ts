@@ -8,7 +8,8 @@ export class DynamicFormColorService {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_COLOR_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_COLOR_CONFIGS)
     private colorConfigs: DynamicFormColorConfigs,
   ) {
     this.colorConfig = this.mergeColorConfigs(this.colorConfigs);
@@ -32,7 +33,8 @@ export class DynamicFormColorService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         colors: { ...result.colors, ...config.colors },
         libraryName,
       };

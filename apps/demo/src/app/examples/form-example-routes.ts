@@ -13,22 +13,20 @@ export const resolveFormExample: ResolveFn<ExampleMenu> = (route: ActivatedRoute
   return definitionId !== 'errors'
     ? inject(Store).select(ExamplesState.example(definitionId)).pipe(take(1))
     : of({ id: 'errors', path: 'errors', label: 'Errors' });
-}
+};
 
 export const resolveFormExampleDefinition: ResolveFn<DynamicFormDefinition> = (route: ActivatedRouteSnapshot) => {
   const example = route.parent.data.example as Example;
   return inject(FormExampleLoader).loadDefinitionForExample(example);
-}
+};
 
 export const resolveFormExampleModel: ResolveFn<any> = (route: ActivatedRouteSnapshot) => {
   const modelId = route.params.modelId;
   const example = route.parent.data.example as Example;
   return inject(FormExampleLoader).loadModelForExample(example, modelId);
-}
+};
 
-export const getFormExampleRoutes = <TExampleComponent extends FormExampleBase>(
-  exampleComponent: Type<TExampleComponent>,
-): Routes => [
+export const getFormExampleRoutes = <TExampleComponent extends FormExampleBase>(exampleComponent: Type<TExampleComponent>): Routes => [
   {
     path: ':definitionId',
     resolve: {

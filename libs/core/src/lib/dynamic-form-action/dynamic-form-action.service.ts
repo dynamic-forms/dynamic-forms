@@ -12,7 +12,8 @@ export class DynamicFormActionService {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
     private handlerConfig: DynamicFormActionHandlerConfig,
   ) {
     this.handlers = this.libraryService.filterTypes(this.handlerConfig);
@@ -37,8 +38,6 @@ export class DynamicFormActionService {
   }
 
   private getElement(handler: DynamicFormActionHandler, action: DynamicFormAction): DynamicFormElement | DynamicFormField {
-    return handler.elementFunc
-      ? handler.elementFunc(action)
-      : action.parent;
+    return handler.elementFunc ? handler.elementFunc(action) : action.parent;
   }
 }

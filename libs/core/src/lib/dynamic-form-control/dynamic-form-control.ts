@@ -20,9 +20,8 @@ export class DynamicFormControl<
   Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
   Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
   Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
-  Type extends DynamicFormFieldType = DynamicFormFieldType
+  Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition, Type> {
-
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
@@ -41,16 +40,30 @@ export class DynamicFormControl<
     this.extendExpressionData({ input: () => this.input });
   }
 
-  get fieldClassType(): DynamicFormFieldClassType { return 'control'; }
+  get fieldClassType(): DynamicFormFieldClassType {
+    return 'control';
+  }
 
-  get input(): Input { return this.template.input; }
-  get inputId(): string { return this.id || this.path; }
-  get inputType(): string { return this.input.type; }
+  get input(): Input {
+    return this.template.input;
+  }
+  get inputId(): string {
+    return this.id || this.path;
+  }
+  get inputType(): string {
+    return this.input.type;
+  }
 
-  get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
+  get evaluators(): DynamicFormControlEvaluator[] {
+    return this._evaluators;
+  }
 
-  get prefixAddOn(): DynamicFormControlAddOn { return this._prefixAddOn; }
-  get suffixAddOn(): DynamicFormControlAddOn { return this._suffixAddOn; }
+  get prefixAddOn(): DynamicFormControlAddOn {
+    return this._prefixAddOn;
+  }
+  get suffixAddOn(): DynamicFormControlAddOn {
+    return this._suffixAddOn;
+  }
 
   override init(): void {
     super.init();
@@ -155,11 +168,13 @@ export class DynamicFormControl<
     const observer = { next: value => this.setModel(value) };
     if (this.settings.updateType === 'debounce') {
       const debounce = this.settings.updateDebounce || dynamicFormFieldDefaultDebounce;
-      return valueChanges.pipe(
-        tap(() => this._valueChanging = true),
-        debounceTime(debounce),
-        tap(() => this._valueChanging = false),
-      ).subscribe(observer);
+      return valueChanges
+        .pipe(
+          tap(() => (this._valueChanging = true)),
+          debounceTime(debounce),
+          tap(() => (this._valueChanging = false)),
+        )
+        .subscribe(observer);
     }
     return valueChanges.subscribe(observer);
   }

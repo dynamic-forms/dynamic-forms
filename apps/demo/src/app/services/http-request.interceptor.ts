@@ -1,4 +1,3 @@
-
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,6 +11,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   private getCacheHeaders(): { [key: string]: string } {
     // eslint-disable-next-line quote-props, @typescript-eslint/naming-convention
-    return { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' };
+    return { 'Cache-Control': 'no-cache', Pragma: 'no-cache' };
   }
 }

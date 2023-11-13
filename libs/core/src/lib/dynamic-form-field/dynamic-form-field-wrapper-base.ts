@@ -8,14 +8,22 @@ import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
 @Directive()
 export abstract class DynamicFormFieldWrapperBase<
-  Value = any, Model extends Value = Value,
-  Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
-  Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
-  Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
-  Field extends DynamicFormField<Value, Model, Control, Template, Definition> =
-    DynamicFormField<Value, Model, Control, Template, Definition>
-> extends DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field> implements AfterViewInit {
-
+    Value = any,
+    Model extends Value = Value,
+    Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
+    Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
+    Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
+    Field extends DynamicFormField<Value, Model, Control, Template, Definition> = DynamicFormField<
+      Value,
+      Model,
+      Control,
+      Template,
+      Definition
+    >,
+  >
+  extends DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field>
+  implements AfterViewInit
+{
   component: DynamicFormFieldBase<Value, Model, Control, Template, Definition, Field>;
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
@@ -28,7 +36,9 @@ export abstract class DynamicFormFieldWrapperBase<
     super(validationService);
   }
 
-  get ref(): ViewContainerRef { return this.containerRef; }
+  get ref(): ViewContainerRef {
+    return this.containerRef;
+  }
 
   ngAfterViewInit(): void {
     const viewRef = this.containerRef.detach(0);

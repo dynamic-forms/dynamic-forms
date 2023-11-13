@@ -5,6 +5,6 @@ import { BsDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 export const bsDynamicFormSwitchType: DynamicFormInputType = {
   type: 'switch',
   component: BsDynamicFormSwitchComponent,
-  wrappers: [ 'errors' ],
+  wrappers: ['errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

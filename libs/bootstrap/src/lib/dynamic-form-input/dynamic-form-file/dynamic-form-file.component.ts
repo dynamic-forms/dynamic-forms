@@ -11,7 +11,10 @@ import { BsDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrappe
   imports: [CommonModule, ReactiveFormsModule, DynamicFormFileDirective, BsDynamicFormInputWrapperComponent],
 })
 export class BsDynamicFormFileComponent extends DynamicFormFileBase {
-  constructor(protected override builder: DynamicFormBuilder, protected override validationService: DynamicFormValidationService) {
+  constructor(
+    protected override builder: DynamicFormBuilder,
+    protected override validationService: DynamicFormValidationService,
+  ) {
     super(builder, validationService);
   }
 }

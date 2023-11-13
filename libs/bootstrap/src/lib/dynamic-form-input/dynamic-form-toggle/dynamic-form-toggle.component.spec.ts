@@ -1,8 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormToggleControl, DynamicFormToggleDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormToggleControl,
+  DynamicFormToggleDefinition,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 
 describe('BsDynamicFormToggleComponent', () => {
@@ -39,7 +47,7 @@ describe('BsDynamicFormToggleComponent', () => {
           options: [
             { value: 'value1', label: 'label1' },
             { value: 'value2', label: 'label2' },
-            { value: 'value3', label: 'label3', disabled: true},
+            { value: 'value3', label: 'label3', disabled: true },
           ],
         },
       },

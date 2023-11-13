@@ -1,8 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
-  DynamicFormColorService, DynamicFormField, DynamicFormIconDefinition, DynamicFormIconService, DynamicFormIconTemplate,
-  DynamicFormLibraryService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormAction,
+  DynamicFormActionService,
+  DynamicFormActionType,
+  DynamicFormBuilder,
+  DynamicFormColorService,
+  DynamicFormField,
+  DynamicFormIconDefinition,
+  DynamicFormIconService,
+  DynamicFormIconTemplate,
+  DynamicFormLibraryService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormIconComponent } from './dynamic-form-icon.component';
 
 describe('BsDynamicFormIconComponent', () => {
@@ -106,7 +116,7 @@ describe('BsDynamicFormIconComponent', () => {
 
   it('sets type of dynamic form icon', () => {
     const formButtonDebugElement = fixture.debugElement.query(By.css('button.dynamic-form-icon'));
-    const formButtonElement = formButtonDebugElement.nativeElement  as HTMLButtonElement;
+    const formButtonElement = formButtonDebugElement.nativeElement as HTMLButtonElement;
 
     expect(formButtonElement.type).toBe('button');
 

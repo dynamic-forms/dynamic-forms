@@ -14,12 +14,12 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
   imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class DynamicFormGroupComponent<
-  Value extends { [key: string]: any } = any, Model extends Value = Value,
+  Value extends { [key: string]: any } = any,
+  Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
-  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
+  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>,
 > extends DynamicFormGroupBase<Value, Model, Template, Definition, Group> {
-
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }

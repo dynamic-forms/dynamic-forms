@@ -15,8 +15,10 @@ export class MarkdownRenderer extends marked.Renderer {
 
 @Injectable()
 export class DynamicFormMarkdownService {
-
-  constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(
+    private httpClient: HttpClient,
+    private sanitizer: DomSanitizer,
+  ) {
     marked.setOptions({ renderer: new MarkdownRenderer() });
   }
 
@@ -26,9 +28,7 @@ export class DynamicFormMarkdownService {
   }
 
   compileFromSource(source: string, options?: DynamicFormMarkdownOptions): Observable<string> {
-    return this.httpClient.get(source, { responseType: 'text' }).pipe(
-      map(markdown => this.compile(markdown, options)),
-    );
+    return this.httpClient.get(source, { responseType: 'text' }).pipe(map(markdown => this.compile(markdown, options)));
   }
 
   private parseMarkdown(markdown: string): string {

@@ -10,14 +10,8 @@ export const dynamicFormMarkdownType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(dynamicFormMarkdownType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
-  providers: [
-    DynamicFormMarkdownService,
-  ],
+  imports: [DynamicFormConfigModule.withElement(dynamicFormMarkdownType)],
+  exports: [DynamicFormConfigModule],
+  providers: [DynamicFormMarkdownService],
 })
 export class DynamicFormMarkdownModule {}

@@ -14,13 +14,12 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
   imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class DynamicFormDictionaryComponent<
-  Value = any, Model extends Value = Value,
+  Value = any,
+  Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
-  Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> =
-    DynamicFormDictionary<Value, Model, Template, Definition>
+  Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> = DynamicFormDictionary<Value, Model, Template, Definition>,
 > extends DynamicFormDictionaryBase<Value, Model, Template, Definition, Dictionary> {
-
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }

@@ -13,7 +13,10 @@ import { FormEditorComponent } from '../form-editor.component';
   imports: [CommonModule, FormEditorComponent, FormEditorLoggerModule, MaterialFormModule],
 })
 export class MaterialEditorComponent extends FormEditorBase {
-  constructor(protected override route: ActivatedRoute, protected override cdr: ChangeDetectorRef) {
+  constructor(
+    protected override route: ActivatedRoute,
+    protected override cdr: ChangeDetectorRef,
+  ) {
     super(route, cdr);
   }
 }

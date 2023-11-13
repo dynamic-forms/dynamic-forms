@@ -15,13 +15,16 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 @Component({
   selector: 'dynamic-form-button-test',
   template: `
-    <button class="dynamic-form-button"
+    <button
+      class="dynamic-form-button"
       [ngClass]="template.className"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"
       (click)="onClick($event)"
-    >{{ template?.label }}</button>
+    >
+      {{ template?.label }}
+    </button>
   `,
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
@@ -38,9 +41,7 @@ describe('DynamicFormButtonBase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormButtonTestComponent,
-      ],
+      declarations: [DynamicFormButtonTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -136,14 +137,12 @@ describe('DynamicFormButtonBase', () => {
     expect(formButtonElement.type).toBe('button');
   });
 
-  it('executes action onClick',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      spyOn(service, 'handle');
+  it('executes action onClick', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+    spyOn(service, 'handle');
 
-      const event = null;
-      component.onClick(event);
+    const event = null;
+    component.onClick(event);
 
-      expect(service.handle).toHaveBeenCalledWith(component.element, event);
-    }),
-  );
+    expect(service.handle).toHaveBeenCalledWith(component.element, event);
+  }));
 });

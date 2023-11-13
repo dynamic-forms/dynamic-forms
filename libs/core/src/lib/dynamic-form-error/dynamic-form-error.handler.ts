@@ -8,7 +8,8 @@ import { DynamicFormLogger } from './dynamic-form.logger';
 export class DynamicFormErrorHandler {
   constructor(
     private logger: DynamicFormLogger,
-    @Optional() @Inject(DYNAMIC_FORM_ERROR_SETTINGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ERROR_SETTINGS)
     readonly settings: DynamicFormErrorSettings,
   ) {
     this.settings = this.settings || dynamicFormErrorSettingsDefault;
@@ -22,7 +23,8 @@ export class DynamicFormErrorHandler {
   }
 
   handleUndefined<Value, ErrorType extends DynamicFormErrorType = DynamicFormErrorType>(
-    value: Value | undefined, createError: () => DynamicFormError<ErrorType>,
+    value: Value | undefined,
+    createError: () => DynamicFormError<ErrorType>,
   ): Value | undefined {
     if (!value) {
       this.handle(createError());

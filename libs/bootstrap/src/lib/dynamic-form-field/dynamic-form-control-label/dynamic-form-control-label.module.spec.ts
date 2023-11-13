@@ -5,16 +5,15 @@ import { BsDynamicFormControlLabelModule, bsDynamicFormControlLabelType } from '
 describe('BsDynamicFormControlLabelModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormControlLabelModule,
-      ],
+      imports: [BsDynamicFormControlLabelModule],
     });
   });
 
-  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
+  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG', inject(
+    [DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG],
+    (config: DynamicFormFieldWrapperTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormControlLabelType);
-    }),
-  );
+    },
+  ));
 });

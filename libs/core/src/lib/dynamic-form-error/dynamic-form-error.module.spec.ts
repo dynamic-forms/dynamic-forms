@@ -14,9 +14,7 @@ describe('DynamicFormErrorModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule,
-        ],
+        imports: [DynamicFormErrorModule],
       });
     });
 
@@ -28,20 +26,19 @@ describe('DynamicFormErrorModule', () => {
       expect(() => TestBed.inject(DynamicFormLogger)).toThrowError(/NullInjectorError/);
     });
 
-    it('provides DYNAMIC_FORM_LOGGER_TYPE_CONFIG with dynamicFormConsoleLogger',
-      inject([DYNAMIC_FORM_LOGGER_TYPE_CONFIG], (config: DynamicFormLoggerTypeConfig) => {
+    it('provides DYNAMIC_FORM_LOGGER_TYPE_CONFIG with dynamicFormConsoleLogger', inject(
+      [DYNAMIC_FORM_LOGGER_TYPE_CONFIG],
+      (config: DynamicFormLoggerTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toBe(dynamicFormConsoleLogger);
-      }),
-    );
+      },
+    ));
   });
 
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule,
-        ],
+        imports: [DynamicFormErrorModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -65,9 +62,7 @@ describe('DynamicFormErrorModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule.withErrorSettings(errorSettings),
-        ],
+        imports: [DynamicFormErrorModule.withErrorSettings(errorSettings)],
       });
     });
 
@@ -81,9 +76,7 @@ describe('DynamicFormErrorModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule.withLoggerSettings(loggerSettings),
-        ],
+        imports: [DynamicFormErrorModule.withLoggerSettings(loggerSettings)],
       });
     });
 
@@ -97,9 +90,7 @@ describe('DynamicFormErrorModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule.withLogger(loggerType),
-        ],
+        imports: [DynamicFormErrorModule.withLogger(loggerType)],
       });
     });
 
@@ -114,9 +105,7 @@ describe('DynamicFormErrorModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormErrorModule.withLoggers(loggerTypes),
-        ],
+        imports: [DynamicFormErrorModule.withLoggers(loggerTypes)],
       });
     });
 

@@ -7,13 +7,21 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 export abstract class DynamicFormElementBase<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
-  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>
+  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
 > {
   @Input() element: Element;
 
-  get id(): string { return this.element.id; }
-  get hidden(): boolean { return this.element.hidden; }
+  get id(): string {
+    return this.element.id;
+  }
+  get hidden(): boolean {
+    return this.element.hidden;
+  }
 
-  get definition(): Definition { return this.element.definition; }
-  get template(): Template { return this.element.template; }
+  get definition(): Definition {
+    return this.element.definition;
+  }
+  get template(): Template {
+    return this.element.template;
+  }
 }

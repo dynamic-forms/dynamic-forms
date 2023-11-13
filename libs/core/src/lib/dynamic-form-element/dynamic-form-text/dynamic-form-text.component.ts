@@ -12,12 +12,13 @@ import { DynamicFormTextTemplate } from './dynamic-form-text-template';
 })
 export class DynamicFormTextComponent<
   Template extends DynamicFormTextTemplate = DynamicFormTextTemplate,
-  Definition extends DynamicFormTextDefinition<Template> = DynamicFormTextDefinition<Template>
+  Definition extends DynamicFormTextDefinition<Template> = DynamicFormTextDefinition<Template>,
 > extends DynamicFormElementBase<Template, Definition> {
-
   constructor() {
     super();
   }
 
-  get text(): string { return this.template?.text; }
+  get text(): string {
+    return this.template?.text;
+  }
 }

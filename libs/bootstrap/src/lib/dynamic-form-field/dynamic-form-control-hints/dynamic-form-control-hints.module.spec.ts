@@ -5,16 +5,15 @@ import { BsDynamicFormControlHintsModule, bsDynamicFormControlHintsType } from '
 describe('BsDynamicFormControlHintsModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormControlHintsModule,
-      ],
+      imports: [BsDynamicFormControlHintsModule],
     });
   });
 
-  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
+  it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG', inject(
+    [DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG],
+    (config: DynamicFormFieldWrapperTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(bsDynamicFormControlHintsType);
-    }),
-  );
+    },
+  ));
 });

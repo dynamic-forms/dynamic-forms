@@ -11,7 +11,7 @@ describe('DynamicFormItems', () => {
 
   beforeEach(() => {
     builder = createDynamicFormBuilderSpy();
-    builder.getDefinition.and.callFake((definition) => definition);
+    builder.getDefinition.and.callFake(definition => definition);
   });
 
   it('creates instance', () => {
@@ -43,10 +43,7 @@ describe('DynamicFormItems', () => {
       id: 'id',
       type: 'type',
       template: {},
-      children: [
-        { template: {} },
-        { template: {} },
-      ],
+      children: [{ template: {} }, { template: {} }],
     } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 
@@ -77,10 +74,7 @@ describe('DynamicFormItems', () => {
       id: 'id',
       type: 'type',
       template: {},
-      children: [
-        { template: { disabled: false } },
-        { template: { disabled: true } },
-      ],
+      children: [{ template: { disabled: false } }, { template: { disabled: true } }],
     } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 
@@ -98,10 +92,7 @@ describe('DynamicFormItems', () => {
       id: 'id',
       type: 'type',
       template: {},
-      children: [
-        { template: { disabled: false } },
-        { template: { disabled: true } },
-      ],
+      children: [{ template: { disabled: false } }, { template: { disabled: true } }],
     } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 
@@ -119,10 +110,7 @@ describe('DynamicFormItems', () => {
       id: 'id',
       type: 'type',
       template: {},
-      children: [
-        { template: { disabled: false } },
-        { template: { disabled: false } },
-      ],
+      children: [{ template: { disabled: false } }, { template: { disabled: false } }],
     } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 

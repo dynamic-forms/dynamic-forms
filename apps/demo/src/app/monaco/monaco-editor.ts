@@ -6,7 +6,7 @@ export type MonacoEditorLanguage = 'json';
 
 export enum MonacoEditorUpdateType {
   Change = 'change',
-  Blur = 'blur'
+  Blur = 'blur',
 }
 
 export type MonacoEditorDisposable = monaco.IDisposable;

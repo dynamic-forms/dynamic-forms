@@ -2,7 +2,7 @@ import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
-import { DynamicFormModal} from './dynamic-form-modal';
+import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalBase } from './dynamic-form-modal-base';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 

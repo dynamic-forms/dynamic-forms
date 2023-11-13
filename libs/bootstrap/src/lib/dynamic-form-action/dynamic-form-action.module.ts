@@ -3,18 +3,10 @@ import { DynamicFormActionModule, DynamicFormConfigModule } from '@dynamic-forms
 import { bsDynamicFormButtonType } from './dynamic-form-button/dynamic-form-button-type';
 import { bsDynamicFormIconType } from './dynamic-form-icon/dynamic-form-icon-type';
 
-export const bsDynamicFormActionTypes = [
-  bsDynamicFormButtonType,
-  bsDynamicFormIconType,
-];
+export const bsDynamicFormActionTypes = [bsDynamicFormButtonType, bsDynamicFormIconType];
 
 @NgModule({
-  imports: [
-    DynamicFormActionModule,
-    DynamicFormConfigModule.withActions(bsDynamicFormActionTypes),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormActionModule, DynamicFormConfigModule.withActions(bsDynamicFormActionTypes)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormActionModule {}

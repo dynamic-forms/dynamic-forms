@@ -3,9 +3,6 @@ import { MatDynamicFormAccordionModule } from './dynamic-form-accordion/dynamic-
 import { MatDynamicFormTabsModule } from './dynamic-form-tabs/dynamic-form-tabs.module';
 
 @NgModule({
-  imports: [
-    MatDynamicFormAccordionModule,
-    MatDynamicFormTabsModule,
-  ],
+  imports: [MatDynamicFormAccordionModule, MatDynamicFormTabsModule],
 })
 export class MatDynamicFormItemsModule {}

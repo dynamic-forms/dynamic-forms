@@ -15,18 +15,20 @@ import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 import {
-  DynamicFormFieldAsyncValidatorFn, DynamicFormFieldValidatorBase, DynamicFormFieldValidatorFn,
+  DynamicFormFieldAsyncValidatorFn,
+  DynamicFormFieldValidatorBase,
+  DynamicFormFieldValidatorFn,
 } from './dynamic-form-field-validator';
 
 export abstract class DynamicFormField<
-  Value = any, Model extends Value = Value,
+  Value = any,
+  Model extends Value = Value,
   Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate,
   Definition extends DynamicFormFieldDefinition<Value, Template> = DynamicFormFieldDefinition<Value, Template>,
   Type extends DynamicFormFieldType = DynamicFormFieldType,
-  Child extends DynamicFormElement = DynamicFormElement
+  Child extends DynamicFormElement = DynamicFormElement,
 > extends DynamicFormElement<Template, Definition, Child, DynamicFormFieldExpressionData, DynamicFormFieldExpressions, Type> {
-
   protected _settings: DynamicFormFieldSettings;
 
   protected _depth: number;
@@ -54,37 +56,77 @@ export abstract class DynamicFormField<
     this._settings = this.createSettings();
   }
 
-  override get classType(): DynamicFormClassType { return 'field'; }
+  override get classType(): DynamicFormClassType {
+    return 'field';
+  }
 
-  get key(): string { return this.definition.key; }
-  get index(): number { return this.definition.index; }
-  get depth(): number { return this._depth; }
+  get key(): string {
+    return this.definition.key;
+  }
+  get index(): number {
+    return this.definition.index;
+  }
+  get depth(): number {
+    return this._depth;
+  }
   get path(): string {
     const parentPath = this.parentField && this.parentField.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
   }
-  get settings(): DynamicFormFieldSettings { return this._settings; }
+  get settings(): DynamicFormFieldSettings {
+    return this._settings;
+  }
 
-  get model(): Model { return this._model; }
-  get value(): Value { return this._control.value; }
-  get valid(): boolean { return this._control.valid; }
-  get status(): string { return this._control.status; }
-  get control(): Control { return this._control; }
+  get model(): Model {
+    return this._model;
+  }
+  get value(): Value {
+    return this._control.value;
+  }
+  get valid(): boolean {
+    return this._control.valid;
+  }
+  get status(): string {
+    return this._control.status;
+  }
+  get control(): Control {
+    return this._control;
+  }
 
-  get disabled(): boolean { return this.control.disabled; }
-  get readonly(): boolean { return this.template.readonly || this.parentField.readonly || false; }
+  get disabled(): boolean {
+    return this.control.disabled;
+  }
+  get readonly(): boolean {
+    return this.template.readonly || this.parentField.readonly || false;
+  }
 
-  get wrappers(): string[] { return this.definition.wrappers; }
-  get unregistered(): boolean { return this.definition.unregistered; }
+  get wrappers(): string[] {
+    return this.definition.wrappers;
+  }
+  get unregistered(): boolean {
+    return this.definition.unregistered;
+  }
 
-  get validators(): DynamicFormFieldValidatorBase[] { return this._validators; }
+  get validators(): DynamicFormFieldValidatorBase[] {
+    return this._validators;
+  }
 
-  get errors(): DynamicFormValidationErrors { return this.control.errors; }
-  get hasErrors(): boolean { return (this.errors || false) && true; }
-  get showErrors(): boolean { return this.hasErrors && this.control.touched; }
+  get errors(): DynamicFormValidationErrors {
+    return this.control.errors;
+  }
+  get hasErrors(): boolean {
+    return (this.errors || false) && true;
+  }
+  get showErrors(): boolean {
+    return this.hasErrors && this.control.touched;
+  }
 
-  get headerActions(): DynamicFormAction[] { return this._headerActions; }
-  get footerActions(): DynamicFormAction[] { return this._footerActions; }
+  get headerActions(): DynamicFormAction[] {
+    return this._headerActions;
+  }
+  get footerActions(): DynamicFormAction[] {
+    return this._footerActions;
+  }
 
   override init(): void {
     super.init();
@@ -99,8 +141,8 @@ export abstract class DynamicFormField<
   abstract destroy(): void;
 
   clear(): void {
-     this.resetEmpty();
-     this.validate();
+    this.resetEmpty();
+    this.validate();
   }
 
   abstract reset(): void;
@@ -111,7 +153,6 @@ export abstract class DynamicFormField<
   protected getId(): string {
     return this._builder.getFieldId(this);
   }
-
 
   protected override initId(): void {
     this.definition.id = this.getId();
@@ -206,9 +247,7 @@ export abstract class DynamicFormField<
   }
 
   private validatorsChanged(): boolean {
-    return this._validators
-      .map(validator => validator.checkChanges())
-      .some(change => !!change);
+    return this._validators.map(validator => validator.checkChanges()).some(change => !!change);
   }
 
   private getDepth(): number {
@@ -217,8 +256,8 @@ export abstract class DynamicFormField<
 
   private createSettings(): DynamicFormFieldSettings {
     const defaultSettings = { autoGeneratedId: false, updateType: 'change' } as DynamicFormFieldSettings;
-    const rootSettings = this.root && this.root.settings || {};
-    const parentSettings = this.parentField && this.parentField.settings || {};
+    const rootSettings = (this.root && this.root.settings) || {};
+    const parentSettings = (this.parentField && this.parentField.settings) || {};
     const options = this.definition.settings || {};
     return { ...defaultSettings, ...rootSettings, ...parentSettings, ...options };
   }

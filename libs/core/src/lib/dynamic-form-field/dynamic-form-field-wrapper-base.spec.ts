@@ -29,10 +29,7 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  declarations: [
-    DynamicFormFieldWrapperTestComponent,
-    DynamicFormInputTestComponent,
-  ],
+  declarations: [DynamicFormFieldWrapperTestComponent, DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -46,9 +43,7 @@ class DynamicFormFieldWrapperTestModule {}
 describe('DynamicFormFieldWrapper', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormFieldWrapperTestModule,
-      ],
+      imports: [DynamicFormFieldWrapperTestModule],
     });
   });
 

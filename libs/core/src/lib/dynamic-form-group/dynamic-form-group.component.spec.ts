@@ -20,9 +20,7 @@ describe('DynamicFormGroupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormGroupModule,
-      ],
+      imports: [DynamicFormGroupModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -37,15 +35,21 @@ describe('DynamicFormGroupComponent', () => {
 
     builder = {} as any;
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formGroup = new DynamicFormGroup(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        label: 'label',
-      },
-      children: [],
-    } as DynamicFormGroupDefinition, {} as DynamicFormFieldType);
+    formGroup = new DynamicFormGroup(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          label: 'label',
+        },
+        children: [],
+      } as DynamicFormGroupDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formGroup;
 
     fixture.detectChanges();

@@ -6,7 +6,7 @@ describe('DynamicFormColorService', () => {
   let pipe: DynamicFormColorPipe;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormColorService>('service', [ 'getColor' ]);
+    service = jasmine.createSpyObj<DynamicFormColorService>('service', ['getColor']);
     pipe = new DynamicFormColorPipe(service);
   });
 

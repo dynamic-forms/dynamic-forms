@@ -6,9 +6,8 @@ import { DynamicFormItemsTemplate } from '../dynamic-form-items-template';
 export abstract class DynamicFormAccordionBase<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
-  Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>
-> extends DynamicFormItemsBase<Template , Definition, Items> {
-
+  Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>,
+> extends DynamicFormItemsBase<Template, Definition, Items> {
   constructor() {
     super();
   }

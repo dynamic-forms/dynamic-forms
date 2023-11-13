@@ -67,7 +67,7 @@ describe('DynamicFormElement', () => {
 
     const root = { classType: 'field', expressionData: rootExpressionData } as DynamicForm;
     const parentField = { classType: 'field', expressionData: parentFieldExpressionData } as DynamicFormField;
-    const parent = { parent: parentField  as DynamicFormElement, expressionData: parentExpressionData } as DynamicFormElement;
+    const parent = { parent: parentField as DynamicFormElement, expressionData: parentExpressionData } as DynamicFormElement;
     const element = new DynamicFormElement(builder, root, parent, {} as DynamicFormElementDefinition, {} as DynamicFormElementType);
 
     expect(element.expressionData.root).toBe(rootExpressionData);
@@ -136,9 +136,7 @@ describe('DynamicFormElement', () => {
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(builder, root, parent, definition, {} as DynamicFormElementType);
-    const children = [
-      { classType: 'element', definition: {} } as DynamicFormElement,
-    ];
+    const children = [{ classType: 'element', definition: {} } as DynamicFormElement];
 
     builder.createFormElements.and.returnValue(children);
 

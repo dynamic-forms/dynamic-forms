@@ -23,7 +23,7 @@ describe('dynamicFormConsoleLogger', () => {
       level: DynamicFormLogLevel.Error,
       type: DynamicFormErrorType.Unspecified,
       message: 'Error creating dynamic form',
-      data: [ 'Stack trace information'],
+      data: ['Stack trace information'],
     };
 
     logger.log(log);

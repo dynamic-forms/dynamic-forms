@@ -26,7 +26,7 @@ describe('DynamicFormContentComponent', () => {
     const template = { content: '<span>Content</span>' } as DynamicFormContentTemplate;
     const definition = { type: 'element', template } as DynamicFormContentDefinition;
     const type = {} as DynamicFormElementType;
-    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition> (builder, root, parent, definition, type);
+    element = new DynamicFormElement<DynamicFormContentTemplate, DynamicFormContentDefinition>(builder, root, parent, definition, type);
 
     fixture = TestBed.createComponent(DynamicFormContentComponent);
     component = fixture.componentInstance;

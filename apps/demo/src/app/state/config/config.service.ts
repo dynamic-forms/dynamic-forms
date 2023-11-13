@@ -7,7 +7,10 @@ import { Config } from './config.model';
 
 @Injectable()
 export class ConfigService {
-  constructor(private store: Store, private httpClient: HttpClient) {}
+  constructor(
+    private store: Store,
+    private httpClient: HttpClient,
+  ) {}
 
   load(): void {
     const url = this.getConfigUrl();
@@ -15,8 +18,6 @@ export class ConfigService {
   }
 
   private getConfigUrl(): string {
-    return environment.production
-      ? './assets/config.prod.json'
-      : './assets/config.json';
+    return environment.production ? './assets/config.prod.json' : './assets/config.json';
   }
 }

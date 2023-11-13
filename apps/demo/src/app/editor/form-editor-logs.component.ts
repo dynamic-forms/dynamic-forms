@@ -13,7 +13,15 @@ import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
   selector: 'app-form-editor-logs',
   templateUrl: './form-editor-logs.component.html',
   styleUrls: ['./form-editor-logs.component.scss'],
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, FormEditorLogDataPipe, FormEditorLogLevelPipe],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    FormEditorLogDataPipe,
+    FormEditorLogLevelPipe,
+  ],
 })
 export class FormEditorLogsComponent implements AfterViewInit {
   readonly columns = ['timestamp', 'type', 'level', 'message', 'detailed'];

@@ -8,17 +8,23 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 export abstract class DynamicFormGroupBase<
-  Value extends { [key: string]: any } = any, Model extends Value = Value,
+  Value extends { [key: string]: any } = any,
+  Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
-  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>
+  Group extends DynamicFormGroup<Value, Model, Template, Definition> = DynamicFormGroup<Value, Model, Template, Definition>,
 > extends DynamicFormFieldBase<Value, Model, FormGroupBase<Value>, Template, Definition, Group> {
-
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 
-  get children(): DynamicFormElement[] { return this.field.children; }
-  get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
+  get children(): DynamicFormElement[] {
+    return this.field.children;
+  }
+  get headerActions(): DynamicFormAction[] {
+    return this.field.headerActions;
+  }
+  get footerActions(): DynamicFormAction[] {
+    return this.field.footerActions;
+  }
 }

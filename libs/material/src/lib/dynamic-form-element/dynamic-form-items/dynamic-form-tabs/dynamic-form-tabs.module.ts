@@ -11,11 +11,7 @@ export const matDynamicFormTabsType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(matDynamicFormTabsType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withElement(matDynamicFormTabsType)],
+  exports: [DynamicFormConfigModule],
 })
 export class MatDynamicFormTabsModule {}

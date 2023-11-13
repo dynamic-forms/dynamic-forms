@@ -12,7 +12,9 @@ export class DynamicFormDialog extends DynamicForm {
     this._action = action;
   }
 
-  get action(): DynamicFormAction { return this._action; }
+  get action(): DynamicFormAction {
+    return this._action;
+  }
 
   protected override getChildren(): DynamicFormElement[] {
     return this._builder.createFormElements(this, this, this.definition.children);

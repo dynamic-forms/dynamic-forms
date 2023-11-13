@@ -9,7 +9,8 @@ export class DynamicFormIconService {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ICON_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ICON_CONFIGS)
     private iconConfigs: DynamicFormIconConfigs,
   ) {
     this.iconConfig = this.mergeIconConfigs(this.iconConfigs);
@@ -40,7 +41,8 @@ export class DynamicFormIconService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         icons: { ...result.icons, ...config.icons },
         libraryName,
       };
