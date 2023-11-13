@@ -22,6 +22,7 @@ export abstract class DynamicFormModalBase<
   get isOpen(): boolean {
     return this.element.isOpen;
   }
+
   get isOpen$(): Observable<boolean> {
     return this.element.isOpenChanges;
   }
@@ -29,9 +30,11 @@ export abstract class DynamicFormModalBase<
   get children(): DynamicFormElement[] {
     return this.element.children;
   }
+
   get headerActions(): DynamicFormAction[] {
     return this.element.headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this.element.footerActions;
   }
@@ -39,9 +42,11 @@ export abstract class DynamicFormModalBase<
   open(): void {
     this.element.open();
   }
+
   close(): void {
     this.element.close();
   }
+
   toggle(): void {
     this.element.toggle();
   }

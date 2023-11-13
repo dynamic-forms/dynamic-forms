@@ -8,9 +8,11 @@ export class DynamicFormFileUpload {
   get name(): string {
     return this.file.name;
   }
+
   get type(): string {
     return this.file.type;
   }
+
   get size(): number {
     return this.file.size;
   }

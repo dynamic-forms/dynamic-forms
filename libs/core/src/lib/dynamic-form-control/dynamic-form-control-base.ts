@@ -21,9 +21,11 @@ export abstract class DynamicFormControlBase<
   get input(): Input {
     return this.field.input;
   }
+
   get inputId(): string {
     return this.field.inputId;
   }
+
   get inputType(): string {
     return this.field.inputType;
   }

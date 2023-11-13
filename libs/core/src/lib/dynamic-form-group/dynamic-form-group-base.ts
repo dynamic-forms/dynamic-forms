@@ -21,9 +21,11 @@ export abstract class DynamicFormGroupBase<
   get children(): DynamicFormElement[] {
     return this.field.children;
   }
+
   get headerActions(): DynamicFormAction[] {
     return this.field.headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this.field.footerActions;
   }

@@ -27,9 +27,11 @@ export abstract class DynamicFormFieldBase<
   get key(): string {
     return this.element.key;
   }
+
   get index(): number {
     return this.element.index;
   }
+
   get path(): string {
     return this.element.path;
   }
@@ -48,6 +50,7 @@ export abstract class DynamicFormFieldBase<
   get disabled(): boolean {
     return this.field.disabled;
   }
+
   get readonly(): boolean {
     return this.field.readonly;
   }
@@ -55,9 +58,11 @@ export abstract class DynamicFormFieldBase<
   get errors(): DynamicFormValidationErrors {
     return this.field.errors;
   }
+
   get hasErrors(): boolean {
     return this.field.hasErrors;
   }
+
   get showErrors(): boolean {
     return this.field.showErrors;
   }

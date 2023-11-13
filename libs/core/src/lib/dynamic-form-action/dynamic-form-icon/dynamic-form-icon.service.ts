@@ -20,7 +20,6 @@ export class DynamicFormIconService {
   /**
    * @deprecated The method should not be used
    */
-  // eslint-disable-next-line @typescript-eslint/unified-signatures
   getIcon(template: DynamicFormIconTemplate): string;
   getIcon(iconOrTemplate: string | DynamicFormIconTemplate): string {
     const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;

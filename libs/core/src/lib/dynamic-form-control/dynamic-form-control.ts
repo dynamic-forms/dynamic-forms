@@ -47,9 +47,11 @@ export class DynamicFormControl<
   get input(): Input {
     return this.template.input;
   }
+
   get inputId(): string {
     return this.id || this.path;
   }
+
   get inputType(): string {
     return this.input.type;
   }
@@ -61,6 +63,7 @@ export class DynamicFormControl<
   get prefixAddOn(): DynamicFormControlAddOn {
     return this._prefixAddOn;
   }
+
   get suffixAddOn(): DynamicFormControlAddOn {
     return this._suffixAddOn;
   }

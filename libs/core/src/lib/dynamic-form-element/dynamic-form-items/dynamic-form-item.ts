@@ -22,6 +22,7 @@ export class DynamicFormItem<
   get label(): string {
     return this.template.label;
   }
+
   get disabled(): boolean {
     return this.index > 0 && this.template.disabled;
   }

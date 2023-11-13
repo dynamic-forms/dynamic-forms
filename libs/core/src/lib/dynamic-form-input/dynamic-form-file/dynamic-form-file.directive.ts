@@ -27,9 +27,11 @@ export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, O
   get files(): DynamicFormFileUpload[] {
     return this._files;
   }
+
   get fileNames(): string[] {
     return this._fileNames;
   }
+
   get fileNamesAsText(): string {
     return this._fileNamesAsText;
   }

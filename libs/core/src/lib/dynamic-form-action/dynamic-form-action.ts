@@ -38,6 +38,7 @@ export class DynamicFormAction<
   get dialogOpen(): boolean {
     return this._dialogOpenSubject.value;
   }
+
   get dialogOpenChanges(): Observable<boolean> {
     return this._dialogOpenChanges;
   }
@@ -45,6 +46,7 @@ export class DynamicFormAction<
   get dialogDefinition(): DynamicFormDefinition {
     return this.definition.dialogDefinition;
   }
+
   get dialogTemplate(): DynamicFormTemplate {
     return this.dialogDefinition.template;
   }
@@ -52,12 +54,15 @@ export class DynamicFormAction<
   get dialog(): DynamicFormDialog {
     return this._dialog;
   }
+
   get dialogChildren(): DynamicFormElement[] {
     return this._dialog.children;
   }
+
   get dialogHeaderActions(): DynamicFormAction[] {
     return this._dialog.headerActions;
   }
+
   get dialogFooterActions(): DynamicFormAction[] {
     return this._dialog.footerActions;
   }

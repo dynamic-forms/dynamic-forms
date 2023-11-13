@@ -14,6 +14,7 @@ export abstract class DynamicFormElementBase<
   get id(): string {
     return this.element.id;
   }
+
   get hidden(): boolean {
     return this.element.hidden;
   }
@@ -21,6 +22,7 @@ export abstract class DynamicFormElementBase<
   get definition(): Definition {
     return this.element.definition;
   }
+
   get template(): Template {
     return this.element.template;
   }

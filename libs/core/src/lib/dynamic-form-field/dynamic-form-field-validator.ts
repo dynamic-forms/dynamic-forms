@@ -104,9 +104,11 @@ export abstract class DynamicFormFieldValidatorBase<
   get key(): string {
     return this._key;
   }
+
   get field(): Field {
     return this._field;
   }
+
   get factory(): ValidatorFactory {
     return this._factory;
   }
@@ -114,6 +116,7 @@ export abstract class DynamicFormFieldValidatorBase<
   get definition(): DynamicFormFieldValidatorDefinition {
     return this._definition;
   }
+
   get message(): any {
     return this._message;
   }
@@ -121,9 +124,11 @@ export abstract class DynamicFormFieldValidatorBase<
   get enabled(): boolean {
     return this._enabled;
   }
+
   get parameters(): any {
     return this._parameters;
   }
+
   get validatorFn(): ValidatorFn {
     return this._validatorFn;
   }

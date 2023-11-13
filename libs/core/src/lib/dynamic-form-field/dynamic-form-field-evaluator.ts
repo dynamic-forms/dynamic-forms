@@ -20,12 +20,15 @@ export abstract class DynamicFormFieldEvaluator<
   get key(): string {
     return this._key;
   }
+
   get type(): string {
     return this._type;
   }
+
   get field(): Field {
     return this._field;
   }
+
   get func(): EvaluatorFn {
     return this._func;
   }

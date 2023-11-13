@@ -27,6 +27,7 @@ export class DynamicFormItems<
   get selectedIndex(): number {
     return this._selectedIndex;
   }
+
   get selectedItem(): Item {
     return this._selectedItem;
   }

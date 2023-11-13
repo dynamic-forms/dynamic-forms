@@ -59,6 +59,7 @@ export class DynamicFormElement<
   get id(): string {
     return this.definition.id;
   }
+
   get hidden(): boolean {
     return this.template.hidden || this.parentField.hidden || false;
   }
@@ -66,6 +67,7 @@ export class DynamicFormElement<
   get expressions(): Expressions {
     return this._expressions;
   }
+
   get children(): Child[] {
     return this._children;
   }

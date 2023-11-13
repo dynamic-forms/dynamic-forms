@@ -38,6 +38,7 @@ export class DynamicFormGroup<
   override get children(): DynamicFormElement[] {
     return this._children;
   }
+
   get fields(): DynamicFormField[] {
     return this._fields;
   }

@@ -21,6 +21,7 @@ export class DynamicForm<Value extends { [key: string]: any } = any, Model exten
   override get hidden(): boolean {
     return this.template.hidden || false;
   }
+
   override get readonly(): boolean {
     return this.template.readonly || false;
   }

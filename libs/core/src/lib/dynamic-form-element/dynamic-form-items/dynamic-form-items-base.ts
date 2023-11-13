@@ -25,6 +25,7 @@ export abstract class DynamicFormItemsBase<
   get selectedIndex(): number {
     return this.element.selectedIndex;
   }
+
   get selectedItem(): DynamicFormItem {
     return this.element.selectedItem;
   }

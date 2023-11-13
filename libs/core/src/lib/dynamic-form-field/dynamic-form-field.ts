@@ -63,16 +63,20 @@ export abstract class DynamicFormField<
   get key(): string {
     return this.definition.key;
   }
+
   get index(): number {
     return this.definition.index;
   }
+
   get depth(): number {
     return this._depth;
   }
+
   get path(): string {
     const parentPath = this.parentField && this.parentField.path;
     return parentPath ? `${parentPath}.${this.key}` : this.key || null;
   }
+
   get settings(): DynamicFormFieldSettings {
     return this._settings;
   }
@@ -80,15 +84,19 @@ export abstract class DynamicFormField<
   get model(): Model {
     return this._model;
   }
+
   get value(): Value {
     return this._control.value;
   }
+
   get valid(): boolean {
     return this._control.valid;
   }
+
   get status(): string {
     return this._control.status;
   }
+
   get control(): Control {
     return this._control;
   }
@@ -96,6 +104,7 @@ export abstract class DynamicFormField<
   get disabled(): boolean {
     return this.control.disabled;
   }
+
   get readonly(): boolean {
     return this.template.readonly || this.parentField.readonly || false;
   }
@@ -103,6 +112,7 @@ export abstract class DynamicFormField<
   get wrappers(): string[] {
     return this.definition.wrappers;
   }
+
   get unregistered(): boolean {
     return this.definition.unregistered;
   }
@@ -114,9 +124,11 @@ export abstract class DynamicFormField<
   get errors(): DynamicFormValidationErrors {
     return this.control.errors;
   }
+
   get hasErrors(): boolean {
     return (this.errors || false) && true;
   }
+
   get showErrors(): boolean {
     return this.hasErrors && this.control.touched;
   }
@@ -124,6 +136,7 @@ export abstract class DynamicFormField<
   get headerActions(): DynamicFormAction[] {
     return this._headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this._footerActions;
   }

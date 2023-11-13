@@ -10,7 +10,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   }
 
   private getCacheHeaders(): { [key: string]: string } {
-    // eslint-disable-next-line quote-props, @typescript-eslint/naming-convention
     return { 'Cache-Control': 'no-cache', Pragma: 'no-cache' };
   }
 }

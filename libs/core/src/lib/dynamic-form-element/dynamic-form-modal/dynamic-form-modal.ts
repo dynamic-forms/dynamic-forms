@@ -42,6 +42,7 @@ export class DynamicFormModal<
   get headerActions(): DynamicFormAction[] {
     return this._headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this._footerActions;
   }
@@ -49,6 +50,7 @@ export class DynamicFormModal<
   get isOpen(): boolean {
     return this._isOpenSubject.value;
   }
+
   get isOpenChanges(): Observable<boolean> {
     return this._isOpenChanges;
   }

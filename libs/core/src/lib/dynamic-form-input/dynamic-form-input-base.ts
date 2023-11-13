@@ -22,9 +22,11 @@ export abstract class DynamicFormInputBaseImpl<
   get input(): Input {
     return this.field.input;
   }
+
   get inputId(): string {
     return this.field.inputId;
   }
+
   get inputType(): string {
     return this.field.inputType;
   }
@@ -32,6 +34,7 @@ export abstract class DynamicFormInputBaseImpl<
   get hints(): DynamicFormControlHints {
     return this.template.hints;
   }
+
   get validation(): DynamicFormControlValidation {
     return this.template.validation;
   }
@@ -39,6 +42,7 @@ export abstract class DynamicFormInputBaseImpl<
   get prefixAddOn(): DynamicFormControlAddOn {
     return this.field.prefixAddOn;
   }
+
   get suffixAddOn(): DynamicFormControlAddOn {
     return this.field.suffixAddOn;
   }

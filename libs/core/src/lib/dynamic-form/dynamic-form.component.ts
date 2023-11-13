@@ -59,6 +59,7 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
   get form(): DynamicForm<Value, Model> {
     return this._form;
   }
+
   get formGroup(): FormGroupBase<Value> {
     return this._form.control;
   }
@@ -70,9 +71,11 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
   get children(): DynamicFormElement[] {
     return this._form.children;
   }
+
   get headerActions(): DynamicFormAction[] {
     return this._form.headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this._form.footerActions;
   }
@@ -80,9 +83,11 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
   get errors(): DynamicFormValidationErrors {
     return this.form.errors;
   }
+
   get hasErrors(): boolean {
     return this.form.hasErrors;
   }
+
   get showErrors(): boolean {
     return this.form.showErrors;
   }

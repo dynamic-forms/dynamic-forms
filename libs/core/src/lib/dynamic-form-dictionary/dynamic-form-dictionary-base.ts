@@ -28,9 +28,11 @@ export abstract class DynamicFormDictionaryBase<
   get children(): DynamicFormField[] {
     return this.field.children;
   }
+
   get headerActions(): DynamicFormAction[] {
     return this.field.headerActions;
   }
+
   get footerActions(): DynamicFormAction[] {
     return this.field.footerActions;
   }

@@ -19,6 +19,7 @@ export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrappe
   get inputId(): string {
     return this.field.inputId;
   }
+
   get validation(): DynamicFormControlValidation {
     return this.field.template.validation;
   }
