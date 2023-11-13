@@ -1,11 +1,11 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { dynamicFormGroupValidatorTypes } from './dynamic-form-group-validator-type';
-import { DynamicFormGroupValidatorTypeConfig, DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from './dynamic-form-group-validator-type-config';
-import { dynamicFormGroupType, DynamicFormGroupModule } from './dynamic-form-group.module';
+import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG, DynamicFormGroupValidatorTypeConfig } from './dynamic-form-group-validator-type-config';
+import { DynamicFormGroupModule, dynamicFormGroupType } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupModule', () => {
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormConfigModule, dynamicFormLibrary, DynamicFormElementType } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormElementType, dynamicFormLibrary } from '@dynamic-forms/core';
 import { DynamicFormMarkdownComponent } from './dynamic-form-markdown.component';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 

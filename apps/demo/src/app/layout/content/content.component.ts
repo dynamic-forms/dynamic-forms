@@ -6,7 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Layout, LAYOUT } from '../../state/layout/layout.model';
+import { LAYOUT, Layout } from '../../state/layout/layout.model';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({

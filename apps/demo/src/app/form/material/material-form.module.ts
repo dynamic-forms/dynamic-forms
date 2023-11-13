@@ -4,8 +4,8 @@ import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/co
 import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { v4 } from 'uuid';
-import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
+import { FormSubmitDialogModule } from '../form-submit-dialog.module';
 import { MaterialFormComponent } from './material-form.component';
 
 @NgModule({

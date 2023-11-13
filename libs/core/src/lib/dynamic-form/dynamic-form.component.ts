@@ -1,16 +1,16 @@
 /* eslint-disable @angular-eslint/no-conflicting-lifecycle */
+import { CommonModule } from '@angular/common';
 import {
   Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormSubmit } from './dynamic-form-submit';

@@ -1,5 +1,5 @@
 import { Type, inject } from '@angular/core';
-import { Routes, ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
+import { ActivatedRouteSnapshot, ResolveFn, Routes } from '@angular/router';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
 import { of, take } from 'rxjs';

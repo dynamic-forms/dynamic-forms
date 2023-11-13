@@ -10,7 +10,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
-import { DynamicFormErrorSettings, DYNAMIC_FORM_ERROR_SETTINGS } from '../dynamic-form-error/dynamic-form-error-settings';
+import { DYNAMIC_FORM_ERROR_SETTINGS, DynamicFormErrorSettings } from '../dynamic-form-error/dynamic-form-error-settings';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormLogger } from '../dynamic-form-error/dynamic-form.logger';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';

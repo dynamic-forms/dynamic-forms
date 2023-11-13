@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormIconConfig, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
+import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig } from './dynamic-form-icon-config';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 @NgModule({

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
-import { NotificationsService } from '../state/notifications/notifications.service';
 import { Example } from '../state/examples/examples.model';
+import { NotificationsService } from '../state/notifications/notifications.service';
 
 @Injectable()
 export class FormExampleLoader {

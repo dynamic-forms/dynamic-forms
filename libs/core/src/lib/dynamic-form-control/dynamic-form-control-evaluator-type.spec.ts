@@ -1,8 +1,8 @@
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { dynamicFormControlEvaluatorTypes, dynamicFormSelectEvaluatorFn,

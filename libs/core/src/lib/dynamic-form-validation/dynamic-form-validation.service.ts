@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
+import { DYNAMIC_FORM_VALIDATION_CONFIGS, DynamicFormValidationConfig,
+  DynamicFormValidationConfigs } from './dynamic-form-validation-config';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 
 @Injectable()

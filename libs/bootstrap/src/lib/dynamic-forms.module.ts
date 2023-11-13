@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormControlModule, DynamicFormDictionaryModule,
-  DynamicFormElementModule, DynamicFormGroupModule, DynamicFormIdBuilder, DynamicFormValidationModule,
-  DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+import { DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME, DynamicFormArrayModule,
+  DynamicFormControlModule, DynamicFormDictionaryModule, DynamicFormElementModule, DynamicFormGroupModule,
+  DynamicFormIdBuilder, DynamicFormValidationModule, DynamicFormsModule } from '@dynamic-forms/core';
 import { BsDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { BsDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
 import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';

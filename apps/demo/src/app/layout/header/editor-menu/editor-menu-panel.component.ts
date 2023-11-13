@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({

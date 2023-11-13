@@ -1,6 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '@dynamic-forms/core';
-import { bsDynamicFormInputTypes, BsDynamicFormInputModule } from './dynamic-form-input.module';
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig } from '@dynamic-forms/core';
+import { BsDynamicFormInputModule, bsDynamicFormInputTypes } from './dynamic-form-input.module';
 
 describe('BsDynamicFormInputModule', () => {
   beforeEach(() => {

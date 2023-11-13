@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormFileControl, DynamicFormFileDefinition,
-  DynamicFormValidationService, DynamicFormAction, DynamicFormComponentFactory } from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormAction, DynamicFormBuilder, DynamicFormComponentFactory,
+  DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormFileControl,
+  DynamicFormFileDefinition, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { createDynamicFormBuilderSpy } from '../../../../../core/src/lib/testing';
 import { BsDynamicFormFileComponent } from './dynamic-form-file.component';
 

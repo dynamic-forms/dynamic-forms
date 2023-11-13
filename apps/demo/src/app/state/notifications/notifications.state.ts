@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
-import { Notifications, NOTIFICATIONS } from './notifications.model';
+import { NotificationItemPop, NotificationItemPush, NotificationsToggle } from './notifications.actions';
+import { NOTIFICATIONS, Notifications } from './notifications.model';
 
 @State<Notifications>({
   name: NOTIFICATIONS,

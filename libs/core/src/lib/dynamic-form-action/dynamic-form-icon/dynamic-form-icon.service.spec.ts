@@ -1,7 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormIconConfig, DynamicFormIconConfigs,
-  DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
+import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
 import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 

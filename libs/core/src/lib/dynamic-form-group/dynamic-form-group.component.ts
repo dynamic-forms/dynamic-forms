@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { Component } from '@angular/core';
 import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupBase } from './dynamic-form-group-base';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';

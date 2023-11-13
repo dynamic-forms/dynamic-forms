@@ -12,7 +12,7 @@ import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-d
 import { DynamicFormGroupAsyncValidatorType, DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
 import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import {
-  dynamicFormValidationConfig, DynamicFormValidationConfig, DYNAMIC_FORM_VALIDATION_CONFIGS,
+  DYNAMIC_FORM_VALIDATION_CONFIGS, DynamicFormValidationConfig, dynamicFormValidationConfig,
 } from './dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';

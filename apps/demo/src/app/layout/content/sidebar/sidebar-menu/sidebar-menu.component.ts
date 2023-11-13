@@ -1,17 +1,17 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
+import { RouterModule } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Repository } from 'apps/demo/src/app/state/config/config.model';
-import { ConfigState } from 'apps/demo/src/app/state/config/config.state';
-import { ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
-import { ExamplesState } from 'apps/demo/src/app/state/examples/examples.state';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Repository } from '../../../../state/config/config.model';
+import { ConfigState } from '../../../../state/config/config.state';
+import { ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from '../../../../state/examples/examples.model';
+import { ExamplesState } from '../../../../state/examples/examples.state';
 import { CodeUrlPipe } from '../../../header/pipes/code-url.pipe';
 import { SidebarMenuItem } from './sidebar-menu.model';
 

@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
+import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
 import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 
 @Injectable()

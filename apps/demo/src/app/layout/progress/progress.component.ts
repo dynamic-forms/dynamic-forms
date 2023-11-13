@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Progress, PROGRESS } from '../../state/progress/progress.model';
+import { PROGRESS, Progress } from '../../state/progress/progress.model';
 
 @Component({
   standalone: true,

@@ -1,5 +1,5 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_LIBRARY, DynamicFormLibrary } from './dynamic-form-library';
 import { DynamicFormLibraryModule } from './dynamic-form-library.module';
 import { DynamicFormLibraryService } from './dynamic-form-library.service';
 

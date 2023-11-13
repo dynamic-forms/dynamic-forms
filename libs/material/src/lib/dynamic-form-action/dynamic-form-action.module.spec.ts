@@ -1,5 +1,5 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
+import { TestBed, inject } from '@angular/core/testing';
+import { DYNAMIC_FORM_ACTION_TYPE_CONFIG, DynamicFormActionTypeConfig } from '@dynamic-forms/core';
 import { MatDynamicFormActionModule, matDynamicFormActionTypes } from './dynamic-form-action.module';
 
 describe('MatDynamicFormActionModule', () => {

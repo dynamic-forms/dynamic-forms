@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { cloneObject, DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core';
+import { DynamicFormComponent, DynamicFormDefinition, cloneObject } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';

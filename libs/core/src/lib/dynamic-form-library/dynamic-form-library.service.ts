@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { DynamicFormLibrary, DynamicFormLibraryName, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library';
+import { DYNAMIC_FORM_LIBRARY, DynamicFormLibrary, DynamicFormLibraryName } from './dynamic-form-library';
 
 @Injectable()
 export class DynamicFormLibraryService {

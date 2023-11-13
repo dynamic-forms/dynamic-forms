@@ -1,8 +1,8 @@
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementTemplate } from '../dynamic-form-element/dynamic-form-element-template';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormComponentType } from './dynamic-form-component-type';
 
 export type DynamicFormClassFactory<

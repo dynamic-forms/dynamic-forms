@@ -1,18 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
-import { map, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { bufferTime } from 'rxjs/operators';
 import { FormBase } from '../form/form-base';
+import { MonacoEditorComponent } from '../monaco/monaco-editor.component';
 import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
 import { FormEditorData } from './form-editor-data';
 import { FormEditorLogger } from './form-editor-logger';
+import { FormEditorLogsComponent } from './form-editor-logs.component';
 
 @Component({
+  standalone: true,
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
   styleUrls: ['./form-editor.component.scss'],
+  imports: [CommonModule, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
+
 })
 export class FormEditorComponent {
   private readonly _subscriptions = new Subscription();

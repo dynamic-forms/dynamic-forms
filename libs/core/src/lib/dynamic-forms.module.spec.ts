@@ -1,19 +1,19 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
+import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from './dynamic-form-config/dynamic-form-config.service';
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from './dynamic-form-element/dynamic-form-element-type-config';
+import { DynamicFormLogger } from './dynamic-form-error/dynamic-form.logger';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-type-config';
 import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from './dynamic-form-input/dynamic-form-input-type-config';
-import { dynamicFormLibrary, DynamicFormLibrary, DYNAMIC_FORM_LIBRARY } from './dynamic-form-library/dynamic-form-library';
+import { DYNAMIC_FORM_LIBRARY, DynamicFormLibrary, dynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormLogger } from './dynamic-form-error/dynamic-form.logger';
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
-import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormsModule } from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {

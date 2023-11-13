@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { createSelector, Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, createSelector } from '@ngxs/store';
 import { ExamplesInit } from './examples.actions';
-import { Example, Examples, ExamplesMenu, ExampleMenuGroup, ExampleMenuItem, EXAMPLES } from './examples.model';
+import { EXAMPLES, Example, ExampleMenuGroup, ExampleMenuItem, Examples, ExamplesMenu } from './examples.model';
 
 @State<Examples>({
   name: EXAMPLES,

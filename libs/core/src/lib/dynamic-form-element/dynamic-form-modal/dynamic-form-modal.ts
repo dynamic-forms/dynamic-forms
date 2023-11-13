@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';

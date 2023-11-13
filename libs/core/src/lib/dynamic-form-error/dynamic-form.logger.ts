@@ -1,10 +1,10 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormLogType } from './dynamic-form-log-type';
 import { DynamicFormLogLevel } from './dynamic-form-log-level';
-import { DynamicFormLoggerSettings, dynamicFormLoggerSettingsDefault, DYNAMIC_FORM_LOGGER_SETTINGS } from './dynamic-form-logger-settings';
+import { DynamicFormLogType } from './dynamic-form-log-type';
+import { DYNAMIC_FORM_LOGGER_SETTINGS, DynamicFormLoggerSettings, dynamicFormLoggerSettingsDefault } from './dynamic-form-logger-settings';
 import { DynamicFormLoggerType } from './dynamic-form-logger-type';
-import { DynamicFormLoggerTypeConfig, DYNAMIC_FORM_LOGGER_TYPE_CONFIG } from './dynamic-form-logger-type-config';
+import { DYNAMIC_FORM_LOGGER_TYPE_CONFIG, DynamicFormLoggerTypeConfig } from './dynamic-form-logger-type-config';
 
 @Injectable()
 export class DynamicFormLogger {

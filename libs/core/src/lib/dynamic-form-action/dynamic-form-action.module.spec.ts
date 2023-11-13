@@ -1,10 +1,10 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
-import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
-import { dynamicFormDialogHandlers, DynamicFormActionModule } from './dynamic-form-action.module';
+import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG, DynamicFormActionHandlerConfig } from './dynamic-form-action-handler-config';
+import { DynamicFormActionModule, dynamicFormDialogHandlers } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {

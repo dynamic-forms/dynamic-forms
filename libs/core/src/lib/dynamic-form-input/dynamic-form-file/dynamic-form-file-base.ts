@@ -1,11 +1,11 @@
 import { Directive, OnInit, ViewChild } from '@angular/core';
+import { mergeObject } from '../../dynamic-form/dynamic-form-helpers';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../../dynamic-form-action/dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from '../../dynamic-form-action/dynamic-form-action-template';
 import { DynamicFormIconDefinition } from '../../dynamic-form-action/dynamic-form-icon/dynamic-form-icon-definition';
 import { DynamicFormValidationService } from '../../dynamic-form-validation/dynamic-form-validation.service';
-import { mergeObject } from '../../dynamic-form/dynamic-form-helpers';
-import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormInputBase } from '../dynamic-form-input-base';
 import { DynamicFormFile, DynamicFormFileDefinition, DynamicFormFileTemplate } from './dynamic-form-file';
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';

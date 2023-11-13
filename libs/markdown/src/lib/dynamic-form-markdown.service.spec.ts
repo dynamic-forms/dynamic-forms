@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SecurityContext } from '@angular/core';
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DynamicFormMarkdownModule } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';

@@ -1,4 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
@@ -6,14 +8,12 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
 import {
-  DynamicFormDictionaryValidatorTypeConfig, DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+  DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG, DynamicFormDictionaryValidatorTypeConfig,
 } from './dynamic-form-dictionary-validator-type-config';
-import { dynamicFormDictionaryType, DynamicFormDictionaryModule } from './dynamic-form-dictionary.module';
+import { DynamicFormDictionaryModule, dynamicFormDictionaryType } from './dynamic-form-dictionary.module';
 
 describe('DynamicFormDictionaryModule', () => {
   let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;

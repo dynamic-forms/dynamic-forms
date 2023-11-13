@@ -1,7 +1,7 @@
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormAction } from './dynamic-form-action';
 
 export class DynamicFormDialog extends DynamicForm {

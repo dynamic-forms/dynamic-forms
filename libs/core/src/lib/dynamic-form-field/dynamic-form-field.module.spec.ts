@@ -1,14 +1,14 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 import {
-  dynamicFormFieldResetDefaultHandler, dynamicFormFieldResetHandler, dynamicFormFieldResetEmptyHandler,
-  dynamicFormFieldValidateHandler, dynamicFormSubmitHandler, DynamicFormFieldModule, dynamicFormFieldClearHandler,
+  DynamicFormFieldModule, dynamicFormFieldClearHandler, dynamicFormFieldResetDefaultHandler,
+  dynamicFormFieldResetEmptyHandler, dynamicFormFieldResetHandler, dynamicFormFieldValidateHandler, dynamicFormSubmitHandler,
 } from './dynamic-form-field.module';
 
 describe('DynamicFormFieldModule', () => {
