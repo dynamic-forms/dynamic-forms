@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
@@ -20,7 +20,7 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   styleUrls: ['./form-editor.component.scss'],
   imports: [CommonModule, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
 })
-export class FormEditorComponent {
+export class FormEditorComponent implements OnDestroy {
   private readonly _subscriptions = new Subscription();
 
   private _logs: DynamicFormLog[] = [];
@@ -66,6 +66,10 @@ export class FormEditorComponent {
 
   get logs(): DynamicFormLog[] {
     return this._logs;
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 
   private setValue(value: string) {
