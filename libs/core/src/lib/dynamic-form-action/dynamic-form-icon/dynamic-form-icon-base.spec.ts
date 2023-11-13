@@ -78,7 +78,7 @@ describe('DynamicFormIconBase', () => {
 
     expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
-    expect(formButtonElement.innerHTML).toBe('label');
+    expect(formButtonElement.innerHTML).toBe(' label ');
   });
 
   it('sets dynamic form icon to hidden', () => {
