@@ -3,9 +3,6 @@ import { BsDynamicFormItemsModule } from './dynamic-form-items/dynamic-form-item
 import { BsDynamicFormModalModule } from './dynamic-form-modal/dynamic-form-modal.module';
 
 @NgModule({
-  imports: [
-    BsDynamicFormItemsModule,
-    BsDynamicFormModalModule,
-  ],
+  imports: [BsDynamicFormItemsModule, BsDynamicFormModalModule],
 })
 export class BsDynamicFormElementModule {}

@@ -18,9 +18,9 @@ describe('dynamicFormItemsFactory', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
     const itemDefinition = { template: { label: 'label' }, children: [] } as DynamicFormItemDefinition;
-    const definition = { template: {}, children: [ itemDefinition ] } as DynamicFormItemsDefinition;
+    const definition = { template: {}, children: [itemDefinition] } as DynamicFormItemsDefinition;
     const type = {} as DynamicFormElementType;
-    const expressions = [ {}, {} ];
+    const expressions = [{}, {}];
     const children = [];
 
     builder.getDefinition.and.returnValue(itemDefinition);

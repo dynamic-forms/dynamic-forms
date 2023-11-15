@@ -11,11 +11,7 @@ export const bsDynamicFormAccordionType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(bsDynamicFormAccordionType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withElement(bsDynamicFormAccordionType)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormAccordionModule {}

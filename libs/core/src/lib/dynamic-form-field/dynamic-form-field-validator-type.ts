@@ -2,7 +2,7 @@ import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-lib
 import { DynamicFormFieldAsyncValidatorFactory, DynamicFormFieldValidatorFactory } from './dynamic-form-field-validator';
 
 export interface DynamicFormFieldValidatorType<
-  ValidatorFactory extends DynamicFormFieldValidatorFactory = DynamicFormFieldValidatorFactory
+  ValidatorFactory extends DynamicFormFieldValidatorFactory = DynamicFormFieldValidatorFactory,
 > {
   type: string;
   async?: false;
@@ -12,7 +12,7 @@ export interface DynamicFormFieldValidatorType<
 }
 
 export interface DynamicFormFieldAsyncValidatorType<
-  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory
+  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory = DynamicFormFieldAsyncValidatorFactory,
 > {
   type: string;
   async: true;

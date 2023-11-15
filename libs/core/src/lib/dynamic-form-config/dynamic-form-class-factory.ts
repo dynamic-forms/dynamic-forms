@@ -9,5 +9,5 @@ export type DynamicFormClassFactory<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
   Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
-  Type extends DynamicFormComponentType = DynamicFormComponentType
+  Type extends DynamicFormComponentType = DynamicFormComponentType,
 > = (builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) => Element;

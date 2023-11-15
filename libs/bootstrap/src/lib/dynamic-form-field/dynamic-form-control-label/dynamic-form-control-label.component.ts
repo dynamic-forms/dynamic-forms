@@ -16,6 +16,11 @@ export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrappe
     super(containerRef, validationService);
   }
 
-  get inputId(): string { return this.field.inputId; }
-  get validation(): DynamicFormControlValidation { return this.field.template.validation; }
+  get inputId(): string {
+    return this.field.inputId;
+  }
+
+  get validation(): DynamicFormControlValidation {
+    return this.field.template.validation;
+  }
 }

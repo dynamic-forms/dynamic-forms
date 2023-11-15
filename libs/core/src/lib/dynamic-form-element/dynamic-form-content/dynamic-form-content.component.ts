@@ -12,12 +12,13 @@ import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 })
 export class DynamicFormContentComponent<
   Template extends DynamicFormContentTemplate = DynamicFormContentTemplate,
-  Definition extends DynamicFormContentDefinition<Template> = DynamicFormContentDefinition<Template>
+  Definition extends DynamicFormContentDefinition<Template> = DynamicFormContentDefinition<Template>,
 > extends DynamicFormElementBase<Template, Definition> {
-
   constructor() {
     super();
   }
 
-  get content(): string { return this.template?.content; }
+  get content(): string {
+    return this.template?.content;
+  }
 }

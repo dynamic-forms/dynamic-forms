@@ -45,10 +45,7 @@ describe('DynamicFormValidatorsHelpers', () => {
 
   it('dynamicFormFileMaxFileSizeValidator returns null if file sizes do not exceed max file size', () => {
     const control = {
-      value: [
-        new DynamicFormFileUpload(new File([''], 'file01.txt')),
-        new DynamicFormFileUpload(new File([''], 'file02.txt')),
-      ],
+      value: [new DynamicFormFileUpload(new File([''], 'file01.txt')), new DynamicFormFileUpload(new File([''], 'file02.txt'))],
     } as FormControl;
     const validator = dynamicFormFileMaxFileSizeValidatorFactory(1);
 
@@ -67,6 +64,4 @@ describe('DynamicFormValidatorsHelpers', () => {
 
     expect(validator(control)).toEqual({ maxFileSize: { filenames: 'file02.txt, file03.txt' } });
   });
-
-
 });

@@ -2,9 +2,8 @@ import { DynamicFormActionDefinition } from '../../dynamic-form-action/dynamic-f
 import { DynamicFormElementDefinition } from '../dynamic-form-element-definition';
 import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
-export interface DynamicFormModalDefinition<
-  Template extends DynamicFormModalTemplate = DynamicFormModalTemplate
-> extends DynamicFormElementDefinition<Template> {
+export interface DynamicFormModalDefinition<Template extends DynamicFormModalTemplate = DynamicFormModalTemplate>
+  extends DynamicFormElementDefinition<Template> {
   trigger: DynamicFormActionDefinition;
   children: DynamicFormElementDefinition[];
   headerActions?: DynamicFormActionDefinition[];

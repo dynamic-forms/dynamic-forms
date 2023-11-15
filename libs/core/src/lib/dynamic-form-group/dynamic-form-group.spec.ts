@@ -108,8 +108,12 @@ describe('DynamicFormGroup', () => {
     const children = [
       { classType: 'element' } as DynamicFormElement,
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl() } as unknown as DynamicFormField,
-      { classType: 'element', children: [
-          { classType: 'element', children: [
+      {
+        classType: 'element',
+        children: [
+          {
+            classType: 'element',
+            children: [
               { classType: 'element' } as DynamicFormElement,
               { classType: 'field', definition: { key: 'key2' }, control: new FormControl() } as unknown as DynamicFormField,
               { classType: 'field', definition: { key: 'key3' }, control: new FormControl() } as unknown as DynamicFormField,

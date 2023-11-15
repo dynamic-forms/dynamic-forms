@@ -1,19 +1,31 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormArrayValidatorType } from '../dynamic-form-array/dynamic-form-array-validator-type';
-import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
-  DynamicFormArrayValidatorTypeConfig } from '../dynamic-form-array/dynamic-form-array-validator-type-config';
+import {
+  DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormArrayValidatorTypeConfig,
+} from '../dynamic-form-array/dynamic-form-array-validator-type-config';
 import { DynamicFormControlValidatorType } from '../dynamic-form-control/dynamic-form-control-validator-type';
-import { DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
-  DynamicFormControlValidatorTypeConfig } from '../dynamic-form-control/dynamic-form-control-validator-type-config';
+import {
+  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
+  DynamicFormControlValidatorTypeConfig,
+} from '../dynamic-form-control/dynamic-form-control-validator-type-config';
 import { DynamicFormDictionaryValidatorType } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type';
-import { DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
-  DynamicFormDictionaryValidatorTypeConfig } from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
+import {
+  DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
+  DynamicFormDictionaryValidatorTypeConfig,
+} from '../dynamic-form-dictionary/dynamic-form-dictionary-validator-type-config';
 import { DynamicFormGroupValidatorType } from '../dynamic-form-group/dynamic-form-group-validator-type';
-import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
-  DynamicFormGroupValidatorTypeConfig } from '../dynamic-form-group/dynamic-form-group-validator-type-config';
+import {
+  DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
+  DynamicFormGroupValidatorTypeConfig,
+} from '../dynamic-form-group/dynamic-form-group-validator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DYNAMIC_FORM_VALIDATION_CONFIGS, DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  dynamicFormValidationConfig } from '../dynamic-form-validation/dynamic-form-validation-config';
+import {
+  DYNAMIC_FORM_VALIDATION_CONFIGS,
+  DynamicFormValidationConfig,
+  DynamicFormValidationConfigs,
+  dynamicFormValidationConfig,
+} from '../dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation.builder';
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
@@ -24,9 +36,7 @@ describe('DynamicFormValidationModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule,
-        ],
+        imports: [DynamicFormValidationModule],
       });
     });
 
@@ -42,9 +52,7 @@ describe('DynamicFormValidationModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule,
-        ],
+        imports: [DynamicFormValidationModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -54,17 +62,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormValidationService',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('withControlValidator', () => {
@@ -76,9 +80,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withControlValidator(controlValidatorType),
-        ],
+        imports: [DynamicFormValidationModule.withControlValidator(controlValidatorType)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -88,12 +90,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormControlValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(controlValidatorType);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withControlValidators', () => {
@@ -104,9 +107,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withControlValidators(controlValidatorTypes),
-        ],
+        imports: [DynamicFormValidationModule.withControlValidators(controlValidatorTypes)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -116,12 +117,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormControlValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(controlValidatorTypes);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withControlValidatorFactory', () => {
@@ -130,16 +132,14 @@ describe('DynamicFormValidationModule', () => {
       return {
         type: 'validator',
         factory: null,
-        deps: [ d ],
+        deps: [d],
         libraryName: 'test',
       };
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withControlValidatorFactory(controlValidatorTypeFactory, [ Dependency ]),
-        ],
+        imports: [DynamicFormValidationModule.withControlValidatorFactory(controlValidatorTypeFactory, [Dependency])],
         providers: [
           {
             provide: Dependency,
@@ -153,17 +153,18 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG], (config: DynamicFormControlValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormControlValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual({
           type: 'validator',
           factory: null,
-          deps: [ dependency ],
+          deps: [dependency],
           libraryName: 'test',
         });
-      }),
-    );
+      },
+    ));
   });
 
   describe('withGroupValidator', () => {
@@ -175,9 +176,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withGroupValidator(groupValidatorType),
-        ],
+        imports: [DynamicFormValidationModule.withGroupValidator(groupValidatorType)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -187,12 +186,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormGroupValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(groupValidatorType);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withGroupValidators', () => {
@@ -203,9 +203,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withGroupValidators(groupValidatorTypes),
-        ],
+        imports: [DynamicFormValidationModule.withGroupValidators(groupValidatorTypes)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -215,12 +213,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormGroupValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(groupValidatorTypes);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withGroupValidatorFactory', () => {
@@ -229,16 +228,14 @@ describe('DynamicFormValidationModule', () => {
       return {
         type: 'validator',
         factory: null,
-        deps: [ d ],
+        deps: [d],
         libraryName: 'test',
       };
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withGroupValidatorFactory(groupValidatorTypeFactory, [ Dependency ]),
-        ],
+        imports: [DynamicFormValidationModule.withGroupValidatorFactory(groupValidatorTypeFactory, [Dependency])],
         providers: [
           {
             provide: Dependency,
@@ -252,17 +249,18 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormGroupValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual({
           type: 'validator',
           factory: null,
-          deps: [ dependency ],
+          deps: [dependency],
           libraryName: 'test',
         });
-      }),
-    );
+      },
+    ));
   });
 
   describe('withArrayValidator', () => {
@@ -274,9 +272,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withArrayValidator(arrayValidatorType),
-        ],
+        imports: [DynamicFormValidationModule.withArrayValidator(arrayValidatorType)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -286,12 +282,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormArrayValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(arrayValidatorType);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withArrayValidators', () => {
@@ -302,9 +299,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withArrayValidators(arrayValidatorTypes),
-        ],
+        imports: [DynamicFormValidationModule.withArrayValidators(arrayValidatorTypes)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -314,12 +309,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormArrayValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(arrayValidatorTypes);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withArrayValidatorFactory', () => {
@@ -328,16 +324,14 @@ describe('DynamicFormValidationModule', () => {
       return {
         type: 'validator',
         factory: null,
-        deps: [ d ],
+        deps: [d],
         libraryName: 'test',
       };
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withArrayValidatorFactory(arrayValidatorTypeFactory, [ Dependency ]),
-        ],
+        imports: [DynamicFormValidationModule.withArrayValidatorFactory(arrayValidatorTypeFactory, [Dependency])],
         providers: [
           {
             provide: Dependency,
@@ -351,17 +345,18 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormArrayValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual({
           type: 'validator',
           factory: null,
-          deps: [ dependency ],
+          deps: [dependency],
           libraryName: 'test',
         });
-      }),
-    );
+      },
+    ));
   });
 
   describe('withDictionaryValidator', () => {
@@ -373,9 +368,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withDictionaryValidator(dictionaryValidatorType),
-        ],
+        imports: [DynamicFormValidationModule.withDictionaryValidator(dictionaryValidatorType)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -385,12 +378,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormDictionaryValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormDictionaryValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(dictionaryValidatorType);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withDictionaryValidators', () => {
@@ -401,9 +395,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withDictionaryValidators(dictionaryValidatorTypes),
-        ],
+        imports: [DynamicFormValidationModule.withDictionaryValidators(dictionaryValidatorTypes)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -413,12 +405,13 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormDictionaryValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormDictionaryValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(dictionaryValidatorTypes);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withDictionaryValidatorFactory', () => {
@@ -427,16 +420,14 @@ describe('DynamicFormValidationModule', () => {
       return {
         type: 'validator',
         factory: null,
-        deps: [ d ],
+        deps: [d],
         libraryName: 'test',
       };
     };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withDictionaryValidatorFactory(dictionaryValidatorTypeFactory, [ Dependency ]),
-        ],
+        imports: [DynamicFormValidationModule.withDictionaryValidatorFactory(dictionaryValidatorTypeFactory, [Dependency])],
         providers: [
           {
             provide: Dependency,
@@ -450,25 +441,24 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG], (config: DynamicFormArrayValidatorTypeConfig) => {
+    it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG],
+      (config: DynamicFormArrayValidatorTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual({
           type: 'validator',
           factory: null,
-          deps: [ dependency ],
+          deps: [dependency],
           libraryName: 'test',
         });
-      }),
-    );
+      },
+    ));
   });
 
   describe('withValidation for default config', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withValidation(),
-        ],
+        imports: [DynamicFormValidationModule.withValidation()],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -478,12 +468,10 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(dynamicFormValidationConfig);
-      }),
-    );
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS', inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+      expect(configs.length).toBe(1);
+      expect(configs[0]).toEqual(dynamicFormValidationConfig);
+    }));
   });
 
   describe('withValidation for provided config', () => {
@@ -492,9 +480,7 @@ describe('DynamicFormValidationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule.withValidation(config),
-        ],
+        imports: [DynamicFormValidationModule.withValidation(config)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -504,11 +490,9 @@ describe('DynamicFormValidationModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS',
-      inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
-      }),
-    );
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS', inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+      expect(configs.length).toBe(1);
+      expect(configs[0]).toEqual(config);
+    }));
   });
 });

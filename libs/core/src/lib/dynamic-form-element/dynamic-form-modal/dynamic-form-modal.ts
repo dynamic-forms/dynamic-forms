@@ -9,9 +9,8 @@ import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 
 export class DynamicFormModal<
   Template extends DynamicFormModalTemplate = DynamicFormModalTemplate,
-  Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>
+  Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>,
 > extends DynamicFormElement<Template, Definition> {
-
   private readonly _isOpenSubject: BehaviorSubject<boolean>;
   private readonly _isOpenChanges: Observable<boolean>;
 
@@ -36,13 +35,25 @@ export class DynamicFormModal<
     });
   }
 
-  get trigger(): DynamicFormAction { return this._trigger; }
+  get trigger(): DynamicFormAction {
+    return this._trigger;
+  }
 
-  get headerActions(): DynamicFormAction[] { return this._headerActions; }
-  get footerActions(): DynamicFormAction[] { return this._footerActions; }
+  get headerActions(): DynamicFormAction[] {
+    return this._headerActions;
+  }
 
-  get isOpen(): boolean { return this._isOpenSubject.value; }
-  get isOpenChanges(): Observable<boolean> { return this._isOpenChanges; }
+  get footerActions(): DynamicFormAction[] {
+    return this._footerActions;
+  }
+
+  get isOpen(): boolean {
+    return this._isOpenSubject.value;
+  }
+
+  get isOpenChanges(): Observable<boolean> {
+    return this._isOpenChanges;
+  }
 
   override init(): void {
     super.init();

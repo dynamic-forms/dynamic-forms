@@ -15,13 +15,11 @@ describe('DynamicFormMarkdownComponent', () => {
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
+    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', ['compile', 'compileFromSource']);
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormMarkdownComponent,
-      ],
+      imports: [DynamicFormMarkdownComponent],
       providers: [
         {
           provide: DynamicFormMarkdownService,

@@ -11,11 +11,7 @@ export const matDynamicFormAccordionType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(matDynamicFormAccordionType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withElement(matDynamicFormAccordionType)],
+  exports: [DynamicFormConfigModule],
 })
 export class MatDynamicFormAccordionModule {}

@@ -1,8 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormAction, DynamicFormActionService, DynamicFormActionType, DynamicFormBuilder,
-  DynamicFormColorService, DynamicFormField, DynamicFormIconDefinition, DynamicFormIconService, DynamicFormIconTemplate,
-  DynamicFormLibraryService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormAction,
+  DynamicFormActionService,
+  DynamicFormActionType,
+  DynamicFormBuilder,
+  DynamicFormColorService,
+  DynamicFormField,
+  DynamicFormIconDefinition,
+  DynamicFormIconService,
+  DynamicFormIconTemplate,
+  DynamicFormLibraryService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
 
 describe('MatDynamicFormIconComponent', () => {

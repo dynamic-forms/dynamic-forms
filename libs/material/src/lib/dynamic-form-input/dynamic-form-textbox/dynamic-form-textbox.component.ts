@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormTextbox,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormTextbox, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
   standalone: true,

@@ -23,9 +23,7 @@ describe('DynamicFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormComponent,
-      ],
+      imports: [DynamicFormComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

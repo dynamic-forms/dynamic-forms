@@ -3,9 +3,7 @@ import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig } from './dynamic-form
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 @NgModule({
-  providers: [
-    DynamicFormIconService,
-  ],
+  providers: [DynamicFormIconService],
 })
 export class DynamicFormIconModule {
   static withIcons(iconConfig: DynamicFormIconConfig): ModuleWithProviders<DynamicFormIconModule> {

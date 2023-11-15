@@ -10,11 +10,7 @@ export const bsDynamicFormControlErrorsType: DynamicFormFieldWrapperType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlErrorsType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlErrorsType)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormControlErrorsModule {}

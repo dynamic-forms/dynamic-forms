@@ -12,9 +12,11 @@ export class DynamicFormLogger {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_LOGGER_TYPE_CONFIG)
+    @Optional()
+    @Inject(DYNAMIC_FORM_LOGGER_TYPE_CONFIG)
     private loggerTypeConfig: DynamicFormLoggerTypeConfig,
-    @Optional() @Inject(DYNAMIC_FORM_LOGGER_SETTINGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_LOGGER_SETTINGS)
     readonly settings: DynamicFormLoggerSettings,
   ) {
     this.loggerTypes = this.libraryService.filterTypes(this.loggerTypeConfig);
@@ -42,7 +44,10 @@ export class DynamicFormLogger {
   }
 
   private logForLevel<LogType extends DynamicFormLogType = DynamicFormLogType>(
-    level: DynamicFormLogLevel, type: LogType, message?: string, ...data: any[]
+    level: DynamicFormLogLevel,
+    type: LogType,
+    message?: string,
+    ...data: any[]
   ): void {
     if (this.logEnabled(level)) {
       const log = { timestamp: new Date(), level, type, message, data };

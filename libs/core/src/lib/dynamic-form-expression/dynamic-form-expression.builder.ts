@@ -22,30 +22,38 @@ export class DynamicFormExpressionBuilder {
 
   createElementExpressions(element: DynamicFormElement): DynamicFormElementExpressions {
     const expressions = element.definition.expressions;
-    return expressions ? Object.keys(expressions).reduce((result, key) => {
-      result[key] = this.createElementExpression(key, element, expressions[key]);
-      return result;
-    }, {}) : null;
+    return expressions
+      ? Object.keys(expressions).reduce((result, key) => {
+          result[key] = this.createElementExpression(key, element, expressions[key]);
+          return result;
+        }, {})
+      : null;
   }
 
   createFieldExpressions(field: DynamicFormField): DynamicFormFieldExpressions {
     const expressions = field.definition.expressions;
-    return expressions ? Object.keys(expressions).reduce((result, key) => {
-      result[key] = this.createFieldExpression(key, field, expressions[key]);
-      return result;
-    }, {}) : null;
+    return expressions
+      ? Object.keys(expressions).reduce((result, key) => {
+          result[key] = this.createFieldExpression(key, field, expressions[key]);
+          return result;
+        }, {})
+      : null;
   }
 
   createActionExpressions(action: DynamicFormAction): DynamicFormActionExpressions {
     const expressions = action.definition.expressions;
-    return expressions ? Object.keys(expressions).reduce((result, key) => {
-      result[key] = this.createActionExpression(key, action, expressions[key]);
-      return result;
-    }, {}) : null;
+    return expressions
+      ? Object.keys(expressions).reduce((result, key) => {
+          result[key] = this.createActionExpression(key, action, expressions[key]);
+          return result;
+        }, {})
+      : null;
   }
 
   private createElementExpression(
-    key: string, element: DynamicFormElement, expression: string | DynamicFormElementExpressionFunc,
+    key: string,
+    element: DynamicFormElement,
+    expression: string | DynamicFormElementExpressionFunc,
   ): DynamicFormElementExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormElementExpressionFunc>(expression);
@@ -58,7 +66,9 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createFieldExpression(
-    key: string, field: DynamicFormField, expression: string | DynamicFormFieldExpressionFunc,
+    key: string,
+    field: DynamicFormField,
+    expression: string | DynamicFormFieldExpressionFunc,
   ): DynamicFormFieldExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormFieldExpressionFunc>(expression);
@@ -71,7 +81,9 @@ export class DynamicFormExpressionBuilder {
   }
 
   private createActionExpression(
-    key: string, action: DynamicFormAction, expression: string | DynamicFormActionExpressionFunc,
+    key: string,
+    action: DynamicFormAction,
+    expression: string | DynamicFormActionExpressionFunc,
   ): DynamicFormActionExpression {
     if (typeof expression === 'string') {
       const func = this.createExpressionFunction<DynamicFormActionExpressionFunc>(expression);
@@ -86,7 +98,7 @@ export class DynamicFormExpressionBuilder {
   // eslint-disable-next-line @typescript-eslint/ban-types
   private createExpressionFunction<Func extends Function>(expression: string): Func {
     try {
-      return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${ expression };`) as Func;
+      return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${expression};`) as Func;
     } catch (error) {
       const type = DynamicFormErrorType.ExpressionCreation;
       const message = `Expression creation for "${expression} failed"`;

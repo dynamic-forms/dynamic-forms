@@ -9,14 +9,13 @@ export abstract class FormExampleBase extends FormSubmitBase {
   readonly data$: Observable<FormExampleData>;
   readonly doc$: Observable<string>;
 
-  constructor(protected route: ActivatedRoute, protected override dialog: MatDialog) {
+  constructor(
+    protected route: ActivatedRoute,
+    protected override dialog: MatDialog,
+  ) {
     super(dialog);
-    this.data$ = this.route.data.pipe(
-      map(data => this.mapData(data)),
-    );
-    this.doc$ = this.data$.pipe(
-      map(data => this.getDoc(data)),
-    );
+    this.data$ = this.route.data.pipe(map(data => this.mapData(data)));
+    this.doc$ = this.data$.pipe(map(data => this.getDoc(data)));
   }
 
   private mapData(data: Data): FormExampleData {
@@ -29,9 +28,7 @@ export abstract class FormExampleBase extends FormSubmitBase {
   private getDoc(data: Data): string {
     const example = data.example;
     if (example.docId) {
-      return example.path
-        ? `./assets/examples/${example.path}/${example.docId}.md`
-        : `./assets/examples/${example.docId}.md`;
+      return example.path ? `./assets/examples/${example.path}/${example.docId}.md` : `./assets/examples/${example.docId}.md`;
     }
     return undefined;
   }

@@ -2,8 +2,10 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlEvaluator } from '../dynamic-form-control/dynamic-form-control-evaluator';
 import { DynamicFormControlEvaluatorType } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
-import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
-  DynamicFormControlEvaluatorTypeConfig } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
+import {
+  DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
+  DynamicFormControlEvaluatorTypeConfig,
+} from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 
 @Injectable()
@@ -12,7 +14,8 @@ export class DynamicFormEvaluationBuilder {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG)
+    @Optional()
+    @Inject(DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG)
     private controlEvaluatorConfig: DynamicFormControlEvaluatorTypeConfig,
   ) {
     this.controlEvaluatorTypes = this.libraryService.filterTypes(this.controlEvaluatorConfig);

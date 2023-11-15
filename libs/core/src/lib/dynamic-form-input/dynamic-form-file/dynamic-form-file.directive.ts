@@ -24,9 +24,17 @@ export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, O
 
   constructor(private elementRef: ElementRef<HTMLInputElement>) {}
 
-  get files(): DynamicFormFileUpload[] { return this._files; }
-  get fileNames(): string[] { return this._fileNames; }
-  get fileNamesAsText(): string { return this._fileNamesAsText; }
+  get files(): DynamicFormFileUpload[] {
+    return this._files;
+  }
+
+  get fileNames(): string[] {
+    return this._fileNames;
+  }
+
+  get fileNamesAsText(): string {
+    return this._fileNamesAsText;
+  }
 
   ngOnInit(): void {
     this.nativeElement.type = 'file';
@@ -44,7 +52,7 @@ export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, O
       if (this.multipleFiles) {
         this.changeFiles();
       } else if (this._files?.length > 0) {
-        this.setFiles([ this._files[0] ]);
+        this.setFiles([this._files[0]]);
       }
     }
   }
@@ -86,10 +94,9 @@ export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, O
       this._files = null;
       this._fileNames = null;
       this._fileNamesAsText = null;
-
     } else {
       this._files = files;
-      this._fileNames = this.multipleFiles ? this._files.map(f => f.name) : [ this._files[0].name ];
+      this._fileNames = this.multipleFiles ? this._files.map(f => f.name) : [this._files[0].name];
       this._fileNamesAsText = this._fileNames.join(', ');
     }
 

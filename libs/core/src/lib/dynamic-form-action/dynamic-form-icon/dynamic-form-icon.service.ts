@@ -9,7 +9,8 @@ export class DynamicFormIconService {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ICON_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ICON_CONFIGS)
     private iconConfigs: DynamicFormIconConfigs,
   ) {
     this.iconConfig = this.mergeIconConfigs(this.iconConfigs);
@@ -19,7 +20,6 @@ export class DynamicFormIconService {
   /**
    * @deprecated The method should not be used
    */
-  // eslint-disable-next-line @typescript-eslint/unified-signatures
   getIcon(template: DynamicFormIconTemplate): string;
   getIcon(iconOrTemplate: string | DynamicFormIconTemplate): string {
     const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;
@@ -40,7 +40,8 @@ export class DynamicFormIconService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         icons: { ...result.icons, ...config.icons },
         libraryName,
       };

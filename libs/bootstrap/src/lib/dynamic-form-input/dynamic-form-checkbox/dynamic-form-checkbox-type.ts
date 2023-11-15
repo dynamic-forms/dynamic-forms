@@ -5,6 +5,6 @@ import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.componen
 export const bsDynamicFormCheckboxType: DynamicFormInputType = {
   type: 'checkbox',
   component: BsDynamicFormCheckboxComponent,
-  wrappers: [ 'errors' ],
+  wrappers: ['errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

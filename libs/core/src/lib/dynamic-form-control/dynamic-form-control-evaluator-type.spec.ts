@@ -5,8 +5,11 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-t
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
-import { dynamicFormControlEvaluatorTypes, dynamicFormSelectEvaluatorFn,
-  dynamicFormSelectEvaluatorType } from './dynamic-form-control-evaluator-type';
+import {
+  dynamicFormControlEvaluatorTypes,
+  dynamicFormSelectEvaluatorFn,
+  dynamicFormSelectEvaluatorType,
+} from './dynamic-form-control-evaluator-type';
 
 describe('DynamicFormControlEvaluatorType', () => {
   describe('dynamicFormControlEvaluatorTypes', () => {
@@ -72,23 +75,23 @@ describe('DynamicFormControlEvaluatorType', () => {
 
       dynamicFormSelectEvaluatorType.func(formControl);
 
-      expect(formControl.model).toEqual([ 'option1' ]);
-      expect(formControl.value).toEqual([ 'option1' ]);
+      expect(formControl.model).toEqual(['option1']);
+      expect(formControl.value).toEqual(['option1']);
 
-      formControl.patchModel([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
+      formControl.patchModel(['option1', 'option2', 'option4', 'option5', 'option6']);
 
       dynamicFormSelectEvaluatorType.func(formControl);
 
-      expect(formControl.model).toEqual([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
-      expect(formControl.value).toEqual([ 'option1', 'option2', 'option4', 'option5', 'option6' ]);
+      expect(formControl.model).toEqual(['option1', 'option2', 'option4', 'option5', 'option6']);
+      expect(formControl.value).toEqual(['option1', 'option2', 'option4', 'option5', 'option6']);
 
       formControl.template.input.options[2].items[1].disabled = true;
       formControl.template.input.options[3].disabled = true;
 
       dynamicFormSelectEvaluatorType.func(formControl);
 
-      expect(formControl.model).toEqual([ 'option1', 'option2' ]);
-      expect(formControl.value).toEqual([ 'option1', 'option2' ]);
+      expect(formControl.model).toEqual(['option1', 'option2']);
+      expect(formControl.value).toEqual(['option1', 'option2']);
 
       formControl.template.input.options = null;
 
@@ -104,9 +107,7 @@ describe('DynamicFormControlEvaluatorType', () => {
       expect(formControl.model).toBeNull();
       expect(formControl.value).toBeNull();
 
-      formControl.template.input.options = [
-        { value: 'option1', label: 'Option1' },
-      ];
+      formControl.template.input.options = [{ value: 'option1', label: 'Option1' }];
       formControl.patchModel('option1');
 
       dynamicFormSelectEvaluatorType.func(formControl);

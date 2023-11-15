@@ -3,9 +3,7 @@ import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig } from './dynamic-fo
 import { DynamicFormColorService } from './dynamic-form-color.service';
 
 @NgModule({
-  providers: [
-    DynamicFormColorService,
-  ],
+  providers: [DynamicFormColorService],
 })
 export class DynamicFormThemeModule {
   static withColors(colorConfig: DynamicFormColorConfig): ModuleWithProviders<DynamicFormThemeModule> {

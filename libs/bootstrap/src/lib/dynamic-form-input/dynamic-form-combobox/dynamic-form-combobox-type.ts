@@ -5,6 +5,6 @@ import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.componen
 export const bsDynamicFormComboboxType: DynamicFormInputType = {
   type: 'combobox',
   component: BsDynamicFormComboboxComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

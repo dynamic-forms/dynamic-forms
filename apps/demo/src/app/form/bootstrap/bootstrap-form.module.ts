@@ -43,11 +43,7 @@ import { BootstrapFormComponent } from './bootstrap-form.component';
       idBuilder: { createId: () => v4() },
     }),
   ],
-  declarations: [
-    BootstrapFormComponent,
-  ],
-  exports: [
-    BootstrapFormComponent,
-  ],
+  declarations: [BootstrapFormComponent],
+  exports: [BootstrapFormComponent],
 })
 export class BootstrapFormModule {}

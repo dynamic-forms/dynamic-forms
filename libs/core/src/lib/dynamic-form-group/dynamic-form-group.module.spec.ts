@@ -10,9 +10,7 @@ import { DynamicFormGroupModule, dynamicFormGroupType } from './dynamic-form-gro
 describe('DynamicFormGroupModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormGroupModule,
-      ],
+      imports: [DynamicFormGroupModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -22,29 +20,26 @@ describe('DynamicFormGroupModule', () => {
     });
   });
 
-  it('provides DYNAMIC_FORM_FIELD_TYPES',
-    inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-      const types = service.fieldTypes;
+  it('provides DYNAMIC_FORM_FIELD_TYPES', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+    const types = service.fieldTypes;
 
-      expect(types.length).toBe(1);
-      expect(types[0]).toEqual(dynamicFormGroupType);
-      expect(types[0].factory).toEqual(jasmine.any(Function));
-      expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
-    }),
-  );
+    expect(types.length).toBe(1);
+    expect(types[0]).toEqual(dynamicFormGroupType);
+    expect(types[0].factory).toEqual(jasmine.any(Function));
+    expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
+  }));
 
-  it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG], (config: DynamicFormGroupValidatorTypeConfig) => {
+  it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
+    [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
+    (config: DynamicFormGroupValidatorTypeConfig) => {
       expect(config.length).toBe(1);
       expect(config[0]).toEqual(dynamicFormGroupValidatorTypes);
-    }),
-  );
+    },
+  ));
 
-  it('provides DYNAMIC_FORM_ACTION_HANDLERS',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      const handlers = service.handlers;
+  it('provides DYNAMIC_FORM_ACTION_HANDLERS', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+    const handlers = service.handlers;
 
-      expect(handlers.length).toBe(9);
-    }),
-  );
+    expect(handlers.length).toBe(9);
+  }));
 });

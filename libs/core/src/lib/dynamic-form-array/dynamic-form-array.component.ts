@@ -14,12 +14,12 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
   imports: [CommonModule, DynamicFormElementsComponent],
 })
 export class DynamicFormArrayComponent<
-  Value = any, Model extends Value = Value,
+  Value = any,
+  Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>,
-  Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>
+  Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>,
 > extends DynamicFormArrayBase<Value, Model, Template, Definition, Array> {
-
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }

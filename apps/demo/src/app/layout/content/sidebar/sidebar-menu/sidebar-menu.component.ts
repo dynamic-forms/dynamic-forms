@@ -27,7 +27,10 @@ export class SidebarMenuComponent {
   readonly treeControl: NestedTreeControl<SidebarMenuItem>;
   readonly treeDataSource$: Observable<MatTreeNestedDataSource<SidebarMenuItem>>;
 
-  constructor(private store: Store, private codeUrlPipe: CodeUrlPipe) {
+  constructor(
+    private store: Store,
+    private codeUrlPipe: CodeUrlPipe,
+  ) {
     this.treeControl = new NestedTreeControl<SidebarMenuItem>((menuItem: any) => menuItem.children);
     this.treeDataSource$ = combineLatest([this.store.select(ConfigState.repository), this.store.select(ExamplesState.menuItems)]).pipe(
       map(([repository, examples]) => this.getTreeDataSource(repository, examples)),
@@ -37,13 +40,13 @@ export class SidebarMenuComponent {
   hasChildren = (_: number, menuItem: any) => menuItem.children;
 
   private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): MatTreeNestedDataSource<SidebarMenuItem> {
-    const docsChildren = [ 'core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForDocs(library, repository));
-    const examplesChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
-    const editorChildren = [ 'bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
+    const docsChildren = ['core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForDocs(library, repository));
+    const examplesChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
+    const editorChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
     const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
     treeDataSource.data = [
       { label: 'Home', route: '/home' },
-      { label: 'Docs', children: [ ...docsChildren, { label: 'Changelog', route: '/docs/changelog' } ] },
+      { label: 'Docs', children: [...docsChildren, { label: 'Changelog', route: '/docs/changelog' }] },
       { label: 'Examples', children: examplesChildren },
       { label: 'Editor', children: editorChildren },
       { label: 'License', route: '/license' },

@@ -13,7 +13,6 @@ export class DynamicFormIconPipe implements PipeTransform {
   /**
    * @deprecated The method should not be used
    */
-  // eslint-disable-next-line @typescript-eslint/unified-signatures
   transform(template: DynamicFormIconTemplate): string;
   transform(iconOrTemplate: string | DynamicFormIconTemplate): string {
     const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;

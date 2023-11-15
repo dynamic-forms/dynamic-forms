@@ -5,5 +5,5 @@ import { DynamicFormActionExpressionFunc } from './dynamic-form-action-expressio
 
 export interface DynamicFormActionExpressions<
   Data extends DynamicFormActionExpressionData = DynamicFormActionExpressionData,
-  Func extends DynamicFormActionExpressionFunc<Data> = DynamicFormActionExpressionFunc<Data>
+  Func extends DynamicFormActionExpressionFunc<Data> = DynamicFormActionExpressionFunc<Data>,
 > extends DynamicFormExpressions<DynamicFormActionExpression<Data, Func>> {}

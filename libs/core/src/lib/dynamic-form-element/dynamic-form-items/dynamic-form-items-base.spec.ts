@@ -25,9 +25,7 @@ describe('DynamicFormItemsBase', () => {
       id: 'id',
       type: 'element',
       template: {},
-      children: [
-        { template: {} },
-      ],
+      children: [{ template: {} }],
     } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 

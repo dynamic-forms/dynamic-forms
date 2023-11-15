@@ -5,16 +5,12 @@ import { BsDynamicFormAccordionModule, bsDynamicFormAccordionType } from './dyna
 describe('BsDynamicFormAccordionModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormAccordionModule,
-      ],
+      imports: [BsDynamicFormAccordionModule],
     });
   });
 
-  it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(bsDynamicFormAccordionType);
-    }),
-  );
+  it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
+    expect(config.length).toBe(1);
+    expect(config[0]).toEqual(bsDynamicFormAccordionType);
+  }));
 });

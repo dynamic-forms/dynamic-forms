@@ -16,26 +16,13 @@ import { RoutingHandler } from './state/routing/routing.handler';
 
 @NgModule({
   imports: [
-    NgxsModule.forRoot([
-      ConfigState,
-      ExamplesState,
-      LayoutState,
-      NotificationsState,
-      PreferencesState,
-      ProgressState,
-    ], {
+    NgxsModule.forRoot([ConfigState, ExamplesState, LayoutState, NotificationsState, PreferencesState, ProgressState], {
       developmentMode: !environment.production,
     }),
     NgxsStoragePluginModule.forRoot({
       key: [PreferencesState],
     }),
   ],
-  providers: [
-    ConfigService,
-    ExamplesService,
-    ProgressService,
-    NotificationsService,
-    RoutingHandler,
-  ],
+  providers: [ConfigService, ExamplesService, ProgressService, NotificationsService, RoutingHandler],
 })
 export class AppStateModule {}

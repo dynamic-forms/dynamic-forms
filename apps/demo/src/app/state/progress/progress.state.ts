@@ -15,7 +15,7 @@ export class ProgressState {
   push(context: StateContext<Progress>, action: ProgressItemPush): void {
     const state = context.getState();
     context.patchState({
-      items: [ ...state.items, action.item ],
+      items: [...state.items, action.item],
     });
   }
 

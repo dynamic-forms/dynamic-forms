@@ -5,6 +5,6 @@ import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.componen
 export const bsDynamicFormTextareaType: DynamicFormInputType = {
   type: 'textarea',
   component: BsDynamicFormTextareaComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

@@ -14,13 +14,15 @@ import { DynamicFormElementType } from './dynamic-form-element-type';
 export class DynamicFormElement<
   Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
   Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
-  Child extends DynamicFormElement<DynamicFormElementTemplate, DynamicFormElementDefinition, any> =
-    DynamicFormElement<DynamicFormElementTemplate, DynamicFormElementDefinition, any>,
+  Child extends DynamicFormElement<DynamicFormElementTemplate, DynamicFormElementDefinition, any> = DynamicFormElement<
+    DynamicFormElementTemplate,
+    DynamicFormElementDefinition,
+    any
+  >,
   ExpressionData extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
   Expressions extends DynamicFormElementExpressions<ExpressionData> = DynamicFormElementExpressions<ExpressionData>,
-  Type extends DynamicFormElementType = DynamicFormElementType
+  Type extends DynamicFormElementType = DynamicFormElementType,
 > {
-
   protected readonly _builder: DynamicFormBuilder;
   protected _expressions: Expressions;
   protected _children: Child[] = [];
@@ -37,32 +39,38 @@ export class DynamicFormElement<
   readonly expressionChanges = this.expressionChangesSubject.asObservable();
   readonly expressionData: ExpressionData;
 
-  constructor(
-    builder: DynamicFormBuilder,
-    root: DynamicForm,
-    parent: DynamicFormElement,
-    definition: Definition,
-    type: Type,
-  ) {
+  constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     this._builder = builder;
     this.root = root || (this as unknown as DynamicForm);
     this.parent = parent;
     this.parentField = DynamicFormElement.getParentField(root, parent);
     this.definition = definition;
-    this.definition.template = definition.template || {} as Template;
+    this.definition.template = definition.template || ({} as Template);
     this.template = definition.template as Template;
     this.type = type;
     this.expressionData = this.createExpressionData();
     this._expressions = {} as Expressions;
   }
 
-  get classType(): DynamicFormClassType { return 'element'; }
+  get classType(): DynamicFormClassType {
+    return 'element';
+  }
 
-  get id(): string { return this.definition.id; }
-  get hidden(): boolean { return this.template.hidden || this.parentField.hidden || false; }
+  get id(): string {
+    return this.definition.id;
+  }
 
-  get expressions(): Expressions { return this._expressions; }
-  get children(): Child[] { return this._children; }
+  get hidden(): boolean {
+    return this.template.hidden || this.parentField.hidden || false;
+  }
+
+  get expressions(): Expressions {
+    return this._expressions;
+  }
+
+  get children(): Child[] {
+    return this._children;
+  }
 
   init(): void {
     this.initId();
@@ -77,7 +85,7 @@ export class DynamicFormElement<
   }
 
   protected initExpressions(): void {
-    this._expressions = this.getExpressions() || {} as Expressions;
+    this._expressions = this.getExpressions() || ({} as Expressions);
     assignExpressions(this.template, this._expressions);
   }
 
@@ -93,7 +101,7 @@ export class DynamicFormElement<
     const expressionData = {} as ExpressionData;
     assignExpressionData(expressionData, {
       root: () => this.root.expressionData,
-      parent: () => this.parent ? this.parent.expressionData : undefined,
+      parent: () => (this.parent ? this.parent.expressionData : undefined),
       parentField: () => this.parentField.expressionData,
       id: () => this.id,
       hidden: () => this.hidden,

@@ -22,9 +22,7 @@ describe('DynamicFormAccordionBase', () => {
       id: 'id',
       type: 'element',
       template: {},
-      children: [
-        { template: {} },
-      ],
+      children: [{ template: {} }],
     } as DynamicFormItemsDefinition;
 
     component = new DynamicFormAccordionTestComponent();

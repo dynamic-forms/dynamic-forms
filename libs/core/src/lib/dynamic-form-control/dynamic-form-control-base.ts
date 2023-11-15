@@ -12,16 +12,25 @@ export abstract class DynamicFormControlBase<
   Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
   Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
   Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
-  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>
+  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>,
 > extends DynamicFormFieldBase<Value, Value, FormControlBase<Value>, Template, Definition, Control> {
-
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 
-  get input(): Input { return this.field.input; }
-  get inputId(): string { return this.field.inputId; }
-  get inputType(): string { return this.field.inputType; }
+  get input(): Input {
+    return this.field.input;
+  }
 
-  get hints(): DynamicFormControlHints { return this.template.hints; }
+  get inputId(): string {
+    return this.field.inputId;
+  }
+
+  get inputType(): string {
+    return this.field.inputType;
+  }
+
+  get hints(): DynamicFormControlHints {
+    return this.template.hints;
+  }
 }

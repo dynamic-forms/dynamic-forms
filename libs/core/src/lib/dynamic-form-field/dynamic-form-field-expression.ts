@@ -7,9 +7,8 @@ import { DynamicFormFieldExpressionFunc } from './dynamic-form-field-expression-
 
 export class DynamicFormFieldExpression<
   Data extends DynamicFormFieldExpressionData = DynamicFormFieldExpressionData,
-  Func extends DynamicFormFieldExpressionFunc<Data> = DynamicFormFieldExpressionFunc<Data>
+  Func extends DynamicFormFieldExpressionFunc<Data> = DynamicFormFieldExpressionFunc<Data>,
 > extends DynamicFormElementExpression<Data, Func> {
-
   protected _memo: DynamicFormExpressionMemoization;
 
   constructor(
@@ -39,9 +38,17 @@ export class DynamicFormFieldExpression<
     return this.func(this.field.expressionData as Data, this._memo);
   }
 
-  private get previousValue(): any { return this._memo.previousValue; }
-  private set previousValue(value: any) { this._memo.previousValue = value; }
+  private get previousValue(): any {
+    return this._memo.previousValue;
+  }
+  private set previousValue(value: any) {
+    this._memo.previousValue = value;
+  }
 
-  private get currentValue(): any { return this._memo.currentValue; }
-  private set currentValue(value: any) { this._memo.currentValue = value; }
+  private get currentValue(): any {
+    return this._memo.currentValue;
+  }
+  private set currentValue(value: any) {
+    this._memo.currentValue = value;
+  }
 }

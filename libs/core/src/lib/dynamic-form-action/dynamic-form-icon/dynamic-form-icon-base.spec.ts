@@ -15,13 +15,16 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 @Component({
   selector: 'dynamic-form-icon-test',
   template: `
-    <button class="dynamic-form-icon"
+    <button
+      class="dynamic-form-icon"
       [ngClass]="template.className"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"
       (click)="onClick($event)"
-    >{{ template?.label }}</button>
+    >
+      {{ template?.label }}
+    </button>
   `,
 })
 class DynamicFormIconTestComponent extends DynamicFormIconBase {
@@ -38,9 +41,7 @@ describe('DynamicFormIconBase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormIconTestComponent,
-      ],
+      declarations: [DynamicFormIconTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -77,7 +78,7 @@ describe('DynamicFormIconBase', () => {
 
     expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
-    expect(formButtonElement.innerHTML).toBe('label');
+    expect(formButtonElement.innerHTML).toBe(' label ');
   });
 
   it('sets dynamic form icon to hidden', () => {
@@ -136,14 +137,12 @@ describe('DynamicFormIconBase', () => {
     expect(formButtonElement.type).toBe('button');
   });
 
-  it('executes action onClick',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      spyOn(service, 'handle');
+  it('executes action onClick', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+    spyOn(service, 'handle');
 
-      const event = null;
-      component.onClick(event);
+    const event = null;
+    component.onClick(event);
 
-      expect(service.handle).toHaveBeenCalledWith(component.element, event);
-    }),
-  );
+    expect(service.handle).toHaveBeenCalledWith(component.element, event);
+  }));
 });

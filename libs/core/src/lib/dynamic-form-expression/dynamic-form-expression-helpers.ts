@@ -3,7 +3,8 @@ import { DynamicFormExpression } from './dynamic-form-expression';
 import { DynamicFormExpressions } from './dynamic-form-expressions';
 
 export const assignExpressions = <Expression extends DynamicFormExpression = DynamicFormExpression>(
-  template: any, expressions: DynamicFormExpressions<Expression>,
+  template: any,
+  expressions: DynamicFormExpressions<Expression>,
 ): void => {
   Object.keys(expressions).forEach(path => {
     const paths = path.split('.');

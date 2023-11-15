@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
@@ -19,9 +19,8 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   templateUrl: './form-editor.component.html',
   styleUrls: ['./form-editor.component.scss'],
   imports: [CommonModule, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
-
 })
-export class FormEditorComponent {
+export class FormEditorComponent implements OnDestroy {
   private readonly _subscriptions = new Subscription();
 
   private _logs: DynamicFormLog[] = [];
@@ -44,19 +43,34 @@ export class FormEditorComponent {
 
   @Output() dataChange = new EventEmitter<FormEditorData>();
 
-  constructor(private store: Store, private logger: FormEditorLogger) {
-    this.splitView$ = this.store.select(PreferencesState.formEditor).pipe(
-      map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView),
+  constructor(
+    private store: Store,
+    private logger: FormEditorLogger,
+  ) {
+    this.splitView$ = this.store
+      .select(PreferencesState.formEditor)
+      .pipe(map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView));
+    this._subscriptions.add(
+      this.logger.log$.pipe(bufferTime(1000)).subscribe(logs => {
+        this._logs = [...logs.reverse(), ...this._logs];
+      }),
     );
-    this._subscriptions.add(this.logger.log$.pipe(bufferTime(1000)).subscribe((logs) => {
-      this._logs = [ ...logs.reverse(), ...this._logs ];
-    }));
   }
 
-  get value(): string { return this._value; }
-  set value(value: string) { this.setValue(value); }
+  get value(): string {
+    return this._value;
+  }
+  set value(value: string) {
+    this.setValue(value);
+  }
 
-  get logs(): DynamicFormLog[] { return this._logs; }
+  get logs(): DynamicFormLog[] {
+    return this._logs;
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
+  }
 
   private setValue(value: string) {
     this._value = value;
@@ -70,7 +84,7 @@ export class FormEditorComponent {
         level: DynamicFormLogLevel.Error,
         type: DynamicFormErrorType.Unspecified,
         message: 'Parsing JSON failed',
-        data: [ error ],
+        data: [error],
       };
       this.logger.log(log);
     }

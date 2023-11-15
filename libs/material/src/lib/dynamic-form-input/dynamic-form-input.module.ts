@@ -28,14 +28,8 @@ export const matDynamicFormInputTypes = [
 ];
 
 @NgModule({
-  imports: [
-    DynamicFormFileModule,
-    DynamicFormTextboxModule,
-    DynamicFormConfigModule.withInputs(matDynamicFormInputTypes),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormFileModule, DynamicFormTextboxModule, DynamicFormConfigModule.withInputs(matDynamicFormInputTypes)],
+  exports: [DynamicFormConfigModule],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

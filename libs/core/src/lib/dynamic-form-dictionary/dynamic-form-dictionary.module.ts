@@ -51,9 +51,7 @@ export const getDynamicFormDictionary = (action: DynamicFormAction): DynamicForm
   }
 
   const parentField = field.parent as DynamicFormField;
-  return parentField && parentField.fieldClassType === 'dictionary'
-    ? parentField as DynamicFormDictionary
-    : undefined;
+  return parentField && parentField.fieldClassType === 'dictionary' ? (parentField as DynamicFormDictionary) : undefined;
 };
 
 export const dynamicFormDictionaryRemoveField = (field: DynamicFormDictionary, action: DynamicFormAction): void => {
@@ -86,17 +84,9 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormDictionaryType),
     DynamicFormValidationModule.withDictionaryValidators(dynamicFormDictionaryValidatorTypes),
-    DynamicFormActionModule.withHandlers([
-      dynamicFormDictionaryRemoveFieldHandler,
-      dynamicFormDictionaryClearFieldsHandler,
-    ]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [
-      DynamicFormBuilder,
-    ]),
+    DynamicFormActionModule.withHandlers([dynamicFormDictionaryRemoveFieldHandler, dynamicFormDictionaryClearFieldsHandler]),
+    DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
   ],
-  exports: [
-    DynamicFormConfigModule,
-    DynamicFormActionModule,
-  ],
+  exports: [DynamicFormConfigModule, DynamicFormActionModule],
 })
 export class DynamicFormDictionaryModule {}

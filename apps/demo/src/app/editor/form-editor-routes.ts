@@ -5,11 +5,10 @@ import { resolveFormExample, resolveFormExampleDefinition, resolveFormExampleMod
 import { FormExampleLoader } from '../examples/form-example.loader';
 import { FormEditorBase } from './form-editor-base';
 
-export const resolveFormEditorDefinitionDefault: ResolveFn<DynamicFormDefinition> = () => inject(FormExampleLoader).loadDefinition(`./assets/editor/default.json`);
+export const resolveFormEditorDefinitionDefault: ResolveFn<DynamicFormDefinition> = () =>
+  inject(FormExampleLoader).loadDefinition(`./assets/editor/default.json`);
 
-export const getFormEditorRoutes = <TEditorComponent extends FormEditorBase>(
-  editorComponent: Type<TEditorComponent>,
-): Routes => [
+export const getFormEditorRoutes = <TEditorComponent extends FormEditorBase>(editorComponent: Type<TEditorComponent>): Routes => [
   {
     path: '',
     component: editorComponent,

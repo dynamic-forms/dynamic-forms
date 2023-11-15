@@ -14,7 +14,8 @@
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
       ],
       "settings": {
         "import/resolver": {
@@ -87,13 +88,6 @@
             "requireReturnForObjectLiteral": true
           }
         ],
-        "brace-style": [
-          "error",
-          "1tbs",
-          {
-            "allowSingleLine": true
-          }
-        ],
         "comma-dangle": [
           "error",
           "always-multiline"
@@ -116,6 +110,9 @@
             }
           }
         ],
+        "prettier/prettier": [
+          "error"
+        ],
         "no-underscore-dangle": "off",
         "sort-imports": [
           "error",
@@ -134,18 +131,7 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "excludedFiles": [
-        "*inline-template-*.component.html"
-      ],
-      "extends": [
+        "plugin:@angular-eslint/template/recommended",
         "plugin:prettier/recommended"
       ],
       "rules": {
@@ -153,10 +139,6 @@
           "error",
           {
             "parser": "angular",
-            "endOfLine": "auto",
-            "printWidth": 140,
-            "tabWidth": 2,
-            "useTabs": false,
             "htmlWhitespaceSensitivity": "strict"
           }
         ]

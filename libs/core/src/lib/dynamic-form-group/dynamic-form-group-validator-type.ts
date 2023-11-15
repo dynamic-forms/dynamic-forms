@@ -2,7 +2,9 @@ import { FormGroup } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormGroupAsyncValidatorFactory, DynamicFormGroupValidatorFactory, DynamicFormGroupValidatorFn,
+  DynamicFormGroupAsyncValidatorFactory,
+  DynamicFormGroupValidatorFactory,
+  DynamicFormGroupValidatorFn,
 } from './dynamic-form-group-validator';
 
 export interface DynamicFormGroupValidatorType extends DynamicFormFieldValidatorType<DynamicFormGroupValidatorFactory> {}
@@ -29,24 +31,24 @@ export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidator
   libraryName: dynamicFormLibrary.name,
 };
 
-export const dynamicFormGroupEqualValidatorFactory = (
-  parameters?: { keys: string[] }, message?: string, key?: string,
-): DynamicFormGroupValidatorFn => (group: FormGroup) => {
-  const keys = parameters && parameters.keys;
-  if (group.value && keys && keys.length > 1) {
-    for (let i = 1; i < keys.length; i++) {
-      if (group.value[keys[i - 1]] !== group.value[keys[i]]) {
-        if (key) {
-          const error = {};
-          error[key] = { message };
-          return error;
+export const dynamicFormGroupEqualValidatorFactory =
+  (parameters?: { keys: string[] }, message?: string, key?: string): DynamicFormGroupValidatorFn =>
+  (group: FormGroup) => {
+    const keys = parameters && parameters.keys;
+    if (group.value && keys && keys.length > 1) {
+      for (let i = 1; i < keys.length; i++) {
+        if (group.value[keys[i - 1]] !== group.value[keys[i]]) {
+          if (key) {
+            const error = {};
+            error[key] = { message };
+            return error;
+          }
+          return { equal: { message } };
         }
-        return { equal: { message } };
       }
     }
-  }
-  return null;
-};
+    return null;
+  };
 
 export const dynamicFormGroupEqualValidatorType: DynamicFormGroupValidatorType = {
   type: 'equal',

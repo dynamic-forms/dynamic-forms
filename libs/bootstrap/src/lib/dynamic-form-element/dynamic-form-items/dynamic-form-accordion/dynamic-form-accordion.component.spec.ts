@@ -1,7 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType, DynamicFormItems,
-  DynamicFormLibraryService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormElement,
+  DynamicFormElementType,
+  DynamicFormItems,
+  DynamicFormLibraryService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 import { BsDynamicFormAccordionModule } from './dynamic-form-accordion.module';
 
@@ -12,9 +18,7 @@ describe('BsDynamicFormAccordionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormAccordionModule,
-      ],
+      imports: [BsDynamicFormAccordionModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

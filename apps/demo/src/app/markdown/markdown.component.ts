@@ -6,7 +6,7 @@ import { MarkdownElement } from './markdown.element';
   standalone: true,
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: [ './markdown.component.scss' ],
+  styleUrls: ['./markdown.component.scss'],
   imports: [DynamicFormMarkdownComponent],
   providers: [DynamicFormMarkdownService],
 })

@@ -31,14 +31,8 @@ describe('DynamicFormFileHelpers', () => {
   });
 
   it('extractFiles returns array with multiple file items', () => {
-    const files = [
-      new File([''], 'file01.txt', { type: 'text/plain' }),
-      new File([''], 'file02.json', { type: 'application/json' }),
-    ];
-    const fileUploads = [
-      new DynamicFormFileUpload(files[0]),
-      new DynamicFormFileUpload(files[1]),
-    ];
+    const files = [new File([''], 'file01.txt', { type: 'text/plain' }), new File([''], 'file02.json', { type: 'application/json' })];
+    const fileUploads = [new DynamicFormFileUpload(files[0]), new DynamicFormFileUpload(files[1])];
 
     const result = extractFiles({ fileUploads });
 
@@ -50,14 +44,8 @@ describe('DynamicFormFileHelpers', () => {
   });
 
   it('extractFiles returns array with multiple file items from wrapped object', () => {
-    const files = [
-      new File([''], 'file01.txt', { type: 'text/plain' }),
-      new File([''], 'file02.json', { type: 'application/json' }),
-    ];
-    const fileUploads = [
-      new DynamicFormFileUpload(files[0]),
-      new DynamicFormFileUpload(files[1]),
-    ];
+    const files = [new File([''], 'file01.txt', { type: 'text/plain' }), new File([''], 'file02.json', { type: 'application/json' })];
+    const fileUploads = [new DynamicFormFileUpload(files[0]), new DynamicFormFileUpload(files[1])];
 
     const result = extractFiles({ registration: { username: 'user01', email: 'user01@mail.com', files: { fileUploads } } });
 

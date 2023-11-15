@@ -76,9 +76,6 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
       dynamicFormSubmitHandler,
     ]),
   ],
-  exports: [
-    DynamicFormValidationModule,
-    DynamicFormActionModule,
-  ],
+  exports: [DynamicFormValidationModule, DynamicFormActionModule],
 })
 export class DynamicFormFieldModule {}

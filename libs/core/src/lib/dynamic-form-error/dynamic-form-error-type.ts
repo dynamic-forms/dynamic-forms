@@ -10,5 +10,5 @@ export enum DynamicFormErrorType {
   WrapperType = 'Wrapper type error',
   Expression = 'Expression error',
   ExpressionCreation = 'Expression creation error',
-  ExpressionEvaluation = 'Expression evaluation error'
+  ExpressionEvaluation = 'Expression evaluation error',
 }

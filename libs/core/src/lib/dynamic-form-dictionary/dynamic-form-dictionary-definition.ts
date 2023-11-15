@@ -4,7 +4,7 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 
 export interface DynamicFormDictionaryDefinition<
   Value = any,
-  Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate
+  Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
 > extends DynamicFormFieldDefinition<{ [key: string]: Value }, Template> {
   definitionTemplate: DynamicFormFieldDefinition;
   defaultKeys?: string[];

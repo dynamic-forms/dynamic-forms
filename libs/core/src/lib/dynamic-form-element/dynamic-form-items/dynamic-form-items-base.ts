@@ -7,19 +7,28 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
 @Directive()
 export abstract class DynamicFormItemsBase<
-  Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
-  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
-  Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>
-> extends DynamicFormElementBase<Template, Definition, Items> implements DoCheck {
-
+    Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
+    Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
+    Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>,
+  >
+  extends DynamicFormElementBase<Template, Definition, Items>
+  implements DoCheck
+{
   constructor() {
     super();
   }
 
-  get children(): DynamicFormItem[] { return this.element.children; }
+  get children(): DynamicFormItem[] {
+    return this.element.children;
+  }
 
-  get selectedIndex(): number { return this.element.selectedIndex; }
-  get selectedItem(): DynamicFormItem { return this.element.selectedItem; }
+  get selectedIndex(): number {
+    return this.element.selectedIndex;
+  }
+
+  get selectedItem(): DynamicFormItem {
+    return this.element.selectedItem;
+  }
 
   ngDoCheck(): void {
     this.element.check();

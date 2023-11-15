@@ -11,20 +11,20 @@ describe('DynamicForm', () => {
   });
 
   it('creates instance', () => {
-      const definition = { template: {}, children: [] } as DynamicFormDefinition;
-      const model = {};
-      const form = new DynamicForm(builder, definition, model);
+    const definition = { template: {}, children: [] } as DynamicFormDefinition;
+    const model = {};
+    const form = new DynamicForm(builder, definition, model);
 
-      expect(form.root).toBe(form);
-      expect(form.parent).toBeNull();
-      expect(form.parentField).toBeNull();
+    expect(form.root).toBe(form);
+    expect(form.parent).toBeNull();
+    expect(form.parentField).toBeNull();
 
-      expect(form.definition).toBe(definition);
-      expect(form.template).toBe(definition.template);
+    expect(form.definition).toBe(definition);
+    expect(form.template).toBe(definition.template);
 
-      expect(form.model).toBe(model);
-      expect(form.control).toBeInstanceOf(FormGroup);
-      expect(form.fields).toBeTruthy();
+    expect(form.model).toBe(model);
+    expect(form.control).toBeInstanceOf(FormGroup);
+    expect(form.fields).toBeTruthy();
   });
 
   it('create instance throws if no template provided', () => {
@@ -67,7 +67,7 @@ describe('DynamicForm', () => {
     expect(form.hidden).toBe(true);
   });
 
-  it('submits', (done) => {
+  it('submits', done => {
     const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(builder, definition, {});
 

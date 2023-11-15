@@ -45,7 +45,7 @@ export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFo
 
 export const getDynamicFormArray = (action: DynamicFormAction): DynamicFormArray => {
   const field = action.parentField && action.parentField.parentField;
-  return field && field.fieldClassType === 'array' ? field as DynamicFormArray : undefined;
+  return field && field.fieldClassType === 'array' ? (field as DynamicFormArray) : undefined;
 };
 
 export const dynamicFormArrayRemoveField = (field: DynamicFormArray, action: DynamicFormAction): void => {
@@ -103,7 +103,7 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormArrayType),
     DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [ DynamicFormBuilder ]),
+    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [DynamicFormBuilder]),
     DynamicFormActionModule.withHandlers([
       dynamicFormArrayPopFieldHandler,
       dynamicFormArrayRemoveFieldHandler,
@@ -112,10 +112,6 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
       dynamicFormArrayMoveFieldUpHandler,
     ]),
   ],
-  exports: [
-    DynamicFormConfigModule,
-    DynamicFormActionModule,
-    DynamicFormValidationModule,
-  ],
+  exports: [DynamicFormConfigModule, DynamicFormActionModule, DynamicFormValidationModule],
 })
 export class DynamicFormArrayModule {}

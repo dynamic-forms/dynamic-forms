@@ -9,23 +9,45 @@ import { DynamicFormModalTemplate } from './dynamic-form-modal-template';
 export abstract class DynamicFormModalBase<
   Template extends DynamicFormModalTemplate = DynamicFormModalTemplate,
   Definition extends DynamicFormModalDefinition<Template> = DynamicFormModalDefinition<Template>,
-  Modal extends DynamicFormModal<Template, Definition> = DynamicFormModal<Template, Definition>
+  Modal extends DynamicFormModal<Template, Definition> = DynamicFormModal<Template, Definition>,
 > extends DynamicFormElementBase<Template, Definition, Modal> {
-
   constructor() {
     super();
   }
 
-  get trigger(): DynamicFormAction { return this.element.trigger; }
+  get trigger(): DynamicFormAction {
+    return this.element.trigger;
+  }
 
-  get isOpen(): boolean { return this.element.isOpen; }
-  get isOpen$(): Observable<boolean> { return this.element.isOpenChanges; }
+  get isOpen(): boolean {
+    return this.element.isOpen;
+  }
 
-  get children(): DynamicFormElement[] { return this.element.children; }
-  get headerActions(): DynamicFormAction[] { return this.element.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this.element.footerActions; }
+  get isOpen$(): Observable<boolean> {
+    return this.element.isOpenChanges;
+  }
 
-  open(): void { this.element.open(); }
-  close(): void { this.element.close(); }
-  toggle(): void { this.element.toggle(); }
+  get children(): DynamicFormElement[] {
+    return this.element.children;
+  }
+
+  get headerActions(): DynamicFormAction[] {
+    return this.element.headerActions;
+  }
+
+  get footerActions(): DynamicFormAction[] {
+    return this.element.footerActions;
+  }
+
+  open(): void {
+    this.element.open();
+  }
+
+  close(): void {
+    this.element.close();
+  }
+
+  toggle(): void {
+    this.element.toggle();
+  }
 }

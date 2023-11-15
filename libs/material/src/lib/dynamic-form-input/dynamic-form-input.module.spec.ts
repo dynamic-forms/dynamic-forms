@@ -7,10 +7,8 @@ describe('MatDynamicFormInputModule', () => {
     TestBed.configureTestingModule({ imports: [MatDynamicFormInputModule] });
   });
 
-  it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
-    inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(matDynamicFormInputTypes);
-    }),
-  );
+  it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG', inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
+    expect(config.length).toBe(1);
+    expect(config[0]).toEqual(matDynamicFormInputTypes);
+  }));
 });

@@ -46,11 +46,7 @@ import { MaterialFormComponent } from './material-form.component';
       idBuilder: { createId: () => v4() },
     }),
   ],
-  declarations: [
-    MaterialFormComponent,
-  ],
-  exports: [
-    MaterialFormComponent,
-  ],
+  declarations: [MaterialFormComponent],
+  exports: [MaterialFormComponent],
 })
 export class MaterialFormModule {}

@@ -3,9 +3,6 @@ import { BsDynamicFormAccordionModule } from './dynamic-form-accordion/dynamic-f
 import { BsDynamicFormTabsModule } from './dynamic-form-tabs/dynamic-form-tabs.module';
 
 @NgModule({
-  imports: [
-    BsDynamicFormAccordionModule,
-    BsDynamicFormTabsModule,
-  ],
+  imports: [BsDynamicFormAccordionModule, BsDynamicFormTabsModule],
 })
 export class BsDynamicFormItemsModule {}

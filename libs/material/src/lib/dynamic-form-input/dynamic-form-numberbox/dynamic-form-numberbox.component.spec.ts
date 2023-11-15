@@ -1,9 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormNumberboxControl, DynamicFormNumberboxDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormNumberboxControl,
+  DynamicFormNumberboxDefinition,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 describe('MatDynamicFormNumberboxComponent', () => {
@@ -16,10 +24,7 @@ describe('MatDynamicFormNumberboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        MatDynamicFormNumberboxComponent,
-      ],
+      imports: [NoopAnimationsModule, MatDynamicFormNumberboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

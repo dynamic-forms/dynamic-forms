@@ -23,9 +23,7 @@ describe('DynamicFormDictionaryComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormDictionaryModule,
-      ],
+      imports: [DynamicFormDictionaryModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -44,15 +42,21 @@ describe('DynamicFormDictionaryComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formDictionary = new DynamicFormDictionary(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        label: 'label',
-      },
-      children: [],
-    } as DynamicFormDictionaryDefinition, {} as DynamicFormFieldType);
+    formDictionary = new DynamicFormDictionary(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          label: 'label',
+        },
+        children: [],
+      } as DynamicFormDictionaryDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formDictionary;
 
     fixture.detectChanges();

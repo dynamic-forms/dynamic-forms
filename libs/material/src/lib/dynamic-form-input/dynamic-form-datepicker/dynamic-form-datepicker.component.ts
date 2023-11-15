@@ -5,8 +5,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DynamicFormDatepicker, DynamicFormElementComponent, DynamicFormInputBase,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicFormDatepicker,
+  DynamicFormElementComponent,
+  DynamicFormInputBase,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 
 @Component({
   standalone: true,

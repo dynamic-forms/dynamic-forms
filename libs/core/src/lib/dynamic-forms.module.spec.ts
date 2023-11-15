@@ -20,9 +20,7 @@ describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormsModule,
-        ],
+        imports: [DynamicFormsModule],
       });
     });
 
@@ -90,9 +88,7 @@ describe('DynamicFormsModule', () => {
   describe('with DYNAMIC_FORM_LIBRARY provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormsModule,
-        ],
+        imports: [DynamicFormsModule],
         providers: [
           {
             provide: DYNAMIC_FORM_LIBRARY,
@@ -102,19 +98,15 @@ describe('DynamicFormsModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
-        expect(library).toEqual(dynamicFormLibrary);
-      }),
-    );
+    it('provides DYNAMIC_FORM_LIBRARY', inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+      expect(library).toEqual(dynamicFormLibrary);
+    }));
 
-    it('provides DynamicFormLibraryService',
-      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeTruthy();
-        expect(service.library).toEqual(dynamicFormLibrary);
-        expect(service.libraryNames).toEqual([ 'core' ]);
-      }),
-    );
+    it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+      expect(service).toBeTruthy();
+      expect(service.library).toEqual(dynamicFormLibrary);
+      expect(service.libraryNames).toEqual(['core']);
+    }));
 
     it('does not provide DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', () => {
       expect(() => TestBed.inject(DYNAMIC_FORM_ELEMENT_TYPE_CONFIG)).toThrowError(/NullInjectorError/);
@@ -136,52 +128,36 @@ describe('DynamicFormsModule', () => {
       expect(() => TestBed.inject(DYNAMIC_FORM_VALIDATION_CONFIGS)).toThrowError(/NullInjectorError/);
     });
 
-    it('provides DynamicFormConfigService',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormConfigService', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormLogger',
-      inject([DynamicFormLogger], (service: DynamicFormLogger) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormLogger', inject([DynamicFormLogger], (service: DynamicFormLogger) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormBuilder',
-      inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormBuilder', inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormExpressionBuilder',
-      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormExpressionBuilder', inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormEvaluationBuilder',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormEvaluationBuilder', inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormValidationService',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormComponentFactory',
-      inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
+      expect(service).toBeTruthy();
+    }));
   });
 });

@@ -10,30 +10,38 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
-  Value extends { [key: string]: any } = any, Model extends Value = Value,
+  Value extends { [key: string]: any } = any,
+  Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
-  Type extends DynamicFormFieldType = DynamicFormFieldType
+  Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition, Type> {
-
   protected _fields: DynamicFormField[] = [];
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type);
   /** @internal */
   constructor(builder: DynamicFormBuilder, definition: Definition, model: Model);
   constructor(builder: DynamicFormBuilder, ...params: any[]) {
-    const { root, parent, definition, type, model } = params.length === 4
-      ? { root: params[0], parent: params[1], definition: params[2], type: params[3], model: null }
-      : { root: null, parent: null, definition: params[0], type: null, model: params[1] };
+    const { root, parent, definition, type, model } =
+      params.length === 4
+        ? { root: params[0], parent: params[1], definition: params[2], type: params[3], model: null }
+        : { root: null, parent: null, definition: params[0], type: null, model: params[1] };
     super(builder, root, parent, definition, type, new FormGroupBase<Value>({} as any));
     this._model = model || this.getModel();
     this._parameters = {};
   }
 
-  get fieldClassType(): DynamicFormFieldClassType { return 'group'; }
+  get fieldClassType(): DynamicFormFieldClassType {
+    return 'group';
+  }
 
-  override get children(): DynamicFormElement[] { return this._children; }
-  get fields(): DynamicFormField[] { return this._fields; }
+  override get children(): DynamicFormElement[] {
+    return this._children;
+  }
+
+  get fields(): DynamicFormField[] {
+    return this._fields;
+  }
 
   check(): void {
     this.checkControl();
@@ -78,9 +86,11 @@ export class DynamicFormGroup<
   protected override initChildren(): void {
     super.initChildren();
     this._fields = this.filterFields(this._children);
-    this._fields.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
-    });
+    this._fields
+      .filter(field => !field.unregistered)
+      .forEach(field => {
+        this._control.registerControl(field.definition.key, field.control);
+      });
   }
 
   private getModel(): Model {

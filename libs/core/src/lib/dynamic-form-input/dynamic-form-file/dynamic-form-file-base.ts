@@ -11,9 +11,10 @@ import { DynamicFormFile, DynamicFormFileDefinition, DynamicFormFileTemplate } f
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';
 
 @Directive()
-export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFormFile, DynamicFormFileTemplate, DynamicFormFileDefinition>
-  implements OnInit {
-
+export abstract class DynamicFormFileBase
+  extends DynamicFormInputBase<DynamicFormFile, DynamicFormFileTemplate, DynamicFormFileDefinition>
+  implements OnInit
+{
   private _uploadAction: DynamicFormAction;
 
   @ViewChild(DynamicFormFileDirective)
@@ -33,7 +34,10 @@ export abstract class DynamicFormFileBase extends DynamicFormInputBase<DynamicFo
     expressions: { disabled: _ => this.field.control.disabled || this.field.readonly },
   };
 
-  constructor(protected builder: DynamicFormBuilder, protected override validationService: DynamicFormValidationService) {
+  constructor(
+    protected builder: DynamicFormBuilder,
+    protected override validationService: DynamicFormValidationService,
+  ) {
     super(validationService);
   }
 

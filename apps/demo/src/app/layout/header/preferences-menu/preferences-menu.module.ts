@@ -18,11 +18,7 @@ import { PreferencesMenuComponent } from './preferences-menu.component';
       idBuilder: { createId: () => v4() },
     }),
   ],
-  declarations: [
-    PreferencesMenuComponent,
-  ],
-  exports: [
-    PreferencesMenuComponent,
-  ],
+  declarations: [PreferencesMenuComponent],
+  exports: [PreferencesMenuComponent],
 })
 export class PreferencesMenuModule {}

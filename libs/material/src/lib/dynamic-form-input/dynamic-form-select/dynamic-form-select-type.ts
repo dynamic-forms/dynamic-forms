@@ -7,4 +7,3 @@ export const matDynamicFormSelectType: DynamicFormInputType = {
   component: MatDynamicFormSelectComponent,
   libraryName: matDynamicFormLibrary.name,
 };
-

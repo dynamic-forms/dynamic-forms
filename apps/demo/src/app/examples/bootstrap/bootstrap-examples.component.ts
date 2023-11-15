@@ -13,7 +13,10 @@ import { FormExampleComponent } from '../form-example.component';
   imports: [CommonModule, FormExampleComponent, BootstrapFormModule],
 })
 export class BootstrapExamplesComponent extends FormExampleBase {
-  constructor(protected override route: ActivatedRoute, protected override dialog: MatDialog) {
+  constructor(
+    protected override route: ActivatedRoute,
+    protected override dialog: MatDialog,
+  ) {
     super(route, dialog);
   }
 }

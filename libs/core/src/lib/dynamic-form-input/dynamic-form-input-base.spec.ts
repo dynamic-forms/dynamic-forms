@@ -27,9 +27,7 @@ describe('DynamicFormInputBase', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormInputTestComponent,
-      ],
+      declarations: [DynamicFormInputTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -42,18 +40,24 @@ describe('DynamicFormInputBase', () => {
 
   it('creates component', () => {
     const form = new DynamicForm(builder, { key: 'root', children: [] } as DynamicFormDefinition, {});
-    const field = new DynamicFormControl(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        input: {
-          type: 'input',
+    const field = new DynamicFormControl(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          input: {
+            type: 'input',
+          },
+          hints: {},
+          validation: {},
         },
-        hints: {},
-        validation: {},
-      },
-    } as DynamicFormControlDefinition, {} as DynamicFormFieldType);
+      } as DynamicFormControlDefinition,
+      {} as DynamicFormFieldType,
+    );
 
     const fixture = TestBed.createComponent(DynamicFormInputTestComponent);
     const component = fixture.componentInstance;

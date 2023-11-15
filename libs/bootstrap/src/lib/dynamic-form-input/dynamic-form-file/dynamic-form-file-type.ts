@@ -5,6 +5,6 @@ import { BsDynamicFormFileComponent } from './dynamic-form-file.component';
 export const bsDynamicFormFileType: DynamicFormInputType = {
   type: 'file',
   component: BsDynamicFormFileComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

@@ -1,8 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormCheckboxControl, DynamicFormCheckboxDefinition,
-  DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormCheckboxControl,
+  DynamicFormCheckboxDefinition,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 describe('BsDynamicFormCheckboxComponent', () => {

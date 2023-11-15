@@ -5,11 +5,21 @@ import { DynamicFormInput, DynamicFormInputControl, DynamicFormInputDefinition }
 export class DynamicFormFileUpload {
   constructor(readonly file: File) {}
 
-  get name(): string { return this.file.name; }
-  get type(): string { return this.file.type; }
-  get size(): number { return this.file.size; }
+  get name(): string {
+    return this.file.name;
+  }
 
-  toJSON(): any { return { name: this.name, type: this.type, size: this.size }; }
+  get type(): string {
+    return this.file.type;
+  }
+
+  get size(): number {
+    return this.file.size;
+  }
+
+  toJSON(): any {
+    return { name: this.name, type: this.type, size: this.size };
+  }
 }
 
 export type DynamicFormFileValue = DynamicFormFileUpload | DynamicFormFileUpload[];

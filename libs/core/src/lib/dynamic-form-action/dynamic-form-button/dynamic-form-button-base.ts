@@ -7,9 +7,8 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 export abstract class DynamicFormButtonBase<
   Template extends DynamicFormButtonTemplate = DynamicFormButtonTemplate,
   Definition extends DynamicFormButtonDefinition<Template> = DynamicFormButtonDefinition<Template>,
-  Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>
+  Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>,
 > extends DynamicFormActionBase<Template, Definition, Action> {
-
   constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }

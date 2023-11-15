@@ -1,8 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSwitchControl, DynamicFormSwitchDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormSwitchControl,
+  DynamicFormSwitchDefinition,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 
 describe('MatDynamicFormSwitchComponent', () => {
