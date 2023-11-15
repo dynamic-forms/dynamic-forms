@@ -1,7 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
-import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 
 @Injectable()
 export class DynamicFormIconService {
@@ -16,17 +15,8 @@ export class DynamicFormIconService {
     this.iconConfig = this.mergeIconConfigs(this.iconConfigs);
   }
 
-  getIcon(icon: string): string;
-  /**
-   * @deprecated The method should not be used
-   */
-  getIcon(template: DynamicFormIconTemplate): string;
-  getIcon(iconOrTemplate: string | DynamicFormIconTemplate): string {
-    const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;
-    if (icon) {
-      return this.iconConfig.icons[icon] || icon;
-    }
-    return undefined;
+  getIcon(icon: string): string {
+    return icon ? this.iconConfig.icons[icon] || icon : undefined;
   }
 
   private mergeIconConfigs(configs: DynamicFormIconConfigs): DynamicFormIconConfig {
