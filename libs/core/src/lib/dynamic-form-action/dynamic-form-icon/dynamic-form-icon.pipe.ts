@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 @Pipe({
@@ -9,14 +8,7 @@ import { DynamicFormIconService } from './dynamic-form-icon.service';
 export class DynamicFormIconPipe implements PipeTransform {
   constructor(private iconService: DynamicFormIconService) {}
 
-  transform(icon: string): string;
-  /**
-   * @deprecated The method should not be used
-   */
-  // eslint-disable-next-line @typescript-eslint/unified-signatures
-  transform(template: DynamicFormIconTemplate): string;
-  transform(iconOrTemplate: string | DynamicFormIconTemplate): string {
-    const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;
+  transform(icon: string): string {
     return this.iconService.getIcon(icon);
   }
 }

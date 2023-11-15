@@ -1,9 +1,19 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormFileControl, DynamicFormFileDefinition,
-  DynamicFormValidationService, DynamicFormAction, DynamicFormComponentFactory } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormAction,
+  DynamicFormBuilder,
+  DynamicFormComponentFactory,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormFileControl,
+  DynamicFormFileDefinition,
+  DynamicFormLibraryService,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { createDynamicFormBuilderSpy } from '../../../../../core/src/lib/testing';
 import { MatDynamicFormFileComponent } from './dynamic-form-file.component';
 
@@ -25,10 +35,7 @@ describe('MatDynamicFormFileComponent', () => {
     builder.createFormAction.and.returnValue(uploadAction);
 
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        MatDynamicFormFileComponent,
-      ],
+      imports: [NoopAnimationsModule, MatDynamicFormFileComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -43,7 +50,7 @@ describe('MatDynamicFormFileComponent', () => {
         {
           provide: DynamicFormComponentFactory,
           useValue: {
-            createComponent: (ref) => ref.createComponent(TestDynamicFormActionComponent).instance,
+            createComponent: ref => ref.createComponent(TestDynamicFormActionComponent).instance,
           },
         },
       ],

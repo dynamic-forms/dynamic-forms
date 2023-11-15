@@ -1,7 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType, DynamicFormItems,
-  DynamicFormLibraryService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormElement,
+  DynamicFormElementType,
+  DynamicFormItems,
+  DynamicFormLibraryService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 import { MatDynamicFormTabsModule } from './dynamic-form-tabs.module';
 
@@ -12,9 +18,7 @@ describe('MatDynamicFormTabsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatDynamicFormTabsModule,
-      ],
+      imports: [MatDynamicFormTabsModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

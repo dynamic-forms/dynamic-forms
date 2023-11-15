@@ -7,9 +7,8 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 export abstract class DynamicFormIconBase<
   Template extends DynamicFormIconTemplate = DynamicFormIconTemplate,
   Definition extends DynamicFormIconDefinition<Template> = DynamicFormIconDefinition<Template>,
-  Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>
+  Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>,
 > extends DynamicFormActionBase<Template, Definition, Action> {
-
   constructor(protected override actionService: DynamicFormActionService) {
     super(actionService);
   }

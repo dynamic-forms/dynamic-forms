@@ -8,19 +8,32 @@ import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-defin
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
 
 export abstract class DynamicFormDictionaryBase<
-  Value = any, Model extends Value = Value,
+  Value = any,
+  Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
-  Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> =
-    DynamicFormDictionary<Value, Model, Template, Definition>
-> extends DynamicFormFieldBase<{ [key: string]: Value }, { [key: string]: Model },
-  FormRecordBase<Value>, Template, Definition, Dictionary> {
-
+  Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> = DynamicFormDictionary<Value, Model, Template, Definition>,
+> extends DynamicFormFieldBase<
+  { [key: string]: Value },
+  { [key: string]: Model },
+  FormRecordBase<Value>,
+  Template,
+  Definition,
+  Dictionary
+> {
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
 
-  get children(): DynamicFormField[] { return this.field.children; }
-  get headerActions(): DynamicFormAction[] { return this.field.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this.field.footerActions; }
+  get children(): DynamicFormField[] {
+    return this.field.children;
+  }
+
+  get headerActions(): DynamicFormAction[] {
+    return this.field.headerActions;
+  }
+
+  get footerActions(): DynamicFormAction[] {
+    return this.field.footerActions;
+  }
 }

@@ -1,9 +1,19 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormConfigService,
-  DynamicFormEvaluationBuilder, DynamicFormExpressionBuilder, DynamicFormIdBuilder,
-  DynamicFormLibrary, DynamicFormLibraryService, DynamicFormValidationBuilder,
-  DynamicFormValidationService, DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY,
-  DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+import { TestBed, inject } from '@angular/core/testing';
+import {
+  DYNAMIC_FORM_ID_BUILDER,
+  DYNAMIC_FORM_LIBRARY,
+  DYNAMIC_FORM_THEME,
+  DynamicFormBuilder,
+  DynamicFormComponentFactory,
+  DynamicFormConfigService,
+  DynamicFormEvaluationBuilder,
+  DynamicFormExpressionBuilder,
+  DynamicFormIdBuilder,
+  DynamicFormLibrary,
+  DynamicFormLibraryService,
+  DynamicFormValidationBuilder,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormsModule } from './dynamic-forms.module';
 
@@ -11,9 +21,7 @@ describe('BsDynamicFormsModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          BsDynamicFormsModule,
-        ],
+        imports: [BsDynamicFormsModule],
       });
     });
 
@@ -57,73 +65,51 @@ describe('BsDynamicFormsModule', () => {
   describe('forRoot', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          BsDynamicFormsModule.forRoot(),
-        ],
+        imports: [BsDynamicFormsModule.forRoot()],
       });
     });
 
-    it('provides DYNAMIC_FORM_LIBRARY',
-      inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
-        expect(library).toEqual(bsDynamicFormLibrary);
-      }),
-    );
+    it('provides DYNAMIC_FORM_LIBRARY', inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+      expect(library).toEqual(bsDynamicFormLibrary);
+    }));
 
-    it('provides DYNAMIC_FORM_THEME being undefined',
-      inject([DYNAMIC_FORM_THEME], (theme: string) => {
-        expect(theme).toBeUndefined();
-      }),
-    );
+    it('provides DYNAMIC_FORM_THEME being undefined', inject([DYNAMIC_FORM_THEME], (theme: string) => {
+      expect(theme).toBeUndefined();
+    }));
 
-    it('provides DYNAMIC_FORM_ID_BUILDER being undefined',
-      inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-        expect(service).toBeUndefined();
-      }),
-    );
+    it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
+      expect(service).toBeUndefined();
+    }));
 
-    it('provides DynamicFormLibraryService',
-      inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
-        expect(service).toBeTruthy();
-        expect(service.library).toEqual(bsDynamicFormLibrary);
-        expect(service.libraryNames).toEqual([ 'bootstrap', 'core' ]);
-      }),
-    );
+    it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+      expect(service).toBeTruthy();
+      expect(service.library).toEqual(bsDynamicFormLibrary);
+      expect(service.libraryNames).toEqual(['bootstrap', 'core']);
+    }));
 
-    it('provides DynamicFormConfigService',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormConfigService', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormBuilder',
-      inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormBuilder', inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormExpressionBuilder',
-      inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormExpressionBuilder', inject([DynamicFormExpressionBuilder], (service: DynamicFormExpressionBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormValidationBuilder',
-      inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormValidationService',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service).toBeTruthy();
+    }));
 
-    it('provides DynamicFormComponentFactory',
-      inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('forRoot with config', () => {
@@ -138,16 +124,12 @@ describe('BsDynamicFormsModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_THEME',
-      inject([DYNAMIC_FORM_THEME], (theme: string) => {
-        expect(theme).toBe('theme');
-      }),
-    );
+    it('provides DYNAMIC_FORM_THEME', inject([DYNAMIC_FORM_THEME], (theme: string) => {
+      expect(theme).toBe('theme');
+    }));
 
-    it('provides DYNAMIC_FORM_ID_BUILDER being undefined',
-      inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
+      expect(service).toBeTruthy();
+    }));
   });
 });

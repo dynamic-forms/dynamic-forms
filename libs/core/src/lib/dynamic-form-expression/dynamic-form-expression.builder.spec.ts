@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionDefinition } from '../dynamic-form-action/dynamic-form-action-definition';
@@ -8,11 +8,11 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementDefinition } from '../dynamic-form-element/dynamic-form-element-definition';
 import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
 import { DynamicFormElementExpressionFunc } from '../dynamic-form-element/dynamic-form-element-expression-func';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
 import { DynamicFormFieldExpressionFunc } from '../dynamic-form-field/dynamic-form-field-expression-func';
-import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormExpressionMemoization } from './dynamic-form-expression-memoization';
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression.builder';
 
@@ -69,7 +69,8 @@ describe('DynamicFormExpressionBuilder', () => {
     expect(elementExpression.value).toBe(true);
   });
 
-  it('returns element expression for string being invalid javascript', inject([DynamicFormErrorHandler],
+  it('returns element expression for string being invalid javascript', inject(
+    [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
       spyOn(errorHandler, 'handle');
 
@@ -96,8 +97,8 @@ describe('DynamicFormExpressionBuilder', () => {
       expect(elementExpression.element).toBe(element);
       expect(elementExpression.func).toEqual(jasmine.any(Function));
       expect(elementExpression.value).toBeUndefined();
-    }),
-  );
+    },
+  ));
 
   it('returns element expression for function', () => {
     const values = [];
@@ -110,7 +111,7 @@ describe('DynamicFormExpressionBuilder', () => {
       values,
     } as DynamicFormElementExpressionData;
     const expressions = {
-      disabled: (data) => data.values && data.values.length > 0,
+      disabled: data => data.values && data.values.length > 0,
     } as { [key: string]: DynamicFormElementExpressionFunc };
     const definition = { expressions } as DynamicFormElementDefinition;
     const element = { definition, expressionData } as DynamicFormElement;
@@ -157,7 +158,6 @@ describe('DynamicFormExpressionBuilder', () => {
       parent: {},
       parentField: { model: parent.model },
       model: model.child.child,
-
     } as DynamicFormFieldExpressionData;
     const definition = { expressions } as DynamicFormFieldDefinition;
     const field = { definition, expressionData, expressionChangesSubject, expressionChanges } as DynamicFormField;
@@ -175,7 +175,8 @@ describe('DynamicFormExpressionBuilder', () => {
     expect(fieldExpression.value).toBe(true);
   });
 
-  it('returns field expression for string being invalid javascript', inject([DynamicFormErrorHandler],
+  it('returns field expression for string being invalid javascript', inject(
+    [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
       spyOn(errorHandler, 'handle');
 
@@ -192,7 +193,6 @@ describe('DynamicFormExpressionBuilder', () => {
         parent: {},
         parentField: { model: parent.model },
         model: model.child.child,
-
       } as DynamicFormFieldExpressionData;
       const definition = { expressions } as DynamicFormFieldDefinition;
       const field = { definition, expressionData, expressionChangesSubject, expressionChanges } as DynamicFormField;
@@ -205,8 +205,8 @@ describe('DynamicFormExpressionBuilder', () => {
       expect(fieldExpression.field).toBe(field);
       expect(fieldExpression.func).toEqual(jasmine.any(Function));
       expect(fieldExpression.value).toBeUndefined();
-    }),
-  );
+    },
+  ));
 
   it('returns field expression for function', () => {
     const model = { readonly: false, child: { readonly: false, child: {} } };
@@ -280,7 +280,8 @@ describe('DynamicFormExpressionBuilder', () => {
     expect(actionExpression.value).toBe(true);
   });
 
-  it('returns action expression for string being invalid javascript', inject([DynamicFormErrorHandler],
+  it('returns action expression for string being invalid javascript', inject(
+    [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
       spyOn(errorHandler, 'handle');
 
@@ -302,15 +303,15 @@ describe('DynamicFormExpressionBuilder', () => {
       expect(actionExpression.action).toBe(action);
       expect(actionExpression.func).toEqual(jasmine.any(Function));
       expect(actionExpression.value).toBeUndefined();
-    }),
-  );
+    },
+  ));
 
   it('returns action expression for function', () => {
     const root = { status: 'INVALID' };
     const parentField = { status: 'VALID' };
     const expressionData = { root, parentField } as DynamicFormActionExpressionData;
     const expressions = {
-      disabled: (data) => data.parentField.status === 'VALID' && data.root.status === 'VALID',
+      disabled: data => data.parentField.status === 'VALID' && data.root.status === 'VALID',
     } as { [key: string]: DynamicFormActionExpressionFunc };
     const definition = { expressions } as DynamicFormActionDefinition;
     const action = { definition, expressionData } as DynamicFormAction;

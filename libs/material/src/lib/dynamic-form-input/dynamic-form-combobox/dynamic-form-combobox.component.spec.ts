@@ -2,9 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFormComboboxDefinition,
-  DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormComboboxControl,
+  DynamicFormComboboxDefinition,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 describe('MatDynamicFormComboboxComponent', () => {
@@ -17,10 +25,7 @@ describe('MatDynamicFormComboboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        MatDynamicFormComboboxComponent,
-      ],
+      imports: [NoopAnimationsModule, MatDynamicFormComboboxComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -42,11 +47,7 @@ describe('MatDynamicFormComboboxComponent', () => {
       template: {
         label: 'label',
         input: {
-          options: [
-            'Value1',
-            'Value2',
-            'Value3',
-          ],
+          options: ['Value1', 'Value2', 'Value3'],
         },
       },
     } as DynamicFormComboboxDefinition;

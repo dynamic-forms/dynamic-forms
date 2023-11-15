@@ -1,8 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, DynamicFormActionType,
-  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler } from '@dynamic-forms/core';
+import {
+  DynamicFormAction,
+  DynamicFormActionBase,
+  DynamicFormActionService,
+  DynamicFormActionType,
+  DynamicFormComponentFactory,
+  DynamicFormConfigService,
+  DynamicFormErrorHandler,
+} from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
@@ -17,9 +24,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 @NgModule({
-  declarations: [
-    DynamicFormActionTestComponent,
-  ],
+  declarations: [DynamicFormActionTestComponent],
   providers: [
     {
       provide: DynamicFormConfigService,
@@ -44,10 +49,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormActionComponentTestModule,
-        BsDynamicFormDialogComponent,
-      ],
+      imports: [DynamicFormActionComponentTestModule, BsDynamicFormDialogComponent],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormDialogComponent);
@@ -129,7 +131,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
     it('renders header actions', () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
-      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.headerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
 
@@ -142,7 +144,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
     it('renders footer actions', () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
-      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.footerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
 
@@ -155,8 +157,8 @@ describe('BsDynamicFormDialogComponent', () => {
     it('renders class names', () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.title = 'Title';
-      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
-      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.headerActions = [{ classType: 'action', type } as DynamicFormAction];
+      component.footerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';

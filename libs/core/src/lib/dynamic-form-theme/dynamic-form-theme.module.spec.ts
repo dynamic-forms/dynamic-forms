@@ -1,16 +1,14 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormColorConfig, DynamicFormColorConfigs, DYNAMIC_FORM_COLOR_CONFIGS } from './dynamic-form-color-config';
-import { DynamicFormThemeModule } from './dynamic-form-theme.module';
+import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig, DynamicFormColorConfigs } from './dynamic-form-color-config';
 import { DynamicFormColorService } from './dynamic-form-color.service';
+import { DynamicFormThemeModule } from './dynamic-form-theme.module';
 
 describe('DynamicFormThemeModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormThemeModule,
-        ],
+        imports: [DynamicFormThemeModule],
       });
     });
 
@@ -22,9 +20,7 @@ describe('DynamicFormThemeModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormThemeModule,
-        ],
+        imports: [DynamicFormThemeModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -34,11 +30,9 @@ describe('DynamicFormThemeModule', () => {
       });
     });
 
-    it('provides DynamicFormColorService',
-      inject([DynamicFormColorService], (service: DynamicFormColorService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormColorService', inject([DynamicFormColorService], (service: DynamicFormColorService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('withColor for provided color config', () => {
@@ -47,9 +41,7 @@ describe('DynamicFormThemeModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormThemeModule.withColors(config),
-        ],
+        imports: [DynamicFormThemeModule.withColors(config)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -59,11 +51,9 @@ describe('DynamicFormThemeModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_COLOR_CONFIGS',
-      inject([DYNAMIC_FORM_COLOR_CONFIGS], (configs: DynamicFormColorConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
-      }),
-    );
+    it('provides DYNAMIC_FORM_COLOR_CONFIGS', inject([DYNAMIC_FORM_COLOR_CONFIGS], (configs: DynamicFormColorConfigs) => {
+      expect(configs.length).toBe(1);
+      expect(configs[0]).toEqual(config);
+    }));
   });
 });

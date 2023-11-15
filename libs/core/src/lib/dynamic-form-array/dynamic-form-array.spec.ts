@@ -1,10 +1,10 @@
 import { FormArray, FormControl } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
@@ -52,7 +52,7 @@ describe('DynamicFormArray', () => {
   });
 
   it('sets model to default value', () => {
-    const defaultValue = [ { value: 0 }, { value: 1 } ];
+    const defaultValue = [{ value: 0 }, { value: 1 }];
     const definition = { key: 'key', template: {}, defaultValue } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
@@ -65,7 +65,7 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    expect(array.model).toEqual([ undefined, undefined ]);
+    expect(array.model).toEqual([undefined, undefined]);
   });
 
   it('returns expression data with id, key, index and model', () => {
@@ -174,7 +174,7 @@ describe('DynamicFormArray', () => {
 
     spyOn(array.control, 'push');
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
     array.pushField(field);
@@ -201,7 +201,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
     array.popField();
@@ -251,7 +251,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
     array.removeField(1);
@@ -304,7 +304,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
     array.clearFields();
@@ -340,7 +340,7 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
 
@@ -350,7 +350,7 @@ describe('DynamicFormArray', () => {
 
     array.moveFieldDown(0);
 
-    expect(array.children).toEqual([ fields[1], fields[0] ]);
+    expect(array.children).toEqual([fields[1], fields[0]]);
     expect(array.children[0].definition.index).toBe(0);
     expect(array.children[1].definition.index).toBe(1);
     expect(array.control.removeAt).toHaveBeenCalledWith(0);
@@ -362,11 +362,9 @@ describe('DynamicFormArray', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
-    const fields = [
-      { classType: 'field', definition: { index: 0 }, control: new FormControl() },
-    ] as unknown[] as DynamicFormField[];
+    const fields = [{ classType: 'field', definition: { index: 0 }, control: new FormControl() }] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
 
@@ -376,7 +374,7 @@ describe('DynamicFormArray', () => {
 
     array.moveFieldDown(0);
 
-    expect(array.children).toEqual([ fields[0] ]);
+    expect(array.children).toEqual([fields[0]]);
     expect(array.control.removeAt).not.toHaveBeenCalled();
     expect(array.control.insert).not.toHaveBeenCalled();
     expect(array.control.markAsTouched).not.toHaveBeenCalled();
@@ -391,7 +389,7 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([ ...fields ]);
+    builder.createFormArrayElements.and.returnValue([...fields]);
 
     array.init();
 
@@ -401,7 +399,7 @@ describe('DynamicFormArray', () => {
 
     array.moveFieldUp(1);
 
-    expect(array.children).toEqual([ fields[1], fields[0] ]);
+    expect(array.children).toEqual([fields[1], fields[0]]);
     expect(array.control.removeAt).toHaveBeenCalledWith(1);
     expect(array.control.insert).toHaveBeenCalledWith(0, fields[1].control);
     expect(array.control.markAsTouched).toHaveBeenCalled();
@@ -411,9 +409,7 @@ describe('DynamicFormArray', () => {
     const definition = { key: 'key', template: {} } as DynamicFormArrayDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
-    const fields = [
-      { classType: 'field', definition: { index: 0 }, control: new FormControl() },
-    ] as unknown[] as DynamicFormField[];
+    const fields = [{ classType: 'field', definition: { index: 0 }, control: new FormControl() }] as unknown[] as DynamicFormField[];
 
     builder.createFormArrayElements.and.returnValue(fields);
 
@@ -425,7 +421,7 @@ describe('DynamicFormArray', () => {
 
     array.moveFieldUp(0);
 
-    expect(array.children).toEqual([ fields[0] ]);
+    expect(array.children).toEqual([fields[0]]);
     expect(array.control.removeAt).not.toHaveBeenCalled();
     expect(array.control.insert).not.toHaveBeenCalled();
     expect(array.control.markAsTouched).not.toHaveBeenCalled();

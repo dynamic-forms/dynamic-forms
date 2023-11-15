@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryComponent } from './dynamic-form-dictionary.component';
@@ -23,9 +23,7 @@ describe('DynamicFormDictionaryComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormDictionaryModule,
-      ],
+      imports: [DynamicFormDictionaryModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -44,15 +42,21 @@ describe('DynamicFormDictionaryComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formDictionary = new DynamicFormDictionary(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        label: 'label',
-      },
-      children: [],
-    } as DynamicFormDictionaryDefinition, {} as DynamicFormFieldType);
+    formDictionary = new DynamicFormDictionary(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          label: 'label',
+        },
+        children: [],
+      } as DynamicFormDictionaryDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formDictionary;
 
     fixture.detectChanges();

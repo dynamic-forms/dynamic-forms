@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { dynamicFormItemsFactory, DynamicFormConfigModule, DynamicFormElementType } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormElementType, dynamicFormItemsFactory } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 
@@ -11,11 +11,7 @@ export const bsDynamicFormAccordionType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(bsDynamicFormAccordionType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withElement(bsDynamicFormAccordionType)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormAccordionModule {}

@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormColorConfig, DynamicFormColorConfigs, DYNAMIC_FORM_COLOR_CONFIGS } from './dynamic-form-color-config';
+import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig, DynamicFormColorConfigs } from './dynamic-form-color-config';
 
 @Injectable()
 export class DynamicFormColorService {
@@ -8,7 +8,8 @@ export class DynamicFormColorService {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_COLOR_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_COLOR_CONFIGS)
     private colorConfigs: DynamicFormColorConfigs,
   ) {
     this.colorConfig = this.mergeColorConfigs(this.colorConfigs);
@@ -32,7 +33,8 @@ export class DynamicFormColorService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         colors: { ...result.colors, ...config.colors },
         libraryName,
       };

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormSubmit } from '@dynamic-forms/core';
 
 @Component({
@@ -9,5 +9,6 @@ import { DynamicFormSubmit } from '@dynamic-forms/core';
 export class FormSubmitDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<FormSubmitDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DynamicFormSubmit) {}
+    @Inject(MAT_DIALOG_DATA) public data: DynamicFormSubmit,
+  ) {}
 }

@@ -12,9 +12,7 @@ import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-fo
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 @NgModule({
-  providers: [
-    DynamicFormConfigService,
-  ],
+  providers: [DynamicFormConfigService],
 })
 export class DynamicFormConfigModule {
   static withElement(elementType: DynamicFormElementType): ModuleWithProviders<DynamicFormConfigModule> {

@@ -6,9 +6,8 @@ import { DynamicFormActionExpressionFunc } from './dynamic-form-action-expressio
 
 export class DynamicFormActionExpression<
   Data extends DynamicFormActionExpressionData = DynamicFormActionExpressionData,
-  Func extends DynamicFormActionExpressionFunc<Data> = DynamicFormActionExpressionFunc<Data>
+  Func extends DynamicFormActionExpressionFunc<Data> = DynamicFormActionExpressionFunc<Data>,
 > extends DynamicFormElementExpression {
-
   constructor(
     override readonly key: string,
     readonly action: DynamicFormAction,

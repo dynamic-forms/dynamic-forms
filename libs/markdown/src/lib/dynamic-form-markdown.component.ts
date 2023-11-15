@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { DynamicFormElementBase } from '@dynamic-forms/core';
-import { of, BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
@@ -14,10 +14,12 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
   imports: [CommonModule],
 })
 export class DynamicFormMarkdownComponent<
-  Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
-  Definition extends DynamicFormMarkdownDefinition<Template> = DynamicFormMarkdownDefinition<Template>
-> extends DynamicFormElementBase<Template, Definition> implements OnInit, DoCheck {
-
+    Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
+    Definition extends DynamicFormMarkdownDefinition<Template> = DynamicFormMarkdownDefinition<Template>,
+  >
+  extends DynamicFormElementBase<Template, Definition>
+  implements OnInit, DoCheck
+{
   private _markdownSubject: BehaviorSubject<{ source: string; markdown: string }>;
 
   markdown$: Observable<string>;
@@ -31,12 +33,15 @@ export class DynamicFormMarkdownComponent<
       source: this.template.source,
       markdown: this.template.markdown,
     });
-    this.markdown$ = this._markdownSubject.asObservable().pipe(
-      switchMap(value => value.source
-        ? this.markdownService.compileFromSource(value.source, this.definition.options)
-        : of(this.markdownService.compile(value.markdown, this.definition.options)),
-      ),
-    );
+    this.markdown$ = this._markdownSubject
+      .asObservable()
+      .pipe(
+        switchMap(value =>
+          value.source
+            ? this.markdownService.compileFromSource(value.source, this.definition.options)
+            : of(this.markdownService.compile(value.markdown, this.definition.options)),
+        ),
+      );
   }
 
   ngDoCheck(): void {

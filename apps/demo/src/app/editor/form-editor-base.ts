@@ -8,12 +8,17 @@ export abstract class FormEditorBase implements OnDestroy {
   private _subscriptions = new Subscription();
   private _data: FormEditorData;
 
-  constructor(protected route: ActivatedRoute, protected cdr: ChangeDetectorRef) {
-    this._subscriptions.add(this.route.data.subscribe(data => {
-      const definition = data.definition;
-      const model = data.model || {};
-      this._data = { definition, model };
-    }));
+  constructor(
+    protected route: ActivatedRoute,
+    protected cdr: ChangeDetectorRef,
+  ) {
+    this._subscriptions.add(
+      this.route.data.subscribe(data => {
+        const definition = data.definition;
+        const model = data.model || {};
+        this._data = { definition, model };
+      }),
+    );
   }
 
   get data(): FormEditorData {

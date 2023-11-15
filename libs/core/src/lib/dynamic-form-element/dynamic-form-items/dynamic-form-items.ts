@@ -9,9 +9,8 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 export class DynamicFormItems<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
-  Item extends DynamicFormItem = DynamicFormItem
+  Item extends DynamicFormItem = DynamicFormItem,
 > extends DynamicFormElement<Template, Definition, Item> {
-
   protected _selectedIndex: number;
   protected _selectedItem: Item;
 
@@ -25,8 +24,13 @@ export class DynamicFormItems<
     super(builder, root, parent, definition, type);
   }
 
-  get selectedIndex(): number { return this._selectedIndex; }
-  get selectedItem(): Item { return this._selectedItem; }
+  get selectedIndex(): number {
+    return this._selectedIndex;
+  }
+
+  get selectedItem(): Item {
+    return this._selectedItem;
+  }
 
   override init(): void {
     super.init();

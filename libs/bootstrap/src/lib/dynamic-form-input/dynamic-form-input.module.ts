@@ -27,13 +27,7 @@ export const bsDynamicFormInputTypes = [
 ];
 
 @NgModule({
-  imports: [
-    DynamicFormFileModule,
-    DynamicFormTextboxModule,
-    DynamicFormConfigModule.withInputs(bsDynamicFormInputTypes),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormFileModule, DynamicFormTextboxModule, DynamicFormConfigModule.withInputs(bsDynamicFormInputTypes)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormInputModule {}

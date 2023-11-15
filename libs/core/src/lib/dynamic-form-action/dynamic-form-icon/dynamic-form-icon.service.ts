@@ -1,7 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
-import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
+import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
 
 @Injectable()
 export class DynamicFormIconService {
@@ -9,24 +8,15 @@ export class DynamicFormIconService {
 
   constructor(
     private libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ICON_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ICON_CONFIGS)
     private iconConfigs: DynamicFormIconConfigs,
   ) {
     this.iconConfig = this.mergeIconConfigs(this.iconConfigs);
   }
 
-  getIcon(icon: string): string;
-  /**
-   * @deprecated The method should not be used
-   */
-  // eslint-disable-next-line @typescript-eslint/unified-signatures
-  getIcon(template: DynamicFormIconTemplate): string;
-  getIcon(iconOrTemplate: string | DynamicFormIconTemplate): string {
-    const icon = typeof iconOrTemplate === 'string' ? iconOrTemplate : iconOrTemplate?.icon;
-    if (icon) {
-      return this.iconConfig.icons[icon] || icon;
-    }
-    return undefined;
+  getIcon(icon: string): string {
+    return icon ? this.iconConfig.icons[icon] || icon : undefined;
   }
 
   private mergeIconConfigs(configs: DynamicFormIconConfigs): DynamicFormIconConfig {
@@ -40,7 +30,8 @@ export class DynamicFormIconService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         icons: { ...result.icons, ...config.icons },
         libraryName,
       };

@@ -80,7 +80,8 @@ export class DynamicFormActionModule {
   }
 
   static withHandlerFactory<Element extends DynamicFormElement = DynamicFormElement>(
-    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>, deps?: any[],
+    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>,
+    deps?: any[],
   ): ModuleWithProviders<DynamicFormActionModule> {
     return {
       ngModule: DynamicFormActionModule,

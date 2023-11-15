@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
-import { Progress, PROGRESS } from './progress.model';
+import { PROGRESS, Progress } from './progress.model';
 
 @State<Progress>({
   name: PROGRESS,
@@ -15,7 +15,7 @@ export class ProgressState {
   push(context: StateContext<Progress>, action: ProgressItemPush): void {
     const state = context.getState();
     context.patchState({
-      items: [ ...state.items, action.item ],
+      items: [...state.items, action.item],
     });
   }
 

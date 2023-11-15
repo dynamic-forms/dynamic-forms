@@ -27,9 +27,6 @@ export const dynamicFormGroupType: DynamicFormFieldType = {
     DynamicFormConfigModule.withField(dynamicFormGroupType),
     DynamicFormValidationModule.withGroupValidators(dynamicFormGroupValidatorTypes),
   ],
-  exports: [
-    DynamicFormConfigModule,
-    DynamicFormValidationModule,
-  ],
+  exports: [DynamicFormConfigModule, DynamicFormValidationModule],
 })
 export class DynamicFormGroupModule {}

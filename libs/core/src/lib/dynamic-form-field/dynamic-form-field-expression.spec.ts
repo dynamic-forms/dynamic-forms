@@ -1,28 +1,31 @@
 import { Subject } from 'rxjs';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
 import { DynamicFormExpressionMemoization } from '../dynamic-form-expression/dynamic-form-expression-memoization';
-import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldExpression } from './dynamic-form-field-expression';
 
-const getCurrencyOptions = (data, memo) => ((currencyPair: string): any[] => {
-  if (memo.currencyPair === currencyPair) {
-    return memo.previousValue;
-  }
-  memo.currencyPair = currencyPair;
-  if (currencyPair) {
-    const underlying = currencyPair.substring(0, 3);
-    const accounting = currencyPair.substring(4, 7);
-    return [
-      { value: underlying, label: underlying },
-      { value: accounting, label: accounting },
-    ];
-  }
-  return [];
-})(data.parentField.model.currencyPair);
+const getCurrencyOptions = (data, memo) =>
+  ((currencyPair: string): any[] => {
+    if (memo.currencyPair === currencyPair) {
+      return memo.previousValue;
+    }
+    memo.currencyPair = currencyPair;
+    if (currencyPair) {
+      const underlying = currencyPair.substring(0, 3);
+      const accounting = currencyPair.substring(4, 7);
+      return [
+        { value: underlying, label: underlying },
+        { value: accounting, label: accounting },
+      ];
+    }
+    return [];
+  })(data.parentField.model.currencyPair);
 
 class DynamicFormFieldExpressionTesting extends DynamicFormFieldExpression {
-  get memo(): DynamicFormExpressionMemoization { return this._memo; }
+  get memo(): DynamicFormExpressionMemoization {
+    return this._memo;
+  }
 }
 
 describe('DynamicFormFieldExpression', () => {

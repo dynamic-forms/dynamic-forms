@@ -1,12 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DynamicFormLog } from '@dynamic-forms/core';
+import { FormEditorLogDataPipe } from './form-editor-log-data.pipe';
+import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
 
 @Component({
+  standalone: true,
   selector: 'app-form-editor-logs',
   templateUrl: './form-editor-logs.component.html',
   styleUrls: ['./form-editor-logs.component.scss'],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    FormEditorLogDataPipe,
+    FormEditorLogLevelPipe,
+  ],
 })
 export class FormEditorLogsComponent implements AfterViewInit {
   readonly columns = ['timestamp', 'type', 'level', 'message', 'detailed'];

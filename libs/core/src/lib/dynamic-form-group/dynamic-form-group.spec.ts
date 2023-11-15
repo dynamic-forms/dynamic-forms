@@ -1,10 +1,10 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
@@ -108,8 +108,12 @@ describe('DynamicFormGroup', () => {
     const children = [
       { classType: 'element' } as DynamicFormElement,
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl() } as unknown as DynamicFormField,
-      { classType: 'element', children: [
-          { classType: 'element', children: [
+      {
+        classType: 'element',
+        children: [
+          {
+            classType: 'element',
+            children: [
               { classType: 'element' } as DynamicFormElement,
               { classType: 'field', definition: { key: 'key2' }, control: new FormControl() } as unknown as DynamicFormField,
               { classType: 'field', definition: { key: 'key3' }, control: new FormControl() } as unknown as DynamicFormField,

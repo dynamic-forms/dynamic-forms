@@ -1,7 +1,14 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType, DynamicFormLibraryService,
-  DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormElement,
+  DynamicFormElementType,
+  DynamicFormLibraryService,
+  DynamicFormModal,
+  DynamicFormModalDefinition,
+} from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -13,10 +20,7 @@ describe('MatDynamicFormModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        MatDynamicFormModalModule,
-      ],
+      imports: [NoopAnimationsModule, MatDynamicFormModalModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -27,17 +31,23 @@ describe('MatDynamicFormModalComponent', () => {
 
     builder = {} as any;
 
-    modal = new DynamicFormModal(builder, { template: {} } as DynamicForm, {} as DynamicFormElement, {
-      template: {
-        title: 'Title',
-        width: '800px',
-        height: '500px',
-        minWidth: '800px',
-        minHeight: '500px',
-        maxWidth: '100%',
-        maxHeight: '100%',
-      },
-    } as DynamicFormModalDefinition, {} as DynamicFormElementType);
+    modal = new DynamicFormModal(
+      builder,
+      { template: {} } as DynamicForm,
+      {} as DynamicFormElement,
+      {
+        template: {
+          title: 'Title',
+          width: '800px',
+          height: '500px',
+          minWidth: '800px',
+          minHeight: '500px',
+          maxWidth: '100%',
+          maxHeight: '100%',
+        },
+      } as DynamicFormModalDefinition,
+      {} as DynamicFormElementType,
+    );
 
     fixture = TestBed.createComponent(MatDynamicFormModalComponent);
     component = fixture.componentInstance;

@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { dynamicFormConsoleLogger } from './dynamic-form-console.logger';
-import { DynamicFormErrorSettings, DYNAMIC_FORM_ERROR_SETTINGS } from './dynamic-form-error-settings';
+import { DYNAMIC_FORM_ERROR_SETTINGS, DynamicFormErrorSettings } from './dynamic-form-error-settings';
 import { DynamicFormErrorHandler } from './dynamic-form-error.handler';
-import { DynamicFormLoggerSettings, DYNAMIC_FORM_LOGGER_SETTINGS } from './dynamic-form-logger-settings';
+import { DYNAMIC_FORM_LOGGER_SETTINGS, DynamicFormLoggerSettings } from './dynamic-form-logger-settings';
 import { DynamicFormLoggerType } from './dynamic-form-logger-type';
 import { DYNAMIC_FORM_LOGGER_TYPE_CONFIG } from './dynamic-form-logger-type-config';
 import { DynamicFormLogger } from './dynamic-form.logger';

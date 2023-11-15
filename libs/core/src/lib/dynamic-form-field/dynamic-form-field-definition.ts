@@ -6,10 +6,8 @@ import { DynamicFormFieldSettings } from './dynamic-form-field-settings';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 import { DynamicFormFieldValidatorDefinition } from './dynamic-form-field-validator-definition';
 
-export interface DynamicFormFieldDefinition<
-  Value = any,
-  Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate
-> extends DynamicFormElementDefinition<Template> {
+export interface DynamicFormFieldDefinition<Value = any, Template extends DynamicFormFieldTemplate = DynamicFormFieldTemplate>
+  extends DynamicFormElementDefinition<Template> {
   key?: string;
   index?: number;
   defaultValue?: Value;

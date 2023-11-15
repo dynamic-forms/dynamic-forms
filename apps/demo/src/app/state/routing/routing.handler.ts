@@ -8,7 +8,10 @@ import { ProgressItemPop, ProgressItemPush } from '../progress/progress.actions'
 
 @Injectable()
 export class RoutingHandler {
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+  ) {
     this.router.events.pipe(takeUntilDestroyed()).subscribe(event => this.handle(event));
   }
 
@@ -17,14 +20,9 @@ export class RoutingHandler {
       this.store.dispatch(new ProgressItemPush({ id: event.id }));
     } else if (event instanceof NavigationCancel || event instanceof NavigationError) {
       const notificationItem = this.getNotificationItem(event);
-      this.store.dispatch([
-        new ProgressItemPop({ id: event.id }),
-        new NotificationItemPush(notificationItem),
-      ]);
+      this.store.dispatch([new ProgressItemPop({ id: event.id }), new NotificationItemPush(notificationItem)]);
     } else if (event instanceof NavigationEnd) {
-      this.store.dispatch([
-        new ProgressItemPop({ id: event.id }),
-      ]);
+      this.store.dispatch([new ProgressItemPop({ id: event.id })]);
     }
   }
 
@@ -33,7 +31,7 @@ export class RoutingHandler {
       id: 'RoutingError' + event.id,
       type: NotificationType.Error,
       title: 'Navigation error',
-      message: `Navigation to ${ event.url } canceled.`,
+      message: `Navigation to ${event.url} canceled.`,
       duration: 3000,
     };
   }

@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Config, CONFIG } from '../../state/config/config.model';
+import { CONFIG, Config } from '../../state/config/config.model';
 import { DocsMenuComponent } from './docs-menu/docs-menu.component';
 import { EditorMenuComponent } from './editor-menu/editor-menu.component';
 import { ExamplesMenuComponent } from './examples-menu/examples-menu.component';

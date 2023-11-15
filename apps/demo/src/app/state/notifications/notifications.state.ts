@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { NotificationsToggle, NotificationItemPop, NotificationItemPush } from './notifications.actions';
-import { Notifications, NOTIFICATIONS } from './notifications.model';
+import { NotificationItemPop, NotificationItemPush, NotificationsToggle } from './notifications.actions';
+import { NOTIFICATIONS, Notifications } from './notifications.model';
 
 @State<Notifications>({
   name: NOTIFICATIONS,
@@ -30,7 +30,7 @@ export class NotificationsState {
     const state = context.getState();
     const item = action.item;
     context.patchState({
-      items: [ item, ...state.items ],
+      items: [item, ...state.items],
     });
     if (item.duration) {
       setTimeout(() => context.dispatch(new NotificationItemPop(item)), item.duration);

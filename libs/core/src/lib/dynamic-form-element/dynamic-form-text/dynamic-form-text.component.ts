@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormTextDefinition } from './dynamic-form-text-definition';
 import { DynamicFormTextTemplate } from './dynamic-form-text-template';
@@ -12,12 +12,13 @@ import { DynamicFormTextTemplate } from './dynamic-form-text-template';
 })
 export class DynamicFormTextComponent<
   Template extends DynamicFormTextTemplate = DynamicFormTextTemplate,
-  Definition extends DynamicFormTextDefinition<Template> = DynamicFormTextDefinition<Template>
+  Definition extends DynamicFormTextDefinition<Template> = DynamicFormTextDefinition<Template>,
 > extends DynamicFormElementBase<Template, Definition> {
-
   constructor() {
     super();
   }
 
-  get text(): string { return this.template?.text; }
+  get text(): string {
+    return this.template?.text;
+  }
 }

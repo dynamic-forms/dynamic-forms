@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { SidebarToggle } from './layout.actions';
-import { Layout, LAYOUT } from './layout.model';
+import { LAYOUT, Layout } from './layout.model';
 
 @State<Layout>({
   name: LAYOUT,

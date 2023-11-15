@@ -1,6 +1,6 @@
-import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementExpression } from '../dynamic-form-element-expression';
@@ -62,9 +62,7 @@ describe('DynamicFormModal', () => {
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
-    const children = [
-      { classType: 'element', definition: {} } as DynamicFormElement,
-    ];
+    const children = [{ classType: 'element', definition: {} } as DynamicFormElement];
 
     builder.createFormElements.and.returnValue(children);
 
@@ -91,8 +89,8 @@ describe('DynamicFormModal', () => {
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
-    const headerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
-    const footerActions = [ { classType: 'action', definition: {} } as DynamicFormAction ];
+    const headerActions = [{ classType: 'action', definition: {} } as DynamicFormAction];
+    const footerActions = [{ classType: 'action', definition: {} } as DynamicFormAction];
 
     builder.createFormActions.and.returnValues(headerActions, footerActions);
 

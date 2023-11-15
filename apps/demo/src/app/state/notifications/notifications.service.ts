@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { throwError, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { v4 as uuid } from 'uuid';
 import { NotificationItemPop, NotificationItemPush } from './notifications.actions';
@@ -40,14 +40,12 @@ export class NotificationsService {
 
   private pushNotification(message: NotificationMessage, popItem?: NotificationItem): NotificationItem {
     const item = this.getNotificationItem(message);
-    const actions = popItem
-      ? [ new NotificationItemPop(popItem), new NotificationItemPush(item) ]
-      : [ new NotificationItemPush(item) ];
+    const actions = popItem ? [new NotificationItemPop(popItem), new NotificationItemPush(item)] : [new NotificationItemPush(item)];
     this.store.dispatch(actions);
     return item;
   }
 
   private getNotificationItem(message: NotificationMessage): NotificationItem {
-    return { id: `Notification-${ uuid() }`, ...message };
+    return { id: `Notification-${uuid()}`, ...message };
   }
 }

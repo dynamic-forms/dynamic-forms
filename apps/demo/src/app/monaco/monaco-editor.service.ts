@@ -18,7 +18,7 @@ export class MonacoEditorService {
       return;
     }
 
-    if(this._loading.value) {
+    if (this._loading.value) {
       return;
     }
 

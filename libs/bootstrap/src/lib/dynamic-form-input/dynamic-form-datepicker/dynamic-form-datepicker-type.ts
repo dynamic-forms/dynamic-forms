@@ -5,7 +5,6 @@ import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.comp
 export const bsDynamicFormDatepickerType: DynamicFormInputType = {
   type: 'datepicker',
   component: BsDynamicFormDatepickerComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };
-

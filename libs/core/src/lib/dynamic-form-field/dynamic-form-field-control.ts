@@ -3,18 +3,18 @@ import { Observable } from 'rxjs';
 
 export type DynamicFormFieldControl<Value> = AbstractControl<Value>;
 
-export class FormControlBase<Value> extends FormControl<Value>
-  implements DynamicFormFieldControl<Value> {}
+export class FormControlBase<Value> extends FormControl<Value> implements DynamicFormFieldControl<Value> {}
 
 export class FormGroupBase<Value extends { [key: string]: any }>
   extends FormGroup<{ [Key in keyof Value]: AbstractControl<Value[Key]> }>
-    implements DynamicFormFieldControl<Value> {
-      override readonly value: Value;
-      override readonly valueChanges: Observable<Value>;
-    }
+  implements DynamicFormFieldControl<Value>
+{
+  override readonly value: Value;
+  override readonly valueChanges: Observable<Value>;
+}
 
-export class FormArrayBase<Value> extends FormArray<AbstractControl<Value>>
-  implements DynamicFormFieldControl<Value[]> {}
+export class FormArrayBase<Value> extends FormArray<AbstractControl<Value>> implements DynamicFormFieldControl<Value[]> {}
 
-export class FormRecordBase<Value> extends FormRecord<AbstractControl<Value>>
+export class FormRecordBase<Value>
+  extends FormRecord<AbstractControl<Value>>
   implements DynamicFormFieldControl<{ [key: string]: Value }> {}

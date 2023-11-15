@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
-import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
+import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from '../dynamic-form-action';
 import { DynamicFormActionType } from '../dynamic-form-action-type';
 import { DynamicFormActionService } from '../dynamic-form-action.service';
@@ -15,13 +15,16 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 @Component({
   selector: 'dynamic-form-button-test',
   template: `
-    <button class="dynamic-form-button"
+    <button
+      class="dynamic-form-button"
       [ngClass]="template.className"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"
       (click)="onClick($event)"
-    >{{ template?.label }}</button>
+    >
+      {{ template?.label }}
+    </button>
   `,
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
@@ -38,9 +41,7 @@ describe('DynamicFormButtonBase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DynamicFormButtonTestComponent,
-      ],
+      declarations: [DynamicFormButtonTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -77,7 +78,7 @@ describe('DynamicFormButtonBase', () => {
 
     expect(formButtonElement).toBeTruthy();
     expect(formButtonElement.type).toBe('button');
-    expect(formButtonElement.innerHTML).toBe('label');
+    expect(formButtonElement.innerHTML).toBe(' label ');
   });
 
   it('sets dynamic form button to hidden', () => {
@@ -136,14 +137,12 @@ describe('DynamicFormButtonBase', () => {
     expect(formButtonElement.type).toBe('button');
   });
 
-  it('executes action onClick',
-    inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-      spyOn(service, 'handle');
+  it('executes action onClick', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+    spyOn(service, 'handle');
 
-      const event = null;
-      component.onClick(event);
+    const event = null;
+    component.onClick(event);
 
-      expect(service.handle).toHaveBeenCalledWith(component.element, event);
-    }),
-  );
+    expect(service.handle).toHaveBeenCalledWith(component.element, event);
+  }));
 });

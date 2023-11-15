@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
 import { dynamicFormControlEvaluatorTypes } from '../dynamic-form-control/dynamic-form-control-evaluator-type';
@@ -25,46 +25,41 @@ describe('DynamicFormEvaluationBuilder', () => {
       });
     });
 
-    it('returns control validators being empty',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = {} as DynamicFormControlDefinition;
-        const control = { definition } as DynamicFormControl;
-        const controlEvaluators = service.createControlEvaluators(control);
+    it('returns control validators being empty', inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+      const definition = {} as DynamicFormControlDefinition;
+      const control = { definition } as DynamicFormControl;
+      const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(controlEvaluators).toEqual([]);
-      }),
-    );
+      expect(controlEvaluators).toEqual([]);
+    }));
 
-    it('returns control validators being empty if evaluator type not found',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+    it('returns control validators being empty if evaluator type not found', inject(
+      [DynamicFormEvaluationBuilder],
+      (service: DynamicFormEvaluationBuilder) => {
         const definition = { evaluators: { options: { type: 'selectValue' } } } as DynamicFormControlDefinition;
         const control = { definition, inputType: 'select' } as DynamicFormControl;
         const controlEvaluators = service.createControlEvaluators(control);
 
         expect(controlEvaluators).toEqual([]);
-      }),
-    );
+      },
+    ));
 
-    it('returns control validators not being enabled',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
-        const control = { definition, inputType: 'textbox' } as DynamicFormControl;
-        const controlEvaluators = service.createControlEvaluators(control);
+    it('returns control validators not being enabled', inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+      const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
+      const control = { definition, inputType: 'textbox' } as DynamicFormControl;
+      const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(controlEvaluators.length).toBe(1);
-        expect(controlEvaluators[0].enabled).toBeFalsy();
-      }),
-    );
+      expect(controlEvaluators.length).toBe(1);
+      expect(controlEvaluators[0].enabled).toBeFalsy();
+    }));
 
-    it('returns control validators being enabled',
-      inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
-        const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
-        const control = { definition, inputType: 'select' } as DynamicFormControl;
-        const controlEvaluators = service.createControlEvaluators(control);
+    it('returns control validators being enabled', inject([DynamicFormEvaluationBuilder], (service: DynamicFormEvaluationBuilder) => {
+      const definition = { evaluators: { options: { type: 'select' } } } as DynamicFormControlDefinition;
+      const control = { definition, inputType: 'select' } as DynamicFormControl;
+      const controlEvaluators = service.createControlEvaluators(control);
 
-        expect(controlEvaluators.length).toBe(1);
-        expect(controlEvaluators[0].enabled).toBeTruthy();
-      }),
-    );
+      expect(controlEvaluators.length).toBe(1);
+      expect(controlEvaluators[0].enabled).toBeTruthy();
+    }));
   });
 });

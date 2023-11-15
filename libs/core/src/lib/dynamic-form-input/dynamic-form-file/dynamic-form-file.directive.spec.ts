@@ -48,14 +48,11 @@ describe('DynamicFormFileDirective', () => {
   });
 
   it('ngOnChanges updates multiple of native element and cuts files', () => {
-    const handler = { onChange: (_value) => {} };
+    const handler = { onChange: _value => {} };
 
     spyOn(handler, 'onChange');
 
-    const files = [
-      new File([''], 'file01.txt', { type: 'text/plain' }),
-      new File([''], 'file02.json', { type: 'application/json' }),
-    ];
+    const files = [new File([''], 'file01.txt', { type: 'text/plain' }), new File([''], 'file02.json', { type: 'application/json' })];
 
     directive.registerOnChange(handler.onChange);
 
@@ -99,7 +96,7 @@ describe('DynamicFormFileDirective', () => {
   });
 
   it('uploadFiles sets files with multipleFiles being false', () => {
-    const handler = { onChange: (_value) => {}, onTouched: () => {} };
+    const handler = { onChange: _value => {}, onTouched: () => {} };
 
     spyOn(handler, 'onChange');
     spyOn(handler, 'onTouched');
@@ -108,12 +105,12 @@ describe('DynamicFormFileDirective', () => {
 
     directive.registerOnChange(handler.onChange);
     directive.registerOnTouched(handler.onTouched);
-    directive.uploadFiles([ file ] as unknown as FileList);
+    directive.uploadFiles([file] as unknown as FileList);
 
     expect(directive.files.length).toBe(1);
     expect(directive.files[0].file).toBe(file);
     expect(directive.files[0].toJSON()).toEqual({ name: 'file.txt', type: 'text/plain', size: 0 });
-    expect(directive.fileNames).toEqual([ 'file.txt' ]);
+    expect(directive.fileNames).toEqual(['file.txt']);
     expect(directive.fileNamesAsText).toBe('file.txt');
 
     expect(handler.onChange).toHaveBeenCalledWith(jasmine.objectContaining({ name: 'file.txt', type: 'text/plain', size: 0 }));
@@ -121,15 +118,12 @@ describe('DynamicFormFileDirective', () => {
   });
 
   it('uploadFiles sets files with multipleFiles being true', () => {
-    const handler = { onChange: (_value) => {}, onTouched: () => {} };
+    const handler = { onChange: _value => {}, onTouched: () => {} };
 
     spyOn(handler, 'onChange');
     spyOn(handler, 'onTouched');
 
-    const files = [
-      new File([''], 'file01.txt', { type: 'text/plain' }),
-      new File([''], 'file02.json', { type: 'application/json' }),
-    ];
+    const files = [new File([''], 'file01.txt', { type: 'text/plain' }), new File([''], 'file02.json', { type: 'application/json' })];
 
     directive.multipleFiles = true;
     directive.registerOnChange(handler.onChange);
@@ -141,7 +135,7 @@ describe('DynamicFormFileDirective', () => {
     expect(directive.files[0].toJSON()).toEqual({ name: 'file01.txt', type: 'text/plain', size: 0 });
     expect(directive.files[1].file).toBe(files[1]);
     expect(directive.files[1].toJSON()).toEqual({ name: 'file02.json', type: 'application/json', size: 0 });
-    expect(directive.fileNames).toEqual([ 'file01.txt', 'file02.json' ]);
+    expect(directive.fileNames).toEqual(['file01.txt', 'file02.json']);
     expect(directive.fileNamesAsText).toBe('file01.txt, file02.json');
 
     expect(handler.onChange).toHaveBeenCalledWith([

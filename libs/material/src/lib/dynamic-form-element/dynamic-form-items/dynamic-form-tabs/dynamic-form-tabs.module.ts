@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { dynamicFormItemsFactory, DynamicFormConfigModule, DynamicFormElementType } from '@dynamic-forms/core';
+import { DynamicFormConfigModule, DynamicFormElementType, dynamicFormItemsFactory } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 
@@ -11,11 +11,7 @@ export const matDynamicFormTabsType: DynamicFormElementType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withElement(matDynamicFormTabsType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withElement(matDynamicFormTabsType)],
+  exports: [DynamicFormConfigModule],
 })
 export class MatDynamicFormTabsModule {}

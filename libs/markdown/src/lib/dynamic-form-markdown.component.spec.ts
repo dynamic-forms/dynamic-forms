@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType } from '@dynamic-forms/core';
 import { of } from 'rxjs';
@@ -15,13 +15,11 @@ describe('DynamicFormMarkdownComponent', () => {
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', [ 'compile', 'compileFromSource' ]);
+    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', ['compile', 'compileFromSource']);
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormMarkdownComponent,
-      ],
+      imports: [DynamicFormMarkdownComponent],
       providers: [
         {
           provide: DynamicFormMarkdownService,

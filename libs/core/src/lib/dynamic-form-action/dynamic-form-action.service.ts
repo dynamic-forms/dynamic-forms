@@ -4,7 +4,7 @@ import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
-import { DynamicFormActionHandlerConfig, DYNAMIC_FORM_ACTION_HANDLER_CONFIG } from './dynamic-form-action-handler-config';
+import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG, DynamicFormActionHandlerConfig } from './dynamic-form-action-handler-config';
 
 @Injectable()
 export class DynamicFormActionService {
@@ -12,7 +12,8 @@ export class DynamicFormActionService {
 
   constructor(
     private readonly libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
+    @Optional()
+    @Inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)
     private handlerConfig: DynamicFormActionHandlerConfig,
   ) {
     this.handlers = this.libraryService.filterTypes(this.handlerConfig);
@@ -37,8 +38,6 @@ export class DynamicFormActionService {
   }
 
   private getElement(handler: DynamicFormActionHandler, action: DynamicFormAction): DynamicFormElement | DynamicFormField {
-    return handler.elementFunc
-      ? handler.elementFunc(action)
-      : action.parent;
+    return handler.elementFunc ? handler.elementFunc(action) : action.parent;
   }
 }

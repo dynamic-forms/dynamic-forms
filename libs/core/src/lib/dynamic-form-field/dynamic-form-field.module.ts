@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormField } from './dynamic-form-field';
 
 export const dynamicFormFieldClear = (field: DynamicFormField): void => field.clear();
@@ -76,9 +76,6 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
       dynamicFormSubmitHandler,
     ]),
   ],
-  exports: [
-    DynamicFormValidationModule,
-    DynamicFormActionModule,
-  ],
+  exports: [DynamicFormValidationModule, DynamicFormActionModule],
 })
 export class DynamicFormFieldModule {}

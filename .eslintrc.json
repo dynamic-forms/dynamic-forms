@@ -14,8 +14,16 @@
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
       ],
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "./tsconfig.json"
+          }
+        }
+      },
       "rules": {
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
@@ -80,21 +88,42 @@
             "requireReturnForObjectLiteral": true
           }
         ],
-        "brace-style": [
-          "error",
-          "1tbs",
-          {
-            "allowSingleLine": true
-          }
-        ],
         "comma-dangle": [
           "error",
           "always-multiline"
         ],
         "id-blacklist": "off",
         "id-match": "off",
-        "import/order": "error",
-        "no-underscore-dangle": "off"
+        "import/order": [
+          "error",
+          {
+            "pathGroups": [
+              {
+                "pattern": "@dynamic-forms/**",
+                "group": "external"
+              }
+            ],
+            "newlines-between": "never",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "prettier/prettier": [
+          "error"
+        ],
+        "no-underscore-dangle": "off",
+        "sort-imports": [
+          "error",
+          {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": true,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "allowSeparatedGroups": false
+          }
+        ]
       }
     },
     {
@@ -102,18 +131,7 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "excludedFiles": [
-        "*inline-template-*.component.html"
-      ],
-      "extends": [
+        "plugin:@angular-eslint/template/recommended",
         "plugin:prettier/recommended"
       ],
       "rules": {
@@ -121,10 +139,6 @@
           "error",
           {
             "parser": "angular",
-            "endOfLine": "auto",
-            "printWidth": 140,
-            "tabWidth": 2,
-            "useTabs": false,
             "htmlWhitespaceSensitivity": "strict"
           }
         ]

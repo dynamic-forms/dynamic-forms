@@ -1,15 +1,16 @@
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormExpression } from '../dynamic-form-expression/dynamic-form-expression';
-import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormError } from '../dynamic-form-error/dynamic-form-error';
 import { DynamicFormErrorType } from '../dynamic-form-error/dynamic-form-error-type';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
+import { DynamicFormExpression } from '../dynamic-form-expression/dynamic-form-expression';
 import { DynamicFormElementExpressionData } from './dynamic-form-element-expression-data';
 import { DynamicFormElementExpressionFunc } from './dynamic-form-element-expression-func';
 
 export class DynamicFormElementExpression<
   Data extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
-  Func extends DynamicFormElementExpressionFunc<Data> = DynamicFormElementExpressionFunc<Data>
-> implements DynamicFormExpression<Data, Func> {
+  Func extends DynamicFormElementExpressionFunc<Data> = DynamicFormElementExpressionFunc<Data>,
+> implements DynamicFormExpression<Data, Func>
+{
   private _errorMessage: string;
 
   constructor(
@@ -19,7 +20,9 @@ export class DynamicFormElementExpression<
     protected errorHandler: DynamicFormErrorHandler,
   ) {}
 
-  get value(): any { return this.tryEvaluate(); }
+  get value(): any {
+    return this.tryEvaluate();
+  }
 
   protected evaluate(): any {
     return this.func(this.element.expressionData as Data);

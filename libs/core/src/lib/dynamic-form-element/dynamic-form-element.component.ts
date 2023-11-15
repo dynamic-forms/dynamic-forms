@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
@@ -13,11 +13,13 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
   imports: [CommonModule],
 })
 export class DynamicFormElementComponent<
-  Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
-  Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
-  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>
-> extends DynamicFormElementBase<Template, Definition, Element> implements OnInit {
-
+    Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
+    Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
+    Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
+  >
+  extends DynamicFormElementBase<Template, Definition, Element>
+  implements OnInit
+{
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;
 
@@ -30,6 +32,6 @@ export class DynamicFormElementComponent<
   }
 
   private initContainer(): void {
-      this.componentFactory.createComponent(this.container, this.element);
+    this.componentFactory.createComponent(this.container, this.element);
   }
 }

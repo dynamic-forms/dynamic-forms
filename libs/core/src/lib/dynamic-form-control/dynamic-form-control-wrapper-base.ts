@@ -12,9 +12,8 @@ export abstract class DynamicFormControlWrapperBase<
   Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
   Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
   Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
-  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>
+  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>,
 > extends DynamicFormFieldWrapperBase<Value, Value, FormControlBase<Value>, Template, Definition, Control> {
-
   constructor(
     protected override containerRef: ViewContainerRef,
     protected override validationService: DynamicFormValidationService,

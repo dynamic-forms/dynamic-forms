@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementComponent, DynamicFormModalBase } from '@dynamic-forms/core';
-import { CommonModule } from '@angular/common';
 import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
 
 @Component({

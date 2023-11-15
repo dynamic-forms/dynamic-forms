@@ -1,19 +1,23 @@
-import {
-  Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { BehaviorSubject, first, tap } from 'rxjs';
-import { MonacoModule, MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType } from './monaco-editor';
+import { MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType, MonacoModule } from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
 
 declare let monaco: MonacoModule;
 
 @Component({
+  standalone: true,
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
-  styleUrls: [ './monaco-editor.component.scss'],
+  styleUrls: ['./monaco-editor.component.scss'],
+  imports: [CommonModule, MatButtonModule, MatMenuModule],
+  providers: [MonacoEditorService],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
-  private readonly _fileLoading  = new BehaviorSubject<boolean>(false);
+  private readonly _fileLoading = new BehaviorSubject<boolean>(false);
 
   private _editor: MonacoEditor;
   private _editorBlur: MonacoEditorDisposable;
@@ -41,10 +45,12 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.monacoEditorService.loaded$.pipe(
-      first(loaded => !!loaded),
-      tap(_ => this.initEditor()),
-    ).subscribe();
+    this.monacoEditorService.loaded$
+      .pipe(
+        first(loaded => !!loaded),
+        tap(_ => this.initEditor()),
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
@@ -57,20 +63,20 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     const file = files.item(0);
     const fileReader = new FileReader();
     this._fileLoading.next(true);
-    fileReader.onload = (event) => {
+    fileReader.onload = event => {
       this.value = event.target.result as string;
       this._editor.setValue(this.value);
       this._fileLoading.next(false);
       this.valueChange.emit(this.value);
     };
-    fileReader.onerror = (_event) => {
+    fileReader.onerror = _event => {
       this._fileLoading.next(false);
     };
     fileReader.readAsText(file);
   }
 
   handleFileDownload(): void {
-    const file = new File([ this.value ], 'dynamic-form.json', { type: 'application/json' });
+    const file = new File([this.value], 'dynamic-form.json', { type: 'application/json' });
     const link = document.createElement('a');
     const url = URL.createObjectURL(file);
     link.href = url;
@@ -82,8 +88,8 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private initEditor(): void {
     const options = this.getEditorOptions();
     this._editor = monaco.editor.create(this.container.nativeElement, options);
-    this._editorBlur = this._editor.onDidBlurEditorText((_) => this.updateValue(MonacoEditorUpdateType.Blur));
-    this._editorChange = this._editor.onDidChangeModelContent((_) => this.updateValue(MonacoEditorUpdateType.Change));
+    this._editorBlur = this._editor.onDidBlurEditorText(_ => this.updateValue(MonacoEditorUpdateType.Blur));
+    this._editorChange = this._editor.onDidChangeModelContent(_ => this.updateValue(MonacoEditorUpdateType.Change));
   }
 
   private getEditorOptions(): MonacoEditorOptions {

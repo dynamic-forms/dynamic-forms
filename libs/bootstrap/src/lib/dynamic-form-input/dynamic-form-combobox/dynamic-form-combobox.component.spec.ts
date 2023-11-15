@@ -1,8 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormComboboxControl, DynamicFormComboboxDefinition,
-  DynamicFormConfigService, DynamicFormDefinition, DynamicFormFieldType, DynamicFormLibraryService,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormComboboxControl,
+  DynamicFormComboboxDefinition,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 describe('BsDynamicFormComboboxComponent', () => {
@@ -37,11 +45,7 @@ describe('BsDynamicFormComboboxComponent', () => {
       template: {
         label: 'label',
         input: {
-          options: [
-            'Value1',
-            'Value2',
-            'Value3',
-          ],
+          options: ['Value1', 'Value2', 'Value3'],
         },
       },
     } as DynamicFormComboboxDefinition;

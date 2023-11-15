@@ -19,7 +19,10 @@ import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-t
 
 @Injectable()
 export class DynamicFormComponentFactory {
-  constructor(private configService: DynamicFormConfigService, private errorHandler: DynamicFormErrorHandler) {}
+  constructor(
+    private configService: DynamicFormConfigService,
+    private errorHandler: DynamicFormErrorHandler,
+  ) {}
 
   createComponent(ref: ViewContainerRef, element: DynamicFormElement): DynamicFormElementBase | undefined {
     switch (element.classType) {
@@ -29,9 +32,9 @@ export class DynamicFormComponentFactory {
         return this.createFieldComponent(ref, element as DynamicFormField);
       case 'action':
         return this.createActionComponent(ref, element as DynamicFormAction);
-        default:
-          this.handleError(DynamicFormErrorType.ClassType, `Class type ${ element.classType } is not defined`);
-          return undefined;
+      default:
+        this.handleError(DynamicFormErrorType.ClassType, `Class type ${element.classType} is not defined`);
+        return undefined;
     }
   }
 
@@ -50,14 +53,16 @@ export class DynamicFormComponentFactory {
   createInputComponent(ref: ViewContainerRef, field: DynamicFormControl): DynamicFormFieldBase | undefined {
     const type = this.configService.getInputType(field.inputType);
     if (!type) {
-      this.handleError(DynamicFormErrorType.InputType, `Input type ${ field.inputType } is not defined`);
+      this.handleError(DynamicFormErrorType.InputType, `Input type ${field.inputType} is not defined`);
       return undefined;
     }
     return this.createFieldComponentForType(ref, field, type, true);
   }
 
   private createElementComponentForType(
-    ref: ViewContainerRef, element: DynamicFormElement, type: DynamicFormElementType,
+    ref: ViewContainerRef,
+    element: DynamicFormElement,
+    type: DynamicFormElementType,
   ): DynamicFormElementBase {
     const component = ref.createComponent(type.component).instance;
     component.element = element;
@@ -65,7 +70,10 @@ export class DynamicFormComponentFactory {
   }
 
   private createFieldComponentForType(
-    ref: ViewContainerRef, field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType, isInput: boolean = false,
+    ref: ViewContainerRef,
+    field: DynamicFormField,
+    type: DynamicFormFieldType | DynamicFormInputType,
+    isInput: boolean = false,
   ): DynamicFormFieldBase {
     const wrapperTypes = this.getWrapperTypes(field, type, isInput);
     if (wrapperTypes.length > 0) {
@@ -81,7 +89,9 @@ export class DynamicFormComponentFactory {
   }
 
   private createActionComponentForType(
-    ref: ViewContainerRef, action: DynamicFormAction, type: DynamicFormActionType,
+    ref: ViewContainerRef,
+    action: DynamicFormAction,
+    type: DynamicFormActionType,
   ): DynamicFormActionBase {
     const component = ref.createComponent(type.component).instance;
     component.action = action;
@@ -89,27 +99,34 @@ export class DynamicFormComponentFactory {
   }
 
   private createWrapperComponents(
-    ref: ViewContainerRef, field: DynamicFormField, types: DynamicFormFieldWrapperType[],
+    ref: ViewContainerRef,
+    field: DynamicFormField,
+    types: DynamicFormFieldWrapperType[],
   ): DynamicFormFieldWrapperBase[] {
-    const wrappers = types.reduce((result, type) => {
-      const parentComponent = result[result.length - 1];
-      const component = parentComponent.ref.createComponent(type.component).instance;
-      parentComponent.component = component;
-      component.field = field;
-      return [ ...result, component ];
-    }, [ { ref } ] as DynamicFormFieldWrapperBase[]);
+    const wrappers = types.reduce(
+      (result, type) => {
+        const parentComponent = result[result.length - 1];
+        const component = parentComponent.ref.createComponent(type.component).instance;
+        parentComponent.component = component;
+        component.field = field;
+        return [...result, component];
+      },
+      [{ ref }] as DynamicFormFieldWrapperBase[],
+    );
     return wrappers.slice(1);
   }
 
   private getWrapperTypes(
-    field: DynamicFormField, type: DynamicFormFieldType | DynamicFormInputType, isInput: boolean,
+    field: DynamicFormField,
+    type: DynamicFormFieldType | DynamicFormInputType,
+    isInput: boolean,
   ): DynamicFormFieldWrapperType[] {
     const wrappers = !isInput ? (field.wrappers || []).concat(type.wrappers || []) : type.wrappers || [];
     return wrappers
       .map(wrapper => {
         const wrapperType = this.configService.getFieldWrapperType(wrapper);
         if (!wrapperType) {
-          this.handleError(DynamicFormErrorType.WrapperType, `Wrapper type ${ wrapper } is not defined`);
+          this.handleError(DynamicFormErrorType.WrapperType, `Wrapper type ${wrapper} is not defined`);
           return undefined;
         }
         return wrapperType;

@@ -2,13 +2,15 @@ import { FormGroup } from '@angular/forms';
 import { DynamicFormFieldAsyncValidatorType, DynamicFormFieldValidatorType } from '../dynamic-form-field/dynamic-form-field-validator-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import {
-  DynamicFormDictionaryAsyncValidatorFactory, DynamicFormDictionaryValidatorFactory, DynamicFormDictionaryValidatorFn,
+  DynamicFormDictionaryAsyncValidatorFactory,
+  DynamicFormDictionaryValidatorFactory,
+  DynamicFormDictionaryValidatorFn,
 } from './dynamic-form-dictionary-validator';
 
 export interface DynamicFormDictionaryValidatorType extends DynamicFormFieldValidatorType<DynamicFormDictionaryValidatorFactory> {}
 
-export interface DynamicFormDictionaryAsyncValidatorType extends
-  DynamicFormFieldAsyncValidatorType<DynamicFormDictionaryAsyncValidatorFactory> {}
+export interface DynamicFormDictionaryAsyncValidatorType
+  extends DynamicFormFieldAsyncValidatorType<DynamicFormDictionaryAsyncValidatorFactory> {}
 
 export const dynamicFormDictionaryRequiredValidatorFactory = (): DynamicFormDictionaryValidatorFn => (group: FormGroup) =>
   !group.value || Object.keys(group.value).length === 0 ? { requiredDictionary: true } : null;

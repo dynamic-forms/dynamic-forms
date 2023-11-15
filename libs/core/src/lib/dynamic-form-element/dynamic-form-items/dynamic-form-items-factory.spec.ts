@@ -1,6 +1,6 @@
-import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
+import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
 import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
@@ -18,9 +18,9 @@ describe('dynamicFormItemsFactory', () => {
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
     const itemDefinition = { template: { label: 'label' }, children: [] } as DynamicFormItemDefinition;
-    const definition = { template: {}, children: [ itemDefinition ] } as DynamicFormItemsDefinition;
+    const definition = { template: {}, children: [itemDefinition] } as DynamicFormItemsDefinition;
     const type = {} as DynamicFormElementType;
-    const expressions = [ {}, {} ];
+    const expressions = [{}, {}];
     const children = [];
 
     builder.getDefinition.and.returnValue(itemDefinition);

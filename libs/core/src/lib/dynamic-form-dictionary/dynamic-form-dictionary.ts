@@ -1,31 +1,42 @@
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldClassType } from '../dynamic-form-field/dynamic-form-field-class-type';
 import { FormRecordBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-template';
 import { DynamicFormDictionaryAsyncValidator, DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 export class DynamicFormDictionary<
-  Value = any, Model extends Value = Value,
+  Value = any,
+  Model extends Value = Value,
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
-  Type extends DynamicFormFieldType = DynamicFormFieldType
-> extends DynamicFormField<{ [key: string]: Value }, { [key: string]: Model }, FormRecordBase<Value>,
-    Template, Definition, Type, DynamicFormField<Value, Model>> {
-
+  Type extends DynamicFormFieldType = DynamicFormFieldType,
+> extends DynamicFormField<
+  { [key: string]: Value },
+  { [key: string]: Model },
+  FormRecordBase<Value>,
+  Template,
+  Definition,
+  Type,
+  DynamicFormField<Value, Model>
+> {
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type, new FormRecordBase({}));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
   }
 
-  get fieldClassType(): DynamicFormFieldClassType { return 'dictionary'; }
+  get fieldClassType(): DynamicFormFieldClassType {
+    return 'dictionary';
+  }
 
-  get length(): number { return this._children.length; }
+  get length(): number {
+    return this._children.length;
+  }
 
   registerField(field: DynamicFormField<Value, Model>): void {
     const index = this._children.findIndex(f => f.key === field.key);
@@ -78,7 +89,7 @@ export class DynamicFormDictionary<
 
   resetEmpty(): void {
     this._children.forEach(field => field.destroy());
-    Object.keys(this._control.controls).forEach((key) => {
+    Object.keys(this._control.controls).forEach(key => {
       this._control.removeControl(key);
     });
     this.initModel({});
@@ -86,8 +97,8 @@ export class DynamicFormDictionary<
   }
 
   resetDefault(): void {
-    this._children.forEach((field) => field.destroy());
-    Object.keys(this._control.controls).forEach((key) => {
+    this._children.forEach(field => field.destroy());
+    Object.keys(this._control.controls).forEach(key => {
       this._control.removeControl(key);
     });
     this.initModel(this.getDefaultModel());
@@ -105,9 +116,11 @@ export class DynamicFormDictionary<
 
   protected override initChildren(): void {
     super.initChildren();
-    this._children.filter(field => !field.unregistered).forEach(field => {
-      this._control.registerControl(field.definition.key, field.control);
-    });
+    this._children
+      .filter(field => !field.unregistered)
+      .forEach(field => {
+        this._control.registerControl(field.definition.key, field.control);
+      });
   }
 
   protected getValidators(): (DynamicFormDictionaryValidator | DynamicFormDictionaryAsyncValidator)[] {

@@ -1,8 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output,
-  SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { DynamicFormAction, DynamicFormElement, DYNAMIC_FORM_THEME, DynamicFormElementsComponent } from '@dynamic-forms/core';
+import { DYNAMIC_FORM_THEME, DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } from '@dynamic-forms/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -46,10 +58,13 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
   // eslint-disable-next-line
   @Output() escaped = new EventEmitter();
 
-  constructor(private dialog: MatDialog, @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string) {}
+  constructor(
+    private dialog: MatDialog,
+    @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
+  ) {}
 
   ngOnInit(): void {
-    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => isOpen ? this.openDialog() : this.closeDialog());
+    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => (isOpen ? this.openDialog() : this.closeDialog()));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -81,12 +96,12 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
-    Object.defineProperty(config, 'width', { get: () => this.maximized ? this.maxWidth || '100%' : this.width });
-    Object.defineProperty(config, 'height', { get: () => this.maximized ? this.maxHeight || '100%' : this.height });
-    Object.defineProperty(config, 'minWidth', { get: () => this.maximized ? this.maxWidth || '100%' : this.minWidth });
-    Object.defineProperty(config, 'minHeight', { get: () => this.maximized ? this.maxHeight || '100%' : this.minHeight });
-    Object.defineProperty(config, 'maxWidth', { get: () => this.maximized ? this.maxWidth || '100%' : this.maxWidth });
-    Object.defineProperty(config, 'maxHeight', { get: () => this.maximized ? this.maxHeight || '100%' : this.maxHeight });
+    Object.defineProperty(config, 'width', { get: () => (this.maximized ? this.maxWidth || '100%' : this.width) });
+    Object.defineProperty(config, 'height', { get: () => (this.maximized ? this.maxHeight || '100%' : this.height) });
+    Object.defineProperty(config, 'minWidth', { get: () => (this.maximized ? this.maxWidth || '100%' : this.minWidth) });
+    Object.defineProperty(config, 'minHeight', { get: () => (this.maximized ? this.maxHeight || '100%' : this.minHeight) });
+    Object.defineProperty(config, 'maxWidth', { get: () => (this.maximized ? this.maxWidth || '100%' : this.maxWidth) });
+    Object.defineProperty(config, 'maxHeight', { get: () => (this.maximized ? this.maxHeight || '100%' : this.maxHeight) });
     return config;
   }
 }

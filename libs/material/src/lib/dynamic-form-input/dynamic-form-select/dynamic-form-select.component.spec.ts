@@ -2,9 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSelect } from '@angular/material/select';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicForm, DynamicFormBuilder, DynamicFormConfigService, DynamicFormDefinition,
-  DynamicFormFieldType, DynamicFormLibraryService, DynamicFormSelectControl, DynamicFormSelectDefinition,
-  DynamicFormValidationService } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormConfigService,
+  DynamicFormDefinition,
+  DynamicFormFieldType,
+  DynamicFormLibraryService,
+  DynamicFormSelectControl,
+  DynamicFormSelectDefinition,
+  DynamicFormValidationService,
+} from '@dynamic-forms/core';
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 describe('MatDynamicFormSelectComponent', () => {
@@ -17,10 +25,7 @@ describe('MatDynamicFormSelectComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        MatDynamicFormSelectComponent,
-      ],
+      imports: [NoopAnimationsModule, MatDynamicFormSelectComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

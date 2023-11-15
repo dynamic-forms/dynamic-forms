@@ -42,7 +42,6 @@ describe('DynamicFormLogger', () => {
     expect(service.loggerTypes).toEqual(loggerTypes);
   });
 
-
   it('returns settings', () => {
     expect(service.settings).toEqual({ logLevel: DynamicFormLogLevel.Debug });
   });
@@ -53,11 +52,13 @@ describe('DynamicFormLogger', () => {
 
     service.error(DynamicFormErrorType.Unspecified, 'message');
 
-    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
+    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(
+      jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Error,
         type: DynamicFormErrorType.Unspecified,
         message: 'message',
-    }));
+      }),
+    );
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
   });
 
@@ -67,11 +68,13 @@ describe('DynamicFormLogger', () => {
 
     service.warning('Expression evaluation warning', 'message');
 
-    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
+    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(
+      jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Warning,
         type: 'Expression evaluation warning',
         message: 'message',
-    }));
+      }),
+    );
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
   });
 
@@ -93,11 +96,13 @@ describe('DynamicFormLogger', () => {
 
     service.information('Expression evaluation information', 'message');
 
-    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
+    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(
+      jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Information,
         type: 'Expression evaluation information',
         message: 'message',
-    }));
+      }),
+    );
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
   });
 
@@ -119,11 +124,13 @@ describe('DynamicFormLogger', () => {
 
     service.debug('Expression evaluation debugging', 'message');
 
-    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(jasmine.objectContaining<DynamicFormLog>({
+    expect(loggerTypes[0].log).toHaveBeenCalledOnceWith(
+      jasmine.objectContaining<DynamicFormLog>({
         level: DynamicFormLogLevel.Debug,
         type: 'Expression evaluation debugging',
         message: 'message',
-    }));
+      }),
+    );
     expect(loggerTypes[1].log).not.toHaveBeenCalled();
   });
 

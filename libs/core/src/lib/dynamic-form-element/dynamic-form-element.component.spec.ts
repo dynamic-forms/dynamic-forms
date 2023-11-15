@@ -1,11 +1,11 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
-import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
+import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
@@ -20,12 +20,8 @@ import { DynamicFormElementModule } from './dynamic-form-element.module';
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
-  imports: [
-    DynamicFormElementModule,
-  ],
-  declarations: [
-    DynamicFormElementBaseComponent,
-  ],
+  imports: [DynamicFormElementModule],
+  declarations: [DynamicFormElementBaseComponent],
   providers: [
     {
       provide: DynamicFormConfigService,
@@ -48,9 +44,7 @@ describe('DynamicFormElementComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormElementComponentTestModule,
-      ],
+      imports: [DynamicFormElementComponentTestModule],
     });
 
     const root = {} as DynamicForm;

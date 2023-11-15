@@ -2,7 +2,7 @@ import { StateToken } from '@ngxs/store';
 
 export enum FormEditorPreviewMode {
   TabView,
-  SplitView
+  SplitView,
 }
 
 export interface FormEditorPreferences {
@@ -20,4 +20,3 @@ export const defaultPreferences: Preferences = {
 };
 
 export const PREFERENCES = new StateToken<Preferences>('dynamicFormsDemoPreferences');
-

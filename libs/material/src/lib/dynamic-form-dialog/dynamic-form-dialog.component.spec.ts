@@ -1,9 +1,17 @@
 import { Component, NgModule } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormAction, DynamicFormActionBase, DynamicFormActionService, DynamicFormActionType,
-  DynamicFormComponentFactory, DynamicFormConfigService, DynamicFormErrorHandler, DynamicFormLibraryService,
-  DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '@dynamic-forms/core';
+import {
+  DYNAMIC_FORM_ACTION_TYPE_CONFIG,
+  DynamicFormAction,
+  DynamicFormActionBase,
+  DynamicFormActionService,
+  DynamicFormActionType,
+  DynamicFormComponentFactory,
+  DynamicFormConfigService,
+  DynamicFormErrorHandler,
+  DynamicFormLibraryService,
+} from '@dynamic-forms/core';
 import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
@@ -18,9 +26,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 @NgModule({
-  declarations: [
-    DynamicFormActionTestComponent,
-  ],
+  declarations: [DynamicFormActionTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -28,9 +34,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
     },
     {
       provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
-      useValue: [
-        { libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent },
-      ],
+      useValue: [{ libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }],
     },
     DynamicFormConfigService,
     {
@@ -52,11 +56,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        DynamicFormActionComponentTestModule,
-        MatDynamicFormDialogComponent,
-      ],
+      imports: [NoopAnimationsModule, DynamicFormActionComponentTestModule, MatDynamicFormDialogComponent],
     });
 
     fixture = TestBed.createComponent(MatDynamicFormDialogComponent);
@@ -141,7 +141,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders header actions', waitForAsync(() => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
-      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.headerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -155,7 +155,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
     it('renders footer actions', waitForAsync(() => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
-      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.footerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -170,8 +170,8 @@ describe('MatDynamicFormDialogComponent', () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.theme = 'theme';
       component.title = 'Title';
-      component.headerActions = [ { classType: 'action', type } as DynamicFormAction ];
-      component.footerActions = [ { classType: 'action', type } as DynamicFormAction ];
+      component.headerActions = [{ classType: 'action', type } as DynamicFormAction];
+      component.footerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       component.classNameForm = 'class-form';
       component.classNameModal = 'class-modal';

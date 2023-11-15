@@ -1,8 +1,8 @@
-import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlBase } from './dynamic-form-control-base';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
@@ -15,13 +15,15 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
   imports: [CommonModule],
 })
 export class DynamicFormControlComponent<
-  Value = any,
-  Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
-  Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
-  Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
-  Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>
-> extends DynamicFormControlBase<Value, Input, Template, Definition, Control> implements OnInit, DoCheck {
-
+    Value = any,
+    Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
+    Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
+    Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
+    Control extends DynamicFormControl<Value, Input, Template, Definition> = DynamicFormControl<Value, Input, Template, Definition>,
+  >
+  extends DynamicFormControlBase<Value, Input, Template, Definition, Control>
+  implements OnInit, DoCheck
+{
   private _initialized: boolean;
   private _inputType: string;
 

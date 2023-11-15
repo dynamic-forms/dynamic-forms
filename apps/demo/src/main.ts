@@ -3,14 +3,13 @@ import { APP_INITIALIZER, enableProdMode, importProvidersFrom } from '@angular/c
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-
+import { AppStateModule } from './app/app-state.module';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { AppService, appInitializer } from './app/app.service';
-import { IconService } from './app/services/icon.service';
 import { HttpRequestInterceptor } from './app/services/http-request.interceptor';
+import { IconService } from './app/services/icon.service';
 import { environment } from './environments/environment';
-import { AppStateModule } from './app/app-state.module';
 
 if (environment.production) {
   enableProdMode();

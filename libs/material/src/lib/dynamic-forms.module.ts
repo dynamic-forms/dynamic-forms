@@ -1,10 +1,20 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DynamicFormsModule, DynamicFormArrayModule, DynamicFormControlModule, DynamicFormDictionaryModule,
-  DynamicFormElementModule, DynamicFormGroupModule, DynamicFormIdBuilder, DynamicFormValidationModule,
-  DYNAMIC_FORM_ID_BUILDER, DYNAMIC_FORM_LIBRARY, DYNAMIC_FORM_THEME } from '@dynamic-forms/core';
+import {
+  DYNAMIC_FORM_ID_BUILDER,
+  DYNAMIC_FORM_LIBRARY,
+  DYNAMIC_FORM_THEME,
+  DynamicFormArrayModule,
+  DynamicFormControlModule,
+  DynamicFormDictionaryModule,
+  DynamicFormElementModule,
+  DynamicFormGroupModule,
+  DynamicFormIdBuilder,
+  DynamicFormValidationModule,
+  DynamicFormsModule,
+} from '@dynamic-forms/core';
 import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
 import { MatDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
-import { MatDynamicFormInputModule} from './dynamic-form-input/dynamic-form-input.module';
+import { MatDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
 @NgModule({
@@ -20,9 +30,7 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
     MatDynamicFormActionModule,
     MatDynamicFormInputModule,
   ],
-  exports: [
-    DynamicFormsModule,
-  ],
+  exports: [DynamicFormsModule],
 })
 export class MatDynamicFormsModule {
   static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {

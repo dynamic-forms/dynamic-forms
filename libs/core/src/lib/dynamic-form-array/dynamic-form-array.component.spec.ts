@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
@@ -23,9 +23,7 @@ describe('DynamicFormArrayComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormArrayModule,
-      ],
+      imports: [DynamicFormArrayModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -43,17 +41,22 @@ describe('DynamicFormArrayComponent', () => {
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
     component = fixture.componentInstance;
 
-
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formArray = new DynamicFormArray(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        label: 'label',
-      },
-      children: [],
-    } as DynamicFormArrayDefinition, {} as DynamicFormFieldType);
+    formArray = new DynamicFormArray(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          label: 'label',
+        },
+        children: [],
+      } as DynamicFormArrayDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formArray;
 
     fixture.detectChanges();

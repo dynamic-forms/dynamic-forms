@@ -1,12 +1,20 @@
 import { InjectionToken } from '@angular/core';
-import { dynamicFormLibrary, DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
+import { DynamicFormLibraryName, dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 
 export type DynamicFormErrorMessageTemplate = (error: any) => string;
 
-export const dynamicFormErrorMessageTemplate = (strings, ...keys) => (error) => keys.reduce((result, key, index) => {
-  result.push(error[key], strings[index + 1]);
-  return result;
-}, [strings[0]]).join('');
+export const dynamicFormErrorMessageTemplate =
+  (strings, ...keys) =>
+  error =>
+    keys
+      .reduce(
+        (result, key, index) => {
+          result.push(error[key], strings[index + 1]);
+          return result;
+        },
+        [strings[0]],
+      )
+      .join('');
 
 export interface DynamicFormValidationConfig {
   defaultMessage: string;

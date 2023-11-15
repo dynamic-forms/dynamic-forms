@@ -1,5 +1,7 @@
 import { Subscription } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
+import { DynamicForm } from '../dynamic-form/dynamic-form';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -8,8 +10,6 @@ import { FormControlBase } from '../dynamic-form-field/dynamic-form-field-contro
 import { dynamicFormFieldDefaultDebounce } from '../dynamic-form-field/dynamic-form-field-settings';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
-import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControlAddOn, DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
@@ -20,9 +20,8 @@ export class DynamicFormControl<
   Input extends DynamicFormInput<Value> = DynamicFormInput<Value>,
   Template extends DynamicFormControlTemplate<Value, Input> = DynamicFormControlTemplate<Value, Input>,
   Definition extends DynamicFormControlDefinition<Value, Input, Template> = DynamicFormControlDefinition<Value, Input, Template>,
-  Type extends DynamicFormFieldType = DynamicFormFieldType
+  Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<Value, Value, FormControlBase<Value>, Template, Definition, Type> {
-
   private _valueChanging: boolean;
   protected _valueSubscription: Subscription;
   protected _evaluators: DynamicFormControlEvaluator[] = [];
@@ -41,16 +40,33 @@ export class DynamicFormControl<
     this.extendExpressionData({ input: () => this.input });
   }
 
-  get fieldClassType(): DynamicFormFieldClassType { return 'control'; }
+  get fieldClassType(): DynamicFormFieldClassType {
+    return 'control';
+  }
 
-  get input(): Input { return this.template.input; }
-  get inputId(): string { return this.id || this.path; }
-  get inputType(): string { return this.input.type; }
+  get input(): Input {
+    return this.template.input;
+  }
 
-  get evaluators(): DynamicFormControlEvaluator[] { return this._evaluators; }
+  get inputId(): string {
+    return this.id || this.path;
+  }
 
-  get prefixAddOn(): DynamicFormControlAddOn { return this._prefixAddOn; }
-  get suffixAddOn(): DynamicFormControlAddOn { return this._suffixAddOn; }
+  get inputType(): string {
+    return this.input.type;
+  }
+
+  get evaluators(): DynamicFormControlEvaluator[] {
+    return this._evaluators;
+  }
+
+  get prefixAddOn(): DynamicFormControlAddOn {
+    return this._prefixAddOn;
+  }
+
+  get suffixAddOn(): DynamicFormControlAddOn {
+    return this._suffixAddOn;
+  }
 
   override init(): void {
     super.init();
@@ -155,11 +171,13 @@ export class DynamicFormControl<
     const observer = { next: value => this.setModel(value) };
     if (this.settings.updateType === 'debounce') {
       const debounce = this.settings.updateDebounce || dynamicFormFieldDefaultDebounce;
-      return valueChanges.pipe(
-        tap(() => this._valueChanging = true),
-        debounceTime(debounce),
-        tap(() => this._valueChanging = false),
-      ).subscribe(observer);
+      return valueChanges
+        .pipe(
+          tap(() => (this._valueChanging = true)),
+          debounceTime(debounce),
+          tap(() => (this._valueChanging = false)),
+        )
+        .subscribe(observer);
     }
     return valueChanges.subscribe(observer);
   }

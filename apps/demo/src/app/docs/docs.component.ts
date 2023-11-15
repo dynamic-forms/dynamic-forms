@@ -30,5 +30,7 @@ export class DocsComponent {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  get trustedSourceUrl(): SafeResourceUrl { return this._trustedSourceUrl; }
+  get trustedSourceUrl(): SafeResourceUrl {
+    return this._trustedSourceUrl;
+  }
 }

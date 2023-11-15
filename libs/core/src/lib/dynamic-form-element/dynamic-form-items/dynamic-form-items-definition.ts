@@ -6,7 +6,7 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 export interface DynamicFormItemsDefinition<
   Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
   ItemTemplate extends DynamicFormItemTemplate = DynamicFormItemTemplate,
-  ItemDefinition extends DynamicFormItemDefinition<ItemTemplate> = DynamicFormItemDefinition<ItemTemplate>
+  ItemDefinition extends DynamicFormItemDefinition<ItemTemplate> = DynamicFormItemDefinition<ItemTemplate>,
 > extends DynamicFormElementDefinition<Template> {
   children: ItemDefinition[];
 }

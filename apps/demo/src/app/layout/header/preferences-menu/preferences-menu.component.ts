@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { cloneObject, DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core';
+import { DynamicFormComponent, DynamicFormDefinition, cloneObject } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class PreferencesMenuComponent {
 
   constructor(private store: Store) {
     this.model$ = this.store.select(PreferencesState).pipe(
-      filter((preferences) => preferences !== this.dynamicForm?.value),
+      filter(preferences => preferences !== this.dynamicForm?.value),
       map((preferences: Preferences) => {
         if (preferences) {
           return cloneObject(preferences);

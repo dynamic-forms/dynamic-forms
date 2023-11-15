@@ -1,16 +1,17 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
-import { DynamicFormActionTypeConfig, DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
+import { DYNAMIC_FORM_ACTION_TYPE_CONFIG, DynamicFormActionTypeConfig } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
-import { DynamicFormElementTypeConfig, DYNAMIC_FORM_ELEMENT_TYPE_CONFIG } from '../dynamic-form-element/dynamic-form-element-type-config';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig } from '../dynamic-form-element/dynamic-form-element-type-config';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldTypeConfig, DYNAMIC_FORM_FIELD_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-type-config';
+import { DYNAMIC_FORM_FIELD_TYPE_CONFIG, DynamicFormFieldTypeConfig } from '../dynamic-form-field/dynamic-form-field-type-config';
 import { DynamicFormFieldWrapperType } from '../dynamic-form-field/dynamic-form-field-wrapper-type';
 import {
-  DynamicFormFieldWrapperTypeConfig, DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
+  DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
+  DynamicFormFieldWrapperTypeConfig,
 } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
-import { DynamicFormInputTypeConfig, DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormConfigModule } from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
@@ -19,9 +20,7 @@ describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule,
-        ],
+        imports: [DynamicFormConfigModule],
       });
     });
 
@@ -33,9 +32,7 @@ describe('DynamicFormConfigModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule,
-        ],
+        imports: [DynamicFormConfigModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -45,11 +42,9 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DynamicFormConfigService',
-      inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormConfigService', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('withElement', () => {
@@ -58,9 +53,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withElement(type),
-        ],
+        imports: [DynamicFormConfigModule.withElement(type)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -70,12 +63,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(type);
-      }),
-    );
+    it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(type);
+    }));
   });
 
   describe('withElements', () => {
@@ -87,9 +78,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withElements(types),
-        ],
+        imports: [DynamicFormConfigModule.withElements(types)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -99,12 +88,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(types);
-      }),
-    );
+    it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(types);
+    }));
   });
 
   describe('withField', () => {
@@ -113,9 +100,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withField(type),
-        ],
+        imports: [DynamicFormConfigModule.withField(type)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -125,12 +110,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(type);
-      }),
-    );
+    it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG', inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(type);
+    }));
   });
 
   describe('withFields', () => {
@@ -142,9 +125,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withFields(types),
-        ],
+        imports: [DynamicFormConfigModule.withFields(types)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -154,12 +135,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(types);
-      }),
-    );
+    it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG', inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(types);
+    }));
   });
 
   describe('withAction', () => {
@@ -168,9 +147,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withAction(type),
-        ],
+        imports: [DynamicFormConfigModule.withAction(type)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -180,12 +157,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(type);
-      }),
-    );
+    it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(type);
+    }));
   });
 
   describe('withActions', () => {
@@ -197,9 +172,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withActions(types),
-        ],
+        imports: [DynamicFormConfigModule.withActions(types)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -209,12 +182,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(types);
-      }),
-    );
+    it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(types);
+    }));
   });
 
   describe('withInput', () => {
@@ -223,9 +194,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withInput(type),
-        ],
+        imports: [DynamicFormConfigModule.withInput(type)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -235,12 +204,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(type);
-      }),
-    );
+    it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG', inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(type);
+    }));
   });
 
   describe('withInputs', () => {
@@ -252,9 +219,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withInputs(types),
-        ],
+        imports: [DynamicFormConfigModule.withInputs(types)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -264,12 +229,10 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(types);
-      }),
-    );
+    it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG', inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toEqual(types);
+    }));
   });
 
   describe('withFieldWrapper', () => {
@@ -278,9 +241,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withFieldWrapper(type),
-        ],
+        imports: [DynamicFormConfigModule.withFieldWrapper(type)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -290,12 +251,13 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
+    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG],
+      (config: DynamicFormFieldWrapperTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(type);
-      }),
-    );
+      },
+    ));
   });
 
   describe('withFieldWrappers', () => {
@@ -307,9 +269,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormConfigModule.withFieldWrappers(types),
-        ],
+        imports: [DynamicFormConfigModule.withFieldWrappers(types)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -319,11 +279,12 @@ describe('DynamicFormConfigModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG',
-      inject([DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG], (config: DynamicFormFieldWrapperTypeConfig) => {
+    it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG', inject(
+      [DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG],
+      (config: DynamicFormFieldWrapperTypeConfig) => {
         expect(config.length).toBe(1);
         expect(config[0]).toEqual(types);
-      }),
-    );
+      },
+    ));
   });
 });

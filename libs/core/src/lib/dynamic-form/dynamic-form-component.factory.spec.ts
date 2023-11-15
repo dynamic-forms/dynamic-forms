@@ -10,7 +10,7 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormElementBase } from '../dynamic-form-element/dynamic-form-element-base';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
 import { DynamicFormElementComponent } from '../dynamic-form-element/dynamic-form-element.component';
-import { DynamicFormErrorSettings, DYNAMIC_FORM_ERROR_SETTINGS } from '../dynamic-form-error/dynamic-form-error-settings';
+import { DYNAMIC_FORM_ERROR_SETTINGS, DynamicFormErrorSettings } from '../dynamic-form-error/dynamic-form-error-settings';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormLogger } from '../dynamic-form-error/dynamic-form.logger';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -18,7 +18,7 @@ import { DynamicFormFieldBase } from '../dynamic-form-field/dynamic-form-field-b
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldWrapperBase } from '../dynamic-form-field/dynamic-form-field-wrapper-base';
 import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from '../dynamic-form-field/dynamic-form-field-wrapper-type-config';
-import { DynamicFormInputBase} from '../dynamic-form-input/dynamic-form-input-base';
+import { DynamicFormInputBase } from '../dynamic-form-input/dynamic-form-input-base';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -96,9 +96,7 @@ class DynamicFormFieldWrapperWrapperTestComponent extends DynamicFormFieldWrappe
 }
 
 @NgModule({
-  imports: [
-    DynamicFormElementComponent,
-  ],
+  imports: [DynamicFormElementComponent],
   declarations: [
     DynamicFormTestComponent,
     DynamicFormElementTestComponent,
@@ -152,9 +150,7 @@ describe('DynamicFormComponentFactory', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormComponentFactoryTestModule,
-      ],
+      imports: [DynamicFormComponentFactoryTestModule],
       providers: [
         {
           provide: DYNAMIC_FORM_ERROR_SETTINGS,

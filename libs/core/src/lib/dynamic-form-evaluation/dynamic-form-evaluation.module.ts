@@ -4,9 +4,7 @@ import { DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG } from '../dynamic-form-cont
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation.builder';
 
 @NgModule({
-  providers: [
-    DynamicFormEvaluationBuilder,
-  ],
+  providers: [DynamicFormEvaluationBuilder],
 })
 export class DynamicFormEvaluationModule {
   static withControlEvaluator(controlEvaluatorType: DynamicFormControlEvaluatorType): ModuleWithProviders<DynamicFormEvaluationModule> {

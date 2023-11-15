@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
+import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
@@ -20,9 +20,7 @@ describe('DynamicFormGroupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DynamicFormGroupModule,
-      ],
+      imports: [DynamicFormGroupModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -37,15 +35,21 @@ describe('DynamicFormGroupComponent', () => {
 
     builder = {} as any;
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
-    formGroup = new DynamicFormGroup(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        label: 'label',
-      },
-      children: [],
-    } as DynamicFormGroupDefinition, {} as DynamicFormFieldType);
+    formGroup = new DynamicFormGroup(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          label: 'label',
+        },
+        children: [],
+      } as DynamicFormGroupDefinition,
+      {} as DynamicFormFieldType,
+    );
     component.field = formGroup;
 
     fixture.detectChanges();

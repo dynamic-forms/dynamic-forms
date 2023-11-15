@@ -1,6 +1,6 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormIconConfig, DynamicFormIconConfigs, DYNAMIC_FORM_ICON_CONFIGS } from './dynamic-form-icon-config';
+import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
 import { DynamicFormIconModule } from './dynamic-form-icon.module';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
@@ -8,9 +8,7 @@ describe('DynamicFormIconModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormIconModule,
-        ],
+        imports: [DynamicFormIconModule],
       });
     });
 
@@ -22,9 +20,7 @@ describe('DynamicFormIconModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormIconModule,
-        ],
+        imports: [DynamicFormIconModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -34,11 +30,9 @@ describe('DynamicFormIconModule', () => {
       });
     });
 
-    it('provides DynamicFormIconService',
-      inject([DynamicFormIconService], (service: DynamicFormIconService) => {
-        expect(service).toBeTruthy();
-      }),
-    );
+    it('provides DynamicFormIconService', inject([DynamicFormIconService], (service: DynamicFormIconService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('withIcons for provided icon config', () => {
@@ -47,9 +41,7 @@ describe('DynamicFormIconModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormIconModule.withIcons(config),
-        ],
+        imports: [DynamicFormIconModule.withIcons(config)],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -59,11 +51,9 @@ describe('DynamicFormIconModule', () => {
       });
     });
 
-    it('provides DYNAMIC_FORM_ICON_CONFIGS',
-      inject([DYNAMIC_FORM_ICON_CONFIGS], (configs: DynamicFormIconConfigs) => {
-        expect(configs.length).toBe(1);
-        expect(configs[0]).toEqual(config);
-      }),
-    );
+    it('provides DYNAMIC_FORM_ICON_CONFIGS', inject([DYNAMIC_FORM_ICON_CONFIGS], (configs: DynamicFormIconConfigs) => {
+      expect(configs.length).toBe(1);
+      expect(configs[0]).toEqual(config);
+    }));
   });
 });

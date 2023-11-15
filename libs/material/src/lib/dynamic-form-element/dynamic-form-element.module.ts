@@ -3,9 +3,6 @@ import { MatDynamicFormItemsModule } from './dynamic-form-items/dynamic-form-ite
 import { MatDynamicFormModalModule } from './dynamic-form-modal/dynamic-form-modal.module';
 
 @NgModule({
-  imports: [
-    MatDynamicFormItemsModule,
-    MatDynamicFormModalModule,
-  ],
+  imports: [MatDynamicFormItemsModule, MatDynamicFormModalModule],
 })
 export class MatDynamicFormElementModule {}

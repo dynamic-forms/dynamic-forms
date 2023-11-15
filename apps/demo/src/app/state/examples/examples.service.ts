@@ -6,7 +6,10 @@ import { ExamplesMenu } from './examples.model';
 
 @Injectable()
 export class ExamplesService {
-  constructor(private store: Store, private httpClient: HttpClient) {}
+  constructor(
+    private store: Store,
+    private httpClient: HttpClient,
+  ) {}
 
   load(): void {
     this.httpClient.get<ExamplesMenu>(`./assets/examples-menu.json`).subscribe(menu => this.store.dispatch(new ExamplesInit(menu)));

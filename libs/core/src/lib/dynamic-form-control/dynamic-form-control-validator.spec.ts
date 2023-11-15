@@ -27,13 +27,14 @@ describe('DynamicFormControlValidator', () => {
 
   it('creates instance for validator definition', () => {
     const factory = (parameters: { minLength?: number; maxLength?: number }) =>
-    Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
-      ? (formControl: FormControl) => formControl.value
-          ? formControl.value.length < parameters.minLength || formControl.value.length > parameters.maxLength
-            ? { error: true }
-            : null
-          : null
-      : undefined;
+      Number.isFinite(parameters.minLength) && Number.isFinite(parameters.maxLength)
+        ? (formControl: FormControl) =>
+            formControl.value
+              ? formControl.value.length < parameters.minLength || formControl.value.length > parameters.maxLength
+                ? { error: true }
+                : null
+              : null
+        : undefined;
     const minMaxLength = {
       type: 'minMaxLength',
       parameters: {
@@ -113,7 +114,7 @@ describe('DynamicFormControlValidator', () => {
   });
 
   it('checkChanges updates validatorFn and returns true if parameters changes', () => {
-    const factory = (min: number) => Number.isFinite(min) ? Validators.min(min) : undefined;
+    const factory = (min: number) => (Number.isFinite(min) ? Validators.min(min) : undefined);
     const control = { definition: {}, template: { input: { min: 0 }, validation: { min: true } } } as DynamicFormControl;
     const validator = new DynamicFormControlValidator(factory, 'min', control);
 
@@ -152,7 +153,7 @@ describe('DynamicFormControlAsyncValidator', () => {
     const unique = {
       type: 'unique',
       parameters: {
-        properties: [ 'id', 'name'],
+        properties: ['id', 'name'],
       },
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
@@ -11,7 +12,6 @@ import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-t
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
-import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryFactory } from './dynamic-form-dictionary-factory';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
@@ -51,9 +51,7 @@ export const getDynamicFormDictionary = (action: DynamicFormAction): DynamicForm
   }
 
   const parentField = field.parent as DynamicFormField;
-  return parentField && parentField.fieldClassType === 'dictionary'
-    ? parentField as DynamicFormDictionary
-    : undefined;
+  return parentField && parentField.fieldClassType === 'dictionary' ? (parentField as DynamicFormDictionary) : undefined;
 };
 
 export const dynamicFormDictionaryRemoveField = (field: DynamicFormDictionary, action: DynamicFormAction): void => {
@@ -86,17 +84,9 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
     DynamicFormFieldModule,
     DynamicFormConfigModule.withField(dynamicFormDictionaryType),
     DynamicFormValidationModule.withDictionaryValidators(dynamicFormDictionaryValidatorTypes),
-    DynamicFormActionModule.withHandlers([
-      dynamicFormDictionaryRemoveFieldHandler,
-      dynamicFormDictionaryClearFieldsHandler,
-    ]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [
-      DynamicFormBuilder,
-    ]),
+    DynamicFormActionModule.withHandlers([dynamicFormDictionaryRemoveFieldHandler, dynamicFormDictionaryClearFieldsHandler]),
+    DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
   ],
-  exports: [
-    DynamicFormConfigModule,
-    DynamicFormActionModule,
-  ],
+  exports: [DynamicFormConfigModule, DynamicFormActionModule],
 })
 export class DynamicFormDictionaryModule {}

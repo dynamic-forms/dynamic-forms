@@ -1,7 +1,7 @@
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormAction } from './dynamic-form-action';
 
 export class DynamicFormDialog extends DynamicForm {
@@ -12,7 +12,9 @@ export class DynamicFormDialog extends DynamicForm {
     this._action = action;
   }
 
-  get action(): DynamicFormAction { return this._action; }
+  get action(): DynamicFormAction {
+    return this._action;
+  }
 
   protected override getChildren(): DynamicFormElement[] {
     return this._builder.createFormElements(this, this, this.definition.children);

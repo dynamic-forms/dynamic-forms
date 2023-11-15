@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicForm } from '../../dynamic-form/dynamic-form';
+import { DynamicFormDefinition } from '../../dynamic-form/dynamic-form-definition';
+import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
 import { DynamicFormControl } from '../../dynamic-form-control/dynamic-form-control';
 import { DynamicFormFieldType } from '../../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormValidationService } from '../../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicForm } from '../../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../../dynamic-form/dynamic-form-definition';
-import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormFile, DynamicFormFileDefinition, DynamicFormFileValue } from './dynamic-form-file';
 import { DynamicFormFileBase } from './dynamic-form-file-base';
@@ -19,7 +19,10 @@ import { DynamicFormFileDirective } from './dynamic-form-file.directive';
   imports: [ReactiveFormsModule, DynamicFormFileDirective],
 })
 class DynamicFormFileTestComponent extends DynamicFormFileBase {
-  constructor(protected override builder: DynamicFormBuilder, protected override validationService: DynamicFormValidationService) {
+  constructor(
+    protected override builder: DynamicFormBuilder,
+    protected override validationService: DynamicFormValidationService,
+  ) {
     super(builder, validationService);
   }
 
@@ -38,7 +41,7 @@ describe('DynamicFormFileBase', () => {
     uploadAction = {} as DynamicFormAction;
 
     builder = createDynamicFormBuilderSpy();
-    builder.getDefinition.and.callFake((definition) => definition);
+    builder.getDefinition.and.callFake(definition => definition);
     builder.createFormAction.and.callFake((_, __, definition) => {
       (uploadAction as any).definition = definition;
       return uploadAction;
@@ -59,18 +62,24 @@ describe('DynamicFormFileBase', () => {
     });
 
     const form = new DynamicForm(builder, { key: 'root', children: [] } as DynamicFormDefinition, {});
-    const field = new DynamicFormControl<DynamicFormFileValue, DynamicFormFile>(builder, form, form, {
-      id: 'id',
-      key: 'key',
-      index: 1,
-      template: {
-        input: {
-          type: 'file',
+    const field = new DynamicFormControl<DynamicFormFileValue, DynamicFormFile>(
+      builder,
+      form,
+      form,
+      {
+        id: 'id',
+        key: 'key',
+        index: 1,
+        template: {
+          input: {
+            type: 'file',
+          },
+          hints: {},
+          validation: {},
         },
-        hints: {},
-        validation: {},
-      },
-    } as DynamicFormFileDefinition, {} as DynamicFormFieldType);
+      } as DynamicFormFileDefinition,
+      {} as DynamicFormFieldType,
+    );
 
     fixture = TestBed.createComponent(DynamicFormFileTestComponent);
     component = fixture.componentInstance;

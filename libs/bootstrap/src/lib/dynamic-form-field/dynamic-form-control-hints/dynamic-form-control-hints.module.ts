@@ -10,11 +10,7 @@ export const bsDynamicFormControlHintsType: DynamicFormFieldWrapperType = {
 };
 
 @NgModule({
-  imports: [
-    DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlHintsType),
-  ],
-  exports: [
-    DynamicFormConfigModule,
-  ],
+  imports: [DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlHintsType)],
+  exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormControlHintsModule {}

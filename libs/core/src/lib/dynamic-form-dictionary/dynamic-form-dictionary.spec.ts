@@ -1,10 +1,10 @@
 import { FormControl, FormRecord } from '@angular/forms';
-import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
-import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
-import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
+import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
@@ -19,7 +19,7 @@ describe('DynamicFormDictionary', () => {
   });
 
   it('creates instance', () => {
-    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} }  as DynamicFormDictionaryDefinition;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const type = { type: 'type' } as DynamicFormFieldType;
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, type);
@@ -63,7 +63,7 @@ describe('DynamicFormDictionary', () => {
   });
 
   it('sets model to default length', () => {
-    const definition = { key: 'key', template: {}, defaultKeys: [ 'value1', 'value2' ] } as DynamicFormDictionaryDefinition;
+    const definition = { key: 'key', template: {}, defaultKeys: ['value1', 'value2'] } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
@@ -71,7 +71,7 @@ describe('DynamicFormDictionary', () => {
   });
 
   it('returns expression data with id, key, index and model', () => {
-    const definition = {  id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormDictionaryDefinition;
+    const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormDictionaryDefinition;
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
@@ -172,7 +172,7 @@ describe('DynamicFormDictionary', () => {
       { key: 'item1', classType: 'field', definition: {}, control: new FormControl() },
       { key: 'item2', classType: 'field', definition: {}, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
-    const field = { key: 'item3',  classType: 'field', definition: {}, control: new FormControl() } as unknown as DynamicFormField;
+    const field = { key: 'item3', classType: 'field', definition: {}, control: new FormControl() } as unknown as DynamicFormField;
 
     spyOn(dictionary.control, 'registerControl');
     spyOn(dictionary.control, 'markAsTouched');
@@ -237,7 +237,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    builder.createFormDictionaryElements.and.returnValue([ ...fields ]);
+    builder.createFormDictionaryElements.and.returnValue([...fields]);
 
     dictionary.init();
     dictionary.removeField('key-2');

@@ -1,7 +1,14 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType, DynamicFormLibraryService,
-  DynamicFormModal, DynamicFormModalDefinition } from '@dynamic-forms/core';
+import {
+  DynamicForm,
+  DynamicFormBuilder,
+  DynamicFormElement,
+  DynamicFormElementType,
+  DynamicFormLibraryService,
+  DynamicFormModal,
+  DynamicFormModalDefinition,
+} from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
 import { BsDynamicFormModalModule } from './dynamic-form-modal.module';
 
@@ -13,9 +20,7 @@ describe('BsDynamicFormModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BsDynamicFormModalModule,
-      ],
+      imports: [BsDynamicFormModalModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -26,13 +31,19 @@ describe('BsDynamicFormModalComponent', () => {
 
     builder = {} as any;
 
-    modal = new DynamicFormModal(builder, { template: {} } as DynamicForm, {} as DynamicFormElement, {
-      template: {
-        title: 'Title',
-        minWidth: '600px',
-        maxWidth: '100%',
-      },
-    } as DynamicFormModalDefinition, {} as DynamicFormElementType);
+    modal = new DynamicFormModal(
+      builder,
+      { template: {} } as DynamicForm,
+      {} as DynamicFormElement,
+      {
+        template: {
+          title: 'Title',
+          minWidth: '600px',
+          maxWidth: '100%',
+        },
+      } as DynamicFormModalDefinition,
+      {} as DynamicFormElementType,
+    );
 
     fixture = TestBed.createComponent(BsDynamicFormModalComponent);
     component = fixture.componentInstance;

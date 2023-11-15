@@ -24,7 +24,7 @@ describe('DynamicFormFieldBase', () => {
 
   beforeEach(() => {
     const libraryService = new DynamicFormLibraryService(library);
-    const validationService = new DynamicFormValidationService(libraryService, [ validationConfig ]);
+    const validationService = new DynamicFormValidationService(libraryService, [validationConfig]);
 
     component = new DynamicFormFieldTestComponent(validationService);
   });

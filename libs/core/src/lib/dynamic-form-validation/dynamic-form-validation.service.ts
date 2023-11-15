@@ -1,7 +1,10 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
+import {
+  DYNAMIC_FORM_VALIDATION_CONFIGS,
+  DynamicFormValidationConfig,
+  DynamicFormValidationConfigs,
+} from './dynamic-form-validation-config';
 import { DynamicFormValidationErrors } from './dynamic-form-validation-errors';
 
 @Injectable()
@@ -10,7 +13,8 @@ export class DynamicFormValidationService {
 
   constructor(
     protected libraryService: DynamicFormLibraryService,
-    @Optional() @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS)
+    @Optional()
+    @Inject(DYNAMIC_FORM_VALIDATION_CONFIGS)
     private validationConfigs: DynamicFormValidationConfigs,
   ) {
     this.validationConfig = this.mergeValidationConfigs(this.validationConfigs);
@@ -57,7 +61,8 @@ export class DynamicFormValidationService {
     const libraryConfigs = this.getLibraryConfigs(configs);
     return libraryConfigs.reduce((result, config) => {
       return {
-        ...result, ...config,
+        ...result,
+        ...config,
         messages: { ...result.messages, ...config.messages },
         libraryName,
       };

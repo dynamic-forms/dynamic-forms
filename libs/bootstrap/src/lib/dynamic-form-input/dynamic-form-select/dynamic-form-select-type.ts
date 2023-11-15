@@ -5,6 +5,6 @@ import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 export const bsDynamicFormSelectType: DynamicFormInputType = {
   type: 'select',
   component: BsDynamicFormSelectComponent,
-  wrappers: [ 'hints', 'errors' ],
+  wrappers: ['hints', 'errors'],
   libraryName: bsDynamicFormLibrary.name,
 };

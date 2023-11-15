@@ -1,7 +1,11 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { dynamicFormErrorMessageTemplate, DynamicFormValidationConfig, DynamicFormValidationConfigs,
-  DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation-config';
+import {
+  DYNAMIC_FORM_VALIDATION_CONFIGS,
+  DynamicFormValidationConfig,
+  DynamicFormValidationConfigs,
+  dynamicFormErrorMessageTemplate,
+} from './dynamic-form-validation-config';
 import { DynamicFormValidationModule } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
@@ -9,9 +13,7 @@ describe('DynamicFormValidationService', () => {
   describe('without validation config', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          DynamicFormValidationModule,
-        ],
+        imports: [DynamicFormValidationModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
@@ -21,23 +23,19 @@ describe('DynamicFormValidationService', () => {
       });
     });
 
-    it('returns validation config being empty',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service.validationConfig).toEqual({
-          defaultMessage: undefined,
-          messages: {},
-          libraryName: 'test',
-        });
-      }),
-    );
+    it('returns validation config being empty', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service.validationConfig).toEqual({
+        defaultMessage: undefined,
+        messages: {},
+        libraryName: 'test',
+      });
+    }));
 
-    it('returns error message being undefined',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        const message = service.getErrorMessage({});
+    it('returns error message being undefined', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage({});
 
-        expect(message).toBeUndefined();
-      }),
-    );
+      expect(message).toBeUndefined();
+    }));
   });
 
   describe('with validation config', () => {
@@ -59,58 +57,49 @@ describe('DynamicFormValidationService', () => {
           },
           {
             provide: DYNAMIC_FORM_VALIDATION_CONFIGS,
-            useValue: [ validationConfig ],
+            useValue: [validationConfig],
           },
           DynamicFormValidationService,
         ],
       });
     });
 
-    it('returns validation config',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service.validationConfig).toEqual(validationConfig);
-      }),
-    );
+    it('returns validation config', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service.validationConfig).toEqual(validationConfig);
+    }));
 
-    it('returns message being null',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        const message = service.getErrorMessage(null);
+    it('returns message being null', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage(null);
 
-        expect(message).toBeNull();
-      }),
-    );
+      expect(message).toBeNull();
+    }));
 
-    it('returns message from error',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        const message = service.getErrorMessage({ email: { message: 'The field is not a valid email' } });
+    it('returns message from error', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage({ email: { message: 'The field is not a valid email' } });
 
-        expect(message).toEqual('The field is not a valid email');
-      }),
-    );
+      expect(message).toEqual('The field is not a valid email');
+    }));
 
-    it('returns message from error for message template',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+    it('returns message from error for message template', inject(
+      [DynamicFormValidationService],
+      (service: DynamicFormValidationService) => {
         const message = service.getErrorMessage({ maxFileSize: { filenames: 'file.txt' } });
 
         expect(message).toEqual('The files file.txt do not fit the max size');
-      }),
-    );
+      },
+    ));
 
-    it('returns message from config',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        const message = service.getErrorMessage({ required: {} });
+    it('returns message from config', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage({ required: {} });
 
-        expect(message).toEqual(validationConfig.messages.required as string);
-      }),
-    );
+      expect(message).toEqual(validationConfig.messages.required as string);
+    }));
 
-    it('returns default message from config',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        const message = service.getErrorMessage({});
+    it('returns default message from config', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage({});
 
-        expect(message).toEqual(validationConfig.defaultMessage);
-      }),
-    );
+      expect(message).toEqual(validationConfig.defaultMessage);
+    }));
   });
 
   describe('with validation configs', () => {
@@ -149,7 +138,7 @@ describe('DynamicFormValidationService', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({
               name: 'test',
-              references: [ 'core' ],
+              references: ['core'],
             }),
           },
           {
@@ -161,18 +150,16 @@ describe('DynamicFormValidationService', () => {
       });
     });
 
-    it('returns validation config being empty',
-      inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
-        expect(service.validationConfig).toEqual({
-          defaultMessage: 'messageTest',
-          messages: {
-            required: 'requiredTest',
-            pattern: 'patternCore',
-            maxLength: 'maxLengthTest',
-          },
-          libraryName: 'test',
-        });
-      }),
-    );
+    it('returns validation config being empty', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      expect(service.validationConfig).toEqual({
+        defaultMessage: 'messageTest',
+        messages: {
+          required: 'requiredTest',
+          pattern: 'patternCore',
+          maxLength: 'maxLengthTest',
+        },
+        libraryName: 'test',
+      });
+    }));
   });
 });

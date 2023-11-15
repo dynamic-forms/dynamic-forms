@@ -1,16 +1,26 @@
 /* eslint-disable @angular-eslint/no-conflicting-lifecycle */
-import {
-  Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
+import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { FormGroupBase } from '../dynamic-form-field/dynamic-form-field-control';
 import { DynamicFormValidationErrors } from '../dynamic-form-validation/dynamic-form-validation-errors';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormSubmit } from './dynamic-form-submit';
@@ -24,10 +34,9 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   templateUrl: './dynamic-form.component.html',
   imports: [CommonModule, ReactiveFormsModule, DynamicFormElementsComponent],
 })
-export class DynamicFormComponent<
-  Value extends { [key: string]: any } = any, Model extends Value = Value
-> implements OnInit, OnChanges, OnDestroy, DoCheck {
-
+export class DynamicFormComponent<Value extends { [key: string]: any } = any, Model extends Value = Value>
+  implements OnInit, OnChanges, OnDestroy, DoCheck
+{
   private _form: DynamicForm<Value, Model>;
   private _formSubmit: Subscription;
   private _formValueChanges: Subscription;
@@ -43,20 +52,45 @@ export class DynamicFormComponent<
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
 
-  get value(): any { return this._form.value; }
+  get value(): any {
+    return this._form.value;
+  }
 
-  get form(): DynamicForm<Value, Model> { return this._form; }
-  get formGroup(): FormGroupBase<Value> { return this._form.control; }
+  get form(): DynamicForm<Value, Model> {
+    return this._form;
+  }
 
-  get template(): DynamicFormTemplate { return this._form.template; }
+  get formGroup(): FormGroupBase<Value> {
+    return this._form.control;
+  }
 
-  get children(): DynamicFormElement[] { return this._form.children; }
-  get headerActions(): DynamicFormAction[] { return this._form.headerActions; }
-  get footerActions(): DynamicFormAction[] { return this._form.footerActions; }
+  get template(): DynamicFormTemplate {
+    return this._form.template;
+  }
 
-  get errors(): DynamicFormValidationErrors { return this.form.errors; }
-  get hasErrors(): boolean { return this.form.hasErrors; }
-  get showErrors(): boolean { return this.form.showErrors; }
+  get children(): DynamicFormElement[] {
+    return this._form.children;
+  }
+
+  get headerActions(): DynamicFormAction[] {
+    return this._form.headerActions;
+  }
+
+  get footerActions(): DynamicFormAction[] {
+    return this._form.footerActions;
+  }
+
+  get errors(): DynamicFormValidationErrors {
+    return this.form.errors;
+  }
+
+  get hasErrors(): boolean {
+    return this.form.hasErrors;
+  }
+
+  get showErrors(): boolean {
+    return this.form.showErrors;
+  }
 
   get errorMessage(): string {
     return this.validationService.getErrorMessage(this.errors);
@@ -106,10 +140,10 @@ export class DynamicFormComponent<
   }
 
   private initForm(): void {
-    this.model = this.model || {} as Model;
+    this.model = this.model || ({} as Model);
     this._form = this.formBuilder.initForm<Value, Model>(this.definition, this.model);
     this._formSubmit = this._form.submit$.subscribe(() => this.submit());
-    this._formValueChanges = this.formGroup.valueChanges.subscribe((value) => this.valueChange.emit(value));
+    this._formValueChanges = this.formGroup.valueChanges.subscribe(value => this.valueChange.emit(value));
   }
 
   private destroyForm(): void {
