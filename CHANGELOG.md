@@ -1,6 +1,6 @@
 # Changelog
 
-## 17.0.0-next.0
+## 17.0.0-next.0 (2023-12-10)
 
 ### Features
 
