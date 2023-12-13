@@ -1,5 +1,12 @@
 # Changelog
 
+## 17.0.0-rc.0 (2023-12-13)
+
+* **core:** update to angular 17
+* **bootstrap:** update to angular 17
+* **material:** update to angular and angular material 17
+* **markdown:** update to angular 17 and marked 9
+
 ## 17.0.0-next.0 (2023-12-10)
 
 ### Features
