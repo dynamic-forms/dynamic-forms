@@ -1,5 +1,9 @@
 # Changelog
 
+## 17.0.0 (2023-12-16)
+
+* Release without any changes in comparison to release candidate 17.0.0-rc.0
+
 ## 17.0.0-rc.0 (2023-12-13)
 
 * **core:** update to angular 17
