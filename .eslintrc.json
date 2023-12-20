@@ -7,7 +7,8 @@
       ],
       "plugins": [
         "@angular-eslint",
-        "import"
+        "import",
+        "unused-imports"
       ],
       "extends": [
         "eslint:recommended",
@@ -123,7 +124,8 @@
             "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
             "allowSeparatedGroups": false
           }
-        ]
+        ],
+        "unused-imports/no-unused-imports": "error"
       }
     },
     {

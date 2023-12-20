@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BootstrapFormModule } from '../../form/bootstrap/bootstrap-form.module';
+import { BootstrapFormComponent } from '../../form/bootstrap/bootstrap-form.component';
 import { FormEditorBase } from '../form-editor-base';
 import { FormEditorLoggerModule } from '../form-editor-logger.module';
 import { FormEditorComponent } from '../form-editor.component';
@@ -10,7 +10,7 @@ import { FormEditorComponent } from '../form-editor.component';
   standalone: true,
   selector: 'app-bootstrap-editor',
   templateUrl: './bootstrap-editor.component.html',
-  imports: [CommonModule, FormEditorComponent, FormEditorLoggerModule, BootstrapFormModule],
+  imports: [CommonModule, FormEditorComponent, FormEditorLoggerModule, BootstrapFormComponent],
 })
 export class BootstrapEditorComponent extends FormEditorBase {
   constructor(
