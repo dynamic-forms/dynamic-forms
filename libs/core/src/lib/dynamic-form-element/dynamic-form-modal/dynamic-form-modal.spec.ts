@@ -1,7 +1,7 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
-import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementExpression } from '../dynamic-form-element-expression';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
@@ -9,10 +9,10 @@ import { DynamicFormModal } from './dynamic-form-modal';
 import { DynamicFormModalDefinition } from './dynamic-form-modal-definition';
 
 describe('DynamicFormModal', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('creates instance', () => {
@@ -50,7 +50,7 @@ describe('DynamicFormModal', () => {
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
     const trigger = { classType: 'action', definition: {} } as DynamicFormAction;
 
-    builder.createFormAction.and.returnValues(trigger);
+    spyOn(builder, 'createFormAction').and.returnValues(trigger);
 
     modal.init();
 
@@ -64,7 +64,7 @@ describe('DynamicFormModal', () => {
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
     const children = [{ classType: 'element', definition: {} } as DynamicFormElement];
 
-    builder.createFormElements.and.returnValue(children);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
 
     modal.init();
 
@@ -77,7 +77,7 @@ describe('DynamicFormModal', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    builder.createFormElements.and.returnValue(null);
+    spyOn(builder, 'createFormElements').and.returnValue(null);
 
     modal.init();
 
@@ -92,7 +92,7 @@ describe('DynamicFormModal', () => {
     const headerActions = [{ classType: 'action', definition: {} } as DynamicFormAction];
     const footerActions = [{ classType: 'action', definition: {} } as DynamicFormAction];
 
-    builder.createFormActions.and.returnValues(headerActions, footerActions);
+    spyOn(builder, 'createFormActions').and.returnValues(headerActions, footerActions);
 
     modal.init();
 
@@ -106,7 +106,7 @@ describe('DynamicFormModal', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    builder.createFormActions.and.returnValues(null, null);
+    spyOn(builder, 'createFormActions').and.returnValues(null, null);
 
     modal.init();
 
@@ -175,7 +175,7 @@ describe('DynamicFormModal', () => {
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
     const maximized = { value: false } as DynamicFormElementExpression;
 
-    builder.createElementExpressions.and.returnValue({ maximized });
+    spyOn(builder, 'createElementExpressions').and.returnValue({ maximized });
     modal.init();
 
     expect(modal.template.maximized).toBeFalse();

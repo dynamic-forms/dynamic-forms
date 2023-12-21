@@ -1,15 +1,15 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormDialog } from './dynamic-form-dialog';
 
 describe('DynamicFormDialog', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('creates instance', () => {
@@ -32,6 +32,11 @@ describe('DynamicFormDialog', () => {
     const action = { root } as DynamicFormAction;
     const definition = { template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormDefinition;
     const dialog = new DynamicFormDialog(builder, action, definition, {});
+
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createFormElements').and.callThrough();
+    spyOn(builder, 'createGroupValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(dialog as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(dialog as any, 'getId').and.callThrough();

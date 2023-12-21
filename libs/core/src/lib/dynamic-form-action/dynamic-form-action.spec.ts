@@ -1,10 +1,10 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionExpression } from './dynamic-form-action-expression';
@@ -12,11 +12,10 @@ import { DynamicFormActionExpressions } from './dynamic-form-action-expressions'
 import { DynamicFormActionType } from './dynamic-form-action-type';
 
 describe('DynamicFormAction', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getActionId.and.returnValue('actionId');
+    builder = MockService(DynamicFormBuilder, { getActionId: () => 'actionId' });
   });
 
   it('creates instance', () => {
@@ -69,7 +68,7 @@ describe('DynamicFormAction', () => {
     } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition, {} as DynamicFormActionType);
 
-    builder.createFieldExpressions.and.returnValue(dailogExpressionData);
+    spyOn(builder, 'createFieldExpressions').and.returnValue(dailogExpressionData);
 
     action.init();
 
@@ -84,6 +83,9 @@ describe('DynamicFormAction', () => {
     const parent = {} as DynamicFormElement;
     const definition = { type: 'type', template: {} } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition, {} as DynamicFormActionType);
+
+    spyOn(builder, 'getActionId').and.callThrough();
+    spyOn(builder, 'createActionExpressions').and.callThrough();
 
     const initIdSpy = spyOn(action as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(action as any, 'getId').and.callThrough();
@@ -112,7 +114,7 @@ describe('DynamicFormAction', () => {
       disabled: { value: false } as DynamicFormActionExpression,
     } as DynamicFormActionExpressions;
 
-    builder.createActionExpressions.and.returnValue(expressions);
+    spyOn(builder, 'createActionExpressions').and.returnValue(expressions);
 
     action.init();
 

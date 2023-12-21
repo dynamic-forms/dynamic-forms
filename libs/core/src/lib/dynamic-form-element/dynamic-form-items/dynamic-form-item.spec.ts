@@ -1,15 +1,15 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
-import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormItem } from './dynamic-form-item';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 
 describe('DynamicFormItem', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('creates instance', () => {
@@ -39,7 +39,7 @@ describe('DynamicFormItem', () => {
     const item = new DynamicFormItem(builder, {} as DynamicForm, {} as DynamicFormElement, definition);
     const children = [{ classType: 'element', definition: {} } as DynamicFormElement];
 
-    builder.createFormElements.and.returnValue(children);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
 
     item.init();
 
@@ -50,7 +50,7 @@ describe('DynamicFormItem', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormItemDefinition;
     const item = new DynamicFormItem(builder, {} as DynamicForm, {} as DynamicFormElement, definition);
 
-    builder.createFormElements.and.returnValue(null);
+    spyOn(builder, 'createFormElements').and.returnValue(null);
 
     item.init();
 

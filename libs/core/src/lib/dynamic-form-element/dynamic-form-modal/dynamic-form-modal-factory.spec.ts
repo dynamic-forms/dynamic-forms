@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action';
@@ -12,16 +13,12 @@ describe('dynamicFormModalFactory', () => {
     const children = [];
     const actions = [];
     const trigger = {} as DynamicFormAction;
-    const builder = jasmine.createSpyObj<DynamicFormBuilder>('builder', [
-      'createElementExpressions',
-      'createFormElements',
-      'createFormActions',
-      'createFormAction',
-    ]);
-    builder.createElementExpressions.and.returnValue(expressions);
-    builder.createFormElements.and.returnValue(children);
-    builder.createFormActions.and.returnValue(actions);
-    builder.createFormAction.and.returnValue(trigger);
+    const builder = MockService(DynamicFormBuilder);
+
+    spyOn(builder, 'createElementExpressions').and.returnValue(expressions);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
+    spyOn(builder, 'createFormActions').and.returnValue(actions);
+    spyOn(builder, 'createFormAction').and.returnValue(trigger);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
@@ -8,7 +9,6 @@ import { DynamicFormAction } from '../../dynamic-form-action/dynamic-form-action
 import { DynamicFormControl } from '../../dynamic-form-control/dynamic-form-control';
 import { DynamicFormFieldType } from '../../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormValidationService } from '../../dynamic-form-validation/dynamic-form-validation.service';
-import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormFile, DynamicFormFileDefinition, DynamicFormFileValue } from './dynamic-form-file';
 import { DynamicFormFileBase } from './dynamic-form-file-base';
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';
@@ -35,16 +35,17 @@ describe('DynamicFormFileBase', () => {
   let fixture: ComponentFixture<DynamicFormFileTestComponent>;
   let component: DynamicFormFileTestComponent;
   let uploadAction: DynamicFormAction;
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
     uploadAction = {} as DynamicFormAction;
 
-    builder = createDynamicFormBuilderSpy();
-    builder.getDefinition.and.callFake(definition => definition);
-    builder.createFormAction.and.callFake((_, __, definition) => {
-      (uploadAction as any).definition = definition;
-      return uploadAction;
+    builder = MockService(DynamicFormBuilder, {
+      getDefinition: definition => definition,
+      createFormAction: (_, __, definition) => {
+        (uploadAction as any).definition = definition;
+        return uploadAction;
+      },
     });
 
     TestBed.configureTestingModule({

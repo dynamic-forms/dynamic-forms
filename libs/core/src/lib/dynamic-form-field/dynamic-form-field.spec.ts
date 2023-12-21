@@ -1,10 +1,10 @@
+import { MockService } from 'ng-mocks';
 import { of } from 'rxjs';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormElementExpressionData } from '../dynamic-form-element/dynamic-form-element-expression-data';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldClassType } from './dynamic-form-field-class-type';
 import { DynamicFormFieldControl } from './dynamic-form-field-control';
@@ -71,11 +71,10 @@ class DynamicFormTestField extends DynamicFormField {
 }
 
 describe('DynamicFormField', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getFieldId.and.returnValue('fieldId');
+    builder = MockService(DynamicFormBuilder, { getFieldId: () => 'fieldId' });
   });
 
   it('creates instance', () => {
@@ -283,6 +282,12 @@ describe('DynamicFormField', () => {
     const definition = { template: {}, headerActions: [], footerActions: [] } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, root, parent, definition, {} as DynamicFormFieldType);
 
+    spyOn(builder, 'getFieldId').and.callThrough();
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createControlValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
+    spyOn(builder, 'createControlEvaluators').and.callThrough();
+
     const initIdSpy = spyOn(field as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(field as any, 'getId').and.callThrough();
     const initExpressionsSpy = spyOn(field as any, 'initExpressions').and.callThrough();
@@ -320,7 +325,7 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition, {} as DynamicFormFieldType);
 
-    builder.getFieldId.and.returnValue('fieldId');
+    spyOn(builder, 'getFieldId').and.returnValue('fieldId');
 
     field.init();
 
@@ -337,7 +342,7 @@ describe('DynamicFormField', () => {
 
     spyOn(field, 'checkExpressions');
 
-    builder.createFieldExpressions.and.returnValue(fieldExpressions);
+    spyOn(builder, 'createFieldExpressions').and.returnValue(fieldExpressions);
 
     field.init();
 
@@ -355,7 +360,7 @@ describe('DynamicFormField', () => {
     const headerActions = [{}] as DynamicFormAction[];
     const footerActions = [{}] as DynamicFormAction[];
 
-    builder.createFormActions.and.returnValues(headerActions, footerActions);
+    spyOn(builder, 'createFormActions').and.returnValues(headerActions, footerActions);
 
     field.init();
 

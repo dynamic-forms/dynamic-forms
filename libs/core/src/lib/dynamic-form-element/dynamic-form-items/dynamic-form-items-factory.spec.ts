@@ -1,17 +1,17 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
-import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormItemDefinition } from './dynamic-form-item-definition';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 import { dynamicFormItemsFactory } from './dynamic-form-items-factory';
 
 describe('dynamicFormItemsFactory', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('returns DynamicFormItems', () => {
@@ -23,9 +23,9 @@ describe('dynamicFormItemsFactory', () => {
     const expressions = [{}, {}];
     const children = [];
 
-    builder.getDefinition.and.returnValue(itemDefinition);
-    builder.createElementExpressions.and.returnValues(...expressions);
-    builder.createFormElements.and.returnValue(children);
+    spyOn(builder, 'getDefinition').and.returnValue(itemDefinition);
+    spyOn(builder, 'createElementExpressions').and.returnValues(...expressions);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
 
     const items = dynamicFormItemsFactory(builder, root, parent, definition, type);
 

@@ -14,7 +14,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
-import { createDynamicFormBuilderSpy } from '../../../../../core/src/lib/testing';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormFileComponent } from './dynamic-form-file.component';
 
 @Component({ template: '' })
@@ -23,7 +23,7 @@ export class TestDynamicFormActionComponent {}
 describe('MatDynamicFormFileComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormFileComponent>;
   let component: MatDynamicFormFileComponent;
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
   let form: DynamicForm;
   let definition: DynamicFormFileDefinition;
   let formControl: DynamicFormFileControl;
@@ -31,8 +31,9 @@ describe('MatDynamicFormFileComponent', () => {
 
   beforeEach(() => {
     uploadAction = { type: { component: TestDynamicFormActionComponent } } as DynamicFormAction;
-    builder = createDynamicFormBuilderSpy();
-    builder.createFormAction.and.returnValue(uploadAction);
+    builder = MockService(DynamicFormBuilder, {
+      createFormAction: () => uploadAction,
+    });
 
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, MatDynamicFormFileComponent],
