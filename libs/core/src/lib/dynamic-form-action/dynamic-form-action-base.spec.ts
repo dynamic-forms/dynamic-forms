@@ -1,7 +1,7 @@
+import { MockService } from 'ng-mocks';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionBase } from './dynamic-form-action-base';
 import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
@@ -15,13 +15,14 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 describe('DynamicFormActionBase', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
   let actionService: DynamicFormActionService;
   let component: DynamicFormActionTestComponent;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getActionId.and.returnValue('actionId');
+    builder = MockService(DynamicFormBuilder, {
+      getActionId: () => 'actionId',
+    });
 
     const libraryService = new DynamicFormLibraryService({ name: 'test' });
     actionService = new DynamicFormActionService(libraryService, []);

@@ -1,6 +1,6 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../../dynamic-form/dynamic-form.builder';
-import { createDynamicFormBuilderSpy } from '../../../testing';
 import { DynamicFormElement } from '../../dynamic-form-element';
 import { DynamicFormElementType } from '../../dynamic-form-element-type';
 import { DynamicFormItems } from '../dynamic-form-items';
@@ -10,11 +10,11 @@ import { DynamicFormAccordionBase } from './dynamic-form-accordion-base';
 class DynamicFormAccordionTestComponent extends DynamicFormAccordionBase {}
 
 describe('DynamicFormAccordionBase', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
   let component: DynamicFormAccordionTestComponent;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;

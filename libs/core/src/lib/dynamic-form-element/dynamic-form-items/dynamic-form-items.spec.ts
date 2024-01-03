@@ -1,17 +1,18 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
-import { createDynamicFormBuilderSpy } from '../../testing';
 import { DynamicFormElement } from '../dynamic-form-element';
 import { DynamicFormElementType } from '../dynamic-form-element-type';
 import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 
 describe('DynamicFormItems', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getDefinition.and.callFake(definition => definition);
+    builder = MockService(DynamicFormBuilder, {
+      getDefinition: definition => definition,
+    });
   });
 
   it('creates instance', () => {

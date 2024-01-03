@@ -1,17 +1,18 @@
+import { MockService } from 'ng-mocks';
 import { DynamicFormColorPipe } from './dynamic-form-color.pipe';
 import { DynamicFormColorService } from './dynamic-form-color.service';
 
 describe('DynamicFormColorService', () => {
-  let service: jasmine.SpyObj<DynamicFormColorService>;
+  let service: DynamicFormColorService;
   let pipe: DynamicFormColorPipe;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormColorService>('service', ['getColor']);
+    service = MockService(DynamicFormColorService);
     pipe = new DynamicFormColorPipe(service);
   });
 
   it('calls getColor of color service and returns', () => {
-    service.getColor.and.returnValue('color');
+    spyOn(service, 'getColor').and.returnValue('color');
 
     const color = pipe.transform('color');
 
@@ -20,7 +21,7 @@ describe('DynamicFormColorService', () => {
   });
 
   it('calls getColor with default color of color service and returns', () => {
-    service.getColor.and.returnValue('defaultColor');
+    spyOn(service, 'getColor').and.returnValue('defaultColor');
 
     const color = pipe.transform(undefined, 'defaultColor');
 

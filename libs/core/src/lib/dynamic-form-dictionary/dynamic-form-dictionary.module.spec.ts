@@ -1,4 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
@@ -17,10 +18,10 @@ import {
 import { DynamicFormDictionaryModule, dynamicFormDictionaryType } from './dynamic-form-dictionary.module';
 
 describe('DynamicFormDictionaryModule', () => {
-  let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
+  let formBuilder: DynamicFormBuilder;
 
   beforeEach(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', ['createFormDictionaryField', 'createId']);
+    formBuilder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
       imports: [DynamicFormDictionaryModule],
@@ -63,8 +64,8 @@ describe('DynamicFormDictionaryModule', () => {
       const elementKey = 'key';
       const element = {} as DynamicFormField;
 
-      formBuilder.createId.and.returnValue(elementKey);
-      formBuilder.createFormDictionaryField.and.returnValue(element);
+      spyOn(formBuilder, 'createId').and.returnValue(elementKey);
+      spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
 
       spyOn(field, 'registerField');
 
@@ -85,7 +86,7 @@ describe('DynamicFormDictionaryModule', () => {
       const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
       const element = {} as DynamicFormField;
 
-      formBuilder.createFormDictionaryField.and.returnValue(element);
+      spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
 
       spyOn(field, 'registerField');
       spyOn(parent, 'closeDialog');

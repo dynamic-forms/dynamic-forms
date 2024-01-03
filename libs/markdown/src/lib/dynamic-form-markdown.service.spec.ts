@@ -2,16 +2,17 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { SecurityContext } from '@angular/core';
 import { TestBed, inject } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MockService } from 'ng-mocks';
 import { DynamicFormMarkdownModule } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownService', () => {
-  let domSanitizer: jasmine.SpyObj<DomSanitizer>;
+  let domSanitizer: DomSanitizer;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    domSanitizer = jasmine.createSpyObj<DomSanitizer>('domSanitizer', ['sanitize']);
-    domSanitizer.sanitize.and.callFake((_context, value) => value as string);
+    domSanitizer = MockService(DomSanitizer);
+    spyOn(domSanitizer, 'sanitize').and.callFake((_context, value) => value as string);
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, DynamicFormMarkdownModule],
