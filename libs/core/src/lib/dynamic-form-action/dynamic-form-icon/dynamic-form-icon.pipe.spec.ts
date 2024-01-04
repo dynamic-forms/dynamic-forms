@@ -1,17 +1,18 @@
+import { MockService } from 'ng-mocks';
 import { DynamicFormIconPipe } from './dynamic-form-icon.pipe';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconPipe', () => {
-  let service: jasmine.SpyObj<DynamicFormIconService>;
+  let service: DynamicFormIconService;
   let pipe: DynamicFormIconPipe;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormIconService>('service', ['getIcon']);
+    service = MockService(DynamicFormIconService);
     pipe = new DynamicFormIconPipe(service);
   });
 
   it('calls getIcon of icon service and returns', () => {
-    service.getIcon.and.returnValue('icon');
+    spyOn(service, 'getIcon').and.returnValue('icon');
 
     const icon = pipe.transform('icon');
 

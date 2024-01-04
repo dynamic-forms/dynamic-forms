@@ -1,8 +1,8 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldExpressionData } from '../dynamic-form-field/dynamic-form-field-expression-data';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementDefinition } from './dynamic-form-element-definition';
 import { DynamicFormElementExpression } from './dynamic-form-element-expression';
@@ -11,10 +11,10 @@ import { DynamicFormElementExpressions } from './dynamic-form-element-expression
 import { DynamicFormElementType } from './dynamic-form-element-type';
 
 describe('DynamicFormElement', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('creates instance with root', () => {
@@ -88,6 +88,9 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(builder, root, parent, definition, {} as DynamicFormElementType);
 
+    spyOn(builder, 'createElementExpressions').and.callThrough();
+    spyOn(builder, 'createFormElements').and.callThrough();
+
     const initIdSpy = spyOn(element as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(element as any, 'initExpressions').and.callThrough();
     const getExpressionsSpy = spyOn(element as any, 'getExpressions').and.callThrough();
@@ -112,7 +115,7 @@ describe('DynamicFormElement', () => {
       className: { value: 'class-name' } as DynamicFormElementExpression,
     } as DynamicFormElementExpressions;
 
-    builder.createElementExpressions.and.returnValue(expressions);
+    spyOn(builder, 'createElementExpressions').and.returnValue(expressions);
 
     element.init();
 
@@ -124,7 +127,7 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(builder, null, null, definition, {} as DynamicFormElementType);
 
-    builder.createElementExpressions.and.returnValue(null);
+    spyOn(builder, 'createElementExpressions').and.returnValue(null);
 
     element.init();
 
@@ -138,7 +141,7 @@ describe('DynamicFormElement', () => {
     const element = new DynamicFormElement(builder, root, parent, definition, {} as DynamicFormElementType);
     const children = [{ classType: 'element', definition: {} } as DynamicFormElement];
 
-    builder.createFormElements.and.returnValue(children);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
 
     element.init();
 
@@ -151,7 +154,7 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    builder.createFormElements.and.returnValue(null);
+    spyOn(builder, 'createFormElements').and.returnValue(null);
 
     element.init();
 

@@ -1,4 +1,5 @@
 import { FormControl, Validators } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
@@ -10,7 +11,6 @@ import { DynamicFormFieldExpression } from '../dynamic-form-field/dynamic-form-f
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormSelect } from '../dynamic-form-input/dynamic-form-select/dynamic-form-select';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlAddOn, DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlEvaluator } from './dynamic-form-control-evaluator';
@@ -18,11 +18,10 @@ import { dynamicFormSelectEvaluatorFn } from './dynamic-form-control-evaluator-t
 import { DynamicFormControlValidator } from './dynamic-form-control-validator';
 
 describe('DynamicFormControl', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getFieldId.and.returnValue('fieldId');
+    builder = MockService(DynamicFormBuilder, { getFieldId: () => 'fieldId' });
   });
 
   it('creates instance', () => {
@@ -160,7 +159,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createControlEvaluators.and.returnValue([]);
+    spyOn(builder, 'createControlEvaluators').and.returnValue([]);
 
     control.init();
 
@@ -173,7 +172,7 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const evaluators = [{}] as DynamicFormControlEvaluator[];
 
-    builder.createControlEvaluators.and.returnValue(evaluators);
+    spyOn(builder, 'createControlEvaluators').and.returnValue(evaluators);
 
     control.init();
 
@@ -185,7 +184,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createControlValidators.and.returnValue(null);
+    spyOn(builder, 'createControlValidators').and.returnValue(null);
 
     control.init();
 
@@ -198,7 +197,7 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const validators = [{ key: 'required', validatorFn: Validators.required }] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(validators);
+    spyOn(builder, 'createControlValidators').and.returnValue(validators);
 
     control.init();
 
@@ -210,7 +209,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createControlValidators.and.returnValue(null);
+    spyOn(builder, 'createControlValidators').and.returnValue(null);
 
     control.init();
     control.control.updateValueAndValidity();
@@ -225,7 +224,7 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const validators = [{ key: 'required', validatorFn: Validators.required }] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(validators);
+    spyOn(builder, 'createControlValidators').and.returnValue(validators);
 
     control.init();
     control.control.updateValueAndValidity();
@@ -239,7 +238,7 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: {} } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    builder.createFormControlAddOn.and.returnValues(undefined, undefined);
+    spyOn(builder, 'createFormControlAddOn').and.returnValues(undefined, undefined);
 
     control.init();
 
@@ -254,7 +253,7 @@ describe('DynamicFormControl', () => {
     const prefixAddOn = {} as DynamicFormControlAddOn;
     const suffixAddOn = {} as DynamicFormControlAddOn;
 
-    builder.createFormControlAddOn.and.returnValues(prefixAddOn, suffixAddOn);
+    spyOn(builder, 'createFormControlAddOn').and.returnValues(prefixAddOn, suffixAddOn);
 
     control.init();
 
@@ -310,8 +309,8 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const validators = [new DynamicFormControlValidator(_ => Validators.required, 'required', control)] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(validators);
-    builder.createControlEvaluators.and.returnValue([]);
+    spyOn(builder, 'createControlValidators').and.returnValue(validators);
+    spyOn(builder, 'createControlEvaluators').and.returnValue([]);
 
     control.init();
     control.control.updateValueAndValidity();
@@ -404,6 +403,12 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, parent, definition, {} as DynamicFormFieldType);
 
+    spyOn(builder, 'getFieldId').and.callThrough();
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createControlValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
+    spyOn(builder, 'createControlEvaluators').and.callThrough();
+
     const initIdSpy = spyOn(control as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(control as any, 'initExpressions').and.callThrough();
     const getExpressionsSpy = spyOn(control as any, 'getExpressions').and.callThrough();
@@ -450,7 +455,7 @@ describe('DynamicFormControl', () => {
       'input.inputType': { value: 'text' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    builder.createFieldExpressions.and.returnValue(expressions);
+    spyOn(builder, 'createFieldExpressions').and.returnValue(expressions);
 
     control.init();
 
@@ -471,7 +476,7 @@ describe('DynamicFormControl', () => {
     spyOn(control.control, 'setValue').and.callThrough();
     spyOn(control.control, 'markAsTouched');
 
-    builder.createFieldExpressions.and.returnValue(expressions);
+    spyOn(builder, 'createFieldExpressions').and.returnValue(expressions);
 
     control.init();
 
@@ -494,7 +499,7 @@ describe('DynamicFormControl', () => {
     spyOn(control.control, 'setValue').and.callThrough();
     spyOn(control.control, 'markAsTouched');
 
-    builder.createFieldExpressions.and.returnValue(expressions);
+    spyOn(builder, 'createFieldExpressions').and.returnValue(expressions);
 
     control.init();
 
@@ -512,7 +517,7 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormControlValidator[];
 
-    builder.createControlValidators.and.returnValue(validators);
+    spyOn(builder, 'createControlValidators').and.returnValue(validators);
 
     control.init();
 
@@ -526,7 +531,7 @@ describe('DynamicFormControl', () => {
     const control = new DynamicFormControl(builder, root, root, definition, type);
     const evaluators = [{}] as DynamicFormControlEvaluator[];
 
-    builder.createControlEvaluators.and.returnValue(evaluators);
+    spyOn(builder, 'createControlEvaluators').and.returnValue(evaluators);
 
     control.init();
 
@@ -561,7 +566,7 @@ describe('DynamicFormControl', () => {
       const control = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, root, root, definition, type);
       const evaluators = [{ enabled: true, func: dynamicFormSelectEvaluatorFn }] as DynamicFormControlEvaluator[];
 
-      builder.createControlEvaluators.and.returnValue(evaluators);
+      spyOn(builder, 'createControlEvaluators').and.returnValue(evaluators);
 
       control.init();
 

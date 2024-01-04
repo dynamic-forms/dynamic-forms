@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { of } from 'rxjs';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
@@ -8,14 +9,14 @@ import { DynamicFormMarkdownComponent } from './dynamic-form-markdown.component'
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownComponent', () => {
-  let service: jasmine.SpyObj<DynamicFormMarkdownService>;
+  let service: DynamicFormMarkdownService;
   let builder: DynamicFormBuilder;
   let fixture: ComponentFixture<DynamicFormMarkdownComponent>;
   let component: DynamicFormMarkdownComponent;
   let element: DynamicFormElement<DynamicFormMarkdownTemplate, DynamicFormMarkdownDefinition>;
 
   beforeEach(() => {
-    service = jasmine.createSpyObj<DynamicFormMarkdownService>('service', ['compile', 'compileFromSource']);
+    service = MockService(DynamicFormMarkdownService);
     builder = {} as any;
 
     TestBed.configureTestingModule({
@@ -38,8 +39,6 @@ describe('DynamicFormMarkdownComponent', () => {
     fixture = TestBed.createComponent(DynamicFormMarkdownComponent);
     component = fixture.componentInstance;
     component.element = element;
-
-    fixture.detectChanges();
   });
 
   it('creates component', () => {
@@ -47,7 +46,9 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template', () => {
-    service.compile.and.returnValue(undefined);
+    spyOn(service, 'compile').and.returnValue(undefined);
+
+    fixture.detectChanges();
 
     const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
     const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
@@ -58,7 +59,7 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template for markdown', () => {
-    service.compile.and.returnValue('<h1>Title</h1>');
+    spyOn(service, 'compile').and.returnValue('<h1>Title</h1>');
 
     component.element.template.markdown = '# Title';
 
@@ -73,7 +74,7 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template for markdown source', waitForAsync(() => {
-    service.compileFromSource.and.returnValue(of('<h1>Title</h1>'));
+    spyOn(service, 'compileFromSource').and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.source = '/assets/README.md';
 

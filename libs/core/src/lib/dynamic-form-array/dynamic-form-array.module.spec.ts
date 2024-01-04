@@ -1,4 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { MockService } from 'ng-mocks';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-action.service';
@@ -21,10 +22,10 @@ import {
 } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
-  let formBuilder: jasmine.SpyObj<DynamicFormBuilder>;
+  let formBuilder: DynamicFormBuilder;
 
   beforeEach(() => {
-    formBuilder = jasmine.createSpyObj<DynamicFormBuilder>('DynamicFormBuilder', ['createFormArrayField']);
+    formBuilder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
       imports: [DynamicFormArrayModule],
@@ -84,7 +85,7 @@ describe('DynamicFormArrayModule', () => {
     const field = { pushField: (_elem: DynamicFormField) => {}, length: 0 } as DynamicFormArray;
     const element = {} as DynamicFormField;
 
-    formBuilder.createFormArrayField.and.returnValue(element);
+    spyOn(formBuilder, 'createFormArrayField').and.returnValue(element);
 
     spyOn(field, 'pushField');
 

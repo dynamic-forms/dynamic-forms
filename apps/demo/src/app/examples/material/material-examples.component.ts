@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { MaterialFormModule } from '../../form/material/material-form.module';
+import { MaterialFormComponent } from '../../form/material/material-form.component';
 import { FormExampleBase } from '../form-example-base';
 import { FormExampleComponent } from '../form-example.component';
 
@@ -10,7 +10,7 @@ import { FormExampleComponent } from '../form-example.component';
   standalone: true,
   selector: 'app-material-examples',
   templateUrl: './material-examples.component.html',
-  imports: [CommonModule, FormExampleComponent, MaterialFormModule],
+  imports: [CommonModule, FormExampleComponent, MaterialFormComponent],
 })
 export class MaterialExamplesComponent extends FormExampleBase {
   constructor(

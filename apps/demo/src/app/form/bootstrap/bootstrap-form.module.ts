@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
@@ -6,11 +5,9 @@ import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
 import { FormSubmitDialogModule } from '../form-submit-dialog.module';
-import { BootstrapFormComponent } from './bootstrap-form.component';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormSubmitDialogModule,
     DynamicFormIconModule.withIcons({
       icons: {
@@ -43,7 +40,5 @@ import { BootstrapFormComponent } from './bootstrap-form.component';
       idBuilder: { createId: () => v4() },
     }),
   ],
-  declarations: [BootstrapFormComponent],
-  exports: [BootstrapFormComponent],
 })
 export class BootstrapFormModule {}

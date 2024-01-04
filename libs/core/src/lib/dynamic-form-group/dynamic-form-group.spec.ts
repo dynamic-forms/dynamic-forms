@@ -1,21 +1,20 @@
 import { FormControl, FormGroup } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 describe('DynamicFormGroup', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getFieldId.and.returnValue('fieldId');
+    builder = MockService(DynamicFormBuilder, { getFieldId: () => 'fieldId' });
   });
 
   it('creates instance', () => {
@@ -67,6 +66,12 @@ describe('DynamicFormGroup', () => {
     const parent = {} as DynamicFormElement;
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, root, parent, definition, {} as DynamicFormFieldType);
+
+    spyOn(builder, 'getFieldId').and.callThrough();
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createFormElements').and.callThrough();
+    spyOn(builder, 'createGroupValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(group as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(group as any, 'initExpressions').and.callThrough();
@@ -133,7 +138,7 @@ describe('DynamicFormGroup', () => {
       children[2].children[3],
     ] as DynamicFormField[];
 
-    builder.createFormElements.and.returnValue(children);
+    spyOn(builder, 'createFormElements').and.returnValue(children);
 
     group.init();
 
@@ -146,7 +151,7 @@ describe('DynamicFormGroup', () => {
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    builder.createFormElements.and.returnValue(null);
+    spyOn(builder, 'createFormElements').and.returnValue(null);
 
     group.init();
 
@@ -160,7 +165,7 @@ describe('DynamicFormGroup', () => {
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormGroupValidator[];
 
-    builder.createGroupValidators.and.returnValue(validators);
+    spyOn(builder, 'createGroupValidators').and.returnValue(validators);
 
     group.init();
 
@@ -179,7 +184,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.check();
@@ -217,7 +222,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.destroy();
@@ -238,7 +243,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.reset();
@@ -259,7 +264,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetEmpty');
     spyOn(fields[1], 'resetEmpty');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetEmpty();
@@ -281,7 +286,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetDefault();
@@ -302,7 +307,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'resetDefault');
     spyOn(fields[1], 'resetDefault');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetDefault();
@@ -323,7 +328,7 @@ describe('DynamicFormGroup', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    builder.createFormElements.and.returnValue(fields);
+    spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.validate();

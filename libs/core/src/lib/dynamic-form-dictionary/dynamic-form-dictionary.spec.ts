@@ -1,21 +1,20 @@
 import { FormControl, FormRecord } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryValidator } from './dynamic-form-dictionary-validator';
 
 describe('DynamicFormDictionary', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getFieldId.and.returnValue('fieldId');
+    builder = MockService(DynamicFormBuilder, { getFieldId: () => 'fieldId' });
   });
 
   it('creates instance', () => {
@@ -88,6 +87,12 @@ describe('DynamicFormDictionary', () => {
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormDictionaryDefinition;
     const dictionary = new DynamicFormDictionary(builder, root, parent, definition, {} as DynamicFormFieldType);
 
+    spyOn(builder, 'getFieldId').and.callThrough();
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createFormDictionaryElements').and.callThrough();
+    spyOn(builder, 'createDictionaryValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
+
     const initIdSpy = spyOn(dictionary as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(dictionary as any, 'initExpressions').and.callThrough();
     const getExpressionsSpy = spyOn(dictionary as any, 'getExpressions').and.callThrough();
@@ -130,7 +135,7 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
 
@@ -143,7 +148,7 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    builder.createFormDictionaryElements.and.returnValue(null);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(null);
 
     dictionary.init();
 
@@ -157,7 +162,7 @@ describe('DynamicFormDictionary', () => {
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormDictionaryValidator[];
 
-    builder.createDictionaryValidators.and.returnValue(validators);
+    spyOn(builder, 'createDictionaryValidators').and.returnValue(validators);
 
     dictionary.init();
 
@@ -177,7 +182,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(dictionary.control, 'registerControl');
     spyOn(dictionary.control, 'markAsTouched');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.registerField(field);
@@ -205,7 +210,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(dictionary.control, 'registerControl');
     spyOn(dictionary.control, 'markAsTouched');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.registerField(field);
@@ -237,7 +242,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    builder.createFormDictionaryElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue([...fields]);
 
     dictionary.init();
     dictionary.removeField('key-2');
@@ -285,7 +290,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.clearFields();
@@ -325,7 +330,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.check();
@@ -346,7 +351,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.destroy();
@@ -367,7 +372,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.reset();
@@ -389,7 +394,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[1], 'destroy');
     spyOn(dictionary.control, 'removeControl');
 
-    builder.createFormDictionaryElements.and.returnValues(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValues(fields);
 
     dictionary.init();
     dictionary.resetEmpty();
@@ -414,7 +419,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[1], 'destroy');
     spyOn(dictionary.control, 'removeControl');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.resetDefault();
@@ -437,7 +442,7 @@ describe('DynamicFormDictionary', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    builder.createFormDictionaryElements.and.returnValue(fields);
+    spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.validate();

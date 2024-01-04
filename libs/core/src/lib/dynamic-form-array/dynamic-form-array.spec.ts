@@ -1,21 +1,20 @@
 import { FormArray, FormControl } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { createDynamicFormBuilderSpy } from '../testing';
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayValidator } from './dynamic-form-array-validator';
 
 describe('DynamicFormArray', () => {
-  let builder: jasmine.SpyObj<DynamicFormBuilder>;
+  let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = createDynamicFormBuilderSpy();
-    builder.getFieldId.and.returnValue('fieldId');
+    builder = MockService(DynamicFormBuilder, { getFieldId: () => 'fieldId' });
   });
 
   it('creates instance', () => {
@@ -86,6 +85,12 @@ describe('DynamicFormArray', () => {
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormArrayDefinition;
     const array = new DynamicFormArray(builder, root, parent, definition, {} as DynamicFormFieldType);
 
+    spyOn(builder, 'getFieldId').and.callThrough();
+    spyOn(builder, 'createFieldExpressions').and.callThrough();
+    spyOn(builder, 'createFormArrayElements').and.callThrough();
+    spyOn(builder, 'createArrayValidators').and.callThrough();
+    spyOn(builder, 'createFormActions').and.callThrough();
+
     const initIdSpy = spyOn(array as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(array as any, 'initExpressions').and.callThrough();
     const getExpressionsSpy = spyOn(array as any, 'getExpressions').and.callThrough();
@@ -128,7 +133,7 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
 
@@ -141,7 +146,7 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    builder.createFormArrayElements.and.returnValue(null);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(null);
 
     array.init();
 
@@ -155,7 +160,7 @@ describe('DynamicFormArray', () => {
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormArrayValidator[];
 
-    builder.createArrayValidators.and.returnValue(validators);
+    spyOn(builder, 'createArrayValidators').and.returnValue(validators);
 
     array.init();
 
@@ -174,7 +179,7 @@ describe('DynamicFormArray', () => {
 
     spyOn(array.control, 'push');
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
     array.pushField(field);
@@ -201,7 +206,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
     array.popField();
@@ -251,7 +256,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[2], 'destroy');
     spyOn(fields[3], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
     array.removeField(1);
@@ -304,7 +309,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
     array.clearFields();
@@ -340,7 +345,7 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
 
@@ -364,7 +369,7 @@ describe('DynamicFormArray', () => {
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [{ classType: 'field', definition: { index: 0 }, control: new FormControl() }] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
 
@@ -389,7 +394,7 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: { index: 1 }, control: new FormControl() },
     ] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue([...fields]);
+    spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
     array.init();
 
@@ -411,7 +416,7 @@ describe('DynamicFormArray', () => {
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [{ classType: 'field', definition: { index: 0 }, control: new FormControl() }] as unknown[] as DynamicFormField[];
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
 
@@ -439,7 +444,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'check');
     spyOn(fields[1], 'check');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.check();
@@ -460,7 +465,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'destroy');
     spyOn(fields[1], 'destroy');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.destroy();
@@ -481,7 +486,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'reset');
     spyOn(fields[1], 'reset');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.reset();
@@ -503,7 +508,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[1], 'destroy');
     spyOn(array.control, 'clear');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.resetEmpty();
@@ -527,7 +532,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[1], 'destroy');
     spyOn(array.control, 'clear');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.resetDefault();
@@ -549,7 +554,7 @@ describe('DynamicFormArray', () => {
     spyOn(fields[0], 'validate');
     spyOn(fields[1], 'validate');
 
-    builder.createFormArrayElements.and.returnValue(fields);
+    spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.validate();
