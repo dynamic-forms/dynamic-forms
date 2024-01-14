@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
+  DynamicFormDatepicker,
   DynamicFormDatepickerControl,
   DynamicFormDatepickerDefinition,
   DynamicFormDefinition,
@@ -26,6 +29,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, MatDynamicFormDatepickerComponent],
       providers: [
+        provideNativeDateAdapter(),
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService({ name: 'test' }),
@@ -42,7 +46,7 @@ describe('MatDynamicFormDatepickerComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormDatepickerDefinition;
-    formControl = new DynamicFormDatepickerControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string | Date, DynamicFormDatepicker>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MockProvider } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
@@ -52,6 +53,7 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
         { libraryName: 'test', type: 'input-2', component: DynamicFormInputTwoComponent },
       ],
     },
+    MockProvider(DynamicFormBuilder, { recreateFormControl: field => field }),
     DynamicFormConfigService,
     DynamicFormValidationService,
     {
@@ -78,7 +80,7 @@ describe('DynamicFormControlComponent', () => {
     fixture = TestBed.createComponent(DynamicFormControlComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = TestBed.inject(DynamicFormBuilder);
     form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     formControl = new DynamicFormControl(
       builder,
@@ -127,6 +129,8 @@ describe('DynamicFormControlComponent', () => {
   });
 
   it('updates component template', () => {
+    spyOn(builder, 'recreateFormControl').and.callThrough();
+
     component.input.type = 'input-2';
 
     fixture.detectChanges();
@@ -139,6 +143,8 @@ describe('DynamicFormControlComponent', () => {
     expect(formControlElement).toBeTruthy();
     expect(formControlElement.className).toBe('dynamic-form-control input-2');
     expect(formInputElement).toBeTruthy();
+
+    expect(builder.recreateFormControl).toHaveBeenCalledWith(formControl, 'input-1');
   });
 
   it('sets dynamic form control to hidden', () => {

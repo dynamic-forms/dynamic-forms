@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,7 +11,8 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
   selector: 'mat-dynamic-form-icon',
   templateUrl: './dynamic-form-icon.component.html',
   imports: [
-    CommonModule,
+    NgClass,
+    NgIf,
     DynamicFormColorPipe,
     DynamicFormIconPipe,
     MatDynamicFormDialogComponent,

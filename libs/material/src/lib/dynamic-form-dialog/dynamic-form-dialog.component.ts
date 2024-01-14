@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -21,7 +21,7 @@ import { Observable, Subscription } from 'rxjs';
   standalone: true,
   selector: 'mat-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
-  imports: [CommonModule, MatDialogModule, DynamicFormElementsComponent],
+  imports: [NgClass, NgIf, MatDialogModule, DynamicFormElementsComponent],
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
   private _dialog: { config: MatDialogConfig; reference: MatDialogRef<any>; subscription: Subscription };
@@ -69,7 +69,9 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this._dialog && changes.maximized) {
-      this._dialog.reference.updateSize(this._dialog.config.width, this._dialog.config.height);
+      const width = this.getDialogWidth();
+      const height = this.getDialogHeight();
+      this._dialog.reference.updateSize(width, height);
     }
   }
 
@@ -94,14 +96,22 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
     }
   }
 
+  private getDialogWidth(): string {
+    return this.maximized ? this.maxWidth || '100%' : this.width;
+  }
+
+  private getDialogHeight(): string {
+    return this.maximized ? this.maxHeight || '100%' : this.height;
+  }
+
   private getDialogConfig(): MatDialogConfig {
     const config = new MatDialogConfig();
-    Object.defineProperty(config, 'width', { get: () => (this.maximized ? this.maxWidth || '100%' : this.width) });
-    Object.defineProperty(config, 'height', { get: () => (this.maximized ? this.maxHeight || '100%' : this.height) });
-    Object.defineProperty(config, 'minWidth', { get: () => (this.maximized ? this.maxWidth || '100%' : this.minWidth) });
-    Object.defineProperty(config, 'minHeight', { get: () => (this.maximized ? this.maxHeight || '100%' : this.minHeight) });
-    Object.defineProperty(config, 'maxWidth', { get: () => (this.maximized ? this.maxWidth || '100%' : this.maxWidth) });
-    Object.defineProperty(config, 'maxHeight', { get: () => (this.maximized ? this.maxHeight || '100%' : this.maxHeight) });
+    config.width = this.getDialogWidth();
+    config.height = this.getDialogHeight();
+    config.minWidth = this.minWidth;
+    config.minHeight = this.minHeight;
+    config.maxWidth = this.maxWidth;
+    config.maxHeight = this.maxHeight;
     return config;
   }
 }

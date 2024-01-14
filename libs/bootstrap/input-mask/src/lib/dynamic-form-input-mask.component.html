@@ -1,0 +1,21 @@
+<bs-dynamic-form-input-wrapper
+  [inputTemplate]="inputTemplate"
+  [inputId]="inputId"
+  [label]="template.label"
+  [labelFloating]="template.labelFloating"
+  [requiredMarker]="validation?.required"
+  [prefixAddOn]="prefixAddOn"
+  [suffixAddOn]="suffixAddOn"
+></bs-dynamic-form-input-wrapper>
+
+<ng-template #inputTemplate>
+  <input
+    [id]="inputId"
+    class="form-control"
+    [dynamicFormInputMask]="inputMask"
+    [placeholder]="input.placeholder || ''"
+    [readonly]="readonly"
+    [required]="validation?.required"
+    [formControl]="control"
+  />
+</ng-template>

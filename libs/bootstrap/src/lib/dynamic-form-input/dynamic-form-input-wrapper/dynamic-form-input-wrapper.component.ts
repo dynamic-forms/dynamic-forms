@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { Component, Input, TemplateRef } from '@angular/core';
 import { DynamicFormControlAddOn, DynamicFormElementComponent } from '@dynamic-forms/core';
 
@@ -6,7 +6,7 @@ import { DynamicFormControlAddOn, DynamicFormElementComponent } from '@dynamic-f
   standalone: true,
   selector: 'bs-dynamic-form-input-wrapper',
   templateUrl: './dynamic-form-input-wrapper.component.html',
-  imports: [CommonModule, DynamicFormElementComponent],
+  imports: [NgIf, NgTemplateOutlet, DynamicFormElementComponent],
 })
 export class BsDynamicFormInputWrapperComponent {
   @Input()

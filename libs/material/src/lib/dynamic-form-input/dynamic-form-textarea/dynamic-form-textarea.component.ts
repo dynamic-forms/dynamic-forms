@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +9,7 @@ import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormTextarea,
   standalone: true,
   selector: 'mat-dynamic-form-textarea',
   templateUrl: './dynamic-form-textarea.component.html',
-  imports: [CommonModule, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],
+  imports: [NgIf, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],
 })
 export class MatDynamicFormTextareaComponent extends DynamicFormInputBase<DynamicFormTextarea> {
   constructor(protected override validationService: DynamicFormValidationService) {

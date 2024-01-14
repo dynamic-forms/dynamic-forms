@@ -6,4 +6,4 @@ export interface DynamicFormNumberbox extends DynamicFormInput<number> {
 
 export type DynamicFormNumberboxDefinition = DynamicFormInputDefinition<DynamicFormNumberbox>;
 
-export class DynamicFormNumberboxControl extends DynamicFormInputControl<DynamicFormNumberbox> {}
+export type DynamicFormNumberboxControl = DynamicFormInputControl<DynamicFormNumberbox>;

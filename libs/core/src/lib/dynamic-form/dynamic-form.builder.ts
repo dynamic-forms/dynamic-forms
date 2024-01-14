@@ -31,28 +31,19 @@ import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-erro
 import { DynamicFormEvaluationBuilder } from '../dynamic-form-evaluation/dynamic-form-evaluation.builder';
 import { DynamicFormExpressionBuilder } from '../dynamic-form-expression/dynamic-form-expression.builder';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
+import { DynamicFormFieldConstructor } from '../dynamic-form-field/dynamic-form-field-constructor';
 import { DynamicFormFieldDefinition } from '../dynamic-form-field/dynamic-form-field-definition';
 import { DynamicFormFieldExpressions } from '../dynamic-form-field/dynamic-form-field-expressions';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormGroup } from '../dynamic-form-group/dynamic-form-group';
 import { DynamicFormGroupDefinition } from '../dynamic-form-group/dynamic-form-group-definition';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from '../dynamic-form-group/dynamic-form-group-validator';
+import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { cloneObject, mergeObject } from './dynamic-form-helpers';
 import { DYNAMIC_FORM_ID_BUILDER, DynamicFormIdBuilder } from './dynamic-form-id.builder';
-
-export interface DynamicFormFieldConstructor<Field extends DynamicFormField> {
-  // eslint-disable-next-line @typescript-eslint/prefer-function-type
-  new (
-    builder: DynamicFormBuilder,
-    root: DynamicForm,
-    parent: DynamicFormElement,
-    definition: DynamicFormFieldDefinition,
-    type: DynamicFormFieldType,
-  ): Field;
-}
 
 @Injectable()
 export class DynamicFormBuilder {
@@ -100,7 +91,11 @@ export class DynamicFormBuilder {
     definition: DynamicFormControlDefinition,
   ): DynamicFormControl | undefined {
     const fieldType = this.getFieldType(definition);
-    return fieldType ? this.createFormFieldForType(DynamicFormControl, root, parent, definition, fieldType) : undefined;
+    const inputType = this.getInputType(definition);
+
+    return fieldType
+      ? this.createFormFieldForType(inputType.control || DynamicFormControl, root, parent, definition, fieldType)
+      : undefined;
   }
 
   createFormGroup(root: DynamicForm, parent: DynamicFormField, definition: DynamicFormGroupDefinition): DynamicFormGroup | undefined {
@@ -114,7 +109,7 @@ export class DynamicFormBuilder {
   }
 
   createFormArrayField(field: DynamicFormArray, index: number): DynamicFormField | undefined {
-    const definitionTemplate = field.definition.definitionTemplate || {};
+    const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key: `${index}`, index };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -130,7 +125,7 @@ export class DynamicFormBuilder {
   }
 
   createFormDictionaryField(field: DynamicFormDictionary, key: string): DynamicFormField | undefined {
-    const definitionTemplate = field.definition.definitionTemplate || {};
+    const definitionTemplate = field.definition.definitionTemplate;
     const definitionBase = this.getDefinitionClone(definitionTemplate, field.root);
     const definition = { ...definitionBase, key };
     return this.createFormFieldForFactory(field.root, field, definition);
@@ -281,6 +276,23 @@ export class DynamicFormBuilder {
     }
   }
 
+  recreateFormControl<Control extends DynamicFormControl>(control: Control, inputTypePrevious: string): Control {
+    const previousInputType = this.configService.getInputType(inputTypePrevious);
+    const currentInputType = this.configService.getInputType(control.inputType);
+    if (previousInputType.control === currentInputType.control) {
+      return control;
+    }
+
+    control.destroy();
+
+    const { root, parent, definition, type, index } = control;
+    const controlNew = this.createFormFieldForType(currentInputType.control || DynamicFormControl, root, parent, definition, type);
+
+    control.parentField.children[index] = controlNew;
+
+    return controlNew as Control;
+  }
+
   getDefinition<TDefinition extends DynamicFormElementDefinition>(definition: TDefinition, root: DynamicForm): TDefinition {
     return definition.reference ? this.mergeDefinition(definition, root) : definition;
   }
@@ -371,6 +383,12 @@ export class DynamicFormBuilder {
   private getActionType(definition: DynamicFormActionDefinition): DynamicFormActionType | undefined {
     const type = definition.type ? this.configService.getActionType(definition.type) : undefined;
     return this.handleUndefined(type, DynamicFormErrorType.ActionType, () => `Action type ${definition.type} is not defined`);
+  }
+
+  private getInputType(definition: DynamicFormControlDefinition): DynamicFormInputType | undefined {
+    const inputType = definition.template?.input?.type;
+    const type = inputType ? this.configService.getInputType(inputType) : undefined;
+    return this.handleUndefined(type, DynamicFormErrorType.InputType, () => `Input type ${inputType} is not defined`);
   }
 
   private handleError<ErrorType extends DynamicFormErrorType = DynamicFormErrorType>(type: ErrorType, message: string): void {

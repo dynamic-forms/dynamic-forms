@@ -5,9 +5,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormTextbox,
   DynamicFormTextboxControl,
   DynamicFormTextboxDefinition,
   DynamicFormValidationService,
@@ -42,7 +44,7 @@ describe('MatDynamicFormTextboxComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextboxDefinition;
-    formControl = new DynamicFormTextboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string, DynamicFormTextbox>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

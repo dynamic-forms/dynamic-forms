@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormRadio,
   DynamicFormRadioControl,
   DynamicFormRadioDefinition,
   DynamicFormValidationService,
@@ -52,7 +54,7 @@ describe('MatDynamicFormRadioComponent', () => {
         },
       },
     } as DynamicFormRadioDefinition;
-    formControl = new DynamicFormRadioControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string | number, DynamicFormRadio>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormNumberbox,
   DynamicFormNumberboxControl,
   DynamicFormNumberboxDefinition,
   DynamicFormValidationService,
@@ -41,7 +43,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormNumberboxDefinition;
-    formControl = new DynamicFormNumberboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<number, DynamicFormNumberbox>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

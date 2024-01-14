@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -13,7 +13,7 @@ declare let monaco: MonacoModule;
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
   styleUrls: ['./monaco-editor.component.scss'],
-  imports: [CommonModule, MatButtonModule, MatMenuModule],
+  imports: [AsyncPipe, NgIf, MatButtonModule, MatMenuModule],
   providers: [MonacoEditorService],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {

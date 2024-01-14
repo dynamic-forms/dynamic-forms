@@ -6,4 +6,4 @@ export interface DynamicFormTextarea extends DynamicFormInput<string> {
 
 export type DynamicFormTextareaDefinition = DynamicFormInputDefinition<DynamicFormTextarea>;
 
-export class DynamicFormTextareaControl extends DynamicFormInputControl<DynamicFormTextarea> {}
+export type DynamicFormTextareaControl = DynamicFormInputControl<DynamicFormTextarea>;

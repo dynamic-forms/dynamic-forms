@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -11,7 +11,7 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
   standalone: true,
   selector: 'dynamic-form-array',
   templateUrl: './dynamic-form-array.component.html',
-  imports: [CommonModule, DynamicFormElementsComponent],
+  imports: [NgClass, NgIf, DynamicFormElementsComponent],
 })
 export class DynamicFormArrayComponent<
   Value = any,

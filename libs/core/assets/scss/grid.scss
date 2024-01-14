@@ -16,6 +16,10 @@ $dynamic-form-grid-gutter-width: 20px;
     .row {
       @include make-row();
 
+      &[hidden] {
+        display: none;
+      }
+
       *[class*=' col'], *[class^='col'] {
         flex-shrink: 0;
         width: 100%;
@@ -40,7 +44,9 @@ $dynamic-form-grid-gutter-width: 20px;
       .dynamic-form-group-children,
       .dynamic-form-array-children,
       .dynamic-form-dictionary-children {
-        display: contents;
+        &:not(.row) {
+          display: contents;
+        }
       }
 
       .dynamic-form-icon-wrapper {

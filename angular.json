@@ -5,7 +5,7 @@
   "projects": {
     "dynamic-forms-core": {
       "root": "libs/core",
-      "sourceRoot": "libs/core/src",
+      "sourceRoot": "libs/core",
       "projectType": "library",
       "prefix": "core",
       "architect": {
@@ -24,11 +24,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/core/src/test.ts",
+            "main": "libs/core/test.ts",
             "tsConfig": "libs/core/tsconfig.spec.json",
             "karmaConfig": "libs/core/karma.conf.js",
             "codeCoverageExclude": [
-              "libs/core/src/test.ts"
+              "libs/core/test.ts"
             ]
           }
         },
@@ -45,7 +45,7 @@
     },
     "dynamic-forms-bootstrap": {
       "root": "libs/bootstrap",
-      "sourceRoot": "libs/bootstrap/src",
+      "sourceRoot": "libs/bootstrap",
       "projectType": "library",
       "prefix": "bootstrap",
       "architect": {
@@ -64,11 +64,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/bootstrap/src/test.ts",
+            "main": "libs/bootstrap/test.ts",
             "tsConfig": "libs/bootstrap/tsconfig.spec.json",
             "karmaConfig": "libs/bootstrap/karma.conf.js",
             "codeCoverageExclude": [
-              "libs/bootstrap/src/test.ts"
+              "libs/bootstrap/test.ts"
             ]
           }
         },
@@ -85,7 +85,7 @@
     },
     "dynamic-forms-material": {
       "root": "libs/material",
-      "sourceRoot": "libs/material/src",
+      "sourceRoot": "libs/material",
       "projectType": "library",
       "prefix": "material",
       "architect": {
@@ -104,11 +104,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/material/src/test.ts",
+            "main": "libs/material/test.ts",
             "tsConfig": "libs/material/tsconfig.spec.json",
             "karmaConfig": "libs/material/karma.conf.js",
             "codeCoverageExclude": [
-              "libs/material/src/test.ts"
+              "libs/material/test.ts"
             ]
           }
         },
@@ -125,7 +125,7 @@
     },
     "dynamic-forms-markdown": {
       "root": "libs/markdown",
-      "sourceRoot": "libs/markdown/src",
+      "sourceRoot": "libs/markdown",
       "projectType": "library",
       "prefix": "markdown",
       "architect": {
@@ -144,11 +144,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/markdown/src/test.ts",
+            "main": "libs/markdown/test.ts",
             "tsConfig": "libs/markdown/tsconfig.spec.json",
             "karmaConfig": "libs/markdown/karma.conf.js",
             "codeCoverageExclude": [
-              "libs/markdown/src/test.ts"
+              "libs/markdown/test.ts"
             ]
           }
         },
@@ -200,7 +200,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/v17/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",

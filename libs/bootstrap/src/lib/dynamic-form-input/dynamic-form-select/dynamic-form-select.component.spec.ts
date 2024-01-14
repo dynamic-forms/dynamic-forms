@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormSelect,
   DynamicFormSelectControl,
   DynamicFormSelectDefinition,
   DynamicFormValidationService,
@@ -70,7 +72,13 @@ describe('BsDynamicFormSelectComponent', () => {
         },
       },
     } as DynamicFormSelectDefinition;
-    formControl = new DynamicFormSelectControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string | number | (string | number)[], DynamicFormSelect>(
+      builder,
+      form,
+      form,
+      definition,
+      {} as DynamicFormFieldType,
+    );
 
     component.field = formControl;
 

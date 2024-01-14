@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BootstrapFormComponent } from '../../form/bootstrap/bootstrap-form.component';
@@ -10,7 +10,7 @@ import { FormEditorComponent } from '../form-editor.component';
   standalone: true,
   selector: 'app-bootstrap-editor',
   templateUrl: './bootstrap-editor.component.html',
-  imports: [CommonModule, FormEditorComponent, FormEditorLoggerModule, BootstrapFormComponent],
+  imports: [NgIf, FormEditorComponent, FormEditorLoggerModule, BootstrapFormComponent],
 })
 export class BootstrapEditorComponent extends FormEditorBase {
   constructor(

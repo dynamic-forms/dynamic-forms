@@ -152,6 +152,7 @@ export * from './lib/dynamic-form-field/dynamic-form-field';
 export * from './lib/dynamic-form-field/dynamic-form-field-base';
 export * from './lib/dynamic-form-field/dynamic-form-field-class-type';
 export * from './lib/dynamic-form-field/dynamic-form-field-control';
+export * from './lib/dynamic-form-field/dynamic-form-field-constructor';
 export * from './lib/dynamic-form-field/dynamic-form-field-definition';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator';
 export * from './lib/dynamic-form-field/dynamic-form-field-evaluator-definition';
@@ -198,6 +199,7 @@ export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file-help
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file-validators';
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.directive';
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.module';
+
 export * from './lib/dynamic-form-input/dynamic-form-numberbox/dynamic-form-numberbox';
 export * from './lib/dynamic-form-input/dynamic-form-radio/dynamic-form-radio';
 export * from './lib/dynamic-form-input/dynamic-form-select/dynamic-form-select';

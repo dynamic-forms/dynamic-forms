@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormElement } from './dynamic-form-element';
@@ -10,7 +9,6 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
   standalone: true,
   selector: 'dynamic-form-element',
   templateUrl: './dynamic-form-element.component.html',
-  imports: [CommonModule],
 })
 export class DynamicFormElementComponent<
     Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,

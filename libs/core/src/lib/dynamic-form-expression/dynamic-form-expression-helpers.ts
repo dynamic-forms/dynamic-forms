@@ -11,12 +11,12 @@ export const assignExpressions = <Expression extends DynamicFormExpression = Dyn
     if (paths.length > 1) {
       const key = paths.splice(paths.length - 1, 1)[0];
       const obj = extendObject(template, paths);
-      Object.defineProperty(obj, key, { get: () => expressions[path].value });
+      Object.defineProperty(obj, key, { get: () => expressions[path].value, configurable: true });
     } else {
-      Object.defineProperty(template, path, { get: () => expressions[path].value });
+      Object.defineProperty(template, path, { get: () => expressions[path].value, configurable: true });
     }
   });
 };
 
 export const assignExpressionData = (data: any, expressions: { [key: string]: () => any }): void =>
-  Object.keys(expressions).forEach(key => Object.defineProperty(data, key, { get: expressions[key] }));
+  Object.keys(expressions).forEach(key => Object.defineProperty(data, key, { get: expressions[key], configurable: true }));

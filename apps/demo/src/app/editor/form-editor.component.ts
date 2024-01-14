@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 import { Component, ContentChild, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
@@ -18,7 +18,7 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
   styleUrls: ['./form-editor.component.scss'],
-  imports: [CommonModule, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
+  imports: [AsyncPipe, JsonPipe, NgIf, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
 })
 export class FormEditorComponent implements OnDestroy {
   private readonly _subscriptions = new Subscription();
