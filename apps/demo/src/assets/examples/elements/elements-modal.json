@@ -76,7 +76,7 @@
           }
         }
       ],
-      "footerActions": [ 
+      "footerActions": [
         {
           "type": "button",
           "template": {

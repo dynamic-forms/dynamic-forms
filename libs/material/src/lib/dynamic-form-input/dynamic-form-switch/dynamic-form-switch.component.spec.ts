@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormSwitch,
   DynamicFormSwitchControl,
   DynamicFormSwitchDefinition,
   DynamicFormValidationService,
@@ -41,7 +43,7 @@ describe('MatDynamicFormSwitchComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormSwitchDefinition;
-    formControl = new DynamicFormSwitchControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<boolean, DynamicFormSwitch>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

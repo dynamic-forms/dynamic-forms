@@ -25,6 +25,7 @@
     "@angular/core": "^17.0.0",
     "@angular/forms": "^17.0.0",
     "bootstrap": "^5.2.3",
+    "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {

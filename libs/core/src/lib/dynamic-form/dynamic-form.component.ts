@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-conflicting-lifecycle */
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import {
   Component,
   DoCheck,
@@ -32,7 +32,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   standalone: true,
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  imports: [CommonModule, ReactiveFormsModule, DynamicFormElementsComponent],
+  imports: [NgClass, NgIf, ReactiveFormsModule, DynamicFormElementsComponent],
 })
 export class DynamicFormComponent<Value extends { [key: string]: any } = any, Model extends Value = Value>
   implements OnInit, OnChanges, OnDestroy, DoCheck

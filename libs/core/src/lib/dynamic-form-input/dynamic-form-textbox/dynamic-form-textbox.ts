@@ -8,4 +8,4 @@ export interface DynamicFormTextbox extends DynamicFormInput<string> {
 
 export type DynamicFormTextboxDefinition = DynamicFormInputDefinition<DynamicFormTextbox>;
 
-export class DynamicFormTextboxControl extends DynamicFormInputControl<DynamicFormTextbox> {}
+export type DynamicFormTextboxControl = DynamicFormInputControl<DynamicFormTextbox>;

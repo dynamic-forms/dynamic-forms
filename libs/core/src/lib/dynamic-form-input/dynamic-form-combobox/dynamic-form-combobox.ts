@@ -7,4 +7,4 @@ export interface DynamicFormCombobox extends DynamicFormInput<string> {
 
 export type DynamicFormComboboxDefinition = DynamicFormInputDefinition<DynamicFormCombobox>;
 
-export class DynamicFormComboboxControl extends DynamicFormInputControl<DynamicFormCombobox> {}
+export type DynamicFormComboboxControl = DynamicFormInputControl<DynamicFormCombobox>;

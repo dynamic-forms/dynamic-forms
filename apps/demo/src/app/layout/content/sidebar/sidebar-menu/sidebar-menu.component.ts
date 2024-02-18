@@ -1,10 +1,10 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,7 +20,7 @@ import { SidebarMenuItem } from './sidebar-menu.model';
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatTreeModule],
+  imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTreeModule],
   providers: [CodeUrlPipe],
 })
 export class SidebarMenuComponent {

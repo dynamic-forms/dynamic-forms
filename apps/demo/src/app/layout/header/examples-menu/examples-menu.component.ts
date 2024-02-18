@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';
@@ -15,7 +14,7 @@ import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
   styleUrls: ['./examples-menu.component.scss'],
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
+  imports: [AsyncPipe, NgIf, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
 })
 export class ExamplesMenuComponent {
   @Select(ExamplesState.menuItems)

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -7,7 +7,7 @@ import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } 
   standalone: true,
   selector: 'bs-dynamic-form-radio',
   templateUrl: './dynamic-form-radio.component.html',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [NgFor, ReactiveFormsModule],
 })
 export class BsDynamicFormRadioComponent extends DynamicFormInputBase<DynamicFormRadio> {
   constructor(protected override validationService: DynamicFormValidationService) {

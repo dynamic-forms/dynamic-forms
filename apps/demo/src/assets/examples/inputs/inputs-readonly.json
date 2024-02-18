@@ -82,6 +82,21 @@
           }
         },
         {
+          "key": "inputMask",
+          "type": "control",
+          "template": {
+            "label": "Input Mask",
+            "input": {
+              "type": "input-mask",
+              "placeholder": "Enter an IP address",
+              "defaultValue": "127.0.0.1",
+              "maskOptions": {
+                "alias": "ip"
+              }
+            }
+          }
+        },
+        {
           "key": "numberbox",
           "type": "control",
           "template": {

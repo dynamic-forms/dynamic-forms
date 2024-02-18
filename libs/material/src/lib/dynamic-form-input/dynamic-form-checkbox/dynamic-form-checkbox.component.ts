@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,7 +9,7 @@ import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapp
   standalone: true,
   selector: 'mat-dynamic-form-checkbox',
   templateUrl: './dynamic-form-checkbox.component.html',
-  imports: [CommonModule, ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatCheckboxModule],
+  imports: [NgIf, ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatCheckboxModule],
 })
 export class MatDynamicFormCheckboxComponent extends DynamicFormInputBase<DynamicFormCheckbox> {
   constructor(protected override validationService: DynamicFormValidationService) {

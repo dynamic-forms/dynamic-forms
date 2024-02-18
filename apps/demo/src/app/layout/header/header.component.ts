@@ -1,10 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CONFIG, Config } from '../../state/config/config.model';
@@ -13,7 +13,7 @@ import { EditorMenuComponent } from './editor-menu/editor-menu.component';
 import { ExamplesMenuComponent } from './examples-menu/examples-menu.component';
 import { NotificationsToggleComponent } from './notifications-toggle/notifications-toggle.component';
 import { CodeUrlPipe } from './pipes/code-url.pipe';
-import { PreferencesMenuModule } from './preferences-menu/preferences-menu.module';
+import { PreferencesMenuComponent } from './preferences-menu/preferences-menu.component';
 import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.component';
 import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
 
@@ -23,8 +23,9 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [
-    CommonModule,
-    RouterModule,
+    AsyncPipe,
+    NgIf,
+    RouterLink,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
@@ -32,7 +33,7 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
     DocsMenuComponent,
     EditorMenuComponent,
     ExamplesMenuComponent,
-    PreferencesMenuModule,
+    PreferencesMenuComponent,
     NotificationsToggleComponent,
     SidebarToggleComponent,
     VersionsMenuComponent,

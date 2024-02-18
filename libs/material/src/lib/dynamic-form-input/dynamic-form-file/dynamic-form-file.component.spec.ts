@@ -7,10 +7,13 @@ import {
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
+  DynamicFormFile,
   DynamicFormFileControl,
   DynamicFormFileDefinition,
+  DynamicFormFileValue,
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
@@ -62,7 +65,13 @@ describe('MatDynamicFormFileComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormFileDefinition;
-    formControl = new DynamicFormFileControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<DynamicFormFileValue, DynamicFormFile>(
+      builder,
+      form,
+      form,
+      definition,
+      {} as DynamicFormFieldType,
+    );
 
     component.field = formControl;
 

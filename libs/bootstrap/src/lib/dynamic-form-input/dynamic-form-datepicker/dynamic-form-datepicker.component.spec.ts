@@ -4,6 +4,8 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
+  DynamicFormDatepicker,
   DynamicFormDatepickerControl,
   DynamicFormDatepickerDefinition,
   DynamicFormDefinition,
@@ -41,7 +43,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormDatepickerDefinition;
-    formControl = new DynamicFormDatepickerControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string | Date, DynamicFormDatepicker>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

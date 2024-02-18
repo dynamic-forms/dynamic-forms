@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,7 +11,7 @@ import { CONFIG, Config } from '../../state/config/config.model';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  imports: [CommonModule, MatButtonModule, MatToolbarModule],
+  imports: [AsyncPipe, NgIf, MatButtonModule, MatToolbarModule],
 })
 export class FooterComponent {
   @Select(CONFIG)

@@ -2,9 +2,11 @@
   <mat-label>{{ template.label }}</mat-label>
   <input
     matInput
+    [matDatepicker]="datepicker"
     [id]="inputId"
     [placeholder]="input.placeholder"
-    [matDatepicker]="datepicker"
+    [min]="input.min"
+    [max]="input.max"
     [readonly]="readonly"
     [required]="validation?.required"
     [formControl]="control"

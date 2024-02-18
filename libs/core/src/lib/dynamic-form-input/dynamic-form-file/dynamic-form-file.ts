@@ -37,4 +37,4 @@ export interface DynamicFormFileDefinition extends DynamicFormInputDefinition<Dy
   uploadActionDefinition?: DynamicFormActionDefinition;
 }
 
-export class DynamicFormFileControl extends DynamicFormInputControl<DynamicFormFile> {}
+export type DynamicFormFileControl = DynamicFormInputControl<DynamicFormFile>;

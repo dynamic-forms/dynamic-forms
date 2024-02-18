@@ -12,6 +12,4 @@ export type DynamicFormToggleDefinition<Value extends string | number = string |
   DynamicFormToggle<Value>
 >;
 
-export class DynamicFormToggleControl<Value extends string | number = string | number> extends DynamicFormInputControl<
-  DynamicFormToggle<Value>
-> {}
+export type DynamicFormToggleControl<Value extends string | number = string | number> = DynamicFormInputControl<DynamicFormToggle<Value>>;

@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
+import { BsDynamicFormInputMaskModule } from '@dynamic-forms/bootstrap/input-mask';
 import { DynamicFormIconModule, DynamicFormThemeModule } from '@dynamic-forms/core';
 import { DynamicFormMarkdownModule } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
 import { DynamicFormExtensionsModule } from '../dynamic-form-extensions.module';
-import { FormSubmitDialogModule } from '../form-submit-dialog.module';
+import { FormSubmitDialogComponent } from '../form-submit-dialog.component';
 
 @NgModule({
   imports: [
-    FormSubmitDialogModule,
+    FormSubmitDialogComponent,
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',
@@ -39,6 +40,7 @@ import { FormSubmitDialogModule } from '../form-submit-dialog.module';
       theme: 'bootstrap',
       idBuilder: { createId: () => v4() },
     }),
+    BsDynamicFormInputMaskModule,
   ],
 })
 export class BootstrapFormModule {}

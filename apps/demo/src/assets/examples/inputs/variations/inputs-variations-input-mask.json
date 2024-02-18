@@ -1,0 +1,198 @@
+{
+  "template": {
+    "label": "Input mask variations"
+  },
+  "children": [
+    {
+      "key": "email",
+      "type": "control",
+      "template": {
+        "label": "Email",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an email",
+          "maskOptions": {
+            "alias": "email"
+          }
+        }
+      }
+    },
+    {
+      "key": "ip",
+      "type": "control",
+      "template": {
+        "label": "IP",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an IP address",
+          "maskOptions": {
+            "alias": "ip"
+          }
+        }
+      }
+    },
+    {
+      "key": "mac",
+      "type": "control",
+      "template": {
+        "label": "MAC",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a MAC address",
+          "maskOptions": {
+            "alias": "mac"
+          }
+        }
+      }
+    },
+    {
+      "key": "ssn",
+      "type": "control",
+      "template": {
+        "label": "Social security number",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a social security number",
+          "maskOptions": {
+            "alias": "ssn"
+          }
+        }
+      }
+    },
+    {
+      "key": "url",
+      "type": "control",
+      "template": {
+        "label": "URL",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an URL",
+          "maskOptions": {
+            "alias": "url"
+          }
+        }
+      }
+    },
+    {
+      "key": "vin",
+      "type": "control",
+      "template": {
+        "label": "Vehicle identification number",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a vehicle identification number",
+          "maskOptions": {
+            "alias": "vin"
+          }
+        }
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Numeric input masks</h4>"
+      }
+    },
+    {
+      "key": "rightAlign",
+      "type": "control",
+      "template": {
+        "label": "Right align",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": false
+        }
+      }
+    },
+    {
+      "key": "decimal",
+      "type": "control",
+      "template": {
+        "label": "Decimal",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a decimal number",
+          "maskOptions": {
+            "alias": "decimal"
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "integer",
+      "type": "control",
+      "template": {
+        "label": "Integer",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an integer",
+          "maskOptions": {
+            "alias": "integer"
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "percentage",
+      "type": "control",
+      "template": {
+        "label": "Percentage",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a percentage value",
+          "maskOptions": {
+            "alias": "percentage"
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "currency",
+      "type": "control",
+      "template": {
+        "label": "Currency",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a percentage value",
+          "maskOptions": {
+            "alias": "currency",
+            "prefix": "USD "
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    }
+  ]
+}

@@ -46,7 +46,7 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template', () => {
-    spyOn(service, 'compile').and.returnValue(undefined);
+    spyOn(service, 'compile').and.returnValue(of(undefined));
 
     fixture.detectChanges();
 
@@ -59,7 +59,7 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template for markdown', () => {
-    spyOn(service, 'compile').and.returnValue('<h1>Title</h1>');
+    spyOn(service, 'compile').and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.markdown = '# Title';
 

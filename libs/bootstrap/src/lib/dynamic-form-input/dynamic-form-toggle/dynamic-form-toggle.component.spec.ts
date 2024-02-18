@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormToggle,
   DynamicFormToggleControl,
   DynamicFormToggleDefinition,
   DynamicFormValidationService,
@@ -52,7 +54,8 @@ describe('BsDynamicFormToggleComponent', () => {
         },
       },
     } as DynamicFormToggleDefinition;
-    formControl = new DynamicFormToggleControl(builder, form, form, definition, {} as DynamicFormFieldType);
+
+    formControl = new DynamicFormControl<string | number, DynamicFormToggle>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

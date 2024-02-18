@@ -15,6 +15,4 @@ export type DynamicFormSelectDefinition<Value extends string | number = string |
   DynamicFormSelect<Value>
 >;
 
-export class DynamicFormSelectControl<Value extends string | number = string | number> extends DynamicFormInputControl<
-  DynamicFormSelect<Value>
-> {}
+export type DynamicFormSelectControl<Value extends string | number = string | number> = DynamicFormInputControl<DynamicFormSelect<Value>>;

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicFormConfigModule, DynamicFormFieldWrapperType } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
@@ -11,7 +10,7 @@ export const bsDynamicFormControlLabelType: DynamicFormFieldWrapperType = {
 };
 
 @NgModule({
-  imports: [CommonModule, DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType)],
+  imports: [DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlLabelType)],
   exports: [DynamicFormConfigModule],
 })
 export class BsDynamicFormControlLabelModule {}

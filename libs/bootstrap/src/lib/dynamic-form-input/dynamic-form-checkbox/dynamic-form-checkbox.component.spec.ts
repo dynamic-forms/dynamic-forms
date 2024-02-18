@@ -3,9 +3,11 @@ import { By } from '@angular/platform-browser';
 import {
   DynamicForm,
   DynamicFormBuilder,
+  DynamicFormCheckbox,
   DynamicFormCheckboxControl,
   DynamicFormCheckboxDefinition,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
@@ -41,7 +43,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormCheckboxDefinition;
-    formControl = new DynamicFormCheckboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<boolean, DynamicFormCheckbox>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

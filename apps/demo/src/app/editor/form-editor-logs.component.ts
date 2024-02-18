@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,8 @@ import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
   templateUrl: './form-editor-logs.component.html',
   styleUrls: ['./form-editor-logs.component.scss'],
   imports: [
-    CommonModule,
+    DatePipe,
+    NgIf,
     MatButtonModule,
     MatIconModule,
     MatTableModule,
