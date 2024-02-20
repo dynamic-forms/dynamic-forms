@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -7,7 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
-  imports: [CommonModule],
+  imports: [NgIf],
 })
 export class DocsComponent {
   private _sourceUrl: string;

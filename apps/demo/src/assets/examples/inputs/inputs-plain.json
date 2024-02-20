@@ -45,6 +45,18 @@
       }
     },
     {
+      "key": "inputMask",
+      "type": "control",
+      "template": {
+        "input": {
+          "type": "input-mask",
+          "maskOptions": {
+            "alias": "ip"
+          }
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementBase } from '../dynamic-form-element-base';
 import { DynamicFormTextDefinition } from './dynamic-form-text-definition';
@@ -8,7 +8,7 @@ import { DynamicFormTextTemplate } from './dynamic-form-text-template';
   standalone: true,
   selector: 'dynamic-form-text',
   templateUrl: './dynamic-form-text.component.html',
-  imports: [CommonModule],
+  imports: [NgClass],
 })
 export class DynamicFormTextComponent<
   Template extends DynamicFormTextTemplate = DynamicFormTextTemplate,

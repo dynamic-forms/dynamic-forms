@@ -13,6 +13,4 @@ export type DynamicFormRadioDefinition<Value extends string | number = string | 
   DynamicFormRadio<Value>
 >;
 
-export class DynamicFormRadioControl<Value extends string | number = string | number> extends DynamicFormInputControl<
-  DynamicFormRadio<Value>
-> {}
+export type DynamicFormRadioControl<Value extends string | number = string | number> = DynamicFormInputControl<DynamicFormRadio<Value>>;

@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
+import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormInput } from '../dynamic-form-input/dynamic-form-input';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 import { DynamicFormControl } from './dynamic-form-control';
@@ -12,7 +13,7 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
   standalone: true,
   selector: 'dynamic-form-control',
   templateUrl: './dynamic-form-control.component.html',
-  imports: [CommonModule],
+  imports: [NgClass],
 })
 export class DynamicFormControlComponent<
     Value = any,
@@ -31,6 +32,7 @@ export class DynamicFormControlComponent<
   container: ViewContainerRef;
 
   constructor(
+    protected builder: DynamicFormBuilder,
     protected componentFactory: DynamicFormComponentFactory,
     protected override validationService: DynamicFormValidationService,
   ) {
@@ -55,6 +57,7 @@ export class DynamicFormControlComponent<
 
   private updateContainer(): void {
     this.container.clear();
+    this.field = this.builder.recreateFormControl(this.field, this._inputType) as Control;
     this.initContainer();
   }
 }

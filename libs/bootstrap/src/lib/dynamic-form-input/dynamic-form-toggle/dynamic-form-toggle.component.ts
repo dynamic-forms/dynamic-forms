@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService } from '@dynamic-forms/core';
@@ -7,7 +7,7 @@ import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService }
   standalone: true,
   selector: 'bs-dynamic-form-toggle',
   templateUrl: './dynamic-form-toggle.component.html',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [NgFor, ReactiveFormsModule],
 })
 export class BsDynamicFormToggleComponent extends DynamicFormInputBase<DynamicFormToggle> {
   constructor(protected override validationService: DynamicFormValidationService) {

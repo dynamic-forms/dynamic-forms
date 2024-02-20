@@ -6,4 +6,4 @@ export interface DynamicFormSwitch extends DynamicFormInput<boolean> {
 
 export type DynamicFormSwitchDefinition = DynamicFormInputDefinition<DynamicFormSwitch>;
 
-export class DynamicFormSwitchControl extends DynamicFormInputControl<DynamicFormSwitch> {}
+export type DynamicFormSwitchControl = DynamicFormInputControl<DynamicFormSwitch>;

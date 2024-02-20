@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { DynamicFormElementBase } from '@dynamic-forms/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DynamicFormMarkdownDefinition } from './dynamic-form-markdown-definition';
 import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
@@ -11,7 +11,7 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
   standalone: true,
   selector: 'dynamic-form-markdown',
   templateUrl: './dynamic-form-markdown.component.html',
-  imports: [CommonModule],
+  imports: [AsyncPipe, NgClass],
 })
 export class DynamicFormMarkdownComponent<
     Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
@@ -39,7 +39,7 @@ export class DynamicFormMarkdownComponent<
         switchMap(value =>
           value.source
             ? this.markdownService.compileFromSource(value.source, this.definition.options)
-            : of(this.markdownService.compile(value.markdown, this.definition.options)),
+            : this.markdownService.compile(value.markdown, this.definition.options),
         ),
       );
   }

@@ -6,4 +6,4 @@ export interface DynamicFormDatepicker extends DynamicFormInput<string | Date> {
 
 export type DynamicFormDatepickerDefinition = DynamicFormInputDefinition<DynamicFormDatepicker>;
 
-export class DynamicFormDatepickerControl extends DynamicFormInputControl<DynamicFormDatepicker> {}
+export type DynamicFormDatepickerControl = DynamicFormInputControl<DynamicFormDatepicker>;

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
@@ -6,7 +6,7 @@ import { DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dy
   standalone: true,
   selector: 'bs-dynamic-form-control-errors',
   templateUrl: './dynamic-form-control-errors.component.html',
-  imports: [CommonModule],
+  imports: [NgIf],
 })
 export class BsDynamicFormControlErrorsComponent extends DynamicFormControlWrapperBase {
   constructor(

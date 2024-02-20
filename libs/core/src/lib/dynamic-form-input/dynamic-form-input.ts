@@ -1,5 +1,6 @@
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
+import { DynamicFormFieldConstructor } from '../dynamic-form-field/dynamic-form-field-constructor';
 import { DynamicFormInputOptionItem } from './dynamic-form-input-option-item';
 
 export interface DynamicFormInput<Value = any> {
@@ -33,3 +34,8 @@ export class DynamicFormInputControl<FormInput extends DynamicFormInput> extends
   DynamicFormInputValue<FormInput>,
   FormInput
 > {}
+
+export type DynamicFormInputControlConstructor<
+  FormInput extends DynamicFormInput = DynamicFormInput,
+  InputControl extends DynamicFormInputControl<FormInput> = DynamicFormInputControl<FormInput>,
+> = DynamicFormFieldConstructor<InputControl>;

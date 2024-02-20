@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormAccordionBase, DynamicFormElementsComponent } from '@dynamic-forms/core';
 
@@ -6,7 +6,7 @@ import { DynamicFormAccordionBase, DynamicFormElementsComponent } from '@dynamic
   standalone: true,
   selector: 'bs-dynamic-form-accordion',
   templateUrl: './dynamic-form-accordion.component.html',
-  imports: [CommonModule, DynamicFormElementsComponent],
+  imports: [NgClass, NgFor, NgIf, DynamicFormElementsComponent],
 })
 export class BsDynamicFormAccordionComponent extends DynamicFormAccordionBase {
   constructor() {

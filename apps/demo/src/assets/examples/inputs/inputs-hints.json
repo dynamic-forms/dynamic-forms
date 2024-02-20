@@ -54,6 +54,23 @@
       }
     },
     {
+      "key": "inputMask",
+      "type": "control",
+      "template": {
+        "label": "Input Mask",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an IP address",
+          "maskOptions": {
+            "alias": "ip"
+          }
+        },
+        "hints": {
+          "hintStart": "Example: 127.0.0.1"
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {

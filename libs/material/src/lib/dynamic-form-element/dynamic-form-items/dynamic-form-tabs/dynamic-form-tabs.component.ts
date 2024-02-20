@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-forms/core';
@@ -7,7 +7,7 @@ import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-form
   standalone: true,
   selector: 'mat-dynamic-form-tabs',
   templateUrl: './dynamic-form-tabs.component.html',
-  imports: [CommonModule, MatTabsModule, DynamicFormElementsComponent],
+  imports: [NgClass, NgFor, MatTabsModule, DynamicFormElementsComponent],
 })
 export class MatDynamicFormTabsComponent extends DynamicFormTabsBase {
   constructor() {

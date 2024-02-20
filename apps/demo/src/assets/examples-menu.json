@@ -78,6 +78,10 @@
               "label": "File"
             },
             {
+              "id": "inputs-variations-input-mask",
+              "label": "Input Mask"
+            },
+            {
               "id": "inputs-variations-select",
               "label": "Select"
             },

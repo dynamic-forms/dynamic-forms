@@ -5,9 +5,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DynamicForm,
   DynamicFormBuilder,
+  DynamicFormCombobox,
   DynamicFormComboboxControl,
   DynamicFormComboboxDefinition,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
@@ -51,7 +53,7 @@ describe('MatDynamicFormComboboxComponent', () => {
         },
       },
     } as DynamicFormComboboxDefinition;
-    formControl = new DynamicFormComboboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string, DynamicFormCombobox>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

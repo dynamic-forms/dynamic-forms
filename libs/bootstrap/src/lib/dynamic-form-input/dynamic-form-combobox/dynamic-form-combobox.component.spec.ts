@@ -3,9 +3,11 @@ import { By } from '@angular/platform-browser';
 import {
   DynamicForm,
   DynamicFormBuilder,
+  DynamicFormCombobox,
   DynamicFormComboboxControl,
   DynamicFormComboboxDefinition,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
@@ -49,7 +51,7 @@ describe('BsDynamicFormComboboxComponent', () => {
         },
       },
     } as DynamicFormComboboxDefinition;
-    formControl = new DynamicFormComboboxControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string, DynamicFormCombobox>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

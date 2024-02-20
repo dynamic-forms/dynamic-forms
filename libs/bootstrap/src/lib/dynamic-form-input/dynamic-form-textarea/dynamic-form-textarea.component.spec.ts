@@ -4,9 +4,11 @@ import {
   DynamicForm,
   DynamicFormBuilder,
   DynamicFormConfigService,
+  DynamicFormControl,
   DynamicFormDefinition,
   DynamicFormFieldType,
   DynamicFormLibraryService,
+  DynamicFormTextarea,
   DynamicFormTextareaControl,
   DynamicFormTextareaDefinition,
   DynamicFormValidationService,
@@ -41,7 +43,7 @@ describe('BsDynamicFormTextareaComponent', () => {
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormTextareaDefinition;
-    formControl = new DynamicFormTextareaControl(builder, form, form, definition, {} as DynamicFormFieldType);
+    formControl = new DynamicFormControl<string, DynamicFormTextarea>(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;
 

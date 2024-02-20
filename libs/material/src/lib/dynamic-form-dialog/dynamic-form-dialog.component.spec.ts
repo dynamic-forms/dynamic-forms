@@ -238,7 +238,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('100%');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = false;
@@ -250,7 +250,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = true;
@@ -262,7 +262,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('100%');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
     });
   });
@@ -283,7 +283,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('100%');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = false;
@@ -295,7 +295,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('400px');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = true;
@@ -307,7 +307,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.height).toBe('100%');
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
     });
   });
@@ -326,9 +326,9 @@ describe('MatDynamicFormDialogComponent', () => {
 
       expect(overlayElement.style.width).toBe('100%');
       expect(overlayElement.style.height).toBe('100%');
-      expect(overlayElement.style.minWidth).toBe('');
-      expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('600px');
+      expect(overlayElement.style.minHeight).toBe('400px');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = false;
@@ -338,9 +338,9 @@ describe('MatDynamicFormDialogComponent', () => {
 
       expect(overlayElement.style.width).toBe('');
       expect(overlayElement.style.height).toBe('');
-      expect(overlayElement.style.minWidth).toBe('');
-      expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('600px');
+      expect(overlayElement.style.minHeight).toBe('400px');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
 
       component.maximized = true;
@@ -350,9 +350,9 @@ describe('MatDynamicFormDialogComponent', () => {
 
       expect(overlayElement.style.width).toBe('100%');
       expect(overlayElement.style.height).toBe('100%');
-      expect(overlayElement.style.minWidth).toBe('');
-      expect(overlayElement.style.minHeight).toBe('');
-      expect(overlayElement.style.maxWidth).toBe('100%');
+      expect(overlayElement.style.minWidth).toBe('600px');
+      expect(overlayElement.style.minHeight).toBe('400px');
+      expect(overlayElement.style.maxWidth).toBe('');
       expect(overlayElement.style.maxHeight).toBe('');
     });
   });
@@ -374,7 +374,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
       expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
-      expect(overlayElement.style.maxHeight).toBe('');
+      expect(overlayElement.style.maxHeight).toBe('calc(100% - 20px)');
 
       component.maximized = false;
       component.ngOnChanges({ maximized: {} as any });
@@ -386,7 +386,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
       expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
-      expect(overlayElement.style.maxHeight).toBe('');
+      expect(overlayElement.style.maxHeight).toBe('calc(100% - 20px)');
 
       component.maximized = true;
       component.ngOnChanges({ maximized: {} as any });
@@ -398,7 +398,7 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(overlayElement.style.minWidth).toBe('');
       expect(overlayElement.style.minHeight).toBe('');
       expect(overlayElement.style.maxWidth).toBe('calc(100% - 20px)');
-      expect(overlayElement.style.maxHeight).toBe('');
+      expect(overlayElement.style.maxHeight).toBe('calc(100% - 20px)');
     });
   });
 });

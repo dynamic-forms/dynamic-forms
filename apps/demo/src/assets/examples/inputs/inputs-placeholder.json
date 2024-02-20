@@ -42,6 +42,20 @@
       }
     },
     {
+      "key": "inputMask",
+      "type": "control",
+      "template": {
+        "label": "Input Mask",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an IP address",
+          "maskOptions": {
+            "alias": "ip"
+          }
+        }
+      }
+    },
+    {
       "key": "numberbox",
       "type": "control",
       "template": {

@@ -8,4 +8,4 @@ export interface DynamicFormCheckbox extends DynamicFormInput<boolean> {
 
 export type DynamicFormCheckboxDefinition = DynamicFormInputDefinition<DynamicFormCheckbox>;
 
-export class DynamicFormCheckboxControl extends DynamicFormInputControl<DynamicFormCheckbox> {}
+export type DynamicFormCheckboxControl = DynamicFormInputControl<DynamicFormCheckbox>;

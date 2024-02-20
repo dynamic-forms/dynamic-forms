@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,7 @@ import {
   standalone: true,
   selector: 'mat-dynamic-form-file',
   templateUrl: './dynamic-form-file.component.html',
-  imports: [CommonModule, ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  imports: [NgIf, ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
 })
 export class MatDynamicFormFileComponent extends DynamicFormFileBase implements OnInit {
   @ViewChild(MatInput, { static: true })
@@ -33,6 +33,7 @@ export class MatDynamicFormFileComponent extends DynamicFormFileBase implements 
 
   override ngOnInit(): void {
     super.ngOnInit();
-    Object.defineProperty(this._matInput, 'ngControl', { get: () => this._ngControl });
+    this._matInput.ngControl = this._ngControl;
+    this._matInput['_errorStateTracker'].ngControl = this._ngControl;
   }
 }
