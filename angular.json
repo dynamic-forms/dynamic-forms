@@ -202,7 +202,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "outputPath": "dist/v17/@dynamic-forms/demo",
+            "outputPath": "dist/v18/@dynamic-forms/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -239,7 +239,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v17"
+                "dist/v18"
               ]
             },
             "styles": [
@@ -312,7 +312,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v17"
+                "dist/v18"
               ]
             },
             "styles": [

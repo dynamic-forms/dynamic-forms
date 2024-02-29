@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DynamicForm, DynamicFormBuilder, DynamicFormElement, DynamicFormElementType } from '@dynamic-forms/core';
 import { MockService } from 'ng-mocks';
@@ -73,19 +73,56 @@ describe('DynamicFormMarkdownComponent', () => {
     expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
   });
 
-  it('renders component template for markdown source', waitForAsync(() => {
+  it('renders component template for markdown which has changed', () => {
+    spyOn(service, 'compile').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
+
+    component.element.template.markdown = '# Title';
+
+    fixture.detectChanges();
+
+    component.element.template.markdown = '# Title2';
+
+    fixture.detectChanges();
+
+    const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
+    const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
+
+    expect(formMarkdownElement).toBeTruthy();
+    expect(formMarkdownElement.innerHTML).toBe('<h1>Title2</h1>');
+    expect(service.compile).toHaveBeenCalledWith('# Title2', undefined);
+  });
+
+  it('renders component template for markdown source', () => {
     spyOn(service, 'compileFromSource').and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.source = '/assets/README.md';
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
-      const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
 
-      expect(formMarkdownElement).toBeTruthy();
-      expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
-      expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README.md', undefined);
-    });
-  }));
+    const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
+    const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
+
+    expect(formMarkdownElement).toBeTruthy();
+    expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
+    expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README.md', undefined);
+  });
+
+  it('renders component template for markdown source which has changed', () => {
+    spyOn(service, 'compileFromSource').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
+
+    component.element.template.source = '/assets/README.md';
+
+    fixture.detectChanges();
+
+    component.element.template.source = '/assets/README2.md';
+
+    fixture.detectChanges();
+
+    const formMarkdownDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-markdown'));
+    const formMarkdownElement = formMarkdownDebugElement.nativeElement as HTMLElement;
+
+    expect(formMarkdownElement).toBeTruthy();
+    expect(formMarkdownElement.innerHTML).toBe('<h1>Title2</h1>');
+    expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README2.md', undefined);
+  });
 });
