@@ -12,7 +12,7 @@ declare let monaco: MonacoModule;
   standalone: true,
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
-  styleUrls: ['./monaco-editor.component.scss'],
+  styleUrl: './monaco-editor.component.scss',
   imports: [AsyncPipe, NgIf, MatButtonModule, MatMenuModule],
   providers: [MonacoEditorService],
 })
@@ -31,8 +31,8 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   @Input() value: string;
   @Input() language: string;
   @Input() updateType: MonacoEditorUpdateType = MonacoEditorUpdateType.Change;
-  @Output() valueChange = new EventEmitter<string>();
-  @Output() loadingChange = new EventEmitter<boolean>();
+  @Output() readonly valueChange = new EventEmitter<string>();
+  @Output() readonly loadingChange = new EventEmitter<boolean>();
 
   constructor(private monacoEditorService: MonacoEditorService) {
     this.monacoEditorService.load();

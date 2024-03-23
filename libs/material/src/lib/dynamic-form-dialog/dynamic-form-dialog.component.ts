@@ -63,16 +63,16 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
     @Optional() @Inject(DYNAMIC_FORM_THEME) public theme: string,
   ) {}
 
-  ngOnInit(): void {
-    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => (isOpen ? this.openDialog() : this.closeDialog()));
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (this._dialog && changes.maximized) {
       const width = this.getDialogWidth();
       const height = this.getDialogHeight();
       this._dialog.reference.updateSize(width, height);
     }
+  }
+
+  ngOnInit(): void {
+    this._dialogOpenSubscription = this.isOpen$.subscribe(isOpen => (isOpen ? this.openDialog() : this.closeDialog()));
   }
 
   ngOnDestroy(): void {

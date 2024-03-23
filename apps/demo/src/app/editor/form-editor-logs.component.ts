@@ -12,7 +12,7 @@ import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
   standalone: true,
   selector: 'app-form-editor-logs',
   templateUrl: './form-editor-logs.component.html',
-  styleUrls: ['./form-editor-logs.component.scss'],
+  styleUrl: './form-editor-logs.component.scss',
   imports: [
     DatePipe,
     NgIf,

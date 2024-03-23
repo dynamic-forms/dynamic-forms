@@ -8,7 +8,7 @@ import { CodeUrlPipe } from '../pipes/code-url.pipe';
   standalone: true,
   selector: 'app-docs-menu-items',
   templateUrl: './docs-menu-items.component.html',
-  styleUrls: ['./docs-menu-items.component.scss'],
+  styleUrl: './docs-menu-items.component.scss',
   imports: [RouterLink, RouterLinkActive, MatMenuModule, CodeUrlPipe],
 })
 export class DocsMenuItemsComponent {

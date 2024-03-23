@@ -11,21 +11,21 @@ import { DynamicFormValidationModule } from './dynamic-form-validation/dynamic-f
 
 @NgModule({
   imports: [
-    DynamicFormLibraryModule,
+    DynamicFormComponent,
     DynamicFormConfigModule,
     DynamicFormErrorModule,
     DynamicFormEvaluationModule,
+    DynamicFormLibraryModule,
     DynamicFormValidationModule,
-    DynamicFormComponent,
   ],
   exports: [
-    DynamicFormLibraryModule,
-    DynamicFormErrorModule,
-    DynamicFormConfigModule,
-    DynamicFormEvaluationModule,
-    DynamicFormValidationModule,
     DynamicFormComponent,
+    DynamicFormConfigModule,
+    DynamicFormErrorModule,
+    DynamicFormEvaluationModule,
+    DynamicFormLibraryModule,
+    DynamicFormValidationModule,
   ],
-  providers: [DynamicFormBuilder, DynamicFormExpressionBuilder, DynamicFormComponentFactory],
+  providers: [DynamicFormBuilder, DynamicFormComponentFactory, DynamicFormExpressionBuilder],
 })
 export class DynamicFormsModule {}

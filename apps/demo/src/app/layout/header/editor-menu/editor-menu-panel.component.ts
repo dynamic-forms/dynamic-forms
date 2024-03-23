@@ -8,7 +8,7 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
   standalone: true,
   selector: 'app-editor-menu-panel',
   templateUrl: './editor-menu-panel.component.html',
-  styleUrls: ['./editor-menu-panel.component.scss'],
+  styleUrl: './editor-menu-panel.component.scss',
   imports: [NgFor, NgIf, RouterLink, RouterLinkActive, MatMenuModule],
 })
 export class EditorMenuPanelComponent {

@@ -11,7 +11,7 @@
       </button>
     </mat-menu>
   </div>
-  <div class="monaco-editor-container" #container></div>
-  <div class="monaco-editor-loading" *ngIf="loading$ | async">Loading ...</div>
-  <div class="monaco-editor-loading" *ngIf="fileLoading$ | async">Loading file ...</div>
+  <div #container class="monaco-editor-container"></div>
+  <div *ngIf="loading$ | async" class="monaco-editor-loading">Loading ...</div>
+  <div *ngIf="fileLoading$ | async" class="monaco-editor-loading">Loading file ...</div>
 </div>

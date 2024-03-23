@@ -6,12 +6,12 @@
   [requiredMarker]="validation?.required"
   [prefixAddOn]="prefixAddOn"
   [suffixAddOn]="suffixAddOn"
-></bs-dynamic-form-input-wrapper>
+/>
 
 <ng-template #inputTemplate>
   <input
-    [id]="inputId"
     class="form-control"
+    [id]="inputId"
     [type]="input.inputTypeForced || input.inputType"
     [placeholder]="input.placeholder || ''"
     [pattern]="input.pattern"

@@ -11,7 +11,7 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
   standalone: true,
   selector: 'app-notifications-toggle',
   templateUrl: './notifications-toggle.component.html',
-  styleUrls: ['./notifications-toggle.component.scss'],
+  styleUrl: './notifications-toggle.component.scss',
   imports: [AsyncPipe, NgIf, MatButtonModule, MatIconModule],
 })
 export class NotificationsToggleComponent {

@@ -5,7 +5,7 @@ import { DynamicFormItems } from './dynamic-form-items';
 import { DynamicFormItemsDefinition } from './dynamic-form-items-definition';
 import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
-@Directive()
+@Directive({ standalone: true })
 export abstract class DynamicFormItemsBase<
     Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
     Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,

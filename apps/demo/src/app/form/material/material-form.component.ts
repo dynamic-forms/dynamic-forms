@@ -9,8 +9,9 @@ import { MaterialFormModule } from './material-form.module';
   standalone: true,
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
-  styleUrls: ['./material-form.component.scss'],
+  styleUrl: './material-form.component.scss',
   imports: [NgIf, DynamicFormComponent, MaterialFormModule],
+  // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
   encapsulation: ViewEncapsulation.None,
 })
 export class MaterialFormComponent extends FormBase {

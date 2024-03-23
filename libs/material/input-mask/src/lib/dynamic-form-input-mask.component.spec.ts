@@ -14,7 +14,7 @@ import { DynamicFormInputMaskControl, DynamicFormInputMaskDefinition } from '@dy
 import { MockService } from 'ng-mocks';
 import { MatDynamicFormInputMaskComponent } from './dynamic-form-input-mask.component';
 
-@Component({ template: '' })
+@Component({ selector: 'mat-dynamic-form-action-test', standalone: true, template: '' })
 export class TestDynamicFormActionComponent {}
 
 describe('MatDynamicFormInputMaskComponent', () => {

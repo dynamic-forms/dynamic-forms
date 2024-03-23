@@ -6,9 +6,9 @@
           *ngFor="let item of notifications.items"
           class="notification-item"
           color="primary"
+          selected
           [removable]="true"
           (removed)="remove(item)"
-          selected
           >{{ item.title }}<mat-icon matChipRemove>cancel</mat-icon></mat-chip-option
         >
       </mat-chip-listbox>

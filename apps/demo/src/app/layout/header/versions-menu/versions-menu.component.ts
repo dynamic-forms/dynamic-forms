@@ -12,7 +12,7 @@ import { ConfigState } from '../../../state/config/config.state';
   standalone: true,
   selector: 'app-versions-menu',
   templateUrl: './versions-menu.component.html',
-  styleUrls: ['./versions-menu.component.scss'],
+  styleUrl: './versions-menu.component.scss',
   imports: [AsyncPipe, NgFor, NgIf, MatButtonModule, MatIconModule, MatMenuModule],
 })
 export class VersionsMenuComponent {

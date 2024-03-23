@@ -1,5 +1,5 @@
 <ng-container *ngIf="data$ | async as data">
   <app-form-example [docEnabled]="data.example.docId" [docSource]="doc$ | async">
-    <app-bootstrap-form #form [data]="data"></app-bootstrap-form>
+    <app-bootstrap-form #form [data]="data" />
   </app-form-example>
 </ng-container>

@@ -1,26 +1,10 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  DynamicFormConfigService,
-  DynamicFormInputBase,
-  DynamicFormLibraryService,
-  DynamicFormValidationService,
-} from '@dynamic-forms/core';
+import { DynamicFormConfigService, DynamicFormLibraryService, DynamicFormValidationService } from '@dynamic-forms/core';
 import { BsDynamicFormInputWrapperComponent } from './dynamic-form-input-wrapper.component';
-
-@Component({
-  selector: 'bs-dynamic-form-input-test',
-  template: `<div>Dynamic Input</div>`,
-})
-class DynamicFormInputTestComponent extends DynamicFormInputBase {
-  constructor(protected override validationService: DynamicFormValidationService) {
-    super(validationService);
-  }
-}
 
 @NgModule({
   imports: [BsDynamicFormInputWrapperComponent],
-  declarations: [DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,

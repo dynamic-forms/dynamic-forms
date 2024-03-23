@@ -9,8 +9,9 @@ import { BootstrapFormModule } from './bootstrap-form.module';
   standalone: true,
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
-  styleUrls: ['./bootstrap-form.component.scss'],
+  styleUrl: './bootstrap-form.component.scss',
   imports: [NgIf, DynamicFormComponent, BootstrapFormModule],
+  // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
   encapsulation: ViewEncapsulation.None,
 })
 export class BootstrapFormComponent extends FormBase {

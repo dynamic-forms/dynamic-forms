@@ -20,7 +20,7 @@ import {
 import { MockService } from 'ng-mocks';
 import { MatDynamicFormFileComponent } from './dynamic-form-file.component';
 
-@Component({ template: '' })
+@Component({ selector: 'mat-dynamic-form-action-test', standalone: true, template: '' })
 export class TestDynamicFormActionComponent {}
 
 describe('MatDynamicFormFileComponent', () => {

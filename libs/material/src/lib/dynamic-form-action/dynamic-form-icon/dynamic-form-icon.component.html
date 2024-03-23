@@ -16,9 +16,9 @@
 
   <ng-template #button>
     <button
-      [id]="id"
       mat-icon-button
       class="dynamic-form-icon"
+      [id]="id"
       [ngClass]="template.className"
       [color]="template.color | dynamicFormColor: 'primary'"
       [type]="template.type || 'button'"
@@ -50,4 +50,4 @@
   [classNameHeader]="dialogTemplate?.classNameHeader"
   [classNameFooter]="dialogTemplate?.classNameFooter"
   (escaped)="closeDialog()"
-></mat-dynamic-form-dialog>
+/>

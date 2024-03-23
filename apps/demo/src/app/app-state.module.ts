@@ -23,6 +23,6 @@ import { RoutingHandler } from './state/routing/routing.handler';
       key: [PreferencesState],
     }),
   ],
-  providers: [ConfigService, ExamplesService, ProgressService, NotificationsService, RoutingHandler],
+  providers: [ConfigService, ExamplesService, NotificationsService, ProgressService, RoutingHandler],
 })
 export class AppStateModule {}

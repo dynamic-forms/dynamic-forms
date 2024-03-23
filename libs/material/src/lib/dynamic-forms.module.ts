@@ -19,15 +19,15 @@ import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-libra
 
 @NgModule({
   imports: [
-    DynamicFormsModule,
-    DynamicFormElementModule,
-    DynamicFormControlModule,
-    DynamicFormGroupModule,
     DynamicFormArrayModule,
+    DynamicFormControlModule,
     DynamicFormDictionaryModule,
+    DynamicFormElementModule,
+    DynamicFormGroupModule,
+    DynamicFormsModule,
     DynamicFormValidationModule.withValidation(),
-    MatDynamicFormElementModule,
     MatDynamicFormActionModule,
+    MatDynamicFormElementModule,
     MatDynamicFormInputModule,
   ],
   exports: [DynamicFormsModule],

@@ -1,5 +1,5 @@
 <mat-dynamic-form-input-wrapper [disabled]="disabled" [invalid]="showErrors" [errorMessage]="showErrors ? errorMessage : null">
-  <mat-slide-toggle [id]="inputId" color="primary" [required]="validation?.required" [formControl]="control"
+  <mat-slide-toggle color="primary" [id]="inputId" [required]="validation?.required" [formControl]="control"
     >{{ template.label }}<span *ngIf="validation?.required">*</span></mat-slide-toggle
   >
 </mat-dynamic-form-input-wrapper>
