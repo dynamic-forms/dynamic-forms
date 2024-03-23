@@ -8,9 +8,9 @@ pool:
 
 variables:
 - name: branch_pattern
-  value: 17.*.x
+  value: 18.*.x
 - name: major_version_name
-  value: v17
+  value: v18
 
 steps:
 - task: Npm@1
