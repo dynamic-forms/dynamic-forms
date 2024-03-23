@@ -1,22 +1,26 @@
 {
-  "version": "17.1.0-next.0",
+  "version": "18.0.0-next.0",
   "build": "187",
   "buildUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_build?definitionId=39&_a=summary",
   "release": "17",
-  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=8&_a=releases",
+  "releaseUrl": "https://dev.azure.com/alexandergebuhr/dynamic-forms/_release?definitionId=11&_a=releases",
   "project": {
     "url": "https://dev.azure.com/alexandergebuhr/dynamic-forms"
   },
   "repository": {
     "url": "https://github.com/dynamic-forms/dynamic-forms",
-    "branch": "17.1.x",
+    "branch": "18.0.x",
     "branchPath": "tree/{{branch}}",
     "libraryPath": "libs/{{library}}",
     "commit": null
   },
   "versions": [
     {
-      "name": "17.1.0-next.0",
+      "name": "18.0.0",
+      "url": "https://dynamic-forms.azurewebsites.net/v18"
+    },
+    {
+      "name": "17.0.0",
       "url": "https://dynamic-forms.azurewebsites.net/v17"
     },
     {

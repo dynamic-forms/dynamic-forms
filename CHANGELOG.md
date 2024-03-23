@@ -1,6 +1,11 @@
 # Changelog
 
-## 17.1.0-next.0
+## 18.0.0-next.0
+
+* **core:** update to angular 17.3
+* **bootstrap:** update to angular 17.3
+* **material:** update to angular and angular material 17.3
+* **markdown:** update to angular 17.3 and marked 12
 
 ## 17.0.0 (2023-12-16)
 
