@@ -8,18 +8,18 @@
   [inputAddOn]="uploadAction"
   [prefixAddOn]="prefixAddOn"
   [suffixAddOn]="suffixAddOn"
-></bs-dynamic-form-input-wrapper>
+/>
 
 <ng-template #inputTemplate>
   <input
-    [id]="inputId"
     class="form-control"
     type="text"
+    readonly
+    [id]="inputId"
     [placeholder]="input.placeholder || ''"
     [value]="fileDirective.fileNamesAsText || ''"
     [disabled]="control.disabled"
     (blur)="control.markAsTouched()"
-    readonly
   />
   <input
     #fileDirective="dynamicFormFile"

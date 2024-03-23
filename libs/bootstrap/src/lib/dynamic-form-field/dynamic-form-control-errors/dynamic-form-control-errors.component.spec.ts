@@ -11,6 +11,7 @@ import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-erro
 import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })
@@ -22,7 +23,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [BsDynamicFormControlErrorsModule],
-  declarations: [DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,

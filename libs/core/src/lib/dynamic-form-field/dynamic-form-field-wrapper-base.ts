@@ -6,7 +6,7 @@ import { DynamicFormFieldControl } from './dynamic-form-field-control';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldTemplate } from './dynamic-form-field-template';
 
-@Directive()
+@Directive({ standalone: true })
 export abstract class DynamicFormFieldWrapperBase<
     Value = any,
     Model extends Value = Value,

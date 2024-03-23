@@ -11,7 +11,7 @@ import { NOTIFICATIONS, NotificationItem, Notifications } from '../../state/noti
   standalone: true,
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss'],
+  styleUrl: './notifications.component.scss',
   imports: [AsyncPipe, NgFor, NgIf, MatChipsModule, MatIconModule],
 })
 export class NotificationsComponent {

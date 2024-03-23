@@ -3,13 +3,13 @@
     <input
       class="btn-check"
       type="radio"
+      autocomplete="off"
       [id]="inputId + '-' + i"
       [name]="inputId"
       [formControl]="control"
       [value]="option.value"
       [attr.disabled]="control.disabled || option.disabled"
       [readonly]="readonly"
-      autocomplete="off"
     />
     <label
       class="btn btn-outline-light"

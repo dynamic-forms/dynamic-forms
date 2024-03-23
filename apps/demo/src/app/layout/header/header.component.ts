@@ -21,7 +21,7 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
   standalone: true,
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrl: './header.component.scss',
   imports: [
     AsyncPipe,
     NgIf,

@@ -17,7 +17,7 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   standalone: true,
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
-  styleUrls: ['./form-editor.component.scss'],
+  styleUrl: './form-editor.component.scss',
   imports: [AsyncPipe, JsonPipe, NgIf, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
 })
 export class FormEditorComponent implements OnDestroy {
@@ -41,7 +41,8 @@ export class FormEditorComponent implements OnDestroy {
   @ContentChild('form')
   form: FormBase;
 
-  @Output() dataChange = new EventEmitter<FormEditorData>();
+  @Output()
+  readonly dataChange = new EventEmitter<FormEditorData>();
 
   constructor(
     private store: Store,

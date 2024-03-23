@@ -1,6 +1,6 @@
 <a
   *ngIf="template.url; else button"
-  class="dynamic-form-button btn btn-{{ template.color | dynamicFormColor: 'primary' }}"
+  [class]="'dynamic-form-button btn btn-' + (template.color | dynamicFormColor: 'primary')"
   [class.disabled]="template.disabled"
   [ngClass]="template.className"
   [hidden]="template.hidden"
@@ -12,7 +12,7 @@
 <ng-template #button>
   <button
     [id]="id"
-    class="dynamic-form-button btn btn-{{ template.color | dynamicFormColor: 'primary' }}"
+    [class]="'dynamic-form-button btn btn-' + (template.color | dynamicFormColor: 'primary')"
     [ngClass]="template.className"
     [type]="template.type || 'button'"
     [disabled]="template.disabled"
@@ -39,4 +39,4 @@
   [classNameChildren]="dialogTemplate?.classNameChildren"
   [classNameHeader]="dialogTemplate?.classNameHeader"
   [classNameFooter]="dialogTemplate?.classNameFooter"
-></bs-dynamic-form-dialog>
+/>

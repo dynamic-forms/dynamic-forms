@@ -16,6 +16,7 @@ import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
 @Component({
+  standalone: true,
   selector: 'mat-dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`,
 })
@@ -26,7 +27,6 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 @NgModule({
-  declarations: [DynamicFormActionTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -36,7 +36,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
       provide: DYNAMIC_FORM_ACTION_TYPE_CONFIG,
       useValue: [{ libraryName: 'test', type: 'action', component: DynamicFormActionTestComponent }],
     },
-    DynamicFormConfigService,
+    DynamicFormComponentFactory,
     {
       provide: DynamicFormActionService,
       useValue: {},
@@ -45,7 +45,7 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
       provide: DynamicFormErrorHandler,
       useValue: { handle: () => {} },
     },
-    DynamicFormComponentFactory,
+    DynamicFormConfigService,
   ],
 })
 class DynamicFormActionComponentTestModule {}

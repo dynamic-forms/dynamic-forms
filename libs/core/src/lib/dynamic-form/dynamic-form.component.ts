@@ -43,8 +43,8 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: Model;
-  @Output() valueChange = new EventEmitter<Value>();
-  @Output() formSubmit = new EventEmitter<DynamicFormSubmit>();
+  @Output() readonly valueChange = new EventEmitter<Value>();
+  @Output() readonly formSubmit = new EventEmitter<DynamicFormSubmit>();
 
   constructor(
     protected formBuilder: DynamicFormBuilder,
@@ -96,14 +96,6 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
     return this.validationService.getErrorMessage(this.errors);
   }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-  ngDoCheck(): void {
-    this._form.check();
-  }
-
   ngOnChanges({ model, definition }: SimpleChanges): void {
     const modelChanged = model && !model.firstChange;
     const definitionChanged = definition && !definition.firstChange;
@@ -111,6 +103,14 @@ export class DynamicFormComponent<Value extends { [key: string]: any } = any, Mo
       this.destroyForm();
       this.initForm();
     }
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  ngDoCheck(): void {
+    this._form.check();
   }
 
   ngOnDestroy(): void {

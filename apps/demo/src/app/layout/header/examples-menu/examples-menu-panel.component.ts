@@ -8,7 +8,7 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
   standalone: true,
   selector: 'app-examples-menu-panel',
   templateUrl: './examples-menu-panel.component.html',
-  styleUrls: ['./examples-menu-panel.component.scss'],
+  styleUrl: './examples-menu-panel.component.scss',
   imports: [NgFor, NgIf, RouterLink, RouterLinkActive, MatMenuModule],
 })
 export class ExamplesMenuPanelComponent {

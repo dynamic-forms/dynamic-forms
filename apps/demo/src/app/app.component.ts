@@ -9,7 +9,7 @@ import { ProgressComponent } from './layout/progress/progress.component';
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   imports: [ContentComponent, FooterComponent, HeaderComponent, NotificationsComponent, ProgressComponent],
 })
 export class AppComponent {}

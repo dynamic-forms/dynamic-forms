@@ -20,17 +20,17 @@ import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-librar
 
 @NgModule({
   imports: [
-    DynamicFormsModule,
-    DynamicFormElementModule,
-    DynamicFormControlModule,
-    DynamicFormGroupModule,
-    DynamicFormArrayModule,
-    DynamicFormDictionaryModule,
-    DynamicFormValidationModule.withValidation(),
-    BsDynamicFormElementModule,
     BsDynamicFormActionModule,
-    BsDynamicFormInputModule,
+    BsDynamicFormElementModule,
     BsDynamicFormFieldWrapperModule,
+    BsDynamicFormInputModule,
+    DynamicFormArrayModule,
+    DynamicFormControlModule,
+    DynamicFormValidationModule.withValidation(),
+    DynamicFormDictionaryModule,
+    DynamicFormElementModule,
+    DynamicFormGroupModule,
+    DynamicFormsModule,
   ],
   exports: [DynamicFormsModule],
 })

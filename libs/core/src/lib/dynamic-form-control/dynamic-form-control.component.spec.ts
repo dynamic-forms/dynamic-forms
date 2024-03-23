@@ -19,6 +19,7 @@ import { DynamicFormControlComponent } from './dynamic-form-control.component';
 import { DynamicFormControlModule } from './dynamic-form-control.module';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-input-1',
   template: `<div class="dynamic-form-input-1"></div>`,
 })
@@ -29,6 +30,7 @@ class DynamicFormInputOneComponent extends DynamicFormInputBase {
 }
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-input-2',
   template: `<div class="dynamic-form-input-2"></div>`,
 })
@@ -40,7 +42,6 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [DynamicFormControlModule],
-  declarations: [DynamicFormInputOneComponent, DynamicFormInputTwoComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,
@@ -54,13 +55,13 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
       ],
     },
     MockProvider(DynamicFormBuilder, { recreateFormControl: field => field }),
+    DynamicFormComponentFactory,
     DynamicFormConfigService,
-    DynamicFormValidationService,
     {
       provide: DynamicFormErrorHandler,
       useValue: { handle: () => {} },
     },
-    DynamicFormComponentFactory,
+    DynamicFormValidationService,
   ],
 })
 class DynamicFormControlComponentTestModule {}

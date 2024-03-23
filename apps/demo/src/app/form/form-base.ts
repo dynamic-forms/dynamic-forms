@@ -4,7 +4,7 @@ import { DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core
 import { FormData } from './form-data';
 import { FormSubmitBase } from './form-submit-base';
 
-@Directive()
+@Directive({ standalone: true })
 export abstract class FormBase extends FormSubmitBase implements DoCheck {
   @ViewChild(DynamicFormComponent)
   form: DynamicFormComponent;

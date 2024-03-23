@@ -11,6 +11,7 @@ import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label
 import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label.module';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })
@@ -22,7 +23,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [BsDynamicFormControlLabelModule],
-  declarations: [DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,

@@ -6,8 +6,9 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormFieldWrapperBase } from './dynamic-form-field-wrapper-base';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-field-wrapper-test',
-  template: `<ng-template #container></ng-template>`,
+  template: `<ng-template #container />`,
 })
 class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
   constructor(
@@ -19,6 +20,7 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
 }
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })
@@ -29,7 +31,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  declarations: [DynamicFormFieldWrapperTestComponent, DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,

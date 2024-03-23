@@ -83,6 +83,6 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
     DynamicFormActionModule.withHandlers([dynamicFormDictionaryRemoveFieldHandler, dynamicFormDictionaryClearFieldsHandler]),
     DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
   ],
-  exports: [DynamicFormConfigModule, DynamicFormActionModule],
+  exports: [DynamicFormActionModule, DynamicFormConfigModule],
 })
 export class DynamicFormDictionaryModule {}
