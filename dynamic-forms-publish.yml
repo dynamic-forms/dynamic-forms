@@ -42,7 +42,7 @@ steps:
   displayName: Publish code coverage
   inputs:
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
-    pathToSources: $(System.DefaultWorkingDirectory)/libs
+    pathToSources: $(System.DefaultWorkingDirectory)
 - task: Npm@1
   displayName: npm publish core
   inputs:
