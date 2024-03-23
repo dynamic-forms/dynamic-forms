@@ -9,7 +9,7 @@ import { FormSubmitDialogComponent } from '../form-submit-dialog.component';
 
 @NgModule({
   imports: [
-    FormSubmitDialogComponent,
+    BsDynamicFormInputMaskModule,
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',
@@ -40,7 +40,7 @@ import { FormSubmitDialogComponent } from '../form-submit-dialog.component';
       theme: 'bootstrap',
       idBuilder: { createId: () => v4() },
     }),
-    BsDynamicFormInputMaskModule,
+    FormSubmitDialogComponent,
   ],
 })
 export class BootstrapFormModule {}

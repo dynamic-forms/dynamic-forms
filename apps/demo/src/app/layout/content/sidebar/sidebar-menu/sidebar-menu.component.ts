@@ -19,7 +19,7 @@ import { SidebarMenuItem } from './sidebar-menu.model';
   standalone: true,
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
-  styleUrls: ['./sidebar-menu.component.scss'],
+  styleUrl: './sidebar-menu.component.scss',
   imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTreeModule],
   providers: [CodeUrlPipe],
 })

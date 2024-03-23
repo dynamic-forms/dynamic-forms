@@ -9,7 +9,7 @@ import { PROGRESS, Progress } from '../../state/progress/progress.model';
   standalone: true,
   selector: 'app-progress',
   templateUrl: './progress.component.html',
-  styleUrls: ['./progress.component.scss'],
+  styleUrl: './progress.component.scss',
   imports: [AsyncPipe, NgIf, MatProgressBarModule],
 })
 export class ProgressComponent {

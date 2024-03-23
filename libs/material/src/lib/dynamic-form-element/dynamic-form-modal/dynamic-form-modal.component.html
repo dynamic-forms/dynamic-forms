@@ -1,4 +1,4 @@
-<dynamic-form-element *ngIf="trigger" [element]="trigger"></dynamic-form-element>
+<dynamic-form-element *ngIf="trigger" [element]="trigger" />
 
 <mat-dynamic-form-dialog
   [isOpen$]="isOpen$"
@@ -21,4 +21,4 @@
   [classNameHeader]="template.classNameHeader"
   [classNameFooter]="template.classNameFooter"
   (escaped)="element.close()"
-></mat-dynamic-form-dialog>
+/>

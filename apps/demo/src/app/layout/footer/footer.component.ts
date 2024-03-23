@@ -10,7 +10,7 @@ import { CONFIG, Config } from '../../state/config/config.model';
   standalone: true,
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  styleUrl: './footer.component.scss',
   imports: [AsyncPipe, NgIf, MatButtonModule, MatToolbarModule],
 })
 export class FooterComponent {

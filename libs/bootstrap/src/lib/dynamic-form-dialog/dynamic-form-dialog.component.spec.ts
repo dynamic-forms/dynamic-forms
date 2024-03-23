@@ -14,6 +14,7 @@ import { of } from 'rxjs';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`,
 })
@@ -24,7 +25,6 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 @NgModule({
-  declarations: [DynamicFormActionTestComponent],
   providers: [
     {
       provide: DynamicFormConfigService,
@@ -49,7 +49,7 @@ describe('BsDynamicFormDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormActionComponentTestModule, BsDynamicFormDialogComponent],
+      imports: [DynamicFormActionComponentTestModule],
     });
 
     fixture = TestBed.createComponent(BsDynamicFormDialogComponent);

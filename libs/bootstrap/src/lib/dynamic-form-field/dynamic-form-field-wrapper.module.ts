@@ -4,6 +4,6 @@ import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints/dy
 import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label/dynamic-form-control-label.module';
 
 @NgModule({
-  imports: [BsDynamicFormControlErrorsModule, BsDynamicFormControlLabelModule, BsDynamicFormControlHintsModule],
+  imports: [BsDynamicFormControlErrorsModule, BsDynamicFormControlHintsModule, BsDynamicFormControlLabelModule],
 })
 export class BsDynamicFormFieldWrapperModule {}

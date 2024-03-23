@@ -1,17 +1,17 @@
 <div class="dynamic-form-wrapper" [ngClass]="theme">
   <form class="dynamic-form" [ngClass]="template.className" [formGroup]="formGroup" (ngSubmit)="submit()">
-    <div class="dynamic-form-header" *ngIf="template.label || headerActions?.length" [ngClass]="template.classNameHeader">
+    <div *ngIf="template.label || headerActions?.length" class="dynamic-form-header" [ngClass]="template.classNameHeader">
       <div class="dynamic-form-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-      <div class="dynamic-form-toolbar" *ngIf="headerActions?.length">
-        <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
+      <div *ngIf="headerActions?.length" class="dynamic-form-toolbar">
+        <dynamic-form-elements [elements]="headerActions" />
       </div>
     </div>
-    <div class="dynamic-form-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
-      <dynamic-form-elements [elements]="children"></dynamic-form-elements>
+    <div *ngIf="children?.length" class="dynamic-form-children" [ngClass]="template.classNameChildren">
+      <dynamic-form-elements [elements]="children" />
     </div>
-    <div class="dynamic-form-errors" *ngIf="showErrors">{{ errorMessage }}</div>
-    <div class="dynamic-form-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
-      <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
+    <div *ngIf="showErrors" class="dynamic-form-errors">{{ errorMessage }}</div>
+    <div *ngIf="footerActions?.length" class="dynamic-form-footer" [ngClass]="template.classNameFooter">
+      <dynamic-form-elements [elements]="footerActions" />
     </div>
   </form>
 </div>

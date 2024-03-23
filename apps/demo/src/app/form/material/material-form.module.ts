@@ -10,7 +10,7 @@ import { FormSubmitDialogComponent } from '../form-submit-dialog.component';
 
 @NgModule({
   imports: [
-    FormSubmitDialogComponent,
+    DynamicFormExtensionsModule,
     DynamicFormIconModule.withIcons({
       icons: {
         submit: 'send',
@@ -38,8 +38,8 @@ import { FormSubmitDialogComponent } from '../form-submit-dialog.component';
       },
       libraryName: 'material',
     }),
-    DynamicFormExtensionsModule,
     DynamicFormMarkdownModule,
+    FormSubmitDialogComponent,
     MatDynamicFormsModule.forRoot({
       theme: 'material',
       idBuilder: { createId: () => v4() },

@@ -29,7 +29,7 @@ export class PreferencesMenuModule {}
   standalone: true,
   selector: 'app-preferences-menu',
   templateUrl: './preferences-menu.component.html',
-  styleUrls: ['./preferences-menu.component.scss'],
+  styleUrl: './preferences-menu.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, PreferencesMenuModule],
 })
 export class PreferencesMenuComponent {

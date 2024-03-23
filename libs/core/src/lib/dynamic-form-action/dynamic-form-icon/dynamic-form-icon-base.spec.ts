@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -13,7 +14,9 @@ import { DynamicFormIconDefinition } from './dynamic-form-icon-definition';
 import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-icon-test',
+  // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `
     <button
       class="dynamic-form-icon"
@@ -26,6 +29,7 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
       {{ template?.label }}
     </button>
   `,
+  imports: [NgClass],
 })
 class DynamicFormIconTestComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -41,7 +45,6 @@ describe('DynamicFormIconBase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DynamicFormIconTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

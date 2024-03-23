@@ -6,7 +6,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   standalone: true,
   selector: 'app-docs',
   templateUrl: './docs.component.html',
-  styleUrls: ['./docs.component.scss'],
+  styleUrl: './docs.component.scss',
   imports: [NgIf],
 })
 export class DocsComponent {

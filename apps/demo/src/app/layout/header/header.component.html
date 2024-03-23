@@ -1,19 +1,19 @@
 <mat-toolbar class="header" color="primary">
-  <app-sidebar-toggle></app-sidebar-toggle>
+  <app-sidebar-toggle />
   <a mat-flat-button color="primary" routerLink="/home">dynamic-forms</a>
-  <app-docs-menu *ngIf="!docsQuery.matches"></app-docs-menu>
-  <app-examples-menu *ngIf="!examplesQuery.matches"></app-examples-menu>
-  <app-editor-menu *ngIf="!editorsQuery.matches"></app-editor-menu>
+  <app-docs-menu *ngIf="!docsQuery.matches" />
+  <app-examples-menu *ngIf="!examplesQuery.matches" />
+  <app-editor-menu *ngIf="!editorsQuery.matches" />
   <div class="header-spacer"></div>
-  <app-notifications-toggle></app-notifications-toggle>
-  <app-preferences-menu></app-preferences-menu>
-  <app-versions-menu *ngIf="!versionsQuery.matches"></app-versions-menu>
+  <app-notifications-toggle />
+  <app-preferences-menu />
+  <app-versions-menu *ngIf="!versionsQuery.matches" />
   <ng-container *ngIf="config$ | async as config">
-    <a mat-icon-button [href]="config.repository | appCodeUrl" target="_blank">
-      <mat-icon svgIcon="github"></mat-icon>
+    <a mat-icon-button target="_blank" [href]="config.repository | appCodeUrl">
+      <mat-icon svgIcon="github" />
     </a>
-    <a mat-icon-button [href]="config.project.url" target="_blank">
-      <mat-icon svgIcon="azure-devops"></mat-icon>
+    <a mat-icon-button target="_blank" [href]="config.project.url">
+      <mat-icon svgIcon="azure-devops" />
     </a>
   </ng-container>
 </mat-toolbar>

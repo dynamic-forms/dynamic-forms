@@ -1,12 +1,12 @@
 <div class="dynamic-form-editor" [class.split-view]="splitView$ | async">
-  <app-monaco-editor *ngIf="splitView$ | async" [(value)]="value" [language]="'json'" [updateType]="'blur'"></app-monaco-editor>
+  <app-monaco-editor *ngIf="splitView$ | async" [language]="'json'" [updateType]="'blur'" [(value)]="value" />
   <mat-tab-group #tabGroup>
     <mat-tab *ngIf="(splitView$ | async) === false" label="Editor">
-      <app-monaco-editor [(value)]="value" [language]="'json'" [updateType]="'blur'"></app-monaco-editor>
+      <app-monaco-editor [language]="'json'" [updateType]="'blur'" [(value)]="value" />
     </mat-tab>
     <mat-tab label="Form">
       <ng-template matTabContent>
-        <ng-content></ng-content>
+        <ng-content />
       </ng-template>
     </mat-tab>
     <mat-tab label="Definition">
@@ -26,7 +26,7 @@
     </mat-tab>
     <mat-tab label="Logs">
       <ng-template matTabContent>
-        <app-form-editor-logs [logs]="logs"></app-form-editor-logs>
+        <app-form-editor-logs [logs]="logs" />
       </ng-template>
     </mat-tab>
   </mat-tab-group>

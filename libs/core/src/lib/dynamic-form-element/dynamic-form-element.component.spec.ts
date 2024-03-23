@@ -14,6 +14,7 @@ import { DynamicFormElementComponent } from './dynamic-form-element.component';
 import { DynamicFormElementModule } from './dynamic-form-element.module';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-element-test',
   template: `<div class="dynamic-form-element"></div>`,
 })
@@ -21,7 +22,6 @@ class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
   imports: [DynamicFormElementModule],
-  declarations: [DynamicFormElementBaseComponent],
   providers: [
     {
       provide: DynamicFormConfigService,

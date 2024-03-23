@@ -9,8 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class MatDynamicFormInputWrapperComponent {
   @Input() label: string;
+  @Input() inputId: string;
   @Input() required: boolean;
-  @Input() disabled: boolean;
-  @Input() invalid: boolean;
-  @Input() errorMessage: boolean;
+  @Input({ required: true }) disabled: boolean;
+  @Input({ required: true }) invalid: boolean;
+  @Input({ required: true }) errorMessage: boolean;
 }

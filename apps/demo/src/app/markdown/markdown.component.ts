@@ -6,7 +6,7 @@ import { MarkdownElement } from './markdown.element';
   standalone: true,
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.scss'],
+  styleUrl: './markdown.component.scss',
   imports: [DynamicFormMarkdownComponent],
   providers: [DynamicFormMarkdownService],
 })
@@ -16,13 +16,13 @@ export class MarkdownComponent implements OnInit, OnChanges {
   @Input()
   source: string;
 
-  ngOnInit(): void {
-    this.element = new MarkdownElement(this.source);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.source.firstChange && this.source !== this.element.source) {
       this.element.source = this.source;
     }
+  }
+
+  ngOnInit(): void {
+    this.element = new MarkdownElement(this.source);
   }
 }

@@ -1,15 +1,15 @@
 <div class="dynamic-form-dictionary" [ngClass]="template.className" [class.readonly]="readonly" [hidden]="hidden">
-  <div class="dynamic-form-dictionary-header" *ngIf="template.label && !template.labelHidden" [ngClass]="template.classNameHeader">
+  <div *ngIf="template.label && !template.labelHidden" class="dynamic-form-dictionary-header" [ngClass]="template.classNameHeader">
     <div class="dynamic-form-dictionary-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-    <div class="dynamic-form-dictionary-toolbar" *ngIf="headerActions?.length">
-      <dynamic-form-elements [elements]="headerActions"></dynamic-form-elements>
+    <div *ngIf="headerActions?.length" class="dynamic-form-dictionary-toolbar">
+      <dynamic-form-elements [elements]="headerActions" />
     </div>
   </div>
-  <div class="dynamic-form-dictionary-children" *ngIf="children?.length" [ngClass]="template.classNameChildren">
-    <dynamic-form-elements [elements]="children"></dynamic-form-elements>
+  <div *ngIf="children?.length" class="dynamic-form-dictionary-children" [ngClass]="template.classNameChildren">
+    <dynamic-form-elements [elements]="children" />
   </div>
-  <div class="dynamic-form-dictionary-errors" *ngIf="showErrors">{{ errorMessage }}</div>
-  <div class="dynamic-form-dictionary-footer" *ngIf="footerActions?.length" [ngClass]="template.classNameFooter">
-    <dynamic-form-elements [elements]="footerActions"></dynamic-form-elements>
+  <div *ngIf="showErrors" class="dynamic-form-dictionary-errors">{{ errorMessage }}</div>
+  <div *ngIf="footerActions?.length" class="dynamic-form-dictionary-footer" [ngClass]="template.classNameFooter">
+    <dynamic-form-elements [elements]="footerActions" />
   </div>
 </div>

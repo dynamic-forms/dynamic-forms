@@ -14,7 +14,7 @@ import { DocsMenuItemsComponent } from './docs-menu-items.component';
   standalone: true,
   selector: 'app-docs-menu',
   templateUrl: './docs-menu.component.html',
-  styleUrls: ['./docs-menu.component.scss'],
+  styleUrl: './docs-menu.component.scss',
   imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, DocsMenuItemsComponent],
 })
 export class DocsMenuComponent {

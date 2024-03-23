@@ -1,6 +1,6 @@
 <mat-tab-group class="dynamic-form-example">
   <mat-tab label="Form">
-    <ng-content></ng-content>
+    <ng-content />
   </mat-tab>
   <mat-tab label="Definition">
     <ng-template matTabContent>
@@ -19,7 +19,7 @@
   </mat-tab>
   <mat-tab label="Documentation" [disabled]="!docEnabled">
     <ng-template matTabContent>
-      <app-markdown [source]="docSource"></app-markdown>
+      <app-markdown [source]="docSource" />
     </ng-template>
   </mat-tab>
 </mat-tab-group>

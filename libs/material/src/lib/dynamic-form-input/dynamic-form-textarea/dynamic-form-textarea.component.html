@@ -1,38 +1,30 @@
 <mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating">
   <mat-label>{{ template.label }}</mat-label>
   <textarea
+    #autosize="cdkTextareaAutosize"
     matInput
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="1"
     [id]="inputId"
     [placeholder]="input.placeholder"
     [readonly]="readonly"
     [required]="validation?.required"
     [formControl]="control"
-    cdkTextareaAutosize
-    #autosize="cdkTextareaAutosize"
-    cdkAutosizeMinRows="1"
   >
   </textarea>
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
-  <dynamic-form-element
-    *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden"
-    [element]="prefixAddOn"
-    matTextPrefix
-  ></dynamic-form-element>
+  <dynamic-form-element *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden" matTextPrefix [element]="prefixAddOn" />
   <dynamic-form-element
     *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
-    [element]="prefixAddOn"
     matPrefix
-  ></dynamic-form-element>
-  <dynamic-form-element
-    *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden"
-    [element]="suffixAddOn"
-    matTextSuffix
-  ></dynamic-form-element>
+    [element]="prefixAddOn"
+  />
+  <dynamic-form-element *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden" matTextSuffix [element]="suffixAddOn" />
   <dynamic-form-element
     *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
-    [element]="suffixAddOn"
     matSuffix
-  ></dynamic-form-element>
+    [element]="suffixAddOn"
+  />
   <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

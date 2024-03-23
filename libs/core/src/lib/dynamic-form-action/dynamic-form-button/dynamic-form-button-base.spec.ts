@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -13,7 +14,9 @@ import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 
 @Component({
+  standalone: true,
   selector: 'dynamic-form-button-test',
+  // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `
     <button
       class="dynamic-form-button"
@@ -26,6 +29,7 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
       {{ template?.label }}
     </button>
   `,
+  imports: [NgClass],
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {
@@ -41,7 +45,6 @@ describe('DynamicFormButtonBase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DynamicFormButtonTestComponent],
       providers: [
         {
           provide: DynamicFormLibraryService,

@@ -11,6 +11,7 @@ import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints
 import { BsDynamicFormControlHintsModule } from './dynamic-form-control-hints.module';
 
 @Component({
+  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })
@@ -22,7 +23,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 
 @NgModule({
   imports: [BsDynamicFormControlHintsModule],
-  declarations: [DynamicFormInputTestComponent],
   providers: [
     {
       provide: DynamicFormLibraryService,

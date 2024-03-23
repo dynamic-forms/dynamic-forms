@@ -1,10 +1,10 @@
 <div class="dynamic-form-items dynamic-form-accordion accordion" [ngClass]="template.className" [hidden]="template.hidden">
-  <div class="accordion-item" [hidden]="child.template.hidden" *ngFor="let child of element.children; let index = index">
+  <div *ngFor="let child of element.children; let index = index" class="accordion-item" [hidden]="child.template.hidden">
     <div class="dynamic-form-item-header accordion-header" [class.disabled]="child.disabled" (click)="toggleItem(index)">
-      <button class="accordion-button" [class.collapsed]="index !== selectedIndex" type="button">{{ child.label }}</button>
+      <button class="accordion-button" type="button" [class.collapsed]="index !== selectedIndex">{{ child.label }}</button>
     </div>
-    <div class="dynamic-form-item accordion-body" *ngIf="index === selectedIndex">
-      <dynamic-form-elements [elements]="child.children"></dynamic-form-elements>
+    <div *ngIf="index === selectedIndex" class="dynamic-form-item accordion-body">
+      <dynamic-form-elements [elements]="child.children" />
     </div>
   </div>
 </div>

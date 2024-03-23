@@ -13,7 +13,7 @@ import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
   standalone: true,
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
-  styleUrls: ['./examples-menu.component.scss'],
+  styleUrl: './examples-menu.component.scss',
   imports: [AsyncPipe, NgIf, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
 })
 export class ExamplesMenuComponent {

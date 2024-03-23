@@ -21,8 +21,8 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.3.0",
+    "@angular/core": "^17.3.0",
     "@dynamic-forms/core": "18.0.0-next.0",
     "marked": "^12.0.0",
     "rxjs": "^7.4.0"

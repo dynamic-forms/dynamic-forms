@@ -14,6 +14,7 @@ import { DynamicFormFileBase } from './dynamic-form-file-base';
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';
 
 @Component({
+  selector: 'dynamic-form-file-test',
   standalone: true,
   template: `<input dynamicFormFile [acceptFiles]="input.accept" [multipleFiles]="input.multiple" [formControl]="control" />`,
   imports: [ReactiveFormsModule, DynamicFormFileDirective],
