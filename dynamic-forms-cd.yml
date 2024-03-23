@@ -38,10 +38,9 @@ steps:
   continueOnError: True
   inputs:
     testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
-- task: PublishCodeCoverageResults@1
+- task: PublishCodeCoverageResults@2
   displayName: Publish code coverage
   inputs:
-    codeCoverageTool: Cobertura
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
 - task: Npm@1
   displayName: npm cover libs
