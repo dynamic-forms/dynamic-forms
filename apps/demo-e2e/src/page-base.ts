@@ -1,4 +1,4 @@
-import { ElementArrayFinder, ElementFinder, browser, by, element } from 'protractor';
+import { By, ElementArrayFinder, ElementFinder, browser, by, element } from 'protractor';
 
 export abstract class Page {
   constructor(protected baseUrl: string) {}
@@ -6,6 +6,7 @@ export abstract class Page {
   async navigateTo(relativeUrl?: string): Promise<void> {
     await browser.waitForAngularEnabled(false);
     await browser.get(relativeUrl ? `${this.baseUrl}/${relativeUrl}` : this.baseUrl);
+    await this.waitForElement('app-root', 5000);
   }
 
   async getUrl(): Promise<string> {
@@ -22,5 +23,9 @@ export abstract class Page {
 
   findElements(selector: string): ElementArrayFinder {
     return element.all(by.css(selector));
+  }
+
+  async waitForElement(selector: string, timeout?: number): Promise<void> {
+    await browser.wait(() => element(By.css(selector)).isPresent(), timeout);
   }
 }

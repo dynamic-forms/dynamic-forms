@@ -49,7 +49,7 @@ describe('dynamic-forms demo examples', () => {
             expect(url).toContain(`/examples/${theme}/${example.id}`);
 
             const formTestResult = await page.getFormTestResult();
-            // expect(formTestResult.rootPresent).toBe(true);
+            expect(formTestResult.rootPresent).toBe(true);
             expect(formTestResult.wrapperPresent).toBe(true);
             expect(formTestResult.formPresent).toBe(true);
 
