@@ -41,6 +41,7 @@ export interface FormItemsTestResult {
 }
 
 export interface FormControlTestResult {
+  id: string;
   type: string;
   present: boolean;
   inputPresent: boolean;
@@ -153,7 +154,9 @@ export class ExamplesPage extends Page {
 
   async getFormControlTestResult(control: Control): Promise<FormControlTestResult> {
     const input = await control.getInput();
+    const inputId = await input.getInputId();
     const result = {
+      id: inputId,
       type: await control.getControlType(),
       present: await control.isPresent(),
       inputPresent: await input.isPresent(),

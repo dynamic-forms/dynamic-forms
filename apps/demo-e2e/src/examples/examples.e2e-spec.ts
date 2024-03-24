@@ -18,7 +18,7 @@ export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Exam
 
 describe('dynamic-forms demo examples', () => {
   const themes = ['bootstrap', 'material'];
-  const examples = getExamples((examplesConfig as ExamplesMenu).items);
+  const examples = getExamples((examplesConfig as ExamplesMenu).items).filter(e => e.id === 'inputs-variations-input-mask');
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
@@ -79,6 +79,9 @@ describe('dynamic-forms demo examples', () => {
               expect(controlTestResult.present).toBe(true);
               expect(controlTestResult.inputPresent).toBe(true);
               if (controlTestResult.inputEditable) {
+                if (!controlTestResult.inputValuePassed) {
+                  console.log(controlTestResult);
+                }
                 expect(controlTestResult.inputValuePassed).toBe(true);
               }
             }

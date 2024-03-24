@@ -94,6 +94,10 @@ export class Input {
     return (await this.control.isEditable()) && (await this.inputElement.isEnabled());
   }
 
+  async getInputId(): Promise<string> {
+    return this.inputElement.getAttribute('id');
+  }
+
   async getInputType(): Promise<string> {
     return this.inputElement.getAttribute('type');
   }
@@ -197,12 +201,12 @@ export class Input {
     return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
   }
 
-  private getEditInputValue(type?: string): string | number {
+  private async getEditInputValue(type?: string): Promise<string | number> {
     switch (this.controlType) {
       case 'combobox':
         return 'Value1';
       case 'input-mask':
-        return '192.0.0.0';
+        return this.getEditInputMaskValue();
       case 'numberbox':
         return 5;
       case 'datepicker':
@@ -213,6 +217,24 @@ export class Input {
         return type === 'email' ? 'user@mail.com' : type === 'password' ? 'Test1234!' : 'Value';
       default:
         return null;
+    }
+  }
+
+  private async getEditInputMaskValue(): Promise<string | number> {
+    const id = await this.getInputId();
+    switch (id) {
+      case 'email':
+        return 'user@mail.com';
+      case 'mac':
+        return '00:00:00:00:00:00';
+      case 'ssn':
+        return '123-45-6789';
+      case 'url':
+        return 'dynamic-forms.azurewebsites.net/';
+      case 'vin':
+        return 'WVWZZZ1JZ3W386752';
+      default:
+        return '192.0.0.0';
     }
   }
 }
