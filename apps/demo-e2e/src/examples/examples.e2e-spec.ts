@@ -1,7 +1,6 @@
-import { ExamplesMenu, ExampleMenu, ExampleMenuGroup, ExampleMenuItem } from 'apps/demo/src/app/state/examples/examples.model';
 import examplesConfig from '../../../demo/src/assets/examples-menu.json';
 import { Example, ExamplesPage } from './examples.po';
-
+import { ExampleMenu, ExampleMenuGroup, ExampleMenuItem, ExamplesMenu } from 'apps/demo/src/app/state/examples/examples.model';
 
 export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Example[] =>
   items.reduce((result, item) => {
@@ -17,9 +16,8 @@ export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Exam
     return result;
   }, []);
 
-
 describe('dynamic-forms demo examples', () => {
-  const themes = [ 'bootstrap', 'material' ];
+  const themes = ['bootstrap', 'material'];
   const examples = getExamples((examplesConfig as ExamplesMenu).items);
 
   themes.forEach(theme => {
@@ -39,7 +37,7 @@ describe('dynamic-forms demo examples', () => {
 
       examples.forEach(example => {
         const description = example.modelId
-          ? `for example "${example.name}" with id "${example.id}" and model id "${ example.modelId }"`
+          ? `for example "${example.name}" with id "${example.id}" and model id "${example.modelId}"`
           : `for example "${example.name}" with id "${example.id}"`;
 
         describe(description, () => {
@@ -49,6 +47,8 @@ describe('dynamic-forms demo examples', () => {
             const url = await page.getUrl();
 
             expect(url).toContain(`/examples/${theme}/${example.id}`);
+
+            await page.waitForElement('dynamic-form', 5000);
 
             const formTestResult = await page.getFormTestResult();
             expect(formTestResult.rootPresent).toBe(true);
@@ -79,6 +79,9 @@ describe('dynamic-forms demo examples', () => {
               expect(controlTestResult.present).toBe(true);
               expect(controlTestResult.inputPresent).toBe(true);
               if (controlTestResult.inputEditable) {
+                if (!controlTestResult.inputValuePassed) {
+                  console.log(controlTestResult);
+                }
                 expect(controlTestResult.inputValuePassed).toBe(true);
               }
             }
@@ -111,7 +114,7 @@ describe('dynamic-forms demo examples', () => {
             }
 
             const submitButton = page.findFormSubmitButton();
-            if (await submitButton.isPresent() && await submitButton.isEnabled()) {
+            if ((await submitButton.isPresent()) && (await submitButton.isEnabled())) {
               await submitButton.click();
             }
           });
