@@ -207,6 +207,9 @@
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "inputmask"
+            ],
             "assets": [
               "apps/demo/src/web.config",
               "apps/demo/src/favicon.ico",
@@ -246,7 +249,6 @@
               "apps/demo/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
@@ -266,7 +268,6 @@
               "aot": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
                 {

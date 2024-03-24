@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { NotificationItemPop, NotificationItemPush } from './notifications.actions';
 import { NotificationItem, NotificationMessage, NotificationMessages, NotificationType } from './notifications.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotificationsService {
   constructor(private store: Store) {}
 

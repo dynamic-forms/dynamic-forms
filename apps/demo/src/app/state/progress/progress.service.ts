@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
 import { ProgressItem } from './progress.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProgressService {
   constructor(private store: Store) {}
 
