@@ -18,7 +18,7 @@ export const getExamples = (items: ExampleMenuItem[], namePrefix?: string): Exam
 
 describe('dynamic-forms demo examples', () => {
   const themes = ['bootstrap', 'material'];
-  const examples = getExamples((examplesConfig as ExamplesMenu).items).filter(e => e.id === 'inputs-variations-input-mask');
+  const examples = getExamples((examplesConfig as ExamplesMenu).items);
 
   themes.forEach(theme => {
     describe(`for theme ${theme}`, () => {
