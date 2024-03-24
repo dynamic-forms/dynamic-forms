@@ -1,19 +1,19 @@
-import { ElementArrayFinder, ElementFinder, browser, by, element, promise } from 'protractor';
+import { ElementArrayFinder, ElementFinder, browser, by, element } from 'protractor';
 
 export abstract class Page {
   constructor(protected baseUrl: string) {}
 
-  navigateTo(relativeUrl?: string): promise.Promise<any> {
-    browser.waitForAngularEnabled(false);
-    return browser.get(relativeUrl ? `${this.baseUrl}/${relativeUrl}` : this.baseUrl);
+  async navigateTo(relativeUrl?: string): Promise<void> {
+    await browser.waitForAngularEnabled(false);
+    await browser.get(relativeUrl ? `${this.baseUrl}/${relativeUrl}` : this.baseUrl);
   }
 
-  getUrl(): promise.Promise<string> {
-    return browser.getCurrentUrl();
+  async getUrl(): Promise<string> {
+    return await browser.getCurrentUrl();
   }
 
-  getTitle(): promise.Promise<string> {
-    return browser.getTitle();
+  async getTitle(): Promise<string> {
+    return await browser.getTitle();
   }
 
   findElement(selector: string): ElementFinder {
