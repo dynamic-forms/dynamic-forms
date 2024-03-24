@@ -1,14 +1,28 @@
 import PATH from 'path';
-import { protractor, By, ElementArrayFinder, ElementFinder } from 'protractor';
+import { By, ElementArrayFinder, ElementFinder, protractor } from 'protractor';
 
 const KEY = protractor.Key;
 
 export class Control {
   private readonly _types: string[] = [
-    'checkbox', 'combobox', 'datepicker', 'file', 'numberbox', 'radio', 'select', 'switch', 'textarea', 'textbox', 'toggle',
+    'checkbox',
+    'combobox',
+    'datepicker',
+    'input-mask',
+    'file',
+    'numberbox',
+    'radio',
+    'select',
+    'switch',
+    'textarea',
+    'textbox',
+    'toggle',
   ];
 
-  constructor(public element: ElementFinder, public theme: string) {}
+  constructor(
+    public element: ElementFinder,
+    public theme: string,
+  ) {}
 
   findElement(css: string): ElementFinder {
     return this.element.element(By.css(css));
@@ -64,7 +78,11 @@ export class Control {
 export class Input {
   readonly inputElement: ElementFinder;
 
-  constructor(public controlType: string, public control: Control, public inputElements: ElementFinder | ElementArrayFinder) {
+  constructor(
+    public controlType: string,
+    public control: Control,
+    public inputElements: ElementFinder | ElementArrayFinder,
+  ) {
     this.inputElement = this.inputElements instanceof ElementArrayFinder ? this.inputElements.get(0) : this.inputElements;
   }
 
@@ -73,7 +91,7 @@ export class Input {
   }
 
   async isEditable(): Promise<boolean> {
-    return await this.control.isEditable() && await this.inputElement.isEnabled();
+    return (await this.control.isEditable()) && (await this.inputElement.isEnabled());
   }
 
   async getInputType(): Promise<string> {
@@ -108,13 +126,13 @@ export class Input {
 
     if (this.controlType === 'radio') {
       const element = this.control.findElement('input[type="radio"]:checked');
-      return await element.isPresent() ? true : false;
+      return (await element.isPresent()) ? true : false;
     }
 
     if (this.controlType === 'select') {
       if (this.control.theme === 'material') {
         const element = this.control.findElement('span.mat-mdc-select-value-text');
-        return await element.isPresent() ? element.getText() : null;
+        return (await element.isPresent()) ? element.getText() : null;
       }
 
       const element = await this.inputElement.getAttribute('value');
@@ -123,12 +141,12 @@ export class Input {
 
     if (this.controlType === 'switch') {
       const element = this.control.findElement('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
-      return await element.isPresent() ? true : false;
+      return (await element.isPresent()) ? true : false;
     }
 
     if (this.controlType === 'toggle') {
       const element = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
-      return await element.isPresent() ? true : false;
+      return (await element.isPresent()) ? true : false;
     }
 
     const element = await this.inputElement.getAttribute('value');
@@ -137,12 +155,12 @@ export class Input {
 
   async checkInputValue(): Promise<boolean> {
     const inputValue = await this.getInputValue();
-    return await this.isInputForFalse() ? !inputValue : !!inputValue;
+    return (await this.isInputForFalse()) ? !inputValue : !!inputValue;
   }
 
   async editInputValue(): Promise<void> {
     if (this.controlType === 'checkbox') {
-      if (await this.isInputForFalse() && !await this.getInputValue()) {
+      if ((await this.isInputForFalse()) && !(await this.getInputValue())) {
         await this.inputElement.sendKeys(KEY.SPACE);
       }
       return this.inputElement.sendKeys(KEY.SPACE);
@@ -158,23 +176,20 @@ export class Input {
     }
 
     if (this.controlType === 'select') {
-      const keys = this.control.theme !== 'material'
-        ? [ KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ]
-        : [ KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE ];
+      const keys =
+        this.control.theme !== 'material'
+          ? [KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE]
+          : [KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE];
       await this.inputElement.click();
       return this.inputElement.sendKeys(...keys);
     }
 
     if (this.controlType === 'switch') {
-      return this.control.theme !== 'material'
-        ? this.inputElement.sendKeys(KEY.SPACE)
-        : this.inputElement.click();
+      return this.control.theme !== 'material' ? this.inputElement.sendKeys(KEY.SPACE) : this.inputElement.click();
     }
 
     if (this.controlType === 'toggle') {
-      return  this.control.theme !== 'material'
-        ? this.inputElement.sendKeys(KEY.SPACE)
-        : this.inputElement.click();
+      return this.control.theme !== 'material' ? this.inputElement.sendKeys(KEY.SPACE) : this.inputElement.click();
     }
 
     const inputType = await this.getInputType();
@@ -186,6 +201,8 @@ export class Input {
     switch (this.controlType) {
       case 'combobox':
         return 'Value1';
+      case 'input-mask':
+        return '192.0.0.0';
       case 'numberbox':
         return 5;
       case 'datepicker':
@@ -193,11 +210,7 @@ export class Input {
       case 'textarea':
         return 'Line 1\nLine 2';
       case 'textbox':
-        return type === 'email'
-          ? 'user@mail.com'
-          : type === 'password'
-            ? 'Test1234!'
-            : 'Value';
+        return type === 'email' ? 'user@mail.com' : type === 'password' ? 'Test1234!' : 'Value';
       default:
         return null;
     }

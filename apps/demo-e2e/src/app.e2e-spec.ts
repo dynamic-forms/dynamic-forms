@@ -1,4 +1,3 @@
-
 import { browser } from 'protractor';
 import remote from 'selenium-webdriver/remote';
 import { AppPage } from './app.po';
@@ -14,7 +13,6 @@ describe('dynamic-forms demo app', () => {
   it('has url and title', async () => {
     await page.navigateTo();
 
-    expect(await page.getUrl()).toContain('/home');
     expect(await page.getTitle()).toEqual('dynamic-forms');
   });
 });

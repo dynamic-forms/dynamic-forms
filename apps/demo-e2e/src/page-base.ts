@@ -1,9 +1,10 @@
-import { browser, by, element, promise, ElementArrayFinder, ElementFinder } from 'protractor';
+import { ElementArrayFinder, ElementFinder, browser, by, element, promise } from 'protractor';
 
 export abstract class Page {
   constructor(protected baseUrl: string) {}
 
   navigateTo(relativeUrl?: string): promise.Promise<any> {
+    browser.waitForAngularEnabled(false);
     return browser.get(relativeUrl ? `${this.baseUrl}/${relativeUrl}` : this.baseUrl);
   }
 

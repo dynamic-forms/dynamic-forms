@@ -1,11 +1,11 @@
-import { element, By, ElementArrayFinder, ElementFinder } from 'protractor';
+import { By, ElementArrayFinder, ElementFinder, element } from 'protractor';
 import { Page } from '../page-base';
 import { Control } from './elements';
 
 export interface Example {
-   id: string;
-   modelId: string;
-   name: string;
+  id: string;
+  modelId: string;
+  name: string;
 }
 
 export interface FormTestResult {
@@ -89,19 +89,19 @@ export class ExamplesPage extends Page {
     const resetButton = actions.all(By.css('button[id="action-reset"]')).first();
     const resetDefaultButton = actions.all(By.css('button[id="action-reset-default"]')).first();
 
-    if (await resetButton.isPresent() && await resetButton.isEnabled()) {
+    if ((await resetButton.isPresent()) && (await resetButton.isEnabled())) {
       await resetButton.click();
     }
 
-    if (await validateButton.isPresent() && await validateButton.isEnabled()) {
+    if ((await validateButton.isPresent()) && (await validateButton.isEnabled())) {
       await validateButton.click();
     }
 
-    if (await resetDefaultButton.isPresent() && await resetDefaultButton.isEnabled()) {
+    if ((await resetDefaultButton.isPresent()) && (await resetDefaultButton.isEnabled())) {
       await resetDefaultButton.click();
     }
 
-    if (await validateButton.isPresent() && await validateButton.isEnabled()) {
+    if ((await validateButton.isPresent()) && (await validateButton.isEnabled())) {
       await validateButton.click();
     }
 
@@ -123,7 +123,7 @@ export class ExamplesPage extends Page {
     const modalPresent = await modal.isPresent();
     const modalControls = modalPresent ? this.getFormControls(modal) : undefined;
     const modalCloseButton = modal.all(By.css('button[id*="closeModal"]')).first();
-    const modalCloseButtonPresent =  await modalCloseButton.isPresent();
+    const modalCloseButtonPresent = await modalCloseButton.isPresent();
     return { modalPresent, modalControls, modalOpenButton, modalOpenButtonPresent, modalCloseButton, modalCloseButtonPresent };
   }
 
@@ -160,7 +160,7 @@ export class ExamplesPage extends Page {
       inputEditable: await input.isEditable(),
     };
     if (result.inputEditable) {
-      if (!await input.getInputValue() || await input.isInputForFalse()) {
+      if (!(await input.getInputValue()) || (await input.isInputForFalse())) {
         await input.editInputValue();
       }
       return { ...result, inputValuePassed: await input.checkInputValue() };

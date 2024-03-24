@@ -31,6 +31,7 @@ exports.config = {
       args: []
     }
   },
+  chromeDriver: require(`chromedriver/lib/chromedriver`).path,
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
