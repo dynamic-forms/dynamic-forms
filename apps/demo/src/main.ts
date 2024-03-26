@@ -8,7 +8,6 @@ import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { AppService, appInitializer } from './app/app.service';
 import { HttpRequestInterceptor } from './app/services/http-request.interceptor';
-import { IconService } from './app/services/icon.service';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -21,8 +20,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideRouter(appRoutes, withComponentInputBinding()),
     importProvidersFrom(AppStateModule),
-    AppService,
-    IconService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,

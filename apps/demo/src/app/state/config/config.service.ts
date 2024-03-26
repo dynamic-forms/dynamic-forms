@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { ConfigInit } from './config.actions';
 import { Config } from './config.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConfigService {
   constructor(
     private store: Store,
