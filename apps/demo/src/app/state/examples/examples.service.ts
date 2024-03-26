@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { ExamplesInit } from './examples.actions';
 import { ExamplesMenu } from './examples.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ExamplesService {
   constructor(
     private store: Store,

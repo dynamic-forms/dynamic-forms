@@ -4,7 +4,7 @@ import { ConfigService } from './state/config/config.service';
 import { ExamplesService } from './state/examples/examples.service';
 import { RoutingHandler } from './state/routing/routing.handler';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppService {
   constructor(
     protected configService: ConfigService,

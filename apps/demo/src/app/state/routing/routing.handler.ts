@@ -6,7 +6,7 @@ import { NotificationItemPush } from '../notifications/notifications.actions';
 import { NotificationItem, NotificationType } from '../notifications/notifications.model';
 import { ProgressItemPop, ProgressItemPush } from '../progress/progress.actions';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RoutingHandler {
   constructor(
     private store: Store,

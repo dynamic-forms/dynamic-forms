@@ -79,9 +79,6 @@ describe('dynamic-forms demo examples', () => {
               expect(controlTestResult.present).toBe(true);
               expect(controlTestResult.inputPresent).toBe(true);
               if (controlTestResult.inputEditable) {
-                if (!controlTestResult.inputValuePassed) {
-                  console.log(controlTestResult);
-                }
                 expect(controlTestResult.inputValuePassed).toBe(true);
               }
             }
