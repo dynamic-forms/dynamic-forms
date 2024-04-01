@@ -1,4 +1,4 @@
-<ng-container *ngIf="repository$ | async as repository">
+@if (repository$ | async; as repository) {
   <button mat-flat-button color="primary" [matMenuTriggerFor]="docs">
     <div class="button-content">Documentation <mat-icon>arrow_drop_down</mat-icon></div>
   </button>
@@ -26,4 +26,4 @@
   <mat-menu #markdownDocs="matMenu">
     <app-docs-menu-items [repository]="repository" [library]="'markdown'" />
   </mat-menu>
-</ng-container>
+}

@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,7 +14,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
-  imports: [AsyncPipe, NgIf, MatCardModule, MatSidenavModule, RouterOutlet, SidebarComponent],
+  imports: [AsyncPipe, MatCardModule, MatSidenavModule, RouterOutlet, SidebarComponent],
 })
 export class ContentComponent {
   readonly mobileQuery: MediaQueryList;

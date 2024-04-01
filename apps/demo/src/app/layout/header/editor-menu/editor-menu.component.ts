@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,7 @@ import { EditorMenuPanelComponent } from './editor-menu-panel.component';
   standalone: true,
   selector: 'app-editor-menu',
   templateUrl: './editor-menu.component.html',
-  imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, EditorMenuPanelComponent],
+  imports: [AsyncPipe, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, EditorMenuPanelComponent],
 })
 export class EditorMenuComponent {
   @Select(ExamplesState.menuItems)

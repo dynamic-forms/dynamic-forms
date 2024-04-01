@@ -1,28 +1,26 @@
 <mat-toolbar class="footer" color="primary">
-  <ng-container *ngIf="config$ | async as config">
-    <ng-container *ngIf="config.buildUrl; else noBuildUrl">
+  @if (config$ | async; as config) {
+    @if (config.buildUrl) {
       <a mat-flat-button color="primary" target="blank" [href]="config.buildUrl">
         <span>Version </span>
         <span>{{ config.version }}</span>
         <span>-build.</span>
         <span>{{ config.build }}</span>
       </a>
-    </ng-container>
-    <ng-template #noBuildUrl>
+    } @else {
       <span>Version </span>
       <span>{{ config.version }}</span>
       <span>.</span>
       <span>{{ config.build }}</span>
-    </ng-template>
-    <ng-container *ngIf="config.releaseUrl; else noReleaseUrl">
+    }
+    @if (config.releaseUrl) {
       <a mat-flat-button color="primary" target="blank" [href]="config.releaseUrl">
         <span>Release </span>
         <span>{{ config.release }}</span>
       </a>
-    </ng-container>
-    <ng-template #noReleaseUrl>
+    } @else {
       <span>Release </span>
       <span>{{ config.release }}</span>
-    </ng-template>
-  </ng-container>
+    }
+  }
 </mat-toolbar>

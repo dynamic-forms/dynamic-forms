@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +24,6 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
   styleUrl: './header.component.scss',
   imports: [
     AsyncPipe,
-    NgIf,
     RouterLink,
     MatButtonModule,
     MatIconModule,

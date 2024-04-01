@@ -1,5 +1,5 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,7 @@ import { SidebarMenuItem } from './sidebar-menu.model';
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrl: './sidebar-menu.component.scss',
-  imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTreeModule],
+  imports: [AsyncPipe, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTreeModule],
   providers: [CodeUrlPipe],
 })
 export class SidebarMenuComponent {

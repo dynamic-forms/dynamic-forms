@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,7 @@ import { DocsMenuItemsComponent } from './docs-menu-items.component';
   selector: 'app-docs-menu',
   templateUrl: './docs-menu.component.html',
   styleUrl: './docs-menu.component.scss',
-  imports: [AsyncPipe, NgIf, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, DocsMenuItemsComponent],
+  imports: [AsyncPipe, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, DocsMenuItemsComponent],
 })
 export class DocsMenuComponent {
   @Select(ConfigState.repository)
