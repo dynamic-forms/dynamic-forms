@@ -1,11 +1,14 @@
-<h3 *ngIf="title">{{ title }}</h3>
-<iframe
-  *ngIf="trustedSourceUrl"
-  frameborder="0"
-  width="100%"
-  onload="this.height=this.contentWindow.document.body.scrollHeight;"
-  [src]="trustedSourceUrl"
-  [scrolling]="scrolling ? 'yes' : 'no'"
-  [class.scrolling]="scrolling"
->
-</iframe>
+@if (title) {
+  <h3>{{ title }}</h3>
+}
+@if (trustedSourceUrl) {
+  <iframe
+    frameborder="0"
+    width="100%"
+    onload="this.height=this.contentWindow.document.body.scrollHeight;"
+    [src]="trustedSourceUrl"
+    [scrolling]="scrolling ? 'yes' : 'no'"
+    [class.scrolling]="scrolling"
+  >
+  </iframe>
+}

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,7 @@ import { ConfigState } from '../../../state/config/config.state';
   selector: 'app-versions-menu',
   templateUrl: './versions-menu.component.html',
   styleUrl: './versions-menu.component.scss',
-  imports: [AsyncPipe, NgFor, NgIf, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule],
 })
 export class VersionsMenuComponent {
   @Select(ConfigState.versions)

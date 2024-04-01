@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,7 @@ import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
   styleUrl: './examples-menu.component.scss',
-  imports: [AsyncPipe, NgIf, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
+  imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
 })
 export class ExamplesMenuComponent {
   @Select(ExamplesState.menuItems)

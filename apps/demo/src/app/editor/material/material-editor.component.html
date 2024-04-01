@@ -1,3 +1,5 @@
-<app-form-editor *ngIf="data" [(data)]="data">
-  <app-material-form #form [data]="data" />
-</app-form-editor>
+@if (data) {
+  <app-form-editor [(data)]="data">
+    <app-material-form #form [data]="data" />
+  </app-form-editor>
+}

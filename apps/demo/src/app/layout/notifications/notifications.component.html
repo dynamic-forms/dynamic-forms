@@ -1,17 +1,13 @@
-<ng-container *ngIf="notifications$ | async as notifications">
-  <ng-container *ngIf="notifications.enabled">
-    <div *ngIf="notifications.items.length > 0" class="notifications">
+@if (notifications$ | async; as notifications) {
+  @if (notifications.enabled && notifications.items.length > 0) {
+    <div class="notifications">
       <mat-chip-listbox class="notification-items">
-        <mat-chip-option
-          *ngFor="let item of notifications.items"
-          class="notification-item"
-          color="primary"
-          selected
-          [removable]="true"
-          (removed)="remove(item)"
-          >{{ item.title }}<mat-icon matChipRemove>cancel</mat-icon></mat-chip-option
-        >
+        @for (item of notifications.items; track $index) {
+          <mat-chip-option class="notification-item" color="primary" selected [removable]="true" (removed)="remove(item)"
+            >{{ item.title }}<mat-icon matChipRemove>cancel</mat-icon></mat-chip-option
+          >
+        }
       </mat-chip-listbox>
     </div>
-  </ng-container>
-</ng-container>
+  }
+}

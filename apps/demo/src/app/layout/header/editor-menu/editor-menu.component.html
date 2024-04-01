@@ -1,4 +1,4 @@
-<ng-container *ngIf="(items$ | async) || [] as items">
+@if ((items$ | async) || []; as items) {
   <button mat-flat-button color="primary" [matMenuTriggerFor]="editor">
     <div class="button-content">Editor <mat-icon>arrow_drop_down</mat-icon></div>
   </button>
@@ -10,4 +10,4 @@
 
   <app-editor-menu-panel #boostrapMenuPanel [baseUrl]="'/editor/bootstrap'" [level]="0" [items]="items" />
   <app-editor-menu-panel #materialMenuPanel [baseUrl]="'/editor/material'" [level]="0" [items]="items" />
-</ng-container>
+}

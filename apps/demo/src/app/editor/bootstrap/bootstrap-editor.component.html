@@ -1,3 +1,5 @@
-<app-form-editor [(data)]="data">
-  <app-bootstrap-form #form [data]="data" />
-</app-form-editor>
+@if (data) {
+  <app-form-editor [(data)]="data">
+    <app-bootstrap-form #form [data]="data" />
+  </app-form-editor>
+}

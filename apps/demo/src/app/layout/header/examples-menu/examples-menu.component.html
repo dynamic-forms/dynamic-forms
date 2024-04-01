@@ -1,4 +1,4 @@
-<ng-container *ngIf="items$ | async as items">
+@if (items$ | async; as items) {
   <button mat-flat-button color="primary" [matMenuTriggerFor]="examples">
     <div class="button-content">Examples <mat-icon>arrow_drop_down</mat-icon></div>
   </button>
@@ -10,4 +10,4 @@
 
   <app-examples-menu-panel #boostrapMenuPanel [baseUrl]="'/examples/bootstrap'" [items]="items" />
   <app-examples-menu-panel #materialMenuPanel [baseUrl]="'/examples/material'" [items]="items" />
-</ng-container>
+}
