@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
   selector: 'app-notifications-toggle',
   templateUrl: './notifications-toggle.component.html',
   styleUrl: './notifications-toggle.component.scss',
-  imports: [AsyncPipe, NgIf, MatButtonModule, MatIconModule],
+  imports: [AsyncPipe, MatButtonModule, MatIconModule],
 })
 export class NotificationsToggleComponent {
   @Select(NotificationsState.enabled)

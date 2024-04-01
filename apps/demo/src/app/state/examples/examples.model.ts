@@ -1,19 +1,26 @@
 import { StateToken } from '@ngxs/store';
 
-export interface ExampleMenu {
+export interface ExampleMenuItem {
+  id?: string;
+  groupId?: string;
+  modelId?: string;
+  docId?: string;
+  items?: ExampleMenuItem[];
+  label: string;
+}
+
+export interface ExampleMenu extends ExampleMenuItem {
   id: string;
   modelId?: string;
   docId?: string;
   label: string;
 }
 
-export interface ExampleMenuGroup {
+export interface ExampleMenuGroup extends ExampleMenuItem {
   groupId?: string;
   label: string;
   items: ExampleMenuItem[];
 }
-
-export type ExampleMenuItem = ExampleMenu | ExampleMenuGroup;
 
 export interface ExamplesMenu {
   items: ExampleMenuItem[];

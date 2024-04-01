@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { FormExampleComponent } from '../form-example.component';
   standalone: true,
   selector: 'app-bootstrap-examples',
   templateUrl: './bootstrap-examples.component.html',
-  imports: [AsyncPipe, NgIf, FormExampleComponent, BootstrapFormComponent],
+  imports: [AsyncPipe, FormExampleComponent, BootstrapFormComponent],
 })
 export class BootstrapExamplesComponent extends FormExampleBase {
   constructor(

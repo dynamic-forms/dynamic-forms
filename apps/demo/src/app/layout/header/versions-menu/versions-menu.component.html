@@ -1,13 +1,13 @@
-<ng-container *ngIf="versions$ | async as versions">
-  <ng-container *ngIf="versions.length">
+@if (versions$ | async; as versions) {
+  @if (versions.length) {
     <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
       <div class="button-content">Versions <mat-icon>arrow_drop_down</mat-icon></div>
     </button>
 
     <mat-menu #menu="matMenu">
-      <ng-container *ngFor="let version of versions">
+      @for (version of versions; track $index) {
         <a mat-menu-item target="_blank" [href]="version.url">{{ version.name }}</a>
-      </ng-container>
+      }
     </mat-menu>
-  </ng-container>
-</ng-container>
+  }
+}

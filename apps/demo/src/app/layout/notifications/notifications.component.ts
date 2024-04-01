@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { NOTIFICATIONS, NotificationItem, Notifications } from '../../state/noti
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
-  imports: [AsyncPipe, NgFor, NgIf, MatChipsModule, MatIconModule],
+  imports: [AsyncPipe, MatChipsModule, MatIconModule],
 })
 export class NotificationsComponent {
   @Select(NOTIFICATIONS)

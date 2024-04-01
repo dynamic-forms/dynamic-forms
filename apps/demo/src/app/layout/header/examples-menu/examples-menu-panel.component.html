@@ -1,18 +1,17 @@
 <mat-menu #menu>
-  <ng-container *ngFor="let item of items">
-    <ng-container *ngIf="item.items">
+  @for (item of items; track $index) {
+    @if (item.items) {
       <button mat-menu-item [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
       <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl" [items]="item.items" />
-    </ng-container>
-    <ng-container *ngIf="item.id">
-      <ng-container *ngIf="!item.modelId; else exampleWithModel">
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
-      </ng-container>
-      <ng-template #exampleWithModel>
+    }
+    @if (item.id) {
+      @if (item.modelId) {
         <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id, 'models', item.modelId]">{{
           item.label
         }}</a>
-      </ng-template>
-    </ng-container>
-  </ng-container>
+      } @else {
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
+      }
+    }
+  }
 </mat-menu>

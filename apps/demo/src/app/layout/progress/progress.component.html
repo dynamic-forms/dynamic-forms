@@ -1,5 +1,7 @@
-<ng-container *ngIf="progress$ | async as progress">
-  <div *ngIf="progress.items.length > 0" class="progress">
-    <mat-progress-bar class="progress-bar" color="primary" mode="indeterminate" />
-  </div>
-</ng-container>
+@if (progress$ | async; as progress) {
+  @if (progress.items.length > 0) {
+    <div class="progress">
+      <mat-progress-bar class="progress-bar" color="primary" mode="indeterminate" />
+    </div>
+  }
+}

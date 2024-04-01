@@ -19,8 +19,7 @@
     <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let log">
       <button mat-icon-button [disabled]="!log.data.length" (click)="log.detailed = !log.detailed; $event.stopPropagation()">
-        <mat-icon *ngIf="!log.detailed">keyboard_arrow_down</mat-icon>
-        <mat-icon *ngIf="log.detailed">keyboard_arrow_up</mat-icon>
+        <mat-icon>{{ log.detailed ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
