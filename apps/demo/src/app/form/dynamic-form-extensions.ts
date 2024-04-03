@@ -1,12 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  DynamicFormControlAsyncValidatorFn,
-  DynamicFormControlAsyncValidatorType,
-  DynamicFormValidationModule,
-  dynamicFormLibrary,
-} from '@dynamic-forms/core';
+import { DynamicFormControlAsyncValidatorFn, DynamicFormControlAsyncValidatorType, dynamicFormLibrary } from '@dynamic-forms/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, map, of, switchMap, take } from 'rxjs';
 
 export const dynamicFormControlUniqueUsernameValidatorFactory = (
@@ -47,9 +41,3 @@ export const dynamicFormControlUniqueUsernameValidatorTypeFactory = (httpClient:
     libraryName: dynamicFormLibrary.name,
   };
 };
-
-@NgModule({
-  imports: [DynamicFormValidationModule.withControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient])],
-  exports: [DynamicFormValidationModule],
-})
-export class DynamicFormExtensionsModule {}

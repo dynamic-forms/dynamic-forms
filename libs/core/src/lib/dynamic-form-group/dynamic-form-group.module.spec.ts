@@ -32,8 +32,8 @@ describe('DynamicFormGroupModule', () => {
   it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
     [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
     (config: DynamicFormGroupValidatorTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(dynamicFormGroupValidatorTypes);
+      expect(config.length).toBe(3);
+      expect(config).toEqual(dynamicFormGroupValidatorTypes);
     },
   ));
 

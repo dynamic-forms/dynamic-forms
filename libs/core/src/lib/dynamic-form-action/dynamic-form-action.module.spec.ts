@@ -126,8 +126,9 @@ describe('DynamicFormActionModule', () => {
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
       [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
       (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(2);
-        expect(config[1]).toEqual(handlers);
+        expect(config.length).toBe(3);
+        expect(config[1]).toEqual(handlers[0]);
+        expect(config[2]).toEqual(handlers[1]);
       },
     ));
   });

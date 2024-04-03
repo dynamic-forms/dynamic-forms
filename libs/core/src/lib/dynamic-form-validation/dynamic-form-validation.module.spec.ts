@@ -120,8 +120,8 @@ describe('DynamicFormValidationModule', () => {
     it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG],
       (config: DynamicFormControlValidatorTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(controlValidatorTypes);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(controlValidatorTypes);
       },
     ));
   });
@@ -216,8 +216,8 @@ describe('DynamicFormValidationModule', () => {
     it('provides DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG],
       (config: DynamicFormGroupValidatorTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(groupValidatorTypes);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(groupValidatorTypes);
       },
     ));
   });
@@ -312,8 +312,8 @@ describe('DynamicFormValidationModule', () => {
     it('provides DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG],
       (config: DynamicFormArrayValidatorTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(arrayValidatorTypes);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(arrayValidatorTypes);
       },
     ));
   });
@@ -408,8 +408,8 @@ describe('DynamicFormValidationModule', () => {
     it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG],
       (config: DynamicFormDictionaryValidatorTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(dictionaryValidatorTypes);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(dictionaryValidatorTypes);
       },
     ));
   });

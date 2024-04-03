@@ -2,14 +2,23 @@ import { NgModule } from '@angular/core';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import {
+  DynamicFormActionModule,
+  withDynamicFormActionHandlerFactory,
+  withDynamicFormActionHandlers,
+} from '../dynamic-form-action/dynamic-form-action.module';
+import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import {
+  DynamicFormValidationModule,
+  withDynamicFormDictionaryValidators,
+} from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormsFeature } from '../dynamic-forms-feature';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryFactory } from './dynamic-form-dictionary-factory';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
@@ -74,15 +83,31 @@ export const dynamicFormDictionaryClearFieldsHandler: DynamicFormActionHandler<D
   libraryName: dynamicFormLibrary.name,
 };
 
+export const dynamicFormDictionaryActionHandlers = [dynamicFormDictionaryRemoveFieldHandler, dynamicFormDictionaryClearFieldsHandler];
+
+export function withDynamicFormDictionaryDefaultFeatures(): DynamicFormsFeature[] {
+  return [
+    withDynamicFormFields(dynamicFormDictionaryType),
+    withDynamicFormDictionaryValidators(...dynamicFormDictionaryValidatorTypes),
+    withDynamicFormActionHandlers(...dynamicFormDictionaryActionHandlers),
+    withDynamicFormActionHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
+  ];
+}
+
+const modules = [
+  DynamicFormActionModule,
+  DynamicFormConfigModule,
+  DynamicFormElementModule,
+  DynamicFormFieldModule,
+  DynamicFormValidationModule,
+];
+
+/**
+ * @deprecated Use {@link withDynamicFormDictionaryDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    DynamicFormElementModule,
-    DynamicFormFieldModule,
-    DynamicFormConfigModule.withField(dynamicFormDictionaryType),
-    DynamicFormValidationModule.withDictionaryValidators(dynamicFormDictionaryValidatorTypes),
-    DynamicFormActionModule.withHandlers([dynamicFormDictionaryRemoveFieldHandler, dynamicFormDictionaryClearFieldsHandler]),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
-  ],
-  exports: [DynamicFormActionModule, DynamicFormConfigModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withDynamicFormDictionaryDefaultFeatures()),
 })
 export class DynamicFormDictionaryModule {}

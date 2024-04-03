@@ -3,6 +3,7 @@
  */
 
 export * from './lib/dynamic-forms.module';
+export * from './lib/dynamic-forms-feature';
 export * from './lib/dynamic-form/dynamic-form';
 export * from './lib/dynamic-form/dynamic-form-component.factory';
 export * from './lib/dynamic-form/dynamic-form-definition';
@@ -199,7 +200,6 @@ export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file-help
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file-validators';
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.directive';
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file.module';
-
 export * from './lib/dynamic-form-input/dynamic-form-numberbox/dynamic-form-numberbox';
 export * from './lib/dynamic-form-input/dynamic-form-radio/dynamic-form-radio';
 export * from './lib/dynamic-form-input/dynamic-form-select/dynamic-form-select';
