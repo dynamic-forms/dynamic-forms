@@ -7,6 +7,7 @@ import { dynamicFormIconProviders } from './dynamic-form-action/dynamic-form-ico
 import { withDynamicFormArrayDefaultFeatures } from './dynamic-form-array/dynamic-form-array.module';
 import { dynamicFormConfigProviders } from './dynamic-form-config/dynamic-form-config.module';
 import { withDynamicFormControlDefaultFeatures } from './dynamic-form-control/dynamic-form-control.module';
+import { withDynamicFormDictionaryDefaultFeatures } from './dynamic-form-dictionary/dynamic-form-dictionary.module';
 import { withDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
 import { dynamicFormErrorProviders } from './dynamic-form-error/dynamic-form-error.module';
 import { dynamicFormEvaluationProviders } from './dynamic-form-evaluation/dynamic-form-evaluation.module';
@@ -36,6 +37,7 @@ const dynamicFormProviders: Provider[] = [
 export const dynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
   ...withDynamicFormArrayDefaultFeatures(),
   ...withDynamicFormControlDefaultFeatures(),
+  ...withDynamicFormDictionaryDefaultFeatures(),
   ...withDynamicFormElementDefaultFeatures(),
   ...withDynamicFormFieldDefaultFeatures(),
   ...withDynamicFormGroupDefaultFeatures(),

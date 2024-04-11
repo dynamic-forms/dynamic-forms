@@ -9,7 +9,7 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 
 @Component({
   standalone: true,
-  selector: 'dynamic-form-array',
+  selector: 'dynamic-form-dictionary',
   templateUrl: './dynamic-form-dictionary.component.html',
   imports: [NgClass, NgIf, DynamicFormElementsComponent],
 })
