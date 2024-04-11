@@ -88,8 +88,8 @@ describe('DynamicFormEvaluationModule', () => {
     it('provides DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG],
       (config: DynamicFormControlEvaluatorTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(controlEvaluatorTypes);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(controlEvaluatorTypes);
       },
     ));
   });

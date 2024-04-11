@@ -1,5 +1,14 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule } from '@dynamic-forms/core';
+import {
+  DynamicFormConfigModule,
+  DynamicFormFileModule,
+  DynamicFormTextboxModule,
+  DynamicFormsFeature,
+  importDynamicFormsProviders,
+  withDynamicFormFileValidators,
+  withDynamicFormInputs,
+  withDynamicFormTextboxActionHandlers,
+} from '@dynamic-forms/core';
 import { bsDynamicFormCheckboxType } from './dynamic-form-checkbox/dynamic-form-checkbox-type';
 import { bsDynamicFormComboboxType } from './dynamic-form-combobox/dynamic-form-combobox-type';
 import { bsDynamicFormDatepickerType } from './dynamic-form-datepicker/dynamic-form-datepicker-type';
@@ -26,8 +35,18 @@ export const bsDynamicFormInputTypes = [
   bsDynamicFormToggleType,
 ];
 
+export function withBsDynamicFormInputDefaultFeatures(): DynamicFormsFeature[] {
+  return [withDynamicFormInputs(...bsDynamicFormInputTypes), withDynamicFormTextboxActionHandlers(), withDynamicFormFileValidators()];
+}
+
+const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule];
+
+/**
+ * @deprecated Use {@link withBsDynamicFormInputDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [DynamicFormFileModule, DynamicFormTextboxModule, DynamicFormConfigModule.withInputs(bsDynamicFormInputTypes)],
-  exports: [DynamicFormConfigModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withBsDynamicFormInputDefaultFeatures()),
 })
 export class BsDynamicFormInputModule {}

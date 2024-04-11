@@ -51,10 +51,14 @@
         "input": {
           "type": "datepicker",
           "placeholder": "Enter a date",
-          "defaultValue": "2019-01-01"
+          "defaultValue": "2025-01-01",
+          "minDate": "2020-01-01",
+          "maxDate": "2030-01-01"
         },
         "validation": {
-          "required": true
+          "required": true,
+          "minDate": true,
+          "maxDate": true
         }
       }
     },
@@ -249,7 +253,7 @@
       }
     }
   ],
-  "footerActions": [ 
+  "footerActions": [
     {
       "id": "action-submit",
       "type": "button",

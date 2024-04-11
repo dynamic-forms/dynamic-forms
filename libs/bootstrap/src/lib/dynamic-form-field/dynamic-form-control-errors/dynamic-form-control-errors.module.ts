@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormConfigModule, DynamicFormFieldWrapperType } from '@dynamic-forms/core';
+import {
+  DynamicFormConfigModule,
+  DynamicFormFieldWrapperType,
+  importDynamicFormsProviders,
+  withDynamicFormFieldWrappers,
+} from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 
@@ -9,8 +14,14 @@ export const bsDynamicFormControlErrorsType: DynamicFormFieldWrapperType = {
   libraryName: bsDynamicFormLibrary.name,
 };
 
+const modules = [DynamicFormConfigModule];
+
+/**
+ * @deprecated Use {@link withBsDynamicFormFieldWrapperDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [DynamicFormConfigModule.withFieldWrapper(bsDynamicFormControlErrorsType)],
-  exports: [DynamicFormConfigModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(withDynamicFormFieldWrappers(bsDynamicFormControlErrorsType)),
 })
 export class BsDynamicFormControlErrorsModule {}

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
+import { DynamicFormActionModule, withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormsFeature } from '../dynamic-forms-feature';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormField } from './dynamic-form-field';
 
 export const dynamicFormFieldClear = (field: DynamicFormField): void => field.clear();
@@ -64,18 +66,27 @@ export const dynamicFormSubmitHandler: DynamicFormActionHandler = {
   libraryName: dynamicFormLibrary.name,
 };
 
+export const dynamicFormFieldActionHandlerDefaults = [
+  dynamicFormFieldClearHandler,
+  dynamicFormFieldResetHandler,
+  dynamicFormFieldResetEmptyHandler,
+  dynamicFormFieldResetDefaultHandler,
+  dynamicFormFieldValidateHandler,
+  dynamicFormSubmitHandler,
+];
+
+export function withDynamicFormFieldDefaultFeatures(): DynamicFormsFeature[] {
+  return [withDynamicFormActionHandlers(...dynamicFormFieldActionHandlerDefaults)];
+}
+
+const modules = [DynamicFormActionModule, DynamicFormValidationModule];
+
+/**
+ * @deprecated Use {@link withDynamicFormFieldDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    DynamicFormValidationModule,
-    DynamicFormActionModule.withHandlers([
-      dynamicFormFieldClearHandler,
-      dynamicFormFieldResetHandler,
-      dynamicFormFieldResetEmptyHandler,
-      dynamicFormFieldResetDefaultHandler,
-      dynamicFormFieldValidateHandler,
-      dynamicFormSubmitHandler,
-    ]),
-  ],
-  exports: [DynamicFormActionModule, DynamicFormValidationModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withDynamicFormFieldDefaultFeatures()),
 })
 export class DynamicFormFieldModule {}

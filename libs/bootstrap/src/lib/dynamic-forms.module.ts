@@ -1,8 +1,5 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
-  DYNAMIC_FORM_ID_BUILDER,
-  DYNAMIC_FORM_LIBRARY,
-  DYNAMIC_FORM_THEME,
   DynamicFormArrayModule,
   DynamicFormControlModule,
   DynamicFormDictionaryModule,
@@ -10,48 +7,81 @@ import {
   DynamicFormGroupModule,
   DynamicFormIdBuilder,
   DynamicFormValidationModule,
+  DynamicFormsFeature,
   DynamicFormsModule,
+  importDynamicFormsProviders,
+  provideDynamicForms,
+  provideDynamicFormsWithDefaultFeatures,
+  withDynamicFormValidation,
+  withDynamicFormsIdBuilder,
+  withDynamicFormsLibrary,
+  withDynamicFormsTheme,
 } from '@dynamic-forms/core';
-import { BsDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
-import { BsDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
-import { BsDynamicFormFieldWrapperModule } from './dynamic-form-field/dynamic-form-field-wrapper.module';
-import { BsDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
+import { BsDynamicFormActionModule, withBsDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
+import { BsDynamicFormElementModule, withBsDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
+import {
+  BsDynamicFormFieldWrapperModule,
+  withBsDynamicFormFieldWrapperDefaultFeatures,
+} from './dynamic-form-field/dynamic-form-field-wrapper.module';
+import { BsDynamicFormInputModule, withBsDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
+export function provideBsDynamicForms(...features: DynamicFormsFeature[]): Provider[] {
+  return [provideDynamicForms(bsDynamicFormLibrary, ...features)];
+}
+
+export const matDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  ...withBsDynamicFormActionDefaultFeatures(),
+  ...withBsDynamicFormElementDefaultFeatures(),
+  ...withBsDynamicFormFieldWrapperDefaultFeatures(),
+  ...withBsDynamicFormInputDefaultFeatures(),
+];
+
+export function provideBsDynamicFormsWithDefaultFeatures(
+  config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
+  ...additionalFatures: DynamicFormsFeature[]
+): Provider[] {
+  const features = [
+    ...matDynamicFormsDefaultFeatures,
+    withDynamicFormsTheme(config?.theme),
+    withDynamicFormsIdBuilder(config?.idBuilder),
+    ...additionalFatures,
+  ];
+  return provideDynamicFormsWithDefaultFeatures(bsDynamicFormLibrary, ...features);
+}
+
+const modules = [
+  BsDynamicFormActionModule,
+  BsDynamicFormElementModule,
+  BsDynamicFormFieldWrapperModule,
+  BsDynamicFormInputModule,
+  DynamicFormArrayModule,
+  DynamicFormControlModule,
+  DynamicFormValidationModule,
+  DynamicFormDictionaryModule,
+  DynamicFormElementModule,
+  DynamicFormGroupModule,
+  DynamicFormsModule,
+];
+
+/**
+ * @deprecated Use {@link provideBsDynamicFormsWithDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    BsDynamicFormActionModule,
-    BsDynamicFormElementModule,
-    BsDynamicFormFieldWrapperModule,
-    BsDynamicFormInputModule,
-    DynamicFormArrayModule,
-    DynamicFormControlModule,
-    DynamicFormValidationModule.withValidation(),
-    DynamicFormDictionaryModule,
-    DynamicFormElementModule,
-    DynamicFormGroupModule,
-    DynamicFormsModule,
-  ],
-  exports: [DynamicFormsModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(withDynamicFormValidation()),
 })
 export class BsDynamicFormsModule {
+  /**
+   * @deprecated Use {@link provideBsDynamicFormsWithDefaultFeatures} instead.
+   */
   static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<BsDynamicFormsModule> {
-    return {
-      ngModule: BsDynamicFormsModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: bsDynamicFormLibrary,
-        },
-        {
-          provide: DYNAMIC_FORM_THEME,
-          useValue: config && config.theme,
-        },
-        {
-          provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: config && config.idBuilder,
-        },
-      ],
-    };
+    const features = [
+      withDynamicFormsLibrary(bsDynamicFormLibrary),
+      withDynamicFormsTheme(config?.theme),
+      withDynamicFormsIdBuilder(config?.idBuilder),
+    ];
+    return { ngModule: BsDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
   }
 }

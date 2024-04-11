@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormConfigModule, DynamicFormElementType, dynamicFormItemsFactory } from '@dynamic-forms/core';
+import {
+  DynamicFormConfigModule,
+  DynamicFormElementType,
+  dynamicFormItemsFactory,
+  importDynamicFormsProviders,
+  withDynamicFormElements,
+} from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from '../../../dynamic-form-library/dynamic-form-library';
 import { BsDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 
@@ -10,8 +16,14 @@ export const bsDynamicFormTabsType: DynamicFormElementType = {
   libraryName: bsDynamicFormLibrary.name,
 };
 
+const modules = [DynamicFormConfigModule];
+
+/**
+ * @deprecated Use {@link withBsDynamicFormElementDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [DynamicFormConfigModule.withElement(bsDynamicFormTabsType)],
-  exports: [DynamicFormConfigModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(withDynamicFormElements(bsDynamicFormTabsType)),
 })
 export class BsDynamicFormTabsModule {}

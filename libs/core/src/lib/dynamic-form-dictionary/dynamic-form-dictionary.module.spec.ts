@@ -50,8 +50,8 @@ describe('DynamicFormDictionaryModule', () => {
   it('provides DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG', inject(
     [DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG],
     (config: DynamicFormDictionaryValidatorTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(dynamicFormDictionaryValidatorTypes);
+      expect(config.length).toBe(3);
+      expect(config).toEqual(dynamicFormDictionaryValidatorTypes);
     },
   ));
 
