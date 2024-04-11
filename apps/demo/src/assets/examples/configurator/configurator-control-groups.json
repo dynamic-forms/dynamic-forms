@@ -147,6 +147,12 @@
         },
         {
           "reference": "max"
+        },
+        {
+          "reference": "minDate"
+        },
+        {
+          "reference": "maxDate"
         }
       ]
     },
@@ -715,8 +721,8 @@
         }
       },
       "expressions": {
-        "hidden": "data.parent.model.type !== 'numberbox' && data.parent.model.type !== 'datepicker'",
-        "disabled": "data.parent.model.type !== 'numberbox' && data.parent.model.type !== 'datepicker'",
+        "hidden": "data.parent.model.type !== 'numberbox'",
+        "disabled": "data.parent.model.type !== 'numberbox'",
         "input.type": "data.parent.model.type || 'numberbox'"
       }
     },
@@ -732,9 +738,43 @@
         }
       },
       "expressions": {
-        "hidden": "data.parent.model.type !== 'numberbox' && data.parent.model.type !== 'datepicker'",
-        "disabled": "data.parent.model.type !== 'numberbox' && data.parent.model.type !== 'datepicker'",
+        "hidden": "data.parent.model.type !== 'numberbox'",
+        "disabled": "data.parent.model.type !== 'numberbox'",
         "input.type": "data.parent.model.type || 'numberbox'"
+      }
+    },
+    "minDate": {
+      "key": "minDate",
+      "type": "control",
+      "template": {
+        "label": "Min date",
+        "className": "col-6",
+        "input": {
+          "type": "datepicker",
+          "placeholder": "Enter a min value"
+        }
+      },
+      "expressions": {
+        "hidden": "data.parent.model.type !== 'datepicker'",
+        "disabled": "data.parent.model.type !== 'datepicker'",
+        "input.type": "data.parent.model.type || 'datepicker'"
+      }
+    },
+    "maxDate": {
+      "key": "maxDate",
+      "type": "control",
+      "template": {
+        "label": "Max date",
+        "className": "col-6",
+        "input": {
+          "type": "numberbox",
+          "placeholder": "Enter a max value"
+        }
+      },
+      "expressions": {
+        "hidden": "data.parent.model.type !== 'datepicker'",
+        "disabled": "data.parent.model.type !== 'datepicker'",
+        "input.type": "data.parent.model.type || 'datepicker'"
       }
     },
     "validation": {
@@ -810,7 +850,7 @@
             }
           },
           "expressions": {
-            "disabled": "(function(inputType) { return inputType !== 'numberbox' && inputType !== 'datepicker'; })(((data.root.model.template || {}).input || {}).type)"
+            "disabled": "(function(inputType) { return inputType !== 'numberbox'; })(((data.root.model.template || {}).input || {}).type)"
           }
         },
         {
@@ -824,7 +864,35 @@
             }
           },
           "expressions": {
-            "disabled": "(function(inputType) { return inputType !== 'numberbox' && inputType !== 'datepicker'; })(((data.root.model.template || {}).input || {}).type)"
+            "disabled": "(function(inputType) { return inputType !== 'numberbox'; })(((data.root.model.template || {}).input || {}).type)"
+          }
+        },
+        {
+          "key": "minDate",
+          "type": "control",
+          "template": {
+            "label": "Min date",
+            "className": "col-6",
+            "input": {
+              "type": "checkbox"
+            }
+          },
+          "expressions": {
+            "disabled": "(function(inputType) { return inputType !== 'datepicker'; })(((data.root.model.template || {}).input || {}).type)"
+          }
+        },
+        {
+          "key": "maxDate",
+          "type": "control",
+          "template": {
+            "label": "Max date",
+            "className": "col-6",
+            "input": {
+              "type": "checkbox"
+            }
+          },
+          "expressions": {
+            "disabled": "(function(inputType) { return inputType !== 'datepicker'; })(((data.root.model.template || {}).input || {}).type)"
           }
         },
         {

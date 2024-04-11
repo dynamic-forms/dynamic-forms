@@ -41,15 +41,15 @@ describe('DynamicFormControlModule', () => {
     [DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG],
     (config: DynamicFormControlEvaluatorTypeConfig) => {
       expect(config.length).toBe(1);
-      expect(config[0]).toEqual(dynamicFormControlEvaluatorTypes);
+      expect(config).toEqual(dynamicFormControlEvaluatorTypes);
     },
   ));
 
   it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG', inject(
     [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG],
     (config: DynamicFormControlValidatorTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(dynamicFormControlValidatorTypes);
+      expect(config.length).toBe(7);
+      expect(config).toEqual(dynamicFormControlValidatorTypes);
     },
   ));
 

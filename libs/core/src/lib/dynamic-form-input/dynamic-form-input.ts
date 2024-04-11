@@ -11,8 +11,10 @@ export interface DynamicFormInput<Value = any> {
   options?: string[] | DynamicFormInputOptionItem[];
   multiple?: boolean;
   pattern?: string | RegExp;
-  min?: number | Date;
-  max?: number | Date;
+  min?: number;
+  max?: number;
+  minDate?: Date;
+  maxDate?: Date;
   minLength?: number;
   maxLength?: number;
 }

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
-import { DynamicFormEvaluationModule } from '../dynamic-form-evaluation/dynamic-form-evaluation.module';
+import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
+import { DynamicFormEvaluationModule, withDynamicFormControlEvaluators } from '../dynamic-form-evaluation/dynamic-form-evaluation.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormValidationModule, withDynamicFormControlValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormsFeature } from '../dynamic-forms-feature';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
 import { dynamicFormControlFactory } from './dynamic-form-control-factory';
 import { dynamicFormControlValidatorTypes } from './dynamic-form-control-validator-type';
@@ -17,13 +19,22 @@ export const dynamicFormControlType: DynamicFormFieldType = {
   libraryName: dynamicFormLibrary.name,
 };
 
+export function withDynamicFormControlDefaultFeatures(): DynamicFormsFeature[] {
+  return [
+    withDynamicFormFields(dynamicFormControlType),
+    withDynamicFormControlValidators(...dynamicFormControlValidatorTypes),
+    withDynamicFormControlEvaluators(...dynamicFormControlEvaluatorTypes),
+  ];
+}
+
+const modules = [DynamicFormConfigModule, DynamicFormEvaluationModule, DynamicFormFieldModule, DynamicFormValidationModule];
+
+/**
+ * @deprecated Use {@link withDynamicFormControlDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    DynamicFormFieldModule,
-    DynamicFormConfigModule.withField(dynamicFormControlType),
-    DynamicFormValidationModule.withControlValidators(dynamicFormControlValidatorTypes),
-    DynamicFormEvaluationModule.withControlEvaluators(dynamicFormControlEvaluatorTypes),
-  ],
-  exports: [DynamicFormConfigModule, DynamicFormValidationModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withDynamicFormControlDefaultFeatures()),
 })
 export class DynamicFormControlModule {}

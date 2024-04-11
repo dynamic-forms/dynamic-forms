@@ -110,8 +110,9 @@ describe('DynamicFormErrorModule', () => {
     });
 
     it('provides DYNAMIC_FORM_LOGGER_TYPE_CONFIG', inject([DYNAMIC_FORM_LOGGER_TYPE_CONFIG], (config: DynamicFormLoggerTypeConfig) => {
-      expect(config.length).toBe(2);
-      expect(config[1]).toBe(loggerTypes);
+      expect(config.length).toBe(3);
+      expect(config[1]).toBe(loggerTypes[0]);
+      expect(config[2]).toBe(loggerTypes[1]);
     }));
   });
 });

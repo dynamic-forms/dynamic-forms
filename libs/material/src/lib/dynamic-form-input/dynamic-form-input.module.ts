@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule } from '@dynamic-forms/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
+import {
+  DynamicFormConfigModule,
+  DynamicFormFileModule,
+  DynamicFormTextboxModule,
+  DynamicFormsFeature,
+  importDynamicFormsProviders,
+  withDynamicFormFileValidators,
+  withDynamicFormInputs,
+  withDynamicFormTextboxActionHandlers,
+} from '@dynamic-forms/core';
 import { matDynamicFormCheckboxType } from './dynamic-form-checkbox/dynamic-form-checkbox-type';
 import { matDynamicFormComboboxType } from './dynamic-form-combobox/dynamic-form-combobox-type';
 import { matDynamicFormDatepickerType } from './dynamic-form-datepicker/dynamic-form-datepicker-type';
@@ -27,14 +36,28 @@ export const matDynamicFormInputTypes = [
   matDynamicFormToggleType,
 ];
 
+export const matDynamicFormFieldDefaultOptions: MatFormFieldDefaultOptions = { floatLabel: 'always' };
+
+export function withMatDynamicFormInputDefaultFeatures(
+  options: MatFormFieldDefaultOptions = matDynamicFormFieldDefaultOptions,
+): DynamicFormsFeature[] {
+  const feature = { providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: options }] };
+  return [
+    withDynamicFormInputs(...matDynamicFormInputTypes),
+    withDynamicFormTextboxActionHandlers(),
+    withDynamicFormFileValidators(),
+    feature,
+  ];
+}
+
+const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule];
+
+/**
+ * @deprecated Use {@link withMatDynamicFormInputDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [DynamicFormFileModule, DynamicFormTextboxModule, DynamicFormConfigModule.withInputs(matDynamicFormInputTypes)],
-  exports: [DynamicFormConfigModule],
-  providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { floatLabel: 'always' },
-    },
-  ],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withMatDynamicFormInputDefaultFeatures()),
 })
 export class MatDynamicFormInputModule {}

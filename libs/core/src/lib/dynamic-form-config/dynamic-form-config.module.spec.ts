@@ -89,8 +89,8 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('provides DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(types);
+      expect(config.length).toBe(2);
+      expect(config).toEqual(types);
     }));
   });
 
@@ -136,8 +136,8 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('provides DYNAMIC_FORM_FIELD_TYPE_CONFIG', inject([DYNAMIC_FORM_FIELD_TYPE_CONFIG], (config: DynamicFormFieldTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(types);
+      expect(config.length).toBe(2);
+      expect(config).toEqual(types);
     }));
   });
 
@@ -183,8 +183,8 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(types);
+      expect(config.length).toBe(2);
+      expect(config).toEqual(types);
     }));
   });
 
@@ -230,8 +230,8 @@ describe('DynamicFormConfigModule', () => {
     });
 
     it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG', inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {
-      expect(config.length).toBe(1);
-      expect(config[0]).toEqual(types);
+      expect(config.length).toBe(2);
+      expect(config).toEqual(types);
     }));
   });
 
@@ -282,8 +282,8 @@ describe('DynamicFormConfigModule', () => {
     it('provides DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG', inject(
       [DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG],
       (config: DynamicFormFieldWrapperTypeConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(types);
+        expect(config.length).toBe(2);
+        expect(config).toEqual(types);
       },
     ));
   });

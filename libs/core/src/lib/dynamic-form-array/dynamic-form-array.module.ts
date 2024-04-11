@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormConfigModule } from '../dynamic-form-config/dynamic-form-config.module';
+import {
+  DynamicFormActionModule,
+  withDynamicFormActionHandlerFactory,
+  withDynamicFormActionHandlers,
+} from '../dynamic-form-action/dynamic-form-action.module';
+import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormElementModule } from '../dynamic-form-element/dynamic-form-element.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormValidationModule, withDynamicFormArrayValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { DynamicFormsFeature } from '../dynamic-forms-feature';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayFactory } from './dynamic-form-array-factory';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
@@ -93,21 +99,37 @@ export const dynamicFormArrayMoveFieldUpHandler: DynamicFormActionHandler<Dynami
   libraryName: dynamicFormLibrary.name,
 };
 
+export const dynamicFormArrayActionHandlers = [
+  dynamicFormArrayPopFieldHandler,
+  dynamicFormArrayRemoveFieldHandler,
+  dynamicFormArrayClearFieldsHandler,
+  dynamicFormArrayMoveFieldDownHandler,
+  dynamicFormArrayMoveFieldUpHandler,
+];
+
+export function withDynamicFormArrayDefaultFeatures(): DynamicFormsFeature[] {
+  return [
+    withDynamicFormFields(dynamicFormArrayType),
+    withDynamicFormArrayValidators(...dynamicFormArrayValidatorTypes),
+    withDynamicFormActionHandlers(...dynamicFormArrayActionHandlers),
+    withDynamicFormActionHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [DynamicFormBuilder]),
+  ];
+}
+
+const modules = [
+  DynamicFormActionModule,
+  DynamicFormConfigModule,
+  DynamicFormElementModule,
+  DynamicFormFieldModule,
+  DynamicFormValidationModule,
+];
+
+/**
+ * @deprecated Use {@link withDynamicFormArrayDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    DynamicFormElementModule,
-    DynamicFormFieldModule,
-    DynamicFormConfigModule.withField(dynamicFormArrayType),
-    DynamicFormValidationModule.withArrayValidators(dynamicFormArrayValidatorTypes),
-    DynamicFormActionModule.withHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [DynamicFormBuilder]),
-    DynamicFormActionModule.withHandlers([
-      dynamicFormArrayPopFieldHandler,
-      dynamicFormArrayRemoveFieldHandler,
-      dynamicFormArrayClearFieldsHandler,
-      dynamicFormArrayMoveFieldDownHandler,
-      dynamicFormArrayMoveFieldUpHandler,
-    ]),
-  ],
-  exports: [DynamicFormActionModule, DynamicFormConfigModule, DynamicFormValidationModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(...withDynamicFormArrayDefaultFeatures()),
 })
 export class DynamicFormArrayModule {}

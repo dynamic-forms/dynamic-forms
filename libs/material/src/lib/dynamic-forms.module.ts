@@ -1,8 +1,5 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
-  DYNAMIC_FORM_ID_BUILDER,
-  DYNAMIC_FORM_LIBRARY,
-  DYNAMIC_FORM_THEME,
   DynamicFormArrayModule,
   DynamicFormControlModule,
   DynamicFormDictionaryModule,
@@ -10,46 +7,75 @@ import {
   DynamicFormGroupModule,
   DynamicFormIdBuilder,
   DynamicFormValidationModule,
+  DynamicFormsFeature,
   DynamicFormsModule,
+  importDynamicFormsProviders,
+  provideDynamicForms,
+  provideDynamicFormsWithDefaultFeatures,
+  withDynamicFormValidation,
+  withDynamicFormsIdBuilder,
+  withDynamicFormsLibrary,
+  withDynamicFormsTheme,
 } from '@dynamic-forms/core';
-import { MatDynamicFormActionModule } from './dynamic-form-action/dynamic-form-action.module';
-import { MatDynamicFormElementModule } from './dynamic-form-element/dynamic-form-element.module';
-import { MatDynamicFormInputModule } from './dynamic-form-input/dynamic-form-input.module';
+import { MatDynamicFormActionModule, withMatDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
+import { MatDynamicFormElementModule, withMatDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
+import { MatDynamicFormInputModule, withMatDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
+export function provideMatDynamicForms(...features: DynamicFormsFeature[]): Provider[] {
+  return [provideDynamicForms(matDynamicFormLibrary, ...features)];
+}
+
+export const matDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  ...withMatDynamicFormActionDefaultFeatures(),
+  ...withMatDynamicFormElementDefaultFeatures(),
+  ...withMatDynamicFormInputDefaultFeatures(),
+];
+
+export function provideMatDynamicFormsWithDefaultFeatures(
+  config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
+  ...additionalFatures: DynamicFormsFeature[]
+): Provider[] {
+  const features = [
+    ...matDynamicFormsDefaultFeatures,
+    withDynamicFormsTheme(config?.theme),
+    withDynamicFormsIdBuilder(config?.idBuilder),
+    ...additionalFatures,
+  ];
+  return provideDynamicFormsWithDefaultFeatures(matDynamicFormLibrary, ...features);
+}
+
+const modules = [
+  DynamicFormArrayModule,
+  DynamicFormControlModule,
+  DynamicFormDictionaryModule,
+  DynamicFormElementModule,
+  DynamicFormGroupModule,
+  DynamicFormsModule,
+  DynamicFormValidationModule,
+  MatDynamicFormActionModule,
+  MatDynamicFormElementModule,
+  MatDynamicFormInputModule,
+];
+
+/**
+ * @deprecated Use {@link provideMatDynamicFormsWithDefaultFeatures} instead.
+ */
 @NgModule({
-  imports: [
-    DynamicFormArrayModule,
-    DynamicFormControlModule,
-    DynamicFormDictionaryModule,
-    DynamicFormElementModule,
-    DynamicFormGroupModule,
-    DynamicFormsModule,
-    DynamicFormValidationModule.withValidation(),
-    MatDynamicFormActionModule,
-    MatDynamicFormElementModule,
-    MatDynamicFormInputModule,
-  ],
-  exports: [DynamicFormsModule],
+  imports: modules,
+  exports: modules,
+  providers: importDynamicFormsProviders(withDynamicFormValidation()),
 })
 export class MatDynamicFormsModule {
+  /**
+   * @deprecated Use {@link provideMatDynamicFormsWithDefaultFeatures} instead.
+   */
   static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
-    return {
-      ngModule: MatDynamicFormsModule,
-      providers: [
-        {
-          provide: DYNAMIC_FORM_LIBRARY,
-          useValue: matDynamicFormLibrary,
-        },
-        {
-          provide: DYNAMIC_FORM_THEME,
-          useValue: config && config.theme,
-        },
-        {
-          provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: config && config.idBuilder,
-        },
-      ],
-    };
+    const features = [
+      withDynamicFormsLibrary(matDynamicFormLibrary),
+      withDynamicFormsTheme(config?.theme),
+      withDynamicFormsIdBuilder(config?.idBuilder),
+    ];
+    return { ngModule: MatDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
   }
 }

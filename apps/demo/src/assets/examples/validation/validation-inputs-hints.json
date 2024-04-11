@@ -38,13 +38,18 @@
         "label": "Datepicker",
         "input": {
           "type": "datepicker",
-          "placeholder": "Enter a date"
+          "placeholder": "Enter a date",
+          "minDate": "2020-01-01",
+          "maxDate": "2030-01-01"
         },
         "validation": {
-          "required": true
+          "required": true,
+          "minDate": true,
+          "maxDate": true
         },
         "hints": {
-          "hintEnd": "Click to open calendar"
+          "hintStart": "Min: 1/1/2020",
+          "hintEnd": "Max: 1/1/2030"
         }
       }
     },
