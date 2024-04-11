@@ -1,6 +1,10 @@
 import { TestBed, TestModuleMetadata, inject } from '@angular/core/testing';
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
-import { MatDynamicFormElementModule, matDynamicFormElementTypes, withMatDynamicFormElementDefaultFeatures } from './dynamic-form-element.module';
+import {
+  MatDynamicFormElementModule,
+  matDynamicFormElementTypes,
+  withMatDynamicFormElementDefaultFeatures,
+} from './dynamic-form-element.module';
 
 describe('MatDynamicFormElementModule', () => {
   const testModules: { name: string; def: TestModuleMetadata }[] = [
