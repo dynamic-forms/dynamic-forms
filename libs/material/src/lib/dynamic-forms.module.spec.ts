@@ -16,7 +16,7 @@ import {
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
-import { MatDynamicFormsModule, provideMatDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
+import { MatDynamicFormsModule, provideMatDynamicForms, provideMatDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {
@@ -74,9 +74,20 @@ describe('MatDynamicFormsModule', () => {
     });
   });
 
+  describe('provideMatDynamicForms', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({ providers: provideMatDynamicForms() });
+    });
+
+    it('provides DYNAMIC_FORM_LIBRARY', inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+      expect(library).toEqual(matDynamicFormLibrary);
+    }));
+  });
+
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'MatDynamicFormsModule', def: { imports: [MatDynamicFormsModule.forRoot()] } },
+      { name: 'MatDynamicFormsModule.root', def: { imports: [MatDynamicFormsModule.forRoot()] } },
+      { name: 'MatDynamicFormsModule.withDefaultFeatures', def: { imports: [MatDynamicFormsModule.withDefaultFeatures()] } },
       { name: 'provideMatDynamicFormsWithDefaultFeatures', def: { providers: provideMatDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -132,23 +143,27 @@ describe('MatDynamicFormsModule', () => {
   });
 
   describe('forRoot with config', () => {
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          MatDynamicFormsModule.forRoot({
-            theme: 'theme',
-            idBuilder: { createId: () => 'dynamic-form-id' },
-          }),
-        ],
+    const config = { theme: 'theme', idBuilder: { createId: () => 'dynamic-form-id' } };
+    const testModules: { name: string; def: TestModuleMetadata }[] = [
+      { name: 'MatDynamicFormsModule', def: { imports: [MatDynamicFormsModule.forRoot(config)] } },
+      { name: 'MatDynamicFormsModule.withDefaultFeatures', def: { imports: [MatDynamicFormsModule.withDefaultFeatures(config)] } },
+      { name: 'provideMatDynamicFormsWithDefaultFeatures', def: { providers: provideMatDynamicFormsWithDefaultFeatures(config) } },
+    ];
+
+    testModules.forEach(testModule => {
+      describe(`using ${testModule.name}`, () => {
+        beforeEach(() => {
+          TestBed.configureTestingModule(testModule.def);
+        });
+
+        it('provides DYNAMIC_FORM_THEME', inject([DYNAMIC_FORM_THEME], (theme: string) => {
+          expect(theme).toBe('theme');
+        }));
+
+        it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
+          expect(service).toBeTruthy();
+        }));
       });
     });
-
-    it('provides DYNAMIC_FORM_THEME', inject([DYNAMIC_FORM_THEME], (theme: string) => {
-      expect(theme).toBe('theme');
-    }));
-
-    it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-      expect(service).toBeTruthy();
-    }));
   });
 });

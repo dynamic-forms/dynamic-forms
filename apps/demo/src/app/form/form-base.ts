@@ -1,4 +1,4 @@
-import { Directive, DoCheck, Input, ViewChild } from '@angular/core';
+import { Directive, DoCheck, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core';
 import { FormData } from './form-data';
@@ -10,6 +10,9 @@ export abstract class FormBase extends FormSubmitBase implements DoCheck {
   form: DynamicFormComponent;
 
   @Input() data: FormData;
+
+  @Output()
+  readonly valueChange = new EventEmitter<any>();
 
   formDefinition: DynamicFormDefinition;
   formModel: any;

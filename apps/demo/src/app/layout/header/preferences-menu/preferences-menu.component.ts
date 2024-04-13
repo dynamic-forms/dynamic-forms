@@ -1,11 +1,11 @@
 import { AsyncPipe } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { cloneObject } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { FormData } from '../../../form/form-data';
 import { MaterialFormComponent } from '../../../form/material/material-form.component';
@@ -21,8 +21,7 @@ import preferencesDefinition from './preferences-form.json';
   styleUrl: './preferences-menu.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, MaterialFormComponent],
 })
-export class PreferencesMenuComponent implements AfterViewInit, OnDestroy {
-  private _subscriptions = new Subscription();
+export class PreferencesMenuComponent {
   readonly model$: Observable<Preferences>;
   readonly data$: Observable<FormData<Preferences>>;
 
@@ -31,7 +30,7 @@ export class PreferencesMenuComponent implements AfterViewInit, OnDestroy {
 
   constructor(private store: Store) {
     this.model$ = this.store.select(PreferencesState).pipe(
-      filter(preferences => preferences !== this.dynamicForm?.form.value),
+      filter(preferences => preferences !== this.dynamicForm?.form?.value),
       map((preferences: Preferences) => {
         if (preferences) {
           return cloneObject(preferences);
@@ -46,19 +45,7 @@ export class PreferencesMenuComponent implements AfterViewInit, OnDestroy {
     );
   }
 
-  ngAfterViewInit(): void {
-    this._subscriptions.add(
-      this.dynamicForm.form.valueChange.subscribe(preferences => {
-        this.setPreferences(preferences);
-      }),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
-  }
-
-  private setPreferences(preferences: Preferences): void {
+  setPreferences(preferences: Preferences): void {
     this.store.dispatch(new SetPreferences(preferences));
   }
 }

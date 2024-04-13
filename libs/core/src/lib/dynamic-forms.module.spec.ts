@@ -20,6 +20,7 @@ describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY using', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
       { name: 'DynamicFormsModule', def: { imports: [DynamicFormsModule] } },
+      { name: 'DynamicFormsModule.withFeatures', def: { imports: [DynamicFormsModule.withFeatures()] } },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms() } },
     ];
 

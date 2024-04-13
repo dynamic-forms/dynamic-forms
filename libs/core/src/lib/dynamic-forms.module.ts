@@ -1,4 +1,4 @@
-import { NgModule, Provider } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
@@ -59,6 +59,7 @@ export function provideDynamicForms(library?: DynamicFormLibrary, ...features: D
   if (features) {
     providers.push(...importDynamicFormsProviders(...features));
   }
+
   return providers;
 }
 
@@ -78,4 +79,9 @@ export function provideDynamicFormsWithDefaultFeatures(
   exports: [DynamicFormComponent],
   providers: provideDynamicForms(),
 })
-export class DynamicFormsModule {}
+export class DynamicFormsModule {
+  static withFeatures(...features: DynamicFormsFeature[]): ModuleWithProviders<DynamicFormsModule> {
+    const providers = importDynamicFormsProviders(...features);
+    return { ngModule: DynamicFormsModule, providers };
+  }
+}

@@ -2,6 +2,7 @@ import { NgModule, Provider } from '@angular/core';
 import {
   DynamicFormConfigModule,
   DynamicFormElementType,
+  DynamicFormsFeature,
   dynamicFormLibrary,
   importDynamicFormsProviders,
   withDynamicFormElements,
@@ -15,8 +16,13 @@ export const dynamicFormMarkdownType: DynamicFormElementType = {
   libraryName: dynamicFormLibrary.name,
 };
 
+export function withDynamicFormsMarkdownFeatures(): DynamicFormsFeature[] {
+  const providers = [DynamicFormMarkdownService];
+  return [{ providers }, withDynamicFormElements(dynamicFormMarkdownType)];
+}
+
 export function provideDynamicFormsMarkdown(): Provider[] {
-  return [DynamicFormMarkdownService, ...importDynamicFormsProviders(withDynamicFormElements(dynamicFormMarkdownType))];
+  return importDynamicFormsProviders(...withDynamicFormsMarkdownFeatures());
 }
 
 const modules = [DynamicFormConfigModule];
