@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
   DynamicFormArrayModule,
+  DynamicFormConfigModule,
   DynamicFormControlModule,
   DynamicFormDictionaryModule,
   DynamicFormElementModule,
@@ -9,7 +10,6 @@ import {
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
-  dynamicFormsDefaultFeatures,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -57,6 +57,7 @@ const modules = [
   BsDynamicFormFieldWrapperModule,
   BsDynamicFormInputModule,
   DynamicFormArrayModule,
+  DynamicFormConfigModule,
   DynamicFormControlModule,
   DynamicFormValidationModule,
   DynamicFormDictionaryModule,
@@ -91,8 +92,6 @@ export class BsDynamicFormsModule {
     ...additionalFatures: DynamicFormsFeature[]
   ): ModuleWithProviders<BsDynamicFormsModule> {
     const features = [
-      ...dynamicFormsDefaultFeatures,
-      ...bsDynamicFormsDefaultFeatures,
       withDynamicFormsLibrary(bsDynamicFormLibrary),
       withDynamicFormsTheme(config?.theme),
       withDynamicFormsIdBuilder(config?.idBuilder),

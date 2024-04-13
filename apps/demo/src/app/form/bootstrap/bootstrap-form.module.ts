@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
-// import { BsDynamicFormsModule } from '@dynamic-forms/bootstrap';
 import { withBsDynamicFormInputMask } from '@dynamic-forms/bootstrap/input-mask';
 import {
   DynamicFormComponent,
@@ -64,5 +63,5 @@ export class BootstrapFormModule {}
   imports: [BsDynamicFormsModule.withDefaultFeatures(config, ...features)],
   exports: [BsDynamicFormsModule],
 })
-export class BootstrapFormModule {}
+export class BootstrapFormModuleWorkaround {}
 */

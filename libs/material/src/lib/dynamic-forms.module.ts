@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
   DynamicFormArrayModule,
+  DynamicFormConfigModule,
   DynamicFormControlModule,
   DynamicFormDictionaryModule,
   DynamicFormElementModule,
@@ -9,7 +10,6 @@ import {
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
-  dynamicFormsDefaultFeatures,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -48,6 +48,7 @@ export function provideMatDynamicFormsWithDefaultFeatures(
 
 const modules = [
   DynamicFormArrayModule,
+  DynamicFormConfigModule,
   DynamicFormControlModule,
   DynamicFormDictionaryModule,
   DynamicFormElementModule,
@@ -85,8 +86,6 @@ export class MatDynamicFormsModule {
     ...additionalFatures: DynamicFormsFeature[]
   ): ModuleWithProviders<MatDynamicFormsModule> {
     const features = [
-      ...dynamicFormsDefaultFeatures,
-      ...matDynamicFormsDefaultFeatures,
       withDynamicFormsLibrary(matDynamicFormLibrary),
       withDynamicFormsTheme(config?.theme),
       withDynamicFormsIdBuilder(config?.idBuilder),
