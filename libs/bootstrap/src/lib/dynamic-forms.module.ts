@@ -9,6 +9,7 @@ import {
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
+  dynamicFormsDefaultFeatures,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -30,7 +31,7 @@ export function provideBsDynamicForms(...features: DynamicFormsFeature[]): Provi
   return [provideDynamicForms(bsDynamicFormLibrary, ...features)];
 }
 
-export const matDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+export const bsDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
   ...withBsDynamicFormActionDefaultFeatures(),
   ...withBsDynamicFormElementDefaultFeatures(),
   ...withBsDynamicFormFieldWrapperDefaultFeatures(),
@@ -42,7 +43,7 @@ export function provideBsDynamicFormsWithDefaultFeatures(
   ...additionalFatures: DynamicFormsFeature[]
 ): Provider[] {
   const features = [
-    ...matDynamicFormsDefaultFeatures,
+    ...bsDynamicFormsDefaultFeatures,
     withDynamicFormsTheme(config?.theme),
     withDynamicFormsIdBuilder(config?.idBuilder),
     ...additionalFatures,
@@ -81,6 +82,21 @@ export class BsDynamicFormsModule {
       withDynamicFormsLibrary(bsDynamicFormLibrary),
       withDynamicFormsTheme(config?.theme),
       withDynamicFormsIdBuilder(config?.idBuilder),
+    ];
+    return { ngModule: BsDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
+  }
+
+  static withDefaultFeatures(
+    config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
+    ...additionalFatures: DynamicFormsFeature[]
+  ): ModuleWithProviders<BsDynamicFormsModule> {
+    const features = [
+      ...dynamicFormsDefaultFeatures,
+      ...bsDynamicFormsDefaultFeatures,
+      withDynamicFormsLibrary(bsDynamicFormLibrary),
+      withDynamicFormsTheme(config?.theme),
+      withDynamicFormsIdBuilder(config?.idBuilder),
+      ...additionalFatures,
     ];
     return { ngModule: BsDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
   }

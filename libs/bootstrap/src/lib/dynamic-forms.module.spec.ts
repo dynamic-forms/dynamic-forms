@@ -16,7 +16,7 @@ import {
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormsModule, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
+import { BsDynamicFormsModule, provideBsDynamicForms, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
 
 describe('BsDynamicFormsModule', () => {
   describe('without providers', () => {
@@ -70,9 +70,20 @@ describe('BsDynamicFormsModule', () => {
     });
   });
 
+  describe('provideMatDynamicForms', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({ providers: provideBsDynamicForms() });
+    });
+
+    it('provides DYNAMIC_FORM_LIBRARY', inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+      expect(library).toEqual(bsDynamicFormLibrary);
+    }));
+  });
+
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule.forRoot()] } },
+      { name: 'BsDynamicFormsModule.root', def: { imports: [BsDynamicFormsModule.forRoot()] } },
+      { name: 'BsDynamicFormsModule.withDefaultFeatures', def: { imports: [BsDynamicFormsModule.withDefaultFeatures()] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -131,6 +142,7 @@ describe('BsDynamicFormsModule', () => {
     const config = { theme: 'theme', idBuilder: { createId: () => 'dynamic-form-id' } };
     const testModules: { name: string; def: TestModuleMetadata }[] = [
       { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule.forRoot(config)] } },
+      { name: 'BsDynamicFormsModule.withDefaultFeatures', def: { imports: [BsDynamicFormsModule.withDefaultFeatures(config)] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures(config) } },
     ];
 

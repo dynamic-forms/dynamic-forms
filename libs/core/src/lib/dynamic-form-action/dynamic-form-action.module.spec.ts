@@ -132,4 +132,30 @@ describe('DynamicFormActionModule', () => {
       },
     ));
   });
+
+  describe('withHandlerFactory', () => {
+    const libraryName = 'test';
+    const handler: DynamicFormActionHandler = { type: 'handlerType', func: null, libraryName };
+    const handlerFactory = () => handler;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [DynamicFormActionModule.withHandlerFactory(handlerFactory, [])],
+        providers: [
+          {
+            provide: DynamicFormLibraryService,
+            useValue: new DynamicFormLibraryService({ name: 'test' }),
+          },
+        ],
+      });
+    });
+
+    it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
+      [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
+      (config: DynamicFormActionHandlerConfig) => {
+        expect(config.length).toBe(2);
+        expect(config[1]).toEqual(handler);
+      },
+    ));
+  });
 });

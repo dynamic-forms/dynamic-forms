@@ -9,6 +9,7 @@ import {
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
+  dynamicFormsDefaultFeatures,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -75,6 +76,21 @@ export class MatDynamicFormsModule {
       withDynamicFormsLibrary(matDynamicFormLibrary),
       withDynamicFormsTheme(config?.theme),
       withDynamicFormsIdBuilder(config?.idBuilder),
+    ];
+    return { ngModule: MatDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
+  }
+
+  static withDefaultFeatures(
+    config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
+    ...additionalFatures: DynamicFormsFeature[]
+  ): ModuleWithProviders<MatDynamicFormsModule> {
+    const features = [
+      ...dynamicFormsDefaultFeatures,
+      ...matDynamicFormsDefaultFeatures,
+      withDynamicFormsLibrary(matDynamicFormLibrary),
+      withDynamicFormsTheme(config?.theme),
+      withDynamicFormsIdBuilder(config?.idBuilder),
+      ...additionalFatures,
     ];
     return { ngModule: MatDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
   }
