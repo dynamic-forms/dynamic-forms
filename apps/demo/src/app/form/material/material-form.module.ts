@@ -8,7 +8,6 @@ import {
   withDynamicFormIcons,
 } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
-// import { MatDynamicFormsModule } from '@dynamic-forms/material';
 import { provideMatDynamicFormsWithDefaultFeatures } from '@dynamic-forms/material';
 import { withMatDynamicFormInputMask } from '@dynamic-forms/material/input-mask';
 import { v4 } from 'uuid';
@@ -69,5 +68,5 @@ export class MaterialFormModule {}
   exports: [MatDynamicFormsModule],
   providers: provideNativeDateAdapter(),
 })
-export class MaterialFormModule {}
+export class MaterialFormModuleWorkaround {}
 */

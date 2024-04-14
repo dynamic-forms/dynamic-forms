@@ -38,15 +38,20 @@ export const matDynamicFormInputTypes = [
 
 export const matDynamicFormFieldDefaultOptions: MatFormFieldDefaultOptions = { floatLabel: 'always' };
 
+export function withMatDynamicFormFieldDefaultOptions(
+  options: MatFormFieldDefaultOptions = matDynamicFormFieldDefaultOptions,
+): DynamicFormsFeature {
+  return { providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: options }] };
+}
+
 export function withMatDynamicFormInputDefaultFeatures(
   options: MatFormFieldDefaultOptions = matDynamicFormFieldDefaultOptions,
 ): DynamicFormsFeature[] {
-  const feature = { providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: options }] };
   return [
     withDynamicFormInputs(...matDynamicFormInputTypes),
     withDynamicFormTextboxActionHandlers(),
     withDynamicFormFileValidators(),
-    feature,
+    withMatDynamicFormFieldDefaultOptions(options),
   ];
 }
 
@@ -58,6 +63,6 @@ const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormText
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: importDynamicFormsProviders(...withMatDynamicFormInputDefaultFeatures()),
+  providers: importDynamicFormsProviders(withDynamicFormInputs(...matDynamicFormInputTypes), withMatDynamicFormFieldDefaultOptions()),
 })
 export class MatDynamicFormInputModule {}

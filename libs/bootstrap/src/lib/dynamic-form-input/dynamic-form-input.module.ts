@@ -47,6 +47,6 @@ const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormText
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: importDynamicFormsProviders(...withBsDynamicFormInputDefaultFeatures()),
+  providers: importDynamicFormsProviders(withDynamicFormInputs(...bsDynamicFormInputTypes)),
 })
 export class BsDynamicFormInputModule {}
