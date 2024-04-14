@@ -8,7 +8,7 @@ import {
   withDynamicFormIcons,
 } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
-import { provideMatDynamicFormsWithDefaultFeatures } from '@dynamic-forms/material';
+import { MatDynamicFormsModule, provideMatDynamicFormsWithDefaultFeatures } from '@dynamic-forms/material';
 import { withMatDynamicFormInputMask } from '@dynamic-forms/material/input-mask';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
@@ -50,8 +50,8 @@ const colors = {
 const features = [
   withDynamicFormIcons(icons),
   withDynamicFormColors(colors),
-  withMatDynamicFormInputMask(),
   withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
+  withMatDynamicFormInputMask(),
   ...withDynamicFormsMarkdownFeatures(),
 ];
 
@@ -63,10 +63,16 @@ const features = [
 export class MaterialFormModule {}
 
 /*
+const featuresWorkaround = [
+  withDynamicFormIcons(icons),
+  withDynamicFormColors(colors),
+  withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
+];
+*/
+
 @NgModule({
-  imports: [MatDynamicFormsModule.withDefaultFeatures(config, ...features)],
+  imports: [MatDynamicFormsModule.forRoot(config, ...features)],
   exports: [MatDynamicFormsModule],
-  providers: provideNativeDateAdapter(),
+  providers: [...provideNativeDateAdapter()],
 })
 export class MaterialFormModuleWorkaround {}
-*/

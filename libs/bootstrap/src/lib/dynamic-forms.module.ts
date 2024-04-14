@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
+  DynamicFormActionModule,
   DynamicFormArrayModule,
   DynamicFormConfigModule,
   DynamicFormControlModule,
@@ -7,12 +8,14 @@ import {
   DynamicFormElementModule,
   DynamicFormGroupModule,
   DynamicFormIdBuilder,
+  DynamicFormThemeModule,
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
+  withDynamicFormActionDefaultFeatures,
   withDynamicFormValidation,
   withDynamicFormsIdBuilder,
   withDynamicFormsLibrary,
@@ -32,6 +35,7 @@ export function provideBsDynamicForms(...features: DynamicFormsFeature[]): Provi
 }
 
 export const bsDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  withDynamicFormValidation(),
   ...withBsDynamicFormActionDefaultFeatures(),
   ...withBsDynamicFormElementDefaultFeatures(),
   ...withBsDynamicFormFieldWrapperDefaultFeatures(),
@@ -56,14 +60,16 @@ const modules = [
   BsDynamicFormElementModule,
   BsDynamicFormFieldWrapperModule,
   BsDynamicFormInputModule,
+  DynamicFormActionModule,
   DynamicFormArrayModule,
   DynamicFormConfigModule,
   DynamicFormControlModule,
-  DynamicFormValidationModule,
   DynamicFormDictionaryModule,
   DynamicFormElementModule,
   DynamicFormGroupModule,
   DynamicFormsModule,
+  DynamicFormThemeModule,
+  DynamicFormValidationModule,
 ];
 
 /**
@@ -72,22 +78,13 @@ const modules = [
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormValidation()),
+  providers: importDynamicFormsProviders(withDynamicFormValidation(), ...withDynamicFormActionDefaultFeatures()),
 })
 export class BsDynamicFormsModule {
   /**
    * @deprecated Use {@link provideBsDynamicFormsWithDefaultFeatures} instead.
    */
-  static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<BsDynamicFormsModule> {
-    const features = [
-      withDynamicFormsLibrary(bsDynamicFormLibrary),
-      withDynamicFormsTheme(config?.theme),
-      withDynamicFormsIdBuilder(config?.idBuilder),
-    ];
-    return { ngModule: BsDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
-  }
-
-  static withDefaultFeatures(
+  static forRoot(
     config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
     ...additionalFatures: DynamicFormsFeature[]
   ): ModuleWithProviders<BsDynamicFormsModule> {
