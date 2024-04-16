@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {
-  DynamicFormConfigModule,
   DynamicFormElementType,
   DynamicFormModalModule,
   dynamicFormModalFactory,
@@ -17,7 +16,7 @@ export const matDynamicFormModalType: DynamicFormElementType = {
   libraryName: matDynamicFormLibrary.name,
 };
 
-const modules = [DynamicFormConfigModule, DynamicFormModalModule];
+const modules = [DynamicFormModalModule];
 
 /**
  * @deprecated Use {@link withMatDynamicFormElementDefaultFeatures} instead.

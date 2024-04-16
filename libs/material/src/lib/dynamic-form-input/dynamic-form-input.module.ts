@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import {
-  DynamicFormConfigModule,
   DynamicFormFileModule,
   DynamicFormTextboxModule,
   DynamicFormsFeature,
@@ -55,7 +54,7 @@ export function withMatDynamicFormInputDefaultFeatures(
   ];
 }
 
-const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule];
+const modules = [DynamicFormFileModule, DynamicFormTextboxModule];
 
 /**
  * @deprecated Use {@link withMatDynamicFormInputDefaultFeatures} instead.

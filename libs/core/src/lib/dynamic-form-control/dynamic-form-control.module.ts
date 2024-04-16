@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { DynamicFormActionModule } from '../dynamic-form-action/dynamic-form-action.module';
 import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
-import { DynamicFormEvaluationModule, withDynamicFormControlEvaluators } from '../dynamic-form-evaluation/dynamic-form-evaluation.module';
+import { withDynamicFormControlEvaluators } from '../dynamic-form-evaluation/dynamic-form-evaluation.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
-import { DynamicFormFieldModule } from '../dynamic-form-field/dynamic-form-field.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormValidationModule, withDynamicFormControlValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
+import { withDynamicFormControlValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
 import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
@@ -27,7 +27,7 @@ export function withDynamicFormControlDefaultFeatures(): DynamicFormsFeature[] {
   ];
 }
 
-const modules = [DynamicFormConfigModule, DynamicFormEvaluationModule, DynamicFormFieldModule, DynamicFormValidationModule];
+const modules = [DynamicFormActionModule, DynamicFormConfigModule];
 
 /**
  * @deprecated Use {@link withDynamicFormControlDefaultFeatures} instead.

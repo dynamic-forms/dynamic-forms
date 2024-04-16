@@ -20,7 +20,7 @@ import { dynamicFormThemeProviders } from './dynamic-form-theme/dynamic-form-the
 import { dynamicFormValidationProviders } from './dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from './dynamic-forms-feature';
 
-const dynamicFormProviders: Provider[] = [
+export const dynamicFormsDefaultProviders: Provider[] = [
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormExpressionBuilder,
@@ -53,14 +53,13 @@ export function importDynamicFormsProviders(...features: DynamicFormsFeature[]):
 }
 
 export function provideDynamicForms(library?: DynamicFormLibrary, ...features: DynamicFormsFeature[]): Provider[] {
-  const providers = [...dynamicFormProviders];
+  const providers = [...dynamicFormsDefaultProviders];
   if (library) {
     providers.push({ provide: DYNAMIC_FORM_LIBRARY, useValue: library });
   }
   if (features) {
     providers.push(...importDynamicFormsProviders(...features));
   }
-
   return providers;
 }
 
