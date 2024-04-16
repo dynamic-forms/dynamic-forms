@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { dynamicFormActionProviders } from './dynamic-form-action/dynamic-form-action.module';
+import { dynamicFormActionProviders, withDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormIconProviders } from './dynamic-form-action/dynamic-form-icon/dynamic-form-icon.module';
 import { withDynamicFormArrayDefaultFeatures } from './dynamic-form-array/dynamic-form-array.module';
 import { dynamicFormConfigProviders } from './dynamic-form-config/dynamic-form-config.module';
@@ -35,6 +35,7 @@ const dynamicFormProviders: Provider[] = [
 ];
 
 export const dynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  ...withDynamicFormActionDefaultFeatures(),
   ...withDynamicFormArrayDefaultFeatures(),
   ...withDynamicFormControlDefaultFeatures(),
   ...withDynamicFormDictionaryDefaultFeatures(),

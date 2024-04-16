@@ -21,10 +21,10 @@ describe('DynamicFormTextboxModule', () => {
   it('provides DYNAMIC_FORM_ACTION_HANDLERS', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handlers = service.handlers;
 
-    expect(handlers.length).toBe(4);
-    expect(handlers[3]).toEqual(dynamicFormTextboxToggleAsTextTypeHandler);
-    expect(handlers[3].func).toEqual(jasmine.any(Function));
-    expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers.length).toBe(1);
+    expect(handlers[0]).toEqual(dynamicFormTextboxToggleAsTextTypeHandler);
+    expect(handlers[0].func).toEqual(jasmine.any(Function));
+    expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
   }));
 
   it('handler sets forced input type to text / undefined of control field with type textbox', inject(

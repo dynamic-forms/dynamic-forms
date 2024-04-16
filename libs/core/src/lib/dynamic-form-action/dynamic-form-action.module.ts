@@ -39,14 +39,11 @@ export const dynamicFormDialogHandlers: DynamicFormActionHandler<DynamicFormActi
   dynamicFormDialogToggleHandler,
 ];
 
-export const dynamicFormActionProviders: Provider[] = [
-  DynamicFormActionService,
-  {
-    provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG,
-    useValue: dynamicFormDialogHandlers,
-    multi: true,
-  },
-];
+export const dynamicFormActionProviders: Provider[] = [DynamicFormActionService];
+
+export function withDynamicFormActionDefaultFeatures(): DynamicFormsFeature[] {
+  return [withDynamicFormActionHandlers(...dynamicFormDialogHandlers)];
+}
 
 export function withDynamicFormActionHandlers<Element extends DynamicFormElement = DynamicFormElement>(
   ...handlers: DynamicFormActionHandler<Element>[]

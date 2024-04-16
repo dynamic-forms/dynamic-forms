@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
+import { BsDynamicFormsModule, provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
 import { withBsDynamicFormInputMask } from '@dynamic-forms/bootstrap/input-mask';
 import {
   DynamicFormComponent,
@@ -59,9 +59,14 @@ const features = [
 export class BootstrapFormModule {}
 
 /*
+const featuresWorkaround = [
+  withDynamicFormIcons(icons),
+  withDynamicFormColors(colors),
+  withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
+];
+*/
 @NgModule({
-  imports: [BsDynamicFormsModule.withDefaultFeatures(config, ...features)],
+  imports: [BsDynamicFormsModule.forRoot(config, ...features)],
   exports: [BsDynamicFormsModule],
 })
 export class BootstrapFormModuleWorkaround {}
-*/

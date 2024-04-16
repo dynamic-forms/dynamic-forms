@@ -3,6 +3,7 @@ import {
   DYNAMIC_FORM_ID_BUILDER,
   DYNAMIC_FORM_LIBRARY,
   DYNAMIC_FORM_THEME,
+  DynamicFormActionService,
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
@@ -13,6 +14,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationBuilder,
   DynamicFormValidationService,
+  dynamicFormValidationConfig,
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
@@ -83,7 +85,6 @@ describe('BsDynamicFormsModule', () => {
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
       { name: 'BsDynamicFormsModule.root', def: { imports: [BsDynamicFormsModule.forRoot()] } },
-      { name: 'BsDynamicFormsModule.withDefaultFeatures', def: { imports: [BsDynamicFormsModule.withDefaultFeatures()] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -113,6 +114,11 @@ describe('BsDynamicFormsModule', () => {
 
         it('provides DynamicFormConfigService', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
           expect(service).toBeTruthy();
+          expect(service.actionTypes.length).toBe(2);
+          expect(service.elementTypes.length).toBe(6);
+          expect(service.fieldTypes.length).toBe(4);
+          expect(service.fieldWrapperTypes.length).toBe(3);
+          expect(service.inputTypes.length).toBe(11);
         }));
 
         it('provides DynamicFormBuilder', inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
@@ -125,14 +131,24 @@ describe('BsDynamicFormsModule', () => {
 
         it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
           expect(service).toBeTruthy();
+          expect(service.arrayValidatorTypes.length).toBe(3);
+          expect(service.controlValidatorTypes.length).toBe(8);
+          expect(service.dictionaryValidatorTypes.length).toBe(3);
+          expect(service.groupValidatorTypes.length).toBe(3);
         }));
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
+          expect(service.validationConfig).toEqual({ ...dynamicFormValidationConfig, libraryName: bsDynamicFormLibrary.name });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
           expect(service).toBeTruthy();
+        }));
+
+        it('provides DynamicFormActionService', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+          expect(service).toBeTruthy();
+          expect(service.handlers.length).toBe(25);
         }));
       });
     });
@@ -142,7 +158,6 @@ describe('BsDynamicFormsModule', () => {
     const config = { theme: 'theme', idBuilder: { createId: () => 'dynamic-form-id' } };
     const testModules: { name: string; def: TestModuleMetadata }[] = [
       { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule.forRoot(config)] } },
-      { name: 'BsDynamicFormsModule.withDefaultFeatures', def: { imports: [BsDynamicFormsModule.withDefaultFeatures(config)] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures(config) } },
     ];
 

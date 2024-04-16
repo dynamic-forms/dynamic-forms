@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
+  DynamicFormActionModule,
   DynamicFormArrayModule,
   DynamicFormConfigModule,
   DynamicFormControlModule,
@@ -7,12 +8,14 @@ import {
   DynamicFormElementModule,
   DynamicFormGroupModule,
   DynamicFormIdBuilder,
+  DynamicFormThemeModule,
   DynamicFormValidationModule,
   DynamicFormsFeature,
   DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
+  withDynamicFormActionDefaultFeatures,
   withDynamicFormValidation,
   withDynamicFormsIdBuilder,
   withDynamicFormsLibrary,
@@ -28,6 +31,7 @@ export function provideMatDynamicForms(...features: DynamicFormsFeature[]): Prov
 }
 
 export const matDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  withDynamicFormValidation(),
   ...withMatDynamicFormActionDefaultFeatures(),
   ...withMatDynamicFormElementDefaultFeatures(),
   ...withMatDynamicFormInputDefaultFeatures(),
@@ -47,6 +51,7 @@ export function provideMatDynamicFormsWithDefaultFeatures(
 }
 
 const modules = [
+  DynamicFormActionModule,
   DynamicFormArrayModule,
   DynamicFormConfigModule,
   DynamicFormControlModule,
@@ -54,6 +59,7 @@ const modules = [
   DynamicFormElementModule,
   DynamicFormGroupModule,
   DynamicFormsModule,
+  DynamicFormThemeModule,
   DynamicFormValidationModule,
   MatDynamicFormActionModule,
   MatDynamicFormElementModule,
@@ -66,22 +72,13 @@ const modules = [
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormValidation()),
+  providers: importDynamicFormsProviders(withDynamicFormValidation(), ...withDynamicFormActionDefaultFeatures()),
 })
 export class MatDynamicFormsModule {
   /**
    * @deprecated Use {@link provideMatDynamicFormsWithDefaultFeatures} instead.
    */
-  static forRoot(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): ModuleWithProviders<MatDynamicFormsModule> {
-    const features = [
-      withDynamicFormsLibrary(matDynamicFormLibrary),
-      withDynamicFormsTheme(config?.theme),
-      withDynamicFormsIdBuilder(config?.idBuilder),
-    ];
-    return { ngModule: MatDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
-  }
-
-  static withDefaultFeatures(
+  static forRoot(
     config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
     ...additionalFatures: DynamicFormsFeature[]
   ): ModuleWithProviders<MatDynamicFormsModule> {

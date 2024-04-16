@@ -1,10 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG, DynamicFormActionHandlerConfig } from './dynamic-form-action-handler-config';
-import { DynamicFormActionModule, dynamicFormDialogHandlers } from './dynamic-form-action.module';
+import { DynamicFormActionModule, dynamicFormDialogHandlers, withDynamicFormActionDefaultFeatures } from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {
@@ -19,16 +20,33 @@ describe('DynamicFormActionModule', () => {
       expect(() => TestBed.inject(DynamicFormActionService)).toThrowError(/NullInjectorError/);
     });
 
+    it('does not provide DYNAMIC_FORM_ACTION_HANDLER_CONFIG', () => {
+      expect(() => TestBed.inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)).toThrowError(/NullInjectorError/);
+    });
+  });
+
+  describe('with default features provided', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [DynamicFormActionModule],
+        providers: importDynamicFormsProviders(...withDynamicFormActionDefaultFeatures()),
+      });
+    });
+
+    it('does not provide DynamicFormActionService', () => {
+      expect(() => TestBed.inject(DynamicFormActionService)).toThrowError(/NullInjectorError/);
+    });
+
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
       [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
       (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(1);
-        expect(config[0]).toEqual(dynamicFormDialogHandlers);
+        expect(config.length).toBe(3);
+        expect(config).toEqual(dynamicFormDialogHandlers);
       },
     ));
   });
 
-  describe('with DynamicFormLibraryService provided', () => {
+  describe('with default features and DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [DynamicFormActionModule],
@@ -37,6 +55,7 @@ describe('DynamicFormActionModule', () => {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(dynamicFormLibrary),
           },
+          ...importDynamicFormsProviders(...withDynamicFormActionDefaultFeatures()),
         ],
       });
     });
@@ -98,8 +117,8 @@ describe('DynamicFormActionModule', () => {
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
       [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
       (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(2);
-        expect(config[1]).toEqual(handler);
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(handler);
       },
     ));
   });
@@ -126,9 +145,9 @@ describe('DynamicFormActionModule', () => {
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
       [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
       (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(3);
-        expect(config[1]).toEqual(handlers[0]);
-        expect(config[2]).toEqual(handlers[1]);
+        expect(config.length).toBe(2);
+        expect(config[0]).toEqual(handlers[0]);
+        expect(config[1]).toEqual(handlers[1]);
       },
     ));
   });
@@ -153,8 +172,8 @@ describe('DynamicFormActionModule', () => {
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
       [DYNAMIC_FORM_ACTION_HANDLER_CONFIG],
       (config: DynamicFormActionHandlerConfig) => {
-        expect(config.length).toBe(2);
-        expect(config[1]).toEqual(handler);
+        expect(config.length).toBe(1);
+        expect(config[0]).toEqual(handler);
       },
     ));
   });
