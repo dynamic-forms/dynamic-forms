@@ -43,6 +43,11 @@ steps:
     codeCoverageTool: Cobertura
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
 - task: Npm@1
+  displayName: npm test demo
+  inputs:
+    command: custom
+    customCommand: run test:demo
+- task: Npm@1
   displayName: npm build demo
   inputs:
     command: custom

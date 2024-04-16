@@ -55,7 +55,7 @@ describe('MaterialFormModule', () => {
         expect(service.actionTypes.length).toBe(2);
         expect(service.elementTypes.length).toBe(7);
         expect(service.fieldTypes.length).toBe(4);
-        expect(service.fieldWrapperTypes.length).toBe(3);
+        expect(service.fieldWrapperTypes.length).toBe(0);
         expect(service.inputTypes.length).toBe(12);
       }));
 
