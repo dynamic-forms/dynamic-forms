@@ -33,6 +33,11 @@ steps:
   inputs:
     command: custom
     customCommand: run test:libs
+- task: Npm@1
+  displayName: npm test demo
+  inputs:
+    command: custom
+    customCommand: run test:demo
 - task: PublishTestResults@2
   displayName: Publish test results
   continueOnError: True
