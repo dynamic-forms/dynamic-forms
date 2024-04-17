@@ -1,29 +1,19 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
-  DynamicFormActionModule,
-  DynamicFormArrayModule,
-  DynamicFormConfigModule,
-  DynamicFormControlModule,
-  DynamicFormDictionaryModule,
-  DynamicFormElementModule,
-  DynamicFormGroupModule,
+  DynamicFormComponent,
   DynamicFormIdBuilder,
-  DynamicFormThemeModule,
-  DynamicFormValidationModule,
   DynamicFormsFeature,
-  DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
-  withDynamicFormActionDefaultFeatures,
   withDynamicFormValidation,
   withDynamicFormsIdBuilder,
   withDynamicFormsLibrary,
   withDynamicFormsTheme,
 } from '@dynamic-forms/core';
-import { MatDynamicFormActionModule, withMatDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
-import { MatDynamicFormElementModule, withMatDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
-import { MatDynamicFormInputModule, withMatDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
+import { withMatDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
+import { withMatDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
+import { withMatDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
 export function provideMatDynamicForms(...features: DynamicFormsFeature[]): Provider[] {
@@ -50,29 +40,13 @@ export function provideMatDynamicFormsWithDefaultFeatures(
   return provideDynamicFormsWithDefaultFeatures(matDynamicFormLibrary, ...features);
 }
 
-const modules = [
-  DynamicFormActionModule,
-  DynamicFormArrayModule,
-  DynamicFormConfigModule,
-  DynamicFormControlModule,
-  DynamicFormDictionaryModule,
-  DynamicFormElementModule,
-  DynamicFormGroupModule,
-  DynamicFormsModule,
-  DynamicFormThemeModule,
-  DynamicFormValidationModule,
-  MatDynamicFormActionModule,
-  MatDynamicFormElementModule,
-  MatDynamicFormInputModule,
-];
-
 /**
  * @deprecated Use {@link provideMatDynamicFormsWithDefaultFeatures} instead.
  */
 @NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormValidation(), ...withDynamicFormActionDefaultFeatures()),
+  imports: [DynamicFormComponent],
+  exports: [DynamicFormComponent],
+  providers: provideDynamicFormsWithDefaultFeatures(null, ...matDynamicFormsDefaultFeatures, withDynamicFormValidation()),
 })
 export class MatDynamicFormsModule {
   /**

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {
-  DynamicFormConfigModule,
   DynamicFormFileModule,
   DynamicFormTextboxModule,
   DynamicFormsFeature,
@@ -39,7 +38,7 @@ export function withBsDynamicFormInputDefaultFeatures(): DynamicFormsFeature[] {
   return [withDynamicFormInputs(...bsDynamicFormInputTypes), withDynamicFormTextboxActionHandlers(), withDynamicFormFileValidators()];
 }
 
-const modules = [DynamicFormConfigModule, DynamicFormFileModule, DynamicFormTextboxModule];
+const modules = [DynamicFormFileModule, DynamicFormTextboxModule];
 
 /**
  * @deprecated Use {@link withBsDynamicFormInputDefaultFeatures} instead.

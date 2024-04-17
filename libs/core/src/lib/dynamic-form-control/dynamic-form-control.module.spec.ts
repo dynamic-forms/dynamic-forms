@@ -56,6 +56,6 @@ describe('DynamicFormControlModule', () => {
   it('provides DYNAMIC_FORM_ACTION_HANDLERS', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handlers = service.handlers;
 
-    expect(handlers.length).toBe(6);
+    expect(handlers.length).toBe(0);
   }));
 });

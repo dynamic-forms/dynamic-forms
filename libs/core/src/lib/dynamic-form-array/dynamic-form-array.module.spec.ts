@@ -62,22 +62,22 @@ describe('DynamicFormArrayModule', () => {
   it('provides DYNAMIC_FORM_ACTION_HANDLERS', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handlers = service.handlers;
 
-    expect(handlers.length).toBe(12);
-    expect(handlers[6]).toEqual(dynamicFormArrayPopFieldHandler);
-    expect(handlers[6].func).toEqual(jasmine.any(Function));
-    expect(handlers[6].libraryName).toEqual(dynamicFormLibrary.name);
-    expect(handlers[7]).toEqual(dynamicFormArrayRemoveFieldHandler);
-    expect(handlers[7].func).toEqual(jasmine.any(Function));
-    expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
-    expect(handlers[8]).toEqual(dynamicFormArrayClearFieldsHandler);
-    expect(handlers[8].func).toEqual(jasmine.any(Function));
-    expect(handlers[8].libraryName).toEqual(dynamicFormLibrary.name);
-    expect(handlers[9]).toEqual(dynamicFormArrayMoveFieldDownHandler);
-    expect(handlers[9].func).toEqual(jasmine.any(Function));
-    expect(handlers[9].libraryName).toEqual(dynamicFormLibrary.name);
-    expect(handlers[10]).toEqual(dynamicFormArrayMoveFieldUpHandler);
-    expect(handlers[10].func).toEqual(jasmine.any(Function));
-    expect(handlers[10].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers.length).toBe(6);
+    expect(handlers[0]).toEqual(dynamicFormArrayPopFieldHandler);
+    expect(handlers[0].func).toEqual(jasmine.any(Function));
+    expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers[1]).toEqual(dynamicFormArrayRemoveFieldHandler);
+    expect(handlers[1].func).toEqual(jasmine.any(Function));
+    expect(handlers[1].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers[2]).toEqual(dynamicFormArrayClearFieldsHandler);
+    expect(handlers[2].func).toEqual(jasmine.any(Function));
+    expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers[3]).toEqual(dynamicFormArrayMoveFieldDownHandler);
+    expect(handlers[3].func).toEqual(jasmine.any(Function));
+    expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
+    expect(handlers[4]).toEqual(dynamicFormArrayMoveFieldUpHandler);
+    expect(handlers[4].func).toEqual(jasmine.any(Function));
+    expect(handlers[4].libraryName).toEqual(dynamicFormLibrary.name);
   }));
 
   it('handler calls pushField of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {

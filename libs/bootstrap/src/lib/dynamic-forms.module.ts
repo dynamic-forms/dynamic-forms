@@ -1,33 +1,20 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
-  DynamicFormActionModule,
-  DynamicFormArrayModule,
-  DynamicFormConfigModule,
-  DynamicFormControlModule,
-  DynamicFormDictionaryModule,
-  DynamicFormElementModule,
-  DynamicFormGroupModule,
+  DynamicFormComponent,
   DynamicFormIdBuilder,
-  DynamicFormThemeModule,
-  DynamicFormValidationModule,
   DynamicFormsFeature,
-  DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
-  withDynamicFormActionDefaultFeatures,
   withDynamicFormValidation,
   withDynamicFormsIdBuilder,
   withDynamicFormsLibrary,
   withDynamicFormsTheme,
 } from '@dynamic-forms/core';
-import { BsDynamicFormActionModule, withBsDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
-import { BsDynamicFormElementModule, withBsDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
-import {
-  BsDynamicFormFieldWrapperModule,
-  withBsDynamicFormFieldWrapperDefaultFeatures,
-} from './dynamic-form-field/dynamic-form-field-wrapper.module';
-import { BsDynamicFormInputModule, withBsDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
+import { withBsDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
+import { withBsDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
+import { withBsDynamicFormFieldWrapperDefaultFeatures } from './dynamic-form-field/dynamic-form-field-wrapper.module';
+import { withBsDynamicFormInputDefaultFeatures } from './dynamic-form-input/dynamic-form-input.module';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 
 export function provideBsDynamicForms(...features: DynamicFormsFeature[]): Provider[] {
@@ -55,30 +42,13 @@ export function provideBsDynamicFormsWithDefaultFeatures(
   return provideDynamicFormsWithDefaultFeatures(bsDynamicFormLibrary, ...features);
 }
 
-const modules = [
-  BsDynamicFormActionModule,
-  BsDynamicFormElementModule,
-  BsDynamicFormFieldWrapperModule,
-  BsDynamicFormInputModule,
-  DynamicFormActionModule,
-  DynamicFormArrayModule,
-  DynamicFormConfigModule,
-  DynamicFormControlModule,
-  DynamicFormDictionaryModule,
-  DynamicFormElementModule,
-  DynamicFormGroupModule,
-  DynamicFormsModule,
-  DynamicFormThemeModule,
-  DynamicFormValidationModule,
-];
-
 /**
  * @deprecated Use {@link provideBsDynamicFormsWithDefaultFeatures} instead.
  */
 @NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormValidation(), ...withDynamicFormActionDefaultFeatures()),
+  imports: [DynamicFormComponent],
+  exports: [DynamicFormComponent],
+  providers: provideDynamicFormsWithDefaultFeatures(null, ...bsDynamicFormsDefaultFeatures, withDynamicFormValidation()),
 })
 export class BsDynamicFormsModule {
   /**
