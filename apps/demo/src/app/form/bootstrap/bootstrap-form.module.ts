@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BsDynamicFormsModule, provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
+import { provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
 import { withBsDynamicFormInputMask } from '@dynamic-forms/bootstrap/input-mask';
-import {
-  DynamicFormComponent,
-  withDynamicFormColors,
-  withDynamicFormControlValidatorFactory,
-  withDynamicFormIcons,
-} from '@dynamic-forms/core';
+import { withDynamicFormColors, withDynamicFormControlValidatorFactory, withDynamicFormIcons } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
@@ -51,22 +45,6 @@ const features = [
   ...withDynamicFormsMarkdownFeatures(),
 ];
 
-@NgModule({
-  imports: [DynamicFormComponent],
-  exports: [DynamicFormComponent],
-  providers: [...provideBsDynamicFormsWithDefaultFeatures(config, ...features)],
-})
-export class BootstrapFormModule {}
-
-/*
-const featuresWorkaround = [
-  withDynamicFormIcons(icons),
-  withDynamicFormColors(colors),
-  withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
-];
-*/
-@NgModule({
-  imports: [BsDynamicFormsModule.forRoot(config, ...features)],
-  exports: [BsDynamicFormsModule],
-})
-export class BootstrapFormModuleWorkaround {}
+export function provideBootstrapForm() {
+  return provideBsDynamicFormsWithDefaultFeatures(config, ...features);
+}

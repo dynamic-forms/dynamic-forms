@@ -17,13 +17,12 @@ import {
   dynamicFormValidationConfig,
 } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '@dynamic-forms/material';
-import { MaterialFormModule, MaterialFormModuleWorkaround } from './material-form.module';
+import { provideMaterialForm } from './material-form.module';
 
 describe('MaterialFormModule', () => {
-  const defaultImports = [HttpClientTestingModule];
+  const imports = [HttpClientTestingModule];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'MaterialFormModule', def: { imports: [MaterialFormModule, ...defaultImports] } },
-    { name: 'MaterialFormModuleWorkaround', def: { imports: [MaterialFormModuleWorkaround, ...defaultImports] } },
+    { name: 'provideMaterialForm', def: { imports, providers: provideMaterialForm() } },
   ];
 
   testModules.forEach(testModule => {
