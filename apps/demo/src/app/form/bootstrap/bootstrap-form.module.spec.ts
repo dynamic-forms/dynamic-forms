@@ -17,13 +17,12 @@ import {
   DynamicFormValidationService,
   dynamicFormValidationConfig,
 } from '@dynamic-forms/core';
-import { BootstrapFormModule, BootstrapFormModuleWorkaround } from './bootstrap-form.module';
+import { provideBootstrapForm } from './bootstrap-form.module';
 
 describe('BootstrapFormModule', () => {
-  const defaultImports = [HttpClientTestingModule];
+  const imports = [HttpClientTestingModule];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'BootstrapFormModule', def: { imports: [BootstrapFormModule, ...defaultImports] } },
-    { name: 'BootstrapFormModuleWorkaround', def: { imports: [BootstrapFormModuleWorkaround, ...defaultImports] } },
+    { name: 'provideBoostrapForm', def: { imports, providers: provideBootstrapForm() } },
   ];
 
   testModules.forEach(testModule => {

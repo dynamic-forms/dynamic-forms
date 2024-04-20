@@ -98,13 +98,13 @@ describe('BsDynamicFormsModule', () => {
           expect(library).toEqual(bsDynamicFormLibrary);
         }));
 
-        it('provides DYNAMIC_FORM_THEME being undefined', inject([DYNAMIC_FORM_THEME], (theme: string) => {
-          expect(theme).toBeUndefined();
-        }));
+        it('does not provide DYNAMIC_FORM_THEME', () => {
+          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
+        });
 
-        it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-          expect(service).toBeUndefined();
-        }));
+        it('does not provide DYNAMIC_FORM_ID_BUILDER', () => {
+          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
+        });
 
         it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
           expect(service).toBeTruthy();

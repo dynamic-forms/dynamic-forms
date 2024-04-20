@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
-  DynamicFormComponent,
   DynamicFormIdBuilder,
   DynamicFormsFeature,
+  DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -29,16 +29,22 @@ export const bsDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
   ...withBsDynamicFormInputDefaultFeatures(),
 ];
 
+function getDynamicFormsFeatures(config?: { theme?: string; idBuilder?: DynamicFormIdBuilder }): DynamicFormsFeature[] {
+  const features = [];
+  if (config?.theme) {
+    features.push(withDynamicFormsTheme(config?.theme));
+  }
+  if (config?.idBuilder) {
+    features.push(withDynamicFormsIdBuilder(config?.idBuilder));
+  }
+  return features;
+}
+
 export function provideBsDynamicFormsWithDefaultFeatures(
   config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
-  ...additionalFatures: DynamicFormsFeature[]
+  ...additionalFeatures: DynamicFormsFeature[]
 ): Provider[] {
-  const features = [
-    ...bsDynamicFormsDefaultFeatures,
-    withDynamicFormsTheme(config?.theme),
-    withDynamicFormsIdBuilder(config?.idBuilder),
-    ...additionalFatures,
-  ];
+  const features = [...bsDynamicFormsDefaultFeatures, ...getDynamicFormsFeatures(config), ...additionalFeatures];
   return provideDynamicFormsWithDefaultFeatures(bsDynamicFormLibrary, ...features);
 }
 
@@ -46,8 +52,8 @@ export function provideBsDynamicFormsWithDefaultFeatures(
  * @deprecated Use {@link provideBsDynamicFormsWithDefaultFeatures} instead.
  */
 @NgModule({
-  imports: [DynamicFormComponent],
-  exports: [DynamicFormComponent],
+  imports: [DynamicFormsModule],
+  exports: [DynamicFormsModule],
   providers: provideDynamicFormsWithDefaultFeatures(null, ...bsDynamicFormsDefaultFeatures, withDynamicFormValidation()),
 })
 export class BsDynamicFormsModule {
@@ -56,14 +62,9 @@ export class BsDynamicFormsModule {
    */
   static forRoot(
     config?: { theme?: string; idBuilder?: DynamicFormIdBuilder },
-    ...additionalFatures: DynamicFormsFeature[]
+    ...additionalFeatures: DynamicFormsFeature[]
   ): ModuleWithProviders<BsDynamicFormsModule> {
-    const features = [
-      withDynamicFormsLibrary(bsDynamicFormLibrary),
-      withDynamicFormsTheme(config?.theme),
-      withDynamicFormsIdBuilder(config?.idBuilder),
-      ...additionalFatures,
-    ];
+    const features = [withDynamicFormsLibrary(bsDynamicFormLibrary), ...getDynamicFormsFeatures(config), ...additionalFeatures];
     return { ngModule: BsDynamicFormsModule, providers: importDynamicFormsProviders(...features) };
   }
 }
