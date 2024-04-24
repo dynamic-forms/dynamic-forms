@@ -4,7 +4,6 @@ import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
 import { DynamicFormActionModule, withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
-import { DynamicFormValidationModule } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
 import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormField } from './dynamic-form-field';
@@ -79,7 +78,7 @@ export function withDynamicFormFieldDefaultFeatures(): DynamicFormsFeature[] {
   return [withDynamicFormActionHandlers(...dynamicFormFieldActionHandlerDefaults)];
 }
 
-const modules = [DynamicFormActionModule, DynamicFormValidationModule];
+const modules = [DynamicFormActionModule];
 
 /**
  * @deprecated Use {@link withDynamicFormFieldDefaultFeatures} instead.

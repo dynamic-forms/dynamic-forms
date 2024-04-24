@@ -9,11 +9,11 @@
     }
     @if (item.id) {
       @if (item.modelId) {
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
-      } @else {
         <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id, 'models', item.modelId]">{{
           item.label
         }}</a>
+      } @else {
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
       }
     }
   }

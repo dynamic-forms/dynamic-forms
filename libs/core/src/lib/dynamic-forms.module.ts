@@ -1,12 +1,13 @@
-import { NgModule, Provider } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { dynamicFormActionProviders } from './dynamic-form-action/dynamic-form-action.module';
+import { dynamicFormActionProviders, withDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormIconProviders } from './dynamic-form-action/dynamic-form-icon/dynamic-form-icon.module';
 import { withDynamicFormArrayDefaultFeatures } from './dynamic-form-array/dynamic-form-array.module';
 import { dynamicFormConfigProviders } from './dynamic-form-config/dynamic-form-config.module';
 import { withDynamicFormControlDefaultFeatures } from './dynamic-form-control/dynamic-form-control.module';
+import { withDynamicFormDictionaryDefaultFeatures } from './dynamic-form-dictionary/dynamic-form-dictionary.module';
 import { withDynamicFormElementDefaultFeatures } from './dynamic-form-element/dynamic-form-element.module';
 import { dynamicFormErrorProviders } from './dynamic-form-error/dynamic-form-error.module';
 import { dynamicFormEvaluationProviders } from './dynamic-form-evaluation/dynamic-form-evaluation.module';
@@ -19,7 +20,7 @@ import { dynamicFormThemeProviders } from './dynamic-form-theme/dynamic-form-the
 import { dynamicFormValidationProviders } from './dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from './dynamic-forms-feature';
 
-const dynamicFormProviders: Provider[] = [
+export const dynamicFormsDefaultProviders: Provider[] = [
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormExpressionBuilder,
@@ -34,8 +35,10 @@ const dynamicFormProviders: Provider[] = [
 ];
 
 export const dynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
+  ...withDynamicFormActionDefaultFeatures(),
   ...withDynamicFormArrayDefaultFeatures(),
   ...withDynamicFormControlDefaultFeatures(),
+  ...withDynamicFormDictionaryDefaultFeatures(),
   ...withDynamicFormElementDefaultFeatures(),
   ...withDynamicFormFieldDefaultFeatures(),
   ...withDynamicFormGroupDefaultFeatures(),
@@ -50,7 +53,7 @@ export function importDynamicFormsProviders(...features: DynamicFormsFeature[]):
 }
 
 export function provideDynamicForms(library?: DynamicFormLibrary, ...features: DynamicFormsFeature[]): Provider[] {
-  const providers = [...dynamicFormProviders];
+  const providers = [...dynamicFormsDefaultProviders];
   if (library) {
     providers.push({ provide: DYNAMIC_FORM_LIBRARY, useValue: library });
   }
@@ -76,4 +79,9 @@ export function provideDynamicFormsWithDefaultFeatures(
   exports: [DynamicFormComponent],
   providers: provideDynamicForms(),
 })
-export class DynamicFormsModule {}
+export class DynamicFormsModule {
+  static withFeatures(...features: DynamicFormsFeature[]): ModuleWithProviders<DynamicFormsModule> {
+    const providers = importDynamicFormsProviders(...features);
+    return { ngModule: DynamicFormsModule, providers };
+  }
+}

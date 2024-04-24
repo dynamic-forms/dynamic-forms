@@ -39,25 +39,25 @@ describe('DynamicFormFieldModule', () => {
     it('provides DYNAMIC_FORM_ACTION_HANDLERS', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handlers = service.handlers;
 
-      expect(handlers.length).toBe(15);
-      expect(handlers[3]).toEqual(dynamicFormFieldClearHandler);
+      expect(handlers.length).toBe(12);
+      expect(handlers[0]).toEqual(dynamicFormFieldClearHandler);
+      expect(handlers[0].func).toEqual(jasmine.any(Function));
+      expect(handlers[0].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[1]).toEqual(dynamicFormFieldResetHandler);
+      expect(handlers[1].func).toEqual(jasmine.any(Function));
+      expect(handlers[1].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[2]).toEqual(dynamicFormFieldResetEmptyHandler);
+      expect(handlers[2].func).toEqual(jasmine.any(Function));
+      expect(handlers[2].libraryName).toEqual(dynamicFormLibrary.name);
+      expect(handlers[3]).toEqual(dynamicFormFieldResetDefaultHandler);
       expect(handlers[3].func).toEqual(jasmine.any(Function));
       expect(handlers[3].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[4]).toEqual(dynamicFormFieldResetHandler);
+      expect(handlers[4]).toEqual(dynamicFormFieldValidateHandler);
       expect(handlers[4].func).toEqual(jasmine.any(Function));
       expect(handlers[4].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[5]).toEqual(dynamicFormFieldResetEmptyHandler);
+      expect(handlers[5]).toEqual(dynamicFormSubmitHandler);
       expect(handlers[5].func).toEqual(jasmine.any(Function));
       expect(handlers[5].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[6]).toEqual(dynamicFormFieldResetDefaultHandler);
-      expect(handlers[6].func).toEqual(jasmine.any(Function));
-      expect(handlers[6].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[7]).toEqual(dynamicFormFieldValidateHandler);
-      expect(handlers[7].func).toEqual(jasmine.any(Function));
-      expect(handlers[7].libraryName).toEqual(dynamicFormLibrary.name);
-      expect(handlers[8]).toEqual(dynamicFormSubmitHandler);
-      expect(handlers[8].func).toEqual(jasmine.any(Function));
-      expect(handlers[8].libraryName).toEqual(dynamicFormLibrary.name);
     }));
 
     it('handler calls reset of field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {

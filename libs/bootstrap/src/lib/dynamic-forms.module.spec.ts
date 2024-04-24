@@ -3,6 +3,7 @@ import {
   DYNAMIC_FORM_ID_BUILDER,
   DYNAMIC_FORM_LIBRARY,
   DYNAMIC_FORM_THEME,
+  DynamicFormActionService,
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
@@ -13,10 +14,11 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationBuilder,
   DynamicFormValidationService,
+  dynamicFormValidationConfig,
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormsModule, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
+import { BsDynamicFormsModule, provideBsDynamicForms, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
 
 describe('BsDynamicFormsModule', () => {
   describe('without providers', () => {
@@ -70,9 +72,19 @@ describe('BsDynamicFormsModule', () => {
     });
   });
 
+  describe('provideMatDynamicForms', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({ providers: provideBsDynamicForms() });
+    });
+
+    it('provides DYNAMIC_FORM_LIBRARY', inject([DYNAMIC_FORM_LIBRARY], (library: DynamicFormLibrary) => {
+      expect(library).toEqual(bsDynamicFormLibrary);
+    }));
+  });
+
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule.forRoot()] } },
+      { name: 'BsDynamicFormsModule.root', def: { imports: [BsDynamicFormsModule.forRoot()] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -86,13 +98,13 @@ describe('BsDynamicFormsModule', () => {
           expect(library).toEqual(bsDynamicFormLibrary);
         }));
 
-        it('provides DYNAMIC_FORM_THEME being undefined', inject([DYNAMIC_FORM_THEME], (theme: string) => {
-          expect(theme).toBeUndefined();
-        }));
+        it('does not provide DYNAMIC_FORM_THEME', () => {
+          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
+        });
 
-        it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
-          expect(service).toBeUndefined();
-        }));
+        it('does not provide DYNAMIC_FORM_ID_BUILDER', () => {
+          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
+        });
 
         it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
           expect(service).toBeTruthy();
@@ -102,6 +114,11 @@ describe('BsDynamicFormsModule', () => {
 
         it('provides DynamicFormConfigService', inject([DynamicFormConfigService], (service: DynamicFormConfigService) => {
           expect(service).toBeTruthy();
+          expect(service.actionTypes.length).toBe(2);
+          expect(service.elementTypes.length).toBe(6);
+          expect(service.fieldTypes.length).toBe(4);
+          expect(service.fieldWrapperTypes.length).toBe(3);
+          expect(service.inputTypes.length).toBe(11);
         }));
 
         it('provides DynamicFormBuilder', inject([DynamicFormBuilder], (service: DynamicFormBuilder) => {
@@ -114,14 +131,24 @@ describe('BsDynamicFormsModule', () => {
 
         it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
           expect(service).toBeTruthy();
+          expect(service.arrayValidatorTypes.length).toBe(3);
+          expect(service.controlValidatorTypes.length).toBe(8);
+          expect(service.dictionaryValidatorTypes.length).toBe(3);
+          expect(service.groupValidatorTypes.length).toBe(3);
         }));
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
+          expect(service.validationConfig).toEqual({ ...dynamicFormValidationConfig, libraryName: bsDynamicFormLibrary.name });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
           expect(service).toBeTruthy();
+        }));
+
+        it('provides DynamicFormActionService', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
+          expect(service).toBeTruthy();
+          expect(service.handlers.length).toBe(25);
         }));
       });
     });
