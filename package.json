@@ -61,7 +61,7 @@
     "publish:material": "cd dist/v18/@dynamic-forms/material && npm publish --access public",
     "publish:markdown": "cd dist/v18/@dynamic-forms/markdown && npm publish --access public",
     "publish:libs": "npm run publish:core && npm run publish:bootstrap && npm run publish:material && npm run publish:markdown",
-    "stackblitz":  "npm install && npm run build:libs && npm run start"
+    "stackblitz":  "npm run build:libs && npm run start"
   },
   "private": true,
   "dependencies": {
