@@ -1,4 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, TestModuleMetadata, inject } from '@angular/core/testing';
 import { bsDynamicFormLibrary } from '@dynamic-forms/bootstrap';
 import {
@@ -20,9 +21,9 @@ import {
 import { provideBootstrapForm } from './bootstrap-form.module';
 
 describe('BootstrapFormModule', () => {
-  const imports = [HttpClientTestingModule];
+  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'provideBoostrapForm', def: { imports, providers: provideBootstrapForm() } },
+    { name: 'provideBoostrapForm', def: { providers: [...providers, ...provideBootstrapForm()] } },
   ];
 
   testModules.forEach(testModule => {

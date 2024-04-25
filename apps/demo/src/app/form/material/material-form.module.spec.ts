@@ -1,4 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, TestModuleMetadata, inject } from '@angular/core/testing';
 import {
   DYNAMIC_FORM_ID_BUILDER,
@@ -20,9 +21,9 @@ import { matDynamicFormLibrary } from '@dynamic-forms/material';
 import { provideMaterialForm } from './material-form.module';
 
 describe('MaterialFormModule', () => {
-  const imports = [HttpClientTestingModule];
+  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'provideMaterialForm', def: { imports, providers: provideMaterialForm() } },
+    { name: 'provideMaterialForm', def: { providers: [...providers, ...provideMaterialForm()] } },
   ];
 
   testModules.forEach(testModule => {
