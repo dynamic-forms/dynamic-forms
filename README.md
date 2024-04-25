@@ -19,7 +19,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
   - Dynamic form inputs
     - Checkbox and switch
     - Combobox, radio, select and toggle
-    - Textbox and textarea
+    - Textbox, textarea and input mask
     - Datepicker
     - Numberbox
     - File(s)

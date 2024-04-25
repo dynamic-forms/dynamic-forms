@@ -200,12 +200,16 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/v18/@dynamic-forms/demo",
+            "outputPath": {
+              "base": "dist/v18/@dynamic-forms/demo",
+              "browser": ""
+            },
             "index": "apps/demo/src/index.html",
-            "main": "apps/demo/src/main.ts",
-            "polyfills": "apps/demo/src/polyfills.ts",
+            "polyfills": [
+              "apps/demo/src/polyfills.ts"
+            ],
             "tsConfig": "apps/demo/tsconfig.app.json",
             "allowedCommonJsDependencies": [
               "inputmask"
@@ -249,12 +253,12 @@
               "apps/demo/src/styles.scss"
             ],
             "scripts": [],
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "aot": false,
             "extractLicenses": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "apps/demo/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -268,7 +272,6 @@
               "aot": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
