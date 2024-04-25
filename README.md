@@ -6,8 +6,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 - [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
 - [**Azure**](https://dynamic-forms.azurewebsites.net/) web apps with demos
 - [**npm packages**](https://www.npmjs.com/org/dynamic-forms) for libraries
-- [**stackblitz**](https://stackblitz.com/~/github.com/dynamic-forms/dynamic-forms?startScript=stackblitz) for project
-- [**stackblitz**](https://stackblitz.com/edit/dynamic-forms-stackblitz) example using npm packages for libraries
+- [**stackblitz**](https://stackblitz.com/~/github.com/dynamic-forms/dynamic-forms) for project and [**stackblitz**](https://stackblitz.com/edit/dynamic-forms-stackblitz) with example using npm packages of libraries
 
 ## **Features**
 
