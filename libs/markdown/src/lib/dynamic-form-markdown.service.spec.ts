@@ -1,4 +1,5 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { SecurityContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,8 +17,10 @@ describe('DynamicFormMarkdownService', () => {
     spyOn(domSanitizer, 'sanitize').and.callFake((_context, value) => value as string);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, DynamicFormMarkdownModule],
+      imports: [DynamicFormMarkdownModule],
       providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
         {
           provide: DomSanitizer,
           useValue: domSanitizer,
