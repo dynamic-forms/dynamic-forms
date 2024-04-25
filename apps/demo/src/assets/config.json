@@ -16,7 +16,7 @@
   },
   "versions": [
     {
-      "name": "18.0.0",
+      "name": "18.0.0-next.0",
       "url": "https://dynamic-forms.azurewebsites.net/v18/dev"
     },
     {
