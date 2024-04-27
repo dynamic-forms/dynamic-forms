@@ -1,7 +1,7 @@
 <mat-toolbar class="footer" color="primary">
   @if (config$ | async; as config) {
     @if (config.buildUrl) {
-      <a mat-flat-button color="primary" target="blank" [href]="config.buildUrl">
+      <a mat-button color="primary" target="blank" [href]="config.buildUrl">
         <span>Version </span>
         <span>{{ config.version }}</span>
         <span>-build.</span>
@@ -14,7 +14,7 @@
       <span>{{ config.build }}</span>
     }
     @if (config.releaseUrl) {
-      <a mat-flat-button color="primary" target="blank" [href]="config.releaseUrl">
+      <a mat-button color="primary" target="blank" [href]="config.releaseUrl">
         <span>Release </span>
         <span>{{ config.release }}</span>
       </a>
