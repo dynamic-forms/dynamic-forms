@@ -2,11 +2,12 @@
   .monaco-editor {
     display: flex;
     flex-direction: column;
-    border: 1px solid lightgrey;
+    padding-left: 1px;
+    padding-bottom: 1px;
 
     .monaco-editor-toolbar {
       height: 36px;
-      border-bottom: 1px solid lightgrey;
+      border-bottom: 1px solid var(--vscode-focusBorder);
     }
 
     .monaco-editor-container {

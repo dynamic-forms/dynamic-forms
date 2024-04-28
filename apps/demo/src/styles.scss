@@ -16,7 +16,7 @@
   --sys-body-large-tracking: normal;
 }
 
-$theme: mat.define-theme((
+$app-light-theme: mat.define-theme((
   color: (
     theme-type: light,
     primary: mat.$azure-palette,
@@ -30,15 +30,55 @@ $theme: mat.define-theme((
   )
 ));
 
-@include mat.color-variants-backwards-compatibility($theme);
-@include mat.typography-hierarchy($theme);
+$app-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$cyan-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  typography: (
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  )
+));
 
-html {
-  @include mat.all-component-themes($theme);
+@include mat.typography-hierarchy($app-light-theme);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  @include mat.all-component-themes($app-light-theme);
+
+  --app-primary-color: #{mat.get-theme-color($app-light-theme, primary)};
+  --app-primary-background: #{mat.get-theme-color($app-light-theme, primary-container)};
+
+  .button-content {
+    display: flex;
+    align-items: center;
+  }
+
+  &.dark-mode {
+    @include mat.all-component-colors($app-dark-theme);
+
+    --app-primary-color: #{mat.get-theme-color($app-dark-theme, primary)};
+    --app-primary-background: #{mat.get-theme-color($app-dark-theme, primary-container)};
+
+    .dynamic-form-markdown {
+      code, pre {
+        background-color: #696969;
+      }
+    }
+  }
 
   .header, .footer {
-    color: #{mat.get-theme-color($theme, primary)};
-    background: #{mat.get-theme-color($theme, primary-container)};
+    color: var(--app-primary-color);
+    background: var(--app-primary-background);
 
     .mat-mdc-icon-button {
       color: inherit;
@@ -48,23 +88,22 @@ html {
       color: inherit
     }
   }
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-
-  .button-content {
-    display: flex;
-    align-items: center;
-  }
 
   .router-link-active {
-    color: #{mat.get-theme-color($theme, primary)};
-    background: #{mat.get-theme-color($theme, primary-container)};
+    color: var(--app-primary-color);
+    background: var(--app-primary-background);
+  }
+
+  .preferences-menu {
+    div {
+      color: var(--mat-app-text-color)
+    }
+  }
+
+  .dynamic-form-markdown {
+    a {
+      color: var(--app-primary-color);
+    }
   }
 }
 
