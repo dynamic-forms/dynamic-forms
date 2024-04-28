@@ -1,6 +1,39 @@
 {
   "children": [
     {
+      "key": "theme",
+      "type": "group",
+      "template": {
+        "label": "Theme"
+      },
+      "children": [
+        {
+          "key": "mode",
+          "type": "control",
+          "template": {
+            "label": "Mode",
+            "input": {
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Default",
+                  "value": null
+                },
+                {
+                  "label": "Light",
+                  "value": "light-mode"
+                },
+                {
+                  "label": "Dark",
+                  "value": "dark-mode"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
       "key": "formEditor",
       "type": "group",
       "template": {
@@ -13,7 +46,7 @@
           "template": {
             "label": "Preview Mode",
             "input": {
-              "type": "toggle",
+              "type": "radio",
               "options": [
                 {
                   "label": "Tab View",

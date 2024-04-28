@@ -1,8 +1,24 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { BehaviorSubject, first, tap } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { BehaviorSubject, distinctUntilChanged, first, map, tap } from 'rxjs';
+import { ThemeMode } from '../state/preferences/preferences.model';
+import { PreferencesState } from '../state/preferences/preferences.state';
 import { MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType, MonacoModule } from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
 
@@ -34,7 +50,11 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   @Output() readonly valueChange = new EventEmitter<string>();
   @Output() readonly loadingChange = new EventEmitter<boolean>();
 
-  constructor(private monacoEditorService: MonacoEditorService) {
+  constructor(
+    private store: Store,
+    private monacoEditorService: MonacoEditorService,
+    private destroyRef: DestroyRef,
+  ) {
     this.monacoEditorService.load();
   }
 
@@ -90,15 +110,34 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     this._editor = monaco.editor.create(this.container.nativeElement, options);
     this._editorBlur = this._editor.onDidBlurEditorText(_ => this.updateValue(MonacoEditorUpdateType.Blur));
     this._editorChange = this._editor.onDidChangeModelContent(_ => this.updateValue(MonacoEditorUpdateType.Change));
+    this.store
+      .select(PreferencesState.theme)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        map(theme => theme?.mode),
+        distinctUntilChanged(),
+        tap(mode => this.setTheme(mode)),
+      )
+      .subscribe();
   }
 
   private getEditorOptions(): MonacoEditorOptions {
+    const themeMode = this.store.selectSnapshot(PreferencesState.theme)?.mode;
     return {
       value: this.value,
       language: this.language,
       automaticLayout: true,
       scrollBeyondLastLine: false,
+      theme: this.getTheme(themeMode),
     };
+  }
+
+  private getTheme(mode: ThemeMode): string {
+    return mode === 'dark-mode' ? 'vs-dark' : 'vs';
+  }
+
+  private setTheme(mode: ThemeMode): void {
+    this._editor.updateOptions({ theme: this.getTheme(mode) });
   }
 
   private updateValue(updateType?: MonacoEditorUpdateType): void {
