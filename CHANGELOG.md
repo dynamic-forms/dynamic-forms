@@ -1,17 +1,24 @@
 # Changelog
 
-## 18.0.0-next.0
+## 18.0.0-next.0 (2024-05-01)
+
+### Features
 
 * **core:** update to angular 18 next
+* **core:** support of input mask using [inputmask](https://github.com/RobinHerbots/Inputmask)
 * **bootstrap:** update to angular 18 next
+* **bootstrap:** implementation of input mask
 * **material:** update to angular and angular material 18 next
-* **markdown:** update to angular 18 next and marked 12
+* **material:** implementation of input mask
+* **markdown:** update to angular 18 next and [marked](https://github.com/markedjs/marked) 12
 
 ## 17.0.0 (2023-12-16)
 
 * Release without any changes in comparison to release candidate 17.0.0-rc.0
 
 ## 17.0.0-rc.0 (2023-12-13)
+
+### Features
 
 * **core:** update to angular 17
 * **bootstrap:** update to angular 17
