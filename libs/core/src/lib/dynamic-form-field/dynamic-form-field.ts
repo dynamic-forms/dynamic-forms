@@ -117,6 +117,10 @@ export abstract class DynamicFormField<
     return this.definition.unregistered;
   }
 
+  get hasValidation(): boolean {
+    return this._validators.length > 0;
+  }
+
   get validators(): DynamicFormFieldValidatorBase[] {
     return this._validators;
   }

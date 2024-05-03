@@ -14,6 +14,14 @@
 
   --sys-body-large: 400 14px/20px Roboto, sans-serif;
   --sys-body-large-tracking: normal;
+
+  --sys-body-medium-size: 14px;
+  --sys-body-medium-line-height: normal;
+  --sys-body-medium-tracking: normal;
+
+  --sys-body-small-size: 12px;
+  --sys-body-small-line-height: 20px;
+  --sys-body-small-tracking: .0333333em;
 }
 
 $app-light-theme: mat.define-theme((
@@ -114,6 +122,10 @@ body {
 
 .dynamic-form-wrapper {
   width: 100%;
+
+  div {
+    color: var(--mat-app-text-color)
+  }
 
   .dynamic-form {
     &:not(.maximized) {

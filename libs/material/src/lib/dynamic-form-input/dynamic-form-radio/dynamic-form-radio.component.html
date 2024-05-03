@@ -3,6 +3,7 @@
   [required]="validation?.required"
   [disabled]="disabled"
   [invalid]="showErrors"
+  [hasValidation]="hasValidation"
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-radio-group [formControl]="control">

@@ -4,6 +4,7 @@
   [required]="validation?.required"
   [disabled]="disabled"
   [invalid]="showErrors"
+  [hasValidation]="hasValidation"
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-button-toggle-group [formControl]="control">
