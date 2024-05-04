@@ -36,9 +36,10 @@ import { DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG } from '../dynamic-form-group/
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
-import { DYNAMIC_FORM_ID_BUILDER, DynamicFormIdBuilder } from './dynamic-form-id.builder';
+import { DYNAMIC_FORM_ID_BUILDER, DynamicFormIdBuilder, withDynamicFormsIdBuilder } from './dynamic-form-id.builder';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 export class DynamicFormInput2Control extends DynamicFormControl {}
@@ -120,10 +121,6 @@ describe('DynamicFormBuilder', () => {
           useValue: inputTypes,
         },
         {
-          provide: DYNAMIC_FORM_ID_BUILDER,
-          useValue: { createId: () => 'dynamic-form-id' },
-        },
-        {
           provide: DYNAMIC_FORM_GROUP_VALIDATOR_TYPE_CONFIG,
           useValue: validatorTypes,
         },
@@ -150,6 +147,7 @@ describe('DynamicFormBuilder', () => {
         DynamicFormErrorHandler,
         DynamicFormLogger,
         DynamicFormBuilder,
+        ...importDynamicFormsProviders(withDynamicFormsIdBuilder({ createId: () => 'dynamic-form-id' })),
       ],
     });
 

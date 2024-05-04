@@ -49,9 +49,11 @@ class DynamicFormTestField extends DynamicFormField {
   setModel(model: any): void {
     this._model = model;
   }
+
   setControl(control: any): void {
     this._control = control;
   }
+
   setValidators(validators: any[]): void {
     this._validators = validators;
   }
@@ -61,6 +63,7 @@ class DynamicFormTestField extends DynamicFormField {
   protected getChildren(): any[] {
     return undefined;
   }
+
   protected getValidators(): any[] {
     return undefined;
   }
@@ -118,6 +121,9 @@ describe('DynamicFormField', () => {
     expect(field.footerActions).toEqual([]);
 
     expect(field.wrappers).toBe(wrappers);
+
+    expect(field.unregistered).toBeUndefined();
+    expect(field.hasValidation).toBeFalse();
 
     expect(field.expressions).toEqual({});
     expect(field.expressionData).toBeTruthy();
@@ -431,7 +437,7 @@ describe('DynamicFormField', () => {
     const validators = [
       { checkChanges: () => true, validatorFn: () => null },
       { checkChanges: () => true, async: true, validatorFn: () => of(null) },
-    ];
+    ] as any;
 
     spyOn(field.control, 'setValidators');
     spyOn(field.control, 'setAsyncValidators');
@@ -443,6 +449,8 @@ describe('DynamicFormField', () => {
     expect(field.control.setValidators).toHaveBeenCalledWith([validators[0].validatorFn]);
     expect(field.control.setAsyncValidators).toHaveBeenCalledWith([validators[1].validatorFn]);
     expect(field.control.updateValueAndValidity).toHaveBeenCalled();
+    expect(field.validators).toBe(validators);
+    expect(field.hasValidation).toBeTrue();
   });
 
   it('clear calls resetEmpty and validate', () => {
