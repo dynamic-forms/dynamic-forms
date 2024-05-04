@@ -13,5 +13,6 @@ export class MatDynamicFormInputWrapperComponent {
   @Input() required: boolean;
   @Input({ required: true }) disabled: boolean;
   @Input({ required: true }) invalid: boolean;
-  @Input({ required: true }) errorMessage: boolean;
+  @Input({ required: true }) hasValidation: boolean;
+  @Input() errorMessage: boolean;
 }

@@ -2,6 +2,8 @@
 @import "@dynamic-forms/core/assets/scss/mixins";
 
 .dynamic-form-wrapper.material {
+  --dynamic-form-errors-color: var(--mat-form-field-error-text-color);
+
   .dynamic-form {
     display: flex;
     flex-direction: column;
@@ -61,7 +63,7 @@
 
     .dynamic-form-errors {
       @include dynamic-form-errors(
-        $color: $dynamic-form-errors-color,
+        $color: var(--dynamic-form-errors-color),
         $font-size: $dynamic-form-errors-font-size,
         $margin-top: $dynamic-form-errors-margin-top,
         $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -102,7 +104,7 @@
 
       .dynamic-form-group-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -144,7 +146,7 @@
 
       .dynamic-form-array-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -186,7 +188,7 @@
 
       .dynamic-form-dictionary-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -223,6 +225,10 @@
         &.mat-mdc-form-field-wrapper {
           display: flex;
           flex-direction: column;
+
+          &.no-validation {
+            margin-bottom: 10px;
+          }
 
           &:not(.mdc-text-field--invalid) {
             .mat-mdc-form-field-input-wrapper {

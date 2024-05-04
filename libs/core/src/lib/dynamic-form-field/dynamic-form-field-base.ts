@@ -55,6 +55,10 @@ export abstract class DynamicFormFieldBase<
     return this.field.readonly;
   }
 
+  get hasValidation(): boolean {
+    return this.field.hasValidation;
+  }
+
   get errors(): DynamicFormValidationErrors {
     return this.field.errors;
   }
