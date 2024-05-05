@@ -15,7 +15,13 @@ import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-l
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormsModule, dynamicFormsDefaultFeatures, importDynamicFormsProviders, provideDynamicForms } from './dynamic-forms.module';
+import {
+  DynamicFormsModule,
+  dynamicFormsDefaultFeatures,
+  importDynamicFormsProviders,
+  provideDynamicForms,
+  provideDynamicFormsWithDefaultFeatures,
+} from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY using', () => {
@@ -206,6 +212,7 @@ describe('DynamicFormsModule', () => {
         },
       },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms(dynamicFormLibrary, ...dynamicFormsDefaultFeatures) } },
+      { name: 'provideDynamicForms', def: { providers: provideDynamicFormsWithDefaultFeatures(dynamicFormLibrary) } },
     ];
 
     testModules.forEach(testModule => {

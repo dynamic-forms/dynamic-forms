@@ -80,6 +80,9 @@ export function provideDynamicFormsWithDefaultFeatures(
   providers: provideDynamicForms(),
 })
 export class DynamicFormsModule {
+  /**
+   * @deprecated Use {@link provideDynamicForms} instead.
+   */
   static withFeatures(...features: DynamicFormsFeature[]): ModuleWithProviders<DynamicFormsModule> {
     const providers = importDynamicFormsProviders(...features);
     return { ngModule: DynamicFormsModule, providers };
