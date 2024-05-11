@@ -27,6 +27,7 @@ describe('DynamicFormValidationService', () => {
       expect(service.validationConfig).toEqual({
         defaultMessage: undefined,
         messages: {},
+        aliases: {},
         libraryName: 'test',
       });
     }));
@@ -44,6 +45,9 @@ describe('DynamicFormValidationService', () => {
       messages: {
         required: 'The field is required',
         maxFileSize: dynamicFormErrorMessageTemplate`The files ${'filenames'} do not fit the max size`,
+      },
+      aliases: {
+        requiredAlias: 'required',
       },
       libraryName: 'test',
     };
@@ -95,6 +99,12 @@ describe('DynamicFormValidationService', () => {
       expect(message).toEqual(validationConfig.messages.required as string);
     }));
 
+    it('returns message from config using alias', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
+      const message = service.getErrorMessage({ requiredAlias: {} });
+
+      expect(message).toEqual(validationConfig.messages.required as string);
+    }));
+
     it('returns default message from config', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
       const message = service.getErrorMessage({});
 
@@ -110,6 +120,10 @@ describe('DynamicFormValidationService', () => {
           required: 'requiredCore',
           pattern: 'patternCore',
         },
+        aliases: {
+          requiredAlias: 'required',
+          patternAlias: 'pattern',
+        },
         libraryName: 'core',
       },
       {
@@ -117,6 +131,10 @@ describe('DynamicFormValidationService', () => {
         messages: {
           required: 'requiredTest',
           maxLength: 'maxLengthTest',
+        },
+        aliases: {
+          requiredAlias: 'required',
+          maxLengthAlias: 'maxLength',
         },
         libraryName: 'test',
       },
@@ -126,6 +144,9 @@ describe('DynamicFormValidationService', () => {
           required: 'requiredTestExtended',
           maxLength: 'maxLengthTestExtended',
           minLength: 'minLengthTestExtended',
+        },
+        aliases: {
+          requiredExtended: 'required',
         },
         libraryName: 'test-extended',
       },
@@ -157,6 +178,11 @@ describe('DynamicFormValidationService', () => {
           required: 'requiredTest',
           pattern: 'patternCore',
           maxLength: 'maxLengthTest',
+        },
+        aliases: {
+          requiredAlias: 'required',
+          patternAlias: 'pattern',
+          maxLengthAlias: 'maxLength',
         },
         libraryName: 'test',
       });

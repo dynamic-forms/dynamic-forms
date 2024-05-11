@@ -143,7 +143,16 @@ describe('MatDynamicFormsModule', () => {
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
-          expect(service.validationConfig).toEqual({ ...dynamicFormValidationConfig, libraryName: matDynamicFormLibrary.name });
+          expect(service.validationConfig).toEqual({
+            ...dynamicFormValidationConfig,
+            aliases: {
+              ...dynamicFormValidationConfig.aliases,
+              matDatepickerParse: 'validDate',
+              matDatepickerMin: 'minDate',
+              matDatepickerMax: 'maxDate',
+            },
+            libraryName: matDynamicFormLibrary.name,
+          });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {

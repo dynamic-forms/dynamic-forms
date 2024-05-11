@@ -184,7 +184,12 @@ describe('DynamicFormsModule', () => {
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
-          expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName: dynamicFormLibrary.name });
+          expect(service.validationConfig).toEqual({
+            defaultMessage: undefined,
+            messages: {},
+            aliases: {},
+            libraryName: dynamicFormLibrary.name,
+          });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
@@ -266,7 +271,12 @@ describe('DynamicFormsModule', () => {
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
-          expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName: dynamicFormLibrary.name });
+          expect(service.validationConfig).toEqual({
+            defaultMessage: undefined,
+            messages: {},
+            aliases: {},
+            libraryName: dynamicFormLibrary.name,
+          });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
