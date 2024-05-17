@@ -35,8 +35,13 @@ export class DynamicFormValidationService {
     return error && error.message ? error.message : this.getErrorMessageFromConfig(errorKey, error);
   }
 
+  private getErrorMessageKey(errorKey: string): string {
+    return this.validationConfig.aliases[errorKey] || errorKey;
+  }
+
   private getErrorMessageFromConfig(errorKey: string, error: any): string {
-    const message = this.validationConfig.messages[errorKey];
+    const messageKey = this.getErrorMessageKey(errorKey);
+    const message = this.validationConfig.messages[messageKey];
     if (typeof message === 'string') {
       return message;
     }
@@ -53,7 +58,7 @@ export class DynamicFormValidationService {
   private mergeValidationConfigs(configs: DynamicFormValidationConfigs): DynamicFormValidationConfig {
     const library = this.libraryService.library;
     const libraryName = library.name;
-    const defaultConfig = { defaultMessage: undefined, messages: {}, libraryName };
+    const defaultConfig = { defaultMessage: undefined, messages: {}, aliases: {}, libraryName };
     if (!configs || !configs.length) {
       return defaultConfig;
     }
@@ -64,6 +69,7 @@ export class DynamicFormValidationService {
         ...result,
         ...config,
         messages: { ...result.messages, ...config.messages },
+        aliases: { ...result.aliases, ...config.aliases },
         libraryName,
       };
     }, defaultConfig);
