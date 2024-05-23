@@ -81,7 +81,6 @@ describe('MaterialFormModule', () => {
           ...dynamicFormValidationConfig,
           aliases: {
             ...dynamicFormValidationConfig.aliases,
-            matDatepickerParse: 'validDate',
             matDatepickerMin: 'minDate',
             matDatepickerMax: 'maxDate',
           },

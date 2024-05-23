@@ -35,7 +35,6 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     pattern: 'The field does not fit the pattern.',
     min: 'The field does not fit the min value.',
     max: 'The field does not fit the max value.',
-    validDate: 'The field is not a valid date.',
     minDate: 'The field does not fit the min date.',
     maxDate: 'The field does not fit the max date.',
     minlength: 'The field does not fit the min length.',

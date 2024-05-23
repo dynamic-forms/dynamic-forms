@@ -4,8 +4,10 @@ import {
   DynamicFormTextboxModule,
   DynamicFormsFeature,
   importDynamicFormsProviders,
+  withDynamicFormDatepickerValidators,
   withDynamicFormFileValidators,
   withDynamicFormInputs,
+  withDynamicFormNativeDateConverter,
   withDynamicFormTextboxActionHandlers,
 } from '@dynamic-forms/core';
 import { bsDynamicFormCheckboxType } from './dynamic-form-checkbox/dynamic-form-checkbox-type';
@@ -35,7 +37,13 @@ export const bsDynamicFormInputTypes = [
 ];
 
 export function withBsDynamicFormInputDefaultFeatures(): DynamicFormsFeature[] {
-  return [withDynamicFormInputs(...bsDynamicFormInputTypes), withDynamicFormTextboxActionHandlers(), withDynamicFormFileValidators()];
+  return [
+    withDynamicFormInputs(...bsDynamicFormInputTypes),
+    withDynamicFormTextboxActionHandlers(),
+    withDynamicFormFileValidators(),
+    withDynamicFormNativeDateConverter(),
+    ...withDynamicFormDatepickerValidators(),
+  ];
 }
 
 const modules = [DynamicFormFileModule, DynamicFormTextboxModule];

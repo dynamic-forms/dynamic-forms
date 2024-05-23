@@ -70,7 +70,7 @@ describe('BootstrapFormModule', () => {
       it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service).toBeTruthy();
         expect(service.arrayValidatorTypes.length).toBe(3);
-        expect(service.controlValidatorTypes.length).toBe(9);
+        expect(service.controlValidatorTypes.length).toBe(11);
         expect(service.dictionaryValidatorTypes.length).toBe(3);
         expect(service.groupValidatorTypes.length).toBe(3);
       }));
