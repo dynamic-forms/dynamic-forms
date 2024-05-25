@@ -17,8 +17,9 @@ export const dynamicFormErrorMessageTemplate =
       .join('');
 
 export interface DynamicFormValidationConfig {
-  defaultMessage: string;
-  messages: { [key: string]: string | DynamicFormErrorMessageTemplate };
+  defaultMessage?: string;
+  messages?: { [key: string]: string | DynamicFormErrorMessageTemplate };
+  aliases?: { [key: string]: string };
   libraryName: DynamicFormLibraryName;
 }
 
@@ -48,5 +49,6 @@ export const dynamicFormValidationConfig: DynamicFormValidationConfig = {
     maxlengthDictionary: 'The dictionary does not fit the max length.',
     maxFileSize: dynamicFormErrorMessageTemplate`The files ${'filenames'} do not fit the max size`,
   },
+  aliases: {},
   libraryName: dynamicFormLibrary.name,
 };

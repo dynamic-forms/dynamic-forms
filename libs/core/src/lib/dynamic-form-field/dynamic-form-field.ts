@@ -121,6 +121,10 @@ export abstract class DynamicFormField<
     return this._validators;
   }
 
+  get hasValidation(): boolean {
+    return this.validators?.length > 0;
+  }
+
   get errors(): DynamicFormValidationErrors {
     return this.control.errors;
   }

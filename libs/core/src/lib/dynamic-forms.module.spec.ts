@@ -9,13 +9,20 @@ import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation/dynamic-
 import { DynamicFormExpressionBuilder } from './dynamic-form-expression/dynamic-form-expression.builder';
 import { DYNAMIC_FORM_FIELD_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-type-config';
 import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG } from './dynamic-form-field/dynamic-form-field-wrapper-type-config';
+import { DynamicFormDateConverter } from './dynamic-form-input/dynamic-form-datepicker/dynamic-form-date-converter';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG } from './dynamic-form-input/dynamic-form-input-type-config';
 import { DYNAMIC_FORM_LIBRARY, DynamicFormLibrary, dynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from './dynamic-form-library/dynamic-form-library.service';
 import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynamic-form-validation-config';
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
-import { DynamicFormsModule, dynamicFormsDefaultFeatures, importDynamicFormsProviders, provideDynamicForms } from './dynamic-forms.module';
+import {
+  DynamicFormsModule,
+  dynamicFormsDefaultFeatures,
+  importDynamicFormsProviders,
+  provideDynamicForms,
+  provideDynamicFormsWithDefaultFeatures,
+} from './dynamic-forms.module';
 
 describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY using', () => {
@@ -178,7 +185,12 @@ describe('DynamicFormsModule', () => {
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
-          expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName: dynamicFormLibrary.name });
+          expect(service.validationConfig).toEqual({
+            defaultMessage: undefined,
+            messages: {},
+            aliases: {},
+            libraryName: dynamicFormLibrary.name,
+          });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
@@ -206,6 +218,7 @@ describe('DynamicFormsModule', () => {
         },
       },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms(dynamicFormLibrary, ...dynamicFormsDefaultFeatures) } },
+      { name: 'provideDynamicForms', def: { providers: provideDynamicFormsWithDefaultFeatures(dynamicFormLibrary) } },
     ];
 
     testModules.forEach(testModule => {
@@ -259,7 +272,12 @@ describe('DynamicFormsModule', () => {
 
         it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
           expect(service).toBeTruthy();
-          expect(service.validationConfig).toEqual({ defaultMessage: undefined, messages: {}, libraryName: dynamicFormLibrary.name });
+          expect(service.validationConfig).toEqual({
+            defaultMessage: undefined,
+            messages: {},
+            aliases: {},
+            libraryName: dynamicFormLibrary.name,
+          });
         }));
 
         it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
@@ -270,6 +288,10 @@ describe('DynamicFormsModule', () => {
           expect(service).toBeTruthy();
           expect(service.handlers.length).toBe(18);
         }));
+
+        it('does not provide DynamicFormDateConverter', () => {
+          expect(() => TestBed.inject(DynamicFormDateConverter)).toThrowError(/NullInjectorError/);
+        });
       });
     });
   });

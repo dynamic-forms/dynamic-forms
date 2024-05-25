@@ -11,7 +11,9 @@ import { DynamicFormFileUpload } from '../dynamic-form-input/dynamic-form-file/d
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
 import { DynamicFormValidationBuilder } from '../dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormDefinition } from './dynamic-form-definition';
+import { withDynamicFormsTheme } from './dynamic-form-theme';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 import { DynamicFormComponent } from './dynamic-form.component';
 
@@ -45,6 +47,7 @@ describe('DynamicFormComponent', () => {
         DynamicFormErrorHandler,
         DynamicFormLogger,
         DynamicFormBuilder,
+        ...importDynamicFormsProviders(withDynamicFormsTheme('theme')),
       ],
     });
 
@@ -95,17 +98,17 @@ describe('DynamicFormComponent', () => {
     const formWrapperDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-wrapper'));
     const formWrapperElement = formWrapperDebugElement.nativeElement as HTMLElement;
 
-    expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
-
-    component.theme = 'theme';
-    fixture.detectChanges();
-
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper theme');
 
     component.theme = null;
     fixture.detectChanges();
 
     expect(formWrapperElement.className).toBe('dynamic-form-wrapper');
+
+    component.theme = 'theme';
+    fixture.detectChanges();
+
+    expect(formWrapperElement.className).toBe('dynamic-form-wrapper theme');
   });
 
   it('sets class name of dynamic form', () => {

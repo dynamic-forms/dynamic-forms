@@ -7,6 +7,6 @@ export interface DynamicFormIdBuilder {
 
 export const DYNAMIC_FORM_ID_BUILDER = new InjectionToken<DynamicFormIdBuilder>('DynamicFormIdBuilder');
 
-export function withDynamicFormsIdBuilder(idBuilder?: DynamicFormIdBuilder): DynamicFormsFeature {
+export function withDynamicFormsIdBuilder(idBuilder: DynamicFormIdBuilder): DynamicFormsFeature {
   return { providers: [{ provide: DYNAMIC_FORM_ID_BUILDER, useValue: idBuilder }] };
 }

@@ -10,10 +10,12 @@ import {
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
+  DynamicFormDateConverter,
   DynamicFormExpressionBuilder,
   DynamicFormIdBuilder,
   DynamicFormLibrary,
   DynamicFormLibraryService,
+  DynamicFormNativeDateConverter,
   DynamicFormValidationBuilder,
   DynamicFormValidationService,
   dynamicFormValidationConfig,
@@ -70,7 +72,7 @@ describe('BootstrapFormModule', () => {
       it('provides DynamicFormValidationBuilder', inject([DynamicFormValidationBuilder], (service: DynamicFormValidationBuilder) => {
         expect(service).toBeTruthy();
         expect(service.arrayValidatorTypes.length).toBe(3);
-        expect(service.controlValidatorTypes.length).toBe(9);
+        expect(service.controlValidatorTypes.length).toBe(11);
         expect(service.dictionaryValidatorTypes.length).toBe(3);
         expect(service.groupValidatorTypes.length).toBe(3);
       }));
@@ -87,6 +89,10 @@ describe('BootstrapFormModule', () => {
       it('provides DynamicFormActionService', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
         expect(service).toBeTruthy();
         expect(service.handlers.length).toBe(25);
+      }));
+
+      it('provides DynamicFormDateConverter', inject([DynamicFormDateConverter], (service: DynamicFormDateConverter) => {
+        expect(service).toBeInstanceOf(DynamicFormNativeDateConverter);
       }));
     });
   });

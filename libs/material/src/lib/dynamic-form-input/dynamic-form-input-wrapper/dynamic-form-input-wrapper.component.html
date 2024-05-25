@@ -1,6 +1,6 @@
 <div
   class="mat-mdc-form-field mat-mdc-form-field-wrapper"
-  [ngClass]="{ 'mdc-text-field--disabled': disabled, 'mdc-text-field--invalid': invalid }"
+  [ngClass]="{ 'mdc-text-field--disabled': disabled, 'mdc-text-field--invalid': invalid, 'no-validation': !hasValidation }"
 >
   <div class="mat-mdc-form-field-input-wrapper">
     <label *ngIf="label" class="mat-mdc-form-field-input-label mat-mdc-floating-label mdc-floating-label" [for]="inputId"
@@ -8,7 +8,7 @@
     >
     <ng-content />
   </div>
-  <div class="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align">
+  <div *ngIf="hasValidation" class="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align">
     <div *ngIf="invalid" class="mat-mdc-form-field-error-wrapper">
       <div class="mat-mdc-form-field-error mat-mdc-form-field-bottom-align">{{ errorMessage }}</div>
     </div>

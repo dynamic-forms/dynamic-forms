@@ -9,6 +9,7 @@ import {
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
+  DynamicFormDateConverter,
   DynamicFormExpressionBuilder,
   DynamicFormIdBuilder,
   DynamicFormLibrary,
@@ -77,7 +78,15 @@ describe('MaterialFormModule', () => {
 
       it('provides DynamicFormValidationService', inject([DynamicFormValidationService], (service: DynamicFormValidationService) => {
         expect(service).toBeTruthy();
-        expect(service.validationConfig).toEqual({ ...dynamicFormValidationConfig, libraryName: matDynamicFormLibrary.name });
+        expect(service.validationConfig).toEqual({
+          ...dynamicFormValidationConfig,
+          aliases: {
+            ...dynamicFormValidationConfig.aliases,
+            matDatepickerMin: 'minDate',
+            matDatepickerMax: 'maxDate',
+          },
+          libraryName: matDynamicFormLibrary.name,
+        });
       }));
 
       it('provides DynamicFormComponentFactory', inject([DynamicFormComponentFactory], (service: DynamicFormComponentFactory) => {
@@ -88,6 +97,10 @@ describe('MaterialFormModule', () => {
         expect(service).toBeTruthy();
         expect(service.handlers.length).toBe(25);
       }));
+
+      it('does not provide DynamicFormDateConverter', () => {
+        expect(() => TestBed.inject(DynamicFormDateConverter)).toThrowError(/NullInjectorError/);
+      });
     });
   });
 });

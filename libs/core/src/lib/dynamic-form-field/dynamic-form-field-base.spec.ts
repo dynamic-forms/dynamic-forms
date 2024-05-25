@@ -38,6 +38,7 @@ describe('DynamicFormFieldBase', () => {
       control: {},
       disabled: false,
       readonly: true,
+      hasValidation: true,
       errors: {},
       hasError: true,
       showErrors: false,
@@ -53,6 +54,7 @@ describe('DynamicFormFieldBase', () => {
     expect(component.control).toBe(field.control);
     expect(component.disabled).toBe(field.disabled);
     expect(component.readonly).toBe(field.readonly);
+    expect(component.hasValidation).toBe(field.hasValidation);
     expect(component.errors).toBe(field.errors);
     expect(component.hasErrors).toBe(field.hasErrors);
     expect(component.showErrors).toBe(field.showErrors);

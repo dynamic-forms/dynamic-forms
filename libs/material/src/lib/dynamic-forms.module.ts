@@ -1,12 +1,14 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import {
   DynamicFormIdBuilder,
+  DynamicFormValidationConfig,
   DynamicFormsFeature,
   DynamicFormsModule,
   importDynamicFormsProviders,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
   withDynamicFormValidation,
+  withDynamicFormValidationDefaults,
   withDynamicFormsIdBuilder,
   withDynamicFormsLibrary,
   withDynamicFormsTheme,
@@ -20,8 +22,16 @@ export function provideMatDynamicForms(...features: DynamicFormsFeature[]): Prov
   return [provideDynamicForms(matDynamicFormLibrary, ...features)];
 }
 
+export const matDynamicFormValidationConfig: DynamicFormValidationConfig = {
+  aliases: {
+    matDatepickerMin: 'minDate',
+    matDatepickerMax: 'maxDate',
+  },
+  libraryName: matDynamicFormLibrary.name,
+};
+
 export const matDynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
-  withDynamicFormValidation(),
+  ...withDynamicFormValidationDefaults(matDynamicFormValidationConfig),
   ...withMatDynamicFormActionDefaultFeatures(),
   ...withMatDynamicFormElementDefaultFeatures(),
   ...withMatDynamicFormInputDefaultFeatures(),

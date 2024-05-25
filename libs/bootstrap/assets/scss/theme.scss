@@ -5,10 +5,12 @@ $dynamic-form-color-primary: #3f51b5 !default;
 $dynamic-form-color-blue: $dynamic-form-color-primary !default;
 $dynamic-form-color-red: #f44336 !default;
 
-$dynamic-form-errors-color: $dynamic-form-color-red !default;
+
 $dynamic-form-errors-margin-top: null !default;
 
 .dynamic-form-wrapper.bootstrap {
+  --dynamic-form-errors-color: #f44336;
+
   .dynamic-form {
     margin: $dynamic-form-margin;
 
@@ -126,7 +128,7 @@ $dynamic-form-errors-margin-top: null !default;
 
     .dynamic-form-errors {
       @include dynamic-form-errors(
-        $color: $dynamic-form-errors-color,
+        $color: var(--dynamic-form-errors-color),
         $font-size: $dynamic-form-errors-font-size,
         $margin-top: $dynamic-form-errors-margin-top,
         $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -167,7 +169,7 @@ $dynamic-form-errors-margin-top: null !default;
 
       .dynamic-form-group-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -209,7 +211,7 @@ $dynamic-form-errors-margin-top: null !default;
 
       .dynamic-form-array-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom
@@ -251,7 +253,7 @@ $dynamic-form-errors-margin-top: null !default;
 
       .dynamic-form-dictionary-errors {
         @include dynamic-form-errors(
-          $color: $dynamic-form-errors-color,
+          $color: var(--dynamic-form-errors-color),
           $font-size: $dynamic-form-errors-font-size,
           $margin-top: $dynamic-form-errors-margin-top,
           $margin-bottom: $dynamic-form-errors-margin-bottom

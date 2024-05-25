@@ -113,6 +113,10 @@ export function withDynamicFormValidation(config?: DynamicFormValidationConfig):
   return { providers: [provider] };
 }
 
+export function withDynamicFormValidationDefaults(additionalConfig?: DynamicFormValidationConfig): DynamicFormsFeature[] {
+  return [withDynamicFormValidation(), withDynamicFormValidation(additionalConfig)];
+}
+
 /**
  * @deprecated Use {@link dynamicFormValidationProviders} instead.
  */
