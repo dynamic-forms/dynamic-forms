@@ -71,4 +71,16 @@ describe('DynamicFormDateConverter', () => {
       expect(converter).toBeInstanceOf(DynamicFormNativeDateConverter);
     }));
   });
+
+  describe('withDynamicFormNativeDateConverter', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: importDynamicFormsProviders(withDynamicFormNativeDateConverter()),
+      });
+    });
+
+    it('provides DynamicFormNativeDateConverter', inject([DynamicFormDateConverter], (converter: DynamicFormDateConverter) => {
+      expect(converter).toBeInstanceOf(DynamicFormNativeDateConverter);
+    }));
+  });
 });

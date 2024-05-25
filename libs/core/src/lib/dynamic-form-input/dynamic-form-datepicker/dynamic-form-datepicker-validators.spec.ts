@@ -1,6 +1,22 @@
+import { TestBed, inject } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
-import { DynamicFormDateConverter, DynamicFormNativeDateConverter } from './dynamic-form-date-converter';
-import { dynamicFormMaxDateValidatorFactory, dynamicFormMinDateValidatorFactory } from './dynamic-form-datepicker-validators';
+import {
+  DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
+  DynamicFormControlValidatorTypeConfig,
+} from '../../dynamic-form-control/dynamic-form-control-validator-type-config';
+import { importDynamicFormsProviders } from '../../dynamic-forms.module';
+import {
+  DynamicFormDateConverter,
+  DynamicFormNativeDateConverter,
+  withDynamicFormNativeDateConverter,
+} from './dynamic-form-date-converter';
+import {
+  dynamicFormMaxDateValidatorFactory,
+  dynamicFormMaxDateValidatorTypeFactory,
+  dynamicFormMinDateValidatorFactory,
+  dynamicFormMinDateValidatorTypeFactory,
+  withDynamicFormDatepickerValidators,
+} from './dynamic-form-datepicker-validators';
 
 describe('DynamicFormDatepickerValidators', () => {
   let dateConverter: DynamicFormDateConverter;
@@ -91,5 +107,22 @@ describe('DynamicFormDatepickerValidators', () => {
 
       expect(validatorFn(formControl)).toEqual({ maxDate: { maxDate: '2024-01-01' } });
     });
+  });
+
+  describe('withDynamicFormDatepickerValidators', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: importDynamicFormsProviders(withDynamicFormNativeDateConverter(), ...withDynamicFormDatepickerValidators()),
+      });
+    });
+
+    it('provides DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG with min date and max date validator', inject(
+      [DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG, DynamicFormDateConverter],
+      (config: DynamicFormControlValidatorTypeConfig, dateConverter: DynamicFormDateConverter) => {
+        expect(config.length).toBe(2);
+        expect(config[0]).toEqual(dynamicFormMinDateValidatorTypeFactory(dateConverter));
+        expect(config[1]).toEqual(dynamicFormMaxDateValidatorTypeFactory(dateConverter));
+      },
+    ));
   });
 });

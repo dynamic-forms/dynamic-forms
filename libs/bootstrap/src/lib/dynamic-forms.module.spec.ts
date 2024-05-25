@@ -7,11 +7,13 @@ import {
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
+  DynamicFormDateConverter,
   DynamicFormEvaluationBuilder,
   DynamicFormExpressionBuilder,
   DynamicFormIdBuilder,
   DynamicFormLibrary,
   DynamicFormLibraryService,
+  DynamicFormNativeDateConverter,
   DynamicFormValidationBuilder,
   DynamicFormValidationService,
   dynamicFormValidationConfig,
@@ -149,6 +151,10 @@ describe('BsDynamicFormsModule', () => {
         it('provides DynamicFormActionService', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
           expect(service).toBeTruthy();
           expect(service.handlers.length).toBe(25);
+        }));
+
+        it('provides DynamicFormDateConverter', inject([DynamicFormDateConverter], (service: DynamicFormDateConverter) => {
+          expect(service).toBeInstanceOf(DynamicFormNativeDateConverter);
         }));
       });
     });
