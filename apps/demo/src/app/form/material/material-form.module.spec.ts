@@ -9,6 +9,7 @@ import {
   DynamicFormBuilder,
   DynamicFormComponentFactory,
   DynamicFormConfigService,
+  DynamicFormDateConverter,
   DynamicFormExpressionBuilder,
   DynamicFormIdBuilder,
   DynamicFormLibrary,
@@ -96,6 +97,10 @@ describe('MaterialFormModule', () => {
         expect(service).toBeTruthy();
         expect(service.handlers.length).toBe(25);
       }));
+
+      it('does not provide DynamicFormDateConverter', () => {
+        expect(() => TestBed.inject(DynamicFormDateConverter)).toThrowError(/NullInjectorError/);
+      });
     });
   });
 });
