@@ -24,7 +24,6 @@ export function provideMatDynamicForms(...features: DynamicFormsFeature[]): Prov
 
 export const matDynamicFormValidationConfig: DynamicFormValidationConfig = {
   aliases: {
-    matDatepickerParse: 'validDate',
     matDatepickerMin: 'minDate',
     matDatepickerMax: 'maxDate',
   },
