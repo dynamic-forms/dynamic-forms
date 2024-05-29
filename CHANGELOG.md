@@ -1,8 +1,8 @@
 # Changelog
 
-## 18.0.0
+## 18.0.0 (2024-05-29)
 
-* Release without any changes in comparison to release candidate 18.0.0-rc.0
+* Release without any notable changes in comparison to release candidate 18.0.0-rc.0
 
 ## 18.0.0-rc.0 (2024-05-25)
 
@@ -26,6 +26,19 @@
 * **material:** update to angular and angular material 18 next
 * **material:** implementation of input mask
 * **markdown:** update to angular 18 next and [marked](https://github.com/markedjs/marked) 12
+
+### Depracations
+
+* **core:** deprecated all `NgModule` classes and `ModuleWithProviders` implementations 
+  - use standalone components like `DynamicFormComponent` instead
+  - use provider functions like `provideDynamicForms` instead
+* **bootstrap:** deprecated all `NgModule` classes and `ModuleWithProviders` implementations 
+  - use provider functions like `provideBsDynamicFormsWithDefaultFeatures` instead
+* **material:** deprecated all `NgModule` classes and `ModuleWithProviders` implementations 
+  - use provider functions like `provideMatDynamicFormsWithDefaultFeatures` instead
+* **markdown:** deprecated all `NgModule` classes and `ModuleWithProviders` implementations 
+  - use standalone components like `DynamicFormMarkdownComponent` instead
+  - use provider functions like `provideDynamicFormsMarkdown` instead
 
 ## 17.0.0 (2023-12-16)
 
