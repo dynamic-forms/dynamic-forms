@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { importDynamicFormsProviders } from '../../dynamic-forms.module';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import {
   DynamicFormDateConverter,
   DynamicFormNativeDateConverter,
