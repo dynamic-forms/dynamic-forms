@@ -1,10 +1,10 @@
 import { FormControl } from '@angular/forms';
 import { DynamicFormControlValidatorFn } from '../../dynamic-form-control/dynamic-form-control-validator';
 import { DynamicFormControlValidatorType } from '../../dynamic-form-control/dynamic-form-control-validator-type';
+import { DynamicFormDateConverter } from '../../dynamic-form-converters/dynamic-form-date-converter';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { withDynamicFormControlValidatorFactory } from '../../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from '../../dynamic-forms-feature';
-import { DynamicFormDateConverter } from './dynamic-form-date-converter';
 
 export const dynamicFormMinDateValidatorFactory = (
   minDate: any,

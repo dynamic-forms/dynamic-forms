@@ -1,6 +1,6 @@
 # **dynamic-forms**
 
-This is an [**Angular**](https://angular.io) project for dynamic forms based on JSON:
+This is an [**Angular**](https://angular.dev) project for dynamic forms based on JSON:
 
 - [**GitHub**](https://github.com/dynamic-forms/dynamic-forms) repository under [MIT License](https://github.com/dynamic-forms/dynamic-forms/blob/main/LICENSE.md) with [releases](https://github.com/dynamic-forms/dynamic-forms/releases)
 - [**Azure DevOps**](https://dev.azure.com/alexandergebuhr/dynamic-forms) project with [build pipelines](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build) and [release dashboard](https://dev.azure.com/alexandergebuhr/dynamic-forms/_dashboards/dashboard/75c3b542-d483-4a2c-b7e0-b822a0d4a493)
@@ -10,7 +10,7 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 ## **Features**
 
-- Dynamic [**reactive forms**](https://angular.io/guide/reactive-forms) based on **JSON** definition
+- Dynamic [**reactive forms**](https://angular.dev/guide/forms/reactive-forms) based on **JSON** definition
 - Structuring / nesting dynamic forms by
   - Dynamic form elements (container, accordion, tabs, text, content, markdown, modal)
   - Dynamic form fields (control, group, array, dictionary)
@@ -65,12 +65,12 @@ This is an [**Angular**](https://angular.io) project for dynamic forms based on 
 
 ## **Packages**
 
-### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/18.0.0-rc.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/18.0.0-rc.0)
+### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/18.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/18.0.0)
 
-- `npm install @dynamic-forms/core@18.0.0-rc.0`
-- `npm install @dynamic-forms/bootstrap@18.0.0-rc.0`
-- `npm install @dynamic-forms/material@18.0.0-rc.0`
-- `npm install @dynamic-forms/markdown@18.0.0-rc.0`
+- `npm install @dynamic-forms/core@18.0.0`
+- `npm install @dynamic-forms/bootstrap@18.0.0`
+- `npm install @dynamic-forms/material@18.0.0`
+- `npm install @dynamic-forms/markdown@18.0.0`
 
 ### **Version 17** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/17.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/17.0.0)
 

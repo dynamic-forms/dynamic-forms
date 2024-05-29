@@ -1,5 +1,5 @@
 import { Injectable, Type } from '@angular/core';
-import { DynamicFormsFeature } from '../../dynamic-forms-feature';
+import { DynamicFormsFeature } from '../dynamic-forms-feature';
 
 export abstract class DynamicFormDateConverter<TDate = any> {
   abstract parse(value: any): TDate | null;
