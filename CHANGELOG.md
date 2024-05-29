@@ -1,5 +1,9 @@
 # Changelog
 
+## 18.0.0
+
+* Release without any changes in comparison to release candidate 18.0.0-rc.0
+
 ## 18.0.0-rc.0 (2024-05-25)
 
 ### Features

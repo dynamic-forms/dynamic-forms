@@ -4,12 +4,12 @@ import {
   DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
   DynamicFormControlValidatorTypeConfig,
 } from '../../dynamic-form-control/dynamic-form-control-validator-type-config';
-import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import {
   DynamicFormDateConverter,
   DynamicFormNativeDateConverter,
   withDynamicFormNativeDateConverter,
-} from './dynamic-form-date-converter';
+} from '../../dynamic-form-converters/dynamic-form-date-converter';
+import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import {
   dynamicFormMaxDateValidatorFactory,
   dynamicFormMaxDateValidatorTypeFactory,
