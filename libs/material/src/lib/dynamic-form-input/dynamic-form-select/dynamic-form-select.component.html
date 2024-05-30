@@ -1,66 +1,65 @@
-<mat-form-field *ngIf="!input.multiple; else multiSelect" appearance="fill" color="primary" [floatLabel]="template.labelFloating">
-  <mat-label>{{ template.label }}</mat-label>
-  <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control">
-    <ng-container *ngFor="let option of input.options">
-      <ng-container *ngIf="!option.items; else optionGroup">
-        <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>
-      </ng-container>
-      <ng-template #optionGroup>
-        <mat-optgroup [label]="option.label" [disabled]="option.disabled">
-          <ng-container *ngFor="let optionItem of option.items">
-            <mat-option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</mat-option>
-          </ng-container>
-        </mat-optgroup>
-      </ng-template>
-    </ng-container>
-  </mat-select>
-  <dynamic-form-element *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden" matTextPrefix [element]="prefixAddOn" />
-  <dynamic-form-element
-    *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
-    matPrefix
-    [element]="prefixAddOn"
-  />
-  <dynamic-form-element *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden" matTextSuffix [element]="suffixAddOn" />
-  <dynamic-form-element
-    *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
-    matSuffix
-    [element]="suffixAddOn"
-  />
-  <mat-hint [align]="'start'">{{ hints?.hintStart }}</mat-hint>
-  <mat-hint [align]="'end'">{{ hints?.hintEnd }}</mat-hint>
-  <mat-error>{{ errorMessage }}</mat-error>
-</mat-form-field>
-<ng-template #multiSelect>
+@if (input.multiple) {
   <mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating">
     <mat-label>{{ template.label }}</mat-label>
     <mat-select multiple [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control">
-      <ng-container *ngFor="let option of input.options">
-        <ng-container *ngIf="!option.items; else optionGroup">
-          <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>
-        </ng-container>
-        <ng-template #optionGroup>
+      @for (option of input.options; track option) {
+        @if (option.items) {
           <mat-optgroup [label]="option.label" [disabled]="option.disabled">
-            <ng-container *ngFor="let optionItem of option.items">
+            @for (optionItem of option.items; track optionItem) {
               <mat-option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</mat-option>
-            </ng-container>
+            }
           </mat-optgroup>
-        </ng-template>
-      </ng-container>
+        } @else {
+          <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>
+        }
+      }
     </mat-select>
-    <dynamic-form-element *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden" matTextPrefix [element]="prefixAddOn" />
-    <dynamic-form-element
-      *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
-      matPrefix
-      [element]="prefixAddOn"
-    />
-    <dynamic-form-element *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden" matTextSuffix [element]="suffixAddOn" />
-    <dynamic-form-element
-      *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
-      matSuffix
-      [element]="suffixAddOn"
-    />
+    @if (prefixAddOn?.classType === "element" && !prefixAddOn.hidden) {
+      <dynamic-form-element matTextPrefix [element]="prefixAddOn" />
+    }
+    @if (prefixAddOn && prefixAddOn.classType !== "element" && !prefixAddOn.hidden) {
+      <dynamic-form-element matPrefix [element]="prefixAddOn" />
+    }
+    @if (suffixAddOn?.classType === "element" && !suffixAddOn.hidden) {
+      <dynamic-form-element matTextSuffix [element]="suffixAddOn" />
+    }
+    @if (suffixAddOn && suffixAddOn.classType !== "element" && !suffixAddOn.hidden) {
+      <dynamic-form-element matSuffix [element]="suffixAddOn" />
+    }
     <mat-hint [align]="'start'">{{ hints?.hintStart }}</mat-hint>
     <mat-hint [align]="'end'">{{ hints?.hintEnd }}</mat-hint>
     <mat-error>{{ errorMessage }}</mat-error>
   </mat-form-field>
-</ng-template>
+} @else {
+  <mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating">
+    <mat-label>{{ template.label }}</mat-label>
+    <mat-select [id]="inputId" [placeholder]="input.placeholder" [required]="validation?.required" [formControl]="control">
+      @for (option of input.options; track option) {
+        @if (option.items) {
+          <mat-optgroup [label]="option.label" [disabled]="option.disabled">
+            @for (optionItem of option.items; track optionItem) {
+              <mat-option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</mat-option>
+            }
+          </mat-optgroup>
+        } @else {
+          <mat-option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-option>
+        }
+      }
+    </mat-select>
+    @if (prefixAddOn?.classType === "element" && !prefixAddOn.hidden) {
+      <dynamic-form-element matTextPrefix [element]="prefixAddOn" />
+    }
+    @if (prefixAddOn && prefixAddOn.classType !== "element" && !prefixAddOn.hidden) {
+      <dynamic-form-element matPrefix [element]="prefixAddOn" />
+    }
+    @if (suffixAddOn?.classType === "element" && !suffixAddOn.hidden) {
+      <dynamic-form-element matTextSuffix [element]="suffixAddOn" />
+    }
+    @if (suffixAddOn && suffixAddOn.classType !== "element" && !suffixAddOn.hidden) {
+      <dynamic-form-element matSuffix [element]="suffixAddOn" />
+    }
+    <mat-hint [align]="'start'">{{ hints?.hintStart }}</mat-hint>
+    <mat-hint [align]="'end'">{{ hints?.hintEnd }}</mat-hint>
+    <mat-error>{{ errorMessage }}</mat-error>
+  </mat-form-field>
+}

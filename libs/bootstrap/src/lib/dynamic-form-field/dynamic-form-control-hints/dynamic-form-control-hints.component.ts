@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
@@ -6,7 +5,6 @@ import { DynamicFormControlHints, DynamicFormControlWrapperBase, DynamicFormVali
   standalone: true,
   selector: 'bs-dynamic-form-control-hints',
   templateUrl: './dynamic-form-control-hints.component.html',
-  imports: [NgIf],
 })
 export class BsDynamicFormControlHintsComponent extends DynamicFormControlWrapperBase {
   constructor(

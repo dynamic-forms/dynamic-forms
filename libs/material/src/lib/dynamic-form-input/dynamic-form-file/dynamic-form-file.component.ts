@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +14,7 @@ import {
   standalone: true,
   selector: 'mat-dynamic-form-file',
   templateUrl: './dynamic-form-file.component.html',
-  imports: [NgIf, ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
 })
 export class MatDynamicFormFileComponent extends DynamicFormFileBase implements OnInit {
   @ViewChild(MatInput, { static: true })

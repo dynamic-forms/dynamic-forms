@@ -1,15 +1,25 @@
 <div class="dynamic-form-dictionary" [ngClass]="template.className" [class.readonly]="readonly" [hidden]="hidden">
-  <div *ngIf="template.label && !template.labelHidden" class="dynamic-form-dictionary-header" [ngClass]="template.classNameHeader">
-    <div class="dynamic-form-dictionary-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-    <div *ngIf="headerActions?.length" class="dynamic-form-dictionary-toolbar">
-      <dynamic-form-elements [elements]="headerActions" />
+  @if (template.label && !template.labelHidden) {
+    <div class="dynamic-form-dictionary-header" [ngClass]="template.classNameHeader">
+      <div class="dynamic-form-dictionary-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
+      @if (headerActions?.length) {
+        <div class="dynamic-form-dictionary-toolbar">
+          <dynamic-form-elements [elements]="headerActions" />
+        </div>
+      }
     </div>
-  </div>
-  <div *ngIf="children?.length" class="dynamic-form-dictionary-children" [ngClass]="template.classNameChildren">
-    <dynamic-form-elements [elements]="children" />
-  </div>
-  <div *ngIf="showErrors" class="dynamic-form-dictionary-errors">{{ errorMessage }}</div>
-  <div *ngIf="footerActions?.length" class="dynamic-form-dictionary-footer" [ngClass]="template.classNameFooter">
-    <dynamic-form-elements [elements]="footerActions" />
-  </div>
+  }
+  @if (children?.length) {
+    <div class="dynamic-form-dictionary-children" [ngClass]="template.classNameChildren">
+      <dynamic-form-elements [elements]="children" />
+    </div>
+  }
+  @if (showErrors) {
+    <div class="dynamic-form-dictionary-errors">{{ errorMessage }}</div>
+  }
+  @if (footerActions?.length) {
+    <div class="dynamic-form-dictionary-footer" [ngClass]="template.classNameFooter">
+      <dynamic-form-elements [elements]="footerActions" />
+    </div>
+  }
 </div>

@@ -1,17 +1,27 @@
 <div class="dynamic-form-wrapper" [ngClass]="theme">
   <form class="dynamic-form" [ngClass]="template.className" [formGroup]="formGroup" (ngSubmit)="submit()">
-    <div *ngIf="template.label || headerActions?.length" class="dynamic-form-header" [ngClass]="template.classNameHeader">
-      <div class="dynamic-form-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
-      <div *ngIf="headerActions?.length" class="dynamic-form-toolbar">
-        <dynamic-form-elements [elements]="headerActions" />
+    @if (template.label || headerActions?.length) {
+      <div class="dynamic-form-header" [ngClass]="template.classNameHeader">
+        <div class="dynamic-form-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
+        @if (headerActions?.length) {
+          <div class="dynamic-form-toolbar">
+            <dynamic-form-elements [elements]="headerActions" />
+          </div>
+        }
       </div>
-    </div>
-    <div *ngIf="children?.length" class="dynamic-form-children" [ngClass]="template.classNameChildren">
-      <dynamic-form-elements [elements]="children" />
-    </div>
-    <div *ngIf="showErrors" class="dynamic-form-errors">{{ errorMessage }}</div>
-    <div *ngIf="footerActions?.length" class="dynamic-form-footer" [ngClass]="template.classNameFooter">
-      <dynamic-form-elements [elements]="footerActions" />
-    </div>
+    }
+    @if (children?.length) {
+      <div class="dynamic-form-children" [ngClass]="template.classNameChildren">
+        <dynamic-form-elements [elements]="children" />
+      </div>
+    }
+    @if (showErrors) {
+      <div class="dynamic-form-errors">{{ errorMessage }}</div>
+    }
+    @if (footerActions?.length) {
+      <div class="dynamic-form-footer" [ngClass]="template.classNameFooter">
+        <dynamic-form-elements [elements]="footerActions" />
+      </div>
+    }
   </form>
 </div>

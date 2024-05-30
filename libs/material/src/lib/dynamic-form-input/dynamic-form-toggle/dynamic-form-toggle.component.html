@@ -8,8 +8,10 @@
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-button-toggle-group [formControl]="control">
-    <ng-container *ngFor="let option of input.options; let i = index">
-      <mat-button-toggle [id]="inputId + '-' + i" [value]="option.value" [disabled]="option.disabled">{{ option.label }}</mat-button-toggle>
-    </ng-container>
+    @for (option of input.options; let index = $index; track index) {
+      <mat-button-toggle [id]="inputId + '-' + index" [value]="option.value" [disabled]="option.disabled">{{
+        option.label
+      }}</mat-button-toggle>
+    }
   </mat-button-toggle-group>
 </mat-dynamic-form-input-wrapper>

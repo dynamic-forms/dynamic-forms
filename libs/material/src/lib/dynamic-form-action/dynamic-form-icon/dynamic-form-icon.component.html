@@ -1,20 +1,19 @@
 <div class="dynamic-form-icon-wrapper" [ngClass]="template.classNameWrapper">
-  <a
-    *ngIf="template.url; else button"
-    mat-icon-button
-    class="dynamic-form-icon"
-    [ngClass]="template.className"
-    [color]="template.color | dynamicFormColor: 'primary'"
-    [disabled]="template.disabled"
-    [hidden]="template.hidden"
-    [matTooltip]="template.label"
-    [href]="template.url"
-    [target]="template.urlTarget || '_blank'"
-  >
-    <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon></a
-  >
-
-  <ng-template #button>
+  @if (template.url) {
+    <a
+      mat-icon-button
+      class="dynamic-form-icon"
+      [ngClass]="template.className"
+      [color]="template.color | dynamicFormColor: 'primary'"
+      [disabled]="template.disabled"
+      [hidden]="template.hidden"
+      [matTooltip]="template.label"
+      [href]="template.url"
+      [target]="template.urlTarget || '_blank'"
+    >
+      <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon></a
+    >
+  } @else {
     <button
       mat-icon-button
       class="dynamic-form-icon"
@@ -29,25 +28,25 @@
     >
       <mat-icon>{{ template.icon | dynamicFormIcon }}</mat-icon>
     </button>
-  </ng-template>
+  }
 </div>
-
-<mat-dynamic-form-dialog
-  *ngIf="dialog"
-  [isOpen$]="dialogOpen$"
-  [children]="dialogChildren"
-  [headerActions]="dialogHeaderActions"
-  [footerActions]="dialogFooterActions"
-  [width]="template.dialogWidth"
-  [minWidth]="template.dialogMinWidth"
-  [maxWidth]="template.dialogMaxWidth"
-  [title]="template.dialogTitle"
-  [titleHtml]="template.dialogTitleHtml"
-  [classNameForm]="element.root.template.className"
-  [classNameModal]="template.className"
-  [classNameTitle]="template.classNameDialogTitle"
-  [classNameChildren]="dialogTemplate?.classNameChildren"
-  [classNameHeader]="dialogTemplate?.classNameHeader"
-  [classNameFooter]="dialogTemplate?.classNameFooter"
-  (escaped)="closeDialog()"
-/>
+@if (dialog) {
+  <mat-dynamic-form-dialog
+    [isOpen$]="dialogOpen$"
+    [children]="dialogChildren"
+    [headerActions]="dialogHeaderActions"
+    [footerActions]="dialogFooterActions"
+    [width]="template.dialogWidth"
+    [minWidth]="template.dialogMinWidth"
+    [maxWidth]="template.dialogMaxWidth"
+    [title]="template.dialogTitle"
+    [titleHtml]="template.dialogTitleHtml"
+    [classNameForm]="element.root.template.className"
+    [classNameModal]="template.className"
+    [classNameTitle]="template.classNameDialogTitle"
+    [classNameChildren]="dialogTemplate?.classNameChildren"
+    [classNameHeader]="dialogTemplate?.classNameHeader"
+    [classNameFooter]="dialogTemplate?.classNameFooter"
+    (escaped)="closeDialog()"
+  />
+}

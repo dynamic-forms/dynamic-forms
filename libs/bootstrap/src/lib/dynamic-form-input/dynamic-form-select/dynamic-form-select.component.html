@@ -9,38 +9,34 @@
 />
 
 <ng-template #inputTemplate>
-  <ng-container *ngIf="!input.multiple; else optionsMultiple">
+  @if (input.multiple) {
+    <select class="form-select" multiple [id]="inputId" [required]="validation?.required" [formControl]="control">
+      @for (option of input.options; track option) {
+        @if (option.items) {
+          <optgroup [label]="option.label" [disabled]="option.disabled">
+            @for (optionItem of option.items; track optionItem) {
+              <option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
+            }
+          </optgroup>
+        } @else {
+          <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
+        }
+      }
+    </select>
+  } @else {
     <select class="form-select" [id]="inputId" [required]="validation?.required" [formControl]="control">
       <option hidden [value]="null">{{ input.placeholder }}</option>
-      <ng-container *ngFor="let option of input.options">
-        <ng-container *ngIf="!option.items; else optionGroup">
-          <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
-        </ng-container>
-        <ng-template #optionGroup>
+      @for (option of input.options; track option) {
+        @if (option.items) {
           <optgroup [label]="option.label" [disabled]="option.disabled">
-            <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
-              optionItem.label
-            }}</option>
+            @for (optionItem of option.items; track optionItem) {
+              <option [value]="optionItem.value" [disabled]="optionItem.disabled">{{ optionItem.label }}</option>
+            }
           </optgroup>
-        </ng-template>
-      </ng-container>
-    </select>
-  </ng-container>
-
-  <ng-template #optionsMultiple>
-    <select class="form-select" multiple [id]="inputId" [required]="validation?.required" [formControl]="control">
-      <ng-container *ngFor="let option of input.options">
-        <ng-container *ngIf="!option.items; else optionGroup">
+        } @else {
           <option [value]="option.value" [disabled]="option.disabled">{{ option.label }}</option>
-        </ng-container>
-        <ng-template #optionGroup>
-          <optgroup [label]="option.label" [disabled]="option.disabled">
-            <option *ngFor="let optionItem of option.items" [value]="optionItem.value" [disabled]="optionItem.disabled">{{
-              optionItem.label
-            }}</option>
-          </optgroup>
-        </ng-template>
-      </ng-container>
+        }
+      }
     </select>
-  </ng-template>
+  }
 </ng-template>

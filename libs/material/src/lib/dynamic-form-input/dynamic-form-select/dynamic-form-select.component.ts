@@ -1,4 +1,3 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +8,7 @@ import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormSelect, D
   standalone: true,
   selector: 'mat-dynamic-form-select',
   templateUrl: './dynamic-form-select.component.html',
-  imports: [NgFor, NgIf, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatSelectModule],
+  imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatSelectModule],
 })
 export class MatDynamicFormSelectComponent extends DynamicFormInputBase<DynamicFormSelect> {
   constructor(protected override validationService: DynamicFormValidationService) {

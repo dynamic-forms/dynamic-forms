@@ -10,6 +10,9 @@
     [indeterminate]="input?.indeterminate"
     [required]="validation?.required"
     [formControl]="control"
-    >{{ template.label }}<span *ngIf="validation?.required">*</span></mat-checkbox
-  >
+    >{{ template.label }}
+    @if (validation?.required) {
+      <span>*</span>
+    }
+  </mat-checkbox>
 </mat-dynamic-form-input-wrapper>

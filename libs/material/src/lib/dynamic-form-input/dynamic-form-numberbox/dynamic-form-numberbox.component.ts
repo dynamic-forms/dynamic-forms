@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +8,7 @@ import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormNumberbox
   standalone: true,
   selector: 'mat-dynamic-form-numberbox',
   templateUrl: './dynamic-form-numberbox.component.html',
-  imports: [NgIf, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],
+  imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],
 })
 export class MatDynamicFormNumberboxComponent extends DynamicFormInputBase<DynamicFormNumberbox> {
   constructor(protected override validationService: DynamicFormValidationService) {

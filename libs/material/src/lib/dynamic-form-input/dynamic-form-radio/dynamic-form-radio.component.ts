@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
@@ -9,7 +8,7 @@ import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapp
   standalone: true,
   selector: 'mat-dynamic-form-radio',
   templateUrl: './dynamic-form-radio.component.html',
-  imports: [NgFor, ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatRadioModule],
+  imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatRadioModule],
 })
 export class MatDynamicFormRadioComponent extends DynamicFormInputBase<DynamicFormRadio> {
   constructor(protected override validationService: DynamicFormValidationService) {

@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormActionService, DynamicFormButtonBase, DynamicFormColorPipe } from '@dynamic-forms/core';
 import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
@@ -7,7 +7,7 @@ import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-
   standalone: true,
   selector: 'bs-dynamic-form-button',
   templateUrl: './dynamic-form-button.component.html',
-  imports: [NgClass, NgIf, DynamicFormColorPipe, BsDynamicFormDialogComponent],
+  imports: [NgClass, DynamicFormColorPipe, BsDynamicFormDialogComponent],
 })
 export class BsDynamicFormButtonComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {
