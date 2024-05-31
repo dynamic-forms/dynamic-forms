@@ -4,10 +4,9 @@
 
 ### Features
 
-* **core:**
-* **bootstrap:**
-* **material:**
-* **markdown:**
+* **core:** Use control flow
+* **bootstrap:** Use control flow
+* **material:** Use control flow
 
 ## 18.0.0 (2024-05-29)
 
