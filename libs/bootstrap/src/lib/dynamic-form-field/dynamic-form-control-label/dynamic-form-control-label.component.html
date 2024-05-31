@@ -1,2 +1,9 @@
-<label *ngIf="template.label" class="form-label" [for]="inputId">{{ template.label }}<span *ngIf="validation?.required"> *</span></label>
+@if (template.label) {
+  <label class="form-label" [for]="inputId"
+    >{{ template.label }}
+    @if (validation?.required) {
+      <span> *</span>
+    }
+  </label>
+}
 <ng-template #container />

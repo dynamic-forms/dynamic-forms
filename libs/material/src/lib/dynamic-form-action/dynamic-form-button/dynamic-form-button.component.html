@@ -1,17 +1,16 @@
-<a
-  *ngIf="template.url; else button"
-  mat-flat-button
-  class="dynamic-form-button"
-  [ngClass]="template.className"
-  [color]="template.color | dynamicFormColor: 'primary'"
-  [disabled]="template.disabled"
-  [hidden]="template.hidden"
-  [href]="template.url"
-  [target]="template.urlTarget || '_blank'"
-  >{{ template.label }}</a
->
-
-<ng-template #button>
+@if (template.url) {
+  <a
+    mat-flat-button
+    class="dynamic-form-button"
+    [ngClass]="template.className"
+    [color]="template.color | dynamicFormColor: 'primary'"
+    [disabled]="template.disabled"
+    [hidden]="template.hidden"
+    [href]="template.url"
+    [target]="template.urlTarget || '_blank'"
+    >{{ template.label }}</a
+  >
+} @else {
   <button
     mat-flat-button
     class="dynamic-form-button"
@@ -24,24 +23,24 @@
     (click)="onClick($event)"
     >{{ template.label }}</button
   >
-</ng-template>
-
-<mat-dynamic-form-dialog
-  *ngIf="dialog"
-  [isOpen$]="dialogOpen$"
-  [children]="dialogChildren"
-  [headerActions]="dialogHeaderActions"
-  [footerActions]="dialogFooterActions"
-  [width]="template.dialogWidth"
-  [minWidth]="template.dialogMinWidth"
-  [maxWidth]="template.dialogMaxWidth"
-  [title]="template.dialogTitle"
-  [titleHtml]="template.dialogTitleHtml"
-  [classNameForm]="element.root.template.className"
-  [classNameModal]="template.className"
-  [classNameTitle]="template.classNameDialogTitle"
-  [classNameChildren]="dialogTemplate?.classNameChildren"
-  [classNameHeader]="dialogTemplate?.classNameHeader"
-  [classNameFooter]="dialogTemplate?.classNameFooter"
-  (escaped)="closeDialog()"
-/>
+}
+@if (dialog) {
+  <mat-dynamic-form-dialog
+    [isOpen$]="dialogOpen$"
+    [children]="dialogChildren"
+    [headerActions]="dialogHeaderActions"
+    [footerActions]="dialogFooterActions"
+    [width]="template.dialogWidth"
+    [minWidth]="template.dialogMinWidth"
+    [maxWidth]="template.dialogMaxWidth"
+    [title]="template.dialogTitle"
+    [titleHtml]="template.dialogTitleHtml"
+    [classNameForm]="element.root.template.className"
+    [classNameModal]="template.className"
+    [classNameTitle]="template.classNameDialogTitle"
+    [classNameChildren]="dialogTemplate?.classNameChildren"
+    [classNameHeader]="dialogTemplate?.classNameHeader"
+    [classNameFooter]="dialogTemplate?.classNameFooter"
+    (escaped)="closeDialog()"
+  />
+}

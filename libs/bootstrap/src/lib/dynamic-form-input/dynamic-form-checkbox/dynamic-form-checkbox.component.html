@@ -8,5 +8,10 @@
     [indeterminate]="input?.indeterminate"
     [formControl]="control"
   />
-  <label class="form-check-label" [for]="inputId">{{ template.label }}<span *ngIf="validation?.required"> *</span></label>
+  <label class="form-check-label" [for]="inputId"
+    >{{ template.label }}
+    @if (validation?.required) {
+      <span> *</span>
+    }
+  </label>
 </div>

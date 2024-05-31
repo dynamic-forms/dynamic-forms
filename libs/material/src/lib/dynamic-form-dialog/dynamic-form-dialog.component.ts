@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -21,7 +21,7 @@ import { Observable, Subscription } from 'rxjs';
   standalone: true,
   selector: 'mat-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
-  imports: [NgClass, NgIf, MatDialogModule, DynamicFormElementsComponent],
+  imports: [NgClass, MatDialogModule, DynamicFormElementsComponent],
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {
   private _dialog: { config: MatDialogConfig; reference: MatDialogRef<any>; subscription: Subscription };

@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -11,7 +11,7 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
   standalone: true,
   selector: 'dynamic-form-group',
   templateUrl: './dynamic-form-group.component.html',
-  imports: [NgClass, NgIf, DynamicFormElementsComponent],
+  imports: [NgClass, DynamicFormElementsComponent],
 })
 export class DynamicFormGroupComponent<
   Value extends { [key: string]: any } = any,

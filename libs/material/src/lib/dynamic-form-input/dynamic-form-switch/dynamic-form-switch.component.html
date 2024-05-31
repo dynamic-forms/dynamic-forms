@@ -5,6 +5,9 @@
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-slide-toggle color="primary" [id]="inputId" [required]="validation?.required" [formControl]="control"
-    >{{ template.label }}<span *ngIf="validation?.required">*</span></mat-slide-toggle
-  >
+    >{{ template.label }}
+    @if (validation?.required) {
+      <span>*</span>
+    }
+  </mat-slide-toggle>
 </mat-dynamic-form-input-wrapper>

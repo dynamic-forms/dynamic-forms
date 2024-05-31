@@ -1,18 +1,18 @@
 <mat-form-field appearance="fill" color="primary" [floatLabel]="template.labelFloating" [class.suffixes-flex]="suffixAddOn">
   <mat-label>{{ template.label }}</mat-label>
   <input matInput [dynamicFormInputMask]="inputMask" [id]="inputId" [placeholder]="input.placeholder" [formControl]="control" />
-  <dynamic-form-element *ngIf="prefixAddOn?.classType === 'element' && !prefixAddOn.hidden" matTextPrefix [element]="prefixAddOn" />
-  <dynamic-form-element
-    *ngIf="prefixAddOn && prefixAddOn.classType !== 'element' && !prefixAddOn.hidden"
-    matPrefix
-    [element]="prefixAddOn"
-  />
-  <dynamic-form-element *ngIf="suffixAddOn?.classType === 'element' && !suffixAddOn.hidden" matTextSuffix [element]="suffixAddOn" />
-  <dynamic-form-element
-    *ngIf="suffixAddOn && suffixAddOn.classType !== 'element' && !suffixAddOn.hidden"
-    matSuffix
-    [element]="suffixAddOn"
-  />
+  @if (prefixAddOn?.classType === "element" && !prefixAddOn.hidden) {
+    <dynamic-form-element matTextPrefix [element]="prefixAddOn" />
+  }
+  @if (prefixAddOn && prefixAddOn.classType !== "element" && !prefixAddOn.hidden) {
+    <dynamic-form-element matPrefix [element]="prefixAddOn" />
+  }
+  @if (suffixAddOn?.classType === "element" && !suffixAddOn.hidden) {
+    <dynamic-form-element matTextSuffix [element]="suffixAddOn" />
+  }
+  @if (suffixAddOn && suffixAddOn.classType !== "element" && !suffixAddOn.hidden) {
+    <dynamic-form-element matSuffix [element]="suffixAddOn" />
+  }
   <mat-hint align="start">{{ hints?.hintStart }}</mat-hint>
   <mat-hint align="end">{{ hints?.hintEnd }}</mat-hint>
   <mat-error>{{ errorMessage }}</mat-error>

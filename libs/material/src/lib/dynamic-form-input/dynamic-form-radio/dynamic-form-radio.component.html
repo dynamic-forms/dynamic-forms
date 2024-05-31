@@ -7,10 +7,10 @@
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-radio-group [formControl]="control">
-    <ng-container *ngFor="let option of input.options; let i = index">
-      <mat-radio-button color="primary" [id]="inputId + '-' + i" [value]="option.value" [disabled]="option.disabled">{{
+    @for (option of input.options; let index = $index; track index) {
+      <mat-radio-button color="primary" [id]="inputId + '-' + index" [value]="option.value" [disabled]="option.disabled">{{
         option.label
       }}</mat-radio-button>
-    </ng-container>
+    }
   </mat-radio-group>
 </mat-dynamic-form-input-wrapper>

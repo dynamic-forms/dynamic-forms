@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +9,7 @@ import { DynamicFormInputMaskBase, DynamicFormInputMaskDirective } from '@dynami
   standalone: true,
   selector: 'mat-dynamic-form-input-mask',
   templateUrl: './dynamic-form-input-mask.component.html',
-  imports: [NgIf, ReactiveFormsModule, DynamicFormInputMaskDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, DynamicFormInputMaskDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
 })
 export class MatDynamicFormInputMaskComponent extends DynamicFormInputMaskBase implements OnInit {
   @ViewChild(MatInput, { static: true })

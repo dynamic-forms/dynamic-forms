@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
@@ -6,7 +5,6 @@ import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFor
   standalone: true,
   selector: 'bs-dynamic-form-control-label',
   templateUrl: './dynamic-form-control-label.component.html',
-  imports: [NgIf],
 })
 export class BsDynamicFormControlLabelComponent extends DynamicFormControlWrapperBase {
   constructor(

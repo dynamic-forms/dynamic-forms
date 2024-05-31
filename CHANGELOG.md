@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.1.0-next.0
+
+### Features
+
+* **core:** Use control flow
+* **bootstrap:** Use control flow
+* **material:** Use control flow
+
 ## 18.0.0 (2024-05-29)
 
 * Release without any notable changes in comparison to release candidate 18.0.0-rc.0
