@@ -41,6 +41,23 @@ describe('DynamicFormLibraryService', () => {
 
       expect(filteredTypes).toEqual([type1, types2[0], types2[1], type4]);
     }));
+
+    it('returns filtered types map', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {
+      const type1 = { type: 'type1', libraryName: 'test' };
+      const types2 = [
+        { type: 'type2', libraryName: 'test' },
+        { type: 'type3', libraryName: 'test' },
+        { type: 'type4', libraryName: 'other' },
+      ];
+      const type3 = { type: 'type3', libraryName: 'other' };
+      const type4 = { type: 'type4', libraryName: 'test' };
+
+      const filteredTypesMap = service.filterTypesMap([type1, types2, type3, type4]);
+
+      expect(filteredTypesMap.size).toBe(4);
+      expect([...filteredTypesMap.keys()]).toEqual(['type1', 'type2', 'type3', 'type4']);
+      expect([...filteredTypesMap.values()]).toEqual([type1, types2[0], types2[1], type4]);
+    }));
   });
 
   describe('with DYNAMIC_FORM_LIBRARY including library references', () => {

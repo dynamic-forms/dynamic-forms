@@ -1,6 +1,17 @@
 import { Inject, Injectable } from '@angular/core';
 import { DYNAMIC_FORM_LIBRARY, DynamicFormLibrary, DynamicFormLibraryName } from './dynamic-form-library';
 
+export interface TypeBase {
+  type: string;
+  libraryName: DynamicFormLibraryName;
+}
+
+export interface TypeAliasBase {
+  type: string;
+  aliases?: string[];
+  libraryName: DynamicFormLibraryName;
+}
+
 @Injectable()
 export class DynamicFormLibraryService {
   readonly libraryNames: DynamicFormLibraryName[];
@@ -14,7 +25,7 @@ export class DynamicFormLibraryService {
     this.libraryNamesReverse = [...this.libraryNames].reverse();
   }
 
-  filterTypes<Type extends { type: string; libraryName: DynamicFormLibraryName }>(types: (Type | Type[])[]): Type[] {
+  filterTypes<Type extends TypeBase>(types: (Type | Type[])[]): Type[] {
     if (!types || !types.length) {
       return [];
     }
@@ -23,6 +34,26 @@ export class DynamicFormLibraryService {
       const libraryTypes = this.getLibraryTypes(libraryName, types, filteredTypes);
       return filteredTypes.concat(libraryTypes);
     }, []);
+  }
+
+  filterTypesMap<Type extends TypeBase>(types: (Type | Type[])[]): Map<string, Type> {
+    const filteredTypes = this.filterTypes(types);
+    return new Map(filteredTypes.map(type => [type.type, type]));
+  }
+
+  filterTypesMapWithAliases<Type extends TypeAliasBase>(types: (Type | Type[])[]): Map<string, Type> {
+    const filteredTypes = this.filterTypes(types);
+    return filteredTypes.reduce((result, type) => {
+      if (!result.has(type.type)) {
+        result.set(type.type, type);
+      }
+      for (const alias of type.aliases || []) {
+        if (!result.has(alias)) {
+          result.set(alias, type);
+        }
+      }
+      return result;
+    }, new Map<string, Type>());
   }
 
   private getLibraryTypes<Type extends { type: string; libraryName: DynamicFormLibraryName }>(

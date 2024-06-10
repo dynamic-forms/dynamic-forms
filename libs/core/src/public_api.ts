@@ -72,7 +72,9 @@ export * from './lib/dynamic-form-control/dynamic-form-control-validator-type-co
 export * from './lib/dynamic-form-control/dynamic-form-control-wrapper-base';
 export * from './lib/dynamic-form-control/dynamic-form-control.component';
 export * from './lib/dynamic-form-control/dynamic-form-control.module';
+export * from './lib/dynamic-form-converters/dynamic-form-converter';
 export * from './lib/dynamic-form-converters/dynamic-form-date-converter';
+export * from './lib/dynamic-form-converters/dynamic-form-number-converter';
 export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary';
 export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-base';
 export * from './lib/dynamic-form-dictionary/dynamic-form-dictionary-definition';

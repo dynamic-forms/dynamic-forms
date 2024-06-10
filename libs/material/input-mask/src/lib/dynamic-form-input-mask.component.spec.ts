@@ -10,7 +10,11 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
-import { DynamicFormInputMaskControl, DynamicFormInputMaskDefinition } from '@dynamic-forms/core/input-mask';
+import {
+  DynamicFormInputMaskControl,
+  DynamicFormInputMaskConverterService,
+  DynamicFormInputMaskDefinition,
+} from '@dynamic-forms/core/input-mask';
 import { MockService } from 'ng-mocks';
 import { MatDynamicFormInputMaskComponent } from './dynamic-form-input-mask.component';
 
@@ -41,6 +45,7 @@ describe('MatDynamicFormInputMaskComponent', () => {
           provide: DynamicFormBuilder,
           useValue: builder,
         },
+        DynamicFormInputMaskConverterService,
       ],
     });
 
@@ -48,7 +53,7 @@ describe('MatDynamicFormInputMaskComponent', () => {
     component = fixture.componentInstance;
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
-    definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormInputMaskDefinition;
+    definition = { key: 'key', template: { label: 'label', input: { maskOptions: {} } } } as DynamicFormInputMaskDefinition;
     formControl = new DynamicFormInputMaskControl(builder, form, form, definition, {} as DynamicFormFieldType);
 
     component.field = formControl;

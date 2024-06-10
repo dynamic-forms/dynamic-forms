@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { bsDynamicFormLibrary } from '@dynamic-forms/bootstrap';
-import { DynamicFormInputType, DynamicFormsFeature, importDynamicFormsProviders, withDynamicFormInputs } from '@dynamic-forms/core';
-import { DynamicFormInputMaskControl } from '@dynamic-forms/core/input-mask';
+import {
+  DynamicFormInputType,
+  DynamicFormsFeature,
+  importDynamicFormsProviders,
+  mergeDynamicFormsFeatures,
+  withDynamicFormInputs,
+} from '@dynamic-forms/core';
+import { DynamicFormInputMaskControl, withDynamicFormInputMaskConverterService } from '@dynamic-forms/core/input-mask';
 import { BsDynamicFormInputMaskComponent } from './dynamic-form-input-mask.component';
 
 export const bsDynamicFormInputMaskType: DynamicFormInputType = {
@@ -12,7 +18,7 @@ export const bsDynamicFormInputMaskType: DynamicFormInputType = {
 };
 
 export function withBsDynamicFormInputMask(): DynamicFormsFeature {
-  return withDynamicFormInputs(bsDynamicFormInputMaskType);
+  return mergeDynamicFormsFeatures(withDynamicFormInputs(bsDynamicFormInputMaskType), withDynamicFormInputMaskConverterService());
 }
 
 /**

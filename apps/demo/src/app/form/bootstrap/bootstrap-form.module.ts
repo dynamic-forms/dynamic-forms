@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
-import { withBsDynamicFormInputMask } from '@dynamic-forms/bootstrap/input-mask';
+import { withBsDynamicFormInputMask, withBsDynamicFormInputMaskConverters } from '@dynamic-forms/bootstrap/input-mask';
 import { withDynamicFormColors, withDynamicFormControlValidatorFactory, withDynamicFormIcons } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
@@ -41,6 +41,7 @@ const features = [
   withDynamicFormIcons(icons),
   withDynamicFormColors(colors),
   withBsDynamicFormInputMask(),
+  withBsDynamicFormInputMaskConverters(),
   withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
   ...withDynamicFormsMarkdownFeatures(),
 ];
