@@ -10,7 +10,7 @@
       'max-width': maximized ? maxWidth || '100%' : maxWidth,
       'min-height': maximized ? '100%' : undefined,
       'max-height': maximized ? '100%' : undefined,
-      margin: maximized ? '0px auto' : undefined
+      margin: maximized ? '0px auto' : undefined,
     }"
   >
     <div
@@ -18,7 +18,7 @@
       [ngStyle]="{
         height: maximized ? maxHeight || '100%' : height,
         'min-height': maximized ? maxHeight || '100%' : minHeight,
-        'max-height': maxHeight || '100%'
+        'max-height': maxHeight || '100%',
       }"
     >
       <div *ngIf="title || titleHtml || headerActions?.length" class="modal-header" [ngClass]="classNameHeader">
