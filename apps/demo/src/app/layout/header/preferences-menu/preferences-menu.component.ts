@@ -29,7 +29,7 @@ export class PreferencesMenuComponent {
   dynamicForm: MaterialFormComponent;
 
   constructor(private store: Store) {
-    this.model$ = this.store.select(PreferencesState).pipe(
+    this.model$ = this.store.select(PreferencesState.preferences).pipe(
       filter(preferences => preferences !== this.dynamicForm?.form?.value),
       map((preferences: Preferences) => {
         if (preferences) {

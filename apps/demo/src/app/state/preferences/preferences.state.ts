@@ -10,6 +10,11 @@ import { FormEditorPreferences, PREFERENCES, Preferences, ThemePreferences, defa
 @Injectable()
 export class PreferencesState {
   @Selector()
+  static preferences(state: Preferences): Preferences {
+    return state;
+  }
+
+  @Selector()
   static theme(state: Preferences): ThemePreferences {
     return state?.theme;
   }
