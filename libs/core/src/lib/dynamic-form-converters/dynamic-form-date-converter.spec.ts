@@ -14,6 +14,36 @@ describe('DynamicFormDateConverter', () => {
       converter = new DynamicFormNativeDateConverter();
     });
 
+    describe('isDateInstance', () => {
+      it('returns true if value is date', () => {
+        expect(converter.isDateInstance(new Date())).toBeTrue();
+      });
+
+      it('returns true if value is invalid date', () => {
+        expect(converter.isDateInstance(new Date(NaN))).toBeTrue();
+      });
+
+      it('returns false if value is not a date', () => {
+        expect(converter.isDateInstance('')).toBeFalse();
+        expect(converter.isDateInstance(null)).toBeFalse();
+        expect(converter.isDateInstance(undefined)).toBeFalse();
+        expect(converter.isDateInstance(0)).toBeFalse();
+        expect(converter.isDateInstance('2024-01-01T00:00:00')).toBeFalse();
+      });
+    });
+
+    describe('isValid', () => {
+      it('returns true if value is date', () => {
+        expect(converter.isValid(new Date())).toBeTrue();
+      });
+
+      it('returns false if value is invalid date', () => {
+        expect(converter.isValid(new Date(NaN))).toBeFalse();
+        expect(converter.isValid(undefined)).toBeFalse();
+        expect(converter.isValid(null)).toBeFalse();
+      });
+    });
+
     describe('parse', () => {
       it('returns null if value is not defined', () => {
         expect(converter.parse('')).toBeNull();
@@ -33,6 +63,28 @@ describe('DynamicFormDateConverter', () => {
 
       it('returns date from number', () => {
         expect(converter.parse(0)).toEqual(new Date(0));
+      });
+    });
+
+    describe('format', () => {
+      it('returns null if value is not defined', () => {
+        expect(converter.format('')).toBeNull();
+        expect(converter.format(null)).toBeNull();
+        expect(converter.format(undefined)).toBeNull();
+      });
+
+      it('returns iso string for date', () => {
+        spyOn(converter, 'parse').and.callThrough();
+
+        expect(converter.format(new Date(Date.UTC(2024, 0, 1, 0, 0, 0)))).toBe('2024-01-01T00:00:00.000Z');
+        expect(converter.parse).toHaveBeenCalledTimes(0);
+      });
+
+      it('returns iso string for date after parse', () => {
+        spyOn(converter, 'parse').and.callThrough();
+
+        expect(converter.format('2024-01-01')).toBe('2024-01-01T00:00:00.000Z');
+        expect(converter.parse).toHaveBeenCalledTimes(0);
       });
     });
 

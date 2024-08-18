@@ -74,12 +74,30 @@
               "label": "Checkbox"
             },
             {
-              "id": "inputs-variations-file",
-              "label": "File"
+              "groupId": "input-mask",
+              "label": "Input Mask",
+              "items": [
+                {
+                  "id": "inputs-variations-input-mask",
+                  "label": "Plain"
+                },
+                {
+                  "id": "inputs-variations-input-mask-default-value",
+                  "label": "Default value"
+                },
+                {
+                  "id": "inputs-variations-input-mask-converter",
+                  "label": "Converter"
+                },
+                {
+                  "id": "inputs-variations-input-mask-converter-default-value",
+                  "label": "Converter and default value"
+                }
+              ]
             },
             {
-              "id": "inputs-variations-input-mask",
-              "label": "Input Mask"
+              "id": "inputs-variations-file",
+              "label": "File"
             },
             {
               "id": "inputs-variations-select",

@@ -4,93 +4,9 @@
   },
   "children": [
     {
-      "key": "email",
-      "type": "control",
-      "template": {
-        "label": "Email",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter an email",
-          "maskOptions": {
-            "alias": "email"
-          }
-        }
-      }
-    },
-    {
-      "key": "ip",
-      "type": "control",
-      "template": {
-        "label": "IP",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter an IP address",
-          "maskOptions": {
-            "alias": "ip"
-          }
-        }
-      }
-    },
-    {
-      "key": "mac",
-      "type": "control",
-      "template": {
-        "label": "MAC",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter a MAC address",
-          "maskOptions": {
-            "alias": "mac"
-          }
-        }
-      }
-    },
-    {
-      "key": "ssn",
-      "type": "control",
-      "template": {
-        "label": "Social security number",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter a social security number",
-          "maskOptions": {
-            "alias": "ssn"
-          }
-        }
-      }
-    },
-    {
-      "key": "url",
-      "type": "control",
-      "template": {
-        "label": "URL",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter an URL",
-          "maskOptions": {
-            "alias": "url"
-          }
-        }
-      }
-    },
-    {
-      "key": "vin",
-      "type": "control",
-      "template": {
-        "label": "Vehicle identification number",
-        "input": {
-          "type": "input-mask",
-          "placeholder": "Enter a vehicle identification number",
-          "maskOptions": {
-            "alias": "vin"
-          }
-        }
-      }
-    },
-    {
       "type": "content",
       "template": {
-        "content": "<h4>Numeric input masks</h4>"
+        "content": "<h4>Numeric input masks with converter</h4>"
       }
     },
     {
@@ -113,7 +29,8 @@
           "type": "input-mask",
           "placeholder": "Enter a decimal number",
           "maskOptions": {
-            "alias": "decimal"
+            "alias": "decimal",
+            "useConverter": true
           }
         }
       },
@@ -130,7 +47,8 @@
           "type": "input-mask",
           "placeholder": "Enter an integer",
           "maskOptions": {
-            "alias": "integer"
+            "alias": "integer",
+            "useConverter": true
           }
         }
       },
@@ -147,7 +65,8 @@
           "type": "input-mask",
           "placeholder": "Enter a percentage value",
           "maskOptions": {
-            "alias": "percentage"
+            "alias": "percentage",
+            "useConverter": true
           }
         }
       },
@@ -162,15 +81,54 @@
         "label": "Currency",
         "input": {
           "type": "input-mask",
-          "placeholder": "Enter a percentage value",
+          "placeholder": "Enter an amount",
           "maskOptions": {
             "alias": "currency",
+            "useConverter": true,
             "prefix": "USD "
           }
         }
       },
       "expressions": {
         "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Datetime input masks with converter</h4>"
+      }
+    },
+    {
+      "key": "datetime",
+      "type": "control",
+      "template": {
+        "label": "Datetime",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a date time",
+          "maskOptions": {
+            "alias": "datetime",
+            "useConverter": true,
+            "inputFormat": "dd/mm/yyyy HH:MM"
+          }
+        }
+      }
+    },
+    {
+      "key": "date",
+      "type": "control",
+      "template": {
+        "label": "Date",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a date",
+          "maskOptions": {
+            "alias": "datetime",
+            "useConverter": true,
+            "inputFormat": "dd/mm/yyyy"
+          }
+        }
       }
     }
   ],

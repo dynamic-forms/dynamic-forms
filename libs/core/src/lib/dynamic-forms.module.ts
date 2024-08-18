@@ -44,6 +44,16 @@ export const dynamicFormsDefaultFeatures: DynamicFormsFeature[] = [
   ...withDynamicFormGroupDefaultFeatures(),
 ];
 
+export function mergeDynamicFormsFeatures(...features: DynamicFormsFeature[]): DynamicFormsFeature {
+  return features.reduce(
+    (result, feature) => {
+      result.providers.push(...feature.providers);
+      return result;
+    },
+    { providers: [] as Provider[] },
+  );
+}
+
 export function importDynamicFormsProviders(...features: DynamicFormsFeature[]): Provider[] {
   const providers = features.reduce((result, feature) => {
     result.push(...feature.providers);

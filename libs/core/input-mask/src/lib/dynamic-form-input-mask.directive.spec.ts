@@ -1,9 +1,11 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MockService } from 'ng-mocks';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { DynamicFormInputMaskOptions } from './dynamic-form-input-mask';
 import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
+import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-converter.service';
 import { DynamicFormInputMaskDirective } from './dynamic-form-input-mask.directive';
 
 @Component({
@@ -22,12 +24,15 @@ export class DynamicFormInputMaskTestComponent {
 
 describe('DynamicFormInputMaskDirective', () => {
   let nativeElement: HTMLInputElement;
+  let converterService: DynamicFormInputMaskConverterService;
   let directive: DynamicFormInputMaskDirective;
 
   describe('without TestBed', () => {
     beforeEach(() => {
+      const defaultConverter = { parse: value => value, format: value => value };
       nativeElement = { style: {} } as HTMLInputElement;
-      directive = new DynamicFormInputMaskDirective({ nativeElement });
+      converterService = MockService(DynamicFormInputMaskConverterService, { getConverter: _ => defaultConverter });
+      directive = new DynamicFormInputMaskDirective({ nativeElement }, converterService);
     });
 
     describe('afterViewInit', () => {
@@ -113,6 +118,19 @@ describe('DynamicFormInputMaskDirective', () => {
     });
 
     describe('writeValue', () => {
+      beforeEach(() => {
+        const subscription = { unsubscribe: () => {} } as any;
+        const observable = { subscribe: () => subscription } as any;
+        const control = {
+          maskOptions: {},
+          maskOptionChanges$: { pipe: _ => observable } as any,
+          maskInputElement: _ => {},
+        } as DynamicFormInputMaskControl;
+
+        directive.control = control;
+        directive.ngAfterViewInit();
+      });
+
       it('sets value of native element', () => {
         directive.writeValue('value');
         expect(nativeElement.value).toBe('value');
@@ -128,6 +146,19 @@ describe('DynamicFormInputMaskDirective', () => {
     });
 
     describe('registerOnChange', () => {
+      beforeEach(() => {
+        const subscription = { unsubscribe: () => {} } as any;
+        const observable = { subscribe: () => subscription } as any;
+        const control = {
+          maskOptions: {},
+          maskOptionChanges$: { pipe: _ => observable } as any,
+          maskInputElement: _ => {},
+        } as DynamicFormInputMaskControl;
+
+        directive.control = control;
+        directive.ngAfterViewInit();
+      });
+
       it('registers handler to handle value changes onInput', () => {
         const handler = { onChange: _ => {} };
         spyOn(handler, 'onChange');
@@ -143,8 +174,21 @@ describe('DynamicFormInputMaskDirective', () => {
   describe('with TestBed', () => {
     let fixture: ComponentFixture<DynamicFormInputMaskTestComponent>;
     let component: DynamicFormInputMaskTestComponent;
+    let converterService: DynamicFormInputMaskConverterService;
 
     beforeEach(() => {
+      const defaultConverter = { parse: value => value, format: value => value };
+      converterService = MockService(DynamicFormInputMaskConverterService, { getConverter: _ => defaultConverter });
+
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: DynamicFormInputMaskConverterService,
+            useValue: converterService,
+          },
+        ],
+      });
+
       fixture = TestBed.createComponent(DynamicFormInputMaskTestComponent);
       component = fixture.componentInstance;
       component.inputMask = {

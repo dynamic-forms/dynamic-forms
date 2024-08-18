@@ -20,6 +20,7 @@ import {
   DynamicFormsModule,
   dynamicFormsDefaultFeatures,
   importDynamicFormsProviders,
+  mergeDynamicFormsFeatures,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
 } from './dynamic-forms.module';
@@ -218,6 +219,10 @@ describe('DynamicFormsModule', () => {
         },
       },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms(dynamicFormLibrary, ...dynamicFormsDefaultFeatures) } },
+      {
+        name: 'provideDynamicForms',
+        def: { providers: provideDynamicForms(dynamicFormLibrary, mergeDynamicFormsFeatures(...dynamicFormsDefaultFeatures)) },
+      },
       { name: 'provideDynamicForms', def: { providers: provideDynamicFormsWithDefaultFeatures(dynamicFormLibrary) } },
     ];
 
