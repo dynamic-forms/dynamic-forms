@@ -1,2 +1,4 @@
 <ng-template #container />
-<div *ngIf="showErrors" class="dynamic-form-field-errors invalid-feedback">{{ errorMessage }}</div>
+@if (showErrors) {
+  <div class="dynamic-form-field-errors invalid-feedback">{{ errorMessage }}</div>
+}

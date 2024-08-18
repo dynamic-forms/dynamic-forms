@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "18.0.0",
+  "version": "18.1.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "keywords": [
@@ -24,14 +24,15 @@
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@angular/forms": "^18.0.0",
-    "@dynamic-forms/core": "18.0.0",
+    "@dynamic-forms/core": "18.1.0-next.0",
     "bootstrap": "^5.2.3",
     "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "sideEffects": false
 }

@@ -6,13 +6,14 @@ import { DynamicFormInputMask, DynamicFormInputMaskDefinition, DynamicFormInputM
 
 const InputmaskConstructor = (_Inputmask as unknown as { default?: Inputmask.Static }).default || _Inputmask;
 
-export type DynamicFormInputMaskInstance = Inputmask.Instance;
+export interface DynamicFormInputMaskInstance extends Inputmask.Instance {
+  opts: DynamicFormInputMaskOptions;
+}
 
 export class DynamicFormInputMaskControl extends DynamicFormInputControl<DynamicFormInputMask> {
   private readonly _maskOptionChanges = new Subject<Partial<DynamicFormInputMaskOptions>>();
   protected readonly _mask: DynamicFormInputMaskInstance;
   protected _maskOptions: DynamicFormInputMaskOptions;
-
   readonly maskOptionChanges$ = this._maskOptionChanges.asObservable();
 
   constructor(
@@ -24,12 +25,20 @@ export class DynamicFormInputMaskControl extends DynamicFormInputControl<Dynamic
   ) {
     super(builder, root, parent, definition, type);
     this._maskOptions = this.evaluateMaskOptions();
-    this._mask = new InputmaskConstructor(this._maskOptions);
+    this._mask = new InputmaskConstructor(this._maskOptions) as DynamicFormInputMaskInstance;
   }
 
   override check(): void {
     this.checkOptions();
     super.check();
+  }
+
+  get mask(): DynamicFormInputMaskInstance {
+    return this._mask;
+  }
+
+  get maskOptions(): DynamicFormInputMaskOptions {
+    return this._maskOptions;
   }
 
   maskInputElement(inputElement: HTMLInputElement): void {

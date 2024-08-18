@@ -1,4 +1,4 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-forms/core';
 
@@ -6,7 +6,7 @@ import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-form
   standalone: true,
   selector: 'bs-dynamic-form-tabs',
   templateUrl: './dynamic-form-tabs.component.html',
-  imports: [NgClass, NgFor, NgIf, DynamicFormElementsComponent],
+  imports: [NgClass, DynamicFormElementsComponent],
 })
 export class BsDynamicFormTabsComponent extends DynamicFormTabsBase {
   constructor() {

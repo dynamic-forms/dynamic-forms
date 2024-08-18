@@ -5,19 +5,16 @@
   [selectedIndex]="selectedIndex"
   (selectedIndexChange)="selectItem($event)"
 >
-  <mat-tab
-    *ngFor="let child of element.children"
-    [ngClass]="child.template.className"
-    [disabled]="child.disabled"
-    [hidden]="template.hidden"
-  >
-    <ng-template matTabLabel>
-      <div class="dynamic-form-item-header">{{ child.label }}</div>
-    </ng-template>
-    <ng-template matTabContent>
-      <div class="dynamic-form-item">
-        <dynamic-form-elements [elements]="child.children" />
-      </div>
-    </ng-template>
-  </mat-tab>
+  @for (child of element.children; track $index) {
+    <mat-tab [ngClass]="child.template.className" [disabled]="child.disabled" [hidden]="template.hidden">
+      <ng-template matTabLabel>
+        <div class="dynamic-form-item-header">{{ child.label }}</div>
+      </ng-template>
+      <ng-template matTabContent>
+        <div class="dynamic-form-item">
+          <dynamic-form-elements [elements]="child.children" />
+        </div>
+      </ng-template>
+    </mat-tab>
+  }
 </mat-tab-group>

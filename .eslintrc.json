@@ -144,8 +144,6 @@
         "@angular-eslint/template/cyclomatic-complexity": "off",
         "@angular-eslint/template/i18n": "off",
         "@angular-eslint/template/interactive-supports-focus": "off",
-        "@angular-eslint/template/prefer-control-flow": "off",
-        "@angular-eslint/template/use-track-by-function": "off",
         "prettier/prettier": [
           "error",
           {

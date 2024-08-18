@@ -1,20 +1,21 @@
 <mat-accordion class="dynamic-form-items dynamic-form-accordion" [ngClass]="template.className" [hidden]="template.hidden">
-  <mat-expansion-panel
-    *ngFor="let child of element.children; let index = index"
-    [ngClass]="child.template.className"
-    [expanded]="index === selectedIndex"
-    [disabled]="child.disabled"
-    [hidden]="child.template.hidden"
-    (opened)="openItem(index)"
-    (closed)="closeItem(index)"
-  >
-    <mat-expansion-panel-header class="dynamic-form-item-header">
-      <mat-panel-title>{{ child.label }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <ng-template matExpansionPanelContent>
-      <div class="dynamic-form-item">
-        <dynamic-form-elements [elements]="child.children" />
-      </div>
-    </ng-template>
-  </mat-expansion-panel>
+  @for (child of element.children; let index = $index; track index) {
+    <mat-expansion-panel
+      [ngClass]="child.template.className"
+      [expanded]="index === selectedIndex"
+      [disabled]="child.disabled"
+      [hidden]="child.template.hidden"
+      (opened)="openItem(index)"
+      (closed)="closeItem(index)"
+    >
+      <mat-expansion-panel-header class="dynamic-form-item-header">
+        <mat-panel-title>{{ child.label }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div class="dynamic-form-item">
+          <dynamic-form-elements [elements]="child.children" />
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  }
 </mat-accordion>

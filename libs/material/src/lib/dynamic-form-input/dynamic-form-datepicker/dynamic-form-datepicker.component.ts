@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,7 +14,7 @@ import {
   standalone: true,
   selector: 'mat-dynamic-form-datepicker',
   templateUrl: './dynamic-form-datepicker.component.html',
-  imports: [NgIf, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatDatepickerModule],
+  imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatDatepickerModule],
 })
 export class MatDynamicFormDatepickerComponent extends DynamicFormInputBase<DynamicFormDatepicker> {
   constructor(protected override validationService: DynamicFormValidationService) {

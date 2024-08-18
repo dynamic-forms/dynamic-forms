@@ -1,1 +1,3 @@
-<dynamic-form-element *ngFor="let element of elements" [element]="element" />
+@for (element of elements; track element) {
+  <dynamic-form-element [element]="element" />
+}

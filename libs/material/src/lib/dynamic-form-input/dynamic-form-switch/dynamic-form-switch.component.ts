@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -9,7 +8,7 @@ import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapp
   standalone: true,
   selector: 'mat-dynamic-form-switch',
   templateUrl: './dynamic-form-switch.component.html',
-  imports: [NgIf, ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatSlideToggleModule],
+  imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatSlideToggleModule],
 })
 export class MatDynamicFormSwitchComponent extends DynamicFormInputBase<DynamicFormSwitch> {
   constructor(protected override validationService: DynamicFormValidationService) {

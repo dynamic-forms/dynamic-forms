@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -9,7 +8,7 @@ import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapp
   standalone: true,
   selector: 'mat-dynamic-form-toggle',
   templateUrl: './dynamic-form-toggle.component.html',
-  imports: [NgFor, ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatButtonToggleModule],
+  imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatButtonToggleModule],
 })
 export class MatDynamicFormToggleComponent extends DynamicFormInputBase<DynamicFormToggle> {
   constructor(protected override validationService: DynamicFormValidationService) {

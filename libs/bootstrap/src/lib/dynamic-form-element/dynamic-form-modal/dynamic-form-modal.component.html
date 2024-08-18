@@ -1,4 +1,6 @@
-<dynamic-form-element *ngIf="trigger" [element]="trigger" />
+@if (trigger) {
+  <dynamic-form-element [element]="trigger" />
+}
 
 <bs-dynamic-form-dialog
   [isOpen$]="isOpen$"

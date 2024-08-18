@@ -1,60 +1,88 @@
-<ng-container *ngIf="labelFloating; else noLabelFloating">
-  <div *ngIf="inputAddOn || prefixAddOn || suffixAddOn; else noAddOns" class="input-group floating">
-    <dynamic-form-element
-      *ngIf="prefixAddOn && !prefixAddOn.hidden"
-      class="dynamic-form-add-on prefix"
-      [element]="prefixAddOn"
-      [class.input-group-text]="prefixAddOn.classType === 'element'"
-    />
+@if (labelFloating) {
+  @if (inputAddOn || prefixAddOn || suffixAddOn) {
+    <div class="input-group floating">
+      @if (prefixAddOn && !prefixAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on prefix"
+          [element]="prefixAddOn"
+          [class.input-group-text]="prefixAddOn.classType === 'element'"
+        />
+      }
+      <div class="form-floating">
+        <ng-container *ngTemplateOutlet="inputTemplate" />
+        @if (label) {
+          <label class="form-label" [for]="inputId"
+            >{{ label }}
+            @if (requiredMarker) {
+              <span> *</span>
+            }
+          </label>
+        }
+      </div>
+      @if (inputAddOn && !inputAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on suffix"
+          [element]="inputAddOn"
+          [class.input-group-text]="inputAddOn.classType === 'element'"
+        />
+      }
+      @if (suffixAddOn && !suffixAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on suffix"
+          [element]="suffixAddOn"
+          [class.input-group-text]="suffixAddOn.classType === 'element'"
+        />
+      }
+    </div>
+  } @else {
     <div class="form-floating">
       <ng-container *ngTemplateOutlet="inputTemplate" />
-      <label *ngIf="label" class="form-label" [for]="inputId">{{ label }}<span *ngIf="requiredMarker"> *</span></label>
+      @if (label) {
+        <label class="form-label" [for]="inputId"
+          >{{ label }}
+          @if (requiredMarker) {
+            <span> *</span>
+          }
+        </label>
+      }
     </div>
-    <dynamic-form-element
-      *ngIf="inputAddOn && !inputAddOn.hidden"
-      class="dynamic-form-add-on suffix"
-      [element]="inputAddOn"
-      [class.input-group-text]="inputAddOn.classType === 'element'"
-    />
-    <dynamic-form-element
-      *ngIf="suffixAddOn && !suffixAddOn.hidden"
-      class="dynamic-form-add-on suffix"
-      [element]="suffixAddOn"
-      [class.input-group-text]="suffixAddOn.classType === 'element'"
-    />
-  </div>
-  <ng-template #noAddOns>
-    <div class="form-floating">
-      <ng-container *ngTemplateOutlet="inputTemplate" />
-      <label *ngIf="label" class="form-label" [for]="inputId">{{ label }}<span *ngIf="requiredMarker"> *</span></label>
-    </div>
-  </ng-template>
-</ng-container>
+  }
+} @else {
+  @if (label) {
+    <label class="form-label" [for]="inputId"
+      >{{ label }}
+      @if (requiredMarker) {
+        <span> *</span>
+      }
+    </label>
+  }
+  @if (inputAddOn || prefixAddOn || suffixAddOn) {
+    <div class="input-group">
+      @if (prefixAddOn && !prefixAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on prefix"
+          [element]="prefixAddOn"
+          [class.input-group-text]="prefixAddOn.classType === 'element'"
+        />
+      }
 
-<ng-template #noLabelFloating>
-  <label *ngIf="label" class="form-label" [for]="inputId">{{ label }}<span *ngIf="requiredMarker"> *</span></label>
-  <div *ngIf="inputAddOn || prefixAddOn || suffixAddOn; else noAddOns" class="input-group">
-    <dynamic-form-element
-      *ngIf="prefixAddOn && !prefixAddOn.hidden"
-      class="dynamic-form-add-on prefix"
-      [element]="prefixAddOn"
-      [class.input-group-text]="prefixAddOn.classType === 'element'"
-    />
+      <ng-container *ngTemplateOutlet="inputTemplate" />
+      @if (inputAddOn && !inputAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on suffix"
+          [element]="inputAddOn"
+          [class.input-group-text]="inputAddOn.classType === 'element'"
+        />
+      }
+      @if (suffixAddOn && !suffixAddOn.hidden) {
+        <dynamic-form-element
+          class="dynamic-form-add-on suffix"
+          [element]="suffixAddOn"
+          [class.input-group-text]="suffixAddOn.classType === 'element'"
+        />
+      }
+    </div>
+  } @else {
     <ng-container *ngTemplateOutlet="inputTemplate" />
-    <dynamic-form-element
-      *ngIf="inputAddOn && !inputAddOn.hidden"
-      class="dynamic-form-add-on suffix"
-      [element]="inputAddOn"
-      [class.input-group-text]="inputAddOn.classType === 'element'"
-    />
-    <dynamic-form-element
-      *ngIf="suffixAddOn && !suffixAddOn.hidden"
-      class="dynamic-form-add-on suffix"
-      [element]="suffixAddOn"
-      [class.input-group-text]="suffixAddOn.classType === 'element'"
-    />
-  </div>
-  <ng-template #noAddOns>
-    <ng-container *ngTemplateOutlet="inputTemplate" />
-  </ng-template>
-</ng-template>
+  }
+}

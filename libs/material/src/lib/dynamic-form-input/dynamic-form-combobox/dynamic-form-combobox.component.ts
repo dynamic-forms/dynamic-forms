@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,16 +12,7 @@ import { map, startWith } from 'rxjs/operators';
   standalone: true,
   selector: 'mat-dynamic-form-combobox',
   templateUrl: './dynamic-form-combobox.component.html',
-  imports: [
-    AsyncPipe,
-    NgIf,
-    NgFor,
-    ReactiveFormsModule,
-    DynamicFormElementComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-  ],
+  imports: [AsyncPipe, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
 })
 export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> implements OnInit {
   filteredOptions: Observable<string[]>;

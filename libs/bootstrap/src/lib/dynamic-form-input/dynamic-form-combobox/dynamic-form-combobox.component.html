@@ -22,6 +22,8 @@
     [formControl]="control"
   />
   <datalist id="list">
-    <option *ngFor="let option of input.options" [value]="option">{{ option }}</option>
+    @for (option of input.options; track option) {
+      <option [value]="option">{{ option }}</option>
+    }
   </datalist>
 </ng-template>

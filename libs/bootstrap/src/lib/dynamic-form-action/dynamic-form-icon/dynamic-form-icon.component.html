@@ -1,17 +1,16 @@
 <div class="dynamic-form-icon-wrapper" [ngClass]="template.classNameWrapper">
-  <a
-    *ngIf="template.url; else button"
-    [class]="'dynamic-form-icon btn btn-outline-' + (template.color | dynamicFormColor: 'primary')"
-    [class.disabled]="template.disabled"
-    [ngClass]="template.className"
-    [hidden]="template.hidden"
-    [href]="template.url"
-    [target]="template.urlTarget || '_blank'"
-  >
-    <i class="material-icons">{{ template.icon | dynamicFormIcon }}</i></a
-  >
-
-  <ng-template #button>
+  @if (template.url) {
+    <a
+      [class]="'dynamic-form-icon btn btn-outline-' + (template.color | dynamicFormColor: 'primary')"
+      [class.disabled]="template.disabled"
+      [ngClass]="template.className"
+      [hidden]="template.hidden"
+      [href]="template.url"
+      [target]="template.urlTarget || '_blank'"
+    >
+      <i class="material-icons">{{ template.icon | dynamicFormIcon }}</i></a
+    >
+  } @else {
     <button
       [id]="id"
       [class]="'dynamic-form-icon btn btn-outline-' + (template.color | dynamicFormColor: 'primary')"
@@ -23,24 +22,24 @@
     >
       <i class="material-icons">{{ template.icon | dynamicFormIcon }}</i></button
     >
-  </ng-template>
+  }
 </div>
-
-<bs-dynamic-form-dialog
-  *ngIf="dialog"
-  [isOpen$]="dialogOpen$"
-  [children]="dialogChildren"
-  [headerActions]="dialogHeaderActions"
-  [footerActions]="dialogFooterActions"
-  [width]="template.dialogWidth"
-  [minWidth]="template.dialogMinWidth"
-  [maxWidth]="template.dialogMaxWidth"
-  [title]="template.dialogTitle"
-  [titleHtml]="template.dialogTitleHtml"
-  [classNameForm]="element.root.template.className"
-  [classNameModal]="template.className"
-  [classNameTitle]="template.classNameDialogTitle"
-  [classNameChildren]="dialogTemplate?.classNameChildren"
-  [classNameHeader]="dialogTemplate?.classNameHeader"
-  [classNameFooter]="dialogTemplate?.classNameFooter"
-/>
+@if (dialog) {
+  <bs-dynamic-form-dialog
+    [isOpen$]="dialogOpen$"
+    [children]="dialogChildren"
+    [headerActions]="dialogHeaderActions"
+    [footerActions]="dialogFooterActions"
+    [width]="template.dialogWidth"
+    [minWidth]="template.dialogMinWidth"
+    [maxWidth]="template.dialogMaxWidth"
+    [title]="template.dialogTitle"
+    [titleHtml]="template.dialogTitleHtml"
+    [classNameForm]="element.root.template.className"
+    [classNameModal]="template.className"
+    [classNameTitle]="template.classNameDialogTitle"
+    [classNameChildren]="dialogTemplate?.classNameChildren"
+    [classNameHeader]="dialogTemplate?.classNameHeader"
+    [classNameFooter]="dialogTemplate?.classNameFooter"
+  />
+}

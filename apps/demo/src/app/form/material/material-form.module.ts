@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { withDynamicFormColors, withDynamicFormControlValidatorFactory, withDynamicFormIcons } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
-import { provideMatDynamicFormsWithDefaultFeatures } from '@dynamic-forms/material';
-import { withMatDynamicFormInputMask } from '@dynamic-forms/material/input-mask';
+import { provideMatDynamicFormsWithDefaultFeatures, provideNativeDatetimeAdapter } from '@dynamic-forms/material';
+import { withMatDynamicFormInputMask, withMatDynamicFormInputMaskConverters } from '@dynamic-forms/material/input-mask';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
 
@@ -46,9 +46,14 @@ const features = [
   withDynamicFormColors(colors),
   withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
   withMatDynamicFormInputMask(),
+  withMatDynamicFormInputMaskConverters(),
   ...withDynamicFormsMarkdownFeatures(),
 ];
 
 export function provideMaterialForm() {
-  return [...provideMatDynamicFormsWithDefaultFeatures(config, ...features), ...provideNativeDateAdapter()];
+  return [
+    ...provideMatDynamicFormsWithDefaultFeatures(config, ...features),
+    ...provideNativeDateAdapter(),
+    ...provideNativeDatetimeAdapter(),
+  ];
 }

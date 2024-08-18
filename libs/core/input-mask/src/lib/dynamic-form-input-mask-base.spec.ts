@@ -12,6 +12,7 @@ import { MockService } from 'ng-mocks';
 import { DynamicFormInputMaskDefinition } from './dynamic-form-input-mask';
 import { DynamicFormInputMaskBase } from './dynamic-form-input-mask-base';
 import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
+import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-converter.service';
 import { DynamicFormInputMaskDirective } from './dynamic-form-input-mask.directive';
 
 @Component({
@@ -34,9 +35,12 @@ describe('DynamicFormInputMaskBase', () => {
   let fixture: ComponentFixture<DynamicFormInputMaskTestComponent>;
   let component: DynamicFormInputMaskTestComponent;
   let builder: DynamicFormBuilder;
+  let converterService: DynamicFormInputMaskConverterService;
 
   beforeEach(() => {
+    const defaultConverter = { parse: value => value, format: value => value };
     builder = MockService(DynamicFormBuilder, { getDefinition: definition => definition });
+    converterService = MockService(DynamicFormInputMaskConverterService, { getConverter: _ => defaultConverter });
 
     TestBed.configureTestingModule({
       imports: [DynamicFormInputMaskTestComponent],
@@ -48,6 +52,10 @@ describe('DynamicFormInputMaskBase', () => {
         {
           provide: DynamicFormValidationService,
           useValue: {},
+        },
+        {
+          provide: DynamicFormInputMaskConverterService,
+          useValue: converterService,
         },
       ],
     });

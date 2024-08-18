@@ -3,17 +3,7 @@ import { DynamicForm, DynamicFormBuilder, DynamicFormDefinition, DynamicFormFiel
 import { MockService } from 'ng-mocks';
 import { take } from 'rxjs';
 import { DynamicFormInputMaskDefinition, DynamicFormInputMaskOptions } from './dynamic-form-input-mask';
-import { DynamicFormInputMaskControl, DynamicFormInputMaskInstance } from './dynamic-form-input-mask-control';
-
-class DynamicFormInputMaskTestControl extends DynamicFormInputMaskControl {
-  get mask(): DynamicFormInputMaskInstance {
-    return this._mask;
-  }
-
-  get maskOptions(): DynamicFormInputMaskOptions {
-    return this._maskOptions;
-  }
-}
+import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
 
 describe('DynamicFormInputMaskControl', () => {
   let builder: DynamicFormBuilder;
@@ -27,7 +17,7 @@ describe('DynamicFormInputMaskControl', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', index: 1, type: 'type', template: {} } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
       expect(control.root).toBe(root);
       expect(control.parent).toBe(root);
@@ -70,7 +60,7 @@ describe('DynamicFormInputMaskControl', () => {
       } as DynamicFormInputMaskOptions;
       const definition = { key: 'key', index: 1, type: 'type', template: { input: { maskOptions } } } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
       expect(control.maskOptions).not.toBe(maskOptions);
       expect(control.maskOptions).toEqual({ alias: 'integer', rightAlign: false });
@@ -83,7 +73,7 @@ describe('DynamicFormInputMaskControl', () => {
       const maskOptions = { alias: 'integer' } as DynamicFormInputMaskOptions;
       const definition = { key: 'key', index: 1, type: 'type', template: { input: { maskOptions } } } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
       const maskOptionsFromConstructor = control.maskOptions;
 
@@ -106,7 +96,7 @@ describe('DynamicFormInputMaskControl', () => {
       } as DynamicFormInputMaskOptions;
       const definition = { key: 'key', index: 1, type: 'type', template: { input: { maskOptions } } } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
       const maskOptionsFromConstructor = control.maskOptions;
 
@@ -131,7 +121,7 @@ describe('DynamicFormInputMaskControl', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', index: 1, type: 'type', template: {} } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
       const inputElement = {} as HTMLInputElement;
 
       spyOn(control.mask, 'mask');
@@ -147,7 +137,7 @@ describe('DynamicFormInputMaskControl', () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', index: 1, type: 'type', template: {} } as DynamicFormInputMaskDefinition;
       const type = { type: 'type' } as DynamicFormFieldType;
-      const control = new DynamicFormInputMaskTestControl(builder, root, root, definition, type);
+      const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
       spyOn(control.mask, 'remove');
 

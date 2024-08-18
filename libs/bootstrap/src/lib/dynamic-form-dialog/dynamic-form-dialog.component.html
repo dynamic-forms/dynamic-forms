@@ -1,41 +1,50 @@
 <!-- eslint-disable @angular-eslint/template/no-inline-styles -->
-<div *ngIf="isOpen$ | async" class="dynamic-form-modal modal" [ngClass]="classNameForm" [class.maximized]="maximized">
-  <div
-    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-    [ngClass]="classNameModal"
-    [class.maximized]="maximized"
-    [ngStyle]="{
-      width: maximized ? maxWidth || '100%' : width,
-      'min-width': maximized ? maxWidth || '100%' : minWidth,
-      'max-width': maximized ? maxWidth || '100%' : maxWidth,
-      'min-height': maximized ? '100%' : undefined,
-      'max-height': maximized ? '100%' : undefined,
-      margin: maximized ? '0px auto' : undefined,
-    }"
-  >
+@if (isOpen$ | async) {
+  <div class="dynamic-form-modal modal" [ngClass]="classNameForm" [class.maximized]="maximized">
     <div
-      class="modal-content"
+      class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+      [ngClass]="classNameModal"
+      [class.maximized]="maximized"
       [ngStyle]="{
-        height: maximized ? maxHeight || '100%' : height,
-        'min-height': maximized ? maxHeight || '100%' : minHeight,
-        'max-height': maxHeight || '100%',
+        width: maximized ? maxWidth || '100%' : width,
+        'min-width': maximized ? maxWidth || '100%' : minWidth,
+        'max-width': maximized ? maxWidth || '100%' : maxWidth,
+        'min-height': maximized ? '100%' : undefined,
+        'max-height': maximized ? '100%' : undefined,
+        margin: maximized ? '0px auto' : undefined,
       }"
     >
-      <div *ngIf="title || titleHtml || headerActions?.length" class="modal-header" [ngClass]="classNameHeader">
-        <div *ngIf="titleHtml; else titlePlain" class="modal-title" [ngClass]="classNameTitle" [innerHTML]="titleHtml"></div>
-        <ng-template #titlePlain>
-          <div class="modal-title" [ngClass]="classNameTitle">{{ title }}</div>
-        </ng-template>
-        <div *ngIf="headerActions?.length" class="modal-toolbar">
-          <dynamic-form-elements [elements]="headerActions" />
+      <div
+        class="modal-content"
+        [ngStyle]="{
+          height: maximized ? maxHeight || '100%' : height,
+          'min-height': maximized ? maxHeight || '100%' : minHeight,
+          'max-height': maxHeight || '100%',
+        }"
+      >
+        @if (title || titleHtml || headerActions?.length) {
+          <div class="modal-header" [ngClass]="classNameHeader">
+            @if (titleHtml) {
+              <div class="modal-title" [ngClass]="classNameTitle" [innerHTML]="titleHtml"></div>
+            } @else {
+              <div class="modal-title" [ngClass]="classNameTitle">{{ title }}</div>
+            }
+            @if (headerActions?.length) {
+              <div class="modal-toolbar">
+                <dynamic-form-elements [elements]="headerActions" />
+              </div>
+            }
+          </div>
+        }
+        <div class="modal-body" [ngClass]="classNameChildren">
+          <dynamic-form-elements [elements]="children" />
         </div>
-      </div>
-      <div class="modal-body" [ngClass]="classNameChildren">
-        <dynamic-form-elements [elements]="children" />
-      </div>
-      <div *ngIf="footerActions?.length" class="modal-footer" [ngClass]="classNameFooter">
-        <dynamic-form-elements [elements]="footerActions" />
+        @if (footerActions?.length) {
+          <div class="modal-footer" [ngClass]="classNameFooter">
+            <dynamic-form-elements [elements]="footerActions" />
+          </div>
+        }
       </div>
     </div>
   </div>
-</div>
+}

@@ -1,0 +1,171 @@
+{
+  "template": {
+    "label": "Input mask variations"
+  },
+  "children": [
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Numeric input masks with converter</h4>"
+      }
+    },
+    {
+      "key": "rightAlign",
+      "type": "control",
+      "template": {
+        "label": "Right align",
+        "input": {
+          "type": "checkbox",
+          "defaultValue": false
+        }
+      }
+    },
+    {
+      "key": "decimal",
+      "type": "control",
+      "template": {
+        "label": "Decimal",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a decimal number",
+          "defaultValue": 1.25,
+          "maskOptions": {
+            "alias": "decimal",
+            "useConverter": true
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "integer",
+      "type": "control",
+      "template": {
+        "label": "Integer",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an integer",
+          "defaultValue": 1,
+          "maskOptions": {
+            "alias": "integer",
+            "useConverter": true
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "percentage",
+      "type": "control",
+      "template": {
+        "label": "Percentage",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a percentage value",
+          "defaultValue": 75,
+          "maskOptions": {
+            "alias": "percentage",
+            "useConverter": true
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "key": "currency",
+      "type": "control",
+      "template": {
+        "label": "Currency",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter an amount",
+          "defaultValue": 10000,
+          "maskOptions": {
+            "alias": "currency",
+            "useConverter": true,
+            "prefix": "USD "
+          }
+        }
+      },
+      "expressions": {
+        "input.maskOptions.rightAlign": "data.root.model.rightAlign"
+      }
+    },
+    {
+      "type": "content",
+      "template": {
+        "content": "<h4>Datetime input masks with converter</h4>"
+      }
+    },
+    {
+      "key": "datetime",
+      "type": "control",
+      "template": {
+        "label": "Datetime",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a date time",
+          "defaultValue": "2020-01-01T00:00Z",
+          "maskOptions": {
+            "alias": "datetime",
+            "useConverter": true,
+            "inputFormat": "dd/mm/yyyy HH:MM"
+          }
+        }
+      }
+    },
+    {
+      "key": "date",
+      "type": "control",
+      "template": {
+        "label": "Date",
+        "input": {
+          "type": "input-mask",
+          "placeholder": "Enter a date",
+          "defaultValue": "2020-01-01",
+          "maskOptions": {
+            "alias": "datetime",
+            "useConverter": true,
+            "inputFormat": "dd/mm/yyyy"
+          }
+        }
+      }
+    }
+  ],
+  "footerActions": [
+    {
+      "id": "action-submit",
+      "type": "button",
+      "template": {
+        "type": "submit",
+        "label": "Submit"
+      },
+      "expressions": {
+        "disabled": "data.root.status !== 'VALID'"
+      }
+    },
+    {
+      "id": "action-reset",
+      "type": "button",
+      "template": {
+        "type": "reset",
+        "label": "Reset"
+      }
+    },
+    {
+      "id": "action-reset-default",
+      "type": "button",
+      "template": {
+        "type": "button",
+        "label": "Reset default",
+        "action": "resetDefault"
+      }
+    }
+  ]
+}
