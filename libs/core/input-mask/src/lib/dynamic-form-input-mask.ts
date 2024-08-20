@@ -43,6 +43,15 @@ export type DynamicFormInputMaskOptions = DynamicFormInputMaskTypeOptions &
   DynamicFormInputMaskDatetimeOptions &
   DynamicFormInputStyleOptions;
 
+export type DynamicFormInputMaskFormatOptions = DynamicFormInputMaskAliasOptions &
+  DynamicFormInputMaskNumberOptions &
+  DynamicFormInputMaskDatetimeOptions;
+
+export interface DynamicFormInputMaskOptionChanges {
+  options: Partial<DynamicFormInputMaskOptions>;
+  converterChanges?: Partial<DynamicFormInputMaskConverterOptions>;
+}
+
 export interface DynamicFormInputMask extends DynamicFormInput<string> {
   type: 'input-mask';
   maskOptions?: DynamicFormInputMaskOptions;

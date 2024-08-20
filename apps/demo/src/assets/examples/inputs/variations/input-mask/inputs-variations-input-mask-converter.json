@@ -4,6 +4,31 @@
   },
   "children": [
     {
+      "key": "format",
+      "type": "control",
+      "template": {
+        "label": "Format",
+        "input": {
+          "type": "select",
+          "options": [
+            {
+              "label": "United States",
+              "value": "us"
+            },
+            {
+              "label": "United Kingdom",
+              "value": "uk"
+            },
+            {
+              "label": "Germany",
+              "value": "de"
+            }
+          ],
+          "defaultValue": "us"
+        }
+      }
+    },
+    {
       "type": "content",
       "template": {
         "content": "<h4>Numeric input masks with converter</h4>"
@@ -35,6 +60,7 @@
         }
       },
       "expressions": {
+        "input.maskOptions.radixPoint": "data.root.model.format === 'de' ? ',' : '.'",
         "input.maskOptions.rightAlign": "data.root.model.rightAlign"
       }
     },
@@ -66,11 +92,13 @@
           "placeholder": "Enter a percentage value",
           "maskOptions": {
             "alias": "percentage",
+            "digits": 1,
             "useConverter": true
           }
         }
       },
       "expressions": {
+        "input.maskOptions.radixPoint": "data.root.model.format === 'de' ? ',' : '.'",
         "input.maskOptions.rightAlign": "data.root.model.rightAlign"
       }
     },
@@ -90,6 +118,8 @@
         }
       },
       "expressions": {
+        "input.maskOptions.radixPoint": "data.root.model.format === 'de' ? ',' : '.'",
+        "input.maskOptions.groupSeparator": "data.root.model.format === 'de' ? ''' : ','",
         "input.maskOptions.rightAlign": "data.root.model.rightAlign"
       }
     },
@@ -113,6 +143,9 @@
             "inputFormat": "dd/mm/yyyy HH:MM"
           }
         }
+      },
+      "expressions": {
+        "input.maskOptions.inputFormat": "data.root.model.format === 'de' ? 'dd.mm.yyyy HH:MM' : data.root.model.format === 'uk' ? 'dd/mm/yyyy HH:MM' : 'yyyy-mm-dd HH:MM'"
       }
     },
     {
@@ -129,6 +162,9 @@
             "inputFormat": "dd/mm/yyyy"
           }
         }
+      },
+      "expressions": {
+        "input.maskOptions.inputFormat": "data.root.model.format === 'de' ? 'dd.mm.yyyy' : data.root.model.format === 'uk' ? 'dd/mm/yyyy' : 'yyyy-mm-dd'"
       }
     }
   ],

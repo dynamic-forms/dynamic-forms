@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { marked } from 'marked';
+import { Tokens, marked } from 'marked';
 import { Observable, from, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { DynamicFormMarkdownOptions } from './dynamic-form-markdown-options';
 
 export class MarkdownRenderer extends marked.Renderer {
-  override link(href: string, title: string, text: string): string {
-    const link = super.link(href, title, text);
+  override link(linkToken: Tokens.Link): string {
+    const link = super.link(linkToken);
     return link.replace('<a', '<a target="_blank"');
   }
 }
