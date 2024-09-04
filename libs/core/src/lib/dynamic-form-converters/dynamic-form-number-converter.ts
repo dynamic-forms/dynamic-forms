@@ -19,7 +19,7 @@ export abstract class DynamicFormNumberConverter<TOptions = any> implements Dyna
     if (!this.isValid(number)) {
       return null;
     }
-    return this.isIntegerExpected(options) ? this.formatInteger(value) : this.formatFloat(value);
+    return this.isIntegerExpected(options) ? this.formatInteger(number, options) : this.formatFloat(number, options);
   }
 
   isValid(value: number): boolean {
@@ -37,11 +37,11 @@ export abstract class DynamicFormNumberConverter<TOptions = any> implements Dyna
     return Number.parseInt(normalizedValue);
   }
 
-  protected formatFloat(value: number): string {
+  protected formatFloat(value: number, _options?: TOptions): string {
     return value.toString();
   }
 
-  protected formatInteger(value: number): string {
+  protected formatInteger(value: number, _options?: TOptions): string {
     return Math.trunc(value).toString();
   }
 }

@@ -59,12 +59,12 @@ html, body {
 }
 
 body {
+  --app-primary-color: #{mat.get-theme-color($app-light-theme, primary)};
+  --app-primary-background: #{mat.get-theme-color($app-light-theme, primary-container)};
+
   margin: 0;
 
   @include mat.all-component-themes($app-light-theme);
-
-  --app-primary-color: #{mat.get-theme-color($app-light-theme, primary)};
-  --app-primary-background: #{mat.get-theme-color($app-light-theme, primary-container)};
 
   .button-content {
     display: flex;
@@ -72,10 +72,10 @@ body {
   }
 
   &.dark-mode {
-    @include mat.all-component-colors($app-dark-theme);
-
     --app-primary-color: #{mat.get-theme-color($app-dark-theme, primary)};
     --app-primary-background: #{mat.get-theme-color($app-dark-theme, primary-container)};
+
+    @include mat.all-component-colors($app-dark-theme);
 
     .dynamic-form-markdown {
       code, pre {
