@@ -119,7 +119,7 @@
       },
       "expressions": {
         "input.maskOptions.radixPoint": "data.root.model.format === 'de' ? ',' : '.'",
-        "input.maskOptions.groupSeparator": "data.root.model.format === 'de' ? ''' : ','",
+        "input.maskOptions.groupSeparator": "data.root.model.format === 'de' ? '\\'' : ','",
         "input.maskOptions.rightAlign": "data.root.model.rightAlign"
       }
     },
