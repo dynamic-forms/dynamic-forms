@@ -7,7 +7,6 @@ import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-erro
 import { DynamicFormElement } from './dynamic-form-element';
 import { DynamicFormElementBase } from './dynamic-form-element-base';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
-import { DynamicFormElementModule } from './dynamic-form-element.module';
 import { DynamicFormElementsComponent } from './dynamic-form-elements.component';
 
 @Component({
@@ -18,7 +17,6 @@ import { DynamicFormElementsComponent } from './dynamic-form-elements.component'
 class DynamicFormElementBaseComponent extends DynamicFormElementBase {}
 
 @NgModule({
-  imports: [DynamicFormElementModule],
   providers: [
     {
       provide: DynamicFormConfigService,

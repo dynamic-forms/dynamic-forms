@@ -1,21 +1,21 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, inject } from '@angular/core/testing';
-import { BrowserModule } from '@angular/platform-browser';
 import { DynamicFormConfigService, DynamicFormLibraryService, dynamicFormLibrary } from '@dynamic-forms/core';
-import { DynamicFormMarkdownModule, dynamicFormMarkdownType } from './dynamic-form-markdown.module';
+import { dynamicFormMarkdownType, provideDynamicFormsMarkdown } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormMarkdownModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(dynamicFormLibrary),
           },
+          DynamicFormConfigService,
+          provideDynamicFormsMarkdown(),
         ],
       });
     });
@@ -36,10 +36,10 @@ describe('DynamicFormMarkdownModule', () => {
   describe('with providers of BrowserModule and HttpClientModule', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [BrowserModule, DynamicFormMarkdownModule],
         providers: [
           provideHttpClient(withInterceptorsFromDi()),
           provideHttpClientTesting(),
+          provideDynamicFormsMarkdown(),
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(dynamicFormLibrary),

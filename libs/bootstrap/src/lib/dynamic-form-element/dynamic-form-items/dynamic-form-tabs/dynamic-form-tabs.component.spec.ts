@@ -9,7 +9,6 @@ import {
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
 import { BsDynamicFormTabsComponent } from './dynamic-form-tabs.component';
-import { BsDynamicFormTabsModule } from './dynamic-form-tabs.module';
 
 describe('BsDynamicFormTabsComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormTabsComponent>;
@@ -18,7 +17,6 @@ describe('BsDynamicFormTabsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BsDynamicFormTabsModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

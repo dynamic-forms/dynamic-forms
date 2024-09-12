@@ -3,6 +3,7 @@ import { DynamicFormActionService } from '../dynamic-form-action/dynamic-form-ac
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { dynamicFormControlEvaluatorTypes } from './dynamic-form-control-evaluator-type';
 import {
   DYNAMIC_FORM_CONTROL_EVALUATOR_TYPE_CONFIG,
@@ -13,17 +14,19 @@ import {
   DYNAMIC_FORM_CONTROL_VALIDATOR_TYPE_CONFIG,
   DynamicFormControlValidatorTypeConfig,
 } from './dynamic-form-control-validator-type-config';
-import { DynamicFormControlModule, dynamicFormControlType } from './dynamic-form-control.module';
+import { dynamicFormControlType, withDynamicFormControlDefaultFeatures } from './dynamic-form-control.module';
 
 describe('DynamicFormControlModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormControlModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService(dynamicFormLibrary),
         },
+        DynamicFormConfigService,
+        DynamicFormActionService,
+        importDynamicFormsProviders(...withDynamicFormControlDefaultFeatures()),
       ],
     });
   });

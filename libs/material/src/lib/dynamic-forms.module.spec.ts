@@ -19,12 +19,11 @@ import {
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
-import { MatDynamicFormsModule, provideMatDynamicForms, provideMatDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
+import { provideMatDynamicForms, provideMatDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
 
 describe('MatDynamicFormsModule', () => {
   describe('without providers', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'MatDynamicFormsModule', def: { imports: [MatDynamicFormsModule] } },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms() } },
     ];
 
@@ -89,7 +88,6 @@ describe('MatDynamicFormsModule', () => {
 
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'MatDynamicFormsModule.root', def: { imports: [MatDynamicFormsModule.forRoot()] } },
       { name: 'provideMatDynamicFormsWithDefaultFeatures', def: { providers: provideMatDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -174,7 +172,6 @@ describe('MatDynamicFormsModule', () => {
   describe('forRoot with config', () => {
     const config = { theme: 'theme', idBuilder: { createId: () => 'dynamic-form-id' } };
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'MatDynamicFormsModule', def: { imports: [MatDynamicFormsModule.forRoot(config)] } },
       { name: 'provideMatDynamicFormsWithDefaultFeatures', def: { providers: provideMatDynamicFormsWithDefaultFeatures(config) } },
     ];
 

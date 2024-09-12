@@ -1,10 +1,10 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig } from '@dynamic-forms/core';
-import { MatDynamicFormInputModule, matDynamicFormInputTypes } from './dynamic-form-input.module';
+import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
+import { matDynamicFormInputTypes, withMatDynamicFormInputDefaultFeatures } from './dynamic-form-input.module';
 
 describe('MatDynamicFormInputModule', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [MatDynamicFormInputModule] });
+    TestBed.configureTestingModule({ providers: importDynamicFormsProviders(...withMatDynamicFormInputDefaultFeatures()) });
   });
 
   it('provides DYNAMIC_FORM_INPUT_TYPE_CONFIG', inject([DYNAMIC_FORM_INPUT_TYPE_CONFIG], (config: DynamicFormInputTypeConfig) => {

@@ -9,7 +9,6 @@ import {
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
 import { BsDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
-import { BsDynamicFormAccordionModule } from './dynamic-form-accordion.module';
 
 describe('BsDynamicFormAccordionComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormAccordionComponent>;
@@ -18,7 +17,6 @@ describe('BsDynamicFormAccordionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BsDynamicFormAccordionModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

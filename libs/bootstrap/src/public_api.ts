@@ -10,7 +10,6 @@ export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon-typ
 export * from './lib/dynamic-form-action/dynamic-form-icon/dynamic-form-icon.component';
 export * from './lib/dynamic-form-dialog/dynamic-form-dialog.component';
 export * from './lib/dynamic-form-element/dynamic-form-element.module';
-export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-items.module';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion.component';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-accordion/dynamic-form-accordion.module';
 export * from './lib/dynamic-form-element/dynamic-form-items/dynamic-form-tabs/dynamic-form-tabs.component';

@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
@@ -64,41 +64,4 @@ export function withDynamicFormActionHandlerFactory<Element extends DynamicFormE
 ): DynamicFormsFeature {
   const provider = { provide: DYNAMIC_FORM_ACTION_HANDLER_CONFIG, useFactory: handlerFactory, deps, multi: true };
   return { providers: [provider] };
-}
-
-/**
- * @deprecated Use {@link dynamicFormActionProviders} instead.
- */
-@NgModule({ providers: dynamicFormActionProviders })
-export class DynamicFormActionModule {
-  /**
-   * @deprecated Use {@link withDynamicFormActionHandlers} instead.
-   */
-  static withHandler<Element extends DynamicFormElement = DynamicFormElement>(
-    handler: DynamicFormActionHandler<Element>,
-  ): ModuleWithProviders<DynamicFormActionModule> {
-    const feature = withDynamicFormActionHandlers(handler);
-    return { ngModule: DynamicFormActionModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormActionHandlers} instead.
-   */
-  static withHandlers<Element extends DynamicFormElement = DynamicFormElement>(
-    handlers: DynamicFormActionHandler<Element>[],
-  ): ModuleWithProviders<DynamicFormActionModule> {
-    const feature = withDynamicFormActionHandlers(...handlers);
-    return { ngModule: DynamicFormActionModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormActionHandlerFactory} instead.
-   */
-  static withHandlerFactory<Element extends DynamicFormElement = DynamicFormElement>(
-    handlerFactory: (...depTypes: any[]) => DynamicFormActionHandler<Element>,
-    deps?: any[],
-  ): ModuleWithProviders<DynamicFormActionModule> {
-    const feature = withDynamicFormActionHandlerFactory(handlerFactory, deps);
-    return { ngModule: DynamicFormActionModule, providers: feature.providers };
-  }
 }

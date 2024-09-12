@@ -1,18 +1,12 @@
-import { NgModule } from '@angular/core';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import {
-  DynamicFormActionModule,
-  withDynamicFormActionHandlerFactory,
-  withDynamicFormActionHandlers,
-} from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
+import { withDynamicFormActionHandlerFactory, withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
+import { withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { withDynamicFormArrayValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
-import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayFactory } from './dynamic-form-array-factory';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
@@ -113,15 +107,3 @@ export function withDynamicFormArrayDefaultFeatures(): DynamicFormsFeature[] {
     withDynamicFormActionHandlerFactory(dynamicFormArrayPushFieldHandlerFactory, [DynamicFormBuilder]),
   ];
 }
-
-const modules = [DynamicFormActionModule, DynamicFormConfigModule];
-
-/**
- * @deprecated Use {@link withDynamicFormArrayDefaultFeatures} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(...withDynamicFormArrayDefaultFeatures()),
-})
-export class DynamicFormArrayModule {}

@@ -203,7 +203,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/v18/@dynamic-forms/demo",
+              "base": "dist/v19/@dynamic-forms/demo",
               "browser": ""
             },
             "index": "apps/demo/src/index.html",
@@ -246,7 +246,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v18"
+                "dist/v19"
               ]
             },
             "styles": [
@@ -316,7 +316,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v18"
+                "dist/v19"
               ]
             },
             "styles": [

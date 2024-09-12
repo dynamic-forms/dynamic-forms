@@ -9,7 +9,6 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupComponent } from './dynamic-form-group.component';
-import { DynamicFormGroupModule } from './dynamic-form-group.module';
 
 describe('DynamicFormGroupComponent', () => {
   let fixture: ComponentFixture<DynamicFormGroupComponent>;
@@ -20,7 +19,6 @@ describe('DynamicFormGroupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormGroupModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

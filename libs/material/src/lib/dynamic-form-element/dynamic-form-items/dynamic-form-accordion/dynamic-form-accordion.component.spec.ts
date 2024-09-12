@@ -9,7 +9,6 @@ import {
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
 import { MatDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
-import { MatDynamicFormAccordionModule } from './dynamic-form-accordion.module';
 
 describe('MatDynamicFormAccordionComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormAccordionComponent>;
@@ -18,7 +17,6 @@ describe('MatDynamicFormAccordionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatDynamicFormAccordionModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

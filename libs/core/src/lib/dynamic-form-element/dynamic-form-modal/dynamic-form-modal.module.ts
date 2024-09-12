@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
 import { DynamicFormActionHandler } from '../../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionModule, withDynamicFormActionHandlers } from '../../dynamic-form-action/dynamic-form-action.module';
+import { withDynamicFormActionHandlers } from '../../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormsFeature } from '../../dynamic-forms-feature';
-import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import { DynamicFormModal } from './dynamic-form-modal';
 
 export const dynamicFormModalOpen = (modal: DynamicFormModal): void => modal.open();
@@ -66,15 +64,3 @@ export const dynamicFormModalActionHandlers = [
 export function withDynamicFormModalActionHandlers(): DynamicFormsFeature {
   return withDynamicFormActionHandlers(...dynamicFormModalActionHandlers);
 }
-
-const modules = [DynamicFormActionModule];
-
-/**
- * @deprecated Use {@link withDynamicFormModalActionHandlers} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormModalActionHandlers()),
-})
-export class DynamicFormModalModule {}

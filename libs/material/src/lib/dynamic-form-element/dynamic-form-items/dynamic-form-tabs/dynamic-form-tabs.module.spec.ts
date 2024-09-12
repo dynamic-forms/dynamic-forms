@@ -1,11 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig } from '@dynamic-forms/core';
-import { MatDynamicFormTabsModule, matDynamicFormTabsType } from './dynamic-form-tabs.module';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
+import { matDynamicFormTabsType, withMatDynamicFormTabs } from './dynamic-form-tabs.module';
 
-describe('MatDynamicFormTabsModule', () => {
+describe('withMatDynamicFormTabs', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatDynamicFormTabsModule],
+      providers: importDynamicFormsProviders(withMatDynamicFormTabs()),
     });
   });
 

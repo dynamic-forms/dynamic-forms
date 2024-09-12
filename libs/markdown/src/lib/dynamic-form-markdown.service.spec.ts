@@ -4,7 +4,7 @@ import { SecurityContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MockService } from 'ng-mocks';
-import { DynamicFormMarkdownModule } from './dynamic-form-markdown.module';
+import { provideDynamicFormsMarkdown } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 describe('DynamicFormMarkdownService', () => {
@@ -17,10 +17,10 @@ describe('DynamicFormMarkdownService', () => {
     spyOn(domSanitizer, 'sanitize').and.callFake((_context, value) => value as string);
 
     TestBed.configureTestingModule({
-      imports: [DynamicFormMarkdownModule],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
+        provideDynamicFormsMarkdown(),
         {
           provide: DomSanitizer,
           useValue: domSanitizer,

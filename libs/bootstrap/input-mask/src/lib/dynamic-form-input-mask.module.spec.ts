@@ -3,18 +3,11 @@ import { bsDynamicFormLibrary } from '@dynamic-forms/bootstrap';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig, provideDynamicForms } from '@dynamic-forms/core';
 import { DynamicFormInputMaskConverterService } from '@dynamic-forms/core/input-mask';
 import { withBsDynamicFormInputMaskConverters } from './dynamic-form-input-mask-converter';
-import { BsDynamicFormInputMaskModule, bsDynamicFormInputMaskType, withBsDynamicFormInputMask } from './dynamic-form-input-mask.module';
+import { bsDynamicFormInputMaskType, withBsDynamicFormInputMask } from './dynamic-form-input-mask.module';
 
 describe('BsDynamicFormInputMaskModule', () => {
   describe('withBsDynamicFormInputMask', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'BsDynamicFormInputMaskModule',
-        def: {
-          imports: [BsDynamicFormInputMaskModule],
-          providers: provideDynamicForms(bsDynamicFormLibrary),
-        },
-      },
       {
         name: 'provideDynamicForms',
         def: { providers: provideDynamicForms(bsDynamicFormLibrary, withBsDynamicFormInputMask()) },
@@ -45,13 +38,6 @@ describe('BsDynamicFormInputMaskModule', () => {
 
   describe('withBsDynamicFormInputMaskConverters', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'BsDynamicFormInputMaskModule',
-        def: {
-          imports: [BsDynamicFormInputMaskModule],
-          providers: provideDynamicForms(bsDynamicFormLibrary, withBsDynamicFormInputMaskConverters()),
-        },
-      },
       {
         name: 'provideDynamicForms',
         def: { providers: provideDynamicForms(bsDynamicFormLibrary, withBsDynamicFormInputMask(), withBsDynamicFormInputMaskConverters()) },
