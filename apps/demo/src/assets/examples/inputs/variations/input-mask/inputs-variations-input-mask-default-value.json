@@ -154,7 +154,7 @@
         "input": {
           "type": "input-mask",
           "placeholder": "Enter a percentage value",
-          "defaultValue": "75 %",
+          "defaultValue": "12.5 %",
           "maskOptions": {
             "alias": "percentage"
           }
@@ -197,7 +197,7 @@
         "input": {
           "type": "input-mask",
           "placeholder": "Enter a date time",
-          "defaultValue": "01/01/2020 00:00",
+          "defaultValue": "01/01/2020 12:00",
           "maskOptions": {
             "alias": "datetime",
             "inputFormat": "dd/mm/yyyy HH:MM"

@@ -4,9 +4,13 @@
 
 ### Features
 
-* **core:** Use control flow
-* **bootstrap:** Use control flow
-* **material:** Use control flow
+* **core:** use control flow
+* **core:** support of input mask converters (number and datetime)
+* **bootstrap:** use control flow
+* **bootstrap:** use input mask converters for number and datetime
+* **material:** use control flow
+* **material:** use input mask converters for number and datetime
+* **markdown:** update to [marked](https://github.com/markedjs/marked) 14 
 
 ## 18.0.0 (2024-05-29)
 

@@ -1,6 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription, tap } from 'rxjs';
+import { DynamicFormInputMaskOptions } from './dynamic-form-input-mask';
 import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
 import { DynamicFormInputMaskConverter } from './dynamic-form-input-mask-converter';
 import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-converter.service';
@@ -12,6 +13,7 @@ import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: DynamicFormInputMaskDirective, multi: true }],
 })
 export class DynamicFormInputMaskDirective implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy {
+  private readonly __maskConverterOptionKeys = ['alias', 'digits', 'radixPoint', 'groupSeparator', 'prefix', 'suffix'];
   private _rawValue: any;
   private _formattedValue: any;
   private _maskConverterInitialized = false;
@@ -78,6 +80,8 @@ export class DynamicFormInputMaskDirective implements ControlValueAccessor, Afte
         tap(options => {
           this.control.removeInputElement();
           this.control.maskInputElement(this.nativeElement);
+          this.updateInputMaskConverter(options);
+          this.writeFormattedValue(this._rawValue);
           if (options.rightAlign === false) {
             this.nativeElement.style.textAlign = 'left';
           }
@@ -86,13 +90,24 @@ export class DynamicFormInputMaskDirective implements ControlValueAccessor, Afte
       .subscribe();
   }
 
+  private getInputMaskConverter(): DynamicFormInputMaskConverter {
+    return this.converterService.getConverter(this.control.maskOptions);
+  }
+
   private initInputMaskConverter(): void {
-    const converter = this.converterService.getConverter(this.control.maskOptions);
-    if (this._maskConverter !== converter) {
-      this._maskConverter = converter;
+    const maskConverter = this.getInputMaskConverter();
+    if (this._maskConverter !== maskConverter) {
+      this._maskConverter = maskConverter;
     }
     this._maskConverterInitialized = true;
     this.writeFormattedValue(this._rawValue);
+  }
+
+  private updateInputMaskConverter(optionChanges: Partial<DynamicFormInputMaskOptions>): void {
+    if (!Object.keys(optionChanges).some(key => this.__maskConverterOptionKeys.includes(key))) {
+      return;
+    }
+    this._maskConverter = optionChanges.alias ? this.getInputMaskConverter() : this._maskConverter;
   }
 
   private writeFormattedValue(value: any): void {
