@@ -1,6 +1,6 @@
 # Changelog
 
-## 18.1.0-next.0
+## 18.1.0-next.0 (2024-09-26)
 
 ### Features
 
