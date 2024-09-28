@@ -1,4 +1,4 @@
-<button mat-icon-button (click)="toggle()">
+<button mat-icon-button type="button" (click)="toggle()">
   @if (enabled$ | async) {
     <mat-icon>notifications</mat-icon>
   } @else {
