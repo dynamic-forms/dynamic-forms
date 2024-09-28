@@ -1,6 +1,6 @@
 @if (versions$ | async; as versions) {
   @if (versions.length) {
-    <button mat-button color="primary" [matMenuTriggerFor]="menu">
+    <button mat-button color="primary" type="button" [matMenuTriggerFor]="menu">
       <div class="button-content">Versions <mat-icon>arrow_drop_down</mat-icon></div>
     </button>
 

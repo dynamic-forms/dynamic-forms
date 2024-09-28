@@ -1,11 +1,11 @@
 @if (items$ | async; as items) {
-  <button mat-button color="primary" [matMenuTriggerFor]="examples">
+  <button mat-button color="primary" type="button" [matMenuTriggerFor]="examples">
     <div class="button-content">Examples <mat-icon>arrow_drop_down</mat-icon></div>
   </button>
 
   <mat-menu #examples="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="boostrapMenuPanel.menu">Bootstrap</button>
-    <button mat-menu-item [matMenuTriggerFor]="materialMenuPanel.menu">Material</button>
+    <button mat-menu-item type="button" [matMenuTriggerFor]="boostrapMenuPanel.menu">Bootstrap</button>
+    <button mat-menu-item type="button" [matMenuTriggerFor]="materialMenuPanel.menu">Material</button>
   </mat-menu>
 
   <app-examples-menu-panel #boostrapMenuPanel [baseUrl]="'/examples/bootstrap'" [items]="items" />

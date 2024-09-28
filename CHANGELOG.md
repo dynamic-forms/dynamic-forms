@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.1.0 (2024-09-28)
+
+* Release without any notable changes in comparison to 18.1.0-rc.0
+
+## 18.1.0-rc.0 (2024-09-28)
+
+* Release without any notable changes in comparison to 18.1.0-next.0
+
 ## 18.1.0-next.0 (2024-09-26)
 
 ### Features
