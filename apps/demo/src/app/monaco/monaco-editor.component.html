@@ -1,12 +1,12 @@
 <div class="monaco-editor">
   <div class="monaco-editor-toolbar">
-    <button mat-button [matMenuTriggerFor]="fileMenu">File</button>
+    <button mat-button type="button" [matMenuTriggerFor]="fileMenu">File</button>
     <mat-menu #fileMenu="matMenu">
-      <button mat-menu-item (click)="fileUpload.click()">
+      <button mat-menu-item type="button" (click)="fileUpload.click()">
         <span>Open file</span>
         <input #fileUpload hidden type="file" accept=".json" (change)="handleFileUpload($event.target.files)" />
       </button>
-      <button mat-menu-item (click)="handleFileDownload()">
+      <button mat-menu-item type="button" (click)="handleFileDownload()">
         <span>Save file</span>
       </button>
     </mat-menu>

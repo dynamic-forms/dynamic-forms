@@ -4,7 +4,7 @@
   }
   @for (item of items; track $index) {
     @if (item.items) {
-      <button mat-menu-item [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
+      <button mat-menu-item type="button" [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
       <app-editor-menu-panel #menuPanel [baseUrl]="baseUrl" [level]="level + 1" [items]="item.items" />
     }
     @if (item.id) {
