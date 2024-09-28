@@ -1,7 +1,6 @@
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { DynamicFormComponentFactory } from './dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from './dynamic-form/dynamic-form.builder';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { dynamicFormActionProviders, withDynamicFormActionDefaultFeatures } from './dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormIconProviders } from './dynamic-form-action/dynamic-form-icon/dynamic-form-icon.module';
 import { withDynamicFormArrayDefaultFeatures } from './dynamic-form-array/dynamic-form-array.module';
@@ -79,22 +78,4 @@ export function provideDynamicFormsWithDefaultFeatures(
 ): Provider[] {
   const features = [...dynamicFormsDefaultFeatures, ...additionalFeatures];
   return provideDynamicForms(library, ...features);
-}
-
-/**
- * @deprecated Use {@link provideDynamicForms} in combination with standalone component {@link DynamicFormComponent} instead.
- */
-@NgModule({
-  imports: [DynamicFormComponent],
-  exports: [DynamicFormComponent],
-  providers: provideDynamicForms(),
-})
-export class DynamicFormsModule {
-  /**
-   * @deprecated Use {@link provideDynamicForms} instead.
-   */
-  static withFeatures(...features: DynamicFormsFeature[]): ModuleWithProviders<DynamicFormsModule> {
-    const providers = importDynamicFormsProviders(...features);
-    return { ngModule: DynamicFormsModule, providers };
-  }
 }

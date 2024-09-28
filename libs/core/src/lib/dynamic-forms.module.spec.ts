@@ -17,9 +17,7 @@ import { DYNAMIC_FORM_VALIDATION_CONFIGS } from './dynamic-form-validation/dynam
 import { DynamicFormValidationBuilder } from './dynamic-form-validation/dynamic-form-validation.builder';
 import { DynamicFormValidationService } from './dynamic-form-validation/dynamic-form-validation.service';
 import {
-  DynamicFormsModule,
   dynamicFormsDefaultFeatures,
-  importDynamicFormsProviders,
   mergeDynamicFormsFeatures,
   provideDynamicForms,
   provideDynamicFormsWithDefaultFeatures,
@@ -28,8 +26,6 @@ import {
 describe('DynamicFormsModule', () => {
   describe('without DYNAMIC_FORM_LIBRARY using', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'DynamicFormsModule', def: { imports: [DynamicFormsModule] } },
-      { name: 'DynamicFormsModule.withFeatures', def: { imports: [DynamicFormsModule.withFeatures()] } },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms() } },
     ];
 
@@ -108,10 +104,6 @@ describe('DynamicFormsModule', () => {
 
   describe('with DYNAMIC_FORM_LIBRARY using', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'DynamicFormsModule',
-        def: { imports: [DynamicFormsModule], providers: [{ provide: DYNAMIC_FORM_LIBRARY, useValue: dynamicFormLibrary }] },
-      },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms(dynamicFormLibrary) } },
     ];
 
@@ -208,16 +200,6 @@ describe('DynamicFormsModule', () => {
 
   describe('with DYNAMIC_FORM_LIBRARY and default features using', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'DynamicFormsModule',
-        def: {
-          imports: [DynamicFormsModule],
-          providers: [
-            { provide: DYNAMIC_FORM_LIBRARY, useValue: dynamicFormLibrary },
-            ...importDynamicFormsProviders(...dynamicFormsDefaultFeatures),
-          ],
-        },
-      },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms(dynamicFormLibrary, ...dynamicFormsDefaultFeatures) } },
       {
         name: 'provideDynamicForms',

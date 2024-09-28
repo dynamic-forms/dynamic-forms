@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { DynamicFormActionType } from '../dynamic-form-action/dynamic-form-action-type';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG } from '../dynamic-form-action/dynamic-form-action-type-config';
 import { DynamicFormElementType } from '../dynamic-form-element/dynamic-form-element-type';
@@ -67,90 +67,4 @@ export function withDynamicFormFieldWrappers(...fieldWrapperTypes: DynamicFormFi
     };
   });
   return { providers };
-}
-
-/**
- * @deprecated Use {@link dynamicFormConfigProviders} instead.
- */
-@NgModule({ providers: dynamicFormConfigProviders })
-export class DynamicFormConfigModule {
-  /**
-   * @deprecated Use {@link withDynamicFormElements} instead.
-   */
-  static withElement(elementType: DynamicFormElementType): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormElements(elementType);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormElements} instead.
-   */
-  static withElements(elementTypes: DynamicFormElementType[]): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormElements(...elementTypes);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormFields} instead.
-   */
-  static withField(fieldType: DynamicFormFieldType): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormFields(fieldType);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormFields} instead.
-   */
-  static withFields(fieldTypes: DynamicFormFieldType[]): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormFields(...fieldTypes);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormActions} instead.
-   */
-  static withAction(actionType: DynamicFormActionType): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormActions(actionType);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormActions} instead.
-   */
-  static withActions(actionTypes: DynamicFormActionType[]): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormActions(...actionTypes);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormInputs} instead.
-   */
-  static withInput(inputType: DynamicFormInputType): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormInputs(inputType);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormInputs} instead.
-   */
-  static withInputs(inputTypes: DynamicFormInputType[]): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormInputs(...inputTypes);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormFieldWrappers} instead.
-   */
-  static withFieldWrapper(fieldWrapperType: DynamicFormFieldWrapperType): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormFieldWrappers(fieldWrapperType);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormFieldWrappers} instead.
-   */
-  static withFieldWrappers(fieldWrapperTypes: DynamicFormFieldWrapperType[]): ModuleWithProviders<DynamicFormConfigModule> {
-    const feature = withDynamicFormFieldWrappers(...fieldWrapperTypes);
-    return { ngModule: DynamicFormConfigModule, providers: feature.providers };
-  }
 }

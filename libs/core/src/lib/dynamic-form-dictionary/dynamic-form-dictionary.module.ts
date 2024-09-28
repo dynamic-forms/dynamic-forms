@@ -1,19 +1,13 @@
-import { NgModule } from '@angular/core';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import {
-  DynamicFormActionModule,
-  withDynamicFormActionHandlerFactory,
-  withDynamicFormActionHandlers,
-} from '../dynamic-form-action/dynamic-form-action.module';
-import { DynamicFormConfigModule, withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
+import { withDynamicFormActionHandlerFactory, withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
+import { withDynamicFormFields } from '../dynamic-form-config/dynamic-form-config.module';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { withDynamicFormDictionaryValidators } from '../dynamic-form-validation/dynamic-form-validation.module';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
-import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryFactory } from './dynamic-form-dictionary-factory';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
@@ -88,15 +82,3 @@ export function withDynamicFormDictionaryDefaultFeatures(): DynamicFormsFeature[
     withDynamicFormActionHandlerFactory(dynamicFormDictionaryRegisterFieldHandlerFactory, [DynamicFormBuilder]),
   ];
 }
-
-const modules = [DynamicFormActionModule, DynamicFormConfigModule];
-
-/**
- * @deprecated Use {@link withDynamicFormDictionaryDefaultFeatures} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(...withDynamicFormDictionaryDefaultFeatures()),
-})
-export class DynamicFormDictionaryModule {}

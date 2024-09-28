@@ -3,18 +3,11 @@ import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig, provideDyna
 import { DynamicFormInputMaskConverterService } from '@dynamic-forms/core/input-mask';
 import { matDynamicFormLibrary } from '@dynamic-forms/material';
 import { withMatDynamicFormInputMaskConverters } from './dynamic-form-input-mask-converter';
-import { MatDynamicFormInputMaskModule, matDynamicFormInputMaskType, withMatDynamicFormInputMask } from './dynamic-form-input-mask.module';
+import { matDynamicFormInputMaskType, withMatDynamicFormInputMask } from './dynamic-form-input-mask.module';
 
 describe('MatDynamicFormInputMaskModule', () => {
   describe('withMatDynamicFormInputMask', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'MatDynamicFormInputMaskModule',
-        def: {
-          imports: [MatDynamicFormInputMaskModule],
-          providers: provideDynamicForms(matDynamicFormLibrary),
-        },
-      },
       {
         name: 'provideDynamicForms',
         def: { providers: provideDynamicForms(matDynamicFormLibrary, withMatDynamicFormInputMask()) },
@@ -45,13 +38,6 @@ describe('MatDynamicFormInputMaskModule', () => {
 
   describe('withMatDynamicFormInputMaskConverters', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      {
-        name: 'MatDynamicFormInputMaskModule',
-        def: {
-          imports: [MatDynamicFormInputMaskModule],
-          providers: provideDynamicForms(matDynamicFormLibrary, withMatDynamicFormInputMaskConverters()),
-        },
-      },
       {
         name: 'provideDynamicForms',
         def: {

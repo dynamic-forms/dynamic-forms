@@ -1,6 +1,5 @@
-import { NgModule, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import {
-  DynamicFormConfigModule,
   DynamicFormElementType,
   DynamicFormsFeature,
   dynamicFormLibrary,
@@ -24,15 +23,3 @@ export function withDynamicFormsMarkdownFeatures(): DynamicFormsFeature[] {
 export function provideDynamicFormsMarkdown(): Provider[] {
   return importDynamicFormsProviders(...withDynamicFormsMarkdownFeatures());
 }
-
-const modules = [DynamicFormConfigModule];
-
-/**
- * @deprecated Use {@link provideDynamicFormsMarkdown} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: provideDynamicFormsMarkdown(),
-})
-export class DynamicFormMarkdownModule {}

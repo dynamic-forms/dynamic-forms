@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
 import { DynamicFormActionHandler } from '../dynamic-form-action/dynamic-form-action-handler';
-import { DynamicFormActionModule, withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
+import { withDynamicFormActionHandlers } from '../dynamic-form-action/dynamic-form-action.module';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
-import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormField } from './dynamic-form-field';
 
 export const dynamicFormFieldClear = (field: DynamicFormField): void => field.clear();
@@ -77,15 +75,3 @@ export const dynamicFormFieldActionHandlerDefaults = [
 export function withDynamicFormFieldDefaultFeatures(): DynamicFormsFeature[] {
   return [withDynamicFormActionHandlers(...dynamicFormFieldActionHandlerDefaults)];
 }
-
-const modules = [DynamicFormActionModule];
-
-/**
- * @deprecated Use {@link withDynamicFormFieldDefaultFeatures} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(...withDynamicFormFieldDefaultFeatures()),
-})
-export class DynamicFormFieldModule {}

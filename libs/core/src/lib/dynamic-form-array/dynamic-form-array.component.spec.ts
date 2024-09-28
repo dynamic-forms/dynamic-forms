@@ -10,7 +10,6 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormArray } from './dynamic-form-array';
 import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayComponent } from './dynamic-form-array.component';
-import { DynamicFormArrayModule } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayComponent', () => {
   let fixture: ComponentFixture<DynamicFormArrayComponent>;
@@ -23,7 +22,6 @@ describe('DynamicFormArrayComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [DynamicFormArrayModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

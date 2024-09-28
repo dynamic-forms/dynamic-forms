@@ -10,7 +10,6 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { DynamicFormDictionaryDefinition } from './dynamic-form-dictionary-definition';
 import { DynamicFormDictionaryComponent } from './dynamic-form-dictionary.component';
-import { DynamicFormDictionaryModule } from './dynamic-form-dictionary.module';
 
 describe('DynamicFormDictionaryComponent', () => {
   let fixture: ComponentFixture<DynamicFormDictionaryComponent>;
@@ -23,7 +22,6 @@ describe('DynamicFormDictionaryComponent', () => {
     builder = {} as any;
 
     TestBed.configureTestingModule({
-      imports: [DynamicFormDictionaryModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

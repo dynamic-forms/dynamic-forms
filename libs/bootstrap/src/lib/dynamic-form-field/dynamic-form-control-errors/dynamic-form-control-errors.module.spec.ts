@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, DynamicFormFieldWrapperTypeConfig } from '@dynamic-forms/core';
-import { BsDynamicFormControlErrorsModule, bsDynamicFormControlErrorsType } from './dynamic-form-control-errors.module';
+import {
+  DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
+  DynamicFormFieldWrapperTypeConfig,
+  importDynamicFormsProviders,
+} from '@dynamic-forms/core';
+import { bsDynamicFormControlErrorsType, withBsDynamicFormControlErrors } from './dynamic-form-control-errors.module';
 
 describe('BsDynamicFormControlErrorsModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BsDynamicFormControlErrorsModule],
+      providers: importDynamicFormsProviders(withBsDynamicFormControlErrors()),
     });
   });
 

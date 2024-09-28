@@ -1,11 +1,4 @@
-import { NgModule } from '@angular/core';
-import {
-  DynamicFormElementType,
-  DynamicFormModalModule,
-  dynamicFormModalFactory,
-  importDynamicFormsProviders,
-  withDynamicFormElements,
-} from '@dynamic-forms/core';
+import { DynamicFormElementType, DynamicFormsFeature, dynamicFormModalFactory, withDynamicFormElements } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 
@@ -16,14 +9,6 @@ export const matDynamicFormModalType: DynamicFormElementType = {
   libraryName: matDynamicFormLibrary.name,
 };
 
-const modules = [DynamicFormModalModule];
-
-/**
- * @deprecated Use {@link withMatDynamicFormElementDefaultFeatures} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormElements(matDynamicFormModalType)),
-})
-export class MatDynamicFormModalModule {}
+export function withMatDynamicFormModal(): DynamicFormsFeature {
+  return withDynamicFormElements(matDynamicFormModalType);
+}

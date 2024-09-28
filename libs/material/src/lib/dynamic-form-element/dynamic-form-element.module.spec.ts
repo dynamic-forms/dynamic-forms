@@ -1,30 +1,18 @@
-import { TestBed, TestModuleMetadata, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
-import {
-  MatDynamicFormElementModule,
-  matDynamicFormElementTypes,
-  withMatDynamicFormElementDefaultFeatures,
-} from './dynamic-form-element.module';
+import { matDynamicFormElementTypes, withMatDynamicFormElementDefaultFeatures } from './dynamic-form-element.module';
 
-describe('MatDynamicFormElementModule', () => {
-  const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'MatDynamicFormElementModule', def: { imports: [MatDynamicFormElementModule] } },
-    {
-      name: 'withMatDynamicFormElementDefaultFeatures',
-      def: { providers: importDynamicFormsProviders(...withMatDynamicFormElementDefaultFeatures()) },
-    },
-  ];
-
-  testModules.forEach(testModule => {
-    beforeEach(() => {
-      TestBed.configureTestingModule(testModule.def);
+describe('withMatDynamicFormElementDefaultFeatures', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: importDynamicFormsProviders(...withMatDynamicFormElementDefaultFeatures()),
     });
-
-    it('provides  DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
-      expect(config.length).toBe(6);
-      expect(config[3]).toEqual(matDynamicFormElementTypes[0]);
-      expect(config[4]).toEqual(matDynamicFormElementTypes[1]);
-      expect(config[5]).toEqual(matDynamicFormElementTypes[2]);
-    }));
   });
+
+  it('provides  DYNAMIC_FORM_ELEMENT_TYPE_CONFIG', inject([DYNAMIC_FORM_ELEMENT_TYPE_CONFIG], (config: DynamicFormElementTypeConfig) => {
+    expect(config.length).toBe(3);
+    expect(config[0]).toEqual(matDynamicFormElementTypes[0]);
+    expect(config[1]).toEqual(matDynamicFormElementTypes[1]);
+    expect(config[2]).toEqual(matDynamicFormElementTypes[2]);
+  }));
 });

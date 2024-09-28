@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG, DynamicFormFieldWrapperTypeConfig } from '@dynamic-forms/core';
-import { BsDynamicFormControlLabelModule, bsDynamicFormControlLabelType } from './dynamic-form-control-label.module';
+import {
+  DYNAMIC_FORM_FIELD_WRAPPER_TYPE_CONFIG,
+  DynamicFormFieldWrapperTypeConfig,
+  importDynamicFormsProviders,
+} from '@dynamic-forms/core';
+import { bsDynamicFormControlLabelType, withBsDynamicFormControlLabel } from './dynamic-form-control-label.module';
 
 describe('BsDynamicFormControlLabelModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BsDynamicFormControlLabelModule],
+      providers: importDynamicFormsProviders(withBsDynamicFormControlLabel()),
     });
   });
 

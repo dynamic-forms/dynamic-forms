@@ -8,7 +8,6 @@ import {
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
-import { BsDynamicFormControlErrorsModule } from './dynamic-form-control-errors.module';
 
 @Component({
   standalone: true,
@@ -22,7 +21,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  imports: [BsDynamicFormControlErrorsModule],
   providers: [
     {
       provide: DynamicFormLibraryService,

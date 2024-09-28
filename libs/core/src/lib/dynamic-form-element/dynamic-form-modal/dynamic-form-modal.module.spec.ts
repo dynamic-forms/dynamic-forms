@@ -2,26 +2,28 @@ import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionService } from '../../dynamic-form-action/dynamic-form-action.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import { DynamicFormModal } from './dynamic-form-modal';
 import {
-  DynamicFormModalModule,
   dynamicFormModalCloseHandler,
   dynamicFormModalMaximizeHandler,
   dynamicFormModalMinimizeHandler,
   dynamicFormModalOpenHandler,
   dynamicFormModalToggleHandler,
   dynamicFormModalToggleSizeHandler,
+  withDynamicFormModalActionHandlers,
 } from './dynamic-form-modal.module';
 
 describe('DynamicFormModalModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModalModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService(dynamicFormLibrary),
         },
+        DynamicFormActionService,
+        importDynamicFormsProviders(withDynamicFormModalActionHandlers()),
       ],
     });
   });

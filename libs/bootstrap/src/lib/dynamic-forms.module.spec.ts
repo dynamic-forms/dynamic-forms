@@ -20,12 +20,11 @@ import {
   provideDynamicForms,
 } from '@dynamic-forms/core';
 import { bsDynamicFormLibrary } from './dynamic-form-library/dynamic-form-library';
-import { BsDynamicFormsModule, provideBsDynamicForms, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
+import { provideBsDynamicForms, provideBsDynamicFormsWithDefaultFeatures } from './dynamic-forms.module';
 
 describe('BsDynamicFormsModule', () => {
   describe('without providers', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule] } },
       { name: 'provideDynamicForms', def: { providers: provideDynamicForms() } },
     ];
 
@@ -86,7 +85,6 @@ describe('BsDynamicFormsModule', () => {
 
   describe('forRoot', () => {
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'BsDynamicFormsModule.root', def: { imports: [BsDynamicFormsModule.forRoot()] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures() } },
     ];
 
@@ -163,7 +161,6 @@ describe('BsDynamicFormsModule', () => {
   describe('forRoot with config', () => {
     const config = { theme: 'theme', idBuilder: { createId: () => 'dynamic-form-id' } };
     const testModules: { name: string; def: TestModuleMetadata }[] = [
-      { name: 'BsDynamicFormsModule', def: { imports: [BsDynamicFormsModule.forRoot(config)] } },
       { name: 'provideBsDynamicFormsWithDefaultFeatures', def: { providers: provideBsDynamicFormsWithDefaultFeatures(config) } },
     ];
 

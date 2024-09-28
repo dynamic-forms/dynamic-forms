@@ -1,5 +1,16 @@
 # Changelog
 
+## 19.0.0-next.0
+
+* **core:** update to angular 19(next)
+* **core:** removed all deprecated modules
+* **bootstrap:** update to angular 19 (next)
+* **bootstrap:** removed all deprecated modules
+* **material:** update to angular and angular material 19 (next)
+* **material:** removed all deprecated modules
+* **markdown:** update to angular 19 (next)
+* **markdown:** removed all deprecated modules
+
 ## 18.1.0 (2024-09-28)
 
 * Release without any notable changes in comparison to 18.1.0-rc.0
