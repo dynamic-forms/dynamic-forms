@@ -2,22 +2,22 @@ import { Injectable, Provider } from '@angular/core';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
 export abstract class DatetimeAdapter<TDatetime, TLocale = any> extends DateAdapter<TDatetime, TLocale> {
-  abstract getHours(date: TDatetime): number;
-  abstract getMinutes(date: TDatetime): number;
-  abstract getSeconds(date: TDatetime): number;
+  abstract override getHours(date: TDatetime): number;
+  abstract override getMinutes(date: TDatetime): number;
+  abstract override getSeconds(date: TDatetime): number;
 }
 
 @Injectable()
 export class NativeDatetimeAdapter extends NativeDateAdapter implements DatetimeAdapter<Date> {
-  getHours(date: Date): number {
+  override getHours(date: Date): number {
     return date.getHours();
   }
 
-  getMinutes(date: Date): number {
+  override getMinutes(date: Date): number {
     return date.getMinutes();
   }
 
-  getSeconds(date: Date): number {
+  override getSeconds(date: Date): number {
     return date.getSeconds();
   }
 
