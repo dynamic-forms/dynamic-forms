@@ -22,8 +22,3 @@ export class AppService {
     this.iconService.register();
   }
 }
-
-export const appInitializer =
-  (appService: AppService): (() => void) =>
-  () =>
-    appService.init();
