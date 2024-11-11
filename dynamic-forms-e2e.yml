@@ -18,6 +18,8 @@ steps:
   inputs:
     command: custom
     customCommand: install
+- script: npx playwright install --with-deps
+  displayName: 'Install Playwright browsers'
 - task: Npm@1
   displayName: npm build libs
   inputs:
@@ -28,9 +30,18 @@ steps:
   continueOnError: True
   inputs:
     command: custom
-    customCommand: run e2e:azure:prod
-- task: PublishProtractorReport@1
-  displayName: publish e2e report
-  continueOnError: True
+    customCommand: run e2e
+# - task: PublishProtractorReport@1
+#   displayName: publish e2e report
+#   continueOnError: True
+#   inputs:
+#     cwd: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e
+- task: PublishTestResults@2
+  displayName: 'Publish test results'
   inputs:
-    cwd: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e
+    searchFolder: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'junit-results.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'e2e Tests'
