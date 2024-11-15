@@ -1,9 +1,5 @@
-import { NgModule } from '@angular/core';
 import {
-  DynamicFormFileModule,
-  DynamicFormTextboxModule,
   DynamicFormsFeature,
-  importDynamicFormsProviders,
   withDynamicFormDatepickerValidators,
   withDynamicFormFileValidators,
   withDynamicFormInputs,
@@ -45,15 +41,3 @@ export function withBsDynamicFormInputDefaultFeatures(): DynamicFormsFeature[] {
     ...withDynamicFormDatepickerValidators(),
   ];
 }
-
-const modules = [DynamicFormFileModule, DynamicFormTextboxModule];
-
-/**
- * @deprecated Use {@link withBsDynamicFormInputDefaultFeatures} instead.
- */
-@NgModule({
-  imports: modules,
-  exports: modules,
-  providers: importDynamicFormsProviders(withDynamicFormInputs(...bsDynamicFormInputTypes)),
-})
-export class BsDynamicFormInputModule {}

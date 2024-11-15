@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { DynamicFormsFeature } from '../dynamic-forms-feature';
 import { dynamicFormConsoleLogger } from './dynamic-form-console.logger';
 import { DYNAMIC_FORM_ERROR_SETTINGS, DynamicFormErrorSettings } from './dynamic-form-error-settings';
@@ -37,42 +37,4 @@ export function withDynamicFormLoggers(...loggerTypes: DynamicFormLoggerType[]):
     };
   });
   return { providers };
-}
-
-/**
- * @deprecated Use {@link dynamicFormErrorProviders} instead.
- */
-@NgModule({ providers: dynamicFormErrorProviders })
-export class DynamicFormErrorModule {
-  /**
-   * @deprecated Use {@link withDynamicFormErrorSettings} instead.
-   */
-  static withErrorSettings(settings: DynamicFormErrorSettings): ModuleWithProviders<DynamicFormErrorModule> {
-    const feature = withDynamicFormErrorSettings(settings);
-    return { ngModule: DynamicFormErrorModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormLoggerSettings} instead.
-   */
-  static withLoggerSettings(settings: DynamicFormLoggerSettings): ModuleWithProviders<DynamicFormErrorModule> {
-    const feature = withDynamicFormLoggerSettings(settings);
-    return { ngModule: DynamicFormErrorModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormLoggers} instead.
-   */
-  static withLogger(loggerType: DynamicFormLoggerType): ModuleWithProviders<DynamicFormErrorModule> {
-    const feature = withDynamicFormLoggers(loggerType);
-    return { ngModule: DynamicFormErrorModule, providers: feature.providers };
-  }
-
-  /**
-   * @deprecated Use {@link withDynamicFormLoggers} instead.
-   */
-  static withLoggers(loggerTypes: DynamicFormLoggerType[]): ModuleWithProviders<DynamicFormErrorModule> {
-    const feature = withDynamicFormLoggers(...loggerTypes);
-    return { ngModule: DynamicFormErrorModule, providers: feature.providers };
-  }
 }

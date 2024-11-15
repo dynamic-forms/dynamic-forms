@@ -13,14 +13,21 @@ import {
 import { DynamicFormInputType } from '../dynamic-form-input/dynamic-form-input-type';
 import { DYNAMIC_FORM_INPUT_TYPE_CONFIG, DynamicFormInputTypeConfig } from '../dynamic-form-input/dynamic-form-input-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
-import { DynamicFormConfigModule } from './dynamic-form-config.module';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
+import {
+  withDynamicFormActions,
+  withDynamicFormElements,
+  withDynamicFormFieldWrappers,
+  withDynamicFormFields,
+  withDynamicFormInputs,
+} from './dynamic-form-config.module';
 import { DynamicFormConfigService } from './dynamic-form-config.service';
 
 describe('DynamicFormConfigModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule],
+        providers: [DynamicFormConfigService],
       });
     });
 
@@ -32,12 +39,12 @@ describe('DynamicFormConfigModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          DynamicFormConfigService,
         ],
       });
     });
@@ -53,13 +60,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withElement(type)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormElements(type)),
       });
     });
 
@@ -78,13 +79,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withElements(types)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormElements(...types)),
       });
     });
 
@@ -100,13 +95,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withField(type)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormFields(type)),
       });
     });
 
@@ -125,13 +114,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withFields(types)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormFields(...types)),
       });
     });
 
@@ -147,13 +130,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withAction(type)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormActions(type)),
       });
     });
 
@@ -172,13 +149,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withActions(types)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormActions(...types)),
       });
     });
 
@@ -194,13 +165,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withInput(type)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormInputs(type)),
       });
     });
 
@@ -219,13 +184,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withInputs(types)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormInputs(...types)),
       });
     });
 
@@ -241,13 +200,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withFieldWrapper(type)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormFieldWrappers(type)),
       });
     });
 
@@ -269,13 +222,7 @@ describe('DynamicFormConfigModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormConfigModule.withFieldWrappers(types)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormFieldWrappers(...types)),
       });
     });
 

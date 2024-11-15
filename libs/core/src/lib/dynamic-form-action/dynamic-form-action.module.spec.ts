@@ -5,15 +5,18 @@ import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionHandler } from './dynamic-form-action-handler';
 import { DYNAMIC_FORM_ACTION_HANDLER_CONFIG, DynamicFormActionHandlerConfig } from './dynamic-form-action-handler-config';
-import { DynamicFormActionModule, dynamicFormDialogHandlers, withDynamicFormActionDefaultFeatures } from './dynamic-form-action.module';
+import {
+  dynamicFormDialogHandlers,
+  withDynamicFormActionDefaultFeatures,
+  withDynamicFormActionHandlerFactory,
+  withDynamicFormActionHandlers,
+} from './dynamic-form-action.module';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
 describe('DynamicFormActionModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule],
-      });
+      TestBed.configureTestingModule({});
     });
 
     it('does not provide DynamicFormActionService', () => {
@@ -28,7 +31,6 @@ describe('DynamicFormActionModule', () => {
   describe('with default features provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule],
         providers: importDynamicFormsProviders(...withDynamicFormActionDefaultFeatures()),
       });
     });
@@ -49,12 +51,12 @@ describe('DynamicFormActionModule', () => {
   describe('with default features and DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService(dynamicFormLibrary),
           },
+          DynamicFormActionService,
           ...importDynamicFormsProviders(...withDynamicFormActionDefaultFeatures()),
         ],
       });
@@ -104,13 +106,7 @@ describe('DynamicFormActionModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule.withHandler(handler)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormActionHandlers(handler)),
       });
     });
 
@@ -132,13 +128,7 @@ describe('DynamicFormActionModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule.withHandlers(handlers)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormActionHandlers(...handlers)),
       });
     });
 
@@ -159,13 +149,7 @@ describe('DynamicFormActionModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormActionModule.withHandlerFactory(handlerFactory, [])],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormActionHandlerFactory(handlerFactory, [])),
       });
     });
 

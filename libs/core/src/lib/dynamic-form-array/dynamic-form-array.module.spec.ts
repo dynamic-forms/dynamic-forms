@@ -8,17 +8,18 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormArray } from './dynamic-form-array';
 import { dynamicFormArrayValidatorTypes } from './dynamic-form-array-validator-type';
 import { DYNAMIC_FORM_ARRAY_VALIDATOR_TYPE_CONFIG, DynamicFormArrayValidatorTypeConfig } from './dynamic-form-array-validator-type-config';
 import {
-  DynamicFormArrayModule,
   dynamicFormArrayClearFieldsHandler,
   dynamicFormArrayMoveFieldDownHandler,
   dynamicFormArrayMoveFieldUpHandler,
   dynamicFormArrayPopFieldHandler,
   dynamicFormArrayRemoveFieldHandler,
   dynamicFormArrayType,
+  withDynamicFormArrayDefaultFeatures,
 } from './dynamic-form-array.module';
 
 describe('DynamicFormArrayModule', () => {
@@ -28,7 +29,6 @@ describe('DynamicFormArrayModule', () => {
     formBuilder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
-      imports: [DynamicFormArrayModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -38,6 +38,9 @@ describe('DynamicFormArrayModule', () => {
           provide: DynamicFormBuilder,
           useValue: formBuilder,
         },
+        DynamicFormConfigService,
+        DynamicFormActionService,
+        importDynamicFormsProviders(...withDynamicFormArrayDefaultFeatures()),
       ],
     });
   });

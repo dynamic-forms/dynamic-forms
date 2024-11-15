@@ -10,7 +10,6 @@ import {
   DynamicFormModalDefinition,
 } from '@dynamic-forms/core';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
-import { MatDynamicFormModalModule } from './dynamic-form-modal.module';
 
 describe('MatDynamicFormModalComponent', () => {
   let fixture: ComponentFixture<MatDynamicFormModalComponent>;
@@ -20,7 +19,7 @@ describe('MatDynamicFormModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, MatDynamicFormModalModule],
+      imports: [NoopAnimationsModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

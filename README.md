@@ -65,6 +65,13 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 ## **Packages**
 
+### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/19.0.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/19.0.0-next.0)
+
+- `npm install @dynamic-forms/core@19.0.0-next.0`
+- `npm install @dynamic-forms/bootstrap@19.0.0-next.0`
+- `npm install @dynamic-forms/material@19.0.0-next.0`
+- `npm install @dynamic-forms/markdown@19.0.0-next.0`
+
 ### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/18.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/18.1.0)
 
 - `npm install @dynamic-forms/core@18.1.0`
@@ -93,14 +100,12 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 - `npm install @dynamic-forms/material@15.1.0`
 - `npm install @dynamic-forms/markdown@15.1.0`
 
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v14/dynamic-forms-v14-publish?branchName=refs/tags/14.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=32&branchName=refs/tags/14.1.0)
-
-- `npm install @dynamic-forms/core@14.1.0`
-- `npm install @dynamic-forms/bootstrap@14.1.0`
-- `npm install @dynamic-forms/material@14.1.0`
-- `npm install @dynamic-forms/markdown@14.1.0`
-
 ## **Demos**
+
+### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=19.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=19.0.x)
+
+- Built with [Angular 19](https://next.angular.dev/)
+- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v19/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v19/)
 
 ### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=18.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=18.1.x)
 
@@ -121,8 +126,3 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 - Built with [Angular 15](https://v15.angular.io/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v15/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v15/)
-
-### **Version 14** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-v14-cd?branchName=14.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=30&branchName=14.0.x)
-
-- Built with [Angular 14](https://v14.angular.io/)
-- Environments include [DEV](https://dynamic-forms.azurewebsites.net/v14/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v14/)

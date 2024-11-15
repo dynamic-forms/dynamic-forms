@@ -5,15 +5,14 @@ import {
   DynamicFormControlEvaluatorTypeConfig,
 } from '../dynamic-form-control/dynamic-form-control-evaluator-type-config';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormEvaluationBuilder } from './dynamic-form-evaluation.builder';
-import { DynamicFormEvaluationModule } from './dynamic-form-evaluation.module';
+import { withDynamicFormControlEvaluators } from './dynamic-form-evaluation.module';
 
 describe('DynamicFormEvaluationModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [DynamicFormEvaluationModule],
-      });
+      TestBed.configureTestingModule({});
     });
 
     it('does not provide DynamicFormEvaluationBuilder', () => {
@@ -24,12 +23,12 @@ describe('DynamicFormEvaluationModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormEvaluationModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          DynamicFormEvaluationBuilder,
         ],
       });
     });
@@ -48,13 +47,7 @@ describe('DynamicFormEvaluationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormEvaluationModule.withControlEvaluator(controlEvaluatorType)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormControlEvaluators(controlEvaluatorType)),
       });
     });
 
@@ -75,13 +68,7 @@ describe('DynamicFormEvaluationModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormEvaluationModule.withControlEvaluators(controlEvaluatorTypes)],
-        providers: [
-          {
-            provide: DynamicFormLibraryService,
-            useValue: new DynamicFormLibraryService({ name: 'test' }),
-          },
-        ],
+        providers: importDynamicFormsProviders(withDynamicFormControlEvaluators(...controlEvaluatorTypes)),
       });
     });
 

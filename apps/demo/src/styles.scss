@@ -1,27 +1,25 @@
 @use "@angular/material" as mat;
 
-@include mat.core();
-
 :root {
-  --sys-display-large: 500 24px/32px Roboto, sans-serif;
-  --sys-display-large-tracking: normal;
+  --mat-sys-display-large: 500 24px/32px Roboto, sans-serif;
+  --mat-sys-display-large-tracking: normal;
 
-  --sys-display-medium: 500 20px/28px Roboto, sans-serif;
-  --sys-display-medium-tracking: normal;
+  --mat-sys-display-medium: 500 20px/28px Roboto, sans-serif;
+  --mat-sys-display-medium-tracking: normal;
 
-  --sys-display-small: 500 20px/24px Roboto, sans-serif;
-  --sys-display-small-tracking: normal;
+  --mat-sys-display-small: 500 20px/24px Roboto, sans-serif;
+  --mat-sys-display-small-tracking: normal;
 
-  --sys-body-large: 400 14px/20px Roboto, sans-serif;
-  --sys-body-large-tracking: normal;
+  --mat-sys-body-large: 400 14px/20px Roboto, sans-serif;
+  --mat-sys-body-large-tracking: normal;
 
-  --sys-body-medium-size: 14px;
-  --sys-body-medium-line-height: normal;
-  --sys-body-medium-tracking: normal;
+  --mat-sys-body-medium-size: 14px;
+  --mat-sys-body-medium-line-height: normal;
+  --mat-sys-body-medium-tracking: normal;
 
-  --sys-body-small-size: 12px;
-  --sys-body-small-line-height: 20px;
-  --sys-body-small-tracking: .0333333em;
+  --mat-sys-body-small-size: 12px;
+  --mat-sys-body-small-line-height: 20px;
+  --mat-sys-body-small-tracking: .0333333em;
 }
 
 $app-light-theme: mat.define-theme((

@@ -20,16 +20,16 @@ export abstract class DynamicFormInputMaskTestComponentBase {
 }
 
 @Component({
-  selector: 'dynamic-form-input-mask-test',
   standalone: true,
+  selector: 'dynamic-form-input-mask-test',
   template: '<input [dynamicFormInputMask]="inputMask" [formControl]="inputMask.control">',
   imports: [DynamicFormInputMaskDirective, ReactiveFormsModule],
 })
 export class DynamicFormInputMaskTestComponent extends DynamicFormInputMaskTestComponentBase {}
 
 @Component({
-  selector: 'dynamic-form-input-mask-test-without-form-control',
   standalone: true,
+  selector: 'dynamic-form-input-mask-test-without-form-control',
   template: '<input [dynamicFormInputMask]="inputMask">',
   imports: [DynamicFormInputMaskDirective],
 })
@@ -301,6 +301,18 @@ describe('DynamicFormInputMaskDirective', () => {
         expect(converter.parse).toHaveBeenCalledOnceWith('value', directive.control.maskOptions);
         expect(defaultConverter.parse).toHaveBeenCalledTimes(0);
         expect(handler.onChange).toHaveBeenCalledOnceWith('value');
+      });
+    });
+
+    describe('setDisabledState', () => {
+      it('sets disabled of input element', () => {
+        directive.setDisabledState(true);
+
+        expect(nativeElement.disabled).toBeTrue();
+
+        directive.setDisabledState(false);
+
+        expect(nativeElement.disabled).toBeFalse();
       });
     });
   });

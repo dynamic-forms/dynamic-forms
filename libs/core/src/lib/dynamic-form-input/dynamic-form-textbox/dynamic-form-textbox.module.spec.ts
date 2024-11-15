@@ -2,18 +2,20 @@ import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormActionService } from '../../dynamic-form-action/dynamic-form-action.service';
 import { dynamicFormLibrary } from '../../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import { DynamicFormTextboxControl } from './dynamic-form-textbox';
-import { DynamicFormTextboxModule, dynamicFormTextboxToggleAsTextTypeHandler } from './dynamic-form-textbox.module';
+import { dynamicFormTextboxToggleAsTextTypeHandler, withDynamicFormTextboxActionHandlers } from './dynamic-form-textbox.module';
 
 describe('DynamicFormTextboxModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormTextboxModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
           useValue: new DynamicFormLibraryService(dynamicFormLibrary),
         },
+        DynamicFormActionService,
+        importDynamicFormsProviders(withDynamicFormTextboxActionHandlers()),
       ],
     });
   });

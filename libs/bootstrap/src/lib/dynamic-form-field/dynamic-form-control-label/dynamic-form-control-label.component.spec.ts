@@ -8,7 +8,6 @@ import {
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
 import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
-import { BsDynamicFormControlLabelModule } from './dynamic-form-control-label.module';
 
 @Component({
   standalone: true,
@@ -22,7 +21,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  imports: [BsDynamicFormControlLabelModule],
   providers: [
     {
       provide: DynamicFormLibraryService,

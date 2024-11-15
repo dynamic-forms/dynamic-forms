@@ -9,13 +9,14 @@ import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
 import { dynamicFormLibrary } from '../dynamic-form-library/dynamic-form-library';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 import { dynamicFormDictionaryValidatorTypes } from './dynamic-form-dictionary-validator-type';
 import {
   DYNAMIC_FORM_DICTIONARY_VALIDATOR_TYPE_CONFIG,
   DynamicFormDictionaryValidatorTypeConfig,
 } from './dynamic-form-dictionary-validator-type-config';
-import { DynamicFormDictionaryModule, dynamicFormDictionaryType } from './dynamic-form-dictionary.module';
+import { dynamicFormDictionaryType, withDynamicFormDictionaryDefaultFeatures } from './dynamic-form-dictionary.module';
 
 describe('DynamicFormDictionaryModule', () => {
   let formBuilder: DynamicFormBuilder;
@@ -24,7 +25,6 @@ describe('DynamicFormDictionaryModule', () => {
     formBuilder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
-      imports: [DynamicFormDictionaryModule],
       providers: [
         {
           provide: DynamicFormLibraryService,
@@ -34,6 +34,9 @@ describe('DynamicFormDictionaryModule', () => {
           provide: DynamicFormBuilder,
           useValue: formBuilder,
         },
+        DynamicFormConfigService,
+        DynamicFormActionService,
+        importDynamicFormsProviders(...withDynamicFormDictionaryDefaultFeatures()),
       ],
     });
   });

@@ -1,14 +1,9 @@
 import { TestBed, TestModuleMetadata, inject } from '@angular/core/testing';
 import { DYNAMIC_FORM_ACTION_TYPE_CONFIG, DynamicFormActionTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
-import {
-  MatDynamicFormActionModule,
-  matDynamicFormActionTypes,
-  withMatDynamicFormActionDefaultFeatures,
-} from './dynamic-form-action.module';
+import { matDynamicFormActionTypes, withMatDynamicFormActionDefaultFeatures } from './dynamic-form-action.module';
 
 describe('MatDynamicFormActionModule', () => {
   const testModules: { name: string; def: TestModuleMetadata }[] = [
-    { name: 'MatDynamicFormActionModule', def: { imports: [MatDynamicFormActionModule] } },
     {
       name: 'withMatDynamicFormActions',
       def: { providers: importDynamicFormsProviders(...withMatDynamicFormActionDefaultFeatures()) },
@@ -21,9 +16,9 @@ describe('MatDynamicFormActionModule', () => {
     });
 
     it('provides DYNAMIC_FORM_ACTION_TYPE_CONFIG', inject([DYNAMIC_FORM_ACTION_TYPE_CONFIG], (config: DynamicFormActionTypeConfig) => {
-      expect(config.length).toBe(4);
-      expect(config[2]).toEqual(matDynamicFormActionTypes[0]);
-      expect(config[3]).toEqual(matDynamicFormActionTypes[1]);
+      expect(config.length).toBe(2);
+      expect(config[0]).toEqual(matDynamicFormActionTypes[0]);
+      expect(config[1]).toEqual(matDynamicFormActionTypes[1]);
     }));
   });
 });

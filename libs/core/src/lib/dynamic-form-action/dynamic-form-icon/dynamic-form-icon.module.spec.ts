@@ -1,15 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../../dynamic-forms.module';
 import { DYNAMIC_FORM_ICON_CONFIGS, DynamicFormIconConfig, DynamicFormIconConfigs } from './dynamic-form-icon-config';
-import { DynamicFormIconModule } from './dynamic-form-icon.module';
+import { withDynamicFormIcons } from './dynamic-form-icon.module';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
 describe('DynamicFormIconModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [DynamicFormIconModule],
-      });
+      TestBed.configureTestingModule({});
     });
 
     it('does not provide DynamicFormIconService', () => {
@@ -20,12 +19,12 @@ describe('DynamicFormIconModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormIconModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          DynamicFormIconService,
         ],
       });
     });
@@ -41,12 +40,12 @@ describe('DynamicFormIconModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormIconModule.withIcons(config)],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          importDynamicFormsProviders(withDynamicFormIcons(config)),
         ],
       });
     });

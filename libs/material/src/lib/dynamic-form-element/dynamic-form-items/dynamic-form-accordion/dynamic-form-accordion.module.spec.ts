@@ -1,11 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig } from '@dynamic-forms/core';
-import { MatDynamicFormAccordionModule, matDynamicFormAccordionType } from './dynamic-form-accordion.module';
+import { DYNAMIC_FORM_ELEMENT_TYPE_CONFIG, DynamicFormElementTypeConfig, importDynamicFormsProviders } from '@dynamic-forms/core';
+import { matDynamicFormAccordionType, withMatDynamicFormAccordion } from './dynamic-form-accordion.module';
 
-describe('MatDynamicFormAccordionModule', () => {
+describe('withMatDynamicFormAccordion', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatDynamicFormAccordionModule],
+      providers: importDynamicFormsProviders(withMatDynamicFormAccordion()),
     });
   });
 

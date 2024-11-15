@@ -1,7 +1,13 @@
 import PATH from 'path';
-import { By, ElementArrayFinder, ElementFinder, protractor } from 'protractor';
+import { Locator, Page } from '@playwright/test';
 
-const KEY = protractor.Key;
+const KEY = {
+  ARROW_DOWN: 'ArrowDown',
+  ENTER: 'Enter',
+  ESCAPE: 'Escape',
+  SPACE: 'Space',
+  TAB: 'Tab',
+};
 
 export class Control {
   private readonly _types: string[] = [
@@ -20,33 +26,34 @@ export class Control {
   ];
 
   constructor(
-    public element: ElementFinder,
     public theme: string,
+    public locator: Locator,
+    public page: Page,
   ) {}
 
-  findElement(css: string): ElementFinder {
-    return this.element.element(By.css(css));
-  }
-
-  findElements(css: string): ElementArrayFinder {
-    return this.element.all(By.css(css));
+  findInput(css: string): Locator {
+    return this.locator.locator(`css=${css}`).first();
   }
 
   async isPresent(): Promise<boolean> {
-    return this.element.isPresent();
+    return (await this.locator.count()) > 0;
+  }
+
+  async isVisible(): Promise<boolean> {
+    return this.locator.isVisible();
   }
 
   async isEditable(): Promise<boolean> {
-    const hidden = await this.element.getAttribute('hidden');
+    const hidden = await this.locator.getAttribute('hidden');
     if (hidden === 'true') {
       return false;
     }
-    const className = await this.element.getAttribute('class');
+    const className = await this.locator.getAttribute('class');
     return !(className.includes('hidden') || className.includes('readonly'));
   }
 
   async getControlType(): Promise<string> {
-    const className = await this.element.getAttribute('class');
+    const className = await this.locator.getAttribute('class');
     return this.getType(className);
   }
 
@@ -54,19 +61,19 @@ export class Control {
     const controlType = await this.getControlType();
     switch (controlType) {
       case 'file':
-        return new Input(controlType, this, this.findElement('input[type="file"]'));
+        return new Input(controlType, this, this.findInput('input[type="file"]'), this.page);
       case 'radio':
-        return new Input(controlType, this, this.findElements('input[type="radio"]'));
+        return new Input(controlType, this, this.findInput('input[type="radio"]'), this.page);
       case 'select':
-        return new Input(controlType, this, this.findElement('select,mat-select'));
+        return new Input(controlType, this, this.findInput('select,mat-select'), this.page);
       case 'switch':
-        return new Input(controlType, this, this.findElements('input[type="checkbox"],mat-slide-toggle'));
+        return new Input(controlType, this, this.findInput('input[type="checkbox"],mat-slide-toggle'), this.page);
       case 'textarea':
-        return new Input(controlType, this, this.findElement('textarea'));
+        return new Input(controlType, this, this.findInput('textarea'), this.page);
       case 'toggle':
-        return new Input(controlType, this, this.findElements('input[type="radio"],mat-button-toggle'));
+        return new Input(controlType, this, this.findInput('input[type="radio"],mat-button-toggle'), this.page);
       default:
-        return new Input(controlType, this, this.findElement('input'));
+        return new Input(controlType, this, this.findInput('input'), this.page);
     }
   }
 
@@ -76,85 +83,78 @@ export class Control {
 }
 
 export class Input {
-  readonly inputElement: ElementFinder;
+  private static readonly inputIdsForFalse = ['hidden-input', 'hidden', 'disabled-input', 'disabled', 'readonly-input', 'readonly'];
 
   constructor(
     public controlType: string,
     public control: Control,
-    public inputElements: ElementFinder | ElementArrayFinder,
-  ) {
-    this.inputElement = this.inputElements instanceof ElementArrayFinder ? this.inputElements.get(0) : this.inputElements;
-  }
+    public locator: Locator,
+    public page: Page,
+  ) {}
 
   async isPresent(): Promise<boolean> {
-    return this.inputElement.isPresent();
+    return (await this.locator.count()) > 0;
+  }
+
+  async isVisible(): Promise<boolean> {
+    return this.locator.isVisible();
   }
 
   async isEditable(): Promise<boolean> {
-    return (await this.control.isEditable()) && (await this.inputElement.isEnabled());
+    return (await this.control.isEditable()) && (await this.locator.isEnabled());
   }
 
   async getInputId(): Promise<string> {
-    return this.inputElement.getAttribute('id');
+    return this.locator.getAttribute('id');
   }
 
   async getInputType(): Promise<string> {
-    return this.inputElement.getAttribute('type');
+    return this.locator.getAttribute('type');
   }
 
   async isInputForFalse(): Promise<boolean> {
-    const inputId = await this.inputElement.getAttribute('id');
-    switch (inputId) {
-      case 'input-hidden':
-      case 'input-hidden-input':
-      case 'input-disabled':
-      case 'input-disabled-input':
-      case 'input-readonly':
-      case 'input-readonly-input':
-        return true;
-      default:
-        return false;
-    }
+    const inputId = await this.locator.getAttribute('id');
+    return Input.inputIdsForFalse.includes(inputId);
   }
 
   async getInputValue(): Promise<string | boolean> {
     if (this.controlType === 'checkbox') {
-      return this.inputElement.getAttribute('checked');
+      return this.locator.isChecked();
     }
 
     if (this.controlType === 'file') {
-      const element = this.control.findElement('input:not([type="file"])');
-      const files = await element.getAttribute('value');
+      const element = this.control.findInput('input:not([type="file"])');
+      const files = await element.inputValue();
       return files ? files.trim() : files;
     }
 
     if (this.controlType === 'radio') {
-      const element = this.control.findElement('input[type="radio"]:checked');
-      return (await element.isPresent()) ? true : false;
+      const element = this.control.findInput('input[type="radio"]:checked');
+      return (await element.isVisible()) ? true : false;
     }
 
     if (this.controlType === 'select') {
       if (this.control.theme === 'material') {
-        const element = this.control.findElement('span.mat-mdc-select-value-text');
-        return (await element.isPresent()) ? element.getText() : null;
+        const element = this.control.findInput('span.mat-mdc-select-value-text');
+        return (await element.isVisible()) ? element.innerText() : null;
       }
 
-      const element = await this.inputElement.getAttribute('value');
+      const element = await this.locator.inputValue();
       return element !== 'null' ? element : null;
     }
 
     if (this.controlType === 'switch') {
-      const element = this.control.findElement('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
-      return (await element.isPresent()) ? true : false;
+      const element = this.control.findInput('input[type="checkbox"]:checked,mat-slide-toggle.mat-mdc-slide-toggle-checked');
+      return (await element.isVisible()) ? true : false;
     }
 
     if (this.controlType === 'toggle') {
-      const element = this.control.findElement('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
-      return (await element.isPresent()) ? true : false;
+      const element = this.control.findInput('input[type="radio"]:checked,mat-button-toggle.mat-button-toggle-checked');
+      return (await element.isVisible()) ? true : false;
     }
 
-    const element = await this.inputElement.getAttribute('value');
-    return element ? element.trim() : element;
+    const value = await this.locator.inputValue();
+    return value ? value.trim() : value;
   }
 
   async checkInputValue(): Promise<boolean> {
@@ -165,18 +165,20 @@ export class Input {
   async editInputValue(): Promise<void> {
     if (this.controlType === 'checkbox') {
       if ((await this.isInputForFalse()) && !(await this.getInputValue())) {
-        await this.inputElement.sendKeys(KEY.SPACE);
+        await this.locator.press(KEY.SPACE);
       }
-      return this.inputElement.sendKeys(KEY.SPACE);
+      return this.locator.press(KEY.SPACE);
     }
 
     if (this.controlType === 'file') {
-      const file = PATH.resolve(__dirname, 'file.txt');
-      return this.inputElement.sendKeys(file);
+      const fileChooserPromise = this.page.waitForEvent('filechooser');
+      await this.control.findInput('button').click();
+      const fileChooser = await fileChooserPromise;
+      return await fileChooser.setFiles(PATH.resolve(__dirname, 'file.txt'));
     }
 
     if (this.controlType === 'radio') {
-      return this.inputElement.sendKeys(KEY.SPACE);
+      return this.locator.press(KEY.SPACE);
     }
 
     if (this.controlType === 'select') {
@@ -184,21 +186,33 @@ export class Input {
         this.control.theme !== 'material'
           ? [KEY.ARROW_DOWN, KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE]
           : [KEY.ARROW_DOWN, KEY.ENTER, KEY.ESCAPE];
-      await this.inputElement.click();
-      return this.inputElement.sendKeys(...keys);
+
+      await this.locator.click();
+
+      for (const key of keys) {
+        await this.locator.press(key);
+      }
+
+      return;
     }
 
     if (this.controlType === 'switch') {
-      return this.control.theme !== 'material' ? this.inputElement.sendKeys(KEY.SPACE) : this.inputElement.click();
+      return this.control.theme !== 'material' ? this.locator.press(KEY.SPACE) : this.locator.click();
     }
 
     if (this.controlType === 'toggle') {
-      return this.control.theme !== 'material' ? this.inputElement.sendKeys(KEY.SPACE) : this.inputElement.click();
+      return this.control.theme !== 'material' ? this.locator.press(KEY.SPACE) : this.locator.click();
     }
 
     const inputType = await this.getInputType();
     const value = await this.getEditInputValue(inputType);
-    return value ? this.inputElement.sendKeys(value, KEY.TAB) : Promise.resolve();
+
+    if (!value) {
+      return Promise.resolve();
+    }
+
+    await this.locator.fill(value.toString());
+    return this.locator.press(KEY.TAB);
   }
 
   private async getEditInputValue(type?: string): Promise<string | number> {
@@ -210,7 +224,7 @@ export class Input {
       case 'numberbox':
         return 5;
       case 'datepicker':
-        return '01-01-2020';
+        return '2020-01-01';
       case 'textarea':
         return 'Line 1\nLine 2';
       case 'textbox':

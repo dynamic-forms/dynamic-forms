@@ -203,7 +203,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/v18/@dynamic-forms/demo",
+              "base": "dist/v19/@dynamic-forms/demo",
               "browser": ""
             },
             "index": "apps/demo/src/index.html",
@@ -246,7 +246,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v18"
+                "dist/v19"
               ]
             },
             "styles": [
@@ -316,7 +316,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "dist/v18"
+                "dist/v19"
               ]
             },
             "styles": [
@@ -335,21 +335,13 @@
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "playwright-ng-schematics:playwright",
           "options": {
-            "protractorConfig": "apps/demo-e2e/protractor.conf.js",
             "devServerTarget": "dynamic-forms-demo:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "dynamic-forms-demo:serve:production"
-            },
-            "azure": {
-              "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
-            },
-            "azure-production": {
-              "devServerTarget": "dynamic-forms-demo:serve:production",
-              "protractorConfig": "apps/demo-e2e/protractor.conf.azure.js"
             }
           }
         }

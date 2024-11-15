@@ -16,7 +16,6 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormControl } from './dynamic-form-control';
 import { DynamicFormControlDefinition } from './dynamic-form-control-definition';
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
-import { DynamicFormControlModule } from './dynamic-form-control.module';
 
 @Component({
   standalone: true,
@@ -41,7 +40,6 @@ class DynamicFormInputTwoComponent extends DynamicFormInputBase {
 }
 
 @NgModule({
-  imports: [DynamicFormControlModule],
   providers: [
     {
       provide: DynamicFormLibraryService,

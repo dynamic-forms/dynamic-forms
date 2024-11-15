@@ -16,8 +16,8 @@ import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-
 import { DynamicFormInputMaskDirective } from './dynamic-form-input-mask.directive';
 
 @Component({
-  selector: 'dynamic-form-input-mask-test',
   standalone: true,
+  selector: 'dynamic-form-input-mask-test',
   template: `<input [dynamicFormInputMask]="inputMask" [formControl]="control" />`,
   imports: [ReactiveFormsModule, DynamicFormInputMaskDirective],
 })

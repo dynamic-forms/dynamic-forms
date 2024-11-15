@@ -10,7 +10,6 @@ import {
   DynamicFormModalDefinition,
 } from '@dynamic-forms/core';
 import { BsDynamicFormModalComponent } from './dynamic-form-modal.component';
-import { BsDynamicFormModalModule } from './dynamic-form-modal.module';
 
 describe('BsDynamicFormModalComponent', () => {
   let fixture: ComponentFixture<BsDynamicFormModalComponent>;
@@ -20,7 +19,6 @@ describe('BsDynamicFormModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BsDynamicFormModalModule],
       providers: [
         {
           provide: DynamicFormLibraryService,

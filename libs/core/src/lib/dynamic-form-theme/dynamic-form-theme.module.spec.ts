@@ -1,15 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
+import { importDynamicFormsProviders } from '../dynamic-forms.module';
 import { DYNAMIC_FORM_COLOR_CONFIGS, DynamicFormColorConfig, DynamicFormColorConfigs } from './dynamic-form-color-config';
 import { DynamicFormColorService } from './dynamic-form-color.service';
-import { DynamicFormThemeModule } from './dynamic-form-theme.module';
+import { withDynamicFormColors } from './dynamic-form-theme.module';
 
 describe('DynamicFormThemeModule', () => {
   describe('without providers', () => {
     beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [DynamicFormThemeModule],
-      });
+      TestBed.configureTestingModule({});
     });
 
     it('does not provide DynamicFormColorService', () => {
@@ -20,12 +19,12 @@ describe('DynamicFormThemeModule', () => {
   describe('with DynamicFormLibraryService provided', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormThemeModule],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          DynamicFormColorService,
         ],
       });
     });
@@ -41,12 +40,12 @@ describe('DynamicFormThemeModule', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [DynamicFormThemeModule.withColors(config)],
         providers: [
           {
             provide: DynamicFormLibraryService,
             useValue: new DynamicFormLibraryService({ name: 'test' }),
           },
+          importDynamicFormsProviders(withDynamicFormColors(config)),
         ],
       });
     });
