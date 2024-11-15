@@ -81,6 +81,10 @@ export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, O
     this._onTouched = onTouched;
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.nativeElement.disabled = isDisabled;
+  }
+
   private get nativeElement(): HTMLInputElement {
     return this.elementRef.nativeElement;
   }
