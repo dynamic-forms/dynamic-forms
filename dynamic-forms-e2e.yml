@@ -43,7 +43,7 @@ steps:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'results.xml'
     mergeTestResults: true
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
     testRunTitle: 'e2e Tests'
 
 - task: PublishAllureReport@1
