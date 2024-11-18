@@ -45,3 +45,9 @@ steps:
     mergeTestResults: true
     failTaskOnFailedTests: true
     testRunTitle: 'e2e Tests'
+
+- task: PublishAllureReport@1
+  displayName: Publish Report
+  inputs:
+    allureVersion: 2.27.0
+    testResultsDir: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e/allure
