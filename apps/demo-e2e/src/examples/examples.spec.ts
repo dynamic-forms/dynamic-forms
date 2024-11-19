@@ -44,7 +44,7 @@ test.describe('dynamic-forms demo examples', () => {
           : `for example "${example.name}" with id "${example.id}"`;
 
         test.describe(description, () => {
-          test('has url, title and form', async ({ page }) => {
+          test('has url, title and form', async ({ page }, testInfo) => {
             const exampleUrl = example.modelId ? `${example.id}/models/${example.modelId}` : example.id;
 
             await page.goto(
@@ -61,6 +61,11 @@ test.describe('dynamic-forms demo examples', () => {
             await expect(root).toBeVisible();
             await expect(wrapper).toBeVisible();
             await expect(form).toBeVisible();
+
+            testInfo.attach('example-loaded', {
+              body: await page.screenshot(),
+              contentType: 'image/png',
+            });
 
             const actions = form.locator('css=.dynamic-form-header,.dynamic-form-footer').locator('css=dynamic-form-element');
             const controls = form.locator('css=div.dynamic-form-control');
@@ -114,12 +119,23 @@ test.describe('dynamic-forms demo examples', () => {
 
               await expect(modal).toBeVisible();
               await expect(modalCloseButton).toBeVisible();
+
+              testInfo.attach('example-modal-opened', {
+                body: await page.screenshot(),
+                contentType: 'image/png',
+              });
             }
 
-            const items = form.locator('css=.dynamic-form-items');
+            const itemsWrapper = form.locator('css=.dynamic-form-items');
+
+            const items = itemsWrapper.locator(
+              `css=${theme === 'material' ? '.mat-mdc-tab-body,.mat-expansion-panel' : '.dynamic-form-item'}`,
+            );
             const itemCount = await items.count();
 
-            const itemsHeaders = items.locator(`css=${theme === 'material' ? '.mdc-tab' : '.dynamic-form-item-header'}`);
+            const itemsHeaders = itemsWrapper.locator(
+              `css=${theme === 'material' ? '.mdc-tab,.mat-expansion-panel-header' : '.dynamic-form-item-header'}`,
+            );
             const itemHeaderCount = await itemsHeaders.count();
 
             const groups = itemCount > 0 ? items : (await modal.isVisible()) ? modal : form;
@@ -128,8 +144,8 @@ test.describe('dynamic-forms demo examples', () => {
             for (let groupIndex = 0; groupIndex < groupCount; groupIndex++) {
               const group = groups.nth(groupIndex);
 
-              if (itemCount > 0 && groupIndex < itemHeaderCount) {
-                const itemHeader = groups.nth(groupIndex);
+              if (itemCount > 0 && groupIndex > 0 && groupIndex < itemHeaderCount) {
+                const itemHeader = itemsHeaders.nth(groupIndex);
                 const itemHeaderClassName = await itemHeader.getAttribute('class');
                 const itemHeaderVisible = await itemHeader.isVisible();
                 const itemHeaderDisabled = itemHeaderClassName.includes('disabled');
@@ -138,6 +154,8 @@ test.describe('dynamic-forms demo examples', () => {
                   await itemHeader.click();
                 }
               }
+
+              expect(group).toBeVisible();
 
               const groupControls = group.locator('css=div.dynamic-form-control');
               const groupControlCount = await groupControls.count();
@@ -173,6 +191,11 @@ test.describe('dynamic-forms demo examples', () => {
                   expect(await input.checkInputValue()).toBe(true);
                 }
               }
+
+              testInfo.attach(`example-edited-group-${groupIndex + 1}`, {
+                body: await page.screenshot(),
+                contentType: 'image/png',
+              });
             }
 
             if (controlCount === 0) {
@@ -181,12 +204,22 @@ test.describe('dynamic-forms demo examples', () => {
 
             if ((await modalCloseButton.isVisible()) && (await modalCloseButton.isEnabled())) {
               await modalCloseButton.click();
+
+              testInfo.attach('example-modal-closed', {
+                body: await page.screenshot(),
+                contentType: 'image/png',
+              });
             }
 
             const submitButton = page.locator('css=.dynamic-form-header,.dynamic-form-footer').locator('css=button[id="action-submit"]');
 
             if ((await submitButton.isVisible()) && (await submitButton.isEnabled())) {
               await submitButton.click();
+
+              testInfo.attach(`example-submitted`, {
+                body: await page.screenshot(),
+                contentType: 'image/png',
+              });
             }
           });
         });
