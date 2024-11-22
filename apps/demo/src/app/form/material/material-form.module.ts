@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { withDynamicFormColors, withDynamicFormControlValidatorFactory, withDynamicFormIcons } from '@dynamic-forms/core';
+import {
+  DynamicFormComponent,
+  withDynamicFormColors,
+  withDynamicFormControlValidatorFactory,
+  withDynamicFormIcons,
+} from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
 import { provideMatDynamicFormsWithDefaultFeatures, provideNativeDatetimeAdapter } from '@dynamic-forms/material';
 import { withMatDynamicFormInputMask, withMatDynamicFormInputMaskConverters } from '@dynamic-forms/material/input-mask';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
+import { FormLoggerModule } from '../form-logger.module';
 
 const config = {
   theme: 'material',
@@ -57,3 +64,10 @@ export function provideMaterialForm() {
     ...provideNativeDatetimeAdapter(),
   ];
 }
+
+@NgModule({
+  imports: [DynamicFormComponent, FormLoggerModule],
+  exports: [DynamicFormComponent, FormLoggerModule],
+  providers: provideMaterialForm(),
+})
+export class MaterialFormModule {}

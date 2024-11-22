@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "18.1.1",
+  "version": "18.1.2",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -76,8 +76,8 @@
     "@angular/platform-browser-dynamic": "^18.2.12",
     "@angular/router": "^18.2.12",
     "@angular/ssr": "^18.2.12",
-    "@ngxs/storage-plugin": "^18.1.1",
-    "@ngxs/store": "^18.1.1",
+    "@ngxs/storage-plugin": "^18.1.6",
+    "@ngxs/store": "^18.1.6",
     "bootstrap": "^5.2.3",
     "inputmask": "^5.0.9",
     "marked": "^14.1.4",

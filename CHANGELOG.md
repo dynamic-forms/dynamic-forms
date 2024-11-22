@@ -1,5 +1,10 @@
 # Changelog
 
+## 18.1.2 (2024-11-23)
+
+* **core:** fixed control creation in form builder with undefined input type
+* **demo:** fixed logging in form editor
+
 ## 18.1.1 (2024-11-22)
 
 ### Bug Fixes
