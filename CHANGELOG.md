@@ -1,5 +1,12 @@
 # Changelog
 
+## 18.1.1 (2024-11-22)
+
+### Bug Fixes
+
+* **core:** fixed disabled state of input mask directive
+* **core:** fixed disabled state of file directive (dynamic form file control reflects disabled state correctly, but hidden file input element was still enabled)
+
 ## 18.1.0 (2024-09-28)
 
 * Release without any notable changes in comparison to 18.1.0-rc.0

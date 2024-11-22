@@ -303,6 +303,18 @@ describe('DynamicFormInputMaskDirective', () => {
         expect(handler.onChange).toHaveBeenCalledOnceWith('value');
       });
     });
+
+    describe('setDisabledState', () => {
+      it('sets disabled of input element', () => {
+        directive.setDisabledState(true);
+
+        expect(nativeElement.disabled).toBeTrue();
+
+        directive.setDisabledState(false);
+
+        expect(nativeElement.disabled).toBeFalse();
+      });
+    });
   });
 
   describe('with TestBed using DynamicFormInputMaskTestComponent', () => {

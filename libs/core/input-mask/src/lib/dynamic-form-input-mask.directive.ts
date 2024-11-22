@@ -69,6 +69,10 @@ export class DynamicFormInputMaskDirective implements ControlValueAccessor, Afte
     this._onTouched = onTouched;
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.nativeElement.disabled = isDisabled;
+  }
+
   private get nativeElement(): HTMLInputElement {
     return this.elementRef.nativeElement;
   }
