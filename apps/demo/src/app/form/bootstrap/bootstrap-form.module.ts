@@ -1,10 +1,17 @@
 import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { provideBsDynamicFormsWithDefaultFeatures } from '@dynamic-forms/bootstrap';
 import { withBsDynamicFormInputMask, withBsDynamicFormInputMaskConverters } from '@dynamic-forms/bootstrap/input-mask';
-import { withDynamicFormColors, withDynamicFormControlValidatorFactory, withDynamicFormIcons } from '@dynamic-forms/core';
+import {
+  DynamicFormComponent,
+  withDynamicFormColors,
+  withDynamicFormControlValidatorFactory,
+  withDynamicFormIcons,
+} from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
+import { FormLoggerModule } from '../form-logger.module';
 
 const config = {
   theme: 'bootstrap',
@@ -49,3 +56,10 @@ const features = [
 export function provideBootstrapForm() {
   return provideBsDynamicFormsWithDefaultFeatures(config, ...features);
 }
+
+@NgModule({
+  imports: [DynamicFormComponent, FormLoggerModule],
+  exports: [DynamicFormComponent, FormLoggerModule],
+  providers: provideBootstrapForm(),
+})
+export class BootstrapFormModule {}

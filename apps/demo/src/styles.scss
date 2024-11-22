@@ -66,6 +66,8 @@ body {
 
   @include mat.all-component-themes($app-light-theme);
 
+  --mdc-elevated-card-container-color: #fafafa;
+
   .button-content {
     display: flex;
     align-items: center;
