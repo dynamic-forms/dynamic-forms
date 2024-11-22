@@ -129,7 +129,7 @@ test.describe('dynamic-forms demo examples', () => {
             const itemsWrapper = form.locator('css=.dynamic-form-items');
 
             const items = itemsWrapper.locator(
-              `css=${theme === 'material' ? '.mat-mdc-tab-body,.mat-expansion-panel' : '.dynamic-form-item'}`,
+              `css=${theme === 'material' ? '.mat-mdc-tab-body,.mat-expansion-panel-body' : '.dynamic-form-item'}`,
             );
             const itemCount = await items.count();
 
@@ -146,16 +146,23 @@ test.describe('dynamic-forms demo examples', () => {
 
               if (itemCount > 0 && groupIndex > 0 && groupIndex < itemHeaderCount) {
                 const itemHeader = itemsHeaders.nth(groupIndex);
-                const itemHeaderClassName = await itemHeader.getAttribute('class');
+                const itemHeaderClass = await itemHeader.getAttribute('class');
                 const itemHeaderVisible = await itemHeader.isVisible();
-                const itemHeaderDisabled = itemHeaderClassName.includes('disabled');
+                const itemHeaderClassDisabled = itemHeaderClass.includes('disabled');
+                const itemHeaderAriaDisabled = (await itemHeader.getAttribute('aria-disabled')) === 'true';
+                const itemHeaderDisabled = itemHeaderClassDisabled || itemHeaderAriaDisabled;
+                const itemHeaderExpanded = itemHeaderClass.includes('expanded');
 
-                if (itemHeaderVisible && !itemHeaderDisabled) {
+                if (itemHeaderDisabled) {
+                  continue;
+                }
+
+                if (itemHeaderVisible && !itemHeaderDisabled && !itemHeaderExpanded) {
                   await itemHeader.click();
                 }
               }
 
-              expect(group).toBeVisible();
+              await expect(group).toBeVisible();
 
               const groupControls = group.locator('css=div.dynamic-form-control');
               const groupControlCount = await groupControls.count();
@@ -182,13 +189,16 @@ test.describe('dynamic-forms demo examples', () => {
                 if (result.inputVisible && result.inputEditable) {
                   const inputValue = await input.getInputValue();
                   const inputForFalse = await input.isInputForFalse();
+
+                  await expect(input.locator).toBeVisible();
+
                   if ((!inputValue && !inputForFalse) || (inputValue && inputForFalse)) {
                     await input.editInputValue();
                   }
 
                   // console.log({ id: result.id, inputValue: await input.getInputValue() });
 
-                  expect(await input.checkInputValue()).toBe(true);
+                  expect(await input.checkInputValue(), `input with id '${result.id} failed value check'`).toBe(true);
                 }
               }
 
