@@ -87,6 +87,18 @@ describe('DynamicFormFileDirective', () => {
     expect(nativeElement.multiple).toBeUndefined();
   });
 
+  describe('setDisabledState', () => {
+    it('sets disabled of input element', () => {
+      directive.setDisabledState(true);
+
+      expect(nativeElement.disabled).toBeTrue();
+
+      directive.setDisabledState(false);
+
+      expect(nativeElement.disabled).toBeFalse();
+    });
+  });
+
   it('openFileExplorer clicks native element', () => {
     spyOn(nativeElement, 'click');
 
