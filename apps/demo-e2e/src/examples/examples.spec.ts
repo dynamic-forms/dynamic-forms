@@ -226,6 +226,24 @@ test.describe('dynamic-forms demo examples', () => {
             if ((await submitButton.isVisible()) && (await submitButton.isEnabled())) {
               await submitButton.click();
 
+              const modal = page.locator('css=.dynamic-form-modal');
+              const modalVisible = await modal.isVisible();
+
+              if (!modalVisible) {
+                const dialog = page.locator('css=app-form-submit-dialog');
+                const content = dialog.locator('css=.mat-mdc-tab-body-content').first();
+                const model = content.locator('css=pre');
+
+                await expect(dialog).toBeVisible();
+                await expect(content).toBeVisible();
+                await expect(model).toBeVisible();
+
+                testInfo.attach(`example-submitted-model`, {
+                  body: await model.innerText(),
+                  contentType: 'application/json',
+                });
+              }
+
               testInfo.attach(`example-submitted`, {
                 body: await page.screenshot(),
                 contentType: 'image/png',
