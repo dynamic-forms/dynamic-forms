@@ -30,12 +30,7 @@ steps:
   continueOnError: True
   inputs:
     command: custom
-    customCommand: run e2e
-# - task: PublishProtractorReport@1
-#   displayName: publish e2e report
-#   continueOnError: True
-#   inputs:
-#     cwd: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e
+    customCommand: run e2e:prod
 - task: PublishTestResults@2
   displayName: 'Publish test results'
   inputs:
@@ -45,7 +40,6 @@ steps:
     mergeTestResults: true
     failTaskOnFailedTests: false
     testRunTitle: 'e2e Tests'
-
 - task: PublishAllureReport@1
   displayName: Publish Report
   inputs:
