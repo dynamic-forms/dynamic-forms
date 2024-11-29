@@ -337,8 +337,7 @@
         "e2e": {
           "builder": "playwright-ng-schematics:playwright",
           "options": {
-            "devServerTarget": "dynamic-forms-demo:serve",
-            "config": "apps/demo-e2e/playwright.config.ts"
+            "devServerTarget": "dynamic-forms-demo:serve"
           },
           "configurations": {
             "production": {
