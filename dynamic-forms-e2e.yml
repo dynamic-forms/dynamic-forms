@@ -13,24 +13,18 @@ variables:
   value: v19
 
 steps:
-- task: Npm@1
-  displayName: npm install
+- task: UseNode@1
   inputs:
-    command: custom
-    customCommand: install
+    version: 22.x
+- script: npm install
+  displayName: npm install
 - script: npx playwright install --with-deps
   displayName: 'Install Playwright browsers'
-- task: Npm@1
+- script: npm run build:libs
   displayName: npm build libs
-  inputs:
-    command: custom
-    customCommand: run build:libs
-- task: Npm@1
+- script: npm run run e2e:prod
   displayName: npm e2e
   continueOnError: True
-  inputs:
-    command: custom
-    customCommand: run e2e:prod
 - task: PublishTestResults@2
   displayName: 'Publish test results'
   inputs:
