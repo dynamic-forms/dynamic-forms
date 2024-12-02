@@ -22,7 +22,7 @@ steps:
   displayName: 'Install Playwright browsers'
 - script: npm run build:libs
   displayName: npm build libs
-- script: npm run run e2e:prod
+- script: npm run e2e:prod
   displayName: npm e2e
   continueOnError: True
 - task: PublishTestResults@2
