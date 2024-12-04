@@ -5,7 +5,6 @@ import { DynamicFormInputBase, DynamicFormSwitch, DynamicFormValidationService }
 import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-switch',
   templateUrl: './dynamic-form-switch.component.html',
   imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatSlideToggleModule],

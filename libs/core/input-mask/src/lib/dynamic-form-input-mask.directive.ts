@@ -7,7 +7,6 @@ import { DynamicFormInputMaskConverter } from './dynamic-form-input-mask-convert
 import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-converter.service';
 
 @Directive({
-  standalone: true,
   selector: '[dynamicFormInputMask]',
   exportAs: 'dynamicFormInputMask',
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: DynamicFormInputMaskDirective, multi: true }],

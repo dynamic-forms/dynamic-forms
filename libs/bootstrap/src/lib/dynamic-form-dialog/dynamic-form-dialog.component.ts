@@ -4,7 +4,6 @@ import { DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } f
 import { Observable } from 'rxjs';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
   imports: [AsyncPipe, NgClass, NgStyle, DynamicFormElementsComponent],

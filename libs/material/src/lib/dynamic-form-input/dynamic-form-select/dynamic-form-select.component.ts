@@ -5,7 +5,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormSelect, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-select',
   templateUrl: './dynamic-form-select.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatSelectModule],

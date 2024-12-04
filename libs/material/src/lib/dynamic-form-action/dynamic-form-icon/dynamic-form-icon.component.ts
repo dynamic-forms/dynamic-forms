@@ -7,7 +7,6 @@ import { DynamicFormActionService, DynamicFormColorPipe, DynamicFormIconBase, Dy
 import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-icon',
   templateUrl: './dynamic-form-icon.component.html',
   imports: [

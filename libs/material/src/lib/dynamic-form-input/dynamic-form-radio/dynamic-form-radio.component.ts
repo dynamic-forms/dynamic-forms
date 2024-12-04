@@ -5,7 +5,6 @@ import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } 
 import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-radio',
   templateUrl: './dynamic-form-radio.component.html',
   imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatRadioModule],

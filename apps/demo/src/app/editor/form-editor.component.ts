@@ -6,15 +6,14 @@ import { Store } from '@ngxs/store';
 import { Observable, Subscription, map } from 'rxjs';
 import { bufferTime } from 'rxjs/operators';
 import { FormBase } from '../form/form-base';
+import { FormLogger } from '../form/form-logger';
 import { MonacoEditorComponent } from '../monaco/monaco-editor.component';
 import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
 import { FormEditorData } from './form-editor-data';
-import { FormEditorLogger } from './form-editor-logger';
 import { FormEditorLogsComponent } from './form-editor-logs.component';
 
 @Component({
-  standalone: true,
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
   styleUrl: './form-editor.component.scss',
@@ -46,7 +45,7 @@ export class FormEditorComponent implements OnDestroy {
 
   constructor(
     private store: Store,
-    private logger: FormEditorLogger,
+    private logger: FormLogger,
   ) {
     this.splitView$ = this.store
       .select(PreferencesState.formEditor)

@@ -11,7 +11,6 @@ import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-input-test',
   template: `<div>Dynamic Input</div>`,
 })

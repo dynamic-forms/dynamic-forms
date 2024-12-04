@@ -9,7 +9,6 @@ import { Version } from '../../../state/config/config.model';
 import { ConfigState } from '../../../state/config/config.state';
 
 @Component({
-  standalone: true,
   selector: 'app-versions-menu',
   templateUrl: './versions-menu.component.html',
   styleUrl: './versions-menu.component.scss',

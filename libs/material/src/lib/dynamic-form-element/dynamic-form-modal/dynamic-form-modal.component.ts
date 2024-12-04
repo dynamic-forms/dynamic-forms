@@ -3,7 +3,6 @@ import { DynamicFormElementComponent, DynamicFormModalBase } from '@dynamic-form
 import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-modal',
   templateUrl: './dynamic-form-modal.component.html',
   imports: [DynamicFormElementComponent, MatDynamicFormDialogComponent],

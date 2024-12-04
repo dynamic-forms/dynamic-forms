@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormInputBase, DynamicFormRadio, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-radio',
   templateUrl: './dynamic-form-radio.component.html',
   imports: [ReactiveFormsModule],

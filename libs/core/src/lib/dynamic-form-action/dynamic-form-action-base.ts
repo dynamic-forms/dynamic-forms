@@ -10,7 +10,7 @@ import { DynamicFormActionDefinition } from './dynamic-form-action-definition';
 import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 import { DynamicFormActionService } from './dynamic-form-action.service';
 
-@Directive({ standalone: true })
+@Directive({})
 export abstract class DynamicFormActionBase<
     Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
     Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,

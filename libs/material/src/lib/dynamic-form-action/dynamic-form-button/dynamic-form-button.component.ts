@@ -5,7 +5,6 @@ import { DynamicFormActionService, DynamicFormButtonBase, DynamicFormColorPipe }
 import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-button',
   templateUrl: './dynamic-form-button.component.html',
   imports: [NgClass, DynamicFormColorPipe, MatDynamicFormDialogComponent, MatButtonModule],

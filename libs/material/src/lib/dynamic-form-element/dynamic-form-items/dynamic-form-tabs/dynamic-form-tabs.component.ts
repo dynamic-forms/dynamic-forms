@@ -4,7 +4,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-tabs',
   templateUrl: './dynamic-form-tabs.component.html',
   imports: [NgClass, MatTabsModule, DynamicFormElementsComponent],

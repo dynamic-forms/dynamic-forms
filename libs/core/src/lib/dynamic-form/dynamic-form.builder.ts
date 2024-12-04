@@ -93,7 +93,7 @@ export class DynamicFormBuilder {
     const fieldType = this.getFieldType(definition);
     const inputType = this.getInputType(definition);
 
-    return fieldType
+    return fieldType && inputType
       ? this.createFormFieldForType(inputType.control || DynamicFormControl, root, parent, definition, fieldType)
       : undefined;
   }

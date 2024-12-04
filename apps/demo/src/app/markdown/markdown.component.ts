@@ -3,7 +3,6 @@ import { DynamicFormMarkdownComponent, DynamicFormMarkdownService } from '@dynam
 import { MarkdownElement } from './markdown.element';
 
 @Component({
-  standalone: true,
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
   styleUrl: './markdown.component.scss',

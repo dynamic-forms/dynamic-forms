@@ -11,7 +11,6 @@ import { ConfigState } from '../../../state/config/config.state';
 import { DocsMenuItemsComponent } from './docs-menu-items.component';
 
 @Component({
-  standalone: true,
   selector: 'app-docs-menu',
   templateUrl: './docs-menu.component.html',
   styleUrl: './docs-menu.component.scss',

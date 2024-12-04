@@ -4,7 +4,6 @@ import { DynamicFormActionService, DynamicFormColorPipe, DynamicFormIconBase, Dy
 import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-icon',
   templateUrl: './dynamic-form-icon.component.html',
   imports: [NgClass, DynamicFormColorPipe, DynamicFormIconPipe, BsDynamicFormDialogComponent],

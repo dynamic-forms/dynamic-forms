@@ -6,7 +6,6 @@ import { NotificationsComponent } from './layout/notifications/notifications.com
 import { ProgressComponent } from './layout/progress/progress.component';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

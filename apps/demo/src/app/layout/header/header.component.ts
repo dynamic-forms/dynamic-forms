@@ -18,7 +18,6 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
 import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
 
 @Component({
-  standalone: true,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

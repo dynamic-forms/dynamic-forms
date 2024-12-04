@@ -16,7 +16,6 @@ import { CodeUrlPipe } from '../../../header/pipes/code-url.pipe';
 import { SidebarMenuItem } from './sidebar-menu.model';
 
 @Component({
-  standalone: true,
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrl: './sidebar-menu.component.scss',

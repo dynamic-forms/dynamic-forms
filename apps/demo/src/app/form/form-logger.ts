@@ -3,7 +3,7 @@ import { DynamicFormLog } from '@dynamic-forms/core';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()
-export class FormEditorLogger {
+export class FormLogger {
   private readonly logSubject = new Subject<DynamicFormLog>();
   readonly log$: Observable<DynamicFormLog> = this.logSubject.asObservable();
 

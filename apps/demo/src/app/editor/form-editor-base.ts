@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormEditorData } from './form-editor-data';
 
-@Directive({ standalone: true })
+@Directive({})
 export abstract class FormEditorBase implements OnDestroy {
   private _subscriptions = new Subscription();
   private _data: FormEditorData;

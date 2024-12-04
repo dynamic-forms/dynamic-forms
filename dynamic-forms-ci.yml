@@ -13,26 +13,17 @@ variables:
   value: v19
 
 steps:
-- task: Npm@1
+- task: UseNode@1
+  inputs:
+    version: 22.x
+- script: npm install
   displayName: npm install
-  inputs:
-    command: custom
-    customCommand: install
-- task: Npm@1
+- script: npm run lint
   displayName: npm lint
-  inputs:
-    command: custom
-    customCommand: run lint
-- task: Npm@1
+- script: npm run build:libs
   displayName: npm build libs
-  inputs:
-    command: custom
-    customCommand: run build:libs
-- task: Npm@1
+- script: npm run test:libs
   displayName: npm test libs
-  inputs:
-    command: custom
-    customCommand: run test:libs
 - task: PublishTestResults@2
   displayName: Publish test results
   inputs:
@@ -42,13 +33,7 @@ steps:
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
-- task: Npm@1
+- script: npm run test:demo
   displayName: npm test demo
-  inputs:
-    command: custom
-    customCommand: run test:demo
-- task: Npm@1
+- script: npm run build:demo:prod
   displayName: npm build demo
-  inputs:
-    command: custom
-    customCommand: run build:demo:prod

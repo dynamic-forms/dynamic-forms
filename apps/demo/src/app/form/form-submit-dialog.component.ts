@@ -7,7 +7,6 @@ import { DynamicFormSubmit } from '@dynamic-forms/core';
 import { FormDataPipe } from './form-data.pipe';
 
 @Component({
-  standalone: true,
   selector: 'app-form-submit-dialog',
   templateUrl: './form-submit-dialog.component.html',
   imports: [JsonPipe, MatButtonModule, MatDialogModule, MatTabsModule, FormDataPipe],

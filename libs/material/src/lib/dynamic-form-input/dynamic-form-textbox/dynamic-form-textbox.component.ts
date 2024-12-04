@@ -5,7 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormTextbox, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-textbox',
   templateUrl: './dynamic-form-textbox.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],

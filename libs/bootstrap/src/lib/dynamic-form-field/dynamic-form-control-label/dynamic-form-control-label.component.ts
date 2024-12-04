@@ -2,7 +2,6 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { DynamicFormControlValidation, DynamicFormControlWrapperBase, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-control-label',
   templateUrl: './dynamic-form-control-label.component.html',
 })

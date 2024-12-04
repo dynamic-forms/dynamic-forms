@@ -16,7 +16,6 @@ import { of } from 'rxjs';
 import { MatDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`,
 })
