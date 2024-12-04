@@ -4,7 +4,6 @@ import { FormBase } from '../form-base';
 import { BootstrapFormModule } from './bootstrap-form.module';
 
 @Component({
-  standalone: true,
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
   styleUrl: './bootstrap-form.component.scss',

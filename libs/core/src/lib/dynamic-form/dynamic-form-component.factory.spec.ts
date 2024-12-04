@@ -25,7 +25,6 @@ import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic
 import { DynamicFormComponentFactory } from './dynamic-form-component.factory';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-test',
   template: `<ng-template #container />`,
 })
@@ -35,14 +34,12 @@ class DynamicFormTestComponent {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-element-test',
   template: `<div>Dynamic Form Element</div>`,
 })
 class DynamicFormElementTestComponent extends DynamicFormElementBase {}
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-field-test',
   template: `<div>Dynamic Form Field</div>`,
 })
@@ -53,7 +50,6 @@ class DynamicFormFieldTestComponent extends DynamicFormFieldBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`,
 })
@@ -64,7 +60,6 @@ class DynamicFormActionTestComponent extends DynamicFormActionBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })
@@ -75,7 +70,6 @@ class DynamicFormInputTestComponent extends DynamicFormInputBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-wrapper-test',
   template: `<ng-template #container />`,
 })
@@ -89,7 +83,6 @@ class DynamicFormFieldWrapperTestComponent extends DynamicFormFieldWrapperBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-wrapper-wrapper-test',
   template: `<ng-template #container />`,
 })

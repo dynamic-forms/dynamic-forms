@@ -10,7 +10,6 @@ import {
 import { BsDynamicFormControlErrorsComponent } from './dynamic-form-control-errors.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })

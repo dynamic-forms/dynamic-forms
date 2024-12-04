@@ -5,7 +5,6 @@ import { Store } from '@ngxs/store';
 import { SidebarToggle } from '../../../state/layout/layout.actions';
 
 @Component({
-  standalone: true,
   selector: 'app-sidebar-toggle',
   templateUrl: './sidebar-toggle.component.html',
   styleUrl: './sidebar-toggle.component.scss',

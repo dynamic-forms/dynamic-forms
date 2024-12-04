@@ -9,7 +9,6 @@ import { FormEditorLogDataPipe } from './form-editor-log-data.pipe';
 import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
 
 @Component({
-  standalone: true,
   selector: 'app-form-editor-logs',
   templateUrl: './form-editor-logs.component.html',
   styleUrl: './form-editor-logs.component.scss',

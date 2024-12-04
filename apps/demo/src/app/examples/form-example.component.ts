@@ -5,7 +5,6 @@ import { FormBase } from '../form/form-base';
 import { MarkdownComponent } from '../markdown/markdown.component';
 
 @Component({
-  standalone: true,
   selector: 'app-form-example',
   templateUrl: './form-example.component.html',
   imports: [JsonPipe, MatTabsModule, MarkdownComponent],

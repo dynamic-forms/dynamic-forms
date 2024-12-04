@@ -27,6 +27,7 @@
       },
       "rules": {
         "@angular-eslint/use-injectable-provided-in": "off",
+        "@angular-eslint/prefer-standalone": "error",
         "@angular-eslint/prefer-on-push-component-change-detection": "off",
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",

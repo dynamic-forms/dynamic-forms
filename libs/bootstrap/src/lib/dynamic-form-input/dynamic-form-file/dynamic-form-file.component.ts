@@ -4,7 +4,6 @@ import { DynamicFormBuilder, DynamicFormFileBase, DynamicFormFileDirective, Dyna
 import { BsDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-file',
   templateUrl: './dynamic-form-file.component.html',
   imports: [ReactiveFormsModule, DynamicFormFileDirective, BsDynamicFormInputWrapperComponent],

@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-toggle',
   templateUrl: './dynamic-form-toggle.component.html',
   imports: [ReactiveFormsModule],

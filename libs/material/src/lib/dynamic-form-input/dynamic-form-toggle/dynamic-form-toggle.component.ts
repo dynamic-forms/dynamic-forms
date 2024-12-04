@@ -5,7 +5,6 @@ import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService }
 import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-toggle',
   templateUrl: './dynamic-form-toggle.component.html',
   imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatButtonToggleModule],

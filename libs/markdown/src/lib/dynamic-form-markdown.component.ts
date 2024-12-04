@@ -8,7 +8,6 @@ import { DynamicFormMarkdownTemplate } from './dynamic-form-markdown-template';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-markdown',
   templateUrl: './dynamic-form-markdown.component.html',
   imports: [AsyncPipe, NgClass],

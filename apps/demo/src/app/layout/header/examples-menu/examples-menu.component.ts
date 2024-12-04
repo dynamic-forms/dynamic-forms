@@ -10,7 +10,6 @@ import { ExamplesState } from '../../../state/examples/examples.state';
 import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
 
 @Component({
-  standalone: true,
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
   styleUrl: './examples-menu.component.scss',

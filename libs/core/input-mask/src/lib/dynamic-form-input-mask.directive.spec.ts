@@ -20,7 +20,6 @@ export abstract class DynamicFormInputMaskTestComponentBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-input-mask-test',
   template: '<input [dynamicFormInputMask]="inputMask" [formControl]="inputMask.control">',
   imports: [DynamicFormInputMaskDirective, ReactiveFormsModule],
@@ -28,7 +27,6 @@ export abstract class DynamicFormInputMaskTestComponentBase {
 export class DynamicFormInputMaskTestComponent extends DynamicFormInputMaskTestComponentBase {}
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-input-mask-test-without-form-control',
   template: '<input [dynamicFormInputMask]="inputMask">',
   imports: [DynamicFormInputMaskDirective],

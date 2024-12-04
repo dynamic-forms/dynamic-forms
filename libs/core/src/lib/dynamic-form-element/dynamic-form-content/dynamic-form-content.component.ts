@@ -5,7 +5,6 @@ import { DynamicFormContentDefinition } from './dynamic-form-content-definition'
 import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-content',
   templateUrl: './dynamic-form-content.component.html',
   imports: [NgClass],

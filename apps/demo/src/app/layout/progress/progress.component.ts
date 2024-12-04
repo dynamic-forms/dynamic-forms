@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { PROGRESS, Progress } from '../../state/progress/progress.model';
 
 @Component({
-  standalone: true,
   selector: 'app-progress',
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss',

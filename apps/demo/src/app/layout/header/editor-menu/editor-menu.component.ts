@@ -10,7 +10,6 @@ import { ExamplesState } from '../../../state/examples/examples.state';
 import { EditorMenuPanelComponent } from './editor-menu-panel.component';
 
 @Component({
-  standalone: true,
   selector: 'app-editor-menu',
   templateUrl: './editor-menu.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, EditorMenuPanelComponent],

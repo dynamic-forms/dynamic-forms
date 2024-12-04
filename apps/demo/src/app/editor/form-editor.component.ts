@@ -14,7 +14,6 @@ import { FormEditorData } from './form-editor-data';
 import { FormEditorLogsComponent } from './form-editor-logs.component';
 
 @Component({
-  standalone: true,
   selector: 'app-form-editor',
   templateUrl: './form-editor.component.html',
   styleUrl: './form-editor.component.scss',

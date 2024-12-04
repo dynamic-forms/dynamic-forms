@@ -10,7 +10,6 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-control',
   templateUrl: './dynamic-form-control.component.html',
   imports: [NgClass],

@@ -15,7 +15,6 @@ import { PreferencesState } from '../../../state/preferences/preferences.state';
 import preferencesDefinition from './preferences-form.json';
 
 @Component({
-  standalone: true,
   selector: 'app-preferences-menu',
   templateUrl: './preferences-menu.component.html',
   styleUrl: './preferences-menu.component.scss',

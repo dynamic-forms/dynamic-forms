@@ -18,7 +18,6 @@ import { DYNAMIC_FORM_THEME, DynamicFormAction, DynamicFormElement, DynamicFormE
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-dialog',
   templateUrl: './dynamic-form-dialog.component.html',
   imports: [NgClass, MatDialogModule, DynamicFormElementsComponent],
