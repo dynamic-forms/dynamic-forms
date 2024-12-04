@@ -7,7 +7,6 @@ import { FormExampleBase } from '../form-example-base';
 import { FormExampleComponent } from '../form-example.component';
 
 @Component({
-  standalone: true,
   selector: 'app-bootstrap-examples',
   templateUrl: './bootstrap-examples.component.html',
   imports: [AsyncPipe, FormExampleComponent, BootstrapFormComponent],

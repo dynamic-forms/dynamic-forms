@@ -18,7 +18,6 @@ import { DynamicFormControlDefinition } from './dynamic-form-control-definition'
 import { DynamicFormControlComponent } from './dynamic-form-control.component';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-input-1',
   template: `<div class="dynamic-form-input-1"></div>`,
 })
@@ -29,7 +28,6 @@ class DynamicFormInputOneComponent extends DynamicFormInputBase {
 }
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-input-2',
   template: `<div class="dynamic-form-input-2"></div>`,
 })

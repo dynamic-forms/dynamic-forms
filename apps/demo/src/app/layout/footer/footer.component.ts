@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { CONFIG, Config } from '../../state/config/config.model';
 
 @Component({
-  standalone: true,
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

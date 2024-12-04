@@ -6,7 +6,6 @@ import { DynamicFormElementDefinition } from './dynamic-form-element-definition'
 import { DynamicFormElementTemplate } from './dynamic-form-element-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-element',
   templateUrl: './dynamic-form-element.component.html',
 })

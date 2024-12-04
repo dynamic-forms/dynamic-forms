@@ -5,7 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormNumberbox, DynamicFormValidationService } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-numberbox',
   templateUrl: './dynamic-form-numberbox.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],

@@ -29,7 +29,6 @@ import { DYNAMIC_FORM_THEME } from './dynamic-form-theme';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
   imports: [NgClass, ReactiveFormsModule, DynamicFormElementsComponent],

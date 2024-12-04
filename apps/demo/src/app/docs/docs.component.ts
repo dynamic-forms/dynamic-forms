@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrl: './docs.component.scss',

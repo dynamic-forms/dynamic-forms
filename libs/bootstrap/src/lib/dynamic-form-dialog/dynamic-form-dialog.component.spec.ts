@@ -14,7 +14,6 @@ import { of } from 'rxjs';
 import { BsDynamicFormDialogComponent } from './dynamic-form-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-action-test',
   template: `<div>Dynamic Form Action</div>`,
 })

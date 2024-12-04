@@ -8,7 +8,6 @@ import { DynamicFormArrayDefinition } from './dynamic-form-array-definition';
 import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-array',
   templateUrl: './dynamic-form-array.component.html',
   imports: [NgClass, DynamicFormElementsComponent],

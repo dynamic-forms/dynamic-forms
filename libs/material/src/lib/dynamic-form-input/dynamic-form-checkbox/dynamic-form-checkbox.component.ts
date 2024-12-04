@@ -5,7 +5,6 @@ import { DynamicFormCheckbox, DynamicFormInputBase, DynamicFormValidationService
 import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-checkbox',
   templateUrl: './dynamic-form-checkbox.component.html',
   imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatCheckboxModule],

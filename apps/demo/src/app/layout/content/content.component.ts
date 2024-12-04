@@ -10,7 +10,6 @@ import { LAYOUT, Layout } from '../../state/layout/layout.model';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
-  standalone: true,
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',

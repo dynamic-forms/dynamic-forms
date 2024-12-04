@@ -5,7 +5,6 @@ import { Repository } from '../../../state/config/config.model';
 import { CodeUrlPipe } from '../pipes/code-url.pipe';
 
 @Component({
-  standalone: true,
   selector: 'app-docs-menu-items',
   templateUrl: './docs-menu-items.component.html',
   styleUrl: './docs-menu-items.component.scss',

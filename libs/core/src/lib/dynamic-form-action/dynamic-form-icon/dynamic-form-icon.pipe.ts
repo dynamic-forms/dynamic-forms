@@ -1,10 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DynamicFormIconService } from './dynamic-form-icon.service';
 
-@Pipe({
-  standalone: true,
-  name: 'dynamicFormIcon',
-})
+@Pipe({ name: 'dynamicFormIcon' })
 export class DynamicFormIconPipe implements PipeTransform {
   constructor(private iconService: DynamicFormIconService) {}
 

@@ -10,7 +10,7 @@ import { DynamicFormInputBase } from '../dynamic-form-input-base';
 import { DynamicFormFile, DynamicFormFileDefinition, DynamicFormFileTemplate } from './dynamic-form-file';
 import { DynamicFormFileDirective } from './dynamic-form-file.directive';
 
-@Directive({ standalone: true })
+@Directive({})
 export abstract class DynamicFormFileBase
   extends DynamicFormInputBase<DynamicFormFile, DynamicFormFileTemplate, DynamicFormFileDefinition>
   implements OnInit

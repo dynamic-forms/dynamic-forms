@@ -4,7 +4,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({
-  standalone: true,
   selector: 'app-examples-menu-panel',
   templateUrl: './examples-menu-panel.component.html',
   styleUrl: './examples-menu-panel.component.scss',

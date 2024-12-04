@@ -14,7 +14,6 @@ import { DynamicFormButtonDefinition } from './dynamic-form-button-definition';
 import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-button-test',
   // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `

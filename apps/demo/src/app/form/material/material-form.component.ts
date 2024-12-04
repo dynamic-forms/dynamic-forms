@@ -4,7 +4,6 @@ import { FormBase } from '../form-base';
 import { MaterialFormModule } from './material-form.module';
 
 @Component({
-  standalone: true,
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
   styleUrl: './material-form.component.scss',

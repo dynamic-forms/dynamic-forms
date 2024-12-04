@@ -25,7 +25,6 @@ import { MonacoEditorService } from './monaco-editor.service';
 declare let monaco: MonacoModule;
 
 @Component({
-  standalone: true,
   selector: 'app-monaco-editor',
   templateUrl: './monaco-editor.component.html',
   styleUrl: './monaco-editor.component.scss',

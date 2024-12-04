@@ -8,7 +8,6 @@ import { NotificationItemPop } from '../../state/notifications/notifications.act
 import { NOTIFICATIONS, NotificationItem, Notifications } from '../../state/notifications/notifications.model';
 
 @Component({
-  standalone: true,
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',

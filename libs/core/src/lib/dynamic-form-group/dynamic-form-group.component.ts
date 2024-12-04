@@ -8,7 +8,6 @@ import { DynamicFormGroupDefinition } from './dynamic-form-group-definition';
 import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-group',
   templateUrl: './dynamic-form-group.component.html',
   imports: [NgClass, DynamicFormElementsComponent],

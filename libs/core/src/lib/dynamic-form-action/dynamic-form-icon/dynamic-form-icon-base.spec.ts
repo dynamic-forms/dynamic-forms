@@ -14,7 +14,6 @@ import { DynamicFormIconDefinition } from './dynamic-form-icon-definition';
 import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-form-icon-test',
   // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `

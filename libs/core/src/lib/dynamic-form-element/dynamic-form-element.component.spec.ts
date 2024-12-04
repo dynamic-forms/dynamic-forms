@@ -13,7 +13,6 @@ import { DynamicFormElementType } from './dynamic-form-element-type';
 import { DynamicFormElementComponent } from './dynamic-form-element.component';
 
 @Component({
-  standalone: true,
   selector: 'dynamic-element-test',
   template: `<div class="dynamic-form-element"></div>`,
 })

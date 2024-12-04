@@ -4,7 +4,7 @@ import { DynamicFormInputMask, DynamicFormInputMaskDefinition, DynamicFormInputM
 import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
 import { DynamicFormInputMaskDirective } from './dynamic-form-input-mask.directive';
 
-@Directive({ standalone: true })
+@Directive({})
 export abstract class DynamicFormInputMaskBase
   extends DynamicFormInputBase<
     DynamicFormInputMask,

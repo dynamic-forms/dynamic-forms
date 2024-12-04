@@ -10,7 +10,6 @@ import {
 import { BsDynamicFormControlLabelComponent } from './dynamic-form-control-label.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })

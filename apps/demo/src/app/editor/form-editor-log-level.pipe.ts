@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DynamicFormLogLevel } from '@dynamic-forms/core';
 
-@Pipe({ standalone: true, name: 'appEditorLogLevel' })
+@Pipe({ name: 'appEditorLogLevel' })
 export class FormEditorLogLevelPipe implements PipeTransform {
   private readonly values = {
     [DynamicFormLogLevel.Error]: 'Error',

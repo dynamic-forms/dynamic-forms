@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,10 +6,9 @@ import { DynamicFormElementComponent, DynamicFormValidationService } from '@dyna
 import { DynamicFormInputMaskBase, DynamicFormInputMaskDirective } from '@dynamic-forms/core/input-mask';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-input-mask',
   templateUrl: './dynamic-form-input-mask.component.html',
-  imports: [JsonPipe, ReactiveFormsModule, DynamicFormInputMaskDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, DynamicFormInputMaskDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
 })
 export class MatDynamicFormInputMaskComponent extends DynamicFormInputMaskBase implements OnInit {
   @ViewChild(MatInput, { static: true })

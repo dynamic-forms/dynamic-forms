@@ -11,7 +11,6 @@ import {
 } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-file',
   templateUrl: './dynamic-form-file.component.html',
   imports: [ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],

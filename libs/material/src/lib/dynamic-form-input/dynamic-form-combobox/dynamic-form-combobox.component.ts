@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-combobox',
   templateUrl: './dynamic-form-combobox.component.html',
   imports: [AsyncPipe, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatAutocompleteModule],

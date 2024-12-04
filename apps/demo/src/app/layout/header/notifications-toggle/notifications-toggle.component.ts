@@ -8,7 +8,6 @@ import { NotificationsToggle } from '../../../state/notifications/notifications.
 import { NotificationsState } from '../../../state/notifications/notifications.state';
 
 @Component({
-  standalone: true,
   selector: 'app-notifications-toggle',
   templateUrl: './notifications-toggle.component.html',
   styleUrl: './notifications-toggle.component.scss',

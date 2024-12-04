@@ -11,7 +11,6 @@ import {
 } from '@dynamic-forms/core';
 
 @Component({
-  standalone: true,
   selector: 'mat-dynamic-form-datepicker',
   templateUrl: './dynamic-form-datepicker.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatDatepickerModule],

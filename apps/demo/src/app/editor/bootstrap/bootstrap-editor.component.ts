@@ -5,7 +5,6 @@ import { FormEditorBase } from '../form-editor-base';
 import { FormEditorComponent } from '../form-editor.component';
 
 @Component({
-  standalone: true,
   selector: 'app-bootstrap-editor',
   templateUrl: './bootstrap-editor.component.html',
   imports: [FormEditorComponent, BootstrapFormComponent],

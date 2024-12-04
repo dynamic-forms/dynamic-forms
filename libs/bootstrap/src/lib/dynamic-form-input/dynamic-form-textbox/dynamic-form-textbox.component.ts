@@ -4,7 +4,6 @@ import { DynamicFormInputBase, DynamicFormTextbox, DynamicFormValidationService 
 import { BsDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapper/dynamic-form-input-wrapper.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-textbox',
   templateUrl: './dynamic-form-textbox.component.html',
   imports: [ReactiveFormsModule, BsDynamicFormInputWrapperComponent],

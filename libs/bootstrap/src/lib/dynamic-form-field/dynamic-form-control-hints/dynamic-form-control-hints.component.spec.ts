@@ -10,7 +10,6 @@ import {
 import { BsDynamicFormControlHintsComponent } from './dynamic-form-control-hints.component';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-input-test',
   template: `<div>Dynamic Input</div>`,
 })

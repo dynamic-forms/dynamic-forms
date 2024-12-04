@@ -5,7 +5,6 @@ import { DynamicFormValidationService } from '@dynamic-forms/core';
 import { DynamicFormInputMaskBase, DynamicFormInputMaskDirective } from '@dynamic-forms/core/input-mask';
 
 @Component({
-  standalone: true,
   selector: 'bs-dynamic-form-input-mask',
   templateUrl: './dynamic-form-input-mask.component.html',
   imports: [ReactiveFormsModule, DynamicFormInputMaskDirective, BsDynamicFormInputWrapperComponent],
