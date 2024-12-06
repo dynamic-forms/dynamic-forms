@@ -1,24 +1,21 @@
-import { ChangeDetectorRef, Directive, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Directive } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { FormEditorData } from './form-editor-data';
 
 @Directive({})
-export abstract class FormEditorBase implements OnDestroy {
-  private _subscriptions = new Subscription();
+export abstract class FormEditorBase {
   private _data: FormEditorData;
 
   constructor(
     protected route: ActivatedRoute,
     protected cdr: ChangeDetectorRef,
   ) {
-    this._subscriptions.add(
-      this.route.data.subscribe(data => {
-        const definition = data.definition;
-        const model = data.model || {};
-        this._data = { definition, model };
-      }),
-    );
+    this.route.data.pipe(takeUntilDestroyed()).subscribe(data => {
+      const definition = data.definition;
+      const model = data.model || {};
+      this._data = { definition, model };
+    });
   }
 
   get data(): FormEditorData {
@@ -27,9 +24,5 @@ export abstract class FormEditorBase implements OnDestroy {
   set data(data: FormEditorData) {
     this._data = data;
     this.cdr.detectChanges();
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
   }
 }
