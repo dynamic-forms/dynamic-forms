@@ -3,14 +3,14 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  EventEmitter,
-  Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
-  ViewChild,
+  input,
+  model,
+  output,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,13 +41,12 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   readonly loading$ = this.monacoEditorService.loading$;
   readonly fileLoading$ = this._fileLoading.asObservable();
 
-  @ViewChild('container', { static: true }) container: ElementRef<HTMLDivElement>;
+  readonly container = viewChild<ElementRef<HTMLDivElement>>('container');
 
-  @Input() value: string;
-  @Input() language: string;
-  @Input() updateType: MonacoEditorUpdateType = MonacoEditorUpdateType.Change;
-  @Output() readonly valueChange = new EventEmitter<string>();
-  @Output() readonly loadingChange = new EventEmitter<boolean>();
+  readonly value = model<string>(undefined);
+  readonly language = input<string>(undefined);
+  readonly updateType = input<MonacoEditorUpdateType>(MonacoEditorUpdateType.Change);
+  readonly loadingChange = output<boolean>();
 
   constructor(
     private store: Store,
@@ -58,8 +57,9 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnChanges({ value }: SimpleChanges): void {
-    if (!value.firstChange && value.previousValue !== value.currentValue && value.currentValue !== this.value) {
-      this._editor.setValue(this.value);
+    const valueValue = this.value();
+    if (!value.firstChange && value.previousValue !== value.currentValue && value.currentValue !== valueValue) {
+      this._editor.setValue(valueValue);
     }
   }
 
@@ -83,10 +83,10 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     const fileReader = new FileReader();
     this._fileLoading.next(true);
     fileReader.onload = event => {
-      this.value = event.target.result as string;
-      this._editor.setValue(this.value);
+      const value = event.target.result as string;
+      this.value.set(value);
+      this._editor.setValue(value);
       this._fileLoading.next(false);
-      this.valueChange.emit(this.value);
     };
     fileReader.onerror = _event => {
       this._fileLoading.next(false);
@@ -95,7 +95,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   handleFileDownload(): void {
-    const file = new File([this.value], 'dynamic-form.json', { type: 'application/json' });
+    const file = new File([this.value()], 'dynamic-form.json', { type: 'application/json' });
     const link = document.createElement('a');
     const url = URL.createObjectURL(file);
     link.href = url;
@@ -106,7 +106,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
 
   private initEditor(): void {
     const options = this.getEditorOptions();
-    this._editor = monaco.editor.create(this.container.nativeElement, options);
+    this._editor = monaco.editor.create(this.container().nativeElement, options);
     this._editorBlur = this._editor.onDidBlurEditorText(_ => this.updateValue(MonacoEditorUpdateType.Blur));
     this._editorChange = this._editor.onDidChangeModelContent(_ => this.updateValue(MonacoEditorUpdateType.Change));
     this.store
@@ -123,8 +123,8 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private getEditorOptions(): MonacoEditorOptions {
     const themeMode = this.store.selectSnapshot(PreferencesState.theme)?.mode;
     return {
-      value: this.value,
-      language: this.language,
+      value: this.value(),
+      language: this.language(),
       automaticLayout: true,
       scrollBeyondLastLine: false,
       theme: this.getTheme(themeMode),
@@ -140,9 +140,8 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   private updateValue(updateType?: MonacoEditorUpdateType): void {
-    if (!updateType || this.updateType === updateType) {
-      this.value = this._editor.getValue();
-      this.valueChange.emit(this.value);
+    if (!updateType || this.updateType() === updateType) {
+      this.value.set(this._editor.getValue());
     }
   }
 }

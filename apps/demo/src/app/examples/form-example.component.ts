@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ContentChild, Input } from '@angular/core';
+import { Component, contentChild, input } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormBase } from '../form/form-base';
 import { MarkdownComponent } from '../markdown/markdown.component';
@@ -10,9 +10,8 @@ import { MarkdownComponent } from '../markdown/markdown.component';
   imports: [JsonPipe, MatTabsModule, MarkdownComponent],
 })
 export class FormExampleComponent {
-  @ContentChild('form')
-  form: FormBase;
+  readonly form = contentChild<FormBase>('form');
 
-  @Input() docEnabled: boolean;
-  @Input() docSource: string;
+  readonly docEnabled = input<boolean>(undefined);
+  readonly docSource = input<string>(undefined);
 }

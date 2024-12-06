@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
 import { DynamicFormMarkdownComponent, DynamicFormMarkdownService } from '@dynamic-forms/markdown';
 import { MarkdownElement } from './markdown.element';
 
@@ -12,16 +12,16 @@ import { MarkdownElement } from './markdown.element';
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;
 
-  @Input()
-  source: string;
+  readonly source = input<string>(undefined);
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.source.firstChange && this.source !== this.element.source) {
-      this.element.source = this.source;
+    const source = this.source();
+    if (!changes.source.firstChange && source !== this.element.source) {
+      this.element.source = source;
     }
   }
 
   ngOnInit(): void {
-    this.element = new MarkdownElement(this.source);
+    this.element = new MarkdownElement(this.source());
   }
 }

@@ -117,6 +117,7 @@
         "prettier/prettier": [
           "error"
         ],
+        "no-console": "error",
         "no-underscore-dangle": "off",
         "sort-imports": [
           "error",
