@@ -1,23 +1,25 @@
 <mat-menu #menu>
-  @if (level === 0) {
-    <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl]" [routerLinkActiveOptions]="{ exact: true }">Default</a>
+  @if (level() === 0) {
+    <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl()]" [routerLinkActiveOptions]="{ exact: true }"
+      >Default</a
+    >
   }
-  @for (item of items; track $index) {
+  @for (item of items(); track $index) {
     @if (item.items) {
-      <button mat-menu-item type="button" [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
-      <app-editor-menu-panel #menuPanel [baseUrl]="baseUrl" [level]="level + 1" [items]="item.items" />
+      <button mat-menu-item type="button" [matMenuTriggerFor]="menuPanel.menu()">{{ item.label }}</button>
+      <app-editor-menu-panel #menuPanel [baseUrl]="baseUrl()" [level]="level() + 1" [items]="item.items" />
     }
     @if (item.id) {
       @if (item.modelId) {
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id, 'models', item.modelId]">{{
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl(), item.id, 'models', item.modelId]">{{
           item.label
         }}</a>
       } @else {
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl(), item.id]">{{ item.label }}</a>
       }
     }
   }
-  @if (level === 0) {
-    <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, 'errors']">Errors</a>
+  @if (level() === 0) {
+    <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl(), 'errors']">Errors</a>
   }
 </mat-menu>

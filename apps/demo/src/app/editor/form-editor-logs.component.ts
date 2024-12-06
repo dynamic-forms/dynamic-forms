@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -17,18 +17,16 @@ import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
 export class FormEditorLogsComponent implements AfterViewInit {
   readonly columns = ['timestamp', 'type', 'level', 'message', 'detailed'];
   readonly dataSource = new MatTableDataSource<DynamicFormLog>();
+  readonly logs = input<DynamicFormLog[]>(undefined);
+  readonly paginator = viewChild(MatPaginator);
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  @Input()
-  set logs(logs: DynamicFormLog[]) {
-    this.dataSource.data = logs;
-  }
-  get logs(): DynamicFormLog[] {
-    return this.dataSource.data;
+  constructor() {
+    effect(() => {
+      this.dataSource.data = this.logs();
+    });
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator();
   }
 }

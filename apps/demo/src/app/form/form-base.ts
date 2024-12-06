@@ -1,4 +1,4 @@
-import { Directive, DoCheck, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Directive, DoCheck, input, output, viewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core';
 import { FormData } from './form-data';
@@ -6,13 +6,11 @@ import { FormSubmitBase } from './form-submit-base';
 
 @Directive({})
 export abstract class FormBase extends FormSubmitBase implements DoCheck {
-  @ViewChild(DynamicFormComponent)
-  form: DynamicFormComponent;
+  readonly form = viewChild(DynamicFormComponent);
 
-  @Input() data: FormData;
+  readonly data = input<FormData>(undefined);
 
-  @Output()
-  readonly valueChange = new EventEmitter<any>();
+  readonly valueChange = output<any>();
 
   formDefinition: DynamicFormDefinition;
   formModel: any;
@@ -23,14 +21,15 @@ export abstract class FormBase extends FormSubmitBase implements DoCheck {
   }
 
   ngDoCheck(): void {
-    if (this.formDefinition !== this.form?.form.definition) {
-      this.formDefinition = this.form?.form.definition;
+    const form = this.form();
+    if (this.formDefinition !== form?.form.definition) {
+      this.formDefinition = form?.form.definition;
     }
-    if (this.formModel !== this.form?.form.model) {
-      this.formModel = this.form?.form.model;
+    if (this.formModel !== form?.form.model) {
+      this.formModel = form?.form.model;
     }
-    if (this.formValue !== this.form?.form.value) {
-      this.formValue = this.form?.form.value;
+    if (this.formValue !== form?.form.value) {
+      this.formValue = form?.form.value;
     }
   }
 }

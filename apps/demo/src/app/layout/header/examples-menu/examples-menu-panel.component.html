@@ -1,16 +1,16 @@
 <mat-menu #menu>
-  @for (item of items; track $index) {
+  @for (item of items(); track $index) {
     @if (item.items) {
-      <button mat-menu-item type="button" [matMenuTriggerFor]="menuPanel.menu">{{ item.label }}</button>
-      <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl" [items]="item.items" />
+      <button mat-menu-item type="button" [matMenuTriggerFor]="menuPanel.menu()">{{ item.label }}</button>
+      <app-examples-menu-panel #menuPanel [baseUrl]="baseUrl()" [items]="item.items" />
     }
     @if (item.id) {
       @if (item.modelId) {
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id, 'models', item.modelId]">{{
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl(), item.id, 'models', item.modelId]">{{
           item.label
         }}</a>
       } @else {
-        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl, item.id]">{{ item.label }}</a>
+        <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="[baseUrl(), item.id]">{{ item.label }}</a>
       }
     }
   }

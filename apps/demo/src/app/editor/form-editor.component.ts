@@ -1,10 +1,11 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, ContentChild, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, Input, contentChild, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
-import { Observable, Subscription, map } from 'rxjs';
-import { bufferTime } from 'rxjs/operators';
+import { Observable, map } from 'rxjs';
+import { bufferTime, filter } from 'rxjs/operators';
 import { FormBase } from '../form/form-base';
 import { FormLogger } from '../form/form-logger';
 import { MonacoEditorComponent } from '../monaco/monaco-editor.component';
@@ -19,9 +20,7 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   styleUrl: './form-editor.component.scss',
   imports: [AsyncPipe, JsonPipe, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
 })
-export class FormEditorComponent implements OnDestroy {
-  private readonly _subscriptions = new Subscription();
-
+export class FormEditorComponent {
   private _logs: DynamicFormLog[] = [];
   private _data: FormEditorData;
   private _value: string;
@@ -37,11 +36,8 @@ export class FormEditorComponent implements OnDestroy {
     return this._data;
   }
 
-  @ContentChild('form')
-  form: FormBase;
-
-  @Output()
-  readonly dataChange = new EventEmitter<FormEditorData>();
+  readonly form = contentChild<FormBase>('form');
+  readonly dataChange = output<FormEditorData>();
 
   constructor(
     private store: Store,
@@ -50,11 +46,15 @@ export class FormEditorComponent implements OnDestroy {
     this.splitView$ = this.store
       .select(PreferencesState.formEditor)
       .pipe(map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView));
-    this._subscriptions.add(
-      this.logger.log$.pipe(bufferTime(1000)).subscribe(logs => {
+    this.logger.log$
+      .pipe(
+        takeUntilDestroyed(),
+        bufferTime(1000),
+        filter(logs => logs.length > 0),
+      )
+      .subscribe(logs => {
         this._logs = [...logs.reverse(), ...this._logs];
-      }),
-    );
+      });
   }
 
   get value(): string {
@@ -66,10 +66,6 @@ export class FormEditorComponent implements OnDestroy {
 
   get logs(): DynamicFormLog[] {
     return this._logs;
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
   }
 
   private setValue(value: string) {
