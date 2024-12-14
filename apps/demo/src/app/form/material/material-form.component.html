@@ -1,8 +1,8 @@
-@if (data) {
+@if (data()) {
   <dynamic-form
     #form
-    [definition]="data.definition"
-    [model]="data.model"
+    [definition]="data().definition"
+    [model]="data().model"
     (formSubmit)="onFormSubmit($event)"
     (valueChange)="valueChange.emit($event)"
   />

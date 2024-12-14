@@ -27,8 +27,9 @@
       },
       "rules": {
         "@angular-eslint/use-injectable-provided-in": "off",
-        "@angular-eslint/prefer-standalone": "error",
         "@angular-eslint/prefer-on-push-component-change-detection": "off",
+        "@angular-eslint/prefer-signals": "off",
+        "@angular-eslint/prefer-standalone": "error",
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
         "@typescript-eslint/explicit-member-accessibility": [
@@ -117,6 +118,7 @@
         "prettier/prettier": [
           "error"
         ],
+        "no-console": "error",
         "no-underscore-dangle": "off",
         "sort-imports": [
           "error",

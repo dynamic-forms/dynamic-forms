@@ -4,8 +4,8 @@
   </button>
 
   <mat-menu #examples="matMenu">
-    <button mat-menu-item type="button" [matMenuTriggerFor]="boostrapMenuPanel.menu">Bootstrap</button>
-    <button mat-menu-item type="button" [matMenuTriggerFor]="materialMenuPanel.menu">Material</button>
+    <button mat-menu-item type="button" [matMenuTriggerFor]="boostrapMenuPanel.menu()">Bootstrap</button>
+    <button mat-menu-item type="button" [matMenuTriggerFor]="materialMenuPanel.menu()">Material</button>
   </mat-menu>
 
   <app-examples-menu-panel #boostrapMenuPanel [baseUrl]="'/examples/bootstrap'" [items]="items" />
