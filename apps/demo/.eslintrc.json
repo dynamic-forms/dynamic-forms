@@ -33,7 +33,8 @@
             "prefix": "app",
             "style": "camelCase"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-signals": "error"
       }
     },
     {

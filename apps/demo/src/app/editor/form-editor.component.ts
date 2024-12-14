@@ -27,6 +27,7 @@ export class FormEditorComponent {
 
   readonly splitView$: Observable<boolean>;
 
+  // eslint-disable-next-line @angular-eslint/prefer-signals
   @Input()
   set data(data: FormEditorData) {
     this._data = data;

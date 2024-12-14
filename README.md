@@ -86,14 +86,14 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 - `npm install @dynamic-forms/material@17.0.0`
 - `npm install @dynamic-forms/markdown@17.0.0`
 
-### **Version 16** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/16.0.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/16.0.0)
+### **Version 16**
 
 - `npm install @dynamic-forms/core@16.0.0`
 - `npm install @dynamic-forms/bootstrap@16.0.0`
 - `npm install @dynamic-forms/material@16.0.0`
 - `npm install @dynamic-forms/markdown@16.0.0`
 
-### **Version 15** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/v15/dynamic-forms-v15-publish?branchName=refs/tags/15.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=41&branchName=refs/tags/15.1.0)
+### **Version 15**
 
 - `npm install @dynamic-forms/core@15.1.0`
 - `npm install @dynamic-forms/bootstrap@15.1.0`
