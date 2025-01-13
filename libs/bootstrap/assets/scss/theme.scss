@@ -1,10 +1,5 @@
-@import "@dynamic-forms/core/assets/scss/variables";
-@import "@dynamic-forms/core/assets/scss/mixins";
-
-$dynamic-form-color-primary: #3f51b5 !default;
-$dynamic-form-color-blue: $dynamic-form-color-primary !default;
-$dynamic-form-color-red: #f44336 !default;
-
+@use "@dynamic-forms/core/assets/scss/variables" as variables;
+@use "@dynamic-forms/core/assets/scss/mixins" as mixins;
 
 $dynamic-form-errors-margin-top: null !default;
 
@@ -12,10 +7,10 @@ $dynamic-form-errors-margin-top: null !default;
   --dynamic-form-errors-color: #f44336;
 
   .dynamic-form {
-    margin: $dynamic-form-margin;
+    margin: variables.$dynamic-form-margin;
 
-    $blue: $dynamic-form-color-blue;
-    $red: $dynamic-form-color-red;
+    $blue: variables.$dynamic-form-color-blue;
+    $red: variables.$dynamic-form-color-red;
 
     $enable-rfs: false;
 
@@ -104,48 +99,48 @@ $dynamic-form-errors-margin-top: null !default;
     }
 
     .dynamic-form-header {
-      @include dynamic-form-flex-container(
+      @include mixins.dynamic-form-flex-container(
         $width: 100%,
-        $margin-top: $dynamic-form-header-margin-top,
-        $margin-bottom: $dynamic-form-header-margin-bottom
+        $margin-top: variables.$dynamic-form-header-margin-top,
+        $margin-bottom: variables.$dynamic-form-header-margin-bottom
       );
 
       .dynamic-form-label {
-        @include dynamic-form-label(
-          $font-size: $dynamic-form-label-font-size,
-          $font-weight: $dynamic-form-label-font-weight,
-          $font-weight-bold: $dynamic-form-label-font-weight-bold
+        @include mixins.dynamic-form-label(
+          $font-size: variables.$dynamic-form-label-font-size,
+          $font-weight: variables.$dynamic-form-label-font-weight,
+          $font-weight-bold: variables.$dynamic-form-label-font-weight-bold
         );
       }
 
       .dynamic-form-toolbar {
-        @include dynamic-form-toolbar(
+        @include mixins.dynamic-form-toolbar(
           $flex: 1 1 0,
-          $button-space: $dynamic-form-button-space
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
 
     .dynamic-form-errors {
-      @include dynamic-form-errors(
+      @include mixins.dynamic-form-errors(
         $color: var(--dynamic-form-errors-color),
-        $font-size: $dynamic-form-errors-font-size,
-        $margin-top: $dynamic-form-errors-margin-top,
-        $margin-bottom: $dynamic-form-errors-margin-bottom
+        $font-size: variables.$dynamic-form-errors-font-size,
+        $margin-top: variables.$dynamic-form-errors-margin-top,
+        $margin-bottom: variables.$dynamic-form-errors-margin-bottom
       );
     }
 
     .dynamic-form-footer {
-      @include dynamic-form-footer(
-        $margin-top: $dynamic-form-footer-margin-top,
-        $margin-bottom: $dynamic-form-footer-margin-bottom,
-        $button-space: $dynamic-form-button-space,
+      @include mixins.dynamic-form-footer(
+        $margin-top: variables.$dynamic-form-footer-margin-top,
+        $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
+        $button-space: variables.$dynamic-form-button-space,
       );
     }
 
     .dynamic-form-group {
       .dynamic-form-group-header {
-        @include dynamic-form-flex-container(
+        @include mixins.dynamic-form-flex-container(
           $width: 100%,
           $margin-top: 0,
           $margin-bottom: 0.5rem,
@@ -153,41 +148,41 @@ $dynamic-form-errors-margin-top: null !default;
         );
 
         .dynamic-form-group-label {
-          @include dynamic-form-label(
-            $font-weight: $dynamic-form-label-font-weight,
-            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          @include mixins.dynamic-form-label(
+            $font-weight: variables.$dynamic-form-label-font-weight,
+            $font-weight-bold: variables.$dynamic-form-label-font-weight-bold
           );
         }
 
         .dynamic-form-group-toolbar {
-          @include dynamic-form-toolbar(
+          @include mixins.dynamic-form-toolbar(
             $flex: 1 1 0,
-            $button-space: $dynamic-form-button-space
+            $button-space: variables.$dynamic-form-button-space
           );
         }
       }
 
       .dynamic-form-group-errors {
-        @include dynamic-form-errors(
+        @include mixins.dynamic-form-errors(
           $color: var(--dynamic-form-errors-color),
-          $font-size: $dynamic-form-errors-font-size,
-          $margin-top: $dynamic-form-errors-margin-top,
-          $margin-bottom: $dynamic-form-errors-margin-bottom
+          $font-size: variables.$dynamic-form-errors-font-size,
+          $margin-top: variables.$dynamic-form-errors-margin-top,
+          $margin-bottom: variables.$dynamic-form-errors-margin-bottom
         );
       }
 
       .dynamic-form-group-footer {
-        @include dynamic-form-footer(
-          $margin-top: $dynamic-form-footer-margin-top,
-          $margin-bottom: $dynamic-form-footer-margin-bottom,
-          $button-space: $dynamic-form-button-space,
+        @include mixins.dynamic-form-footer(
+          $margin-top: variables.$dynamic-form-footer-margin-top,
+          $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
+          $button-space: variables.$dynamic-form-button-space,
         );
       }
     }
 
     .dynamic-form-array {
       .dynamic-form-array-header {
-        @include dynamic-form-flex-container(
+        @include mixins.dynamic-form-flex-container(
           $width: 100%,
           $margin-top: 0,
           $margin-bottom: 0.5rem,
@@ -195,41 +190,41 @@ $dynamic-form-errors-margin-top: null !default;
         );
 
         .dynamic-form-array-label {
-          @include dynamic-form-label(
-            $font-weight: $dynamic-form-label-font-weight,
-            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          @include mixins.dynamic-form-label(
+            $font-weight: variables.$dynamic-form-label-font-weight,
+            $font-weight-bold: variables.$dynamic-form-label-font-weight-bold
           );
         }
 
         .dynamic-form-array-toolbar {
-          @include dynamic-form-toolbar(
+          @include mixins.dynamic-form-toolbar(
             $flex: 1 1 0,
-            $button-space: $dynamic-form-button-space
+            $button-space: variables.$dynamic-form-button-space
           );
         }
       }
 
       .dynamic-form-array-errors {
-        @include dynamic-form-errors(
+        @include mixins.dynamic-form-errors(
           $color: var(--dynamic-form-errors-color),
-          $font-size: $dynamic-form-errors-font-size,
-          $margin-top: $dynamic-form-errors-margin-top,
-          $margin-bottom: $dynamic-form-errors-margin-bottom
+          $font-size: variables.$dynamic-form-errors-font-size,
+          $margin-top: variables.$dynamic-form-errors-margin-top,
+          $margin-bottom: variables.$dynamic-form-errors-margin-bottom
         );
       }
 
       .dynamic-form-array-footer {
-        @include dynamic-form-footer(
-          $margin-top: $dynamic-form-footer-margin-top,
-          $margin-bottom: $dynamic-form-footer-margin-bottom,
-          $button-space: $dynamic-form-button-space,
+        @include mixins.dynamic-form-footer(
+          $margin-top: variables.$dynamic-form-footer-margin-top,
+          $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
+          $button-space: variables.$dynamic-form-button-space,
         );
       }
     }
 
     .dynamic-form-dictionary {
       .dynamic-form-dictionary-header {
-        @include dynamic-form-flex-container(
+        @include mixins.dynamic-form-flex-container(
           $width: 100%,
           $margin-top: 0,
           $margin-bottom: 0.5rem,
@@ -237,34 +232,34 @@ $dynamic-form-errors-margin-top: null !default;
         );
 
         .dynamic-form-dictionary-label {
-          @include dynamic-form-label(
-            $font-weight: $dynamic-form-label-font-weight,
-            $font-weight-bold: $dynamic-form-label-font-weight-bold
+          @include mixins.dynamic-form-label(
+            $font-weight: variables.$dynamic-form-label-font-weight,
+            $font-weight-bold: variables.$dynamic-form-label-font-weight-bold
           );
         }
 
         .dynamic-form-dictionary-toolbar {
-          @include dynamic-form-toolbar(
+          @include mixins.dynamic-form-toolbar(
             $flex: 1 1 0,
-            $button-space: $dynamic-form-button-space
+            $button-space: variables.$dynamic-form-button-space
           );
         }
       }
 
       .dynamic-form-dictionary-errors {
-        @include dynamic-form-errors(
+        @include mixins.dynamic-form-errors(
           $color: var(--dynamic-form-errors-color),
-          $font-size: $dynamic-form-errors-font-size,
-          $margin-top: $dynamic-form-errors-margin-top,
-          $margin-bottom: $dynamic-form-errors-margin-bottom
+          $font-size: variables.$dynamic-form-errors-font-size,
+          $margin-top: variables.$dynamic-form-errors-margin-top,
+          $margin-bottom: variables.$dynamic-form-errors-margin-bottom
         );
       }
 
       .dynamic-form-dictionary-footer {
-        @include dynamic-form-footer(
-          $margin-top: $dynamic-form-footer-margin-top,
-          $margin-bottom: $dynamic-form-footer-margin-bottom,
-          $button-space: $dynamic-form-button-space,
+        @include mixins.dynamic-form-footer(
+          $margin-top: variables.$dynamic-form-footer-margin-top,
+          $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
+          $button-space: variables.$dynamic-form-button-space,
         );
       }
     }

@@ -1,4 +1,4 @@
-@import "@dynamic-forms/core/assets/scss/variables";
+@use "@dynamic-forms/core/assets/scss/variables" as variables;
 
-$dynamic-form-markdown-link-color: $dynamic-form-color-primary !default;
+$dynamic-form-markdown-link-color: variables.$dynamic-form-color-primary !default;
 $dynamic-form-markdown-code-background-color: #e0e0e0 !default;

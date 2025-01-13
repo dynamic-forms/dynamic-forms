@@ -1,15 +1,15 @@
-@import "@dynamic-forms/markdown/assets/scss/variables";
+@use "@dynamic-forms/markdown/assets/scss/variables" as variables;
 
 .dynamic-form-markdown {
   word-wrap: break-word;
 
   a {
-    color: $dynamic-form-markdown-link-color;
+    color: variables.$dynamic-form-markdown-link-color;
   }
 
   pre {
     padding: 12px;
-    background-color: $dynamic-form-markdown-code-background-color;
+    background-color: variables.$dynamic-form-markdown-code-background-color;
     border-radius: 4px;
     overflow: auto;
 
@@ -23,7 +23,7 @@
 
   code {
     padding: 2px 4px;
-    background-color: $dynamic-form-markdown-code-background-color;
+    background-color: variables.$dynamic-form-markdown-code-background-color;
     border-radius: 4px;
   }
 }
