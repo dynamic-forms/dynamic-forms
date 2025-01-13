@@ -1,6 +1,12 @@
 @use "@dynamic-forms/core/assets/scss/variables" as variables;
 @use "@dynamic-forms/core/assets/scss/mixins" as mixins;
 
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+
 $dynamic-form-errors-margin-top: null !default;
 
 .dynamic-form-wrapper.bootstrap {
@@ -21,9 +27,6 @@ $dynamic-form-errors-margin-top: null !default;
     $headings-font-weight: revert;
     $headings-line-height: revert;
 
-    @import 'bootstrap/scss/functions';
-    @import 'bootstrap/scss/variables';
-    @import 'bootstrap/scss/mixins';
     @import 'bootstrap/scss/reboot';
     @import 'bootstrap/scss/accordion';
     @import 'bootstrap/scss/forms';
