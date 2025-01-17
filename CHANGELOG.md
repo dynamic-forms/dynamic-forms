@@ -1,8 +1,6 @@
 # Changelog
 
-## 19.0.0-next.1
-
-### Features
+## 19.0.0-next.1 (2025-01-17)
 
 ### General
 
