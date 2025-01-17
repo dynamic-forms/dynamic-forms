@@ -1,6 +1,14 @@
 # Changelog
 
+## 19.0.0-next.1 (2025-01-17)
+
+### General
+
+* update of peer dependencies: bootstrap (5.3.3) and marked (15.0.0)
+
 ## 19.0.0-next.0 (2025-01-13)
+
+### Features
 
 * **core:** update to angular 19
 * **core:** removed all deprecated modules
