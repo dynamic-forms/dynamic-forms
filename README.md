@@ -65,12 +65,12 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 ## **Packages**
 
-### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/19.0.0-next.1)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/19.0.0-next.1)
+### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/19.0.0-next.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/19.0.0-next.2)
 
-- `npm install @dynamic-forms/core@19.0.0-next.1`
-- `npm install @dynamic-forms/bootstrap@19.0.0-next.1`
-- `npm install @dynamic-forms/material@19.0.0-next.1`
-- `npm install @dynamic-forms/markdown@19.0.0-next.1`
+- `npm install @dynamic-forms/core@19.0.0-next.2`
+- `npm install @dynamic-forms/bootstrap@19.0.0-next.2`
+- `npm install @dynamic-forms/material@19.0.0-next.2`
+- `npm install @dynamic-forms/markdown@19.0.0-next.2`
 
 ### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/18.1.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/18.1.2)
 

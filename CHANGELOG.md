@@ -1,5 +1,14 @@
 # Changelog
 
+## 19.0.0-next.2 
+
+### Features 
+
+* **bootstrap:** improvements regarding support of dark mode  
+  * toggle button: CSS class of label changed from `btn-outline-light` to `btn-outline-secondary`
+  * modal: background color changed from `rgba(0, 0, 0, 0.32)` to `rgba(0, 0, 0, 0.5)`
+* **demo:** support of dark mode for bootstrap examples by making use of data attribute `data-bs-theme` with value `light` or `dark` depending on theme preferences
+
 ## 19.0.0-next.1 (2025-01-17)
 
 ### General
