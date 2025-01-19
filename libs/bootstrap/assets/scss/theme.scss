@@ -301,28 +301,6 @@ $dynamic-form-errors-margin-top: null !default;
           &.disabled {
             pointer-events: none;
           }
-
-          &.btn-outline-light {
-            color: rgba(0, 0, 0);
-            background-color: rgb(239, 240, 241);
-            border-color: rgb(239, 240, 241);
-
-            &:hover {
-              background-color: rgb(229, 230, 231);
-              border-color: rgb(229, 230, 231);
-            }
-
-            &.disabled {
-              color: rgba(0, 0, 0, 0.5);
-              background-color: rgb(249, 250, 251);
-              border-color: rgb(249, 250, 251);
-            }
-
-            &.active {
-              background-color: rgb(219, 220, 221);
-              border-color: rgb(219, 220, 221);
-            }
-          }
         }
       }
     }
@@ -333,7 +311,7 @@ $dynamic-form-errors-margin-top: null !default;
     }
 
     .dynamic-form-modal {
-      background-color: rgba(0, 0, 0, 0.32);
+      background-color: rgba(0, 0, 0, 0.50);
 
       &.modal {
         display: block;
