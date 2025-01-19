@@ -3,6 +3,7 @@
     #form
     [definition]="data().definition"
     [model]="data().model"
+    [attr.data-bs-theme]="theme$ | async"
     (formSubmit)="onFormSubmit($event)"
     (valueChange)="valueChange.emit($event)"
   />
