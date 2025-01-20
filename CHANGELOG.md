@@ -1,6 +1,12 @@
 # Changelog
 
-## 19.0.0-next.2 
+## 19.0.0-next.3 (2025-01-20)
+
+### Bug Fixes
+
+* **bootstrap:**  background color of readonly inputs was removed (default of bootstrap)
+
+## 19.0.0-next.2 (2025-01-19)
 
 ### Features 
 
