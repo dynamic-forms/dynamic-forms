@@ -61,7 +61,6 @@ export * from './lib/dynamic-form-control/dynamic-form-control-definition';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type';
 export * from './lib/dynamic-form-control/dynamic-form-control-evaluator-type-config';
-export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-factory';
 export * from './lib/dynamic-form-control/dynamic-form-control-hints';
 export * from './lib/dynamic-form-control/dynamic-form-control-template';
@@ -196,7 +195,6 @@ export * from './lib/dynamic-form-input/dynamic-form-input-type';
 export * from './lib/dynamic-form-input/dynamic-form-input-type-config';
 export * from './lib/dynamic-form-input/dynamic-form-checkbox/dynamic-form-checkbox';
 export * from './lib/dynamic-form-input/dynamic-form-combobox/dynamic-form-combobox';
-
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker';
 export * from './lib/dynamic-form-input/dynamic-form-datepicker/dynamic-form-datepicker-validators';
 export * from './lib/dynamic-form-input/dynamic-form-file/dynamic-form-file';

@@ -38,7 +38,8 @@
             "lintFilePatterns": [
               "libs/core/**/*.ts",
               "libs/core/**/*.html"
-            ]
+            ],
+            "eslintConfig": "libs/core/eslint.config.js"
           }
         }
       }
@@ -78,7 +79,8 @@
             "lintFilePatterns": [
               "libs/bootstrap/**/*.ts",
               "libs/bootstrap/**/*.html"
-            ]
+            ],
+            "eslintConfig": "libs/bootstrap/eslint.config.js"
           }
         }
       }
@@ -118,7 +120,8 @@
             "lintFilePatterns": [
               "libs/material/**/*.ts",
               "libs/material/**/*.html"
-            ]
+            ],
+            "eslintConfig": "libs/material/eslint.config.js"
           }
         }
       }
@@ -158,7 +161,8 @@
             "lintFilePatterns": [
               "libs/markdown/**/*.ts",
               "libs/markdown/**/*.html"
-            ]
+            ],
+            "eslintConfig": "libs/markdown/eslint.config.js"
           }
         }
       }
@@ -338,7 +342,8 @@
             "lintFilePatterns": [
               "apps/demo/src/**/*.ts",
               "apps/demo/src/**/*.html"
-            ]
+            ],
+            "eslintConfig": "apps/demo/eslint.config.js"
           }
         },
         "e2e": {

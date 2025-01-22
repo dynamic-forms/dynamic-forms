@@ -1,4 +1,3 @@
-<!-- eslint-disable @angular-eslint/template/no-call-expression -->
 @if (treeDataSource$ | async; as treeDataSource) {
   <mat-tree class="sidebar-menu" [dataSource]="treeDataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let menuItem" matTreeNodeToggle>

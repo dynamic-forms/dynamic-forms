@@ -6,7 +6,6 @@ import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 
 export interface DynamicFormFieldConstructor<Field extends DynamicFormField> {
-  // eslint-disable-next-line @typescript-eslint/prefer-function-type
   new (
     builder: DynamicFormBuilder,
     root: DynamicForm,
