@@ -95,7 +95,7 @@ export class DynamicFormExpressionBuilder {
     return undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   private createExpressionFunction<Func extends Function>(expression: string): Func {
     try {
       return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${expression};`) as Func;
