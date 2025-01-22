@@ -28,7 +28,7 @@ module.exports = tseslint.config(
     settings: {
       "import/resolver": {
         "typescript": {
-          "project": "./tsconfig.json"
+          "project": "./tsconfig.lint.json"
         }
       }
     },
