@@ -6,6 +6,6 @@ export interface DynamicFormElementDefinition<Template extends DynamicFormElemen
   type?: string;
   reference?: string;
   template?: Template;
-  expressions?: { [key: string]: string | DynamicFormElementExpressionFunc };
+  expressions?: Record<string, string | DynamicFormElementExpressionFunc>;
   children?: DynamicFormElementDefinition[];
 }

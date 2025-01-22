@@ -5,7 +5,7 @@ export type DynamicFormFieldControl<Value> = AbstractControl<Value>;
 
 export class FormControlBase<Value> extends FormControl<Value> implements DynamicFormFieldControl<Value> {}
 
-export class FormGroupBase<Value extends { [key: string]: any }>
+export class FormGroupBase<Value extends Record<string, any>>
   extends FormGroup<{ [Key in keyof Value]: AbstractControl<Value[Key]> }>
   implements DynamicFormFieldControl<Value>
 {
@@ -15,6 +15,4 @@ export class FormGroupBase<Value extends { [key: string]: any }>
 
 export class FormArrayBase<Value> extends FormArray<AbstractControl<Value>> implements DynamicFormFieldControl<Value[]> {}
 
-export class FormRecordBase<Value>
-  extends FormRecord<AbstractControl<Value>>
-  implements DynamicFormFieldControl<{ [key: string]: Value }> {}
+export class FormRecordBase<Value> extends FormRecord<AbstractControl<Value>> implements DynamicFormFieldControl<Record<string, Value>> {}

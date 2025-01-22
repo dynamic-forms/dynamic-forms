@@ -34,7 +34,7 @@ describe('DynamicFormGroupValidator', () => {
       },
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;
-    const validators = { equal } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validators = { equal } as Record<string, DynamicFormFieldValidatorDefinition>;
     const validation = { equal: true } as DynamicFormGroupValidation;
     const group = { definition: { validators }, template: { validation } } as DynamicFormGroup;
     const validator = new DynamicFormGroupValidator(factory, 'equal', group);
@@ -128,7 +128,7 @@ describe('DynamicFormGroupAsyncValidator', () => {
       },
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;
-    const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validators = { uniqueItems } as Record<string, DynamicFormFieldValidatorDefinition>;
     const validation = { uniqueItems: true } as DynamicFormGroupValidation;
     const group = { definition: { validators }, template: { validation } } as DynamicFormGroup;
     const validator = new DynamicFormGroupAsyncValidator(factory, 'uniqueItems', group);

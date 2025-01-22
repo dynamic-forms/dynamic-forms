@@ -10,13 +10,15 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 import { DynamicFormGroupAsyncValidator, DynamicFormGroupValidator } from './dynamic-form-group-validator';
 
 export class DynamicFormGroup<
-  Value extends { [key: string]: any } = any,
+  Value extends Record<string, any> = any,
   Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,
   Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<Value, Model, FormGroupBase<Value>, Template, Definition, Type> {
   protected _fields: DynamicFormField[] = [];
+
+  readonly fieldClassType: DynamicFormFieldClassType = 'group';
 
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type);
   /** @internal */
@@ -29,10 +31,6 @@ export class DynamicFormGroup<
     super(builder, root, parent, definition, type, new FormGroupBase<Value>({} as any));
     this._model = model || this.getModel();
     this._parameters = {};
-  }
-
-  get fieldClassType(): DynamicFormFieldClassType {
-    return 'group';
   }
 
   override get children(): DynamicFormElement[] {

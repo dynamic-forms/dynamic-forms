@@ -3,12 +3,10 @@ import { DynamicFormFieldEvaluator } from './dynamic-form-field-evaluator';
 import { DynamicFormFieldEvaluatorFn } from './dynamic-form-field-evaluator-type';
 
 class TestDynamicFormFieldEvaluator extends DynamicFormFieldEvaluator {
+  readonly enabled = false;
+
   constructor(key: string, type: string, field: DynamicFormField, func: DynamicFormFieldEvaluatorFn) {
     super(key, type, field, func);
-  }
-
-  get enabled(): boolean {
-    return false;
   }
 }
 

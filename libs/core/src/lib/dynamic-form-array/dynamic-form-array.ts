@@ -16,14 +16,12 @@ export class DynamicFormArray<
   Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>,
   Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<Value[], Model[], FormArrayBase<Value>, Template, Definition, Type, DynamicFormField<Value, Model>> {
+  readonly fieldClassType: DynamicFormFieldClassType = 'array';
+
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type, new FormArrayBase<Value>([]));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
-  }
-
-  get fieldClassType(): DynamicFormFieldClassType {
-    return 'array';
   }
 
   get length(): number {

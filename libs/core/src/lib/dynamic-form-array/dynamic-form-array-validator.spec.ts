@@ -46,7 +46,7 @@ describe('DynamicFormArrayValidator', () => {
       },
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;
-    const validators = { minMaxLength } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validators = { minMaxLength } as Record<string, DynamicFormFieldValidatorDefinition>;
     const validation = { minMaxLength: true } as DynamicFormArrayValidation;
     const array = { definition: { validators }, template: { validation } } as DynamicFormArray;
 
@@ -172,7 +172,7 @@ describe('DynamicFormArrayAsyncValidator', () => {
       },
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;
-    const validators = { uniqueItems } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validators = { uniqueItems } as Record<string, DynamicFormFieldValidatorDefinition>;
     const validation = { uniqueItems: true } as DynamicFormArrayValidation;
     const array = { definition: { validators }, template: { validation } } as DynamicFormArray;
     const validator = new DynamicFormArrayAsyncValidator(factory, 'uniqueItems', array);

@@ -32,7 +32,7 @@ export interface Example extends ExampleMenu {
 
 export interface Examples {
   menu: ExamplesMenu;
-  examples: { [key: string]: Example };
+  examples: Record<string, Example>;
 }
 
 export const EXAMPLES = new StateToken<Examples>('examples');

@@ -2,7 +2,7 @@ import { InjectionToken } from '@angular/core';
 import { DynamicFormLibraryName } from '../dynamic-form-library/dynamic-form-library';
 
 export interface DynamicFormColorConfig {
-  colors: { [key: string]: string };
+  colors: Record<string, string>;
   libraryName: DynamicFormLibraryName;
 }
 

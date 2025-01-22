@@ -18,5 +18,5 @@ export const assignExpressions = <Expression extends DynamicFormExpression = Dyn
   });
 };
 
-export const assignExpressionData = (data: any, expressions: { [key: string]: () => any }): void =>
+export const assignExpressionData = (data: any, expressions: Record<string, () => any>): void =>
   Object.keys(expressions).forEach(key => Object.defineProperty(data, key, { get: expressions[key], configurable: true }));

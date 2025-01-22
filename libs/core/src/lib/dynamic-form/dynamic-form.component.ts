@@ -33,7 +33,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
   templateUrl: './dynamic-form.component.html',
   imports: [NgClass, ReactiveFormsModule, DynamicFormElementsComponent],
 })
-export class DynamicFormComponent<Value extends { [key: string]: any } = any, Model extends Value = Value>
+export class DynamicFormComponent<Value extends Record<string, any> = any, Model extends Value = Value>
   implements OnInit, OnChanges, OnDestroy, DoCheck
 {
   private _form: DynamicForm<Value, Model>;

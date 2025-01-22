@@ -42,6 +42,8 @@ export abstract class DynamicFormField<
   protected _headerActions: DynamicFormAction[] = [];
   protected _footerActions: DynamicFormAction[] = [];
 
+  override readonly classType: DynamicFormClassType = 'field';
+
   constructor(
     builder: DynamicFormBuilder,
     root: DynamicForm,
@@ -54,10 +56,6 @@ export abstract class DynamicFormField<
     this._control = control;
     this._depth = this.getDepth();
     this._settings = this.createSettings();
-  }
-
-  override get classType(): DynamicFormClassType {
-    return 'field';
   }
 
   get key(): string {

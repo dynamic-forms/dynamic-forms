@@ -16,22 +16,20 @@ export class DynamicFormDictionary<
   Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
   Type extends DynamicFormFieldType = DynamicFormFieldType,
 > extends DynamicFormField<
-  { [key: string]: Value },
-  { [key: string]: Model },
+  Record<string, Value>,
+  Record<string, Model>,
   FormRecordBase<Value>,
   Template,
   Definition,
   Type,
   DynamicFormField<Value, Model>
 > {
+  readonly fieldClassType: DynamicFormFieldClassType = 'dictionary';
+
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type, new FormRecordBase({}));
     this.initModel(this.getModel());
     this.extendExpressionData({ length: () => this.length });
-  }
-
-  get fieldClassType(): DynamicFormFieldClassType {
-    return 'dictionary';
   }
 
   get length(): number {

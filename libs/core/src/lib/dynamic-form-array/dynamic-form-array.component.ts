@@ -17,8 +17,8 @@ export class DynamicFormArrayComponent<
   Model extends Value = Value,
   Template extends DynamicFormArrayTemplate = DynamicFormArrayTemplate,
   Definition extends DynamicFormArrayDefinition<Value, Template> = DynamicFormArrayDefinition<Value, Template>,
-  Array extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>,
-> extends DynamicFormArrayBase<Value, Model, Template, Definition, Array> {
+  ArrayField extends DynamicFormArray<Value, Model, Template, Definition> = DynamicFormArray<Value, Model, Template, Definition>,
+> extends DynamicFormArrayBase<Value, Model, Template, Definition, ArrayField> {
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }

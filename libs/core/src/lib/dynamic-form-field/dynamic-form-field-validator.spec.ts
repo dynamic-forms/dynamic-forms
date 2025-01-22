@@ -46,7 +46,7 @@ describe('DynamicFormFieldValidatorBase', () => {
       type: 'valid',
       message: 'message',
     } as DynamicFormFieldValidatorDefinition;
-    const validators = { valid } as { [key: string]: DynamicFormFieldValidatorDefinition };
+    const validators = { valid } as Record<string, DynamicFormFieldValidatorDefinition>;
     const validation = { valid: true } as DynamicFormFieldValidation;
     const field = { definition: { validators }, template: { validation } } as DynamicFormField;
     const validator = new TestDynamicFormFieldValidatorBase(factory, 'valid', field);
