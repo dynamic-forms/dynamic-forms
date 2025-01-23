@@ -5,7 +5,7 @@ import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormTemplate } from './dynamic-form-template';
 import { DynamicFormBuilder } from './dynamic-form.builder';
 
-export class DynamicForm<Value extends { [key: string]: any } = any, Model extends Value = Value> extends DynamicFormGroup<
+export class DynamicForm<Value extends Record<string, any> = any, Model extends Value = Value> extends DynamicFormGroup<
   Value,
   Model,
   DynamicFormTemplate,

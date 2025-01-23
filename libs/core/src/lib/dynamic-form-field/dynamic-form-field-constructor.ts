@@ -5,12 +5,10 @@ import { DynamicFormField } from './dynamic-form-field';
 import { DynamicFormFieldDefinition } from './dynamic-form-field-definition';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 
-export interface DynamicFormFieldConstructor<Field extends DynamicFormField> {
-  new (
-    builder: DynamicFormBuilder,
-    root: DynamicForm,
-    parent: DynamicFormElement,
-    definition: DynamicFormFieldDefinition,
-    type: DynamicFormFieldType,
-  ): Field;
-}
+export type DynamicFormFieldConstructor<Field extends DynamicFormField> = new (
+  builder: DynamicFormBuilder,
+  root: DynamicForm,
+  parent: DynamicFormElement,
+  definition: DynamicFormFieldDefinition,
+  type: DynamicFormFieldType,
+) => Field;

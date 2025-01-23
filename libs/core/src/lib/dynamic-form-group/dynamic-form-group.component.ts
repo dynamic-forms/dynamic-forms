@@ -13,7 +13,7 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
   imports: [NgClass, DynamicFormElementsComponent],
 })
 export class DynamicFormGroupComponent<
-  Value extends { [key: string]: any } = any,
+  Value extends Record<string, any> = any,
   Model extends Value = Value,
   Template extends DynamicFormGroupTemplate = DynamicFormGroupTemplate,
   Definition extends DynamicFormGroupDefinition<Value, Template> = DynamicFormGroupDefinition<Value, Template>,

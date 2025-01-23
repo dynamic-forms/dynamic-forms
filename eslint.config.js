@@ -18,6 +18,7 @@ module.exports = tseslint.config(
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
+      ...tseslint.configs.stylistic,
       ...angular.configs.tsAll,
       // @ts-ignore
       eslintPluginImport.flatConfigs.recommended,

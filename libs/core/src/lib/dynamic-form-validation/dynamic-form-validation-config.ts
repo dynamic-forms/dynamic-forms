@@ -18,8 +18,8 @@ export const dynamicFormErrorMessageTemplate =
 
 export interface DynamicFormValidationConfig {
   defaultMessage?: string;
-  messages?: { [key: string]: string | DynamicFormErrorMessageTemplate };
-  aliases?: { [key: string]: string };
+  messages?: Record<string, string | DynamicFormErrorMessageTemplate>;
+  aliases?: Record<string, string>;
   libraryName: DynamicFormLibraryName;
 }
 

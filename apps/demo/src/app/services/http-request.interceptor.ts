@@ -9,7 +9,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next.handle(request.clone({ setHeaders }));
   }
 
-  private getCacheHeaders(): { [key: string]: string } {
+  private getCacheHeaders(): Record<string, string> {
     return { 'Cache-Control': 'no-cache', Pragma: 'no-cache' };
   }
 }

@@ -5,6 +5,6 @@ import { DynamicFormActionTemplate } from './dynamic-form-action-template';
 
 export interface DynamicFormActionDefinition<Template extends DynamicFormActionTemplate = DynamicFormActionTemplate>
   extends DynamicFormElementDefinition<Template> {
-  expressions?: { [key: string]: string | DynamicFormActionExpressionFunc };
+  expressions?: Record<string, string | DynamicFormActionExpressionFunc>;
   dialogDefinition?: DynamicFormDefinition;
 }

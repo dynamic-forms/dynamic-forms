@@ -9,30 +9,30 @@ import {
 } from '../dynamic-form-field/dynamic-form-field-validator';
 import { DynamicFormDictionary } from './dynamic-form-dictionary';
 
-export type DynamicFormDictionaryValidatorFn<Value = any> = DynamicFormFieldValidatorFn<{ [key: string]: Value }, FormRecordBase<Value>>;
+export type DynamicFormDictionaryValidatorFn<Value = any> = DynamicFormFieldValidatorFn<Record<string, Value>, FormRecordBase<Value>>;
 
 export type DynamicFormDictionaryAsyncValidatorFn<Value = any> = DynamicFormFieldAsyncValidatorFn<
-  { [key: string]: Value },
+  Record<string, Value>,
   FormRecordBase<Value>
 >;
 
 export type DynamicFormDictionaryValidatorFactory<Value = any, Model extends Value = Value> = DynamicFormFieldValidatorFactory<
-  { [key: string]: Value },
-  { [key: string]: Model },
+  Record<string, Value>,
+  Record<string, Model>,
   FormRecordBase<Value>,
   DynamicFormDictionary<Value, Model>
 >;
 
 export type DynamicFormDictionaryAsyncValidatorFactory<Value = any, Model extends Value = Value> = DynamicFormFieldAsyncValidatorFactory<
-  { [key: string]: Value },
-  { [key: string]: Model },
+  Record<string, Value>,
+  Record<string, Model>,
   FormRecordBase<Value>,
   DynamicFormDictionary<Value, Model>
 >;
 
 export class DynamicFormDictionaryValidator<Value = any, Model extends Value = Value> extends DynamicFormFieldValidator<
-  { [key: string]: Value },
-  { [key: string]: Model },
+  Record<string, Value>,
+  Record<string, Model>,
   FormRecordBase<Value>,
   DynamicFormDictionary<Value, Model>
 > {
@@ -46,8 +46,8 @@ export class DynamicFormDictionaryValidator<Value = any, Model extends Value = V
 }
 
 export class DynamicFormDictionaryAsyncValidator<Value = any, Model extends Value = Value> extends DynamicFormFieldAsyncValidator<
-  { [key: string]: Value },
-  { [key: string]: Model },
+  Record<string, Value>,
+  Record<string, Model>,
   FormRecordBase<Value>,
   DynamicFormDictionary<Value, Model>
 > {

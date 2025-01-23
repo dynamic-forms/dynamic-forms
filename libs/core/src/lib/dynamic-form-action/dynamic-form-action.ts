@@ -23,12 +23,10 @@ export class DynamicFormAction<
 
   protected _dialog: DynamicFormDialog;
 
+  override readonly classType: DynamicFormClassType = 'action';
+
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type);
-  }
-
-  override get classType(): DynamicFormClassType {
-    return 'action';
   }
 
   get disabled(): boolean {

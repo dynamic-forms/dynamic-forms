@@ -20,7 +20,7 @@ export class ExamplesState {
   }
 
   @Selector()
-  static examples(state: Examples): { [key: string]: Example } {
+  static examples(state: Examples): Record<string, Example> {
     return state ? state.examples : undefined;
   }
 
@@ -35,7 +35,7 @@ export class ExamplesState {
     context.patchState({ menu, examples });
   }
 
-  private getExamples(items: ExampleMenuItem[], path?: string): { [key: string]: Example } {
+  private getExamples(items: ExampleMenuItem[], path?: string): Record<string, Example> {
     return items.reduce((result, item) => {
       const group = item as ExampleMenuGroup;
       if (group.items && group.items.length) {

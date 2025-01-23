@@ -12,7 +12,7 @@ export const mergeObject = <T1, T2>(obj1: T1, obj2: T2): T2 => {
       result[key] = value;
       return result;
     },
-    obj as { [key: string]: any } as T2,
+    obj as Record<string, any> as T2,
   );
 };
 
