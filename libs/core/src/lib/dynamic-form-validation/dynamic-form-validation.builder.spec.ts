@@ -352,7 +352,7 @@ describe('DynamicFormValidationBuilder', () => {
       (service: DynamicFormValidationBuilder) => {
         const validators = {
           customMin: { type: 'min', parameters: -10, message: 'message' },
-        } as { [key: string]: DynamicFormFieldValidatorDefinition };
+        } as Record<string, DynamicFormFieldValidatorDefinition>;
         const definition = { validators } as DynamicFormControlDefinition;
         const validation = { customMin: true } as DynamicFormControlValidation;
         const control = { definition, template: { input: {}, validation } } as DynamicFormControl;

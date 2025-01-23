@@ -29,6 +29,8 @@ export class DynamicFormControl<
   protected _prefixAddOn: DynamicFormControlAddOn;
   protected _suffixAddOn: DynamicFormControlAddOn;
 
+  readonly fieldClassType: DynamicFormFieldClassType = 'control';
+
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     super(builder, root, parent, definition, type);
     if (!this.template.input) {
@@ -38,10 +40,6 @@ export class DynamicFormControl<
     this._control = this.createControl();
     this._valueSubscription = this.createValueSubscription();
     this.extendExpressionData({ input: () => this.input });
-  }
-
-  get fieldClassType(): DynamicFormFieldClassType {
-    return 'control';
   }
 
   get input(): Input {

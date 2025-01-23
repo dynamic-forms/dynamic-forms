@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.0.0-rc.0 (2025-01-23)
+
+### General
+
+* migration to eslint 9 und use of tslint stylistic
+
 ## 19.0.0-next.3 (2025-01-20)
 
 ### Bug Fixes

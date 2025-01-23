@@ -39,6 +39,8 @@ export class DynamicFormElement<
   readonly expressionChanges = this.expressionChangesSubject.asObservable();
   readonly expressionData: ExpressionData;
 
+  readonly classType: DynamicFormClassType = 'element';
+
   constructor(builder: DynamicFormBuilder, root: DynamicForm, parent: DynamicFormElement, definition: Definition, type: Type) {
     this._builder = builder;
     this.root = root || (this as unknown as DynamicForm);
@@ -50,10 +52,6 @@ export class DynamicFormElement<
     this.type = type;
     this.expressionData = this.createExpressionData();
     this._expressions = {} as Expressions;
-  }
-
-  get classType(): DynamicFormClassType {
-    return 'element';
   }
 
   get id(): string {
@@ -109,7 +107,7 @@ export class DynamicFormElement<
     return expressionData;
   }
 
-  protected extendExpressionData(expressions: { [key: string]: () => any }): void {
+  protected extendExpressionData(expressions: Record<string, () => any>): void {
     assignExpressionData(this.expressionData, expressions);
   }
 

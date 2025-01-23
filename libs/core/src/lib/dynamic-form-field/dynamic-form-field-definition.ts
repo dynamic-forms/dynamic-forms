@@ -13,9 +13,9 @@ export interface DynamicFormFieldDefinition<Value = any, Template extends Dynami
   defaultValue?: Value;
   settings?: DynamicFormFieldSettings;
   unregistered?: boolean;
-  expressions?: { [key: string]: string | DynamicFormFieldExpressionFunc };
-  validators?: { [key: string]: DynamicFormFieldValidatorDefinition };
-  evaluators?: { [key: string]: DynamicFormFieldEvaluatorDefinition };
+  expressions?: Record<string, string | DynamicFormFieldExpressionFunc>;
+  validators?: Record<string, DynamicFormFieldValidatorDefinition>;
+  evaluators?: Record<string, DynamicFormFieldEvaluatorDefinition>;
   headerActions?: DynamicFormActionDefinition[];
   footerActions?: DynamicFormActionDefinition[];
   wrappers?: string[];

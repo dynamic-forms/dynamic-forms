@@ -19,7 +19,6 @@ export abstract class DynamicFormInputMaskBase
 
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
-    this.field;
   }
 
   get inputMask(): DynamicFormInputMaskControl {

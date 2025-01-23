@@ -1,3 +1,1 @@
-export interface DynamicFormFieldValidation {
-  [key: string]: boolean;
-}
+export type DynamicFormFieldValidation = Record<string, boolean>;

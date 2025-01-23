@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@dynamic-forms/core": [
+        "libs/core/src/public_api"
+      ],
+      "@dynamic-forms/core/input-mask": [
+        "libs/core/input-mask/src/public_api"
+      ],
+      "@dynamic-forms/bootstrap": [
+        "libs/bootstrap/src/public_api"
+      ],
+      "@dynamic-forms/bootstrap/input-mask": [
+        "libs/bootstrap/input-mask/src/public_api"
+      ],
+      "@dynamic-forms/material": [
+        "libs/material/src/public_api"
+      ],
+      "@dynamic-forms/material/input-mask": [
+        "libs/material/input-mask/src/public_api"
+      ],
+      "@dynamic-forms/markdown": [
+        "libs/markdown/src/public_api"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules/**/*",
+    "dist/**/*"
+  ]
+}

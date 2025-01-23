@@ -1,3 +1,1 @@
-export interface DynamicFormExpressionData {
-  readonly [key: string]: any;
-}
+export type DynamicFormExpressionData = Readonly<Record<string, any>>;

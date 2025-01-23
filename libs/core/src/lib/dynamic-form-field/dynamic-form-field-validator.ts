@@ -176,12 +176,10 @@ export abstract class DynamicFormFieldValidator<
     ValidatorFn
   >,
 > extends DynamicFormFieldValidatorBase<Value, Model, Control, Field, DynamicFormValidatorResult, ValidatorFn, ValidatorFactory> {
+  readonly async = false;
+
   constructor(factory: ValidatorFactory, key: string, field: Field, deps?: any[]) {
     super(factory, key, field, deps);
-  }
-
-  get async(): boolean {
-    return false;
   }
 }
 
@@ -199,11 +197,9 @@ export abstract class DynamicFormFieldAsyncValidator<
     ValidatorFn
   > = DynamicFormFieldAsyncValidatorFactory<Value, Model, Control, Field, ValidatorFn>,
 > extends DynamicFormFieldValidatorBase<Value, Model, Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn, ValidatorFactory> {
+  readonly async = true;
+
   constructor(factory: ValidatorFactory, key: string, field: Field, deps?: any[]) {
     super(factory, key, field, deps);
-  }
-
-  get async(): boolean {
-    return true;
   }
 }

@@ -52,7 +52,7 @@ describe('DynamicFormExpressionBuilder', () => {
     } as DynamicFormElementExpressionData;
     const expressions = {
       disabled: 'data.values && data.values.length > 0',
-    } as { [key: string]: string };
+    } as Record<string, string>;
     const definition = { expressions } as DynamicFormElementDefinition;
     const element = { definition, expressionData } as DynamicFormElement;
     const elementExpressions = service.createElementExpressions(element);
@@ -85,7 +85,7 @@ describe('DynamicFormExpressionBuilder', () => {
       } as DynamicFormElementExpressionData;
       const expressions = {
         disabled: 'invalid javascript',
-      } as { [key: string]: string };
+      } as Record<string, string>;
       const definition = { expressions } as DynamicFormElementDefinition;
       const element = { definition, expressionData } as DynamicFormElement;
       const elementExpressions = service.createElementExpressions(element);
@@ -112,7 +112,7 @@ describe('DynamicFormExpressionBuilder', () => {
     } as DynamicFormElementExpressionData;
     const expressions = {
       disabled: data => data.values && data.values.length > 0,
-    } as { [key: string]: DynamicFormElementExpressionFunc };
+    } as Record<string, DynamicFormElementExpressionFunc>;
     const definition = { expressions } as DynamicFormElementDefinition;
     const element = { definition, expressionData } as DynamicFormElement;
     const elementExpressions = service.createElementExpressions(element);
@@ -152,7 +152,7 @@ describe('DynamicFormExpressionBuilder', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const expressions = {
       readonly: 'data.root.model.readonly || data.parentField.model.readonly',
-    } as { [key: string]: string };
+    } as Record<string, string>;
     const expressionData = {
       root: { model: root.model },
       parent: {},
@@ -187,7 +187,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionChanges = expressionChangesSubject.asObservable();
       const expressions = {
         readonly: 'invalid javascript',
-      } as { [key: string]: string };
+      } as Record<string, string>;
       const expressionData = {
         root: { model: root.model },
         parent: {},
@@ -218,7 +218,7 @@ describe('DynamicFormExpressionBuilder', () => {
     const expressionChanges = expressionChangesSubject.asObservable();
     const expressions = {
       readonly: func,
-    } as { [key: string]: DynamicFormFieldExpressionFunc };
+    } as Record<string, DynamicFormFieldExpressionFunc>;
     const expressionData = {
       model: model.child.child,
       parent: {},
@@ -263,7 +263,7 @@ describe('DynamicFormExpressionBuilder', () => {
     const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
     const expressions = {
       disabled: 'data.parentField.status === "VALID" && data.root.status === "VALID"',
-    } as { [key: string]: string };
+    } as Record<string, string>;
     const definition = { expressions } as DynamicFormActionDefinition;
     const action = { definition, expressionData } as DynamicFormAction;
     const actionExpressions = service.createActionExpressions(action);
@@ -291,7 +291,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const expressionData = { root, parent, parentField } as DynamicFormActionExpressionData;
       const expressions = {
         disabled: 'invalid javascript',
-      } as { [key: string]: string };
+      } as Record<string, string>;
       const definition = { expressions } as DynamicFormActionDefinition;
       const action = { definition, expressionData } as DynamicFormAction;
       const actionExpressions = service.createActionExpressions(action);
@@ -312,7 +312,7 @@ describe('DynamicFormExpressionBuilder', () => {
     const expressionData = { root, parentField } as DynamicFormActionExpressionData;
     const expressions = {
       disabled: data => data.parentField.status === 'VALID' && data.root.status === 'VALID',
-    } as { [key: string]: DynamicFormActionExpressionFunc };
+    } as Record<string, DynamicFormActionExpressionFunc>;
     const definition = { expressions } as DynamicFormActionDefinition;
     const action = { definition, expressionData } as DynamicFormAction;
     const actionExpressions = service.createActionExpressions(action);

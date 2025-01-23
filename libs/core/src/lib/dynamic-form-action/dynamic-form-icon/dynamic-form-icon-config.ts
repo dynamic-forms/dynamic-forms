@@ -2,7 +2,7 @@ import { InjectionToken } from '@angular/core';
 import { DynamicFormLibraryName } from '../../dynamic-form-library/dynamic-form-library';
 
 export interface DynamicFormIconConfig {
-  icons: { [key: string]: string };
+  icons: Record<string, string>;
   libraryName: DynamicFormLibraryName;
 }
 

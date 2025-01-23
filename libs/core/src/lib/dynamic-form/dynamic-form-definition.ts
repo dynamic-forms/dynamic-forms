@@ -4,6 +4,6 @@ import { DynamicFormTemplate } from './dynamic-form-template';
 
 export interface DynamicFormDefinition extends DynamicFormFieldDefinition<undefined, DynamicFormTemplate> {
   reference?: undefined;
-  references?: { [key: string]: DynamicFormElementDefinition };
+  references?: Record<string, DynamicFormElementDefinition>;
   children: DynamicFormElementDefinition[];
 }

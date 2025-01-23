@@ -15,6 +15,8 @@ import { DynamicFormFieldExpressions } from './dynamic-form-field-expressions';
 import { DynamicFormFieldType } from './dynamic-form-field-type';
 
 class DynamicFormTestField extends DynamicFormField {
+  readonly fieldClassType: DynamicFormFieldClassType = null;
+
   constructor(
     builder: DynamicFormBuilder,
     root: DynamicForm,
@@ -29,10 +31,6 @@ class DynamicFormTestField extends DynamicFormField {
       updateValueAndValidity: () => {},
     } as unknown as DynamicFormFieldControl<any>;
     super(builder, root, parent, definition, type, control);
-  }
-
-  get fieldClassType(): DynamicFormFieldClassType {
-    return null;
   }
 
   check(): void {

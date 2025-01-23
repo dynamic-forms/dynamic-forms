@@ -58,7 +58,7 @@ export class DynamicFormBuilder {
     private idBuilder: DynamicFormIdBuilder,
   ) {}
 
-  initForm<Value extends { [key: string]: any } = any, Model extends Value = Value>(
+  initForm<Value extends Record<string, any> = any, Model extends Value = Value>(
     definition: DynamicFormDefinition,
     model: Model,
   ): DynamicForm<Value, Model> {
@@ -67,7 +67,7 @@ export class DynamicFormBuilder {
     return field;
   }
 
-  createForm<Value extends { [key: string]: any } = any, Model extends Value = Value>(
+  createForm<Value extends Record<string, any> = any, Model extends Value = Value>(
     definition: DynamicFormDefinition,
     model: Model,
   ): DynamicForm<Value, Model> {

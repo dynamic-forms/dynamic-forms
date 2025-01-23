@@ -84,7 +84,7 @@ describe('DynamicFormBuilder', () => {
     { libraryName: 'test', type: 'input3', control: DynamicFormInput3Control, component: null },
   ];
 
-  const getForm = (model: any, references?: { [key: string]: DynamicFormElementDefinition }) => {
+  const getForm = (model: any, references?: Record<string, DynamicFormElementDefinition>) => {
     const definition = { children: [], references } as DynamicFormDefinition;
     return new DynamicForm({} as any, definition, model);
   };

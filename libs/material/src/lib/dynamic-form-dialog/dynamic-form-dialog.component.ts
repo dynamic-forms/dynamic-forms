@@ -54,8 +54,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   @Input() classNameTitle: string;
 
-  // eslint-disable-next-line
-  @Output() escaped = new EventEmitter();
+  @Output() readonly escaped = new EventEmitter();
 
   constructor(
     private dialog: MatDialog,

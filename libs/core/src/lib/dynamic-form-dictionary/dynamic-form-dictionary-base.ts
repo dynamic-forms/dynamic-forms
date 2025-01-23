@@ -13,14 +13,7 @@ export abstract class DynamicFormDictionaryBase<
   Template extends DynamicFormDictionaryTemplate = DynamicFormDictionaryTemplate,
   Definition extends DynamicFormDictionaryDefinition<Value, Template> = DynamicFormDictionaryDefinition<Value, Template>,
   Dictionary extends DynamicFormDictionary<Value, Model, Template, Definition> = DynamicFormDictionary<Value, Model, Template, Definition>,
-> extends DynamicFormFieldBase<
-  { [key: string]: Value },
-  { [key: string]: Model },
-  FormRecordBase<Value>,
-  Template,
-  Definition,
-  Dictionary
-> {
+> extends DynamicFormFieldBase<Record<string, Value>, Record<string, Model>, FormRecordBase<Value>, Template, Definition, Dictionary> {
   constructor(protected override validationService: DynamicFormValidationService) {
     super(validationService);
   }
