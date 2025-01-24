@@ -1,5 +1,9 @@
 # Changelog
 
+## 19.0.0 (2025-01-24)
+
+* Release without any notable changes in comparison to 19.0.0-rc.0
+
 ## 19.0.0-rc.0 (2025-01-23)
 
 ### General
