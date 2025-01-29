@@ -1,8 +1,7 @@
-// @ts-check
-const tseslint = require("typescript-eslint");
-const rootConfig = require("../../eslint.config.js");
+import tseslint from "typescript-eslint";
+import rootConfig from "../../eslint.config.mjs";
 
-module.exports = tseslint.config(
+export default tseslint.config(
   ...rootConfig,
   {
     files: ["**/*.ts"],
@@ -11,7 +10,7 @@ module.exports = tseslint.config(
         "error",
         {
           type: "element",
-          prefix: "dynamic",
+          prefix: "app",
           style: "kebab-case"
         }
       ],
@@ -19,14 +18,18 @@ module.exports = tseslint.config(
         "error",
         {
           type: "attribute",
-          prefix: "dynamic",
+          prefix: "app",
           style: "camelCase"
         }
       ],
+      "@angular-eslint/prefer-signals": "error"
     },
   },
   {
     files: ["**/*.html"],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/prefer-control-flow": "error",
+      "@angular-eslint/template/no-call-expression": "off"
+    }
   }
 );
