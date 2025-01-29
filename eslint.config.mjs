@@ -2,7 +2,7 @@ import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import tsparser from '@typescript-eslint/parser';
 import angular from "angular-eslint";
-import eslintPluginImportX from 'eslint-plugin-import-x';
+import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
@@ -20,15 +20,17 @@ export default tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsAll,
-      eslintPluginImportX.flatConfigs.recommended,
-      eslintPluginImportX.flatConfigs.typescript,
+      eslintPluginImport.flatConfigs.recommended,
+      eslintPluginImport.flatConfigs.typescript,
       eslintPluginPrettierRecommended
     ],
     processor: angular.processInlineTemplates,
-    languageOptions: {
-      parser: tsparser,
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+    settings: {
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.lint.json"
+        }
+      }
     },
     rules: {
       "@angular-eslint/use-injectable-provided-in": "off",
@@ -105,7 +107,7 @@ export default tseslint.config(
       ],
       "id-blacklist": "off",
       "id-match": "off",
-      "import-x/order": [
+      "import/order": [
         "error",
         {
           "pathGroups": [
