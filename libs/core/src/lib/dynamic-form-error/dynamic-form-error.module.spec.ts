@@ -7,6 +7,7 @@ import { DynamicFormErrorHandler } from './dynamic-form-error.handler';
 import {
   dynamicFormErrorProviders,
   withDynamicFormErrorSettings,
+  withDynamicFormLoggerFactory,
   withDynamicFormLoggerSettings,
   withDynamicFormLoggers,
 } from './dynamic-form-error.module';
@@ -86,6 +87,22 @@ describe('DynamicFormErrorModule', () => {
 
     it('provides DYNAMIC_FORM_LOGGER_SETTINGS', inject([DYNAMIC_FORM_LOGGER_SETTINGS], (settings: DynamicFormLoggerSettings) => {
       expect(settings).toBe(loggerSettings);
+    }));
+  });
+
+  describe('withLoggerFactory', () => {
+    const loggerType = { type: 'logger' } as DynamicFormLoggerType;
+    const loggerTypeFactory = (_: any) => loggerType;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: importDynamicFormsProviders(withDynamicFormLoggerFactory(loggerTypeFactory, [])),
+      });
+    });
+
+    it('provides DYNAMIC_FORM_LOGGER_TYPE_CONFIG', inject([DYNAMIC_FORM_LOGGER_TYPE_CONFIG], (config: DynamicFormLoggerTypeConfig) => {
+      expect(config.length).toBe(1);
+      expect(config[0]).toBe(loggerType);
     }));
   });
 

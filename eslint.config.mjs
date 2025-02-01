@@ -1,6 +1,5 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
-import tsparser from '@typescript-eslint/parser';
 import angular from "angular-eslint";
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";

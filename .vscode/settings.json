@@ -1,4 +1,7 @@
 {
+  "eslint.rules.customizations": [
+    { "rule": "import/no-unresolved", "severity": "off" }
+  ],
   "typescript.preferences.importModuleSpecifier": "relative",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

@@ -28,6 +28,14 @@ export function withDynamicFormLoggerSettings(settings: DynamicFormLoggerSetting
   return { providers: [provider] };
 }
 
+export function withDynamicFormLoggerFactory(
+  typeFactory: (...depTypes: any[]) => DynamicFormLoggerType,
+  deps?: any[],
+): DynamicFormsFeature {
+  const provider = { provide: DYNAMIC_FORM_LOGGER_TYPE_CONFIG, useFactory: typeFactory, deps, multi: true };
+  return { providers: [provider] };
+}
+
 export function withDynamicFormLoggers(...loggerTypes: DynamicFormLoggerType[]): DynamicFormsFeature {
   const providers = loggerTypes.map(loggerType => {
     return {
