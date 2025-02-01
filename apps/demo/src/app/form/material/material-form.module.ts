@@ -6,13 +6,14 @@ import {
   withDynamicFormColors,
   withDynamicFormControlValidatorFactory,
   withDynamicFormIcons,
+  withDynamicFormLoggerFactory,
 } from '@dynamic-forms/core';
 import { withDynamicFormsMarkdownFeatures } from '@dynamic-forms/markdown';
 import { provideMatDynamicFormsWithDefaultFeatures, provideNativeDatetimeAdapter } from '@dynamic-forms/material';
 import { withMatDynamicFormInputMask, withMatDynamicFormInputMaskConverters } from '@dynamic-forms/material/input-mask';
 import { v4 } from 'uuid';
 import { dynamicFormControlUniqueUsernameValidatorTypeFactory } from '../dynamic-form-extensions';
-import { FormLoggerModule } from '../form-logger.module';
+import { FormLogger, formLoggerTypeFactory } from '../form-logger';
 
 const config = {
   theme: 'material',
@@ -54,6 +55,7 @@ const features = [
   withDynamicFormControlValidatorFactory(dynamicFormControlUniqueUsernameValidatorTypeFactory, [HttpClient]),
   withMatDynamicFormInputMask(),
   withMatDynamicFormInputMaskConverters(),
+  withDynamicFormLoggerFactory(formLoggerTypeFactory, [FormLogger]),
   ...withDynamicFormsMarkdownFeatures(),
 ];
 
@@ -66,8 +68,8 @@ export function provideMaterialForm() {
 }
 
 @NgModule({
-  imports: [DynamicFormComponent, FormLoggerModule],
-  exports: [DynamicFormComponent, FormLoggerModule],
-  providers: provideMaterialForm(),
+  imports: [DynamicFormComponent],
+  exports: [DynamicFormComponent],
+  providers: [...provideMaterialForm(), FormLogger],
 })
 export class MaterialFormModule {}

@@ -38,6 +38,7 @@ import {
   withDynamicFormGroupValidatorFactory,
   withDynamicFormGroupValidators,
   withDynamicFormValidation,
+  withDynamicFormValidationDefaults,
 } from './dynamic-form-validation.module';
 import { DynamicFormValidationService } from './dynamic-form-validation.service';
 
@@ -491,6 +492,23 @@ describe('DynamicFormValidationModule', () => {
     it('provides DYNAMIC_FORM_VALIDATION_CONFIGS', inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
       expect(configs.length).toBe(1);
       expect(configs[0]).toEqual(config);
+    }));
+  });
+
+  describe('withValidationDefaults', () => {
+    const libraryName = 'test';
+    const additionalConfig: DynamicFormValidationConfig = { defaultMessage: 'message', messages: {}, libraryName };
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: importDynamicFormsProviders(...withDynamicFormValidationDefaults(additionalConfig)),
+      });
+    });
+
+    it('provides DYNAMIC_FORM_VALIDATION_CONFIGS', inject([DYNAMIC_FORM_VALIDATION_CONFIGS], (configs: DynamicFormValidationConfigs) => {
+      expect(configs.length).toBe(2);
+      expect(configs[0]).toEqual(dynamicFormValidationConfig);
+      expect(configs[1]).toEqual(additionalConfig);
     }));
   });
 });

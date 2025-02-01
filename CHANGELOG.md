@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.1.0-next.0
+
+### Features
+
+* **core:** add `withDynamicFormLoggerFactory` to provide a logger type using a factory
+
 ## 19.0.0 (2025-01-24)
 
 * Release without any notable changes in comparison to 19.0.0-rc.0

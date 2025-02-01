@@ -19,10 +19,11 @@ import {
   dynamicFormValidationConfig,
 } from '@dynamic-forms/core';
 import { matDynamicFormLibrary } from '@dynamic-forms/material';
+import { FormLogger } from '../form-logger';
 import { provideMaterialForm } from './material-form.module';
 
 describe('MaterialFormModule', () => {
-  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()];
+  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), FormLogger];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
     { name: 'provideMaterialForm', def: { providers: [...providers, ...provideMaterialForm()] } },
   ];
