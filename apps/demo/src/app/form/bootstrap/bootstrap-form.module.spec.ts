@@ -20,10 +20,11 @@ import {
   DynamicFormValidationService,
   dynamicFormValidationConfig,
 } from '@dynamic-forms/core';
+import { FormLogger } from '../form-logger';
 import { provideBootstrapForm } from './bootstrap-form.module';
 
 describe('BootstrapFormModule', () => {
-  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()];
+  const providers = [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), FormLogger];
   const testModules: { name: string; def: TestModuleMetadata }[] = [
     { name: 'provideBoostrapForm', def: { providers: [...providers, ...provideBootstrapForm()] } },
   ];
