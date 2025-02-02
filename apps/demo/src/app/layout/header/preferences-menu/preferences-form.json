@@ -8,6 +8,16 @@
       },
       "children": [
         {
+          "key": "default",
+          "type": "control",
+          "template": {
+            "input": {
+              "type": "textbox"
+            },
+            "hidden": true
+          }
+        },
+        {
           "key": "mode",
           "type": "control",
           "template": {

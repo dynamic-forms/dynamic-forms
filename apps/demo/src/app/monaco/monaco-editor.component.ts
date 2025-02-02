@@ -16,8 +16,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngxs/store';
-import { BehaviorSubject, distinctUntilChanged, first, map, tap } from 'rxjs';
-import { ThemeMode } from '../state/preferences/preferences.model';
+import { BehaviorSubject, distinctUntilChanged, first, tap } from 'rxjs';
+import { ThemeClass } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
 import { MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType, MonacoModule } from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
@@ -110,33 +110,32 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     this._editorBlur = this._editor.onDidBlurEditorText(_ => this.updateValue(MonacoEditorUpdateType.Blur));
     this._editorChange = this._editor.onDidChangeModelContent(_ => this.updateValue(MonacoEditorUpdateType.Change));
     this.store
-      .select(PreferencesState.theme)
+      .select(PreferencesState.themeClass)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        map(theme => theme?.mode),
         distinctUntilChanged(),
-        tap(mode => this.setTheme(mode)),
+        tap(value => this.setTheme(value)),
       )
       .subscribe();
   }
 
   private getEditorOptions(): MonacoEditorOptions {
-    const themeMode = this.store.selectSnapshot(PreferencesState.theme)?.mode;
+    const themeClass = this.store.selectSnapshot(PreferencesState.themeClass);
     return {
       value: this.value(),
       language: this.language(),
       automaticLayout: true,
       scrollBeyondLastLine: false,
-      theme: this.getTheme(themeMode),
+      theme: this.getTheme(themeClass),
     };
   }
 
-  private getTheme(mode: ThemeMode): string {
-    return mode === 'dark-mode' ? 'vs-dark' : 'vs';
+  private getTheme(themeClass: ThemeClass): string {
+    return themeClass === 'dark' ? 'vs-dark' : 'vs';
   }
 
-  private setTheme(mode: ThemeMode): void {
-    this._editor.updateOptions({ theme: this.getTheme(mode) });
+  private setTheme(themeClass: ThemeClass): void {
+    this._editor.updateOptions({ theme: this.getTheme(themeClass) });
   }
 
   private updateValue(updateType?: MonacoEditorUpdateType): void {
