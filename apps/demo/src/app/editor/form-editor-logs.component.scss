@@ -1,4 +1,7 @@
 :host {
+  --mat-table-background-color: transparent;
+  --mat-paginator-container-background-color: transparent;
+
   mat-row.hidden {
     display: none;
   }
