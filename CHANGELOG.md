@@ -5,6 +5,9 @@
 ### Features
 
 * **core:** add `withDynamicFormLoggerFactory` to provide a logger type using a factory
+* **demo:** styling improvements of form editor 
+  * use primary color as border color of monaco editor
+  * use transparent as background color of material table for logs
 
 ## 19.0.0 (2025-01-24)
 
