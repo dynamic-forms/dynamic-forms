@@ -1,12 +1,11 @@
-// @ts-nocheck
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
-const eslintPluginImport = require('eslint-plugin-import');
-const eslintPluginUnusedImports = require("eslint-plugin-unused-imports");
-const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import angular from "angular-eslint";
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
-module.exports = tseslint.config(
+export default tseslint.config(
   {
     ignores: ["apps/demo/src/assets/"]
   },
@@ -20,7 +19,6 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsAll,
-      // @ts-ignore
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
       eslintPluginPrettierRecommended
@@ -28,8 +26,8 @@ module.exports = tseslint.config(
     processor: angular.processInlineTemplates,
     settings: {
       "import/resolver": {
-        "typescript": {
-          "project": "./tsconfig.lint.json"
+        typescript: {
+          project: "./tsconfig.lint.json"
         }
       }
     },

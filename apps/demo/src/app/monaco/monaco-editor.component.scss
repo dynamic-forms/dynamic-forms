@@ -5,9 +5,12 @@
     padding-left: 1px;
     padding-bottom: 1px;
 
+    --mdc-text-button-container-shape: none;
+    --vscode-focusBorder: var(--app-primary-color);
+
     .monaco-editor-toolbar {
       height: 36px;
-      border-bottom: 1px solid var(--vscode-focusBorder);
+      border-bottom: 1px solid var(--app-primary-color);
     }
 
     .monaco-editor-container {

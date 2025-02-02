@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/markdown",
-  "version": "19.0.0",
+  "version": "19.1.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - markdown library",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamic-forms/dynamic-forms.git",
+    "url": "git+https://github.com/dynamic-forms/dynamic-forms.git",
     "directory": "libs/markdown"
   },
   "dependencies": {
@@ -23,13 +23,14 @@
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
-    "@dynamic-forms/core": "19.0.0",
+    "@dynamic-forms/core": "19.1.0-next.0",
     "marked": "^15.0.0",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "sideEffects": false
 }

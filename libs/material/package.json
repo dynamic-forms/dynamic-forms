@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "19.0.0",
+  "version": "19.1.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamic-forms/dynamic-forms.git",
+    "url": "git+https://github.com/dynamic-forms/dynamic-forms.git",
     "directory": "libs/material"
   },
   "dependencies": {
@@ -25,14 +25,15 @@
     "@angular/core": "^19.0.0",
     "@angular/forms": "^19.0.0",
     "@angular/material": "^19.0.0",
-    "@dynamic-forms/core": "19.0.0",
+    "@dynamic-forms/core": "19.1.0-next.0",
     "bootstrap": "^5.3.3",
     "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "sideEffects": false
 }

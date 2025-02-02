@@ -5,8 +5,11 @@ export enum ThemeMode {
   Dark = 'dark-mode',
 }
 
+export type ThemeClass = 'light' | 'dark';
+
 export interface ThemePreferences {
   mode: ThemeMode | null;
+  default: ThemeMode | null;
 }
 
 export enum FormEditorPreviewMode {
@@ -26,6 +29,7 @@ export interface Preferences {
 export const defaultPreferences: Preferences = {
   theme: {
     mode: null,
+    default: null,
   },
   formEditor: {
     previewMode: FormEditorPreviewMode.TabView,

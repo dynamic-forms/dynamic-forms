@@ -1,5 +1,14 @@
 # Changelog
 
+## 19.1.0-next.0
+
+### Features
+
+* **core:** add `withDynamicFormLoggerFactory` to provide a logger type using a factory
+* **demo:** styling improvements of form editor 
+  * use primary color as border color of monaco editor
+  * use transparent as background color of material table for logs
+
 ## 19.0.0 (2025-01-24)
 
 * Release without any notable changes in comparison to 19.0.0-rc.0
