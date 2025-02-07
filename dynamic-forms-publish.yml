@@ -28,12 +28,13 @@ steps:
   displayName: Publish test results
   continueOnError: True
   inputs:
-    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
-- task: PublishCodeCoverageResults@1
+    testResultsFiles: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+- task: PublishCodeCoverageResults@2
   displayName: Publish code coverage
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    summaryFileLocation: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    pathToSources: $(System.DefaultWorkingDirectory)/libs
 - task: Npm@1
   displayName: npm publish core
   inputs:
