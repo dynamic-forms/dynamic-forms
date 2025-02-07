@@ -28,7 +28,7 @@ steps:
 - task: PublishTestResults@2
   displayName: 'Publish test results'
   inputs:
-    searchFolder: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e/junit
+    searchFolder: dist/${{ variables.major_version_name }}/e2e/junit
     testResultsFormat: 'JUnit'
     testResultsFiles: 'results.xml'
     mergeTestResults: true
@@ -38,4 +38,4 @@ steps:
   displayName: Publish Report
   inputs:
     allureVersion: 2.27.0
-    testResultsDir: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/e2e/allure
+    testResultsDir: dist/${{ variables.major_version_name }}/e2e/allure
