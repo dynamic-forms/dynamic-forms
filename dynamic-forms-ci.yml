@@ -27,12 +27,13 @@ steps:
 - task: PublishTestResults@2
   displayName: Publish test results
   inputs:
-    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
-- task: PublishCodeCoverageResults@1
+    testResultsFiles: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+- task: PublishCodeCoverageResults@2
   displayName: Publish code coverage
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    summaryFileLocation: $(System.DefaultWorkingDirectory)/dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    pathToSources: $(System.DefaultWorkingDirectory)/libs
 - script: npm run test:demo
   displayName: npm test demo
 - script: npm run build:demo:prod
