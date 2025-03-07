@@ -12,18 +12,18 @@
   </mat-menu>
 
   <mat-menu #coreDocs="matMenu">
-    <app-docs-menu-items [repository]="repository" [library]="'core'" />
+    <app-docs-menu-items library="core" [repository]="repository" />
   </mat-menu>
 
   <mat-menu #bootstrapDocs="matMenu">
-    <app-docs-menu-items [repository]="repository" [library]="'bootstrap'" />
+    <app-docs-menu-items library="bootstrap" [repository]="repository" />
   </mat-menu>
 
   <mat-menu #materialDocs="matMenu">
-    <app-docs-menu-items [repository]="repository" [library]="'material'" />
+    <app-docs-menu-items library="material" [repository]="repository" />
   </mat-menu>
 
   <mat-menu #markdownDocs="matMenu">
-    <app-docs-menu-items [repository]="repository" [library]="'markdown'" />
+    <app-docs-menu-items library="markdown" [repository]="repository" />
   </mat-menu>
 }
