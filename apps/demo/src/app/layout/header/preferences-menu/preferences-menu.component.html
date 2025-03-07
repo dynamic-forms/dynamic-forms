@@ -1,6 +1,6 @@
 <button mat-icon-button type="button" [matMenuTriggerFor]="preferencesMenu">
   <mat-icon>settings</mat-icon>
 </button>
-<mat-menu #preferencesMenu="matMenu" [class]="'preferences-menu'">
+<mat-menu #preferencesMenu="matMenu" class="preferences-menu">
   <app-material-form [data]="data$ | async" (valueChange)="setPreferences($event)" />
 </mat-menu>
