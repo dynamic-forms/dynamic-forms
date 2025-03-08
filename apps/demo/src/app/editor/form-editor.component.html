@@ -1,11 +1,11 @@
 <div class="dynamic-form-editor" [class.split-view]="splitView$ | async">
   @if (splitView$ | async) {
-    <app-monaco-editor [language]="'json'" [updateType]="'blur'" [(value)]="value" />
+    <app-monaco-editor language="json" updateType="blur" [(value)]="value" />
   }
   <mat-tab-group #tabGroup>
     @if ((splitView$ | async) === false) {
       <mat-tab label="Editor">
-        <app-monaco-editor [language]="'json'" [updateType]="'blur'" [(value)]="value" />
+        <app-monaco-editor language="json" updateType="blur" [(value)]="value" />
       </mat-tab>
     }
     <mat-tab label="Form">
