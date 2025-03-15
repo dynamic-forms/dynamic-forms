@@ -11,7 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './apps/demo-e2e/src',
-  outputDir: 'dist/v19/e2e/html',
+  outputDir: 'dist/v20/e2e/html',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -22,9 +22,9 @@ export default defineConfig({
   workers: process.env['CI'] ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', { outputFolder: 'dist/v19/e2e/html', open: 'never' }],
-    ['junit', { outputFile: 'dist/v19/e2e/junit/results.xml' }],
-    ['allure-playwright', { resultsDir: 'dist/v19/e2e/allure' }],
+    ['html', { outputFolder: 'dist/v20/e2e/html', open: 'never' }],
+    ['junit', { outputFile: 'dist/v20/e2e/junit/results.xml' }],
+    ['allure-playwright', { resultsDir: 'dist/v20/e2e/allure' }],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

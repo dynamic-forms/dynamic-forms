@@ -26,25 +26,25 @@
     ],
     "paths": {
       "@dynamic-forms/core": [
-        "dist/v19/@dynamic-forms/core"
+        "dist/v20/@dynamic-forms/core"
       ],
       "@dynamic-forms/core/input-mask": [
-        "dist/v19/@dynamic-forms/core/input-mask"
+        "dist/v20/@dynamic-forms/core/input-mask"
       ],
       "@dynamic-forms/bootstrap": [
-        "dist/v19/@dynamic-forms/bootstrap"
+        "dist/v20/@dynamic-forms/bootstrap"
       ],
       "@dynamic-forms/bootstrap/input-mask": [
-        "dist/v19/@dynamic-forms/bootstrap/input-mask"
+        "dist/v20/@dynamic-forms/bootstrap/input-mask"
       ],
       "@dynamic-forms/material": [
-        "dist/v19/@dynamic-forms/material"
+        "dist/v20/@dynamic-forms/material"
       ],
       "@dynamic-forms/material/input-mask": [
-        "dist/v19/@dynamic-forms/material/input-mask"
+        "dist/v20/@dynamic-forms/material/input-mask"
       ],
       "@dynamic-forms/markdown": [
-        "dist/v19/@dynamic-forms/markdown"
+        "dist/v20/@dynamic-forms/markdown"
       ]
     },
     "useDefineForClassFields": false
