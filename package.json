@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/common",
-  "version": "19.1.0-next.0",
+  "version": "19.1.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms is an Angular project for dynamic forms based on JSON.",
   "keywords": [
@@ -109,9 +109,9 @@
     "angular-eslint": "19.2.1",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^3.9.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsdoc": "^50.6.3",
+    "eslint-plugin-jsdoc": "^50.6.6",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-unused-imports": "^4.1.4",
@@ -130,6 +130,6 @@
     "prettier-eslint": "^16.3.0",
     "ts-node": "~10.9.2",
     "typescript": "~5.8.2",
-    "typescript-eslint": "8.26.0"
+    "typescript-eslint": "8.26.1"
   }
 }
