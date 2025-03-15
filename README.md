@@ -97,7 +97,7 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 ### **Version 20** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=20.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=20.0.x)
 
-- Built with [Angular 20](https://v20.angular.dev/)
+- Built with [Angular 20](https://next.angular.dev/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v20/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v20/)
 
 ### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=19.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=19.1.x)
