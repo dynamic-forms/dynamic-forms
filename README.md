@@ -65,12 +65,12 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 ## **Packages**
 
-### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/19.1.0-next.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/19.1.0-next.0)
+### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/19.1.0)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/19.1.0)
 
-- `npm install @dynamic-forms/core@19.1.0-next.0`
-- `npm install @dynamic-forms/bootstrap@19.1.0-next.0`
-- `npm install @dynamic-forms/material@19.1.0-next.0`
-- `npm install @dynamic-forms/markdown@19.1.0-next.0`
+- `npm install @dynamic-forms/core@19.1.0`
+- `npm install @dynamic-forms/bootstrap@19.1.0`
+- `npm install @dynamic-forms/material@19.1.0`
+- `npm install @dynamic-forms/markdown@19.1.0`
 
 ### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-publish?branchName=refs/tags/18.1.2)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=45&branchName=refs/tags/18.1.2)
 
@@ -104,7 +104,7 @@ This is an [**Angular**](https://angular.dev) project for dynamic forms based on
 
 ### **Version 19** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=19.0.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=19.0.x)
 
-- Built with [Angular 19](https://next.angular.dev/)
+- Built with [Angular 19](https://v19.angular.dev/)
 - Environments include [DEV](https://dynamic-forms.azurewebsites.net/v19/dev/) and [PROD](https://dynamic-forms.azurewebsites.net/v19/)
 
 ### **Version 18** [![Build Status](https://dev.azure.com/alexandergebuhr/dynamic-forms/_apis/build/status/dynamic-forms-cd?branchName=18.1.x)](https://dev.azure.com/alexandergebuhr/dynamic-forms/_build/latest?definitionId=43&branchName=18.1.x)
