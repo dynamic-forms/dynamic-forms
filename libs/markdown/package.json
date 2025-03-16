@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/markdown",
-  "version": "19.1.0",
+  "version": "20.0.0-next.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - markdown library",
   "keywords": [
@@ -21,15 +21,16 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@dynamic-forms/core": "19.1.0",
+    "@angular/common": "^20.0.0-next.2",
+    "@angular/core": "^20.0.0-next.2",
+    "@dynamic-forms/core": "20.0.0-next.0",
     "marked": "^15.0.0",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "sideEffects": false
 }

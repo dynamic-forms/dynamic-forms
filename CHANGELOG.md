@@ -1,5 +1,14 @@
 # Changelog
 
+## 20.0.0-next.0
+
+### Features
+
+* **core:** update to angular 20
+* **bootstrap:** update to angular 20
+* **material:** update to angular and angular material 20
+* **markdown:** update to angular 20
+
 ## 19.1.0 (2025-03-15)
 
 ### Features
