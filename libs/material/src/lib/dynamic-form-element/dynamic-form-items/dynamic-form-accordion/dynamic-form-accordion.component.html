@@ -1,12 +1,12 @@
 <mat-accordion class="dynamic-form-items dynamic-form-accordion" [ngClass]="template.className" [hidden]="template.hidden">
-  @for (child of element.children; let index = $index; track index) {
+  @for (child of element.children; track $index) {
     <mat-expansion-panel
       [ngClass]="child.template.className"
-      [expanded]="index === selectedIndex"
+      [expanded]="$index === selectedIndex"
       [disabled]="child.disabled"
       [hidden]="child.template.hidden"
-      (opened)="openItem(index)"
-      (closed)="closeItem(index)"
+      (opened)="openItem($index)"
+      (closed)="closeItem($index)"
     >
       <mat-expansion-panel-header class="dynamic-form-item-header">
         <mat-panel-title>{{ child.label }}</mat-panel-title>

@@ -8,8 +8,8 @@
   [errorMessage]="showErrors ? errorMessage : null"
 >
   <mat-button-toggle-group [formControl]="control">
-    @for (option of input.options; let index = $index; track index) {
-      <mat-button-toggle [id]="inputId + '-' + index" [value]="option.value" [disabled]="option.disabled">{{
+    @for (option of input.options; track $index) {
+      <mat-button-toggle [id]="inputId + '-' + $index" [value]="option.value" [disabled]="option.disabled">{{
         option.label
       }}</mat-button-toggle>
     }
