@@ -7,7 +7,6 @@ import { CodeUrlPipe } from '../pipes/code-url.pipe';
 @Component({
   selector: 'app-docs-menu-items',
   templateUrl: './docs-menu-items.component.html',
-  styleUrl: './docs-menu-items.component.scss',
   imports: [RouterLink, RouterLinkActive, MatMenuModule, CodeUrlPipe],
 })
 export class DocsMenuItemsComponent {

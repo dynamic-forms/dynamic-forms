@@ -11,7 +11,6 @@ import { ConfigState } from '../../../state/config/config.state';
 @Component({
   selector: 'app-versions-menu',
   templateUrl: './versions-menu.component.html',
-  styleUrl: './versions-menu.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule],
 })
 export class VersionsMenuComponent {

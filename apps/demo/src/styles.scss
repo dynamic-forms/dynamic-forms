@@ -1,62 +1,61 @@
-@use "@angular/material" as mat;
-@use "@dynamic-forms/core/assets/scss/grid";
-@use "@dynamic-forms/bootstrap/assets/scss/theme" as bootstrapTheme;
-@use "@dynamic-forms/material/assets/scss/theme" as materialTheme;
-@use "@dynamic-forms/markdown/assets/scss/markdown";
+@use '@angular/material' as mat;
+@use '@dynamic-forms/core/assets/scss/grid';
+@use '@dynamic-forms/bootstrap/assets/scss/theme' as bootstrapTheme;
+@use '@dynamic-forms/material/assets/scss/theme' as materialTheme;
+@use '@dynamic-forms/markdown/assets/scss/markdown';
 
 :root {
-  --mat-sys-display-large: 500 24px/32px Roboto, sans-serif;
+  --mat-sys-display-large: 500 24px/32px roboto, sans-serif;
   --mat-sys-display-large-tracking: normal;
-
-  --mat-sys-display-medium: 500 20px/28px Roboto, sans-serif;
+  --mat-sys-display-medium: 500 20px/28px roboto, sans-serif;
   --mat-sys-display-medium-tracking: normal;
-
-  --mat-sys-display-small: 500 20px/24px Roboto, sans-serif;
+  --mat-sys-display-small: 500 20px/24px roboto, sans-serif;
   --mat-sys-display-small-tracking: normal;
-
-  --mat-sys-body-large: 400 14px/20px Roboto, sans-serif;
+  --mat-sys-body-large: 400 14px/20px roboto, sans-serif;
   --mat-sys-body-large-tracking: normal;
-
   --mat-sys-body-medium-size: 14px;
   --mat-sys-body-medium-line-height: normal;
   --mat-sys-body-medium-tracking: normal;
-
   --mat-sys-body-small-size: 12px;
   --mat-sys-body-small-line-height: 20px;
-  --mat-sys-body-small-tracking: .0333333em;
+  --mat-sys-body-small-tracking: 0.0333em;
 }
 
-$app-light-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  typography: (
-    use-system-variables: true,
-  ),
-  density: (
-    scale: 0,
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: (
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
   )
-));
-
-$app-dark-theme: mat.define-theme((
-  color: (
-    theme-type: dark,
-    primary: mat.$cyan-palette,
-    tertiary: mat.$orange-palette,
-  ),
-  typography: (
-    use-system-variables: true,
-  ),
-  density: (
-    scale: 0,
+);
+$app-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: (
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
   )
-));
+);
 
 @include mat.typography-hierarchy($app-light-theme);
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -67,9 +66,11 @@ body {
   margin: 0;
 
   @include mat.all-component-themes($app-light-theme);
-  @include mat.card-overrides((
-    elevated-container-color: #fff,
-  ));
+  @include mat.card-overrides(
+    (
+      elevated-container-color: #fff,
+    )
+  );
 
   .button-content {
     display: flex;
@@ -83,13 +84,15 @@ body {
     @include mat.all-component-colors($app-dark-theme);
 
     .dynamic-form-markdown {
-      code, pre {
+      code,
+      pre {
         background-color: #696969;
       }
     }
   }
 
-  .header, .footer {
+  .header,
+  .footer {
     color: var(--app-primary-color);
     background: var(--app-primary-background);
 
@@ -98,7 +101,7 @@ body {
     }
 
     .mat-mdc-button.mat-unthemed {
-      color: inherit
+      color: inherit;
     }
   }
 
@@ -109,7 +112,7 @@ body {
 
   .preferences-menu {
     div {
-      color: var(--mat-app-text-color)
+      color: var(--mat-app-text-color);
     }
   }
 
@@ -120,12 +123,11 @@ body {
   }
 }
 
-
 .dynamic-form-wrapper {
   width: 100%;
 
   div {
-    color: var(--mat-app-text-color)
+    color: var(--mat-app-text-color);
   }
 
   .dynamic-form {
@@ -141,6 +143,6 @@ body {
 
 .dynamic-form-example {
   .mat-tab-header-pagination {
-    z-index: auto
+    z-index: auto;
   }
 }

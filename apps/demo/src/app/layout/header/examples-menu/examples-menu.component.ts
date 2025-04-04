@@ -12,7 +12,6 @@ import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
 @Component({
   selector: 'app-examples-menu',
   templateUrl: './examples-menu.component.html',
-  styleUrl: './examples-menu.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
 })
 export class ExamplesMenuComponent {
