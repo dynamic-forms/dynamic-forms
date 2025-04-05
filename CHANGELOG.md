@@ -2,6 +2,10 @@
 
 ## 20.0.0-next.0
 
+### General
+
+* update of peer dependencies: bootstrap (5.3.5)
+
 ### Features
 
 * **core:** update to angular 20
