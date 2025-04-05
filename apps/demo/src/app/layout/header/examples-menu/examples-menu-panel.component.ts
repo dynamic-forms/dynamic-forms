@@ -6,7 +6,6 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
 @Component({
   selector: 'app-examples-menu-panel',
   templateUrl: './examples-menu-panel.component.html',
-  styleUrl: './examples-menu-panel.component.scss',
   imports: [RouterLink, RouterLinkActive, MatMenuModule],
 })
 export class ExamplesMenuPanelComponent {

@@ -17,7 +17,6 @@ import preferencesDefinition from './preferences-form.json';
 @Component({
   selector: 'app-preferences-menu',
   templateUrl: './preferences-menu.component.html',
-  styleUrl: './preferences-menu.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, MaterialFormComponent],
 })
 export class PreferencesMenuComponent {

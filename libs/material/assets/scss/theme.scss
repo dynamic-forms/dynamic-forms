@@ -1,5 +1,5 @@
-@use "@dynamic-forms/core/assets/scss/variables" as variables;
-@use "@dynamic-forms/core/assets/scss/mixins" as mixins;
+@use '@dynamic-forms/core/assets/scss/variables' as variables;
+@use '@dynamic-forms/core/assets/scss/mixins' as mixins;
 
 .dynamic-form-wrapper.material {
   --dynamic-form-errors-color: var(--mat-form-field-error-text-color);
@@ -23,7 +23,8 @@
 
     mat-form-field {
       &.suffixes-flex {
-        .mat-mdc-form-field-icon-prefix, .mat-mdc-form-field-icon-suffix {
+        .mat-mdc-form-field-icon-prefix,
+        .mat-mdc-form-field-icon-suffix {
           display: flex;
 
           dynamic-form-element {
@@ -54,10 +55,7 @@
       }
 
       .dynamic-form-toolbar {
-        @include mixins.dynamic-form-toolbar(
-          $flex: 1 1 0,
-          $button-space: variables.$dynamic-form-button-space
-        );
+        @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
       }
     }
 
@@ -74,18 +72,13 @@
       @include mixins.dynamic-form-footer(
         $margin-top: variables.$dynamic-form-footer-margin-top,
         $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-        $button-space: variables.$dynamic-form-button-space,
+        $button-space: variables.$dynamic-form-button-space
       );
     }
 
     .dynamic-form-group {
       .dynamic-form-group-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-group-label {
           @include mixins.dynamic-form-label(
@@ -95,10 +88,7 @@
         }
 
         .dynamic-form-group-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -115,19 +105,14 @@
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
 
     .dynamic-form-array {
       .dynamic-form-array-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-array-label {
           @include mixins.dynamic-form-label(
@@ -137,10 +122,7 @@
         }
 
         .dynamic-form-array-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -157,19 +139,14 @@
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
 
     .dynamic-form-dictionary {
       .dynamic-form-dictionary-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-dictionary-label {
           @include mixins.dynamic-form-label(
@@ -179,10 +156,7 @@
         }
 
         .dynamic-form-dictionary-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -199,7 +173,7 @@
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
@@ -245,6 +219,7 @@
               }
             }
           }
+
           .mat-mdc-form-field-input-wrapper {
             display: flex;
             flex-direction: column;
@@ -292,95 +267,97 @@
 }
 
 .mat-mdc-dialog-container {
-  .mdc-dialog__surface {
-    padding: 20px;
+  .mdc-dialog {
+    &__surface {
+      padding: 20px;
 
-    .dynamic-form-wrapper.material {
-      width: 100%;
-      height: 100%;
-
-      .dynamic-form {
+      .dynamic-form-wrapper.material {
         width: 100%;
         height: 100%;
-        margin: 0;
 
-        &.grid {
-          .dynamic-form-modal {
-            .modal-body {
-              &.row {
-                margin: 0 calc(var(--bs-gutter-x) * -0.5);
-                padding: 0;
-              }
-            }
-          }
-        }
-
-        .dynamic-form-modal {
+        .dynamic-form {
           width: 100%;
           height: 100%;
+          margin: 0;
 
-          .modal-header {
-            display: flex;
-            align-items: center;
+          &.grid {
+            .dynamic-form-modal {
+              .modal-body {
+                &.row {
+                  margin: 0 calc(var(--bs-gutter-x) * -0.5);
+                  padding: 0;
+                }
+              }
+            }
+          }
+
+          .dynamic-form-modal {
             width: 100%;
-            height: 40px;
-            margin-bottom: 12px;
+            height: 100%;
 
-            .modal-title {
-              &.modal-title-bg {
-                font-size: 24px;
-                font-weight: bold;
-              }
-
-              &.modal-title-md {
-                font-size: 22px;
-                font-weight: bold;
-              }
-
-              &.modal-title-sm {
-                font-size: 20px;
-                font-weight: bold;
-              }
-            }
-
-            .modal-toolbar {
-              flex: 1 1 0;
+            .modal-header {
               display: flex;
-              flex-direction: row;
-              justify-content: flex-end;
+              align-items: center;
+              width: 100%;
+              height: 40px;
+              margin-bottom: 12px;
 
-              dynamic-form-elements {
-                display: contents;
+              .modal-title {
+                &.modal-title-bg {
+                  font-size: 24px;
+                  font-weight: bold;
+                }
+
+                &.modal-title-md {
+                  font-size: 22px;
+                  font-weight: bold;
+                }
+
+                &.modal-title-sm {
+                  font-size: 20px;
+                  font-weight: bold;
+                }
+              }
+
+              .modal-toolbar {
+                flex: 1 1 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                dynamic-form-elements {
+                  display: contents;
+                }
               }
             }
-          }
 
-          .modal-body {
-            height: calc(100% - 100px);
-            max-height: calc(100% - 100px);
-            padding: 0 20px;
-            margin: 0 -20px;
-          }
+            .modal-body {
+              height: calc(100% - 100px);
+              max-height: calc(100% - 100px);
+              padding: 0 20px;
+              margin: 0 -20px;
+            }
 
-          .modal-footer {
-            display: flex;
-            align-items: center;
-            height: 48px;
-            min-height: 48px;
-            padding: 0;
+            .modal-footer {
+              display: flex;
+              align-items: center;
+              height: 48px;
+              min-height: 48px;
+              padding: 0;
 
-            &.content-end {
-              justify-content: flex-end;
+              &.content-end {
+                justify-content: flex-end;
+
+                button {
+                  margin-left: 10px;
+                  margin-right: 0;
+                }
+              }
 
               button {
-                margin-left: 10px;
-                margin-right: 0px;
+                margin-left: 0;
+                margin-right: 10px;
               }
-            }
-
-            button {
-              margin-left: 0px;
-              margin-right: 10px;
             }
           }
         }

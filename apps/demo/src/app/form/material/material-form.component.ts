@@ -6,7 +6,6 @@ import { MaterialFormModule } from './material-form.module';
 @Component({
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
-  styleUrl: './material-form.component.scss',
   imports: [MaterialFormModule],
 })
 export class MaterialFormComponent extends FormBase {
