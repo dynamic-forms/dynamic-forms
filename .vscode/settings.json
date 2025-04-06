@@ -8,22 +8,26 @@
   "less.validate": false,
   "scss.validate": false,
   "stylelint.validate": ["css", "scss"],
-  "[html][typescript]": {
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit",
       "source.fixAll.stylelint": "never"
     },
     "editor.formatOnSave": false
   },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.fixAll.stylelint": "never"
+    },
+    "editor.formatOnSave": false
   },
   "[scss]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint",
     "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never",
       "source.fixAll.stylelint": "explicit"
     },
     "editor.formatOnSave": false
