@@ -1,24 +1,30 @@
 {
+
+  "typescript.preferences.importModuleSpecifier": "relative",
   "eslint.rules.customizations": [
     { "rule": "import/no-unresolved", "severity": "off" }
   ],
-  "typescript.preferences.importModuleSpecifier": "relative",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
+  "[html][typescript]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll.eslint": "explicit",
+      "source.fixAll.stylelint": "never"
     },
     "editor.formatOnSave": false
   },
-  "[html][typescript]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-    }
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll.stylelint": "explicit"
     },
     "editor.formatOnSave": false
   }

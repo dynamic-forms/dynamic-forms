@@ -1,3 +1,4 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
 $dynamic-form-grid-columns: 12;
 $dynamic-form-grid-gutter-width: 20px;
 
@@ -14,13 +15,14 @@ $dynamic-form-grid-gutter-width: 20px;
     $grid-gutter-width: $dynamic-form-grid-gutter-width;
 
     .row {
-      @include make-row();
+      @include make-row;
 
       &[hidden] {
         display: none;
       }
 
-      *[class*=' col'], *[class^='col'] {
+      *[class*=' col'],
+      *[class^='col'] {
         flex-shrink: 0;
         width: 100%;
         max-width: 100%;
@@ -29,7 +31,7 @@ $dynamic-form-grid-gutter-width: 20px;
         box-sizing: border-box;
       }
 
-      @include make-grid-columns();
+      @include make-grid-columns;
 
       dynamic-form-element,
       dynamic-form-elements,

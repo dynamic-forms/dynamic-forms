@@ -11,7 +11,6 @@ import { BootstrapFormModule } from './bootstrap-form.module';
 @Component({
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
-  styleUrl: './bootstrap-form.component.scss',
   imports: [BootstrapFormModule, AsyncPipe],
 })
 export class BootstrapFormComponent extends FormBase {

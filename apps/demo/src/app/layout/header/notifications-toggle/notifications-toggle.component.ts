@@ -10,7 +10,6 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
 @Component({
   selector: 'app-notifications-toggle',
   templateUrl: './notifications-toggle.component.html',
-  styleUrl: './notifications-toggle.component.scss',
   imports: [AsyncPipe, MatButtonModule, MatIconModule],
 })
 export class NotificationsToggleComponent {

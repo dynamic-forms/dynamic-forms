@@ -1,6 +1,6 @@
-@use "@dynamic-forms/core/assets/scss/variables" as variables;
-@use "@dynamic-forms/core/assets/scss/mixins" as mixins;
-
+/* stylelint-disable no-invalid-position-at-import-rule */
+@use '@dynamic-forms/core/assets/scss/variables' as variables;
+@use '@dynamic-forms/core/assets/scss/mixins' as mixins;
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/maps';
@@ -17,13 +17,10 @@ $dynamic-form-errors-margin-top: null !default;
 
     $blue: variables.$dynamic-form-color-blue;
     $red: variables.$dynamic-form-color-red;
-
     $enable-rfs: false;
-
     $h1-font-size: 24px;
     $h2-font-size: 22px;
     $h3-font-size: 20px;
-
     $headings-font-weight: revert;
     $headings-line-height: revert;
 
@@ -37,14 +34,14 @@ $dynamic-form-errors-margin-top: null !default;
     @import 'bootstrap/scss/modal';
 
     .input-group {
-      >:not(:first-child) {
+      > :not(:first-child) {
         .btn {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
       }
 
-      >:not(:last-child) {
+      > :not(:last-child) {
         .btn {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
@@ -117,10 +114,7 @@ $dynamic-form-errors-margin-top: null !default;
       }
 
       .dynamic-form-toolbar {
-        @include mixins.dynamic-form-toolbar(
-          $flex: 1 1 0,
-          $button-space: variables.$dynamic-form-button-space
-        );
+        @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
       }
     }
 
@@ -137,18 +131,13 @@ $dynamic-form-errors-margin-top: null !default;
       @include mixins.dynamic-form-footer(
         $margin-top: variables.$dynamic-form-footer-margin-top,
         $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-        $button-space: variables.$dynamic-form-button-space,
+        $button-space: variables.$dynamic-form-button-space
       );
     }
 
     .dynamic-form-group {
       .dynamic-form-group-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-group-label {
           @include mixins.dynamic-form-label(
@@ -158,10 +147,7 @@ $dynamic-form-errors-margin-top: null !default;
         }
 
         .dynamic-form-group-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -178,19 +164,14 @@ $dynamic-form-errors-margin-top: null !default;
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
 
     .dynamic-form-array {
       .dynamic-form-array-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-array-label {
           @include mixins.dynamic-form-label(
@@ -200,10 +181,7 @@ $dynamic-form-errors-margin-top: null !default;
         }
 
         .dynamic-form-array-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -220,19 +198,14 @@ $dynamic-form-errors-margin-top: null !default;
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
 
     .dynamic-form-dictionary {
       .dynamic-form-dictionary-header {
-        @include mixins.dynamic-form-flex-container(
-          $width: 100%,
-          $margin-top: 0,
-          $margin-bottom: 0.5rem,
-          $align-items: center
-        );
+        @include mixins.dynamic-form-flex-container($width: 100%, $margin-top: 0, $margin-bottom: 0.5rem, $align-items: center);
 
         .dynamic-form-dictionary-label {
           @include mixins.dynamic-form-label(
@@ -242,10 +215,7 @@ $dynamic-form-errors-margin-top: null !default;
         }
 
         .dynamic-form-dictionary-toolbar {
-          @include mixins.dynamic-form-toolbar(
-            $flex: 1 1 0,
-            $button-space: variables.$dynamic-form-button-space
-          );
+          @include mixins.dynamic-form-toolbar($flex: 1 1 0, $button-space: variables.$dynamic-form-button-space);
         }
       }
 
@@ -262,7 +232,7 @@ $dynamic-form-errors-margin-top: null !default;
         @include mixins.dynamic-form-footer(
           $margin-top: variables.$dynamic-form-footer-margin-top,
           $margin-bottom: variables.$dynamic-form-footer-margin-bottom,
-          $button-space: variables.$dynamic-form-button-space,
+          $button-space: variables.$dynamic-form-button-space
         );
       }
     }
@@ -276,12 +246,14 @@ $dynamic-form-errors-margin-top: null !default;
           pointer-events: none;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
           pointer-events: none;
         }
 
         .form-check {
-          label:before {
+          label::before {
             pointer-events: none;
           }
 
@@ -310,7 +282,7 @@ $dynamic-form-errors-margin-top: null !default;
     }
 
     .dynamic-form-modal {
-      background-color: rgba(0, 0, 0, 0.50);
+      background-color: rgb(0 0 0 / 50%);
 
       &.modal {
         display: block;
@@ -350,7 +322,7 @@ $dynamic-form-errors-margin-top: null !default;
 
           button {
             margin-left: 10px;
-            margin-right: 0px;
+            margin-right: 0;
           }
         }
       }
@@ -361,12 +333,12 @@ $dynamic-form-errors-margin-top: null !default;
 
           button {
             margin-left: 10px;
-            margin-right: 0px;
+            margin-right: 0;
           }
         }
 
         button {
-          margin-left: 0px;
+          margin-left: 0;
           margin-right: 10px;
         }
       }

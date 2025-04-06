@@ -20,6 +20,8 @@ steps:
   displayName: npm install
 - script: npm run lint
   displayName: npm lint
+- script: npm run lint:styles
+  displayName: npm lint styles
 - script: npm run build:libs
   displayName: npm build libs
 - script: npm run test:libs

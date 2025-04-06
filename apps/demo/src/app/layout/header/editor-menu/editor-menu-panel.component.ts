@@ -6,7 +6,6 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
 @Component({
   selector: 'app-editor-menu-panel',
   templateUrl: './editor-menu-panel.component.html',
-  styleUrl: './editor-menu-panel.component.scss',
   imports: [RouterLink, RouterLinkActive, MatMenuModule],
 })
 export class EditorMenuPanelComponent {
