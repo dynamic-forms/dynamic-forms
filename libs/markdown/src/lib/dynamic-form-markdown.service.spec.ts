@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { SecurityContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MockService } from 'ng-mocks';
+import { MockProvider } from 'ng-mocks';
 import { provideDynamicFormsMarkdown } from './dynamic-form-markdown.module';
 import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
@@ -13,23 +13,20 @@ describe('DynamicFormMarkdownService', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    domSanitizer = MockService(DomSanitizer);
-    spyOn(domSanitizer, 'sanitize').and.callFake((_context, value) => value as string);
-
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideDynamicFormsMarkdown(),
-        {
-          provide: DomSanitizer,
-          useValue: domSanitizer,
-        },
+        MockProvider(DomSanitizer, { sanitize: (_context: SecurityContext, value: string) => value }),
       ],
     });
 
+    domSanitizer = TestBed.inject(DomSanitizer);
     service = TestBed.inject(DynamicFormMarkdownService);
     httpTestingController = TestBed.inject(HttpTestingController);
+
+    spyOn(domSanitizer, 'sanitize').and.callThrough();
   });
 
   it('returns compiled markdown', done => {
