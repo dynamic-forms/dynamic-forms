@@ -10,7 +10,7 @@
       "prefix": "core",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
             "project": "libs/core/ng-package.json"
@@ -22,7 +22,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/core/test.ts",
             "tsConfig": "libs/core/tsconfig.spec.json",
@@ -51,7 +51,7 @@
       "prefix": "bootstrap",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "libs/bootstrap/tsconfig.lib.json",
             "project": "libs/bootstrap/ng-package.json"
@@ -63,7 +63,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/bootstrap/test.ts",
             "tsConfig": "libs/bootstrap/tsconfig.spec.json",
@@ -92,7 +92,7 @@
       "prefix": "material",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "libs/material/tsconfig.lib.json",
             "project": "libs/material/ng-package.json"
@@ -104,7 +104,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/material/test.ts",
             "tsConfig": "libs/material/tsconfig.spec.json",
@@ -133,7 +133,7 @@
       "prefix": "markdown",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "libs/markdown/tsconfig.lib.json",
             "project": "libs/markdown/ng-package.json"
@@ -145,7 +145,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/markdown/test.ts",
             "tsConfig": "libs/markdown/tsconfig.spec.json",
@@ -172,7 +172,7 @@
       "projectType": "library",
       "architect": {
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/test.ts",
             "tsConfig": "libs/tsconfig.spec.json",
@@ -204,7 +204,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
             "outputPath": {
               "base": "dist/v20/@dynamic-forms/demo",
@@ -298,7 +298,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "dynamic-forms-demo:build"
           },
@@ -309,16 +309,18 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "dynamic-forms-demo:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "apps/demo/src/test.ts",
-            "polyfills": "apps/demo/src/polyfills.ts",
+            "polyfills": [
+              "apps/demo/src/polyfills.ts"
+            ],
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
             "assets": [
@@ -365,5 +367,31 @@
     "schematicCollections": [
       "@angular-eslint/schematics"
     ]
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }
