@@ -170,6 +170,7 @@
     "dynamic-forms-libs": {
       "root": "libs",
       "projectType": "library",
+      "sourceRoot": "libs",
       "architect": {
         "test": {
           "builder": "@angular/build:karma",
