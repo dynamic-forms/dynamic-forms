@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
+import { ExampleMenu, ExampleMenuGroup, ExampleMenuItem, ExamplesMenu } from 'apps/demo/src/app/state/examples/examples.model';
 import examplesConfig from '../../../demo/src/assets/examples-menu.json';
 import { Control } from './elements';
-import { ExampleMenu, ExampleMenuGroup, ExampleMenuItem, ExamplesMenu } from 'apps/demo/src/app/state/examples/examples.model';
 
 export interface Example {
   id: string;
