@@ -1,17 +1,16 @@
 import { NgClass } from '@angular/common';
 import {
   Component,
-  EventEmitter,
   Inject,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   Optional,
-  Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
+  output,
 } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { DYNAMIC_FORM_THEME, DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } from '@dynamic-forms/core';
@@ -54,7 +53,7 @@ export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestr
 
   @Input() classNameTitle: string;
 
-  @Output() readonly escaped = new EventEmitter();
+  readonly escaped = output();
 
   constructor(
     private dialog: MatDialog,

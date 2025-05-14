@@ -3,13 +3,13 @@
     <input
       class="form-check-input"
       type="radio"
-      [id]="inputId + '-' + $index"
+      [id]="`${inputId}-${$index}`"
       [name]="inputId"
       [formControl]="control"
       [value]="option.value"
       [attr.disabled]="control.disabled || option.disabled"
       [readonly]="readonly"
     />
-    <label class="form-check-label" [for]="inputId + '-' + $index">{{ option.label }}</label>
+    <label class="form-check-label" [for]="`${inputId}-${$index}`">{{ option.label }}</label>
   </div>
 }

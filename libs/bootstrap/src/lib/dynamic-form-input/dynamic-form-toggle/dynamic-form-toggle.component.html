@@ -4,7 +4,7 @@
       class="btn-check"
       type="radio"
       autocomplete="off"
-      [id]="inputId + '-' + $index"
+      [id]="`${inputId}-${$index}`"
       [name]="inputId"
       [formControl]="control"
       [value]="option.value"
@@ -13,7 +13,7 @@
     />
     <label
       class="btn btn-outline-secondary"
-      [for]="inputId + '-' + $index"
+      [for]="`${inputId}-${$index}`"
       [class.disabled]="control.disabled || option.disabled"
       [class.active]="control.value === option.value"
       >{{ option.label }}</label
