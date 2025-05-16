@@ -6,8 +6,8 @@ import { MarkdownComponent } from '../markdown/markdown.component';
 
 @Component({
   selector: 'app-form-example',
-  templateUrl: './form-example.component.html',
   imports: [JsonPipe, MatTabsModule, MarkdownComponent],
+  templateUrl: './form-example.component.html',
 })
 export class FormExampleComponent {
   readonly form = contentChild<FormBase>('form');

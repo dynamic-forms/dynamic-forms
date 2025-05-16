@@ -8,9 +8,9 @@ import { CONFIG, Config } from '../../state/config/config.model';
 
 @Component({
   selector: 'app-footer',
+  imports: [AsyncPipe, MatButtonModule, MatToolbarModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
-  imports: [AsyncPipe, MatButtonModule, MatToolbarModule],
 })
 export class FooterComponent {
   @Select(CONFIG)

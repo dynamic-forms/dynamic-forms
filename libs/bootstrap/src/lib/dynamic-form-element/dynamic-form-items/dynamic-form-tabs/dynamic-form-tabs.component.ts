@@ -4,8 +4,8 @@ import { DynamicFormElementsComponent, DynamicFormTabsBase } from '@dynamic-form
 
 @Component({
   selector: 'bs-dynamic-form-tabs',
-  templateUrl: './dynamic-form-tabs.component.html',
   imports: [NgClass, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form-tabs.component.html',
 })
 export class BsDynamicFormTabsComponent extends DynamicFormTabsBase {
   constructor() {

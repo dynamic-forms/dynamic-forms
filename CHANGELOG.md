@@ -4,7 +4,7 @@
 
 ### General
 
-* update of peer dependencies: bootstrap (5.3.5)
+* update of peer dependencies: bootstrap (5.3.6)
 
 ### Features
 

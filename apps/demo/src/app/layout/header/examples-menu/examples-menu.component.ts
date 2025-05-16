@@ -11,8 +11,8 @@ import { ExamplesMenuPanelComponent } from './examples-menu-panel.component';
 
 @Component({
   selector: 'app-examples-menu',
-  templateUrl: './examples-menu.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, ExamplesMenuPanelComponent],
+  templateUrl: './examples-menu.component.html',
 })
 export class ExamplesMenuComponent {
   @Select(ExamplesState.menuItems)

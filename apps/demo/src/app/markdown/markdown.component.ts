@@ -1,13 +1,12 @@
 import { Component, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
-import { DynamicFormMarkdownComponent, DynamicFormMarkdownService } from '@dynamic-forms/markdown';
+import { DynamicFormMarkdownComponent } from '@dynamic-forms/markdown';
 import { MarkdownElement } from './markdown.element';
 
 @Component({
   selector: 'app-markdown',
+  imports: [DynamicFormMarkdownComponent],
   templateUrl: './markdown.component.html',
   styleUrl: './markdown.component.scss',
-  imports: [DynamicFormMarkdownComponent],
-  providers: [DynamicFormMarkdownService],
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;

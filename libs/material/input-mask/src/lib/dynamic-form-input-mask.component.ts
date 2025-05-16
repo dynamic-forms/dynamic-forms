@@ -7,8 +7,8 @@ import { DynamicFormInputMaskBase, DynamicFormInputMaskDirective } from '@dynami
 
 @Component({
   selector: 'mat-dynamic-form-input-mask',
-  templateUrl: './dynamic-form-input-mask.component.html',
   imports: [ReactiveFormsModule, DynamicFormInputMaskDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  templateUrl: './dynamic-form-input-mask.component.html',
 })
 export class MatDynamicFormInputMaskComponent extends DynamicFormInputMaskBase implements OnInit {
   @ViewChild(MatInput, { static: true })

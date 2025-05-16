@@ -6,8 +6,8 @@ import { DynamicFormInputMaskBase, DynamicFormInputMaskDirective } from '@dynami
 
 @Component({
   selector: 'bs-dynamic-form-input-mask',
-  templateUrl: './dynamic-form-input-mask.component.html',
   imports: [ReactiveFormsModule, DynamicFormInputMaskDirective, BsDynamicFormInputWrapperComponent],
+  templateUrl: './dynamic-form-input-mask.component.html',
 })
 export class BsDynamicFormInputMaskComponent extends DynamicFormInputMaskBase {
   protected _ngControl: NgControl;

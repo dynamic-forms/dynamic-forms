@@ -6,8 +6,8 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
 
 @Component({
   selector: 'mat-dynamic-form-button',
-  templateUrl: './dynamic-form-button.component.html',
   imports: [NgClass, DynamicFormColorPipe, MatDynamicFormDialogComponent, MatButtonModule],
+  templateUrl: './dynamic-form-button.component.html',
 })
 export class MatDynamicFormButtonComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {

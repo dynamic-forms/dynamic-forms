@@ -9,8 +9,8 @@ import { DynamicFormGroupTemplate } from './dynamic-form-group-template';
 
 @Component({
   selector: 'dynamic-form-group',
-  templateUrl: './dynamic-form-group.component.html',
   imports: [NgClass, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form-group.component.html',
 })
 export class DynamicFormGroupComponent<
   Value extends Record<string, any> = any,

@@ -4,8 +4,8 @@ import { DynamicFormElementComponent } from './dynamic-form-element.component';
 
 @Component({
   selector: 'dynamic-form-elements',
-  templateUrl: './dynamic-form-elements.component.html',
   imports: [DynamicFormElementComponent],
+  templateUrl: './dynamic-form-elements.component.html',
 })
 export class DynamicFormElementsComponent {
   @Input() elements: DynamicFormElement[];

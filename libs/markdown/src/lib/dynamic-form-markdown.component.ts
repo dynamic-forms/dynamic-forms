@@ -9,8 +9,8 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 @Component({
   selector: 'dynamic-form-markdown',
-  templateUrl: './dynamic-form-markdown.component.html',
   imports: [AsyncPipe, NgClass],
+  templateUrl: './dynamic-form-markdown.component.html',
 })
 export class DynamicFormMarkdownComponent<
     Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,

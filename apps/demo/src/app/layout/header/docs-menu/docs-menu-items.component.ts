@@ -6,8 +6,8 @@ import { CodeUrlPipe } from '../pipes/code-url.pipe';
 
 @Component({
   selector: 'app-docs-menu-items',
-  templateUrl: './docs-menu-items.component.html',
   imports: [RouterLink, RouterLinkActive, MatMenuModule, CodeUrlPipe],
+  templateUrl: './docs-menu-items.component.html',
 })
 export class DocsMenuItemsComponent {
   readonly repository = input<Repository>(undefined);

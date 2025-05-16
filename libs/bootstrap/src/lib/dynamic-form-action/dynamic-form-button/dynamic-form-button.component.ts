@@ -5,8 +5,8 @@ import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-
 
 @Component({
   selector: 'bs-dynamic-form-button',
-  templateUrl: './dynamic-form-button.component.html',
   imports: [NgClass, DynamicFormColorPipe, BsDynamicFormDialogComponent],
+  templateUrl: './dynamic-form-button.component.html',
 })
 export class BsDynamicFormButtonComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {

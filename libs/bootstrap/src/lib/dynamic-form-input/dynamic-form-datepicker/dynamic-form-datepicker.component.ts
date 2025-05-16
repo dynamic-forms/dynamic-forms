@@ -5,8 +5,8 @@ import { BsDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrappe
 
 @Component({
   selector: 'bs-dynamic-form-datepicker',
-  templateUrl: './dynamic-form-datepicker.component.html',
   imports: [ReactiveFormsModule, BsDynamicFormInputWrapperComponent],
+  templateUrl: './dynamic-form-datepicker.component.html',
 })
 export class BsDynamicFormDatepickerComponent extends DynamicFormInputBase<DynamicFormDatepicker> {
   constructor(protected override validationService: DynamicFormValidationService) {

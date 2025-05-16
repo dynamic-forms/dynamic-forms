@@ -9,8 +9,8 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 @Component({
   selector: 'dynamic-form-array',
-  templateUrl: './dynamic-form-array.component.html',
   imports: [NgClass, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form-array.component.html',
 })
 export class DynamicFormArrayComponent<
   Value = any,

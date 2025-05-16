@@ -9,9 +9,9 @@ import { NOTIFICATIONS, NotificationItem, Notifications } from '../../state/noti
 
 @Component({
   selector: 'app-notifications',
+  imports: [AsyncPipe, MatChipsModule, MatIconModule],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
-  imports: [AsyncPipe, MatChipsModule, MatIconModule],
 })
 export class NotificationsComponent {
   @Select(NOTIFICATIONS)

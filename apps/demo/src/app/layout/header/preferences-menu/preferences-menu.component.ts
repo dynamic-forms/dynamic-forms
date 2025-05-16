@@ -16,8 +16,8 @@ import preferencesDefinition from './preferences-form.json';
 
 @Component({
   selector: 'app-preferences-menu',
-  templateUrl: './preferences-menu.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, MaterialFormComponent],
+  templateUrl: './preferences-menu.component.html',
 })
 export class PreferencesMenuComponent {
   readonly model$: Observable<Preferences>;

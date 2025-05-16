@@ -8,7 +8,6 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
 
 @Component({
   selector: 'mat-dynamic-form-icon',
-  templateUrl: './dynamic-form-icon.component.html',
   imports: [
     NgClass,
     DynamicFormColorPipe,
@@ -18,6 +17,7 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
     MatIconModule,
     MatTooltipModule,
   ],
+  templateUrl: './dynamic-form-icon.component.html',
 })
 export class MatDynamicFormIconComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {

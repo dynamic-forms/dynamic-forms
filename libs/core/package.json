@@ -24,7 +24,7 @@
     "@angular/common": "^20.0.0-next.2",
     "@angular/core": "^20.0.0-next.2",
     "@angular/forms": "^20.0.0-next.2",
-    "bootstrap": "^5.3.5",
+    "bootstrap": "^5.3.6",
     "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
   },

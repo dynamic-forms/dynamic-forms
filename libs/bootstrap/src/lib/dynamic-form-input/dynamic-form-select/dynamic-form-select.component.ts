@@ -5,8 +5,8 @@ import { BsDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrappe
 
 @Component({
   selector: 'bs-dynamic-form-select',
-  templateUrl: './dynamic-form-select.component.html',
   imports: [ReactiveFormsModule, BsDynamicFormInputWrapperComponent],
+  templateUrl: './dynamic-form-select.component.html',
 })
 export class BsDynamicFormSelectComponent extends DynamicFormInputBase<DynamicFormSelect> {
   constructor(protected override validationService: DynamicFormValidationService) {

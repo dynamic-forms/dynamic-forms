@@ -9,8 +9,8 @@ import { DynamicFormDictionaryTemplate } from './dynamic-form-dictionary-templat
 
 @Component({
   selector: 'dynamic-form-dictionary',
-  templateUrl: './dynamic-form-dictionary.component.html',
   imports: [NgClass, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form-dictionary.component.html',
 })
 export class DynamicFormDictionaryComponent<
   Value = any,
