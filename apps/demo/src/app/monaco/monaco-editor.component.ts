@@ -26,10 +26,9 @@ declare let monaco: MonacoModule;
 
 @Component({
   selector: 'app-monaco-editor',
+  imports: [AsyncPipe, MatButtonModule, MatMenuModule],
   templateUrl: './monaco-editor.component.html',
   styleUrl: './monaco-editor.component.scss',
-  imports: [AsyncPipe, MatButtonModule, MatMenuModule],
-  providers: [MonacoEditorService],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private readonly _fileLoading = new BehaviorSubject<boolean>(false);

@@ -6,8 +6,8 @@ import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormSelect, D
 
 @Component({
   selector: 'mat-dynamic-form-select',
-  templateUrl: './dynamic-form-select.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatSelectModule],
+  templateUrl: './dynamic-form-select.component.html',
 })
 export class MatDynamicFormSelectComponent extends DynamicFormInputBase<DynamicFormSelect> {
   constructor(protected override validationService: DynamicFormValidationService) {

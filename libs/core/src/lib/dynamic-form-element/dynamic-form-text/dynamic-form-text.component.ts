@@ -6,8 +6,8 @@ import { DynamicFormTextTemplate } from './dynamic-form-text-template';
 
 @Component({
   selector: 'dynamic-form-text',
-  templateUrl: './dynamic-form-text.component.html',
   imports: [NgClass],
+  templateUrl: './dynamic-form-text.component.html',
 })
 export class DynamicFormTextComponent<
   Template extends DynamicFormTextTemplate = DynamicFormTextTemplate,

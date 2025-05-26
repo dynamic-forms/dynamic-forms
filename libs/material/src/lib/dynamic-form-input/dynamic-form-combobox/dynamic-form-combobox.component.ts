@@ -10,8 +10,8 @@ import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'mat-dynamic-form-combobox',
-  templateUrl: './dynamic-form-combobox.component.html',
   imports: [AsyncPipe, ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
+  templateUrl: './dynamic-form-combobox.component.html',
 })
 export class MatDynamicFormComboboxComponent extends DynamicFormInputBase<DynamicFormCombobox> implements OnInit {
   filteredOptions: Observable<string[]>;

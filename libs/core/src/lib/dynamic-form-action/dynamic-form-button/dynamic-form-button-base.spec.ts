@@ -15,6 +15,7 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 
 @Component({
   selector: 'dynamic-form-button-test',
+  imports: [NgClass],
   // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `
     <button
@@ -28,7 +29,6 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
       {{ template?.label }}
     </button>
   `,
-  imports: [NgClass],
 })
 class DynamicFormButtonTestComponent extends DynamicFormButtonBase {
   constructor(protected override actionService: DynamicFormActionService) {

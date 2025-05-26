@@ -12,8 +12,8 @@ import {
 
 @Component({
   selector: 'mat-dynamic-form-file',
-  templateUrl: './dynamic-form-file.component.html',
   imports: [ReactiveFormsModule, DynamicFormFileDirective, DynamicFormElementComponent, MatInputModule, MatFormFieldModule],
+  templateUrl: './dynamic-form-file.component.html',
 })
 export class MatDynamicFormFileComponent extends DynamicFormFileBase implements OnInit {
   @ViewChild(MatInput, { static: true })

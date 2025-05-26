@@ -4,8 +4,8 @@ import { DynamicFormInputBase, DynamicFormSwitch, DynamicFormValidationService }
 
 @Component({
   selector: 'bs-dynamic-form-switch',
-  templateUrl: './dynamic-form-switch.component.html',
   imports: [ReactiveFormsModule],
+  templateUrl: './dynamic-form-switch.component.html',
 })
 export class BsDynamicFormSwitchComponent extends DynamicFormInputBase<DynamicFormSwitch> {
   constructor(protected override validationService: DynamicFormValidationService) {

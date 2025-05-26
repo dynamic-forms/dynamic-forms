@@ -5,8 +5,8 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({
   selector: 'app-examples-menu-panel',
-  templateUrl: './examples-menu-panel.component.html',
   imports: [RouterLink, RouterLinkActive, MatMenuModule],
+  templateUrl: './examples-menu-panel.component.html',
 })
 export class ExamplesMenuPanelComponent {
   readonly menu = viewChild<MatMenu>('menu');

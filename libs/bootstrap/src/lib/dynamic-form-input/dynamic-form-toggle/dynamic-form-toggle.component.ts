@@ -4,8 +4,8 @@ import { DynamicFormInputBase, DynamicFormToggle, DynamicFormValidationService }
 
 @Component({
   selector: 'bs-dynamic-form-toggle',
-  templateUrl: './dynamic-form-toggle.component.html',
   imports: [ReactiveFormsModule],
+  templateUrl: './dynamic-form-toggle.component.html',
 })
 export class BsDynamicFormToggleComponent extends DynamicFormInputBase<DynamicFormToggle> {
   constructor(protected override validationService: DynamicFormValidationService) {

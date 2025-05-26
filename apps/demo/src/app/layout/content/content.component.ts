@@ -11,9 +11,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-content',
+  imports: [AsyncPipe, MatCardModule, MatSidenavModule, RouterOutlet, SidebarComponent],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
-  imports: [AsyncPipe, MatCardModule, MatSidenavModule, RouterOutlet, SidebarComponent],
 })
 export class ContentComponent {
   readonly mobileQuery: MediaQueryList;

@@ -16,9 +16,9 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
 
 @Component({
   selector: 'app-form-editor',
+  imports: [AsyncPipe, JsonPipe, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
   templateUrl: './form-editor.component.html',
   styleUrl: './form-editor.component.scss',
-  imports: [AsyncPipe, JsonPipe, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
 })
 export class FormEditorComponent {
   private _logs: DynamicFormLog[] = [];

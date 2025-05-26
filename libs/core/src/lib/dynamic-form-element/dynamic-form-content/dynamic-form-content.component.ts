@@ -6,8 +6,8 @@ import { DynamicFormContentTemplate } from './dynamic-form-content-template';
 
 @Component({
   selector: 'dynamic-form-content',
-  templateUrl: './dynamic-form-content.component.html',
   imports: [NgClass],
+  templateUrl: './dynamic-form-content.component.html',
 })
 export class DynamicFormContentComponent<
   Template extends DynamicFormContentTemplate = DynamicFormContentTemplate,

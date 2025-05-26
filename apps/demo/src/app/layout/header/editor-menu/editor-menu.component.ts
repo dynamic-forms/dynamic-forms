@@ -11,8 +11,8 @@ import { EditorMenuPanelComponent } from './editor-menu-panel.component';
 
 @Component({
   selector: 'app-editor-menu',
-  templateUrl: './editor-menu.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, EditorMenuPanelComponent],
+  templateUrl: './editor-menu.component.html',
 })
 export class EditorMenuComponent {
   @Select(ExamplesState.menuItems)

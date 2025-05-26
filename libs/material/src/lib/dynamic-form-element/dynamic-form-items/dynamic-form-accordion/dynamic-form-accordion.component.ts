@@ -5,8 +5,8 @@ import { DynamicFormAccordionBase, DynamicFormElementsComponent } from '@dynamic
 
 @Component({
   selector: 'mat-dynamic-form-accordion',
-  templateUrl: './dynamic-form-accordion.component.html',
   imports: [NgClass, MatExpansionModule, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form-accordion.component.html',
 })
 export class MatDynamicFormAccordionComponent extends DynamicFormAccordionBase {
   constructor() {

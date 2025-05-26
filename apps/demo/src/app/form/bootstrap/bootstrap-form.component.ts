@@ -10,8 +10,8 @@ import { BootstrapFormModule } from './bootstrap-form.module';
 
 @Component({
   selector: 'app-bootstrap-form',
-  templateUrl: './bootstrap-form.component.html',
   imports: [BootstrapFormModule, AsyncPipe],
+  templateUrl: './bootstrap-form.component.html',
 })
 export class BootstrapFormComponent extends FormBase {
   readonly theme$: Observable<ThemeClass>;

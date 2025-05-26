@@ -6,8 +6,8 @@ import { SidebarToggle } from '../../../state/layout/layout.actions';
 
 @Component({
   selector: 'app-sidebar-toggle',
-  templateUrl: './sidebar-toggle.component.html',
   imports: [MatButtonModule, MatIconModule],
+  templateUrl: './sidebar-toggle.component.html',
 })
 export class SidebarToggleComponent {
   constructor(private store: Store) {}

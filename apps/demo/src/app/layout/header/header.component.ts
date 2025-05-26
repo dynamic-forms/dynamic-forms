@@ -19,8 +19,6 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
   imports: [
     AsyncPipe,
     RouterLink,
@@ -36,6 +34,8 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
     SidebarToggleComponent,
     VersionsMenuComponent,
   ],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   readonly docsQuery: MediaQueryList;

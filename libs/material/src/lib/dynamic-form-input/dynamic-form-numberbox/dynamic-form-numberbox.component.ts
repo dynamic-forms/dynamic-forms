@@ -6,8 +6,8 @@ import { DynamicFormElementComponent, DynamicFormInputBase, DynamicFormNumberbox
 
 @Component({
   selector: 'mat-dynamic-form-numberbox',
-  templateUrl: './dynamic-form-numberbox.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule],
+  templateUrl: './dynamic-form-numberbox.component.html',
 })
 export class MatDynamicFormNumberboxComponent extends DynamicFormInputBase<DynamicFormNumberbox> {
   constructor(protected override validationService: DynamicFormValidationService) {

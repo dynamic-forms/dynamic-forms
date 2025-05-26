@@ -6,8 +6,8 @@ import { FormEditorComponent } from '../form-editor.component';
 
 @Component({
   selector: 'app-bootstrap-editor',
-  templateUrl: './bootstrap-editor.component.html',
   imports: [FormEditorComponent, BootstrapFormComponent],
+  templateUrl: './bootstrap-editor.component.html',
 })
 export class BootstrapEditorComponent extends FormEditorBase {
   constructor(

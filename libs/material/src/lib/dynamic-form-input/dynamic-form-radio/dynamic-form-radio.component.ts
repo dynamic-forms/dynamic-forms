@@ -6,8 +6,8 @@ import { MatDynamicFormInputWrapperComponent } from '../dynamic-form-input-wrapp
 
 @Component({
   selector: 'mat-dynamic-form-radio',
-  templateUrl: './dynamic-form-radio.component.html',
   imports: [ReactiveFormsModule, MatDynamicFormInputWrapperComponent, MatRadioModule],
+  templateUrl: './dynamic-form-radio.component.html',
 })
 export class MatDynamicFormRadioComponent extends DynamicFormInputBase<DynamicFormRadio> {
   constructor(protected override validationService: DynamicFormValidationService) {
