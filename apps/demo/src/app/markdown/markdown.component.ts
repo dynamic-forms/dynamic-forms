@@ -4,10 +4,10 @@ import { MarkdownElement } from './markdown.element';
 
 @Component({
   selector: 'app-markdown',
-  templateUrl: './markdown.component.html',
-  styleUrl: './markdown.component.scss',
   imports: [DynamicFormMarkdownComponent],
   providers: [DynamicFormMarkdownService],
+  templateUrl: './markdown.component.html',
+  styleUrl: './markdown.component.scss',
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;

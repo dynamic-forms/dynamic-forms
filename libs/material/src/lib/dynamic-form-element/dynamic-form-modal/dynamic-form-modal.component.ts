@@ -4,7 +4,7 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
 
 @Component({
   selector: 'mat-dynamic-form-modal',
-  templateUrl: './dynamic-form-modal.component.html',
   imports: [DynamicFormElementComponent, MatDynamicFormDialogComponent],
+  templateUrl: './dynamic-form-modal.component.html',
 })
 export class MatDynamicFormModalComponent extends DynamicFormModalBase {}

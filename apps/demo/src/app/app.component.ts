@@ -7,8 +7,8 @@ import { ProgressComponent } from './layout/progress/progress.component';
 
 @Component({
   selector: 'app-root',
+  imports: [ContentComponent, FooterComponent, HeaderComponent, NotificationsComponent, ProgressComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ContentComponent, FooterComponent, HeaderComponent, NotificationsComponent, ProgressComponent],
 })
 export class AppComponent {}

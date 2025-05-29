@@ -33,6 +33,7 @@ export default tseslint.config(
     },
     rules: {
       "@angular-eslint/use-injectable-provided-in": "off",
+      "@angular-eslint/prefer-inject": "off",
       "@angular-eslint/prefer-on-push-component-change-detection": "off",
       "@angular-eslint/prefer-signals": "off",
       "@angular-eslint/prefer-standalone": "error",

@@ -1,18 +1,6 @@
 /* eslint-disable @angular-eslint/no-conflicting-lifecycle */
 import { NgClass } from '@angular/common';
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, DoCheck, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormAction } from '../dynamic-form-action/dynamic-form-action';
@@ -30,8 +18,8 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
   selector: 'dynamic-form',
-  templateUrl: './dynamic-form.component.html',
   imports: [NgClass, ReactiveFormsModule, DynamicFormElementsComponent],
+  templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent<Value extends Record<string, any> = any, Model extends Value = Value>
   implements OnInit, OnChanges, OnDestroy, DoCheck
@@ -42,8 +30,8 @@ export class DynamicFormComponent<Value extends Record<string, any> = any, Model
 
   @Input() definition: DynamicFormDefinition;
   @Input() model: Model;
-  @Output() readonly valueChange = new EventEmitter<Value>();
-  @Output() readonly formSubmit = new EventEmitter<DynamicFormSubmit>();
+  readonly valueChange = output<Value>();
+  readonly formSubmit = output<DynamicFormSubmit>();
 
   constructor(
     protected formBuilder: DynamicFormBuilder,

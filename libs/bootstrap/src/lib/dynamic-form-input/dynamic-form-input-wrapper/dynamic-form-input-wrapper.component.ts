@@ -4,8 +4,8 @@ import { DynamicFormControlAddOn, DynamicFormElementComponent } from '@dynamic-f
 
 @Component({
   selector: 'bs-dynamic-form-input-wrapper',
-  templateUrl: './dynamic-form-input-wrapper.component.html',
   imports: [NgTemplateOutlet, DynamicFormElementComponent],
+  templateUrl: './dynamic-form-input-wrapper.component.html',
 })
 export class BsDynamicFormInputWrapperComponent {
   @Input()

@@ -8,8 +8,8 @@ import { FormExampleComponent } from '../form-example.component';
 
 @Component({
   selector: 'app-bootstrap-examples',
-  templateUrl: './bootstrap-examples.component.html',
   imports: [AsyncPipe, FormExampleComponent, BootstrapFormComponent],
+  templateUrl: './bootstrap-examples.component.html',
 })
 export class BootstrapExamplesComponent extends FormExampleBase {
   constructor(

@@ -4,8 +4,8 @@ import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-
 
 @Component({
   selector: 'bs-dynamic-form-modal',
-  templateUrl: './dynamic-form-modal.component.html',
   imports: [DynamicFormElementComponent, BsDynamicFormDialogComponent],
+  templateUrl: './dynamic-form-modal.component.html',
 })
 export class BsDynamicFormModalComponent extends DynamicFormModalBase {
   constructor() {

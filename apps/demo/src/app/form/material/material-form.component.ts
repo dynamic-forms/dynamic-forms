@@ -5,8 +5,8 @@ import { MaterialFormModule } from './material-form.module';
 
 @Component({
   selector: 'app-material-form',
-  templateUrl: './material-form.component.html',
   imports: [MaterialFormModule],
+  templateUrl: './material-form.component.html',
 })
 export class MaterialFormComponent extends FormBase {
   constructor(protected override dialog: MatDialog) {

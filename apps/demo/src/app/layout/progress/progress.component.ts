@@ -7,9 +7,9 @@ import { PROGRESS, Progress } from '../../state/progress/progress.model';
 
 @Component({
   selector: 'app-progress',
+  imports: [AsyncPipe, MatProgressBarModule],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss',
-  imports: [AsyncPipe, MatProgressBarModule],
 })
 export class ProgressComponent {
   @Select(PROGRESS)

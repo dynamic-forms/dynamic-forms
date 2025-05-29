@@ -15,6 +15,7 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
 
 @Component({
   selector: 'dynamic-form-icon-test',
+  imports: [NgClass],
   // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `
     <button
@@ -28,7 +29,6 @@ import { DynamicFormIconTemplate } from './dynamic-form-icon-template';
       {{ template?.label }}
     </button>
   `,
-  imports: [NgClass],
 })
 class DynamicFormIconTestComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {

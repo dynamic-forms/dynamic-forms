@@ -5,8 +5,8 @@ import { BsDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic-
 
 @Component({
   selector: 'bs-dynamic-form-icon',
-  templateUrl: './dynamic-form-icon.component.html',
   imports: [NgClass, DynamicFormColorPipe, DynamicFormIconPipe, BsDynamicFormDialogComponent],
+  templateUrl: './dynamic-form-icon.component.html',
 })
 export class BsDynamicFormIconComponent extends DynamicFormIconBase {
   constructor(protected override actionService: DynamicFormActionService) {

@@ -12,8 +12,8 @@ import { DocsMenuItemsComponent } from './docs-menu-items.component';
 
 @Component({
   selector: 'app-docs-menu',
-  templateUrl: './docs-menu.component.html',
   imports: [AsyncPipe, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, DocsMenuItemsComponent],
+  templateUrl: './docs-menu.component.html',
 })
 export class DocsMenuComponent {
   @Select(ConfigState.repository)

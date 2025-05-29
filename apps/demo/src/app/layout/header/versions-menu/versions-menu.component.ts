@@ -10,8 +10,8 @@ import { ConfigState } from '../../../state/config/config.state';
 
 @Component({
   selector: 'app-versions-menu',
-  templateUrl: './versions-menu.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule],
+  templateUrl: './versions-menu.component.html',
 })
 export class VersionsMenuComponent {
   @Select(ConfigState.versions)

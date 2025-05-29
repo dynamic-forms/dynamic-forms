@@ -17,10 +17,10 @@ import { SidebarMenuItem } from './sidebar-menu.model';
 
 @Component({
   selector: 'app-sidebar-menu',
-  templateUrl: './sidebar-menu.component.html',
-  styleUrl: './sidebar-menu.component.scss',
   imports: [AsyncPipe, RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTreeModule],
   providers: [CodeUrlPipe],
+  templateUrl: './sidebar-menu.component.html',
+  styleUrl: './sidebar-menu.component.scss',
 })
 export class SidebarMenuComponent {
   readonly treeControl: NestedTreeControl<SidebarMenuItem>;

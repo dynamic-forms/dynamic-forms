@@ -9,8 +9,8 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
 
 @Component({
   selector: 'app-notifications-toggle',
-  templateUrl: './notifications-toggle.component.html',
   imports: [AsyncPipe, MatButtonModule, MatIconModule],
+  templateUrl: './notifications-toggle.component.html',
 })
 export class NotificationsToggleComponent {
   @Select(NotificationsState.enabled)

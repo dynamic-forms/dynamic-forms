@@ -3,7 +3,7 @@ import { MarkdownComponent } from '../markdown/markdown.component';
 
 @Component({
   selector: 'app-license',
-  templateUrl: './license.component.html',
   imports: [MarkdownComponent],
+  templateUrl: './license.component.html',
 })
 export class LicenseComponent {}

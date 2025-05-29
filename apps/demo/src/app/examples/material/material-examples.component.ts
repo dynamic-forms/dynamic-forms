@@ -8,8 +8,8 @@ import { FormExampleComponent } from '../form-example.component';
 
 @Component({
   selector: 'app-material-examples',
-  templateUrl: './material-examples.component.html',
   imports: [AsyncPipe, FormExampleComponent, MaterialFormComponent],
+  templateUrl: './material-examples.component.html',
 })
 export class MaterialExamplesComponent extends FormExampleBase {
   constructor(

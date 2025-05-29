@@ -12,8 +12,8 @@ import {
 
 @Component({
   selector: 'mat-dynamic-form-datepicker',
-  templateUrl: './dynamic-form-datepicker.component.html',
   imports: [ReactiveFormsModule, DynamicFormElementComponent, MatFormFieldModule, MatInputModule, MatDatepickerModule],
+  templateUrl: './dynamic-form-datepicker.component.html',
 })
 export class MatDynamicFormDatepickerComponent extends DynamicFormInputBase<DynamicFormDatepicker> {
   constructor(protected override validationService: DynamicFormValidationService) {

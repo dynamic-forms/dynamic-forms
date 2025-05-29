@@ -14,7 +14,7 @@
     </mat-tree-node>
     <mat-nested-tree-node *matTreeNodeDef="let menuItem; when: hasChildren">
       <li class="mat-tree-node" [class.expanded]="treeControl.isExpanded(menuItem)">
-        <button mat-button matTreeNodeToggle type="button" class="sidebar-menu-button" [attr.aria-label]="'toggle ' + menuItem.label">
+        <button mat-button matTreeNodeToggle type="button" class="sidebar-menu-button" [attr.aria-label]="`toggle ${menuItem.label}`">
           <mat-icon class="mat-icon-rtl-mirror">{{ treeControl.isExpanded(menuItem) ? "expand_more" : "chevron_right" }}</mat-icon>
           <span>{{ menuItem.label }}</span>
         </button>

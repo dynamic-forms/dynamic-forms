@@ -5,8 +5,8 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
 
 @Component({
   selector: 'app-editor-menu-panel',
-  templateUrl: './editor-menu-panel.component.html',
   imports: [RouterLink, RouterLinkActive, MatMenuModule],
+  templateUrl: './editor-menu-panel.component.html',
 })
 export class EditorMenuPanelComponent {
   readonly menu = viewChild<MatMenu>('menu');

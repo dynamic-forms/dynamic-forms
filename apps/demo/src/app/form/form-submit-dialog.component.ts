@@ -8,8 +8,8 @@ import { FormDataPipe } from './form-data.pipe';
 
 @Component({
   selector: 'app-form-submit-dialog',
-  templateUrl: './form-submit-dialog.component.html',
   imports: [JsonPipe, MatButtonModule, MatDialogModule, MatTabsModule, FormDataPipe],
+  templateUrl: './form-submit-dialog.component.html',
 })
 export class FormSubmitDialogComponent {
   constructor(

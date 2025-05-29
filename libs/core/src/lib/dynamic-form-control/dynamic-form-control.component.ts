@@ -11,8 +11,8 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
   selector: 'dynamic-form-control',
-  templateUrl: './dynamic-form-control.component.html',
   imports: [NgClass],
+  templateUrl: './dynamic-form-control.component.html',
 })
 export class DynamicFormControlComponent<
     Value = any,

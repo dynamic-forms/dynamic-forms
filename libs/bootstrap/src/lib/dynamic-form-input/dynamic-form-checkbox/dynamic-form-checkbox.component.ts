@@ -4,8 +4,8 @@ import { DynamicFormCheckbox, DynamicFormInputBase, DynamicFormValidationService
 
 @Component({
   selector: 'bs-dynamic-form-checkbox',
-  templateUrl: './dynamic-form-checkbox.component.html',
   imports: [ReactiveFormsModule],
+  templateUrl: './dynamic-form-checkbox.component.html',
 })
 export class BsDynamicFormCheckboxComponent extends DynamicFormInputBase<DynamicFormCheckbox> {
   constructor(protected override validationService: DynamicFormValidationService) {

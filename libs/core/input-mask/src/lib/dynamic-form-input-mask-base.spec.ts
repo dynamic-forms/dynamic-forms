@@ -17,8 +17,8 @@ import { DynamicFormInputMaskDirective } from './dynamic-form-input-mask.directi
 
 @Component({
   selector: 'dynamic-form-input-mask-test',
-  template: `<input [dynamicFormInputMask]="inputMask" [formControl]="control" />`,
   imports: [ReactiveFormsModule, DynamicFormInputMaskDirective],
+  template: `<input [dynamicFormInputMask]="inputMask" [formControl]="control" />`,
 })
 class DynamicFormInputMaskTestComponent extends DynamicFormInputMaskBase {
   constructor(protected override validationService: DynamicFormValidationService) {
