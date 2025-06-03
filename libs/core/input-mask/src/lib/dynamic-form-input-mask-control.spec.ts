@@ -124,11 +124,11 @@ describe('DynamicFormInputMaskControl', () => {
       const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
       const inputElement = {} as HTMLInputElement;
 
-      spyOn(control.mask, 'mask');
+      const maskMaskSpy = spyOn(control.mask, 'mask');
 
       control.maskInputElement(inputElement);
 
-      expect(control.mask.mask).toHaveBeenCalledOnceWith(inputElement);
+      expect(maskMaskSpy).toHaveBeenCalledOnceWith(inputElement);
     });
   });
 
@@ -139,11 +139,11 @@ describe('DynamicFormInputMaskControl', () => {
       const type = { type: 'type' } as DynamicFormFieldType;
       const control = new DynamicFormInputMaskControl(builder, root, root, definition, type);
 
-      spyOn(control.mask, 'remove');
+      const maskRemoveSpy = spyOn(control.mask, 'remove');
 
       control.removeInputElement();
 
-      expect(control.mask.remove).toHaveBeenCalledTimes(1);
+      expect(maskRemoveSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

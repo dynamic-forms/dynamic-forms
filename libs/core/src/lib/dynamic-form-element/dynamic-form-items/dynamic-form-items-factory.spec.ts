@@ -23,9 +23,9 @@ describe('dynamicFormItemsFactory', () => {
     const expressions = [{}, {}];
     const children = [];
 
-    spyOn(builder, 'getDefinition').and.returnValue(itemDefinition);
-    spyOn(builder, 'createElementExpressions').and.returnValues(...expressions);
-    spyOn(builder, 'createFormElements').and.returnValue(children);
+    const getDefinitionSpy = spyOn(builder, 'getDefinition').and.returnValue(itemDefinition);
+    const createExpressionsSpy = spyOn(builder, 'createElementExpressions').and.returnValues(...expressions);
+    const createElementsSpy = spyOn(builder, 'createFormElements').and.returnValue(children);
 
     const items = dynamicFormItemsFactory(builder, root, parent, definition, type);
 
@@ -37,9 +37,9 @@ describe('dynamicFormItemsFactory', () => {
     expect(items.children[0].expressions).toBe(expressions[1]);
     expect(items.children[0].children).toBe(children);
 
-    expect(builder.getDefinition).toHaveBeenCalledWith(itemDefinition, root);
-    expect(builder.createElementExpressions).toHaveBeenCalledWith(items);
-    expect(builder.createElementExpressions).toHaveBeenCalledWith(items.children[0]);
-    expect(builder.createFormElements).toHaveBeenCalledWith(root, parent, itemDefinition.children);
+    expect(getDefinitionSpy).toHaveBeenCalledWith(itemDefinition, root);
+    expect(createExpressionsSpy).toHaveBeenCalledWith(items);
+    expect(createExpressionsSpy).toHaveBeenCalledWith(items.children[0]);
+    expect(createElementsSpy).toHaveBeenCalledWith(root, parent, itemDefinition.children);
   });
 });

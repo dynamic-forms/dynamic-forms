@@ -46,7 +46,7 @@ describe('DynamicFormMarkdownComponent', () => {
   });
 
   it('renders component template', () => {
-    spyOn(service, 'compile').and.returnValue(of(undefined));
+    const compileSpy = spyOn(service, 'compile').and.returnValue(of(undefined));
 
     fixture.detectChanges();
 
@@ -55,11 +55,11 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('');
-    expect(service.compile).toHaveBeenCalledWith(undefined, undefined);
+    expect(compileSpy).toHaveBeenCalledWith(undefined, undefined);
   });
 
   it('renders component template for markdown', () => {
-    spyOn(service, 'compile').and.returnValue(of('<h1>Title</h1>'));
+    const compileSpy = spyOn(service, 'compile').and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.markdown = '# Title';
 
@@ -70,11 +70,11 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
-    expect(service.compile).toHaveBeenCalledWith('# Title', undefined);
+    expect(compileSpy).toHaveBeenCalledWith('# Title', undefined);
   });
 
   it('renders component template for markdown which has changed', () => {
-    spyOn(service, 'compile').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
+    const compileSpy = spyOn(service, 'compile').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
 
     component.element.template.markdown = '# Title';
 
@@ -89,11 +89,11 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title2</h1>');
-    expect(service.compile).toHaveBeenCalledWith('# Title2', undefined);
+    expect(compileSpy).toHaveBeenCalledWith('# Title2', undefined);
   });
 
   it('renders component template for markdown source', () => {
-    spyOn(service, 'compileFromSource').and.returnValue(of('<h1>Title</h1>'));
+    const compileFromSourceSpy = spyOn(service, 'compileFromSource').and.returnValue(of('<h1>Title</h1>'));
 
     component.element.template.source = '/assets/README.md';
 
@@ -104,11 +104,11 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title</h1>');
-    expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README.md', undefined);
+    expect(compileFromSourceSpy).toHaveBeenCalledWith('/assets/README.md', undefined);
   });
 
   it('renders component template for markdown source which has changed', () => {
-    spyOn(service, 'compileFromSource').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
+    const compileFromSourceSpy = spyOn(service, 'compileFromSource').and.returnValues(of('<h1>Title</h1>'), of('<h1>Title2</h1>'));
 
     component.element.template.source = '/assets/README.md';
 
@@ -123,6 +123,6 @@ describe('DynamicFormMarkdownComponent', () => {
 
     expect(formMarkdownElement).toBeTruthy();
     expect(formMarkdownElement.innerHTML).toBe('<h1>Title2</h1>');
-    expect(service.compileFromSource).toHaveBeenCalledWith('/assets/README2.md', undefined);
+    expect(compileFromSourceSpy).toHaveBeenCalledWith('/assets/README2.md', undefined);
   });
 });

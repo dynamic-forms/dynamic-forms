@@ -1,10 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { LAYOUT, Layout } from '../../state/layout/layout.model';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -17,9 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 })
 export class ContentComponent {
   readonly mobileQuery: MediaQueryList;
-
-  @Select(LAYOUT)
-  layout$: Observable<Layout>;
+  readonly layout$: Observable<Layout> = inject(Store).select(LAYOUT);
 
   constructor(private media: MediaMatcher) {
     this.mobileQuery = this.media.matchMedia('(max-width: 850px)');

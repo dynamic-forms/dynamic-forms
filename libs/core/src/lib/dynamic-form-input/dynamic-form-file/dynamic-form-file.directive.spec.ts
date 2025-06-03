@@ -100,11 +100,11 @@ describe('DynamicFormFileDirective', () => {
   });
 
   it('openFileExplorer clicks native element', () => {
-    spyOn(nativeElement, 'click');
+    const elementClickSpy = spyOn(nativeElement, 'click');
 
     directive.openFileExplorer();
 
-    expect(nativeElement.click).toHaveBeenCalledTimes(1);
+    expect(elementClickSpy).toHaveBeenCalledTimes(1);
   });
 
   it('uploadFiles sets files with multipleFiles being false', () => {

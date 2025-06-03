@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   DynamicForm,
@@ -62,11 +62,11 @@ describe('BsDynamicFormModalComponent', () => {
     expect(modalDebugElement).toBeNull();
   });
 
-  it('opens modal', waitForAsync(() => {
+  it('opens modal', async () => {
     modal.open();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
       const modalDialogDebugElement = modalDebugElement.query(By.css('div.modal-dialog'));
       const modalHeaderDebugElement = modalDialogDebugElement.query(By.css('div.modal-header'));
@@ -85,40 +85,40 @@ describe('BsDynamicFormModalComponent', () => {
       expect(modalHeaderElement.innerText).toBe('Title');
       expect(modalBodyElement).toBeTruthy();
     });
-  }));
+  });
 
-  it('closes modal', waitForAsync(() => {
+  it('closes modal', async () => {
     modal.open();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(async () => {
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const modalDebugElement = fixture.debugElement.query(By.css('div.dynamic-form-modal'));
 
         expect(component.isOpen).toBeFalse();
         expect(modalDebugElement).toBeNull();
       });
     });
-  }));
+  });
 
-  it('toggles modal', waitForAsync(() => {
+  it('toggles modal', async () => {
     modal.toggle();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(async () => {
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         expect(component.isOpen).toBeFalse();
       });
     });
-  }));
+  });
 });

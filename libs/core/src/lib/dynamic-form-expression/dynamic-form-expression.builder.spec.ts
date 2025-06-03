@@ -72,7 +72,7 @@ describe('DynamicFormExpressionBuilder', () => {
   it('returns element expression for string being invalid javascript', inject(
     [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
-      spyOn(errorHandler, 'handle');
+      const handleErrorSpy = spyOn(errorHandler, 'handle');
 
       const values = [];
       const expressionData = {
@@ -91,7 +91,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const elementExpressions = service.createElementExpressions(element);
       const elementExpression = elementExpressions['disabled'];
 
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
       expect(elementExpressions).toBeTruthy();
       expect(elementExpression).toBeTruthy();
       expect(elementExpression.element).toBe(element);
@@ -178,7 +178,7 @@ describe('DynamicFormExpressionBuilder', () => {
   it('returns field expression for string being invalid javascript', inject(
     [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
-      spyOn(errorHandler, 'handle');
+      const handleErrorSpy = spyOn(errorHandler, 'handle');
 
       const model = { readonly: false, child: { readonly: false, child: {} } };
       const root = { model } as DynamicFormField;
@@ -199,7 +199,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const fieldExpressions = service.createFieldExpressions(field);
       const fieldExpression = fieldExpressions['readonly'];
 
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
       expect(fieldExpressions).toBeTruthy();
       expect(fieldExpression).toBeTruthy();
       expect(fieldExpression.field).toBe(field);
@@ -283,7 +283,7 @@ describe('DynamicFormExpressionBuilder', () => {
   it('returns action expression for string being invalid javascript', inject(
     [DynamicFormErrorHandler],
     (errorHandler: DynamicFormErrorHandler) => {
-      spyOn(errorHandler, 'handle');
+      const handleErrorSpy = spyOn(errorHandler, 'handle');
 
       const root = { status: 'INVALID' };
       const parent = {};
@@ -297,7 +297,7 @@ describe('DynamicFormExpressionBuilder', () => {
       const actionExpressions = service.createActionExpressions(action);
       const actionExpression = actionExpressions['disabled'];
 
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
       expect(actionExpressions).toBeTruthy();
       expect(actionExpression).toBeTruthy();
       expect(actionExpression.action).toBe(action);

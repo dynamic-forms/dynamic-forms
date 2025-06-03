@@ -34,7 +34,7 @@ export const dynamicFormGroupAllRequiredValidatorType: DynamicFormGroupValidator
 export const dynamicFormGroupEqualValidatorFactory =
   (parameters?: { keys: string[] }, message?: string, key?: string): DynamicFormGroupValidatorFn =>
   (group: FormGroup) => {
-    const keys = parameters && parameters.keys;
+    const keys = parameters?.keys;
     if (group.value && keys && keys.length > 1) {
       for (let i = 1; i < keys.length; i++) {
         if (group.value[keys[i - 1]] !== group.value[keys[i]]) {

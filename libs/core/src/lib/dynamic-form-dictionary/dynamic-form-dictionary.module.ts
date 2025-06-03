@@ -52,7 +52,7 @@ export const getDynamicFormDictionary = (action: DynamicFormAction): DynamicForm
 
 export const dynamicFormDictionaryRemoveField = (field: DynamicFormDictionary, action: DynamicFormAction): void => {
   const childField = action.parent as DynamicFormField;
-  if (field && childField && childField.key) {
+  if (field && childField?.key) {
     field.removeField(childField.key);
   }
 };

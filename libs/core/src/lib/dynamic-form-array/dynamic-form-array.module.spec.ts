@@ -88,25 +88,24 @@ describe('DynamicFormArrayModule', () => {
     const field = { pushField: (_elem: DynamicFormField) => {}, length: 0 } as DynamicFormArray;
     const element = {} as DynamicFormField;
 
-    spyOn(formBuilder, 'createFormArrayField').and.returnValue(element);
-
-    spyOn(field, 'pushField');
+    const createFieldSpy = spyOn(formBuilder, 'createFormArrayField').and.returnValue(element);
+    const pushFieldSpy = spyOn(field, 'pushField');
 
     handler.func(field, null);
 
-    expect(formBuilder.createFormArrayField).toHaveBeenCalledWith(field, 0);
-    expect(field.pushField).toHaveBeenCalledWith(element);
+    expect(createFieldSpy).toHaveBeenCalledWith(field, 0);
+    expect(pushFieldSpy).toHaveBeenCalledWith(element);
   }));
 
   it('handler calls popField of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'popArrayField');
     const field = { popField: () => {} } as DynamicFormArray;
 
-    spyOn(field, 'popField');
+    const popFieldSpy = spyOn(field, 'popField');
 
     handler.func(field, null);
 
-    expect(field.popField).toHaveBeenCalled();
+    expect(popFieldSpy).toHaveBeenCalled();
   }));
 
   it('handler returns array parent of action', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -137,11 +136,11 @@ describe('DynamicFormArrayModule', () => {
     const parent = { index: 1 } as DynamicFormField;
     const action = { parentField: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'removeField');
+    const removeFieldSpy = spyOn(field, 'removeField');
 
     handler.func(field, action);
 
-    expect(field.removeField).toHaveBeenCalledWith(1);
+    expect(removeFieldSpy).toHaveBeenCalledWith(1);
   }));
 
   it('handler does not call removeField of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -150,22 +149,22 @@ describe('DynamicFormArrayModule', () => {
     const parent = {} as DynamicFormField;
     const action = { parentField: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'removeField');
+    const removeFieldSpy = spyOn(field, 'removeField');
 
     handler.func(field, action);
 
-    expect(field.removeField).not.toHaveBeenCalled();
+    expect(removeFieldSpy).not.toHaveBeenCalled();
   }));
 
   it('handler calls clearFields of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'clearArrayFields');
     const field = { clearFields: () => {} } as DynamicFormArray;
 
-    spyOn(field, 'clearFields');
+    const clearFieldsSpy = spyOn(field, 'clearFields');
 
     handler.func(field, null);
 
-    expect(field.clearFields).toHaveBeenCalled();
+    expect(clearFieldsSpy).toHaveBeenCalled();
   }));
 
   it('handler calls moveFieldDown of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -174,11 +173,11 @@ describe('DynamicFormArrayModule', () => {
     const parent = { index: 1 } as DynamicFormField;
     const action = { parentField: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'moveFieldDown');
+    const moveFieldDownSpy = spyOn(field, 'moveFieldDown');
 
     handler.func(field, action);
 
-    expect(field.moveFieldDown).toHaveBeenCalledWith(1);
+    expect(moveFieldDownSpy).toHaveBeenCalledWith(1);
   }));
 
   it('handler does not call moveFieldDown of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -187,11 +186,11 @@ describe('DynamicFormArrayModule', () => {
     const parent = {} as DynamicFormField;
     const action = { parentField: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'moveFieldDown');
+    const moveFieldDownSpy = spyOn(field, 'moveFieldDown');
 
     handler.func(field, action);
 
-    expect(field.moveFieldDown).not.toHaveBeenCalled();
+    expect(moveFieldDownSpy).not.toHaveBeenCalled();
   }));
 
   it('handler calls moveFieldUp of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -200,11 +199,11 @@ describe('DynamicFormArrayModule', () => {
     const parent = { index: 1 } as DynamicFormField;
     const action = { parentField: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'moveFieldUp');
+    const moveFieldUpSpy = spyOn(field, 'moveFieldUp');
 
     handler.func(field, action);
 
-    expect(field.moveFieldUp).toHaveBeenCalledWith(1);
+    expect(moveFieldUpSpy).toHaveBeenCalledWith(1);
   }));
 
   it('handler does not call moveFieldDown of array field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -213,10 +212,10 @@ describe('DynamicFormArrayModule', () => {
     const parent = {} as DynamicFormField;
     const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'moveFieldUp');
+    const moveFieldUpSpy = spyOn(field, 'moveFieldUp');
 
     handler.func(field, action);
 
-    expect(field.moveFieldUp).not.toHaveBeenCalled();
+    expect(moveFieldUpSpy).not.toHaveBeenCalled();
   }));
 });

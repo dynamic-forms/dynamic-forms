@@ -26,7 +26,7 @@ export class DynamicFormColorService {
     const library = this.libraryService.library;
     const libraryName = library.name;
     const defaultConfig = { colors: {}, libraryName };
-    if (!configs || !configs.length) {
+    if (!configs?.length) {
       return defaultConfig;
     }
 

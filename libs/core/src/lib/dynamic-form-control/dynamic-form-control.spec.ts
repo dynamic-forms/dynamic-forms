@@ -83,6 +83,7 @@ describe('DynamicFormControl', () => {
     { settings: { updateType: 'blur' }, updateOn: 'blur' },
   ];
   items.forEach(item =>
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
     it(`creating instance sets update option '${item.settings}'`, () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: {}, settings: item.settings } as DynamicFormControlDefinition;
@@ -266,16 +267,16 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    spyOn(control.control, 'setValue').and.callThrough();
-    spyOn(control.control, 'markAsTouched');
+    const setValueSpy = spyOn(control.control, 'setValue').and.callThrough();
+    const touchControlSpy = spyOn(control.control, 'markAsTouched');
 
     root.model['key'] = 'value';
     control.check();
 
     expect(control.model).toBe('value');
     expect(control.value).toBe('value');
-    expect(control.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
-    expect(control.control.markAsTouched).toHaveBeenCalled();
+    expect(setValueSpy).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('check updates control disabled', () => {
@@ -390,11 +391,11 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, root, definition, {} as DynamicFormFieldType);
 
-    spyOn(control.control, 'markAsTouched');
+    const touchControlSpy = spyOn(control.control, 'markAsTouched');
 
     control.validate();
 
-    expect(control.control.markAsTouched).toHaveBeenCalled();
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('init calls calls initId, initExpressions, initValidators and initEvaluators', () => {
@@ -403,11 +404,11 @@ describe('DynamicFormControl', () => {
     const definition = { key: 'key', template: { input: {} } } as DynamicFormControlDefinition;
     const control = new DynamicFormControl(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    spyOn(builder, 'getFieldId').and.callThrough();
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createControlValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
-    spyOn(builder, 'createControlEvaluators').and.callThrough();
+    const getFieldIdSpy = spyOn(builder, 'getFieldId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    const createValidatorsSpy = spyOn(builder, 'createControlValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
+    const createEvaluatorsSpy = spyOn(builder, 'createControlEvaluators').and.callThrough();
 
     const initIdSpy = spyOn(control as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(control as any, 'initExpressions').and.callThrough();
@@ -426,23 +427,23 @@ describe('DynamicFormControl', () => {
     control.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(control);
+    expect(getFieldIdSpy).toHaveBeenCalledOnceWith(control);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(control);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(control);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createControlValidators).toHaveBeenCalledOnceWith(control);
+    expect(createValidatorsSpy).toHaveBeenCalledOnceWith(control);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).not.toHaveBeenCalled();
+    expect(createActionsSpy).not.toHaveBeenCalled();
     expect(initEvaluatorsSpy).toHaveBeenCalledTimes(1);
     expect(getEvaluatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createControlEvaluators).toHaveBeenCalledOnceWith(control);
+    expect(createEvaluatorsSpy).toHaveBeenCalledOnceWith(control);
   });
 
   it('inits expressions', () => {
@@ -473,8 +474,8 @@ describe('DynamicFormControl', () => {
       'input.defaultValue': { value: 'value' } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    spyOn(control.control, 'setValue').and.callThrough();
-    spyOn(control.control, 'markAsTouched');
+    const setValueSpy = spyOn(control.control, 'setValue').and.callThrough();
+    const touchControlSpy = spyOn(control.control, 'markAsTouched');
 
     spyOn(builder, 'createFieldExpressions').and.returnValue(expressions);
 
@@ -484,8 +485,8 @@ describe('DynamicFormControl', () => {
     expect(control.template.input.defaultValue).toBe('value');
     expect(control.model).toBe('value');
     expect(control.control.value).toBe('value');
-    expect(control.control.setValue).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
-    expect(control.control.markAsTouched).not.toHaveBeenCalled();
+    expect(setValueSpy).toHaveBeenCalledWith('value', { onlySelf: true, emitEvent: false });
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('inits expressions, but does not set model and control value to default value', () => {
@@ -496,8 +497,8 @@ describe('DynamicFormControl', () => {
       'input.defaultValue': { value: undefined } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    spyOn(control.control, 'setValue').and.callThrough();
-    spyOn(control.control, 'markAsTouched');
+    const setValueSpy = spyOn(control.control, 'setValue').and.callThrough();
+    const touchControlSpy = spyOn(control.control, 'markAsTouched');
 
     spyOn(builder, 'createFieldExpressions').and.returnValue(expressions);
 
@@ -507,8 +508,8 @@ describe('DynamicFormControl', () => {
     expect(control.template['input']['defaultValue']).toBeUndefined();
     expect(control.model).toBeNull();
     expect(control.control.value).toBeNull();
-    expect(control.control.setValue).not.toHaveBeenCalled();
-    expect(control.control.markAsTouched).not.toHaveBeenCalled();
+    expect(setValueSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('inits validators', () => {

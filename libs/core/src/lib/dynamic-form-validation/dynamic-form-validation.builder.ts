@@ -166,7 +166,7 @@ export class DynamicFormValidationBuilder {
   }
 
   private getValidatorType(field: DynamicFormField, key: string): string {
-    const validator = field.definition.validators && field.definition.validators[key];
+    const validator = field.definition.validators?.[key];
     return validator ? validator.type : key;
   }
 }

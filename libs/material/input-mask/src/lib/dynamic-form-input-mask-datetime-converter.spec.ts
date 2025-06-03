@@ -85,7 +85,7 @@ describe('MatDynamicFormInputMaskDatetimeConverter', () => {
     });
 
     it('returns formatted date using default format', () => {
-      spyOn(converter, 'parse').and.callThrough();
+      const converterParse = spyOn(converter, 'parse').and.callThrough();
 
       const date = new Date(Date.UTC(2024, 0, 1, 12, 0, 0));
       const timezoneOffset = date.getTimezoneOffset();
@@ -93,11 +93,11 @@ describe('MatDynamicFormInputMaskDatetimeConverter', () => {
       const hours = 12 - hoursOffset;
 
       expect(converter.format(date)).toBe(`2024-01-01 ${hours}:00:00`);
-      expect(converter.parse).toHaveBeenCalledTimes(0);
+      expect(converterParse).toHaveBeenCalledTimes(0);
     });
 
     it('returns formatted date using provided input format', () => {
-      spyOn(converter, 'parse').and.callThrough();
+      const converterParse = spyOn(converter, 'parse').and.callThrough();
 
       const date = new Date(Date.UTC(2024, 0, 1, 12, 0, 0));
       const timezoneOffset = date.getTimezoneOffset();
@@ -105,7 +105,7 @@ describe('MatDynamicFormInputMaskDatetimeConverter', () => {
       const hours = 12 - hoursOffset;
 
       expect(converter.format(date, { inputFormat: 'dd.mm.yyyy HH:MM:ss' })).toBe(`01.01.2024 ${hours}:00:00`);
-      expect(converter.parse).toHaveBeenCalledTimes(0);
+      expect(converterParse).toHaveBeenCalledTimes(0);
     });
   });
 });

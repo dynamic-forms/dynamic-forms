@@ -84,8 +84,8 @@ describe('DynamicFormAction', () => {
     const definition = { type: 'type', template: {} } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, root, parent, definition, {} as DynamicFormActionType);
 
-    spyOn(builder, 'getActionId').and.callThrough();
-    spyOn(builder, 'createActionExpressions').and.callThrough();
+    const getActionIdSpy = spyOn(builder, 'getActionId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createActionExpressions').and.callThrough();
 
     const initIdSpy = spyOn(action as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(action as any, 'getId').and.callThrough();
@@ -98,10 +98,10 @@ describe('DynamicFormAction', () => {
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
     expect(getIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getActionId).toHaveBeenCalledOnceWith(action);
+    expect(getActionIdSpy).toHaveBeenCalledOnceWith(action);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createActionExpressions).toHaveBeenCalledOnceWith(action);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(action);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
   });

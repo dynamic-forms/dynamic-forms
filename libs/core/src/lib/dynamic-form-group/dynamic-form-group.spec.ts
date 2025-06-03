@@ -67,11 +67,11 @@ describe('DynamicFormGroup', () => {
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    spyOn(builder, 'getFieldId').and.callThrough();
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createFormElements').and.callThrough();
-    spyOn(builder, 'createGroupValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
+    const getFieldIdSpy = spyOn(builder, 'getFieldId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    const createElementsSpy = spyOn(builder, 'createFormElements').and.callThrough();
+    const createValidatorsSpy = spyOn(builder, 'createGroupValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(group as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(group as any, 'initExpressions').and.callThrough();
@@ -88,22 +88,22 @@ describe('DynamicFormGroup', () => {
     group.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(group);
+    expect(getFieldIdSpy).toHaveBeenCalledOnceWith(group);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(group);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(group);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormElements).toHaveBeenCalledOnceWith(root, group, definition.children);
+    expect(createElementsSpy).toHaveBeenCalledOnceWith(root, group, definition.children);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createGroupValidators).toHaveBeenCalledOnceWith(group);
+    expect(createValidatorsSpy).toHaveBeenCalledOnceWith(group);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, group, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, group, definition.headerActions);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, group, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, group, definition.footerActions);
   });
 
   it('inits children and fields', () => {
@@ -181,16 +181,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), check: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'check');
-    spyOn(fields[1], 'check');
+    const checkField0Spy = spyOn(fields[0], 'check');
+    const checkField1Spy = spyOn(fields[1], 'check');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.check();
 
-    expect(fields[0].check).toHaveBeenCalledTimes(1);
-    expect(fields[1].check).toHaveBeenCalledTimes(1);
+    expect(checkField0Spy).toHaveBeenCalledTimes(1);
+    expect(checkField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('check sets disabled of control', () => {
@@ -219,16 +219,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.destroy();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('reset calls reset of form field', () => {
@@ -240,16 +240,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), reset: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'reset');
-    spyOn(fields[1], 'reset');
+    const resetField0Spy = spyOn(fields[0], 'reset');
+    const resetField1Spy = spyOn(fields[1], 'reset');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.reset();
 
-    expect(fields[0].reset).toHaveBeenCalledTimes(1);
-    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+    expect(resetField0Spy).toHaveBeenCalledTimes(1);
+    expect(resetField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('resetEmpty calls reset of all fields', () => {
@@ -261,16 +261,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), resetEmpty: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'resetEmpty');
-    spyOn(fields[1], 'resetEmpty');
+    const resetEmptyField0Spy = spyOn(fields[0], 'resetEmpty');
+    const resetEmptyField1Spy = spyOn(fields[1], 'resetEmpty');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetEmpty();
 
-    expect(fields[0].resetEmpty).toHaveBeenCalledTimes(1);
-    expect(fields[1].resetEmpty).toHaveBeenCalledTimes(1);
+    expect(resetEmptyField0Spy).toHaveBeenCalledTimes(1);
+    expect(resetEmptyField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('resetDefault calls patchValue of field if default value', () => {
@@ -283,16 +283,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
+    const resetDefaultField0Spy = spyOn(fields[0], 'resetDefault');
+    const resetDefaultField1Spy = spyOn(fields[1], 'resetDefault');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetDefault();
 
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(0);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(0);
+    expect(resetDefaultField0Spy).toHaveBeenCalledTimes(0);
+    expect(resetDefaultField1Spy).toHaveBeenCalledTimes(0);
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
@@ -304,16 +304,16 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), resetDefault: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'resetDefault');
-    spyOn(fields[1], 'resetDefault');
+    const resetDefaultField0Spy = spyOn(fields[0], 'resetDefault');
+    const resetDefaultField1Spy = spyOn(fields[1], 'resetDefault');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.resetDefault();
 
-    expect(fields[0].resetDefault).toHaveBeenCalledTimes(1);
-    expect(fields[1].resetDefault).toHaveBeenCalledTimes(1);
+    expect(resetDefaultField0Spy).toHaveBeenCalledTimes(1);
+    expect(resetDefaultField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('validate calls validate of all fields', () => {
@@ -325,15 +325,15 @@ describe('DynamicFormGroup', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), validate: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'validate');
-    spyOn(fields[1], 'validate');
+    const validateField0Spy = spyOn(fields[0], 'validate');
+    const validateField1Spy = spyOn(fields[1], 'validate');
 
     spyOn(builder, 'createFormElements').and.returnValue(fields);
 
     group.init();
     group.validate();
 
-    expect(fields[0].validate).toHaveBeenCalledTimes(1);
-    expect(fields[1].validate).toHaveBeenCalledTimes(1);
+    expect(validateField0Spy).toHaveBeenCalledTimes(1);
+    expect(validateField1Spy).toHaveBeenCalledTimes(1);
   });
 });

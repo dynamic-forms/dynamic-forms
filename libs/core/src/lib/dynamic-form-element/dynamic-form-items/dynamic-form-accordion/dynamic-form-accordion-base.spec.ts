@@ -31,50 +31,50 @@ describe('DynamicFormAccordionBase', () => {
   });
 
   it('openItem calls selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.openItem(1);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(1);
+    expect(selectItemSpy).toHaveBeenCalledWith(1);
   });
 
   it('openItem does not call selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.openItem(0);
 
-    expect(component.element.selectItem).not.toHaveBeenCalledWith(0);
+    expect(selectItemSpy).not.toHaveBeenCalledWith(0);
   });
 
   it('closeItem calls selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.closeItem(0);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(undefined);
+    expect(selectItemSpy).toHaveBeenCalledWith(undefined);
   });
 
   it('closeItem does not call selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.closeItem(1);
 
-    expect(component.element.selectItem).not.toHaveBeenCalled();
+    expect(selectItemSpy).not.toHaveBeenCalled();
   });
 
   it('toggleItem calls selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.toggleItem(0);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(undefined);
+    expect(selectItemSpy).toHaveBeenCalledWith(undefined);
   });
 
   it('toggleItem calls selectItem of element', () => {
-    spyOn(component.element, 'selectItem');
+    const selectItemSpy = spyOn(component.element, 'selectItem');
 
     component.toggleItem(1);
 
-    expect(component.element.selectItem).toHaveBeenCalledWith(1);
+    expect(selectItemSpy).toHaveBeenCalledWith(1);
   });
 });
