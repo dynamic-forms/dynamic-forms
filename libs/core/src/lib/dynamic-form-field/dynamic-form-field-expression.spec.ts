@@ -137,7 +137,7 @@ describe('DynamicFormFieldExpression', () => {
   });
 
   it('get value catches and calls handle of error handler', () => {
-    spyOn(errorHandler, 'handle');
+    const handleErrorSpy = spyOn(errorHandler, 'handle');
 
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
@@ -155,6 +155,6 @@ describe('DynamicFormFieldExpression', () => {
     const expression = new DynamicFormFieldExpressionTesting('key', field, func, errorHandler);
 
     expect(expression.value).toBeUndefined();
-    expect(errorHandler.handle).toHaveBeenCalled();
+    expect(handleErrorSpy).toHaveBeenCalled();
   });
 });

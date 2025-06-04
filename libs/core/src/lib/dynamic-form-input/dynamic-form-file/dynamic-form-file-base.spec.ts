@@ -132,12 +132,12 @@ describe('DynamicFormFileBase', () => {
   it('action calls openFileExplorer', () => {
     fixture.detectChanges();
 
-    spyOn(component.fileInput, 'openFileExplorer');
+    const fileExplorerSpy = spyOn(component.fileInput, 'openFileExplorer');
 
     const action = uploadAction.definition.template.action as () => void;
     action();
 
-    expect(component.fileInput.openFileExplorer).toHaveBeenCalledTimes(1);
+    expect(fileExplorerSpy).toHaveBeenCalledTimes(1);
   });
 
   it('disabled expression for upload action returns false', () => {

@@ -16,12 +16,20 @@ export default tseslint.config(
     },
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsAll,
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
-      eslintPluginPrettierRecommended
+      eslintPluginPrettierRecommended,
+      {
+        languageOptions: {
+          parserOptions: {
+            projectService: true,
+            tsconfigRootDir: import.meta.dirname,
+          },
+        },
+      }
     ],
     processor: angular.processInlineTemplates,
     settings: {
@@ -93,6 +101,18 @@ export default tseslint.config(
         {
           "argsIgnorePattern": "^_"
         }
+      ],
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/prefer-nullish-coalescing": "off",
+      "@typescript-eslint/unbound-method": [
+        "error",
+        {
+          "ignoreStatic": true,
+        },
       ],
       "arrow-body-style": [
         "error",

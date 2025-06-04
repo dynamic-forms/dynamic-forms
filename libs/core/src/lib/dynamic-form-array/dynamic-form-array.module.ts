@@ -40,7 +40,7 @@ export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFo
 };
 
 export const getDynamicFormArray = (action: DynamicFormAction): DynamicFormArray => {
-  const field = action.parentField && action.parentField.parentField;
+  const field = action.parentField?.parentField;
   return field && field.fieldClassType === 'array' ? (field as DynamicFormArray) : undefined;
 };
 

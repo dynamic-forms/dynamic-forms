@@ -88,8 +88,8 @@ describe('DynamicFormElement', () => {
     const definition = { type: 'type', template: {}, children: [] } as DynamicFormElementDefinition;
     const element = new DynamicFormElement(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(builder, 'createElementExpressions').and.callThrough();
-    spyOn(builder, 'createFormElements').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createElementExpressions').and.callThrough();
+    const createElementsSpy = spyOn(builder, 'createFormElements').and.callThrough();
 
     const initIdSpy = spyOn(element as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(element as any, 'initExpressions').and.callThrough();
@@ -102,10 +102,10 @@ describe('DynamicFormElement', () => {
     expect(initIdSpy).toHaveBeenCalledTimes(1);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createElementExpressions).toHaveBeenCalledOnceWith(element);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(element);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormElements).toHaveBeenCalledOnceWith(root, element, definition.children);
+    expect(createElementsSpy).toHaveBeenCalledOnceWith(root, element, definition.children);
   });
 
   it('inits expressions', () => {

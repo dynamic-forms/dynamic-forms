@@ -47,12 +47,12 @@ describe('DynamicFormItemsBase', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(items, 'check');
+    const checkItemsSpy = spyOn(items, 'check');
 
     component.element = items;
     component.ngDoCheck();
 
-    expect(items.check).toHaveBeenCalled();
+    expect(checkItemsSpy).toHaveBeenCalled();
   });
 
   it('selectItem calls selectItem of element', () => {
@@ -61,11 +61,11 @@ describe('DynamicFormItemsBase', () => {
     const definition = { id: 'id', type: 'element', template: {} } as DynamicFormItemsDefinition;
     const items = new DynamicFormItems(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(items, 'selectItem');
+    const selectItemSpy = spyOn(items, 'selectItem');
 
     component.element = items;
     component.selectItem(1);
 
-    expect(items.selectItem).toHaveBeenCalledWith(1);
+    expect(selectItemSpy).toHaveBeenCalledWith(1);
   });
 });

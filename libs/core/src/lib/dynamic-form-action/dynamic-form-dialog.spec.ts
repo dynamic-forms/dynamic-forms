@@ -33,10 +33,10 @@ describe('DynamicFormDialog', () => {
     const definition = { template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormDefinition;
     const dialog = new DynamicFormDialog(builder, action, definition, {});
 
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createFormElements').and.callThrough();
-    spyOn(builder, 'createGroupValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    const createElementsSpy = spyOn(builder, 'createFormElements').and.callThrough();
+    const createValidatorsSpy = spyOn(builder, 'createGroupValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(dialog as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(dialog as any, 'getId').and.callThrough();
@@ -57,18 +57,18 @@ describe('DynamicFormDialog', () => {
     expect(getIdSpy).not.toHaveBeenCalled();
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(dialog);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(dialog);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormElements).toHaveBeenCalledOnceWith(dialog, dialog, definition.children);
+    expect(createElementsSpy).toHaveBeenCalledOnceWith(dialog, dialog, definition.children);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createGroupValidators).toHaveBeenCalledTimes(1);
+    expect(createValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, action, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, action, definition.headerActions);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, action, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, action, definition.footerActions);
   });
 });

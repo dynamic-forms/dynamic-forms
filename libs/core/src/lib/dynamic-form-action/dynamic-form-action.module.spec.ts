@@ -70,33 +70,33 @@ describe('DynamicFormActionModule', () => {
       const handler = service.handlers.find(h => h.type === 'openDialog');
       const action = { openDialog: () => {} } as DynamicFormAction;
 
-      spyOn(action, 'openDialog');
+      const openDialogSpy = spyOn(action, 'openDialog');
 
       handler.func(action, null);
 
-      expect(action.openDialog).toHaveBeenCalled();
+      expect(openDialogSpy).toHaveBeenCalled();
     }));
 
     it('handler calls closeDialog of action', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'closeDialog');
       const action = { closeDialog: () => {} } as DynamicFormAction;
 
-      spyOn(action, 'closeDialog');
+      const closeDialogSpy = spyOn(action, 'closeDialog');
 
       handler.func(action, null);
 
-      expect(action.closeDialog).toHaveBeenCalled();
+      expect(closeDialogSpy).toHaveBeenCalled();
     }));
 
     it('handler calls toggleDialog of action', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
       const handler = service.handlers.find(h => h.type === 'toggleDialog');
       const action = { toggleDialog: () => {} } as DynamicFormAction;
 
-      spyOn(action, 'toggleDialog');
+      const toggleDialogSpy = spyOn(action, 'toggleDialog');
 
       handler.func(action, null);
 
-      expect(action.toggleDialog).toHaveBeenCalled();
+      expect(toggleDialogSpy).toHaveBeenCalled();
     }));
   });
 

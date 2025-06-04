@@ -48,7 +48,7 @@ export class DynamicFormElement<
     this.parentField = DynamicFormElement.getParentField(root, parent);
     this.definition = definition;
     this.definition.template = definition.template || ({} as Template);
-    this.template = definition.template as Template;
+    this.template = definition.template;
     this.type = type;
     this.expressionData = this.createExpressionData();
     this._expressions = {} as Expressions;

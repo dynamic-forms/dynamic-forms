@@ -197,11 +197,11 @@ describe('DynamicFormComponent', () => {
   });
 
   it('ngOnSubmit emits form submit', () => {
-    spyOn(component.formSubmit, 'emit');
+    const formSubmitSpy = spyOn(component.formSubmit, 'emit');
 
     component.submit();
 
-    expect(component.formSubmit.emit).toHaveBeenCalledWith({
+    expect(formSubmitSpy).toHaveBeenCalledWith({
       value: component.value,
       model: component.model,
       files: undefined,
@@ -209,7 +209,7 @@ describe('DynamicFormComponent', () => {
   });
 
   it('form submit emits form submit with files', () => {
-    spyOn(component.formSubmit, 'emit');
+    const formSubmitSpy = spyOn(component.formSubmit, 'emit');
 
     const file = new File([''], 'file01.txt', { type: 'text/plain' });
 
@@ -217,7 +217,7 @@ describe('DynamicFormComponent', () => {
 
     component.form.submit();
 
-    expect(component.formSubmit.emit).toHaveBeenCalledWith({
+    expect(formSubmitSpy).toHaveBeenCalledWith({
       value: component.value,
       model: component.model,
       files: jasmine.any(FormData),
@@ -225,42 +225,42 @@ describe('DynamicFormComponent', () => {
   });
 
   it('form group value changes emits value change', () => {
-    spyOn(component.valueChange, 'emit');
+    const valueChangeSpy = spyOn(component.valueChange, 'emit');
 
     component.formGroup.patchValue({});
 
-    expect(component.valueChange.emit).toHaveBeenCalledWith({});
+    expect(valueChangeSpy).toHaveBeenCalledWith({});
   });
 
   it('reset calls reset of form field', () => {
-    spyOn(component.form, 'reset');
+    const formResetSpy = spyOn(component.form, 'reset');
 
     component.reset();
 
-    expect(component.form.reset).toHaveBeenCalled();
+    expect(formResetSpy).toHaveBeenCalled();
   });
 
   it('resetEmpty calls resetEmpty of form field', () => {
-    spyOn(component.form, 'resetEmpty');
+    const formResetEmptySpy = spyOn(component.form, 'resetEmpty');
 
     component.resetEmpty();
 
-    expect(component.form.resetEmpty).toHaveBeenCalled();
+    expect(formResetEmptySpy).toHaveBeenCalled();
   });
 
   it('resetDefault calls resetDefault of form field', () => {
-    spyOn(component.form, 'resetDefault');
+    const formResetDefaultSpy = spyOn(component.form, 'resetDefault');
 
     component.resetDefault();
 
-    expect(component.form.resetDefault).toHaveBeenCalled();
+    expect(formResetDefaultSpy).toHaveBeenCalled();
   });
 
   it('validate calls validate of form field', () => {
-    spyOn(component.form, 'validate');
+    const formValidateSpy = spyOn(component.form, 'validate');
 
     component.validate();
 
-    expect(component.form.validate).toHaveBeenCalled();
+    expect(formValidateSpy).toHaveBeenCalled();
   });
 });

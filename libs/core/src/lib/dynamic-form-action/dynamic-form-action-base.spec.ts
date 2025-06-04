@@ -100,17 +100,17 @@ describe('DynamicFormActionBase', () => {
     action.init();
     component.action = action;
 
-    spyOn(action, 'openDialog');
-    spyOn(action, 'closeDialog');
-    spyOn(action, 'toggleDialog');
+    const openDialogSpy = spyOn(action, 'openDialog');
+    const closeDialogSpy = spyOn(action, 'closeDialog');
+    const toggleDialogSpy = spyOn(action, 'toggleDialog');
 
     component.openDialog();
     component.closeDialog();
     component.toggleDialog();
 
-    expect(action.openDialog).toHaveBeenCalled();
-    expect(action.closeDialog).toHaveBeenCalled();
-    expect(action.toggleDialog).toHaveBeenCalled();
+    expect(openDialogSpy).toHaveBeenCalled();
+    expect(closeDialogSpy).toHaveBeenCalled();
+    expect(toggleDialogSpy).toHaveBeenCalled();
   });
 
   it('checks dialog', () => {
@@ -121,12 +121,12 @@ describe('DynamicFormActionBase', () => {
     action.init();
     action.openDialog();
 
-    spyOn(action.dialog, 'check');
+    const checkDialogSpy = spyOn(action.dialog, 'check');
 
     component.action = action;
     component.ngDoCheck();
 
-    expect(action.dialog.check).toHaveBeenCalled();
+    expect(checkDialogSpy).toHaveBeenCalled();
   });
 
   it('does not check dialog if not open', () => {
@@ -136,12 +136,12 @@ describe('DynamicFormActionBase', () => {
 
     action.init();
 
-    spyOn(action.dialog, 'check');
+    const checkDialogSpy = spyOn(action.dialog, 'check');
 
     component.action = action;
     component.ngDoCheck();
 
-    expect(action.dialog.check).not.toHaveBeenCalled();
+    expect(checkDialogSpy).not.toHaveBeenCalled();
   });
 
   it('handles event by calling handle of action service', () => {
@@ -149,12 +149,12 @@ describe('DynamicFormActionBase', () => {
     const action = new DynamicFormAction(builder, {} as any, {} as any, definition, {} as DynamicFormActionType);
     const event = {} as Event;
 
-    spyOn(actionService, 'handle');
+    const handleSpy = spyOn(actionService, 'handle');
 
     component.action = action;
     component.handleEvent(event);
 
-    expect(actionService.handle).toHaveBeenCalledWith(action, event);
+    expect(handleSpy).toHaveBeenCalledWith(action, event);
   });
 
   it('handles event by calling handle of action service if dialog and dialog is open', () => {
@@ -167,13 +167,13 @@ describe('DynamicFormActionBase', () => {
     component.action = action;
     component.openDialog();
 
-    spyOn(action, 'openDialog');
-    spyOn(actionService, 'handle');
+    const openDialogSpy = spyOn(action, 'openDialog');
+    const handleSpy = spyOn(actionService, 'handle');
 
     component.handleEvent(event);
 
-    expect(action.openDialog).not.toHaveBeenCalled();
-    expect(actionService.handle).toHaveBeenCalledWith(action, event);
+    expect(openDialogSpy).not.toHaveBeenCalled();
+    expect(handleSpy).toHaveBeenCalledWith(action, event);
   });
 
   it('handles event by calling openDialog of action if dialog but dialog not open', () => {
@@ -185,12 +185,12 @@ describe('DynamicFormActionBase', () => {
     action.init();
     component.action = action;
 
-    spyOn(action, 'openDialog');
-    spyOn(actionService, 'handle');
+    const openDialogSpy = spyOn(action, 'openDialog');
+    const handleSpy = spyOn(actionService, 'handle');
 
     component.handleEvent(event);
 
-    expect(action.openDialog).toHaveBeenCalled();
-    expect(actionService.handle).not.toHaveBeenCalled();
+    expect(openDialogSpy).toHaveBeenCalled();
+    expect(handleSpy).not.toHaveBeenCalled();
   });
 });

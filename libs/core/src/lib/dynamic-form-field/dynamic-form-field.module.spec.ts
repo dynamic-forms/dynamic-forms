@@ -59,55 +59,55 @@ describe('DynamicFormFieldModule', () => {
     const handler = service.handlers.find(h => h.type === 'reset');
     const field = { reset: () => {} } as DynamicFormField;
 
-    spyOn(field, 'reset');
+    const resetSpy = spyOn(field, 'reset');
 
     handler.func(field, null);
 
-    expect(field.reset).toHaveBeenCalled();
+    expect(resetSpy).toHaveBeenCalled();
   }));
 
   it('handler calls clear of field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'clear');
     const field = { clear: () => {} } as DynamicFormField;
 
-    spyOn(field, 'clear');
+    const clearSpy = spyOn(field, 'clear');
 
     handler.func(field, null);
 
-    expect(field.clear).toHaveBeenCalled();
+    expect(clearSpy).toHaveBeenCalled();
   }));
 
   it('handler calls resetEmpty of field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'resetEmpty');
     const field = { resetEmpty: () => {} } as DynamicFormField;
 
-    spyOn(field, 'resetEmpty');
+    const resetEmptySpy = spyOn(field, 'resetEmpty');
 
     handler.func(field, null);
 
-    expect(field.resetEmpty).toHaveBeenCalled();
+    expect(resetEmptySpy).toHaveBeenCalled();
   }));
 
   it('handler calls resetDefault of field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'resetDefault');
     const field = { resetDefault: () => {} } as DynamicFormField;
 
-    spyOn(field, 'resetDefault');
+    const resetDefaultSpy = spyOn(field, 'resetDefault');
 
     handler.func(field, null);
 
-    expect(field.resetDefault).toHaveBeenCalled();
+    expect(resetDefaultSpy).toHaveBeenCalled();
   }));
 
   it('handler calls validate of field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'validate');
     const field = { validate: () => {} } as DynamicFormField;
 
-    spyOn(field, 'validate');
+    const validateSpy = spyOn(field, 'validate');
 
     handler.func(field, null);
 
-    expect(field.validate).toHaveBeenCalled();
+    expect(validateSpy).toHaveBeenCalled();
   }));
 
   it('handler returns root form', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -126,11 +126,11 @@ describe('DynamicFormFieldModule', () => {
     const field = {} as DynamicFormField;
     const action = { root: form, parent: field as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(form, 'submit');
+    const submitSpy = spyOn(form, 'submit');
 
     handler.func(form, action);
 
-    expect(form.submit).toHaveBeenCalled();
+    expect(submitSpy).toHaveBeenCalled();
   }));
 
   it('handler calls closeDialog of parent action and submit of form', inject(
@@ -142,13 +142,13 @@ describe('DynamicFormFieldModule', () => {
       const dialogAction = { dialog, dialogOpen: true, closeDialog: () => {} } as DynamicFormAction;
       const action = { root: form, parent: dialogAction as DynamicFormElement } as DynamicFormAction;
 
-      spyOn(form, 'submit');
-      spyOn(dialogAction, 'closeDialog');
+      const submitSpy = spyOn(form, 'submit');
+      const closeDialogSpy = spyOn(dialogAction, 'closeDialog');
 
       handler.func(form, action);
 
-      expect(form.submit).toHaveBeenCalled();
-      expect(dialogAction.closeDialog).toHaveBeenCalled();
+      expect(submitSpy).toHaveBeenCalled();
+      expect(closeDialogSpy).toHaveBeenCalled();
     },
   ));
 });

@@ -286,11 +286,11 @@ describe('DynamicFormField', () => {
     const definition = { template: {}, headerActions: [], footerActions: [] } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    spyOn(builder, 'getFieldId').and.callThrough();
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createControlValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
-    spyOn(builder, 'createControlEvaluators').and.callThrough();
+    const getFieldIdSpy = spyOn(builder, 'getFieldId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    // const createValidatorsSpy = spyOn(builder, 'createControlValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
+    // const createEvaluatorsSpy = spyOn(builder, 'createControlEvaluators').and.callThrough();
 
     const initIdSpy = spyOn(field as any, 'initId').and.callThrough();
     const getIdSpy = spyOn(field as any, 'getId').and.callThrough();
@@ -309,20 +309,20 @@ describe('DynamicFormField', () => {
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
     expect(getIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(field);
+    expect(getFieldIdSpy).toHaveBeenCalledOnceWith(field);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(field);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(field);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, field, definition.headerActions);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, field, definition.footerActions);
   });
 
   it('inits id', () => {
@@ -344,7 +344,7 @@ describe('DynamicFormField', () => {
       readonly: { value: false } as DynamicFormFieldExpression,
     } as DynamicFormFieldExpressions;
 
-    spyOn(field, 'checkExpressions');
+    const checkExpressionsSpy = spyOn(field, 'checkExpressions');
 
     spyOn(builder, 'createFieldExpressions').and.returnValue(fieldExpressions);
 
@@ -353,7 +353,7 @@ describe('DynamicFormField', () => {
     expect(field.expressions).toBe(fieldExpressions);
     expect(field.template.required).toBe(true);
     expect(field.template.readonly).toBe(false);
-    expect(field.checkExpressions).toHaveBeenCalled();
+    expect(checkExpressionsSpy).toHaveBeenCalled();
   });
 
   it('inits header and footer actions', () => {
@@ -364,14 +364,14 @@ describe('DynamicFormField', () => {
     const headerActions = [{}] as DynamicFormAction[];
     const footerActions = [{}] as DynamicFormAction[];
 
-    spyOn(builder, 'createFormActions').and.returnValues(headerActions, footerActions);
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.returnValues(headerActions, footerActions);
 
     field.init();
 
     expect(field.headerActions).toBe(headerActions);
     expect(field.footerActions).toBe(footerActions);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.headerActions);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, field, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, field, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, field, definition.footerActions);
   });
 
   it('errors returns errors from control', () => {
@@ -437,16 +437,16 @@ describe('DynamicFormField', () => {
       { checkChanges: () => true, async: true, validatorFn: () => of(null) },
     ] as any;
 
-    spyOn(field.control, 'setValidators');
-    spyOn(field.control, 'setAsyncValidators');
-    spyOn(field.control, 'updateValueAndValidity');
+    const setValidatorsSpy = spyOn(field.control, 'setValidators');
+    const setAsyncValidatorsSpy = spyOn(field.control, 'setAsyncValidators');
+    const updateValueAndValiditySpy = spyOn(field.control, 'updateValueAndValidity');
 
     field.setValidators(validators);
     field.check();
 
-    expect(field.control.setValidators).toHaveBeenCalledWith([validators[0].validatorFn]);
-    expect(field.control.setAsyncValidators).toHaveBeenCalledWith([validators[1].validatorFn]);
-    expect(field.control.updateValueAndValidity).toHaveBeenCalled();
+    expect(setValidatorsSpy).toHaveBeenCalledWith([validators[0].validatorFn]);
+    expect(setAsyncValidatorsSpy).toHaveBeenCalledWith([validators[1].validatorFn]);
+    expect(updateValueAndValiditySpy).toHaveBeenCalled();
     expect(field.validators).toBe(validators);
     expect(field.hasValidation).toBeTrue();
   });
@@ -455,12 +455,12 @@ describe('DynamicFormField', () => {
     const definition = { template: {} } as DynamicFormFieldDefinition;
     const field = new DynamicFormTestField(builder, null, null, definition, {} as DynamicFormFieldType);
 
-    spyOn(field, 'resetEmpty');
-    spyOn(field, 'validate');
+    const resetEmptySpy = spyOn(field, 'resetEmpty');
+    const validateSpy = spyOn(field, 'validate');
 
     field.clear();
 
-    expect(field.resetEmpty).toHaveBeenCalled();
-    expect(field.validate).toHaveBeenCalled();
+    expect(resetEmptySpy).toHaveBeenCalled();
+    expect(validateSpy).toHaveBeenCalled();
   });
 });

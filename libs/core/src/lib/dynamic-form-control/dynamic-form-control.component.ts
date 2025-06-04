@@ -56,7 +56,7 @@ export class DynamicFormControlComponent<
 
   private updateContainer(): void {
     this.container.clear();
-    this.field = this.builder.recreateFormControl(this.field, this._inputType) as Control;
+    this.field = this.builder.recreateFormControl(this.field, this._inputType);
     this.initContainer();
   }
 }

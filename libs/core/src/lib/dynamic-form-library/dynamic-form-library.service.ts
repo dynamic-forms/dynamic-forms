@@ -26,7 +26,7 @@ export class DynamicFormLibraryService {
   }
 
   filterTypes<Type extends TypeBase>(types: (Type | Type[])[]): Type[] {
-    if (!types || !types.length) {
+    if (!types?.length) {
       return [];
     }
 
@@ -62,7 +62,7 @@ export class DynamicFormLibraryService {
     excludeTypes: Type[],
   ): Type[] {
     const typesFlattened = this.getTypesFlattened(types);
-    if (excludeTypes && excludeTypes.length) {
+    if (excludeTypes?.length) {
       const excludeTypeNames = excludeTypes.map(type => type.type);
       return typesFlattened.filter(type => type.libraryName === name && !excludeTypeNames.includes(type.type));
     }
