@@ -61,7 +61,7 @@ export function provideBootstrapForm() {
 
 @NgModule({
   imports: [DynamicFormComponent],
-  exports: [DynamicFormComponent],
   providers: [...provideBootstrapForm(), FormLogger],
+  exports: [DynamicFormComponent],
 })
 export class BootstrapFormModule {}

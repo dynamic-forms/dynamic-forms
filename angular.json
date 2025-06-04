@@ -24,12 +24,12 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/core/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "libs/core/tsconfig.spec.json",
-            "karmaConfig": "libs/core/karma.conf.js",
-            "codeCoverageExclude": [
-              "libs/core/test.ts"
-            ]
+            "karmaConfig": "libs/core/karma.conf.js"
           }
         },
         "lint": {
@@ -65,12 +65,12 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/bootstrap/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "libs/bootstrap/tsconfig.spec.json",
-            "karmaConfig": "libs/bootstrap/karma.conf.js",
-            "codeCoverageExclude": [
-              "libs/bootstrap/test.ts"
-            ]
+            "karmaConfig": "libs/bootstrap/karma.conf.js"
           }
         },
         "lint": {
@@ -106,12 +106,12 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/material/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "libs/material/tsconfig.spec.json",
-            "karmaConfig": "libs/material/karma.conf.js",
-            "codeCoverageExclude": [
-              "libs/material/test.ts"
-            ]
+            "karmaConfig": "libs/material/karma.conf.js"
           }
         },
         "lint": {
@@ -147,12 +147,12 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/markdown/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "libs/markdown/tsconfig.spec.json",
-            "karmaConfig": "libs/markdown/karma.conf.js",
-            "codeCoverageExclude": [
-              "libs/markdown/test.ts"
-            ]
+            "karmaConfig": "libs/markdown/karma.conf.js"
           }
         },
         "lint": {
@@ -175,19 +175,17 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "libs/tsconfig.spec.json",
             "karmaConfig": "libs/karma.conf.js",
             "codeCoverageExclude": [
-              "libs/test.ts",
               "libs/core/src/public_api.ts",
-              "libs/core/src/test.ts",
               "libs/bootstrap/src/public_api.ts",
-              "libs/bootstrap/src/test.ts",
               "libs/material/src/public_api.ts",
-              "libs/material/src/test.ts",
-              "libs/markdown/src/public_api.ts",
-              "libs/markdown/src/test.ts"
+              "libs/markdown/src/public_api.ts"
             ]
           }
         }
@@ -213,7 +211,7 @@
             },
             "index": "apps/demo/src/index.html",
             "polyfills": [
-              "apps/demo/src/polyfills.ts"
+              "zone.js"
             ],
             "tsConfig": "apps/demo/tsconfig.app.json",
             "allowedCommonJsDependencies": [
@@ -318,9 +316,9 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "apps/demo/src/test.ts",
             "polyfills": [
-              "apps/demo/src/polyfills.ts"
+              "zone.js",
+              "zone.js/testing"
             ],
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",

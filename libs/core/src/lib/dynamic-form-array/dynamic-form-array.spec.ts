@@ -225,15 +225,15 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(array.children, 'pop');
-    spyOn(array.model, 'pop');
+    const popChildrenSpy = spyOn(array.children, 'pop');
+    const popModelSpy = spyOn(array.model, 'pop');
     const removeControlSpy = spyOn(array.control, 'removeAt');
     const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.popField();
 
-    expect(array.children.pop).not.toHaveBeenCalled();
-    expect(array.model.pop).not.toHaveBeenCalled();
+    expect(popChildrenSpy).not.toHaveBeenCalled();
+    expect(popModelSpy).not.toHaveBeenCalled();
     expect(removeControlSpy).not.toHaveBeenCalled();
     expect(touchControlSpy).not.toHaveBeenCalled();
   });
@@ -282,15 +282,15 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(array.children, 'splice');
-    spyOn(array.model, 'splice');
+    const spliceChildrenSpy = spyOn(array.children, 'splice');
+    const spliceModelSpy = spyOn(array.model, 'splice');
     const removeControlSpy = spyOn(array.control, 'removeAt');
     const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.removeField(1);
 
-    expect(array.children.splice).not.toHaveBeenCalled();
-    expect(array.model.splice).not.toHaveBeenCalled();
+    expect(spliceChildrenSpy).not.toHaveBeenCalled();
+    expect(spliceModelSpy).not.toHaveBeenCalled();
     expect(removeControlSpy).not.toHaveBeenCalled();
     expect(touchControlSpy).not.toHaveBeenCalled();
   });
