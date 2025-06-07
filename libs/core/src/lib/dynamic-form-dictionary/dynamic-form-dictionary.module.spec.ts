@@ -67,12 +67,13 @@ describe('DynamicFormDictionaryModule', () => {
       const elementKey = 'key';
       const element = {} as DynamicFormField;
 
-      spyOn(formBuilder, 'createId').and.returnValue(elementKey);
+      const createIdSpy = spyOn(formBuilder, 'createId').and.returnValue(elementKey);
       const createFieldSpy = spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
       const registerFieldSpy = spyOn(field, 'registerField');
 
       handler.func(field, action);
 
+      expect(createIdSpy).toHaveBeenCalledTimes(1);
       expect(createFieldSpy).toHaveBeenCalledWith(field, 'key');
       expect(registerFieldSpy).toHaveBeenCalledWith(element);
     },

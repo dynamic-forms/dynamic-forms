@@ -8,8 +8,8 @@ import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-
 
 @Directive({
   selector: '[dynamicFormInputMask]',
-  exportAs: 'dynamicFormInputMask',
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: DynamicFormInputMaskDirective, multi: true }],
+  exportAs: 'dynamicFormInputMask',
 })
 export class DynamicFormInputMaskDirective implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy {
   private readonly __maskConverterOptionKeys = ['alias', 'digits', 'radixPoint', 'groupSeparator', 'prefix', 'suffix'];

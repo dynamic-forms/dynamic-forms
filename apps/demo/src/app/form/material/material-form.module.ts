@@ -69,7 +69,7 @@ export function provideMaterialForm() {
 
 @NgModule({
   imports: [DynamicFormComponent],
-  exports: [DynamicFormComponent],
   providers: [...provideMaterialForm(), FormLogger],
+  exports: [DynamicFormComponent],
 })
 export class MaterialFormModule {}

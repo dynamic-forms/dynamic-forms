@@ -265,13 +265,13 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(dictionary.children, 'splice');
+    const spliceChildrenSpy = spyOn(dictionary.children, 'splice');
     const removeControlSpy = spyOn(dictionary.control, 'removeControl');
     const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
 
     dictionary.removeField('key');
 
-    expect(dictionary.children.splice).not.toHaveBeenCalled();
+    expect(spliceChildrenSpy).not.toHaveBeenCalled();
     expect(removeControlSpy).not.toHaveBeenCalled();
     expect(touchControlSpy).not.toHaveBeenCalled();
   });
