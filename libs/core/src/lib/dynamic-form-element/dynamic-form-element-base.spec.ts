@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from './dynamic-form-element';
@@ -12,7 +13,7 @@ describe('DynamicFormElementBase', () => {
   let component: DynamicFormElementTestComponent;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
     component = new DynamicFormElementTestComponent();
   });
 

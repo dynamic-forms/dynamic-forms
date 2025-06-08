@@ -13,6 +13,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormDatepickerComponent } from './dynamic-form-datepicker.component';
 
 describe('BsDynamicFormDatepickerComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormDatepickerComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormDatepickerComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormDatepickerDefinition;

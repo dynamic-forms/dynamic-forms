@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -54,7 +55,7 @@ describe('DynamicFormControlEvaluatorType', () => {
         },
       } as DynamicFormControlDefinition<string | string[], DynamicFormSelect<string>>;
 
-      const builder: DynamicFormBuilder = {} as any;
+      const builder = MockService(DynamicFormBuilder);
       const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, { key: null });
       const type = {} as DynamicFormFieldType;
       const formControl = new DynamicFormControl<string | string[], DynamicFormSelect<string>>(builder, form, form, definition, type);

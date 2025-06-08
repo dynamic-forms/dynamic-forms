@@ -13,6 +13,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 describe('BsDynamicFormComboboxComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

@@ -9,6 +9,7 @@ import {
   DynamicFormModal,
   DynamicFormModalDefinition,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 
 describe('MatDynamicFormModalComponent', () => {
@@ -28,7 +29,7 @@ describe('MatDynamicFormModalComponent', () => {
       ],
     });
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     modal = new DynamicFormModal(
       builder,

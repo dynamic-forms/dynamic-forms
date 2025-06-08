@@ -13,6 +13,7 @@ import {
   DynamicFormRadioDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormRadioComponent } from './dynamic-form-radio.component';
 
 describe('MatDynamicFormRadioComponent', () => {
@@ -39,7 +40,7 @@ describe('MatDynamicFormRadioComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormRadioComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

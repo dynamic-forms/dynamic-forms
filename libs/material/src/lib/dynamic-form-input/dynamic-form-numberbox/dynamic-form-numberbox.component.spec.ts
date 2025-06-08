@@ -14,6 +14,7 @@ import {
   DynamicFormNumberboxDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 describe('MatDynamicFormNumberboxComponent', () => {
@@ -40,7 +41,7 @@ describe('MatDynamicFormNumberboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormNumberboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormNumberboxDefinition;
