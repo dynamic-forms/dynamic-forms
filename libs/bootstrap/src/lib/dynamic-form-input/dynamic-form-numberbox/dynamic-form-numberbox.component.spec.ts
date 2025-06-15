@@ -13,6 +13,7 @@ import {
   DynamicFormNumberboxDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormNumberboxComponent } from './dynamic-form-numberbox.component';
 
 describe('BsDynamicFormNumberboxComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormNumberboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormNumberboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormNumberboxDefinition;

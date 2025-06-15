@@ -14,6 +14,7 @@ import {
   DynamicFormTextareaDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 describe('MatDynamicFormTextareaComponent', () => {
@@ -40,7 +41,7 @@ describe('MatDynamicFormTextareaComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextareaDefinition;

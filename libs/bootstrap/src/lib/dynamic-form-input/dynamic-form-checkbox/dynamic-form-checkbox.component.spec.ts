@@ -13,6 +13,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormCheckboxComponent } from './dynamic-form-checkbox.component';
 
 describe('BsDynamicFormCheckboxComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormCheckboxComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormCheckboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormCheckboxDefinition;

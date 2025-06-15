@@ -13,6 +13,7 @@ import {
   DynamicFormTextareaDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormTextareaComponent } from './dynamic-form-textarea.component';
 
 describe('BsDynamicFormTextareaComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormTextareaComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormTextareaComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { input: {} } } as DynamicFormTextareaDefinition;

@@ -13,6 +13,7 @@ import {
   DynamicFormToggleDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 
 describe('BsDynamicFormToggleComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

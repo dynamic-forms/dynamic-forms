@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -49,7 +50,7 @@ describe('DynamicFormElementComponent', () => {
     const definition = { type: 'element', template: {} } as DynamicFormElementDefinition;
     const type = { type: 'element', component: DynamicFormElementBaseComponent } as DynamicFormElementType;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
     element = new DynamicFormElement(builder, root, parent, definition, type);
 
     fixture = TestBed.createComponent(DynamicFormElementComponent);

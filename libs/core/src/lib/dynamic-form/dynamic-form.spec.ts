@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
@@ -7,7 +8,7 @@ describe('DynamicForm', () => {
   let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
   });
 
   it('creates instance', () => {

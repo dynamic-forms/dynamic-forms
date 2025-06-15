@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormAction } from './dynamic-form-action';
 import { DynamicFormActionExpression } from './dynamic-form-action-expression';
@@ -7,7 +8,7 @@ describe('DynamicFormActionExpression', () => {
   let errorHandler: DynamicFormErrorHandler;
 
   beforeEach(() => {
-    errorHandler = { handle: () => {} } as any;
+    errorHandler = MockService(DynamicFormErrorHandler, { handle: () => {} });
   });
 
   it('get value returns value', () => {

@@ -13,6 +13,7 @@ import {
   DynamicFormSelectDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 describe('BsDynamicFormSelectComponent', () => {
@@ -39,7 +40,7 @@ describe('BsDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

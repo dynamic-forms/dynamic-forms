@@ -14,6 +14,7 @@ import {
   DynamicFormToggleDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormToggleComponent } from './dynamic-form-toggle.component';
 
 describe('MatDynamicFormToggleComponent', () => {
@@ -40,7 +41,7 @@ describe('MatDynamicFormToggleComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormToggleComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {
