@@ -15,6 +15,7 @@ import {
   DynamicFormLibraryService,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormComboboxComponent } from './dynamic-form-combobox.component';
 
 describe('MatDynamicFormComboboxComponent', () => {
@@ -41,7 +42,7 @@ describe('MatDynamicFormComboboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormComboboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

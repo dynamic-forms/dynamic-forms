@@ -13,6 +13,7 @@ import {
   DynamicFormSwitchDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormSwitchComponent } from './dynamic-form-switch.component';
 
 describe('MatDynamicFormSwitchComponent', () => {
@@ -39,7 +40,7 @@ describe('MatDynamicFormSwitchComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSwitchComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label' } } as DynamicFormSwitchDefinition;

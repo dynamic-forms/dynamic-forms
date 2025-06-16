@@ -13,6 +13,7 @@ import {
   DynamicFormIconTemplate,
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormIconComponent } from './dynamic-form-icon.component';
 
 describe('MatDynamicFormIconComponent', () => {
@@ -38,7 +39,7 @@ describe('MatDynamicFormIconComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormIconComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;

@@ -14,6 +14,7 @@ import {
   DynamicFormTextboxDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormTextboxComponent } from './dynamic-form-textbox.component';
 
 describe('MatDynamicFormTextboxComponent', () => {
@@ -40,7 +41,7 @@ describe('MatDynamicFormTextboxComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormTextboxComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = { key: 'key', template: { label: 'label', input: {} } } as DynamicFormTextboxDefinition;

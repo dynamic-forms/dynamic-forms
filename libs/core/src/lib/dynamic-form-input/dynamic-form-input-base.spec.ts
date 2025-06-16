@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -24,7 +25,7 @@ describe('DynamicFormInputBase', () => {
   let builder: DynamicFormBuilder;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
       providers: [

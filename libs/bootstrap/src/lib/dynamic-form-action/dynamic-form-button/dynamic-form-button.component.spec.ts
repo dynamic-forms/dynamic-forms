@@ -12,6 +12,7 @@ import {
   DynamicFormField,
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormButtonComponent } from './dynamic-form-button.component';
 
 describe('BsDynamicFormButtonComponent', () => {
@@ -36,7 +37,7 @@ describe('BsDynamicFormButtonComponent', () => {
     fixture = TestBed.createComponent(BsDynamicFormButtonComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;

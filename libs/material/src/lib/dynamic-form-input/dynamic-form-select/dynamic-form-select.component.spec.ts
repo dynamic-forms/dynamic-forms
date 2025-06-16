@@ -15,6 +15,7 @@ import {
   DynamicFormSelectDefinition,
   DynamicFormValidationService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormSelectComponent } from './dynamic-form-select.component';
 
 describe('MatDynamicFormSelectComponent', () => {
@@ -41,7 +42,7 @@ describe('MatDynamicFormSelectComponent', () => {
     fixture = TestBed.createComponent(MatDynamicFormSelectComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     form = new DynamicForm(builder, {} as DynamicFormDefinition, {});
     definition = {

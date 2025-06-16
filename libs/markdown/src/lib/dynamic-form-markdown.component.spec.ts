@@ -17,7 +17,7 @@ describe('DynamicFormMarkdownComponent', () => {
 
   beforeEach(() => {
     service = MockService(DynamicFormMarkdownService);
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     TestBed.configureTestingModule({
       imports: [DynamicFormMarkdownComponent],
