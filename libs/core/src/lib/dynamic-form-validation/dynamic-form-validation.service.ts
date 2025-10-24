@@ -32,7 +32,7 @@ export class DynamicFormValidationService {
 
     const errorKey = keys[0];
     const error = errors[errorKey];
-    return error && error.message ? error.message : this.getErrorMessageFromConfig(errorKey, error);
+    return error?.message ? error.message : this.getErrorMessageFromConfig(errorKey, error);
   }
 
   private getErrorMessageKey(errorKey: string): string {
@@ -59,7 +59,7 @@ export class DynamicFormValidationService {
     const library = this.libraryService.library;
     const libraryName = library.name;
     const defaultConfig = { defaultMessage: undefined, messages: {}, aliases: {}, libraryName };
-    if (!configs || !configs.length) {
+    if (!configs?.length) {
       return defaultConfig;
     }
 

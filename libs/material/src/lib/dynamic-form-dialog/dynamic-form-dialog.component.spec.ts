@@ -119,7 +119,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
+        const titleElement = headerElement.querySelector<HTMLElement>('.modal-title');
 
         expect(titleElement.innerText).toBe('Title');
       });
@@ -132,7 +132,7 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
-        const titleElement = headerElement.querySelector('.modal-title') as HTMLElement;
+        const titleElement = headerElement.querySelector('.modal-title');
 
         expect(titleElement.innerHTML).toBe('<b>Title</b>');
       });

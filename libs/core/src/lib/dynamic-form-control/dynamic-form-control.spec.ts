@@ -83,6 +83,7 @@ describe('DynamicFormControl', () => {
     { settings: { updateType: 'blur' }, updateOn: 'blur' },
   ];
   items.forEach(item =>
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     it(`creating instance sets update option '${item.settings}'`, () => {
       const root = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
       const definition = { key: 'key', template: {}, settings: item.settings } as DynamicFormControlDefinition;
