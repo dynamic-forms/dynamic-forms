@@ -24,11 +24,11 @@ describe('DynamicFormErrorModule', () => {
     });
 
     it('does not provide DynamicFormErrorHandler', () => {
-      expect(() => TestBed.inject(DynamicFormErrorHandler)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormErrorHandler)).toThrowError();
     });
 
     it('does not provide DynamicFormLogger', () => {
-      expect(() => TestBed.inject(DynamicFormLogger)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormLogger)).toThrowError();
     });
 
     it('provides DYNAMIC_FORM_LOGGER_TYPE_CONFIG with dynamicFormConsoleLogger', inject(

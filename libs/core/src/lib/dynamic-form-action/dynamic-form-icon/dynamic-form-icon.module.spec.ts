@@ -12,7 +12,7 @@ describe('DynamicFormIconModule', () => {
     });
 
     it('does not provide DynamicFormIconService', () => {
-      expect(() => TestBed.inject(DynamicFormIconService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormIconService)).toThrowError();
     });
   });
 

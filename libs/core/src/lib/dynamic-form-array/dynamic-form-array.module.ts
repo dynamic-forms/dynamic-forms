@@ -41,7 +41,7 @@ export const dynamicFormArrayPopFieldHandler: DynamicFormActionHandler<DynamicFo
 
 export const getDynamicFormArray = (action: DynamicFormAction): DynamicFormArray => {
   const field = action.parentField?.parentField;
-  return field && field.fieldClassType === 'array' ? (field as DynamicFormArray) : undefined;
+  return field?.fieldClassType === 'array' ? (field as DynamicFormArray) : undefined;
 };
 
 export const dynamicFormArrayRemoveField = (field: DynamicFormArray, action: DynamicFormAction): void => {

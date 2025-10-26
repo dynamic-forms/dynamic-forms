@@ -27,6 +27,7 @@
   },
   "exclude": [
     "node_modules/**/*",
-    "dist/**/*"
+    "dist/**/*",
+    "apps/demo/src/assets/docs/**/*.ts"
   ]
 }
