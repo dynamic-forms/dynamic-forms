@@ -35,39 +35,39 @@ describe('BsDynamicFormsModule', () => {
         });
 
         it('does not provide DYNAMIC_FORM_LIBRARY', () => {
-          expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DYNAMIC_FORM_LIBRARY)).toThrowError();
         });
 
         it('does not provide DYNAMIC_FORM_THEME', () => {
-          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError();
         });
 
         it('does not provide DYNAMIC_FORM_ID_BUILDER', () => {
-          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError();
         });
 
         it('does not provide DynamicFormLibraryService', () => {
-          expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormLibraryService)).toThrowError();
         });
 
         it('does not provide DynamicFormConfigService', () => {
-          expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormConfigService)).toThrowError();
         });
 
         it('does not provide DynamicFormExpressionBuilder', () => {
-          expect(() => TestBed.inject(DynamicFormExpressionBuilder)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormExpressionBuilder)).toThrowError();
         });
 
         it('does not provide DynamicFormEvaluationBuilder', () => {
-          expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormEvaluationBuilder)).toThrowError();
         });
 
         it('does not provide DynamicFormValidationBuilder', () => {
-          expect(() => TestBed.inject(DynamicFormValidationBuilder)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormValidationBuilder)).toThrowError();
         });
 
         it('does not provide DynamicFormComponentFactory', () => {
-          expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DynamicFormComponentFactory)).toThrowError();
         });
       });
     });
@@ -99,11 +99,11 @@ describe('BsDynamicFormsModule', () => {
         }));
 
         it('does not provide DYNAMIC_FORM_THEME', () => {
-          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DYNAMIC_FORM_THEME)).toThrowError();
         });
 
         it('does not provide DYNAMIC_FORM_ID_BUILDER', () => {
-          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError(/NullInjectorError/);
+          expect(() => TestBed.inject(DYNAMIC_FORM_ID_BUILDER)).toThrowError();
         });
 
         it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {

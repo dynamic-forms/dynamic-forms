@@ -47,7 +47,7 @@ export const getDynamicFormDictionary = (action: DynamicFormAction): DynamicForm
   }
 
   const parentField = field.parent as DynamicFormField;
-  return parentField && parentField.fieldClassType === 'dictionary' ? (parentField as DynamicFormDictionary) : undefined;
+  return parentField?.fieldClassType === 'dictionary' ? (parentField as DynamicFormDictionary) : undefined;
 };
 
 export const dynamicFormDictionaryRemoveField = (field: DynamicFormDictionary, action: DynamicFormAction): void => {

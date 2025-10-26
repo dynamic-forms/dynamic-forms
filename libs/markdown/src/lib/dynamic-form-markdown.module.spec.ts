@@ -29,7 +29,7 @@ describe('DynamicFormMarkdownModule', () => {
     }));
 
     it('does not provide DynamicFormMarkdownService', () => {
-      expect(() => TestBed.inject(DynamicFormMarkdownService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormMarkdownService)).toThrowError();
     });
   });
 

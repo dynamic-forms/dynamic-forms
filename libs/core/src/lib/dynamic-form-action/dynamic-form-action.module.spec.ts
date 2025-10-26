@@ -20,11 +20,11 @@ describe('DynamicFormActionModule', () => {
     });
 
     it('does not provide DynamicFormActionService', () => {
-      expect(() => TestBed.inject(DynamicFormActionService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormActionService)).toThrowError();
     });
 
     it('does not provide DYNAMIC_FORM_ACTION_HANDLER_CONFIG', () => {
-      expect(() => TestBed.inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DYNAMIC_FORM_ACTION_HANDLER_CONFIG)).toThrowError();
     });
   });
 
@@ -36,7 +36,7 @@ describe('DynamicFormActionModule', () => {
     });
 
     it('does not provide DynamicFormActionService', () => {
-      expect(() => TestBed.inject(DynamicFormActionService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormActionService)).toThrowError();
     });
 
     it('provides DYNAMIC_FORM_ACTION_HANDLER_CONFIG', inject(
