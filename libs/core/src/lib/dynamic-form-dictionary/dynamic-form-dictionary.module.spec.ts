@@ -67,15 +67,15 @@ describe('DynamicFormDictionaryModule', () => {
       const elementKey = 'key';
       const element = {} as DynamicFormField;
 
-      spyOn(formBuilder, 'createId').and.returnValue(elementKey);
-      spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
-
-      spyOn(field, 'registerField');
+      const createIdSpy = spyOn(formBuilder, 'createId').and.returnValue(elementKey);
+      const createFieldSpy = spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
+      const registerFieldSpy = spyOn(field, 'registerField');
 
       handler.func(field, action);
 
-      expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
-      expect(field.registerField).toHaveBeenCalledWith(element);
+      expect(createIdSpy).toHaveBeenCalledTimes(1);
+      expect(createFieldSpy).toHaveBeenCalledWith(field, 'key');
+      expect(registerFieldSpy).toHaveBeenCalledWith(element);
     },
   ));
 
@@ -89,16 +89,15 @@ describe('DynamicFormDictionaryModule', () => {
       const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
       const element = {} as DynamicFormField;
 
-      spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
-
-      spyOn(field, 'registerField');
-      spyOn(parent, 'closeDialog');
+      const createFieldSpy = spyOn(formBuilder, 'createFormDictionaryField').and.returnValue(element);
+      const registerFieldSpy = spyOn(field, 'registerField');
+      const closeDialogSpy = spyOn(parent, 'closeDialog');
 
       handler.func(field, action);
 
-      expect(formBuilder.createFormDictionaryField).toHaveBeenCalledWith(field, 'key');
-      expect(field.registerField).toHaveBeenCalledWith(element);
-      expect(parent.closeDialog).toHaveBeenCalled();
+      expect(createFieldSpy).toHaveBeenCalledWith(field, 'key');
+      expect(registerFieldSpy).toHaveBeenCalledWith(element);
+      expect(closeDialogSpy).toHaveBeenCalled();
     },
   ));
 
@@ -140,11 +139,11 @@ describe('DynamicFormDictionaryModule', () => {
     const parent = { key: 'key' } as DynamicFormField;
     const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'removeField');
+    const removeFieldSpy = spyOn(field, 'removeField');
 
     handler.func(field, action);
 
-    expect(field.removeField).toHaveBeenCalledWith('key');
+    expect(removeFieldSpy).toHaveBeenCalledWith('key');
   }));
 
   it('handler does not call removeField of dictionary field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
@@ -153,21 +152,21 @@ describe('DynamicFormDictionaryModule', () => {
     const parent = {} as DynamicFormField;
     const action = { parent: parent as DynamicFormElement } as DynamicFormAction;
 
-    spyOn(field, 'removeField');
+    const removeFieldSpy = spyOn(field, 'removeField');
 
     handler.func(field, action);
 
-    expect(field.removeField).not.toHaveBeenCalled();
+    expect(removeFieldSpy).not.toHaveBeenCalled();
   }));
 
   it('handler calls clearFields of dictionary field', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'clearDictionaryFields');
     const field = { clearFields: () => {} } as DynamicFormDictionary;
 
-    spyOn(field, 'clearFields');
+    const clearFieldsSpy = spyOn(field, 'clearFields');
 
     handler.func(field, null);
 
-    expect(field.clearFields).toHaveBeenCalled();
+    expect(clearFieldsSpy).toHaveBeenCalled();
   }));
 });

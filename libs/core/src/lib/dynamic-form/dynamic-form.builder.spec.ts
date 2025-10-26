@@ -160,27 +160,27 @@ describe('DynamicFormBuilder', () => {
   describe('createForm', () => {
     it('throws error creating DynamicForm if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const definition = { children: [{}] } as DynamicFormDefinition;
 
       expect(() => builder.createForm(definition, {})).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ClassType, 'Class type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ClassType, 'Class type undefined is not defined');
     });
 
     it('creates DynamicForm with empty children if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const definition = { children: [{}] } as DynamicFormDefinition;
       const model = {};
       const form = builder.createForm(definition, model);
 
       expect(form.children).toEqual([]);
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ClassType, 'Class type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ClassType, 'Class type undefined is not defined');
     });
 
     it('creates DynamicForm', () => {
@@ -223,16 +223,16 @@ describe('DynamicFormBuilder', () => {
     it('initializes DynamicForm', () => {
       const form = { check: () => {} } as DynamicForm;
 
-      spyOn(form, 'check').and.callThrough();
-      spyOn(builder, 'createForm').and.returnValue(form);
+      const formCheckSpy = spyOn(form, 'check').and.callThrough();
+      const formCreateSpy = spyOn(builder, 'createForm').and.returnValue(form);
 
       const definition = { template: {}, children: [] } as DynamicFormDefinition;
       const model = {};
       const formCreated = builder.initForm(definition, model);
 
       expect(form).toEqual(formCreated);
-      expect(form.check).toHaveBeenCalledTimes(1);
-      expect(builder.createForm).toHaveBeenCalledWith(definition, model);
+      expect(formCheckSpy).toHaveBeenCalledTimes(1);
+      expect(formCreateSpy).toHaveBeenCalledWith(definition, model);
     });
 
     it('creates DynamicForm including DynamicFormElement', () => {
@@ -343,28 +343,28 @@ describe('DynamicFormBuilder', () => {
   describe('createFormElement', () => {
     it('throws error creating DynamicFormElement if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormElementDefinition;
 
       expect(() => builder.createFormElement(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ElementType, 'Element type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ElementType, 'Element type undefined is not defined');
     });
 
     it('creates DynamicFormElement being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormElementDefinition;
       const element = builder.createFormElement(form, form, definition);
 
       expect(element).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ElementType, 'Element type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ElementType, 'Element type undefined is not defined');
     });
 
     it('creates DynamicFormElement', () => {
@@ -381,42 +381,42 @@ describe('DynamicFormBuilder', () => {
   describe('createFormControl', () => {
     it('throws field type error creating DynamicFormControl if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormControlDefinition;
 
       expect(() => builder.createFormControl(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('throws input type error creating DynamicFormControl if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { type: 'control', template: {} } as DynamicFormControlDefinition;
 
       expect(() => builder.createFormControl(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledWith(DynamicFormErrorType.InputType, 'Input type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledWith(DynamicFormErrorType.InputType, 'Input type undefined is not defined');
     });
 
     it('creates DynamicFormControl being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormControlDefinition;
       const control = builder.createFormControl(form, form, definition);
 
       expect(control).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(2);
-      expect(logger.error).toHaveBeenCalledWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
-      expect(logger.error).toHaveBeenCalledWith(DynamicFormErrorType.InputType, 'Input type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(2);
+      expect(logErrorSpy).toHaveBeenCalledWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(logErrorSpy).toHaveBeenCalledWith(DynamicFormErrorType.InputType, 'Input type undefined is not defined');
     });
 
     it('creates DynamicFormControl', () => {
@@ -465,28 +465,28 @@ describe('DynamicFormBuilder', () => {
   describe('createFormGroup', () => {
     it('throws error creating DynamicFormGroup if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormGroupDefinition;
 
       expect(() => builder.createFormGroup(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormGroup being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormGroupDefinition;
       const group = builder.createFormGroup(form, form, definition);
 
       expect(group).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormGroup', () => {
@@ -528,28 +528,28 @@ describe('DynamicFormBuilder', () => {
   describe('createFormArray', () => {
     it('throws error creating DynamicFormArray if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormArrayDefinition;
 
       expect(() => builder.createFormArray(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormArray being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormArrayDefinition;
       const array = builder.createFormArray(form, form, definition);
 
       expect(array).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormArray', () => {
@@ -623,28 +623,28 @@ describe('DynamicFormBuilder', () => {
   describe('createFormDictionary', () => {
     it('throws error creating DynamicFormDictionary if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormDictionaryDefinition;
 
       expect(() => builder.createFormDictionary(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormDictionary being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormDictionaryDefinition;
       const dictionary = builder.createFormDictionary(form, form, definition);
 
       expect(dictionary).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.FieldType, 'Field type undefined is not defined');
     });
 
     it('creates DynamicFormDictionary', () => {
@@ -718,28 +718,28 @@ describe('DynamicFormBuilder', () => {
   describe('createFormAction', () => {
     it('throws error creating DynamicFormAction if error handler is throwing', () => {
       errorSettings.throw = true;
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormActionDefinition;
 
       expect(() => builder.createFormAction(form, form, definition)).toThrowError();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ActionType, 'Action type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ActionType, 'Action type undefined is not defined');
     });
 
     it('creates DynamicFormAction being undefined if error handler is not throwing', () => {
-      spyOn(errorHandler, 'handle').and.callThrough();
-      spyOn(logger, 'error');
+      const handleErrorSpy = spyOn(errorHandler, 'handle').and.callThrough();
+      const logErrorSpy = spyOn(logger, 'error');
 
       const form = getForm({});
       const definition = { template: {} } as DynamicFormActionDefinition;
       const action = builder.createFormAction(form, form, definition);
 
       expect(action).toBeUndefined();
-      expect(errorHandler.handle).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenCalledOnceWith(DynamicFormErrorType.ActionType, 'Action type undefined is not defined');
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(logErrorSpy).toHaveBeenCalledOnceWith(DynamicFormErrorType.ActionType, 'Action type undefined is not defined');
     });
 
     it('creates DynamicFormAction', () => {
@@ -788,7 +788,7 @@ describe('DynamicFormBuilder', () => {
     });
 
     it('creates DynamicFormElement using default factory', () => {
-      spyOn(builder, 'createFormElementForType').and.callThrough();
+      const createElementSpy = spyOn(builder, 'createFormElementForType').and.callThrough();
 
       const model = {};
       const form = getForm(model);
@@ -796,7 +796,7 @@ describe('DynamicFormBuilder', () => {
       const element = builder.createFormElementForFactory(form, form, definition);
       const elementType = elementTypes[0] as DynamicFormElementType;
 
-      expect(builder.createFormElementForType).toHaveBeenCalledWith(form, form, definition, elementType);
+      expect(createElementSpy).toHaveBeenCalledWith(form, form, definition, elementType);
 
       expect(element.definition).toBe(definition);
       expect(element.template).toBe(definition.template);
@@ -899,7 +899,7 @@ describe('DynamicFormBuilder', () => {
     });
 
     it('creates DynamicFormAction using default factory', () => {
-      spyOn(builder, 'createFormActionForType').and.callThrough();
+      const createActionSpy = spyOn(builder, 'createFormActionForType').and.callThrough();
 
       const model = {};
       const form = getForm(model);
@@ -907,7 +907,7 @@ describe('DynamicFormBuilder', () => {
       const action = builder.createFormActionForFactory(form, form, definition);
       const actionType = actionTypes[0] as DynamicFormActionType;
 
-      expect(builder.createFormActionForType).toHaveBeenCalledWith(form, form, definition, actionType);
+      expect(createActionSpy).toHaveBeenCalledWith(form, form, definition, actionType);
 
       expect(action.definition).toBe(definition);
       expect(action.template).toBe(definition.template);
@@ -1020,11 +1020,11 @@ describe('DynamicFormBuilder', () => {
         destroy: () => {},
       } as any as DynamicFormControl;
 
-      spyOn(control, 'destroy');
+      const controlDestroySpy = spyOn(control, 'destroy');
 
       const controlNew = builder.recreateFormControl(control, 'input');
 
-      expect(control.destroy).toHaveBeenCalledTimes(1);
+      expect(controlDestroySpy).toHaveBeenCalledTimes(1);
       expect(controlNew).toBeInstanceOf(DynamicFormInput2Control);
       expect(form.children[0]).toBe(controlNew);
     });
@@ -1045,11 +1045,11 @@ describe('DynamicFormBuilder', () => {
         destroy: () => {},
       } as any as DynamicFormControl;
 
-      spyOn(control, 'destroy');
+      const controlDestroySpy = spyOn(control, 'destroy');
 
       const controlNew = builder.recreateFormControl(control, 'input2');
 
-      expect(control.destroy).toHaveBeenCalledTimes(1);
+      expect(controlDestroySpy).toHaveBeenCalledTimes(1);
       expect(controlNew).toBeInstanceOf(DynamicFormControl);
       expect(form.children[0]).toBe(controlNew);
     });
@@ -1070,11 +1070,11 @@ describe('DynamicFormBuilder', () => {
         destroy: () => {},
       } as any as DynamicFormControl;
 
-      spyOn(control, 'destroy');
+      const controlDestroySpy = spyOn(control, 'destroy');
 
       const controlNew = builder.recreateFormControl(control, 'input2');
 
-      expect(control.destroy).toHaveBeenCalledTimes(1);
+      expect(controlDestroySpy).toHaveBeenCalledTimes(1);
       expect(controlNew).toBeInstanceOf(DynamicFormInput3Control);
       expect(form.children[0]).toBe(controlNew);
     });

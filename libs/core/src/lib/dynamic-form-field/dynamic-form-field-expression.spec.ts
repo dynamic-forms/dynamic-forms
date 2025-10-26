@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { Subject } from 'rxjs';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
 import { DynamicFormExpressionChange } from '../dynamic-form-expression/dynamic-form-expression-change';
@@ -32,7 +33,7 @@ describe('DynamicFormFieldExpression', () => {
   let errorHandler: DynamicFormErrorHandler;
 
   beforeEach(() => {
-    errorHandler = { handle: () => {} } as any;
+    errorHandler = MockService(DynamicFormErrorHandler, { handle: () => {} });
   });
 
   it('get value updates memo and returns current value', () => {
@@ -137,7 +138,7 @@ describe('DynamicFormFieldExpression', () => {
   });
 
   it('get value catches and calls handle of error handler', () => {
-    spyOn(errorHandler, 'handle');
+    const handleErrorSpy = spyOn(errorHandler, 'handle');
 
     const expressionChangesSubject = new Subject<DynamicFormExpressionChange>();
     const expressionChanges = expressionChangesSubject.asObservable();
@@ -155,6 +156,6 @@ describe('DynamicFormFieldExpression', () => {
     const expression = new DynamicFormFieldExpressionTesting('key', field, func, errorHandler);
 
     expect(expression.value).toBeUndefined();
-    expect(errorHandler.handle).toHaveBeenCalled();
+    expect(handleErrorSpy).toHaveBeenCalled();
   });
 });

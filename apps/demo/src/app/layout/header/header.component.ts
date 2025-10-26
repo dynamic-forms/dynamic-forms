@@ -1,11 +1,11 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CONFIG, Config } from '../../state/config/config.model';
 import { DocsMenuComponent } from './docs-menu/docs-menu.component';
@@ -42,9 +42,7 @@ export class HeaderComponent {
   readonly examplesQuery: MediaQueryList;
   readonly editorsQuery: MediaQueryList;
   readonly versionsQuery: MediaQueryList;
-
-  @Select(CONFIG)
-  config$: Observable<Config>;
+  readonly config$: Observable<Config> = inject(Store).select(CONFIG);
 
   constructor(private media: MediaMatcher) {
     this.docsQuery = this.media.matchMedia('(max-width: 825px)');

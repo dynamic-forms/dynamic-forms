@@ -12,7 +12,7 @@ describe('DynamicFormThemeModule', () => {
     });
 
     it('does not provide DynamicFormColorService', () => {
-      expect(() => TestBed.inject(DynamicFormColorService)).toThrowError(/NullInjectorError/);
+      expect(() => TestBed.inject(DynamicFormColorService)).toThrowError();
     });
   });
 

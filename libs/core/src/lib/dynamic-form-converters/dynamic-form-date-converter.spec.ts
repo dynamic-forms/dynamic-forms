@@ -74,17 +74,17 @@ describe('DynamicFormDateConverter', () => {
       });
 
       it('returns iso string for date', () => {
-        spyOn(converter, 'parse').and.callThrough();
+        const parseSpy = spyOn(converter, 'parse').and.callThrough();
 
         expect(converter.format(new Date(Date.UTC(2024, 0, 1, 0, 0, 0)))).toBe('2024-01-01T00:00:00.000Z');
-        expect(converter.parse).toHaveBeenCalledTimes(0);
+        expect(parseSpy).toHaveBeenCalledTimes(0);
       });
 
       it('returns iso string for date after parse', () => {
-        spyOn(converter, 'parse').and.callThrough();
+        const parseSpy = spyOn(converter, 'parse').and.callThrough();
 
         expect(converter.format('2024-01-01')).toBe('2024-01-01T00:00:00.000Z');
-        expect(converter.parse).toHaveBeenCalledTimes(0);
+        expect(parseSpy).toHaveBeenCalledTimes(0);
       });
     });
 

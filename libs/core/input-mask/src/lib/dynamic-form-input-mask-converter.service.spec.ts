@@ -71,10 +71,11 @@ describe('DynamicFormInputMaskConverterService', () => {
 
     describe('getConverter', () => {
       let injector: Injector;
+      let injectorGetSpy: jasmine.Spy;
 
       beforeEach(() => {
         injector = TestBed.inject(Injector);
-        spyOn(injector, 'get').and.callThrough();
+        injectorGetSpy = spyOn(injector, 'get').and.callThrough();
       });
 
       it('returns defaultConverter if useConverter is false', () => {
@@ -90,7 +91,7 @@ describe('DynamicFormInputMaskConverterService', () => {
       datetimeConverterAliases.forEach(alias => {
         it(`returns DynamicFormInputMaskNativeDatetimeConverter for alias ${alias}`, () => {
           expect(service.getConverter({ alias, useConverter: true })).toBeInstanceOf(DynamicFormInputMaskNativeDatetimeConverter);
-          expect(injector.get).toHaveBeenCalledWith(DynamicFormInputMaskNativeDatetimeConverter);
+          expect(injectorGetSpy).toHaveBeenCalledWith(DynamicFormInputMaskNativeDatetimeConverter);
         });
       });
 
@@ -99,7 +100,7 @@ describe('DynamicFormInputMaskConverterService', () => {
       numberConverterAliases.forEach(alias => {
         it(`returns DynamicFormInputMaskNativeDatetimeConverter for alias ${alias}`, () => {
           expect(service.getConverter({ alias, useConverter: true })).toBeInstanceOf(DynamicFormInputMaskNumberConverter);
-          expect(injector.get).toHaveBeenCalledWith(DynamicFormInputMaskNumberConverter);
+          expect(injectorGetSpy).toHaveBeenCalledWith(DynamicFormInputMaskNumberConverter);
         });
       });
     });

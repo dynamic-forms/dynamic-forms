@@ -85,11 +85,11 @@ describe('DynamicFormArray', () => {
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormArrayDefinition;
     const array = new DynamicFormArray(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    spyOn(builder, 'getFieldId').and.callThrough();
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createFormArrayElements').and.callThrough();
-    spyOn(builder, 'createArrayValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
+    const getFieldIdSpy = spyOn(builder, 'getFieldId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    const createElementsSpy = spyOn(builder, 'createFormArrayElements').and.callThrough();
+    const createValidatorsSpy = spyOn(builder, 'createArrayValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(array as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(array as any, 'initExpressions').and.callThrough();
@@ -106,22 +106,22 @@ describe('DynamicFormArray', () => {
     array.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(array);
+    expect(getFieldIdSpy).toHaveBeenCalledOnceWith(array);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(array);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(array);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormArrayElements).toHaveBeenCalledOnceWith(array);
+    expect(createElementsSpy).toHaveBeenCalledOnceWith(array);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createArrayValidators).toHaveBeenCalledOnceWith(array);
+    expect(createValidatorsSpy).toHaveBeenCalledOnceWith(array);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, array, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, array, definition.headerActions);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, array, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, array, definition.footerActions);
   });
 
   it('inits children and fields', () => {
@@ -177,7 +177,7 @@ describe('DynamicFormArray', () => {
     ] as unknown[] as DynamicFormField[];
     const field = { classType: 'field', definition: {}, control: new FormControl() } as unknown as DynamicFormField;
 
-    spyOn(array.control, 'push');
+    const pushControlSpy = spyOn(array.control, 'push');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
@@ -189,7 +189,7 @@ describe('DynamicFormArray', () => {
     expect(array.children[0]).toBe(fields[0]);
     expect(array.children[1]).toBe(fields[1]);
     expect(array.children[2]).toBe(field);
-    expect(array.control.push).toHaveBeenCalledWith(field.control);
+    expect(pushControlSpy).toHaveBeenCalledWith(field.control);
   });
 
   it('pops field', () => {
@@ -201,10 +201,10 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(array.control, 'removeAt');
-    spyOn(array.control, 'markAsTouched');
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const removeControlSpy = spyOn(array.control, 'removeAt');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
@@ -214,10 +214,10 @@ describe('DynamicFormArray', () => {
     expect(array.length).toBe(1);
     expect(array.children.length).toBe(1);
     expect(array.children[0]).toBe(fields[0]);
-    expect(array.control.removeAt).toHaveBeenCalledWith(1);
-    expect(array.control.markAsTouched).toHaveBeenCalled();
-    expect(fields[0].destroy).not.toHaveBeenCalled();
-    expect(fields[1].destroy).toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith(1);
+    expect(touchControlSpy).toHaveBeenCalled();
+    expect(destroyField0Spy).not.toHaveBeenCalled();
+    expect(destroyField1Spy).toHaveBeenCalled();
   });
 
   it('does not pop field if length is zero', () => {
@@ -225,17 +225,17 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(array.children, 'pop');
-    spyOn(array.model, 'pop');
-    spyOn(array.control, 'removeAt');
-    spyOn(array.control, 'markAsTouched');
+    const popChildrenSpy = spyOn(array.children, 'pop');
+    const popModelSpy = spyOn(array.model, 'pop');
+    const removeControlSpy = spyOn(array.control, 'removeAt');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.popField();
 
-    expect(array.children.pop).not.toHaveBeenCalled();
-    expect(array.model.pop).not.toHaveBeenCalled();
-    expect(array.control.removeAt).not.toHaveBeenCalled();
-    expect(array.control.markAsTouched).not.toHaveBeenCalled();
+    expect(popChildrenSpy).not.toHaveBeenCalled();
+    expect(popModelSpy).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('removes field', () => {
@@ -249,12 +249,12 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(array.control, 'removeAt');
-    spyOn(array.control, 'markAsTouched');
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(fields[2], 'destroy');
-    spyOn(fields[3], 'destroy');
+    const removeControlSpy = spyOn(array.control, 'removeAt');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
+    const destoryField0Spy = spyOn(fields[0], 'destroy');
+    const destoryField1Spy = spyOn(fields[1], 'destroy');
+    const destoryField2Spy = spyOn(fields[2], 'destroy');
+    const destoryField3Spy = spyOn(fields[3], 'destroy');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
@@ -269,12 +269,12 @@ describe('DynamicFormArray', () => {
     expect(array.children[1].definition.index).toBe(1);
     expect(array.children[2]).toBe(fields[3]);
     expect(array.children[2].definition.index).toBe(2);
-    expect(array.control.removeAt).toHaveBeenCalledWith(1);
-    expect(array.control.markAsTouched).toHaveBeenCalled();
-    expect(fields[0].destroy).not.toHaveBeenCalled();
-    expect(fields[1].destroy).toHaveBeenCalled();
-    expect(fields[2].destroy).not.toHaveBeenCalled();
-    expect(fields[3].destroy).not.toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith(1);
+    expect(touchControlSpy).toHaveBeenCalled();
+    expect(destoryField0Spy).not.toHaveBeenCalled();
+    expect(destoryField1Spy).toHaveBeenCalled();
+    expect(destoryField2Spy).not.toHaveBeenCalled();
+    expect(destoryField3Spy).not.toHaveBeenCalled();
   });
 
   it('does not remove field if index is invalid', () => {
@@ -282,17 +282,17 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(array.children, 'splice');
-    spyOn(array.model, 'splice');
-    spyOn(array.control, 'removeAt');
-    spyOn(array.control, 'markAsTouched');
+    const spliceChildrenSpy = spyOn(array.children, 'splice');
+    const spliceModelSpy = spyOn(array.model, 'splice');
+    const removeControlSpy = spyOn(array.control, 'removeAt');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.removeField(1);
 
-    expect(array.children.splice).not.toHaveBeenCalled();
-    expect(array.model.splice).not.toHaveBeenCalled();
-    expect(array.control.removeAt).not.toHaveBeenCalled();
-    expect(array.control.markAsTouched).not.toHaveBeenCalled();
+    expect(spliceChildrenSpy).not.toHaveBeenCalled();
+    expect(spliceModelSpy).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('clears fields', () => {
@@ -304,10 +304,10 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(array.control, 'clear');
-    spyOn(array.control, 'markAsTouched');
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const clearControlSpy = spyOn(array.control, 'clear');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue([...fields]);
 
@@ -316,10 +316,10 @@ describe('DynamicFormArray', () => {
 
     expect(array.length).toBe(0);
     expect(array.children).toEqual([]);
-    expect(array.control.clear).toHaveBeenCalled();
-    expect(array.control.markAsTouched).toHaveBeenCalled();
-    expect(fields[0].destroy).toHaveBeenCalled();
-    expect(fields[1].destroy).toHaveBeenCalled();
+    expect(clearControlSpy).toHaveBeenCalled();
+    expect(touchControlSpy).toHaveBeenCalled();
+    expect(destroyField0Spy).toHaveBeenCalled();
+    expect(destroyField1Spy).toHaveBeenCalled();
   });
 
   it('does not clear fields if length is zero', () => {
@@ -327,13 +327,13 @@ describe('DynamicFormArray', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const array = new DynamicFormArray(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(array.control, 'clear');
-    spyOn(array.control, 'markAsTouched');
+    const clearControlSpy = spyOn(array.control, 'clear');
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.clearFields();
 
-    expect(array.control.clear).not.toHaveBeenCalled();
-    expect(array.control.markAsTouched).not.toHaveBeenCalled();
+    expect(clearControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('moves field down', () => {
@@ -349,18 +349,18 @@ describe('DynamicFormArray', () => {
 
     array.init();
 
-    spyOn(array.control, 'removeAt').and.callThrough();
-    spyOn(array.control, 'insert').and.callThrough();
-    spyOn(array.control, 'markAsTouched');
+    const removeControlSpy = spyOn(array.control, 'removeAt').and.callThrough();
+    const insertControlSpy = spyOn(array.control, 'insert').and.callThrough();
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.moveFieldDown(0);
 
     expect(array.children).toEqual([fields[1], fields[0]]);
     expect(array.children[0].definition.index).toBe(0);
     expect(array.children[1].definition.index).toBe(1);
-    expect(array.control.removeAt).toHaveBeenCalledWith(0);
-    expect(array.control.insert).toHaveBeenCalledWith(1, fields[0].control);
-    expect(array.control.markAsTouched).toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith(0);
+    expect(insertControlSpy).toHaveBeenCalledWith(1, fields[0].control);
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('does not move field down', () => {
@@ -373,16 +373,16 @@ describe('DynamicFormArray', () => {
 
     array.init();
 
-    spyOn(array.control, 'removeAt').and.callThrough();
-    spyOn(array.control, 'insert').and.callThrough();
-    spyOn(array.control, 'markAsTouched');
+    const removeControlSpy = spyOn(array.control, 'removeAt').and.callThrough();
+    const insertControlSpy = spyOn(array.control, 'insert').and.callThrough();
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.moveFieldDown(0);
 
     expect(array.children).toEqual([fields[0]]);
-    expect(array.control.removeAt).not.toHaveBeenCalled();
-    expect(array.control.insert).not.toHaveBeenCalled();
-    expect(array.control.markAsTouched).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(insertControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('moves field up', () => {
@@ -398,16 +398,16 @@ describe('DynamicFormArray', () => {
 
     array.init();
 
-    spyOn(array.control, 'removeAt').and.callThrough();
-    spyOn(array.control, 'insert').and.callThrough();
-    spyOn(array.control, 'markAsTouched');
+    const removeControlSpy = spyOn(array.control, 'removeAt').and.callThrough();
+    const insertControlSpy = spyOn(array.control, 'insert').and.callThrough();
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.moveFieldUp(1);
 
     expect(array.children).toEqual([fields[1], fields[0]]);
-    expect(array.control.removeAt).toHaveBeenCalledWith(1);
-    expect(array.control.insert).toHaveBeenCalledWith(0, fields[1].control);
-    expect(array.control.markAsTouched).toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith(1);
+    expect(insertControlSpy).toHaveBeenCalledWith(0, fields[1].control);
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('does not move field up', () => {
@@ -420,16 +420,16 @@ describe('DynamicFormArray', () => {
 
     array.init();
 
-    spyOn(array.control, 'removeAt').and.callThrough();
-    spyOn(array.control, 'insert').and.callThrough();
-    spyOn(array.control, 'markAsTouched');
+    const removeControlSpy = spyOn(array.control, 'removeAt').and.callThrough();
+    const insertControlSpy = spyOn(array.control, 'insert').and.callThrough();
+    const touchControlSpy = spyOn(array.control, 'markAsTouched');
 
     array.moveFieldUp(0);
 
     expect(array.children).toEqual([fields[0]]);
-    expect(array.control.removeAt).not.toHaveBeenCalled();
-    expect(array.control.insert).not.toHaveBeenCalled();
-    expect(array.control.markAsTouched).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(insertControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('check calls check of all fields', () => {
@@ -441,16 +441,16 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), check: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'check');
-    spyOn(fields[1], 'check');
+    const checkField0Spy = spyOn(fields[0], 'check');
+    const checkField1Spy = spyOn(fields[1], 'check');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.check();
 
-    expect(fields[0].check).toHaveBeenCalledTimes(1);
-    expect(fields[1].check).toHaveBeenCalledTimes(1);
+    expect(checkField0Spy).toHaveBeenCalledTimes(1);
+    expect(checkField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('destroy calls destroy of all fields', () => {
@@ -462,16 +462,16 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.destroy();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('reset calls reset of all fields', () => {
@@ -483,16 +483,16 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'reset');
-    spyOn(fields[1], 'reset');
+    const resetField0Spy = spyOn(fields[0], 'reset');
+    const resetField1Spy = spyOn(fields[1], 'reset');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.reset();
 
-    expect(fields[0].reset).toHaveBeenCalledTimes(1);
-    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+    expect(resetField0Spy).toHaveBeenCalledTimes(1);
+    expect(resetField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('resetEmpty calls destroy of all fields and clear of form array', () => {
@@ -504,18 +504,18 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(array.control, 'clear');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
+    const clearControlSpy = spyOn(array.control, 'clear');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.resetEmpty();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
-    expect(array.control.clear).toHaveBeenCalledTimes(1);
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
+    expect(clearControlSpy).toHaveBeenCalledTimes(1);
     expect(array.children).toEqual([]);
   });
 
@@ -528,18 +528,18 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(array.control, 'clear');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
+    const clearControlSpy = spyOn(array.control, 'clear');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.resetDefault();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
-    expect(array.control.clear).toHaveBeenCalledTimes(1);
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
+    expect(clearControlSpy).toHaveBeenCalledTimes(1);
   });
 
   it('validate calls validate of all fields', () => {
@@ -551,15 +551,15 @@ describe('DynamicFormArray', () => {
       { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'validate');
-    spyOn(fields[1], 'validate');
+    const validateField0Spy = spyOn(fields[0], 'validate');
+    const validateField1Spy = spyOn(fields[1], 'validate');
 
     spyOn(builder, 'createFormArrayElements').and.returnValue(fields);
 
     array.init();
     array.validate();
 
-    expect(fields[0].validate).toHaveBeenCalledTimes(1);
-    expect(fields[1].validate).toHaveBeenCalledTimes(1);
+    expect(validateField0Spy).toHaveBeenCalledTimes(1);
+    expect(validateField1Spy).toHaveBeenCalledTimes(1);
   });
 });

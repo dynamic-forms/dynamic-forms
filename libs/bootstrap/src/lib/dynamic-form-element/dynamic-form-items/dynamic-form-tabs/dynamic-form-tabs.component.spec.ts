@@ -8,6 +8,7 @@ import {
   DynamicFormItems,
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { BsDynamicFormTabsComponent } from './dynamic-form-tabs.component';
 
 describe('BsDynamicFormTabsComponent', () => {
@@ -25,7 +26,7 @@ describe('BsDynamicFormTabsComponent', () => {
       ],
     });
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;

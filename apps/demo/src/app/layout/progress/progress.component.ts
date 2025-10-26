@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { PROGRESS, Progress } from '../../state/progress/progress.model';
 
@@ -12,6 +12,5 @@ import { PROGRESS, Progress } from '../../state/progress/progress.model';
   styleUrl: './progress.component.scss',
 })
 export class ProgressComponent {
-  @Select(PROGRESS)
-  progress$: Observable<Progress>;
+  readonly progress$: Observable<Progress> = inject(Store).select(PROGRESS);
 }

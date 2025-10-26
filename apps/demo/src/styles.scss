@@ -1,4 +1,9 @@
 @use '@angular/material' as mat;
+@use '@fontsource/roboto/latin-300';
+@use '@fontsource/roboto/latin-400';
+@use '@fontsource/roboto/latin-500';
+@use '@fontsource/roboto/latin-700';
+@use '@fontsource/material-icons';
 @use '@dynamic-forms/core/assets/scss/grid';
 @use '@dynamic-forms/bootstrap/assets/scss/theme' as bootstrapTheme;
 @use '@dynamic-forms/material/assets/scss/theme' as materialTheme;
@@ -145,4 +150,31 @@ body {
   .mat-tab-header-pagination {
     z-index: auto;
   }
+}
+
+.material-icons {
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizelegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }

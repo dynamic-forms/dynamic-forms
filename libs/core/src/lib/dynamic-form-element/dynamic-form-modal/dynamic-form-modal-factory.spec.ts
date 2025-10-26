@@ -15,10 +15,10 @@ describe('dynamicFormModalFactory', () => {
     const trigger = {} as DynamicFormAction;
     const builder = MockService(DynamicFormBuilder);
 
-    spyOn(builder, 'createElementExpressions').and.returnValue(expressions);
-    spyOn(builder, 'createFormElements').and.returnValue(children);
-    spyOn(builder, 'createFormActions').and.returnValue(actions);
-    spyOn(builder, 'createFormAction').and.returnValue(trigger);
+    const createExpressionsSpy = spyOn(builder, 'createElementExpressions').and.returnValue(expressions);
+    const createElementsSpy = spyOn(builder, 'createFormElements').and.returnValue(children);
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.returnValue(actions);
+    const createTriggerSpy = spyOn(builder, 'createFormAction').and.returnValue(trigger);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
@@ -39,9 +39,9 @@ describe('dynamicFormModalFactory', () => {
     expect(modal.children).toBe(children);
     expect(modal.footerActions).toBe(actions);
 
-    expect(builder.createElementExpressions).toHaveBeenCalledWith(modal);
-    expect(builder.createFormElements).toHaveBeenCalledWith(root, parent, definition.children);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, modal, definition.footerActions);
-    expect(builder.createFormAction).toHaveBeenCalledWith(root, modal, definition.trigger);
+    expect(createExpressionsSpy).toHaveBeenCalledWith(modal);
+    expect(createElementsSpy).toHaveBeenCalledWith(root, parent, definition.children);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, modal, definition.footerActions);
+    expect(createTriggerSpy).toHaveBeenCalledWith(root, modal, definition.trigger);
   });
 });

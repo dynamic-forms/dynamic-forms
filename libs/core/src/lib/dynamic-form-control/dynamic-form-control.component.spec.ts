@@ -126,7 +126,7 @@ describe('DynamicFormControlComponent', () => {
   });
 
   it('updates component template', () => {
-    spyOn(builder, 'recreateFormControl').and.callThrough();
+    const recreateControlSpy = spyOn(builder, 'recreateFormControl').and.callThrough();
 
     component.input.type = 'input-2';
 
@@ -141,7 +141,7 @@ describe('DynamicFormControlComponent', () => {
     expect(formControlElement.className).toBe('dynamic-form-control input-2');
     expect(formInputElement).toBeTruthy();
 
-    expect(builder.recreateFormControl).toHaveBeenCalledWith(formControl, 'input-1');
+    expect(recreateControlSpy).toHaveBeenCalledWith(formControl, 'input-1');
   });
 
   it('sets dynamic form control to hidden', () => {

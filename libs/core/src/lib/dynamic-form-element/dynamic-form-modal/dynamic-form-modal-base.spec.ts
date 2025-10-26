@@ -1,3 +1,4 @@
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element';
@@ -13,7 +14,7 @@ describe('DynamicFormModalBase', () => {
   let component: DynamicFormModalTestComponent;
 
   beforeEach(() => {
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
     component = new DynamicFormModalTestComponent();
   });
 
@@ -42,13 +43,13 @@ describe('DynamicFormModalBase', () => {
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(modal, 'open').and.callThrough();
+    const openModalSpy = spyOn(modal, 'open').and.callThrough();
 
     component.element = modal;
 
     component.open();
 
-    expect(modal.open).toHaveBeenCalled();
+    expect(openModalSpy).toHaveBeenCalled();
   });
 
   it('component calls close of modal', () => {
@@ -57,13 +58,13 @@ describe('DynamicFormModalBase', () => {
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(modal, 'close').and.callThrough();
+    const closeModalSpy = spyOn(modal, 'close').and.callThrough();
 
     component.element = modal;
 
     component.close();
 
-    expect(modal.close).toHaveBeenCalled();
+    expect(closeModalSpy).toHaveBeenCalled();
   });
 
   it('component calls toggle of modal', () => {
@@ -72,12 +73,12 @@ describe('DynamicFormModalBase', () => {
     const definition = { type: 'element', template: {} } as DynamicFormModalDefinition;
     const modal = new DynamicFormModal(builder, root, parent, definition, {} as DynamicFormElementType);
 
-    spyOn(modal, 'toggle').and.callThrough();
+    const toggleModalSpy = spyOn(modal, 'toggle').and.callThrough();
 
     component.element = modal;
 
     component.toggle();
 
-    expect(modal.toggle).toHaveBeenCalled();
+    expect(toggleModalSpy).toHaveBeenCalled();
   });
 });

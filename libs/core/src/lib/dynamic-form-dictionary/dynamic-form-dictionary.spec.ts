@@ -87,11 +87,11 @@ describe('DynamicFormDictionary', () => {
     const definition = { key: 'key', template: {}, children: [], headerActions: [], footerActions: [] } as DynamicFormDictionaryDefinition;
     const dictionary = new DynamicFormDictionary(builder, root, parent, definition, {} as DynamicFormFieldType);
 
-    spyOn(builder, 'getFieldId').and.callThrough();
-    spyOn(builder, 'createFieldExpressions').and.callThrough();
-    spyOn(builder, 'createFormDictionaryElements').and.callThrough();
-    spyOn(builder, 'createDictionaryValidators').and.callThrough();
-    spyOn(builder, 'createFormActions').and.callThrough();
+    const getFieldIdSpy = spyOn(builder, 'getFieldId').and.callThrough();
+    const createExpressionsSpy = spyOn(builder, 'createFieldExpressions').and.callThrough();
+    const createElementsSpy = spyOn(builder, 'createFormDictionaryElements').and.callThrough();
+    const createValidatorsSpy = spyOn(builder, 'createDictionaryValidators').and.callThrough();
+    const createActionsSpy = spyOn(builder, 'createFormActions').and.callThrough();
 
     const initIdSpy = spyOn(dictionary as any, 'initId').and.callThrough();
     const initExpressionsSpy = spyOn(dictionary as any, 'initExpressions').and.callThrough();
@@ -108,22 +108,22 @@ describe('DynamicFormDictionary', () => {
     dictionary.init();
 
     expect(initIdSpy).toHaveBeenCalledTimes(1);
-    expect(builder.getFieldId).toHaveBeenCalledOnceWith(dictionary);
+    expect(getFieldIdSpy).toHaveBeenCalledOnceWith(dictionary);
     expect(initExpressionsSpy).toHaveBeenCalledTimes(1);
     expect(getExpressionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFieldExpressions).toHaveBeenCalledOnceWith(dictionary);
+    expect(createExpressionsSpy).toHaveBeenCalledOnceWith(dictionary);
     expect(initChildrenSpy).toHaveBeenCalledTimes(1);
     expect(getChildrenSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormDictionaryElements).toHaveBeenCalledOnceWith(dictionary);
+    expect(createElementsSpy).toHaveBeenCalledOnceWith(dictionary);
     expect(initValidatorsSpy).toHaveBeenCalledTimes(1);
     expect(getValidatorsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createDictionaryValidators).toHaveBeenCalledOnceWith(dictionary);
+    expect(createValidatorsSpy).toHaveBeenCalledOnceWith(dictionary);
     expect(initHeaderActionsSpy).toHaveBeenCalledTimes(1);
     expect(getHeaderActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, dictionary, definition.headerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, dictionary, definition.headerActions);
     expect(initFooterActionsSpy).toHaveBeenCalledTimes(1);
     expect(getFooterActionsSpy).toHaveBeenCalledTimes(1);
-    expect(builder.createFormActions).toHaveBeenCalledWith(root, dictionary, definition.footerActions);
+    expect(createActionsSpy).toHaveBeenCalledWith(root, dictionary, definition.footerActions);
   });
 
   it('inits children and fields', () => {
@@ -179,8 +179,8 @@ describe('DynamicFormDictionary', () => {
     ] as unknown[] as DynamicFormField[];
     const field = { key: 'item3', classType: 'field', definition: {}, control: new FormControl() } as unknown as DynamicFormField;
 
-    spyOn(dictionary.control, 'registerControl');
-    spyOn(dictionary.control, 'markAsTouched');
+    const registerControlSpy = spyOn(dictionary.control, 'registerControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
@@ -192,8 +192,8 @@ describe('DynamicFormDictionary', () => {
     expect(dictionary.children[0]).toBe(fields[0]);
     expect(dictionary.children[1]).toBe(fields[1]);
     expect(dictionary.children[2]).toBe(field);
-    expect(dictionary.control.registerControl).toHaveBeenCalledWith('item3', field.control);
-    expect(dictionary.control.markAsTouched).toHaveBeenCalled();
+    expect(registerControlSpy).toHaveBeenCalledWith('item3', field.control);
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('registers field by replacing field', () => {
@@ -207,8 +207,8 @@ describe('DynamicFormDictionary', () => {
     ] as unknown[] as DynamicFormField[];
     const field = { key: 'item2', classType: 'field', definition: {}, control: new FormControl() } as unknown as DynamicFormField;
 
-    spyOn(dictionary.control, 'registerControl');
-    spyOn(dictionary.control, 'markAsTouched');
+    const registerControlSpy = spyOn(dictionary.control, 'registerControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
@@ -220,8 +220,8 @@ describe('DynamicFormDictionary', () => {
     expect(dictionary.children[0]).toBe(fields[0]);
     expect(dictionary.children[1]).toBe(field);
     expect(dictionary.children[2]).toBe(fields[2]);
-    expect(dictionary.control.registerControl).toHaveBeenCalledWith('item2', field.control);
-    expect(dictionary.control.markAsTouched).toHaveBeenCalled();
+    expect(registerControlSpy).toHaveBeenCalledWith('item2', field.control);
+    expect(touchControlSpy).toHaveBeenCalled();
   });
 
   it('removes field', () => {
@@ -235,12 +235,12 @@ describe('DynamicFormDictionary', () => {
       { key: 'key-4', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(dictionary.control, 'removeControl');
-    spyOn(dictionary.control, 'markAsTouched');
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(fields[2], 'destroy');
-    spyOn(fields[3], 'destroy');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
+    const destroyField2Spy = spyOn(fields[2], 'destroy');
+    const destroyField3Spy = spyOn(fields[3], 'destroy');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue([...fields]);
 
@@ -252,12 +252,12 @@ describe('DynamicFormDictionary', () => {
     expect(dictionary.children[0]).toBe(fields[0]);
     expect(dictionary.children[1]).toBe(fields[2]);
     expect(dictionary.children[2]).toBe(fields[3]);
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key-2');
-    expect(dictionary.control.markAsTouched).toHaveBeenCalled();
-    expect(fields[0].destroy).not.toHaveBeenCalled();
-    expect(fields[1].destroy).toHaveBeenCalled();
-    expect(fields[2].destroy).not.toHaveBeenCalled();
-    expect(fields[3].destroy).not.toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith('key-2');
+    expect(touchControlSpy).toHaveBeenCalled();
+    expect(destroyField0Spy).not.toHaveBeenCalled();
+    expect(destroyField1Spy).toHaveBeenCalled();
+    expect(destroyField2Spy).not.toHaveBeenCalled();
+    expect(destroyField3Spy).not.toHaveBeenCalled();
   });
 
   it('does not remove field if index is invalid', () => {
@@ -265,15 +265,15 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(dictionary.children, 'splice');
-    spyOn(dictionary.control, 'removeControl');
-    spyOn(dictionary.control, 'markAsTouched');
+    const spliceChildrenSpy = spyOn(dictionary.children, 'splice');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
 
     dictionary.removeField('key');
 
-    expect(dictionary.children.splice).not.toHaveBeenCalled();
-    expect(dictionary.control.removeControl).not.toHaveBeenCalled();
-    expect(dictionary.control.markAsTouched).not.toHaveBeenCalled();
+    expect(spliceChildrenSpy).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('clears fields', () => {
@@ -285,10 +285,10 @@ describe('DynamicFormDictionary', () => {
       { key: 'key-2', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(dictionary.control, 'removeControl');
-    spyOn(dictionary.control, 'markAsTouched');
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
@@ -297,11 +297,11 @@ describe('DynamicFormDictionary', () => {
 
     expect(dictionary.length).toBe(0);
     expect(dictionary.children).toEqual([]);
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key-1');
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key-2');
-    expect(dictionary.control.markAsTouched).toHaveBeenCalled();
-    expect(fields[0].destroy).toHaveBeenCalled();
-    expect(fields[1].destroy).toHaveBeenCalled();
+    expect(removeControlSpy).toHaveBeenCalledWith('key-1');
+    expect(removeControlSpy).toHaveBeenCalledWith('key-2');
+    expect(touchControlSpy).toHaveBeenCalled();
+    expect(destroyField0Spy).toHaveBeenCalled();
+    expect(destroyField1Spy).toHaveBeenCalled();
   });
 
   it('does not clear fields if length is zero', () => {
@@ -309,13 +309,13 @@ describe('DynamicFormDictionary', () => {
     const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
-    spyOn(dictionary.control, 'removeControl');
-    spyOn(dictionary.control, 'markAsTouched');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
+    const touchControlSpy = spyOn(dictionary.control, 'markAsTouched');
 
     dictionary.clearFields();
 
-    expect(dictionary.control.removeControl).not.toHaveBeenCalled();
-    expect(dictionary.control.markAsTouched).not.toHaveBeenCalled();
+    expect(removeControlSpy).not.toHaveBeenCalled();
+    expect(touchControlSpy).not.toHaveBeenCalled();
   });
 
   it('check calls check of all fields', () => {
@@ -327,16 +327,16 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl(), check: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'check');
-    spyOn(fields[1], 'check');
+    const checkField0Spy = spyOn(fields[0], 'check');
+    const checkField1Spy = spyOn(fields[1], 'check');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.check();
 
-    expect(fields[0].check).toHaveBeenCalledTimes(1);
-    expect(fields[1].check).toHaveBeenCalledTimes(1);
+    expect(checkField0Spy).toHaveBeenCalledTimes(1);
+    expect(checkField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('destroy calls destroy of all fields', () => {
@@ -348,16 +348,16 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.destroy();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('reset calls reset of all fields', () => {
@@ -369,16 +369,16 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'reset');
-    spyOn(fields[1], 'reset');
+    const resetField0Spy = spyOn(fields[0], 'reset');
+    const resetField1Spy = spyOn(fields[1], 'reset');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.reset();
 
-    expect(fields[0].reset).toHaveBeenCalledTimes(1);
-    expect(fields[1].reset).toHaveBeenCalledTimes(1);
+    expect(resetField0Spy).toHaveBeenCalledTimes(1);
+    expect(resetField1Spy).toHaveBeenCalledTimes(1);
   });
 
   it('resetEmpty calls destroy of all fields and removeControl for all form group controls', () => {
@@ -390,19 +390,19 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(dictionary.control, 'removeControl');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValues(fields);
 
     dictionary.init();
     dictionary.resetEmpty();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key1');
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key2');
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
+    expect(removeControlSpy).toHaveBeenCalledWith('key1');
+    expect(removeControlSpy).toHaveBeenCalledWith('key2');
     expect(dictionary.children).toEqual([]);
   });
 
@@ -415,19 +415,19 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: { key: 'key2' }, control: new FormControl(), destroy: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'destroy');
-    spyOn(fields[1], 'destroy');
-    spyOn(dictionary.control, 'removeControl');
+    const destroyField0Spy = spyOn(fields[0], 'destroy');
+    const destroyField1Spy = spyOn(fields[1], 'destroy');
+    const removeControlSpy = spyOn(dictionary.control, 'removeControl');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.resetDefault();
 
-    expect(fields[0].destroy).toHaveBeenCalledTimes(1);
-    expect(fields[1].destroy).toHaveBeenCalledTimes(1);
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key1');
-    expect(dictionary.control.removeControl).toHaveBeenCalledWith('key2');
+    expect(destroyField0Spy).toHaveBeenCalledTimes(1);
+    expect(destroyField1Spy).toHaveBeenCalledTimes(1);
+    expect(removeControlSpy).toHaveBeenCalledWith('key1');
+    expect(removeControlSpy).toHaveBeenCalledWith('key2');
   });
 
   it('validate calls validate of all fields', () => {
@@ -439,15 +439,15 @@ describe('DynamicFormDictionary', () => {
       { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} },
     ] as unknown[] as DynamicFormField[];
 
-    spyOn(fields[0], 'validate');
-    spyOn(fields[1], 'validate');
+    const validateField0Spy = spyOn(fields[0], 'validate');
+    const validateField1Spy = spyOn(fields[1], 'validate');
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(fields);
 
     dictionary.init();
     dictionary.validate();
 
-    expect(fields[0].validate).toHaveBeenCalledTimes(1);
-    expect(fields[1].validate).toHaveBeenCalledTimes(1);
+    expect(validateField0Spy).toHaveBeenCalledTimes(1);
+    expect(validateField1Spy).toHaveBeenCalledTimes(1);
   });
 });

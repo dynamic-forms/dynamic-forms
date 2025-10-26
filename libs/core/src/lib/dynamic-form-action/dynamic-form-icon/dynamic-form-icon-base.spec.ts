@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../../dynamic-form/dynamic-form';
 import { DynamicFormBuilder } from '../../dynamic-form/dynamic-form.builder';
 import { DynamicFormField } from '../../dynamic-form-field/dynamic-form-field';
@@ -56,7 +57,7 @@ describe('DynamicFormIconBase', () => {
     fixture = TestBed.createComponent(DynamicFormIconTestComponent);
     component = fixture.componentInstance;
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormField;
@@ -140,11 +141,11 @@ describe('DynamicFormIconBase', () => {
   });
 
   it('executes action onClick', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
-    spyOn(service, 'handle');
+    const handleSpy = spyOn(service, 'handle');
 
     const event = null;
     component.onClick(event);
 
-    expect(service.handle).toHaveBeenCalledWith(component.element, event);
+    expect(handleSpy).toHaveBeenCalledWith(component.element, event);
   }));
 });

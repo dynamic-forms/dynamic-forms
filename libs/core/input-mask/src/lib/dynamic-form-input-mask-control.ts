@@ -78,7 +78,7 @@ export class DynamicFormInputMaskControl extends DynamicFormInputControl<Dynamic
     }
 
     const descriptors = Object.entries(Object.getOwnPropertyDescriptors(maskOptions));
-    const getters = descriptors.filter(([_, property]) => property.get).map(([key]) => key);
+    const getters = descriptors.filter(([_, property]) => !!property.get).map(([key]) => key);
     return getters.reduce(
       (result, key) => {
         const value = maskOptions[key];

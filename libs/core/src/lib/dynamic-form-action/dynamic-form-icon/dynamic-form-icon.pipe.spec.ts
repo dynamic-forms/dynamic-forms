@@ -12,11 +12,11 @@ describe('DynamicFormIconPipe', () => {
   });
 
   it('calls getIcon of icon service and returns', () => {
-    spyOn(service, 'getIcon').and.returnValue('icon');
+    const getIconSpy = spyOn(service, 'getIcon').and.returnValue('icon');
 
     const icon = pipe.transform('icon');
 
     expect(icon).toBe('icon');
-    expect(service.getIcon).toHaveBeenCalledWith('icon' as any);
+    expect(getIconSpy).toHaveBeenCalledWith('icon' as any);
   });
 });

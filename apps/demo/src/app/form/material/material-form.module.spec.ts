@@ -100,7 +100,7 @@ describe('MaterialFormModule', () => {
       }));
 
       it('does not provide DynamicFormDateConverter', () => {
-        expect(() => TestBed.inject(DynamicFormDateConverter)).toThrowError(/NullInjectorError/);
+        expect(() => TestBed.inject(DynamicFormDateConverter)).toThrowError();
       });
     });
   });

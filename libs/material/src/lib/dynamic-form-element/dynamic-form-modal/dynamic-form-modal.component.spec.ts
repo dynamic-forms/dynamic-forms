@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DynamicForm,
@@ -9,6 +9,7 @@ import {
   DynamicFormModal,
   DynamicFormModalDefinition,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormModalComponent } from './dynamic-form-modal.component';
 
 describe('MatDynamicFormModalComponent', () => {
@@ -28,7 +29,7 @@ describe('MatDynamicFormModalComponent', () => {
       ],
     });
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     modal = new DynamicFormModal(
       builder,
@@ -60,11 +61,11 @@ describe('MatDynamicFormModalComponent', () => {
     expect(component.isOpen).toBeFalse();
   });
 
-  it('opens modal', waitForAsync(() => {
+  it('opens modal', async () => {
     modal.open();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
       const formElement = formWrapperElement.querySelector('div.dynamic-form');
       const modalElement = formElement.querySelector('div.dynamic-form-modal');
@@ -78,37 +79,37 @@ describe('MatDynamicFormModalComponent', () => {
       expect(modalHeaderElement.innerText).toBe('Title');
       expect(modalBodyElement).toBeTruthy();
     });
-  }));
+  });
 
-  it('closes modal', waitForAsync(() => {
+  it('closes modal', async () => {
     modal.open();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(async () => {
       expect(component.isOpen).toBeTrue();
 
       modal.close();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         expect(component.isOpen).toBeFalse();
       });
     });
-  }));
+  });
 
-  it('toggles modal', waitForAsync(() => {
+  it('toggles modal', async () => {
     modal.toggle();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(async () => {
       expect(component.isOpen).toBeTrue();
 
       modal.toggle();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         expect(component.isOpen).toBeFalse();
       });
     });
-  }));
+  });
 });

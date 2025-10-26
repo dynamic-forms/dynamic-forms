@@ -56,65 +56,65 @@ describe('DynamicFormModalModule', () => {
     const handler = service.handlers.find(h => h.type === 'openModal');
     const modal = { open: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'open');
+    const openModalSpy = spyOn(modal, 'open');
 
     handler.func(modal, null);
 
-    expect(modal.open).toHaveBeenCalled();
+    expect(openModalSpy).toHaveBeenCalled();
   }));
 
   it('handler calls close of modal', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'closeModal');
     const modal = { close: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'close');
+    const closeModalSpy = spyOn(modal, 'close');
 
     handler.func(modal, null);
 
-    expect(modal.close).toHaveBeenCalled();
+    expect(closeModalSpy).toHaveBeenCalled();
   }));
 
   it('handler calls toggle of modal', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'toggleModal');
     const modal = { toggle: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'toggle');
+    const toggleModalSpy = spyOn(modal, 'toggle');
 
     handler.func(modal, null);
 
-    expect(modal.toggle).toHaveBeenCalled();
+    expect(toggleModalSpy).toHaveBeenCalled();
   }));
 
   it('handler calls maximize of modal', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'maximizeModal');
     const modal = { maximize: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'maximize');
+    const maximizeModalSpy = spyOn(modal, 'maximize');
 
     handler.func(modal, null);
 
-    expect(modal.maximize).toHaveBeenCalled();
+    expect(maximizeModalSpy).toHaveBeenCalled();
   }));
 
   it('handler calls minimize of modal', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'minimizeModal');
     const modal = { minimize: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'minimize');
+    const minimizeModalSpy = spyOn(modal, 'minimize');
 
     handler.func(modal, null);
 
-    expect(modal.minimize).toHaveBeenCalled();
+    expect(minimizeModalSpy).toHaveBeenCalled();
   }));
 
   it('handler calls toggleSize of modal', inject([DynamicFormActionService], (service: DynamicFormActionService) => {
     const handler = service.handlers.find(h => h.type === 'toggleSizeModal');
     const modal = { toggleSize: () => {} } as DynamicFormModal;
 
-    spyOn(modal, 'toggleSize');
+    const toggleModalSizeSpy = spyOn(modal, 'toggleSize');
 
     handler.func(modal, null);
 
-    expect(modal.toggleSize).toHaveBeenCalled();
+    expect(toggleModalSizeSpy).toHaveBeenCalled();
   }));
 });

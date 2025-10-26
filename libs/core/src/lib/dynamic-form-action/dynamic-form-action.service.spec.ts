@@ -39,16 +39,15 @@ describe('DynamicFormActionService', () => {
         const action = { parent: field as DynamicFormElement, template } as DynamicFormAction;
         const event = { stopPropagation: () => {} } as Event;
 
-        spyOn(service, 'getHandler').and.callThrough();
-        spyOn(template, 'action');
-        spyOn(event, 'stopPropagation');
+        const getHandlerSpy = spyOn(service, 'getHandler').and.callThrough();
+        const actionSpy = spyOn(template, 'action');
+        const stopPropagationSpy = spyOn(event, 'stopPropagation');
 
         service.handle(action, event);
 
-        expect(service.getHandler).not.toHaveBeenCalledWith('type');
-
-        expect(template.action).toHaveBeenCalled();
-        expect(event.stopPropagation).toHaveBeenCalled();
+        expect(getHandlerSpy).not.toHaveBeenCalledWith('type');
+        expect(actionSpy).toHaveBeenCalled();
+        expect(stopPropagationSpy).toHaveBeenCalled();
       },
     ));
 
@@ -59,13 +58,13 @@ describe('DynamicFormActionService', () => {
         const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
         const event = { stopPropagation: () => {} } as Event;
 
-        spyOn(service, 'getHandler').and.callThrough();
-        spyOn(event, 'stopPropagation');
+        const getHandlerSpy = spyOn(service, 'getHandler').and.callThrough();
+        const stopPropagationSpy = spyOn(event, 'stopPropagation');
 
         service.handle(action, event);
 
-        expect(service.getHandler).toHaveBeenCalledWith('type');
-        expect(event.stopPropagation).not.toHaveBeenCalled();
+        expect(getHandlerSpy).toHaveBeenCalledWith('type');
+        expect(stopPropagationSpy).not.toHaveBeenCalled();
       },
     ));
   });
@@ -127,15 +126,15 @@ describe('DynamicFormActionService', () => {
       const action = { parent: field as DynamicFormElement, template: { action: 'type' } } as DynamicFormAction;
       const event = { stopPropagation: () => {} } as Event;
 
-      spyOn(service, 'getHandler').and.callThrough();
-      spyOn(service.handlers[0], 'func');
-      spyOn(event, 'stopPropagation');
+      const getHandlerSpy = spyOn(service, 'getHandler').and.callThrough();
+      const handlerSpy = spyOn(service.handlers[0], 'func');
+      const stopPropagationSpy = spyOn(event, 'stopPropagation');
 
       service.handle(action, event);
 
-      expect(service.getHandler).toHaveBeenCalledWith('type');
-      expect(service.handlers[0].func).toHaveBeenCalledWith(field, action);
-      expect(event.stopPropagation).toHaveBeenCalled();
+      expect(getHandlerSpy).toHaveBeenCalledWith('type');
+      expect(handlerSpy).toHaveBeenCalledWith(field, action);
+      expect(stopPropagationSpy).toHaveBeenCalled();
     }));
 
     it('calls elementFunc and func of handler and stops propagation of event', inject(
@@ -146,17 +145,17 @@ describe('DynamicFormActionService', () => {
         const action = { parent: field as DynamicFormElement, template: { action: 'type-field-func' } } as DynamicFormAction;
         const event = { stopPropagation: () => {} } as Event;
 
-        spyOn(service, 'getHandler').and.callThrough();
-        spyOn(service.handlers[1], 'elementFunc').and.callThrough();
-        spyOn(service.handlers[1], 'func');
-        spyOn(event, 'stopPropagation');
+        const getHandlerSpy = spyOn(service, 'getHandler').and.callThrough();
+        const handler0Spy = spyOn(service.handlers[1], 'elementFunc').and.callThrough();
+        const handler1Spy = spyOn(service.handlers[1], 'func');
+        const stopPropagationSpy = spyOn(event, 'stopPropagation');
 
         service.handle(action, event);
 
-        expect(service.getHandler).toHaveBeenCalledWith('type-field-func');
-        expect(service.handlers[1].elementFunc).toHaveBeenCalledWith(action);
-        expect(service.handlers[1].func).toHaveBeenCalledWith(parent, action);
-        expect(event.stopPropagation).toHaveBeenCalled();
+        expect(getHandlerSpy).toHaveBeenCalledWith('type-field-func');
+        expect(handler0Spy).toHaveBeenCalledWith(action);
+        expect(handler1Spy).toHaveBeenCalledWith(parent, action);
+        expect(stopPropagationSpy).toHaveBeenCalled();
       },
     ));
   });

@@ -8,6 +8,7 @@ import {
   DynamicFormItems,
   DynamicFormLibraryService,
 } from '@dynamic-forms/core';
+import { MockService } from 'ng-mocks';
 import { MatDynamicFormAccordionComponent } from './dynamic-form-accordion.component';
 
 describe('MatDynamicFormAccordionComponent', () => {
@@ -25,7 +26,7 @@ describe('MatDynamicFormAccordionComponent', () => {
       ],
     });
 
-    builder = {} as any;
+    builder = MockService(DynamicFormBuilder);
 
     const root = {} as DynamicForm;
     const parent = {} as DynamicFormElement;
