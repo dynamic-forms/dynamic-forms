@@ -4,8 +4,8 @@ import { DynamicFormFileUpload } from './dynamic-form-file';
 
 @Directive({
   selector: '[dynamicFormFile]',
-  exportAs: 'dynamicFormFile',
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: DynamicFormFileDirective, multi: true }],
+  exportAs: 'dynamicFormFile',
 })
 export class DynamicFormFileDirective implements ControlValueAccessor, OnInit, OnChanges {
   private _files: DynamicFormFileUpload[] = null;

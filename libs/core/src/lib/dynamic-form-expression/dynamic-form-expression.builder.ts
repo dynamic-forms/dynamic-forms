@@ -98,11 +98,13 @@ export class DynamicFormExpressionBuilder {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   private createExpressionFunction<Func extends Function>(expression: string): Func {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
       return new Function(...dynamicFormExpressionArgs, `"use strict"; return ${expression};`) as Func;
     } catch (error) {
       const type = DynamicFormErrorType.ExpressionCreation;
       const message = `Expression creation for "${expression} failed"`;
       this.errorHandler.handle(new DynamicFormError(type, message, error));
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
       return new Function(...dynamicFormExpressionArgs, 'return undefined;') as Func;
     }
   }

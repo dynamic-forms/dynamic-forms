@@ -94,8 +94,8 @@ export abstract class DynamicFormFieldValidatorBase<
     this._key = key;
     this._field = field;
     this._deps = deps;
-    this._definition = field.definition.validators && field.definition.validators[key];
-    this._message = this._definition && this._definition.message;
+    this._definition = field.definition.validators?.[key];
+    this._message = this._definition?.message;
     this.init();
   }
 

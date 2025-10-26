@@ -66,10 +66,10 @@ describe('MatDynamicFormModalComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const formWrapperElement = document.querySelector('.dynamic-form-wrapper');
-      const formElement = formWrapperElement.querySelector('div.dynamic-form') as HTMLDivElement;
-      const modalElement = formElement.querySelector('div.dynamic-form-modal') as HTMLDivElement;
-      const modalHeaderElement = modalElement.querySelector('div.modal-header') as HTMLDivElement;
-      const modalBodyElement = modalElement.querySelector('.modal-body') as HTMLDivElement;
+      const formElement = formWrapperElement.querySelector('div.dynamic-form');
+      const modalElement = formElement.querySelector('div.dynamic-form-modal');
+      const modalHeaderElement = modalElement.querySelector<HTMLElement>('div.modal-header');
+      const modalBodyElement = modalElement.querySelector('.modal-body');
 
       expect(component.isOpen).toBeTrue();
       expect(formWrapperElement).toBeTruthy();

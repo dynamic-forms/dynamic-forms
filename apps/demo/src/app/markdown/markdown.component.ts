@@ -5,9 +5,9 @@ import { MarkdownElement } from './markdown.element';
 @Component({
   selector: 'app-markdown',
   imports: [DynamicFormMarkdownComponent],
-  providers: [DynamicFormMarkdownService],
   templateUrl: './markdown.component.html',
   styleUrl: './markdown.component.scss',
+  providers: [DynamicFormMarkdownService],
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;

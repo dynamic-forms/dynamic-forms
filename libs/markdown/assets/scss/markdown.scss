@@ -1,7 +1,7 @@
 @use '@dynamic-forms/markdown/assets/scss/variables' as variables;
 
 .dynamic-form-markdown {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   a {
     color: variables.$dynamic-form-markdown-link-color;
@@ -16,7 +16,7 @@
     code {
       display: inline;
       padding: 0;
-      word-wrap: normal;
+      overflow-wrap: normal;
       background-color: transparent;
     }
   }

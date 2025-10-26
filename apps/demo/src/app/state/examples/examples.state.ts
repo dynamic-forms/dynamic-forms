@@ -16,7 +16,7 @@ export class ExamplesState {
 
   @Selector()
   static menuItems(state: Examples): ExampleMenuItem[] {
-    return state && state.menu ? state.menu.items : undefined;
+    return state?.menu ? state.menu.items : undefined;
   }
 
   @Selector()
@@ -25,7 +25,7 @@ export class ExamplesState {
   }
 
   static example(id: string): (state: Examples) => Example {
-    return createSelector([ExamplesState], (state: Examples) => (state && state.examples ? state.examples[id] : undefined));
+    return createSelector([ExamplesState], (state: Examples) => (state?.examples ? state.examples[id] : undefined));
   }
 
   @Action(ExamplesInit)
@@ -38,7 +38,7 @@ export class ExamplesState {
   private getExamples(items: ExampleMenuItem[], path?: string): Record<string, Example> {
     return items.reduce((result, item) => {
       const group = item as ExampleMenuGroup;
-      if (group.items && group.items.length) {
+      if (group.items?.length) {
         const groupId = group.groupId;
         const groupPath = groupId && path ? `${path}/${groupId}` : groupId || path;
         return { ...result, ...this.getExamples(group.items, groupPath) };
