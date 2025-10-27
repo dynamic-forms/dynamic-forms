@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DYNAMIC_FORM_ACTION_TYPE_CONFIG,
@@ -101,71 +101,71 @@ describe('MatDynamicFormDialogComponent', () => {
       expect(footerElement).toBeNull();
     });
 
-    it('renders theme', waitForAsync(() => {
+    it('renders theme', async () => {
       component.theme = 'theme';
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.theme');
 
         expect(formWrapperElement).toBeTruthy();
       });
-    }));
+    });
 
-    it('renders title', waitForAsync(() => {
+    it('renders title', async () => {
       component.title = 'Title';
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
         const titleElement = headerElement.querySelector<HTMLElement>('.modal-title');
 
         expect(titleElement.innerText).toBe('Title');
       });
-    }));
+    });
 
-    it('renders title html', waitForAsync(() => {
+    it('renders title html', async () => {
       component.titleHtml = '<b>Title</b>';
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
         const titleElement = headerElement.querySelector('.modal-title');
 
         expect(titleElement.innerHTML).toBe('<b>Title</b>');
       });
-    }));
+    });
 
-    it('renders header actions', waitForAsync(() => {
+    it('renders header actions', async () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.headerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const headerElement = modalElement.querySelector('.modal-header');
         const toolbarDebugElement = headerElement.querySelector('.modal-toolbar');
 
         expect(toolbarDebugElement).toBeTruthy();
       });
-    }));
+    });
 
-    it('renders footer actions', waitForAsync(() => {
+    it('renders footer actions', async () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.footerActions = [{ classType: 'action', type } as DynamicFormAction];
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const modalElement = document.querySelector('.dynamic-form-modal');
         const footerElement = modalElement.querySelector('.modal-footer');
 
         expect(footerElement).toBeTruthy();
       });
-    }));
+    });
 
-    it('renders class names', waitForAsync(() => {
+    it('renders class names', async () => {
       const type = { type: 'action', component: DynamicFormActionTestComponent } as any as DynamicFormActionType;
       component.theme = 'theme';
       component.title = 'Title';
@@ -180,7 +180,7 @@ describe('MatDynamicFormDialogComponent', () => {
       component.classNameTitle = 'class-title';
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.theme');
         const formElement = formWrapperElement.querySelector('.dynamic-form.class-form');
         const modalElement = formElement.querySelector('.dynamic-form-modal.class-modal');
@@ -203,7 +203,7 @@ describe('MatDynamicFormDialogComponent', () => {
         expect(titleElement).toBeTruthy();
         expect(toolbarElement).toBeTruthy();
       });
-    }));
+    });
   });
 
   describe('opened maximized', () => {
@@ -213,9 +213,9 @@ describe('MatDynamicFormDialogComponent', () => {
       fixture.detectChanges();
     });
 
-    it('renders maximized class names', waitForAsync(() => {
+    it('renders maximized class names', async () => {
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         const formWrapperElement = document.querySelector('.dynamic-form-wrapper.maximized');
         const formElement = formWrapperElement.querySelector('.dynamic-form.maximized');
         const modalElement = formElement.querySelector('.dynamic-form-modal.maximized');
@@ -228,7 +228,7 @@ describe('MatDynamicFormDialogComponent', () => {
 
         expect(bodyElement).toBeTruthy();
       });
-    }));
+    });
 
     it('updates size', () => {
       const overlayElement = document.querySelector<HTMLElement>('.cdk-overlay-pane');
