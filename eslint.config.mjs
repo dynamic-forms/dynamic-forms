@@ -38,6 +38,7 @@ export default tseslint.config(
     },
     rules: {
       "@angular-eslint/use-injectable-provided-in": "off",
+      "@angular-eslint/prefer-host-metadata-property": "off",
       "@angular-eslint/prefer-inject": "off",
       "@angular-eslint/prefer-on-push-component-change-detection": "off",
       "@angular-eslint/prefer-signals": "off",
@@ -92,7 +93,7 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/no-inferrable-types": "off",
       "@typescript-eslint/no-unsafe-argument": "off",
       "@typescript-eslint/no-unsafe-assignment": "off",

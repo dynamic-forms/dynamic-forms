@@ -33,7 +33,6 @@ export class DynamicFormComponentFactory {
       case 'action':
         return this.createActionComponent(ref, element as DynamicFormAction);
       default:
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         this.handleError(DynamicFormErrorType.ClassType, `Class type ${element.classType} is not defined`);
         return undefined;
     }
