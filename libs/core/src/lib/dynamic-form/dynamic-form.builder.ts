@@ -235,7 +235,6 @@ export class DynamicFormBuilder {
           case 'action':
             return this.createFormActionForFactory(root, parent, elementDefintion as DynamicFormActionDefinition);
           default:
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             this.handleError(DynamicFormErrorType.ClassType, `Class type ${classType} is not defined`);
             return undefined;
         }
@@ -311,7 +310,6 @@ export class DynamicFormBuilder {
   }
 
   getActionId(action: DynamicFormAction): string {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     return !action.id ? `${action.template.action}-${this.createId()}` : action.id;
   }
 
