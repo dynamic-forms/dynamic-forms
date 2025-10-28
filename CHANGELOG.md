@@ -1,6 +1,12 @@
 # Changelog
 
-## 20.0.0-next.0
+## 20.0.0-rc.0
+
+### General
+
+* update of peer dependencies: marked (16.0.0)
+
+## 20.0.0-next.0 (2025-10-27)
 
 ### General
 

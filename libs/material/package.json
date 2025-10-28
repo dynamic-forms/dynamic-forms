@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/material",
-  "version": "20.0.0-next.0",
+  "version": "20.0.0-rc.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using material",
   "keywords": [
@@ -24,8 +24,8 @@
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
-    "@angular/material": "^20.0.1",
-    "@dynamic-forms/core": "20.0.0-next.0",
+    "@angular/material": "^20.0.0",
+    "@dynamic-forms/core": "20.0.0-rc.0",
     "bootstrap": "^5.3.6",
     "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
