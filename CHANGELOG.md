@@ -1,6 +1,10 @@
 # Changelog
 
-## 20.0.0-rc.0
+## 20.0.0
+
+* Release without any notable changes in comparison to 20.0.0-rc.0
+
+## 20.0.0-rc.0  (2025-10-28)
 
 ### General
 
