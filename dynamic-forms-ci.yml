@@ -8,9 +8,9 @@ pool:
 
 variables:
 - name: branch_pattern
-  value: 20.*.x
+  value: 21.*.x
 - name: major_version_name
-  value: v20
+  value: v21
 
 steps:
 - task: UseNode@1

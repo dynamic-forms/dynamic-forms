@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     junitReporter: {
-      outputDir: require('path').join(__dirname, '../../dist/v20/tests'),
+      outputDir: require('path').join(__dirname, '../../dist/v21/tests'),
       outputFile: 'dynamic-forms-core.junit.xml',
       useBrowserName: false
     },
