@@ -28,9 +28,9 @@ describe('DynamicFormMarkdownModule', () => {
       expect(types[0].libraryName).toEqual(dynamicFormLibrary.name);
     }));
 
-    it('does not provide DynamicFormMarkdownService', () => {
-      expect(() => TestBed.inject(DynamicFormMarkdownService)).toThrowError();
-    });
+    it('provides DynamicFormMarkdownService', inject([DynamicFormMarkdownService], (service: DynamicFormMarkdownService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe('with providers of BrowserModule and HttpClientModule', () => {
