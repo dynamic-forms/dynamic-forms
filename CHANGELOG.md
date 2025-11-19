@@ -1,5 +1,18 @@
 # Changelog
 
+## 21.0.0-next.0
+
+### General
+
+* update of peer dependencies: marked (17.0.0)
+
+### Features
+
+* **core:** update to angular 21
+* **bootstrap:** update to angular 21
+* **material:** update to angular and angular material 21
+* **markdown:** update to angular 21
+
 ## 20.0.0 (2025-11-03)
 
 * Release without any notable changes in comparison to 20.0.0-rc.0

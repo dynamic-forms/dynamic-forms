@@ -7,7 +7,6 @@ import { PreferencesState } from '../state/preferences/preferences.state';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  themeClass$: any;
   constructor(
     private store: Store,
     private destroyRef: DestroyRef,

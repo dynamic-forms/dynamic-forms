@@ -3,12 +3,14 @@
 }
 @if (trustedSourceUrl()) {
   <iframe
+    #iframe
     frameborder="0"
     width="100%"
     onload="this.height=this.contentWindow.document.body.scrollHeight;"
     [src]="trustedSourceUrl()"
     [scrolling]="scrolling() ? 'yes' : 'no'"
     [class.scrolling]="scrolling()"
+    (load)="updateThemeClass()"
   >
   </iframe>
 }
