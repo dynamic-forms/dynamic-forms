@@ -21,10 +21,10 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^21.0.0-rc.0",
-    "@angular/core": "^21.0.0-rc.0",
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
     "@dynamic-forms/core": "21.0.0-next.0",
-    "marked": "^16.0.0",
+    "marked": "^17.0.0",
     "rxjs": "^7.4.0"
   },
   "publishConfig": {
