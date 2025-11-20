@@ -82,11 +82,11 @@
     "bootstrap": "^5.3.6",
     "inputmask": "^5.0.9",
     "marked": "^17.0.0",
-    "monaco-editor": "^0.50.0",
+    "monaco-editor": "^0.55.0",
     "rxjs": "^7.4.0",
     "tslib": "^2.8.1",
     "uuid": "^13.0.0",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.16.0"
   },
   "devDependencies": {
     "@angular/build": "^21.0.0",
