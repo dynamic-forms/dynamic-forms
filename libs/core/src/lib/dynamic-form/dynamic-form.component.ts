@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-conflicting-lifecycle */
 import { NgClass } from '@angular/common';
 import { Component, DoCheck, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
