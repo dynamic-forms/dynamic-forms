@@ -13,9 +13,9 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
   templateUrl: './dynamic-form-markdown.component.html',
 })
 export class DynamicFormMarkdownComponent<
-    Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
-    Definition extends DynamicFormMarkdownDefinition<Template> = DynamicFormMarkdownDefinition<Template>,
-  >
+  Template extends DynamicFormMarkdownTemplate = DynamicFormMarkdownTemplate,
+  Definition extends DynamicFormMarkdownDefinition<Template> = DynamicFormMarkdownDefinition<Template>,
+>
   extends DynamicFormElementBase<Template, Definition>
   implements OnInit, DoCheck
 {

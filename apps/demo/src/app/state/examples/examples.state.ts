@@ -11,21 +11,21 @@ import { EXAMPLES, Example, ExampleMenuGroup, ExampleMenuItem, Examples, Example
 export class ExamplesState {
   @Selector()
   static menu(state: Examples): ExamplesMenu {
-    return state ? state.menu : undefined;
+    return state?.menu;
   }
 
   @Selector()
   static menuItems(state: Examples): ExampleMenuItem[] {
-    return state?.menu ? state.menu.items : undefined;
+    return state?.menu?.items;
   }
 
   @Selector()
   static examples(state: Examples): Record<string, Example> {
-    return state ? state.examples : undefined;
+    return state?.examples;
   }
 
   static example(id: string): (state: Examples) => Example {
-    return createSelector([ExamplesState], (state: Examples) => (state?.examples ? state.examples[id] : undefined));
+    return createSelector([ExamplesState], (state: Examples) => state?.examples?.[id]);
   }
 
   @Action(ExamplesInit)

@@ -34,11 +34,6 @@ export class DocsComponent {
   }
 
   private setThemeClass(themeClass: ThemeClass): void {
-    const sourceUrl = this.sourceUrl();
-    if (!sourceUrl?.includes('docs')) {
-      return;
-    }
-
     const document = this.iframe()?.nativeElement.contentWindow?.document;
     if (!document) {
       return;

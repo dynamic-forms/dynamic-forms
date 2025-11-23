@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IconService } from './services/icon.service';
-import { ThemeService } from './services/theme-service';
+import { ThemeService } from './services/theme.service';
 import { ConfigService } from './state/config/config.service';
 import { ExamplesService } from './state/examples/examples.service';
 import { RoutingHandler } from './state/routing/routing.handler';

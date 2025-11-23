@@ -28,12 +28,7 @@ export class PreferencesMenuComponent {
   constructor(private store: Store) {
     this.model$ = this.store.select(PreferencesState.preferences).pipe(
       filter(preferences => preferences !== this.dynamicForm()?.form()?.value),
-      map((preferences: Preferences) => {
-        if (preferences) {
-          return cloneObject(preferences);
-        }
-        return {} as any;
-      }),
+      map((preferences: Preferences) => cloneObject(preferences)),
     );
     this.data$ = this.model$.pipe(
       map(model => {

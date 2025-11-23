@@ -12,10 +12,10 @@ import { DynamicFormActionService } from './dynamic-form-action.service';
 
 @Directive({})
 export abstract class DynamicFormActionBase<
-    Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
-    Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
-    Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>,
-  >
+  Template extends DynamicFormActionTemplate = DynamicFormActionTemplate,
+  Definition extends DynamicFormActionDefinition<Template> = DynamicFormActionDefinition<Template>,
+  Action extends DynamicFormAction<Template, Definition> = DynamicFormAction<Template, Definition>,
+>
   extends DynamicFormElementBase<Template, Definition, Action>
   implements DoCheck
 {

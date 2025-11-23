@@ -10,10 +10,10 @@ import { DynamicFormElementTemplate } from './dynamic-form-element-template';
   templateUrl: './dynamic-form-element.component.html',
 })
 export class DynamicFormElementComponent<
-    Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
-    Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
-    Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
-  >
+  Template extends DynamicFormElementTemplate = DynamicFormElementTemplate,
+  Definition extends DynamicFormElementDefinition<Template> = DynamicFormElementDefinition<Template>,
+  Element extends DynamicFormElement<Template, Definition> = DynamicFormElement<Template, Definition>,
+>
   extends DynamicFormElementBase<Template, Definition, Element>
   implements OnInit
 {

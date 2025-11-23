@@ -30,7 +30,6 @@ steps:
   displayName: npm test demo
 - task: PublishTestResults@2
   displayName: Publish test results
-  continueOnError: True
   inputs:
     testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
 - task: PublishCodeCoverageResults@1
@@ -42,7 +41,6 @@ steps:
   displayName: npm cover libs
 - script: npm run doc:libs
   displayName: npm doc libs
-  continueOnError: True
 - script: npm run build:demo:prod -- --base-href=#{BaseHref}#
   displayName: npm build demo
 - task: PublishBuildArtifacts@1

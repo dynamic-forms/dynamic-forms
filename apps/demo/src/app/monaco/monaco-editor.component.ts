@@ -19,7 +19,14 @@ import { Store } from '@ngxs/store';
 import { BehaviorSubject, distinctUntilChanged, first, tap } from 'rxjs';
 import { ThemeClass } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
-import { MonacoEditor, MonacoEditorDisposable, MonacoEditorOptions, MonacoEditorUpdateType, MonacoModule } from './monaco-editor';
+import {
+  MONACO_REF,
+  MonacoEditor,
+  MonacoEditorDisposable,
+  MonacoEditorOptions,
+  MonacoEditorUpdateType,
+  MonacoModule,
+} from './monaco-editor';
 import { MonacoEditorService } from './monaco-editor.service';
 
 declare let monaco: MonacoModule;
@@ -29,7 +36,7 @@ declare let monaco: MonacoModule;
   imports: [AsyncPipe, MatButtonModule, MatMenuModule],
   templateUrl: './monaco-editor.component.html',
   styleUrl: './monaco-editor.component.scss',
-  providers: [MonacoEditorService],
+  providers: [MonacoEditorService, { provide: MONACO_REF, useValue: window }],
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private readonly _fileLoading = new BehaviorSubject<boolean>(false);
@@ -53,13 +60,12 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
     private monacoEditorService: MonacoEditorService,
     private destroyRef: DestroyRef,
   ) {
-    this.monacoEditorService.load();
+    this.monacoEditorService.init();
   }
 
   ngOnChanges({ value }: SimpleChanges): void {
-    const valueValue = this.value();
-    if (!value.firstChange && value.previousValue !== value.currentValue && value.currentValue !== valueValue) {
-      this._editor.setValue(valueValue);
+    if (!value.firstChange && value.previousValue !== value.currentValue) {
+      this._editor.setValue(value.currentValue);
     }
   }
 
