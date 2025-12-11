@@ -10,6 +10,7 @@ describe('ProgressState', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ProgressState])],
+      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

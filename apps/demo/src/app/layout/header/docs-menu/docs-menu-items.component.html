@@ -1,3 +1,10 @@
-<a mat-menu-item target="_blank" [href]="repository() | appCodeUrl: library()">Code</a>
-<a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', library(), 'doc']">Code Doc</a>
-<a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', library(), 'coverage']">Code Coverage</a>
+@if (library(); as library) {
+  <a mat-menu-item target="_blank" [href]="repository() | appCodeUrl: { library }">Code</a>
+  <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', library, 'doc']">Code Doc</a>
+  <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', library, 'coverage']">Code Coverage</a>
+}
+
+@if (app(); as app) {
+  <a mat-menu-item target="_blank" [href]="repository() | appCodeUrl: { app }">Code</a>
+  <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', app, 'coverage']">Code Coverage</a>
+}

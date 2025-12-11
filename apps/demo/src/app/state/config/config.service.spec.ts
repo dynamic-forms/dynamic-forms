@@ -15,6 +15,7 @@ describe('ConfigService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideHttpClientTesting(), provideStore([ConfigState])],
+      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

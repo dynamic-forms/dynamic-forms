@@ -13,6 +13,7 @@ describe('DocsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
+      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
@@ -25,7 +26,7 @@ describe('DocsComponent', () => {
   });
 
   it('has trusted source url and iframe', () => {
-    fixture.componentRef.setInput('sourceUrl', './assets/testing/light.html');
+    fixture.componentRef.setInput('sourceUrl', './assets/testing/light/index.html');
     fixture.detectChanges();
 
     expect(component.trustedSourceUrl()).toBeTruthy();

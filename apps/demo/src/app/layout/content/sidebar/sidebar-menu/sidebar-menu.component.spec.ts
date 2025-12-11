@@ -17,6 +17,7 @@ describe('SidebarMenuComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideRouter([]), provideStore([ConfigState, ExamplesState])],
+      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
@@ -44,7 +45,7 @@ describe('SidebarMenuComponent', () => {
 
     expect(treeDataSource.data[1].label).toBe('Docs');
     expect(treeDataSource.data[1].route).toBeUndefined();
-    expect(treeDataSource.data[1].children.length).toBe(5);
+    expect(treeDataSource.data[1].children.length).toBe(6);
     expect(treeDataSource.data[1].children[0].label).toBe('Core');
     expect(treeDataSource.data[1].children[0].children.length).toBe(2);
     expect(treeDataSource.data[1].children[0].children[0].label).toBe('Code Doc');
@@ -61,8 +62,11 @@ describe('SidebarMenuComponent', () => {
     expect(treeDataSource.data[1].children[3].children.length).toBe(2);
     expect(treeDataSource.data[1].children[3].children[0].label).toBe('Code Doc');
     expect(treeDataSource.data[1].children[3].children[1].label).toBe('Code Coverage');
-    expect(treeDataSource.data[1].children[4].label).toBe('Changelog');
-    expect(treeDataSource.data[1].children[4].children).toBeUndefined();
+    expect(treeDataSource.data[1].children[4].label).toBe('Demo');
+    expect(treeDataSource.data[1].children[4].children.length).toBe(1);
+    expect(treeDataSource.data[1].children[4].children[0].label).toBe('Code Coverage');
+    expect(treeDataSource.data[1].children[5].label).toBe('Changelog');
+    expect(treeDataSource.data[1].children[5].children).toBeUndefined();
 
     expect(treeDataSource.data[2].label).toBe('Examples');
     expect(treeDataSource.data[2].route).toBeUndefined();
@@ -93,6 +97,7 @@ describe('SidebarMenuComponent', () => {
       branch: '21.0.x',
       branchPath: 'tree/{{branch}}',
       libraryPath: 'libs/{{library}}',
+      appPath: 'apps/{{app}}',
     };
     const items = [
       { id: 'id1', label: 'Example 1' },
@@ -112,7 +117,7 @@ describe('SidebarMenuComponent', () => {
 
     expect(treeDataSource.data[1].label).toBe('Docs');
     expect(treeDataSource.data[1].route).toBeUndefined();
-    expect(treeDataSource.data[1].children.length).toBe(5);
+    expect(treeDataSource.data[1].children.length).toBe(6);
     expect(treeDataSource.data[1].children[0].label).toBe('Core');
     expect(treeDataSource.data[1].children[0].children.length).toBe(3);
     expect(treeDataSource.data[1].children[0].children[0].label).toBe('Code');
@@ -133,8 +138,12 @@ describe('SidebarMenuComponent', () => {
     expect(treeDataSource.data[1].children[3].children[0].label).toBe('Code');
     expect(treeDataSource.data[1].children[3].children[1].label).toBe('Code Doc');
     expect(treeDataSource.data[1].children[3].children[2].label).toBe('Code Coverage');
-    expect(treeDataSource.data[1].children[4].label).toBe('Changelog');
-    expect(treeDataSource.data[1].children[4].children).toBeUndefined();
+    expect(treeDataSource.data[1].children[4].label).toBe('Demo');
+    expect(treeDataSource.data[1].children[4].children.length).toBe(2);
+    expect(treeDataSource.data[1].children[4].children[0].label).toBe('Code');
+    expect(treeDataSource.data[1].children[4].children[1].label).toBe('Code Coverage');
+    expect(treeDataSource.data[1].children[5].label).toBe('Changelog');
+    expect(treeDataSource.data[1].children[5].children).toBeUndefined();
 
     expect(treeDataSource.data[2].label).toBe('Examples');
     expect(treeDataSource.data[2].route).toBeUndefined();

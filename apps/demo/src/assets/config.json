@@ -12,6 +12,7 @@
     "branch": "21.0.x",
     "branchPath": "tree/{{branch}}",
     "libraryPath": "libs/{{library}}",
+    "appPath": "apps/{{app}}",
     "commit": null
   },
   "versions": [
