@@ -7,10 +7,10 @@ import { DynamicFormItemsTemplate } from './dynamic-form-items-template';
 
 @Directive({})
 export abstract class DynamicFormItemsBase<
-    Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
-    Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
-    Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>,
-  >
+  Template extends DynamicFormItemsTemplate = DynamicFormItemsTemplate,
+  Definition extends DynamicFormItemsDefinition<Template> = DynamicFormItemsDefinition<Template>,
+  Items extends DynamicFormItems<Template, Definition> = DynamicFormItems<Template, Definition>,
+>
   extends DynamicFormElementBase<Template, Definition, Items>
   implements DoCheck
 {

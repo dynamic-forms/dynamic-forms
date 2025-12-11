@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { MONACO_REF, MonacoRef } from './monaco-editor';
 
 @Injectable()
 export class MonacoEditorService {
-  private readonly _window = window as { require?: any; monaco?: any };
   private readonly _baseUrl = './assets/monaco-editor/min/vs';
 
   private readonly _loading = new BehaviorSubject(false);
@@ -12,8 +12,10 @@ export class MonacoEditorService {
   readonly loading$ = this._loading.asObservable();
   readonly loaded$ = this._loaded.asObservable();
 
-  load(): void {
-    if (typeof this._window.monaco === 'object') {
+  constructor(@Inject(MONACO_REF) private monacoRef: MonacoRef) {}
+
+  init(): void {
+    if (typeof this.monacoRef.monaco === 'object') {
       this._loaded.next(true);
       return;
     }
@@ -24,7 +26,7 @@ export class MonacoEditorService {
 
     this._loading.next(true);
 
-    if (this._window.require) {
+    if (this.monacoRef.require) {
       this.loadMonaco();
     } else {
       this.loadMonacoLoader();
@@ -32,8 +34,8 @@ export class MonacoEditorService {
   }
 
   private loadMonaco(): void {
-    this._window.require.config({ paths: { vs: `${this._baseUrl}` } });
-    this._window.require([`vs/editor/editor.main`], () => {
+    this.monacoRef.require.config({ paths: { vs: `${this._baseUrl}` } });
+    this.monacoRef.require([`vs/editor/editor.main`], () => {
       this._loading.next(false);
       this._loaded.next(true);
     });

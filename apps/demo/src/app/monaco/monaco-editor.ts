@@ -1,3 +1,4 @@
+import { InjectionToken } from '@angular/core';
 import * as monaco from 'monaco-editor';
 
 export type MonacoEditor = monaco.editor.IStandaloneCodeEditor;
@@ -20,3 +21,10 @@ export interface MonacoEditorModule {
 export interface MonacoModule {
   editor: MonacoEditorModule;
 }
+
+export interface MonacoRef {
+  require: any;
+  monaco: any;
+}
+
+export const MONACO_REF = new InjectionToken<MonacoRef>('MonacoRef');

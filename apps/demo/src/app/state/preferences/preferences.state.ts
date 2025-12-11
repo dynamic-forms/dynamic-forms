@@ -48,8 +48,8 @@ export class PreferencesState implements NgxsOnInit {
   }
 
   @Action(SetPreferences)
-  setPreferences(ctx: StateContext<Preferences>, { payload }: SetPreferences) {
-    ctx.setState(patch<Preferences>(payload));
+  setPreferences(ctx: StateContext<Preferences>, { preferences }: SetPreferences) {
+    ctx.setState(patch<Preferences>(preferences));
   }
 
   ngxsOnInit(ctx: StateContext<Preferences>) {

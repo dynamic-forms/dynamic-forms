@@ -21,7 +21,7 @@ module.exports = function (config) {
       useBrowserName: false
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, 'assets/coverage/demo'),
+      dir: require('path').join(__dirname, 'src/assets/coverage/demo'),
       subdir: '.',
       reporters: [
         { type: 'html' },

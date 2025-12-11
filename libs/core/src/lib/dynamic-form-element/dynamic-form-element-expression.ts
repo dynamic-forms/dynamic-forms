@@ -9,8 +9,7 @@ import { DynamicFormElementExpressionFunc } from './dynamic-form-element-express
 export class DynamicFormElementExpression<
   Data extends DynamicFormElementExpressionData = DynamicFormElementExpressionData,
   Func extends DynamicFormElementExpressionFunc<Data> = DynamicFormElementExpressionFunc<Data>,
-> implements DynamicFormExpression<Data, Func>
-{
+> implements DynamicFormExpression<Data, Func> {
   private _errorMessage: string;
 
   constructor(

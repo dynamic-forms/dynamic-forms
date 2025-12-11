@@ -12,6 +12,6 @@ export class ExamplesService {
   ) {}
 
   load(): void {
-    this.httpClient.get<ExamplesMenu>(`./assets/examples-menu.json`).subscribe(menu => this.store.dispatch(new ExamplesInit(menu)));
+    this.httpClient.get<ExamplesMenu>('./assets/examples-menu.json').subscribe(menu => this.store.dispatch(new ExamplesInit(menu)));
   }
 }
