@@ -38,12 +38,14 @@ describe('MaterialFormModule', () => {
         expect(library).toEqual(matDynamicFormLibrary);
       }));
 
-      it('provides DYNAMIC_FORM_THEME being undefined', inject([DYNAMIC_FORM_THEME], (theme: string) => {
+      it('provides DYNAMIC_FORM_THEME', inject([DYNAMIC_FORM_THEME], (theme: string) => {
         expect(theme).toBe('material');
       }));
 
-      it('provides DYNAMIC_FORM_ID_BUILDER being undefined', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
+      it('provides DYNAMIC_FORM_ID_BUILDER', inject([DYNAMIC_FORM_ID_BUILDER], (service: DynamicFormIdBuilder) => {
         expect(service).toBeTruthy();
+        expect(service.createId).toEqual(jasmine.any(Function));
+        expect(service.createId()).toBeInstanceOf(String);
       }));
 
       it('provides DynamicFormLibraryService', inject([DynamicFormLibraryService], (service: DynamicFormLibraryService) => {

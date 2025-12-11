@@ -22,7 +22,7 @@ export class RoutingHandler {
       const notificationItem = this.getNotificationItem(event);
       this.store.dispatch([new ProgressItemPop({ id: event.id }), new NotificationItemPush(notificationItem)]);
     } else if (event instanceof NavigationEnd) {
-      this.store.dispatch([new ProgressItemPop({ id: event.id })]);
+      this.store.dispatch(new ProgressItemPop({ id: event.id }));
     }
   }
 

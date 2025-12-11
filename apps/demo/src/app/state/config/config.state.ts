@@ -11,12 +11,12 @@ import { CONFIG, Config, Repository, Version } from './config.model';
 export class ConfigState {
   @Selector()
   static repository(state: Config): Repository {
-    return state ? state.repository : undefined;
+    return state?.repository;
   }
 
   @Selector()
   static versions(state: Config): Version[] {
-    return state ? state.versions : undefined;
+    return state?.versions;
   }
 
   @Action(ConfigInit)

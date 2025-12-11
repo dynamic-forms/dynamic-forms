@@ -324,7 +324,17 @@
             "karmaConfig": "apps/demo/karma.conf.js",
             "assets": [
               "apps/demo/src/favicon.ico",
-              "apps/demo/src/assets"
+              "apps/demo/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min/vs",
+                "output": "assets/monaco-editor/min/vs"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min-maps/vs",
+                "output": "assets/monaco-editor/min-maps/vs"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

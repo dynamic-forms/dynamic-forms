@@ -68,14 +68,8 @@ export abstract class DynamicFormFieldValidatorBase<
     Control,
     ValidatorResult
   >,
-  ValidatorFactory extends DynamicFormFieldValidatorBaseFactory<
-    Value,
-    Model,
-    Control,
-    Field,
-    ValidatorResult,
-    ValidatorFn
-  > = DynamicFormFieldValidatorBaseFactory<Value, Model, Control, Field, ValidatorResult, ValidatorFn>,
+  ValidatorFactory extends DynamicFormFieldValidatorBaseFactory<Value, Model, Control, Field, ValidatorResult, ValidatorFn> =
+    DynamicFormFieldValidatorBaseFactory<Value, Model, Control, Field, ValidatorResult, ValidatorFn>,
 > {
   private _factory: ValidatorFactory;
   private _key: string;
@@ -189,13 +183,8 @@ export abstract class DynamicFormFieldAsyncValidator<
   Control extends DynamicFormFieldControl<Value> = DynamicFormFieldControl<Value>,
   Field extends DynamicFormField<Value, Model, Control> = DynamicFormField<Value, Model, Control>,
   ValidatorFn extends DynamicFormFieldAsyncValidatorFn<Value, Control> = DynamicFormFieldAsyncValidatorFn<Value, Control>,
-  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory<
-    Value,
-    Model,
-    Control,
-    Field,
-    ValidatorFn
-  > = DynamicFormFieldAsyncValidatorFactory<Value, Model, Control, Field, ValidatorFn>,
+  ValidatorFactory extends DynamicFormFieldAsyncValidatorFactory<Value, Model, Control, Field, ValidatorFn> =
+    DynamicFormFieldAsyncValidatorFactory<Value, Model, Control, Field, ValidatorFn>,
 > extends DynamicFormFieldValidatorBase<Value, Model, Control, Field, DynamicFormAsyncValidatorResult, ValidatorFn, ValidatorFactory> {
   readonly async = true;
 
