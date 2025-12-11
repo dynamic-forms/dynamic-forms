@@ -9,6 +9,7 @@ export interface Repository {
   branch: string;
   branchPath: string;
   libraryPath: string;
+  appPath: string;
 }
 
 export interface Version {

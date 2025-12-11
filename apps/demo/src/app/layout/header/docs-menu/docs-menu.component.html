@@ -8,6 +8,7 @@
     <a mat-menu-item routerLink="/docs/bootstrap" [matMenuTriggerFor]="bootstrapDocs">Bootstrap</a>
     <a mat-menu-item routerLink="/docs/material" [matMenuTriggerFor]="materialDocs">Material</a>
     <a mat-menu-item routerLink="/docs/markdown" [matMenuTriggerFor]="markdownDocs">Markdown</a>
+    <a mat-menu-item routerLink="/docs/demo" [matMenuTriggerFor]="demoDocs">Demo</a>
     <a mat-menu-item routerLink="/docs/changelog" routerLinkActive="router-link-active">Changelog</a>
   </mat-menu>
 
@@ -25,5 +26,9 @@
 
   <mat-menu #markdownDocs="matMenu">
     <app-docs-menu-items library="markdown" [repository]="repository" />
+  </mat-menu>
+
+  <mat-menu #demoDocs="matMenu">
+    <app-docs-menu-items app="demo" [repository]="repository" />
   </mat-menu>
 }

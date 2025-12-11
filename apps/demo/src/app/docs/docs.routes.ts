@@ -111,6 +111,24 @@ export const docsRoutes: Routes = [
     ],
   },
   {
+    path: 'demo',
+    children: [
+      {
+        path: '',
+        redirectTo: 'coverage',
+        pathMatch: 'full',
+      },
+      {
+        path: 'coverage',
+        loadComponent: () => import('./docs.component').then(m => m.DocsComponent),
+        data: {
+          title: 'Demo - Code Coverage',
+          sourceUrl: './assets/coverage/demo/index.html',
+        },
+      },
+    ],
+  },
+  {
     path: 'changelog',
     loadComponent: () => import('./changelog.component').then(m => m.ChangelogComponent),
   },

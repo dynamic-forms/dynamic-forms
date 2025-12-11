@@ -12,4 +12,5 @@ import { CodeUrlPipe } from '../pipes/code-url.pipe';
 export class DocsMenuItemsComponent {
   readonly repository = input<Repository>(undefined);
   readonly library = input<string>(undefined);
+  readonly app = input<string>(undefined);
 }

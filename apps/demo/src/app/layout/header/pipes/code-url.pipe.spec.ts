@@ -6,6 +6,7 @@ describe('CodeUrlPipe', () => {
     branch: '21.0.x',
     branchPath: 'tree/{{branch}}',
     libraryPath: 'libs/{{library}}',
+    appPath: 'apps/{{app}}',
   };
 
   let pipe: CodeUrlPipe;
@@ -15,10 +16,14 @@ describe('CodeUrlPipe', () => {
   });
 
   it('returns branch path', () => {
-    expect(pipe.transform(repository, null)).toBe('https://github.com/dynamic-forms/dynamic-forms/tree/21.0.x');
+    expect(pipe.transform(repository)).toBe('https://github.com/dynamic-forms/dynamic-forms/tree/21.0.x');
   });
 
   it('returns branch path for library', () => {
-    expect(pipe.transform(repository, 'core')).toBe('https://github.com/dynamic-forms/dynamic-forms/tree/21.0.x/libs/core');
+    expect(pipe.transform(repository, { library: 'core' })).toBe('https://github.com/dynamic-forms/dynamic-forms/tree/21.0.x/libs/core');
+  });
+
+  it('returns branch path for app', () => {
+    expect(pipe.transform(repository, { app: 'demo' })).toBe('https://github.com/dynamic-forms/dynamic-forms/tree/21.0.x/apps/demo');
   });
 });

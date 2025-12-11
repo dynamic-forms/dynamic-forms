@@ -39,13 +39,14 @@ export class SidebarMenuComponent {
   hasChildren = (_: number, menuItem: any) => menuItem.children;
 
   private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): MatTreeNestedDataSource<SidebarMenuItem> {
-    const docsChildren = ['core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForDocs(library, repository));
+    const libDocsChildren = ['core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForLibDocs(library, repository));
+    const appDocsChildren = ['demo'].map(app => this.getMenuItemForAppDocs(app, repository));
     const examplesChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
     const editorChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
     const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
     treeDataSource.data = [
       { label: 'Home', route: '/home' },
-      { label: 'Docs', children: [...docsChildren, { label: 'Changelog', route: '/docs/changelog' }] },
+      { label: 'Docs', children: [...libDocsChildren, ...appDocsChildren, { label: 'Changelog', route: '/docs/changelog' }] },
       { label: 'Examples', children: examplesChildren },
       { label: 'Editor', children: editorChildren },
       { label: 'License', route: '/license' },
@@ -53,25 +54,34 @@ export class SidebarMenuComponent {
     return treeDataSource;
   }
 
-  private getLibraryName(library: string): string {
-    return library.slice(0, 1).toUpperCase() + library.slice(1);
+  private formatName(name: string): string {
+    return name.slice(0, 1).toUpperCase() + name.slice(1);
   }
 
-  private getMenuItemForDocs(library: string, repository: Repository): SidebarMenuItem {
+  private getMenuItemForLibDocs(library: string, repository: Repository): SidebarMenuItem {
     const children = [
       { label: 'Code Doc', route: `/docs/${library}/doc` },
       { label: 'Code Coverage', route: `/docs/${library}/coverage` },
     ] as SidebarMenuItem[];
     if (repository) {
-      const href = this.codeUrlPipe.transform(repository, library);
+      const href = this.codeUrlPipe.transform(repository, { library });
       children.splice(0, 0, { label: 'Code', href });
     }
-    return { label: this.getLibraryName(library), children };
+    return { label: this.formatName(library), children };
+  }
+
+  private getMenuItemForAppDocs(app: string, repository: Repository): SidebarMenuItem {
+    const children = [{ label: 'Code Coverage', route: `/docs/${app}/coverage` }] as SidebarMenuItem[];
+    if (repository) {
+      const href = this.codeUrlPipe.transform(repository, { app });
+      children.splice(0, 0, { label: 'Code', href });
+    }
+    return { label: this.formatName(app), children };
   }
 
   private getMenuItemForExamples(library: string, examples: ExampleMenuItem[]): SidebarMenuItem {
     return {
-      label: this.getLibraryName(library),
+      label: this.formatName(library),
       children: (examples || []).map(example => this.getMenuItemForExample(library, example)),
     };
   }
@@ -91,7 +101,7 @@ export class SidebarMenuComponent {
 
   private getMenuItemForEditors(library: string): SidebarMenuItem {
     return {
-      label: this.getLibraryName(library),
+      label: this.formatName(library),
       route: `/editor/${library}`,
     };
   }
