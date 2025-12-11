@@ -25,7 +25,7 @@ describe('DocsComponent', () => {
   });
 
   it('has trusted source url and iframe', () => {
-    fixture.componentRef.setInput('sourceUrl', './assets/testing/light.html');
+    fixture.componentRef.setInput('sourceUrl', './assets/testing/light/index.html');
     fixture.detectChanges();
 
     expect(component.trustedSourceUrl()).toBeTruthy();
