@@ -10,6 +10,7 @@ describe('ContentComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([LayoutState])],
+      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(ContentComponent);

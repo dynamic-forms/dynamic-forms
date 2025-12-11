@@ -11,6 +11,7 @@ describe('MonacoEditorComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
+      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(MonacoEditorComponent);
