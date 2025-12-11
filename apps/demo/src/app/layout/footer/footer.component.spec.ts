@@ -10,6 +10,7 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ConfigState])],
+      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(FooterComponent);

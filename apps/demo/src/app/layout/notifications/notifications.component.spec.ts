@@ -14,6 +14,7 @@ describe('NotificationsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([NotificationsState])],
+      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

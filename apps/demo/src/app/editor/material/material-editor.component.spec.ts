@@ -15,6 +15,7 @@ describe('MaterialEditorComponent', () => {
 
     TestBed.configureTestingModule({
       providers: [provideStore([]), MockProvider(ActivatedRoute, { data: routeData.asObservable() }, 'useValue')],
+      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(MaterialEditorComponent);
