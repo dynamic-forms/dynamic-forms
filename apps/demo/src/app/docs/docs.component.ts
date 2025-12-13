@@ -1,4 +1,4 @@
-import { Component, ElementRef, computed, input, viewChild } from '@angular/core';
+import { Component, ElementRef, computed, inject, input, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngxs/store';
@@ -12,16 +12,16 @@ import { PreferencesState } from '../state/preferences/preferences.state';
   styleUrl: './docs.component.scss',
 })
 export class DocsComponent {
+  private readonly store = inject(Store);
+  private readonly sanitizer = inject(DomSanitizer);
+
   readonly title = input<string>(undefined);
   readonly sourceUrl = input<string>(undefined);
   readonly scrolling = input<boolean>(undefined);
   readonly trustedSourceUrl = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.sourceUrl()));
   readonly iframe = viewChild<ElementRef<HTMLIFrameElement>>('iframe');
 
-  constructor(
-    private store: Store,
-    private sanitizer: DomSanitizer,
-  ) {
+  constructor() {
     this.store
       .select(PreferencesState.themeClass)
       .pipe(takeUntilDestroyed(), distinctUntilChanged())

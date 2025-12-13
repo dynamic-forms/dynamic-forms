@@ -3,8 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { CONFIG, Config } from '../../state/config/config.model';
+import { CONFIG } from '../../state/config/config.model';
 
 @Component({
   selector: 'app-footer',
@@ -13,5 +12,5 @@ import { CONFIG, Config } from '../../state/config/config.model';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  readonly config$: Observable<Config> = inject(Store).select(CONFIG);
+  readonly config$ = inject(Store).select(CONFIG);
 }

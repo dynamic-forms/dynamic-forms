@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { SetPreferences } from './preferences.actions';
@@ -19,7 +19,7 @@ import {
 })
 @Injectable()
 export class PreferencesState implements NgxsOnInit {
-  constructor(private media: MediaMatcher) {}
+  private readonly media = inject(MediaMatcher);
 
   @Selector()
   static preferences(state: Preferences): Preferences {

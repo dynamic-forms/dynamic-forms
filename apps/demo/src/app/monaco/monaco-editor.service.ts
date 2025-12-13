@@ -1,9 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { MONACO_REF, MonacoRef } from './monaco-editor';
+import { MONACO_REF } from './monaco-editor';
 
 @Injectable()
 export class MonacoEditorService {
+  private readonly monacoRef = inject(MONACO_REF);
   private readonly _baseUrl = './assets/monaco-editor/min/vs';
 
   private readonly _loading = new BehaviorSubject(false);
@@ -11,8 +12,6 @@ export class MonacoEditorService {
 
   readonly loading$ = this._loading.asObservable();
   readonly loaded$ = this._loaded.asObservable();
-
-  constructor(@Inject(MONACO_REF) private monacoRef: MonacoRef) {}
 
   init(): void {
     if (typeof this.monacoRef.monaco === 'object') {
