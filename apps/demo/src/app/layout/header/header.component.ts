@@ -6,8 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { CONFIG, Config } from '../../state/config/config.model';
+import { CONFIG } from '../../state/config/config.model';
 import { DocsMenuComponent } from './docs-menu/docs-menu.component';
 import { EditorMenuComponent } from './editor-menu/editor-menu.component';
 import { ExamplesMenuComponent } from './examples-menu/examples-menu.component';
@@ -38,16 +37,10 @@ import { VersionsMenuComponent } from './versions-menu/versions-menu.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  readonly docsQuery: MediaQueryList;
-  readonly examplesQuery: MediaQueryList;
-  readonly editorsQuery: MediaQueryList;
-  readonly versionsQuery: MediaQueryList;
-  readonly config$: Observable<Config> = inject(Store).select(CONFIG);
-
-  constructor(private media: MediaMatcher) {
-    this.docsQuery = this.media.matchMedia('(max-width: 825px)');
-    this.examplesQuery = this.media.matchMedia('(max-width: 450px)');
-    this.editorsQuery = this.media.matchMedia('(max-width: 550px)');
-    this.versionsQuery = this.media.matchMedia('(max-width: 675px)');
-  }
+  private readonly media = inject(MediaMatcher);
+  readonly docsQuery = this.media.matchMedia('(max-width: 825px)');
+  readonly examplesQuery = this.media.matchMedia('(max-width: 450px)');
+  readonly editorsQuery = this.media.matchMedia('(max-width: 550px)');
+  readonly versionsQuery = this.media.matchMedia('(max-width: 675px)');
+  readonly config$ = inject(Store).select(CONFIG);
 }

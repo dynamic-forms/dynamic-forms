@@ -1,5 +1,4 @@
 import { Directive, DoCheck, input, output, viewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { DynamicFormComponent, DynamicFormDefinition } from '@dynamic-forms/core';
 import { FormData } from './form-data';
 import { FormSubmitBase } from './form-submit-base';
@@ -15,10 +14,6 @@ export abstract class FormBase extends FormSubmitBase implements DoCheck {
   formDefinition: DynamicFormDefinition;
   formModel: any;
   formValue: any;
-
-  constructor(protected override dialog: MatDialog) {
-    super(dialog);
-  }
 
   ngDoCheck(): void {
     const form = this.form();

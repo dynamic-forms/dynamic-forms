@@ -5,8 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { LAYOUT, Layout } from '../../state/layout/layout.model';
+import { LAYOUT } from '../../state/layout/layout.model';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
@@ -16,10 +15,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   styleUrl: './content.component.scss',
 })
 export class ContentComponent {
-  readonly mobileQuery: MediaQueryList;
-  readonly layout$: Observable<Layout> = inject(Store).select(LAYOUT);
-
-  constructor(private media: MediaMatcher) {
-    this.mobileQuery = this.media.matchMedia('(max-width: 850px)');
-  }
+  readonly mobileQuery = inject(MediaMatcher).matchMedia('(max-width: 850px)');
+  readonly layout$ = inject(Store).select(LAYOUT);
 }

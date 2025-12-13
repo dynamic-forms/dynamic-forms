@@ -25,6 +25,7 @@ describe('RoutingHandler', () => {
 
     store = TestBed.inject(Store);
     routingHandler = TestBed.inject(RoutingHandler);
+    routingHandler.init();
   });
 
   it('creates service', () => {

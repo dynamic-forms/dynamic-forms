@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive } from '@angular/core';
+import { ChangeDetectorRef, Directive, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { FormEditorData } from './form-editor-data';
@@ -7,10 +7,10 @@ import { FormEditorData } from './form-editor-data';
 export abstract class FormEditorBase {
   private _data: FormEditorData;
 
-  constructor(
-    protected route: ActivatedRoute,
-    protected cdr: ChangeDetectorRef,
-  ) {
+  protected readonly route = inject(ActivatedRoute);
+  protected readonly cdr = inject(ChangeDetectorRef);
+
+  constructor() {
     this.route.data.pipe(takeUntilDestroyed()).subscribe(data => {
       const definition = data.definition;
       const model = data.model || {};

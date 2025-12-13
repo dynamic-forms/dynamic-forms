@@ -1,5 +1,5 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, Input, contentChild, output } from '@angular/core';
+import { Component, Input, contentChild, inject, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
@@ -21,6 +21,9 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
   styleUrl: './form-editor.component.scss',
 })
 export class FormEditorComponent {
+  private readonly store = inject(Store);
+  private readonly logger = inject(FormLogger);
+
   private _logs: DynamicFormLog[] = [];
   private _data: FormEditorData;
   private _value: string;
@@ -40,10 +43,7 @@ export class FormEditorComponent {
   readonly form = contentChild<FormBase>('form');
   readonly dataChange = output<FormEditorData>();
 
-  constructor(
-    private store: Store,
-    private logger: FormLogger,
-  ) {
+  constructor() {
     this.splitView$ = this.store
       .select(PreferencesState.formEditor)
       .pipe(map(preferences => preferences?.previewMode === FormEditorPreviewMode.SplitView));

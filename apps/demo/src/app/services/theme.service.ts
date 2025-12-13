@@ -1,4 +1,4 @@
-import { DestroyRef, Injectable } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -7,10 +7,8 @@ import { PreferencesState } from '../state/preferences/preferences.state';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  constructor(
-    private store: Store,
-    private destroyRef: DestroyRef,
-  ) {}
+  private readonly store = inject(Store);
+  private readonly destroyRef = inject(DestroyRef);
 
   init(): void {
     this.store

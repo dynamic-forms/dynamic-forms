@@ -5,8 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { Repository } from '../../../state/config/config.model';
 import { ConfigState } from '../../../state/config/config.state';
 import { DocsMenuItemsComponent } from './docs-menu-items.component';
 
@@ -16,5 +14,5 @@ import { DocsMenuItemsComponent } from './docs-menu-items.component';
   templateUrl: './docs-menu.component.html',
 })
 export class DocsMenuComponent {
-  readonly repository$: Observable<Repository> = inject(Store).select(ConfigState.repository);
+  readonly repository$ = inject(Store).select(ConfigState.repository);
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 import { AsyncValidatorFn, FormControl } from '@angular/forms';
-import { MockService } from 'ng-mocks';
+import { MockProvider } from 'ng-mocks';
 import { Observable, delay, firstValueFrom, of } from 'rxjs';
 import { dynamicFormControlUniqueUsernameValidatorFactory } from './dynamic-form-extensions';
 
@@ -10,8 +11,15 @@ describe('Dynamic Form Extensions', () => {
     let asyncValidatorFn: AsyncValidatorFn;
 
     beforeEach(() => {
-      httpClient = MockService(HttpClient);
-      asyncValidatorFn = dynamicFormControlUniqueUsernameValidatorFactory(null, null, null, null, [httpClient]);
+      TestBed.configureTestingModule({
+        providers: [MockProvider(HttpClient)],
+      });
+
+      httpClient = TestBed.inject(HttpClient);
+
+      TestBed.runInInjectionContext(() => {
+        asyncValidatorFn = dynamicFormControlUniqueUsernameValidatorFactory();
+      });
     });
 
     it('does not call http client and returns no error if value is empty', async () => {

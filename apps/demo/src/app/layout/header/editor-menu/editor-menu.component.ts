@@ -4,8 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { ExampleMenuItem } from '../../../state/examples/examples.model';
 import { ExamplesState } from '../../../state/examples/examples.state';
 import { EditorMenuPanelComponent } from './editor-menu-panel.component';
 
@@ -15,5 +13,5 @@ import { EditorMenuPanelComponent } from './editor-menu-panel.component';
   templateUrl: './editor-menu.component.html',
 })
 export class EditorMenuComponent {
-  readonly items$: Observable<ExampleMenuItem[]> = inject(Store).select(ExamplesState.menuItems);
+  readonly items$ = inject(Store).select(ExamplesState.menuItems);
 }

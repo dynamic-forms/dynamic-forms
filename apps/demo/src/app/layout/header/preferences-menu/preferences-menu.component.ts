@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -20,12 +20,13 @@ import preferencesDefinition from './preferences-form.json';
   templateUrl: './preferences-menu.component.html',
 })
 export class PreferencesMenuComponent {
+  private readonly store = inject(Store);
   readonly model$: Observable<Preferences>;
   readonly data$: Observable<FormData<Preferences>>;
 
   readonly dynamicForm = viewChild(MaterialFormComponent);
 
-  constructor(private store: Store) {
+  constructor() {
     this.model$ = this.store.select(PreferencesState.preferences).pipe(
       filter(preferences => preferences !== this.dynamicForm()?.form()?.value),
       map((preferences: Preferences) => cloneObject(preferences)),
