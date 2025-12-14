@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DynamicFormControlAsyncValidatorFn, DynamicFormControlAsyncValidatorType, dynamicFormLibrary } from '@dynamic-forms/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, map, of, switchMap, take } from 'rxjs';
 
-export const dynamicFormControlUniqueUsernameValidatorFactory = (): DynamicFormControlAsyncValidatorFn => {
-  const httpClient = inject(HttpClient);
+export const dynamicFormControlUniqueUsernameValidatorFactory = (
+  _,
+  __,
+  ___,
+  ____,
+  [httpClient]: [HttpClient],
+): DynamicFormControlAsyncValidatorFn => {
   const valueSubject = new BehaviorSubject(null);
   const valueError$ = valueSubject.pipe(
     distinctUntilChanged(),
@@ -28,11 +32,12 @@ export const dynamicFormControlUniqueUsernameValidatorFactory = (): DynamicFormC
   };
 };
 
-export const dynamicFormControlUniqueUsernameValidatorTypeFactory = (): DynamicFormControlAsyncValidatorType => {
+export const dynamicFormControlUniqueUsernameValidatorTypeFactory = (httpClient: HttpClient): DynamicFormControlAsyncValidatorType => {
   return {
     type: 'uniqueUsername',
     async: true,
     factory: dynamicFormControlUniqueUsernameValidatorFactory,
+    deps: [httpClient],
     libraryName: dynamicFormLibrary.name,
   };
 };
