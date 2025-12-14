@@ -5,6 +5,7 @@ import { PreferencesState } from '../../state/preferences/preferences.state';
 import { FormBase } from '../form-base';
 import { BootstrapFormModule } from './bootstrap-form.module';
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'app-bootstrap-form',
   imports: [BootstrapFormModule, AsyncPipe],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { MockProvider } from 'ng-mocks';
@@ -8,6 +8,7 @@ import { FormSubmitDialogComponent } from './form-submit-dialog.component';
 @Component({
   selector: 'app-test-form-submit',
   template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestFormSubmitComponent extends FormSubmitBase {}
 

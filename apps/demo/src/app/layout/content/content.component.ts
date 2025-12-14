@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [AsyncPipe, MatCardModule, MatSidenavModule, RouterOutlet, SidebarComponent],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent {
   readonly mobileQuery = inject(MediaMatcher).matchMedia('(max-width: 850px)');

@@ -1,5 +1,6 @@
-@if (data) {
+@let _data = data();
+@if (_data) {
   <app-form-editor [(data)]="data">
-    <app-bootstrap-form #form [data]="data" />
+    <app-bootstrap-form #form [data]="_data" />
   </app-form-editor>
 }

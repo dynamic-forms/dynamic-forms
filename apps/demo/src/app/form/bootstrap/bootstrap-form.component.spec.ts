@@ -21,14 +21,12 @@ describe('BootstrapFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('has form, definition, model and value ', () => {
+  it('has form and value ', () => {
     fixture.componentRef.setInput('data', { definition: { children: [] }, model: {} });
     fixture.detectChanges();
     fixture.detectChanges();
 
     expect(component.form()).toBeTruthy();
-    expect(component.formDefinition).toBeTruthy();
-    expect(component.formModel).toBeTruthy();
-    expect(component.formValue).toBeTruthy();
+    expect(component.value).toBeTruthy();
   });
 });

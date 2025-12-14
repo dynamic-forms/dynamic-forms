@@ -1,9 +1,4 @@
-@if (data()) {
-  <dynamic-form
-    #form
-    [definition]="data().definition"
-    [model]="data().model"
-    (formSubmit)="onFormSubmit($event)"
-    (valueChange)="valueChange.emit($event)"
-  />
+@let _data = data();
+@if (_data) {
+  <dynamic-form #form [definition]="_data.definition" [model]="_data.model" (formSubmit)="onFormSubmit($event)" />
 }

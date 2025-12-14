@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormErrorType, DynamicFormLog, DynamicFormLogLevel } from '@dynamic-forms/core';
 import { Store } from '@ngxs/store';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { bufferTime, filter } from 'rxjs/operators';
 import { FormBase } from '../form/form-base';
 import { FormLogger } from '../form/form-logger';
@@ -14,6 +14,7 @@ import { PreferencesState } from '../state/preferences/preferences.state';
 import { FormEditorData } from './form-editor-data';
 import { FormEditorLogsComponent } from './form-editor-logs.component';
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'app-form-editor',
   imports: [AsyncPipe, JsonPipe, MatTabsModule, MonacoEditorComponent, FormEditorLogsComponent],
@@ -23,11 +24,12 @@ import { FormEditorLogsComponent } from './form-editor-logs.component';
 export class FormEditorComponent {
   private readonly store = inject(Store);
   private readonly logger = inject(FormLogger);
+  private readonly logs = new BehaviorSubject<DynamicFormLog[]>([]);
 
-  private _logs: DynamicFormLog[] = [];
   private _data: FormEditorData;
   private _value: string;
 
+  readonly logs$ = this.logs.asObservable();
   readonly splitView$: Observable<boolean>;
 
   // eslint-disable-next-line @angular-eslint/prefer-signals
@@ -54,7 +56,7 @@ export class FormEditorComponent {
         filter(logs => logs.length > 0),
       )
       .subscribe(logs => {
-        this._logs = [...logs.reverse(), ...this._logs];
+        this.logs.next([...logs.reverse(), ...this.logs.value]);
       });
   }
 
@@ -65,15 +67,11 @@ export class FormEditorComponent {
     this.setValue(value);
   }
 
-  get logs(): DynamicFormLog[] {
-    return this._logs;
-  }
-
   private setValue(value: string) {
     this._value = value;
     try {
       this._data = { definition: JSON.parse(value), model: {} };
-      this._logs = [];
+      this.logs.next([]);
       this.dataChange.emit(this._data);
     } catch (error) {
       const log = {

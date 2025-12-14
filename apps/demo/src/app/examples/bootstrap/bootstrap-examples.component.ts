@@ -4,6 +4,7 @@ import { BootstrapFormComponent } from '../../form/bootstrap/bootstrap-form.comp
 import { FormExampleBase } from '../form-example-base';
 import { FormExampleComponent } from '../form-example.component';
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'app-bootstrap-examples',
   imports: [AsyncPipe, FormExampleComponent, BootstrapFormComponent],

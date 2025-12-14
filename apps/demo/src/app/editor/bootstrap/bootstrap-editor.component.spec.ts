@@ -33,7 +33,7 @@ describe('BootstrapEditorComponent', () => {
 
     routeData.next(data);
 
-    expect(component.data).toEqual(data);
+    expect(component.data()).toEqual(data);
   });
 
   it('has data from route without model', () => {
@@ -42,16 +42,6 @@ describe('BootstrapEditorComponent', () => {
 
     routeData.next(data);
 
-    expect(component.data).toEqual({ definition, model: {} });
-  });
-
-  it('has data from setter', () => {
-    const definition = { children: [] };
-    const model = {};
-    const data = { definition, model };
-
-    component.data = data;
-
-    expect(component.data).toEqual(data);
+    expect(component.data()).toEqual({ definition, model: {} });
   });
 });

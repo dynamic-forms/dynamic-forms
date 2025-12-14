@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data } from '@angular/router';
@@ -11,6 +11,7 @@ import { FormExampleBase } from './form-example-base';
 @Component({
   selector: 'app-test-form-example',
   template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestFormExampleComponent extends FormExampleBase {}
 

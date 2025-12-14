@@ -22,7 +22,9 @@ export default tseslint.config(
           style: "camelCase"
         }
       ],
-      "@angular-eslint/prefer-signals": "error"
+      "@angular-eslint/prefer-inject": "error",
+      "@angular-eslint/prefer-on-push-component-change-detection": "error",
+      "@angular-eslint/prefer-signals": "error",
     },
   },
   {

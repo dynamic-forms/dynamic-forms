@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,6 +18,7 @@ import preferencesDefinition from './preferences-form.json';
   selector: 'app-preferences-menu',
   imports: [AsyncPipe, MatButtonModule, MatIconModule, MatMenuModule, MaterialFormComponent],
   templateUrl: './preferences-menu.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PreferencesMenuComponent {
   private readonly store = inject(Store);
