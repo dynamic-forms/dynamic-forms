@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
@@ -38,6 +39,7 @@ declare let monaco: MonacoModule;
   templateUrl: './monaco-editor.component.html',
   styleUrl: './monaco-editor.component.scss',
   providers: [MonacoEditorService, { provide: MONACO_REF, useValue: window }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private readonly store = inject(Store);

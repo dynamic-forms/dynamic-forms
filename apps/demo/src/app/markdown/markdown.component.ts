@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
 import { DynamicFormMarkdownComponent, DynamicFormMarkdownService } from '@dynamic-forms/markdown';
 import { MarkdownElement } from './markdown.element';
 
@@ -8,6 +8,7 @@ import { MarkdownElement } from './markdown.element';
   templateUrl: './markdown.component.html',
   styleUrl: './markdown.component.scss',
   providers: [DynamicFormMarkdownService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   element: MarkdownElement;

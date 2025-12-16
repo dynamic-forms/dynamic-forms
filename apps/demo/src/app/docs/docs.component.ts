@@ -1,4 +1,4 @@
-import { Component, ElementRef, computed, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, inject, input, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { PreferencesState } from '../state/preferences/preferences.state';
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrl: './docs.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocsComponent {
   private readonly store = inject(Store);

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, effect, input, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, effect, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -13,6 +13,7 @@ import { FormEditorLogLevelPipe } from './form-editor-log-level.pipe';
   imports: [DatePipe, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, FormEditorLogDataPipe, FormEditorLogLevelPipe],
   templateUrl: './form-editor-logs.component.html',
   styleUrl: './form-editor-logs.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormEditorLogsComponent implements AfterViewInit {
   readonly columns = ['timestamp', 'type', 'level', 'message', 'detailed'];

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MarkdownComponent } from '../markdown/markdown.component';
 
 @Component({
@@ -6,5 +6,6 @@ import { MarkdownComponent } from '../markdown/markdown.component';
   imports: [MarkdownComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

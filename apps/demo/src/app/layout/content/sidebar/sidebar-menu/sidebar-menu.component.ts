@@ -1,6 +1,6 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
@@ -21,6 +21,7 @@ import { SidebarMenuItem } from './sidebar-menu.model';
   templateUrl: './sidebar-menu.component.html',
   styleUrl: './sidebar-menu.component.scss',
   providers: [CodeUrlPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarMenuComponent {
   private readonly store = inject(Store);

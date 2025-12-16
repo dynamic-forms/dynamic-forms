@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
@@ -11,6 +11,7 @@ import { NOTIFICATIONS, NotificationItem } from '../../state/notifications/notif
   imports: [AsyncPipe, MatChipsModule, MatIconModule],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsComponent {
   private readonly store = inject(Store);

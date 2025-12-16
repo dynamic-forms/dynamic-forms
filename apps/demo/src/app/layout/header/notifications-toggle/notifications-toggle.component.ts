@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { NotificationsState } from '../../../state/notifications/notifications.s
   selector: 'app-notifications-toggle',
   imports: [AsyncPipe, MatButtonModule, MatIconModule],
   templateUrl: './notifications-toggle.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsToggleComponent {
   private readonly store = inject(Store);
