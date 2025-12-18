@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { NotificationItem, NotificationMessage, NotificationMessages, Notificati
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsService {
-  constructor(private store: Store) {}
+  private readonly store = inject(Store);
 
   getInfoMessage(title: string, message?: string): NotificationMessage {
     return { type: NotificationType.Info, title, message, duration: 2000 };

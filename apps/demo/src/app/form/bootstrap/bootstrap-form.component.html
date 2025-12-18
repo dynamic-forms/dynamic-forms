@@ -1,8 +1,9 @@
-@if (data()) {
+@let _data = data();
+@if (_data) {
   <dynamic-form
     #form
-    [definition]="data().definition"
-    [model]="data().model"
+    [definition]="_data.definition"
+    [model]="_data.model"
     [attr.data-bs-theme]="theme$ | async"
     (formSubmit)="onFormSubmit($event)"
     (valueChange)="valueChange.emit($event)"

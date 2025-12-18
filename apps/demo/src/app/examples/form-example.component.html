@@ -4,17 +4,17 @@
   </mat-tab>
   <mat-tab label="Definition">
     <ng-template matTabContent>
-      <pre>{{ form()?.formDefinition | json }}</pre>
+      <pre>{{ form()?.data().definition | json }}</pre>
     </ng-template>
   </mat-tab>
   <mat-tab label="Model">
     <ng-template matTabContent>
-      <pre>{{ form()?.formModel | json }}</pre>
+      <pre>{{ form()?.data().model | json }}</pre>
     </ng-template>
   </mat-tab>
   <mat-tab label="Value">
     <ng-template matTabContent>
-      <pre>{{ form()?.formValue | json }}</pre>
+      <pre>{{ form()?.value | json }}</pre>
     </ng-template>
   </mat-tab>
   <mat-tab label="Documentation" [disabled]="!docEnabled()">

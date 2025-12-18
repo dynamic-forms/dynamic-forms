@@ -1,21 +1,30 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
-import { MockService } from 'ng-mocks';
+import { MockProvider } from 'ng-mocks';
 import { FormSubmitBase } from './form-submit-base';
 import { FormSubmitDialogComponent } from './form-submit-dialog.component';
 
-class TestFormSubmit extends FormSubmitBase {
-  constructor(protected override dialog: MatDialog) {
-    super(dialog);
-  }
-}
+@Component({
+  selector: 'app-test-form-submit',
+  template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class TestFormSubmitComponent extends FormSubmitBase {}
 
 describe('FormSubmitBase', () => {
+  let fixture: ComponentFixture<TestFormSubmitComponent>;
+  let formSubmit: TestFormSubmitComponent;
   let matDialog: MatDialog;
-  let formSubmit: TestFormSubmit;
 
   beforeEach(() => {
-    matDialog = MockService(MatDialog);
-    formSubmit = new TestFormSubmit(matDialog);
+    TestBed.configureTestingModule({
+      providers: [MockProvider(MatDialog)],
+    });
+
+    matDialog = TestBed.inject(MatDialog);
+    fixture = TestBed.createComponent(TestFormSubmitComponent);
+    formSubmit = fixture.componentInstance;
   });
 
   it('opens dialog on form submit', () => {

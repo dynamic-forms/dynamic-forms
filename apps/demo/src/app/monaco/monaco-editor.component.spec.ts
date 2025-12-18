@@ -18,6 +18,14 @@ describe('MonacoEditorComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    if (globalThis['_amdLoaderGlobal']) {
+      // eslint-disable-next-line no-console
+      console.log({ _amdLoaderGlobal: globalThis['_amdLoaderGlobal'] });
+      delete globalThis['_amdLoaderGlobal'];
+    }
+  });
+
   it('creates component', () => {
     expect(component).toBeTruthy();
     expect(component.value()).toBeUndefined();

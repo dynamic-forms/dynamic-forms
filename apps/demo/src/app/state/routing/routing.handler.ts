@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -8,11 +8,12 @@ import { ProgressItemPop, ProgressItemPush } from '../progress/progress.actions'
 
 @Injectable({ providedIn: 'root' })
 export class RoutingHandler {
-  constructor(
-    private store: Store,
-    private router: Router,
-  ) {
-    this.router.events.pipe(takeUntilDestroyed()).subscribe(event => this.handle(event));
+  private readonly store = inject(Store);
+  private readonly router = inject(Router);
+  private readonly destroyed = inject(DestroyRef);
+
+  init(): void {
+    this.router.events.pipe(takeUntilDestroyed(this.destroyed)).subscribe(event => this.handle(event));
   }
 
   private handle(event: Event): void {

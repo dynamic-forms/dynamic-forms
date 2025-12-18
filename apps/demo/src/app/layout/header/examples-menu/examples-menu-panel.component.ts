@@ -1,4 +1,4 @@
-import { Component, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, viewChild } from '@angular/core';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ExampleMenuItem } from '../../../state/examples/examples.model';
@@ -7,6 +7,7 @@ import { ExampleMenuItem } from '../../../state/examples/examples.model';
   selector: 'app-examples-menu-panel',
   imports: [RouterLink, RouterLinkActive, MatMenuModule],
   templateUrl: './examples-menu-panel.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExamplesMenuPanelComponent {
   readonly menu = viewChild<MatMenu>('menu');

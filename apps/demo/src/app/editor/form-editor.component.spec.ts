@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFormLog } from '@dynamic-forms/core';
-import { provideStore } from '@ngxs/store';
+import { Store, provideStore } from '@ngxs/store';
 import { MockProvider } from 'ng-mocks';
 import { Subject, delay, firstValueFrom, of } from 'rxjs';
 import { FormLogger } from '../form/form-logger';
+import { SetPreferences } from '../state/preferences/preferences.actions';
+import { FormEditorPreviewMode } from '../state/preferences/preferences.model';
 import { PreferencesState } from '../state/preferences/preferences.state';
 import { FormEditorComponent } from './form-editor.component';
 
@@ -31,6 +33,17 @@ describe('FormEditorComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('has correct split view value', async () => {
+    expect(await firstValueFrom(component.splitView$)).toBeFalse();
+
+    const store = TestBed.inject(Store);
+    const preferences = store.selectSnapshot(PreferencesState.preferences);
+
+    store.dispatch(new SetPreferences({ ...preferences, formEditor: { previewMode: FormEditorPreviewMode.SplitView } }));
+
+    expect(await firstValueFrom(component.splitView$)).toBeTrue();
+  });
+
   it('has logs from logger', async () => {
     const logs = [{ message: 'message1' }, { message: 'message2' }] as DynamicFormLog[];
 
@@ -39,7 +52,7 @@ describe('FormEditorComponent', () => {
 
     await firstValueFrom(of({}).pipe(delay(2000)));
 
-    expect(component.logs).toEqual([logs[1], logs[0]]);
+    expect(await firstValueFrom(component.logs$)).toEqual([logs[1], logs[0]]);
   });
 
   it('has value from data', () => {

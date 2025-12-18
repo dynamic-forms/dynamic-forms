@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MaterialFormComponent } from '../../form/material/material-form.component';
 import { FormEditorBase } from '../form-editor-base';
 import { FormEditorComponent } from '../form-editor.component';
@@ -8,12 +7,6 @@ import { FormEditorComponent } from '../form-editor.component';
   selector: 'app-material-editor',
   imports: [FormEditorComponent, MaterialFormComponent],
   templateUrl: './material-editor.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MaterialEditorComponent extends FormEditorBase {
-  constructor(
-    protected override route: ActivatedRoute,
-    protected override cdr: ChangeDetectorRef,
-  ) {
-    super(route, cdr);
-  }
-}
+export class MaterialEditorComponent extends FormEditorBase {}

@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -6,14 +7,14 @@ import { FormSubmitBase } from '../form/form-submit-base';
 import { FormExampleData } from './form-example-data';
 
 export abstract class FormExampleBase extends FormSubmitBase {
+  protected readonly route = inject(ActivatedRoute);
+  protected override dialog = inject(MatDialog);
+
   readonly data$: Observable<FormExampleData>;
   readonly doc$: Observable<string>;
 
-  constructor(
-    protected route: ActivatedRoute,
-    protected override dialog: MatDialog,
-  ) {
-    super(dialog);
+  constructor() {
+    super();
     this.data$ = this.route.data.pipe(map(data => this.mapData(data)));
     this.doc$ = this.data$.pipe(map(data => this.getDoc(data)));
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ProgressItemPop, ProgressItemPush } from './progress.actions';
@@ -6,7 +6,7 @@ import { ProgressItem } from './progress.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProgressService {
-  constructor(private store: Store) {}
+  private readonly store = inject(Store);
 
   execute(action: Observable<any>, item: ProgressItem): void {
     this.store.dispatch(new ProgressItemPush(item));

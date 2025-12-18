@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DynamicFormDefinition } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 import { Example } from '../state/examples/examples.model';
@@ -7,10 +7,8 @@ import { NotificationsService } from '../state/notifications/notifications.servi
 
 @Injectable()
 export class FormExampleLoader {
-  constructor(
-    private httpClient: HttpClient,
-    private notificationsService: NotificationsService,
-  ) {}
+  private readonly httpClient = inject(HttpClient);
+  private readonly notificationsService = inject(NotificationsService);
 
   loadDefinition(fileUrl: string): Observable<DynamicFormDefinition> {
     const request = this.httpClient.get<DynamicFormDefinition>(fileUrl);

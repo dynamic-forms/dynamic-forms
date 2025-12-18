@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -10,10 +10,9 @@ import { FormDataPipe } from './form-data.pipe';
   selector: 'app-form-submit-dialog',
   imports: [JsonPipe, MatButtonModule, MatDialogModule, MatTabsModule, FormDataPipe],
   templateUrl: './form-submit-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormSubmitDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<FormSubmitDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DynamicFormSubmit,
-  ) {}
+  readonly dialogRef = inject(MatDialogRef<FormSubmitDialogComponent>);
+  readonly data = inject<DynamicFormSubmit>(MAT_DIALOG_DATA);
 }

@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
@@ -7,6 +8,7 @@ import {
   OnDestroy,
   OnInit,
   SimpleChanges,
+  inject,
   input,
   model,
   output,
@@ -37,8 +39,12 @@ declare let monaco: MonacoModule;
   templateUrl: './monaco-editor.component.html',
   styleUrl: './monaco-editor.component.scss',
   providers: [MonacoEditorService, { provide: MONACO_REF, useValue: window }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
+  private readonly store = inject(Store);
+  private readonly monacoEditorService = inject(MonacoEditorService);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly _fileLoading = new BehaviorSubject<boolean>(false);
 
   private _editor: MonacoEditor;
@@ -55,11 +61,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   readonly updateType = input<MonacoEditorUpdateType>(MonacoEditorUpdateType.Change);
   readonly loadingChange = output<boolean>();
 
-  constructor(
-    private store: Store,
-    private monacoEditorService: MonacoEditorService,
-    private destroyRef: DestroyRef,
-  ) {
+  constructor() {
     this.monacoEditorService.init();
   }
 
