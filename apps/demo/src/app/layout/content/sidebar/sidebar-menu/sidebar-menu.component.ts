@@ -69,7 +69,10 @@ export class SidebarMenuComponent {
   }
 
   private getMenuItemForAppDocs(app: string, repository: Repository): SidebarMenuItem {
-    const children = [{ label: 'Code Coverage', route: `/docs/${app}/coverage` }] as SidebarMenuItem[];
+    const children = [
+      { label: 'Code Doc', route: `/docs/${app}/doc` },
+      { label: 'Code Coverage', route: `/docs/${app}/coverage` },
+    ] as SidebarMenuItem[];
     if (repository) {
       const href = this.codeUrlPipe.transform(repository, { app });
       children.splice(0, 0, { label: 'Code', href });

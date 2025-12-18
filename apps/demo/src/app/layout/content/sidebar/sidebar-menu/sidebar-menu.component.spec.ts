@@ -64,8 +64,9 @@ describe('SidebarMenuComponent', () => {
     expect(dataSource[1].children[3].children[0].label).toBe('Code Doc');
     expect(dataSource[1].children[3].children[1].label).toBe('Code Coverage');
     expect(dataSource[1].children[4].label).toBe('Demo');
-    expect(dataSource[1].children[4].children.length).toBe(1);
-    expect(dataSource[1].children[4].children[0].label).toBe('Code Coverage');
+    expect(dataSource[1].children[4].children.length).toBe(2);
+    expect(dataSource[1].children[4].children[0].label).toBe('Code Doc');
+    expect(dataSource[1].children[4].children[1].label).toBe('Code Coverage');
     expect(dataSource[1].children[5].label).toBe('Changelog');
     expect(dataSource[1].children[5].children).toBeUndefined();
 
@@ -140,9 +141,10 @@ describe('SidebarMenuComponent', () => {
     expect(dataSource[1].children[3].children[1].label).toBe('Code Doc');
     expect(dataSource[1].children[3].children[2].label).toBe('Code Coverage');
     expect(dataSource[1].children[4].label).toBe('Demo');
-    expect(dataSource[1].children[4].children.length).toBe(2);
+    expect(dataSource[1].children[4].children.length).toBe(3);
     expect(dataSource[1].children[4].children[0].label).toBe('Code');
-    expect(dataSource[1].children[4].children[1].label).toBe('Code Coverage');
+    expect(dataSource[1].children[4].children[1].label).toBe('Code Doc');
+    expect(dataSource[1].children[4].children[2].label).toBe('Code Coverage');
     expect(dataSource[1].children[5].label).toBe('Changelog');
     expect(dataSource[1].children[5].children).toBeUndefined();
 
