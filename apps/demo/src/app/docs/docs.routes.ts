@@ -119,6 +119,14 @@ export const docsRoutes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'doc',
+        loadComponent: () => import('./docs.component').then(m => m.DocsComponent),
+        data: {
+          sourceUrl: './assets/docs/demo/index.html',
+          scrolling: true,
+        },
+      },
+      {
         path: 'coverage',
         loadComponent: () => import('./docs.component').then(m => m.DocsComponent),
         data: {

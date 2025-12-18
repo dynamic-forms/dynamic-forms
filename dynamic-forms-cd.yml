@@ -37,12 +37,10 @@ steps:
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
-- script: npm run cover:libs
-  displayName: npm cover libs
-- script: npm run doc:libs
-  displayName: npm doc libs
-- script: npm run cover:demo
-  displayName: npm cover demo
+- script: npm run cover:doc:libs
+  displayName: npm cover & doc libs
+- script: npm run cover:doc:demo
+  displayName: npm cover & doc demo
 - script: npm run build:demo:prod -- --base-href=#{BaseHref}#
   displayName: npm build demo
 - task: PublishBuildArtifacts@1

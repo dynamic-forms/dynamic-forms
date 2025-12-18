@@ -1,0 +1,14 @@
+{
+  "$schema": "./../../node_modules/@compodoc/compodoc/src/config/schema.json",
+  "tsconfig": "./tsconfig.app.json",
+  "output": "./../../apps/demo/src/assets/docs/demo",
+  "name": "@dynamic-forms/demo",
+  "theme": "material",
+  "disableCoverage": true,
+  "disableDomTree": true,
+  "disableGraph": true,
+  "disablePrivate": true,
+  "disableRoutesGraph": true,
+  "hideGenerator": false,
+  "hideDarkModeToggle": true
+}
