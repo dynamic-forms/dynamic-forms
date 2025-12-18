@@ -6,5 +6,6 @@
 
 @if (app(); as app) {
   <a mat-menu-item target="_blank" [href]="repository() | appCodeUrl: { app }">Code</a>
+  <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', app, 'doc']">Code Doc</a>
   <a mat-menu-item routerLinkActive="router-link-active" [routerLink]="['docs', app, 'coverage']">Code Coverage</a>
 }
