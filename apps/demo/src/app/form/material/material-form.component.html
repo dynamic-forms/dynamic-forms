@@ -1,4 +1,10 @@
 @let _data = data();
 @if (_data) {
-  <dynamic-form #form [definition]="_data.definition" [model]="_data.model" (formSubmit)="onFormSubmit($event)" />
+  <dynamic-form
+    #form
+    [definition]="_data.definition"
+    [model]="_data.model"
+    (formSubmit)="onFormSubmit($event)"
+    (valueChange)="valueChange.emit($event)"
+  />
 }
