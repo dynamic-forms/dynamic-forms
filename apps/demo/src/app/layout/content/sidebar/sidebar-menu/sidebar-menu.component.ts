@@ -1,9 +1,8 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
+import { MatTreeModule } from '@angular/material/tree';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -27,32 +26,30 @@ export class SidebarMenuComponent {
   private readonly store = inject(Store);
   private readonly codeUrlPipe = inject(CodeUrlPipe);
 
-  readonly treeControl: NestedTreeControl<SidebarMenuItem>;
-  readonly treeDataSource$: Observable<MatTreeNestedDataSource<SidebarMenuItem>>;
+  readonly childrenAccessor: (menuItem: SidebarMenuItem) => SidebarMenuItem[];
+  readonly dataSource$: Observable<SidebarMenuItem[]>;
 
   constructor() {
-    this.treeControl = new NestedTreeControl<SidebarMenuItem>((menuItem: any) => menuItem.children);
-    this.treeDataSource$ = combineLatest([this.store.select(ConfigState.repository), this.store.select(ExamplesState.menuItems)]).pipe(
+    this.childrenAccessor = menuItem => menuItem.children ?? [];
+    this.dataSource$ = combineLatest([this.store.select(ConfigState.repository), this.store.select(ExamplesState.menuItems)]).pipe(
       map(([repository, examples]) => this.getTreeDataSource(repository, examples)),
     );
   }
 
-  hasChildren = (_: number, menuItem: any) => menuItem.children;
+  hasChildren = (_: number, menuItem: any) => !!menuItem.children && menuItem.children.length > 0;
 
-  private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): MatTreeNestedDataSource<SidebarMenuItem> {
+  private getTreeDataSource(repository: Repository, examples: ExampleMenuItem[]): SidebarMenuItem[] {
     const libDocsChildren = ['core', 'bootstrap', 'material', 'markdown'].map(library => this.getMenuItemForLibDocs(library, repository));
     const appDocsChildren = ['demo'].map(app => this.getMenuItemForAppDocs(app, repository));
     const examplesChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForExamples(library, examples));
     const editorChildren = ['bootstrap', 'material'].map(library => this.getMenuItemForEditors(library));
-    const treeDataSource = new MatTreeNestedDataSource<SidebarMenuItem>();
-    treeDataSource.data = [
+    return [
       { label: 'Home', route: '/home' },
       { label: 'Docs', children: [...libDocsChildren, ...appDocsChildren, { label: 'Changelog', route: '/docs/changelog' }] },
       { label: 'Examples', children: examplesChildren },
       { label: 'Editor', children: editorChildren },
       { label: 'License', route: '/license' },
     ];
-    return treeDataSource;
   }
 
   private formatName(name: string): string {
