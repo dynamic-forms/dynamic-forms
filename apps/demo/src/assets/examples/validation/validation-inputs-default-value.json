@@ -51,7 +51,7 @@
         "input": {
           "type": "datepicker",
           "placeholder": "Enter a date",
-          "defaultValue": "2025-01-01",
+          "defaultValue": "2026-01-01",
           "minDate": "2020-01-01",
           "maxDate": "2030-01-01"
         },
