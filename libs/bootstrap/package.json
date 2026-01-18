@@ -1,6 +1,6 @@
 {
   "name": "@dynamic-forms/bootstrap",
-  "version": "21.0.0",
+  "version": "21.1.0",
   "author": "dynamic-forms",
   "description": "dynamic-forms - component library using bootstrap",
   "keywords": [
@@ -24,7 +24,7 @@
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
     "@angular/forms": "^21.0.0",
-    "@dynamic-forms/core": "21.0.0",
+    "@dynamic-forms/core": "21.1.0",
     "bootstrap": "^5.3.6",
     "inputmask": "^5.0.8",
     "rxjs": "^7.4.0"
