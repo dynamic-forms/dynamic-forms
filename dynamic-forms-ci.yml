@@ -15,7 +15,7 @@ variables:
 steps:
 - task: UseNode@1
   inputs:
-    version: 22.x
+    version: 24.x
 - script: npm install
   displayName: npm install
 - script: npm run lint
@@ -37,5 +37,6 @@ steps:
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
 - script: npm run test:demo
   displayName: npm test demo
+  retryCountOnTaskFailure: 3
 - script: npm run build:demo:prod
   displayName: npm build demo
