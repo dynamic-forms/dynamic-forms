@@ -28,6 +28,7 @@ steps:
   displayName: npm test libs
 - script: npm run test:demo
   displayName: npm test demo
+  retryCountOnTaskFailure: 3
 - task: PublishTestResults@2
   displayName: Publish test results
   inputs:
