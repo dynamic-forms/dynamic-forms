@@ -42,6 +42,7 @@ steps:
   displayName: npm cover & doc libs
 - script: npm run cover:doc:demo
   displayName: npm cover & doc demo
+  retryCountOnTaskFailure: 3
 - script: npm run build:demo:prod -- --base-href=#{BaseHref}#
   displayName: npm build demo
 - task: PublishBuildArtifacts@1

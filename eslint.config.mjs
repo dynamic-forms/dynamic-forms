@@ -1,3 +1,4 @@
+import { defineConfig } from 'eslint/config';
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import angular from "angular-eslint";
@@ -5,7 +6,7 @@ import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: ["apps/demo/src/assets/"]
   },
