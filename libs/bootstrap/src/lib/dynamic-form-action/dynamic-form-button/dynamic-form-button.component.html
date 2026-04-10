@@ -1,8 +1,8 @@
 @if (template.url) {
   <a
-    [class]="`dynamic-form-button btn btn-${(template.color | dynamicFormColor: 'primary')}`"
+    class="dynamic-form-button"
+    [class]="`btn btn-${(template.color | dynamicFormColor: 'primary')}${template.className ? ` ${template.className}` : ''}`"
     [class.disabled]="template.disabled"
-    [ngClass]="template.className"
     [hidden]="template.hidden"
     [href]="template.url"
     [target]="template.urlTarget || '_blank'"
@@ -10,9 +10,9 @@
   >
 } @else {
   <button
+    class="dynamic-form-button"
     [id]="id"
-    [class]="`dynamic-form-button btn btn-${(template.color | dynamicFormColor: 'primary')}`"
-    [ngClass]="template.className"
+    [class]="`btn btn-${(template.color | dynamicFormColor: 'primary')}${template.className ? ` ${template.className}` : ''}`"
     [type]="template.type || 'button'"
     [disabled]="template.disabled"
     [hidden]="template.hidden"

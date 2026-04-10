@@ -1,4 +1,4 @@
-<div class="dynamic-form-items dynamic-form-accordion accordion" [ngClass]="template.className" [hidden]="template.hidden">
+<div class="dynamic-form-items dynamic-form-accordion accordion" [class]="template.className" [hidden]="template.hidden">
   @for (child of element.children; track $index) {
     <div class="accordion-item" [hidden]="child.template.hidden">
       <div class="dynamic-form-item-header accordion-header" [class.disabled]="child.disabled" (click)="toggleItem($index)">

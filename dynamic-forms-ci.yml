@@ -37,6 +37,6 @@ steps:
     summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
 - script: npm run test:demo
   displayName: npm test demo
-  retryCountOnTaskFailure: 3
+  retryCountOnTaskFailure: 2
 - script: npm run build:demo:prod
   displayName: npm build demo

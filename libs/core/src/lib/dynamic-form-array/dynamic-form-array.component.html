@@ -1,7 +1,7 @@
-<div class="dynamic-form-array" [ngClass]="template.className" [class.readonly]="readonly" [hidden]="hidden">
+<div class="dynamic-form-array" [class]="template.className" [class.readonly]="readonly" [hidden]="hidden">
   @if ((!template.labelHidden && template.label) || headerActions?.length) {
-    <div class="dynamic-form-array-header" [ngClass]="template.classNameHeader">
-      <div class="dynamic-form-array-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
+    <div class="dynamic-form-array-header" [class]="template.classNameHeader">
+      <div class="dynamic-form-array-label" [class]="template.classNameLabel">{{ template.label }}</div>
       @if (headerActions?.length) {
         <div class="dynamic-form-array-toolbar">
           <dynamic-form-elements [elements]="headerActions" />
@@ -10,7 +10,7 @@
     </div>
   }
   @if (children?.length) {
-    <div [ngClass]="template.classNameChildren">
+    <div [class]="template.classNameChildren">
       <dynamic-form-elements [elements]="children" />
     </div>
   }
@@ -18,7 +18,7 @@
     <div class="dynamic-form-array-errors">{{ errorMessage }}</div>
   }
   @if (footerActions?.length) {
-    <div class="dynamic-form-array-footer" [ngClass]="template.classNameFooter">
+    <div class="dynamic-form-array-footer" [class]="template.classNameFooter">
       <dynamic-form-elements [elements]="footerActions" />
     </div>
   }

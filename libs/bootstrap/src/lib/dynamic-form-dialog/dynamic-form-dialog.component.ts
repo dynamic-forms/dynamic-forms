@@ -1,11 +1,11 @@
-import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DynamicFormAction, DynamicFormElement, DynamicFormElementsComponent } from '@dynamic-forms/core';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bs-dynamic-form-dialog',
-  imports: [AsyncPipe, NgClass, NgStyle, DynamicFormElementsComponent],
+  imports: [AsyncPipe, DynamicFormElementsComponent],
   templateUrl: './dynamic-form-dialog.component.html',
 })
 export class BsDynamicFormDialogComponent {

@@ -1,9 +1,10 @@
-<div class="dynamic-form-icon-wrapper" [ngClass]="template.classNameWrapper">
+<div class="dynamic-form-icon-wrapper" [class]="template.classNameWrapper">
+  @let btnClass = `btn btn-outline-${(template.color | dynamicFormColor: "primary")}${template.className ? ` ${template.className}` : ""}`;
   @if (template.url) {
     <a
-      [class]="`dynamic-form-icon btn btn-outline-${(template.color | dynamicFormColor: 'primary')}`"
+      class="dynamic-form-icon"
+      [class]="btnClass"
       [class.disabled]="template.disabled"
-      [ngClass]="template.className"
       [hidden]="template.hidden"
       [href]="template.url"
       [target]="template.urlTarget || '_blank'"
@@ -12,9 +13,9 @@
     >
   } @else {
     <button
+      class="dynamic-form-icon"
       [id]="id"
-      [class]="`dynamic-form-icon btn btn-outline-${(template.color | dynamicFormColor: 'primary')}`"
-      [ngClass]="template.className"
+      [class]="btnClass"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"

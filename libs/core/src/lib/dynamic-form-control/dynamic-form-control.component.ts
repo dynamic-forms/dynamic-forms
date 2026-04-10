@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, DoCheck, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
@@ -11,7 +10,6 @@ import { DynamicFormControlTemplate } from './dynamic-form-control-template';
 
 @Component({
   selector: 'dynamic-form-control',
-  imports: [NgClass],
   templateUrl: './dynamic-form-control.component.html',
 })
 export class DynamicFormControlComponent<

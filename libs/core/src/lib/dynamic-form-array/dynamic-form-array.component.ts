@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicFormElementsComponent } from '../dynamic-form-element/dynamic-form-elements.component';
 import { DynamicFormValidationService } from '../dynamic-form-validation/dynamic-form-validation.service';
@@ -9,7 +8,7 @@ import { DynamicFormArrayTemplate } from './dynamic-form-array-template';
 
 @Component({
   selector: 'dynamic-form-array',
-  imports: [NgClass, DynamicFormElementsComponent],
+  imports: [DynamicFormElementsComponent],
   templateUrl: './dynamic-form-array.component.html',
 })
 export class DynamicFormArrayComponent<
