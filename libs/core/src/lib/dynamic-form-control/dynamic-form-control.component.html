@@ -1,6 +1,6 @@
 <div
   class="dynamic-form-control"
-  [ngClass]="template.className ? [inputType, template.className] : inputType"
+  [class]="template.className ? `${inputType} ${template.className}` : inputType"
   [class.readonly]="readonly"
   [hidden]="hidden"
 >

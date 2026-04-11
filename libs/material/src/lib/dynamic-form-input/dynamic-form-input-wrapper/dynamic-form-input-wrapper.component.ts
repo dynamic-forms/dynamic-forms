@@ -1,9 +1,7 @@
-import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'mat-dynamic-form-input-wrapper',
-  imports: [NgClass],
   templateUrl: './dynamic-form-input-wrapper.component.html',
 })
 export class MatDynamicFormInputWrapperComponent {

@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,15 +7,7 @@ import { MatDynamicFormDialogComponent } from '../../dynamic-form-dialog/dynamic
 
 @Component({
   selector: 'mat-dynamic-form-icon',
-  imports: [
-    NgClass,
-    DynamicFormColorPipe,
-    DynamicFormIconPipe,
-    MatDynamicFormDialogComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-  ],
+  imports: [DynamicFormColorPipe, DynamicFormIconPipe, MatDynamicFormDialogComponent, MatButtonModule, MatIconModule, MatTooltipModule],
   templateUrl: './dynamic-form-icon.component.html',
 })
 export class MatDynamicFormIconComponent extends DynamicFormIconBase {

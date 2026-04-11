@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   Component,
   Inject,
@@ -18,7 +17,7 @@ import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mat-dynamic-form-dialog',
-  imports: [NgClass, MatDialogModule, DynamicFormElementsComponent],
+  imports: [MatDialogModule, DynamicFormElementsComponent],
   templateUrl: './dynamic-form-dialog.component.html',
 })
 export class MatDynamicFormDialogComponent implements OnInit, OnChanges, OnDestroy {

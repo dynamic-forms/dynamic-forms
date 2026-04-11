@@ -1,7 +1,7 @@
 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
 <div
   class="dynamic-form-container"
-  [ngClass]="template.className"
+  [class]="template.className"
   [class.row]="template.orientation === 'row' || template.className?.includes('row')"
   [hidden]="hidden"
 >

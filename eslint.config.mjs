@@ -164,11 +164,16 @@ export default defineConfig(
       eslintPluginPrettierRecommended
     ],
     rules: {
+      "@angular-eslint/template/no-duplicate-attributes": [
+        "error",
+        {
+          "ignore": ["class"]
+        }
+      ],
       "@angular-eslint/template/click-events-have-key-events": "off",
       "@angular-eslint/template/cyclomatic-complexity": "off",
       "@angular-eslint/template/i18n": "off",
       "@angular-eslint/template/interactive-supports-focus": "off",
-      "@angular-eslint/template/prefer-class-binding": "off",
       "prettier/prettier": [
         "error",
         {

@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, DoCheck, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -17,7 +16,7 @@ import { DynamicFormBuilder } from './dynamic-form.builder';
 
 @Component({
   selector: 'dynamic-form',
-  imports: [NgClass, ReactiveFormsModule, DynamicFormElementsComponent],
+  imports: [ReactiveFormsModule, DynamicFormElementsComponent],
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent<Value extends Record<string, any> = any, Model extends Value = Value>

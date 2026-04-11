@@ -1,9 +1,9 @@
-<div class="dynamic-form-icon-wrapper" [ngClass]="template.classNameWrapper">
+<div class="dynamic-form-icon-wrapper" [class]="template.classNameWrapper">
   @if (template.url) {
     <a
       mat-icon-button
       class="dynamic-form-icon"
-      [ngClass]="template.className"
+      [class]="template.className"
       [color]="template.color | dynamicFormColor: 'primary'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"
@@ -18,7 +18,7 @@
       mat-icon-button
       class="dynamic-form-icon"
       [id]="id"
-      [ngClass]="template.className"
+      [class]="template.className"
       [color]="template.color | dynamicFormColor: 'primary'"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"

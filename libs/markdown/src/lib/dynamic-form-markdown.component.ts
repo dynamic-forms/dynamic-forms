@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { DynamicFormElementBase } from '@dynamic-forms/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { DynamicFormMarkdownService } from './dynamic-form-markdown.service';
 
 @Component({
   selector: 'dynamic-form-markdown',
-  imports: [AsyncPipe, NgClass],
+  imports: [AsyncPipe],
   templateUrl: './dynamic-form-markdown.component.html',
 })
 export class DynamicFormMarkdownComponent<
