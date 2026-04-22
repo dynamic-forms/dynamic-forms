@@ -1,7 +1,7 @@
 {
   "$schema": "./../../node_modules/@compodoc/compodoc/src/config/schema.json",
   "tsconfig": "./tsconfig.lib.json",
-  "output": "./../../apps/demo/src/assets/docs/markdown",
+  "output": "./../../docs/dynamic-forms-markdown",
   "name": "@dynamic-forms/markdown",
   "theme": "material",
   "disableCoverage": true,

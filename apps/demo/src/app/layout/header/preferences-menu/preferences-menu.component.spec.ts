@@ -17,7 +17,6 @@ describe('PreferencesMenuComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
-      teardown: { destroyAfterEach: false },
     });
   });
 

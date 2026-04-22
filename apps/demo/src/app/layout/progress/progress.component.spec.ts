@@ -10,7 +10,6 @@ describe('ProgressComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ProgressState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(ProgressComponent);

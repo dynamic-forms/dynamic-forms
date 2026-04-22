@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
@@ -40,7 +39,7 @@ describe('DynamicFormArrayComponent', () => {
     fixture = TestBed.createComponent(DynamicFormArrayComponent);
     component = fixture.componentInstance;
 
-    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    form = new DynamicForm(builder, { children: [] }, {});
     formArray = new DynamicFormArray(
       builder,
       form,

@@ -17,7 +17,6 @@ describe('AppService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore(), MockProviders(ConfigService, ExamplesService, IconService, ThemeService)],
-      teardown: { destroyAfterEach: false },
     });
 
     appService = TestBed.inject(AppService);

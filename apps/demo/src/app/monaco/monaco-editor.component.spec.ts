@@ -8,22 +8,15 @@ describe('MonacoEditorComponent', () => {
   let fixture: ComponentFixture<MonacoEditorComponent>;
   let component: MonacoEditorComponent;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(MonacoEditorComponent);
     component = fixture.componentInstance;
-  });
 
-  afterEach(() => {
-    if (globalThis['_amdLoaderGlobal']) {
-      // eslint-disable-next-line no-console
-      console.log({ _amdLoaderGlobal: globalThis['_amdLoaderGlobal'] });
-      delete globalThis['_amdLoaderGlobal'];
-    }
+    await firstValueFrom(component.loaded$.pipe(first(loaded => !!loaded)));
   });
 
   it('creates component', () => {
@@ -31,10 +24,8 @@ describe('MonacoEditorComponent', () => {
     expect(component.value()).toBeUndefined();
   });
 
-  it('inits editor and updates value', async () => {
+  it('inits editor and updates value', () => {
     fixture.detectChanges();
-
-    await firstValueFrom(component.loading$.pipe(first(loading => !loading)));
 
     const editorElement = fixture.debugElement.nativeElement.querySelector('.monaco-editor');
 
@@ -45,11 +36,9 @@ describe('MonacoEditorComponent', () => {
     expect(component.value()).toEqual('{}');
   });
 
-  it('handles value changes', async () => {
+  it('handles value changes', () => {
     fixture.componentRef.setInput('value', '{}');
     fixture.detectChanges();
-
-    await firstValueFrom(component.loading$.pipe(first(loading => !loading)));
 
     expect(component.value()).toEqual('{}');
     expect(component['_editor'].getValue()).toEqual('{}');
@@ -63,8 +52,6 @@ describe('MonacoEditorComponent', () => {
 
   it('handles file upload', async () => {
     fixture.detectChanges();
-
-    await firstValueFrom(component.loading$.pipe(first(loading => !loading)));
 
     const file = new File(['{}'], 'test.json', { type: 'application/json' });
     const fileList = { item: (_: number) => file, length: 1 } as FileList;

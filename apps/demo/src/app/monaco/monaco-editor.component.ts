@@ -52,6 +52,7 @@ export class MonacoEditorComponent implements OnChanges, OnInit, OnDestroy {
   private _editorChange: MonacoEditorDisposable;
 
   readonly loading$ = this.monacoEditorService.loading$;
+  readonly loaded$ = this.monacoEditorService.loaded$;
   readonly fileLoading$ = this._fileLoading.asObservable();
 
   readonly container = viewChild<ElementRef<HTMLDivElement>>('container');

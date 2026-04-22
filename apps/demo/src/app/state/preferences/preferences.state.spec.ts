@@ -19,7 +19,6 @@ describe('PreferencesState', () => {
 
       TestBed.configureTestingModule({
         providers: [provideStore([PreferencesState]), MockProvider(MediaMatcher, mediaMatcher, 'useValue')],
-        teardown: { destroyAfterEach: false },
       });
 
       store = TestBed.inject(Store);
@@ -58,7 +57,6 @@ describe('PreferencesState', () => {
 
       TestBed.configureTestingModule({
         providers: [provideStore([PreferencesState]), MockProvider(MediaMatcher, mediaMatcher, 'useValue')],
-        teardown: { destroyAfterEach: false },
       });
 
       store = TestBed.inject(Store);

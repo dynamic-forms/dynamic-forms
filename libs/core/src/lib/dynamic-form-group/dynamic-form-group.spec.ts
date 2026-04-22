@@ -1,7 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -18,7 +17,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('creates instance', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', index: 1, type: 'type', template: {}, children: [] } as DynamicFormGroupDefinition;
     const type = { type: 'type' } as DynamicFormFieldType;
     const group = new DynamicFormGroup(builder, form, form, definition, type);
@@ -54,7 +53,7 @@ describe('DynamicFormGroup', () => {
 
   it('sets model to default value', () => {
     const defaultValue = { value: 0 };
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [], defaultValue } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
 
@@ -107,7 +106,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('inits children and fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const children = [
@@ -147,7 +146,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('inits children and fields with empty array', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
 
@@ -160,7 +159,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('inits validators', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormGroupValidator[];
@@ -173,7 +172,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('check calls check of all fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -194,7 +193,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('check sets disabled of control', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
 
@@ -211,7 +210,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('destroy calls destroy of all fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -232,7 +231,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('reset calls reset of form field', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -253,7 +252,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('resetEmpty calls reset of all fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -275,7 +274,7 @@ describe('DynamicFormGroup', () => {
 
   it('resetDefault calls patchValue of field if default value', () => {
     const defaultValue = {};
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [], defaultValue } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -296,7 +295,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('resetDefault calls resetDefault of all fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
@@ -317,7 +316,7 @@ describe('DynamicFormGroup', () => {
   });
 
   it('validate calls validate of all fields', () => {
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const definition = { key: 'key', template: {}, children: [] } as DynamicFormGroupDefinition;
     const group = new DynamicFormGroup(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [

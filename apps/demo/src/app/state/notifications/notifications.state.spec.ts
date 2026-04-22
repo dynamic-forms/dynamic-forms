@@ -10,7 +10,6 @@ describe('NotificationsState', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([NotificationsState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
@@ -65,16 +64,15 @@ describe('NotificationsState', () => {
     expect(store.selectSnapshot(NOTIFICATIONS)).toEqual({ enabled: true, items: [] });
   });
 
-  it('pushes und pops notification item with duration', done => {
+  it('pushes und pops notification item with duration', async () => {
     const item = { id: 'id1', type: NotificationType.Info, title: 'Info1', duration: 100 };
 
     store.dispatch(new NotificationItemPush(item));
 
     expect(store.selectSnapshot(NOTIFICATIONS)).toEqual({ enabled: true, items: [item] });
 
-    setTimeout(() => {
-      expect(store.selectSnapshot(NOTIFICATIONS)).toEqual({ enabled: true, items: [] });
-      done();
-    }, 150);
+    await new Promise(resolve => setTimeout(resolve, 150));
+
+    expect(store.selectSnapshot(NOTIFICATIONS)).toEqual({ enabled: true, items: [] });
   });
 });
