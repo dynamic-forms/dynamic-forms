@@ -10,7 +10,6 @@ describe('DocsMenuComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ConfigState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(DocsMenuComponent);

@@ -237,7 +237,7 @@ describe('DynamicFormBuilder', () => {
 
     it('creates DynamicForm including DynamicFormElement', () => {
       const definition = {
-        children: [{ type: 'element', template: {} } as DynamicFormElementDefinition],
+        children: [{ type: 'element', template: {} }],
       } as DynamicFormDefinition;
       const form = builder.createForm(definition, {});
 
@@ -302,7 +302,7 @@ describe('DynamicFormBuilder', () => {
 
     it('creates DynamicForm including DynamicFormAction in children', () => {
       const definition = {
-        children: [{ type: 'action', template: {} } as DynamicFormActionDefinition],
+        children: [{ type: 'action', template: {} }],
       } as DynamicFormDefinition;
       const form = builder.createForm(definition, {});
 

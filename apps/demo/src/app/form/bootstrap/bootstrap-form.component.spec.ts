@@ -10,7 +10,6 @@ describe('BootstrapFormComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(BootstrapFormComponent);

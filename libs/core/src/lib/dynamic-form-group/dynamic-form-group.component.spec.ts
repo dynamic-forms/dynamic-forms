@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormFieldType } from '../dynamic-form-field/dynamic-form-field-type';
 import { DynamicFormLibraryService } from '../dynamic-form-library/dynamic-form-library.service';
@@ -33,7 +32,7 @@ describe('DynamicFormGroupComponent', () => {
     component = fixture.componentInstance;
 
     builder = MockService(DynamicFormBuilder);
-    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    form = new DynamicForm(builder, { children: [] }, {});
     formGroup = new DynamicFormGroup(
       builder,
       form,

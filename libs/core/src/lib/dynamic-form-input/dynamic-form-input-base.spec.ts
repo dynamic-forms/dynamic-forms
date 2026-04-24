@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormControl } from '../dynamic-form-control/dynamic-form-control';
 import { DynamicFormControlDefinition } from '../dynamic-form-control/dynamic-form-control-definition';
@@ -39,7 +38,7 @@ describe('DynamicFormInputBase', () => {
   });
 
   it('creates component', () => {
-    const form = new DynamicForm(builder, { key: 'root', children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { key: 'root', children: [] }, {});
     const field = new DynamicFormControl(
       builder,
       form,

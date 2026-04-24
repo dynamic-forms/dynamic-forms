@@ -339,9 +339,9 @@ describe('DynamicFormInputMaskDirective', () => {
       component.inputMask = {
         control: new FormControl(null),
         maskOptions: {},
-        maskOptionChanges$: EMPTY as Observable<Partial<DynamicFormInputMaskOptions>>,
+        maskOptionChanges$: EMPTY,
         maskInputElement: _ => {},
-      } as DynamicFormInputMaskControl;
+      } as unknown as DynamicFormInputMaskControl;
     });
 
     it('value of input event is passed to onInput using default converter', () => {
@@ -403,9 +403,9 @@ describe('DynamicFormInputMaskDirective', () => {
       fixture = TestBed.createComponent(DynamicFormInputMaskTestWithoutFormControlComponent);
       component = fixture.componentInstance;
       component.inputMask = {
-        maskOptionChanges$: EMPTY as Observable<Partial<DynamicFormInputMaskOptions>>,
+        maskOptionChanges$: EMPTY,
         maskInputElement: _ => {},
-      } as DynamicFormInputMaskControl;
+      } as unknown as DynamicFormInputMaskControl;
     });
 
     it('value of input event is passed to onInput', () => {

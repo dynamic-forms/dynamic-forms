@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, provideStore } from '@ngxs/store';
-import { delay, of, take, throwError } from 'rxjs';
+import { catchError, delay, firstValueFrom, of, take, throwError } from 'rxjs';
 import { NOTIFICATIONS, NotificationType } from './notifications.model';
 import { NotificationsService } from './notifications.service';
 import { NotificationsState } from './notifications.state';
@@ -12,7 +12,6 @@ describe('NotificationsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([NotificationsState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
@@ -41,7 +40,7 @@ describe('NotificationsService', () => {
     });
   });
 
-  it('pipe pushes info and success notifications', done => {
+  it('pipe pushes info and success notifications', async () => {
     const messages = service.getMessages('Loading started', 'Loading succeeded', 'Loading failed');
 
     const action = service.pipe(of(true).pipe(delay(1000)), messages);
@@ -51,37 +50,39 @@ describe('NotificationsService', () => {
     expect(items.length).toBe(1);
     expect(items[0].title).toBe('Loading started');
 
-    action.pipe(take(1)).subscribe(result => {
-      expect(result).toBeTrue();
+    const result = await firstValueFrom(action.pipe(take(1)));
 
-      const items = store.selectSnapshot(NOTIFICATIONS).items;
+    expect(result).toBeTrue();
 
-      expect(items.length).toBe(1);
-      expect(items[0].title).toBe('Loading succeeded');
+    const items2 = store.selectSnapshot(NOTIFICATIONS).items;
 
-      done();
-    });
+    expect(items2.length).toBe(1);
+    expect(items2[0].title).toBe('Loading succeeded');
   });
 
-  it('pipe pushes info and error notifications', done => {
+  it('pipe pushes info and error notifications', async () => {
     const messages = service.getMessages('Loading started', 'Loading succeeded', 'Loading failed');
 
-    const action = service.pipe(throwError(() => new Error()).pipe(delay(1000)), messages);
+    const error = new Error();
+    const action = service.pipe(throwError(() => error).pipe(delay(1000)), messages);
 
     const items = store.selectSnapshot(NOTIFICATIONS).items;
 
     expect(items.length).toBe(1);
     expect(items[0].title).toBe('Loading started');
 
-    action.subscribe({
-      error: _ => {
-        const items = store.selectSnapshot(NOTIFICATIONS).items;
+    const result = await firstValueFrom(
+      action.pipe(
+        take(1),
+        catchError(error => of(error)),
+      ),
+    );
 
-        expect(items.length).toBe(1);
-        expect(items[0].title).toBe('Loading failed');
+    expect(result).toBe(error);
 
-        done();
-      },
-    });
+    const items2 = store.selectSnapshot(NOTIFICATIONS).items;
+
+    expect(items2.length).toBe(1);
+    expect(items2[0].title).toBe('Loading failed');
   });
 });

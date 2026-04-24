@@ -1,7 +1,6 @@
 import { FormControl, FormRecord } from '@angular/forms';
 import { MockService } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormElement } from '../dynamic-form-element/dynamic-form-element';
 import { DynamicFormField } from '../dynamic-form-field/dynamic-form-field';
@@ -19,7 +18,7 @@ describe('DynamicFormDictionary', () => {
 
   it('creates instance', () => {
     const definition = { id: 'id', key: 'key', index: 1, type: 'type', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const type = { type: 'type' } as DynamicFormFieldType;
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, type);
 
@@ -55,7 +54,7 @@ describe('DynamicFormDictionary', () => {
   it('sets model to default value', () => {
     const defaultValue = { value1: 0, value2: 1 } as any;
     const definition = { key: 'key', template: {}, defaultValue } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     expect(dictionary.model).toEqual(defaultValue);
@@ -63,7 +62,7 @@ describe('DynamicFormDictionary', () => {
 
   it('sets model to default length', () => {
     const definition = { key: 'key', template: {}, defaultKeys: ['value1', 'value2'] } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     expect(dictionary.model).toEqual({ value1: undefined, value2: undefined });
@@ -71,7 +70,7 @@ describe('DynamicFormDictionary', () => {
 
   it('returns expression data with id, key, index and model', () => {
     const definition = { id: 'id', key: 'key', index: 1, type: 'componentType', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     expect(dictionary.expressionData.id).toBe('id');
@@ -128,7 +127,7 @@ describe('DynamicFormDictionary', () => {
 
   it('inits children and fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl() },
@@ -145,7 +144,7 @@ describe('DynamicFormDictionary', () => {
 
   it('inits children and fields with empty array', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     spyOn(builder, 'createFormDictionaryElements').and.returnValue(null);
@@ -158,7 +157,7 @@ describe('DynamicFormDictionary', () => {
 
   it('inits validators', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const validators = [{}] as DynamicFormDictionaryValidator[];
 
@@ -171,7 +170,7 @@ describe('DynamicFormDictionary', () => {
 
   it('registers field by pushing field', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { key: 'item1', classType: 'field', definition: {}, control: new FormControl() },
@@ -198,7 +197,7 @@ describe('DynamicFormDictionary', () => {
 
   it('registers field by replacing field', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { key: 'item1', classType: 'field', definition: {}, control: new FormControl() },
@@ -226,7 +225,7 @@ describe('DynamicFormDictionary', () => {
 
   it('removes field', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
@@ -262,7 +261,7 @@ describe('DynamicFormDictionary', () => {
 
   it('does not remove field if index is invalid', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     const spliceChildrenSpy = spyOn(dictionary.children, 'splice');
@@ -278,7 +277,7 @@ describe('DynamicFormDictionary', () => {
 
   it('clears fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { key: 'key-1', classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
@@ -306,7 +305,7 @@ describe('DynamicFormDictionary', () => {
 
   it('does not clear fields if length is zero', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
 
     const removeControlSpy = spyOn(dictionary.control, 'removeControl');
@@ -320,7 +319,7 @@ describe('DynamicFormDictionary', () => {
 
   it('check calls check of all fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), check: () => {} },
@@ -341,7 +340,7 @@ describe('DynamicFormDictionary', () => {
 
   it('destroy calls destroy of all fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), destroy: () => {} },
@@ -362,7 +361,7 @@ describe('DynamicFormDictionary', () => {
 
   it('reset calls reset of all fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), reset: () => {} },
@@ -383,7 +382,7 @@ describe('DynamicFormDictionary', () => {
 
   it('resetEmpty calls destroy of all fields and removeControl for all form group controls', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
@@ -408,7 +407,7 @@ describe('DynamicFormDictionary', () => {
 
   it('resetDefault calls destroy of all fields and removeControl for all form group controls', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: { key: 'key1' }, control: new FormControl(), destroy: () => {} },
@@ -432,7 +431,7 @@ describe('DynamicFormDictionary', () => {
 
   it('validate calls validate of all fields', () => {
     const definition = { key: 'key', template: {} } as DynamicFormDictionaryDefinition;
-    const form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { children: [] }, {});
     const dictionary = new DynamicFormDictionary(builder, form, form, definition, {} as DynamicFormFieldType);
     const fields = [
       { classType: 'field', definition: {}, control: new FormControl(), validate: () => {} },

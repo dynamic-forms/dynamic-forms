@@ -12,14 +12,13 @@ describe('ProgressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ProgressState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
     service = TestBed.inject(ProgressService);
   });
 
-  it('execute pushes and pops progress item', done => {
+  it('execute pushes and pops progress item', async () => {
     const progressItem = { id: '1', title: 'Loading data' };
 
     service.execute(of(true).pipe(delay(100)), progressItem);
@@ -29,12 +28,8 @@ describe('ProgressService', () => {
     expect(items.length).toBe(1);
     expect(items[0]).toEqual(progressItem);
 
-    setTimeout(() => {
-      const items = store.selectSnapshot(PROGRESS).items;
+    await new Promise(resolve => setTimeout(resolve, 150));
 
-      expect(items.length).toBe(0);
-
-      done();
-    }, 150);
+    expect(store.selectSnapshot(PROGRESS).items.length).toBe(0);
   });
 });

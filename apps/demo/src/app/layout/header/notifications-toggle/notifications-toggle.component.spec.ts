@@ -11,7 +11,6 @@ describe('NotificationsToggleComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([NotificationsState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(NotificationsToggleComponent);

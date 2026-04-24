@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  DynamicForm,
-  DynamicFormBuilder,
-  DynamicFormDefinition,
-  DynamicFormFieldType,
-  DynamicFormValidationService,
-} from '@dynamic-forms/core';
+import { DynamicForm, DynamicFormBuilder, DynamicFormFieldType, DynamicFormValidationService } from '@dynamic-forms/core';
 import { MockService } from 'ng-mocks';
-import { DynamicFormInputMaskDefinition } from './dynamic-form-input-mask';
 import { DynamicFormInputMaskBase } from './dynamic-form-input-mask-base';
 import { DynamicFormInputMaskControl } from './dynamic-form-input-mask-control';
 import { DynamicFormInputMaskConverterService } from './dynamic-form-input-mask-converter.service';
@@ -59,7 +52,7 @@ describe('DynamicFormInputMaskBase', () => {
       ],
     });
 
-    const form = new DynamicForm(builder, { key: 'root', children: [] } as DynamicFormDefinition, {});
+    const form = new DynamicForm(builder, { key: 'root', children: [] }, {});
     const field = new DynamicFormInputMaskControl(
       builder,
       form,
@@ -75,7 +68,7 @@ describe('DynamicFormInputMaskBase', () => {
           hints: {},
           validation: {},
         },
-      } as DynamicFormInputMaskDefinition,
+      },
       {} as DynamicFormFieldType,
     );
 

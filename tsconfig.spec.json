@@ -28,5 +28,25 @@
   "exclude": [
     "node_modules/**/*",
     "dist/**/*"
+  ],
+  "references": [
+    {
+      "path": "./libs/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/core/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/bootstrap/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/material/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/markdown/tsconfig.spec.json"
+    },
+    {
+      "path": "./apps/demo/tsconfig.spec.json"
+    }
   ]
 }

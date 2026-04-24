@@ -11,7 +11,6 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore(appStates), provideRouter([])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(AppComponent);
