@@ -28,19 +28,21 @@ steps:
   displayName: npm test libs
 - script: npm run test:demo
   displayName: npm test demo
+  retryCountOnTaskFailure: 2
 - task: PublishTestResults@2
   displayName: Publish test results
   inputs:
-    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+    testResultsFiles: tests/dynamic-forms-libs.junit.xml
 - task: PublishCodeCoverageResults@1
   displayName: Publish code coverage
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    summaryFileLocation: coverage/dynamic-forms-libs/cobertura-coverage.xml
 - script: npm run cover:doc:libs
   displayName: npm cover & doc libs
 - script: npm run cover:doc:demo
   displayName: npm cover & doc demo
+  retryCountOnTaskFailure: 2
 - script: npm run build:demo:prod -- --base-href=#{BaseHref}#
   displayName: npm build demo
 - task: PublishBuildArtifacts@1

@@ -1,7 +1,7 @@
-<div class="dynamic-form-dictionary" [ngClass]="template.className" [class.readonly]="readonly" [hidden]="hidden">
+<div class="dynamic-form-dictionary" [class]="template.className" [class.readonly]="readonly" [hidden]="hidden">
   @if (template.label && !template.labelHidden) {
-    <div class="dynamic-form-dictionary-header" [ngClass]="template.classNameHeader">
-      <div class="dynamic-form-dictionary-label" [ngClass]="template.classNameLabel">{{ template.label }}</div>
+    <div class="dynamic-form-dictionary-header" [class]="template.classNameHeader">
+      <div class="dynamic-form-dictionary-label" [class]="template.classNameLabel">{{ template.label }}</div>
       @if (headerActions?.length) {
         <div class="dynamic-form-dictionary-toolbar">
           <dynamic-form-elements [elements]="headerActions" />
@@ -10,7 +10,7 @@
     </div>
   }
   @if (children?.length) {
-    <div class="dynamic-form-dictionary-children" [ngClass]="template.classNameChildren">
+    <div class="dynamic-form-dictionary-children" [class]="template.classNameChildren">
       <dynamic-form-elements [elements]="children" />
     </div>
   }
@@ -18,7 +18,7 @@
     <div class="dynamic-form-dictionary-errors">{{ errorMessage }}</div>
   }
   @if (footerActions?.length) {
-    <div class="dynamic-form-dictionary-footer" [ngClass]="template.classNameFooter">
+    <div class="dynamic-form-dictionary-footer" [class]="template.classNameFooter">
       <dynamic-form-elements [elements]="footerActions" />
     </div>
   }

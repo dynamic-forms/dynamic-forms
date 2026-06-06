@@ -155,7 +155,7 @@ describe('DynamicFormAction', () => {
     expect(() => action.toggleDialog()).not.toThrow();
   });
 
-  it('opens, closes and toggles dialog', done => {
+  it('opens, closes and toggles dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, null, null, definition, {} as DynamicFormActionType);
@@ -177,11 +177,9 @@ describe('DynamicFormAction', () => {
     expect(action.dialogOpen).toBeTrue();
 
     expect(dialogOpenChanges).toEqual([false, true, false, true]);
-
-    done();
   });
 
-  it('dialogOpenChange ', done => {
+  it('dialogOpenChange ', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, null, null, definition, {} as DynamicFormActionType);
@@ -199,11 +197,9 @@ describe('DynamicFormAction', () => {
     action.closeDialog();
 
     expect(dialogOpenChanges).toEqual([false, true, false]);
-
-    done();
   });
 
-  it('does not open, close or toggle dialog', done => {
+  it('does not open, close or toggle dialog', () => {
     const dialogDefinition = { template: {} } as DynamicFormDefinition;
     const definition = { template: {}, dialogDefinition } as DynamicFormActionDefinition;
     const action = new DynamicFormAction(builder, null, null, definition, {} as DynamicFormActionType);
@@ -217,7 +213,5 @@ describe('DynamicFormAction', () => {
 
     expect(action.dialogOpen).toBeFalse();
     expect(dialogOpenChanges).toEqual([false]);
-
-    done();
   });
 });

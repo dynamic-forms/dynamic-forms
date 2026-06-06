@@ -1,7 +1,7 @@
 {
   "$schema": "./../../node_modules/@compodoc/compodoc/src/config/schema.json",
   "tsconfig": "./tsconfig.app.json",
-  "output": "./../../apps/demo/src/assets/docs/demo",
+  "output": "./../../docs/dynamic-forms-demo",
   "name": "@dynamic-forms/demo",
   "theme": "material",
   "disableCoverage": true,

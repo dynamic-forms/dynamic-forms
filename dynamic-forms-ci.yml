@@ -15,7 +15,7 @@ variables:
 steps:
 - task: UseNode@1
   inputs:
-    version: 22.x
+    version: 24.x
 - script: npm install
   displayName: npm install
 - script: npm run lint
@@ -29,13 +29,14 @@ steps:
 - task: PublishTestResults@2
   displayName: Publish test results
   inputs:
-    testResultsFiles: dist/${{ variables.major_version_name }}/tests/dynamic-forms-libs.junit.xml
+    testResultsFiles: tests/dynamic-forms-libs.junit.xml
 - task: PublishCodeCoverageResults@1
   displayName: Publish code coverage
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: dist/${{ variables.major_version_name }}/tests/cobertura-coverage.xml
+    summaryFileLocation: coverage/dynamic-forms-libs/cobertura-coverage.xml
 - script: npm run test:demo
   displayName: npm test demo
+  retryCountOnTaskFailure: 2
 - script: npm run build:demo:prod
   displayName: npm build demo

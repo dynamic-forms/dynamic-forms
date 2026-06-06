@@ -11,7 +11,6 @@ describe('SidebarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ConfigState, ExamplesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(SidebarComponent);

@@ -53,7 +53,7 @@ describe('DynamicFormComponent', () => {
 
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
-    definition = { children: [] } as DynamicFormDefinition;
+    definition = { children: [] };
     model = {};
 
     component.definition = definition;

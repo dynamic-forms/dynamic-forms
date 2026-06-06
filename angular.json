@@ -243,8 +243,53 @@
               },
               {
                 "glob": "**/*",
-                "input": "node_modules/monaco-editor/min-maps/vs",
-                "output": "assets/monaco-editor/min-maps/vs"
+                "input": "coverage/dynamic-forms-core",
+                "output": "assets/coverage/core"
+              },
+              {
+                "glob": "**/*",
+                "input": "coverage/dynamic-forms-bootstrap",
+                "output": "assets/coverage/bootstrap"
+              },
+              {
+                "glob": "**/*",
+                "input": "coverage/dynamic-forms-material",
+                "output": "assets/coverage/material"
+              },
+              {
+                "glob": "**/*",
+                "input": "coverage/dynamic-forms-markdown",
+                "output": "assets/coverage/markdown"
+              },
+              {
+                "glob": "**/*",
+                "input": "coverage/dynamic-forms-demo",
+                "output": "assets/coverage/demo"
+              },
+              {
+                "glob": "**/*",
+                "input": "docs/dynamic-forms-core",
+                "output": "assets/docs/core"
+              },
+              {
+                 "glob": "**/*",
+                 "input": "docs/dynamic-forms-bootstrap",
+                 "output": "assets/docs/bootstrap"
+              },
+              {
+                 "glob": "**/*",
+                 "input": "docs/dynamic-forms-material",
+                 "output": "assets/docs/material"
+              },
+              {
+                 "glob": "**/*",
+                 "input": "docs/dynamic-forms-markdown",
+                 "output": "assets/docs/markdown"
+              },
+              {
+                 "glob": "**/*",
+                 "input": "docs/dynamic-forms-demo",
+                 "output": "assets/docs/demo"
               }
             ],
             "stylePreprocessorOptions": {
@@ -329,11 +374,6 @@
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor/min/vs",
                 "output": "assets/monaco-editor/min/vs"
-              },
-              {
-                "glob": "**/*",
-                "input": "node_modules/monaco-editor/min-maps/vs",
-                "output": "assets/monaco-editor/min-maps/vs"
               }
             ],
             "stylePreprocessorOptions": {

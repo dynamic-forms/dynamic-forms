@@ -1,13 +1,13 @@
 <ng-template #dialogTemplateRef>
-  <div class="dynamic-form-wrapper" [ngClass]="theme" [class.maximized]="maximized">
-    <div class="dynamic-form" [ngClass]="classNameForm" [class.maximized]="maximized">
-      <div class="dynamic-form-modal" [ngClass]="classNameModal" [class.maximized]="maximized">
+  <div class="dynamic-form-wrapper" [class]="theme" [class.maximized]="maximized">
+    <div class="dynamic-form" [class]="classNameForm" [class.maximized]="maximized">
+      <div class="dynamic-form-modal" [class]="classNameModal" [class.maximized]="maximized">
         @if (title || titleHtml || headerActions?.length) {
-          <div class="modal-header" [ngClass]="classNameHeader">
+          <div class="modal-header" [class]="classNameHeader">
             @if (titleHtml) {
-              <div class="modal-title" [ngClass]="classNameTitle" [innerHTML]="titleHtml"></div>
+              <div class="modal-title" [class]="classNameTitle" [innerHTML]="titleHtml"></div>
             } @else {
-              <div class="modal-title" [ngClass]="classNameTitle">{{ title }}</div>
+              <div class="modal-title" [class]="classNameTitle">{{ title }}</div>
             }
             @if (headerActions?.length) {
               <div class="modal-toolbar">
@@ -16,11 +16,11 @@
             }
           </div>
         }
-        <mat-dialog-content class="modal-body" [ngClass]="classNameChildren" [class.maximized]="maximized">
+        <mat-dialog-content class="modal-body" [class]="classNameChildren" [class.maximized]="maximized">
           <dynamic-form-elements [elements]="children" />
         </mat-dialog-content>
         @if (footerActions?.length) {
-          <mat-dialog-actions class="modal-footer" [ngClass]="classNameFooter">
+          <mat-dialog-actions class="modal-footer" [class]="classNameFooter">
             <dynamic-form-elements [elements]="footerActions" />
           </mat-dialog-actions>
         }

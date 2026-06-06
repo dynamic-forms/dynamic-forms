@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { MockProvider } from 'ng-mocks';
 import { DynamicForm } from '../dynamic-form/dynamic-form';
 import { DynamicFormComponentFactory } from '../dynamic-form/dynamic-form-component.factory';
-import { DynamicFormDefinition } from '../dynamic-form/dynamic-form-definition';
 import { DynamicFormBuilder } from '../dynamic-form/dynamic-form.builder';
 import { DynamicFormConfigService } from '../dynamic-form-config/dynamic-form-config.service';
 import { DynamicFormErrorHandler } from '../dynamic-form-error/dynamic-form-error.handler';
@@ -78,7 +77,7 @@ describe('DynamicFormControlComponent', () => {
     component = fixture.componentInstance;
 
     builder = TestBed.inject(DynamicFormBuilder);
-    form = new DynamicForm(builder, { children: [] } as DynamicFormDefinition, {});
+    form = new DynamicForm(builder, { children: [] }, {});
     formControl = new DynamicFormControl(
       builder,
       form,

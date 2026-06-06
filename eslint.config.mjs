@@ -1,3 +1,4 @@
+import { defineConfig } from 'eslint/config';
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import angular from "angular-eslint";
@@ -5,7 +6,7 @@ import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: ["apps/demo/src/assets/"]
   },
@@ -163,6 +164,12 @@ export default tseslint.config(
       eslintPluginPrettierRecommended
     ],
     rules: {
+      "@angular-eslint/template/no-duplicate-attributes": [
+        "error",
+        {
+          "ignore": ["class"]
+        }
+      ],
       "@angular-eslint/template/click-events-have-key-events": "off",
       "@angular-eslint/template/cyclomatic-complexity": "off",
       "@angular-eslint/template/i18n": "off",

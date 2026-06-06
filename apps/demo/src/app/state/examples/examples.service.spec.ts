@@ -1,7 +1,7 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Store, provideStore } from '@ngxs/store';
-import { filter } from 'rxjs';
+import { filter, firstValueFrom } from 'rxjs';
 import { EXAMPLES } from './examples.model';
 import { ExamplesService } from './examples.service';
 import { ExamplesState } from './examples.state';
@@ -14,7 +14,6 @@ describe('ExamplesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideHttpClientTesting(), provideStore([ExamplesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);
@@ -22,23 +21,20 @@ describe('ExamplesService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  it('loads examples', done => {
+  it('loads examples', async () => {
     const items = [{ id: 'id', label: 'Label' }];
     const menu = { items };
 
     service.load();
 
-    store
-      .select(EXAMPLES)
-      .pipe(filter(examples => !!examples))
-      .subscribe(examples => {
-        expect(examples.menu).toEqual(menu);
-        done();
-      });
+    const result = firstValueFrom(store.select(EXAMPLES).pipe(filter(examples => !!examples)));
 
     const request = httpTestingController.expectOne('./assets/examples-menu.json');
 
     request.flush(menu);
+
+    const examples = await result;
+    expect(examples.menu).toEqual(menu);
 
     httpTestingController.verify();
   });

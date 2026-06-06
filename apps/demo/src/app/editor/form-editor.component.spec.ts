@@ -22,7 +22,6 @@ describe('FormEditorComponent', () => {
         provideStore([PreferencesState]),
         MockProvider(FormLogger, { log$: logSubject.asObservable(), log: () => {} }, 'useValue'),
       ],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(FormEditorComponent);

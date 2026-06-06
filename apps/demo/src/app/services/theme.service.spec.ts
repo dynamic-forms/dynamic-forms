@@ -12,7 +12,6 @@ describe('ThemeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([PreferencesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

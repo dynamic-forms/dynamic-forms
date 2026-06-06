@@ -1,7 +1,7 @@
-<mat-accordion class="dynamic-form-items dynamic-form-accordion" [ngClass]="template.className" [hidden]="template.hidden">
+<mat-accordion class="dynamic-form-items dynamic-form-accordion" [class]="template.className" [hidden]="template.hidden">
   @for (child of element.children; track $index) {
     <mat-expansion-panel
-      [ngClass]="child.template.className"
+      [class]="child.template.className"
       [expanded]="$index === selectedIndex"
       [disabled]="child.disabled"
       [hidden]="child.template.hidden"

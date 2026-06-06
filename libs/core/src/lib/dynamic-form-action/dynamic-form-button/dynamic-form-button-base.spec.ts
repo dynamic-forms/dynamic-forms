@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -16,12 +15,11 @@ import { DynamicFormButtonTemplate } from './dynamic-form-button-template';
 
 @Component({
   selector: 'dynamic-form-button-test',
-  imports: [NgClass],
   // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
   template: `
     <button
       class="dynamic-form-button"
-      [ngClass]="template.className"
+      [class]="template.className"
       [type]="template.type || 'button'"
       [disabled]="template.disabled"
       [hidden]="template.hidden"

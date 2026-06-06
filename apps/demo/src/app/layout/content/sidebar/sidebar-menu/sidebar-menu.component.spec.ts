@@ -17,7 +17,6 @@ describe('SidebarMenuComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideRouter([]), provideStore([ConfigState, ExamplesState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

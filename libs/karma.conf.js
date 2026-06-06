@@ -16,12 +16,12 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     junitReporter: {
-      outputDir: require('path').join(__dirname, '../dist/v21/tests'),
+      outputDir: require('path').join(__dirname, '../tests'),
       outputFile: 'dynamic-forms-libs.junit.xml',
       useBrowserName: false
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../dist/v21/tests'),
+      dir: require('path').join(__dirname, '../coverage/dynamic-forms-libs'),
       subdir: '.',
       reporters: [
         { type: 'html' },

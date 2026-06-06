@@ -10,7 +10,6 @@ describe('ExamplesState', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([LayoutState])],
-      teardown: { destroyAfterEach: false },
     });
 
     store = TestBed.inject(Store);

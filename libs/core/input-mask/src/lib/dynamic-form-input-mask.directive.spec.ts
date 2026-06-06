@@ -67,7 +67,7 @@ describe('DynamicFormInputMaskDirective', () => {
       it('inits input mask converter and writes formatted value using non-default converter', () => {
         const maskOptions = {} as DynamicFormInputMaskOptions;
         const maskOptionChanges$ = EMPTY as Observable<Partial<DynamicFormInputMaskOptions>>;
-        const converter = { parse: value => value, format: value => value } as DynamicFormInputMaskConverter;
+        const converter: DynamicFormInputMaskConverter = { parse: value => value, format: value => value };
         const control = { maskOptions, maskOptionChanges$, maskInputElement: _ => {} } as DynamicFormInputMaskControl;
 
         const getConverterSpy = spyOn(converterService, 'getConverter').and.returnValue(converter);
@@ -132,7 +132,7 @@ describe('DynamicFormInputMaskDirective', () => {
           maskInputElement: _ => {},
           removeInputElement: () => {},
         } as DynamicFormInputMaskControl;
-        const converter = { parse: value => value, format: value => value } as DynamicFormInputMaskConverter;
+        const converter: DynamicFormInputMaskConverter = { parse: value => value, format: value => value };
 
         const getConverterSpy = spyOn(converterService, 'getConverter').and.returnValues(defaultConverter, converter, defaultConverter);
         const defaultConverterFormatSpy = spyOn(defaultConverter, 'format').and.callThrough();
@@ -233,7 +233,7 @@ describe('DynamicFormInputMaskDirective', () => {
       });
 
       it('sets value of native element using non-default converter', () => {
-        const converter = { parse: value => value, format: value => value } as DynamicFormInputMaskConverter;
+        const converter: DynamicFormInputMaskConverter = { parse: value => value, format: value => value };
 
         const converterFormatSpy = spyOn(converter, 'format').and.callThrough();
         spyOn(converterService, 'getConverter').and.returnValue(converter);
@@ -285,7 +285,7 @@ describe('DynamicFormInputMaskDirective', () => {
 
       it('registers handler to handle value changes onInput using non-default converter', () => {
         const handler = { onChange: _ => {} };
-        const converter = { parse: value => value, format: value => value } as DynamicFormInputMaskConverter;
+        const converter: DynamicFormInputMaskConverter = { parse: value => value, format: value => value };
 
         const handlerOnChangeSpy = spyOn(handler, 'onChange');
         const converterParseSpy = spyOn(converter, 'parse').and.callThrough();
@@ -339,9 +339,9 @@ describe('DynamicFormInputMaskDirective', () => {
       component.inputMask = {
         control: new FormControl(null),
         maskOptions: {},
-        maskOptionChanges$: EMPTY as Observable<Partial<DynamicFormInputMaskOptions>>,
+        maskOptionChanges$: EMPTY,
         maskInputElement: _ => {},
-      } as DynamicFormInputMaskControl;
+      } as unknown as DynamicFormInputMaskControl;
     });
 
     it('value of input event is passed to onInput using default converter', () => {
@@ -362,7 +362,7 @@ describe('DynamicFormInputMaskDirective', () => {
     });
 
     it('value of input event is passed to onInput using non-default converter', () => {
-      const converter = { parse: value => value, format: value => value } as DynamicFormInputMaskConverter;
+      const converter: DynamicFormInputMaskConverter = { parse: value => value, format: value => value };
 
       spyOn(converterService, 'getConverter').and.returnValue(converter);
       const converterParseSpy = spyOn(converter, 'parse').and.callThrough();
@@ -403,9 +403,9 @@ describe('DynamicFormInputMaskDirective', () => {
       fixture = TestBed.createComponent(DynamicFormInputMaskTestWithoutFormControlComponent);
       component = fixture.componentInstance;
       component.inputMask = {
-        maskOptionChanges$: EMPTY as Observable<Partial<DynamicFormInputMaskOptions>>,
+        maskOptionChanges$: EMPTY,
         maskInputElement: _ => {},
-      } as DynamicFormInputMaskControl;
+      } as unknown as DynamicFormInputMaskControl;
     });
 
     it('value of input event is passed to onInput', () => {

@@ -11,7 +11,6 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideStore([ConfigState]), provideRouter([])],
-      teardown: { destroyAfterEach: false },
     });
 
     fixture = TestBed.createComponent(HeaderComponent);

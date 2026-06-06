@@ -1,5 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { MockService } from 'ng-mocks';
+import { firstValueFrom, take } from 'rxjs';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormDefinition } from './dynamic-form-definition';
 import { DynamicFormBuilder } from './dynamic-form.builder';
@@ -68,15 +69,14 @@ describe('DynamicForm', () => {
     expect(form.hidden).toBe(true);
   });
 
-  it('submits', done => {
+  it('submits', async () => {
     const definition = { template: {}, children: [] } as DynamicFormDefinition;
     const form = new DynamicForm(builder, definition, {});
 
-    form.submit$.subscribe(submit => {
-      expect(submit).toBe(true);
-      done();
-    });
+    const submit = firstValueFrom(form.submit$.pipe(take(1)));
 
     form.submit();
+
+    expect(await submit).toBe(true);
   });
 });
